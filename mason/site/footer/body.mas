@@ -1,0 +1,146 @@
+
+<br /><br />
+<!-- BEGIN FOOTER-->
+
+<br/>
+<div id="pagefooter" class="navbar navbar-default" >
+   
+  <br/>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+      </div>
+      <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+        <div class="container-fluid">
+    	  <div class="row">
+
+      	    <div class="col-sm-9 col-md-9 col-lg-9">
+
+	      <div class="panel panel-success">
+	        <div class="panel-heading"></div>
+
+		  <table class="center table hidden-xs" style="margin-bottom:-4px">
+	    	  <tbody>
+            	    <tr>
+              	      <td>
+                	<a href="http://bti.cornell.edu/" class="footer"><img width="100" alt="Boyce Thompson Institute" src="/documents/img/bti_logo2.gif" title="Boyce Thompson Institute" border="0" style="padding-bottom:2px"/></a>
+              	      </td>
+              	      <td>
+                       <a href="https://www.positivessl.com" style="font-family: arial; font-size: 10px; color: #212121; text-decoration: none;"><img src="https://www.positivessl.com/images-new/PositiveSSL_tl_trans.png" alt="SSL Certificate" title="SSL Certificate" border="0" /></a>
+      <div style="font-family: arial;font-weight:bold;font-size:15px;color:#86BEE0;"><a href="https://www.positivessl.com" style="color:#86BEE0; text-decoration: none;">SSL Certificate</a></div></td>
+              	      <td>
+                	<a href="http://www.gmod.org/" class="footer"><img width="100" alt="Powered by GMOD" src="/documents/img/powered_by_gmod_150x71.png" title="Powered by GMOD" border="0" style="padding-top:15px"/></a>
+              	      </td>
+              	      <td>
+                	<!-- a href="http://www.gatesfoundation.org/" class="footer"><img width="80" alt="USDA NIFA" src="/documents/img/gate.png" title="Gate Foundation" border="0" style="padding-top:15px"/></a -->
+<!-- Note: Do NOT use the BMGF logo, as it requires special permission (LM) -->
+              	      </td>
+		      <td>
+                	<a href="http://www.iita.org/yam" class="footer"><img width="80" alt="USDA NIFA" src="/documents/img/IITA.png" title="IITA" border="0" style="padding-top:15px"/></a>
+              	      </td>
+            	    </tr>
+	    	  </tbody>
+          	</table>
+
+	        <ul class="visible-xs-block list-inline center nav-justified">
+            	  <li>
+              	  <a href="http://bti.cornell.edu/" class="footer"><img width="100" alt="Boyce Thompson Institute" src="/documents/img/bti_logo2.gif" title="Boyce Thompson Institute" border="0" style="padding-top:5px"/></a>
+            	  </li>
+            	  <li>
+              	  <a href="http://www.nsf.gov/" class="footer"><img width="77" alt="National Science Foundation" src="/documents/img/nsf_logo2.png" title="National Science Foundation" border="0" style="padding-top:5px"/></a>
+            	  </li>
+            	  <li>
+              	  <a href="http://www.gmod.org/" class="footer"><img width="100" alt="Powered by GMOD" src="/documents/img/powered_by_gmod_150x71.png" title="Powered by GMOD" border="0" style="padding-top:15px"/></a>
+            	  </li>
+            	  <li>
+              	  <a href="http://www.nifa.usda.gov/" class="footer"><img width="80" alt="USDA NIFA" src="/documents/img/usda_logo2.png" title="USDA NIFA" border="0" style="padding-top:12px"/></a>
+            	  </li>
+
+                  <li> 
+		  <a <iframe width="50" height="20" src="https://www.youtube.com/embed/WJxV_A6KpLM?feature=oembed" frameborder="0" allowfullscreen></iframe></a>
+                  </li>
+
+          	</ul>
+
+	      </div>
+
+	      <div class="well well-sm" style="margin-top:-3px">
+	        <!-- <small>Yambase is supported by <a class="footer" href="http://www.gatesfoundation.org/"> Gate Foundation </a>, and hosted at <a class="footer" href="http://bti.cornell.edu">BTI.</a> -->
+     		<small>Yambase is hosted at <a class="footer" href="http://bti.cornell.edu">BTI.</a>
+                <br />
+    		</small>
+              </div>
+	    </div>
+
+	    <div class="col-sm-3 col-md-3 col-lg-3" >
+	      <div class="panel panel-info">
+		<table class="table table-hover">
+		  <tbody>
+		    <tr>
+		      <td>
+		        <a href="http://facebook.com/solgenomics" class="footer"><img width="20" alt="Facebook" src="/documents/img/facebook_icon.png" title="SGN Facebook" border="0" /></a>
+			<a href="http://twitter.com/solgenomics" class="footer"><img width="20" alt="Twitter" src="/documents/img/twitter_icon.png" title="SGN Twitter" border="0"/></a>
+			<a href="http://linkedin.com/solgenomics" class="footer"><img width="20" alt="LinkedIn" src="/documents/img/linkedin_icon.png" title="SGN LinkedIn" border="0"/></a>
+			<a href="http://googleplus.com/solgenomics" class="footer"><img width="20" alt="GooglePlus" src="/documents/img/googleplus_icon.png" title="SGN Google Plus" border="0"/></a>
+		      </td>
+		    </tr>
+		    <tr>
+		      <td><span class="glyphicon glyphicon-info-sign"></span>&nbsp;&nbsp;&nbsp;&nbsp;<a href="/about/index.pl">About</a></td>
+		    <tr>
+		    <tr>
+		      <td><span class="glyphicon glyphicon-envelope"></span>&nbsp;&nbsp;&nbsp;&nbsp;<a href="/contact/form/">Contact Us</a></td>
+		    <tr>
+		    <tr>
+		      <td><span class="glyphicon glyphicon-blackboard"></span>&nbsp;&nbsp;&nbsp;&nbsp;<a href="/help/index.pl">Help</a></td>
+		    <tr>
+		    <tr>
+		      <td><span class="glyphicon glyphicon-question-sign"></span>&nbsp;&nbsp;&nbsp;&nbsp;<a href="/help/faq.pl">FAQ</a></td>
+		    <tr>
+		    <tr>
+		      <td><span class="glyphicon glyphicon-comment"></span>&nbsp;&nbsp;&nbsp;&nbsp;<a href="/forum/topics.pl">Forum</a></td>
+		    <tr>
+		  </tbody>
+		</table>
+	      </div>
+	    </div>
+
+	  </div>
+	</div>
+      </div>
+
+      <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+      </div>
+    </div>
+  </div>
+
+</div>
+</div>
+
+
+<script>
+(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.4";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
+</script>
+
+<script src="https://platform.twitter.com/widgets.js" type="text/javascript"></script>
+
+
+
+<!-- </body> -->
+<!-- </html> -->
+
+
+<%doc>
+<p><iframe width="500" height="281" src="https://www.youtube.com/embed/WJxV_A6KpLM?feature=oembed" frameborder="0" allowfullscreen></iframe></p>
+<p>Video produced by IITA</p>
+</%doc>
+
+
+   <!-- Google Analytics Code -->
+   <!-- Google Analytics Code moved to header -->
+

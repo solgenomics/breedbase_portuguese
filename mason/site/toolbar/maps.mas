@@ -1,0 +1,6 @@
+<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Maps</a>
+  <ul class="dropdown-menu">
+    <li><a href="https://www.ncbi.nlm.nih.gov/assembly/GCA_002240015.2">Yam Genome at Genbank</a></li>
+    <li><a href="/jbrowse"><i>Yam Genome</i> Jbrowse</a></li>
+  </ul>
+</li>

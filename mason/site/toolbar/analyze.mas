@@ -1,0 +1,25 @@
+<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Analyze</a>
+<!-- <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Tools<span class="caret"></span></a> -->
+  <ul class="dropdown-menu">
+    <li class="dropdown-header">Breeder Tools</li>
+    <li><a href="/breeders/home">Breeder Home</a></li>
+    <li><a href="/selection/index">Selection Index</a></li>
+    <li><a href="/solgs/search/">Genomic Selection</a></li>
+    <li><a href="/accession_usage">Accession Usage</a></li>
+    <li><a href="/pca/analysis">Population Structure</a></li>
+    <li><a href="/tools/trial/comparison/list">Compare Trials</a></li>
+    <li><a href="/tools/graphicalfiltering">Graphical Filtering</a></li>
+    <li><a href="/tools/boxplotter">Boxplotter</a></li>
+    <li><a href="/tools/expression_atlas">Breeders Expression Atlas</a></li>
+    <li role="separator" class="divider"></li>
+
+    <li class="dropdown-header">Sequence Analysis</li>
+    <li><a href="/tools/blast/">BLAST</a></li>
+    <li role="separator" class="divider"></li>
+
+    <li class="dropdown-header">Other</li>
+    <li><a href="/tools/onto/">Ontology Browser</a></li>
+    <li><a href="/tools/compose/">Compose a New Trait</a></li>
+
+  </ul>
+</li>
