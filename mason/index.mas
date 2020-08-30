@@ -24,14 +24,14 @@ $timestamp
   <div class="row">
     <div class="col-sm-6 col-md-6 col-lg-6">
       <div class="panel panel-info">
-        <div class="panel-heading">News</div>
+        <div class="panel-heading">Notícias</div>
         <div class="panel-body" style="overflow:hidden">
          <& homepage/news.mas &> 
         </div>
       </div>
       
       <div class="panel panel-info">
-        <div class="panel-heading">Popular Species</div>
+        <div class="panel-heading">Espécies populares</div>
         <div class="panel-body" style="overflow:hidden">
           <& homepage/popular_species.mas &>
         </div>
@@ -39,7 +39,7 @@ $timestamp
       
       <div class="panel panel-info">
       
-        <div class="panel-heading">Yambase Featured</div>
+        <div class="panel-heading">Destaques do Inhame</div>
     	  <table class="table table-hover table-striped">
     	      <tbody>
     	            <tr><td><& homepage/publication_of_the_week.mas &></td></tr>
@@ -54,9 +54,9 @@ $timestamp
 	</div>
 
       <div class="panel panel-info">
-        <div class="panel-heading">Yam Newsletters</div>
+        <div class="panel-heading">Notícias do inhame</div>
         <div class="panel-body">
-          All Yam newsletters, are available on the <a href="http://africayam.org/">Africayam  Project page</a>
+          Todas as notícias do inhame estão disponíveis na página do projeto Africayam <a href="http://africayam.org/"></a>
         </div>
       </div>
       
@@ -65,7 +65,7 @@ $timestamp
     <div class="col-sm-6 col-md-6 col-lg-6">
         
       <div class="panel panel-info">
-        <div class="panel-heading">Events</div>
+        <div class="panel-heading">Eventos</div>
         <div class="panel-body" style="overflow:hidden">
           <& homepage/events.mas &>
            
@@ -73,7 +73,7 @@ $timestamp
       </div>
         
       <div class="panel panel-info">
-        <div class="panel-heading">Affiliated Sites</div>
+        <div class="panel-heading">Sites Relacionados</div>
         <div class="panel-body" style="overflow:hidden">
           
           <& homepage/affiliated_sites.mas &>
