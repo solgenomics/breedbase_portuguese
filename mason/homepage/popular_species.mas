@@ -7,9 +7,7 @@ $show_link=>1
 <div class="boxheading">Popular species</div>
 <div class="boxcontent">
 
-<!-- <a href="/organism/5/view">Manihot esculenta</a> -->
-
-<a href="https://en.wikipedia.org/wiki/Dioscorea"> Dioscorea </a>
+<a href="/organism/5/view">Manihot esculenta</a>
 
 </div>
 </div>

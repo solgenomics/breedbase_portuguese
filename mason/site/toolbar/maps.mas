@@ -1,6 +1,15 @@
-<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Maps</a>
+<li class="dropdown"><a class="menu_click_dropdown dropdown-toggle" data-toggle="dropdown">Maps</a>
+<!-- <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Tools<span class="caret"></span></a> -->
   <ul class="dropdown-menu">
-    <li><a href="https://www.ncbi.nlm.nih.gov/assembly/GCA_002240015.2">Yam Genome at Genbank</a></li>
-    <li><a href="/jbrowse"><i>Yam Genome</i> Jbrowse</a></li>
+    
+    <li><a href="/cview/map.pl?map_id=1">Cassava 2011</a></li>
+    <li><a href="/cview/map.pl?map_id=2">Cassava 2013 GBS Map</a></li>
+    <li><a href="/cview/map.pl?map_id=3">Cassava 2014 GBS Map</a></li>
+    <li role="separator" class="divider"></li>
+    
+    <li class="dropdown-header">Genome</li>
+    <li><a class="footer" href="http://phytozome.jgi.doe.gov/jbrowse/index.html?data=genomes%2FMesculenta_er">Cassava Genome Browser at JGI (version 6.1)</a></li>
+    
+    
   </ul>
 </li>
