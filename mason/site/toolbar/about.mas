@@ -1,21 +1,21 @@
-<li class="dropdown"><a class="menu_click_dropdown dropdown-toggle footer" data-toggle="dropdown" href="http://www.nextgencassava.org/">About</a>
+<li class="dropdown"><a class="menu_click_dropdown dropdown-toggle footer" data-toggle="dropdown" href="http://www.nextgencassava.org/">Sobre</a>
 <!-- <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">About Us<span class="caret"></span></a> -->
   <ul class="dropdown-menu">
-    <li><a href="http://www.nextgencassava.org/" class="footer">About NextGen Cassava</a></li>
-    <li><a href="/contact/form">Contact</a></li>
+    <li><a href="http://www.nextgencassava.org/" class="footer">Sobre NextGen Cassava</a></li>
+    <li><a href="/contact/form">Contatos</a></li>
     <li><a href="/help">Cite CassavaBase</a></li>
     
     <li role="separator" class="divider"></li>
     
     <li><a href="https://solgenomics.github.io/sgn/" class="footer">Manual</a></li>
-    <li><a href="https://www.youtube.com/channel/UC3jrvvzGKKEHzOriDBgnj0A" target="_blank">Video Tutorials</a></li>
+    <li><a href="https://www.youtube.com/channel/UC3jrvvzGKKEHzOriDBgnj0A" target="_blank">Tutorial em Vídeos</a></li>
 
     <li role="separator" class="divider"></li>
 
-    <li><a href="/help/faq.pl">FAQ</a></li>
-    <li><a href="/forum/topics.pl">Forum</a></li>
+    <li><a href="/help/faq.pl">Perguntas Frequentes</a></li>
+    <li><a href="/forum/topics.pl">Fórum</a></li>
     <li><a href="https://cassavabase.org/ftp">FTP site</a></li>
-    <li><a href="https://cassavabase.org/ftp/documents/">Project documents</a></li>
+    <li><a href="https://cassavabase.org/ftp/documents/">Documentos de Projetos</a></li>
     
     <li role="separator" class="divider"></li>
     

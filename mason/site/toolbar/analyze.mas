@@ -1,38 +1,38 @@
-<li class="dropdown"><a class="menu_click_dropdown dropdown-toggle" data-toggle="dropdown">Analyze</a>
+<li class="dropdown"><a class="menu_click_dropdown dropdown-toggle" data-toggle="dropdown">Análises</a>
 <!-- <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Genomes<span class="caret"></span></a> -->
   <ul class="dropdown-menu">
-    <li><a href="/analyses">Analyses &amp; Models</a></li>
+    <li><a href="/analyses">Análises &amp; Modelos</a></li>
      <li role="separator" class="divider"></li>
-    <li class="dropdown-header">Breeder Tools</li>
-    <li><a href="/selection/index">Selection Index</a></li>
+    <li class="dropdown-header">Ferramentas para Melhoristas</li>
+    <li><a href="/selection/index">Índice de Seleção</a></li>
     <!-- li><a href="/analyze/phenotypes">Analyze Phenotypes</a><li -->
     <!-- li><a href="/barcode">Barcode Tools</a></li -->
-    <li><a href="/solgs/search">Genomic Selection</a></li>
-    <li><a href="/pca/analysis">Population Structure</a></li>
-    <li><a href="/cluster/analysis">Clustering</a></li>
-    <li><a href="/kinship/analysis">Kinship & Inbreeding</a></li>
-    <li><a href="/tools/stability">Stability AMMI/GGE</a></li>
-    <li><a href="/tools/heritability">Heritability</a></li>
+    <li><a href="/solgs/search">Seleção Genômica</a></li>
+    <li><a href="/pca/analysis">Estrutura de População</a></li>
+    <li><a href="/cluster/analysis">Agrupamentos</a></li>
+    <li><a href="/kinship/analysis">Parentesco & Endogamia</a></li>
+    <li><a href="/tools/stability">Estabilidade AMMI/GGE</a></li>
+    <li><a href="/tools/heritability">Herdabilidade</a></li>
     <li role="separator" class="divider"></li>
-    <li><a href="/accession_usage">Accession Usage</a></li>
-    <li><a href="/tools/mixedmodels">Mixed Models</a></li>
-    <li><a href="/tools/trial/comparison/list">Compare Trials</a></li>
-    <li><a href="/tools/graphicalfiltering">Graphical Filtering</a></li>
-    <li><a href="/tools/boxplotter">BoxPlotter Tool</a></li>
+    <li><a href="/accession_usage">Uso dos Acessos</a></li>
+    <li><a href="/tools/mixedmodels">Modelos Mistos</a></li>
+    <li><a href="/tools/trial/comparison/list">Comparação de Experimentos</a></li>
+    <li><a href="/tools/graphicalfiltering">Filtros Gráficos</a></li>
+    <li><a href="/tools/boxplotter">Ferramentas para Boxplot</a></li>
     <li><a href="/tools/solgwas">GWAS</a></li>
-    <li><a href="/tools/image_analysis">Image Analysis</a></li>
+    <li><a href="/tools/image_analysis">Análise de Imagens</a></li>
 
     <li role="separator" class="divider"></li>
-    <li class="dropdown-header">Sequence Analysis</li>
+    <li class="dropdown-header">Análise de Sequências</li>
     <li><a class="footer" href="/tools/blast/">BLAST</a></li>
    <!--  <li><a class="footer" href="https://phytozome.jgi.doe.gov/pz/portal.html#!search?show=BLAST">BLAST</a></li> -->
     <li><a class="footer" href="http://vigs.solgenomics.net/">VIGS Tool</a></li>
     <li><a class="footer" href="https://cassavabase.org/jbrowse_cassavabase/?data=data/json/hapmap_variants">HapMap Jbrowse</a></li> 
 
     <li role="separator" class="divider"></li>
-    <li class="dropdown-header">Other</li>
-    <li><a href="/tools/onto/">Ontology Browser</a></li>
-    <li><a href="/tools/compose/">Compose a New Trait</a></li>
+    <li class="dropdown-header">Outros</li>
+    <li><a href="/tools/onto/">Navegador Ontologia</a></li>
+    <li><a href="/tools/compose/">Compor Novas Características</a></li>
 
   </ul>
 </li>
