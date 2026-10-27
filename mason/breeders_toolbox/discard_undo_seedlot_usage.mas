@@ -10,36 +10,36 @@
                 <div class="panel panel-default">
                     <div class="panel-body">
                         <div class="modal-header" style="text-align: center">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title" id="discardUsageInfoDialog">Marking Seedlots as DISCARDED and Undo Options</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="discardUsageInfoDialog">Marcar lotes de sementes como DESCARTADOS e opções para desfazer</h4>
                         </div>
                         <div class="modal-body">
                             <div class="container-fluid">
-                                <p> Only users with curator role can mark seedlots as "DISCARDED" or undo discarding seedlots.</p>
+                                <p>Somente usuários com a função de curador podem marcar lotes de sementes como "DESCARTADOS" ou desfazer o descarte.</p>
                                 <hr class ="solid">
                                 <h4>
-                                    Discarding vs. Deleting Seedlots:
+                                    Descartar ou excluir lotes de sementes:
                                 </h4>
-                                <p> Discarding a seedlot is different from deleting a seedlot.
-                                <li>Deleting a seedlot permanently removes that seedlot and all associated transactions from database. Discarding a seedlot inactivates the seedlot, but information related to that seedlot is still kept in the database.</li>
-                                <li>Amount/Weight of discarded seedlot is labeled as "DISCARDED".</li>
-                                <li>Discarding a seedlot can be reversed with UNDO function, but deletion a seedlot cannot be undone.</li>
-                                <li>Discarded seedlots still can be viewed in seedlot details pages and are searchable. However, links for adding new transaction, editing details and transaction are removed.</li>
-                                <li>Discarded seedlots are excluded from dropdown list for adding new transactions.</li>
+                                <p>Descartar um lote de sementes é diferente de excluí-lo.</p>
+                                <li>A exclusão remove permanentemente o lote e todas as transações associadas do banco de dados. O descarte desativa o lote, mas mantém suas informações no banco.</li>
+                                <li>A quantidade ou o peso do lote descartado é identificado como "DESCARTADO".</li>
+                                <li>O descarte pode ser revertido pela função DESFAZER, mas a exclusão de um lote não pode ser desfeita.</li>
+                                <li>Os lotes descartados continuam visíveis nas páginas de detalhes e permanecem pesquisáveis. No entanto, os links para adicionar uma nova transação e editar detalhes ou transações são removidos.</li>
+                                <li>Os lotes descartados são excluídos da lista suspensa usada para adicionar novas transações.</li>
                                 <hr class ="solid">
                                 <h4>
-                                    How to Mark Seedlot as DISCARDED:
+                                    Como marcar um lote de sementes como DESCARTADO:
                                 </h4>
-                                <li>Using a List: Several seedlots can be discarded at once by using a list with seedlots list type. The link can be found at the buttom of Manage Seedlots (Available Seedlots) page.</li>
-                                <li>Discarding single seedlot: The link can be found at the buttom of Seedlot Details page.</li>
+                                <li>Usando uma lista: vários lotes podem ser descartados de uma só vez com uma lista do tipo lotes de sementes. O link está no final da página Gerenciar lotes de sementes (Lotes disponíveis).</li>
+                                <li>Descartando um único lote: o link está no final da página Detalhes do lote de sementes.</li>
                                 <hr class ="solid">
                                 <h4>
-                                    UNDO Discarding seedlots:
+                                    Desfazer o descarte de lotes de sementes:
                                 </h4>
-                                <p>Discarded seedlot can be reversed by using UNDO option at the buttom of Seedlot Details page </p>
+                                <p>O descarte pode ser revertido pela opção DESFAZER, no final da página Detalhes do lote de sementes.</p>
                             </div>
                             <div class="modal-footer">
-                                <button id="close_discarded_seedlot_usage_dialog" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                <button id="close_discarded_seedlot_usage_dialog" type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
                             </div>
                         </div>
                     </div>

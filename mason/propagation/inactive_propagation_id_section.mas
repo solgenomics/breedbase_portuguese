@@ -3,7 +3,7 @@ $propagation_group_stock_id
 </%args>
 
 
-<&| /page/info_section.mas, title => 'Inactive Propagation IDs', collapsible=>1, collapsed=>0 &>
+<&| /page/info_section.mas, title => 'IDs de propagação inativos', collapsible=>1, collapsed=>0 &>
     <div class = "well well-sm">
         <div class = "panel panel-default">
             <div class = "panel-body">
@@ -25,19 +25,19 @@ jQuery(document).ready(function(){
         'ajax': '/ajax/propagation/inactive_propagation_ids_in_group/'+propagation_group_stock_id,
         'autoWidth': false,
         'columns': [
-            { title: "Propagation ID", "data": null, "render": function ( data, type, row ) { return "<a href='/stock/"+row.propagation_stock_id+"/view'>"+row.propagation_name+"</a>"; } },
-            { title: "Accession", "data": null, "render": function ( data, type, row ) { return "<a href='/stock/"+row.accession_stock_id+"/view'>"+row.accession_name+"</a>"; } },
-            { title: "Rootstock", "data": null, "render": function ( data, type, row ) {
+            { title: "ID de propagação", "data": null, "render": function ( data, type, row ) { return "<a href='/stock/"+row.propagation_stock_id+"/view'>"+row.propagation_name+"</a>"; } },
+            { title: "Acesso", "data": null, "render": function ( data, type, row ) { return "<a href='/stock/"+row.accession_stock_id+"/view'>"+row.accession_name+"</a>"; } },
+            { title: "Porta-enxerto", "data": null, "render": function ( data, type, row ) {
                 if (row.rootstock_stock_id === null){
                     return ' '
                 } else {
                     return "<a href='/stock/"+row.rootstock_stock_id+"'>"+row.rootstock_name+"</a>"
                 }
             }},
-            { title: "Status", "data": "propagation_status" },
-            { title: "Updated Date", "data": "updated_date" },
-            { title: "Updated by", "data": "updated_by" },
-            { title: "Notes", "data": "notes" },
+            { title: "Estado", "data": "propagation_status" },
+            { title: "Data de atualização", "data": "updated_date" },
+            { title: "Atualizado por", "data": "updated_by" },
+            { title: "Observações", "data": "notes" },
 
         ],
 

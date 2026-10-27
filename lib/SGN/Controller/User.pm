@@ -1,6 +1,7 @@
 
 package SGN::Controller::User;
 
+use utf8;
 use Moose;
 
 BEGIN { extends 'Catalyst::Controller' };
@@ -50,24 +51,24 @@ sub confirm_user :Path('/user/confirm') Args(0) {
 
     if ($c->config->{disable_account_confirm}) {
         $c->stash->{template} = '/generic_message.mas';
-        $c->stash->{message} = 'Account confirmation is disabled on this site. Please contact nm529@cornell.edu to confirm your account.';
+        $c->stash->{message} = 'A confirmação de contas está desativada neste site. Entre em contato com nm529@cornell.edu para confirmar sua conta.';
         return;
     }
 
     my $sp = CXGN::People::Login->get_login( $c->dbc()->dbh(), $username );
 
     if ( !$sp ) {
-	confirm_failure($c, "Username \"$username\" was not found.");
+	confirm_failure($c, "O nome de usuário \"$username\" não foi encontrado.");
 	return;
     }
 
     if ( !$sp->get_confirm_code() ) {
-	confirm_failure($c, "No confirmation is required for user <b>$username</b>. This account has already been confirmed. <p><a href='/user/login'>[Login Page]</a></p>");
+	confirm_failure($c, "O usuário <b>$username</b> não precisa de confirmação. Esta conta já foi confirmada. <p><a href='/user/login'>[Página de login]</a></p>");
 	return;
     }
 
     if ( $sp->get_confirm_code() ne $confirm_code ) {
-	confirm_failure($c, "Confirmation code is not valid!\n");
+	confirm_failure($c, "O código de confirmação não é válido.\n");
 	return;
     }
 
@@ -81,19 +82,19 @@ sub confirm_user :Path('/user/confirm') Args(0) {
     if ( $c->config->{user_registration_admin_confirmation} && $c->config->{user_registration_admin_confirmation_email} ) {
         my $host = $c->config->{main_production_site_url};
         my $project_name = $c->config->{project_name};
-        my $subject="[$project_name] New Account Confirmed";
+        my $subject="[$project_name] Nova conta confirmada";
         my $body=<<END_HEREDOC;
 
-Your new account on $project_name with the username \"$username\" has been confirmed.
+Sua nova conta no $project_name, com o nome de usuário \"$username\", foi confirmada.
 
-You can now login using your account credentials:
+Agora você pode entrar usando os dados da sua conta:
 $host
 
-Thank you,
-$project_name Team
+Obrigado,
+Equipe $project_name
 
-Please do *NOT* reply to this message. If you have any trouble logging into your 
-account or have any other questions, please use the contact form instead:
+*NÃO* responda a esta mensagem. Se tiver dificuldades para entrar na conta ou
+alguma dúvida, use o formulário de contato:
 $host/contact/form
 
 END_HEREDOC
@@ -101,7 +102,7 @@ END_HEREDOC
     }
 
     $c->stash->{template} = '/generic_message.mas';
-    $c->stash->{message} = "Confirmation successful for username <b>$username</b>";
+    $c->stash->{message} = "O nome de usuário <b>$username</b> foi confirmado com sucesso.";
 }
 
 sub confirm_failure {
@@ -109,7 +110,7 @@ sub confirm_failure {
     my $reason = shift;
 
     $c->stash->{template} = '/generic_message.mas';
-    $c->stash->{message} = "Sorry, this confirmation code is invalid. Please check that your complete confirmation URL has been pasted correctly into your browser. ($reason)";
+    $c->stash->{message} = "Este código de confirmação é inválido. Verifique se o endereço completo de confirmação foi colado corretamente no navegador. ($reason)";
 
 }
 
@@ -123,7 +124,7 @@ sub reset_password_form :Path('/user/reset_password_form') Args(0) {
     if ($token) {
 	my $person_id = CXGN::People::Login->get_login_by_token($c->dbc->dbh(), $token);
 	if (!$person_id) {
-	    $c->stash->{message} = "The provided password reset link is invalid. Please try again with another link.";
+	    $c->stash->{message} = "O link informado para redefinir a senha é inválido. Tente novamente com outro link.";
 	    $c->stash->{template} = '/generic_message.mas';
 	    return;
 	}
@@ -135,7 +136,7 @@ sub reset_password_form :Path('/user/reset_password_form') Args(0) {
 	$c->stash->{template} = '/user/reset_password_form.mas';
     }
     else {
-	$c->stash->{message} = "No token provided. Please try again.";
+	$c->stash->{message} = "Nenhum token foi informado. Tente novamente.";
 	$c->stash->{template} = '/generic_message.mas';
     }
 

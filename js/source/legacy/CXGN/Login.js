@@ -18,7 +18,7 @@ function isLoggedIn() {
 	    }
 	},
 	error: function(response) {
-	    alert("An error occurred. "+response);
+	    alert("Ocorreu um erro. "+response);
 	}
     }
 
@@ -44,7 +44,7 @@ function getUserRoles() {
 	    }
 	},
 	error: function(response) {
-	    alert("An error occurred. "+response);
+	    alert("Ocorreu um erro. "+response);
 	}
     }
 
@@ -70,7 +70,7 @@ function setUpLogin() {
     height: 80,
     width: 100,
     modal: true,
-    title: "Working...",
+    title: "Processando...",
     closeOnEscape: false,
     autoOpen: false
   });
@@ -79,14 +79,14 @@ jQuery('#login_window').dialog( {
     height: 180,
     width: 300,
     modal: true,
-    title: 'Login',
+    title: 'Entrar',
     autoOpen: false,
     buttons: {
-      "Login" :
+      "Entrar" :
         function() {
           login();
         },
-      "Cancel":
+      "Cancelar":
         function() {
           jQuery('#login_window').dialog("close");
         }

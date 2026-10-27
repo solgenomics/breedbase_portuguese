@@ -2,7 +2,7 @@
 $transformation_id
 </%args>
 
-<&| /page/info_section.mas, title => 'Obsoleted Transgenic Lines (Accessions)', collapsible=>1, collapsed=>1 &>
+<&| /page/info_section.mas, title => 'Linhagens transgênicas obsoletas (acessos)', collapsible=>1, collapsed=>1 &>
     <div class = "well well-sm">
         <div class = "panel panel-default">
             <div class = "panel-body">
@@ -26,10 +26,10 @@ jQuery(document).ready(function(){
         'autoWidth': false,
         'order': false,
         'columns': [
-            { title: "Accession", "data": null, "render": function ( data, type, row ) { return "<a href='/stock/"+row.transformant_id+"/view'>"+row.transformant_name+"</a>"; } },
-            { title: "Note", "data": "obsolete_note" },
-            { title: "Date", "data": "obsolete_date" },
-            { title: "Obsoleted by", "data": "obsolete_person" },
+            { title: "Acesso", "data": null, "render": function ( data, type, row ) { return "<a href='/stock/"+row.transformant_id+"/view'>"+row.transformant_name+"</a>"; } },
+            { title: "Observação", "data": "obsolete_note" },
+            { title: "Data", "data": "obsolete_date" },
+            { title: "Marcado como obsoleto por", "data": "obsolete_person" },
         ],
     });
 

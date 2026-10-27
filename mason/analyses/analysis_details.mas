@@ -16,58 +16,58 @@ $analysis_metadata
         <table class="table table-hover table-bordered" >
 
             <tr>
-                <td><b>Analysis Name</b></td>
+                <td><b>Nome da análise</b></td>
                 <td>
                     <div id="trial_name">
 % if ($trial_name) {
 %   print "$trial_name";
 % } else {
-%   print "<span class='text-danger'>[No Trial Name]</span>";
+%   print "<span class='text-danger'>[Nome da análise não informado]</span>";
 % }
                     </div>
                 </td>
             </tr>
 
             <tr>
-                <td><b>Breeding Program </b></td>
+                <td><b>Programa de melhoramento </b></td>
                 <td>
                     <span id="breeding_program">
 % if ($breeding_program_name) {
                     <a href="/breeders/program/<% $breeding_program_id %>"><% $breeding_program_name %></a>
 % }
 % else {
-%  print "<span class='text-danger'>[No Breeding Program]</span>";
+%  print "<span class='text-danger'>[Programa de melhoramento não informado]</span>";
 % }
                     </span>
                 </td>
             </tr>
 
             <tr>
-                <td><b>Year</b></td>
+                <td><b>Ano</b></td>
                 <td>
                     <div id="trial_year">
 % if ($year) {
 %  print "$year";
 % } else {
-%  print "<span class='text-danger'>[No Year]</span>";
+%  print "<span class='text-danger'>[Ano não informado]</span>";
 % }
                     </div>
                 </td>
             </tr>
 
-            <tr><td><b>Description</b></td>
+            <tr><td><b>Descrição</b></td>
                 <td>
                     <div id="trial_description">
 % if ($trial_description) {
 %  print "$trial_description";
 % } else {
-%  print "<span class='text-danger'>[No Description]</span>";
+%  print "<span class='text-danger'>[Descrição não informada]</span>";
 % }
                     </div>
                 </td>
             </tr>
 
-            <tr><td><b>Protocol</b></td>
+            <tr><td><b>Protocolo</b></td>
                 <td>
                     <div id="analysis_protocol">
 %  print $analysis_metadata->analysis_protocol;
@@ -75,7 +75,7 @@ $analysis_metadata
                 </td>
             </tr>
 
-            <tr><td><b>Dataset</b></td>
+            <tr><td><b>Conjunto de dados</b></td>
                 <td>
                     <div id="analysis_dataset_id">
 %  print "<a href=/dataset/".$analysis_metadata->dataset_id.">".$analysis_metadata->dataset_id."</a>";
@@ -83,7 +83,7 @@ $analysis_metadata
                 </td>
             </tr>
 
-            <tr><td><b>Created</b></td>
+            <tr><td><b>Criado em</b></td>
                 <td>
                     <div id="analysis_create_timestamp">
 %  print $analysis_metadata->create_timestamp;
@@ -91,7 +91,7 @@ $analysis_metadata
                 </td>
             </tr>
 
-            <tr><td><b>Result Summary</b></td>
+            <tr><td><b>Resumo dos resultados</b></td>
                 <td>
                     <div id="analysis_result_summary">
 %  if ($analysis_metadata->result_summary) {

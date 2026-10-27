@@ -6,21 +6,21 @@
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="uploadDerivedAccessionsDialog">Upload Derived Accessions</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="uploadDerivedAccessionsDialog">Enviar acessos derivados</h4>
             </div>
             <div class="modal-body">
                 <div class="container-fluid">
-                    <&| /page/explanation.mas, title=>'Template Information' &>
+                    <&| /page/explanation.mas, title=>'Informações do modelo' &>
                         <p>
-                            <b>File format information</b>
+                            <b>Informações sobre o formato do arquivo</b>
                             <br>
-                            <a id="derived_accession_upload_spreadsheet_format_info">Spreadsheet Format</a>
+                            <a id="derived_accession_upload_spreadsheet_format_info">Formato da planilha</a>
                         </p>
                     </&>
                     <form method="post" enctype="multipart/form-data" encoding="multipart/form-data" id="upload_derived_accessions_form" name="upload_derived_accessions_form">
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">Upload File: </label>
+                            <label class="col-sm-3 control-label">Enviar arquivo: </label>
                             <div class="col-sm-9" >
                                 <input type="file" name="derived_accessions_file" id="derived_accessions_file" encoding="multipart/form-data" />
                             </div>
@@ -29,8 +29,8 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" name="upload_derived_accessions_submit" id="upload_derived_accessions_submit">Upload</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                <button type="button" class="btn btn-primary" name="upload_derived_accessions_submit" id="upload_derived_accessions_submit">Enviar</button>
             </div>
         </div>
     </div>
@@ -40,19 +40,19 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="derivedAccessionsSavedDialog">Success</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="derivedAccessionsSavedDialog">Sucesso</h4>
             </div>
             <div class="modal-body">
                 <div class="container-fluid">
                     <p>
                         <span class="ui-icon ui-icon-circle-check" style="float: left; margin: 0 7px 50px 0;"></span>
-                        The derived accessions were saved successfully.
+                        Os acessos derivados foram salvos com sucesso.
                     </p>
                 </div>
             </div>
             <div class="modal-footer">
-                <button id="dismiss_derived_accessions_saved_dialog" type="button" class="btn btn-default" data-dismiss="modal">Close & Reload</button>
+                <button id="dismiss_derived_accessions_saved_dialog" type="button" class="btn btn-default" data-dismiss="modal">Fechar e recarregar</button>
             </div>
         </div>
     </div>
@@ -62,8 +62,8 @@
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="uploadDerivedAccessionsErrorDialog">Upload Derived Accessions Error</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="uploadDerivedAccessionsErrorDialog">Erro ao enviar acessos derivados</h4>
             </div>
             <div class="modal-body">
                 <div class="container-fluid">
@@ -73,7 +73,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
             </div>
         </div>
     </div>
@@ -83,38 +83,38 @@
     <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content">
             <div class="modal-header" style="text-align: center">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="uploadDerivedAccessionsInfoDialog">Upload Template Information For Derived Accessions</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="uploadDerivedAccessionsInfoDialog">Informações do modelo para enviar acessos derivados</h4>
             </div>
             <div class="modal-body">
                 <div class="container-fluid">
-                    <b>Header:</b>
+                    <b>Cabeçalho:</b>
                     <br>
-                    The first row (header) should contain the following:
+                    A primeira linha (cabeçalho) deve conter:
                     <br />
 
                     <table class="table table-hover table-bordered table-condensed" >
                         <thead></thead>
                         <tbody>
                             <tr>
-                                <td>source_name</td>
-                                <td>derived_accession_name</td>
-                                <td>description</td>
+                                <td>Nome da origem<br><code>source_name</code></td>
+                                <td>Nome do acesso derivado<br><code>derived_accession_name</code></td>
+                                <td>Descrição<br><code>description</code></td>
                             </tr>
                         </tbody>
                     </table>
 
-                    <b>Required fields:</b>
+                    <b>Campos obrigatórios:</b>
                     <ul>
-                        <li>source_name (must be in the database. Stock type can be accession, plant or tissue sample)</li>
-                        <li>derived_accession_name (must NOT exist in the database)</li>
-                        <li>description</li>
+                        <li>Nome da origem — <code>source_name</code> (deve estar no banco de dados; o tipo de material pode ser acesso, planta ou amostra de tecido)</li>
+                        <li>Nome do acesso derivado — <code>derived_accession_name</code> (NÃO pode existir no banco de dados)</li>
+                        <li>Descrição — <code>description</code></li>
                     </ul>
                 </div>
                 <& /help/file_upload_type.mas, type => "Derived Accessions", optional_column => 0 &>
             </div>
             <div class="modal-footer">
-                <button id="close_derived_accession_info_upload_dialog" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button id="close_derived_accession_info_upload_dialog" type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
             </div>
         </div>
     </div>

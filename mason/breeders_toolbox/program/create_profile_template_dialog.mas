@@ -3,20 +3,20 @@
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header" style="text-align: center">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="createProfileTemplateDialog">To create product profile template, please provide file name and a list of traits </h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="createProfileTemplateDialog">Para criar um modelo de perfil de produto, informe o nome do arquivo e uma lista de características</h4>
             </div>
             <div class="modal-body">
                 <div class="container-fluid">
                     <form class="form-horizontal" role="form">
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">Template File Name: </label>
+                            <label class="col-sm-3 control-label">Nome do arquivo de modelo: </label>
                             <div class="col-sm-9">
-                                <input class="form-control" id="template_file_name" name="template_file_name" type="text" placeholder="Enter template file name"/>
+                                <input class="form-control" id="template_file_name" name="template_file_name" type="text" placeholder="Informe o nome do arquivo de modelo"/>
                             </div>
                         </div><br/><br/>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label" for="select_list_list_select">Select a List of Traits: </label>
+                            <label class="col-sm-3 control-label" for="select_list_list_select">Selecione uma lista de características: </label>
                             <div class="col-sm-9">
                                 <span id="select_list_div"></span>
                             </div>
@@ -25,8 +25,8 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-info" id="create_profile_template" >Create Template</button>
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-info" id="create_profile_template" >Criar modelo</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
             </div>
         </div>
     </div>
@@ -36,22 +36,22 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="createProfileTemplateSavedDialog">Product Profile Template Created</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="createProfileTemplateSavedDialog">Modelo de perfil de produto criado</h4>
             </div>
             <div class="modal-body">
                 <div class="container-fluid">
                     <p>
                         <span class="ui-icon ui-icon-circle-check" style="float: left; margin: 0 7px 50px 0;"></span>
-                        The product profile template was created successfully.
+                        O modelo de perfil de produto foi criado com sucesso.
                     </p>
                     <p>
-                        <a id="profile_template_download_link">Download Template</a>
+                        <a id="profile_template_download_link">Baixar modelo</a>
                     </p>
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" name="profile_template_close_button" id="profile_template_close_button" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-default" name="profile_template_close_button" id="profile_template_close_button" data-dismiss="modal">Fechar</button>
             </div>
         </div>
     </div>
@@ -70,12 +70,12 @@ jQuery(document).ready(function () {
         trait_list_json = JSON.stringify(trait_list);
 
         if (template_file_name === '') {
-            alert("Please supply a template file name");
+            alert("Informe um nome para o arquivo de modelo");
             return;
         }
 
         if (trait_list_id === '') {
-            alert("Please select a trait list");
+            alert("Selecione uma lista de características");
             return;
         }
 
@@ -102,7 +102,7 @@ jQuery(document).ready(function () {
             },
             error: function() {
                 jQuery("#working_modal").modal("hide");
-                alert('An error occurred creating the profile template.');
+                alert('Ocorreu um erro ao criar o modelo de perfil.');
                 jQuery('#create_profile_template_dialog').modal("hide");
             },
 

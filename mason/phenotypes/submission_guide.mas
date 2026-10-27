@@ -11,72 +11,72 @@ Naama Menda (nm249@cornell.edu)
 =cut
 
 </%doc>
-<h2>SGN phenotype submission guide</h2>
-<p>For submitting phenotyping experiments to SGN you will be asked to fill in a few steps.
-Phenotypes are linked with plant accessions.
-If the accession is already in the database, you will have to make sure the accession in your file has exactly the same name.
-Search the <a href="/search/stocks/">phenotype database</a> for existing accessions.
-Since phenotypes are scored on single plants in the field or a greenhouse, or on plots of several plants,
-you will need to assign in each experiment unique identifiers for each one of your experimental units (a single plant or a plot).
+<h2>Guia de envio de fenótipos para a SGN</h2>
+<p>Para enviar experimentos de fenotipagem à SGN, preencha as etapas a seguir.
+Os fenótipos são vinculados aos acessos de plantas.
+Se o acesso já existir no banco de dados, use exatamente o mesmo nome no arquivo.
+Pesquise os acessos existentes no <a href="/search/stocks/">banco de dados de fenótipos</a>.
+Como os fenótipos são avaliados em plantas individuais no campo ou em casa de vegetação, ou em parcelas com várias plantas,
+atribua, em cada experimento, identificadores exclusivos a cada unidade experimental (uma planta ou uma parcela).
 </p>
 
 <&| /page/info_section.mas,
-   title      => "Define experiment metadata",
+   title      => "Definir metadados do experimento",
   collapsible => 1,
   collapsed   => 0
 &>
 
 <ul>
   <li>
-    <strong>Organism name:</strong> Start typing the species scientific name. An autocomplete list should pop up. If your organism is not in the list, please <a href="mailto:sgn-feedback@solgenomics.net">contact us</a>.
+    <strong>Nome do organismo:</strong> Comece a digitar o nome científico da espécie para exibir a lista de sugestões. Se o organismo não estiver na lista, <a href="mailto:sgn-feedback@solgenomics.net">entre em contato conosco</a>.
   </li>
   <li>
-    <strong>Population name</strong><br />
-    Provide a name for the population in this experiment. Your population may or may not have a known structure, and its name can be arbitrary. If you are adding accessions to an existing population, start typing its name and select the appropriate one from the autocomplete list.
+    <strong>Nome da população</strong><br />
+    Informe um nome para a população deste experimento. A estrutura da população pode ser conhecida ou não, e o nome pode ser escolhido livremente. Para adicionar acessos a uma população existente, comece a digitar o nome e selecione a população na lista de sugestões.
   </li>
   <li>
-    <strong> Population description</strong><br />
-    (optional) provide an abstract style characterization of the population including experimental design highlights.
+    <strong> Descrição da população</strong><br />
+    (opcional) apresente uma caracterização resumida da população, incluindo os principais aspectos do delineamento experimental.
    </li>
   <li>
-    <strong> Project name</strong></br >
-    provide a name for your project which reflects the scope of your phenotyping experiments. For adding experiments to an existing projects, start typing and select the appropriate project name for the autocomplete list.
+    <strong> Nome do projeto</strong></br >
+    Informe um nome que reflita o escopo dos experimentos de fenotipagem. Para adicionar experimentos a um projeto existente, comece a digitar e selecione o projeto na lista de sugestões.
   </li>
   <li>
-    <strong> Year</strong><br />
-    Date string denoting when the data was collected. Can be year only (i.e. 2012), month and year (March 2012 or 3/2012), or a full date. This will be recorded as the date for the project.
+    <strong> Ano</strong><br />
+    Data de coleta dos dados. Pode conter apenas o ano (por exemplo, 2012), mês e ano (3/2012) ou a data completa. Esse valor será registrado como a data do projeto.
   </li>
   <li>
-    <strong> Location</strong><br />
-    Where the experiment was performed. We also support <a href="http://en.wikipedia.org/wiki/WGS84">WGS84 geodetic datum</a>. For a full geolocation fill in the longitude, latitide, and altitude fields.
+    <strong> Local</strong><br />
+    Local de realização do experimento. Também há suporte ao <a href="http://en.wikipedia.org/wiki/WGS84">referencial geodésico WGS84</a>. Para informar a localização completa, preencha os campos de longitude, latitude e altitude.
   </li>
   </ul>
 </&>
 
 <&| /page/info_section.mas,
-    title      => "Upload phenotyping data file",
+    title      => "Enviar arquivo de dados de fenotipagem",
   collapsible => 1,
   collapsed   => 0
 &>
 <ul>
-  <li><strong>Format</strong><br />
-    Save your data file in tab-delimited format. Make sure there is only one column header row. Both row and column headers should be unique. You can save your spreadsheet as text, and choose tab-delimited format (tab-delimited text in MS Excel).
+  <li><strong>Formato</strong><br />
+    Salve o arquivo de dados em formato delimitado por tabulações. Use apenas uma linha de cabeçalho de colunas. Os cabeçalhos de linhas e de colunas devem ser exclusivos. Você pode salvar a planilha como texto e escolher o formato delimitado por tabulações (texto separado por tabulações no MS Excel).
   </li>
-  <li><strong>Row headers</strong><br />
-    First column has the row headers. These must be unique. It can be the accession name or number only if you have one row of measurements for each.<br />
-    If you have more than one row of data for each accession (e.g. several repeats or plots of the same accession) then row headers could be just incremented row numbers.
+  <li><strong>Cabeçalhos de linhas</strong><br />
+    A primeira coluna contém os cabeçalhos das linhas, que devem ser exclusivos. Use o nome ou o número do acesso somente se houver uma única linha de medições por acesso.<br />
+    Se houver mais de uma linha de dados por acesso (por exemplo, várias repetições ou parcelas do mesmo acesso), use números sequenciais como cabeçalhos das linhas.
   <li>
-  <li><strong>Accession name column</strong><br />
-    Second column should be names of the plant accessions - this will be loaded literally into the database. If the accession already exists in SGN, please make sure to use exactly the same name (case insensitive, but spaces, hyphens, and other special characters are important).
+  <li><strong>Coluna de nomes dos acessos</strong><br />
+    A segunda coluna deve conter os nomes dos acessos de plantas, que serão carregados literalmente no banco de dados. Se o acesso já existir na SGN, use exatamente o mesmo nome (maiúsculas e minúsculas não são diferenciadas, mas espaços, hífens e outros caracteres especiais são importantes).
   </li>
-  <li><strong>Plot names or numbers</strong><br />
-    Usually phenotping data is assayed on plants in plots. We load each plot as subject of the plant accession, meaning any number of plots from any number of different experiments can be loaded, allowing to keep track of when and where the data came from. If you have multiple phenotyping repeats for each plots, write each in a new row. If only some of the traits were score in each phenotyping repeat, keep those cells empty (do not write 0, since it will be loaded as a measurement with a value of zero).
-  <li><strong>Repeat number</strong> (optional)<br />
-    If you have multiple repeats, the loading software will automatically increment the repeat number each time it sees a row of data for a plot or accession. If you provide repeat number (or fruit/plant/leaf number etc.) it will be used instead.
+  <li><strong>Nomes ou números das parcelas</strong><br />
+    Os dados de fenotipagem geralmente são avaliados em plantas organizadas em parcelas. Cada parcela é carregada como uma unidade associada ao acesso, permitindo incluir parcelas de diferentes experimentos e acompanhar a origem temporal e espacial dos dados. Se houver várias repetições de fenotipagem por parcela, coloque cada uma em uma nova linha. Quando uma característica não tiver sido avaliada em determinada repetição, deixe a célula vazia (não escreva 0, pois ele será carregado como uma medição de valor zero).
+  <li><strong>Número da repetição</strong> (opcional)<br />
+    Se houver várias repetições, o sistema incrementará automaticamente o número da repetição a cada linha de dados da mesma parcela ou acesso. Se você informar o número da repetição (ou do fruto, planta, folha etc.), esse valor será usado.
   </li>
-  <li><strong>Traits</strong><br />
-    following columns should have trait scored values. Headers should be ontology IDs. These terms <b>must</b> be pre-loaded in the database (e.g. the  <a href="http://solgenomics.net/search/phenotypes/traits">Solanaceae Phenotype Ontology</a> ). If your ontology does not exist in the database, or if you have terms that need to be added to an existing ontology,<a href="mailto:sgn-feedback@solgenomics.net"> contact us</a> first.<br />
-    Units may also be attached to ontology IDs using a pipe ("|") followed by "unit:unit_name" (e.g. SP:0000123|unit:cm). Number of data columns is unlimited.
+  <li><strong>Características</strong><br />
+    As colunas seguintes devem conter os valores avaliados das características. Os cabeçalhos devem ser identificadores de ontologia. Esses termos <b>devem</b> estar previamente cadastrados no banco de dados (por exemplo, na <a href="http://solgenomics.net/search/phenotypes/traits">Ontologia de Fenótipos de Solanaceae</a>). Se a ontologia não existir no banco de dados ou se for necessário adicionar termos a uma ontologia existente, <a href="mailto:sgn-feedback@solgenomics.net">entre em contato conosco</a> antes.<br />
+    As unidades também podem ser associadas aos identificadores de ontologia usando uma barra vertical ("|") seguida de "unit:unit_name" (por exemplo, SP:0000123|unit:cm). Não há limite para o número de colunas de dados.
 
     <pre>
       row_header   accession  plot  repeat  SP:0000085|unit:cm^2  SP:0000086|unit:cm   SP:0000106
@@ -88,6 +88,6 @@ you will need to assign in each experiment unique identifiers for each one of yo
     </pre>
 </ul>
 
-<h3><a href="/phenotype/upload">Upload phenotyping data</a></h3>
+<h3><a href="/phenotype/upload">Enviar dados de fenotipagem</a></h3>
 
 </&>

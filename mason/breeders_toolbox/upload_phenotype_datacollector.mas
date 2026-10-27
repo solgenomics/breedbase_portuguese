@@ -7,37 +7,37 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="addDatacollectorPhenotypeDialog">Upload Data Collector File</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="addDatacollectorPhenotypeDialog">Enviar arquivo do Data Collector</h4>
       </div>
       <div class="modal-body">
         <div class="container-fluid">
         
-            <&| /page/explanation.mas, title=>'Template Information' &>
+            <&| /page/explanation.mas, title=>'Informações do modelo' &>
                 <p>
-                <b>File format information</b>
+                <b>Informações sobre o formato do arquivo</b>
                 <br>
-                <a id="phenotype_upload_datacollector_format_info">Datacollector Format</a>
+                <a id="phenotype_upload_datacollector_format_info">Formato do Data Collector</a>
                 </p>
             </&>
         
             <form class="form-horizontal" role="form" method="post" enctype="multipart/form-data" encoding="multipart/form-data" id="upload_datacollector_phenotype_file_form" name="upload_datacollector_phenotype_file_form">
                 <div class="form-group">
-                    <label class="col-sm-6 control-label">Timestamps Included: </label>
+                    <label class="col-sm-6 control-label">Incluir datas e horas: </label>
                     <div class="col-sm-6" >
                         <input type="checkbox" id="upload_datacollector_phenotype_timestamp_checkbox" name="upload_datacollector_phenotype_timestamp_checkbox" />
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-6 control-label">Data Level: </label>
+                    <label class="col-sm-6 control-label">Nível dos dados: </label>
                     <div class="col-sm-6" >
                         <select class="form-control" id="upload_phenotype_datacollector_data_level">
-                            <option value="plots">Plots</option>
+                            <option value="plots">Parcelas</option>
                         </select>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-6 control-label">Data Collector File: </label>
+                    <label class="col-sm-6 control-label">Arquivo do Data Collector: </label>
                     <div class="col-sm-6" >
                         <input type="file" id="upload_datacollector_phenotype_file_input" name="upload_datacollector_phenotype_file_input" encoding="multipart/form-data" />
                     </div>
@@ -50,9 +50,9 @@
       </div>
       
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-info" name="upload_datacollector_phenotype_submit_verify" id="upload_datacollector_phenotype_submit_verify">Verify</button>
-        <button disabled type="button" class="btn btn-primary" name="upload_datacollector_phenotype_submit_store" id="upload_datacollector_phenotype_submit_store" title="First Verify Your File">Store</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+        <button type="button" class="btn btn-info" name="upload_datacollector_phenotype_submit_verify" id="upload_datacollector_phenotype_submit_verify">Verificar</button>
+        <button disabled type="button" class="btn btn-primary" name="upload_datacollector_phenotype_submit_store" id="upload_datacollector_phenotype_submit_store" title="Primeiro verifique o arquivo">Armazenar</button>
       </div>
       
     </div>
@@ -64,51 +64,51 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="datacollectorUploadInfoDialog">Template Information</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="datacollectorUploadInfoDialog">Informações do modelo</h4>
       </div>
       <div class="modal-body">
         <div class="container-fluid">
         
-            <h4>Must be in .xls or .xlsx excel file format</h4>
-            <p>(tab-delimited text formats are NOT supported)</p>
+            <h4>O arquivo deve estar no formato Excel .xls ou .xlsx.</h4>
+            <p>Arquivos de texto delimitados por tabulações NÃO são aceitos.</p>
             <hr>
-            <h4>"Field Book" Sheet Header: (8th Sheet in Workbook)</h4>
-            <p>The first row (header) should contain the following:</p>
+            <h4>Cabeçalho da planilha "Field Book" (oitava planilha da pasta de trabalho)</h4>
+            <p>A primeira linha (cabeçalho) deve conter:</p>
 
             <table class="table table-hover table-bordered">
                 <body>
                     <tr>
-                        <td>plot_name</td>
-                        <td>accession_name</td>
-                        <td>plot_number</td>
-                        <td>block_number</td>
-                        <td>is_a_control</td>
-                        <td>rep_number</td>
-                        <td>trait name|trait id</td>
+                        <td>Nome da parcela<br><code>plot_name</code></td>
+                        <td>Nome do acesso<br><code>accession_name</code></td>
+                        <td>Número da parcela<br><code>plot_number</code></td>
+                        <td>Número do bloco<br><code>block_number</code></td>
+                        <td>É controle<br><code>is_a_control</code></td>
+                        <td>Número da repetição<br><code>rep_number</code></td>
+                        <td>Nome e ID da característica<br><code>trait name|trait id</code></td>
                     </tr>
                 </body>
             </table>
 
-            <h4>Required fields:</h4>
+            <h4>Campos obrigatórios:</h4>
             <ul>
-                <li>plot_name (must exist in the database)</li>
-                <li>trait name|trait id (must exist in the trait ontology)</li>
+                <li>Nome da parcela — <code>plot_name</code> (deve existir no banco de dados)</li>
+                <li>Nome e ID da característica — <code>trait name|trait id</code> (devem existir na ontologia de características)</li>
             </ul>
 
-            <h4>Notes</h4>
+            <h4>Observações</h4>
             <ul>
-                <li>For <i>"sprouting proportion"</i> in cassava, <i>"trait name|trait id"</i><br> should be written as <i>"sprouting proportion|CO_334:0000008"</i>.</li>
-                <li>If trait file was not generated from the database, </br> consult the <i>Trait Ontology</i> to ensure you have the correct trait id.</li>
-                <li>Two or more traits can be uploaded at the same time.</li>
+                <li>Para a característica técnica <code>sprouting proportion</code> em mandioca, <code>trait name|trait id</code> deve ser preenchido como <code>sprouting proportion|CO_334:0000008</code>.</li>
+                <li>Se o arquivo de características não tiver sido gerado pelo banco de dados, consulte a ontologia de características para confirmar o ID correto.</li>
+                <li>Duas ou mais características podem ser enviadas ao mesmo tempo.</li>
             </ul>
 
-            <h4>Timestamps:</h4>
+            <h4>Datas e horas:</h4>
             <ul>
-                <li>To include timestamp information for your measurements, click the checkbox "Includes Timestamps".</li>
-                <li>For timestamps, values should be recorded as <i>"Value,Timestamp"</i>.<br/>For no timestamps, values should be recorded as <i>"Value"</i>.</li>
-                <li>Timestamp format must be YYYY-MM-DD HH:MM:SS-0000 or YYYY-MM-DD HH:MM:SS+0000</li><br/>
-                <li>Example with timestamps: <br/><br/>
+                <li>Para incluir data e hora nas medições, marque a caixa "Incluir datas e horas".</li>
+                <li>Com data e hora, registre os valores como <code>Valor,DataHora</code>.<br/>Sem data e hora, registre-os como <code>Valor</code>.</li>
+                <li>O formato deve ser <code>AAAA-MM-DD HH:MM:SS-0000</code> ou <code>AAAA-MM-DD HH:MM:SS+0000</code>.</li><br/>
+                <li>Exemplo com data e hora:<br/><br/>
                 <table class="table table-hover table-bordered">
                     <thead>
                         <tr>
@@ -134,7 +134,7 @@
                     </tbody>
                 </table>
                 </li>
-                <li>Example without timestamps: <br/><br/>
+                <li>Exemplo sem data e hora:<br/><br/>
                 <table class="table table-hover table-bordered">
                     <thead>
                         <tr>
@@ -165,7 +165,7 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
       </div>
     </div>
   </div>

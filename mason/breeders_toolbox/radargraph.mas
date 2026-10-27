@@ -33,15 +33,15 @@
 <script type="text/javascript" src="http://d3js.org/d3.v3.js"></script>
 <script src="https://rawgit.com/tpreusse/radar-chart-d3/master/src/radar-chart.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<& /page/page_title.mas, title => "Radar Graph" &>
+<& /page/page_title.mas, title => "Gráfico radar" &>
 
 <& /util/import_javascript.mas, classes => [ 'CXGN.BreedersToolbox.HTMLSelect' ] &>
 
-<div id="dataset_select_div">[loading...]</div>
+<div id="dataset_select_div">[carregando...]</div>
 
 
 <div class="text-center">
-<button class="button button1" id="load_data">Render Graph</button>
+<button class="button button1" id="load_data">Gerar gráfico</button>
 </div>
 <br></br>
 
@@ -174,7 +174,7 @@ function get_dataset_id() {
         selected_ids.push(jQuery(this).val());
     });
     if (selected_ids.length < 1) {
-        alert('Please select at least one dataset!');
+        alert('Selecione pelo menos um conjunto de dados!');
         return false;
     }
     return selected_ids;

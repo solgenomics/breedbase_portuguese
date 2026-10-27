@@ -33,7 +33,7 @@ $assay_type => undef
 
 <& /util/import_javascript.mas, classes => [ 'jquery', 'jqueryui' , 'jquery.iframe-post-form', 'CXGN.Trial', 'CXGN.BreedersToolbox.GenotypingTrial', 'CXGN.BreedersToolbox.GenotypingSubmission', 'CXGN.BreedersToolbox.HTMLSelect', 'jstree/dist/jstree' ] &>
 
-<& /page/page_title.mas, title=>"Genotyping plate $trial_name" &>
+<& /page/page_title.mas, title=>"Placa de genotipagem $trial_name" &>
 
 <%perl>
     my $order_id;
@@ -57,16 +57,16 @@ $assay_type => undef
                 <div class="panel-body">
                     <table class="table table-bordered table-hover">
                     <tbody>
-                    <tr><td><b>Genotyping Project</b></td><td><% $genotyping_project_link %></td></tr>
-                    <tr><td><b>Breeding Program</b></td><td><a href="/breeders/program/<% $breeding_program_id %>"><% $breeding_program_name %></a></td></tr>
-                    <tr><td><b>Trial Type</b></td><td>Genotyping Plate</td></tr>
-                    <tr><td><b>Plate Format</b></td><td><% $genotyping_plate_format %></td></tr>
-                    <tr><td><b>Plate Sample Type</b></td><td><% $genotyping_plate_sample_type %></td></tr>
-                    <tr><td><b>Number of Samples</b></td><td><% $number_of_samples %></td></tr>
-                    <tr><td><b>Number of Samples with Data</b></td><td><% $number_of_samples_with_data %></td></tr>
-                    <tr><td><b>Genotyping Facility</b></td><td><% $genotyping_facility %></td></tr>
-                    <tr><td><b>Description</b></td><td><% $trial_description %></td></tr>
-                    <tr><td><b>Created By</b></td><td><% $trial_owner %></td></tr>
+                    <tr><td><b>Projeto de genotipagem</b></td><td><% $genotyping_project_link %></td></tr>
+                    <tr><td><b>Programa de melhoramento</b></td><td><a href="/breeders/program/<% $breeding_program_id %>"><% $breeding_program_name %></a></td></tr>
+                    <tr><td><b>Tipo de ensaio</b></td><td>Placa de genotipagem</td></tr>
+                    <tr><td><b>Formato da placa</b></td><td><% $genotyping_plate_format %></td></tr>
+                    <tr><td><b>Tipo de amostra da placa</b></td><td><% $genotyping_plate_sample_type %></td></tr>
+                    <tr><td><b>Número de amostras</b></td><td><% $number_of_samples %></td></tr>
+                    <tr><td><b>Número de amostras com dados</b></td><td><% $number_of_samples_with_data %></td></tr>
+                    <tr><td><b>Laboratório de genotipagem</b></td><td><% $genotyping_facility %></td></tr>
+                    <tr><td><b>Descrição</b></td><td><% $trial_description %></td></tr>
+                    <tr><td><b>Criado por</b></td><td><% $trial_owner %></td></tr>
                     <!-- <tr><td><b>Submitted to Genotyping Facility</b></td><td><% $genotyping_facility_submitted %></td></tr>
                     <tr><td><b>Genotyping Facility Status</b></td><td><% $genotyping_facility_status %></td></tr>
                     <tr><td><b>Raw Data Link</b></td><td><a href='<% $raw_data_link %>'><% $raw_data_link %></td></tr> -->
@@ -77,7 +77,7 @@ $assay_type => undef
 
             <div class="panel panel-default">
                 <div class="panel-body">
-                    <button class="btn btn-primary btn-sm" id="edit_genotyping_trial_details" style="margin:3px">Edit Plate Details</button>
+                    <button class="btn btn-primary btn-sm" id="edit_genotyping_trial_details" style="margin:3px">Editar detalhes da placa</button>
                 </div>
             </div>
 
@@ -92,14 +92,14 @@ $assay_type => undef
                 </div>
             </div> -->
 
-            <a href="/breeders/trial/<% $trial_id %>/download/layout?format=csv&dataLevel=plate" class="btn btn-default">Download Breedbase Formatted File</a>
-            <a href="/breeders/trial/<% $trial_id %>/download/layout?format=intertekxls&dataLevel=plate" class="btn btn-default">Download Intertek Formatted File</a>
-            <a href="/breeders/trial/<% $trial_id %>/download/layout?format=dartseqcsv&dataLevel=plate" class="btn btn-default">Download DartSeq Formatted File</a>
+            <a href="/breeders/trial/<% $trial_id %>/download/layout?format=csv&dataLevel=plate" class="btn btn-default">Baixar arquivo no formato Breedbase</a>
+            <a href="/breeders/trial/<% $trial_id %>/download/layout?format=intertekxls&dataLevel=plate" class="btn btn-default">Baixar arquivo no formato Intertek</a>
+            <a href="/breeders/trial/<% $trial_id %>/download/layout?format=dartseqcsv&dataLevel=plate" class="btn btn-default">Baixar arquivo no formato DartSeq</a>
 
         </div>
         <div class="col-sm-3">
             <div style="text-align: center">
-                <& /util/barcode.mas, identifier => "$identifier_prefix"."$trial_id", text=> "$identifier_prefix trial $trial_id ($trial_name)", format=>"stock_qrcode"  &>
+                <& /util/barcode.mas, identifier => "$identifier_prefix"."$trial_id", text=> "$identifier_prefix placa $trial_id ($trial_name)", format=>"stock_qrcode"  &>
             </div>
             <br/>
         </div>
@@ -114,22 +114,22 @@ $assay_type => undef
                     <span style="font-size:3.5em;" class="glyphicon glyphicon-export"></span>
                 </div>
                 <div class="col-sm-11">
-                <&| /page/info_section.mas, title => "<h4 style='display:inline'>Genotyping plate submission status</h4>", subtitle=> "Submit genotyping plates to facilities.", id => 'genotyping_facilities_section', collapsible => 1, collapsed => 1 &>
+                <&| /page/info_section.mas, title => "<h4 style='display:inline'>Status do envio da placa de genotipagem</h4>", subtitle=> "Enviar placas aos laboratórios de genotipagem.", id => 'genotyping_facilities_section', collapsible => 1, collapsed => 1 &>
                     <div class="col-sm-9"></div>
                     <div class="col-sm-3">
-                        <button class="btn btn-primary btn-sm" id="submit_plate_link" style="margin:3px">Submit plates</button>
+                        <button class="btn btn-primary btn-sm" id="submit_plate_link" style="margin:3px">Enviar placas</button>
                     </div>
                     <div class="panel panel-default">
                         <div class="panel-body">
                             <table class="table table-bordered table-hover">
                             <tbody>
-                                <tr><td><b>Genotyping Facility</b></td><td><div id="genotyping_facility_tab"><% $genotyping_facility %></div></td></tr>
-                                <tr><td><b>Submitted to Genotyping Facility</b></td><td><div id="genotyping_facility_submitted_tab"></div></td></tr>
-                                <tr><td><b>Genotyping Facility Order ID </b></td><td><div id="genotyping_vendor_order_id_tab"><% $order_id %></div></td></tr>
-                                <tr><td><b>Genotyping Facility Submission ID </b></td><td><div id="genotyping_vendor_submission_id_tab"><% $submission_id %></div></td></tr>
-                                <tr><td><b>Live Status From Genotyping Facility</b></td><td><div id="genotyping_trial_status_info"></div></td></tr>
-                                <tr><td><b>Download PDF</b></td><td><div id="download_trial_pdf"></div></td></tr>
-                                <tr><td><b>Raw Data Link</b></td><td><div id="raw_data_tab"></div></td></tr>
+                                <tr><td><b>Laboratório de genotipagem</b></td><td><div id="genotyping_facility_tab"><% $genotyping_facility %></div></td></tr>
+                                <tr><td><b>Enviado ao laboratório de genotipagem</b></td><td><div id="genotyping_facility_submitted_tab"></div></td></tr>
+                                <tr><td><b>ID do pedido no laboratório de genotipagem</b></td><td><div id="genotyping_vendor_order_id_tab"><% $order_id %></div></td></tr>
+                                <tr><td><b>ID do envio ao laboratório de genotipagem</b></td><td><div id="genotyping_vendor_submission_id_tab"><% $submission_id %></div></td></tr>
+                                <tr><td><b>Status atual no laboratório de genotipagem</b></td><td><div id="genotyping_trial_status_info"></div></td></tr>
+                                <tr><td><b>Baixar PDF</b></td><td><div id="download_trial_pdf"></div></td></tr>
+                                <tr><td><b>Link dos dados brutos</b></td><td><div id="raw_data_tab"></div></td></tr>
                             </tbody>
                             </table>
                         </div>
@@ -156,12 +156,12 @@ DEPRECATED. THIS SHOULD BE DONE VIA BRAPI
                     <span style="font-size:3.5em;" class="glyphicon glyphicon-qrcode"></span>
                 </div>
                 <div class="col-sm-7">
-                    <h4>Generate barcode labels for samples, accessions or plate ID.</h4>
+                    <h4>Gerar etiquetas de código de barras para amostras, acessos ou ID da placa.</h4>
                 </div>
                 <div class="col-sm-2">
                     <& /breeders_toolbox/trial/generate_genotrial_barcode.mas, trial_name => $trial_name, trial_id => $trial_id, identifier => $identifier_prefix, plate_id=> $plate_id &>
 
-                    <button id="generate_genotyping_trial_barcode_link" class="btn btn-primary btn-sm">Go</button>
+                    <button id="generate_genotyping_trial_barcode_link" class="btn btn-primary btn-sm">Abrir</button>
                 </div>
             </div>
         </div>
@@ -209,7 +209,7 @@ DEPRECATED. THIS SHOULD BE DONE VIA BRAPI
                 <div class="col-sm-11">
 
 % my $plate_view_link = '/breeders_toolbox/trial/'.$trial_id.'?format=as_table';
-                    <&| /page/info_section.mas, title=>"<h4 style='display:inline'>Plate Layout</h4>", id=>"trial_plate_layout", collapsible=>1, collapsed=>0, is_subsection=>1,subtitle=> qq{ Download layout <a class='btn btn-sm btn-default' style='margin:3px' id=\"download_layout_xls_link\" href=\"/breeders/trial/$trial_id/download/layout?format=xls&dataLevel=plate\">XLS</a> <a class='btn btn-sm btn-default' style='margin:3px' id=\"download_layout_csv_link\" href=\"/breeders/trial/$trial_id/download/layout?format=csv&dataLevel=plate\">CSV</a><a class='btn btn-sm btn-default' style='margin:3px' href=$plate_view_link>Plate View</a> } &>
+                    <&| /page/info_section.mas, title=>"<h4 style='display:inline'>Disposição da placa</h4>", id=>"trial_plate_layout", collapsible=>1, collapsed=>0, is_subsection=>1,subtitle=> qq{ Baixar disposição <a class='btn btn-sm btn-default' style='margin:3px' id=\"download_layout_xls_link\" href=\"/breeders/trial/$trial_id/download/layout?format=xls&dataLevel=plate\">XLS</a> <a class='btn btn-sm btn-default' style='margin:3px' id=\"download_layout_csv_link\" href=\"/breeders/trial/$trial_id/download/layout?format=csv&dataLevel=plate\">CSV</a><a class='btn btn-sm btn-default' style='margin:3px' href=$plate_view_link>Visualizar placa</a> } &>
 
                         <div class="well well-sm">
                             <& /breeders_toolbox/genotyping_trials/format/as_table.mas, trial_id => $trial_id, trial_name => $trial_name, breeding_program_name => $breeding_program_name, breeding_program_id => $breeding_program_id, genotyping_plate_format => $genotyping_plate_format, table_only=>1 &>
@@ -230,9 +230,9 @@ DEPRECATED. THIS SHOULD BE DONE VIA BRAPI
 </div>
 
 % if ($assay_type eq 'KASP') {
-    <& /page/detail_page_2_col_section.mas, trial_id => $trial_id, info_section_title => "<h4 style='display:inline'>Genotyping Data</h4>", info_section_subtitle => 'View and download genotyping data derived from this genotyping plate.', icon_class => "glyphicon glyphicon-map-marker", buttons_html => '<button class="btn btn-primary" style="margin:3px" id="plate_genotyping_data_download_all_vcf">Download All Genotype Data VCF</button><button class="btn btn-primary" style="margin:3px" id="plate_genotyping_data_download_all_dosagematrix">Download All Genotype Data Dosage Matrix</button><button class="btn btn-default" style="margin:3px" id="plate_kasp_genotype_data_download_csv">Download All Genotype Data (CSV)</button>', info_section_id => "plate_genotyping_data" &>
+    <& /page/detail_page_2_col_section.mas, trial_id => $trial_id, info_section_title => "<h4 style='display:inline'>Dados de genotipagem</h4>", info_section_subtitle => 'Visualize e baixe os dados de genotipagem derivados desta placa.', icon_class => "glyphicon glyphicon-map-marker", buttons_html => '<button class="btn btn-primary" style="margin:3px" id="plate_genotyping_data_download_all_vcf">Baixar todos os dados de genótipos em VCF</button><button class="btn btn-primary" style="margin:3px" id="plate_genotyping_data_download_all_dosagematrix">Baixar todos os dados de genótipos como matriz de dosagem</button><button class="btn btn-default" style="margin:3px" id="plate_kasp_genotype_data_download_csv">Baixar todos os dados de genótipos (CSV)</button>', info_section_id => "plate_genotyping_data" &>
 % } else {
-    <& /page/detail_page_2_col_section.mas, trial_id => $trial_id, info_section_title => "<h4 style='display:inline'>Genotyping Data</h4>", info_section_subtitle => 'View and download genotyping data derived from this genotyping plate.', icon_class => "glyphicon glyphicon-map-marker", buttons_html => '<button class="btn btn-primary" style="margin:3px" id="plate_genotyping_data_download_all_vcf">Download All Genotype Data VCF</button><button class="btn btn-primary" style="margin:3px" id="plate_genotyping_data_download_all_dosagematrix">Download All Genotype Data Dosage Matrix</button>', info_section_id => "plate_genotyping_data" &>
+    <& /page/detail_page_2_col_section.mas, trial_id => $trial_id, info_section_title => "<h4 style='display:inline'>Dados de genotipagem</h4>", info_section_subtitle => 'Visualize e baixe os dados de genotipagem derivados desta placa.', icon_class => "glyphicon glyphicon-map-marker", buttons_html => '<button class="btn btn-primary" style="margin:3px" id="plate_genotyping_data_download_all_vcf">Baixar todos os dados de genótipos em VCF</button><button class="btn btn-primary" style="margin:3px" id="plate_genotyping_data_download_all_dosagematrix">Baixar todos os dados de genótipos como matriz de dosagem</button>', info_section_id => "plate_genotyping_data" &>
 
 % }
 <div class="row">
@@ -244,7 +244,7 @@ DEPRECATED. THIS SHOULD BE DONE VIA BRAPI
                 </div>
                 <div class="col-sm-11">
 
-                    <&| /page/info_section.mas, title => "<h4 style='display:inline'>Additional Files</h4>", subtitle=> "Upload and view any additional files for   this plate", id => 'genotyping_trial_additional_files_section', collapsible => 1, collapsed => 1 &>
+                    <&| /page/info_section.mas, title => "<h4 style='display:inline'>Arquivos adicionais</h4>", subtitle=> "Envie e visualize arquivos adicionais desta placa", id => 'genotyping_trial_additional_files_section', collapsible => 1, collapsed => 1 &>
 
                         <div class="panel panel-default">
                             <div class="panel-body">
@@ -267,7 +267,7 @@ DEPRECATED. THIS SHOULD BE DONE VIA BRAPI
                 </div>
                 <div class="col-sm-11">
 
-                    <&| /page/info_section.mas, title => "<h4 style='display:inline'>Plate Linkage</h4>", subtitle => 'View any field trial to genotyping plate linkage', id => 'genotyping_trial_from_field_trial_section', collapsible => 1, collapsed => 1 &>
+                    <&| /page/info_section.mas, title => "<h4 style='display:inline'>Vínculos da placa</h4>", subtitle => 'Visualize os vínculos entre ensaios de campo e a placa de genotipagem', id => 'genotyping_trial_from_field_trial_section', collapsible => 1, collapsed => 1 &>
                         <& /breeders_toolbox/trial/genotyping_trial_from_field_trial_linkage.mas, trial_id => $trial_id, trial_type => 'genotyping_trial' &>
                     </&>
                 </div>
@@ -276,7 +276,7 @@ DEPRECATED. THIS SHOULD BE DONE VIA BRAPI
     </div>
 </div>
 
-<& /page/detail_page_2_col_section.mas, trial_id => $trial_id, number_of_samples_with_data => $number_of_samples_with_data, info_section_title => "<h4 style='display:inline'>Deletion</h4>", info_section_subtitle => 'Deleting genotyping data derived from this genotyping plate or genotyping plate layout.', icon_class => "glyphicon glyphicon-trash", info_section_id => "delete_genotyping_plate_section" &>
+<& /page/detail_page_2_col_section.mas, trial_id => $trial_id, number_of_samples_with_data => $number_of_samples_with_data, info_section_title => "<h4 style='display:inline'>Exclusão</h4>", info_section_subtitle => 'Exclua os dados de genotipagem derivados desta placa ou a disposição da placa.', icon_class => "glyphicon glyphicon-trash", info_section_id => "delete_genotyping_plate_section" &>
 
 <!--
 <div class="row">
@@ -300,9 +300,9 @@ DEPRECATED. THIS SHOULD BE DONE VIA BRAPI
 </div>
 -->
 
-<&| /page/info_section.mas, id=>"genotyping_trial_check_layout_section", title=>"Check Plate Design", collapsible=>1, collapsed=>1 &>
+<&| /page/info_section.mas, id=>"genotyping_trial_check_layout_section", title=>"Verificar delineamento da placa", collapsible=>1, collapsed=>1 &>
     <div id="genotyping_trial_check_layout_section_div">
-        <div class="well well-sm">LOADING...</div>
+        <div class="well well-sm">CARREGANDO...</div>
     </div>
 </&>
 
@@ -350,9 +350,9 @@ genotyping_facility => $genotyping_facility
             success: function(response){
                 var html = '';
                 if (response.has_layout == 1){
-                    html += '<p class="text-success" title="This trial has plots and their layout information saved in the database. All relationships between accessions, plots, seedlots, plants, and subplots are consistent. You can view and download this information in the Design section on this page."><small>Has Field Layout&nbsp;&nbsp;</small><span class="glyphicon glyphicon-ok-sign"></span></p>';
+                    html += '<p class="text-success" title="Esta placa possui amostras e informações de disposição salvas no banco de dados. Todas as relações entre os materiais são consistentes. Você pode visualizar e baixar essas informações na seção de disposição desta página."><small>Possui disposição de placa&nbsp;&nbsp;</small><span class="glyphicon glyphicon-ok-sign"></span></p>';
                 } else {
-                    html += '<p class="text-danger" title="There is something wrong with the layout! If this occurs please contact us because this should not occur! (click here for more info)"><span id="layout_error_button"><small>Bad Field Layout&nbsp;&nbsp;</small><span class="glyphicon glyphicon-remove-sign"></span></span></p>';
+                    html += '<p class="text-danger" title="Há um problema na disposição. Entre em contato conosco, pois isso não deveria ocorrer. Clique aqui para obter mais informações."><span id="layout_error_button"><small>Disposição da placa inválida&nbsp;&nbsp;</small><span class="glyphicon glyphicon-remove-sign"></span></span></p>';
                 }
                 jQuery(document).on('click', 'span[id="layout_error_button"]', function(){
                     alert(response.layout_errors);
@@ -360,7 +360,7 @@ genotyping_facility => $genotyping_facility
                 jQuery('#genotyping_trial_check_layout_section_div').html(html);
             },
             error: function(response){
-                alert('Error retrieving trial check layout section');
+                alert('Erro ao recuperar a seção de verificação da disposição da placa');
             }
 
         });

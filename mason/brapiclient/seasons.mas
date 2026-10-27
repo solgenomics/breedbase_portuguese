@@ -1,10 +1,10 @@
 <%args>
 </%args>
 
-<h4>Seasons</h4>
+<h4>Safras</h4>
 
 <div id="brapi_seasons_div">
-<button class="btn btn-primary" id="brapi_home_show_seasons">Show Seasons</button>
+<button class="btn btn-primary" id="brapi_home_show_seasons">Mostrar safras</button>
 
 </div>
 
@@ -21,7 +21,7 @@ jQuery("#brapi_home_show_seasons").click(function() {
         brapi_create_paginated_table(response.result.data, response.metadata.pagination, 'brapi_seasons_div', jQuery('#brapi_home_url_select').val()+'/brapi/v1/seasons', undefined);
       },
       error: function(response) {
-        alert('An error occurred getting seasons');
+        alert('Ocorreu um erro ao obter as safras');
       }
     });
 });

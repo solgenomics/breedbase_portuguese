@@ -7,29 +7,29 @@
     <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="addFieldTrialTissueSampleDialog">Create Tissue Samples for a Field Trial</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="addFieldTrialTissueSampleDialog">Criar amostras de tecido para um ensaio de campo</h4>
             </div>
             <div class="modal-body">
 
                 <div class="container-fluid">
 
                     <&| /util/workflow.mas, id=> "field_tissue_samples_create_workflow" &>
-                        <&| /util/workflow.mas:step, title=> "Intro" &>
-                            <& /page/page_title.mas, title=>"This workflow will guide you through creating tissue samples for your field trial" &>
-                            <p>Tissue samples are linked to a single plant, which is in turn linked to a single plot.</p>
-                            <p>Many tissue samples can be created for each plant.</p>
-                            <p>Each tissue sample needs a globally unique name.</p>
-                            <p>Tissue samples can then be transferred into genotyping plates (96 or 384 well plates).</p>
+                        <&| /util/workflow.mas:step, title=> "Introdução" &>
+                            <& /page/page_title.mas, title=>"Este fluxo orientará a criação de amostras de tecido para o ensaio de campo" &>
+                            <p>As amostras de tecido são vinculadas a uma única planta, que, por sua vez, está vinculada a uma única parcela.</p>
+                            <p>Várias amostras de tecido podem ser criadas para cada planta.</p>
+                            <p>Cada amostra de tecido precisa ter um nome globalmente exclusivo.</p>
+                            <p>Depois, as amostras de tecido podem ser transferidas para placas de genotipagem de 96 ou 384 poços.</p>
 
                             <br/><br/>
                             <center>
-                            <button class="btn btn-primary" onclick="Workflow.complete(this); return false;">Go to Next Step</button>
+                            <button class="btn btn-primary" onclick="Workflow.complete(this); return false;">Ir para a próxima etapa</button>
                             </center>
                         </&>
 
-                        <&| /util/workflow.mas:step, title=> "Select a field trial" &>
-                            <& /page/page_title.mas, title=>"Select a field trial" &>
+                        <&| /util/workflow.mas:step, title=> "Selecionar um ensaio de campo" &>
+                            <& /page/page_title.mas, title=>"Selecione um ensaio de campo" &>
 
                             <div class="well well-sm">
                                 <div class="panel panel-default">
@@ -37,18 +37,18 @@
                                         <table id="manage_tissue_samples_field_search_results" class="table table-hover table-striped">
                                             <thead>
                                                 <tr>
-                                                    <th>Select</th>
-                                                    <th>Trial name</th>
-                                                    <th>Description</th>
-                                                    <th>Breeding program</th>
-                                                    <th>Folder</th>
-                                                    <th>Year</th>
-                                                    <th>Location</th>
-                                                    <th>Trial type</th>
-                                                    <th>Design</th>
-                                                    <th>Planting Date</th>
-                                                    <th>Harvest Date</th>
-                                                    <th>Download</th>
+                                                    <th>Selecionar</th>
+                                                    <th>Nome do ensaio</th>
+                                                    <th>Descrição</th>
+                                                    <th>Programa de melhoramento</th>
+                                                    <th>Pasta</th>
+                                                    <th>Ano</th>
+                                                    <th>Local</th>
+                                                    <th>Tipo de ensaio</th>
+                                                    <th>Delineamento</th>
+                                                    <th>Data de plantio</th>
+                                                    <th>Data de colheita</th>
+                                                    <th>Baixar</th>
                                                 </tr>
                                             </thead>
                                         </table>
@@ -58,47 +58,47 @@
 
                             <br/><br/>
                             <center>
-                                <button class="btn btn-primary" id="create_tissue_samples_select_trial">Go to Next Step</button>
+                                <button class="btn btn-primary" id="create_tissue_samples_select_trial">Ir para a próxima etapa</button>
                             </center>
 
                         </&>
-                        <&| /util/workflow.mas:step, title=> "Plant Entries" &>
-                            <& /page/page_title.mas, title=>"Plant entries in your field trial" &>
+                        <&| /util/workflow.mas:step, title=> "Registros de plantas" &>
+                            <& /page/page_title.mas, title=>"Registros de plantas do ensaio de campo" &>
 
                             <div id="create_tissue_samples_plant_entries_exist_section" style="display:none">
-                                <h4>Plant entries exist for this trial. Go to next step.</h4>
+                                <h4>Já existem registros de plantas para este ensaio. Avance para a próxima etapa.</h4>
                                 <center>
-                                <button class="btn btn-primary" onclick="Workflow.complete(this); return false;">Go to Next Step</button>
+                                <button class="btn btn-primary" onclick="Workflow.complete(this); return false;">Ir para a próxima etapa</button>
                                 </center>
                             </div>
                             <div id="create_tissue_samples_plant_entries_dont_exist_section" style="display:none">
-                                <h4>Please create plant entries for this trial.</h4>
+                                <h4>Crie registros de plantas para este ensaio.</h4>
                                 <form class="form-horizontal">
                                     <div class="form-group">
-                                        <label class="col-sm-3 control-label">Number of plants per plot: </label>
+                                        <label class="col-sm-3 control-label">Número de plantas por parcela: </label>
                                         <div class="col-sm-9" >
                                             <input name="create_tissue_samples_plants_per_plot_num" id="create_tissue_samples_plants_per_plot_num" class="form-control" type="number" autofocus/>
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="col-sm-3 control-label">Inherits Treatment(s) From Plots: </label>
+                                        <label class="col-sm-3 control-label">Herdar tratamentos das parcelas: </label>
                                         <div class="col-sm-9" >
                                             <input name="create_tissue_samples_plants_per_plot_inherit_treatments" id="create_tissue_samples_plants_per_plot_inherit_treatments" type="checkbox" checked disabled/>
                                         </div>
                                     </div>
                                 </form><br/>
                                 <center>
-                                    <button type="button" class="btn btn-primary" id="create_tissue_samples_plants_per_plot_submit">Submit</button>
+                                    <button type="button" class="btn btn-primary" id="create_tissue_samples_plants_per_plot_submit">Enviar</button>
                                 </center>
                             </div>
 
                         </&>
-                        <&| /util/workflow.mas:step, title=> "Create Tissue Sample Entries" &>
-                            <& /page/page_title.mas, title=>"Create tissue sample entries for this trial" &>
+                        <&| /util/workflow.mas:step, title=> "Criar registros de amostras de tecido" &>
+                            <& /page/page_title.mas, title=>"Criar registros de amostras de tecido para este ensaio" &>
 
                             <form class="form-horizontal" >
                                 <div class="form-group">
-                                    <label class="col-sm-3 control-label"><span title="You can use the same tissue name, e.g. root and root, more than once below. The tissue name will still be unique because of a tissue index e.g. 1 and 2 added to the end." </span><span class="glyphicon glyphicon-info-sign"></span>&nbsp;&nbsp;Number of tissue samples per plant: </span></label>
+                                    <label class="col-sm-3 control-label"><span title="Você pode usar o mesmo nome de tecido mais de uma vez abaixo, como raiz e raiz. O nome continuará exclusivo porque um índice, como 1 ou 2, será acrescentado ao final." </span><span class="glyphicon glyphicon-info-sign"></span>&nbsp;&nbsp;Número de amostras de tecido por planta: </span></label>
                                     <div class="col-sm-9" >
                                         <input name="create_tissue_samples_per_plant_num" id="create_tissue_samples_per_plant_num" class="form-control" type="text" autofocus/>
                                     </div>
@@ -109,34 +109,34 @@
 
 
                                 <div class="form-group">
-                                    <label class="col-sm-3 control-label">Inherits Treatment(s) From Plots: </label>
+                                    <label class="col-sm-3 control-label">Herdar tratamentos das parcelas: </label>
                                     <div class="col-sm-9" >
                                         <input name="create_tissue_samples_per_plant_inherit_treatments" id="create_tissue_samples_per_plant_inherit_treatments" type="checkbox"/>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-sm-3 control-label">Use Tissue Numbers: </label>
+                                    <label class="col-sm-3 control-label">Usar números nos tecidos: </label>
                                     <div class="col-sm-9" >
                                         <input name="create_tissue_samples_per_plant_use_tissue_numbers" id="create_tissue_samples_per_plant_use_tissue_numbers" type="checkbox"/>
                                     </div>
                                 </div>
                             </form><br/>
                             <center>
-                            <button type="button" class="btn btn-primary" name="create_tissue_samples_plants_per_plant_submit" id="create_tissue_samples_plants_per_plant_submit">Submit</button>
+                            <button type="button" class="btn btn-primary" name="create_tissue_samples_plants_per_plant_submit" id="create_tissue_samples_plants_per_plant_submit">Enviar</button>
                             </center>
                         </&>
-                        <&| /util/workflow.mas:complete, title=> "Complete" &>
-                            <& /page/page_title.mas, title=>"Complete! Your field trial's tissue samples were saved." &>
+                        <&| /util/workflow.mas:complete, title=> "Concluído" &>
+                            <& /page/page_title.mas, title=>"Concluído! As amostras de tecido do ensaio de campo foram salvas." &>
 
                             <p>
                                 <span class="ui-icon ui-icon-circle-check" style="float: left; margin: 0 7px 50px 0;"></span>
-                                Tissue samples saved successfully
+                                Amostras de tecido salvas com sucesso
                             </p>
 
                             <ul>
-                                <li>You may want to go to the trial detail page for the trial now that it has plants.</li>
-                                <li>You can print barcodes for the new tissue samples.</li>
-                                <li>You can use these tissue samples as source material for a genotyping plates (96 or 384 well plate)</li>
+                                <li>Agora que o ensaio possui plantas, você pode acessar a página de detalhes do ensaio.</li>
+                                <li>Você pode imprimir códigos de barras para as novas amostras de tecido.</li>
+                                <li>Você pode usar essas amostras de tecido como material de origem para placas de genotipagem de 96 ou 384 poços.</li>
                             </ul>
                             <br/>
                         </&>
@@ -145,7 +145,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
             </div>
         </div>
     </div>
@@ -171,7 +171,7 @@ jQuery(document).ready(function(){
             selected.push(jQuery(this).val());
         });
         if (selected.length !== 1){
-            alert('Only select one trial!');
+            alert('Selecione somente um ensaio!');
         } else {
             new jQuery.ajax({
                 type: 'POST',
@@ -197,7 +197,7 @@ jQuery(document).ready(function(){
                 },
                 error: function () {
                     jQuery("#working_modal").modal("hide");
-                    alert('An error occurred checking trial for plants.');
+                    alert('Ocorreu um erro ao verificar as plantas do ensaio.');
                 }
             });
         }
@@ -225,14 +225,14 @@ jQuery(document).ready(function(){
                     alert(response.error);
                 }
                 else {
-                    alert("Successfully created plant entries.");
+                    alert("Registros de plantas criados com sucesso.");
                     Workflow.complete('#create_tissue_samples_plants_per_plot_submit');
                     Workflow.focus("#field_tissue_samples_create_workflow", 3);
                 }
             },
             error: function(response) {
                 jQuery("#working_modal").modal("hide");
-                alert("An error occurred saving plant entries");
+                alert("Ocorreu um erro ao salvar os registros de plantas.");
             },
         });
     });
@@ -241,7 +241,7 @@ jQuery(document).ready(function(){
         var num_tissues = jQuery(this).val();
         var html = '';
         for (var i=1; i<=num_tissues; i++){
-            html = html + '<div class="form-group"><label class="col-sm-3 control-label"><span title="The sample names will be a combination of the plant name, the tissue name you give here, and the tissue number."><span class="glyphicon glyphicon-info-sign"></span>&nbsp;&nbsp;Tissue Name '+i+': </span></label><div class="col-sm-9" ><input name="create_tissue_samples_tissue_name" id="create_tissue_samples_tissue_name_'+i+'" class="form-control" type="text" placeholder="examples: leaf or root or stem or seed or fruit" /></div></div>';
+            html = html + '<div class="form-group"><label class="col-sm-3 control-label"><span title="Os nomes das amostras combinarão o nome da planta, o nome de tecido informado aqui e o número do tecido."><span class="glyphicon glyphicon-info-sign"></span>&nbsp;&nbsp;Nome do tecido '+i+': </span></label><div class="col-sm-9" ><input name="create_tissue_samples_tissue_name" id="create_tissue_samples_tissue_name_'+i+'" class="form-control" type="text" placeholder="exemplos: folha, raiz, caule, semente ou fruto" /></div></div>';
         }
         jQuery('#create_tissue_samples_names_div').html(html);
     });
@@ -281,14 +281,14 @@ jQuery(document).ready(function(){
                     alert(response.error);
                 }
                 else {
-                    alert("Successfully created tissue sample entries.");
+                    alert("Registros de amostras de tecido criados com sucesso.");
                     Workflow.complete('#create_tissue_samples_plants_per_plant_submit');
                     Workflow.focus("#field_tissue_samples_create_workflow", -1); //go to success
                 }
             },
             error: function(response) {
                 jQuery("#working_modal").modal("hide");
-                alert("An error occurred creating tissue sample entries");
+                alert("Ocorreu um erro ao criar os registros de amostras de tecido.");
             },
         });
     });

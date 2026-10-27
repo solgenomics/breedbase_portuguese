@@ -76,7 +76,7 @@ foreach my $phenotype (@$phenotypes) {
   if ($type_name eq 'method') {
      $method_name = $phenotype->get_column('method_name');
   } elsif ( !$type_name ) {
-     $method_name =  'Trait' ;
+     $method_name =  'Característica' ;
   } else { next; } #skip the row if a phenotypeprop was fetched , but it is not a 'mehtod' type.
  
   #push @ { $info{$observable->name."|". $observable->cvterm_id ."|". $definition . "|" . $unit} } , $phenotype;
@@ -129,7 +129,7 @@ foreach my $method(sort keys %info ) {
                           ( (tooltipped_text(qq|<a href="/cvterm/$term_id/view">$term_name</a>|, $definition) )  , join(', ' , @qual_values ) ) ];
     }
   }
-     @ { $data{$method}{headings} } = ("$method" , "Average", "Min", "Max", "Lines/repeats");
+     @ { $data{$method}{headings} } = ("$method" , "Média", "Mín.", "Máx.", "Linhagens/repetições");
      push @ { $data{$method}{headings} } , 'QTL(s)' if $has_qtl;
 }      
 
@@ -163,7 +163,7 @@ foreach my $method(sort keys %info ) {
 % if(@qual_data) {
 
 <& /page/columnar_table.mas,
-  headings => ["Qualitative Trait", "Value"],
+  headings => ["Característica qualitativa", "Valor"],
     data     => \@qual_data ,
       __alt_freq   =>2,
       __alt_width  =>1,

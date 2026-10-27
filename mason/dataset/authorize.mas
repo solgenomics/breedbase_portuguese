@@ -4,9 +4,9 @@ $code => undef
 
 <p id="authorize-status">
 % if ( defined $code ) {
-    Connecting account...
+    Conectando conta...
 % } else {
-    ERROR: Authorization code not returned
+    ERRO: código de autorização não retornado
 % }
 </p>
 
@@ -25,15 +25,15 @@ function storeConnection(code) {
             data: { code, service: service.key },
             success: (resp) => {
                 if ( resp?.error ) {
-                    alert("Could not store connection info [" + resp.error + "]");
+                    alert("Não foi possível salvar as informações da conexão [" + resp.error + "]");
                 }
                 else {
-                    jQuery("#authorize-status").html("Accounts connected - you may close this window");
+                    jQuery("#authorize-status").html("Contas conectadas — você pode fechar esta janela");
                     window.close();
                 }
             },
             error: () => {
-                alert("Could not store connection info");
+                alert("Não foi possível salvar as informações da conexão");
             }
         });
     }

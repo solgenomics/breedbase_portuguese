@@ -10,7 +10,7 @@ $genotyping_plate_format => '96'
 
 <div id="trial_plate_layout_html1">
 <div class="well">
-[LOADING...]
+[CARREGANDO...]
 </div>
 </div>
 
@@ -26,7 +26,7 @@ jQuery(document).ready(function () {
         success: function(response){
             // console.log(response);
             jQuery("#working_modal").modal("hide");
-            var trial_plate_layout_html = "<table class='table table-hover table-condensed table-bordered' id='trial_plate_layout_table1'><thead><tr><th>Well</th><th>Accession Name</th><th>Sample Name</th><th>Volume (ul)</th><th>Concentration(ng)</th></tr></thead><tbody>";
+            var trial_plate_layout_html = "<table class='table table-hover table-condensed table-bordered' id='trial_plate_layout_table1'><thead><tr><th>Poço</th><th>Nome do acesso</th><th>Nome da amostra</th><th>Volume (µl)</th><th>Concentração (ng)</th></tr></thead><tbody>";
 
             var col_max = 1;
             if (<% $genotyping_plate_format %> == '96'){
@@ -67,7 +67,7 @@ jQuery(document).ready(function () {
         },
         error: function(response){
             jQuery("#working_modal").modal("hide");
-            alert("Error retrieving plate layout.");
+            alert("Erro ao recuperar a disposição da placa.");
         }
     });
 

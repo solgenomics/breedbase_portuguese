@@ -42,7 +42,7 @@ $identifier_prefix => 'SGN'
 
 <br/>
 
-<& /page/page_title.mas, title=>"Sampling trial detail for ".$trial_name &>
+<& /page/page_title.mas, title=>"Detalhes do ensaio de amostragem ".$trial_name &>
 
 <div class="well">
     <div class="row">
@@ -52,19 +52,19 @@ $identifier_prefix => 'SGN'
                 <div class="panel-body">
                     <table class="table table-bordered table-hover">
                     <tbody>
-                    <tr><td><b>Breeding Program</b></td><td><% $breeding_program_name %></td></tr>
+                    <tr><td><b>Programa de melhoramento</b></td><td><% $breeding_program_name %></td></tr>
                     </tbody>
                     </table>
                 </div>
             </div>
 
-            <a class='btn btn-default' href='/breeders/trial/<% $trial_id %>/download/layout?format=csv&dataLevel=samplingtrial'>Download Layout</a>
+            <a class='btn btn-default' href='/breeders/trial/<% $trial_id %>/download/layout?format=csv&dataLevel=samplingtrial'>Baixar disposição</a>
 
         </div>
 
         <div class="col-sm-3">
 
-            <center><& /util/barcode.mas, identifier => "$identifier_prefix"."$trial_id", text=> "$identifier_prefix trial $trial_id ($trial_name)", format=>"stock_qrcode"  &></center><br />
+            <center><& /util/barcode.mas, identifier => "$identifier_prefix"."$trial_id", text=> "$identifier_prefix ensaio $trial_id ($trial_name)", format=>"stock_qrcode"  &></center><br />
 
         </div>
     </div>

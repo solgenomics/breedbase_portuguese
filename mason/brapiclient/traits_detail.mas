@@ -3,9 +3,9 @@
 
 <div id="brapi_home_trait_detail_div">
 
-    <h4>Germplasm Details</h4>
-    <input name="brapi_home_traitdbid" id="brapi_home_traitdbid" class="form-control" type="text" placeholder="TraitDbId e.g. 70741" value="70741"/>
-    <button class="btn btn-primary" name="brapi_home_traitdbid_submit" id="brapi_home_traitdbid_submit">Get Trait Details</button>
+    <h4>Detalhes do germoplasma</h4>
+    <input name="brapi_home_traitdbid" id="brapi_home_traitdbid" class="form-control" type="text" placeholder="ID da característica, ex.: 70741" value="70741"/>
+    <button class="btn btn-primary" name="brapi_home_traitdbid_submit" id="brapi_home_traitdbid_submit">Obter detalhes da característica</button>
     <br/><br/>
     <div id="brapi_trait_detail_result_div">
     </div>
@@ -25,7 +25,7 @@ jQuery(document).ready(function() {
 
           },
           error: function(response) {
-            alert('An error occurred');
+            alert('Ocorreu um erro');
           }
         });
     });

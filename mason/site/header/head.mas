@@ -1,10 +1,11 @@
 <!-- INSERT_HEAD_PRE_HTML -->
 
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta http-equiv="content-language" content="pt-BR" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <!-- <link rel="stylesheet" href="/css/sgn.css" type="text/css" /> -->
-  <link rel="search" type="application/opensearchdescription+xml" title="Search Database" href="/documents/sgn_sol_search.xml" />
+  <link rel="search" type="application/opensearchdescription+xml" title="Pesquisar no banco de dados" href="/documents/sgn_sol_search.xml" />
   <& /util/import_css.mas, paths => [
     '/css/new_sgn.css',
     '/css/jquery-sgn-theme/jquery-ui-1.10.3.custom.css',
@@ -37,6 +38,48 @@
 % } else {
     <& /util/import_javascript.mas, classes => [ "jquerymigrate", "jquery.dataTables" ] &>
 % }
+
+<script type="text/javascript">
+  // Brazilian Portuguese defaults for every DataTable in the application.
+  if (jQuery.fn.dataTable) {
+    jQuery.extend(true, jQuery.fn.dataTable.defaults, {
+      oLanguage: {
+        oAria: {
+          sSortAscending: ": ative para ordenar a coluna em ordem crescente",
+          sSortDescending: ": ative para ordenar a coluna em ordem decrescente"
+        },
+        oPaginate: {
+          sFirst: "Primeira",
+          sLast: "Última",
+          sNext: "Próxima",
+          sPrevious: "Anterior"
+        },
+        sEmptyTable: "Nenhum dado disponível na tabela",
+        sInfo: "Mostrando de _START_ até _END_ de _TOTAL_ registros",
+        sInfoEmpty: "Mostrando 0 até 0 de 0 registros",
+        sInfoFiltered: "(filtrados de _MAX_ registros no total)",
+        sLengthMenu: "Mostrar _MENU_ registros",
+        sLoadingRecords: "Carregando...",
+        sProcessing: "Processando...",
+        sSearch: "Pesquisar:",
+        sZeroRecords: "Nenhum registro correspondente encontrado",
+        buttons: {
+          collection: "Coleção",
+          colvis: "Visibilidade das colunas",
+          colvisRestore: "Restaurar colunas",
+          copy: "Copiar",
+          copyTitle: "Copiar para a área de transferência",
+          copySuccess: {
+            1: "1 linha copiada para a área de transferência",
+            _: "%d linhas copiadas para a área de transferência"
+          },
+          copyKeys: "Pressione <i>Ctrl</i> ou <i>⌘</i> + <i>C</i> para copiar os dados da tabela.<br><br>Para cancelar, clique nesta mensagem ou pressione Esc.",
+          print: "Imprimir"
+        }
+      }
+    });
+  }
+</script>
 
 <script type="text/javascript"
   src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">

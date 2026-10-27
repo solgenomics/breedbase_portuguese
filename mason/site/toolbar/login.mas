@@ -1,5 +1,5 @@
 
-<span id="login_button_html_div" style="white-space:nowrap;width:200;float:right"><button class="btn btn-primary disabled" type="button" style="margin: 7px 7px 0px 0px">Login</button></span>
+<span id="login_button_html_div" style="white-space:nowrap;width:200;float:right"><button class="btn btn-primary disabled" type="button" style="margin: 7px 7px 0px 0px">Entrar</button></span>
 
 
 <script>
@@ -12,7 +12,7 @@
 
     jQuery.ajax( { 
       url: '/ajax/user/login_button_html',
-      error: function(r) { alert('An error occurred'); },
+      error: function(r) { alert('Ocorreu um erro.'); },
       success: function(r) { 
         if (r.error) { alert(r.error); }
         else { 
@@ -29,12 +29,12 @@
   }
         
   function logout() { 
-    var answer = confirm("Are you sure you want to log out?");
+    var answer = confirm("Tem certeza de que deseja sair?");
 
     if (answer === true) { 
       jQuery.ajax( { 
         url: '/ajax/user/logout',
-        error: function(r) { alert('An error occurred'); },
+        error: function(r) { alert('Ocorreu um erro.'); },
         success: function(r) { 
           if (r.error) { alert(r.error); }
           else { 

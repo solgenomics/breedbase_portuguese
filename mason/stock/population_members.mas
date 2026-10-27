@@ -21,11 +21,11 @@ jQuery(document).ready(function(){
         'autoWidth': false,
         destroy: true,
         columns: [
-            { title: "Member Name", "data": null, "render": function ( data, type, row ) { return "<a href='/stock/"+row.stock_id+"/view'>"+row.name+"</a>"; } },
-            { title: "Member Type", "data": "stock_type" },
-            { title: "Description", "data": "description" },
-            { title: "Synonyms", "data": "synonyms[, ]" },
-            { title: "Remove From Population", "data": null, "render": function ( data, type, row ) { return "<a name='populations_member_remove' data-stock_relationship_id='"+row.stock_relationship_id+"'>X</a>"; } },
+            { title: "Nome do membro", "data": null, "render": function ( data, type, row ) { return "<a href='/stock/"+row.stock_id+"/view'>"+row.name+"</a>"; } },
+            { title: "Tipo de membro", "data": "stock_type" },
+            { title: "Descrição", "data": "description" },
+            { title: "Sinônimos", "data": "synonyms[, ]" },
+            { title: "Remover da população", "data": null, "render": function ( data, type, row ) { return "<a name='populations_member_remove' data-stock_relationship_id='"+row.stock_relationship_id+"'>X</a>"; } },
         ],
         "fnInitComplete": function(oSettings, json) {
             //console.log(json);

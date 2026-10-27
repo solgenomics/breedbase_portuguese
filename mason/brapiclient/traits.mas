@@ -3,8 +3,8 @@
 
 <div id="brapi_home_traits_div">
 
-    <h4>Traits</h4>
-    <button class="btn btn-primary" name="brapi_home_traits_submit" id="brapi_home_traits_submit">Get Traits</button>
+    <h4>Características</h4>
+    <button class="btn btn-primary" name="brapi_home_traits_submit" id="brapi_home_traits_submit">Obter características</button>
     <br/><br/>
     <div id="brapi_traits_data_result_div">
     </div>
@@ -29,7 +29,7 @@ jQuery(document).ready(function() {
           },
           error: function(response) {
             jQuery('#working_modal').modal('hide');
-            alert('An error occurred');
+            alert('Ocorreu um erro');
           }
         });
     });

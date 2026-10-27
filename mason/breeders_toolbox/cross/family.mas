@@ -8,11 +8,19 @@ $family_type
 $family_type_string
 </%args>
 
+<%init>
+my %family_type_labels = (
+    same_parents       => 'mesmos genitores',
+    reciprocal_parents => 'genitores recíprocos',
+);
+my $family_type_label = $family_type_labels{$family_type} || $family_type_string;
+</%init>
+
 <& /util/import_javascript.mas, classes => ["jquery", "jqueryui", "thickbox", "CXGN.Page.FormattingHelpers", "jquery.cookie", "CXGN.List"] &>
 
-<& /page/page_title.mas, title => "Details for family '$family_name'" &>
+<& /page/page_title.mas, title => "Detalhes da família '$family_name'" &>
 
-<&| /page/info_section.mas, title => "Family information" &>
+<&| /page/info_section.mas, title => "Informações da família" &>
 <div class="panel panel-default">
     <div class="panel-body">
         <div class="row">
@@ -44,7 +52,7 @@ $family_type_string
 <& /util/import_javascript.mas, classes => ['jquery','jquery.dataTables'] &>
 <& /util/import_css.mas, paths => ['/documents/inc/datatables/jquery.dataTables.css'] &>
 
-<&| /page/info_section.mas, title => "Parents: ($family_type_string)", collapsible=>1, collapsed=>0 &>
+<&| /page/info_section.mas, title => "Genitores: ($family_type_label)", collapsible=>1, collapsed=>0 &>
     <div class = "well well-sm">
         <div class = "panel panel-default">
             <div class = "panel-body">
@@ -52,19 +60,19 @@ $family_type_string
                     <thead>
                         <tr>
 % if ($family_type eq 'same_parents') {
-                            <th>Female Parent</th>
-                            <th>Female Stock Type</th>
-                            <th>Female Ploidy</th>
-                            <th>Male Parent</th>
-                            <th>Male Stock Type</th>
-                            <th>Male Ploidy</th>
+                            <th>Genitor feminino</th>
+                            <th>Tipo de material feminino</th>
+                            <th>Ploidia feminina</th>
+                            <th>Genitor masculino</th>
+                            <th>Tipo de material masculino</th>
+                            <th>Ploidia masculina</th>
 % } elsif ($family_type eq 'reciprocal_parents') {
-                            <th>Parent 1</th>
-                            <th>Parent 1 Stock Type</th>
-                            <th>Parent 1 Ploidy</th>
-                            <th>Parent 2</th>
-                            <th>Parent 2 Stock Type</th>
-                            <th>Parent 2 Ploidy</th>
+                            <th>Genitor 1</th>
+                            <th>Tipo de material do genitor 1</th>
+                            <th>Ploidia do genitor 1</th>
+                            <th>Genitor 2</th>
+                            <th>Tipo de material do genitor 2</th>
+                            <th>Ploidia do genitor 2</th>
 %}
                         </tr>
                     </thead>
@@ -74,7 +82,7 @@ $family_type_string
     </div>
 </&>
 
-<&| /page/info_section.mas, title => 'Crosses in this family', collapsible=>1, collapsed=>0 &>
+<&| /page/info_section.mas, title => 'Cruzamentos desta família', collapsible=>1, collapsed=>0 &>
     <div class = "well well-sm">
         <div class = "panel panel-default">
             <div class = "panel-body">
@@ -84,7 +92,7 @@ $family_type_string
                 </div>
                 <div class="panel panel-default">
                     <div class="panel-body">
-                        <&| /page/info_section.mas, title => 'Add Crosses to a List', collapsible=>1, collapsed=>1, subtitle=>'<i>Adding crosses in this family to a new or exisiting list</i>'&>
+                        <&| /page/info_section.mas, title => 'Adicionar cruzamentos a uma lista', collapsible=>1, collapsed=>1, subtitle=>'<i>Adicione os cruzamentos desta família a uma lista nova ou existente</i>'&>
                             <br>
                             <div id="members_to_new_list" style="display:none"></div>
                             <div id="members_add_to_list"></div>
@@ -96,7 +104,7 @@ $family_type_string
     </div>
 </&>
 
-<&| /page/info_section.mas, title => 'Progenies', collapsible=>1, collapsed=>0 &>
+<&| /page/info_section.mas, title => 'Progênies', collapsible=>1, collapsed=>0 &>
     <div class = "well well-sm">
         <div class = "panel panel-default">
             <div class = "panel-body">
@@ -106,7 +114,7 @@ $family_type_string
                 </div>
                 <div class="panel panel-default">
                     <div class="panel-body">
-                        <&| /page/info_section.mas, title => 'Add progenies to a List', collapsible=>1, collapsed=>1, subtitle=>'<i>Adding progenies of this family to a new or exisiting list</i>'&>
+                        <&| /page/info_section.mas, title => 'Adicionar progênies a uma lista', collapsible=>1, collapsed=>1, subtitle=>'<i>Adicione as progênies desta família a uma lista nova ou existente</i>'&>
                             <br>
                             <div id="progenies_to_new_list" style="display:none"></div>
                             <div id="progenies_add_to_list"></div>
@@ -135,15 +143,18 @@ jQuery(document).ready(function(){
         'ajax': '/ajax/family/members/'+family_id,
         'destroy': true,
         columns: [
-            { title: "Cross Unique ID", "data": null, "render": function ( data, type, row ) { return "<a href='/cross/"+row.cross_id+"'>"+row.cross_name+"</a>"; } },
-            { title: "Cross Type", "data": "cross_type" },
-            { title: "Number of Progenies", "data": "progeny_number" },
-            { title: "Crossing Experiment", "data": null, "render": function ( data, type, row ) { return "<a href='/breeders/trial/"+row.crossing_experiment_id+"'>"+row.crossing_experiment_name+"</a>"; } },
+            { title: "ID exclusivo do cruzamento", "data": null, "render": function ( data, type, row ) { return "<a href='/cross/"+row.cross_id+"'>"+row.cross_name+"</a>"; } },
+            { title: "Tipo de cruzamento", "data": "cross_type", "render": function (data, type) {
+                if (type !== 'display') return data;
+                return { biparental: 'biparental', self: 'autofecundação', open: 'polinização aberta', polycross: 'policruzamento' }[data] || data;
+            } },
+            { title: "Número de progênies", "data": "progeny_number" },
+            { title: "Experimento de cruzamento", "data": null, "render": function ( data, type, row ) { return "<a href='/breeders/trial/"+row.crossing_experiment_id+"'>"+row.crossing_experiment_name+"</a>"; } },
         ],
         "fnInitComplete": function(oSettings, json) {
             //console.log(json);
             if (!isLoggedIn()) {
-                jQuery('#members_add_to_list').html("<div class='well well-sm'><h3>Please login to use lists!</h3></div>");
+                jQuery('#members_add_to_list').html("<div class='well well-sm'><h3>Faça login para usar as listas!</h3></div>");
             } else {
                 var html = "";
                 for(var i=0; i<json.data.length; i++){
@@ -162,13 +173,13 @@ jQuery(document).ready(function(){
         'ajax': '/ajax/family/all_progenies/'+family_id,
         'destroy': true,
         columns: [
-            { title: "Progeny Name", "data": null, "render": function ( data, type, row ) { return "<a href='/stock/"+row.progeny_id+"/view'>"+row.progeny_name+"</a>"; } },
-            { title: "Cross Unique ID", "data": null, "render": function ( data, type, row ) { return "<a href='/cross/"+row.cross_id+"'>"+row.cross_name+"</a>"; } },
+            { title: "Nome da progênie", "data": null, "render": function ( data, type, row ) { return "<a href='/stock/"+row.progeny_id+"/view'>"+row.progeny_name+"</a>"; } },
+            { title: "ID exclusivo do cruzamento", "data": null, "render": function ( data, type, row ) { return "<a href='/cross/"+row.cross_id+"'>"+row.cross_name+"</a>"; } },
         ],
         "fnInitComplete": function(oSettings, json) {
             //console.log(json);
             if (!isLoggedIn()) {
-                jQuery('#progenies_add_to_list').html("<div class='well well-sm'><h3>Please login to use lists!</h3></div>");
+                jQuery('#progenies_add_to_list').html("<div class='well well-sm'><h3>Faça login para usar as listas!</h3></div>");
             } else {
                 var html = "";
                 for(var i=0; i<json.data.length; i++){

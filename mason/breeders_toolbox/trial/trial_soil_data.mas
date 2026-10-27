@@ -7,7 +7,7 @@ $trial_id
 
 
 
-<&| /page/info_section.mas, title => "Trial Soil Data", collapsible=>1, collapsed=>0 &>
+<&| /page/info_section.mas, title => "Dados do solo do ensaio", collapsible=>1, collapsed=>0 &>
     <div class = "well well-sm">
         <div class = "panel panel-default">
             <div class = "panel-body">
@@ -30,21 +30,21 @@ jQuery(document).ready(function () {
         'autoWidth': false,
         'ajax':'/ajax/breeders/trial/'+ <% $trial_id %> + '/all_soil_data',
         columns: [
-            { title: "Soil Data ID", "data": "prop_id" },
-            { title: "Description", "data": "description" },
-            { title: "Date", "data": "date" },
+            { title: "ID dos dados do solo", "data": "prop_id" },
+            { title: "Descrição", "data": "description" },
+            { title: "Data", "data": "date" },
             { title: "GPS", "data": "gps" },
-            { title: "Type of Sampling", "data": "type_of_sampling" },
-            { title: "Soil Data", "data": "soil_data" },
-            { title: "Download", "data": "download_link" },
-            { title: "Delete", "data": "null", "render": function ( data, type, row ) { return "<a onclick='deleteSoilData("+row.prop_id+")'>Delete</a>"; } },
+            { title: "Tipo de amostragem", "data": "type_of_sampling" },
+            { title: "Dados do solo", "data": "soil_data" },
+            { title: "Baixar", "data": "download_link" },
+            { title: "Excluir", "data": "null", "render": function ( data, type, row ) { return "<a onclick='deleteSoilData("+row.prop_id+")'>Excluir</a>"; } },
         ]
     });
 
 });
 
 function deleteSoilData(prop_id){
-    var confirmation = confirm('Are you sure you want to delete this soil data id. The deletion cannot be undone.');
+    var confirmation = confirm('Deseja realmente excluir este registro de dados do solo? A exclusão não pode ser desfeita.');
 
     if (confirmation) {
         jQuery.ajax({
@@ -61,7 +61,7 @@ function deleteSoilData(prop_id){
             success: function(response) {
                 jQuery('#working_modal').modal('hide');
                 if (response.success == 1) {
-                    alert('Deletion was successful');
+                    alert('Exclusão realizada com sucesso.');
                     location.reload();
                 }
                 if (response.error) {
@@ -70,7 +70,7 @@ function deleteSoilData(prop_id){
             },
             error: function(response) {
                 jQuery('#working_modal').modal('hide');
-                alert('An error occurred during deletion');
+                alert('Ocorreu um erro durante a exclusão.');
             }
         });
     }

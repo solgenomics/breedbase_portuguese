@@ -13,7 +13,7 @@ $identifier_prefix => ''
 <& /util/import_javascript.mas, classes => ["jquery", "jqueryui", "thickbox", "CXGN.Phenome.Tools", "CXGN.Page.FormattingHelpers", "jquery.cookie", "CXGN.List", "CXGN.BreederSearch", "CXGN.BreedersToolbox.CrossDetailPage" ] &>
 
 % use utf8;
-% $cross_name ||= "Untitled cross";
+% $cross_name ||= "Cruzamento sem título";
 % my $basename = $cross_name."P";
 % my $cross_properties = $c->config->{cross_properties};
 % my @cross_props = split ',',$cross_properties;
@@ -23,9 +23,9 @@ $identifier_prefix => ''
 % my $cross_additional_info_string = $c->config->{cross_additional_info};
 % my @cross_additional_info = split ',',$cross_additional_info_string;
 
-<& /page/page_title.mas, title => "Details for cross '$cross_name'" &>
+<& /page/page_title.mas, title => "Detalhes do cruzamento '$cross_name'" &>
 
-<&| /page/info_section.mas, title => "Cross information" &>
+<&| /page/info_section.mas, title => "Informações do cruzamento" &>
 
     <div class="panel panel-default">
         <div class="panel-body">
@@ -68,7 +68,7 @@ $identifier_prefix => ''
 <& /util/import_javascript.mas, classes => ['jquery','jquery.dataTables'] &>
 <& /util/import_css.mas, paths => ['/documents/inc/datatables/jquery.dataTables.css'] &>
 
-<&| /page/info_section.mas, title => 'Member of', collapsible=>1, collapsed=>0 &>
+<&| /page/info_section.mas, title => 'Pertence a', collapsible=>1, collapsed=>0 &>
     <div class = "well well-sm">
         <div class = "panel panel-default">
             <div class = "panel-body">
@@ -76,9 +76,9 @@ $identifier_prefix => ''
                     <table id = "membership_table" class="table table-hover table-striped">
                         <thead>
                             <tr>
-                                <th>Crossing Experiment</th>
-                                <th>Description</th>
-                                <th>Family Name</th>
+                                <th>Experimento de cruzamento</th>
+                                <th>Descrição</th>
+                                <th>Nome da família</th>
                             </tr>
                         </thead>
                     </table>
@@ -88,7 +88,7 @@ $identifier_prefix => ''
     </div>
 </&>
 
-<&| /page/info_section.mas, title => 'Parents', collapsible=>1, collapsed=>0 &>
+<&| /page/info_section.mas, title => 'Genitores', collapsible=>1, collapsed=>0 &>
     <div class = "well well-sm">
         <div class = "panel panel-default">
             <div class = "panel-body">
@@ -96,16 +96,16 @@ $identifier_prefix => ''
                     <table id = "parent_information" class="table table-hover table-striped">
                         <thead>
                             <tr>
-                                <th>Cross Combination</th>
-                                <th>Cross Type</th>
-                                <th>Female Accession</th>
-                                <th>Female Ploidy</th>
-                                <th>Male Accession</th>
-                                <th>Male Ploidy</th>
-                                <th>Female Plot</th>
-                                <th>Male Plot</th>
-                                <th>Female Plant</th>
-                                <th>Male Plant</th>
+                                <th>Combinação do cruzamento</th>
+                                <th>Tipo de cruzamento</th>
+                                <th>Acesso feminino</th>
+                                <th>Ploidia feminina</th>
+                                <th>Acesso masculino</th>
+                                <th>Ploidia masculina</th>
+                                <th>Parcela feminina</th>
+                                <th>Parcela masculina</th>
+                                <th>Planta feminina</th>
+                                <th>Planta masculina</th>
                             </tr>
                         </thead>
                     </table>
@@ -115,8 +115,8 @@ $identifier_prefix => ''
     </div>
 </&>
 
-% my $edit_additional_info_link = "[Edit]";
-% if ($user_id) { $edit_additional_info_link = '<a id="edit_additional_info_link">[Edit]</a>'; }
+% my $edit_additional_info_link = "[Editar]";
+% if ($user_id) { $edit_additional_info_link = '<a id="edit_additional_info_link">[Editar]</a>'; }
 
 <div id="edit_additional_info_dialog">
     <select id="additional_info_select">
@@ -125,11 +125,11 @@ $identifier_prefix => ''
 %}
     </select>
     <input id="additional_info_value" />
-    <button id="edit_additional_info_submit" >Save</button>
+    <button id="edit_additional_info_submit" >Salvar</button>
 </div>
 
 
-<&| /page/info_section.mas, title => 'Additional Parent Info', collapsible => 1, collapsed => 0, subtitle => $edit_additional_info_link &>
+<&| /page/info_section.mas, title => 'Informações adicionais dos genitores', collapsible => 1, collapsed => 0, subtitle => $edit_additional_info_link &>
     <div class = "well well-sm">
         <div class = "panel panel-default">
             <div class = "panel-body">
@@ -149,10 +149,10 @@ $identifier_prefix => ''
     </div>
 </&>
 
-% my $edit_link = "[Edit]";
-% if ($user_id) { $edit_link = '<a id="edit_properties_link">[Edit]</a>'; }
+% my $edit_link = "[Editar]";
+% if ($user_id) { $edit_link = '<a id="edit_properties_link">[Editar]</a>'; }
 
-<&| /page/info_section.mas, title => 'Field Crossing Data', collapsible => 1, collapsed => 0, subtitle => $edit_link &>
+<&| /page/info_section.mas, title => 'Dados de cruzamento em campo', collapsible => 1, collapsed => 0, subtitle => $edit_link &>
     <div class = "well well-sm">
         <div class = "panel panel-default">
             <div class = "panel-body">
@@ -182,13 +182,13 @@ $identifier_prefix => ''
 
     <input id="property_value" />
 
-    <button id="property_submit" >Save</button>
+    <button id="property_submit" >Salvar</button>
 
-    <p><b>WARNING!</b>&nbsp;Changing the parameters can have unpredicatable results in downstream analyses if they are inconsistent with other data.</p>
+    <p><b>AVISO!</b>&nbsp;A alteração dos parâmetros pode causar resultados imprevisíveis nas análises posteriores se eles forem incompatíveis com os demais dados.</p>
 
 </div>
 
-<&| /page/info_section.mas, title => 'Cross Transactions', collapsible => 1, collapsed => 0, subtitle => 'View crossing activities of this cross'&>
+<&| /page/info_section.mas, title => 'Transações do cruzamento', collapsible => 1, collapsed => 0, subtitle => 'Visualize as atividades de cruzamento deste registro'&>
     <div class = "well well-sm">
         <div class = "panel panel-default">
             <div class = "panel-body">
@@ -196,12 +196,12 @@ $identifier_prefix => ''
                     <table id = "cross_transactions" class="table table-hover table-striped">
                         <thead>
                             <tr>
-                                <th>Transaction ID</th>
-                                <th>Operator</th>
-                                <th>Timestamp</th>
-                                <th>Number of Flowers</th>
-                                <th>Number of Fruits</th>
-                                <th>Number of Seeds</th>
+                                <th>ID da transação</th>
+                                <th>Operador</th>
+                                <th>Data e hora</th>
+                                <th>Número de flores</th>
+                                <th>Número de frutos</th>
+                                <th>Número de sementes</th>
                             </tr>
                         </thead>
                     </table>
@@ -212,7 +212,7 @@ $identifier_prefix => ''
 </&>
 
 % if ($odk_crossing_data_service_name eq 'ONA') {
-    <&| /page/info_section.mas, id=>'tissue_culture_summary_section', title => 'Tissue culture IDs of this Cross', collapsible=>1, collapsed=>1, subtitle => 'View tissue culture IDs in each step (e.g., embryo IDs, subculture IDs, rooting IDs, weaning1 IDs)'&>
+    <&| /page/info_section.mas, id=>'tissue_culture_summary_section', title => 'IDs de cultura de tecidos deste cruzamento', collapsible=>1, collapsed=>1, subtitle => 'Visualize os IDs de cultura de tecidos em cada etapa (por exemplo, embrião, subcultura, enraizamento e aclimatação)'&>
         <div class="well well-sm">
             <div class="panel panel-default">
                 <div class="panel-body">
@@ -220,14 +220,14 @@ $identifier_prefix => ''
                         <table id="tissue_culture_summary_table" class="table table-hover table-striped">
                             <thead>
                                 <tr>
-                                    <th>Embryo IDs</th>
-                                    <th>Subculture IDs</th>
-                                    <th>Rooting IDs</th>
-                                    <th>Weaning1 IDs</th>
-                                    <th>Weaning2 IDs</th>
-                                    <th>Screenhouse IDs</th>
-                                    <th>Hardening IDs</th>
-                                    <th>Openfield IDs</th>
+                                    <th>IDs de embrião</th>
+                                    <th>IDs de subcultura</th>
+                                    <th>IDs de enraizamento</th>
+                                    <th>IDs da aclimatação 1</th>
+                                    <th>IDs da aclimatação 2</th>
+                                    <th>IDs de telado</th>
+                                    <th>IDs de endurecimento</th>
+                                    <th>IDs de campo aberto</th>
                                 </tr>
                             </thead>
                         </table>
@@ -240,29 +240,29 @@ $identifier_prefix => ''
 
 <& /breeders_toolbox/seedlots_section.mas, stock_id=>$cross_id, stock_type=>'cross', stock_uniquename=>$cross_name &>
 
-% my $add_progeny_link = "[add progeny]";
-% if ($user_id) { $add_progeny_link= '<a id="add_more_progeny_link">[add progeny]</a>'; }
+% my $add_progeny_link = "[adicionar progênie]";
+% if ($user_id) { $add_progeny_link= '<a id="add_more_progeny_link">[adicionar progênie]</a>'; }
 
-<&|  /page/info_section.mas, title => "Progeny", collapsible => 1, collapsed => 0, subtitle => $add_progeny_link   &>
+<&|  /page/info_section.mas, title => "Progênie", collapsible => 1, collapsed => 0, subtitle => $add_progeny_link   &>
 
     <div id="progeny_information_div">
-        [loading...]
+        [carregando...]
     </div>
 
     <div id="add_more_progeny_dialog">
         <table>
-            <tr><td>Basename</td><td><input type="input" id="basename" name="basename" value="<% $basename %>" /></td></tr>
-            <tr><td>Start number</td><td><input type="input" id="start_number" name="start_number" size="5" value="<% $progeny_count + 1 %>" /></td></tr>
-            <tr><td>How many?</td><td><input type="input" id="progeny_count" name="progeny_count" size="5" /></td></tr>
+            <tr><td>Nome-base</td><td><input type="input" id="basename" name="basename" value="<% $basename %>" /></td></tr>
+            <tr><td>Número inicial</td><td><input type="input" id="start_number" name="start_number" size="5" value="<% $progeny_count + 1 %>" /></td></tr>
+            <tr><td>Quantidade</td><td><input type="input" id="progeny_count" name="progeny_count" size="5" /></td></tr>
         </table>
     </div>
 
 
 </&>
 
-<&|  /page/info_section.mas, title => "Delete cross", collapsible => 1, collapsed => 0, subtitle => '<font color="red">Deletion cannot be undone</font>'  &>
+<&|  /page/info_section.mas, title => "Excluir cruzamento", collapsible => 1, collapsed => 0, subtitle => '<font color="red">A exclusão não poderá ser desfeita</font>'  &>
 
-<button id="delete_cross_button" class="btn btn-default">Delete</button>
+<button id="delete_cross_button" class="btn btn-default">Excluir</button>
 
 </&>
 
@@ -270,18 +270,18 @@ $identifier_prefix => ''
 
 jQuery(document).ready( function() {
     jQuery('#delete_cross_button').click( function() {
-        var response = confirm('Really delete this cross? This action cannot be undone.');
+        var response = confirm('Deseja realmente excluir este cruzamento? Esta ação não poderá ser desfeita.');
         if (response) {
             jQuery.ajax( {
                 url: '/ajax/cross/delete',
                 data: { 'cross_id' : <% $cross_id %>},
                 method: 'POST',
-                error: function(r) { alert('An error occurred.'); },
+                error: function(r) { alert('Ocorreu um erro.'); },
                 success: function(r) {
                     if (r.error) {
                         alert(r.error);
                     } else {
-                        alert('Deletion was successful.');
+                        alert('Exclusão concluída com sucesso.');
                     }
                 }
             });

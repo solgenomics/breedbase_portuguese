@@ -3,9 +3,9 @@
 
 <div id="brapi_home_study_germplasm_detail_div">
 
-    <h4>Study Germplasm</h4>
-    <input name="brapi_home_studygermplasmdbid" id="brapi_home_studygermplasmdbid" class="form-control" type="text" placeholder="StudyDbId e.g. 139" value="139"/>
-    <button class="btn btn-primary" name="brapi_home_studygermplasmdbid_submit" id="brapi_home_studygermplasmdbid_submit">Get Germplasm</button>
+    <h4>Germoplasma do estudo</h4>
+    <input name="brapi_home_studygermplasmdbid" id="brapi_home_studygermplasmdbid" class="form-control" type="text" placeholder="ID do estudo, ex.: 139" value="139"/>
+    <button class="btn btn-primary" name="brapi_home_studygermplasmdbid_submit" id="brapi_home_studygermplasmdbid_submit">Obter germoplasma</button>
     <br/><br/>
     <div id="brapi_studygermplasm_detail_result_div">
     </div>
@@ -27,14 +27,14 @@ jQuery(document).ready(function() {
           'success': function(response) {
             jQuery('#working_modal').modal('hide');
             console.log(response);
-            var html = '<table class="table table-bordered"><thead><tr><th>StudyDbId</th><th>TrialName</th></tr></thead><tbody><tr><td>'+response.result.studyDbId+'</td><td>'+response.result.studyName+'</td></tr></tbody></table>';
+            var html = '<table class="table table-bordered"><thead><tr><th>ID do estudo</th><th>Nome do ensaio</th></tr></thead><tbody><tr><td>'+response.result.studyDbId+'</td><td>'+response.result.studyName+'</td></tr></tbody></table>';
             jQuery('#brapi_studygermplasm_detail_result_div').empty().html(html);
             brapi_create_paginated_table(response.result.data, response.metadata.pagination, 'brapi_studygermplasm_data_result_div', jQuery('#brapi_home_url_select').val()+'/brapi/v1/studies/'+jQuery('#brapi_home_studygermplasmdbid').val()+'/germplasm', undefined);
 
           },
           error: function(response) {
             jQuery('#working_modal').modal('hide');
-            alert('An error occurred');
+            alert('Ocorreu um erro');
           }
         });
     });

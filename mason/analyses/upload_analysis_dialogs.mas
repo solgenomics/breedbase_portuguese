@@ -7,8 +7,8 @@
     <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content">
             <div class="modal-header" style="text-align: center">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="uploadNewAnalysisDialog">Upload Analysis</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="uploadNewAnalysisDialog">Enviar análise</h4>
             </div>
             <div class="modal-body">
                 <div class="container-fluid">
@@ -16,84 +16,84 @@
                     <form class="form-horizontal" method="post" enctype="multipart/form-data" encoding="multipart/form-data" id="upload_new_analysis_dialog_form" name="upload_new_analysis_dialog_form">
                     
                         <&| /util/workflow.mas, id=> "upload_new_analysis_workflow" &>
-                            <&| /util/workflow.mas:step, title=> "Intro" &>
-                                <& /page/page_title.mas, title=>"This workflow will guide you through uploading an analysis to the database" &>
-                                <p>You should have a spreadsheet (.csv) where the first column names the accession names or plots, and the subsequent columns have result values.</p>
-                                <p>The header row should have 'stock_name' in the first column and subsequent column headers should be for a trait variable e.g. 'plant height|CO_323:0000123'</p>
+                            <&| /util/workflow.mas:step, title=> "Introdução" &>
+                                <& /page/page_title.mas, title=>"Este fluxo orienta o envio de uma análise para o banco de dados" &>
+                                <p>Prepare uma planilha (.csv) com os nomes dos acessos ou das parcelas na primeira coluna e os valores dos resultados nas colunas seguintes.</p>
+                                <p>O cabeçalho deve conter 'stock_name' na primeira coluna e variáveis de características nas demais, por exemplo, 'plant height|CO_323:0000123'</p>
 
                                 <br/><br/>
                                 <center>
-                                <button class="btn btn-primary" onclick="Workflow.complete(this); return false;">Go to Next Step</button>
+                                <button class="btn btn-primary" onclick="Workflow.complete(this); return false;">Ir para a próxima etapa</button>
                                 </center>
                             </&>
-                            <&| /util/workflow.mas:step, title=> "Analysis" &>
-                                <& /page/page_title.mas, title=>"Define the analysis" &>
+                            <&| /util/workflow.mas:step, title=> "Análise" &>
+                                <& /page/page_title.mas, title=>"Defina a análise" &>
 
                                 <div class="form-group form-group-sm">
-                                    <label class="col-sm-3 control-label">Analysis Name (must be unique): </label>
+                                    <label class="col-sm-3 control-label">Nome da análise (deve ser único): </label>
                                     <div class="col-sm-9">
                                         <input class="form-control" id="upload_new_analysis_name" name="upload_new_analysis_name" type="text" />
                                     </div>
                                 </div>
                                 <div class="form-group form-group-sm">
-                                    <label class="col-sm-3 control-label">Analysis Description: </label>
+                                    <label class="col-sm-3 control-label">Descrição da análise: </label>
                                     <div class="col-sm-9">
                                         <input class="form-control" id="upload_new_analysis_description" name="upload_new_analysis_description" type="text" />
                                     </div>
                                 </div>
                                 <div class="form-group form-group-sm">
-                                    <label class="col-sm-3 control-label">Analysis Protocol (describe the analysis as a formula arbitrarily) (e.g. lme4(t1 ~ rep + accession)): </label>
+                                    <label class="col-sm-3 control-label">Protocolo da análise (descreva a análise como uma fórmula, por exemplo, lme4(t1 ~ rep + accession)): </label>
                                     <div class="col-sm-9">
                                         <input class="form-control" id="upload_new_analysis_protocol" name="upload_new_analysis_protocol" type="text" />
                                     </div>
                                 </div>
                                 <div class="form-group form-group-sm">
-                                    <label class="col-sm-3 control-label">Analysis Of: </label>
+                                    <label class="col-sm-3 control-label">Análise de: </label>
                                     <div class="col-sm-9">
                                         <select class="form-control" id="upload_new_analysis_result_values_type" name="upload_new_analysis_result_values_type" >
-                                            <option value='analysis_result_values_match_accession_names'>Accession Names (for genetic blups, genetic results)</option>
-                                            <option value='analysis_result_values_match_precomputed_design'>Plot Names (for plot predictions, spatial, temporal results)</option>
+                                            <option value='analysis_result_values_match_accession_names'>Nomes dos acessos (para BLUPs e resultados genéticos)</option>
+                                            <option value='analysis_result_values_match_precomputed_design'>Nomes das parcelas (para predições e resultados espaciais e temporais)</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="form-group form-group-sm">
-                                    <label class="col-sm-3 control-label">Breeding Program: </label>
+                                    <label class="col-sm-3 control-label">Programa de melhoramento: </label>
                                     <div class="col-sm-9">
                                         <div id="upload_new_analysis_breeding_program_div"></div>
                                     </div>
                                 </div>
                                 <div class="form-group form-group-sm">
-                                    <label class="col-sm-3 control-label">Year: </label>
+                                    <label class="col-sm-3 control-label">Ano: </label>
                                     <div class="col-sm-9">
                                         <div id="upload_new_analysis_year_div"></div>
                                     </div>
                                 </div>
                                 <div class="form-group form-group-sm">
-                                    <label class="col-sm-3 control-label">Statistical Ontology Term (from SGNSTAT): </label>
+                                    <label class="col-sm-3 control-label">Termo da ontologia estatística (SGNSTAT): </label>
                                     <div class="col-sm-9">
                                         <div id="upload_new_analysis_stat_term_div"></div>
                                     </div>
                                 </div>
                                 <div class="form-group form-group-sm">
-                                    <label class="col-sm-3 control-label">Results File (.csv): </label>
+                                    <label class="col-sm-3 control-label">Arquivo de resultados (.csv): </label>
                                     <div class="col-sm-9" >
                                         <input type="file" name="upload_new_analysis_file" id="upload_new_analysis_file" encoding="multipart/form-data" />
                                     </div>
                                 </div>
                                 <div class="form-group form-group-sm">
-                                    <label class="col-sm-3 control-label">Dataset ID (optional): </label>
+                                    <label class="col-sm-3 control-label">ID do conjunto de dados (opcional): </label>
                                     <div class="col-sm-9">
                                         <input class="form-control" id="upload_new_analysis_dataset_id" name="upload_new_analysis_dataset_id" type="text" />
                                     </div>
                                 </div>
                                 <div class="form-group form-group-sm">
-                                    <label class="col-sm-3 control-label">Result Summary (optional) (key:value comma separated. e.g. genetic_variance:0.6,phenotypic_variance:0.8): </label>
+                                    <label class="col-sm-3 control-label">Resumo dos resultados (opcional; pares chave:valor separados por vírgulas, por exemplo, genetic_variance:0.6,phenotypic_variance:0.8): </label>
                                     <div class="col-sm-9">
                                         <input class="form-control" id="upload_new_analysis_result_summary_string" name="upload_new_analysis_result_summary_string" type="text" />
                                     </div>
                                 </div>
                                 <div class="form-group form-group-sm">
-                                    <label class="col-sm-3 control-label">Compose Trait Info With Time Term (optional) (key||||value comma separated. e.g. harvest info|CO_323:0000101||||day 10|TIME:0002020) (all uploaded variables must be represented here): </label>
+                                    <label class="col-sm-3 control-label">Compor característica com termo temporal (opcional; pares chave||||valor separados por vírgulas, por exemplo, harvest info|CO_323:0000101||||day 10|TIME:0002020; represente aqui todas as variáveis enviadas): </label>
                                     <div class="col-sm-9">
                                         <input class="form-control" id="upload_new_analysis_result_trait_compose_info_string" name="upload_new_analysis_result_trait_compose_info_string" type="text"/>
                                     </div>
@@ -101,67 +101,67 @@
 
                                 <br/><br/>
                                 <center>
-                                <button class="btn btn-primary" id="upload_new_analysis_analysis_continue">Go to Next Step</button>
+                                <button class="btn btn-primary" id="upload_new_analysis_analysis_continue">Ir para a próxima etapa</button>
                                 </center>
                             </&>
-                            <&| /util/workflow.mas:step, title=> "Model" &>
-                                <& /page/page_title.mas, title=>"Define the model used to generate the analysis results" &>
+                            <&| /util/workflow.mas:step, title=> "Modelo" &>
+                                <& /page/page_title.mas, title=>"Defina o modelo usado para gerar os resultados da análise" &>
 
                                 <div class="form-group form-group-sm">
-                                    <label class="col-sm-3 control-label">Select a Model: </label>
+                                    <label class="col-sm-3 control-label">Selecione um modelo: </label>
                                     <div class="col-sm-9">
                                         <div id="upload_new_analysis_model_select_div"></div>
                                     </div>
                                 </div>
 
                                 <center>
-                                    <button type="button" class="btn btn-default" id="upload_new_analysis_model_button" >Create a New Model if Needed</button>
+                                    <button type="button" class="btn btn-default" id="upload_new_analysis_model_button" >Criar um novo modelo, se necessário</button>
                                 </center>
                                 <hr>
 
                                 <div id="upload_new_analysis_model_div" style="display:none">
                                 
                                     <div class="form-group form-group-sm">
-                                        <label class="col-sm-3 control-label">Model Name (must be unique): </label>
+                                        <label class="col-sm-3 control-label">Nome do modelo (deve ser único): </label>
                                         <div class="col-sm-9">
                                             <input class="form-control" id="upload_new_analysis_model_name" name="upload_new_analysis_model_name" type="text" />
                                         </div>
                                     </div>
                                     <div class="form-group form-group-sm">
-                                        <label class="col-sm-3 control-label">Model Description: </label>
+                                        <label class="col-sm-3 control-label">Descrição do modelo: </label>
                                         <div class="col-sm-9">
                                             <input class="form-control" id="upload_new_analysis_model_description" name="upload_new_analysis_model_description" type="text" />
                                         </div>
                                     </div>
                                     <div class="form-group form-group-sm">
-                                        <label class="col-sm-3 control-label">Model Is Public: </label>
+                                        <label class="col-sm-3 control-label">O modelo é público: </label>
                                         <div class="col-sm-9">
                                             <select class="form-control" id="upload_new_analysis_model_is_public" name="upload_new_analysis_model_is_public" >
-                                                <option value="yes">Yes</option>
-                                                <option value="no">No</option>
+                                                <option value="yes">Sim</option>
+                                                <option value="no">Não</option>
                                             </select>
                                         </div>
                                     </div>
                                     <div class="form-group form-group-sm">
-                                        <label class="col-sm-3 control-label">Model Language (e.g. R, Python, F90): </label>
+                                        <label class="col-sm-3 control-label">Linguagem do modelo (por exemplo, R, Python, F90): </label>
                                         <div class="col-sm-9">
                                             <input class="form-control" id="upload_new_analysis_model_language" name="upload_new_analysis_model_language" type="text"/>
                                         </div>
                                     </div>
                                     <div class="form-group form-group-sm">
-                                        <label class="col-sm-3 control-label">Model Properties (required) (key:value comma separated e.g. conversion_criteria:0.01,protocol_id:2): </label>
+                                        <label class="col-sm-3 control-label">Propriedades do modelo (obrigatório; pares chave:valor separados por vírgulas, por exemplo, conversion_criteria:0.01,protocol_id:2): </label>
                                         <div class="col-sm-9">
                                             <input class="form-control" id="upload_new_analysis_model_properties_string" name="upload_new_analysis_model_properties_string" type="text"/>
                                         </div>
                                     </div>
                                     <div class="form-group form-group-sm">
-                                        <label class="col-sm-3 control-label">Application Name (e.g. MyAmazingPipeline): </label>
+                                        <label class="col-sm-3 control-label">Nome da aplicação (por exemplo, MyAmazingPipeline): </label>
                                         <div class="col-sm-9">
                                             <input class="form-control" id="upload_new_analysis_model_application_name" name="upload_new_analysis_model_application_name" type="text"/>
                                         </div>
                                     </div>
                                     <div class="form-group form-group-sm">
-                                        <label class="col-sm-3 control-label">Application Version (e.g. v1.01): </label>
+                                        <label class="col-sm-3 control-label">Versão da aplicação (por exemplo, v1.01): </label>
                                         <div class="col-sm-9">
                                             <input class="form-control" id="upload_new_analysis_model_application_version" name="upload_new_analysis_model_application_version" type="text"/>
                                         </div>
@@ -170,20 +170,20 @@
                                 </div>
 
                                 <div class="well well-sm">
-                                    <h4>Data files from this analysis model</h4>
+                                    <h4>Arquivos de dados deste modelo de análise</h4>
                                     
                                     <table class="table table-bordered">
                                         <thead>
                                             <tr>
-                                                <th>File Upload</th>
-                                                <th>File Type</th>
+                                                <th>Envio de arquivo</th>
+                                                <th>Tipo de arquivo</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr>
                                                 <td>
                                                     <div class="form-group form-group-sm">
-                                                        <label class="col-sm-3 control-label">Main Phenotype Data File To Archive (required) (this should be the primary data file input into the model e.g. MyPhenotypes.csv): </label>
+                                                        <label class="col-sm-3 control-label">Arquivo principal de dados fenotípicos para armazenar (obrigatório; deve ser a entrada principal do modelo, por exemplo, MyPhenotypes.csv): </label>
                                                         <div class="col-sm-9">
                                                             <input id="upload_new_analysis_model_training_data_file" name="upload_new_analysis_model_training_data_file" type="file" encoding="multipart/form-data"/>
                                                         </div>
@@ -191,7 +191,7 @@
                                                 </td>
                                                 <td>
                                                     <div class="form-group form-group-sm">
-                                                        <label class="col-sm-3 control-label">Archive Main Phenotype Data File Type (required) (e.g. MyAmazingPipeline_MainPhenotypeFile): </label>
+                                                        <label class="col-sm-3 control-label">Tipo do arquivo principal de dados fenotípicos (obrigatório; por exemplo, MyAmazingPipeline_MainPhenotypeFile): </label>
                                                         <div class="col-sm-9">
                                                             <input class="form-control" id="upload_new_analysis_model_training_data_file_type" name="upload_new_analysis_model_training_data_file_type" type="text"/>
                                                         </div>
@@ -201,7 +201,7 @@
                                             <tr>
                                                 <td>
                                                     <div class="form-group form-group-sm">
-                                                        <label class="col-sm-3 control-label">Model File To Archive (optional) (this should be a model weights file): </label>
+                                                        <label class="col-sm-3 control-label">Arquivo de modelo para armazenar (opcional; deve conter os pesos do modelo): </label>
                                                         <div class="col-sm-9">
                                                             <input id="upload_new_analysis_model_file" name="upload_new_analysis_model_file" type="file" encoding="multipart/form-data"/>
                                                         </div>
@@ -209,7 +209,7 @@
                                                 </td>
                                                 <td>
                                                     <div class="form-group form-group-sm">
-                                                        <label class="col-sm-3 control-label">Archive Model File Type (optional) (e.g. MyAmazingPipeline_ModelWeights.Rds or MyAmazingPipeline_CNNWeights.hdf5): </label>
+                                                        <label class="col-sm-3 control-label">Tipo do arquivo de modelo (opcional; por exemplo, MyAmazingPipeline_ModelWeights.Rds ou MyAmazingPipeline_CNNWeights.hdf5): </label>
                                                         <div class="col-sm-9">
                                                             <input class="form-control" id="upload_new_analysis_model_file_type" name="upload_new_analysis_model_file_type" type="text"/>
                                                         </div>
@@ -219,7 +219,7 @@
                                             <tr>
                                                 <td>
                                                     <div class="form-group form-group-sm">
-                                                        <label class="col-sm-3 control-label">(1) Auxiliary File To Archive (optional) (e.g. log file, param file, grm input file): </label>
+                                                        <label class="col-sm-3 control-label">(1) Arquivo auxiliar para armazenar (opcional; por exemplo, registro de execução, parâmetros ou matriz de parentesco): </label>
                                                         <div class="col-sm-9">
                                                             <input id="upload_new_analysis_model_auxiliary_file_1" name="upload_new_analysis_model_auxiliary_file_1" type="file" encoding="multipart/form-data"/>
                                                         </div>
@@ -227,7 +227,7 @@
                                                 </td>
                                                 <td>
                                                     <div class="form-group form-group-sm">
-                                                        <label class="col-sm-3 control-label">(1) Auxiliary File Type (optional): </label>
+                                                        <label class="col-sm-3 control-label">(1) Tipo do arquivo auxiliar (opcional): </label>
                                                         <div class="col-sm-9">
                                                             <input class="form-control" id="upload_new_analysis_model_auxiliary_file_type_1" name="upload_new_analysis_model_auxiliary_file_type_1" type="text"/>
                                                         </div>
@@ -237,7 +237,7 @@
                                             <tr>
                                                 <td>
                                                     <div class="form-group form-group-sm">
-                                                        <label class="col-sm-3 control-label">(2) Auxiliary File To Archive (optional) (e.g. log file, param file, grm input file): </label>
+                                                        <label class="col-sm-3 control-label">(2) Arquivo auxiliar para armazenar (opcional; por exemplo, registro de execução, parâmetros ou matriz de parentesco): </label>
                                                         <div class="col-sm-9">
                                                             <input id="upload_new_analysis_model_auxiliary_file_2" name="upload_new_analysis_model_auxiliary_file_2" type="file" encoding="multipart/form-data"/>
                                                         </div>
@@ -245,7 +245,7 @@
                                                 </td>
                                                 <td>
                                                     <div class="form-group form-group-sm">
-                                                        <label class="col-sm-3 control-label">(2) Auxiliary File Type (optional): </label>
+                                                        <label class="col-sm-3 control-label">(2) Tipo do arquivo auxiliar (opcional): </label>
                                                         <div class="col-sm-9">
                                                             <input class="form-control" id="upload_new_analysis_model_auxiliary_file_type_2" name="upload_new_analysis_model_auxiliary_file_type_2" type="text"/>
                                                         </div>
@@ -255,7 +255,7 @@
                                             <tr>
                                                 <td>
                                                     <div class="form-group form-group-sm">
-                                                        <label class="col-sm-3 control-label">(3) Auxiliary File To Archive (optional) (e.g. log file, param file, grm input file): </label>
+                                                        <label class="col-sm-3 control-label">(3) Arquivo auxiliar para armazenar (opcional; por exemplo, registro de execução, parâmetros ou matriz de parentesco): </label>
                                                         <div class="col-sm-9">
                                                             <input id="upload_new_analysis_model_auxiliary_file_3" name="upload_new_analysis_model_auxiliary_file_3" type="file" encoding="multipart/form-data"/>
                                                         </div>
@@ -263,7 +263,7 @@
                                                 </td>
                                                 <td>
                                                     <div class="form-group form-group-sm">
-                                                        <label class="col-sm-3 control-label">(3) Auxiliary File Type (optional): </label>
+                                                        <label class="col-sm-3 control-label">(3) Tipo do arquivo auxiliar (opcional): </label>
                                                         <div class="col-sm-9">
                                                             <input class="form-control" id="upload_new_analysis_model_auxiliary_file_type_3" name="upload_new_analysis_model_auxiliary_file_type_3" type="text"/>
                                                         </div>
@@ -275,7 +275,7 @@
                                 </div>
 
                                 <center>
-                                    <button type="button" class="btn btn-primary" id="upload_new_analysis_submit" >Submit</button>
+                                    <button type="button" class="btn btn-primary" id="upload_new_analysis_submit" >Enviar</button>
                                 </center>
                             </&>
                         </&>
@@ -284,7 +284,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
             </div>
         </div>
     </div>
@@ -317,27 +317,27 @@ jQuery(document).ready(function () {
         var upload_new_analysis_file = jQuery('#upload_new_analysis_file').val();
 
         if (upload_new_analysis_name == '' || upload_new_analysis_description == '') {
-            alert('Please give an analysis name and description');
+            alert('Informe o nome e a descrição da análise');
             return false;
         }
         else if (upload_new_analysis_protocol == '') {
-            alert('Please give an analysis protocol');
+            alert('Informe o protocolo da análise');
             return false;
         }
         else if (upload_new_analysis_result_values_type == '') {
-            alert('Please select result values type');
+            alert('Selecione o tipo dos valores dos resultados');
             return false;
         }
         else if (upload_new_analysis_breeding_program_id == '') {
-            alert('Please select a breeding program');
+            alert('Selecione um programa de melhoramento');
             return false;
         }
         else if (upload_new_analysis_statistical_ontology_term == '') {
-            alert('Please select a statistical ontology term');
+            alert('Selecione um termo da ontologia estatística');
             return false;
         }
         else if (upload_new_analysis_file === '') {
-            alert('Please select a results file');
+            alert('Selecione um arquivo de resultados');
             return false;
         }
         else {
@@ -351,7 +351,7 @@ jQuery(document).ready(function () {
         var uploadFile = jQuery("#upload_new_analysis_file").val();
         jQuery('#upload_new_analysis_dialog_form').attr("action", "/ajax/analysis/store/spreadsheet");
         if (uploadFile === '') {
-            alert("Please select a file");
+            alert("Selecione um arquivo");
             return;
         }
 
@@ -383,27 +383,27 @@ jQuery(document).ready(function () {
         //     return false;
         // }
         if (upload_new_analysis_model_id == '' && upload_new_analysis_model_name !== '' && upload_new_analysis_model_description == '') {
-            alert('Please give a new model description');
+            alert('Informe a descrição do novo modelo');
             return false;
         }
         if (upload_new_analysis_model_id == '' && upload_new_analysis_model_name !== '' && upload_new_analysis_model_is_public == '') {
-            alert('Please specify if the new model is public');
+            alert('Informe se o novo modelo é público');
             return false;
         }
         if (upload_new_analysis_model_id == '' && upload_new_analysis_model_name !== '' && upload_new_analysis_model_language == '') {
-            alert('Please give a new model language');
+            alert('Informe a linguagem do novo modelo');
             return false;
         }
         if (upload_new_analysis_model_id == '' && upload_new_analysis_model_name !== '' && upload_new_analysis_model_properties_string == '') {
-            alert('Please give a new model properties. At least one key:value!');
+            alert('Informe as propriedades do novo modelo, com pelo menos um par chave:valor!');
             return false;
         }
         if (upload_new_analysis_model_id == '' && upload_new_analysis_model_name !== '' && upload_new_analysis_model_application_name == '') {
-            alert('Please give a new model application name');
+            alert('Informe o nome da aplicação do novo modelo');
             return false;
         }
         if (upload_new_analysis_model_id == '' && upload_new_analysis_model_name !== '' && upload_new_analysis_model_application_version == '') {
-            alert('Please give a new model application version');
+            alert('Informe a versão da aplicação do novo modelo');
             return false;
         }
         // if (upload_new_analysis_model_training_data_file === '') {
@@ -415,19 +415,19 @@ jQuery(document).ready(function () {
         //     return false;
         // }
         if ( (upload_new_analysis_model_file == '' && upload_new_analysis_model_file_type != '') || (upload_new_analysis_model_file != '' && upload_new_analysis_model_file_type == '') ) {
-            alert('If you give a new model file, please give a new model file type also');
+            alert('Ao informar um novo arquivo de modelo, informe também seu tipo');
             return false;
         }
         if ( (upload_new_analysis_model_auxiliary_file_1 == '' && upload_new_analysis_model_auxiliary_file_type_1 != '') || (upload_new_analysis_model_auxiliary_file_1 != '' && upload_new_analysis_model_auxiliary_file_type_1 == '') ) {
-            alert('If you give a new model aux file 1, please give a new model aux file 1 type also');
+            alert('Ao informar o arquivo auxiliar 1 do novo modelo, informe também seu tipo');
             return false;
         }
         if ( (upload_new_analysis_model_auxiliary_file_2 == '' && upload_new_analysis_model_auxiliary_file_type_2 != '') || (upload_new_analysis_model_auxiliary_file_2 != '' && upload_new_analysis_model_auxiliary_file_type_2 == '') ) {
-            alert('If you give a new model aux file 2, please give a new model aux file 2 type also');
+            alert('Ao informar o arquivo auxiliar 2 do novo modelo, informe também seu tipo');
             return false;
         }
         if ( (upload_new_analysis_model_auxiliary_file_3 == '' && upload_new_analysis_model_auxiliary_file_type_3 != '') || (upload_new_analysis_model_auxiliary_file_3 != '' && upload_new_analysis_model_auxiliary_file_type_3 == '') ) {
-            alert('If you give a new model aux file 3, please give a new model aux file 3 type also');
+            alert('Ao informar o arquivo auxiliar 3 do novo modelo, informe também seu tipo');
             return false;
         }
 
@@ -449,13 +449,13 @@ jQuery(document).ready(function () {
                 alert(response.error_messages);
             }
             else {
-                alert('Successfully saved! Page will now refresh!')
+                alert('Salvo com sucesso! A página será atualizada!')
                 location.reload();
             }
         },
         error: function(response) {
             jQuery('#working_modal').modal("hide");
-            alert("An error occurred uploading analysis");
+            alert("Ocorreu um erro ao enviar a análise");
         }
     });
 

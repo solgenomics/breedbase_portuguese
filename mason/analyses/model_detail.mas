@@ -30,13 +30,13 @@ $identifier_prefix
 
 <& /util/import_javascript.mas, entries => ['analyses'], classes => [ 'jquery', 'jquery.dataTables' ],  &>
 
-<& /page/page_title.mas, title => "Model <span id=\"model_name_title\">$model_name</span>" &>
+<& /page/page_title.mas, title => "Modelo <span id=\"model_name_title\">$model_name</span>" &>
 
-<& /page/detail_page_2_col_section.mas, info_section_collapsed => 0, info_section_title => "<h4 style='display:inline'>Model Details</h4>", info_section_subtitle => 'View basic information about the model.', buttons_html => '', icon_class => "glyphicon glyphicon-dashboard", info_section_id => "analysis_model_details", model_id => $model_id, model_name => $model_name, model_description => $model_description, model_properties => $model_properties, model_file_ids => $model_file_ids, model_type_name => $model_type_name, model_files => $model_files, identifier_prefix => $identifier_prefix &>
+<& /page/detail_page_2_col_section.mas, info_section_collapsed => 0, info_section_title => "<h4 style='display:inline'>Detalhes do modelo</h4>", info_section_subtitle => 'Visualize as informações básicas do modelo.', buttons_html => '', icon_class => "glyphicon glyphicon-dashboard", info_section_id => "analysis_model_details", model_id => $model_id, model_name => $model_name, model_description => $model_description, model_properties => $model_properties, model_file_ids => $model_file_ids, model_type_name => $model_type_name, model_files => $model_files, identifier_prefix => $identifier_prefix &>
 
-<& /page/detail_page_2_col_section.mas, info_section_collapsed => 0, info_section_title => "<h4 style='display:inline'>Analyses Results</h4>", info_section_subtitle => 'View analyses derived from this model.', buttons_html => '', icon_class => "glyphicon glyphicon-option-horizontal", info_section_id => "model_analyses", model_id => $model_id &>
+<& /page/detail_page_2_col_section.mas, info_section_collapsed => 0, info_section_title => "<h4 style='display:inline'>Resultados das análises</h4>", info_section_subtitle => 'Visualize as análises derivadas deste modelo.', buttons_html => '', icon_class => "glyphicon glyphicon-option-horizontal", info_section_id => "model_analyses", model_id => $model_id &>
 
-<& /page/detail_page_2_col_section.mas, model_id => $model_id, info_section_title => "<h4 style='display:inline'>Delete Model</h4>", info_section_subtitle => 'Delete model from the database.', icon_class => "glyphicon glyphicon-trash", info_section_id => "model_deletion_section" &>
+<& /page/detail_page_2_col_section.mas, model_id => $model_id, info_section_title => "<h4 style='display:inline'>Excluir modelo</h4>", info_section_subtitle => 'Exclua o modelo do banco de dados.', icon_class => "glyphicon glyphicon-trash", info_section_id => "model_deletion_section" &>
 
 <script>
 jQuery(document).ready(function(){

@@ -4,43 +4,42 @@
 
 </%args>
 
-<& /page/page_title.mas, title=>'Breeder Tools' &>
+<& /page/page_title.mas, title=>'Ferramentas de melhoramento' &>
 
 <div class="container-fluid">
 
 <dl>
-<dt><a href="/breeders/manage_programs">Breeding Programs</a></dt>
-<dd>Add new breeding program information.</dd>
+<dt><a href="/breeders/manage_programs">Programas de melhoramento</a></dt>
+<dd>Adicione informações de novos programas de melhoramento.</dd>
 
-<dt><a href="/breeders/accessions">Accessions</a></dt>
-<dd>Manage accessions. Add new accessions using fuzzy matching.</dd>
+<dt><a href="/breeders/accessions">Acessos</a></dt>
+<dd>Gerencie acessos e adicione novos acessos usando correspondência aproximada.</dd>
 
-<dt><a href="/breeders/trials">Field Trials</a></dt>
-<dd>Manage trials. Add new trials and create field layouts.</dd>
+<dt><a href="/breeders/trials">Ensaios de campo</a></dt>
+<dd>Gerencie ensaios, adicione novos ensaios e crie delineamentos de campo.</dd>
 
-<dt><a href="/breeders/genotyping">Genotyping Plates</a></dt>
-<dd>Upload and manage IGD genotyping plates.</dd>
+<dt><a href="/breeders/genotyping">Placas de genotipagem</a></dt>
+<dd>Envie e gerencie placas de genotipagem IGD.</dd>
 
-<dt><a href="/breeders/locations">Locations</a></dt>
-<dd>Manage locations. Add/remove locations</dd>
+<dt><a href="/breeders/locations">Locais</a></dt>
+<dd>Gerencie, adicione ou remova locais.</dd>
 
-<dt><a href="/breeders/crosses">Crosses</a></dt>
-<dd>Create new crosses.</dd>
+<dt><a href="/breeders/crosses">Cruzamentos</a></dt>
+<dd>Crie novos cruzamentos.</dd>
 
-<dt><a href="/breeders/phenotyping">Phenotyping</a></dt>
-<dd>Upload phenotype information for accessions in the database.</dd>
+<dt><a href="/breeders/phenotyping">Fenotipagem</a></dt>
+<dd>Envie informações fenotípicas dos acessos existentes no banco de dados.</dd>
 
-<dt><a href="/fieldbook">Fieldbook</a><dt>
-<dd>Create files for the Android Fieldbook app, upload files from Fieldbook to the database.
+<dt><a href="/fieldbook">Field Book</a><dt>
+<dd>Crie arquivos para o aplicativo Field Book no Android e envie arquivos do aplicativo para o banco de dados.</dd>
 
-<dt><a href="/barcode">Barcodes</a></dt>
-<dd>Download barcodes for accessions and plots.</dd>
+<dt><a href="/barcode">Códigos de barras</a></dt>
+<dd>Baixe códigos de barras para acessos e parcelas.</dd>
 
-<dt><a href="/breeders/download">Download Data</a></dt>
-<dd>Download phenotypic and genotypic data by trial, triat and location.</dd>
+<dt><a href="/breeders/download">Baixar dados</a></dt>
+<dd>Baixe dados fenotípicos e genotípicos por ensaio, característica e local.</dd>
 
 </div>
-
 
 
 

@@ -20,29 +20,29 @@ $facilities
 <table class="table table-bordered">
     <thead>
         <tr>
-            <th>Information</th>
-            <th>Breeding Programs -- Folders -- Genotyping Projects&nbsp;&nbsp;&nbsp;&nbsp;<button class="btn btn-sm btn-default" id="refresh_genotyping_project_jstree_html_button" name="refresh_genotyping_project_jstree_html">Refresh</button></th>
+            <th>Informações</th>
+            <th>Programas de melhoramento — Pastas — Projetos de genotipagem&nbsp;&nbsp;&nbsp;&nbsp;<button class="btn btn-sm btn-default" id="refresh_genotyping_project_jstree_html_button" name="refresh_genotyping_project_jstree_html">Atualizar</button></th>
         </tr>
     </thead>
     <tbody>
         <tr>
             <td>
-                <h4>Search</h4>
-                <input type="text" class="form-control input-sm" id="genotyping_project_tree_search" placeholder="Search" />
+                <h4>Pesquisar</h4>
+                <input type="text" class="form-control input-sm" id="genotyping_project_tree_search" placeholder="Pesquisar" />
                 <hr>
 
-                <h5><i>Double click<br />genotyping project (&nbsp;<span class="glyphicon glyphicon-align-left text-warning"></span>&nbsp;) or folder (&nbsp;<span class="glyphicon glyphicon-folder-open text-danger"></span>&nbsp;)<br/>to view detail page.</i></h5>
-                <h5><i>Breeding programs (&nbsp;<span class="glyphicon glyphicon-briefcase text-info"></span>&nbsp;)</i></h5>
+                <h5><i>Clique duas vezes<br />no projeto de genotipagem (&nbsp;<span class="glyphicon glyphicon-align-left text-warning"></span>&nbsp;) ou na pasta (&nbsp;<span class="glyphicon glyphicon-folder-open text-danger"></span>&nbsp;)<br/>para ver a página de detalhes.</i></h5>
+                <h5><i>Programas de melhoramento (&nbsp;<span class="glyphicon glyphicon-briefcase text-info"></span>&nbsp;)</i></h5>
                 <hr>
-                <h4>Folders</h4>
-                <button class="btn btn-sm btn-default" id="new_folder_dialog_link">Create new folder</button><br/><br/>
-                <button class="btn btn-sm btn-default" id="open_folder_dialog_link">Move genotyping project(s) to folder</button><br/><br/>
-                <button class="btn btn-sm btn-default" id="move_folder_dialog_link">Move folder</button>
+                <h4>Pastas</h4>
+                <button class="btn btn-sm btn-default" id="new_folder_dialog_link">Criar nova pasta</button><br/><br/>
+                <button class="btn btn-sm btn-default" id="open_folder_dialog_link">Mover projeto(s) de genotipagem para uma pasta</button><br/><br/>
+                <button class="btn btn-sm btn-default" id="move_folder_dialog_link">Mover pasta</button>
 
                 <div id="folder_edit_options" style="display:none">
                     <hr>
-                    <h5><i>Select multiple folders by holding 'Ctrl'.</i></h5>
-                    <button class="btn btn-primary" id="edit_folders_button" title="First Select Folder(s) to Edit">Edit Folder(s)</button>
+                    <h5><i>Para selecionar várias pastas, mantenha a tecla Ctrl pressionada.</i></h5>
+                    <button class="btn btn-primary" id="edit_folders_button" title="Primeiro selecione a(s) pasta(s) que deseja editar">Editar pasta(s)</button>
                     <br/>
                 </div>
 
@@ -50,7 +50,7 @@ $facilities
                 <br />
             </td>
             <td>
-                <div id="genotyping_project_list" >[loading...]</div>
+                <div id="genotyping_project_list" >[carregando...]</div>
             </td>
         </tr>
     </tbody>
@@ -91,7 +91,7 @@ jQuery(document).ready(function($) {
             });
         },
         error: function(response) {
-            alert("An error occurred while loading the genotyping projects.");
+            alert("Ocorreu um erro ao carregar os projetos de genotipagem.");
         }
     });
 

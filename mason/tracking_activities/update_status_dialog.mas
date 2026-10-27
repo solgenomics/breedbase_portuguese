@@ -13,10 +13,10 @@ $stock_type_page
 my $display_label;
 my $display_name;
 if ($stock_type_page eq 'tracking_id') {
-    $display_label = 'Tracking ID';
+    $display_label = 'ID de rastreamento';
     $display_name = $identifier_name;
 } elsif ($stock_type_page eq 'transformation_id') {
-    $display_label = 'Transformation ID';
+    $display_label = 'ID da transformação';
     $display_name = $material_name;
 }
 </%perl>
@@ -26,8 +26,8 @@ if ($stock_type_page eq 'tracking_id') {
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="updateStatusDialog">Mark this experiment as completed or terminated </h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="updateStatusDialog">Marcar este experimento como concluído ou encerrado </h4>
             </div>
             <div class="modal-body">
                 <div class="container-fluid">
@@ -39,27 +39,27 @@ if ($stock_type_page eq 'tracking_id') {
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-4 control-label">Status Type: </label>
+                            <label class="col-sm-4 control-label">Tipo de situação: </label>
                             <div class="col-sm-8">
                                 <select class="form-control" id="status_type">
-                                    <option value="">Select a status type</option>
-                                    <option value="completed">completed</option>
-                                    <option value="terminated">terminated</option>
+                                    <option value="">Selecione um tipo de situação</option>
+                                    <option value="completed">concluído</option>
+                                    <option value="terminated">encerrado</option>
                                 </select>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-4 control-label">Comments: </label>
+                            <label class="col-sm-4 control-label">Comentários: </label>
                             <div class="col-sm-8" >
-                                <textarea class="form-control" id="comments_for_updating" name="comments_for_updating" placeholder="Optional"></textarea>
+                                <textarea class="form-control" id="comments_for_updating" name="comments_for_updating" placeholder="Opcional"></textarea>
                             </div>
                         </div>
                     </form>
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" name="update_status_submit" id="update_status_submit">Submit</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                <button type="button" class="btn btn-primary" name="update_status_submit" id="update_status_submit">Enviar</button>
             </div>
         </div>
     </div>
@@ -69,19 +69,19 @@ if ($stock_type_page eq 'tracking_id') {
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="updatedSavedDialog">Success</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="updatedSavedDialog">Sucesso</h4>
             </div>
             <div class="modal-body">
                 <div class="container-fluid">
                     <p>
                         <span class="ui-icon ui-icon-circle-check" style="float: left; margin: 0 7px 50px 0;"></span>
-                        The status of this experiment has been updated.
+                        A situação deste experimento foi atualizada.
                     </p>
                 </div>
             </div>
             <div class="modal-footer">
-                <button id="dismiss_updated_saved_dialog" type="button" class="btn btn-default" data-dismiss="modal">Close & Reload</button>
+                <button id="dismiss_updated_saved_dialog" type="button" class="btn btn-default" data-dismiss="modal">Fechar e recarregar</button>
             </div>
         </div>
     </div>
@@ -91,19 +91,19 @@ if ($stock_type_page eq 'tracking_id') {
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="reverseStatusDialog">Success</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="reverseStatusDialog">Sucesso</h4>
             </div>
             <div class="modal-body">
                 <div class="container-fluid">
                     <p>
                         <span class="ui-icon ui-icon-circle-check" style="float: left; margin: 0 7px 50px 0;"></span>
-                        This experiment has been restored.
+                        Este experimento foi restaurado.
                     </p>
                 </div>
             </div>
             <div class="modal-footer">
-                <button id="dismiss_reverse_status_dialog" type="button" class="btn btn-default" data-dismiss="modal">Close & Reload</button>
+                <button id="dismiss_reverse_status_dialog" type="button" class="btn btn-default" data-dismiss="modal">Fechar e recarregar</button>
             </div>
         </div>
     </div>
@@ -127,12 +127,12 @@ jQuery(document).ready(function(){
         var comments = jQuery('#comments_for_updating').val();
 
         if ((identifier_id === '') && (material_id === '')) {
-            alert("Error retrieving source info");
+            alert("Erro ao recuperar as informações de origem");
             return;
         }
 
         if (status_type === '') {
-            alert("Please select a status type");
+            alert("Selecione um tipo de situação");
             return;
         }
 
@@ -162,7 +162,7 @@ jQuery(document).ready(function(){
             },
             error: function(response){
                 jQuery('#working_modal').modal('hide');
-                alert('An error occurred updating status');
+                alert('Ocorreu um erro ao atualizar a situação');
             }
         });
     });
@@ -174,7 +174,7 @@ jQuery(document).ready(function(){
 
     jQuery("[name='reverse_status_link']").click(function() {
         var updated_status_type = "<% $updated_status_type %>";
-        var confirmation = confirm("Are you sure you want to reverse status of this <% $display_label %>?");
+        var confirmation = confirm("Deseja realmente reverter a situação deste registro (<% $display_label %>)?");
         if (confirmation) {
             jQuery.ajax({
                 url: '/ajax/tracking_activity/reverse_status',
@@ -200,7 +200,7 @@ jQuery(document).ready(function(){
                 },
                 error: function(response){
                     jQuery('#working_modal').modal('hide');
-                    alert('An error occurred processing your request');
+                    alert('Ocorreu um erro ao processar sua solicitação');
                 }
             });
         }

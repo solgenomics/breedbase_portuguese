@@ -8,29 +8,29 @@ $file => ''
 $filetype => ''
 </%args>
 
-<& /page/page_title.mas, title=>'Download Barcodes' &>
+<& /page/page_title.mas, title=>'Baixar códigos de barras' &>
 
 % if (!@not_found && !$error) {
-  All stocks in the list have been found in the database. Please click the link below to download the barcode label file.<br />
+  Todos os materiais da lista foram encontrados no banco de dados. Clique no link abaixo para baixar o arquivo de etiquetas.<br />
 % }
 % elsif ($error){
-    <b>Download Plot Phenotyping Barcode </b>is <%$error%> For general barcode printing use <b>Download Stock Barcodes section.</b>
+    <b>Download de código de barras de fenotipagem de parcela: </b><%$error%> Para imprimir outros códigos de barras, use a seção <b>Baixar códigos de barras dos materiais.</b>
 % }
 % else {
-  The following <% scalar(@not_found) %> stocks were not found in the database:<br />
+  Os seguintes <% scalar(@not_found) %> materiais não foram encontrados no banco de dados:<br />
 %   foreach my $nf (@not_found) {
       <b><% $nf %></b>
 %   }
     <br /><br />
 %   if (@found > 0) {
 
-    The other <% scalar(@found) %> barcodes can be downloaded from the link below.
+    Os outros <% scalar(@found) %> códigos de barras podem ser baixados pelo link abaixo.
 
 
 
 %   }
 %   else {
-    No stocks were found. Please verify your input and try again.
+    Nenhum material foi encontrado. Verifique os dados informados e tente novamente.
 %   }
 
 
@@ -38,5 +38,5 @@ $filetype => ''
 
 % if (@found > 0) {
 <br /><br />
-<a target="_blank" href="<% $file %>" >Download <% $filetype %> file</a>
+<a target="_blank" href="<% $file %>" >Baixar arquivo <% $filetype %></a>
 %}

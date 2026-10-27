@@ -18,12 +18,11 @@
 
 <br /><br />
 
-<&| /page/info_section.mas, title=>"Filter Events",  collapsible=>1, collapsed=>!$show_filters, subtitle=>"Filter maintenance events based on date, type, and/or value" &>
+<&| /page/info_section.mas, title=>"Filtrar eventos",  collapsible=>1, collapsed=>!$show_filters, subtitle=>"Filtre os eventos de manutenção por data, tipo e/ou valor" &>
 
     <div class="well">
 
-        <p>Add one or more filters to apply to the table of displayed maintenance events.  To add a filter, enter the properties for a filter type 
-        and click the add button to add the filter to the list.  Once you're done adding filters, click the Filter button to display the results.</p>
+        <p>Adicione um ou mais filtros à tabela de eventos de manutenção. Para adicionar um filtro, informe as propriedades desejadas e clique em Adicionar. Quando terminar, clique em Filtrar para exibir os resultados.</p>
         <br />
         
         <!-- Filter Form -->
@@ -33,19 +32,19 @@
 
             <!-- Seedlot (by user-input) -->
             <div class="form-group">
-                <label class="col-sm-3 control-label">Seedlot(s): </label>
+                <label class="col-sm-3 control-label">Lote(s) de sementes: </label>
                 <div class="col-sm-8">
                     <div class="panel panel-info">
-                        <div class="panel-heading">Seedlot Name Contains</div>
+                        <div class="panel-heading">O nome do lote contém</div>
                         <div class="panel-body">
-                            <input id="event_filter_seedlot_name_contains" class="form-control" placeholder="part of Seedlot name" />
+                            <input id="event_filter_seedlot_name_contains" class="form-control" placeholder="Parte do nome do lote de sementes" />
                         </div>
                     </div>
 
-                    <div style="text-align: center"><strong>OR</strong></div>
+                    <div style="text-align: center"><strong>OU</strong></div>
                 </div>
                 <div class="col-sm-1">
-                    <button id="event_filter_seedlot_name_contains_add" class='btn btn-info btn-sm'>Add</button>
+                    <button id="event_filter_seedlot_name_contains_add" class='btn btn-info btn-sm'>Adicionar</button>
                 </div>
             </div>
 
@@ -54,16 +53,16 @@
                 <label class="col-sm-3 control-label"></label>
                 <div class="col-sm-8">
                     <div class="panel panel-info">
-                        <div class="panel-heading">Enter the name(s) of the Seedlot(s) - one per line</div>
+                        <div class="panel-heading">Informe o(s) nome(s) do(s) lote(s), um por linha</div>
                         <div class="panel-body">
                             <textarea id="event_filter_seedlot_names" class="form-control" rows=5></textarea>
                         </div>
                     </div>
 
-                    <div style="text-align: center"><strong>OR</strong></div>
+                    <div style="text-align: center"><strong>OU</strong></div>
                 </div>
                 <div class="col-sm-1">
-                    <button id="event_filter_seedlot_names_add" class='btn btn-info btn-sm'>Add</button>
+                    <button id="event_filter_seedlot_names_add" class='btn btn-info btn-sm'>Adicionar</button>
                 </div>
             </div>
 
@@ -72,18 +71,18 @@
                 <label class="col-sm-3 control-label"></label>
                 <div class="col-sm-8">
                     <div class="panel panel-info">
-                        <div class="panel-heading">Select a List of Seedlots</div>
+                        <div class="panel-heading">Selecione uma lista de lotes de sementes</div>
                         <div class="panel-body"><div id="event_filter_seedlot_list"></div></div>
                     </div>
                 </div>
                 <div class="col-sm-1">
-                    <button id="event_filter_seedlot_list_add" class='btn btn-info btn-sm'>Add</button>
+                    <button id="event_filter_seedlot_list_add" class='btn btn-info btn-sm'>Adicionar</button>
                 </div>
             </div>
 % } else {
             <!-- Single Seedlot Name -->
             <div class="form-group">
-                <label class="col-sm-3 control-label">Seedlot: </label>
+                <label class="col-sm-3 control-label">Lote de sementes: </label>
                 <div class="col-sm-8">
                     <input class="form-control" type="text" value="<% $seedlot_name %>" disabled>
                 </div>
@@ -93,46 +92,46 @@
         
             <!-- Date -->
             <div class="form-group">
-                <label class="col-sm-3 control-label">Date: </label>
+                <label class="col-sm-3 control-label">Data: </label>
                 <div class="col-sm-4">
                     <input class="form-control" id="event_filter_date" type="date">
                 </div>
                 <div class="col-sm-4">
                     <select class="form-control" id="event_filter_date_type">
-                        <option value="=">on</option>
-                        <option value="<=">on or before</option>
-                        <option value="<">before</option>
-                        <option value=">=">on or after</option>
-                        <option value=">">after</option>
+                        <option value="=">na data</option>
+                        <option value="<=">na data ou antes</option>
+                        <option value="<">antes</option>
+                        <option value=">=">na data ou depois</option>
+                        <option value=">">depois</option>
                     </select>
                 </div>
                 <div class="col-sm-1">
-                    <button id="event_filter_date_add" class='btn btn-info btn-sm'>Add</button>
+                    <button id="event_filter_date_add" class='btn btn-info btn-sm'>Adicionar</button>
                 </div>
             </div>
 
             <!-- Type -->
             <div class="form-group">
-                <label class="col-sm-3 control-label">Type: </label>
+                <label class="col-sm-3 control-label">Tipo: </label>
                 <div class="col-sm-4">
-                    <select class="form-control" id="event_filter_type" disabled><option>Loading...</option></select>
+                    <select class="form-control" id="event_filter_type" disabled><option>Carregando...</option></select>
                 </div>
                 <div class="col-sm-4" id="event_filter_type_value">
                     
                 </div>
                 <div class="col-sm-1">
-                    <button id="event_filter_type_add" class='btn btn-info btn-sm'>Add</button>
+                    <button id="event_filter_type_add" class='btn btn-info btn-sm'>Adicionar</button>
                 </div>
             </div>
 
             <!-- Operator -->
             <div class="form-group">
-                <label class="col-sm-3 control-label">Operator: </label>
+                <label class="col-sm-3 control-label">Responsável: </label>
                 <div class="col-sm-8">
                     <input class="form-control" id="event_filter_operator" />
                 </div>
                 <div class="col-sm-1">
-                    <button id="event_filter_operator_add" class='btn btn-info btn-sm'>Add</button>
+                    <button id="event_filter_operator_add" class='btn btn-info btn-sm'>Adicionar</button>
                 </div>
             </div>
 
@@ -141,15 +140,15 @@
         <br /><br />
 
         <!-- Filter Table -->
-        <p><strong>Applied Filters:</strong></p>
+        <p><strong>Filtros aplicados:</strong></p>
 
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th>Property</th>
-                    <th>Comparison</th>
-                    <th>Value</th>
-                    <th>Remove</th>
+                    <th>Propriedade</th>
+                    <th>Comparação</th>
+                    <th>Valor</th>
+                    <th>Remover</th>
                 </tr>
             </thead>
             <tbody id="event_filter_table"></tbody>
@@ -158,7 +157,7 @@
         <br /><br />
 
         <!-- Submit Filters -->
-        <button id="event_filter_submit" class="btn btn-primary btn-block" style="max-width: 400px; margin: 0 auto">Filter</button>
+        <button id="event_filter_submit" class="btn btn-primary btn-block" style="max-width: 400px; margin: 0 auto">Filtrar</button>
 
     </div>
 
@@ -175,8 +174,8 @@
         <span id="seedlot_maintenance_events_status_page"></span>
     </span>
     <div class="btn-group" style="float: right">
-        <button id="seedlot_maintenance_events_prev" type="button" class="btn btn-default" disabled><span class="glyphicon glyphicon-chevron-left"></span>&nbsp;Prev</button>
-        <button id="seedlot_maintenance_events_next" type="button" class="btn btn-default" disabled>Next&nbsp;<span class="glyphicon glyphicon-chevron-right"></span></button>
+        <button id="seedlot_maintenance_events_prev" type="button" class="btn btn-default" disabled><span class="glyphicon glyphicon-chevron-left"></span>&nbsp;Anterior</button>
+        <button id="seedlot_maintenance_events_next" type="button" class="btn btn-default" disabled>Próxima&nbsp;<span class="glyphicon glyphicon-chevron-right"></span></button>
     </div>
 </div>
 
@@ -185,14 +184,14 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <p class="modal-title">Remove Event?</p>
+                <p class="modal-title">Remover evento?</p>
             </div>
             <div id="seedlot_modal_body" class="modal-body">
-                <p class="modal-body">Are you sure you want to remove this Seedlot Maintenance Event?</p>
+                <p class="modal-body">Tem certeza de que deseja remover este evento de manutenção do lote de sementes?</p>
             </div>
             <div class="modal-footer">
-                <button id="seedlot_maintenance_remove_modal_cancel" type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                <button id="seedlot_maintenance_remove_modal_ok" type="button" class="btn btn-danger">Remove Event</button>
+                <button id="seedlot_maintenance_remove_modal_cancel" type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button id="seedlot_maintenance_remove_modal_ok" type="button" class="btn btn-danger">Remover evento</button>
             </div>
         </div>
     </div>
@@ -269,7 +268,7 @@ function setupDataTable() {
     if ( MULTI_SEEDLOT ) {
         columns = columns.concat([
             { 
-                title: "Seedlot", 
+                title: "Lote de sementes",
                 data: "uniquename", 
                 render: function(data, type, row) {
                     if ( type === 'display' ) {
@@ -282,45 +281,36 @@ function setupDataTable() {
         ]);
     }
     columns = columns.concat([
-        { title: "Event ID", data: "stockprop_id" },
+        { title: "ID do evento", data: "stockprop_id" },
         {
-            title: "Event Date", 
+            title: "Data do evento",
             data: "timestamp",
             render: function(data, type, row) {
                 if ( type === "display" ) {
-                    let dow = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-                    let month = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
                     let d = new Date(data);
-                    let h = d.getHours();
-                    let m = d.getMinutes();
-                    let s = d.getSeconds();
-                    if ( h <= 9 ) h = '0' + h;
-                    if ( m <= 9 ) m = '0' + m;
-                    if ( s <= 9 ) s = '0' + s;
-                    let ts = dow[d.getDay()] + " " + month[d.getMonth()] + " " + d.getDate() + " " + h + ":" + m + ":" + s + " " + d.getFullYear();
-                    return ts;
+                    return d.toLocaleString('pt-BR');
                 }
                 return data;
             }
         },
-        { title: "Event Type", data: "cvterm_name" },
-        { title: "Value", data: "value" },
+        { title: "Tipo de evento", data: "cvterm_name" },
+        { title: "Valor", data: "value" },
         { 
-            title: "Notes", 
+            title: "Observações",
             data: "notes",
             render: function(data, type, row) {
                 return data ? data : '';
             }
         },
-        { title: "Operator", data: "operator" },
+        { title: "Responsável", data: "operator" },
         {
-            title: "Options",
+            title: "Opções",
             data: "stockprop_id",
             render: function(data, type, row) {
                 if ( type === "display" ) {
                     let html = '';
                     if ( '<% $user_role %>' === 'curator' || ( '<% $user_role %>' === 'submitter' && '<% $user_name %>' === row.operator ) ) { 
-                        html += "<a class='event_table_remove' onclick='removeEvent(" + row.stock_id + ", " + row.stockprop_id + ")' style='cursor: pointer;'>[Remove]</a>";
+                        html += "<a class='event_table_remove' onclick='removeEvent(" + row.stock_id + ", " + row.stockprop_id + ")' style='cursor: pointer;'>[Remover]</a>";
                     }
                     return html;
                 }
@@ -339,7 +329,13 @@ function setupDataTable() {
         data: [],
         columns: columns,
         order: [[ MULTI_SEEDLOT ? 2 : 1, "desc" ]],
-        buttons: DT_BUTTONS
+        buttons: DT_BUTTONS,
+        language: {
+            emptyTable: "Nenhum evento de manutenção disponível",
+            zeroRecords: "Nenhum evento de manutenção encontrado",
+            loadingRecords: "Carregando...",
+            processing: "Processando..."
+        }
     });
 
 }
@@ -354,7 +350,7 @@ function getEvents() {
     EVENTS = [];
 
     // Update status
-    jQuery("#event_filter_submit").html("Searching...");
+    jQuery("#event_filter_submit").html("Buscando...");
     jQuery("#event_filter_submit").attr("disabled", true);
     jQuery("#seedlot_maintenance_events_prev").attr('disabled', true);
     jQuery("#seedlot_maintenance_events_next").attr('disabled', true);
@@ -456,16 +452,16 @@ function getEvents() {
                 TOTAL = data.total;
             }
             else {
-                alert("ERROR: Could not load maintenance events!");
+                alert("ERRO: não foi possível carregar os eventos de manutenção!");
             }
         },
         error: function() {
-            alert("ERROR: Could not load maintenance events!");
+            alert("ERRO: não foi possível carregar os eventos de manutenção!");
         },
         complete: function() {
             displayEvents();
 
-            jQuery("#event_filter_submit").html("Filter");
+            jQuery("#event_filter_submit").html("Filtrar");
             jQuery("#event_filter_submit").attr("disabled", false);
         }
     });
@@ -488,8 +484,8 @@ function displayEvents() {
     let displayed = start + " - " + end + " / " + TOTAL;
     let page_info = PAGE + " / " + MAX_PAGE;
 
-    jQuery("#seedlot_maintenance_events_status_displayed").html("<strong>EVENTS:</strong> " + displayed);
-    jQuery("#seedlot_maintenance_events_status_page").html("<strong>PAGE:</strong> " + page_info);
+    jQuery("#seedlot_maintenance_events_status_displayed").html("<strong>EVENTOS:</strong> " + displayed);
+    jQuery("#seedlot_maintenance_events_status_page").html("<strong>PÁGINA:</strong> " + page_info);
     jQuery("#seedlot_maintenance_events_prev").attr('disabled', PAGE === 1);
     jQuery("#seedlot_maintenance_events_next").attr('disabled', PAGE === MAX_PAGE || MAX_PAGE === 1);
 
@@ -542,11 +538,11 @@ function getOntology(callback) {
                 if ( callback ) return callback();
             }
             else {
-                alert("ERROR: Could not fetch ontology terms");
+                alert("ERRO: não foi possível obter os termos da ontologia.");
             }
         },
         error: function() {
-            alert("ERROR: Could not fetch ontology terms");
+            alert("ERRO: não foi possível obter os termos da ontologia.");
         }
     });
 }
@@ -559,7 +555,7 @@ function getOntology(callback) {
 function setTypeFilter() {
     
     // Populate type select
-    let html = "<option value=''>...Select Maintenance Event Type...</option>";
+    let html = "<option value=''>...Selecione um tipo de evento de manutenção...</option>";
     if ( ONTOLOGY ) {
         for ( let i = 0; i < ONTOLOGY.length; i++ ) {
             html += "<optgroup label='" + ONTOLOGY[i].name + "'>";
@@ -626,7 +622,7 @@ function setTypeFilterValues() {
  */
 function addSeedlotNameContainsFilter() {
     let substring = jQuery("#event_filter_seedlot_name_contains").val();
-    addFilter('name', 'name', substring, 'contains');
+    addFilter('name', 'Nome', substring, 'contains');
     return false;
 }
 
@@ -636,7 +632,7 @@ function addSeedlotNameContainsFilter() {
 function addSeedlotNamesFilter() {
     let names = jQuery("#event_filter_seedlot_names").val();
     names = names ? names.split('\n') : [];
-    addFilter('name', 'name', names && names.length > 0 ? names : undefined, 'includes');
+    addFilter('name', 'Nome', names && names.length > 0 ? names : undefined, 'includes');
     return false;
 }
 
@@ -646,7 +642,7 @@ function addSeedlotNamesFilter() {
 function addSeedlotListFilter() {
     let list_id = jQuery("#event_filter_seedlot_list_select").val();
     let names = list_id ? LO.getList(list_id) : [];
-    addFilter('name', 'name', names && names.length > 0 ? names : undefined, 'includes');
+    addFilter('name', 'Nome', names && names.length > 0 ? names : undefined, 'includes');
     return false;
 }
 
@@ -661,12 +657,12 @@ function addDateFilter() {
     // Check date format
     let regex = /^[0-9]{4}-[0-9]{2}-[0-9]{2}$/;
     if ( !d.match(regex) ) {
-        alert("Incorrect date format - the date must be in the format of YYYY-MM-DD");
+        alert("Formato de data incorreto: a data deve estar no formato AAAA-MM-DD.");
         return false;
     }
 
     // Add Filter
-    addFilter('date', 'date', d, t);
+    addFilter('date', 'Data', d, t);
     return false;
 }
 
@@ -699,7 +695,7 @@ function addTypeFilter() {
  */
 function addOperatorFilter() {
     let operators = jQuery('#event_filter_operator').val();
-    addFilter('operator', 'operator', operators, '=');
+    addFilter('operator', 'Responsável', operators, '=');
     return false;
 }
 
@@ -738,11 +734,12 @@ function displayFilters() {
     let html = "";
     for ( let i = 0; i < FILTERS.length; i++ ) {
         let v = FILTERS[i].value;
-        if ( !v ) v = "<em>Any Value</em>";
+        if ( !v ) v = "<em>Qualquer valor</em>";
         if ( Array.isArray(v) && v.length > 20 ) v = v.slice(0, 20).join(',') + "...";
         html += "<tr>";
         html += "<td>" + FILTERS[i].type_name + "</td>";
-        html += "<td>" + FILTERS[i].comp + "</td>";
+        let comparison_labels = { contains: "contém", includes: "inclui", "=": "igual a", "<": "antes de", "<=": "na data ou antes", ">": "depois de", ">=": "na data ou depois" };
+        html += "<td>" + (comparison_labels[FILTERS[i].comp] || FILTERS[i].comp) + "</td>";
         html += "<td>" + v + "</td>";
         html += "<td><button class='btn btn-danger btn-xs' onclick='removeFilter(" + i + ")'><span class='glyphicon glyphicon-remove'></span></button></td>";
         html += "</tr>";
@@ -768,7 +765,7 @@ function removeEvent(stock_id, stockprop_id) {
     jQuery("#seedlot_maintenance_remove_modal_ok").off().click(function() {
         jQuery("#seedlot_maintenance_remove_modal_cancel").attr("disabled", true);
         jQuery("#seedlot_maintenance_remove_modal_ok").attr("disabled", true);
-        jQuery("#seedlot_maintenance_remove_modal_ok").html("Removing...");
+        jQuery("#seedlot_maintenance_remove_modal_ok").html("Removendo...");
 
         // Delete the Event
         jQuery.ajax({
@@ -778,17 +775,17 @@ function removeEvent(stock_id, stockprop_id) {
             success: function(data) {
                 if ( !data || !data.success || data.success === 0 ) {
                     console.log(data.error);
-                    alert("ERROR: Could not remove seedlot event!");
+                    alert("ERRO: não foi possível remover o evento do lote de sementes!");
                 }
             },
             error: function() {
-                alert("ERROR: Could not remove seedlot event!");
+                alert("ERRO: não foi possível remover o evento do lote de sementes!");
             },
             complete: function() {
                 jQuery('#seedlot_maintenance_remove_modal').modal('hide')
                 jQuery("#seedlot_maintenance_remove_modal_cancel").attr("disabled", false);
                 jQuery("#seedlot_maintenance_remove_modal_ok").attr("disabled", false);
-                jQuery("#seedlot_maintenance_remove_modal_ok").html("Remove Event");
+                jQuery("#seedlot_maintenance_remove_modal_ok").html("Remover evento");
                 getEvents();
             }
         });

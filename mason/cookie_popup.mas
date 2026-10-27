@@ -6,10 +6,10 @@
                 <div class="panel-body bg-danger">
                     <div class="row">
                         <div class="col-sm-10">
-                            <p>This site uses cookies to provide logins and other features. Please accept the use of cookies by clicking Accept.</p>
+                            <p>Este site usa cookies para permitir o login e oferecer outras funcionalidades. Para aceitar o uso de cookies, clique em Aceitar.</p>
                         </div>
                         <div class="col-sm-2">
-                            <button class="btn btn-primary btn-sm" id="cookie_agree_submit">Accept</button>
+                            <button class="btn btn-primary btn-sm" id="cookie_agree_submit">Aceitar</button>
                         </div>
                     </div>
                 </div>
@@ -28,7 +28,7 @@
             var expDate = new Date();
             expDate.setTime(expDate.getTime() + (50000 * 60 * 1000)); //about 30 days
             jQuery.cookie("cookies_approved", "1", { expires: expDate, path: '/' } );
-            jQuery('#cookie_popup_content_div').html('<div class="panel panel-success"><div class="panel-body bg-success"><center><h3>Thank you :-)</h3></center></div></div>');
+            jQuery('#cookie_popup_content_div').html('<div class="panel panel-success"><div class="panel-body bg-success"><center><h3>Obrigado(a) :-)</h3></center></div></div>');
             setTimeout(function() {
                 jQuery('#cookie_popup').hide('slow');
             }, 1500);

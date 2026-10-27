@@ -1,6 +1,7 @@
 
 use strict;
 use warnings;
+use utf8;
 
 use lib 't/lib';
 use SGN::Test::Fixture;
@@ -21,21 +22,21 @@ my $response;
 $mech->get_ok('http://localhost:3010/ajax/user/login?username=janedoe&password=secretpw');
 $response = decode_json $mech->content;
 print STDERR Dumper $response;
-is($response->{message}, 'Login successful');
+is($response->{message}, 'Acesso realizado com sucesso.');
 
 $mech->get_ok('http://localhost:3010/ajax/user/new?first_name=testfirst&last_name=testlast&username=testusername&password=testpass&confirm_password=testpass&email_address=test@testcassavabase.com');
 $response = decode_json $mech->content;
 print STDERR Dumper $response;
-is_deeply($response, {'message' => 'Account was created with username "testusername".
+is_deeply($response, {'message' => 'A conta foi criada com o nome de usuário "testusername".
 
-To continue, you must confirm that we can reach you via email address "test@testcassavabase.com". An email has been sent with a URL to confirm this address. Please check your email for this message and use the link to confirm your email address.
+Para continuar, confirme que podemos entrar em contato pelo endereço "test@testcassavabase.com". Enviamos uma mensagem com o link de confirmação. Verifique seu e-mail e use esse link para confirmar o endereço.
 
-You will be able to login once your account has been confirmed.'});
+Você poderá entrar após a confirmação da conta.'});
 
 $mech->get_ok('http://localhost:3010/ajax/user/new?first_name=testfirst&last_name=testlast&username=testusername&password=testpass&confirm_password=testpass&email_address=test@testcassavabase.com&organization=testorg');
 $response = decode_json $mech->content;
 print STDERR Dumper $response;
-is_deeply($response, {'error' => 'Account creation failed for the following reason(s): Username "testusername" is already in use. Please pick a different username.'});
+is_deeply($response, {'error' => 'Não foi possível criar a conta pelos seguintes motivos: O nome de usuário "testusername" já está em uso. Escolha outro nome'});
 
 #confirm account is still in cgi-bin, so test lacking here. will do manually
 my $q = "update sgn_people.sp_person set disabled = default where username = 'testusername';";
@@ -49,17 +50,17 @@ $sth->execute;
 $mech->get_ok('http://localhost:3010/ajax/user/forgot_username?forgot_username_email=test@testcassavabase.com');
 $response = decode_json $mech->content;
 print STDERR Dumper $response;
-is($response->{message}, 'Username email requested. If you have an account on this database with this email, you will receive a message that includes the username associated with this email address.  If you do not have an account with this email address, you will not receive a message.');
+is($response->{message}, 'Solicitação enviada. Se houver uma conta neste banco de dados associada ao e-mail informado, você receberá uma mensagem com o nome de usuário. Caso contrário, nenhuma mensagem será enviada.');
 
 $mech->get_ok('http://localhost:3010/ajax/user/reset_password?password_reset_email=test@testcassavabase.com');
 $response = decode_json $mech->content;
 print STDERR Dumper $response;
-is($response->{message}, 'Password reset email requested. If you have an account on this database with this email, you will receive a message with a password reset link.  If you do not have an account with this email address, you will not receive a message.');
+is($response->{message}, 'Solicitação enviada. Se houver uma conta neste banco de dados associada ao e-mail informado, você receberá uma mensagem com o link para redefinir a senha. Caso contrário, nenhuma mensagem será enviada.');
 
 $mech->get_ok('http://localhost:3010/ajax/user/login?username=testusername&password=testpass');
 $response = decode_json $mech->content;
 print STDERR Dumper $response;
-is($response->{message}, 'Login successful');
+is($response->{message}, 'Acesso realizado com sucesso.');
 
 # CHECK UPDATES LOGGED IN AS WRONG USER
 
@@ -68,7 +69,7 @@ is($response->{message}, 'Login successful');
 $mech->get_ok('http://localhost:3010/ajax/user/update?change_password=1&current_password=secretpw&new_password=blablabla&confirm_password=blablabla');
 $response = decode_json($mech->content());
 print STDERR Dumper($response);
-is($response->{error}, "Your current password does not match SGN records.", "password update check");
+is($response->{error}, "A senha atual não corresponde aos registros da SGN.", "password update check");
 
 # reset it to what it was
 #
@@ -78,7 +79,7 @@ $mech->get_ok('http://localhost:3010/ajax/user/update?change_password=1&current_
 #
 $mech->get_ok('http://localhost:3010/ajax/user/update?change_email=1&current_password=secretpw&private_email=test@testbase.org&confirm_email=test@testbase.org');
 $response = decode_json($mech->content());
-is($response->{error}, "Your current password does not match SGN records.", 'email update check');
+is($response->{error}, "A senha atual não corresponde aos registros da SGN.", 'email update check');
 
 # email was not set in the fixture, no need to reset it to nothing?
 
@@ -87,7 +88,7 @@ is($response->{error}, "Your current password does not match SGN records.", 'ema
 #
 $mech->get_ok('http://localhost:3010/ajax/user/update?current_password=secretpw&change_username=1&new_username=janemoe');
 my $un_response = decode_json($mech->content());
-is($un_response->{error}, "Your current password does not match SGN records.", "username update check");
+is($un_response->{error}, "A senha atual não corresponde aos registros da SGN.", "username update check");
 
 # change username back
 #
@@ -105,14 +106,14 @@ print STDERR "LOGOUT: ".Dumper($response);
 $mech->get_ok('http://localhost:3010/ajax/user/login?username=janedoe&password=secretpw');
 $response = decode_json $mech->content;
 print STDERR Dumper $response;
-is($response->{message}, 'Login successful');
+is($response->{message}, 'Acesso realizado com sucesso.');
 
 # test update password functionality
 #
 $mech->get_ok('http://localhost:3010/ajax/user/update?change_password=1&current_password=secretpw&new_password=blablabla&confirm_password=blablabla');
 $response = decode_json($mech->content());
 print STDERR Dumper($response);
-is($response->{message}, "Update successful", "password update check");
+is($response->{message}, "Atualização concluída com sucesso.", "password update check");
 
 # reset it to what it was
 #
@@ -122,7 +123,7 @@ $mech->get_ok('http://localhost:3010/ajax/user/update?change_password=1&current_
 #
 $mech->get_ok('http://localhost:3010/ajax/user/update?change_email=1&current_password=secretpw&private_email=test@testbase.org&confirm_email=test@testbase.org');
 $response = decode_json($mech->content());
-is($response->{message}, 'Update successful', 'email update check');
+is($response->{message}, 'Atualização concluída com sucesso.', 'email update check');
 
 # email was not set in the fixture, no need to reset it to nothing?
 
@@ -131,7 +132,7 @@ is($response->{message}, 'Update successful', 'email update check');
 #
 $mech->get_ok('http://localhost:3010/ajax/user/update?current_password=secretpw&change_username=1&new_username=janemoe');
 my $un_response = decode_json($mech->content());
-is($un_response->{message}, "Update successful", "username update check");
+is($un_response->{message}, "Atualização concluída com sucesso.", "username update check");
 
 # change username back
 #

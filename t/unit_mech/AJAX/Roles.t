@@ -13,6 +13,7 @@ Lukas Mueller
 
 use strict;
 use warnings;
+use utf8;
 
 use lib 't/lib';
 use SGN::Test::Fixture;
@@ -33,7 +34,7 @@ $mech->get_ok('http://localhost:3010/ajax/user/login?username=janedoe&password=s
 $response = decode_json $mech->content;
 
 print STDERR Dumper $response;
-is($response->{message}, 'Login successful');
+is($response->{message}, 'Acesso realizado com sucesso.');
 
 $mech->get_ok('http://localhost:3010/ajax/roles/list', 'get /ajax/roles/list');
 

@@ -51,7 +51,7 @@ my %tabcomps = (
 
 
 unless exists($tabcomps{$search}) {
-  print qq | <p class="boxbgcolor5"><b>SGN Search Error</b><br /><br />The search type entered ("$search") is not supported. Please try to perform one of the supported searches by clicking on one of the tabs below.\n<br /></p> |;
+  print qq | <p class="boxbgcolor5"><b>Erro de pesquisa da SGN</b><br /><br />O tipo de pesquisa informado ("$search") não é compatível. Selecione abaixo um dos tipos de pesquisa disponíveis.\n<br /></p> |;
   $search='loci';
 }
 
@@ -66,5 +66,4 @@ unless exists($tabcomps{$search}) {
 <%cleanup>
 
 </%cleanup>
-
 

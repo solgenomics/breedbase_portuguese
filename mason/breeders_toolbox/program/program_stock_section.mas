@@ -6,23 +6,23 @@ $program_id
     <div class="panel panel-default">
         <div class="panel-body">
             <td>
-                <a href="/breeders/accessions"><p>Go To Manage Accessions</p></a>
+                <a href="/breeders/accessions"><p>Gerenciar acessos</p></a>
             </td>
             <td>
-                <a href="/breeders/seedlots"><p>Go To Manage Seedlots</p></a>
+                <a href="/breeders/seedlots"><p>Gerenciar lotes de sementes</p></a>
             </td>
         </div>
     </div>
-    <&| /page/info_section.mas, id=>"program_accessions", title=>"Accessions", collapsible=>1, collapsed=>1, hide_if_empty=>1 &>
+    <&| /page/info_section.mas, id=>"program_accessions", title=>"Acessos", collapsible=>1, collapsed=>1, hide_if_empty=>1 &>
         <& /breeders_toolbox/program/program_accessions.mas, program_id => $program_id &>
     </&>
-    <&| /page/info_section.mas, id=>"program_crosses", title=>"Crosses", collapsible=>1, collapsed=>1, hide_if_empty=>1 &>
+    <&| /page/info_section.mas, id=>"program_crosses", title=>"Cruzamentos", collapsible=>1, collapsed=>1, hide_if_empty=>1 &>
         <& /breeders_toolbox/program/program_crosses.mas, program_id => $program_id &>
     </&>
-    <&| /page/info_section.mas, id=>"program_seedlots", title=>"Seedlots", collapsible=>1, collapsed=>1, hide_if_empty=>1 &>
+    <&| /page/info_section.mas, id=>"program_seedlots", title=>"Lotes de sementes", collapsible=>1, collapsed=>1, hide_if_empty=>1 &>
         <& /breeders_toolbox/program/program_seedlots.mas, program_id => $program_id &>
     </&>
-    <&| /page/info_section.mas, id=>"program_propagation_identifiers", title=>"Propagation Identifiers", collapsible=>1, collapsed=>1, hide_if_empty=>1 &>
+    <&| /page/info_section.mas, id=>"program_propagation_identifiers", title=>"Identificadores de propagação", collapsible=>1, collapsed=>1, hide_if_empty=>1 &>
         <& /breeders_toolbox/program/program_propagation_identifiers.mas, program_id => $program_id &>
     </&>
 </div>

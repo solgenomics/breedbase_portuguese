@@ -9,9 +9,9 @@ $program_id
 <table id="program_seedlot_table" class="display">
     <thead>
         <tr>
-            <th>Seedlot Name</th>
-            <th>Content</th>
-            <th>Content Type</th>
+            <th>Nome do lote de sementes</th>
+            <th>Conteúdo</th>
+            <th>Tipo de conteúdo</th>
         </tr>
     </thead>
 </table>

@@ -31,7 +31,7 @@ $vector_id => undef
 % my @column_headers = @$activity_headers;
 % my @activity_types = @$type_select_options;
 
-<& /page/page_title.mas, title => "Tracking Activities of '$identifier_name'" &>
+<& /page/page_title.mas, title => "Atividades de rastreamento de '$identifier_name'" &>
 
 <& /util/import_javascript.mas, classes => ['jquery','jquery.dataTables'] &>
 <& /util/import_css.mas, paths => ['/documents/inc/datatables/jquery.dataTables.css'] &>
@@ -44,10 +44,10 @@ $vector_id => undef
 % }
 
 <td>
-    <a href='/breeders/trial/<%$project_id%>'><p>Go to Project Page</p></a>
+    <a href='/breeders/trial/<%$project_id%>'><p>Ir para a página do projeto</p></a>
 </td>
 
-<&| /page/info_section.mas, title => 'Record', collapsible => 1, collapsed => 0, subtitle => '' &>
+<&| /page/info_section.mas, title => 'Registro', collapsible => 1, collapsed => 0, subtitle => '' &>
     <div class="well ">
         <form class="form-horizontal" >
             <div class="form-group">
@@ -58,11 +58,11 @@ $vector_id => undef
             </div>
 % if (!$updated_status_type) {
             <div class="form-group">
-                <label class="col-sm-3 control-label">Input Type: </label>
+                <label class="col-sm-3 control-label">Tipo de dado: </label>
                 <div class="col-sm-5">
 % if ($type_select_options) {
                     <select id="type_select">
-                        <option value="">Please select a type</option>
+                        <option value="">Selecione um tipo</option>
 % foreach my $type(@$type_select_options){
                         <option value="<%$type->[0]%>"><%$type->[1]%></option>
 % }
@@ -71,32 +71,32 @@ $vector_id => undef
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-sm-3 control-label">Input: </label>
+                <label class="col-sm-3 control-label">Valor: </label>
                 <div class="col-sm-5">
                     <input class="form-control" id="selected_type_input" name="selected_type_input" type="text" value="">
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-sm-3 control-label">Notes:</label>
+                <label class="col-sm-3 control-label">Observações:</label>
                 <div class="col-sm-5">
                     <textarea class="form-control" id="selected_type_notes" name="selected_type_notes" ></textarea>
                 </div>
             </div>
             <div class="form-group" style="display:none">
-                <label class="col-sm-3 control-label">Timestamp: </label>
+                <label class="col-sm-3 control-label">Data e hora: </label>
                 <div class="col-sm-5">
                     <input class="form-control" id="record_timestamp" name="record_timestamp" type="text" disabled value="<%$timestamp%>">
                 </div>
             </div>
             <center>
-                <button id="activity_info_submit" name="activity_info_submit" class="btn btn-primary">Save</button>
+                <button id="activity_info_submit" name="activity_info_submit" class="btn btn-primary">Salvar</button>
             </center>
 % }
         </form>
     </div>
 </&>
 
-<&| /page/info_section.mas, title => 'Summary', collapsible => 1, collapsed => 0, subtitle => '' &>
+<&| /page/info_section.mas, title => 'Resumo', collapsible => 1, collapsed => 0, subtitle => '' &>
     <div class = "well well-sm">
         <div class = "panel panel-default">
             <div class = "panel-body">
@@ -116,7 +116,7 @@ $vector_id => undef
     </div>
 </&>
 
-<&| /page/info_section.mas, title => 'Activity Details', collapsible => 1, collapsed => 0, subtitle => '' &>
+<&| /page/info_section.mas, title => 'Detalhes da atividade', collapsible => 1, collapsed => 0, subtitle => '' &>
     <div class = "well well-sm">
         <div class = "panel panel-default">
             <div class = "panel-body">
@@ -140,19 +140,19 @@ $vector_id => undef
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="infoSavedDialog">Success</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="infoSavedDialog">Sucesso</h4>
             </div>
             <div class="modal-body">
                 <div class="container-fluid">
                     <p>
                         <span class="ui-icon ui-icon-circle-check" style="float: left; margin: 0 7px 50px 0;"></span>
-                        New information was saved.
+                        As novas informações foram salvas.
                     </p>
                 </div>
             </div>
             <div class="modal-footer">
-                <button id="dismiss_info_saved_dialog" type="button" class="btn btn-default" data-dismiss="modal">Close & Reload</button>
+                <button id="dismiss_info_saved_dialog" type="button" class="btn btn-default" data-dismiss="modal">Fechar e recarregar</button>
             </div>
         </div>
     </div>
@@ -164,22 +164,22 @@ $vector_id => undef
 % }
 
 
-<&| /page/info_section.mas, title=>"Update Status",  collapsible => 1, collapsed=>1 &>
+<&| /page/info_section.mas, title=>"Atualizar situação",  collapsible => 1, collapsed=>1 &>
 % if ($user_role eq "curator" ) {
     <div class="well well-sm">
         <div class="panel panel-default">
             <div class="panel-body">
-                <button class="btn btn-sm btn-default" style="margin:3px" id ="update_status_usage_link_tracking_page" name = "update_status_usage_link">Usage Help <span class="glyphicon glyphicon-question-sign"></span></button>
+                <button class="btn btn-sm btn-default" style="margin:3px" id ="update_status_usage_link_tracking_page" name = "update_status_usage_link">Ajuda de uso <span class="glyphicon glyphicon-question-sign"></span></button>
 % if ($updated_status_type) {
-                <button class="btn btn-sm btn-primary" style="margin:3px" id="reverse_status_link_tracking_page" name="reverse_status_link">Reverse Status</button>
+                <button class="btn btn-sm btn-primary" style="margin:3px" id="reverse_status_link_tracking_page" name="reverse_status_link">Reverter situação</button>
 % } else {
-                <button class="btn btn-sm btn-primary" style="margin:3px" id="update_status_link_tracking_page" name="update_status_link">Update Status</button>
+                <button class="btn btn-sm btn-primary" style="margin:3px" id="update_status_link_tracking_page" name="update_status_link">Atualizar situação</button>
 % }
             </div>
         </div>
     </div>
 % } else {
-    You need to be logged in or you do not have sufficient privileges to update status of this tracking identifier.
+    Entre na sua conta e verifique se possui permissão para atualizar a situação deste identificador de rastreamento.
 % }
 </&>
 
@@ -214,7 +214,7 @@ jQuery(document).ready( function() {
         var input_type = jQuery('#type_select').val();
         if (input_type.indexOf('date') != -1) {
             flatpickr('#selected_type_input', {
-                allowInput: true,
+                allowValor: true,
                 dateFormat: "Y-m-d",
                 defaultDate: "today"
             });
@@ -229,11 +229,11 @@ jQuery(document).ready( function() {
         var notes = jQuery('#selected_type_notes').val();
 
         if (selected_type == '') {
-            alert("Please select a type");
+            alert("Selecione um tipo");
             return;
         }
         if (input == '') {
-            alert("Please provide an input");
+            alert("Informe um valor");
             return;
         }
 
@@ -266,7 +266,7 @@ jQuery(document).ready( function() {
             },
             error: function(response){
                 jQuery('#working_modal').modal('hide');
-                alert('An error occurred saving new information');
+                alert('Ocorreu um erro ao salvar as novas informações');
             }
         });
     });

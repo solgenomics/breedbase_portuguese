@@ -5,96 +5,96 @@
     <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="addNewObservationVariableDialog">Add New Observation Variable</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="addNewObservationVariableDialog">Adicionar nova variável de observação</h4>
             </div>
             <div class="modal-body">
                 <div class="container-fluid">
 
                     <&| /util/workflow.mas, id=> "add_new_trait_workflow" &>
-                        <&| /util/workflow.mas:step, title=> "Intro" &>
-                            <& /page/page_title.mas, title=>"Need a new observation variable?" &>
+                        <&| /util/workflow.mas:step, title=> "Introdução" &>
+                            <& /page/page_title.mas, title=>"Precisa de uma nova variável de observação?" &>
                             <ul>
-                                <li>Please be sure the observation variable does not currently exist in the database using the trait search.</li>
-                                <li>Having many observation variables that are in fact recording the same thing is dangerous and can cause the database data to become fragmented.</li>
-                                <li>An observation variable is composed of a trait for the attribute being observed, a method describing how the attribute was measured, and a scale indicating the units of the observation.</li>
-                                <li>Having descriptive observation variables is critical for downstream analysis.</li>
+                                <li>Use a busca de características para confirmar que a variável de observação ainda não existe no banco de dados.</li>
+                                <li>Ter muitas variáveis de observação que registram a mesma informação é perigoso e pode fragmentar os dados do banco.</li>
+                                <li>Uma variável de observação é composta por uma característica que representa o atributo observado, um método que descreve como o atributo foi medido e uma escala que indica as unidades da observação.</li>
+                                <li>Variáveis de observação descritivas são essenciais para as análises posteriores.</li>
                             </ul>
 
                             <br/><br/>
                             <center>
-                                <button class="btn btn-primary" name="add_new_observation_variable_ontology_add_button">Need a new ontology? Click here first.</button>
+                                <button class="btn btn-primary" name="add_new_observation_variable_ontology_add_button">Precisa de uma nova ontologia? Clique primeiro aqui.</button>
                             </center>
 
                             <br/><br/>
                             <center>
-                                <button class="btn btn-primary" onclick="Workflow.complete(this);">Go to Next Step</button>
+                                <button class="btn btn-primary" onclick="Workflow.complete(this);">Ir para a próxima etapa</button>
                             </center>
                         </&>
 
-                        <&| /util/workflow.mas:step, title=> "Observation Variable" &>
-                            <& /page/page_title.mas, title=>"Define your observation variable" &>
+                        <&| /util/workflow.mas:step, title=> "Variável de observação" &>
+                            <& /page/page_title.mas, title=>"Defina a variável de observação" &>
 
-                            <p>An observation variable is composed of a trait for the attribute being observed, a method describing how the attribute was measured, and a scale indicating the units of the observation.</p>
+                            <p>Uma variável de observação é composta por uma característica que representa o atributo observado, um método que descreve como o atributo foi medido e uma escala que indica as unidades da observação.</p>
                             <hr>
 
                             <center>
-                                <button class="btn btn-primary" name="add_new_observation_variable_ontology_add_button">Need a new ontology? Click here first.</button>
+                                <button class="btn btn-primary" name="add_new_observation_variable_ontology_add_button">Precisa de uma nova ontologia? Clique primeiro aqui.</button>
                             </center>
                             <br/><br/>
 
                             <form class="form-horizontal">
                                 <div class="form-group">
-                                    <label class="col-sm-3 control-label">Observation Variable Ontology Name: </label>
+                                    <label class="col-sm-3 control-label">Nome da ontologia da variável de observação: </label>
                                     <div class="col-sm-9">
                                         <div id="add_new_observation_variable_ontology_select_div">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-sm-3 control-label">New Observation Variable Name: </label>
+                                    <label class="col-sm-3 control-label">Nome da nova variável de observação: </label>
                                     <div class="col-sm-9">
-                                        <input class="form-control" id="add_new_observation_variable_name" name="add_new_observation_variable_name" type="text" placeholder="e.g. total mass of fruit harvest from a plant using MachineX in kilograms"/>
+                                        <input class="form-control" id="add_new_observation_variable_name" name="add_new_observation_variable_name" type="text" placeholder="ex.: massa total de frutos colhidos de uma planta usando a Máquina X, em quilogramas"/>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-sm-3 control-label">New Observation Variable Definition: </label>
+                                    <label class="col-sm-3 control-label">Definição da nova variável de observação: </label>
                                     <div class="col-sm-9">
-                                        <input class="form-control" id="add_new_observation_variable_definition" name="add_new_observation_variable_definition" type="text" placeholder="e.g. total mass of fruit harvest from a plant using MachineX in kilograms"/>
+                                        <input class="form-control" id="add_new_observation_variable_definition" name="add_new_observation_variable_definition" type="text" placeholder="ex.: massa total de frutos colhidos de uma planta usando a Máquina X, em quilogramas"/>
                                     </div>
                                 </div>
                             </form>
                             <br/>
 
                             <center>
-                                <button class="btn btn-primary" id="add_new_trait_observation_variable_step">Go to Next Step</button>
+                                <button class="btn btn-primary" id="add_new_trait_observation_variable_step">Ir para a próxima etapa</button>
                             </center>
 
                         </&>
-                        <&| /util/workflow.mas:step, title=> "Trait" &>
-                            <& /page/page_title.mas, title=>"Define your trait" &>
+                        <&| /util/workflow.mas:step, title=> "Característica" &>
+                            <& /page/page_title.mas, title=>"Defina a característica" &>
 
                             <ul>
-                                <li>A trait defines the attribute being measured. It is one component of an observation variable; the others are a method and a scale.</li>
-                                <li>Here you can select a trait that already exists in an ontology in the database or you can add a new trait into an ontology.</li>
+                                <li>Uma característica define o atributo medido. Ela é um dos componentes da variável de observação; os outros são o método e a escala.</li>
+                                <li>Aqui você pode selecionar uma característica já existente em uma ontologia do banco de dados ou adicionar uma nova característica a uma ontologia.</li>
                             </ul>
                             <hr>
 
                             <center>
-                                <button class="btn btn-primary" name="add_new_observation_variable_ontology_add_button">Need a new ontology? Click here first.</button>
+                                <button class="btn btn-primary" name="add_new_observation_variable_ontology_add_button">Precisa de uma nova ontologia? Clique primeiro aqui.</button>
                             </center>
                             <br/><br/>
 
                             <form class="form-horizontal">
                                 <div class="form-group">
-                                    <label class="col-sm-3 control-label">Trait Ontology Name: </label>
+                                    <label class="col-sm-3 control-label">Nome da ontologia de características: </label>
                                     <div class="col-sm-9">
                                         <div id="add_new_trait_ontology_select_div">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-sm-3 control-label">Existing Traits in Selected Ontology: </label>
+                                    <label class="col-sm-3 control-label">Características existentes na ontologia selecionada: </label>
                                     <div class="col-sm-9">
                                         <div id="add_new_trait_existing_trait_select_div">
                                         </div>
@@ -103,47 +103,47 @@
                                 <hr>
 
                                 <div class="well">
-                                    <h3>If the trait does not exist in the ontology you selected above, you can add a new trait into the ontology here.</h3>
+                                    <h3>Se a característica não existir na ontologia selecionada acima, você poderá adicioná-la aqui.</h3>
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="col-sm-3 control-label">New Trait Name: </label>
+                                    <label class="col-sm-3 control-label">Nome da nova característica: </label>
                                     <div class="col-sm-9">
-                                        <input class="form-control" id="add_new_trait_name" name="add_new_trait_name" type="text" placeholder="e.g. harvested fruit mass per plant"/>
+                                        <input class="form-control" id="add_new_trait_name" name="add_new_trait_name" type="text" placeholder="ex.: massa de frutos colhidos por planta"/>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-sm-3 control-label">New Trait Definition: </label>
+                                    <label class="col-sm-3 control-label">Definição da nova característica: </label>
                                     <div class="col-sm-9">
-                                        <input class="form-control" id="add_new_trait_definition" name="add_new_trait_definition" type="text" placeholder="e.g. the total mass of fruit harvested from a plant"/>
+                                        <input class="form-control" id="add_new_trait_definition" name="add_new_trait_definition" type="text" placeholder="ex.: massa total de frutos colhidos de uma planta"/>
                                     </div>
                                 </div>
                             </form>
 
                             <center>
-                                <button class="btn btn-primary" id="add_new_trait_trait_step">Go to Next Step</button>
+                                <button class="btn btn-primary" id="add_new_trait_trait_step">Ir para a próxima etapa</button>
                             </center>
 
                         </&>
-                        <&| /util/workflow.mas:step, title=> "Method" &>
-                            <p>A method defines the how it was measured measured. It is one component of an observation variable; the others are a trait and a scale.</p>
+                        <&| /util/workflow.mas:step, title=> "Método" &>
+                            <p>Um método define como o atributo foi medido. Ele é um dos componentes da variável de observação; os outros são a característica e a escala.</p>
                             <hr>
 
                             <center>
-                                <button class="btn btn-primary" name="add_new_observation_variable_ontology_add_button">Need a new ontology? Click here first.</button>
+                                <button class="btn btn-primary" name="add_new_observation_variable_ontology_add_button">Precisa de uma nova ontologia? Clique primeiro aqui.</button>
                             </center>
                             <br/><br/>
 
                             <form class="form-horizontal">
                                 <div class="form-group">
-                                    <label class="col-sm-3 control-label">Method Ontology Name: </label>
+                                    <label class="col-sm-3 control-label">Nome da ontologia de métodos: </label>
                                     <div class="col-sm-9">
                                         <div id="add_new_trait_method_ontology_select_div">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-sm-3 control-label">Existing Methods in Selected Ontology: </label>
+                                    <label class="col-sm-3 control-label">Métodos existentes na ontologia selecionada: </label>
                                     <div class="col-sm-9">
                                         <div id="add_new_trait_existing_method_select_div">
                                         </div>
@@ -152,46 +152,46 @@
                                 <hr>
 
                                 <div class="well">
-                                    <h3>If the method does not exist in the ontology you selected above, you can add a new method into the ontology here.</h3>
+                                    <h3>Se o método não existir na ontologia selecionada acima, você poderá adicioná-lo aqui.</h3>
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="col-sm-3 control-label">New Method Name: </label>
+                                    <label class="col-sm-3 control-label">Nome do novo método: </label>
                                     <div class="col-sm-9">
-                                        <input class="form-control" id="add_new_trait_method_name" name="add_new_trait_method_name" type="text" placeholder="e.g. BrandA Mass Balance 0.001g Accuracy"/>
+                                        <input class="form-control" id="add_new_trait_method_name" name="add_new_trait_method_name" type="text" placeholder="ex.: balança de massa Marca A, precisão de 0,001 g"/>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-sm-3 control-label">New Method Definition: </label>
+                                    <label class="col-sm-3 control-label">Definição do novo método: </label>
                                     <div class="col-sm-9">
-                                        <input class="form-control" id="add_new_trait_method_definition" name="add_new_trait_method_definition" type="text" placeholder="e.g. BrandA MachineX Mass Balance 0.001g Accuracy"/>
+                                        <input class="form-control" id="add_new_trait_method_definition" name="add_new_trait_method_definition" type="text" placeholder="ex.: balança de massa Máquina X da Marca A, precisão de 0,001 g"/>
                                     </div>
                                 </div>
                             </form>
 
                             <center>
-                                <button type="button" class="btn btn-primary" id="add_new_trait_method_step">Go to Next Step</button>
+                                <button type="button" class="btn btn-primary" id="add_new_trait_method_step">Ir para a próxima etapa</button>
                             </center>
 
                         </&>
-                        <&| /util/workflow.mas:step, title=> "Scale" &>
-                            <& /page/page_title.mas, title=>"Define your scale" &>
+                        <&| /util/workflow.mas:step, title=> "Escala" &>
+                            <& /page/page_title.mas, title=>"Defina a escala" &>
 
                             <center>
-                                <button class="btn btn-primary" name="add_new_observation_variable_ontology_add_button">Need a new ontology? Click here first.</button>
+                                <button class="btn btn-primary" name="add_new_observation_variable_ontology_add_button">Precisa de uma nova ontologia? Clique primeiro aqui.</button>
                             </center>
                             <br/><br/>
 
                             <form class="form-horizontal">
                                 <div class="form-group">
-                                    <label class="col-sm-3 control-label">Scale Ontology Name: </label>
+                                    <label class="col-sm-3 control-label">Nome da ontologia de escalas: </label>
                                     <div class="col-sm-9">
                                         <div id="add_new_trait_scale_ontology_select_div">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-sm-3 control-label">Existing Scales in Selected Ontology: </label>
+                                    <label class="col-sm-3 control-label">Escalas existentes na ontologia selecionada: </label>
                                     <div class="col-sm-9">
                                         <div id="add_new_trait_existing_scale_select_div">
                                         </div>
@@ -200,71 +200,71 @@
                                 <hr>
 
                                 <div class="well">
-                                    <h3>If the scale does not exist in the ontology you selected above, you can add a new scale into the ontology here.</h3>
+                                    <h3>Se a escala não existir na ontologia selecionada acima, você poderá adicioná-la aqui.</h3>
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="col-sm-3 control-label">New Scale Name: </label>
+                                    <label class="col-sm-3 control-label">Nome da nova escala: </label>
                                     <div class="col-sm-9">
-                                        <input class="form-control" id="add_new_trait_scale_name" name="add_new_trait_scale_name" type="text" placeholder="e.g. mass in kilograms"/>
+                                        <input class="form-control" id="add_new_trait_scale_name" name="add_new_trait_scale_name" type="text" placeholder="ex.: massa em quilogramas"/>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-sm-3 control-label">New Scale Definition: </label>
+                                    <label class="col-sm-3 control-label">Definição da nova escala: </label>
                                     <div class="col-sm-9">
-                                        <input class="form-control" id="add_new_trait_scale_definition" name="add_new_trait_scale_definition" type="text" placeholder="e.g. the mass in kilograms"/>
+                                        <input class="form-control" id="add_new_trait_scale_definition" name="add_new_trait_scale_definition" type="text" placeholder="ex.: massa em quilogramas"/>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-sm-3 control-label">New Scale Format: </label>
+                                    <label class="col-sm-3 control-label">Formato da nova escala: </label>
                                     <div class="col-sm-9">
                                         <select class="form-control" id="add_new_trait_scale_format" name="add_new_trait_scale_format" >
-                                            <option value="">Select One</option>
-                                            <option value="qualitative">qualitative</option>
-                                            <option value="quantitative">quantitative</option>
+                                            <option value="">Selecione uma opção</option>
+                                            <option value="qualitative">qualitativa</option>
+                                            <option value="quantitative">quantitativa</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-sm-3 control-label">New Scale Minimum: </label>
+                                    <label class="col-sm-3 control-label">Mínimo da nova escala: </label>
                                     <div class="col-sm-9">
-                                        <input class="form-control" id="add_new_trait_scale_minimum" name="add_new_trait_scale_minimum" type="text" placeholder="e.g. 1"/>
+                                        <input class="form-control" id="add_new_trait_scale_minimum" name="add_new_trait_scale_minimum" type="text" placeholder="ex.: 1"/>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-sm-3 control-label">New Scale Maximum: </label>
+                                    <label class="col-sm-3 control-label">Máximo da nova escala: </label>
                                     <div class="col-sm-9">
-                                        <input class="form-control" id="add_new_trait_scale_maximum" name="add_new_trait_scale_maximum" type="text" placeholder="e.g. 10000"/>
+                                        <input class="form-control" id="add_new_trait_scale_maximum" name="add_new_trait_scale_maximum" type="text" placeholder="ex.: 10000"/>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-sm-3 control-label">New Scale Categories ('/' separated): </label>
+                                    <label class="col-sm-3 control-label">Categorias da nova escala (separadas por '/'): </label>
                                     <div class="col-sm-9">
-                                        <input class="form-control" id="add_new_trait_scale_categories" name="add_new_trait_scale_categories" type="text" placeholder="e.g. 1/3/5/7"/>
+                                        <input class="form-control" id="add_new_trait_scale_categories" name="add_new_trait_scale_categories" type="text" placeholder="ex.: 1/3/5/7"/>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-sm-3 control-label">New Scale Default Value: </label>
+                                    <label class="col-sm-3 control-label">Valor padrão da nova escala: </label>
                                     <div class="col-sm-9">
-                                        <input class="form-control" id="add_new_trait_scale_default" name="add_new_trait_scale_default" type="text" placeholder="e.g. 5"/>
+                                        <input class="form-control" id="add_new_trait_scale_default" name="add_new_trait_scale_default" type="text" placeholder="ex.: 5"/>
                                     </div>
                                 </div>
                             </form>
 
                             <center>
-                                <button type="button" class="btn btn-primary" id="add_new_trait_scale_step">Go to Next Step</button>
+                                <button type="button" class="btn btn-primary" id="add_new_trait_scale_step">Ir para a próxima etapa</button>
                             </center>
 
                         </&>
-                        <&| /util/workflow.mas:step, title=> "Confirm" &>
-                            <& /page/page_title.mas, title=>"Confirm you are creating this observation variable in the database" &>
+                        <&| /util/workflow.mas:step, title=> "Confirmar" &>
+                            <& /page/page_title.mas, title=>"Confirme a criação desta variável de observação no banco de dados" &>
 
                             <center>
-                                <button class="btn btn-primary" id="add_new_trait_submit_button">Submit</button>
+                                <button class="btn btn-primary" id="add_new_trait_submit_button">Enviar</button>
                             </center>
                         </&>
-                        <&| /util/workflow.mas:complete, title=> "Complete" &>
-                            <& /page/page_title.mas, title=>"Finished! Your observation variable is now in the database" &>
+                        <&| /util/workflow.mas:complete, title=> "Concluído" &>
+                            <& /page/page_title.mas, title=>"Concluído! A variável de observação agora está no banco de dados" &>
 
                             <div id="add_new_trait_added_observation_variable_div">
                             </div>
@@ -275,7 +275,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
             </div>
         </div>
     </div>
@@ -285,55 +285,55 @@
     <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="addNewObservationVariableOntologyDialog">Add New Ontology</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="addNewObservationVariableOntologyDialog">Adicionar nova ontologia</h4>
             </div>
             <div class="modal-body">
                 <div class="container-fluid">
 
                     <&| /util/workflow.mas, id=> "add_new_ontology_workflow" &>
-                        <&| /util/workflow.mas:step, title=> "Intro" &>
-                            <& /page/page_title.mas, title=>"Start a new ontology" &>
+                        <&| /util/workflow.mas:step, title=> "Introdução" &>
+                            <& /page/page_title.mas, title=>"Inicie uma nova ontologia" &>
                             <ul>
-                                <li>In this workflow you can add a new ontology to the database. Once an ontology is added, you can add terms into it from the add observation variables workflow.</li>
-                                <li>Ontologies are tagged as being either for traits, methods, or scales</li>
+                                <li>Neste fluxo, você pode adicionar uma nova ontologia ao banco de dados. Depois, poderá adicionar termos a ela no fluxo de inclusão de variáveis de observação.</li>
+                                <li>As ontologias são classificadas como ontologias de características, métodos ou escalas.</li>
                             </ul>
 
                             <br/><br/>
                             <center>
-                                <button class="btn btn-primary" onclick="Workflow.complete(this);">Go to Next Step</button>
+                                <button class="btn btn-primary" onclick="Workflow.complete(this);">Ir para a próxima etapa</button>
                             </center>
                         </&>
 
-                        <&| /util/workflow.mas:step, title=> "Ontology" &>
-                            <& /page/page_title.mas, title=>"Define your ontology" &>
+                        <&| /util/workflow.mas:step, title=> "Ontologia" &>
+                            <& /page/page_title.mas, title=>"Defina a ontologia" &>
 
                             <form class="form-horizontal">
                                 <div class="form-group">
-                                    <label class="col-sm-3 control-label">New Ontology Name: </label>
+                                    <label class="col-sm-3 control-label">Nome da nova ontologia: </label>
                                     <div class="col-sm-9">
-                                        <input class="form-control" id="add_new_observation_variable_ontology_name" name="add_new_observation_variable_ontology_name" type="text" placeholder="e.g. MyBreedingProgram Grape Ontology"/>
+                                        <input class="form-control" id="add_new_observation_variable_ontology_name" name="add_new_observation_variable_ontology_name" type="text" placeholder="ex.: Ontologia de Uva do Meu Programa de Melhoramento"/>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-sm-3 control-label">New Ontology Definition: </label>
+                                    <label class="col-sm-3 control-label">Definição da nova ontologia: </label>
                                     <div class="col-sm-9">
-                                        <input class="form-control" id="add_new_observation_variable_ontology_definition" name="add_new_observation_variable_ontology_definition" type="text" placeholder="e.g. description of the ontology"/>
+                                        <input class="form-control" id="add_new_observation_variable_ontology_definition" name="add_new_observation_variable_ontology_definition" type="text" placeholder="ex.: descrição da ontologia"/>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-sm-3 control-label">New Ontology Database Identifier: </label>
+                                    <label class="col-sm-3 control-label">Identificador da nova ontologia no banco de dados: </label>
                                     <div class="col-sm-9">
-                                        <input class="form-control" id="add_new_observation_variable_ontology_db_name" name="add_new_observation_variable_ontology_db_name" type="text" placeholder="a unique identifier for the terms in the ontology e.g. CO322"/>
+                                        <input class="form-control" id="add_new_observation_variable_ontology_db_name" name="add_new_observation_variable_ontology_db_name" type="text" placeholder="Identificador único para os termos da ontologia, ex.: CO322"/>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-sm-3 control-label">Ontology Type: </label>
+                                    <label class="col-sm-3 control-label">Tipo de ontologia: </label>
                                     <div class="col-sm-9">
                                         <select class="form-control" id="add_new_observation_variable_ontology_type" name="add_new_observation_variable_ontology_type"/>
-                                            <option value="trait_ontology">Trait or Observation Variable</option>
-                                            <option value="method_ontology">Method</option>
-                                            <option value="unit_ontology">Scale</option>
+                                            <option value="trait_ontology">Característica ou variável de observação</option>
+                                            <option value="method_ontology">Método</option>
+                                            <option value="unit_ontology">Escala</option>
                                         </select>
                                     </div>
                                 </div>
@@ -341,12 +341,12 @@
                             <br/>
 
                             <center>
-                                <button class="btn btn-primary" id="add_new_trait_observation_variable_ontology_step">Store Ontology</button>
+                                <button class="btn btn-primary" id="add_new_trait_observation_variable_ontology_step">Armazenar ontologia</button>
                             </center>
 
                         </&>
-                        <&| /util/workflow.mas:complete, title=> "Complete" &>
-                            <& /page/page_title.mas, title=>"Finished! Your ontology is now in the database. Add new terms into it from the add observation variable workflow." &>
+                        <&| /util/workflow.mas:complete, title=> "Concluído" &>
+                            <& /page/page_title.mas, title=>"Concluído! A ontologia agora está no banco de dados. Adicione novos termos a ela pelo fluxo de inclusão de variáveis de observação." &>
                         </&>
 
                     </&><!-- End of workflow -->
@@ -354,7 +354,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
             </div>
         </div>
     </div>
@@ -382,11 +382,11 @@ jQuery(document).ready(function() {
     var add_new_trait_new_observation_variable_definition;
     jQuery('#add_new_trait_observation_variable_step').click(function() {
         if (jQuery('#add_new_observation_variable_name').val() == '') {
-            alert('Please give a new observation variable name!');
+            alert('Informe o nome da nova variável de observação!');
             return false;
         }
         if (jQuery('#add_new_observation_variable_definition').val() == '') {
-            alert('Please give a new observation variable definition!');
+            alert('Informe a definição da nova variável de observação!');
             return false;
         }
         var selected = [];
@@ -394,9 +394,9 @@ jQuery(document).ready(function() {
             selected.push(jQuery(this).val());
         });
         if (selected.length < 1) {
-            alert('Please select one observation variable ontology!');
+            alert('Selecione uma ontologia de variável de observação!');
         } else if (selected.length > 1) {
-            alert('Only select one observation variable ontology!');
+            alert('Selecione somente uma ontologia de variável de observação!');
         } else {
             add_new_trait_new_observation_variable_name = jQuery('#add_new_observation_variable_name').val();
             add_new_trait_new_observation_variable_definition = jQuery('#add_new_observation_variable_definition').val();
@@ -414,7 +414,7 @@ jQuery(document).ready(function() {
             selected.push(jQuery(this).val());
         });
         if (selected.length > 1) {
-            alert('Only select one trait ontology!');
+            alert('Selecione somente uma ontologia de características!');
         } else {
             add_new_trait_new_trait_db_id = selected[0];
             get_select_box('all_ontology_terms', 'add_new_trait_existing_trait_select_div', { 'selectbox_name':'add_new_trait_existing_trait_select',    'selectbox_id':'add_new_trait_existing_trait_select', 'empty':1, 'db_id':selected[0], 'exclude_top_term':1 });
@@ -428,7 +428,7 @@ jQuery(document).ready(function() {
             selected.push(jQuery(this).val());
         });
         if (selected.length > 1) {
-            alert('Only select one method ontology!');
+            alert('Selecione somente uma ontologia de métodos!');
         } else {
             add_new_trait_new_method_db_id = selected[0];
             get_select_box('all_ontology_terms', 'add_new_trait_existing_method_select_div', { 'selectbox_name':'add_new_trait_existing_method_select',    'selectbox_id':'add_new_trait_existing_method_select', 'empty':1, 'db_id':selected[0], 'exclude_top_term':1 });
@@ -442,7 +442,7 @@ jQuery(document).ready(function() {
             selected.push(jQuery(this).val());
         });
         if (selected.length > 1) {
-            alert('Only select one scale ontology!');
+            alert('Selecione somente uma ontologia de escalas!');
         } else {
             add_new_trait_new_scale_db_id = selected[0];
             get_select_box('all_ontology_terms', 'add_new_trait_existing_scale_select_div', { 'selectbox_name':'add_new_trait_existing_scale_select',    'selectbox_id':'add_new_trait_existing_scale_select', 'empty':1, 'db_id':selected[0], 'exclude_top_term':1 });
@@ -458,11 +458,11 @@ jQuery(document).ready(function() {
             add_new_trait_selected_trait_val = '';
         }
         if (add_new_trait_selected_trait_val == '' && jQuery('#add_new_trait_name').val() == '') {
-            alert('Please select an existing trait or give a new trait name!');
+            alert('Selecione uma característica existente ou informe o nome de uma nova característica!');
             return false;
         }
         if (add_new_trait_selected_trait_val != '' && jQuery('#add_new_trait_name').val() != '') {
-            alert('Please select an existing trait or give a new trait name, and not both!');
+            alert('Selecione uma característica existente ou informe o nome de uma nova característica, mas não ambos!');
             return false;
         }
         var selected = [];
@@ -470,16 +470,16 @@ jQuery(document).ready(function() {
             selected.push(jQuery(this).val());
         });
         if (selected.length < 1) {
-            alert('Please select one trait ontology!');
+            alert('Selecione uma ontologia de características!');
         } else if (selected.length > 1) {
-            alert('Only select one trait ontology!');
+            alert('Selecione somente uma ontologia de características!');
         } else {
             if (add_new_trait_selected_trait_val == '') {
                 if (jQuery('#add_new_trait_name').val() == ''){
-                    alert('Please give a new trait name!');
+                    alert('Informe o nome da nova característica!');
                 }
                 else if (jQuery('#add_new_trait_definition').val() == ''){
-                    alert('Please give a new trait definition!');
+                    alert('Informe a definição da nova característica!');
                 }
                 else {
                     add_new_trait_new_trait_name = jQuery('#add_new_trait_name').val();
@@ -505,11 +505,11 @@ jQuery(document).ready(function() {
             add_new_trait_selected_method_val = '';
         }
         if (add_new_trait_selected_method_val == '' && jQuery('#add_new_trait_method_name').val() == '') {
-            alert('Please select an existing method or give a new method name!');
+            alert('Selecione um método existente ou informe o nome de um novo método!');
             return false;
         }
         if (add_new_trait_selected_method_val != '' && jQuery('#add_new_trait_method_name').val() != '') {
-            alert('Please select an existing method or give a new method name, and not both!');
+            alert('Selecione um método existente ou informe o nome de um novo método, mas não ambos!');
             return false;
         }
         var selected = [];
@@ -517,16 +517,16 @@ jQuery(document).ready(function() {
             selected.push(jQuery(this).val());
         });
         if (selected.length < 1) {
-            alert('Please select one method ontology!');
+            alert('Selecione uma ontologia de métodos!');
         } else if (selected.length > 1) {
-            alert('Only select one method ontology!');
+            alert('Selecione somente uma ontologia de métodos!');
         } else {
             if (add_new_trait_selected_method_val == '') {
                 if (jQuery('#add_new_trait_method_name').val() == ''){
-                    alert('Please give a new method name!');
+                    alert('Informe o nome do novo método!');
                 }
                 else if (jQuery('#add_new_trait_method_definition').val() == ''){
-                    alert('Please give a new method definition!');
+                    alert('Informe a definição do novo método!');
                 }
                 else {
                     add_new_trait_new_method_name = jQuery('#add_new_trait_method_name').val();
@@ -557,11 +557,11 @@ jQuery(document).ready(function() {
             add_new_trait_selected_scale_val = '';
         }
         if (add_new_trait_selected_scale_val == '' && jQuery('#add_new_trait_scale_name').val() == '') {
-            alert('Please select an existing scale or give a new scale name!');
+            alert('Selecione uma escala existente ou informe o nome de uma nova escala!');
             return false;
         }
         if (add_new_trait_selected_scale_val != '' && jQuery('#add_new_trait_scale_name').val() != '') {
-            alert('Please select an existing scale or give a new scale name, and not both!');
+            alert('Selecione uma escala existente ou informe o nome de uma nova escala, mas não ambos!');
             return false;
         }
         var selected = [];
@@ -569,25 +569,25 @@ jQuery(document).ready(function() {
             selected.push(jQuery(this).val());
         });
         if (selected.length < 1) {
-            alert('Please select one scale ontology!');
+            alert('Selecione uma ontologia de escalas!');
         } else if (selected.length > 1) {
-            alert('Only select one scale ontology!');
+            alert('Selecione somente uma ontologia de escalas!');
         } else {
             if (add_new_trait_selected_scale_val == '') {
                 if (jQuery('#add_new_trait_scale_name').val() == ''){
-                    alert('Please give a new scale name!');
+                    alert('Informe o nome da nova escala!');
                 }
                 else if (jQuery('#add_new_trait_scale_definition').val() == ''){
-                    alert('Please give a new scale definition!');
+                    alert('Informe a definição da nova escala!');
                 }
                 else if (jQuery('#add_new_trait_scale_format').val() == ''){
-                    alert('Please give a new scale format!');
+                    alert('Informe o formato da nova escala!');
                 }
                 else if (jQuery('#add_new_trait_scale_minimum').val() == ''){
-                    alert('Please give a new scale minimum!');
+                    alert('Informe o valor mínimo da nova escala!');
                 }
                 else if (jQuery('#add_new_trait_scale_maximum').val() == ''){
-                    alert('Please give a new scale maximum!');
+                    alert('Informe o valor máximo da nova escala!');
                 }
                 else {
                     add_new_trait_new_scale_name = jQuery('#add_new_trait_scale_name').val();
@@ -656,7 +656,7 @@ jQuery(document).ready(function() {
             },
             error: function(response){
                 jQuery("#working_modal").modal("hide");
-                alert("Error saving observation variable.");
+                alert("Erro ao salvar a variável de observação.");
             }
         });
     });
@@ -691,7 +691,7 @@ jQuery(document).ready(function() {
             },
             error: function(response){
                 jQuery("#working_modal").modal("hide");
-                alert("Error saving ontology.");
+                alert("Erro ao salvar a ontologia.");
             }
         });
     });

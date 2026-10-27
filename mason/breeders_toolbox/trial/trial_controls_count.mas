@@ -16,12 +16,12 @@ jQuery(document).ready(function(){
               //alert(response.accessions[0].length);
               //console.log(response.accessions[0]);
               var html = '';
-              html += 'Number of controls: ';
+              html += 'Número de testemunhas: ';
                html += response.accessions[0].length;
               jQuery("#controls_counts").html(html);
           },
           error: function(response){
-              alert('Error displaying controls count');
+              alert('Erro ao exibir o número de testemunhas.');
           }
 
       });

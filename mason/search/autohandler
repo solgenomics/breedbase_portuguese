@@ -21,23 +21,23 @@ Lukas Mueller &st;lam87@cornell.edu&gt;. Based on Perl code by Rob Buels.
 
 </%doc>
 
-<& /page/page_title.mas, title => 'Search' &>
+<& /page/page_title.mas, title => 'Pesquisar' &>
 
 <& /page/mode_buttons.mas, buttons => [
 
-    ['/breeders/search', 'Wizard' ],
-    ['/search/phenotypes/stock','Accessions and plots'],
-    ['/search/organisms','Organisms'],
-    ['/search/cross','Progenies, Parents, Crosses'],
-    ['/search/trials', 'Field Trials' ],
-    ['/search/genotyping_trials', 'Genotyping Plates' ],
-    ['/search/genotyping_data_projects', 'Genotyping Projects' ],
-    ['/search/genotyping_protocols', 'Genotyping Protocols' ],
-    ['/search/traits', 'Traits' ],
-    ['/search/treatments', 'Treatments' ],
+    ['/breeders/search', 'Assistente' ],
+    ['/search/phenotypes/stock','Acessos e parcelas'],
+    ['/search/organisms','Organismos'],
+    ['/search/cross','Progênies, genitores e cruzamentos'],
+    ['/search/trials', 'Ensaios de campo' ],
+    ['/search/genotyping_trials', 'Placas de genotipagem' ],
+    ['/search/genotyping_data_projects', 'Projetos de genotipagem' ],
+    ['/search/genotyping_protocols', 'Protocolos de genotipagem' ],
+    ['/search/traits', 'Características' ],
+    ['/search/treatments', 'Tratamentos' ],
     #['/search/markers','Markers'],
-    ['/search/images','Images'],
-    ['/search/people', 'People' ],
+    ['/search/images','Imagens'],
+    ['/search/people', 'Pessoas' ],
 
    ]
 &>

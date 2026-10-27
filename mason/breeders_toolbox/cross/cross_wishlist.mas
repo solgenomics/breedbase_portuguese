@@ -12,8 +12,8 @@
     <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="createCrossWishlistDialog">Create Cross Wishlist</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="createCrossWishlistDialog">Criar lista de desejos de cruzamentos</h4>
             </div>
 
             <div class="modal-body">
@@ -21,18 +21,18 @@
                     <div class="well">
                         <form class="form-horizontal" id="cross_wishlist_create_select_form_id" name="cross_wishlist_create_select_form_id">
                             <div class="form-group">
-                                <label class="col-sm-4 control-label">Select An ODK Form on ONA: </label>
+                                <label class="col-sm-4 control-label">Selecione um formulário ODK no ONA: </label>
                                 <div class="col-sm-8" >
-                                    <div id="cross_wishlist_create_select_form_id_div">LOADING...</div>
+                                    <div id="cross_wishlist_create_select_form_id_div">CARREGANDO...</div>
                                 </div>
                             </div>
                         </form>
                     </div>
 
                     <ul class="nav nav-pills nav-justified" id="cross_wishlist_tab_select">
-                        <li id="cross_wishlist_list_tab"><a data-toggle="tab" href="#with_lists">Using Accession Lists</a></li>
-                        <li class="active" id="cross_wishlist_no_list_tab"><a data-toggle="tab" href="#not_with_lists">Using Crossing Blocks</a></li>
-                        <li id="cross_wishlist_upload_tab"><a data-toggle="tab" href="#upload_wishlist">Uploading Cross Combinations</a></li>
+                        <li id="cross_wishlist_list_tab"><a data-toggle="tab" href="#with_lists">Usar listas de acessos</a></li>
+                        <li class="active" id="cross_wishlist_no_list_tab"><a data-toggle="tab" href="#not_with_lists">Usar blocos de cruzamento</a></li>
+                        <li id="cross_wishlist_upload_tab"><a data-toggle="tab" href="#upload_wishlist">Enviar combinações de cruzamento</a></li>
                     </ul>
 
                     <div class="tab-content">
@@ -41,21 +41,21 @@
                             <hr>
                             <form class="form-horizontal" >
                                 <div class="form-group" style="display:none" <!-- location name is coming from the trial they select --> >
-                                    <label class="col-sm-3 control-label">Location Name (Optional): </label>
+                                    <label class="col-sm-3 control-label">Nome do local (opcional): </label>
                                     <div class="col-sm-9" >
                                         <div id="cross_wishlist_location_select_list_div">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-sm-3 control-label">Female's Trial Name: </label>
+                                    <label class="col-sm-3 control-label">Nome do ensaio feminino: </label>
                                     <div class="col-sm-9" >
                                         <div id="cross_wishlist_female_trial_select_list_div">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-sm-3 control-label">Male's Trial Name: </label>
+                                    <label class="col-sm-3 control-label">Nome do ensaio masculino: </label>
                                     <div class="col-sm-9" >
                                         <div id="cross_wishlist_male_trial_select_list_div">
                                         </div>
@@ -63,21 +63,21 @@
                                 </div>
                                 <div class="well well-sm">
                                     <div class="form-group">
-                                        <label class="col-sm-6 control-label">Cross plan will be added to the cross wishlist named: </label>
+                                        <label class="col-sm-6 control-label">O plano de cruzamentos será adicionado à lista de desejos chamada: </label>
                                         <div class="col-sm-6" >
                                             <div id="cross_wishlist_trial_select_list_cross_wishlist_name_div">
-                                                <input class="form-control" type="text" disabled value="Please Select a Trial First" />
+                                                <input class="form-control" type="text" disabled value="Primeiro, selecione um ensaio" />
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-sm-3 control-label">Female Accession List: </label>
+                                    <label class="col-sm-3 control-label">Lista de acessos femininos: </label>
                                     <div class="col-sm-9" id="female_accession_list_div" name="female_accession_list_div">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-sm-3 control-label">Male Accession List: </label>
+                                    <label class="col-sm-3 control-label">Lista de acessos masculinos: </label>
                                     <div class="col-sm-9" id="male_accession_list_div" name="male_accession_list_div">
                                     </div>
                                 </div>
@@ -91,14 +91,14 @@
 
                             <form class="form-horizontal" >
                                 <div class="form-group">
-                                    <label class="col-sm-3 control-label">Female's Trial Name: </label>
+                                    <label class="col-sm-3 control-label">Nome do ensaio feminino: </label>
                                     <div class="col-sm-9" >
                                         <div id="cross_wishlist_female_trial_select_no_list_div">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-sm-3 control-label">Male's Trial Name: </label>
+                                    <label class="col-sm-3 control-label">Nome do ensaio masculino: </label>
                                     <div class="col-sm-9" >
                                         <div id="cross_wishlist_male_trial_select_no_list_div">
                                         </div>
@@ -106,19 +106,19 @@
                                 </div>
                                 <div class="well well-sm">
                                     <div class="form-group">
-                                        <label class="col-sm-6 control-label">Cross plan will be added to the cross wishlist named: </label>
+                                        <label class="col-sm-6 control-label">O plano de cruzamentos será adicionado à lista de desejos chamada: </label>
                                         <div class="col-sm-6" >
                                             <div id="cross_wishlist_trial_select_no_list_cross_wishlist_name_div">
-                                                <input class="form-control" type="text" disabled value="Please Select a Trial First" />
+                                                <input class="form-control" type="text" disabled value="Primeiro, selecione um ensaio" />
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-sm-3 control-label">Female Accession Name(s):</label>
+                                    <label class="col-sm-3 control-label">Nome(s) do(s) acesso(s) feminino(s):</label>
                                     <div class="col-sm-9" >
                                         <div id="cross_wishlist_female_accession_select_div">
-                                            <p>First Select A Trial</p>
+                                            <p>Primeiro, selecione um ensaio</p>
                                         </div>
                                     </div>
                                 </div>
@@ -132,14 +132,14 @@
                             <form class="form-horizontal" role="form" method="post" enctype="multipart/form-data" encoding="multipart/form-data" id="upload_wishlist_form" name="upload_wishlist_form">
 
                                 <div class="form-group">
-                                    <label class="col-sm-3 control-label">Female's Trial Name: </label>
+                                    <label class="col-sm-3 control-label">Nome do ensaio feminino: </label>
                                     <div class="col-sm-9" >
                                         <div id="cross_wishlist_female_trial_select_upload_div">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-sm-3 control-label">Male's Trial Name: </label>
+                                    <label class="col-sm-3 control-label">Nome do ensaio masculino: </label>
                                     <div class="col-sm-9" >
                                         <div id="cross_wishlist_male_trial_select_upload_div">
                                         </div>
@@ -147,10 +147,10 @@
                                 </div>
                                 <div class="well well-sm">
                                     <div class="form-group">
-                                        <label class="col-sm-6 control-label">Cross plan will be added to the cross wishlist named: </label>
+                                        <label class="col-sm-6 control-label">O plano de cruzamentos será adicionado à lista de desejos chamada: </label>
                                         <div class="col-sm-6" >
                                             <div id="cross_wishlist_trial_select_upload_cross_wishlist_name_div">
-                                                <input class="form-control" type="text" disabled value="Please Select a Trial First" />
+                                                <input class="form-control" type="text" disabled value="Primeiro, selecione um ensaio" />
                                             </div>
                                         </div>
                                     </div>
@@ -158,11 +158,11 @@
                                 <div class="well well-sm">
                                     <div class="row">
                                         <div class="col-sm-4">
-                                            <&| /page/explanation.mas, title=>'Template information' &>
+                                            <&| /page/explanation.mas, title=>'Informações do modelo' &>
                                                 <p>
-                                                    <b>File format information</b>
+                                                    <b>Informações do formato do arquivo</b>
                                                     <br>
-                                                    <a id="wishlist_format">Spreadsheet format</a>
+                                                    <a id="wishlist_format">Formato da planilha</a>
                                                 </p>
                                             </&>
                                         </div>
@@ -171,7 +171,7 @@
                                             <div class="panel panel-default">
                                                 <div class="panel-body">
                                                     <div class="form-group">
-                                                        <label class="col-sm-6 control-label">Select an XLS File: </label>
+                                                        <label class="col-sm-6 control-label">Selecione um arquivo XLS: </label>
                                                         <div class="col-sm-6">
                                                             <input type="file" name="wishlist_file" id="wishlist_file" encoding="multipart/form-data" />
                                                         </div>
@@ -189,16 +189,16 @@
 
             <div id="wishlist_lists_footer">
                 <div class="modal-footer">
-                    <button class="btn btn-info" id="show_cross_wishlists_select_submits" name="show_cross_wishlists_select_submits">Available Cross Wishlist(s) for ODK Use</button>
-                    <button class="btn btn-primary" id="cross_wishlist_submit" name="cross_wishlist_submits">Next</button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button class="btn btn-info" id="show_cross_wishlists_select_submits" name="show_cross_wishlists_select_submits">Listas de desejos disponíveis para uso no ODK</button>
+                    <button class="btn btn-primary" id="cross_wishlist_submit" name="cross_wishlist_submits">Próximo</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
                 </div>
             </div>
             <div id="wishlist_upload_footer" style="display:none">
                 <div class="modal-footer">
-                    <button class="btn btn-info" id="upload_show_cross_wishlists_select_submits" name="upload_show_cross_wishlists_select_submits">Available Cross Wishlist(s) for ODK Use</button>
-                    <button class="btn btn-primary" id="wishlist_upload_submit" name="wishlist_upload_submit">Upload File</button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button class="btn btn-info" id="upload_show_cross_wishlists_select_submits" name="upload_show_cross_wishlists_select_submits">Listas de desejos disponíveis para uso no ODK</button>
+                    <button class="btn btn-primary" id="wishlist_upload_submit" name="wishlist_upload_submit">Enviar arquivo</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
                 </div>
             </div>
         </div>
@@ -209,9 +209,9 @@
     <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="createCrossWishlistSelectDialog">Select Plots for Cross Wishlist</h4>
-                <h4>Female Plots are in <span class="bg-primary">Blue</span><!-- and Male Plots are in <span class="bg-success">Green</span>.--></h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="createCrossWishlistSelectDialog">Selecionar parcelas para a lista de desejos de cruzamentos</h4>
+                <h4>As parcelas femininas estão em <span class="bg-primary">azul</span><!-- e as parcelas masculinas estão em <span class="bg-success">verde</span>.--></h4>
             </div>
 
             <div class="modal-body">
@@ -221,8 +221,8 @@
             </div>
 
             <div class="modal-footer">
-                <button class="btn btn-primary" id="cross_wishlist_select_submits" name="cross_wishlist_select_submits">Create Wishlist</button>
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button class="btn btn-primary" id="cross_wishlist_select_submits" name="cross_wishlist_select_submits">Criar lista de desejos</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
             </div>
         </div>
     </div>
@@ -232,8 +232,8 @@
     <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="createCrossWishlistResponseDialog">Cross Wishlist</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="createCrossWishlistResponseDialog">Lista de desejos de cruzamentos</h4>
             </div>
 
             <div class="modal-body">
@@ -243,7 +243,7 @@
             </div>
 
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
             </div>
         </div>
     </div>
@@ -253,8 +253,8 @@
     <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="showCrossWishlistsResponseDialog">Cross Wishlists Previously Created</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="showCrossWishlistsResponseDialog">Listas de desejos de cruzamentos criadas anteriormente</h4>
             </div>
 
             <div class="modal-body">
@@ -264,7 +264,7 @@
             </div>
 
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
             </div>
         </div>
     </div>
@@ -274,8 +274,8 @@
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="uploadWishlistErrorDialog">Upload Wishlist File Error</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="uploadWishlistErrorDialog">Erro ao enviar o arquivo da lista de desejos</h4>
             </div>
             <div class="modal-body">
                 <div class="container-fluid">
@@ -285,7 +285,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
             </div>
         </div>
     </div>
@@ -295,20 +295,20 @@
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="uploadWishlistInfoDialog">Template Information</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="uploadWishlistInfoDialog">Informações do modelo</h4>
             </div>
             <div class="modal-body">
                 <div class="container-fluid">
                     <b>
-                        Cross wishlist may be uploaded in an Excel file (.xls or .xlsx)
+                        A lista de desejos de cruzamentos pode ser enviada em um arquivo do Excel (.xls ou .xlsx)
                     </b>
                     <br>
                     <b>
-                        Header:
+                        Cabeçalho:
                     </b>
                     <br>
-                        The first row (header) must contain the following:
+                        A primeira linha (cabeçalho) deve conter o seguinte:
                     <br>
 
                     <table class="table table-bordered table-hover">
@@ -321,17 +321,17 @@
                         </tbody>
                     </table>
                     <b>
-                        Required columns:
+                        Colunas obrigatórias:
                     </b>
                     <ul>
-                        <li><b>female_accession</b> (accession names must exist as <b>uniquenames</b> in the database and are in the selected female trial. Wishlist will include all of the female plots in the trial.)</li>
-                        <li><b>male_accession</b> (accession names must exist as <b>uniquenames</b> in the database)</li>
-                        <li><b>priority</b> (1 is the most important) </li>
+                        <li><b>female_accession</b> (os nomes dos acessos devem existir como <b>uniquenames</b> no banco de dados e pertencer ao ensaio feminino selecionado; a lista incluirá todas as parcelas femininas desse ensaio)</li>
+                        <li><b>male_accession</b> (os nomes dos acessos devem existir como <b>uniquenames</b> no banco de dados)</li>
+                        <li><b>priority</b> (1 é a prioridade mais alta)</li>
                     </ul>
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
             </div>
         </div>
     </div>
@@ -344,7 +344,7 @@ var lo = new CXGN.List();
 
 function draw_cross_grid(female_accessions, male_accessions){
     console.log("draw cross grid");
-    var cross_grid_html = '<h3>Set Cross Priorities: 1 is highest and 60 is lowest</h3><h4>Female Accessions Are in First Column and Male Accessions Are in Header</h4><table class="table table-bordered"><thead><tr><th>Female Accessions</th>';
+    var cross_grid_html = '<h3>Defina as prioridades dos cruzamentos: 1 é a mais alta e 60 é a mais baixa</h3><h4>Os acessos femininos estão na primeira coluna e os masculinos no cabeçalho</h4><table class="table table-bordered"><thead><tr><th>Acessos femininos</th>';
     for(var i=0; i<male_accessions.length; i++){
         cross_grid_html = cross_grid_html + '<th>' + male_accessions[i] + '</th>';
     }
@@ -376,19 +376,19 @@ jQuery(document).ready(function($) {
                 jQuery('#working_modal').modal('hide');
                 var html = '';
                 if(response.success){
-                    html += "<table class='table table-bordered table-hover'><thead><tr><th>File</th><th>Updated By</th><th>Date</th></tr></thead><tbody>";
+                    html += "<table class='table table-bordered table-hover'><thead><tr><th>Arquivo</th><th>Atualizado por</th><th>Data</th></tr></thead><tbody>";
                     for(var i=0; i<response.files.length; i++){
                         html += "<tr><td><a href='/breeders/phenotyping/download/"+response.files[i][0]+"' >"+response.files[i][1]+"</a></td><td><a href='/solpeople/personal-info.pl?sp_person_id="+response.files[i][6]+"' >"+response.files[i][7]+" "+response.files[i][8]+"</a></td><td>"+response.files[i][5]+"</td></tr>";
                     }
                     html += "</tbody></table>";
                 } else {
-                    html = 'Something went wrong here.'
+                    html = 'Ocorreu um problema ao carregar as listas.'
                 }
                 jQuery('#show_cross_wishlists_response_div').html(html);
             },
             error: function(response) {
                 jQuery('#working_modal').modal('hide');
-                alert("An error occurred getting cross wishlists");
+                alert("Ocorreu um erro ao obter as listas de desejos de cruzamentos");
             }
         });
 
@@ -396,8 +396,8 @@ jQuery(document).ready(function($) {
 
     jQuery("#create_cross_wishlist").click(function() {
         jQuery("#create_cross_wishlist_dialog").modal("show");
-        jQuery("#female_accession_list_div").html(lo.listSelect('female_accession_list_div', ["accessions"], "Please select list with < 60 accessions", undefined, undefined ));
-        jQuery("#male_accession_list_div").html(lo.listSelect('male_accession_list_div', ["accessions"], "Please select list with < 60 accessions", undefined, undefined ));
+        jQuery("#female_accession_list_div").html(lo.listSelect('female_accession_list_div', ["accessions"], "Selecione uma lista com menos de 60 acessos", undefined, undefined ));
+        jQuery("#male_accession_list_div").html(lo.listSelect('male_accession_list_div', ["accessions"], "Selecione uma lista com menos de 60 acessos", undefined, undefined ));
         var female_accessions;
         var male_accessions
         if (jQuery('#female_accession_list_div_list_select').val() != '' && jQuery('#male_accession_list_div_list_select').val() != '' ) {
@@ -429,7 +429,7 @@ jQuery(document).ready(function($) {
                             }
                             if (response_forms.success){
 
-                                var form_dropdown_select_html = '<select class="form-control" id="cross_wishlist_availabe_odk_crossing_forms"><option value="">Not Using ONA</option>';
+                                var form_dropdown_select_html = '<select class="form-control" id="cross_wishlist_availabe_odk_crossing_forms"><option value="">Não usar ONA</option>';
                                 var allowed_forms = response_forms.odk_ona_forms;
                                 allowed_forms.push('<% $c->config->{odk_crossing_data_test_form_name} %>');
                                 for(var i=0; i<response.forms.length; i++){
@@ -443,7 +443,7 @@ jQuery(document).ready(function($) {
                             }
                         },
                         error: function(response_forms){
-                            alert("Error retrieving saved ODK ONA forms");
+                            alert("Erro ao recuperar os formulários ODK salvos no ONA");
                         }
                     });
 
@@ -451,7 +451,7 @@ jQuery(document).ready(function($) {
             },
             error: function(response){
                 jQuery("#working_modal").modal("hide");
-                alert("Error retrieving available ODK crossing forms");
+                alert("Erro ao recuperar os formulários ODK de cruzamento disponíveis");
             }
         });
 
@@ -476,11 +476,11 @@ jQuery(document).ready(function($) {
             var male_accession_list_id = $('#male_accession_list_div_list_select').val();
             var female_trial_id = jQuery('#cross_wishlist_list_female_trial_id').val();
             if (! lo.legacy_validate(female_accession_list_id, 'accessions', true)) {
-                alert('The female accession list contains elements that are not accessions.');
+                alert('A lista de acessos femininos contém elementos que não são acessos.');
                 return;
             }
             if (! lo.legacy_validate(male_accession_list_id, 'accessions', true)) {
-                alert('The male accession list contains elements that are not accessions.');
+                alert('A lista de acessos masculinos contém elementos que não são acessos.');
                 return;
             }
 
@@ -551,7 +551,7 @@ jQuery(document).ready(function($) {
                 jQuery('#cross_wishlist_trial_select_no_list_cross_wishlist_name_div').html('<input type="text" class="form-control" disabled value="'+cross_wishlist_name+'" />');
             },
             error: function(response) {
-                alert("An error occurred getting trial location");
+                alert("Ocorreu um erro ao obter o local do ensaio");
             }
         });
 
@@ -584,7 +584,7 @@ jQuery(document).ready(function($) {
                 jQuery('#cross_wishlist_trial_select_list_cross_wishlist_name_div').html('<input type="text" class="form-control" disabled value="'+cross_wishlist_name+'" />');
             },
             error: function(response) {
-                alert("An error occurred getting trial location");
+                alert("Ocorreu um erro ao obter o local do ensaio");
             }
         });
     };
@@ -615,7 +615,7 @@ jQuery(document).ready(function($) {
                 jQuery('#cross_wishlist_trial_select_upload_cross_wishlist_name_div').html('<input type="text" class="form-control" disabled value="'+cross_wishlist_name+'" />');
             },
             error: function(response) {
-                alert("An error occurred getting trial location");
+                alert("Ocorreu um erro ao obter o local do ensaio");
             }
         });
     };
@@ -636,14 +636,14 @@ jQuery(document).ready(function($) {
             male_trial_ids_string = male_trial_ids;
         }
         if (male_trial_ids.length == 0){
-            alert('Please select a male trial first!');
+            alert('Primeiro, selecione um ensaio masculino!');
             return;
         }
 
         var female_accession_ids = jQuery('#cross_wishlist_female_accession_ids').val();
-        var html = '<table class="table table-bordered" id="cross_wishlist_male_select_table"><thead><tr><th>Female Parent</th><th>Select Male Parent</th><th>Priority ( 1 : highest, 60 : lowest )</th></tr></thead><tbody>';
+        var html = '<table class="table table-bordered" id="cross_wishlist_male_select_table"><thead><tr><th>Genitor feminino</th><th>Selecionar genitor masculino</th><th>Prioridade (1: mais alta, 60: mais baixa)</th></tr></thead><tbody>';
         for(var i=0; i<female_accession_ids.length; i++){
-            html = html + '<tr><td>' + female_accession_ids[i] + '</td><td><div name="cross_wishlist_male_selects" id="cross_wishlist_male_select_' +i+ '"></div></td><td><span id="cross_wishlist_male_accession_id_'+ i +'_priority" data-related="'+encodeURI(female_accession_ids[i])+'" >Select Male(s)</span></td></tr>';
+            html = html + '<tr><td>' + female_accession_ids[i] + '</td><td><div name="cross_wishlist_male_selects" id="cross_wishlist_male_select_' +i+ '"></div></td><td><span id="cross_wishlist_male_accession_id_'+ i +'_priority" data-related="'+encodeURI(female_accession_ids[i])+'" >Selecione o(s) genitor(es) masculino(s)</span></td></tr>';
         };
         html = html + '</tbody></table>';
         jQuery('#cross_wishlist_male_parent_div').html(html);
@@ -671,7 +671,7 @@ jQuery(document).ready(function($) {
         var female_accession_ids = jQuery('#cross_wishlist_female_accession_ids').val();
         var male_ids = jQuery(div_id).val();
         var female_id = jQuery(div_id).data('related');
-        var html = '<table class="table table-bordered" div="' + div_id +'_table"><thead><tr><th>Male Parent</th><th>Priority</th></tr></thead><tbody>';
+        var html = '<table class="table table-bordered" div="' + div_id +'_table"><thead><tr><th>Genitor masculino</th><th>Prioridade</th></tr></thead><tbody>';
         for (var i=0; i<male_ids.length; i++){
             html = html + '<tr><td>' + male_ids[i] + '</td><td><input class="form-control" male_id="' + male_ids[i] + '" female_id="' + female_id + '" name ="cross_wishlist_final_priority" id="cross_wishlist_male_priority_'+ i +'" value="1" placeholder="1"/></td></tr>';
         };
@@ -727,17 +727,17 @@ jQuery(document).ready(function($) {
         //console.log(trial_id);
         //console.log(female_male_tracker);
         if(!female_trial_id){
-            alert('You must select a female trial!');
+            alert('Selecione um ensaio feminino!');
             return;
         }
         if(!male_trial_id){
-            alert('You must select a male trial! It can be the same trial as the female trial.');
+            alert('Selecione um ensaio masculino! Ele pode ser o mesmo ensaio feminino.');
             return;
         }
         for (f in female_male_tracker){
             var male_array = female_male_tracker[f];
             if (male_array.length > male_accession_limit){
-                alert('A maximum of 60 male accessions can be selected for each cross!');
+                alert('É possível selecionar no máximo 60 acessos masculinos para cada cruzamento!');
                 return;
             }
         }
@@ -765,7 +765,7 @@ jQuery(document).ready(function($) {
             },
             error: function(response) {
                 jQuery('#working_modal').modal('hide');
-                alert("An error occurred submitting plots for cross wishlist");
+                alert("Ocorreu um erro ao enviar as parcelas para a lista de desejos de cruzamentos");
             }
         });
     });
@@ -802,7 +802,7 @@ jQuery(document).ready(function($) {
         for (f in female_male_tracker){
             var male_array = female_male_tracker[f];
             if (male_array.length > male_plot_limit){
-                alert('A maximum of 60 male plots can be selected for each cross!');
+                alert('É possível selecionar no máximo 60 parcelas masculinas para cada cruzamento!');
                 return;
             }
         }
@@ -820,7 +820,7 @@ jQuery(document).ready(function($) {
             },
             dataType:'json',
             beforeSend: function() {
-                jQuery('#working_msg').html('Creating cross wishlist files and sending information to ONA... This can take time...');
+                jQuery('#working_msg').html('Criando os arquivos da lista de desejos e enviando as informações ao ONA... Isso pode demorar...');
                 jQuery('#working_modal').modal('show');
             },
             success: function(response) {
@@ -841,7 +841,7 @@ jQuery(document).ready(function($) {
             error: function(response) {
                 jQuery('#working_msg').html('');
                 jQuery('#working_modal').modal('hide');
-                alert("An error occurred creating cross wishlist");
+                alert("Ocorreu um erro ao criar a lista de desejos de cruzamentos");
             }
         });
     });
@@ -862,19 +862,19 @@ jQuery(document).ready(function($) {
     function upload_wishlist_file() {
         var female_trial_id = $('#cross_wishlist_upload_female_trial_id').val();
         if (!female_trial_id) {
-            alert('A female trial is required');
+            alert('É necessário selecionar um ensaio feminino');
             return;
         }
 
         var male_trial_id = $('#cross_wishlist_upload_male_trial_id').val();
         if (!male_trial_id) {
-            alert('A male trial is required');
+            alert('É necessário selecionar um ensaio masculino');
             return;
         }
 
         var uploadFile = $("#wishlist_file").val();
         if (uploadFile === ''){
-            alert("Please select a file");
+            alert("Selecione um arquivo");
             return;
         }
 
@@ -889,9 +889,9 @@ jQuery(document).ready(function($) {
         post: function() {
             var uploadFile = $('#wishlist_file').val();
             if (uploadFile === '') {
-                alert("No file selected");
+                alert("Nenhum arquivo selecionado");
             }
-            jQuery('#working_msg').html('Creating cross wishlist files and sending information to ONA... This can take time...');
+            jQuery('#working_msg').html('Criando os arquivos da lista de desejos e enviando as informações ao ONA... Isso pode demorar...');
             jQuery('#working_modal').modal('show');
         },
         complete: function(response) {
@@ -945,7 +945,7 @@ jQuery(document).ready(function($) {
                     error: function(response) {
                         jQuery('#working_msg').html('');
                         jQuery('#working_modal').modal('hide');
-                        alert("An error occurred creating cross wishlist");
+                        alert("Ocorreu um erro ao criar a lista de desejos de cruzamentos");
                     }
                 });
             }
@@ -974,7 +974,7 @@ jQuery(document).ready(function($) {
             },
             error: function(response) {
                 jQuery('#working_modal').modal('hide');
-                alert("An error occurred checking accession list");
+                alert("Ocorreu um erro ao verificar a lista de acessos");
             }
         });
 

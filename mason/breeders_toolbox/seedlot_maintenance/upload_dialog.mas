@@ -7,42 +7,42 @@
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Upload Seedlot Maintenance Events</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Enviar eventos de manutenção de lotes de sementes</h4>
             </div>
             <div class="modal-body">
                 <div class="container-fluid">
-                    <p><strong>Select an Excel (.xls) file with the Seedlot Maintenance Events to upload</strong></p>
-                    <p><strong>Requirements:</strong></p>
+                    <p><strong>Selecione um arquivo Excel (.xls) com os eventos de manutenção de lotes de sementes</strong></p>
+                    <p><strong>Requisitos:</strong></p>
                     <ul>
                         <li>
-                            The Maintenance Events are associated with Seedlots, so the name of the Seedlot in the file must match an existing Seedlot in the database.    
-                            If a Seedlot is not yet in the database, go to the <a href='/breeders/seedlots/'>Manage Seedlots</a> page to create it first.
+                            Os eventos de manutenção são associados a lotes de sementes; portanto, o nome do lote no arquivo deve corresponder a um lote existente no banco de dados.
+                            Se o lote ainda não estiver cadastrado, acesse a página <a href='/breeders/seedlots/'>Gerenciar lotes de sementes</a> para criá-lo primeiro.
                         </li>
                         <li>
-                            The name of the Maintenance Event must be a valid event type.  Valid event types include:
+                            O nome do evento de manutenção deve corresponder a um tipo de evento válido. Os tipos válidos incluem:
                             <table class="table table-striped">
                                 <thead>
                                     <tr>
-                                        <th>Event Type Name</th>
-                                        <th>Event Type Values</th>
+                                        <th>Nome do tipo de evento</th>
+                                        <th>Valores do tipo de evento</th>
                                     </tr>
                                 </thead>
                                 <tbody id="maintenece_event_terms"></tbody>
                             </table>
                         </li>
                     </ul>
-                    <&| /page/explanation.mas, title=>'Template Information' &>
+                    <&| /page/explanation.mas, title=>'Informações do modelo' &>
                         <p>
-                        <b>File format information</b>
+                        <b>Informações sobre o formato do arquivo</b>
                         <br>
-                        <a id="maintenance_event_upload_spreadsheet_format_info">Spreadsheet Format</a>
+                        <a id="maintenance_event_upload_spreadsheet_format_info">Formato da planilha</a>
                         </p>
                     </&>
                     <br />
                     <form class="form-horizontal" role="form" method="post" enctype="multipart/form-data" encoding="multipart/form-data" id="upload_maintenance_events_form" name="upload_maintenance_events_form">
                         <div class="form-group">
-                            <label class="col-sm-4 control-label">Upload File: </label>
+                            <label class="col-sm-4 control-label">Enviar arquivo: </label>
                             <div class="col-sm-8" >
                                 <input class="form-control" type="file" name="maintenance_events_upload_file" id="maintenance_events_upload_file" encoding="multipart/form-data" />
                             </div>
@@ -55,8 +55,8 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" name="maintenance_events_submit" id="maintenance_events_submit">Upload</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                <button type="button" class="btn btn-primary" name="maintenance_events_submit" id="maintenance_events_submit">Enviar</button>
             </div>
         </div>
     </div>
@@ -67,16 +67,16 @@
     <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content">
             <div class="modal-header" style="text-align: center">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="uploadMaintenanceInfoDialog">Upload Seedlot Maintenance Event Template Information</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="uploadMaintenanceInfoDialog">Informações do modelo de eventos de manutenção</h4>
             </div>
             <div class="modal-body">
                 <div class="container-fluid">
-                    <strong>Seedlot Maintenance Events may be uploaded in an Excel file (.xls or .xlsx)</strong>
+                    <strong>Os eventos de manutenção de lotes de sementes podem ser enviados em um arquivo Excel (.xls ou .xlsx).</strong>
                     <br />
-                    <strong>Header:</strong>
+                    <strong>Cabeçalho:</strong>
                     <br />
-                    The first row (header) should contain the following:
+                    A primeira linha (cabeçalho) deve conter os seguintes campos:
                     <br />
 
                     <table class="table table-hover table-bordered table-condensed" >
@@ -93,19 +93,19 @@
                         </tbody>
                     </table>
 
-                    <b>Fields:</b>
+                    <b>Campos:</b>
                     <ul>
-                        <li>seedlot (name of the seedlot, must match an existing seedlot))</li>
-                        <li>type (name of the maintenance event type, must match an existing term)</li>
-                        <li>value (value of the event)</li>
-                        <li>notes (optional, additional comments about the event)</li>
-                        <li>operator (username of the person recording the event)</li>
-                        <li>timestamp (date/time of when the event is recorded in 'YYYY-MM-DD HH:MM:SS' format)</li>
+                        <li>seedlot (nome do lote de sementes; deve corresponder a um lote existente)</li>
+                        <li>type (nome do tipo de evento de manutenção; deve corresponder a um termo existente)</li>
+                        <li>value (valor do evento)</li>
+                        <li>notes (opcional; comentários adicionais sobre o evento)</li>
+                        <li>operator (nome de usuário da pessoa que registra o evento)</li>
+                        <li>timestamp (data e hora do registro do evento, no formato 'AAAA-MM-DD HH:MM:SS')</li>
                     </ul>
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
             </div>
         </div>
     </div>
@@ -153,7 +153,7 @@
                                     values.push(data.ontology[i].children[j].children[k].name);
                                 }
                             }
-                            if ( values.length === 0 ) values.push('<em>Any Value</em>');
+                            if ( values.length === 0 ) values.push('<em>Qualquer valor</em>');
                             html += "<tr><td>" + name + "</td><td>" + values.join(', ') + "</td></tr>";
                         }
                     }
@@ -171,12 +171,12 @@
     function uploadMaintenanceEvents() {
         let file = jQuery('#maintenance_events_upload_file').val();
         if ( !file || file === '' ) {
-            alert("Please select your upload file");
+            alert("Selecione o arquivo a enviar.");
             return false;
         }
 
         // Setup working modal
-        jQuery('#working_msg').html("Uploading Seedlot Maintenance Events File");
+        jQuery('#working_msg').html("Enviando arquivo de eventos de manutenção de lotes de sementes");
         jQuery('#working_modal_progress').css('width', 0).attr('aria-valuenow', 0);
         jQuery('#working_modal_progress_div').css('display', 'block');
         jQuery('#working_modal').modal("show");
@@ -202,7 +202,7 @@
                             let prog = (e.loaded / e.total)*100;
                             jQuery('#working_modal_progress').css('width', prog + "%").attr('aria-valuenow', prog);
                             if ( prog >= 100 ) {
-                               jQuery('#working_msg').html("Uploading Seedlot Maintenance Events File");
+                               jQuery('#working_msg').html("Enviando arquivo de eventos de manutenção de lotes de sementes");
                             }
                         }
                     }, false);
@@ -214,7 +214,7 @@
             },
             error: function(e) {
                 console.log(e);
-                alert("ERROR: Could not upload file!");
+                alert("ERRO: não foi possível enviar o arquivo!");
             },
             complete: function() {
                 jQuery('#working_msg').html("");
@@ -233,15 +233,15 @@
      */
     function handleUploadResponse(response) {
         if ( response && response.success && response.success === 1 ) {
-            add_message("success", "Seedlot Maintenace Events successfully stored!");
+            add_message("success", "Eventos de manutenção de lotes de sementes armazenados com sucesso!");
             if ( getEvents ) getEvents();
         }
         else if ( response && response.error ) {
-            let html = "<strong>The Seedlot Maintenance Events could not be stored due to the following error(s):</strong><br />" + response.error;
+            let html = "<strong>Não foi possível armazenar os eventos de manutenção devido aos seguintes erros:</strong><br />" + response.error;
             add_message("error", html);
         }
         else {
-            add_message("error", "The Seedlot Maintenance Events were not stored due to an unknown error!");
+            add_message("error", "Os eventos de manutenção não foram armazenados devido a um erro desconhecido!");
         }
     }
 

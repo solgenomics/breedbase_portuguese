@@ -17,12 +17,12 @@ jQuery(document).ready(function(){
               //alert(response.seedlots[0].length);
               //console.log(response.seedlots);
               var html = '';
-              html += 'Number of seedlots: ';
+              html += 'Número de lotes de sementes: ';
                html += response.seedlots[0].length;
               jQuery("#seedlots_counts").html(html);
           },
           error: function(response){
-              alert('Error displaying seedlots count');
+              alert('Erro ao exibir o número de lotes de sementes.');
           }
 
       });

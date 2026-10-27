@@ -9,8 +9,8 @@ $genotyping_facility
     <div class="modal-dialog " role="document">
         <div class="modal-content">
             <div class="modal-header" style="text-align: center">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="SendPlateToFacilityDialog">Submit genotyping plates to facility</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="SendPlateToFacilityDialog">Enviar placas ao laboratório de genotipagem</h4>
             </div>
             <div class="modal-body">
                 <div class="container-fluid">
@@ -18,20 +18,20 @@ $genotyping_facility
                     <form class="form-horizontal" role="form" method="post" enctype="multipart/form-data" encoding="multipart/form-data" id="submit_plate_form" name="submit_plate_form">
 
                         <&| /util/workflow.mas, id=> "plates_to_facilities_workflow" &>
-                            <&| /util/workflow.mas:step, title=> "Plate info" &>
-                                                        <& /page/page_title.mas, title=>"Plate information" &>
+                            <&| /util/workflow.mas:step, title=> "Informações da placa" &>
+                                                        <& /page/page_title.mas, title=>"Informações da placa" &>
                       <div class="form-group">
-                        <label class="col-sm-3 control-label">Plate ID: </label>
+                        <label class="col-sm-3 control-label">ID da placa: </label>
                         <div class="col-sm-9" id="plate_id">
                         </div>
                       </div>
                       <div class="form-group">
-                        <label class="col-sm-3 control-label">Genotyping Plate: </label>
+                        <label class="col-sm-3 control-label">Placa de genotipagem: </label>
                         <div class="col-sm-9" id="plate_name">
                         </div>
                       </div>
                       <div class="form-group">
-                        <label class="col-sm-3 control-label">Plate format: </label>
+                        <label class="col-sm-3 control-label">Formato da placa: </label>
                         <div class="col-sm-9" id="plate_format">
                         </div>
                       </div>
@@ -41,52 +41,52 @@ $genotyping_facility
                         </div>
                       </div> -->
                         <div style="text-align: center">
-                            <button class="btn btn-primary" id="facility_info_link" onclick="Workflow.complete(this); return false;">Go to Next Step</button>
+                            <button class="btn btn-primary" id="facility_info_link" onclick="Workflow.complete(this); return false;">Ir para a próxima etapa</button>
                         </div>
                     </&>
-                    <&| /util/workflow.mas:step, title=> "Facility" &>
-                    <& /page/page_title.mas, title=>"Facility information" &>
+                    <&| /util/workflow.mas:step, title=> "Laboratório" &>
+                    <& /page/page_title.mas, title=>"Informações do laboratório" &>
 
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">Genotyping Facility: </label>
+                            <label class="col-sm-3 control-label">Laboratório de genotipagem: </label>
                             <div class="col-sm-9" id="genotyping_facility">
                             </div>
                         </div>
                         <div class="form-group">
-                        <label class="col-sm-3 control-label">Organism name: </label>
+                        <label class="col-sm-3 control-label">Nome do organismo: </label>
                         <div class="col-sm-9">
                             <select class="form-control" id="organism_name">
                             </select>
                         </div>
                       </div>
                       <div class="form-group">
-                        <label class="col-sm-3 control-label">Facility Service ID: </label>
+                        <label class="col-sm-3 control-label">ID do serviço do laboratório: </label>
                         <div class="col-sm-9">
                             <select class="form-control" id="service_id_select" multiple>
                             </select>
                         </div>
                       </div>
                       <div class="form-group">
-                        <label class="col-sm-3 control-label">Client ID: </label>
+                        <label class="col-sm-3 control-label">ID do cliente: </label>
                         <div class="col-sm-9">
                             <input class="form-control" id="client_id" name="client_id"></input>
                         </div>
                       </div>
                       <div class="form-group">
-                        <label class="col-sm-3 control-label">Sample type: </label>
+                        <label class="col-sm-3 control-label">Tipo de amostra: </label>
                         <div class="col-sm-9" id="sample_type">
                         </div>
                       </div>
                       <div class="form-group" id="required_services">
-                        <label class="col-sm-4 control-label">Required Service Info: </label>
+                        <label class="col-sm-4 control-label">Informações obrigatórias do serviço: </label>
                       </div>
                       <div style="text-align: center">
-                            <button class="btn btn-primary" id="review_order_link" onclick="Workflow.complete(this); return false;">Go to Next Step</button>
+                            <button class="btn btn-primary" id="review_order_link" onclick="Workflow.complete(this); return false;">Ir para a próxima etapa</button>
                       </div>
                       <br/><br/>
                        </&>
-                       <&| /util/workflow.mas:step, title=> "Review" &>
-                        <& /page/page_title.mas, title=>"Review order" &>
+                       <&| /util/workflow.mas:step, title=> "Revisão" &>
+                        <& /page/page_title.mas, title=>"Revisar pedido" &>
 
                         <div class="panel panel-default">
                             <div class="panel-body">
@@ -94,42 +94,42 @@ $genotyping_facility
                             </div>
                         </div>
                         <div style="text-align: center">
-                            <button class="btn btn-primary" onclick="Workflow.complete(this); return false;">Go to Next Step</button>
+                            <button class="btn btn-primary" onclick="Workflow.complete(this); return false;">Ir para a próxima etapa</button>
                         </div>
                     </&>
-                    <&| /util/workflow.mas:step, title=> "Confirm" &>
-                        <& /page/page_title.mas, title=>"Submit your genotyping plate" &>
+                    <&| /util/workflow.mas:step, title=> "Confirmação" &>
+                        <& /page/page_title.mas, title=>"Enviar sua placa de genotipagem" &>
 
                         <div class="form-group">
-                            <label class="col-sm-12">I want to automatically submit to the Genotyping Facility: </label><label class="col-sm-12" id="facility_url_lbl"></label>
+                            <label class="col-sm-12">Desejo enviar automaticamente ao laboratório de genotipagem: </label><label class="col-sm-12" id="facility_url_lbl"></label>
                             <div class="col-sm-12" align="center">
                                 <select class="form-control" style="width: 200px" id="genotyping_trial_facility_submit_select">
-                                    <option value="1" selected="">No</option>
-                                    <option value="0">Yes</option>
+                                    <option value="1" selected="">Não</option>
+                                    <option value="0">Sim</option>
                                 </select>
                             </div>
                         </div>
                         <hr>
                         <div style="text-align: center">
-                            <button type="button" class="btn btn-primary" onclick="Workflow.complete(this, false);" name="submit_plate_btn" id="submit_plate_btn" disabled>Submit genotyping plate</button>
+                            <button type="button" class="btn btn-primary" onclick="Workflow.complete(this, false);" name="submit_plate_btn" id="submit_plate_btn" disabled>Enviar placa de genotipagem</button>
                         </div>
                     </&>
-                    <&| /util/workflow.mas:step, title=> "Finalize" &>
-                        <& /page/page_title.mas, title=>"Finalize your order" &>
-                        <p>Submission Id: <b><label id="submission_lbl"></label></b></p>
-                        <p>Please click <a id="facility_href" target="_blank">HERE</a> to complete your order. </p><br><br>
-                        <p>After order has been complete click continue.</p>
+                    <&| /util/workflow.mas:step, title=> "Finalização" &>
+                        <& /page/page_title.mas, title=>"Finalizar seu pedido" &>
+                        <p>ID do envio: <b><label id="submission_lbl"></label></b></p>
+                        <p>Clique <a id="facility_href" target="_blank">AQUI</a> para concluir seu pedido.</p><br><br>
+                        <p>Após concluir o pedido, clique em continuar.</p>
                         <div style="text-align: center">
-                            <button type="button" class="btn btn-primary" onclick="Workflow.complete(this, false);" name="continue_submission_btn" id="continue_submission_btn">Continue</button>
+                            <button type="button" class="btn btn-primary" onclick="Workflow.complete(this, false);" name="continue_submission_btn" id="continue_submission_btn">Continuar</button>
                         </div>
                     </&>
-                    <&| /util/workflow.mas:complete, title=> "Complete" &>
-                        <& /page/page_title.mas, title=>"Complete!" &>
+                    <&| /util/workflow.mas:complete, title=> "Concluído" &>
+                        <& /page/page_title.mas, title=>"Concluído!" &>
 
                             <span class="ui-icon ui-icon-circle-check" style="float: left; margin: 0 7px 50px 0;"></span>
-                            <p>Order complete.</p>
+                            <p>Pedido concluído.</p>
                             <!-- Facility Order Id: <b><label id="order_lbl"></label></b><br><br> -->
-                            <li>You may want to proceed to the genotyping plate detail page to check order status.</li>
+                            <li>Acesse a página de detalhes da placa de genotipagem para verificar o status do pedido.</li>
 
                         <br/>
                     </&>
@@ -139,7 +139,7 @@ $genotyping_facility
                 </div>
             </div>
             <div class="modal-footer">
-                <button id="submit_plate_dialog" type="button" class="btn btn-default" data-dismiss="modal" onclick="location.reload();">Close</button>
+                <button id="submit_plate_dialog" type="button" class="btn btn-default" data-dismiss="modal" onclick="location.reload();">Fechar</button>
             </div>
         </div>
     </div>
@@ -149,18 +149,18 @@ $genotyping_facility
     <div class="modal-dialog " role="document">
         <div class="modal-content">
             <div class="modal-header" style="text-align: center">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="HmDialog"><b>Submit genotyping plate</b></h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="HmDialog"><b>Enviar placa de genotipagem</b></h4>
             </div>
             <div class="modal-body">
                 <div class="container-fluid">
 
-                    <p3> Genotyping plates was submit successfully...</p3>
+                    <p3>As placas de genotipagem foram enviadas com sucesso.</p3>
 
                 </div>
             </div>
             <div class="modal-footer">
-                <button id="close_message_dialog" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button id="close_message_dialog" type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
 
             </div>
         </div>

@@ -12,7 +12,7 @@ $user_role => undef
 $default_seedlot_material_type => undef
 </%args>
 
-<& /page/page_title.mas, title=>"Available Seedlots" &>
+<& /page/page_title.mas, title=>"Lotes de sementes disponíveis" &>
 
 <style>
 .ui-autocomplete {
@@ -22,29 +22,29 @@ $default_seedlot_material_type => undef
 
   <& /util/import_javascript.mas, classes => [ 'bootstrap_min.js', 'jquery.iframe-post-form','CXGN.List','CXGN.BreedersToolbox.Accessions', 'CXGN.BreedersToolbox.UploadPedigrees', 'jquery', 'jquery.dataTables', 'CXGN.BreedersToolbox.Crosses', 'jqueryui' ] &>
 
-<&| /page/info_section.mas, title=>"About Seedlots",  collapsible => 1, collapsed=>1 &>
+<&| /page/info_section.mas, title=>"Sobre os lotes de sementes",  collapsible => 1, collapsed=>1 &>
     <div class="well well-sm">
         <div class="panel panel-default">
             <div class="panel-body">
-                <b><p>What are seedlots?</p></b>
+                <b><p>O que são lotes de sementes?</p></b>
                 <ul>
-                <li>Seedlots represent physical plant materials in packets/containers.</li>
-                <li>Plant material can be seed, root, clone, plant, tissue culture or gametophyte.</li>
-                <li>If you would like to set a default material type for seedlots, please contact us.</li>
-                <li>These materials can be from crosses or for named accessions.</li>
-                <li>Seedlots can have a specific location, box, weight(g), and count.</li>
-                <li>Plant material can be transferred into and out of a seedlot. Such as from a seedlot into a plot.</li>
-                <li>Seedlots can belong to breeding programs and organizations.</li>
+                <li>Os lotes de sementes representam materiais vegetais físicos armazenados em embalagens ou recipientes.</li>
+                <li>O material vegetal pode ser uma semente, raiz, clone, planta, cultura de tecidos ou gametófito.</li>
+                <li>Entre em contato conosco para definir um tipo de material padrão para os lotes.</li>
+                <li>Esses materiais podem vir de cruzamentos ou pertencer a acessos identificados.</li>
+                <li>Os lotes podem ter local, caixa, peso (g) e quantidade específicos.</li>
+                <li>O material vegetal pode ser transferido para dentro ou para fora de um lote, por exemplo, de um lote para uma parcela.</li>
+                <li>Os lotes podem pertencer a programas de melhoramento e organizações.</li>
                 </ul>
 
-                <b><p>How do I inventory my seed?</p></b>
+                <b><p>Como faço o inventário das minhas sementes?</p></b>
                 <ul>
-                <li>Make sure your seedlots are in the database. Use "Add New Seedlot" to add a single seedlot or "Upload New Seedlots" to add many.</li>
-                <li>Make sure your seedlots are barcoded. You can print these barcodes from the database.</li>
-                <li>The inventory app is currently not available but you can continue using it if it is installed on your tablet device.
+                <li>Confirme se os lotes estão no banco de dados. Use "Adicionar novo lote de sementes" para adicionar um único lote ou "Enviar lotes de sementes" para adicionar vários.</li>
+                <li>Confirme se os lotes têm códigos de barras. Você pode imprimi-los a partir do banco de dados.</li>
+                <li>O aplicativo de inventário não está disponível no momento, mas você pode continuar usando-o caso já esteja instalado em seu tablet.
                 <!-- li>3) Use the "Inventory" Android Application to scan seedlot barcodes and record weight. Then click "Upload Inventory" on the Manage Seedlots page to upload this info into the database. If you do not want to use the Inventory Android Application you can create your own CSV file and upload that.</li --><!-- the app is currently not available - re-instate when it is available again -->
                 <!-- li><b>For more info about the "Seed Inventory" Android Application go to <a href="https://play.google.com/store/apps/details?id=org.wheatgenetics.inventory/">Inventory</a>.</b></li -->
-                It is also possible to manually enter a transaction by going to the seedlot detail page and clicking "Add New Transaction".</li>
+                Também é possível registrar uma transação manualmente na página de detalhes do lote, clicando em "Adicionar nova transação".</li>
                 </ul>
             </div>
         </div>
@@ -52,14 +52,14 @@ $default_seedlot_material_type => undef
 </&>
 
 <%perl>
-    my $maintenance_button = $maintenance_enabled ? ' <button onclick="location.href=\'/breeders/seedlot/maintenance\'" class="btn btn-sm btn-primary" style="margin:3px" name="seedlot_record_maintenance">Seedlot Maintenance</button>' : '';
+    my $maintenance_button = $maintenance_enabled ? ' <button onclick="location.href=\'/breeders/seedlot/maintenance\'" class="btn btn-sm btn-primary" style="margin:3px" name="seedlot_record_maintenance">Manutenção de lotes de sementes</button>' : '';
     my $seedlot_subtitle = !!$c->user()
-        ? '<div class="btn-group"><button type="button" class="btn btn-sm btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Create Seedlot(s)&nbsp;<span class="caret"></span></button><ul class="dropdown-menu"><li><a href="#" name="add_seedlot_button">Add New Seedlot</a></li><li><a href="#" name="seedlot_bulk_upload">Upload Seedlots</a></li><li><a href="#" name="create_seedlots_trial_button">Create Seedlots from Trial</a></li></ul></div>
-        <div class="btn-group"><button type="button" class="btn btn-sm btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Add/Upload Transactions&nbsp;<span class="caret"></span></button><ul class="dropdown-menu"><li><a href="#" name="transactions_upload_link">Upload a File</a></li><li><a href="#" id="add_transactions_using_list_link" name="add_transactions_using_list_link">Using a List</a></li><li></ul></div>
-        <button class="btn btn-sm btn-primary" style="margin:3px" name="seedlot_upload_inventory">Upload Inventory</button>' . $maintenance_button
-        : "Login to add or upload seedlots";
+        ? '<div class="btn-group"><button type="button" class="btn btn-sm btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Criar lote(s) de sementes&nbsp;<span class="caret"></span></button><ul class="dropdown-menu"><li><a href="#" name="add_seedlot_button">Adicionar novo lote</a></li><li><a href="#" name="seedlot_bulk_upload">Enviar lotes de sementes</a></li><li><a href="#" name="create_seedlots_trial_button">Criar lotes a partir de um ensaio</a></li></ul></div>
+        <div class="btn-group"><button type="button" class="btn btn-sm btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Adicionar/enviar transações&nbsp;<span class="caret"></span></button><ul class="dropdown-menu"><li><a href="#" name="transactions_upload_link">Enviar um arquivo</a></li><li><a href="#" id="add_transactions_using_list_link" name="add_transactions_using_list_link">Usar uma lista</a></li><li></ul></div>
+        <button class="btn btn-sm btn-primary" style="margin:3px" name="seedlot_upload_inventory">Enviar inventário</button>' . $maintenance_button
+        : "Faça login para adicionar ou enviar lotes de sementes";
 </%perl>
-<&| /page/info_section.mas, title=>"Seedlots",  collapsible => 1, subtitle => $seedlot_subtitle &>
+<&| /page/info_section.mas, title=>"Lotes de sementes",  collapsible => 1, subtitle => $seedlot_subtitle &>
 
 <br/>
 
@@ -67,70 +67,70 @@ $default_seedlot_material_type => undef
     <div class="panel panel-default">
         <div class="panel-body">
 
-<&| /page/info_section.mas, title=>"Search Seedlots",  collapsible => 1, collapsed=>0 &>
+<&| /page/info_section.mas, title=>"Pesquisar lotes de sementes",  collapsible => 1, collapsed=>0 &>
 
 <div class="well well-sm">
     <form class="form-horizontal" id="search_seedlot_form" name="search_seedlot_form">
         <div class="form-group form-group-sm">
-            <label class="col-sm-3 control-label">Seedlot Name: </label>
+            <label class="col-sm-3 control-label">Nome do lote de sementes: </label>
             <div class="col-sm-9" >
                 <input class="form-control" id="search_seedlot_form_seedlot_name" type="text" />
             </div>
         </div>
         <div class="form-group form-group-sm">
-            <label class="col-sm-3 control-label">Breeding Program: </label>
+            <label class="col-sm-3 control-label">Programa de melhoramento: </label>
             <div class="col-sm-9" >
                 <input class="form-control" id="search_seedlot_form_breeding_program" type="text" />
             </div>
         </div>
         <div class="form-group form-group-sm">
-            <label class="col-sm-3 control-label">Contents (Accession Uniquename): </label>
+            <label class="col-sm-3 control-label">Conteúdo (nome único do acesso): </label>
             <div class="col-sm-7" >
                 <input class="form-control" id="search_seedlot_form_contents_accession" type="text" />
             </div>
             <div class="col-sm-2 form-check form-check-inline align-bottom">
               <input class="form-check-input" type="checkbox" id="exact_accession" value="1">
-              <label class="form-check-label" for="exact_accession">exact match</label>
+              <label class="form-check-label" for="exact_accession">correspondência exata</label>
             </div>
         </div>
         <div class="form-group form-group-sm">
-            <label class="col-sm-3 control-label">Contents (Cross Unique ID): </label>
+            <label class="col-sm-3 control-label">Conteúdo (ID único do cruzamento): </label>
             <div class="col-sm-7" >
                 <input class="form-control" id="search_seedlot_form_contents_cross" type="text" />
             </div>
             <div class="col-sm-2 form-check form-check-inline align-bottom">
               <input class="form-check-input" type="checkbox" id="exact_cross" value="1">
-              <label class="form-check-label" for="exact_cross">exact match</label>
+              <label class="form-check-label" for="exact_cross">correspondência exata</label>
             </div>
         </div>
 % if (!$default_seedlot_material_type) {
         <div class="form-group form-group-sm">
-            <label class="col-sm-3 control-label">Material Type: </label>
+            <label class="col-sm-3 control-label">Tipo de material: </label>
             <div class="col-sm-9" >
                 <div id="search_seedlot_form_material_type_div"></div>
             </div>
         </div>
 % }
         <div class="form-group form-group-sm">
-            <label class="col-sm-3 control-label">Location: </label>
+            <label class="col-sm-3 control-label">Local: </label>
             <div class="col-sm-9" >
                 <input class="form-control" id="search_seedlot_form_location" type="text" />
             </div>
         </div>
         <div class="form-group form-group-sm">
-            <label class="col-sm-3 control-label">Box Name: </label>
+            <label class="col-sm-3 control-label">Nome da caixa: </label>
             <div class="col-sm-9" >
                 <input class="form-control" id="search_seedlot_form_box_name" type="text" />
             </div>
         </div>
         <div class="form-group form-group-sm">
-            <label class="col-sm-3 control-label">Minimum Count: </label>
+            <label class="col-sm-3 control-label">Quantidade mínima: </label>
             <div class="col-sm-9" >
                 <input class="form-control" id="search_seedlot_form_minimum_count" type="number" />
             </div>
         </div>
         <div class="form-group form-group-sm">
-            <label class="col-sm-3 control-label">Minimum Weight (g): </label>
+            <label class="col-sm-3 control-label">Peso mínimo (g): </label>
 
             <div class="col-sm-9" >
                 <input class="form-control" id="search_seedlot_form_minimum_weight" type="number" />
@@ -145,23 +145,23 @@ $default_seedlot_material_type => undef
         </div  -->
 
         <div class="form-group form-group-sm">
-            <label class="col-sm-3 control-label">Quality: </label>
+            <label class="col-sm-3 control-label">Qualidade: </label>
             <div class="col-sm-9" >
                 <input class="form-control" id="search_seedlot_form_quality" type="text" />
             </div>
         </div>
         <div class="form-group form-group-sm">
-            <label class="col-sm-3 control-label">Trial Usage: </label>
+            <label class="col-sm-3 control-label">Uso em ensaio: </label>
             <div class="col-sm-9">
                 <div class="col-sm-5" style="padding-left: 0; padding-right: 5px">
-                    <input class="form-control" id="search_seedlot_form_trial_name" type="text" placeholder="Trial Name" />
+                    <input class="form-control" id="search_seedlot_form_trial_name" type="text" placeholder="Nome do ensaio" />
                 </div>
                 <div class="col-sm-7" style="padding-left: 5px; padding-right: 0">
                     <select class="form-control" id="search_seedlot_form_trial_usage">
-                        <option value="">Select trial / seedlot usage...</option>
-                        <option value="source">Trial --> Seedlot: Find seedlots that are derived from this trial</option>
-                        <option value="sink">Seedlot --> Trial: Find seedlots that provided seed to this trial</option>
-                        <option value="source|sink">Either of the above</option>
+                        <option value="">Selecione o uso do ensaio/lote de sementes...</option>
+                        <option value="source">Ensaio --> Lote: encontrar lotes derivados deste ensaio</option>
+                        <option value="sink">Lote --> Ensaio: encontrar lotes que forneceram sementes para este ensaio</option>
+                        <option value="source|sink">Qualquer uma das opções acima</option>
                     </select>
                 </div>
             </div>
@@ -169,13 +169,13 @@ $default_seedlot_material_type => undef
 
     </form>
     <div style="text-align: center">
-        <button class="btn btn-primary" id="submit_seedlot_search">Search</button>
+        <button class="btn btn-primary" id="submit_seedlot_search">Pesquisar</button>
     </div>
 </div>
 </&>
 
 <div style="text-align: center">
-    Enter search terms and click the "Search" button to view results.
+    Informe os termos da pesquisa e clique em "Pesquisar" para visualizar os resultados.
 </div>
 
 <br />
@@ -198,31 +198,31 @@ $default_seedlot_material_type => undef
 </div>
 </&>
 
-<&| /page/info_section.mas, title=>"Mark seedlots as DISCARDED using a list",  collapsible => 1, collapsed=>1 &>
+<&| /page/info_section.mas, title=>"Marcar lotes como DESCARTADOS usando uma lista",  collapsible => 1, collapsed=>1 &>
 % if ($user_role eq "curator" ) {
     <div class="well well-sm">
         <div class="panel panel-default">
             <div class="panel-body">
-                <button class="btn btn-sm btn-default" style="margin:3px" id ="discard_seedlot_usage_info" name = "discard_seedlot_usage_info">Usage Help <span class="glyphicon glyphicon-question-sign"></span></button><button class="btn btn-sm btn-primary" style="margin:3px" id="discard_seedlot_link">Mark Seedlots as Discarded</button>
+                <button class="btn btn-sm btn-default" style="margin:3px" id ="discard_seedlot_usage_info" name = "discard_seedlot_usage_info">Ajuda sobre o uso <span class="glyphicon glyphicon-question-sign"></span></button><button class="btn btn-sm btn-primary" style="margin:3px" id="discard_seedlot_link">Marcar lotes como descartados</button>
             </div>
         </div>
     </div>
 % } else {
-    You need to be logged in or you do not have sufficient privileges to mark seedlots as DISCARDED using lists.
+    Você precisa entrar no sistema e ter privilégios suficientes para marcar lotes como DESCARTADOS usando listas.
 % }
 </&>
 
-<&| /page/info_section.mas, title=>"Delete seedlots using a list",  collapsible => 1, collapsed=>1 &>
+<&| /page/info_section.mas, title=>"Excluir lotes de sementes usando uma lista",  collapsible => 1, collapsed=>1 &>
 % if ($user_role eq "curator" ) {
     <div class="well well-sm">
         <div class="panel panel-default">
             <div class="panel-body">
-                <button class="btn btn-sm btn-primary" style="margin:3px" id="delete_seedlots_link">Delete seedlots using a list</button>
+                <button class="btn btn-sm btn-primary" style="margin:3px" id="delete_seedlots_link">Excluir lotes usando uma lista</button>
             </div>
         </div>
     </div>
 % } else {
-    You need to be logged in or you do not have sufficient privileges to delete seedlots.
+    Você precisa entrar no sistema e ter privilégios suficientes para excluir lotes de sementes.
 % }
 </&>
 
@@ -266,18 +266,18 @@ jQuery(document).ready(function(){
             'lengthMenu': [10,20,50,100,1000],
 
             columns: [
-                { title: "Seedlot Name", "data": null, "render": function ( data, type, row ) { return "<a href='/breeders/seedlot/"+row.seedlot_stock_id+"'>"+row.seedlot_stock_uniquename+"</a>"; } },
-                { title: "Breeding Program", "data": "breeding_program_name" },
-                { title: "Contents", "data": "contents_html" },
-                { title: "Material Type", "data": "material_type" },
-                { title: "Location", "data": "location" },
-                { title: "Count", "data": "count" },
-                { title: "Weight (g)", "data": "weight_gram" },
-                { title: "Submitters", "data": "owners_string" },
-                { title: "Organization", "data": "organization" },
-                { title: "Box", "data": "box" },
-                { title: "Quality", "data": "seedlot_quality" },
-                { title: "Delete", "data": "null", "render": function ( data, type, row ) { return "<a onclick='removeSeedlot("+row.seedlot_stock_id+")' >X</a>"; } },
+                { title: "Nome do lote", "data": null, "render": function ( data, type, row ) { return "<a href='/breeders/seedlot/"+row.seedlot_stock_id+"'>"+row.seedlot_stock_uniquename+"</a>"; } },
+                { title: "Programa de melhoramento", "data": "breeding_program_name" },
+                { title: "Conteúdo", "data": "contents_html" },
+                { title: "Tipo de material", "data": "material_type" },
+                { title: "Local", "data": "location" },
+                { title: "Quantidade", "data": "count" },
+                { title: "Peso (g)", "data": "weight_gram" },
+                { title: "Responsáveis pelo envio", "data": "owners_string" },
+                { title: "Organização", "data": "organization" },
+                { title: "Caixa", "data": "box" },
+                { title: "Qualidade", "data": "seedlot_quality" },
+                { title: "Excluir", "data": "null", "render": function ( data, type, row ) { return "<a onclick='removeSeedlot("+row.seedlot_stock_id+")' >X</a>"; } },
                 { title: "", "data": "seedlot_stock_uniquename"}
             ],
             'ajax': { 'url': '/ajax/breeders/seedlots',
@@ -330,7 +330,7 @@ jQuery(document).ready(function(){
 });
 
 function removeSeedlot(seedlot_stock_id){
-    if (confirm("Are you sure you want to delete this seedlot?")){
+    if (confirm("Tem certeza de que deseja excluir este lote de sementes?")){
         jQuery.ajax({
             url: '/ajax/breeders/seedlot/'+seedlot_stock_id+'/delete',
             beforeSend: function(){
@@ -339,7 +339,7 @@ function removeSeedlot(seedlot_stock_id){
             success: function(response) {
                 jQuery('#working_modal').modal('hide');
                 if (response.success == 1) {
-                    alert("The seedlot has been deleted.");
+                    alert("O lote de sementes foi excluído.");
                     location.reload();
                 }
                 if (response.error) {
@@ -348,7 +348,7 @@ function removeSeedlot(seedlot_stock_id){
             },
             error: function(response){
                 jQuery('#working_modal').modal('hide');
-                alert('An error occurred deleting seed lot');
+                alert('Ocorreu um erro ao excluir o lote de sementes');
             }
         });
     }

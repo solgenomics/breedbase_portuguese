@@ -3,9 +3,9 @@
 
 <& /util/import_javascript.mas, classes => [ 'brapi.Table' ] &>
 
-<& /page/page_title.mas, title=>"Phenotyping Handhelds" &>
+<& /page/page_title.mas, title=>"Dispositivos móveis de fenotipagem" &>
 
-<h4>Database Select</h4>
+<h4>Selecionar banco de dados</h4>
 <select name="brapi_phenotyping_handhelds_url_select" id="brapi_phenotyping_handhelds_url_select" class="form-control" />
     <option value="">local</option>
     <option value="https://cassbase.org">cassbase.org</option>
@@ -22,7 +22,7 @@
 
 <div id="brapi_phenotyping_handhelds_layout_div" class="well">
 
-    <h3>Get Trial Layout(s)</h3>
+    <h3>Obter disposições dos ensaios</h3>
 
     <select name="brapi_phenotyping_handhelds_layout_format" id="brapi_phenotyping_handhelds_layout_format" class="form-control" />
         <option value="json">JSON</option>
@@ -41,7 +41,7 @@
 
 <div id="brapi_phenotyping_handhelds_traits_div" class="well">
 
-    <h3>Get Observation Variables</h3>
+    <h3>Obter variáveis de observação</h3>
 
     <div id="brapi_phenotyping_handhelds_traits_div">
     </div>
@@ -53,13 +53,13 @@
 
 <div id="brapi_phenotyping_handhelds_upload_div" class="well">
 
-    <h3>Upload Phenotypes Using POST brapi/v1/studies/studyId/observationunits?observationLevel=observationLevel</h3>
+    <h3>Enviar fenótipos usando POST brapi/v1/studies/studyId/observationunits?observationLevel=observationLevel</h3>
 
-    <h4>Not yet implemented</h4>
+    <h4>Ainda não implementado</h4>
 
-    <h3>Upload Phenotypes Using POST brapi/v1/studies/studyId/table</h3>
+    <h3>Enviar fenótipos usando POST brapi/v1/studies/studyId/table</h3>
 
-    <h4>Not yet implemented</h4>
+    <h4>Ainda não implementado</h4>
 
 </div>
 
@@ -99,7 +99,7 @@ jQuery(document).ready(function() {
                 'success': function(response) {
                     //console.log(response);
                     if (response.metadata.datafiles.length > 0){
-                        var html = "<h4>Download Layout File(s) From Here: <br/>";
+                        var html = "<h4>Baixe aqui os arquivos de disposição: <br/>";
                         for (var j=0; j<response.metadata.datafiles.length; j++){
                             html = html + "<a href='"+response.metadata.datafiles[j]+"'>"+response.metadata.datafiles[j]+"</a><br/>";
                         }
@@ -111,7 +111,7 @@ jQuery(document).ready(function() {
                 },
                 error: function(response) {
                     jQuery('#working_modal').modal('hide');
-                    alert('An error occurred');
+                    alert('Ocorreu um erro');
                 }
             });
         }
@@ -133,7 +133,7 @@ function brapi_phenotyping_handhelds_get_studies(url) {
         },
         error: function(response) {
             jQuery('#working_modal').modal('hide');
-            alert('An error occurred');
+            alert('Ocorreu um erro');
         }
     });
 }
@@ -152,7 +152,7 @@ function brapi_phenotyping_handhelds_get_traits(url) {
         },
         error: function(response) {
             jQuery('#working_modal').modal('hide');
-            alert('An error occurred');
+            alert('Ocorreu um erro');
         }
     });
 }

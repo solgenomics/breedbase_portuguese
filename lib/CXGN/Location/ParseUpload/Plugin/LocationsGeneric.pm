@@ -1,5 +1,6 @@
 package CXGN::Location::ParseUpload::Plugin::LocationsGeneric;
 
+use utf8;
 use Moose;
 use CXGN::Location;
 use CXGN::File::Parse;
@@ -39,7 +40,7 @@ sub parse {
     my $parsed_values = $parsed->{values};
 
     if ( $parsed_errors && scalar(@$parsed_errors) > 0 ) {
-      $parse_result{'error'} = $parsed_errors;
+      $parse_result{'error'} = [ map { _translate_parser_error($_) } @$parsed_errors ];
       return \%parse_result;
     }
 
@@ -51,32 +52,32 @@ sub parse {
         # check that name is defined and isn't already in database
         $name = $row->{'Name'};
         if (!$check->_is_valid_name($name)) {
-            push @errors, "Row $row_num: Name $name already exists in the database.\n";
+            push @errors, "Linha $row_num: o nome $name já existe no banco de dados.\n";
         }
 
         # check that abbreviation is defined and isn't already in database
         $abbreviation = $row->{'Abbreviation'};
         if (!$check->_is_valid_abbreviation($abbreviation)) {
-            push @errors, "Row $row_num: Abbreviation $abbreviation already exists in the database.\n";
+            push @errors, "Linha $row_num: a abreviação $abbreviation já existe no banco de dados.\n";
         }
 
         # check that country code is defined, is all uppercase letters, and is 3 chars long
         $country_code = $row->{'Country Code'};
         if (($country_code !~ m/^[^a-z]*$/) || (length($country_code) != 3 )) {
-            push @errors, "Row $row_num: Country code $country_code is not a valid ISO Alpha-3 code.\n";
+            push @errors, "Linha $row_num: o código de país $country_code não é um código ISO Alfa-3 válido.\n";
         }
 
         # check that country name is defined and is not numeric
         $country_name = $row->{'Country Name'};
         if ($country_name =~ m/[0-9]/) {
-            push @errors, "Row $row_num: Country name $country_name is not a valid ISO standard country name.\n";
+            push @errors, "Linha $row_num: o nome de país $country_name não é válido conforme o padrão ISO.\n";
         }
 
         # check that program is defined, is in database
         $programs = $row->{'Program'};
         foreach my $bp (@$programs) {
             if (!$check->_is_valid_program($bp)) {
-                push @errors, "Row $row_num: Program $bp does not exist in the database.\n";
+                push @errors, "Linha $row_num: o programa $bp não existe no banco de dados.\n";
             }
         }
         my $program_string = join("&", @$programs);
@@ -84,25 +85,25 @@ sub parse {
         # check that type is defined, is one of approved types
         $type = $row->{'Type'};
         if(!$check->_is_valid_type($type)) {
-            push @errors, "Row $row_num: Type $type is is not a valid location type.\n";
+            push @errors, "Linha $row_num: $type não é um tipo de local válido.\n";
         }
 
         # check lat has length, is number between 90 and -90
         $latitude = $row->{'Latitude'};
         if( ($latitude !~ /^-?[0-9.]+$/) || ($latitude < -90) || ($latitude > 90) ) {
-            push @errors, "Row $row_num: Latitude $latitude is not a number between 90 and -90.\n";
+            push @errors, "Linha $row_num: a latitude $latitude não é um número entre -90 e 90.\n";
         }
 
         # check lon has length, is number between 180 and -180
         $longitude = $row->{'Longitude'};
         if( ($longitude !~ /^-?[0-9.]+$/) || ($longitude < -180) || ($longitude > 180) ) {
-            push @errors, "Row $row_num: Latitude $latitude is not a number between 180 and -180.\n";
+            push @errors, "Linha $row_num: a longitude $longitude não é um número entre -180 e 180.\n";
         }
 
         # check has length, is number between -418 and 8,848
         $altitude = $row->{'Elevation'};
         if( ($altitude !~ /^-?[0-9.]+$/) || ($altitude < -418) || ($altitude > 8848) ) {
-            push @errors, "Row $row_num: Elevation $altitude is not a number between -418 (Dead Sea) and 8,848 (Mt. Everest).\n";
+            push @errors, "Linha $row_num: a elevação $altitude não é um número entre -418 (Mar Morto) e 8.848 (Monte Everest).\n";
         }
 
         $noaa_station_id = $row->{'NOAA Station ID'};
@@ -119,6 +120,26 @@ sub parse {
         $parse_result{'success'} = \@rows;
     }
     return \%parse_result;
+}
+
+sub _translate_parser_error {
+    my $message = shift // '';
+    $message =~ s/\s+$//;
+
+    return "O arquivo informado não existe."
+        if $message =~ /^The file .* does not exist$/;
+    return "O arquivo não contém dados."
+        if $message eq 'The file has no data';
+    return "A coluna obrigatória '$1' está ausente."
+        if $message =~ /^Required column (.+) is missing$/;
+    return "A coluna obrigatória '$1' não tem valor na linha $2."
+        if $message =~ /^Required column (.+) does not have a value in row (.+)$/;
+    return "A coluna '$1' exige valores exclusivos, mas o valor '$2' aparece mais de uma vez nas linhas $3."
+        if $message =~ /^Column (.+) requires unique values, but (.+) appears more than once in rows (.+)$/;
+    return "Não há um processador compatível com o formato do arquivo informado."
+        if $message =~ /^No appropriate file parsing plugin/;
+
+    return "Erro ao ler ou processar o arquivo.";
 }
 
 1;

@@ -7,31 +7,31 @@
 <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
 <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
 
-<& /page/page_title.mas, title => "Breeding Progress" &>
+<& /page/page_title.mas, title => "Progresso do melhoramento" &>
 
 <& /util/import_javascript.mas, classes => [ 'CXGN.BreedersToolbox.HTMLSelect' ] &>
   
   <table class="table">
     <tr>
-      <th width="100">Select Trait</th>
+      <th width="100">Selecionar característica</th>
 
     </tr>
 
     <tr>
       <td>
-	<div id="trait_selector_div">[loading...]</div>
+	<div id="trait_selector_div">[carregando...]</div>
       </td>
 
 
     </tr>
   </table>
 
-  <button class="btn" id="display_stats_button">Show Stats</button>
+  <button class="btn" id="display_stats_button">Mostrar estatísticas</button>
   
   <table id="progress_stats_datatable">
   </table>
   <br />
-  <button class="btn" id="display_graph_button">Show Graph</button>
+  <button class="btn" id="display_graph_button">Mostrar gráfico</button>
   <div id="trait_averages_bargraph"></div>
   <script>
 jQuery(window).ready(function () {
@@ -46,10 +46,10 @@ jQuery('#display_stats_button').click(function () {
         ajax: '/ajax/progress?trait_id=' + trait_id,
         destroy: true,
         columns: [
-            { "title": "year" },
-            { "title": "average" },
-            { "title": "std dev" },
-            { "title": "observations [count]" }
+            { "title": "ano" },
+            { "title": "média" },
+            { "title": "desvio padrão" },
+            { "title": "observações [quantidade]" }
         ]
     });
 });
@@ -72,7 +72,7 @@ jQuery('#display_graph_button').click(function () {
             }
             var graphData = [];
             for (var i = 0; i < r.data.length; i++) {
-                graphData.push({ "Year": years[i], "Average": averages[i], "mean + stddev": errorUp[i], "mean - stddev": errorDown[i] })
+                graphData.push({ "Ano": years[i], "Média": averages[i], "média + desvio padrão": errorUp[i], "média - desvio padrão": errorDown[i] })
             }
             var v = {
                 "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
@@ -85,7 +85,7 @@ jQuery('#display_graph_button').click(function () {
                 "encoding": {
                     "x": {
                         //"bin": true,
-                        "field": "Year",
+                        "field": "Ano",
                         "type": "ordinal",
                         "axis": { "labelAngle": 0 },
                     },
@@ -99,7 +99,7 @@ jQuery('#display_graph_button').click(function () {
                         },
                         "encoding": {
                             "y": {
-                                "field": "Average",
+                                "field": "Média",
                                 "type": "quantitative",
                             },
                         },
@@ -108,12 +108,12 @@ jQuery('#display_graph_button').click(function () {
                         "mark": { "type": "errorband" },
                         "encoding": {
                             "y": {
-                                "field": "mean + stddev",
+                                "field": "média + desvio padrão",
                                 "type": "quantitative",
                                 "scale": { "zero": false },
-                                "title": "Average"
+                                "title": "Média"
                             },
-                            "y2": { "field": "mean - stddev" },
+                            "y2": { "field": "média - desvio padrão" },
                             "color": {"value": "navy"}
                         },
                     },
@@ -124,7 +124,7 @@ jQuery('#display_graph_button').click(function () {
         },
 
         error: function (e) {
-            alert('cannot show graph');
+            alert('Não foi possível exibir o gráfico.');
 
         }
     });

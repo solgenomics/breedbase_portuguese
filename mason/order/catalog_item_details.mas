@@ -22,26 +22,26 @@ $main_page
 <& /util/import_javascript.mas, classes => [ 'jquery', 'jquery.dataTables'] &>
 <& /util/import_css.mas, paths => ['/documents/inc/datatables/jquery.dataTables.css'] &>
 
-<& /page/page_title.mas, title => "Catalog Item Details for: $item_name" &>
+<& /page/page_title.mas, title => "Detalhes do item do catálogo: $item_name" &>
 
-<&| /page/info_section.mas, title=>"Details",  collapsible => 1, collapsed=>0 &>
+<&| /page/info_section.mas, title=>"Detalhes",  collapsible => 1, collapsed=>0 &>
 
     <div class="panel panel-default">
         <div class="panel-body">
             <div class="row">
                 <div class="col-sm-6">
                     <table class="table table-bordered table-hover">
-                        <tr><td><b>Item Type</b></td><td><% $item_type %> </td></tr>
-                        <tr><td><b>Species</b></td><td><% $species %> </td></tr>
-                        <tr><td><b>Variety</b></td><td><% $variety %> </td></tr>
-                        <tr><td><b>Material Type</b></td><td><% $material_type %> </td></tr>
-                        <tr><td><b>Category</b></td><td><% $category %></td></tr>
-                        <tr><td><b>Additional Info</b></td><td><% $additional_info %></td></tr>
-                        <tr><td><b>Material Source</b><td><% $material_source %></td></tr>
-                        <tr><td><b>Breeding Program</b></td><td><% $breeding_program %></td></tr>
-                        <tr><td><b>Availability</b></td><td><% $availability %></td></tr>
-                        <tr><td><b>Contact Person Username</b></td><td><% $contact_person_username %></td></tr>
-                        <tr><td><b>Main Detail Page</b></td><td><% $main_page %></td></tr>
+                        <tr><td><b>Tipo de item</b></td><td><% $item_type %> </td></tr>
+                        <tr><td><b>Espécie</b></td><td><% $species %> </td></tr>
+                        <tr><td><b>Variedade</b></td><td><% $variety %> </td></tr>
+                        <tr><td><b>Tipo de material</b></td><td><% $material_type %> </td></tr>
+                        <tr><td><b>Categoria</b></td><td><% $category %></td></tr>
+                        <tr><td><b>Informações adicionais</b></td><td><% $additional_info %></td></tr>
+                        <tr><td><b>Origem do material</b><td><% $material_source %></td></tr>
+                        <tr><td><b>Programa de melhoramento</b></td><td><% $breeding_program %></td></tr>
+                        <tr><td><b>Disponibilidade</b></td><td><% $availability %></td></tr>
+                        <tr><td><b>Usuário da pessoa de contato</b></td><td><% $contact_person_username %></td></tr>
+                        <tr><td><b>Página principal de detalhes</b></td><td><% $main_page %></td></tr>
                     </table>
                 </div>
                 <div class="col-sm-6">
@@ -52,25 +52,25 @@ $main_page
                     <br /><br />
                 </div>
             </div>
-            <td><a href="/catalog/view"><p>Go to Catalog Page</p></a></td>
+            <td><a href="/catalog/view"><p>Ir para a página do catálogo</p></a></td>
         </div>
     </div>
 </&>
 
 % if ($check_vendor_role == 1) {
-    <&| /page/info_section.mas, title => 'Edit or Remove Catalog Item', collapsible=>1, collapsed=>0 &>
+    <&| /page/info_section.mas, title => 'Editar ou remover item do catálogo', collapsible=>1, collapsed=>0 &>
         <div class = "well well-sm">
             <div class="panel panel-default">
                 <div class="panel-body">
-                    <button id="edit_catalog_item_link" class="btn btn-primary btn-sm">Edit Catalog Item</button>
+                    <button id="edit_catalog_item_link" class="btn btn-primary btn-sm">Editar item do catálogo</button>
                     <!--
-                    <button id="delete_catalog_item_button" class="btn btn-primary btn-sm">Delete Catalog Item</button>
+                    <button id="delete_catalog_item_button" class="btn btn-primary btn-sm">Excluir item do catálogo</button>
                     -->
                 </div>
             </div>
         </div>
     </&>
-    <&| /page/info_section.mas, title => 'Add or Remove Image', collapsible=>1, collapsed=>0 &>
+    <&| /page/info_section.mas, title => 'Adicionar ou remover imagem', collapsible=>1, collapsed=>0 &>
         <div class = "well well-sm">
             <div class = "panel panel-default">
                 <div class = "panel-body">
@@ -88,19 +88,19 @@ $main_page
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="deleteItemSuccessDialog">Success</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="deleteItemSuccessDialog">Sucesso</h4>
             </div>
             <div class="modal-body">
                 <div class="container-fluid">
                     <p>
                         <span class="ui-icon ui-icon-circle-check" style="float: left; margin: 0 7px 50px 0;"></span>
-                        The catalog item was delete.
+                        O item do catálogo foi excluído.
                     </p>
                 </div>
             </div>
             <div class="modal-footer">
-                <button id="dismiss_deleted_message_dialog" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button id="dismiss_deleted_message_dialog" type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
             </div>
         </div>
     </div>
@@ -110,19 +110,19 @@ $main_page
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="addImageMessageDialog">Success</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="addImageMessageDialog">Sucesso</h4>
             </div>
             <div class="modal-body">
                 <div class="container-fluid">
                     <p>
                         <span class="ui-icon ui-icon-circle-check" style="float: left; margin: 0 7px 50px 0;"></span>
-                        The image was added successfully.
+                        A imagem foi adicionada com sucesso.
                     </p>
                 </div>
             </div>
             <div class="modal-footer">
-                <button id="dismiss_add_image_message_dialog" type="button" class="btn btn-default" data-dismiss="modal">Close & Reload</button>
+                <button id="dismiss_add_image_message_dialog" type="button" class="btn btn-default" data-dismiss="modal">Fechar e recarregar</button>
             </div>
         </div>
     </div>
@@ -132,19 +132,19 @@ $main_page
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="removeImageMessageDialog">Success</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="removeImageMessageDialog">Sucesso</h4>
             </div>
             <div class="modal-body">
                 <div class="container-fluid">
                     <p>
                         <span class="ui-icon ui-icon-circle-check" style="float: left; margin: 0 7px 50px 0;"></span>
-                        The image was removed from the catalog item.
+                        A imagem foi removida do item do catálogo.
                     </p>
                 </div>
             </div>
             <div class="modal-footer">
-                <button id="dismiss_remove_image_message_dialog" type="button" class="btn btn-default" data-dismiss="modal">Close & Reload</button>
+                <button id="dismiss_remove_image_message_dialog" type="button" class="btn btn-default" data-dismiss="modal">Fechar e recarregar</button>
             </div>
         </div>
     </div>
@@ -165,21 +165,21 @@ jQuery(document).ready( function() {
             'searching': false,
             'ajax': '/ajax/catalog/image_list/' + <% $item_id %>,
             'columns': [
-                { title: "Name", "data": "image_name" },
-                { title: "Image", "data": "small_image" },
-                { title: "Description", "data": "image_description"},
-                { title: "Add or Remove Image", "data": "null", "render": function ( data, type, row ) {
+                { title: "Nome", "data": "image_name" },
+                { title: "Imagem", "data": "small_image" },
+                { title: "Descrição", "data": "image_description"},
+                { title: "Adicionar ou remover imagem", "data": "null", "render": function ( data, type, row ) {
                     if (row.image_id == selected_image_id) {
-                        return "<a onclick='removeImage()' >Remove</a>"
+                        return "<a onclick='removeImage()' >Remover</a>"
                     } else {
-                        return "<a onclick='addImage(\""+row.image_id+"\")' >Add</a>"
+                        return "<a onclick='addImage(\""+row.image_id+"\")' >Adicionar</a>"
                     }
                 }},
             ],
     });
 
     jQuery('#delete_catalog_item_button').click( function() {
-        var response = confirm('Really delete this catalog item? This action cannot be undone.');
+        var response = confirm('Deseja realmente excluir este item do catálogo? Esta ação não pode ser desfeita.');
         if (response) {
             jQuery.ajax({
                 url: '/ajax/catalog/delete',
@@ -239,7 +239,7 @@ function addImage(image_id){
         },
         error: function(response){
             jQuery('#working_modal').modal('hide');
-            alert('An error occurred adding image');
+            alert('Ocorreu um erro ao adicionar a imagem');
         }
     });
 
@@ -279,7 +279,7 @@ function removeImage(){
         },
         error: function(response){
             jQuery('#working_modal').modal('hide');
-            alert('An error occurred removing image');
+            alert('Ocorreu um erro ao remover a imagem');
         }
     });
 

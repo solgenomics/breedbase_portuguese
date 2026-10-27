@@ -7,58 +7,58 @@ $ordering_type => undef
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title" id="addCatalogItemDialog">Add New Catalog Item</h4>
+                <h4 class="modal-title" id="addCatalogItemDialog">Adicionar item ao catálogo</h4>
             </div>
             <div class="modal-body" id = "catalog_dialog">
                 <div class="container-fluid">
                     <form class="form-horizontal" role="form" method="post" id="add_new_catalog_item_form" name="add_new_catalog_form">
                         <div class="form-group" id = "get_item_name">
-                            <label class="col-sm-3 control-label">Item Name: </label>
+                            <label class="col-sm-3 control-label">Nome do item: </label>
                             <div class="col-sm-9" >
-                                <input class="form-control" type="text" id="item_name" name="item_name" placeholder="Item name must be in the database">
+                                <input class="form-control" type="text" id="item_name" name="item_name" placeholder="O nome do item deve existir no banco de dados">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">Category: </label>
+                            <label class="col-sm-3 control-label">Categoria: </label>
                             <div class="col-sm-9">
                                 <select class="form-control" id="item_category">
-                                    <option value="">Please select a category</option>
-                                    <option value="released variety">released variety</option>
-                                    <option value="pathogen assay ">pathogen assay</option>
-                                    <option value="control">control</option>
-                                    <option value="transgenic line">transgenic line</option>
+                                    <option value="">Selecione uma categoria</option>
+                                    <option value="released variety">variedade lançada</option>
+                                    <option value="pathogen assay ">ensaio de patógeno</option>
+                                    <option value="control">controle</option>
+                                    <option value="transgenic line">linhagem transgênica</option>
                                 </select>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">Additional Info: </label>
+                            <label class="col-sm-3 control-label">Informações adicionais: </label>
                             <div class="col-sm-9" >
-                                <input class="form-control" id="item_additional_info" placeholder="optional">
+                                <input class="form-control" id="item_additional_info" placeholder="opcional">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">Material Source: </label>
+                            <label class="col-sm-3 control-label">Origem do material: </label>
                             <div class="col-sm-9" >
-                                <input class="form-control" id="item_material_source" placeholder="optional">
+                                <input class="form-control" id="item_material_source" placeholder="opcional">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">Breeding Program: </label>
+                            <label class="col-sm-3 control-label">Programa de melhoramento: </label>
                             <div class="col-sm-9" >
                                 <div id="item_breeding_program_div"></div>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">Contact Person Username: </label>
+                            <label class="col-sm-3 control-label">Usuário da pessoa de contato: </label>
                             <div class="col-sm-9" >
-                                <input class="form-control" id="contact_person_name" placeholder="Please provide contact person username">
+                                <input class="form-control" id="contact_person_name" placeholder="Informe o nome de usuário da pessoa de contato">
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="reset" id="close_add_item_dialog" name="close_add_item_dialog" class="btn btn-default" >Close</button>
-                    <button id="submit_catalog_item" type="button" class="btn btn-primary" >Add</button>
+                    <button type="reset" id="close_add_item_dialog" name="close_add_item_dialog" class="btn btn-default" >Fechar</button>
+                    <button id="submit_catalog_item" type="button" class="btn btn-primary" >Adicionar</button>
                 </div>
             </form>
         </div>
@@ -69,19 +69,19 @@ $ordering_type => undef
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="addItemSavedDialog">Success</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="addItemSavedDialog">Sucesso</h4>
             </div>
             <div class="modal-body">
                 <div class="container-fluid">
                     <p>
                         <span class="ui-icon ui-icon-circle-check" style="float: left; margin: 0 7px 50px 0;"></span>
-                        The catalog item was saved successfully.
+                        O item do catálogo foi salvo com sucesso.
                     </p>
                 </div>
             </div>
             <div class="modal-footer">
-                <button id="dismiss_item_saved_dialog" type="button" class="btn btn-default" data-dismiss="modal">Close & Reload</button>
+                <button id="dismiss_item_saved_dialog" type="button" class="btn btn-default" data-dismiss="modal">Fechar e recarregar</button>
             </div>
         </div>
     </div>
@@ -112,19 +112,19 @@ jQuery(document).ready(function(){
         var contact_person = jQuery('#contact_person_name').val();
 
         if (name == '') {
-            alert("Please provide a name");
+            alert("Informe um nome");
             return;
         }
         if (category == '') {
-            alert("Please select a category");
+            alert("Selecione uma categoria");
             return;
         }
         if (breeding_program == '') {
-            alert("Please select a program");
+            alert("Selecione um programa");
             return;
         }
         if (contact_person == '') {
-            alert("Please provide contact username");
+            alert("Informe o nome de usuário da pessoa de contato");
             return;
         }
 
@@ -155,7 +155,7 @@ jQuery(document).ready(function(){
             },
             error: function(response){
                 jQuery('#working_modal').modal('hide');
-                alert('An error occurred adding item');
+                alert('Ocorreu um erro ao adicionar o item');
             }
         });
     });

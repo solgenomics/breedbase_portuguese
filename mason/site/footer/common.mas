@@ -1,7 +1,7 @@
 <%init>
 	my $feedback_email = eval{ $c->get_conf('email') };
 	$feedback_email = $feedback_email ? qq|<a class="footer" href="mailto:$feedback_email">$feedback_email</a>|
-	                                  : '<span style="font-weight: bold; color: red">[email not set]</b>';
+	                                  : '<span style="font-weight: bold; color: red">[e-mail não configurado]</b>';
 </%init>
 
 
@@ -24,7 +24,7 @@
     <div class="modal-content">
       <div class="modal-header">
 	      <center>
-          <h4 class="modal-title" id="workingModalDialog">Working</h4>
+          <h4 class="modal-title" id="workingModalDialog">Processando</h4>
 	      </center>
       </div>
       <div class="modal-body">
@@ -51,7 +51,7 @@
     <div class="modal-content">
       <div class="modal-header">
 	<center>
-          <h4 class="modal-title" id="progressModalDialog">Progress</h4>
+          <h4 class="modal-title" id="progressModalDialog">Progresso</h4>
 	</center>
       </div>
       <div class="modal-body">

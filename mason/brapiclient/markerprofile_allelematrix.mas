@@ -3,9 +3,9 @@
 
 <& /util/import_javascript.mas, classes => [ 'brapi.Table' ] &>
 
-<& /page/page_title.mas, title=>"Genotype Retrieval" &>
+<& /page/page_title.mas, title=>"Obtenção de genótipos" &>
 
-<h4>Database Select</h4>
+<h4>Selecionar banco de dados</h4>
 <select name="brapi_home_genotypes_url_select" id="brapi_home_genotypes_url_select" class="form-control" />
     <option value="">local</option>
     <option value="https://cassbase.org">cassbase.org</option>
@@ -20,18 +20,18 @@
 
 <div id="brapi_home_markerprofile_allelematrix_div">
 
-    <h4>MarkerProfile Details</h4>
-    <input name="brapi_home_markerprofiledbid1" id="brapi_home_markerprofiledbid1" class="form-control" type="text" placeholder="MarkerProfileDbId e.g. 1622" value="1622"/>
-    <input name="brapi_home_markerprofiledbid2" id="brapi_home_markerprofiledbid2" class="form-control" type="text" placeholder="MarkerProfileDbId e.g. 1623" value="1623"/>
-    <input name="brapi_home_markerprofiledbid3" id="brapi_home_markerprofiledbid3" class="form-control" type="text" placeholder="MarkerProfileDbId e.g. 1624" value="1624"/>
-    <input name="brapi_home_markerprofiledbid4" id="brapi_home_markerprofiledbid4" class="form-control" type="text" placeholder="MarkerProfileDbId e.g. 1625" value="1625"/>
+    <h4>Detalhes do perfil de marcadores</h4>
+    <input name="brapi_home_markerprofiledbid1" id="brapi_home_markerprofiledbid1" class="form-control" type="text" placeholder="ID do perfil de marcadores, ex.: 1622" value="1622"/>
+    <input name="brapi_home_markerprofiledbid2" id="brapi_home_markerprofiledbid2" class="form-control" type="text" placeholder="ID do perfil de marcadores, ex.: 1623" value="1623"/>
+    <input name="brapi_home_markerprofiledbid3" id="brapi_home_markerprofiledbid3" class="form-control" type="text" placeholder="ID do perfil de marcadores, ex.: 1624" value="1624"/>
+    <input name="brapi_home_markerprofiledbid4" id="brapi_home_markerprofiledbid4" class="form-control" type="text" placeholder="ID do perfil de marcadores, ex.: 1625" value="1625"/>
     <select name="brapi_home_allelematrix_format" id="brapi_home_allelematrix_format" class="form-control" />
-        <option value="json">JSON (transformed to HTML table)</option>
+        <option value="json">JSON (convertido em tabela HTML)</option>
         <option value="tsv">TSV</option>
         <option value="csv">CSV</option>
     </select>
     <br/>
-    <button class="btn btn-primary" name="brapi_home_allelematrix_submit" id="brapi_home_allelematrix_submit">Get AlleleMatrix</button>
+    <button class="btn btn-primary" name="brapi_home_allelematrix_submit" id="brapi_home_allelematrix_submit">Obter matriz de alelos</button>
     <br/><br/>
     <div id="brapi_markerprofile_allelematrix_div">
     </div>
@@ -50,7 +50,7 @@ jQuery(document).ready(function() {
             'success': function(response) {
                 console.log(response);
                 if (response.metadata.datafiles.length > 0){
-                    var html = "<h4>Download Study Phenotype File(s) From Here: <br/>";
+                    var html = "<h4>Baixe aqui os arquivos de fenótipos do estudo: <br/>";
                     for (var j=0; j<response.metadata.datafiles.length; j++){
                         html = html + "<a href='"+response.metadata.datafiles[j]+"'>"+response.metadata.datafiles[j]+"</a><br/>";
                     }
@@ -64,7 +64,7 @@ jQuery(document).ready(function() {
                 }
             },
             error: function(response) {
-                alert('An error occurred');
+                alert('Ocorreu um erro');
             }
         });
 

@@ -1,10 +1,10 @@
 <%args>
 </%args>
 
-<h4>Observation Levels</h4>
+<h4>Níveis de observação</h4>
 
 <div id="brapi_obslevel_home_div">
-<button class="btn btn-primary" id="brapi_home_show_obslevels">Show ObservationLevels</button>
+<button class="btn btn-primary" id="brapi_home_show_obslevels">Mostrar níveis de observação</button>
 
 </div>
 
@@ -26,7 +26,7 @@ jQuery("#brapi_home_show_obslevels").click(function() {
         jQuery("#brapi_obslevel_home_div").empty().html(html);
       },
       error: function(response) {
-        alert('An error occurred');
+        alert('Ocorreu um erro');
       }
     });
 });

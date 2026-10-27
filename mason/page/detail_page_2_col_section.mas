@@ -9,8 +9,8 @@ $icon_class => "glyphicon glyphicon-th"
 $info_section_collapsible => 1
 $info_section_collapsed => 1
 $info_section_id => "2col_id"
-$info_section_title => "A title"
-$info_section_subtitle => "A subtitle"
+$info_section_title => "Título"
+$info_section_subtitle => "Subtítulo"
 $buttons_html => undef
 $locations_by_program_json => undef
 $curator => undef
@@ -285,24 +285,24 @@ $is_dataset_public => 0
                                 <& /breeders_toolbox/trial/jbrowse_instance.mas, trial_id => $trial_id &>
 %} #End trial_jbrowse_data
 % if ($info_section_id eq 'trial_linkage_section'){
-                                <&| /page/info_section.mas, title => 'Field Trial to Field Trial Linkage', id => 'field_trial_from_field_trial_section', collapsible => 1, collapsed => 1 &>
+                                <&| /page/info_section.mas, title => 'Vínculo entre ensaios de campo', id => 'field_trial_from_field_trial_section', collapsible => 1, collapsed => 1 &>
                                     <& /breeders_toolbox/trial/field_trial_from_field_trial_linkage.mas, trial_id => $trial_id, trial_type => $trial_type, trial_name=>$trial_name &>
                                 </&>
-                                <&| /page/info_section.mas, title => 'Field Trial to Genotyping Plate Linkage', id => 'genotyping_trial_from_field_trial_section', collapsible => 1, collapsed => 1 &>
+                                <&| /page/info_section.mas, title => 'Vínculo entre ensaio de campo e placa de genotipagem', id => 'genotyping_trial_from_field_trial_section', collapsible => 1, collapsed => 1 &>
                                     <& /breeders_toolbox/trial/genotyping_trial_from_field_trial_linkage.mas, trial_id => $trial_id, trial_type => 'field_trial' &>
                                 </&>
-                                <&| /page/info_section.mas, title => 'Field Trial to Crossing Experiment Linkage', id => 'crossing_experiment_from_field_trial_section', collapsible => 1, collapsed => 1 &>
+                                <&| /page/info_section.mas, title => 'Vínculo entre ensaio de campo e experimento de cruzamento', id => 'crossing_experiment_from_field_trial_section', collapsible => 1, collapsed => 1 &>
                                     <& /breeders_toolbox/trial/crossing_experiment_from_field_trial_linkage.mas, trial_id => $trial_id &>
                                 </&>
 
                                 <!--
-                                <&| /page/info_section.mas, title => 'Field Trial to Crossing Experiment Linkage', id => 'crossing_trial_from_field_trial_section', collapsible => 1, collapsed => 1 &>
+                                <&| /page/info_section.mas, title => 'Vínculo entre ensaio de campo e experimento de cruzamento', id => 'crossing_trial_from_field_trial_section', collapsible => 1, collapsed => 1 &>
                                     <& /breeders_toolbox/trial/crossing_trial_from_field_trial_linkage.mas, trial_id => $trial_id, trial_type => 'field_trial' &>
                                 </&>
                                 -->
 %} #End trial_linkage_section
 % if ($info_section_id eq 'trial_deletion_section'){
-                                <&| /page/info_section.mas, title=>'Delete trial data', subtitle=>'<font color="red" role="">Deletion cannot be undone</font>', collapsed=>1, collapsible=>1 &>
+                                <&| /page/info_section.mas, title=>'Excluir dados do ensaio', subtitle=>'<font color="red" role="">A exclusão não pode ser desfeita</font>', collapsed=>1, collapsible=>1 &>
                                     <& /breeders_toolbox/trial/trial_deletion.mas, trial_id => $trial_id  &>
                                 </&>
 %} #End trial_deletion_section
@@ -339,7 +339,7 @@ $is_dataset_public => 0
                                 <& /stock/direct_genotypes.mas, stock_id => $stock_id, map_html => $map_html &>
 % } #End stock_genotypes_section
 % if ($info_section_id eq 'stock_pedigree_section'){
-                                <&| /page/info_section.mas, title=>"Pedigree and Descendants" , collapsible=> 0, collapsed=>0 &>
+                                <&| /page/info_section.mas, title=>"Genealogia e descendentes" , collapsible=> 0, collapsed=>0 &>
                                     <& /pedigree/stock_pedigree.mas, stock_id => $stock_id, has_pedigree => $has_pedigree &>
                                 </&>
 
@@ -375,11 +375,11 @@ $is_dataset_public => 0
 % if ($info_section_id eq 'stock_images_section'){
                                 <& /image/compare_images.mas, stock_id => $stock_id &>
 
-                                <&| /page/info_section.mas, title=>"Images of This Stock(" .  scalar(@$image_ids)  . ")", collapsible=>1, collapsed=>0 &>
+                                <&| /page/info_section.mas, title=>"Imagens deste material (" .  scalar(@$image_ids)  . ")", collapsible=>1, collapsed=>0 &>
                                     <& /image/print_images.mas , stock_id=>$stock_id , images=>$image_ids , dbh=>$dbh, additional_image_button_id=>'stock_images', stock_image_flag=>'1' , curator=>$curator &>
                                 </&>
 
-                                <&| /page/info_section.mas, title=>"Images of Related Stock(s) (" .  scalar(@$related_image_ids)  . ")", collapsible=>1, collapsed=>0 &>
+                                <&| /page/info_section.mas, title=>"Imagens dos materiais relacionados (" .  scalar(@$related_image_ids)  . ")", collapsible=>1, collapsed=>0 &>
                                     <& /image/print_images.mas , images=>$related_image_ids , dbh=>$dbh, additional_image_button_id=>'related_stock_images', stock_image_flag=>'0' &>
                                 </&>
 % } #End stock_images_section
@@ -393,7 +393,7 @@ $is_dataset_public => 0
         <& /breeders_toolbox/trial/trial_audit.mas, trial_id => $trial_id, project_id => $project_id&>
 % } #End stock requencing status section
 % if ($info_section_id eq 'stock_literature_annotation_section'){
-                                <&| /page/info_section.mas, title=>"Literature annotation (".scalar( @$pubs ).")" , id=>"publications" , collapsible=>1, collapsed=>1 &>
+                                <&| /page/info_section.mas, title=>"Anotações bibliográficas (".scalar( @$pubs ).")" , id=>"publications" , collapsible=>1, collapsed=>1 &>
 
 
 % foreach my $publication ( @$pubs  ) {
@@ -403,7 +403,7 @@ $is_dataset_public => 0
 
                                 </&>
 
-                                <&| /page/info_section.mas, id   => 'stock_ontology', title=>"Ontology annotation (" . $stockref->{ontology_count} . ")" &>
+                                <&| /page/info_section.mas, id   => 'stock_ontology', title=>"Anotações de ontologia (" . $stockref->{ontology_count} . ")" &>
                                     <& /ontology/associate_ontology.mas,
                                     trait_db_name => $trait_ontology_db_name,
                                     object_id     => $stock_id ,
@@ -416,7 +416,7 @@ $is_dataset_public => 0
                                 </&>
 % } #End stock_literature_annotation_section
 % if ($info_section_id eq 'stock_jbrowse_section'){
-                                <p id="jbrowse_check">[loading...]</p>
+                                <p id="jbrowse_check">[carregando...]</p>
 % } #End stock_jbrowse_section
 % if ($info_section_id eq 'stock_comments_section'){
                                 <& /page/comments.mas, object_type=>'stock', object_id=>$stock_id, referer=>$referer &>
@@ -643,7 +643,7 @@ $is_dataset_public => 0
                                 <& /analytics_protocols/analytics_protocols_result_files.mas, analytics_protocol_id=>$analytics_protocol_id, analytics_protocol_name=>$analytics_protocol_name &>
 % } #End analytics_protocol_result_files
 % if ($info_section_id eq 'model_deletion_section'){
-                                <&| /page/info_section.mas, title=>'Delete model', subtitle=>'<font color="red" role="">Deletion cannot be undone</font>', collapsed=>1, collapsible=>1 &>
+                                <&| /page/info_section.mas, title=>'Excluir modelo', subtitle=>'<font color="red" role="">A exclusão não pode ser desfeita</font>', collapsed=>1, collapsible=>1 &>
                                     <& /analyses/model_deletion.mas, model_id => $model_id  &>
                                 </&>
 % } #End model_deletion_section
@@ -715,7 +715,7 @@ $is_dataset_public => 0
 % }
 
 % if (!$info_section_id){
-                                <p>No section specified! Main content goes here!</p>
+                                <p>Nenhuma seção especificada. O conteúdo principal será exibido aqui.</p>
 % }
 
                             </div>

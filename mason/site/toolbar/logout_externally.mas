@@ -2,7 +2,7 @@
 $redirect_uri
 </%args>%>
 
-<b>Logging out...</b>
+<b>Saindo...</b>
 
 <script>
 console.log(<% $redirect_uri %>);

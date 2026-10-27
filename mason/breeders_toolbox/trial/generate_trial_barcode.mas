@@ -18,15 +18,15 @@ $trial_stock_type => undef
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header" style="text-align: center">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="generateTrialBarcodeDialog">Generate Stock Barcode</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="generateTrialBarcodeDialog">Gerar código de barras do material</h4>
             </div>
             <div class="modal-body">
                 <div class="container-fluid">
                     <p id = "barcode_dialog_subtitle2">
                         <span class="ui-icon ui-icon-circle-check" style="float: left; margin: 0 7px 50px 0;"></span>
                     </p>
-                    OR   <button type="button" class="btn btn-primary" name="custom_barcode_trial_link" id="custom_barcode_trial_link">Design Custom Barcode</button>   ON LABEL DESIGNER PAGE!
+                    OU <button type="button" class="btn btn-primary" name="custom_barcode_trial_link" id="custom_barcode_trial_link">Criar código de barras personalizado</button> NA PÁGINA DO EDITOR DE ETIQUETAS!
                     <center>
                         <div class="well">
                             <& /util/barcode.mas, identifier => "$identifier", trial_id=> "$trial_id", trial_name=> "$trial_name", format=>"trial_qrcode"  &>
@@ -42,24 +42,24 @@ $trial_stock_type => undef
                             <form class="form-horizontal" role="form" enctype="multipart/form-data" method="post" action="/barcode/stock/download/pdf" >
 
                              <div class="form-group form-group-sm" >
-                               <label class="col-sm-4 control-label">List of Stock Names: </label>
+                               <label class="col-sm-4 control-label">Lista de nomes dos materiais: </label>
                                <div class="col-sm-8" id="trial_accessions">
                                </div>
                              </div>
 
                              <div class="form-group form-group-sm">
-                              <label class="col-sm-4 control-label">Barcode Type: </label>
+                              <label class="col-sm-4 control-label">Tipo de código de barras: </label>
                               <div class="col-sm-8">
                                   <select class="form-control" id="select_barcode_type" name="select_barcode_type">
-                                    <option value="2D">2D Barcode</option>
-                                    <option value="1D">1D Barcode</option>
+                                    <option value="2D">Código de barras 2D</option>
+                                    <option value="1D">Código de barras 1D</option>
                                   </select>
                               </div>
                              </div>
 
                                <div id="2D_fieldbook_option" >
                                <div class="form-group form-group-sm" >
-                                 <label class="col-sm-4 control-label">Enable 2D Barcode For FieldBook: </label>
+                                 <label class="col-sm-4 control-label">Habilitar código de barras 2D para o Field Book: </label>
                                  <div class="col-sm-8">
                                    <input type="checkbox" id="enable_fieldbook_2d_barcode" name="enable_fieldbook_2d_barcode" value="enable_fieldbook_2d_barcode" checked/>
                                  </div>
@@ -179,26 +179,26 @@ $trial_stock_type => undef
                                </script>
 
                                <div class="form-group form-group-sm">
-                                 <label class="col-sm-4 control-label">Printing Format (Optional): </label>
+                                 <label class="col-sm-4 control-label">Formato de impressão (opcional): </label>
                                  <div class="col-sm-8">
                                      <select class="form-control" id="select_print_format" name="select_print_format">
                                        <!--<option selected disabled>select printing format</option>-->
-                                       <option value="">select printing format</option>
-                                       <option value="CASS">CASS printing format</option>
-                                       <option value="MUSA">MUSA printing format</option>
-                                       <option value="32A4">32 label Size Sticker Paper</option>
-                                       <option value="32_unique">32 Unique label Size Sticker Paper</option>
-                                       <option value="20A4">20 label Size Sticker Paper</option>
-                                       <option value="NCSU">NCSU printing format</option>
-                                       <option value="IITA-3">IITA-3-barcode</option>
-                                       <option value="IITA-2">IITA-2-barcode</option>
+                                       <option value="">Selecione o formato de impressão</option>
+                                       <option value="CASS">Formato de impressão CASS</option>
+                                       <option value="MUSA">Formato de impressão MUSA</option>
+                                       <option value="32A4">Papel adesivo para 32 etiquetas</option>
+                                       <option value="32_unique">Papel adesivo para 32 etiquetas exclusivas</option>
+                                       <option value="20A4">Papel adesivo para 20 etiquetas</option>
+                                       <option value="NCSU">Formato de impressão NCSU</option>
+                                       <option value="IITA-3">Código de barras IITA-3</option>
+                                       <option value="IITA-2">Código de barras IITA-2</option>
                                        <option value="crossing">CROSS</option>
                                      </select>
                                  </div>
                                </div>
 
                                 <div class="form-group form-group-sm" style="display: none">
-                                  <label class="col-sm-4 control-label">Print Duplicate Labels Per Row: </label>
+                                  <label class="col-sm-4 control-label">Imprimir etiquetas duplicadas por linha: </label>
                                   <div class="col-sm-8">
                                     <input type="checkbox" name="duplicate_labels_per_row" checked="1" disabled="1" />
                                   </div>
@@ -229,8 +229,8 @@ $trial_stock_type => undef
             </div>
             <div class="modal-footer">
 
-                <button class="btn btn-primary type="submit" type="submit" value="Download Barcodes">Download Barcodes</button>
-                <button id="trial_barcode_dialog_ok_button" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button class="btn btn-primary type="submit" type="submit" value="Download Barcodes">Baixar códigos de barras</button>
+                <button id="trial_barcode_dialog_ok_button" type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
 
             </div>
         </form>
@@ -242,15 +242,15 @@ $trial_stock_type => undef
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header" style="text-align: center">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="barcodeDesignOptionDialog">Generate Barcode Label</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="barcodeDesignOptionDialog">Gerar etiqueta com código de barras</h4>
             </div>
             <div class="modal-body">
             <div class="container-fluid">
                     <center>
-                    <button type="button" class="btn btn-primary" name="custom_barcode_trial_link" id="label_designer_link">Go To Label Designer (Recommended)</button>
+                    <button type="button" class="btn btn-primary" name="custom_barcode_trial_link" id="label_designer_link">Abrir o editor de etiquetas (recomendado)</button>
                 <p id="legacy_barcode_btn">
-                    <button type="button" class="btn" name="generate_trial_barcode_link" id="generate_trial_barcode_link">Use Legacy Barcode Generator</button>
+                    <button type="button" class="btn" name="generate_trial_barcode_link" id="generate_trial_barcode_link">Usar o gerador antigo de códigos de barras</button>
                 </p>
                     <center>
             </div>
@@ -271,8 +271,8 @@ $trial_stock_type => undef
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header" style="text-align: center">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="generateTrialBarcodeButtonDialog">Generate Stock Barcode</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="generateTrialBarcodeButtonDialog">Gerar código de barras do material</h4>
             </div>
             <div class="modal-body">
             <div class="container-fluid">
@@ -284,17 +284,17 @@ $trial_stock_type => undef
                     <& /util/barcode.mas, identifier => "$identifier", trial_id=> "$trial_id", trial_name=> "$trial_name", format=>"trial_qrcode"  &>
                     </div>
                 <p>
-                    <button type="button" class="btn btn-primary" name="trial_plot_barcode" id="trial_plot_barcode">Plot Barcodes</button>
-                    <button type="button" class="btn btn-primary" name="trial_plant_barcode" id="trial_plant_barcode">Plant Barcodes</button>
+                    <button type="button" class="btn btn-primary" name="trial_plot_barcode" id="trial_plot_barcode">Códigos de barras das parcelas</button>
+                    <button type="button" class="btn btn-primary" name="trial_plant_barcode" id="trial_plant_barcode">Códigos de barras das plantas</button>
                     <button type="button" class="btn btn-primary" name="trial_stock_barcode" id="trial_stock_barcode"></button>
-                    <button type="button" class="btn btn-primary" name="custom_barcode" id="custom_barcode">Custom Barcodes</button>
+                    <button type="button" class="btn btn-primary" name="custom_barcode" id="custom_barcode">Códigos de barras personalizados</button>
                 </p>
 
                       </center>
               </div>
           </div>
           <div class="modal-footer">
-              <button id="trial_barcode_dialog_ok_button" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              <button id="trial_barcode_dialog_ok_button" type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
 
           </div>
       </div>
@@ -306,37 +306,37 @@ $trial_stock_type => undef
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header" style="text-align: center">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="generateCrossingTrialBarcodeButtonDialog">Generate Barcode</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="generateCrossingTrialBarcodeButtonDialog">Gerar código de barras</h4>
             </div>
             <div class="modal-body">
                 <div class="container-fluid">
                     <p>
                         <span class="ui-icon ui-icon-circle-check" style="float: left; margin: 0 7px 50px 0;"></span>
-                        Generate barcodes for cross unique ids, female parents and male parents in this crossing experiment.
+                        Gere códigos de barras para os IDs exclusivos dos cruzamentos e para os parentais femininos e masculinos deste experimento de cruzamento.
                     </p>
                     <center>
                         <div class="well">
                             <& /util/barcode.mas, identifier => "$identifier", trial_id=> "$trial_id", trial_name=> "$trial_name", format=>"trial_qrcode"  &>
                         </div>
                         <p>
-                            <button type="button" class="btn btn-primary" name="cross_barcodes" id="cross_barcodes">Cross Unique ID Barcodes</button>
+                            <button type="button" class="btn btn-primary" name="cross_barcodes" id="cross_barcodes">Códigos de barras dos IDs exclusivos dos cruzamentos</button>
                         </p>
                         <p>
-                            <button type="button" class="btn btn-primary" name="female_accession_barcodes" id="female_accession_barcodes">Female Accession Barcodes</button>
-                            <button type="button" class="btn btn-primary" name="female_plot_barcodes" id="female_plot_barcodes">Female Plot Barcodes</button>
-                            <button type="button" class="btn btn-primary" name="female_plant_barcodes" id="female_plant_barcodes">Female Plant Barcodes</button>
+                            <button type="button" class="btn btn-primary" name="female_accession_barcodes" id="female_accession_barcodes">Códigos de barras dos acessos femininos</button>
+                            <button type="button" class="btn btn-primary" name="female_plot_barcodes" id="female_plot_barcodes">Códigos de barras das parcelas femininas</button>
+                            <button type="button" class="btn btn-primary" name="female_plant_barcodes" id="female_plant_barcodes">Códigos de barras das plantas femininas</button>
                         </p>
                         <p>
-                            <button type="button" class="btn btn-primary" name="male_accession_barcodes" id="male_accession_barcodes">Male Accession Barcodes</button>
-                            <button type="button" class="btn btn-primary" name="male_plot_barcodes" id="male_plot_barcodes">Male Plot Barcodes</button>
-                            <button type="button" class="btn btn-primary" name="male_plant_barcodes" id="male_plant_barcodes">Male Plant Barcodes</button>
+                            <button type="button" class="btn btn-primary" name="male_accession_barcodes" id="male_accession_barcodes">Códigos de barras dos acessos masculinos</button>
+                            <button type="button" class="btn btn-primary" name="male_plot_barcodes" id="male_plot_barcodes">Códigos de barras das parcelas masculinas</button>
+                            <button type="button" class="btn btn-primary" name="male_plant_barcodes" id="male_plant_barcodes">Códigos de barras das plantas masculinas</button>
                         </p>
                     </center>
                 </div>
             </div>
             <div class="modal-footer">
-                <button id="trial_barcode_dialog_ok_button" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button id="trial_barcode_dialog_ok_button" type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
             </div>
         </div>
     </div>
@@ -353,14 +353,14 @@ jQuery(document).ready(function () {
     var barcode_button_label = '';
 
     if (trial_stock_type == 'family_name') {
-        dialog_subtitle = 'Generate barcodes for plots, plants and family names used in this trial.';
-        barcode_button_label = 'Family Name Barcodes';
+        dialog_subtitle = 'Gere códigos de barras para parcelas, plantas e nomes de famílias usados neste ensaio.';
+        barcode_button_label = 'Códigos de barras dos nomes de famílias';
     } else if (trial_stock_type == 'cross') {
-        dialog_subtitle = 'Generate barcodes for plots, plants and cross unique ids used in this trial.';
-        barcode_button_label = 'Cross Unique ID Barcodes';
+        dialog_subtitle = 'Gere códigos de barras para parcelas, plantas e IDs exclusivos de cruzamentos usados neste ensaio.';
+        barcode_button_label = 'Códigos de barras dos IDs exclusivos de cruzamentos';
     } else {
-        dialog_subtitle = 'Generate barcodes for plots, plants and accessions used in this trial.';
-        barcode_button_label = 'Accession Barcodes';
+        dialog_subtitle = 'Gere códigos de barras para parcelas, plantas e acessos usados neste ensaio.';
+        barcode_button_label = 'Códigos de barras dos acessos';
     }
 
     jQuery('#barcode_dialog_subtitle').text(dialog_subtitle);
@@ -370,11 +370,11 @@ jQuery(document).ready(function () {
     jQuery('#trial_stock_barcode').click(function() {
 
         if (trial_stock_type == 'family_name') {
-            jQuery('#barcode_dialog_subtitle2').text('Generate barcodes for family names used in this trial');
+            jQuery('#barcode_dialog_subtitle2').text('Gere códigos de barras para os nomes de famílias usados neste ensaio.');
         } else if (trial_stock_type == 'cross') {
-            jQuery('#barcode_dialog_subtitle2').text('Generate barcodes for Cross unique ids used in this trial');
+            jQuery('#barcode_dialog_subtitle2').text('Gere códigos de barras para os IDs exclusivos de cruzamentos usados neste ensaio.');
         } else {
-            jQuery('#barcode_dialog_subtitle2').text('Generate barcodes for accessions used in this trial');
+            jQuery('#barcode_dialog_subtitle2').text('Gere códigos de barras para os acessos usados neste ensaio.');
         }
 
     	jQuery.ajax ( {
@@ -390,14 +390,14 @@ jQuery(document).ready(function () {
         		jQuery('#trial_accessions').html(trial_accessions_html);
             },
             error: function(response){
-        		      alert("Error retrieving accessions.");
+				alert("Erro ao obter os acessos.");
             }
         });
     });
 
     jQuery('#trial_plot_barcode').click(function() {
 
-        jQuery('#barcode_dialog_subtitle2').text('Generate barcodes for plots used in this trial');
+        jQuery('#barcode_dialog_subtitle2').text('Gere códigos de barras para as parcelas usadas neste ensaio.');
 
         jQuery.ajax ( {
             url : '/ajax/breeders/trial/'+<% $trial_id %>+'/plots',
@@ -412,21 +412,21 @@ jQuery(document).ready(function () {
                 jQuery('#trial_accessions').html(trial_plots_html);
             },
             error: function(response){
-                alert("Error retrieving plots.");
+                alert("Erro ao obter as parcelas.");
             }
         });
     });
 
     jQuery('#trial_plant_barcode').click(function() {
 
-        jQuery('#barcode_dialog_subtitle2').text('Generate barcodes for plants used in this trial');
+        jQuery('#barcode_dialog_subtitle2').text('Gere códigos de barras para as plantas usadas neste ensaio.');
 
         jQuery.ajax ( {
             url : '/ajax/breeders/trial/'+<% $trial_id %>+'/plants',
 
             success: function(response){
                 if (response.plants == '') {
-                    alert("Trial has no plant entries.");
+                    alert("O ensaio não possui plantas.");
                 }
                 var trial_plants_html = '<textarea class="form-control" id="stock_names" name="stock_names" >';
                 for (i=0; i<response.plants[0].length; i++) {
@@ -437,7 +437,7 @@ jQuery(document).ready(function () {
                 jQuery('#trial_accessions').html(trial_plants_html);
             },
             error: function(response){
-                alert("Error retrieving plants.");
+                alert("Erro ao obter as plantas.");
             }
 
         });
@@ -451,7 +451,7 @@ jQuery(document).ready(function () {
     jQuery('#cross_barcodes').click(function() {
         jQuery('#generate_crossing_experiment_barcode_dialog').modal("hide");
         jQuery('#generate_trial_barcode_dialog').modal("show");
-        jQuery('#barcode_dialog_subtitle2').text('Generate barcodes for cross unique ids');
+        jQuery('#barcode_dialog_subtitle2').text('Gere códigos de barras para os IDs exclusivos dos cruzamentos.');
         jQuery.ajax ( {
             url : '/ajax/breeders/trial/'+<% $trial_id %>+'/get_crosses',
 
@@ -468,7 +468,7 @@ jQuery(document).ready(function () {
 
             },
             error: function(response){
-                alert("Error retrieving crosses.");
+                alert("Erro ao obter os cruzamentos.");
             }
         });
     });
@@ -477,7 +477,7 @@ jQuery(document).ready(function () {
     jQuery('#female_accession_barcodes').click(function() {
         jQuery('#generate_crossing_experiment_barcode_dialog').modal("hide");
         jQuery('#generate_trial_barcode_dialog').modal("show");
-        jQuery('#barcode_dialog_subtitle2').text('Generate barcodes for female accessions');
+        jQuery('#barcode_dialog_subtitle2').text('Gere códigos de barras para os acessos femininos.');
 
         jQuery.ajax ( {
             url : '/ajax/breeders/trial/'+<% $trial_id %>+'/get_female_accessions',
@@ -495,7 +495,7 @@ jQuery(document).ready(function () {
 
             },
             error: function(response){
-                alert("Error retrieving female accessions.");
+                alert("Erro ao obter os acessos femininos.");
             }
         });
     });
@@ -504,7 +504,7 @@ jQuery(document).ready(function () {
     jQuery('#male_accession_barcodes').click(function() {
         jQuery('#generate_crossing_experiment_barcode_dialog').modal("hide");
         jQuery('#generate_trial_barcode_dialog').modal("show");
-        jQuery('#barcode_dialog_subtitle2').text('Generate barcodes for male accessions');
+        jQuery('#barcode_dialog_subtitle2').text('Gere códigos de barras para os acessos masculinos.');
 
         jQuery.ajax ( {
             url : '/ajax/breeders/trial/'+<% $trial_id %>+'/get_male_accessions',
@@ -522,7 +522,7 @@ jQuery(document).ready(function () {
 
             },
             error: function(response){
-                alert("Error retrieving male accessions.");
+                alert("Erro ao obter os acessos masculinos.");
             }
         });
     });
@@ -536,10 +536,10 @@ jQuery(document).ready(function () {
 
             success: function(response){
                 if (response.female_plots == '') {
-                    alert("This crossing experiment has no female plot entry.");
+                    alert("Este experimento de cruzamento não possui parcela feminina.");
                 } else {
                     jQuery('#generate_trial_barcode_dialog').modal("show");
-                    jQuery('#barcode_dialog_subtitle2').text('Generate barcodes for female plots');
+                    jQuery('#barcode_dialog_subtitle2').text('Gere códigos de barras para as parcelas femininas.');
                 }
                 var female_plots_html = '<textarea class="form-control" id="stock_names" name="stock_names" >';
 
@@ -553,7 +553,7 @@ jQuery(document).ready(function () {
 
             },
             error: function(response){
-                alert("Error retrieving female plots.");
+                alert("Erro ao obter as parcelas femininas.");
             }
         });
     });
@@ -567,10 +567,10 @@ jQuery(document).ready(function () {
 
             success: function(response){
                 if (response.male_plots == '') {
-                    alert("This crossing experiment has no male plot entry.");
+                    alert("Este experimento de cruzamento não possui parcela masculina.");
                 } else {
                     jQuery('#generate_trial_barcode_dialog').modal("show");
-                    jQuery('#barcode_dialog_subtitle2').text('Generate barcodes for male plots');
+                    jQuery('#barcode_dialog_subtitle2').text('Gere códigos de barras para as parcelas masculinas.');
                 }
                 var male_plots_html = '<textarea class="form-control" id="stock_names" name="stock_names" >';
 
@@ -584,7 +584,7 @@ jQuery(document).ready(function () {
 
             },
             error: function(response){
-                alert("Error retrieving male plots.");
+                alert("Erro ao obter as parcelas masculinas.");
             }
         });
     });
@@ -598,10 +598,10 @@ jQuery(document).ready(function () {
 
             success: function(response){
                 if (response.female_plants == '') {
-                    alert("This crossing experiment has no female plant entry.");
+                    alert("Este experimento de cruzamento não possui planta feminina.");
                 } else {
                     jQuery('#generate_trial_barcode_dialog').modal("show");
-                    jQuery('#barcode_dialog_subtitle2').text('Generate barcodes for female plants');
+                    jQuery('#barcode_dialog_subtitle2').text('Gere códigos de barras para as plantas femininas.');
                 }
                 var female_plants_html = '<textarea class="form-control" id="stock_names" name="stock_names" >';
 
@@ -615,7 +615,7 @@ jQuery(document).ready(function () {
 
             },
             error: function(response){
-                alert("Error retrieving female plants.");
+                alert("Erro ao obter as plantas femininas.");
             }
         });
     });
@@ -629,10 +629,10 @@ jQuery(document).ready(function () {
 
             success: function(response){
                 if (response.male_plants == '') {
-                    alert("This crossing experiment has no male plant entry.");
+                    alert("Este experimento de cruzamento não possui planta masculina.");
                 } else {
                     jQuery('#generate_trial_barcode_dialog').modal("show");
-                    jQuery('#barcode_dialog_subtitle2').text('Generate barcodes for male plants');
+                    jQuery('#barcode_dialog_subtitle2').text('Gere códigos de barras para as plantas masculinas.');
                 }
                 var male_plants_html = '<textarea class="form-control" id="stock_names" name="stock_names" >';
 
@@ -646,7 +646,7 @@ jQuery(document).ready(function () {
 
             },
             error: function(response){
-                alert("Error retrieving male plants.");
+                alert("Erro ao obter as plantas masculinas.");
             }
         });
     });

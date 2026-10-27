@@ -8,21 +8,21 @@ $trial_name => undef
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="addSubplotsDialog">Add subplots to <% $trial_name %></h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="addSubplotsDialog">Adicionar subparcelas a <% $trial_name %></h4>
       </div>
       <div class="modal-body">
         <div class="container-fluid">
 
 	       <form class="form-horizontal" role="form" method="post" id="add_subplots_dialog_form" name="add_subplots_dialog_form">
 	        <div class="form-group">
-      	      <label class="col-sm-4 control-label">Number of subplots per plot: </label>
+              <label class="col-sm-4 control-label">Número de subparcelas por parcela: </label>
       	      <div class="col-sm-8" >
                 <input name="add_subplots_per_plot_num" id="add_subplots_per_plot_num" class="form-control" type="number" autofocus/>
               </div>
 	        </div>
             <div class="form-group">
-      	      <label class="col-sm-4 control-label">Inherits Treatment(s) From Plots: </label>
+              <label class="col-sm-4 control-label">Herdar tratamentos das parcelas: </label>
       	      <div class="col-sm-8" >
                 <input name="add_subplots_per_plot_inherit_treatments" id="add_subplots_per_plot_inherit_treatments" type="checkbox" checked disabled/>
               </div>
@@ -32,8 +32,8 @@ $trial_name => undef
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" name="add_subplots_cancel_button" id="add_subplots_cancel_button" data-dismiss="modal">Close</button>
-	      <button type="button" class="btn btn-primary" name="add_subplots_save_button" id="add_subplots_save_button" title="Save">Save</button>
+        <button type="button" class="btn btn-default" name="add_subplots_cancel_button" id="add_subplots_cancel_button" data-dismiss="modal">Fechar</button>
+	      <button type="button" class="btn btn-primary" name="add_subplots_save_button" id="add_subplots_save_button" title="Salvar">Salvar</button>
       </div>
     </div>
   </div>
@@ -43,35 +43,35 @@ $trial_name => undef
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="uploadSubplotsDialog">Upload subplots to <% $trial_name %></h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="uploadSubplotsDialog">Enviar subparcelas para <% $trial_name %></h4>
             </div>
             <div class="modal-body">
                 <div class="container-fluid">
 
-                    <&| /page/explanation.mas, title=>'Template information' &>
+                    <&| /page/explanation.mas, title=>'Informações do modelo' &>
                         <p>
-                            <b>File format information</b>
+                            <b>Informações sobre o formato do arquivo</b>
                             <br>
-                            <a id="trial_upload_subplots_spreadsheet_info_format">Spreadsheet format</a>
+                            <a id="trial_upload_subplots_spreadsheet_info_format">Formato da planilha</a>
                         </p>
                     </&>
 
                     <form class="form-horizontal" role="form" method="post" enctype="multipart/form-data" encoding="multipart/form-data" id="upload_subplots_dialog_form" name="upload_subplots_dialog_form">
                         <div class="form-group">
-                            <label class="col-sm-4 control-label">Upload File (.xls or .xlsx): </label>
+                            <label class="col-sm-4 control-label">Arquivo para envio (.xls ou .xlsx): </label>
                             <div class="col-sm-8" >
                                 <input type="file" name="trial_upload_subplots_file" id="trial_upload_subplots_file" encoding="multipart/form-data" />
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-4 control-label">Maximum number of subplots per plot: </label>
+                            <label class="col-sm-4 control-label">Número máximo de subparcelas por parcela: </label>
                             <div class="col-sm-8" >
                                 <input name="upload_subplots_per_plot_number" id="upload_subplots_per_plot_number" class="form-control" type="number" />
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-4 control-label">Inherits Treatment(s) From Plots: </label>
+                            <label class="col-sm-4 control-label">Herdar tratamentos das parcelas: </label>
                             <div class="col-sm-8" >
                                 <input name="upload_subplots_per_plot_inherit_treatments" id="upload_subplots_per_plot_inherit_treatments" type="checkbox" checked disabled/>
                             </div>
@@ -80,8 +80,8 @@ $trial_name => undef
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" name="upload_subplots_cancel_button" id="upload_subplots_cancel_button" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" name="upload_subplots_save_button" id="upload_subplots_save_button" title="Upload">Upload</button>
+                <button type="button" class="btn btn-default" name="upload_subplots_cancel_button" id="upload_subplots_cancel_button" data-dismiss="modal">Fechar</button>
+                <button type="button" class="btn btn-primary" name="upload_subplots_save_button" id="upload_subplots_save_button" title="Enviar">Enviar</button>
             </div>
         </div>
     </div>
@@ -91,18 +91,18 @@ $trial_name => undef
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header" style="text-align: center">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="uploadSubplotsInfoDialog">Upload Template Information</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="uploadSubplotsInfoDialog">Informações do modelo de envio</h4>
             </div>
             <div class="modal-body">
                 <div class="container-fluid">
-                    <b>This is for recording individual subplots in a plot.</b>
+                    <b>Use este formato para registrar subparcelas individuais em uma parcela.</b>
                     <br/>
-                    <b>Subplot names may be uploaded in an Excel file (.xls or .xlsx)</b>
+                    <b>Os nomes das subparcelas podem ser enviados em um arquivo Excel (.xls ou .xlsx).</b>
                     <br />
-                    <b>Header:</b>
+                    <b>Cabeçalho:</b>
                     <br>
-                    The first row (header) should contain the following:
+                    A primeira linha deve conter o cabeçalho a seguir:
                     <br />
 
                     <table class="table table-hover table-bordered table-condensed" >
@@ -115,15 +115,15 @@ $trial_name => undef
                         </tbody>
                     </table>
 
-                    <b>Required fields:</b>
+                    <b>Campos obrigatórios:</b>
                     <br/>
-                    plot_name (must exist in the database already)
+                    plot_name (já deve existir no banco de dados)
                     <br />
-                    subplot_name (must be globally unique. usually this is a concatenation of plot_name + subplot_number, such as MyTrial_plot101_subplot1)
+                    subplot_name (deve ser globalmente exclusivo; geralmente combina plot_name e subplot_number, como MeuEnsaio_plot101_subplot1)
                 </div>
             </div>
             <div class="modal-footer">
-                <button id="close_upload_subplot_info_dialog" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button id="close_upload_subplot_info_dialog" type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
             </div>
         </div>
     </div>
@@ -133,35 +133,35 @@ $trial_name => undef
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="uploadSubplotsWithIndexNumberDialog">Upload subplots to <% $trial_name %> with subplot index number</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="uploadSubplotsWithIndexNumberDialog">Enviar subparcelas para <% $trial_name %> com índice da subparcela</h4>
             </div>
             <div class="modal-body">
                 <div class="container-fluid">
 
-                    <&| /page/explanation.mas, title=>'Template information' &>
+                    <&| /page/explanation.mas, title=>'Informações do modelo' &>
                         <p>
-                            <b>File format information</b>
+                            <b>Informações sobre o formato do arquivo</b>
                             <br>
-                            <a id="trial_upload_subplots_with_index_number_spreadsheet_info_format">Spreadsheet format</a>
+                            <a id="trial_upload_subplots_with_index_number_spreadsheet_info_format">Formato da planilha</a>
                         </p>
                     </&>
 
                     <form class="form-horizontal" role="form" method="post" enctype="multipart/form-data" encoding="multipart/form-data" id="upload_subplots_with_index_number_dialog_form" name="upload_subplots_with_index_number_dialog_form">
                         <div class="form-group">
-                            <label class="col-sm-4 control-label">Upload File (.xls or .xlsx): </label>
+                            <label class="col-sm-4 control-label">Arquivo para envio (.xls ou .xlsx): </label>
                             <div class="col-sm-8" >
                                 <input type="file" name="trial_upload_subplots_with_index_number_file" id="trial_upload_subplots_with_index_number_file" encoding="multipart/form-data" />
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-4 control-label">Maximum number of subplots per plot: </label>
+                            <label class="col-sm-4 control-label">Número máximo de subparcelas por parcela: </label>
                             <div class="col-sm-8" >
                                 <input name="upload_subplots_with_index_number_per_plot_number" id="upload_subplots_with_index_number_per_plot_number" class="form-control" type="number" />
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-4 control-label">Inherits Treatment(s) From Plots: </label>
+                            <label class="col-sm-4 control-label">Herdar tratamentos das parcelas: </label>
                             <div class="col-sm-8" >
                                 <input name="upload_subplots_with_index_number_inherit_treatments" id="upload_subplots_with_index_number_inherit_treatments" type="checkbox" checked disabled/>
                             </div>
@@ -170,8 +170,8 @@ $trial_name => undef
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" name="upload_subplots_with_index_number_cancel_button" id="upload_subplots_with_index_number_cancel_button" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" name="upload_subplots_with_index_number_save_button" id="upload_subplots_with_index_number_save_button" title="Upload">Upload</button>
+                <button type="button" class="btn btn-default" name="upload_subplots_with_index_number_cancel_button" id="upload_subplots_with_index_number_cancel_button" data-dismiss="modal">Fechar</button>
+                <button type="button" class="btn btn-primary" name="upload_subplots_with_index_number_save_button" id="upload_subplots_with_index_number_save_button" title="Enviar">Enviar</button>
             </div>
         </div>
     </div>
@@ -181,18 +181,18 @@ $trial_name => undef
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header" style="text-align: center">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="uploadSubplotsWithIndexNumberInfoDialog">Upload Template Information</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="uploadSubplotsWithIndexNumberInfoDialog">Informações do modelo de envio</h4>
             </div>
             <div class="modal-body">
                 <div class="container-fluid">
-                    <b>This is for recording individual subplots in a plot. The subplot name will be saved as a concatenation of plot_name + _ + subplot_index_number</b>
+                    <b>Use este formato para registrar subparcelas individuais em uma parcela. O nome será salvo combinando plot_name + _ + subplot_index_number.</b>
                     <br/>
-                    <b>May be uploaded in an Excel file (.xls or .xlsx)</b>
+                    <b>O envio pode ser feito em um arquivo Excel (.xls ou .xlsx).</b>
                     <br />
-                    <b>Header:</b>
+                    <b>Cabeçalho:</b>
                     <br>
-                    The first row (header) should contain the following:
+                    A primeira linha deve conter o cabeçalho a seguir:
                     <br />
 
                     <table class="table table-hover table-bordered table-condensed" >
@@ -205,15 +205,15 @@ $trial_name => undef
                         </tbody>
                     </table>
 
-                    <b>Required fields:</b>
+                    <b>Campos obrigatórios:</b>
                     <br/>
-                    plot_name (must exist in the database already)
+                    plot_name (já deve existir no banco de dados)
                     <br />
-                    subplot_index_number (must be a number. the saved subplot name will be a concatenation of plot_name + subplot_index_number, such as MyTrial_plot101_subplot1.)
+                    subplot_index_number (deve ser numérico; o nome salvo combinará plot_name e subplot_index_number, como MeuEnsaio_plot101_subplot1)
                 </div>
             </div>
             <div class="modal-footer">
-                <button id="close_upload_subplots_with_index_number_info_dialog" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button id="close_upload_subplots_with_index_number_info_dialog" type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
             </div>
         </div>
     </div>
@@ -223,35 +223,35 @@ $trial_name => undef
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="uploadSubplotsWithNumSubplotsPerPlotDialog">Upload subplots to <% $trial_name %> with number of subplots per plot</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="uploadSubplotsWithNumSubplotsPerPlotDialog">Enviar subparcelas para <% $trial_name %> com o número de subparcelas por parcela</h4>
             </div>
             <div class="modal-body">
                 <div class="container-fluid">
 
-                    <&| /page/explanation.mas, title=>'Template information' &>
+                    <&| /page/explanation.mas, title=>'Informações do modelo' &>
                         <p>
-                            <b>File format information</b>
+                            <b>Informações sobre o formato do arquivo</b>
                             <br>
-                            <a id="trial_upload_subplots_with_num_subplots_spreadsheet_info_format">Spreadsheet format</a>
+                            <a id="trial_upload_subplots_with_num_subplots_spreadsheet_info_format">Formato da planilha</a>
                         </p>
                     </&>
 
                     <form class="form-horizontal" role="form" method="post" enctype="multipart/form-data" encoding="multipart/form-data" id="upload_subplots_with_num_subplots_dialog_form" name="upload_subplots_with_num_subplots_dialog_form">
                         <div class="form-group">
-                            <label class="col-sm-4 control-label">Upload File (.xls or .xlsx): </label>
+                            <label class="col-sm-4 control-label">Arquivo para envio (.xls ou .xlsx): </label>
                             <div class="col-sm-8" >
                                 <input type="file" name="trial_upload_subplots_with_number_of_subplots_file" id="trial_upload_subplots_with_number_of_subplots_file" encoding="multipart/form-data" />
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-4 control-label">Maximum number of subplots per plot: </label>
+                            <label class="col-sm-4 control-label">Número máximo de subparcelas por parcela: </label>
                             <div class="col-sm-8" >
                                 <input name="upload_subplots_with_num_subplots_per_plot_number" id="upload_subplots_with_num_subplots_per_plot_number" class="form-control" type="number" />
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-4 control-label">Inherits Treatment(s) From Plots: </label>
+                            <label class="col-sm-4 control-label">Herdar tratamentos das parcelas: </label>
                             <div class="col-sm-8" >
                                 <input name="upload_subplots_with_num_subplots_inherit_treatments" id="upload_subplots_with_num_subplots_inherit_treatments" type="checkbox" checked disabled/>
                             </div>
@@ -260,8 +260,8 @@ $trial_name => undef
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" name="upload_subplots_with_num_subplots_cancel_button" id="upload_subplots_with_num_subplots_cancel_button" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" name="upload_subplots_with_num_subplots_save_button" id="upload_subplots_with_num_subplots_save_button" title="Upload">Upload</button>
+                <button type="button" class="btn btn-default" name="upload_subplots_with_num_subplots_cancel_button" id="upload_subplots_with_num_subplots_cancel_button" data-dismiss="modal">Fechar</button>
+                <button type="button" class="btn btn-primary" name="upload_subplots_with_num_subplots_save_button" id="upload_subplots_with_num_subplots_save_button" title="Enviar">Enviar</button>
             </div>
         </div>
     </div>
@@ -271,18 +271,18 @@ $trial_name => undef
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header" style="text-align: center">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="uploadSubplotsWithNumSubplotsInfoDialog">Upload Template Information</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="uploadSubplotsWithNumSubplotsInfoDialog">Informações do modelo de envio</h4>
             </div>
             <div class="modal-body">
                 <div class="container-fluid">
-                    <b>This is for recording individual subplots in a plot. The subplot name will be saved as a concatenation of plot_name + _ + subplot_index_number for as many subplots as specfied by num_subplots_per_plot</b>
+                    <b>Use este formato para registrar subparcelas individuais em uma parcela. Para o número indicado por num_subplots_per_plot, os nomes serão salvos combinando plot_name + _ + subplot_index_number.</b>
                     <br/>
-                    <b>May be uploaded in an Excel file (.xls or .xlsx)</b>
+                    <b>O envio pode ser feito em um arquivo Excel (.xls ou .xlsx).</b>
                     <br />
-                    <b>Header:</b>
+                    <b>Cabeçalho:</b>
                     <br>
-                    The first row (header) should contain the following:
+                    A primeira linha deve conter o cabeçalho a seguir:
                     <br />
 
                     <table class="table table-hover table-bordered table-condensed" >
@@ -295,15 +295,15 @@ $trial_name => undef
                         </tbody>
                     </table>
 
-                    <b>Required fields:</b>
+                    <b>Campos obrigatórios:</b>
                     <br/>
-                    plot_name (must exist in the database already)
+                    plot_name (já deve existir no banco de dados)
                     <br />
-                    num_subplots_per_plot (must be a number. the number of subplots in the plot. the saved subplot name will be a concatenation of plot_name + subplot_number, such as MyTrial_plot101_subplot1)
+                    num_subplots_per_plot (deve ser numérico e indica o número de subparcelas da parcela; o nome salvo combinará plot_name e subplot_number, como MeuEnsaio_plot101_subplot1)
                 </div>
             </div>
             <div class="modal-footer">
-                <button id="close_upload_subplots_with_number_subplots_info_dialog" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button id="close_upload_subplots_with_number_subplots_info_dialog" type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
             </div>
         </div>
     </div>
@@ -383,14 +383,14 @@ jQuery(document).ready(function() {
                     alert(response.error);
                 }
                 else {
-                    alert("Successfully created subplot entries.");
+                    alert("Os registros de subparcelas foram criados com sucesso.");
                     jQuery('#add_subplots_dialog').modal("hide");
                     window.location.replace('/breeders/trial/'+<% $trial_id %>);
                 }
             },
             error: function(response) {
                 jQuery("#working_modal").modal("hide");
-                alert("An error occurred saving subplot entries");
+                alert("Ocorreu um erro ao salvar os registros de subparcelas.");
             },
         });
 
@@ -401,7 +401,7 @@ jQuery(document).ready(function() {
         var uploadFile = jQuery("#trial_upload_subplots_file").val();
         jQuery('#upload_subplots_dialog_form').attr("action", "/ajax/breeders/trial/<% $trial_id %>/upload_subplots");
         if (uploadFile === '') {
-            alert("Please select a file");
+            alert("Selecione um arquivo.");
             return;
         }
         jQuery("#upload_subplots_dialog_form").submit();
@@ -414,7 +414,7 @@ jQuery(document).ready(function() {
             jQuery('#working_modal').modal("show");
             if (uploadedSubplotsFile === '') {
                 jQuery('#working_modal').modal("hide");
-                alert("No file selected");
+                alert("Nenhum arquivo selecionado.");
             }
         },
         complete: function (response) {
@@ -426,7 +426,7 @@ jQuery(document).ready(function() {
                 return;
             }
             if (response.success) {
-                alert("File uploaded successfully");
+                alert("Arquivo enviado com sucesso.");
                 window.location.replace('/breeders/trial/'+<% $trial_id %>);
             }
         }
@@ -437,7 +437,7 @@ jQuery(document).ready(function() {
         var uploadFile = jQuery("#trial_upload_subplots_with_index_number_file").val();
         jQuery('#upload_subplots_with_index_number_dialog_form').attr("action", "/ajax/breeders/trial/<% $trial_id %>/upload_subplots_with_subplot_index_number");
         if (uploadFile === '') {
-            alert("Please select a file");
+            alert("Selecione um arquivo.");
             return;
         }
         jQuery("#upload_subplots_with_index_number_dialog_form").submit();
@@ -450,7 +450,7 @@ jQuery(document).ready(function() {
             jQuery('#working_modal').modal("show");
             if (uploadedSubplotsFile === '') {
                 jQuery('#working_modal').modal("hide");
-                alert("No file selected");
+                alert("Nenhum arquivo selecionado.");
             }
         },
         complete: function (response) {
@@ -462,7 +462,7 @@ jQuery(document).ready(function() {
                 return;
             }
             if (response.success) {
-                alert("File uploaded successfully");
+                alert("Arquivo enviado com sucesso.");
                 window.location.replace('/breeders/trial/'+<% $trial_id %>);
             }
         }
@@ -473,7 +473,7 @@ jQuery(document).ready(function() {
         var uploadFile = jQuery("#trial_upload_subplots_with_number_of_subplots_file").val();
         jQuery('#upload_subplots_with_num_subplots_dialog_form').attr("action", "/ajax/breeders/trial/<% $trial_id %>/upload_subplots_with_number_of_subplots");
         if (uploadFile === '') {
-            alert("Please select a file");
+            alert("Selecione um arquivo.");
             return;
         }
         jQuery("#upload_subplots_with_num_subplots_dialog_form").submit();
@@ -486,7 +486,7 @@ jQuery(document).ready(function() {
             jQuery('#working_modal').modal("show");
             if (uploadedSubplotsFile === '') {
                 jQuery('#working_modal').modal("hide");
-                alert("No file selected");
+                alert("Nenhum arquivo selecionado.");
             }
         },
         complete: function (response) {
@@ -498,7 +498,7 @@ jQuery(document).ready(function() {
                 return;
             }
             if (response.success) {
-                alert("File uploaded successfully");
+                alert("Arquivo enviado com sucesso.");
                 window.location.replace('/breeders/trial/'+<% $trial_id %>);
             }
         }

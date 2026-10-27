@@ -1,6 +1,7 @@
 
 package SGN::Controller::AJAX::User;
 
+use utf8;
 use Moose;
 use JSON;
 use URI::FromHash 'uri';
@@ -34,16 +35,21 @@ sub login : Path('/ajax/user/login') Args(0) {
     my $login_info = $login->login_user($username, $password);
 
     if (exists($login_info->{incorrect_password}) && $login_info->{incorrect_password} == 1) {
-	$c->stash->{rest} = { error => "Login credentials are incorrect. Please try again." };
+	$c->stash->{rest} = { error => "O nome de usuário ou a senha está incorreto. Tente novamente." };
 	return;
     }
     elsif (exists($login_info->{account_disabled}) && $login_info->{account_disabled}) {
-	$c->stash->{rest} = { error => "This account has been deactivated due to $login_info->{account_disabled}. Please contact the database administrator to re-instate the account." };
+	my %translated_reasons = (
+	    'unconfirmed account'    => 'conta não confirmada',
+	    'administrator action'   => 'ação administrativa',
+	);
+	my $reason = $translated_reasons{$login_info->{account_disabled}} || 'motivo administrativo';
+	$c->stash->{rest} = { error => "Esta conta foi desativada pelo seguinte motivo: $reason. Entre em contato com o administrador do banco de dados para reativá-la." };
 	return;
     }
     else {
 	$c->stash->{rest} = {
-	    message => "Login successful",
+	    message => "Acesso realizado com sucesso.",
 	    goto_url => $goto_url
 	};
     }
@@ -56,7 +62,7 @@ sub logout :Path('/ajax/user/logout') Args(0) {
     my $login = CXGN::Login->new($c->dbc->dbh());
     $login->logout_user();
 
-    $c->stash->{rest} = { message => "User successfully logged out." };
+    $c->stash->{rest} = { message => "Usuário desconectado com sucesso." };
 }
 
 sub logout_externally :Path('/ajax/user/logout_externally') QueryParam('redirect_uri') {
@@ -70,7 +76,7 @@ sub logout_externally :Path('/ajax/user/logout_externally') QueryParam('redirect
     $login->logout_user();
 #    $c->stash->{redirect_uri} = $redirect_uri;
 #    $c->stash->{template} = '/site/toolbar/logout_externally.mas';
-    $c->stash->{rest} = { message => "User successfully logged out." };
+    $c->stash->{rest} = { message => "Usuário desconectado com sucesso." };
 }
 
 sub new_account :Path('/ajax/user/new') Args(0) {
@@ -82,7 +88,7 @@ sub new_account :Path('/ajax/user/new') Args(0) {
     print STDERR "Adding new account...\n";
     if ($c->config->{is_mirror}) {
 	$c->stash->{template} = '/system_message.mas';
-	$c->stash->{message} = "This site is a mirror site and does not support adding users. Please go to the main site to create an account.";
+	$c->stash->{message} = "Este site é um espelho e não permite adicionar usuários. Acesse o site principal para criar uma conta.";
 	return;
     }
 
@@ -109,47 +115,47 @@ sub new_account :Path('/ajax/user/new') Args(0) {
 	#
 	my @fail = ();
 	if (length($username) < 7) {
-	    push @fail, "Username is too short. Username must be 7 or more characters";
+	    push @fail, "O nome de usuário é muito curto. Ele deve ter pelo menos 7 caracteres";
 	} elsif ( $username =~ /\s/ ) {
-        push @fail, "Username must not contain spaces";
+        push @fail, "O nome de usuário não pode conter espaços";
     } else {
 	    # does user already exist?
 	    #
 	    my $existing_login = CXGN::People::Login -> get_login($c->dbc()->dbh(), $username);
 
 	    if ($existing_login->get_username()) {
-		push @fail, "Username \"$username\" is already in use. Please pick a different username.";
+		push @fail, "O nome de usuário \"$username\" já está em uso. Escolha outro nome";
 	    }
 
 	}
 	if (length($password) < 7) {
-	    push @fail, "Password is too short. Password must be 7 or more characters";
+	    push @fail, "A senha é muito curta. Ela deve ter pelo menos 7 caracteres";
 	}
 	if ("$password" ne "$confirm_password") {
-	    push @fail, "Password and confirm password do not match.";
+	    push @fail, "A senha e sua confirmação não coincidem";
 	}
 
 	if ($password eq $username) {
-	    push @fail, "Password must not be the same as your username.";
+	    push @fail, "A senha não pode ser igual ao nome de usuário";
 	}
 	if ($email_address !~ m/[^\@]+\@[^\@]+/) {
-	    push @fail, "Email address is invalid.";
+	    push @fail, "O endereço de e-mail é inválido";
 	}
     if ( $email_address ) {
         my @person_ids = CXGN::People::Login->get_login_by_email($c->dbc()->dbh(), $email_address);
         if ( scalar(@person_ids) > 0 ) {
-            push @fail, "Email address is already associated with an account.";
+            push @fail, "O endereço de e-mail já está associado a uma conta";
         }
     }
 	unless($first_name) {
-	    push @fail,"You must enter a first name or initial.";
+	    push @fail,"Informe o nome ou a inicial";
 	}
 	unless($last_name) {
-	    push @fail,"You must enter a last name.";
+	    push @fail,"Informe o sobrenome";
 	}
 
 	if (@fail) {
-	    $c->stash->{rest} = { error => "Account creation failed for the following reason(s): ".(join ", ", @fail) };
+	    $c->stash->{rest} = { error => "Não foi possível criar a conta pelos seguintes motivos: ".(join ", ", @fail) };
 	    return;
 	}
     }
@@ -202,30 +208,30 @@ sub new_account :Path('/ajax/user/new') Args(0) {
     # Add additional user details for admin confirmation
     my $user_details = '';
     if ( $c->config->{user_registration_admin_confirmation} && $c->config->{user_registration_admin_confirmation_email} ) {
-        $user_details .= "Name: $first_name $last_name\n";
-        $user_details .= "Email: $email_address\n";
-        $user_details .= "Organization(s): $organization\n";
+        $user_details .= "Nome: $first_name $last_name\n";
+        $user_details .= "E-mail: $email_address\n";
+        $user_details .= "Organização(ões): $organization\n";
     }
 
     my $host = $c->config->{main_production_site_url};
     my $project_name = $c->config->{project_name};
-    my $subject="[$project_name] Email Address Confirmation Request";
+    my $subject="[$project_name] Confirmação de endereço de e-mail";
     my $body=<<END_HEREDOC;
 
-This message is sent to confirm the email address for community user
+Esta mensagem foi enviada para confirmar o endereço de e-mail do usuário
 \"$username\"
 $user_details
 
-Please click (or cut and paste into your browser) the following link to
-confirm your account and email address:
+Clique no link abaixo (ou copie e cole no navegador) para confirmar sua conta
+e seu endereço de e-mail:
 
 $host/user/confirm?username=$username&confirm_code=$confirm_code
 
-Thank you,
-$project_name Team
+Obrigado,
+Equipe $project_name
 
-Please do *NOT* reply to this message. If you have any trouble confirming your
-email address or have any other questions, please use the contact form instead:
+*NÃO* responda a esta mensagem. Se tiver dificuldades para confirmar seu e-mail
+ou alguma dúvida, use o formulário de contato:
 $host/contact/form
 
 END_HEREDOC
@@ -234,17 +240,17 @@ END_HEREDOC
     my $message = "";
     if ( $c->config->{user_registration_admin_confirmation} && $c->config->{user_registration_admin_confirmation_email} ) {
         CXGN::Contact::send_email($subject,$body,'user_registration_admin_confirmation_email');
-        $message = "Your account has been created but first must be confirmed by the site administrators.  You will receive an email once your account has been confirmed.";
+        $message = "Sua conta foi criada, mas precisa ser confirmada pelos administradores do site. Você receberá um e-mail após a confirmação.";
     }
 
     # Send confirmation email to user
     else {
         CXGN::Contact::send_email($subject,$body,$email_address);
-        $message = "To continue, you must confirm that we can reach you via email address \"$email_address\". An email has been sent with a URL to confirm this address. Please check your email for this message and use the link to confirm your email address.";
+        $message = "Para continuar, confirme que podemos entrar em contato pelo endereço \"$email_address\". Enviamos uma mensagem com o link de confirmação. Verifique seu e-mail e use esse link para confirmar o endereço.";
     }
 
     $c->stash->{rest} = {
-        message => "Account was created with username \"$username\".\n\n$message\n\nYou will be able to login once your account has been confirmed."
+        message => "A conta foi criada com o nome de usuário \"$username\".\n\n$message\n\nVocê poderá entrar após a confirmação da conta."
     };
 }
 
@@ -254,7 +260,7 @@ sub change_account_info_action :Path('/ajax/user/update') Args(0) {
     my $c = shift;
 
     if (! $c->user() ) {
-        $c->stash->{rest} = { error => "You must be logged in to use this page." };
+        $c->stash->{rest} = { error => "Você precisa estar conectado para usar esta página." };
 	return;
     }
 
@@ -265,7 +271,7 @@ sub change_account_info_action :Path('/ajax/user/update') Args(0) {
     my $args = $c->req->params();
 
     if (!$args->{change_password} && ! $args->{change_username} && !$args->{change_email}) {
-	my $error = "No actions were requested. Please select which fields you would like to update by checking the appropriate checkbox(es) on the form and entering your new information.";
+	my $error = "Nenhuma ação foi solicitada. Marque no formulário os campos que deseja atualizar e informe os novos dados.";
 	print STDERR $error;
 	$c->stash->{rest} =  { error => $error };
 	return;
@@ -273,7 +279,7 @@ sub change_account_info_action :Path('/ajax/user/update') Args(0) {
 
     chomp($args->{current_password});
     if (! $person->verify_password($args->{current_password})) {
-	my $error = "Your current password does not match SGN records.";
+	my $error = "A senha atual não corresponde aos registros da SGN.";
 	print STDERR $error;
 	$c->stash->{rest} = { error => "$error" };
 	return;
@@ -289,7 +295,7 @@ sub change_account_info_action :Path('/ajax/user/update') Args(0) {
 	#unless change_username is set, new_username won't be in the args hash because of the prestore test
 	my $new_username = $args->{new_username};
 	if(length($new_username) < 7) {
-	    my $error = "Username must be at least 7 characters long.";
+	    my $error = "O nome de usuário deve ter pelo menos 7 caracteres.";
 	    print STDERR $error;
 	    $c->stash->{rest} = { error => $error  };
 	    return;
@@ -299,7 +305,7 @@ sub change_account_info_action :Path('/ajax/user/update') Args(0) {
 	if (defined $other_user->get_sp_person_id() &&
 	    ($person -> get_sp_person_id() != $other_user->get_sp_person_id())) {
 	    print STDERR "Username alread in use.\n";
-	    $c->stash->{rest} = { error =>  "Username \"$new_username\" is already in use. Please select a different username." };
+	    $c->stash->{rest} = { error =>  "O nome de usuário \"$new_username\" já está em uso. Escolha outro nome." };
 	    return;
 	}
 
@@ -312,18 +318,18 @@ sub change_account_info_action :Path('/ajax/user/update') Args(0) {
 	my ($new_password, $confirm_password) = ($args->{new_password}, $args->{confirm_password});
 	if(length($args->{new_password}) < 7) {
 	    print STDERR "Password too short\n";
-	    $c->stash->{rest} = { error => "Passwords must be at least 7 characters long. Please try again." };
+	    $c->stash->{rest} = { error => "A senha deve ter pelo menos 7 caracteres. Tente novamente." };
 	    return;
 	}
 	#format check
 	if($args->{new_password} !~ /^[a-zA-Z0-9~!@#$^&*_.=:;<>?]+$/) {
 	    print STDERR "Illegal characters in password\n";
-	    $c->stash->{rest} = { error => "An error occurred. Please use your browser's back button to try again.. The Password can't contain spaces or these symbols: <u><b>` ( ) [ ] { } - + ' \" / \\ , |</b></u>." };
+	    $c->stash->{rest} = { error => "Ocorreu um erro. Volte à página anterior e tente novamente. A senha não pode conter espaços nem estes símbolos: <u><b>` ( ) [ ] { } - + ' \" / \\ , |</b></u>." };
 	    return;
 	}
 	if($args->{new_password} ne $args->{confirm_password}) {
 	    print STDERR "Password don't match.\n";
-	    $c->stash->{rest} = { error => "New password entries do not match. You must enter your new password twice to verify accuracy." };
+	    $c->stash->{rest} = { error => "As novas senhas não coincidem. Informe a mesma senha duas vezes para confirmá-la." };
 	    return;
 	}
 
@@ -337,12 +343,12 @@ sub change_account_info_action :Path('/ajax/user/update') Args(0) {
 	my ($private_email, $confirm_email) = ($args->{private_email}, $args->{confirm_email});
 	if($private_email !~ m/^[a-zA-Z0-9_.-]+@[a-zA-Z0-9_.-]+$/) {
 	    print STDERR "Invalid email address\n";
-	    $c->stash->{rest} = { error => "An error occurred. Please use your browser's back button to try again. The E-mail address \"$private_email\" does not appear to be a valid e-mail address." };
+	    $c->stash->{rest} = { error => "Ocorreu um erro. Volte à página anterior e tente novamente. O endereço \"$private_email\" não parece ser um e-mail válido." };
 	    return;
 	}
 	if($private_email ne $confirm_email) {
 	    print STDERR "Emails don't match\n";
-	    $c->stash->{rest} = { error => "An error occurred. Please use your browser's back button to try again. New e-mail address entries do not match. You must enter your new e-mail address twice to verify accuracy." };
+	    $c->stash->{rest} = { error => "Ocorreu um erro. Volte à página anterior e tente novamente. Os novos endereços de e-mail não coincidem. Informe o mesmo endereço duas vezes para confirmá-lo." };
 	    return;
 	}
 
@@ -358,30 +364,30 @@ sub change_account_info_action :Path('/ajax/user/update') Args(0) {
 
     }
 
-    $c->stash->{rest} = { message => "Update successful" };
+    $c->stash->{rest} = { message => "Atualização concluída com sucesso." };
 
 }
 
 sub send_confirmation_email {
     my ($self, $username, $private_email, $confirm_code, $host) = @_;
-    my $subject = "[SGN] E-mail Address Confirmation Request";
+    my $subject = "[SGN] Confirmação de endereço de e-mail";
 
     my $body = <<END_HEREDOC;
 
-You requested an account on the site $host.
+Você solicitou uma conta no site $host.
 
-Please do *NOT* reply to this message. The return address is not valid.
-Use the contact form at $host/contact/form instead.
+*NÃO* responda a esta mensagem. O endereço de resposta não é válido.
+Use o formulário de contato em $host/contact/form.
 
-This message is sent to confirm the private e-mail address for community user
+Esta mensagem foi enviada para confirmar o endereço de e-mail do usuário
 \"$username\".
 
-Please click (or cut and paste into your browser) the following link to
-confirm your account and e-mail address:
+Clique no link abaixo (ou copie e cole no navegador) para confirmar sua conta
+e seu endereço de e-mail:
 
   $host/user/confirm?username=$username&confirm=$confirm_code
 
-Thank you.
+Obrigado.
 Sol Genomics Network
 END_HEREDOC
 
@@ -398,7 +404,7 @@ sub forgot_username : Path('/ajax/user/forgot_username') Args(0) {
     $self->send_forgot_username_email_message($c, $email, \@person_ids);
 
     $c->stash->{rest} = {
-        message => "Username email requested. If you have an account on this database with this email, you will receive a message that includes the username associated with this email address.  If you do not have an account with this email address, you will not receive a message."
+        message => "Solicitação enviada. Se houver uma conta neste banco de dados associada ao e-mail informado, você receberá uma mensagem com o nome de usuário. Caso contrário, nenhuma mensagem será enviada."
     };
 }
 
@@ -419,7 +425,7 @@ sub reset_password :Path('/ajax/user/reset_password') Args(0) {
     }
 
     $c->stash->{rest} = {
-        message => "Password reset email requested. If you have an account on this database with this email, you will receive a message with a password reset link.  If you do not have an account with this email address, you will not receive a message.",
+        message => "Solicitação enviada. Se houver uma conta neste banco de dados associada ao e-mail informado, você receberá uma mensagem com o link para redefinir a senha. Caso contrário, nenhuma mensagem será enviada.",
     };
 }
 
@@ -432,12 +438,12 @@ sub process_reset_password_form :Path('/ajax/user/process_reset_password') Args(
     my $new_password = $c->req->param("new_password");
 
     if (length($new_password) < 7) {
-        $c->stash->{rest} = { error => "Password is too short. Password must be 7 or more characters" };
+        $c->stash->{rest} = { error => "A senha é muito curta. Ela deve ter pelo menos 7 caracteres." };
         $c->detach();
     }
 
     if ($confirm_password ne $new_password){
-        $c->stash->{rest} = { error => "Please enter the same password in the confirm password field!" };
+        $c->stash->{rest} = { error => "Informe a mesma senha no campo de confirmação." };
         $c->detach();
     }
 
@@ -451,10 +457,11 @@ sub process_reset_password_form :Path('/ajax/user/process_reset_password') Args(
         $login->update_confirm_code("");
     };
     if ($@) {
-        $c->stash->{rest} = { error => $@ };
+        print STDERR "Password reset failed: $@\n";
+        $c->stash->{rest} = { error => "Não foi possível redefinir a senha. Tente novamente ou entre em contato com o administrador." };
     }
     else {
-        $c->stash->{rest} = { message => "The password was successfully updated." };
+        $c->stash->{rest} = { message => "A senha foi atualizada com sucesso." };
     }
 }
 
@@ -473,27 +480,27 @@ sub send_forgot_username_email_message {
 
     # Only send a message if there is an account associated with the specified email address
     if ( @usernames > 0 ) {
-        my $username_message = "The following username(s) are associated with your email address: " . join(', ', @usernames);
+        my $username_message = "Os seguintes nomes de usuário estão associados ao seu endereço de e-mail: " . join(', ', @usernames);
 
         my $project_name = $c->config->{project_name};
-        my $subject = "[$project_name] Forgot Username Request";
+        my $subject = "[$project_name] Recuperação do nome de usuário";
         my $main_url = $c->config->{main_production_site_url};
 
         my $body = <<END_HEREDOC;
 
-Hi,
+Olá,
 
-You have requested the username(s) for accounts associated with this email address on $main_url.
+Você solicitou os nomes de usuário das contas associadas a este endereço de e-mail em $main_url.
 
 $username_message
 
-If this request did not come from you, please let us know.
+Se você não fez esta solicitação, entre em contato conosco.
 
-To contact us, please do NOT reply to this message; rather, use the contact form ($main_url/contact/form) instead.
+Para falar conosco, *NÃO* responda a esta mensagem. Use o formulário de contato ($main_url/contact/form).
 
-Thank you.
+Obrigado.
 
-Your friends at $project_name
+Equipe $project_name
 
 END_HEREDOC
 
@@ -510,26 +517,26 @@ sub send_reset_email_message {
     my $person = shift;
 
     my $project_name = $c->config->{project_name};
-    my $subject = "[$project_name] Password Reset Request";
+    my $subject = "[$project_name] Redefinição de senha";
     my $main_url = $c->config->{main_production_site_url};
 
     my $body = <<END_HEREDOC;
 
-Hi,
+Olá,
 
-The user $person has requested a password reset on $main_url.
+O usuário $person solicitou a redefinição de senha em $main_url.
 
-If this request did not come from you, please let us know.
+Se você não fez esta solicitação, entre em contato conosco.
 
-To contact us, please do NOT reply to this message; rather, use the contact form ($main_url/contact/form) instead.
+Para falar conosco, *NÃO* responda a esta mensagem. Use o formulário de contato ($main_url/contact/form).
 
-Your password can be reset using the following link, which you can either click or cut and paste into your browser:
+Use o link abaixo para redefinir sua senha. Você pode clicar nele ou copiá-lo e colá-lo no navegador:
 
 $reset_link
 
-Thank you.
+Obrigado.
 
-Your friends at $main_url
+Equipe $main_url
 
 END_HEREDOC
 
@@ -568,11 +575,11 @@ sub get_login_button_html :Path('/ajax/user/login_button_html') Args(0) {
 	if( $c->config->{'is_mirror'} ) {
 	    print STDERR "generating login button for mirror site...\n";
 	    $html = <<HTML;
-	    <a style="line-height: 1.2; text-decoration: underline; background: none" href="$production_site" title="log in on main site">main site</a>
+	    <a style="line-height: 1.2; text-decoration: underline; background: none" href="$production_site" title="entrar no site principal">site principal</a>
 	} elsif ( $c->config->{disable_login} ) {
 	    <li class="dropdown">
 		<div class="btn-group" role="group" aria-label="..." style="height:34px; margin: 1px 0px 0px 0px" >
-		<button class="btn btn-primary disabled" type="button" style="margin: 7px 7px 0px 0px">Login</button>
+		<button class="btn btn-primary disabled" type="button" style="margin: 7px 7px 0px 0px">Entrar</button>
 		</div>
 		</li>
 
@@ -584,7 +591,7 @@ HTML
   <li class="dropdown">
       <div class="btn-group" role="group" aria-label="..." style="height:34px; margin: 1px 0px 0px 0px" >
 	<a href="/user/login">
-          <button class="btn btn-primary" type="button" style="margin: 7px 7px 0px 0px">Login</button>
+          <button class="btn btn-primary" type="button" style="margin: 7px 7px 0px 0px">Entrar</button>
 	</a>
       </div>
   </li>
@@ -596,17 +603,17 @@ HTML
     my $username = $c->user->get_username();
     $html = <<HTML;
     <div class="btn-group" role="group" aria-label="..." style="height:34px; margin: 1px 3px 0px 0px">
-        <button id="navbar_profile" class="btn btn-primary" type="button" onclick='location.href="/solpeople/profile/$sp_person_id"' style="margin: 7px 0px 0px 0px" title="My Profile">$username</button>
-        <button id="navbar_lists" name="lists_link" class="btn btn-info" style="margin:7px 0px 0px 0px" type="button" title="Lists" onClick="show_lists();">
-            <span class="glyphicon glyphicon-align-justify" ></span>&nbsp;<span class="hidden-sm">Lists</span>
+        <button id="navbar_profile" class="btn btn-primary" type="button" onclick='location.href="/solpeople/profile/$sp_person_id"' style="margin: 7px 0px 0px 0px" title="Meu perfil">$username</button>
+        <button id="navbar_lists" name="lists_link" class="btn btn-info" style="margin:7px 0px 0px 0px" type="button" title="Listas" onClick="show_lists();">
+            <span class="glyphicon glyphicon-align-justify" ></span>&nbsp;<span class="hidden-sm">Listas</span>
         </button>
-        <button id="navbar_datasets" name="lists_link" class="btn btn-info" style="margin:7px 0px 0px 0px" type="button" title="Datasets" onClick="window.location='/search/datasets';">
-            <span class="glyphicon glyphicon-list" style="transform: rotate(90deg)"></span>&nbsp;<span class="hidden-sm">Datasets</span>
+        <button id="navbar_datasets" name="lists_link" class="btn btn-info" style="margin:7px 0px 0px 0px" type="button" title="Conjuntos de dados" onClick="window.location='/search/datasets';">
+            <span class="glyphicon glyphicon-list" style="transform: rotate(90deg)"></span>&nbsp;<span class="hidden-sm">Dados</span>
         </button>
-        <button id="navbar_personal_calendar" name="personal_calendar_link" class="btn btn-primary" style="margin:7px 0px 0px 0px" type="button" title="Your Calendar">
-            Calendar&nbsp;<span class="glyphicon glyphicon-calendar" ></span>
+        <button id="navbar_personal_calendar" name="personal_calendar_link" class="btn btn-primary" style="margin:7px 0px 0px 0px" type="button" title="Seu calendário">
+            Calendário&nbsp;<span class="glyphicon glyphicon-calendar" ></span>
         </button>
-        <button id="navbar_logout" class="btn btn-default glyphicon glyphicon-log-out" style="margin:6px 0px 0px 0px" type="button" onclick="logout();" title="Logout"></button>
+        <button id="navbar_logout" class="btn btn-default glyphicon glyphicon-log-out" style="margin:6px 0px 0px 0px" type="button" onclick="logout();" title="Sair"></button>
       </div>
 HTML
 
@@ -615,7 +622,7 @@ HTML
       $html = qq |
       <li class="dropdown">
         <div class="btn-group" role="group" aria-label="..." style="height:34px; margin: 1px 0px 0px 0px" >
-            <button id="site_login_button" name="site_login_button" class="btn btn-primary" type="button" style="margin: 7px 7px 0px 0px; position-absolute: 10,10,100,10">Login</button>
+            <button id="site_login_button" name="site_login_button" class="btn btn-primary" type="button" style="margin: 7px 7px 0px 0px; position-absolute: 10,10,100,10">Entrar</button>
         </div>
       </li>
  |;
@@ -634,12 +641,12 @@ sub quick_create_user :Path('/ajax/user/quick_create_account') Args(0) {
     my $c = shift;
 
      if (!$c->user()) {
-	$c->stash->{rest} = { error => "Need to be logged in to use feature." };
+	$c->stash->{rest} = { error => "Você precisa estar conectado para usar esta funcionalidade." };
 	return;
     }
 
     if (!$c->user()->check_roles("curator")) {
-	$c->stash->{rest} = { error => "You don't have the privileges to use this feature" };
+	$c->stash->{rest} = { error => "Você não possui permissão para usar esta funcionalidade." };
 	return;
     }
     my $logged_in_person_id = $c->user()->get_sp_person_id();
@@ -659,20 +666,19 @@ sub quick_create_user :Path('/ajax/user/quick_create_account') Args(0) {
     if ($username) {
         my @fail=();
 
-	if(length($username)<7){push @fail,"Username is too short. Username must be 7 or more characters";}
+	if(length($username)<7){push @fail,"O nome de usuário é muito curto. Ele deve ter pelo menos 7 caracteres";}
         my $existing_login=CXGN::People::Login->get_login($c->dbc->dbh, $username);
 
-        if($existing_login->get_username()){push @fail,"Username \"$username\" is already in use. Please pick a different us
-ername.";}
+        if($existing_login->get_username()){push @fail,"O nome de usuário \"$username\" já está em uso. Escolha outro nome.";}
 
-	if(length($password)<7){push @fail,"Password is too short. Password must be 7 or more characters";}
+	if(length($password)<7){push @fail,"A senha é muito curta. Ela deve ter pelo menos 7 caracteres";}
 
-	if("$password" ne "$confirm_password"){push @fail,"Password and confirm password do not match.";}
+	if("$password" ne "$confirm_password"){push @fail,"A senha e sua confirmação não coincidem.";}
 
-	if($password eq $username){push @fail,"Password must not be the same as your username.";}
+	if($password eq $username){push @fail,"A senha não pode ser igual ao nome de usuário.";}
 
 	if($new_user_type ne 'user' and $new_user_type ne 'sequencer' and $new_user_type ne 'submitter'){
-	    push @fail,"Sorry, but you cannot create user of type \"$new_user_type\" with web interface.";}
+	    push @fail,"Não é possível criar um usuário do tipo \"$new_user_type\" pela interface web.";}
         if(@fail)
         {
             my $fail_str="";
@@ -709,10 +715,11 @@ ername.";}
     };
 
     if ($@) {
-	$c->stash->{rest} = { html => "An error occurred. $@" };
+	print STDERR "Quick account creation failed: $@\n";
+	$c->stash->{rest} = { html => "Ocorreu um erro ao criar a conta." };
     }
     else {
-	$c->stash->{rest} = { html => "<center><h4>Account successfully created for $first_name $last_name</h4><a href=\"/user/admin/quick_create_account\">Create another account" };
+	$c->stash->{rest} = { html => "<center><h4>Conta criada com sucesso para $first_name $last_name</h4><a href=\"/user/admin/quick_create_account\">Criar outra conta" };
     }
 }
 

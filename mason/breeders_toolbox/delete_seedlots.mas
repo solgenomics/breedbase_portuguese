@@ -9,8 +9,8 @@ $user_role => undef
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="deleteSeedlotsDialog">Delete Seedlots </h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="deleteSeedlotsDialog">Excluir lotes de sementes</h4>
             </div>
             <div class="modal-body">
                 <div class="container-fluid">
@@ -18,24 +18,24 @@ $user_role => undef
                         <form class="form-horizontal" id="delete_seedlot_info" name="delete_seedlot_info">
                             <div class="form-group form-group-sm">
                                 <ul>
-                                    <strong>Note:</strong>
-                                    <li>Only seedlots that are not associated with crosses or trials can be deleted.</li>
-                                    <li>Deleting seedlots cannot be undone.</li>
+                                    <strong>Observação:</strong>
+                                    <li>Somente lotes de sementes não associados a cruzamentos ou ensaios podem ser excluídos.</li>
+                                    <li>A exclusão de lotes de sementes não pode ser desfeita.</li>
                                 </ul>
                             </div>
                         </form>
                     </div>
                     <form class="form-horizontal" role="form" method="post" id="delete_seedlots_form" name="delete_seedlots_form">
                         <div class="form-group" id="delete_seedlot_list_section" >
-                            <label class="col-sm-4 control-label">Select a List of Seedlots:</label>
+                            <label class="col-sm-4 control-label">Selecione uma lista de lotes de sementes:</label>
                             <div class="col-sm-8" id="seedlots_to_delete_html" name="seedlots_to_delete_html"></div>
                         </div>
                     </form>
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" name="delete_seedlots_submit" id="delete_seedlots_submit">Delete Seedlots</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                <button type="button" class="btn btn-primary" name="delete_seedlots_submit" id="delete_seedlots_submit">Excluir lotes de sementes</button>
             </div>
         </div>
     </div>
@@ -45,8 +45,8 @@ $user_role => undef
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Seedlot Deletion Verify</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Verificar exclusão dos lotes de sementes</h4>
             </div>
             <div class="modal-body">
               <div class="container-fluid">
@@ -55,8 +55,8 @@ $user_role => undef
 	      </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" name="delete_seedlots_confirm" id="delete_seedlots_confirm">Delete green elements</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                <button type="button" class="btn btn-primary" name="delete_seedlots_confirm" id="delete_seedlots_confirm">Excluir os elementos em verde</button>
             </div>
         </div>
     </div>
@@ -71,20 +71,20 @@ jQuery(window).ready( function() {
         jQuery('#delete_seedlots_using_list_dialog').modal('show');
     });
 
-    jQuery("#seedlots_to_delete_html").append(list.listSelect("seedlots_to_delete_html_select", [ 'seedlots' ], 'None', undefined, undefined));
+    jQuery("#seedlots_to_delete_html").append(list.listSelect("seedlots_to_delete_html_select", [ 'seedlots' ], 'Nenhuma', undefined, undefined));
     
 });
 
 jQuery('#delete_seedlots_submit').click( function() {
    var list_id = jQuery('#seedlots_to_delete_html_select_list_select').val();
-   if (list_id === "") { alert("Please select a list "+list_id); return; }
-   verify_seedlot_deletion(list_id).then(function(r) { display_seedlot_deletion_info(r) }, function(r) { alert("ERROR!")});
+   if (list_id === "") { alert("Selecione uma lista. "+list_id); return; }
+   verify_seedlot_deletion(list_id).then(function(r) { display_seedlot_deletion_info(r) }, function(r) { alert("ERRO!")});
 });
 
 jQuery('#delete_seedlots_confirm').click( function() {
     var list_id = jQuery('#seedlots_to_delete_html_select_list_select').val();
     if (list_id) {
-        delete_seedlots(list_id).then( function(r) { alert(r.delete_count+" elements have been deleted"); }, function(r) { alert('An error occurred'); });
+        delete_seedlots(list_id).then( function(r) { alert(r.delete_count+" elementos foram excluídos."); }, function(r) { alert('Ocorreu um erro.'); });
     }
 });
 
@@ -120,7 +120,7 @@ function display_seedlot_deletion_info(r) {
     html += "</ul>";
 
     if (ok.length === 0) {
-        html += '<br /><img src="/static/documents/img/info_icon.png"> No items can be deleted.';
+        html += '<br /><img src="/static/documents/img/info_icon.png"> Nenhum item pode ser excluído.';
         jQuery('#delete_seedlots_confirm').prop('disabled', true);
     }
     else {

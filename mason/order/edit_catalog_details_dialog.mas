@@ -19,14 +19,14 @@ $item_prop_id
     <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content ui-front">
             <div class="modal-header text-center">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="editCatalogDetailsDialog">Edit Catalog Item Details</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="editCatalogDetailsDialog">Editar detalhes do item do catálogo</h4>
             </div>
             <div class="modal-body" id="catalog_details_edit_body">
                 <div class="container-fluid">
                     <form class="form-horizontal" role="form" method="post" enctype="multipart/form-data" encoding="multipart/form-data">
                         <div class="form-group">
-                            <label class="col-sm-3 control-label" for="edit_item_name">Item Name: </label>
+                            <label class="col-sm-3 control-label" for="edit_item_name">Nome do item: </label>
                             <div class="col-sm-8">
                                 <div class="input-group">
                                     <input class="form-control col-sm-8" id="edit_item_name" type="text" value="<%$item_name%>" disabled/>
@@ -34,7 +34,7 @@ $item_prop_id
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label" for="edit_item_type">Item Type: </label>
+                            <label class="col-sm-3 control-label" for="edit_item_type">Tipo de item: </label>
                             <div class="col-sm-8">
                                 <div class="input-group">
                                     <input class="form-control col-sm-8" id="edit_item_type" type="text" value="<%$item_type%>" disabled/>
@@ -42,7 +42,7 @@ $item_prop_id
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label" for="edit_item_species">Species: </label>
+                            <label class="col-sm-3 control-label" for="edit_item_species">Espécie: </label>
                             <div class="col-sm-8">
                                 <div class="input-group">
                                     <input class="form-control col-sm-8" id="edit_item_species" type="text" value="<%$species%>" disabled/>
@@ -50,7 +50,7 @@ $item_prop_id
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label" for="edit_item_variety">Variety: </label>
+                            <label class="col-sm-3 control-label" for="edit_item_variety">Variedade: </label>
                             <div class="col-sm-8">
                                 <div class="input-group">
                                     <input class="form-control col-sm-8" id="edit_item_variety" type="text" value="<%$variety%>" disabled/>
@@ -58,7 +58,7 @@ $item_prop_id
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label" for="edit_material_type">Material Type: </label>
+                            <label class="col-sm-3 control-label" for="edit_material_type">Tipo de material: </label>
                             <div class="col-sm-8">
                                 <div class="input-group">
                                     <input class="form-control col-sm-8" id="edit_material_type" type="text" value="<%$material_type%>" disabled/>
@@ -66,20 +66,20 @@ $item_prop_id
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label" for="edit_item_category">Item Category: </label>
+                            <label class="col-sm-3 control-label" for="edit_item_category">Categoria do item: </label>
                             <div class="col-sm-8">
                                 <div class="input-group">
                                     <select class="form-control" id="edit_item_category" value="<%$category%>">
-                                        <option value="released variety">released variety</option>
-                                        <option value="pathogen assay ">pathogen assay</option>
-                                        <option value="control">control</option>
-                                        <option value="transgenic line">transgenic line</option>
+                                        <option value="released variety">variedade lançada</option>
+                                        <option value="pathogen assay ">ensaio de patógeno</option>
+                                        <option value="control">controle</option>
+                                        <option value="transgenic line">linhagem transgênica</option>
                                     </select>
                                 </div>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label" for="edit_item_material_source">Material Source: </label>
+                            <label class="col-sm-3 control-label" for="edit_item_material_source">Origem do material: </label>
                             <div class="col-sm-8">
                                 <div class="input-group">
                                     <input class="form-control col-sm-8" id="edit_item_material_source" type="text" value="<%$material_source%>" />
@@ -87,7 +87,7 @@ $item_prop_id
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label" for="edit_item_additional_info">Additional Info: </label>
+                            <label class="col-sm-3 control-label" for="edit_item_additional_info">Informações adicionais: </label>
                             <div class="col-sm-8">
                                 <div class="input-group">
                                     <input class="form-control col-sm-8" id="edit_item_additional_info" type="text" value="<%$additional_info%>" />
@@ -95,7 +95,7 @@ $item_prop_id
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label" for="edit_item_breeding_program">Breeding Program: </label>
+                            <label class="col-sm-3 control-label" for="edit_item_breeding_program">Programa de melhoramento: </label>
                             <div class="col-sm-8">
                                 <div class="input-group">
                                     <select class="form-control" id="edit_item_breeding_program" value="<%$program_id%>"></select>
@@ -103,19 +103,19 @@ $item_prop_id
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label" for="edit_availability">Availability: </label>
+                            <label class="col-sm-3 control-label" for="edit_availability">Disponibilidade: </label>
                             <div class="col-sm-8">
                                 <div class="input-group">
                                     <select class="form-control" id="edit_availability" value="<%$availability%>">
-                                        <option value="available">available</option>
-                                        <option value="unavailable">unavailable</option>
+                                        <option value="available">disponível</option>
+                                        <option value="unavailable">indisponível</option>
                                     </select>
                                 </div>
                             </div>
                         </div>
                         <!--
                         <div class="form-group">
-                            <label class="col-sm-3 control-label" for="edit_contact_person">Contact Person Username: </label>
+                            <label class="col-sm-3 control-label" for="edit_contact_person">Usuário da pessoa de contato: </label>
                             <div class="col-sm-8">
                                 <div class="input-group">
                                     <input class="form-control col-sm-8" id="edit_contact_person" type="text" value="<%$contact_person_username%>" />
@@ -127,8 +127,8 @@ $item_prop_id
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal" id="edit_item_details_cancel_button">Cancel</button>
-                <button type="button" class="btn btn-primary" id="save_item_details">Save Changes</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal" id="edit_item_details_cancel_button">Cancelar</button>
+                <button type="button" class="btn btn-primary" id="save_item_details">Salvar alterações</button>
             </div>
         </div>
     </div>
@@ -139,19 +139,19 @@ $item_prop_id
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="editCatalogSavedDialog">Success</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="editCatalogSavedDialog">Sucesso</h4>
             </div>
             <div class="modal-body">
                 <div class="container-fluid">
                     <p>
                         <span class="ui-icon ui-icon-circle-check" style="float: left; margin: 0 7px 50px 0;"></span>
-                        The catalog info was saved successfully.
+                        As informações do catálogo foram salvas com sucesso.
                     </p>
                 </div>
             </div>
             <div class="modal-footer">
-                <button id="dismiss_edit_item_saved_dialog" type="button" class="btn btn-default" data-dismiss="modal">Close & Reload</button>
+                <button id="dismiss_edit_item_saved_dialog" type="button" class="btn btn-default" data-dismiss="modal">Fechar e recarregar</button>
             </div>
         </div>
     </div>
@@ -230,7 +230,7 @@ jQuery(document).ready( function() {
             },
             error: function(response){
                 jQuery('#working_modal').modal('hide');
-                alert('An error occurred adding item');
+                alert('Ocorreu um erro ao adicionar o item');
             }
         });
     });

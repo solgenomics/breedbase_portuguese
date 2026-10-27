@@ -8,45 +8,45 @@ $trial_id
     <div class="row">
         <div class="col-sm-6">
             <div class="well">
-                <h4>Derive Trait Phenotypes</h4>
+                <h4>Calcular fenótipos derivados</h4>
                 <div class="row">
                     <div class="col-sm-4">
-                        <a id="compute_derived_trait_link"><button class="button" type="button" id="derived_button" value="Create_Trait" >Derive Trait</button></a>
+                        <a id="compute_derived_trait_link"><button class="button" type="button" id="derived_button" value="Create_Trait" >Calcular característica</button></a>
                     </div>
                     <div class="col-sm-8">
-                        <p><b>P <sub>Calculated</sub></b> = <i>f</i> ( <b>P <sub>Trait1</sub></b> , <b>P <sub>Trait2</sub></b> )</p>
+                        <p><b>P <sub>Calculado</sub></b> = <i>f</i> ( <b>P <sub>Característica 1</sub></b> , <b>P <sub>Característica 2</sub></b> )</p>
                     </div>
                 </div>
             </div>
         </div>
         <div class="col-sm-6">
             <div class="well">
-                <h4>Calculate Plot Phenotypes from Plant Phenotypes</h4>
+                <h4>Calcular fenótipos das parcelas com base nos fenótipos das plantas</h4>
                 <div class="row">
                     <div class="col-sm-4">
-                        <a id="generate_plot_pheno_link"><button class="button" type="button" >Calculate</button></a>
+                        <a id="generate_plot_pheno_link"><button class="button" type="button" >Calcular</button></a>
                     </div>
                     <div class="col-sm-8">
-                        <p><b>P <sub>Plot</sub></b> = <i>average</i> ( <b>P <sub>Plants</sub></b> )</p>
+                        <p><b>P <sub>Parcela</sub></b> = <i>média</i> ( <b>P <sub>Plantas</sub></b> )</p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-<div id="compute_derived_trait_dialog" title="Compute Derived Traits" style="display:none;">
+<div id="compute_derived_trait_dialog" title="Calcular características derivadas" style="display:none;">
   	<div id="trait_list_dc" name="trait_list">
-    		<label id="trait_list_label_dc" for="trait_list_list_select" style="display: inline-block; width: 300px;">Please select trait to compute: <br />
+		<label id="trait_list_label_dc" for="trait_list_list_select" style="display: inline-block; width: 300px;">Selecione a característica a calcular:<br />
   			<select id="derived_trait_select"></select>
     		</label> 
     			
   	</div>
 </div>
 
-<div id="derived_trait_saved_dialog_message" title="Computation of Derived Traits" style="display:none;">
+<div id="derived_trait_saved_dialog_message" title="Cálculo de características derivadas" style="display:none;">
   	<p>
     		<span class="ui-icon ui-icon-circle-check" style="float: left; margin: 0 7px 50px 0;"></span>
-    		The trait was created and saved successfully
+		A característica foi criada e salva com sucesso.
   	</p>
 </div>
 
@@ -54,8 +54,8 @@ $trial_id
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="generatePlotPhenoDialog">Generate Plot Phenotypes from Plant Phenotypes</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="generatePlotPhenoDialog">Gerar fenótipos das parcelas com base nos fenótipos das plantas</h4>
       </div>
       <div class="modal-body">
         <div class="container-fluid">
@@ -65,40 +65,40 @@ $trial_id
                     <form class="form-horizontal" role="form" method="post" id="generate_plot_pheno_dialog_form" name="generate_plot_pheno_dialog_form">
 
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">Trait: </label>
+                            <label class="col-sm-3 control-label">Característica: </label>
                             <div class="col-sm-9" >
                                 <div id="generate_plot_pheno_trait_select_dropdown">
-                                    [No Plants Phenotyped]
+                                    [Nenhuma planta fenotipada]
                                     <!--ajax populated -->
                                 </div>
                             </div>
                         </div>
                         <hr>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">Method: </label>
+                            <label class="col-sm-3 control-label">Método: </label>
                             <div class="col-sm-9" >
                                 <select id="generate_plot_pheno_method_select" class="form-control">
-                                    <option value="arithmetic_mean">Arithmetic Mean</option>
-                                    <option value="mode">Mode</option>
-                                    <option value="maximum">Maximum</option>
-                                    <option value="minimum">Minimum</option>
-                                    <option value="median">Median</option>
+                                    <option value="arithmetic_mean">Média aritmética</option>
+                                    <option value="mode">Moda</option>
+                                    <option value="maximum">Máximo</option>
+                                    <option value="minimum">Mínimo</option>
+                                    <option value="median">Mediana</option>
                                 </select>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">Rounding: </label>
+                            <label class="col-sm-3 control-label">Arredondamento: </label>
                             <div class="col-sm-9" >
                                 <select id="generate_plot_pheno_rounding_select" class="form-control">
-                                    <option value="no_rounding">No rounding</option>
-                                    <option value="round">Round to nearest integer</option>
-                                    <option value="round_up">Always round up to nearest integer</option>
-                                    <option value="round_down">Always round down to nearest integer</option>
+                                    <option value="no_rounding">Sem arredondamento</option>
+                                    <option value="round">Arredondar para o inteiro mais próximo</option>
+                                    <option value="round_up">Sempre arredondar para cima</option>
+                                    <option value="round_down">Sempre arredondar para baixo</option>
                                 </select>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">Overwrite Previous Plot Values for this Trait: </label>
+                            <label class="col-sm-3 control-label">Sobrescrever os valores anteriores das parcelas para esta característica: </label>
                             <div class="col-sm-9" >
                                 <input type='checkbox' id="generate_plot_pheno_overwrite" name="generate_plot_pheno_overwrite"/>
                             </div>
@@ -117,9 +117,9 @@ $trial_id
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" name="generate_plot_pheno_calc_submit" id="generate_plot_pheno_calc_submit" title="Calculate">View Calculation (Does Not Save)</button>
-        <button disabled type="button" class="btn btn-primary" name="generate_plot_pheno_save" id="generate_plot_pheno_save" title="">Save</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+        <button type="button" class="btn btn-primary" name="generate_plot_pheno_calc_submit" id="generate_plot_pheno_calc_submit" title="Calcular">Visualizar cálculo (não salva)</button>
+        <button disabled type="button" class="btn btn-primary" name="generate_plot_pheno_save" id="generate_plot_pheno_save" title="">Salvar</button>
       </div>
     </div>
   </div>
@@ -145,7 +145,7 @@ jQuery(document).ready(function () {
                 jQuery("#working_modal").modal("hide");
                 if (response.traits_assayed[0][0]) {
                     var traits_assayed_html = "<select class='form-control' id='generate_plot_pheno_trait_select' onchange='generate_plot_pheno_trait_change(this.value)'>";
-                    traits_assayed_html = traits_assayed_html + '<option value="all">All</option>';
+                    traits_assayed_html = traits_assayed_html + '<option value="all">Todas</option>';
                     for (i=0; i<response.traits_assayed[0].length; i++) {
                         traits_assayed_html = traits_assayed_html + "<option value="+ encodeURI(response.traits_assayed[0][i][1]) + " >" + response.traits_assayed[0][i][1] + "</option>";
                     }
@@ -153,7 +153,7 @@ jQuery(document).ready(function () {
 
                     jQuery("#generate_plot_pheno_trait_select_dropdown").html(traits_assayed_html);
 
-                    jQuery('#generate_plot_pheno_trait_select_definition').html("<a href='/cvterm/"+response.traits_assayed[0][0][0]+"/view'>Definition</a>");
+                    jQuery('#generate_plot_pheno_trait_select_definition').html("<a href='/cvterm/"+response.traits_assayed[0][0][0]+"/view'>Definição</a>");
                 }
             }
         });
@@ -177,7 +177,11 @@ jQuery(document).ready(function () {
             },
             success: function(response){
                 //console.log(response);
-                var html = '<hr><h5>Trait: '+response.trait_name+'</h5><h5>Method: '+response.method+'</h5><h5>Rounding: '+response.rounding+'</h5><table class="table table-hover"><thead><tr><th>Plot</th><th>Plant Values</th><th>Calculation Output</th><th>Value to Store</th><th>Notes</th></tr></thead><tbody>';
+                var method_labels = { arithmetic_mean: 'Média aritmética', mode: 'Moda', maximum: 'Máximo', minimum: 'Mínimo', median: 'Mediana' };
+                var rounding_labels = { no_rounding: 'Sem arredondamento', round: 'Inteiro mais próximo', round_up: 'Para cima', round_down: 'Para baixo' };
+                var method_label = method_labels[response.method] || response.method;
+                var rounding_label = rounding_labels[response.rounding] || response.rounding;
+                var html = '<hr><h5>Característica: '+response.trait_name+'</h5><h5>Método: '+method_label+'</h5><h5>Arredondamento: '+rounding_label+'</h5><table class="table table-hover"><thead><tr><th>Parcela</th><th>Valores das plantas</th><th>Resultado do cálculo</th><th>Valor a armazenar</th><th>Observações</th></tr></thead><tbody>';
                 for (var k=0; k<response.info.length; k++) {
                     for (var i=0; i<response.info[k].length; i++) {
                         html = html + '<tr><td>'+response.info[k][i].plot_name+'</td><td>'+response.info[k][i].plant_values+'</td><td>'+response.info[k][i].output+'</td><td>'+response.info[k][i].value_to_store+'</td>';
@@ -229,7 +233,7 @@ jQuery(document).ready(function () {
 });
 
 function generate_plot_pheno_trait_change(trait_id) {
-    jQuery('#generate_plot_pheno_trait_select_definition').html("<a href='/cvterm/"+trait_id+"/view'>Definition</a>");
+    jQuery('#generate_plot_pheno_trait_select_definition').html("<a href='/cvterm/"+trait_id+"/view'>Definição</a>");
 }
 
 </script>

@@ -12,38 +12,38 @@ $drone_run_date => undef
         <table class="table table-hover table-bordered" >
 
             <tr>
-                <td><b>Imaging Event Name</b></td>
+                <td><b>Nome do evento de imageamento</b></td>
                 <td>
                     <div id="trial_name">
 % if ($trial_name) {
 %   print "$trial_name";
 % } else {
-%   print "<span class='text-danger'>[No Imaging Event Name]</span>";
+%   print "<span class='text-danger'>[Sem nome do evento de imageamento]</span>";
 % }
                     </div>
                 </td>
             </tr>
 
             <tr>
-                <td><b>Imaging Event Date</b></td>
+                <td><b>Data do evento de imageamento</b></td>
                 <td>
                     <div id="drone_run_date">
 % if ($drone_run_date) {
 <a href="/breeders/trial/<% $trial_id %>?currentDate=<% $drone_run_date %>" ><% $drone_run_date %></a>
 % } else {
-%  print "<span class='text-danger'>[No Imaging Event Date]</span>";
+%  print "<span class='text-danger'>[Sem data do evento de imageamento]</span>";
 % }
                     </div>
                 </td>
             </tr>
 
-            <tr><td><b>Description</b></td>
+            <tr><td><b>Descrição</b></td>
                 <td>
                     <div id="trial_description">
 % if ($trial_description) {
 %  print "$trial_description";
 % } else {
-%  print "<span class='text-danger'>[No Description]</span>";
+%  print "<span class='text-danger'>[Sem descrição]</span>";
 % }
                     </div>
                 </td>

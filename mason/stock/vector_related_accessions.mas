@@ -12,7 +12,7 @@ $stock_type => undef
 
 <div class="panel panel-default">
     <div class="panel-body">
-        <&| /page/info_section.mas, title => 'Copy Accessions to a List', collapsible=>1, collapsed=>0, subtitle=>'<i>Copy the accession names to a new or exisiting list</i>'&>
+        <&| /page/info_section.mas, title => 'Copiar acessos para uma lista', collapsible=>1, collapsed=>0, subtitle=>'<i>Copie os nomes dos acessos para uma lista nova ou existente</i>'&>
         <br>
         <div id="transformant_names" style="display:none"></div>
         <div id="transformants_to_list_menu"></div>
@@ -35,22 +35,22 @@ jQuery(document).ready(function(){
         'autoWidth': false,
         'ordering': false,
         'columns': [
-            { title: "Accession", "data": null, "render": function ( data, type, row ) { return "<a href='/stock/"+row.transformant_id+"/view'>"+row.transformant_name+"</a>"; } },
-            { title: "Plant Material", "data": null, "render": function ( data, type, row ) { return "<a href='/stock/"+row.plant_id+"/view'>"+row.plant_name+"</a>"; } },
-            { title: "Transformation ID", "data": null, "render": function ( data, type, row ) {
+            { title: "Acesso", "data": null, "render": function ( data, type, row ) { return "<a href='/stock/"+row.transformant_id+"/view'>"+row.transformant_name+"</a>"; } },
+            { title: "Material vegetal", "data": null, "render": function ( data, type, row ) { return "<a href='/stock/"+row.plant_id+"/view'>"+row.plant_name+"</a>"; } },
+            { title: "ID da transformação", "data": null, "render": function ( data, type, row ) {
                 if (row.transformation_id === null){
-                    return 'NA'
+                    return 'Não disponível'
                 } else {
                     return "<a href='/transformation/"+row.transformation_id+"'>"+row.transformation_name+"</a>";
                 }
             }},
-            { title: "Obsolete Accession", "data": "null", "render": function ( data, type, row ) { return "<a onclick='obsoleteStock("+row.transformant_id+",\""+row.transformant_name+"\")'>X</a>"; } },
+            { title: "Marcar acesso como obsoleto", "data": "null", "render": function ( data, type, row ) { return "<a onclick='obsoleteStock("+row.transformant_id+",\""+row.transformant_name+"\")'>X</a>"; } },
         ],
 
         "fnInitComplete": function(oSettings, json) {
             //console.log(json);
             if (!isLoggedIn()) {
-                jQuery('#transformants_to_list_menu').html("<div class='well well-sm'><h3>Please login to use lists!</h3></div>");
+                jQuery('#transformants_to_list_menu').html("<div class='well well-sm'><h3>Entre no sistema para usar listas!</h3></div>");
             } else {
                 let html = "";
                 for(let i=0; i<json.data.length; i++){

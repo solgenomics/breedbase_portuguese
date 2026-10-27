@@ -20,32 +20,32 @@ $purpose
 <& /util/import_css.mas, paths => ['/documents/inc/datatables/jquery.dataTables.css'] &>
 
 
-<& /page/page_title.mas, title => "Details for Propagation Group ID '$propagation_group_name'" &>
+<& /page/page_title.mas, title => "Detalhes do ID de grupo de propagação '$propagation_group_name'" &>
 
-<&| /page/info_section.mas, title=>"Details",  collapsible => 1, collapsed=>0 &>
+<&| /page/info_section.mas, title=>"Detalhes",  collapsible => 1, collapsed=>0 &>
 
     <div class="panel panel-default">
         <div class="panel-body">
             <div class="row">
                 <div class="col-sm-6">
                     <table class="table table-bordered table-hover">
-                        <tr><td><b>Project</b></td><td><%$project_link%></td></tr>
+                        <tr><td><b>Projeto</b></td><td><%$project_link%></td></tr>
                         <tr><td><b>Material</b></td><td><%$accession_link%></td></tr>
-                        <tr><td><b>Material Type</b></td><td><%$material_type%></td></tr>
-                        <tr><td><b>Source Type</b></td><td><%$material_source_type%></td></tr>
-                        <tr><td><b>Source Name</b></td><td><%$source_link%></td></tr>
-                        <tr><td><b>Date</b></td><td><%$date%></td></tr>
-                        <tr><td><b>Sub-Location</b></td><td><%$sub_location%></td></tr>
-                        <tr><td><b>Purpose</b></td><td><%$purpose%></td></tr>                        
-                        <tr><td><b>Description</b></td><td><%$description%></td></tr>
-                        <tr><td><b>Operator</b></td><td><%$operator_name%></td></tr>
+                        <tr><td><b>Tipo de material</b></td><td><%$material_type%></td></tr>
+                        <tr><td><b>Tipo de origem</b></td><td><%$material_source_type%></td></tr>
+                        <tr><td><b>Nome de origem</b></td><td><%$source_link%></td></tr>
+                        <tr><td><b>Data</b></td><td><%$date%></td></tr>
+                        <tr><td><b>Sublocal</b></td><td><%$sub_location%></td></tr>
+                        <tr><td><b>Finalidade</b></td><td><%$purpose%></td></tr>
+                        <tr><td><b>Descrição</b></td><td><%$description%></td></tr>
+                        <tr><td><b>Responsável</b></td><td><%$operator_name%></td></tr>
                     </table>
                 </div>
             </div>
         </div>
     </div>
 
-    <button class="btn btn-sm btn-primary" style="margin:3px" id="add_new_propagation_id_link">Add New Propagation ID</button>
+    <button class="btn btn-sm btn-primary" style="margin:3px" id="add_new_propagation_id_link">Adicionar novo ID de propagação</button>
 </&>
 
 <& /propagation/propagation_id_section.mas, propagation_group_stock_id => $propagation_group_id &>

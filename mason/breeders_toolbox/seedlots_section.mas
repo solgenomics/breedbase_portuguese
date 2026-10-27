@@ -12,7 +12,7 @@ $stock_type => undef
     <& /breeders_toolbox/add_seedlot_dialogs.mas, cross_uniquename=>$stock_uniquename &>
 % }
 
-<&| /page/info_section.mas, id=>'related_seedlots_to_accessions', title => 'Seedlots of this '.ucfirst($stock_type), collapsible=>1, collapsed=>1, subtitle=>"<button class='btn btn-sm btn-primary' style='margin:3px' name='add_seedlot_button' >Create New Seedlot</button>" &>
+<&| /page/info_section.mas, id=>'related_seedlots_to_accessions', title => 'Lotes de sementes relacionados', collapsible=>1, collapsed=>1, subtitle=>"<button class='btn btn-sm btn-primary' style='margin:3px' name='add_seedlot_button' >Criar novo lote de sementes</button>" &>
     <div class="well well-sm">
         <div class="panel panel-default">
             <div class="panel-body" style="overflow:scroll">
@@ -21,9 +21,9 @@ $stock_type => undef
             </div>
         </div>
         <br>
-        <&| /page/info_section.mas, title => 'Copy Seedlots to a List', collapsible=>1, collapsed=>1, subtitle=>'<i>Copy the seedlot names showing in table to a new or exisiting list</i>'&>
+        <&| /page/info_section.mas, title => 'Copiar lotes de sementes para uma lista', collapsible=>1, collapsed=>1, subtitle=>'<i>Copie os nomes dos lotes exibidos na tabela para uma lista nova ou existente</i>'&>
             <br/>
-            <div style="text-align:right" id="accession_seedlots_to_list_menu">[LOADING...]</div>
+            <div style="text-align:right" id="accession_seedlots_to_list_menu">[CARREGANDO...]</div>
             <div id="accession_seedlot_names" style="display: none;"></div>
         </&>
     </div>
@@ -41,15 +41,15 @@ jQuery(document).ready(function(){
             'autoWidth': false,
             'ajax': '/ajax/stock/stock_related_seedlots/'+ "<% $stock_id %>",
             'columns': [
-                { title: "Seedlot Name", "data": null, "render": function ( data, type, row ) { return "<a href='/breeders/seedlot/"+row.seedlot_stock_id+"'>"+row.seedlot_stock_uniquename+"</a>"; } },
-                { title: "Breeding Program", "data": "breeding_program_name" },
-                { title: "Contents", "data": "contents_html" },
-                { title: "Seedlot Location", "data": "location" },
-                { title: "Count", "data": "count" },
-                { title: "Weight(g)", "data": "weight_gram" },
-                { title: "Box Name", "data": "box" },
-                { title: "Quality", "data": "seedlot_quality" },
-                { title: "Material Type", "data": "material_type"},
+                { title: "Nome do lote de sementes", "data": null, "render": function ( data, type, row ) { return "<a href='/breeders/seedlot/"+row.seedlot_stock_id+"'>"+row.seedlot_stock_uniquename+"</a>"; } },
+                { title: "Programa de melhoramento", "data": "breeding_program_name" },
+                { title: "Conteúdo", "data": "contents_html" },
+                { title: "Local do lote de sementes", "data": "location" },
+                { title: "Quantidade", "data": "count" },
+                { title: "Peso (g)", "data": "weight_gram" },
+                { title: "Nome da caixa", "data": "box" },
+                { title: "Qualidade", "data": "seedlot_quality" },
+                { title: "Tipo de material", "data": "material_type"},
                 { title: "", "data": "seedlot_stock_uniquename"}
             ],
         });

@@ -5,7 +5,7 @@ $facilities
 </%args>
 
 
-<& /page/page_title.mas, title=>"<b>Quality Control Genotyping using the Intertek QC KASP marker sets of 20 or 40</b>" &>
+<& /page/page_title.mas, title=>"<b>Controle de qualidade de genotipagem usando conjuntos de 20 ou 40 marcadores KASP QC da Intertek</b>" &>
 
 <& /util/import_javascript.mas, classes => [ 'jquery.iframe-post-form', 'CXGN.BreedersToolbox.GenotypingTrial' ] &>
 
@@ -13,11 +13,11 @@ $facilities
 <p>
     <ul>
         
-    <li>The intertek quality control marker sets can be used in 2 ways:</li>
-    <ol>1. <b>Storing new fingerprint of your germplasm </b> that has been genotyped using the qc marker sets as a new protocol. This requires two files for the storage: <em>Intertek grid file</em> which has allele calls for each genotype. Download sample file <a href="docs/intertek_grid.csv" title="sample grid file"> here.</a> The second file is a <em>Map file</em> which has all the SNP information. Download sample file <a href="docs/SNP_file.csv" title="sample SNP file"> here.</a> </ol><br/>
-    <ol>2.<b> Run genotype quality control</b> with the qc markers by comparing with existing protocol in the database. This requries just the <a href="docs/intertek_grid.csv" title="sample grid file">grid file</a>
+    <li>Os conjuntos de marcadores de controle de qualidade da Intertek podem ser usados de duas maneiras:</li>
+    <ol>1. <b>Armazenar uma nova impressão digital do germoplasma</b> genotipado com os conjuntos de marcadores QC como um novo protocolo. São necessários dois arquivos: o <em>arquivo de grade da Intertek</em>, que contém as chamadas de alelos de cada genótipo — baixe um arquivo de exemplo <a href="docs/intertek_grid.csv" title="arquivo de grade de exemplo">aqui</a> — e o <em>arquivo de mapa</em>, que contém todas as informações dos SNPs — baixe um arquivo de exemplo <a href="docs/SNP_file.csv" title="arquivo SNP de exemplo">aqui</a>.</ol><br/>
+    <ol>2. <b>Executar o controle de qualidade dos genótipos</b> com os marcadores QC, comparando-os a um protocolo existente no banco de dados. Para isso, é necessário apenas o <a href="docs/intertek_grid.csv" title="arquivo de grade de exemplo">arquivo de grade</a>.
     </ol><br/>
-    <li>The steps below will guide you through uploading a new fingerprint or performing a quality control.</li>
+    <li>As etapas abaixo orientarão o envio de uma nova impressão digital ou a execução de um controle de qualidade.</li>
     </ul>
     </p>
 </div>
@@ -34,14 +34,14 @@ $facilities
     <div>  -->
 <ul>
       <p>
-      <li><font size="2" color="green"> Upload QC assay</font> </li>
-      <li><font size="2" color="green">Only CSV file format is supported </font></li>
+      <li><font size="2" color="green">Enviar ensaio de QC</font></li>
+      <li><font size="2" color="green">Somente arquivos no formato CSV são aceitos</font></li>
   </ul>
 </div>
   <br/><br/><br/><br/>
   <center>
-        <button class="btn btn-primary" name="upload_genotyping_data_link">Upload Genotyping Data (VCF or Intertek Format)</button>
-        <button class="btn btn-primary" name="upload_genotyping_data_qc_link">Run Genotype Quality Control</button>
+        <button class="btn btn-primary" name="upload_genotyping_data_link">Enviar dados de genotipagem (formato VCF ou Intertek)</button>
+        <button class="btn btn-primary" name="upload_genotyping_data_qc_link">Executar controle de qualidade dos genótipos</button>
     </center>
      
     

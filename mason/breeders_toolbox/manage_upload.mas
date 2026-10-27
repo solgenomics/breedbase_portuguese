@@ -13,7 +13,7 @@ $design_types => ()
 
 <& /util/import_javascript.mas, classes => [ 'bootstrap_min.js', 'jquery.iframe-post-form','CXGN.List', 'CXGN.BreedersToolbox.AddTrial','CXGN.BreedersToolbox.UploadTrial','CXGN.BreedersToolbox.Trial', 'CXGN.Trial','CXGN.BreedersToolbox.GenotypingTrial','CXGN.BreedersToolbox.Accessions', 'CXGN.BreedersToolbox.UploadPedigrees','CXGN.BreedersToolbox.Crosses','CXGN.BreedersToolbox.FieldBook','CXGN.BreedersToolbox.UploadPhenotype', 'CXGN.BreederSearch', 'CXGN.Trial','CXGN.TrialTreeFolders' ] &>
 
-<& /page/page_title.mas, title=>"Upload Data" &>
+<& /page/page_title.mas, title=>"Enviar dados" &>
 
 <style>
 .ui-autocomplete {
@@ -24,21 +24,21 @@ $design_types => ()
 <div class="container-fluid">
 
 <div class="well well-sm">
-<h1>Traits</h1><br/>
+<h1>Características</h1><br/>
 <table class="table table-bordered">
 <thead>
-<tr><th>Add</th><th>Manage</th><th>Search</th></tr>
+<tr><th>Adicionar</th><th>Gerenciar</th><th>Pesquisar</th></tr>
 </thead>
 <tbody>
 <tr>
 <td>
-<a href="http://submit.rtbbase.org"><p>Go To Trait Request Form</p></a>
+<a href="http://submit.rtbbase.org"><p>Acessar o formulário de solicitação de características</p></a>
 </td>
 <td>
-<a href="/tools/onto"><p>Go To Ontology Browser</p></a>
+<a href="/tools/onto"><p>Acessar o navegador de ontologias</p></a>
 </td>
 <td>
-<a href="/search/traits"><p>Go To Trait Search</p></a>
+<a href="/search/traits"><p>Acessar a pesquisa de características</p></a>
 </td>
 </tr>
 </tbody>
@@ -46,22 +46,22 @@ $design_types => ()
 </div>
 
 <div class="well well-sm">
-<h1>Field Trials</h1><br/>
+<h1>Ensaios de campo</h1><br/>
 <table class="table table-bordered">
 <thead>
-<tr><th>Add</th><th>Manage</th><th>Search</th></tr>
+<tr><th>Adicionar</th><th>Gerenciar</th><th>Pesquisar</th></tr>
 </thead>
 <tbody>
 <tr>
 <td>
-<a name="upload_trial_link"><p>Upload An Existing Trial</p></a>
-<a id="add_project_link"><p>Design A New Trial</p></a>
+<a name="upload_trial_link"><p>Enviar um ensaio existente</p></a>
+<a id="add_project_link"><p>Criar um novo ensaio</p></a>
 </td>
 <td>
-<a href="/breeders/trials"><p>Go To Manage Trials</p></a>
+<a href="/breeders/trials"><p>Acessar o gerenciamento de ensaios</p></a>
 </td>
 <td>
-<a href="/search/trials"><p>Go To Trial Search</p></a>
+<a href="/search/trials"><p>Acessar a pesquisa de ensaios</p></a>
 </td>
 </tr>
 </tbody>
@@ -71,21 +71,21 @@ $design_types => ()
 <& /breeders_toolbox/trial/trial_upload_dialogs.mas, locations => $geojson_locations, breeding_programs => $breeding_programs, design_types => $design_types &>
 
 <div class="well well-sm">
-<h1>Genotyping Plates</h1><br/>
+<h1>Placas de genotipagem</h1><br/>
 <table class="table table-bordered">
 <thead>
-<tr><th>Add</th><th>Manage</th><th>Search</th></tr>
+<tr><th>Adicionar</th><th>Gerenciar</th><th>Pesquisar</th></tr>
 </thead>
 <tbody>
 <tr>
 <td>
-<a name="create_genotyping_trial_link"><p>Create An IGD Genotyping Plate</p></a>
+<a name="create_genotyping_trial_link"><p>Criar uma placa de genotipagem IGD</p></a>
 </td>
 <td>
-<a href="/breeders/genotyping"><p>Go To Manage Genotyping Plates</p></a>
+<a href="/breeders/genotyping"><p>Acessar o gerenciamento de placas de genotipagem</p></a>
 </td>
 <td>
-<a href="/search/trials"><p>Go To Trial Search</p></a>
+<a href="/search/trials"><p>Acessar a pesquisa de ensaios</p></a>
 </td>
 </tr>
 </tbody>
@@ -94,21 +94,21 @@ $design_types => ()
 <& /breeders_toolbox/genotyping_trials/create_genotyping_trial_dialogs.mas, facilities => $facilities &>
 
 <div class="well well-sm">
-<h1>Locations</h1><br/>
+<h1>Locais</h1><br/>
 <table class="table table-bordered">
 <thead>
-<tr><th>Add</th><th>Manage</th><th>Search</th></tr>
+<tr><th>Adicionar</th><th>Gerenciar</th><th>Pesquisar</th></tr>
 </thead>
 <tbody>
 <tr>
 <td>
-<a id="upload_locations_link"><p>Upload Many New Locations</p></a>
+<a id="upload_locations_link"><p>Enviar vários locais novos</p></a>
 </td>
 <td>
-<a href="/breeders/locations"><p>Go To Manage Locations</p></a>
+<a href="/breeders/locations"><p>Acessar o gerenciamento de locais</p></a>
 </td>
 <td>
-<a href="/breeders/locations"><p>Go To Manage Locations</p></a>
+<a href="/breeders/locations"><p>Acessar o gerenciamento de locais</p></a>
 </td>
 </tr>
 </tbody>
@@ -117,21 +117,21 @@ $design_types => ()
 <& /breeders_toolbox/upload_locations_dialogs.mas &>
 
 <div class="well well-sm">
-<h1>Accessions</h1><br/>
+<h1>Acessos</h1><br/>
 <table class="table table-bordered">
 <thead>
-<tr><th>Add</th><th>Manage</th><th>Search</th></tr>
+<tr><th>Adicionar</th><th>Gerenciar</th><th>Pesquisar</th></tr>
 </thead>
 <tbody>
 <tr>
 <td>
-<a name="add_accessions_link"><p>Add Accessions Using List</p></a>
+<a name="add_accessions_link"><p>Adicionar acessos usando uma lista</p></a>
 </td>
 <td>
-<a href="/breeders/accessions"><p>Go To Manage Accessions Page</p></a>
+<a href="/breeders/accessions"><p>Acessar a página de gerenciamento de acessos</p></a>
 </td>
 <td>
-<a href="/search/stocks"><p>Go To Accessions Search</p></a>
+<a href="/search/stocks"><p>Acessar a pesquisa de acessos</p></a>
 </td>
 </tr>
 </tbody>
@@ -140,21 +140,21 @@ $design_types => ()
 <& /breeders_toolbox/add_accessions_dialogs.mas, preferred_species=>$preferred_species, editable_stock_props=>$editable_stock_props, editable_stock_props_definitions=>$editable_stock_props_definitions &>
 
 <div class="well well-sm">
-<h1>Populations</h1><br/>
+<h1>Populações</h1><br/>
 <table class="table table-bordered">
 <thead>
-<tr><th>Add</th><th>Manage</th><th>Search</th></tr>
+<tr><th>Adicionar</th><th>Gerenciar</th><th>Pesquisar</th></tr>
 </thead>
 <tbody>
 <tr>
 <td>
-<a id="manage_accessions_populations_new"><p>Add New Population</p></a>
+<a id="manage_accessions_populations_new"><p>Adicionar nova população</p></a>
 </td>
 <td>
-<a href="/breeders/accessions"><p>Go To Manage Accessions Page</p></a>
+<a href="/breeders/accessions"><p>Acessar a página de gerenciamento de acessos</p></a>
 </td>
 <td>
-<a href="/search/stocks"><p>Go To Stock Search</p></a>
+<a href="/search/stocks"><p>Acessar a pesquisa de materiais</p></a>
 </td>
 </tr>
 </tbody>
@@ -164,22 +164,22 @@ $design_types => ()
 
 
 <div class="well well-sm">
-<h1>Seedlots</h1><br/>
+<h1>Lotes de sementes</h1><br/>
 <table class="table table-bordered">
 <thead>
-<tr><th>Add</th><th>Manage</th><th>Search</th></tr>
+<tr><th>Adicionar</th><th>Gerenciar</th><th>Pesquisar</th></tr>
 </thead>
 <tbody>
 <tr>
 <td>
-<a name="seedlot_bulk_upload"><p>Upload Many Seedlots</p></a>
-<a name="add_seedlot_button"><p>Add A Seedlot</p></a>
+<a name="seedlot_bulk_upload"><p>Enviar vários lotes de sementes</p></a>
+<a name="add_seedlot_button"><p>Adicionar um lote de sementes</p></a>
 </td>
 <td>
-<a href="/breeders/seedlots"><p>Go To Manage Seedlots Page</p></a>
+<a href="/breeders/seedlots"><p>Acessar a página de gerenciamento de lotes</p></a>
 </td>
 <td>
-<a href="/breeders/seedlots"><p>Go To Manage Seedlots Page</p></a>
+<a href="/breeders/seedlots"><p>Acessar a página de gerenciamento de lotes</p></a>
 </td>
 </tr>
 </tbody>
@@ -192,18 +192,18 @@ $design_types => ()
 <h1>Pedigrees</h1><br/>
 <table class="table table-bordered">
 <thead>
-<tr><th>Add</th><th>Manage</th><th>Search</th></tr>
+<tr><th>Adicionar</th><th>Gerenciar</th><th>Pesquisar</th></tr>
 </thead>
 <tbody>
 <tr>
 <td>
-<a id="upload_pedigrees_link"><p>Upload Many Pedigrees</p></a>
+<a id="upload_pedigrees_link"><p>Enviar vários pedigrees</p></a>
 </td>
 <td>
-<a href="/breeders/accessions"><p>Go To Manage Accessions Page</p></a>
+<a href="/breeders/accessions"><p>Acessar a página de gerenciamento de acessos</p></a>
 </td>
 <td>
-<a href="/search/cross"><p>Go To Search Crosses</p></a>
+<a href="/search/cross"><p>Acessar a pesquisa de cruzamentos</p></a>
 </td>
 </tr>
 </tbody>
@@ -212,29 +212,29 @@ $design_types => ()
 <& /breeders_toolbox/upload_pedigrees_dialogs.mas &>
 
 <div class="well well-sm">
-<h1>Crosses</h1><br/>
+<h1>Cruzamentos</h1><br/>
 <table class="table table-bordered">
 <thead>
-<tr><th>Plan</th><th>Add</th><th>Manage</th><th>Search</th></tr>
+<tr><th>Planejar</th><th>Adicionar</th><th>Gerenciar</th><th>Pesquisar</th></tr>
 </thead>
 <tbody>
 <tr>
 <td>
-<a id="create_cross_wishlist" >Create Cross Wishlist</a>
+<a id="create_cross_wishlist" >Criar lista de cruzamentos desejados</a>
 </td>
 <td>
-<a name="upload_crosses_link"><p>Upload Many New Crosses</p></a>
-<a name="create_cross_link"><p>Add A Cross</p></a>
-<a name="upload_cross_info"><p>Upload Cross Info of Existing Crosses</p></a>
-<a name="upload_progenies_new_accessions_link"><p>Upload progeny names that are NOT in database</p></a>
-<a name="upload_progenies_existing_accessions_link"><p>Upload progeny names that already EXIST in database</p></a>
-<a name="upload_family_names_link"><p>Upload Family Names</p></a>
+<a name="upload_crosses_link"><p>Enviar vários cruzamentos novos</p></a>
+<a name="create_cross_link"><p>Adicionar um cruzamento</p></a>
+<a name="upload_cross_info"><p>Enviar informações de cruzamentos existentes</p></a>
+<a name="upload_progenies_new_accessions_link"><p>Enviar nomes de progênies que NÃO estão no banco de dados</p></a>
+<a name="upload_progenies_existing_accessions_link"><p>Enviar nomes de progênies que JÁ ESTÃO no banco de dados</p></a>
+<a name="upload_family_names_link"><p>Enviar nomes de famílias</p></a>
 </td>
 <td>
-<a href="/breeders/crosses"><p>Go To Manage Crosses Page</p></a>
+<a href="/breeders/crosses"><p>Acessar a página de gerenciamento de cruzamentos</p></a>
 </td>
 <td>
-<a href="/search/cross"><p>Go To Search Crosses</p></a>
+<a href="/search/cross"><p>Acessar a pesquisa de cruzamentos</p></a>
 </td>
 </tr>
 </tbody>
@@ -247,27 +247,27 @@ $design_types => ()
 <& /breeders_toolbox/cross/add_progenies_dialogs.mas &>
 
 <div class="well well-sm">
-<h1>Phenotypes</h1><br/>
+<h1>Fenótipos</h1><br/>
 <table class="table table-bordered">
 <thead>
-<tr><th>Collection</th><th>Add</th><th>Manage</th><th>Search</th></tr>
+<tr><th>Coleta</th><th>Adicionar</th><th>Gerenciar</th><th>Pesquisar</th></tr>
 </thead>
 <tbody>
 <tr>
 <td>
-<a name="create_fieldbook_link"><p>Create Fieldbook Layout File</p></a>
-<a id="create_new_trait_file_link"><p>Create Fieldbook Trait File</p></a>
-<a name="create_spreadsheet_link"><p>Create Phenotyping Spreadsheet</p></a>
+<a name="create_fieldbook_link"><p>Criar arquivo de layout do Fieldbook</p></a>
+<a id="create_new_trait_file_link"><p>Criar arquivo de características do Fieldbook</p></a>
+<a name="create_spreadsheet_link"><p>Criar planilha de fenotipagem</p></a>
 </td>
 <td>
-<a id="upload_fieldbook_phenotypes_link"><p>Upload Fieldbook Database File</p></a>
-<a id="upload_spreadsheet_phenotypes_link"><p>Upload Phenotyping Spreadsheet</p></a>
+<a id="upload_fieldbook_phenotypes_link"><p>Enviar arquivo de banco de dados do Fieldbook</p></a>
+<a id="upload_spreadsheet_phenotypes_link"><p>Enviar planilha de fenotipagem</p></a>
 </td>
 <td>
-<a href="/breeders/phenotyping"><p>Go To Manage Phenotypes Page</p></a>
+<a href="/breeders/phenotyping"><p>Acessar a página de gerenciamento de fenótipos</p></a>
 </td>
 <td>
-<a href="/breeders/search"><p>Go To Search Wizard</p></a>
+<a href="/breeders/search"><p>Acessar o assistente de pesquisa</p></a>
 </td>
 </tr>
 </tbody>

@@ -15,29 +15,29 @@
 
 <div id="manage_drone_imagery_standard_process_raw_images_interactive_div" style="display:none">
 
-    <& /page/page_title.mas, title=>"Manage Aerial Imagery: Run A Standard Process On Raw Images Interactively" &>
+    <& /page/page_title.mas, title=>"Gerenciar imagens aéreas: executar interativamente um processamento padrão nas imagens brutas" &>
 
     <&| /util/workflow.mas, id=> "manage_drone_imagery_standard_process_raw_images_interactive_workflow" &>
-        <&| /util/workflow.mas:step, title=> "Intro" &>
-            <& /page/page_title.mas, title=>"This workflow will guide you through applying a standard process to your aerial imaging bands interactively" &>
+        <&| /util/workflow.mas:step, title=> "Introdução" &>
+            <& /page/page_title.mas, title=>"Este fluxo de trabalho orientará a aplicação interativa de um processamento padrão às bandas de imagens aéreas" &>
 
             <div class="well well-sm">
                 <center>
-                <p>This process will allow you to assign plot-polygons to the raw images.</p>
-                <p><b>Please finish uploading your raw images before proceeding!</b></p>
+                <p>Este processo permitirá atribuir polígonos de parcelas às imagens brutas.</p>
+                <p><b>Conclua o envio das imagens brutas antes de continuar!</b></p>
                 </center>
             </div>
 
             <br/><br/>
             <center>
-            <button class="btn btn-primary" onclick="Workflow.complete(this); return false;">Go to Next Step</button>
+            <button class="btn btn-primary" onclick="Workflow.complete(this); return false;">Ir para a próxima etapa</button>
             </center>
         </&>
-        <&| /util/workflow.mas:step, title=> "Imaging Band Select" &>
-            <& /page/page_title.mas, title=>"Select a drone run band" &>
+        <&| /util/workflow.mas:step, title=> "Seleção da banda de imagem" &>
+            <& /page/page_title.mas, title=>"Selecione uma banda do voo de drone" &>
 
             <div class="well well-sm">
-                <p>Please select one drone run band to take through the process. The NIR band is currently implemented and provides best contrast.</p>
+                <p>Selecione uma banda do voo de drone para realizar o processamento. Atualmente, a banda NIR está implementada e oferece o melhor contraste.</p>
             </div>
 
             <div class="well well-sm">
@@ -46,15 +46,15 @@
                         <table class="table table-bordered table-hover" id="manage_drone_imagery_standard_process_interactive_drone_run_bands_table">
                             <thead>
                                 <tr>
-                                    <th>Select</th>
-                                    <th>Drone Run Band Name</th>
-                                    <th>Drone Run Band Description</th>
-                                    <th>Drone Run Band Type</th>
-                                    <th>Drone Run Name</th>
-                                    <th>Drone Run Description</th>
-                                    <th>Drone Run Date</th>
-                                    <th>Field Trial Name</th>
-                                    <th>Field Trial Description</th>
+                                    <th>Selecionar</th>
+                                    <th>Nome da banda do voo de drone</th>
+                                    <th>Descrição da banda do voo de drone</th>
+                                    <th>Tipo da banda do voo de drone</th>
+                                    <th>Nome do voo de drone</th>
+                                    <th>Descrição do voo de drone</th>
+                                    <th>Data do voo de drone</th>
+                                    <th>Nome do ensaio de campo</th>
+                                    <th>Descrição do ensaio de campo</th>
                                 </tr>
                             </thead>
                         </table>
@@ -64,31 +64,31 @@
 
             <br/><br/>
             <center>
-            <button class="btn btn-primary" id="manage_drone_imagery_standard_process_interactive_select_drone_run_band_step">Go to Next Step</button>
+            <button class="btn btn-primary" id="manage_drone_imagery_standard_process_interactive_select_drone_run_band_step">Ir para a próxima etapa</button>
             </center>
         </&>
-        <&| /util/workflow.mas:step, title=> "Passes" &>
-            <& /page/page_title.mas, title=>"Separated imaging passes" &>
+        <&| /util/workflow.mas:step, title=> "Passagens" &>
+            <& /page/page_title.mas, title=>"Passagens de imageamento separadas" &>
 
             <div class="well well-sm">
-                <p>The process will be applied to each imaging pass at a time. An imaging pass corresponds to the camera moving in one direction over the field experiment, such as an aerial vehicle flying a pass over the field. The passes are automatically separated from the images you uploaded using GPS.</p>
+                <p>O processo será aplicado a uma passagem de imageamento por vez. Uma passagem corresponde ao movimento da câmera em uma direção sobre o ensaio de campo, como um veículo aéreo percorrendo o campo. As passagens são separadas automaticamente das imagens enviadas usando o GPS.</p>
             </div>
 
             <div id="manage_drone_imagery_standard_process_interactive_separated_passes_info"></div>
 
             <br/><br/>
             <center>
-            <button class="btn btn-primary" id="manage_drone_imagery_standard_process_interactive_separated_passes_step">Go to Next Step</button>
+            <button class="btn btn-primary" id="manage_drone_imagery_standard_process_interactive_separated_passes_step">Ir para a próxima etapa</button>
             </center>
         </&>
-        <&| /util/workflow.mas:step, title=> "Rotate" &>
-            <& /page/page_title.mas, title=>"Rotate images to help with alignment" &>
+        <&| /util/workflow.mas:step, title=> "Rotacionar" &>
+            <& /page/page_title.mas, title=>"Rotacione as imagens para auxiliar no alinhamento" &>
 
             <div class="well well-sm">
-                <p>Please rotate the images so that they make sense as far as your field experiment</p>
-                <p>The plots should be in a vertically straight orientation</p>
-                <p>You should zoom out on your browser (Cntrl + -)</p>
-                <p><b>This process will cycle over the different imaging event passes.</b></p>
+                <p>Rotacione as imagens de acordo com a orientação do ensaio de campo.</p>
+                <p>As parcelas devem ficar alinhadas verticalmente.</p>
+                <p>Reduza o zoom do navegador (Ctrl + -).</p>
+                <p><b>Este processo percorrerá as diferentes passagens do evento de imageamento.</b></p>
 
                 <div id="drone_imagery_standard_process_interactive_rotate_flight_pass"></div>
 
@@ -96,19 +96,19 @@
 
                 <form class="form-horizontal">
                     <div class="form-group form-group-sm">
-                        <label class="col-sm-6 control-label">Rotate Images (Use Left and Right Arrows For Fine Tuning): </label>
+                        <label class="col-sm-6 control-label">Rotacionar imagens (use as setas esquerda e direita para ajuste fino): </label>
                         <div class="col-sm-6">
                             <input type="range" min="-180" max="180" step="0.01" id="drone_imagery_standard_process_raw_images_interactive_bulk_rotate_degrees_input" name="drone_imagery_standard_process_raw_images_interactive_bulk_rotate_degrees_input" value="0.00"><div id="drone_imagery_standard_process_raw_images_interactive_bulk_rotate_degrees_input_text"></div>
                         </div>
                     </div>
                 </form>
 
-                <button class="btn btn-default" id="drone_imagery_standard_process_interactive_rotate_crosshairs">Draw Crosshairs Assist</button>
-                <button class="btn btn-primary" id="manage_drone_imagery_standard_process_interactive_rotate_step">Save Rotation And Go To Next</button>
-                <button class="btn btn-default" id="drone_imagery_standard_process_raw_images_interactive_rotate_previous_pass">Go To Previous Imaging Pass</button>
-                <button class="btn btn-default" id="drone_imagery_standard_process_raw_images_interactive_rotate_next_pass">Go To Next Imaging Pass</button>
-                <button class="btn btn-default" id="drone_imagery_standard_process_raw_images_interactive_rotate_restart">Start Over Rotation</button>
-                <button class="btn btn-default" id="drone_imagery_standard_process_raw_images_interactive_rotate_skip_forward">Go To Plot Polygons</button>
+                <button class="btn btn-default" id="drone_imagery_standard_process_interactive_rotate_crosshairs">Desenhar linhas-guia</button>
+                <button class="btn btn-primary" id="manage_drone_imagery_standard_process_interactive_rotate_step">Salvar rotação e avançar</button>
+                <button class="btn btn-default" id="drone_imagery_standard_process_raw_images_interactive_rotate_previous_pass">Ir para a passagem anterior</button>
+                <button class="btn btn-default" id="drone_imagery_standard_process_raw_images_interactive_rotate_next_pass">Ir para a próxima passagem</button>
+                <button class="btn btn-default" id="drone_imagery_standard_process_raw_images_interactive_rotate_restart">Reiniciar rotação</button>
+                <button class="btn btn-default" id="drone_imagery_standard_process_raw_images_interactive_rotate_skip_forward">Ir para os polígonos das parcelas</button>
             </div>
 
             <hr>
@@ -165,21 +165,21 @@
             <div id="drone_imagery_standard_process_raw_images_interactive_bulk_rotate_div_1"></div>
 
         </&>
-        <&| /util/workflow.mas:step, title=> "Plot Polygons" &>
-            <& /page/page_title.mas, title=>"Assign plot-polygons to raw images" &>
+        <&| /util/workflow.mas:step, title=> "Polígonos das parcelas" &>
+            <& /page/page_title.mas, title=>"Atribua polígonos de parcelas às imagens brutas" &>
 
             <div class="well well-sm">
                 <ul>
-                    <li>(0) You should zoom out on your browser (Cntrl + -).</li>
-                    <li>(0) Please be very careful with the mouse clicking.</li>
-                    <li>(1) Give the number of rows and columns in the area of interest.</li>
-                    <li>(2) Use the templating tools below to generate plot polygons. There are three templating tools to choose from:</li>
+                    <li>(0) Reduza o zoom do navegador (Ctrl + -).</li>
+                    <li>(0) Tenha muito cuidado ao clicar com o mouse.</li>
+                    <li>(1) Informe o número de linhas e colunas na área de interesse.</li>
+                    <li>(2) Use as ferramentas de modelo abaixo para gerar os polígonos das parcelas. Há três opções:</li>
                     <ul>
-                        <li>(A) Click the four light blue buttons and then click the four corners encompassing the area of interest.</li>
-                        <li>(B) Or paste a previously used template onto the area of interest.</li>
+                        <li>(A) Clique nos quatro botões azul-claro e depois nos quatro cantos que delimitam a área de interesse.</li>
+                        <li>(B) Ou cole um modelo usado anteriormente sobre a área de interesse.</li>
                     </ul>
-                    <li>(3) Assign plot numbers to the generated plot polygons, either automatically or manually. Click blue button to go to next.</li>
-                    <li>(4)<b> This process will cycle over the different imaging event passes.</b></li>
+                    <li>(3) Atribua números de parcela aos polígonos gerados, automática ou manualmente. Clique no botão azul para avançar.</li>
+                    <li>(4)<b> Este processo percorrerá as diferentes passagens do evento de imageamento.</b></li>
                 </ul>
 
                 <hr>
@@ -188,10 +188,10 @@
                 <hr>
                 <!-- button class="btn btn-primary" id="drone_imagery_standard_process_raw_images_interactive_match">Match and Align Images</button -->
                 <!-- button class="btn btn-default" id="drone_imagery_standard_process_raw_images_interactive_match_view">View Match</button -->
-                <button class="btn btn-default" id="drone_imagery_standard_process_raw_images_interactive_match_previous_pass">Go To Previous Imaging Pass</button>
-                <button class="btn btn-default" id="drone_imagery_standard_process_raw_images_interactive_match_next_pass">Go To Next Imaging Pass</button>
-                <button class="btn btn-default" id="drone_imagery_standard_process_raw_images_interactive_match_restart">Start Over Alignment</button>
-                <button class="btn btn-default" id="drone_imagery_standard_process_raw_images_interactive_drop_pin">Drop Pin Marker</button>
+                <button class="btn btn-default" id="drone_imagery_standard_process_raw_images_interactive_match_previous_pass">Ir para a passagem anterior</button>
+                <button class="btn btn-default" id="drone_imagery_standard_process_raw_images_interactive_match_next_pass">Ir para a próxima passagem</button>
+                <button class="btn btn-default" id="drone_imagery_standard_process_raw_images_interactive_match_restart">Reiniciar alinhamento</button>
+                <button class="btn btn-default" id="drone_imagery_standard_process_raw_images_interactive_drop_pin">Adicionar marcador</button>
             </div>
 
             <form class="form-horizontal">
@@ -228,21 +228,21 @@
             </form>
             <!--<hr>-->
 
-            <& /page/detail_page_2_col_section.mas, info_section_collapsible=>1, info_section_collapsed=>1, info_section_title => "<h4 style='display:inline'>(1) Generate Polygon Template Tool</h4>", info_section_subtitle => 'Overlay a uniform grid over the image.', icon_class => "glyphicon glyphicon-th-large", info_section_id => "manage_drone_imagery_generate_plot_polygons_standard_process_raw_images_section", id_extension => '_raw_images_interactive' &>
+            <& /page/detail_page_2_col_section.mas, info_section_collapsible=>1, info_section_collapsed=>1, info_section_title => "<h4 style='display:inline'>(1) Ferramenta para gerar modelo de polígonos</h4>", info_section_subtitle => 'Sobreponha uma grade uniforme à imagem.', icon_class => "glyphicon glyphicon-th-large", info_section_id => "manage_drone_imagery_generate_plot_polygons_standard_process_raw_images_section", id_extension => '_raw_images_interactive' &>
 
-            <& /page/detail_page_2_col_section.mas, info_section_collapsible=>1, info_section_collapsed=>1, info_section_title => "<h4 style='display:inline'>(2) Or, Use Ground Control Points</h4>", info_section_subtitle => 'Overlay a uniform grid over the image.', icon_class => "glyphicon glyphicon-th-large", info_section_id => "manage_drone_imagery_generate_plot_polygons_standard_process_raw_images_section_ground_control_points" &>
+            <& /page/detail_page_2_col_section.mas, info_section_collapsible=>1, info_section_collapsed=>1, info_section_title => "<h4 style='display:inline'>(2) Ou use pontos de controle em solo</h4>", info_section_subtitle => 'Sobreponha uma grade uniforme à imagem.', icon_class => "glyphicon glyphicon-th-large", info_section_id => "manage_drone_imagery_generate_plot_polygons_standard_process_raw_images_section_ground_control_points" &>
 
             <div class="well well-sm">
-                <button id="drone_imagery_interactive_plot_polygons_clear" class="btn btn-danger">Clear All Polygons</button>
-                <button id="drone_imagery_interactive_plot_polygons_clear_one" class="btn btn-danger">Remove One Polygon</button>
+                <button id="drone_imagery_interactive_plot_polygons_clear" class="btn btn-danger">Limpar todos os polígonos</button>
+                <button id="drone_imagery_interactive_plot_polygons_clear_one" class="btn btn-danger">Remover um polígono</button>
             </div>
 
             <div id="drone_imagery_standard_process_interactive_generated_polygons_input_div" style="display:none">
 
                 <div class="well well-sm">
-                    <h2>Either, Manually Assign Plot Numbers to Generated Polygons</h2>
+                    <h2>Ou atribua manualmente os números das parcelas aos polígonos gerados</h2>
 
-                    <&| /page/info_section.mas, title => 'Manually Assign Plot Numbers to Polygon Numbers', collapsible=>1, collapsed => 1, subtitle=> 'Table for manually assigning plot numbers to polygon numbers.' &>
+                    <&| /page/info_section.mas, title => 'Atribuir manualmente números de parcelas aos números dos polígonos', collapsible=>1, collapsed => 1, subtitle=> 'Tabela para atribuir manualmente números de parcelas aos números dos polígonos.' &>
                         <div id="drone_imagery_standard_process_interactive_generated_polygons_table"></div>
                     </&>
                 </div>
@@ -310,13 +310,13 @@
                 <div id="drone_imagery_interactive_trial_layout_div"></div>
             </div>
         </&>
-        <&| /util/workflow.mas:step, title=> "Apply" &>
-            <& /page/page_title.mas, title=>"Apply these same steps to other drone run bands in the current drone run" &>
+        <&| /util/workflow.mas:step, title=> "Aplicar" &>
+            <& /page/page_title.mas, title=>"Aplique as mesmas etapas às outras bandas do voo de drone atual" &>
 
             <div class="well well-sm">
                 <ul>
-                    <li>Here you can apply the same actions you did for the previous steps 1 to 6, to additional drone run bands in this drone run.</li>
-                    <li>Thresholding will be done dynamically, by removing the top and bottom 20% of pixel values.</li>
+                    <li>Aqui você pode aplicar às outras bandas deste voo de drone as mesmas ações realizadas nas etapas 1 a 6.</li>
+                    <li>O limiar será calculado dinamicamente, removendo os 20% maiores e os 20% menores valores de pixels.</li>
                 </ul>
             </div>
 
@@ -326,15 +326,15 @@
                         <table class="table table-bordered table-hover" id="manage_drone_imagery_standard_process_interactive_drone_run_bands_apply_table">
                             <thead>
                                 <tr>
-                                    <th>Select</th>
-                                    <th>Drone Run Band Name</th>
-                                    <th>Drone Run Band Description</th>
-                                    <th>Drone Run Band Type</th>
-                                    <th>Drone Run Name</th>
-                                    <th>Drone Run Description</th>
-                                    <th>Drone Run Date</th>
-                                    <th>Field Trial Name</th>
-                                    <th>Field Trial Description</th>
+                                    <th>Selecionar</th>
+                                    <th>Nome da banda do voo de drone</th>
+                                    <th>Descrição da banda do voo de drone</th>
+                                    <th>Tipo da banda do voo de drone</th>
+                                    <th>Nome do voo de drone</th>
+                                    <th>Descrição do voo de drone</th>
+                                    <th>Data do voo de drone</th>
+                                    <th>Nome do ensaio de campo</th>
+                                    <th>Descrição do ensaio de campo</th>
                                 </tr>
                             </thead>
                         </table>
@@ -342,23 +342,23 @@
                         <br/>
 
                         <center>
-                        <button class="btn btn-primary" id="manage_drone_imagery_standard_process_interactive_drone_run_band_apply_step">Go to Next Step</button>
+                        <button class="btn btn-primary" id="manage_drone_imagery_standard_process_interactive_drone_run_band_apply_step">Ir para a próxima etapa</button>
                         </center>
                     </div>
                 </div>
             </div>
         </&>
-        <&| /util/workflow.mas:step, title=> "Indices" &>
-            <& /page/page_title.mas, title=>"Create and apply these same steps to vegetative indices" &>
+        <&| /util/workflow.mas:step, title=> "Índices" &>
+            <& /page/page_title.mas, title=>"Crie e aplique as mesmas etapas aos índices de vegetação" &>
 
             <form class="form-horizontal">
                 <div class="form-group form-group-sm">
-                    <label class="col-sm-6 control-label">Vegetative Indices To Apply: </label>
+                    <label class="col-sm-6 control-label">Índices de vegetação a aplicar: </label>
                     <div class="col-sm-6">
-                        <input name="drone_imagery_standard_process_interactive_apply_indices_select" value="TGI" type="checkbox" checked disabled> Triangular Greenness Index (TGI) <br/>
-                        <input name="drone_imagery_standard_process_interactive_apply_indices_select" value="VARI" type="checkbox" checked disabled> Visible Atmospheric Resistant Index (VARI) <br/>
-                        <input name="drone_imagery_standard_process_interactive_apply_indices_select" value="NDVI" type="checkbox" checked disabled> Normalized Difference Vegetative Index (NDVI) <br/>
-                        <input name="drone_imagery_standard_process_interactive_apply_indices_select" value="NDRE" type="checkbox" checked disabled> Normalized Difference Red Edge Vegetative Index (NDRE) <br/>
+                        <input name="drone_imagery_standard_process_interactive_apply_indices_select" value="TGI" type="checkbox" checked disabled> Índice triangular de verdor (TGI) <br/>
+                        <input name="drone_imagery_standard_process_interactive_apply_indices_select" value="VARI" type="checkbox" checked disabled> Índice visível resistente à atmosfera (VARI) <br/>
+                        <input name="drone_imagery_standard_process_interactive_apply_indices_select" value="NDVI" type="checkbox" checked disabled> Índice de vegetação por diferença normalizada (NDVI) <br/>
+                        <input name="drone_imagery_standard_process_interactive_apply_indices_select" value="NDRE" type="checkbox" checked disabled> Índice de vegetação por diferença normalizada da borda vermelha (NDRE) <br/>
                     </div>
                 </div>
             </form>
@@ -366,17 +366,17 @@
             <br/>
 
             <center>
-            <button type="button" class="btn btn-primary" id="manage_drone_imagery_standard_interactive_process_indices_step">Go to Next Step</button>
+            <button type="button" class="btn btn-primary" id="manage_drone_imagery_standard_interactive_process_indices_step">Ir para a próxima etapa</button>
             </center>
         </&>
-        <&| /util/workflow.mas:step, title=> "Phenotypes" &>
-            <& /page/page_title.mas, title=>"Calculate phenotypes for all plot polygon images" &>
+        <&| /util/workflow.mas:step, title=> "Fenótipos" &>
+            <& /page/page_title.mas, title=>"Calcule os fenótipos de todas as imagens dos polígonos das parcelas" &>
 
             <form class="form-horizontal">
                 <div class="form-group form-group-sm">
-                    <label class="col-sm-6 control-label">Zonal Statistics to Calculate and Save in Database: </label>
+                    <label class="col-sm-6 control-label">Estatísticas zonais a calcular e salvar no banco de dados: </label>
                     <div class="col-sm-6">
-                        <input name="drone_imagery_standard_process_interactive_phenotypes_select" value="zonal" type="checkbox" checked disabled> Zonal Statistics: nonzero_pixel_count, total_pixel_sum, mean_pixel_value, harmonic_mean_value, median_pixel_value, variance_pixel_value, stdev_pixel_value, pstdev_pixel_value, min_pixel_value, max_pixel_value, minority_pixel_value, minority_pixel_count, majority_pixel_value, majority_pixel_count, pixel_variety_count <br/>
+                        <input name="drone_imagery_standard_process_interactive_phenotypes_select" value="zonal" type="checkbox" checked disabled> Estatísticas zonais: contagem de pixels não zero, soma total dos pixels, média, média harmônica, mediana, variância, desvio-padrão, desvio-padrão populacional, mínimo, máximo, valor minoritário, contagem minoritária, valor majoritário, contagem majoritária e variedade de pixels <br/>
                     </div>
                 </div>
             </form>
@@ -385,7 +385,7 @@
             <div id="drone_imagery_standard_process_interactive_week_term_div"></div>
 
             <center>
-            <button type="button" class="btn btn-info" id="manage_drone_imagery_standard_process_interactive_phenotypes_step">Finish</button>
+            <button type="button" class="btn btn-info" id="manage_drone_imagery_standard_process_interactive_phenotypes_step">Concluir</button>
             </center>
         </&>
     </&>
@@ -396,18 +396,18 @@
   <div class="modal-dialog modal-xl" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="droneImageryInteractivePlotPolygonTemplateDialog">Plot Template Options</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="droneImageryInteractivePlotPolygonTemplateDialog">Opções do modelo de parcelas</h4>
       </div>
       <div class="modal-body">
         <div class="container-fluid">
-            <&| /page/info_section.mas, title => 'Copy/Paste Template', collapsible=>1, collapsed => 0, subtitle=> 'Copy/Paste this template onto the image.' &>
-                <button class="btn btn-primary" id="drone_imagery_interactive_plot_polygon_template_options_paste_click">Click To Paste</button>
+            <&| /page/info_section.mas, title => 'Copiar/colar modelo', collapsible=>1, collapsed => 0, subtitle=> 'Copie/cole este modelo sobre a imagem.' &>
+                <button class="btn btn-primary" id="drone_imagery_interactive_plot_polygon_template_options_paste_click">Clique para colar</button>
             </&>
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
       </div>
     </div>
   </div>
@@ -417,24 +417,24 @@
   <div class="modal-dialog modal-sm" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="droneImageryInteractiveRemovePlotPolygonDialog">Remove Plot Polygon</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="droneImageryInteractiveRemovePlotPolygonDialog">Remover polígono da parcela</h4>
       </div>
       <div class="modal-body">
         <div class="container-fluid">
             <form class="form-horizontal">
                 <div class="form-group">
-                    <label class="col-sm-5 control-label">Polygon Identifier:</label>
+                    <label class="col-sm-5 control-label">Identificador do polígono:</label>
                     <div class="col-sm-7">
-                        <input class="form-control" id="drone_imagery_interactive_plot_polygon_remove_polygon_number" name="drone_imagery_interactive_plot_polygon_remove_polygon_number" type="number" placeholder="e.g. 3" />
+                        <input class="form-control" id="drone_imagery_interactive_plot_polygon_remove_polygon_number" name="drone_imagery_interactive_plot_polygon_remove_polygon_number" type="number" placeholder="ex.: 3" />
                     </div>
                 </div>
             </form>
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" id="drone_imagery_interactive_plot_polygon_remove_polygon_submit">Remove Plot Polygon</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+        <button type="button" class="btn btn-primary" id="drone_imagery_interactive_plot_polygon_remove_polygon_submit">Remover polígono da parcela</button>
       </div>
     </div>
   </div>
@@ -444,15 +444,15 @@
   <div class="modal-dialog modal-xl" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="droneImageryInteractiveMatchViewDialog">View Match From Alignment</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="droneImageryInteractiveMatchViewDialog">Visualizar correspondência do alinhamento</h4>
       </div>
       <div class="modal-body">
         <div class="container-fluid" id="drone_imagery_standard_process_raw_images_interactive_match_modal_div">
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
       </div>
     </div>
   </div>
@@ -462,19 +462,19 @@
   <div class="modal-dialog modal-xl" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="droneImageryStandardProcessInteractiveCompleteDialog">Standard Process Complete</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="droneImageryStandardProcessInteractiveCompleteDialog">Processamento padrão concluído</h4>
       </div>
       <div class="modal-body">
         <div class="container-fluid">
             <p>
                 <span class="ui-icon ui-icon-circle-check" style="float: left; margin: 0 7px 50px 0;"></span>
-                It will take time to finish processing your drone run and calculating phenotypes for all plot polygon images, vegetative indices, and processing combinations. Once it is complete, the "Processing Icon" on the Manage->Drone Imagery page will disappear from the drone run.
+                A conclusão do processamento do voo de drone e o cálculo dos fenótipos de todas as imagens dos polígonos das parcelas, índices de vegetação e combinações de processamento levarão algum tempo. Quando terminar, o ícone de processamento desaparecerá do voo de drone na página Gerenciar &gt; Imagens aéreas.
             </p>
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary" data-dismiss="modal">Finish</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Concluir</button>
       </div>
     </div>
   </div>
@@ -567,7 +567,7 @@ jQuery(document).ready(function(){
                     console.log(response);
                 },
                 error: function(response){
-                    alert('Error saving GPS images positions!');
+                    alert('Erro ao salvar as posições GPS das imagens!');
                 }
             });
 
@@ -747,10 +747,10 @@ jQuery(document).ready(function(){
 
             initializeInteractiveSvg('#drone_imagery_standard_process_raw_images_interactive_bulk_rotate_div', 'drone_imagery_standard_process_raw_images_interactive_bulk_rotate_div_area', 1, 0);
 
-            jQuery('#drone_imagery_standard_process_interactive_rotate_flight_pass').html("<h1><b>Current Imaging Event Pass: "+manage_drone_imagery_standard_process_raw_images_interactive_current_pass+"/"+manage_drone_imagery_standard_process_raw_images_interactive_maximum_pass+"</b></h1>");
+            jQuery('#drone_imagery_standard_process_interactive_rotate_flight_pass').html("<h1><b>Passagem atual do evento de imageamento: "+manage_drone_imagery_standard_process_raw_images_interactive_current_pass+"/"+manage_drone_imagery_standard_process_raw_images_interactive_maximum_pass+"</b></h1>");
         }
         else {
-            alert('No previous imaging pass to go to!');
+            alert('Não há passagem de imageamento anterior!');
             return false;
         }
     });
@@ -761,10 +761,10 @@ jQuery(document).ready(function(){
 
             initializeInteractiveSvg('#drone_imagery_standard_process_raw_images_interactive_bulk_rotate_div', 'drone_imagery_standard_process_raw_images_interactive_bulk_rotate_div_area', 1, 0);
 
-            jQuery('#drone_imagery_standard_process_interactive_rotate_flight_pass').html("<h1><b>Current Imaging Event Pass: "+manage_drone_imagery_standard_process_raw_images_interactive_current_pass+"/"+manage_drone_imagery_standard_process_raw_images_interactive_maximum_pass+"</b></h1>");
+            jQuery('#drone_imagery_standard_process_interactive_rotate_flight_pass').html("<h1><b>Passagem atual do evento de imageamento: "+manage_drone_imagery_standard_process_raw_images_interactive_current_pass+"/"+manage_drone_imagery_standard_process_raw_images_interactive_maximum_pass+"</b></h1>");
         }
         else {
-            alert('No next imaging pass to go to!');
+            alert('Não há próxima passagem de imageamento!');
             return false;
         }
     });
@@ -789,7 +789,7 @@ jQuery(document).ready(function(){
             },
             error: function(response){
                 //jQuery('#working_modal').hide();
-                alert('Error rotating GPS images!');
+                alert('Erro ao rotacionar as imagens com GPS!');
             }
         });
 
@@ -800,13 +800,13 @@ jQuery(document).ready(function(){
 
             initializeInteractiveSvg('#drone_imagery_standard_process_raw_images_interactive_bulk_rotate_div', 'drone_imagery_standard_process_raw_images_interactive_bulk_rotate_div_area', 1, 0);
 
-            jQuery('#drone_imagery_standard_process_interactive_rotate_flight_pass').html("<h1><b>Current Imaging Event Pass: "+manage_drone_imagery_standard_process_raw_images_interactive_current_pass+"/"+manage_drone_imagery_standard_process_raw_images_interactive_maximum_pass+"</b></h1>");
+            jQuery('#drone_imagery_standard_process_interactive_rotate_flight_pass').html("<h1><b>Passagem atual do evento de imageamento: "+manage_drone_imagery_standard_process_raw_images_interactive_current_pass+"/"+manage_drone_imagery_standard_process_raw_images_interactive_maximum_pass+"</b></h1>");
 
             window.scrollTo(0,0);
         }
         else {
 
-            jQuery('#drone_imagery_standard_process_interactive_rotate_flight_pass').html("<h1><b>Current Imaging Event Pass: "+manage_drone_imagery_standard_process_raw_images_interactive_current_pass+"/"+manage_drone_imagery_standard_process_raw_images_interactive_maximum_pass+"</b></h1><br/><center><h3>Working <img src='/img/wheel.gif' /></h3></center>");
+            jQuery('#drone_imagery_standard_process_interactive_rotate_flight_pass').html("<h1><b>Passagem atual do evento de imageamento: "+manage_drone_imagery_standard_process_raw_images_interactive_current_pass+"/"+manage_drone_imagery_standard_process_raw_images_interactive_maximum_pass+"</b></h1><br/><center><h3>Processando <img src='/img/wheel.gif' /></h3></center>");
 
             (function checkRawImageRotateProcess (manage_drone_imagery_standard_process_raw_images_interactive_is_rotating) {
                 setTimeout(function () {
@@ -823,13 +823,13 @@ jQuery(document).ready(function(){
                                 checkRawImageRotateProcess(manage_drone_imagery_standard_process_raw_images_interactive_is_rotating);
                             }
                             else {
-                                jQuery('#drone_imagery_standard_process_interactive_rotate_flight_pass').html("<h1><b>Current Imaging Event Pass: "+manage_drone_imagery_standard_process_raw_images_interactive_current_pass+"/"+manage_drone_imagery_standard_process_raw_images_interactive_maximum_pass+"</b></h1>");
+                                jQuery('#drone_imagery_standard_process_interactive_rotate_flight_pass').html("<h1><b>Passagem atual do evento de imageamento: "+manage_drone_imagery_standard_process_raw_images_interactive_current_pass+"/"+manage_drone_imagery_standard_process_raw_images_interactive_maximum_pass+"</b></h1>");
 
                                 console.log("ROTATION AND MATCHING COMPLETE");
 
                                 manage_drone_imagery_standard_process_raw_images_interactive_current_pass = 1;
 
-                                jQuery('#drone_imagery_standard_process_interactive_plot_polygons_flight_pass').html("<h1><b>Current Imaging Event Pass: "+manage_drone_imagery_standard_process_raw_images_interactive_current_pass+"/"+manage_drone_imagery_standard_process_raw_images_interactive_maximum_pass+"</b></h1>");
+                                jQuery('#drone_imagery_standard_process_interactive_plot_polygons_flight_pass').html("<h1><b>Passagem atual do evento de imageamento: "+manage_drone_imagery_standard_process_raw_images_interactive_current_pass+"/"+manage_drone_imagery_standard_process_raw_images_interactive_maximum_pass+"</b></h1>");
 
                                 initializeInteractiveSvg('#drone_imagery_standard_process_raw_images_image_id_interactive_select_div', 'drone_imagery_standard_process_raw_images_image_id_interactive_select_div_area', 1, 1);
 
@@ -840,7 +840,7 @@ jQuery(document).ready(function(){
                             }
                         },
                         error: function(response){
-                            alert('Error checking GPS image rotation and matching!');
+                            alert('Erro ao verificar a rotação e a correspondência das imagens com GPS!');
                         }
                     });
                 }, 10000);
@@ -851,7 +851,7 @@ jQuery(document).ready(function(){
     jQuery('#drone_imagery_standard_process_raw_images_interactive_rotate_skip_forward').click(function(){
         manage_drone_imagery_standard_process_raw_images_interactive_current_pass = 1;
 
-        jQuery('#drone_imagery_standard_process_interactive_plot_polygons_flight_pass').html("<h1><b>Current Imaging Event Pass: "+manage_drone_imagery_standard_process_raw_images_interactive_current_pass+"/"+manage_drone_imagery_standard_process_raw_images_interactive_maximum_pass+"</b></h1>");
+        jQuery('#drone_imagery_standard_process_interactive_plot_polygons_flight_pass').html("<h1><b>Passagem atual do evento de imageamento: "+manage_drone_imagery_standard_process_raw_images_interactive_current_pass+"/"+manage_drone_imagery_standard_process_raw_images_interactive_maximum_pass+"</b></h1>");
 
         initializeInteractiveSvg('#drone_imagery_standard_process_raw_images_image_id_interactive_select_div', 'drone_imagery_standard_process_raw_images_image_id_interactive_select_div_area', 1, 1);
 
@@ -921,7 +921,7 @@ jQuery(document).ready(function(){
                 location.reload();
             },
             error: function(response){
-                alert('Error deleting GPS images template from match step!')
+                alert('Erro ao excluir o modelo de imagens com GPS da etapa de correspondência!')
             }
         });
     });
@@ -938,7 +938,7 @@ jQuery(document).ready(function(){
                 location.reload();
             },
             error: function(response){
-                alert('Error deleting GPS images template from rotate step!')
+                alert('Erro ao excluir o modelo de imagens com GPS da etapa de rotação!')
             }
         });
     });
@@ -1179,12 +1179,12 @@ jQuery(document).ready(function(){
                     manage_drone_imagery_interactive_match_two_images(image_id1, image_id2);
                 }
                 else {
-                    alert('No more images to match!');
+                    alert('Não há mais imagens para estabelecer correspondência!');
                     return false;
                 }
             },
             error: function(response){
-                alert('Error matching and aligning two images!')
+                alert('Erro ao estabelecer a correspondência e alinhar as duas imagens!')
             }
         });
     }
@@ -1195,7 +1195,7 @@ jQuery(document).ready(function(){
 
             initializeInteractiveSvg('#drone_imagery_standard_process_raw_images_image_id_interactive_select_div', 'drone_imagery_standard_process_raw_images_image_id_interactive_select_div_area', 1, 1);
 
-            jQuery('#drone_imagery_standard_process_interactive_plot_polygons_flight_pass').html("<h1><b>Current Imaging Event Pass: "+manage_drone_imagery_standard_process_raw_images_interactive_current_pass+"/"+manage_drone_imagery_standard_process_raw_images_interactive_maximum_pass+"</b></h1>");
+            jQuery('#drone_imagery_standard_process_interactive_plot_polygons_flight_pass').html("<h1><b>Passagem atual do evento de imageamento: "+manage_drone_imagery_standard_process_raw_images_interactive_current_pass+"/"+manage_drone_imagery_standard_process_raw_images_interactive_maximum_pass+"</b></h1>");
 
             plot_polygons_interactive_display_points = [];
             plot_polygons_interactive_ind_4_points = [];
@@ -1214,7 +1214,7 @@ jQuery(document).ready(function(){
             window.scrollTo(0,0);
         }
         else {
-            alert('No previous imaging pass to go to!');
+            alert('Não há passagem de imageamento anterior!');
             return false;
         }
     });
@@ -1225,7 +1225,7 @@ jQuery(document).ready(function(){
 
             initializeInteractiveSvg('#drone_imagery_standard_process_raw_images_image_id_interactive_select_div', 'drone_imagery_standard_process_raw_images_image_id_interactive_select_div_area', 1, 1);
 
-            jQuery('#drone_imagery_standard_process_interactive_plot_polygons_flight_pass').html("<h1><b>Current Imaging Event Pass: "+manage_drone_imagery_standard_process_raw_images_interactive_current_pass+"/"+manage_drone_imagery_standard_process_raw_images_interactive_maximum_pass+"</b></h1>");
+            jQuery('#drone_imagery_standard_process_interactive_plot_polygons_flight_pass').html("<h1><b>Passagem atual do evento de imageamento: "+manage_drone_imagery_standard_process_raw_images_interactive_current_pass+"/"+manage_drone_imagery_standard_process_raw_images_interactive_maximum_pass+"</b></h1>");
 
             plot_polygons_interactive_display_points = [];
             plot_polygons_interactive_ind_4_points = [];
@@ -1244,7 +1244,7 @@ jQuery(document).ready(function(){
             window.scrollTo(0,0);
         }
         else {
-            alert('No next imaging pass to go to!');
+            alert('Não há próxima passagem de imageamento!');
             return false;
         }
     });
@@ -1271,7 +1271,7 @@ jQuery(document).ready(function(){
             },
             error: function(response){
             //    jQuery('#working_modal').modal('hide');
-                alert('Error matching and aligning images sequential!')
+                alert('Erro ao estabelecer a correspondência e alinhar as imagens em sequência!')
             }
         });
     }
@@ -1281,7 +1281,7 @@ jQuery(document).ready(function(){
     });
 
     jQuery('#drone_imagery_standard_process_raw_images_interactive_drop_pin').click(function(){
-        alert('Click on a place in the current imaging event pass to drop a pin');
+        alert('Clique em um ponto da passagem atual do evento de imageamento para adicionar um marcador.');
 
         d3.selectAll("g").on('mousedown.drag', null);
 
@@ -1321,7 +1321,7 @@ jQuery(document).ready(function(){
                   length: manage_drone_imagery_standard_process_interactive_image_length
                 }
 
-                d3.select(svg_div).html("<h1>Imaging Pass Number: "+manage_drone_imagery_standard_process_raw_images_interactive_current_pass+"</h1>");
+                d3.select(svg_div).html("<h1>Número da passagem de imageamento: "+manage_drone_imagery_standard_process_raw_images_interactive_current_pass+"</h1>");
 
                 manage_drone_imagery_standard_process_raw_images_interactive_svg = d3.select(svg_div).append("svg")
                     .attr("width", drone_imagery_interactive_total_width)
@@ -1336,7 +1336,7 @@ jQuery(document).ready(function(){
                 }
             },
             error: function(response){
-                alert('Error init svg!')
+                alert('Erro ao inicializar o SVG!')
             }
         });
     }
@@ -1382,7 +1382,7 @@ jQuery(document).ready(function(){
             },
             error: function(response){
                 jQuery("#working_modal").modal("hide");
-                alert('Error retrieving images and gps info!')
+                alert('Erro ao obter as imagens e as informações de GPS!')
             }
         });
     }
@@ -1408,7 +1408,7 @@ jQuery(document).ready(function(){
             selected.push(jQuery(this).val());
         });
         if (selected.length > 1 || selected.length == 0) {
-            alert('Please select one band!');
+            alert('Selecione uma banda!');
             return false;
         }
         manage_drone_imagery_standard_process_interactive_drone_run_band_project_id = selected[0];
@@ -1418,7 +1418,7 @@ jQuery(document).ready(function(){
             success: function(response){
                 console.log(response);
 
-                var html = '<table class="table table-hover table-bordered"><thead><tr><th>Imaging Pass Number</th><th>Number of Captures</th></tr></thead><tbody>';
+                var html = '<table class="table table-hover table-bordered"><thead><tr><th>Número da passagem de imageamento</th><th>Número de capturas</th></tr></thead><tbody>';
                 for (var i=0; i<response.results.length; i++) {
                     html = html + '<tr><td>'+response.results[i][0]+'</td><td>'+response.results[i][1]+'</td></tr>';
                 }
@@ -1431,7 +1431,7 @@ jQuery(document).ready(function(){
                 window.scrollTo(0,0);
             },
             error: function(response){
-                alert('Error separate micasense stacks!');
+                alert('Erro ao separar as pilhas MicaSense!');
             }
         });
     });
@@ -1456,7 +1456,7 @@ jQuery(document).ready(function(){
                         _redraw_ground_control_points_table_interactive();
                     },
                     error: function(response){
-                        alert('Error getting standard process interactive gcps!');
+                        alert('Erro ao obter os pontos de controle em solo do processamento padrão interativo!');
                     }
                 });
 
@@ -1467,7 +1467,7 @@ jQuery(document).ready(function(){
 
                     manage_drone_imagery_standard_process_raw_images_interactive_current_pass = 1;
 
-                    jQuery('#drone_imagery_standard_process_interactive_plot_polygons_flight_pass').html("<h1><b>Current Imaging Event Pass: "+manage_drone_imagery_standard_process_raw_images_interactive_current_pass+"/"+manage_drone_imagery_standard_process_raw_images_interactive_maximum_pass+"</b></h1>");
+                    jQuery('#drone_imagery_standard_process_interactive_plot_polygons_flight_pass').html("<h1><b>Passagem atual do evento de imageamento: "+manage_drone_imagery_standard_process_raw_images_interactive_current_pass+"/"+manage_drone_imagery_standard_process_raw_images_interactive_maximum_pass+"</b></h1>");
 
                     initializeInteractiveSvg('#drone_imagery_standard_process_raw_images_image_id_interactive_select_div', 'drone_imagery_standard_process_raw_images_image_id_interactive_select_div_area', 1, 1);
 
@@ -1481,7 +1481,7 @@ jQuery(document).ready(function(){
 
                     manage_drone_imagery_standard_process_raw_images_interactive_current_pass = 1;
 
-                    jQuery('#drone_imagery_standard_process_interactive_rotate_flight_pass').html("<h1><b>Current Imaging Event Pass: "+manage_drone_imagery_standard_process_raw_images_interactive_current_pass+"/"+manage_drone_imagery_standard_process_raw_images_interactive_maximum_pass+"</b></h1>");
+                    jQuery('#drone_imagery_standard_process_interactive_rotate_flight_pass').html("<h1><b>Passagem atual do evento de imageamento: "+manage_drone_imagery_standard_process_raw_images_interactive_current_pass+"/"+manage_drone_imagery_standard_process_raw_images_interactive_maximum_pass+"</b></h1>");
 
                     Workflow.complete("#manage_drone_imagery_standard_process_interactive_separated_passes_step");
                     Workflow.focus('#manage_drone_imagery_standard_process_raw_images_interactive_workflow', 3);
@@ -1489,7 +1489,7 @@ jQuery(document).ready(function(){
                 window.scrollTo(0,0);
             },
             error: function(response){
-                alert('Error check rotation!');
+                alert('Erro ao verificar a rotação!');
             }
         });
     });
@@ -1506,12 +1506,12 @@ jQuery(document).ready(function(){
     });
 
     function _redraw_ground_control_points_table_interactive() {
-        var html = "<table class='table table-bordered table-hover'><thead><tr><th>Saved GCP Name</th><th>X Pos</th><th>Y Pos</th><th>Latitude</th><th>Longitude</th><th>Remove</th></thead><tbody>";
+        var html = "<table class='table table-bordered table-hover'><thead><tr><th>Nome do ponto de controle salvo</th><th>Posição X</th><th>Posição Y</th><th>Latitude</th><th>Longitude</th><th>Remover</th></thead><tbody>";
         for (var i=0; i<project_drone_imagery_interactive_ground_control_points_saved_array.length; i++) {
             html = html + "<tr><td>"+project_drone_imagery_interactive_ground_control_points_saved_array[i]['name']+"</td><td>"+project_drone_imagery_interactive_ground_control_points_saved_array[i]['x_pos']+"</td><td>"+project_drone_imagery_interactive_ground_control_points_saved_array[i]['y_pos']+"</td><td>"+project_drone_imagery_interactive_ground_control_points_saved_array[i]['latitude']+"</td><td>"+project_drone_imagery_interactive_ground_control_points_saved_array[i]['longitude']+"</td><td><p style='color:red' name='project_drone_imagery_interactive_ground_control_points_delete_one' data-name='"+project_drone_imagery_interactive_ground_control_points_saved_array[i]['name']+"' data-drone_run_project_id="+manage_drone_imagery_standard_process_raw_images_interactive_drone_run_id+" >X</p></td></tr>";
         }
         html = html + "</tbody></table>";
-        html = html + "<button class='btn btn-default' name='project_drone_imagery_interactive_ground_control_points_draw_points'>Draw Saved GCPs</button>";
+        html = html + "<button class='btn btn-default' name='project_drone_imagery_interactive_ground_control_points_draw_points'>Desenhar pontos de controle salvos</button>";
         jQuery('#'+project_drone_imagery_interactive_ground_control_points_saved_div_table).html(html);
     }
 
@@ -1519,7 +1519,7 @@ jQuery(document).ready(function(){
         var drone_run_project_id = jQuery(this).data('drone_run_project_id');
         var name = jQuery(this).data('name');
 
-        if (confirm("Remove this GCP?")) {
+        if (confirm("Remover este ponto de controle em solo?")) {
             jQuery.ajax({
                 type: 'POST',
                 url: '/api/drone_imagery/remove_one_gcp',
@@ -1537,7 +1537,7 @@ jQuery(document).ready(function(){
                     _redraw_ground_control_points_table_interactive();
                 },
                 error: function(response){
-                    alert('Error deleting GCP name!');
+                    alert('Erro ao excluir o ponto de controle em solo!');
                 }
             });
         }
@@ -1562,7 +1562,7 @@ jQuery(document).ready(function(){
                 initializeImagesInteractive(1, '#drone_imagery_standard_process_raw_images_image_id_interactive_select_div_area_'+manage_drone_imagery_standard_process_raw_images_interactive_current_pass);
             },
             error: function(response){
-                alert('Error deleting GPS images template from NS step!')
+                alert('Erro ao excluir o modelo de imagens com GPS da etapa norte–sul!')
             }
         });
     });
@@ -1581,7 +1581,7 @@ jQuery(document).ready(function(){
                 initializeImagesInteractive(1, '#drone_imagery_standard_process_raw_images_image_id_interactive_select_div_area_'+manage_drone_imagery_standard_process_raw_images_interactive_current_pass);
             },
             error: function(response){
-                alert('Error deleting GPS images template from EW step!')
+                alert('Erro ao excluir o modelo de imagens com GPS da etapa leste–oeste!')
             }
         });
     });
@@ -1596,7 +1596,7 @@ jQuery(document).ready(function(){
     });
 
     jQuery('#drone_imagery_plot_polygons_top_left_click_raw_images_interactive').click(function(){
-        alert('Now click the top left corner of your field on the image below.');
+        alert('Agora clique no canto superior esquerdo do campo na imagem abaixo.');
 
         d3.selectAll("g").on('mousedown.drag', null);
 
@@ -1613,7 +1613,7 @@ jQuery(document).ready(function(){
         });
     });
     jQuery('#drone_imagery_plot_polygons_top_right_click_raw_images_interactive').click(function(){
-        alert('Now click the top right corner of your field on the image below.');
+        alert('Agora clique no canto superior direito do campo na imagem abaixo.');
 
         d3.selectAll("g").on('mousedown.drag', null);
 
@@ -1629,7 +1629,7 @@ jQuery(document).ready(function(){
         });
     });
     jQuery('#drone_imagery_plot_polygons_bottom_left_click_raw_images_interactive').click(function(){
-        alert('Now click the bottom left corner of your field on the image below.');
+        alert('Agora clique no canto inferior esquerdo do campo na imagem abaixo.');
 
         d3.selectAll("g").on('mousedown.drag', null);
 
@@ -1646,7 +1646,7 @@ jQuery(document).ready(function(){
         });
     });
     jQuery('#drone_imagery_plot_polygons_bottom_right_click_raw_images_interactive').click(function(){
-        alert('Now click the bottom right corner of your field on the image below.');
+        alert('Agora clique no canto inferior direito do campo na imagem abaixo.');
 
         d3.selectAll("g").on('mousedown.drag', null);
 
@@ -1691,7 +1691,7 @@ jQuery(document).ready(function(){
     var drone_imagery_plot_polygons_rectangles_apply_square_raw_images_interactive_section_right_column_bottom_offset_val = 0;
 
     jQuery('#drone_imagery_plot_polygons_rectangles_apply_square_average_raw_images_interactive').click(function() {
-        alert('Click the four corners of 10 single plots at random in the current imaging pass. For each single plot click the top left, then the top right, then the bottom right, then the bottom left.');
+        alert('Clique nos quatro cantos de 10 parcelas escolhidas aleatoriamente na passagem de imageamento atual. Para cada parcela, clique no canto superior esquerdo, depois no superior direito, no inferior direito e, por fim, no inferior esquerdo.');
 
     });
 
@@ -1709,35 +1709,35 @@ jQuery(document).ready(function(){
         var section_right_column_bottom_offset_val = jQuery('#drone_imagery_plot_polygons_right_col_bottom_offset_raw_images_interactive').val();
 
         if (num_rows_val == ''){
-            alert('Please give the number of rows!');
+            alert('Informe o número de linhas!');
             return;
         }
         if (num_cols_val == ''){
-            alert('Please give the number of columns!');
+            alert('Informe o número de colunas!');
             return;
         }
         if (section_top_row_left_offset_val == ''){
-            alert('Please give the top-most rows left margin! This can be 0 if there is no offset.');
+            alert('Informe a margem esquerda das linhas superiores! Use 0 quando não houver deslocamento.');
             return;
         }
         if (section_bottom_row_left_offset_val == ''){
-            alert('Please give the bottom-most rows left margin! This can be 0 if there is no offset.');
+            alert('Informe a margem esquerda das linhas inferiores! Use 0 quando não houver deslocamento.');
             return;
         }
         if (section_left_column_top_offset_val == ''){
-            alert('Please give the left-most columns top margin! This can be 0 if there is no offset.');
+            alert('Informe a margem superior das colunas à esquerda! Use 0 quando não houver deslocamento.');
             return;
         }
         if (section_left_column_bottom_offset_val == ''){
-            alert('Please give the left-most columns bottom margin! This can be 0 if there is no offset.');
+            alert('Informe a margem inferior das colunas à esquerda! Use 0 quando não houver deslocamento.');
             return;
         }
         if (section_top_row_right_offset_val == ''){
-            alert('Please give the top-most rows right margin! This can be 0 if there is no offset.');
+            alert('Informe a margem direita das linhas superiores! Use 0 quando não houver deslocamento.');
             return;
         }
         if (section_right_column_bottom_offset_val == ''){
-            alert('Please give the right-most columns bottom margin! This can be 0 if there is no offset.');
+            alert('Informe a margem inferior das colunas à direita! Use 0 quando não houver deslocamento.');
             return;
         }
 
@@ -1752,7 +1752,7 @@ jQuery(document).ready(function(){
         drone_imagery_plot_polygons_rectangles_apply_square_raw_images_interactive_counter = drone_imagery_plot_polygons_rectangles_apply_square_raw_images_interactive_counter + 1;
 
         if (drone_imagery_plot_polygons_rectangles_apply_square_raw_images_interactive_counter < 10) {
-            alert('Click the boundaries of another plot. You need to click atleast 10 to get a good average. Completed: '+drone_imagery_plot_polygons_rectangles_apply_square_raw_images_interactive_counter);
+            alert('Clique nos limites de outra parcela. É necessário marcar pelo menos 10 parcelas para obter uma boa média. Concluídas: '+drone_imagery_plot_polygons_rectangles_apply_square_raw_images_interactive_counter);
             return false;
         }
 
@@ -1761,12 +1761,12 @@ jQuery(document).ready(function(){
 
     function plotPolygonManualAssignPlotNumberTable(div_id, table_id, input_name, generate_assign_button, save_button) {
         var html = '<div class="panel panel-default"><div class="panel-body">';
-        html = html + '<table class="table table-bordered table-hover" id="'+table_id+'"><thead><tr><th>Polygon Number</th><th>Plot Number</th></tr></thead><tbody>';
+        html = html + '<table class="table table-bordered table-hover" id="'+table_id+'"><thead><tr><th>Número do polígono</th><th>Número da parcela</th></tr></thead><tbody>';
         for(var i=0; i<drone_imagery_interactive_plot_generated_polygons.length; i++) {
             html = html + '<tr><td>'+i+'</td><td><input type="number" class="form-control" data-polygon_number="'+i+'" name="'+input_name+'" /></td></tr>';
         }
         html = html + '</tbody></table><hr>';
-        html = html + '<button class="btn btn-primary" id="'+generate_assign_button+'">Generate Assignments From Manual Input (Does Not Save)</button>&nbsp;&nbsp;&nbsp;<button class="btn btn-primary" name="'+save_button+'">Finish and Save Polygons To Plots. Go to Next Imaging Pass.</button></div></div>';
+        html = html + '<button class="btn btn-primary" id="'+generate_assign_button+'">Gerar atribuições a partir da entrada manual (não salva)</button>&nbsp;&nbsp;&nbsp;<button class="btn btn-primary" name="'+save_button+'">Concluir e salvar os polígonos nas parcelas. Ir para a próxima passagem.</button></div></div>';
 
         jQuery('#'+div_id).html(html);
         jQuery('#'+table_id).DataTable({'paging':false});
@@ -1794,7 +1794,7 @@ jQuery(document).ready(function(){
                 manage_drone_imagery_standard_process_raw_images_interactive_svg.append("text")
                     .attr("x", points[0].x + 3)
                     .attr("y", points[0].y + 14 + plot_polygon_random_number)
-                    .text('NA')
+                    .text('N/D')
                     .attr("font-family", "Arial")
                     .attr("font-size", "18px")
                     .attr("fill", "blue");
@@ -1818,9 +1818,9 @@ jQuery(document).ready(function(){
     }
 
     function droneImageryDrawPlotPolygonActiveTemplatesTableInteractive(div_id, plot_polygons_template_dimensions){
-        var html = '<table class="table table-bordered table-hover"><thead><tr><th>Template Number</th><th>Rows</th><th>Columns</th><th>Total Polygons</th><th>Options</th></tr></thead><tbody>';
+        var html = '<table class="table table-bordered table-hover"><thead><tr><th>Número do modelo</th><th>Linhas</th><th>Colunas</th><th>Total de polígonos</th><th>Opções</th></tr></thead><tbody>';
         for (var i=0; i<plot_polygons_template_dimensions.length; i++) {
-            html = html + '<tr><td>'+i+'</td><td>'+plot_polygons_template_dimensions[i]['num_rows']+'</td><td>'+plot_polygons_template_dimensions[i]['num_cols']+'</td><td>'+plot_polygons_template_dimensions[i]['total_plot_polygons']+'</td><td><button class="btn btn-sm btn-primary" name="drone_imagery_plot_polygon_template_options_interactive" data-plot_polygon_template_id="'+i+'" >Options</button></td></tr>';
+            html = html + '<tr><td>'+i+'</td><td>'+plot_polygons_template_dimensions[i]['num_rows']+'</td><td>'+plot_polygons_template_dimensions[i]['num_cols']+'</td><td>'+plot_polygons_template_dimensions[i]['total_plot_polygons']+'</td><td><button class="btn btn-sm btn-primary" name="drone_imagery_plot_polygon_template_options_interactive" data-plot_polygon_template_id="'+i+'" >Opções</button></td></tr>';
         }
         html = html + '</tbody></table>';
         jQuery('#'+div_id).html(html);
@@ -1828,35 +1828,35 @@ jQuery(document).ready(function(){
 
     function plotPolygonsRectanglesApplyInteractive(num_rows_val, num_cols_val, section_top_row_left_offset_val, section_bottom_row_left_offset_val, section_left_column_top_offset_val, section_left_column_bottom_offset_val, section_top_row_right_offset_val, section_right_column_bottom_offset_val, section_width, section_height, plot_polygons_assignment_info) {
         if (num_rows_val == ''){
-            alert('Please give the number of rows!');
+            alert('Informe o número de linhas!');
             return;
         }
         if (num_cols_val == ''){
-            alert('Please give the number of columns!');
+            alert('Informe o número de colunas!');
             return;
         }
         if (section_top_row_left_offset_val == ''){
-            alert('Please give the top-most rows left margin! This can be 0 if there is no offset.');
+            alert('Informe a margem esquerda das linhas superiores! Use 0 quando não houver deslocamento.');
             return;
         }
         if (section_bottom_row_left_offset_val == ''){
-            alert('Please give the bottom-most rows left margin! This can be 0 if there is no offset.');
+            alert('Informe a margem esquerda das linhas inferiores! Use 0 quando não houver deslocamento.');
             return;
         }
         if (section_left_column_top_offset_val == ''){
-            alert('Please give the left-most columns top margin! This can be 0 if there is no offset.');
+            alert('Informe a margem superior das colunas à esquerda! Use 0 quando não houver deslocamento.');
             return;
         }
         if (section_left_column_bottom_offset_val == ''){
-            alert('Please give the left-most columns bottom margin! This can be 0 if there is no offset.');
+            alert('Informe a margem inferior das colunas à esquerda! Use 0 quando não houver deslocamento.');
             return;
         }
         if (section_top_row_right_offset_val == ''){
-            alert('Please give the top-most rows right margin! This can be 0 if there is no offset.');
+            alert('Informe a margem direita das linhas superiores! Use 0 quando não houver deslocamento.');
             return;
         }
         if (section_right_column_bottom_offset_val == ''){
-            alert('Please give the right-most columns bottom margin! This can be 0 if there is no offset.');
+            alert('Informe a margem inferior das colunas à direita! Use 0 quando não houver deslocamento.');
             return;
         }
 
@@ -1983,7 +1983,7 @@ jQuery(document).ready(function(){
         }
         console.log(plot_polygons_interactive_generated_polygons_intermediate);
 
-        alert('Click on where the top left corner of the template will be pasted in the current imaging event pass.');
+        alert('Clique no local onde o canto superior esquerdo do modelo será colado na passagem de imageamento atual.');
 
         d3.selectAll("g").on('mousedown.drag', null);
 
@@ -2061,7 +2061,7 @@ jQuery(document).ready(function(){
                 droneImageryDrawLayoutTableInteractive(response, {}, 'drone_imagery_interactive_trial_layout_div', 'drone_imagery_interactive_trial_layout_table');
             },
             error: function(response){
-                alert('Error retrieving trial layout and design!')
+                alert('Erro ao obter o arranjo e o delineamento do ensaio!')
             }
         });
     }
@@ -2073,7 +2073,7 @@ jQuery(document).ready(function(){
         for (var i=0; i<header.length; i++){
             html = html + '<td>'+header[i]+'</td>';
         }
-        html = html + '<td>Polygon Assigned</td>';
+        html = html + '<td>Polígono atribuído</td>';
         html = html + '</tr></thead><tbody>';
         for (var i=1; i<output.length; i++){
             html = html + '<tr>';
@@ -2081,7 +2081,7 @@ jQuery(document).ready(function(){
                 html = html + '<td>'+output[i][j]+'</td>';
             }
             if (output[i][0] in plot_polygons && plot_polygons[output[i][0]] != undefined){
-                html = html + '<td>Yes</td>';
+                html = html + '<td>Sim</td>';
             } else {
                 html = html + '<td></td>';
             }
@@ -2093,11 +2093,11 @@ jQuery(document).ready(function(){
     }
 
     function droneImageryDrawRectangleTableInteractive(plot_polygons_layout_assignment_info, plot_polygons_generate_assignment_button, plot_polygon_assignment_submit_button) {
-        var html = '<hr><div class="well well-sm"><h2>Or Auto Assign Plot Polygons to Plot Numbers</h2>';
+        var html = '<hr><div class="well well-sm"><h2>Ou atribua automaticamente os polígonos aos números das parcelas</h2>';
         html = html + '<div class="panel panel-default"><div class="panel-body"><div class="form form-horizontal">';
-        html = html + '<div class="row"><div class="col-sm-6"><div class="form-group form-group-sm"><label class="col-sm-6 control-label">Location of First Plot (e.g. plot number 1): </label><div class="col-sm-6"><select class="form-control" id="drone_imagery_interactive_plot_polygons_first_plot_start" name="drone_imagery_interactive_plot_polygons_first_plot_start"><option value="top_left">Top Left</option><option value="top_right">Top Right</option><option value="bottom_left" disabled>Bottom Left</option><option value="bottom_right" disabled>Bottom Right</option></select></div></div></div><div class="col-sm-6"><div class="form-group form-group-sm"><label class="col-sm-6 control-label">Second Plot Follows First Plot Going: </label><div class="col-sm-6"><select class="form-control" id="drone_imagery_interactive_plot_polygons_second_plot_follows" name="drone_imagery_interactive_plot_polygons_second_plot_follows"><option value="right">Right</option><option value="up">Up</option><option value="down">Down</option><option value="left">Left</option></select></div></div></div></div>';
-        html = html + '<div class="row"><div class="col-sm-6"><div class="form-group form-group-sm"><label class="col-sm-6 control-label">Plot Number Orientation: </label><div class="col-sm-6"><select class="form-control" id="drone_imagery_interactive_plot_polygons_plot_orientation" name="drone_imagery_interactive_plot_polygons_plot_orientation"><option value="serpentine">Serpentine</option><option value="zigzag">Zigzag (Not Serpentine)</option></select></div></div></div><div class="col-sm-6"><div class="form-group form-group-sm"><label class="col-sm-6 control-label">Plot Number Start (optional): </label><div class="col-sm-6"><input type="number" class="form-control" id="drone_imagery_interactive_plot_polygons_plot_number_start" name="drone_imagery_interactive_plot_polygons_plot_number_start" placeholder="OPTIONAL" /></div></div></div></div>';
-        html = html + '<button class="btn btn-primary" id="'+plot_polygons_generate_assignment_button+'">Generate Assignments (Does Not Save)</button>&nbsp;&nbsp;&nbsp;<button class="btn btn-primary" name="'+plot_polygon_assignment_submit_button+'">Finish and Save Polygons To Plots. Go to Next Imaging Pass.</button></div>';
+        html = html + '<div class="row"><div class="col-sm-6"><div class="form-group form-group-sm"><label class="col-sm-6 control-label">Local da primeira parcela (por exemplo, parcela número 1): </label><div class="col-sm-6"><select class="form-control" id="drone_imagery_interactive_plot_polygons_first_plot_start" name="drone_imagery_interactive_plot_polygons_first_plot_start"><option value="top_left">Superior esquerdo</option><option value="top_right">Superior direito</option><option value="bottom_left" disabled>Inferior esquerdo</option><option value="bottom_right" disabled>Inferior direito</option></select></div></div></div><div class="col-sm-6"><div class="form-group form-group-sm"><label class="col-sm-6 control-label">Direção da segunda parcela a partir da primeira: </label><div class="col-sm-6"><select class="form-control" id="drone_imagery_interactive_plot_polygons_second_plot_follows" name="drone_imagery_interactive_plot_polygons_second_plot_follows"><option value="right">Direita</option><option value="up">Acima</option><option value="down">Abaixo</option><option value="left">Esquerda</option></select></div></div></div></div>';
+        html = html + '<div class="row"><div class="col-sm-6"><div class="form-group form-group-sm"><label class="col-sm-6 control-label">Orientação da numeração das parcelas: </label><div class="col-sm-6"><select class="form-control" id="drone_imagery_interactive_plot_polygons_plot_orientation" name="drone_imagery_interactive_plot_polygons_plot_orientation"><option value="serpentine">Serpentina</option><option value="zigzag">Zigue-zague (não serpentina)</option></select></div></div></div><div class="col-sm-6"><div class="form-group form-group-sm"><label class="col-sm-6 control-label">Número inicial da parcela (opcional): </label><div class="col-sm-6"><input type="number" class="form-control" id="drone_imagery_interactive_plot_polygons_plot_number_start" name="drone_imagery_interactive_plot_polygons_plot_number_start" placeholder="OPCIONAL" /></div></div></div></div>';
+        html = html + '<button class="btn btn-primary" id="'+plot_polygons_generate_assignment_button+'">Gerar atribuições (não salva)</button>&nbsp;&nbsp;&nbsp;<button class="btn btn-primary" name="'+plot_polygon_assignment_submit_button+'">Concluir e salvar os polígonos nas parcelas. Ir para a próxima passagem.</button></div>';
         html = html + '</div></div></div></div>';
 
         jQuery('#'+plot_polygons_layout_assignment_info).html(html);
@@ -2111,7 +2111,7 @@ jQuery(document).ready(function(){
 
     jQuery('#drone_imagery_interactive_plot_polygon_template_options_paste_click').click(function(){
         jQuery('#drone_imagery_interactive_plot_polygon_template_options_dialog').modal('hide');
-        alert('Click on where the top left corner of the template will be pasted.');
+        alert('Clique no local onde o canto superior esquerdo do modelo será colado.');
 
         d3.selectAll("g").on('mousedown.drag', null);
 
@@ -2254,7 +2254,7 @@ jQuery(document).ready(function(){
         if (plot_polygons_first_plot_start == 'top_left') {
             var generated_polygon_key_first_plot_number = 0;
             if (plot_polygons_second_plot_follows == 'left' || plot_polygons_second_plot_follows == 'up') {
-                alert('Second plot cannot follow left or up from first plot if the first plot starts at the top left, because that is physically impossible.');
+                alert('A segunda parcela não pode estar à esquerda ou acima da primeira quando a primeira começa no canto superior esquerdo, pois isso é fisicamente impossível.');
                 return;
             }
             if (plot_polygons_second_plot_follows == 'right') {
@@ -2336,14 +2336,14 @@ jQuery(document).ready(function(){
                 }
             }
             if (plot_polygons_second_plot_follows == 'down') {
-                alert('Down not implemented if first plot starts in top left. Please contact us or try rotating your image differently before assigning plot polygons (e.g. rotate image 90 degrees clock-wise, then first plot starts in top right and you can go left for plot assignment).');
+                alert('A direção para baixo não está implementada quando a primeira parcela começa no canto superior esquerdo. Entre em contato conosco ou rotacione a imagem antes de atribuir os polígonos (por exemplo, rotacione-a 90 graus no sentido horário; assim, a primeira parcela começará no canto superior direito e a atribuição poderá seguir para a esquerda).');
                 return;
             }
         }
         if (plot_polygons_first_plot_start == 'top_right') {
             var generated_polygon_key_first_plot_number = plot_polygons_template_current_num_cols - 1;
             if (plot_polygons_second_plot_follows == 'right' || plot_polygons_second_plot_follows == 'up') {
-                alert('Second plot cannot follow right or up from first plot if the first plot starts at the top right, because that is physically impossible.');
+                alert('A segunda parcela não pode estar à direita ou acima da primeira quando a primeira começa no canto superior direito, pois isso é fisicamente impossível.');
                 return;
             }
             if (plot_polygons_second_plot_follows == 'left') {
@@ -2437,16 +2437,16 @@ jQuery(document).ready(function(){
                 }
             }
             if (plot_polygons_second_plot_follows == 'down') {
-                alert('Down not implemented if your first plot starts in top right. Please contact us or try rotating your image differently before assigning plot polygons (e.g. rotate image 90 degrees clockwise, then first plot starts in bottom right corner and plot assignment can follow going left).');
+                alert('A direção para baixo não está implementada quando a primeira parcela começa no canto superior direito. Entre em contato conosco ou rotacione a imagem antes de atribuir os polígonos (por exemplo, rotacione-a 90 graus no sentido horário; assim, a primeira parcela começará no canto inferior direito e a atribuição poderá seguir para a esquerda).');
                 return;
             }
         }
         if (plot_polygons_first_plot_start == 'bottom_left') {
-            alert('Not implemented');
+            alert('Não implementado');
             return;
         }
         if (plot_polygons_first_plot_start == 'bottom_right') {
-            alert('Not implemented');
+            alert('Não implementado');
             return;
         }
 
@@ -2531,7 +2531,7 @@ jQuery(document).ready(function(){
 
                     initializeInteractiveSvg('#drone_imagery_standard_process_raw_images_image_id_interactive_select_div', 'drone_imagery_standard_process_raw_images_image_id_interactive_select_div_area', 1, 1);
 
-                    jQuery('#drone_imagery_standard_process_interactive_plot_polygons_flight_pass').html("<h1><b>Current Imaging Event Pass: "+manage_drone_imagery_standard_process_raw_images_interactive_current_pass+"/"+manage_drone_imagery_standard_process_raw_images_interactive_maximum_pass+"</b></h1>");
+                    jQuery('#drone_imagery_standard_process_interactive_plot_polygons_flight_pass').html("<h1><b>Passagem atual do evento de imageamento: "+manage_drone_imagery_standard_process_raw_images_interactive_current_pass+"/"+manage_drone_imagery_standard_process_raw_images_interactive_maximum_pass+"</b></h1>");
 
                     plot_polygons_interactive_display_points = [];
                     plot_polygons_interactive_ind_4_points = [];
@@ -2575,7 +2575,7 @@ jQuery(document).ready(function(){
             manage_drone_imagery_standard_process_interactive_apply_drone_run_band_project_ids.push(jQuery(this).val());
         });
         if (manage_drone_imagery_standard_process_interactive_apply_drone_run_band_project_ids.length < 1){
-            alert('Please select at least one other drone run band!');
+            alert('Selecione pelo menos uma outra banda do voo de drone!');
             return false;
         } else {
             Workflow.complete("#manage_drone_imagery_standard_process_interactive_drone_run_band_apply_step");
@@ -2589,7 +2589,7 @@ jQuery(document).ready(function(){
             manage_drone_imagery_standard_process_interactive_apply_drone_run_band_vegetative_indices.push(jQuery(this).val());
         });
         if (manage_drone_imagery_standard_process_interactive_apply_drone_run_band_vegetative_indices.length < 1){
-            alert('Please select at least one vegetative index!');
+            alert('Selecione pelo menos um índice de vegetação!');
             return false;
         } else {
             jQuery.ajax({
@@ -2606,13 +2606,13 @@ jQuery(document).ready(function(){
                         alert(response.error);
                     }
 
-                    var html = "<center><b>Field Trial Planting Date</b>: "+response.planting_date+"<br/><b>Drone Run Date</b>: "+response.drone_run_date+"<br/><b>Number of Weeks</b>: "+response.rounded_time_difference_weeks+"<br/><b>Number of Weeks Ontology Term</b>: "+response.time_ontology_week_term+"<br/><b>Number of Days</b>:"+response.time_difference_days+"<br/><b>Number of Days Ontology Term</b>: "+response.time_ontology_day_term+"<br/><br/></center>";
+                    var html = "<center><b>Data de plantio do ensaio de campo</b>: "+response.planting_date+"<br/><b>Data do voo de drone</b>: "+response.drone_run_date+"<br/><b>Número de semanas</b>: "+response.rounded_time_difference_weeks+"<br/><b>Termo ontológico do número de semanas</b>: "+response.time_ontology_week_term+"<br/><b>Número de dias</b>: "+response.time_difference_days+"<br/><b>Termo ontológico do número de dias</b>: "+response.time_ontology_day_term+"<br/><br/></center>";
                     jQuery('#drone_imagery_standard_process_interactive_week_term_div').html(html);
 
                     manage_drone_imagery_standard_process_interactive_phenotype_time = response.time_ontology_day_cvterm_id;
                 },
                 error: function(response){
-                    alert('Error getting time terms!');
+                    alert('Erro ao obter os termos de tempo!');
                     jQuery('#working_modal').modal('hide');
                 }
             });
@@ -2626,7 +2626,7 @@ jQuery(document).ready(function(){
         var selected = [];
 
         if (manage_drone_imagery_standard_process_interactive_phenotype_time == '') {
-            alert('Time of phenotype not set! This should not happen! Please contact us.');
+            alert('O tempo do fenótipo não foi definido. Isso não deveria acontecer; entre em contato conosco.');
             return false;
         }
 
@@ -2634,7 +2634,7 @@ jQuery(document).ready(function(){
             selected.push(jQuery(this).val());
         });
         if (selected.length < 1){
-            alert('Please select at least one phenotype!');
+            alert('Selecione pelo menos um fenótipo!');
             return false;
         } else {
             jQuery.ajax({
@@ -2673,7 +2673,7 @@ jQuery(document).ready(function(){
     jQuery('#plot_polygons_use_previously_saved_template_raw_images_interactive').click(function(){
         var plot_polygons_use_previously_saved_template = jQuery('#manage_drone_imagery_standard_process_interactive_previous_templates').val();
         if (plot_polygons_use_previously_saved_template == '') {
-            alert('Please select a previously saved template before trying to apply it. If there is not a template listed, then you can create one using the templating tool above.');
+            alert('Selecione um modelo salvo anteriormente antes de tentar aplicá-lo. Se nenhum modelo estiver listado, crie um usando a ferramenta acima.');
             return;
         }
 
@@ -2691,7 +2691,7 @@ jQuery(document).ready(function(){
                 draw_canvas_image_interactive(0);
             },
             error: function(response){
-                alert('Error retrieving plot polygons template!');
+                alert('Erro ao obter o modelo de polígonos das parcelas!');
             }
         });
         return;

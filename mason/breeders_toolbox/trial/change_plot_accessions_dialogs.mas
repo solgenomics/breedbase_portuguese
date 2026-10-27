@@ -8,11 +8,11 @@ $trial_stock_type
 
 % my $title = '';
 % if ($trial_stock_type eq 'cross') {
-%    $title = 'Change Cross Unique IDs or Accessions';
+%    $title = 'Alterar IDs exclusivos de cruzamentos ou acessos';
 % } elsif ($trial_stock_type eq 'family_name') {
-%    $title = 'Change Family Names or Accessions';
+%    $title = 'Alterar nomes de famílias ou acessos';
 % } else {
-%    $title = 'Change Accessions';
+%    $title = 'Alterar acessos';
 % }
 
 
@@ -20,7 +20,7 @@ $trial_stock_type
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header" style="text-align: center">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title" id="trialDesignChangeAccessionsDialog"><%$title%></h4>
             </div>
             <div class="modal-body">
@@ -32,35 +32,35 @@ $trial_stock_type
 
                         <div class="panel panel-default">
                             <div class="panel-body">
-                                <b>Header:</b><br>
-                                The first row (header) must contain the columns 'plot_name' and 'accession_name' or 'cross_unique_id' or 'family_name', depending on the stock type in this trial.<br>
-                                An optional additional column, 'new_plot_name' can be added to change the plot names.<br>
-                                Alternatively, if a plot name template has been saved in association with this trial, 'new_plot_name' can be left blank and the template will be used to rename the plot.<br>
+                                <b>Cabeçalho:</b><br>
+                                A primeira linha (cabeçalho) deve conter as colunas 'plot_name' e 'accession_name', 'cross_unique_id' ou 'family_name', conforme o tipo de material deste ensaio.<br>
+                                Uma coluna adicional opcional, 'new_plot_name', pode ser incluída para alterar os nomes das parcelas.<br>
+                                Como alternativa, se um modelo de nome de parcela estiver associado a este ensaio, 'new_plot_name' poderá ficar em branco e o modelo será usado para renomear a parcela.<br>
 
                                 <table style="margin-top: 3%;" class="table table-bordered table-hover">
                                   <tbody>
                                   <tr>
                                     <td>plot_name</td>
                                     <td>accession_name</td>
-                                    <td>new_plot_name (optional)</td>
+                                    <td>new_plot_name (opcional)</td>
                                   </tr>
                                   </tbody>
                                 </table>
                             </div>
                         </div>
-                        <b>Required columns:</b><br>
-                        <b>plot_name:</b> name of plot to change the accession for<br>
-                        <b>accession_name or cross_unique_id or family_name:</b> name of the accession or cross unique id or family name that the plot should be connected to.<br>
-                        <br><b>Optional column:</b><br>
-                        <b>new_plot_name:</b> new name for plot.<br>
+                        <b>Colunas obrigatórias:</b><br>
+                        <b>plot_name:</b> nome da parcela cujo acesso será alterado<br>
+                        <b>accession_name, cross_unique_id ou family_name:</b> nome do acesso, ID exclusivo do cruzamento ou nome da família ao qual a parcela deverá ser vinculada.<br>
+                        <br><b>Coluna opcional:</b><br>
+                        <b>new_plot_name:</b> novo nome da parcela.<br>
                         <div class="list-group-item-warning" >
-                          <p><i>Warning: the new plot name will replace the old plot name in subplots, plants, and tissue samples if possible. Changing plot accessions/cross_unique_ids/family_names may change plot replicate numbers. You may need to reprint labels after the changes are applied.</i></p>
+                          <p><i>Aviso: sempre que possível, o novo nome da parcela substituirá o anterior nas subparcelas, plantas e amostras de tecido. A alteração de acessos, IDs exclusivos de cruzamentos ou nomes de famílias poderá alterar os números de repetição das parcelas. Talvez seja necessário reimprimir as etiquetas após aplicar as alterações.</i></p>
                         </div>
                     </div>
 
                     <form class="form-horizontal" method="post" enctype="multipart/form-data" encoding="multipart/form-data" id="trial_design_change_accessions_form" name="trial_design_change_accessions_form">
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">Upload File: </label>
+                            <label class="col-sm-3 control-label">Enviar arquivo: </label>
                             <div class="col-sm-9" >
                                 <input type="file" name="trial_design_change_accessions_file" id="trial_design_change_accessions_file" encoding="multipart/form-data" />
                             </div>
@@ -70,8 +70,8 @@ $trial_stock_type
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" id="trial_design_change_accessions_submit" >Submit</button>
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="trial_design_change_accessions_submit" >Enviar</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
             </div>
         </div>
     </div>
@@ -81,8 +81,8 @@ $trial_stock_type
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header" style="text-align: center">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="tDDialog"><b>Warning!</b></h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="tDDialog"><b>Aviso!</b></h4>
             </div>
             <div class="modal-body">
                 <div class="container-fluid">
@@ -90,16 +90,16 @@ $trial_stock_type
                     <big>
                         <span>&#9888;</span>
                         <p3>
-                            One or more traits have been assayed for this trial; <br>
-                            It is not recommended to change accessions/cross_unique_ids/family_names at this point. Are you sure?
+                            Uma ou mais características já foram avaliadas neste ensaio.<br>
+                            Não é recomendável alterar acessos, IDs exclusivos de cruzamentos ou nomes de famílias neste momento. Deseja continuar?
                         </p3>
                     </big>
 
                 </div>
             </div>
             <div class="modal-footer">
-                <button id="td_override_accession_warning" type="button" class="btn btn-primary" >Yes</button>
-                <button id="close_tdfieldmap_dialog" type="button" class="btn btn-default" data-dismiss="modal">No</button>
+                <button id="td_override_accession_warning" type="button" class="btn btn-primary" >Sim</button>
+                <button id="close_tdfieldmap_dialog" type="button" class="btn btn-default" data-dismiss="modal">Não</button>
 
             </div>
         </div>
@@ -111,18 +111,18 @@ $trial_stock_type
     <div class="modal-dialog " role="document">
         <div class="modal-content">
             <div class="modal-header" style="text-align: center">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="tDDialog"><b>Replace Plot Accessions</b></h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="tDDialog"><b>Substituir acessos das parcelas</b></h4>
             </div>
             <div class="modal-body">
                 <div class="container-fluid">
 
-                    <p3> Plot accession was replaced successfully.</p3>
+                    <p3>O acesso da parcela foi substituído com sucesso.</p3>
 
                 </div>
             </div>
             <div class="modal-footer">
-                <button id="close_replace_accession_dialog" type="button" onclick=location.reload() class="btn btn-default" data-dismiss="modal">Close</button>
+                <button id="close_replace_accession_dialog" type="button" onclick=location.reload() class="btn btn-default" data-dismiss="modal">Fechar</button>
             </div>
         </div>
     </div>
@@ -133,12 +133,12 @@ $trial_stock_type
     <div class="modal-dialog " role="document">
         <div class="modal-content">
             <div class="modal-header" style="text-align: center">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="change_accsn_err_dialog"><b>Error Changing Plot Accessions</b></h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="change_accsn_err_dialog"><b>Erro ao alterar os acessos das parcelas</b></h4>
             </div>
             <div class="modal-body">
                 <div class="container-fluid">
-                    <p3> Accessions were not changed due to these errors:</p3><br><br>
+                    <p3>Os acessos não foram alterados devido aos seguintes erros:</p3><br><br>
                     <div style="background-color: light-gray;" class="well well-sm">
                         <table>
                             <tbody></tbody>
@@ -147,7 +147,7 @@ $trial_stock_type
                 </div>
             </div>
             <div class="modal-footer">
-                <button id="close_error_change_accsn" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button id="close_error_change_accsn" type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
 
             </div>
         </div>
@@ -168,7 +168,7 @@ jQuery(document).ready(function () {
         var uploadFile = jQuery("#trial_design_change_accessions_file").val();
         jQuery('#trial_design_change_accessions_form').attr("action", "/ajax/breeders/trial/<% $trial_id %>/change_plot_accessions_using_file/check");
         if (uploadFile === '') {
-            alert("Please select a file");
+            alert("Selecione um arquivo.");
             return;
         }
         jQuery("#trial_design_change_accessions_form").submit();
@@ -203,7 +203,7 @@ jQuery(document).ready(function () {
             jQuery('#trial_design_change_accessions_dialog').modal("hide");
             jQuery('#td_replace_accession_curator_warning_message').modal("hide");
             jQuery('#working_modal').modal("hide");
-            alert("An error occurred changing plot accessions");
+            alert("Ocorreu um erro ao alterar os acessos das parcelas.");
         }
     });
 

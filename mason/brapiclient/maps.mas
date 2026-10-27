@@ -3,8 +3,8 @@
 
 <div id="brapi_home_maps_div">
 
-    <h4>Genome Maps</h4>
-    <button class="btn btn-primary" name="brapi_home_maps_submit" id="brapi_home_maps_submit">Get Maps</button>
+    <h4>Mapas genômicos</h4>
+    <button class="btn btn-primary" name="brapi_home_maps_submit" id="brapi_home_maps_submit">Obter mapas</button>
     <br/><br/>
     <div id="brapi_maps_data_result_div">
     </div>
@@ -29,7 +29,7 @@ jQuery(document).ready(function() {
           },
           error: function(response) {
             jQuery('#working_modal').modal('hide');
-            alert('An error occurred');
+            alert('Ocorreu um erro');
           }
         });
     });

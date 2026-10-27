@@ -20,36 +20,36 @@ $vector_id => undef
 
 <& /util/import_javascript.mas, classes => [ 'jquery', 'jquery/dataTables', 'CXGN.BreedersToolbox.HTMLSelect.js', 'CXGN.List', 'flatpickr_min'] &>
 
-<& /page/page_title.mas, title=>"Record Activity" &>
+<& /page/page_title.mas, title=>"Registrar atividade" &>
 
 <div class="well ">
-    <center><label class="col-sm-12 control-label">Please scan a tracking identifier barcode</label></center>
+    <center><label class="col-sm-12 control-label">Leia o código de barras de um identificador de rastreamento</label></center>
     <br/>
     <form class="form-horizontal" >
     <br/>
         <div class="form-group">
-            <label class="col-sm-3 control-label">Identifier Name: </label>
+            <label class="col-sm-3 control-label">Nome do identificador: </label>
             <div class="col-sm-5">
                 <input class="form-control" id="record_page_identifier_name_input" name="record_page_identifier_name_input" type="text" value="">
             </div>
             <div class="col-sm-2">
-                <button id="identifier_name_barcode" class="btn btn-block btn-default"><span class="glyphicon glyphicon-qrcode"></span> Scan Barcode</button>
+                <button id="identifier_name_barcode" class="btn btn-block btn-default"><span class="glyphicon glyphicon-qrcode"></span> Ler código de barras</button>
             </div>
         </div>
 
         <div class="form-group">
-            <label class="col-sm-3 control-label">Material Name: </label>
+            <label class="col-sm-3 control-label">Nome do material: </label>
             <div class="col-sm-5" >
                 <input class="form-control" name="record_page_material_name" id="record_page_material_name" disabled value="<% $material_name %>">
             </div>
         </div>
 
         <div class="form-group">
-            <label class="col-sm-3 control-label">Input Type: </label>
+            <label class="col-sm-3 control-label">Tipo de dado: </label>
             <div class="col-sm-5">
 % if ($type_select_options) {
                 <select id="record_page_type_select">
-                    <option value="">Please select a type</option>
+                    <option value="">Selecione um tipo</option>
 % foreach my $type(@$type_select_options){
                     <option value="<%$type->[0]%>"><%$type->[1]%></option>
 % }
@@ -58,25 +58,25 @@ $vector_id => undef
             </div>
         </div>
         <div class="form-group">
-            <label class="col-sm-3 control-label">Input: </label>
+            <label class="col-sm-3 control-label">Valor: </label>
             <div class="col-sm-5">
                 <input class="form-control" id="record_page_info_input" name="record_page_info_input" type="text" value="">
             </div>
         </div>
         <div class="form-group">
-            <label class="col-sm-3 control-label">Notes:</label>
+            <label class="col-sm-3 control-label">Observações:</label>
             <div class="col-sm-5">
                 <textarea class="form-control" id="record_page_notes" name="record_page_notes" ></textarea>
             </div>
         </div>
         <div class="form-group" style="display:none">
-            <label class="col-sm-3 control-label">Timestamp: </label>
+            <label class="col-sm-3 control-label">Data e hora: </label>
             <div class="col-sm-5">
                 <input class="form-control" id="record_timestamp_record_page" name="record_timestamp_record_page" type="text" disabled value="<%$timestamp%>">
             </div>
         </div>
         <center>
-            <button id="record_page_activity_info_submit" name="record_page_activity_info_submit" class="btn btn-primary">Save</button>
+            <button id="record_page_activity_info_submit" name="record_page_activity_info_submit" class="btn btn-primary">Salvar</button>
         </center>
     </form>
 </div>
@@ -84,10 +84,10 @@ $vector_id => undef
 
 % if ($identifier_id) {
     <td>
-        <a href='/breeders/trial/<%$project_id%>'><p>Go to Project Page</p></a>
+        <a href='/breeders/trial/<%$project_id%>'><p>Ir para a página do projeto</p></a>
     </td>
 
-    <&| /page/info_section.mas, title => 'Summary', collapsible => 1, collapsed => 0, subtitle => '' &>
+    <&| /page/info_section.mas, title => 'Resumo', collapsible => 1, collapsed => 0, subtitle => '' &>
         <div class = "well well-sm">
             <div class = "panel panel-default">
                 <div class = "panel-body">
@@ -106,7 +106,7 @@ $vector_id => undef
             </div>
         </div>
     </&>
-    <&| /page/info_section.mas, title => 'Activity Details', collapsible => 1, collapsed => 0, subtitle => '' &>
+    <&| /page/info_section.mas, title => 'Detalhes da atividade', collapsible => 1, collapsed => 0, subtitle => '' &>
         <div class = "well well-sm">
             <div class = "panel panel-default">
                 <div class = "panel-body">
@@ -136,19 +136,19 @@ $vector_id => undef
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="recordPageSavedDialog">Success</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="recordPageSavedDialog">Sucesso</h4>
             </div>
             <div class="modal-body">
                 <div class="container-fluid">
                     <p>
                         <span class="ui-icon ui-icon-circle-check" style="float: left; margin: 0 7px 50px 0;"></span>
-                        New information was saved.
+                        As novas informações foram salvas.
                     </p>
                 </div>
             </div>
             <div class="modal-footer">
-                <button id="record_page_dismiss_saved_dialog" type="button" class="btn btn-default" data-dismiss="modal">Close & Reload</button>
+                <button id="record_page_dismiss_saved_dialog" type="button" class="btn btn-default" data-dismiss="modal">Fechar e recarregar</button>
             </div>
         </div>
     </div>
@@ -201,7 +201,7 @@ $(window).ready( function() {
         let input_type = jQuery('#record_page_type_select').val();
         if (input_type.indexOf('date') != -1) {
             flatpickr('#record_page_info_input', {
-                allowInput: true,
+                allowValor: true,
                 dateFormat: "Y-m-d",
                 defaultDate: "today"
             });
@@ -220,16 +220,16 @@ $(window).ready( function() {
         var program_name = "<%$program_name%>";
 
         if (identifier_name == '') {
-            alert("Please scan an identifier name barcode");
+            alert("Leia o código de barras do identificador");
             return;
         }
 
         if (selected_type == '') {
-            alert("Please select a type");
+            alert("Selecione um tipo");
             return;
         }
         if (input == '') {
-            alert("Please provide an input");
+            alert("Informe um valor");
             return;
         }
 
@@ -262,7 +262,7 @@ $(window).ready( function() {
             },
             error: function(response){
                 jQuery('#working_modal').modal('hide');
-                alert('An error occurred saving new information');
+                alert('Ocorreu um erro ao salvar as novas informações');
             }
         });
     });

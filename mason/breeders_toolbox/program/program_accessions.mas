@@ -9,8 +9,8 @@ $program_id
 <table id="accession_summary_data" class="display">
     <thead>
         <tr>
-            <th>Accession name</th>
-            <th>Description</th>
+            <th>Nome do acesso</th>
+            <th>Descrição</th>
         </tr>
     </thead>
 </table>

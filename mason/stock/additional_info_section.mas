@@ -22,15 +22,15 @@ $original_stock_link
     <div class="panel panel-default">
         <div class="panel-body panel-body-sm">
 % if ($derived_accession_relationship eq 'is_a_derived_accession') {
-        <b>Derived from: </b>
+        <b>Derivado de: </b>
         </br>
-        <b>Direct Source: </b><% $related_stock_link %>
+        <b>Origem direta: </b><% $related_stock_link %>
         </br>
 % if ($original_stock_link) {
-        <b>Original Source: </b><% $original_stock_link %>
+        <b>Origem original: </b><% $original_stock_link %>
 % }
 % } elsif ($derived_accession_relationship eq 'has_a_derived_accession') {
-        <b>Derived Accession: </b>
+        <b>Acesso derivado: </b>
         <br/>
         <% $related_stock_link %>
 % }
@@ -41,7 +41,7 @@ $original_stock_link
 <div class="panel panel-default">
     <div class="panel-body panel-body-sm">
 
-        <&| /page/info_section.mas, title => "Synonyms", is_subsection => 1 &>
+        <&| /page/info_section.mas, title => "Sinônimos", is_subsection => 1 &>
             <& /stock/stockprops.mas,
                stock_id    => $stock_id,
 	        form_div_id => 'stock_add_synonym',
@@ -58,7 +58,7 @@ $original_stock_link
 <div class="panel panel-default">
     <div class="panel-body panel-body-sm">
 
-        <&| /page/info_section.mas, title => "Additional information", is_subsection => 1 &>
+        <&| /page/info_section.mas, title => "Informações complementares", is_subsection => 1 &>
             <& /stock/stockprops.mas,
                 stock_id  =>$stock_id,
                 form_div_id => 'stock_add_props',
@@ -74,7 +74,7 @@ $original_stock_link
 
 <div class="panel panel-default">
     <div class="panel-body panel-body-sm">
-        <b>Stock editors: </b>
+        <b>Editores do material: </b>
         <br/>
         <% $editor_link %>
     </div>
@@ -82,7 +82,7 @@ $original_stock_link
 
 <div class="panel panel-default">
     <div class="panel-body panel-body-sm">
-        <b>External Database Links: </b>
+        <b>Links de bancos de dados externos: </b>
         <ul>
 % foreach my $db_url (keys %$source_dbs) {
             <li>
@@ -97,7 +97,7 @@ $original_stock_link
     <div class="panel panel-default">
         <div class="panel-body panel-body-sm">
 
-            <&| /page/info_section.mas, title => "Associated loci (" . $stockref->{allele_count} . ")" , subtitle => $new_locus_link, collapsible=> 1 , collapsed => 1 &>
+            <&| /page/info_section.mas, title => "Locos associados (" . $stockref->{allele_count} . ")" , subtitle => $new_locus_link, collapsible=> 1 , collapsed => 1 &>
                 <& /phenome/associate_locus.mas, object_id => $stock_id , object_name => "stock", locus_add_uri=> $locus_add_uri,   allele_div => $allele_div , show_form => $is_owner &>
             </&>
         </div>

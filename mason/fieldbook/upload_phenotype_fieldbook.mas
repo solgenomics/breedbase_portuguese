@@ -7,41 +7,41 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="addFieldbookPhenotypeDialog">Upload Fieldbook File</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="addFieldbookPhenotypeDialog">Enviar arquivo do Fieldbook</h4>
       </div>
       <div class="modal-body">
         <div class="container-fluid">
             <form class="form-horizontal" role="form" method="post" enctype="multipart/form-data" encoding="multipart/form-data" id="upload_fieldbook_phenotype_file_form" name="upload_fieldbook_phenotype_file_form">
                 <div class="well well-sm">
-                    <h5>Upload Exported Fieldbook Phenotype File in Database Format for Plots or Plants</h5>
+                    <h5>Enviar arquivo de fenótipos exportado pelo Fieldbook no formato de banco de dados para parcelas ou plantas</h5>
                 </div>
-            <&| /page/explanation.mas, title=>'Template Information' &>
+            <&| /page/explanation.mas, title=>'Informações do modelo' &>
                 <p>
-                <b>File format information</b>
+                <b>Informações sobre o formato do arquivo</b>
                 <br>
-                <a id="phenotype_fieldbook_upload_info">Spreadsheet Format</a>
+                <a id="phenotype_fieldbook_upload_info">Formato da planilha</a>
                 </p>
             </&>
                 <div class="form-group">
-                    <label class="col-sm-6 control-label">Data Level: </label>
+                    <label class="col-sm-6 control-label">Nível dos dados: </label>
                     <div class="col-sm-6" >
                         <select class="form-control" id="upload_fieldbook_phenotype_data_level" name="upload_fieldbook_phenotype_data_level">
-                            <option value="plots">Plots</option>
-                            <option value="plants">Plants</option>
-                            <option value="subplots">Subplots</option>
-                            <option value="tissue_samples">Tissue Samples</option>
+                            <option value="plots">Parcelas</option>
+                            <option value="plants">Plantas</option>
+                            <option value="subplots">Subparcelas</option>
+                            <option value="tissue_samples">Amostras de tecido</option>
                         </select>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-6 control-label">Fieldbook File: </label>
+                    <label class="col-sm-6 control-label">Arquivo do Fieldbook: </label>
                     <div class="col-sm-6" >
                         <input type="file" id="upload_fieldbook_phenotype_file_input" name="upload_fieldbook_phenotype_file_input" encoding="multipart/form-data" />
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-6 control-label">Optional: Images ZipFile (.zip): </label>
+                    <label class="col-sm-6 control-label">Opcional: arquivo ZIP de imagens (.zip): </label>
                     <div class="col-sm-6" >
                         <input type="file" id="upload_fieldbook_phenotype_images_zipfile" name="upload_fieldbook_phenotype_images_zipfile" encoding="multipart/form-data" />
                     </div>
@@ -52,9 +52,9 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-info" name="upload_fieldbook_phenotype_submit_verify" id="upload_fieldbook_phenotype_submit_verify">Verify</button>
-	<button disabled type="button" class="btn btn-primary" name="upload_fieldbook_phenotype_submit_store" id="upload_fieldbook_phenotype_submit_store" title="First Verify Your File">Store</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+        <button type="button" class="btn btn-info" name="upload_fieldbook_phenotype_submit_verify" id="upload_fieldbook_phenotype_submit_verify">Verificar</button>
+	<button disabled type="button" class="btn btn-primary" name="upload_fieldbook_phenotype_submit_store" id="upload_fieldbook_phenotype_submit_store" title="Primeiro verifique o arquivo">Armazenar</button>
       </div>
     </div>
   </div>
@@ -64,22 +64,22 @@
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="transcriptomicsUploadInfoDialog">Template Information</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="transcriptomicsUploadInfoDialog">Informações do modelo</h4>
       </div>
       <div class="modal-body">
         <div class="container-fluid">
 
-            <h3>Fieldbook files can be uploaded in .xlsx or .csv format</h3>
-            <h4>When exporting a Phenotype File from Fieldbook, the file should already be in this format. Please check to make sure your file was exported correctly</h4>
+            <h3>Os arquivos do Fieldbook podem ser enviados nos formatos .xlsx ou .csv</h3>
+            <h4>Ao exportar fenótipos do Fieldbook, o arquivo já deve estar neste formato. Confirme se a exportação foi realizada corretamente</h4>
 
             <ul>
 
-                <li><strong>plot_id</strong> or <strong>plant_id</strong> or <strong>subplot_id</strong> or <strong>tissue_sample_id</strong>: This should be one of these stock IDs that already exist in the database.</li>
-                <li><strong>trait</strong>: A trait that exists in the database.</li>
-                <li><strong>value</strong>: Corresponding value for the observed trait.</li>
-                <li><strong>observationTimeStamp</strong>: Timestamp of the observation.</li>
-                <li><strong>collector</strong>: Observation collector's name.</li>
+                <li><strong>plot_id</strong>, <strong>plant_id</strong>, <strong>subplot_id</strong> ou <strong>tissue_sample_id</strong>: informe o ID de um material já cadastrado no banco de dados.</li>
+                <li><strong>trait</strong>: Uma característica existente no banco de dados.</li>
+                <li><strong>value</strong>: Valor correspondente à característica observada.</li>
+                <li><strong>observationTimeStamp</strong>: Data e hora da observação.</li>
+                <li><strong>collector</strong>: Nome da pessoa que coletou a observação.</li>
             </ul>
             <table class="table table-hover table-bordered table-condensed" >
                 <thead></thead>
@@ -97,7 +97,7 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
       </div>
     </div>
   </div>

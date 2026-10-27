@@ -26,7 +26,7 @@ $stockref => undef
 </div>
 
 <center>
-    <button class="btn btn-sm btn-primary" id="submit_protocol_selection">Select</button>
+    <button class="btn btn-sm btn-primary" id="submit_protocol_selection">Selecionar</button>
 </center>
 
 <div class="well mt-4" id="nirs_table_section" style="display: none;">
@@ -35,8 +35,8 @@ $stockref => undef
 </div>
 
 <div class="well mt-4" id ="multi_graph_section" style="display: none;">
-    <h4>Multiple Sample Graph</h4>
-    <button class="btn btn-sm btn-primary" id="clear_graph_btn">Clear Graph</button>
+    <h4>Gráfico de várias amostras</h4>
+    <button class="btn btn-sm btn-primary" id="clear_graph_btn">Limpar gráfico</button>
     <div id="multi_graph_container" style="width: 110%; height: 500px;"></div>
     
 </div>
@@ -46,7 +46,7 @@ $stockref => undef
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Sample Name: <span id="title_sample_name"></span></h4>
+                <h4 class="modal-title">Nome da amostra: <span id="title_sample_name"></span></h4>
             </div>
             <div class="modal-body">
                 <div class="form-row">
@@ -74,7 +74,7 @@ jQuery(document).ready(function() {
         });
 
         if (selected.length !== 1) {
-            alert('Please select one protocol.');
+            alert('Selecione um protocolo.');
         } else {
             const selectedProtocolId = selected[0];
             get_nirs_protocols(selectedProtocolId);
@@ -96,7 +96,7 @@ jQuery(document).ready(function() {
             })
             .catch((error) => {
                 console.error('Error fetching NIRS data:', error);
-                alert('An error occurred while fetching data');
+                alert('Ocorreu um erro ao obter os dados.');
             })
             .finally(() => {
                 jQuery('#working_modal').modal('hide');
@@ -162,7 +162,7 @@ jQuery(document).ready(function() {
             var group = samples_map[unique_id]
 
             var line_graph = `<div class="small-graph" data-observation="${unique_id}"></div>`;
-            var plot_button = `<button class="btn btn-sm plot-btn" data-sample="${unique_id}">Plot</button>`;
+            var plot_button = `<button class="btn btn-sm plot-btn" data-sample="${unique_id}">Representar</button>`;
             var accession_link = `<a href='/stock/${group.germplasmDbId}/view'>${group.germplasmName}</a>`;
             data.push([group.observationUnitName, group.observationUnitDbId, accession_link, line_graph, plot_button]);
         }
@@ -170,11 +170,11 @@ jQuery(document).ready(function() {
         jQuery('#nirs_data_table').html(`
             <thead>
                 <tr>
-                    <th>Sample Name</th>
-                    <th>Sample ID</th>
-                    <th>Accession</th>
-                    <th>Spectra Graph</th>
-                    <th>Plot on Large Graph</th>
+                    <th>Nome da amostra</th>
+                    <th>ID da amostra</th>
+                    <th>Acesso</th>
+                    <th>Gráfico do espectro</th>
+                    <th>Adicionar ao gráfico ampliado</th>
                 </tr>
             </thead>
             <tbody></tbody>
@@ -182,11 +182,11 @@ jQuery(document).ready(function() {
         jQuery('#nirs_data_table').DataTable( {
             'destroy': true,
             'columns': [
-                { title: 'Sample Name' },
-                { title: 'Sample ID' },
-                { title: 'Accession' },
-                { title: 'Spectra Graph'},
-                { title: 'Plot on Large Graph'}
+                { title: 'Nome da amostra' },
+                { title: 'ID da amostra' },
+                { title: 'Acesso' },
+                { title: 'Gráfico do espectro'},
+                { title: 'Adicionar ao gráfico ampliado'}
             ],
             'columnDefs': [
                 {
@@ -213,7 +213,7 @@ jQuery(document).ready(function() {
                     if (isPlotted) {
                         multiGraphData = multiGraphData.filter(d => d.label !== samples_map[sampleKey].observationUnitName);
                         plottedSamples.delete(sampleKey);
-                        button.text("Plot");
+                        button.text("Representar");
                     } else {
                         var group = samples_map[sampleKey];
                         var graph_data = group.values.flatMap(d => d.pairedValues);
@@ -224,7 +224,7 @@ jQuery(document).ready(function() {
                             label: label_sample_name
                         });
                         plottedSamples.add(sampleKey);
-                        button.text("Remove Plot");
+                        button.text("Remover do gráfico");
                     }
                     update_multi_graph(multiGraphData);
                 });
@@ -244,7 +244,7 @@ jQuery(document).ready(function() {
             if (isPlotted) {
                 multiGraphData = multiGraphData.filter(d => d.label !== samples_map[sampleKey].observationUnitName);
                 plottedSamples.delete(sampleKey);
-                button.text(plottedSamples.has(sampleKey) ? 'Remove Plot' : 'Plot');
+                button.text(plottedSamples.has(sampleKey) ? 'Remover do gráfico' : 'Representar');
             } else {
                 var group = samples_map[sampleKey];
                 var graph_data = group.values.flatMap(d => d.pairedValues);
@@ -255,7 +255,7 @@ jQuery(document).ready(function() {
                     label: label_sample_name
                 });
                 plottedSamples.add(sampleKey);
-                button.text(plottedSamples.has(sampleKey) ? 'Remove Plot' : 'Plot');
+                button.text(plottedSamples.has(sampleKey) ? 'Remover do gráfico' : 'Representar');
             }
             update_multi_graph(multiGraphData);
         }); 
@@ -293,7 +293,7 @@ jQuery(document).ready(function() {
             var graph_data = group.values;
             var flattened_graph_data = graph_data.flatMap(d => d.pairedValues);
             var label_sample_name = group.observationUnitName;
-            open_large_graph(flattened_graph_data, 'Spectral Value', label_sample_name);
+            open_large_graph(flattened_graph_data, 'Valor espectral', label_sample_name);
         });
     }
 
@@ -333,8 +333,8 @@ jQuery(document).ready(function() {
         nirsDataLineGraph.drawMultiLineGraph(
             data,
             "#multi_graph_container",
-            'Wavelength',
-            'Spectral Value',
+            'Comprimento de onda',
+            'Valor espectral',
             '',
             options
         );

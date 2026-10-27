@@ -14,19 +14,19 @@ Titima Tantikanjana <tt15@cornell.edu>
 
 <& /util/import_javascript.mas, classes => [ 'jquery', 'jquery.dataTables','CXGN.BreedersToolbox.MarkerSet', "CXGN.List" ] &>
 
-<& /page/page_title.mas, title=>'Manage Marker Alleles' &>
+<& /page/page_title.mas, title=>'Gerenciar alelos de marcadores' &>
 
-<& /page/detail_page_2_col_section.mas, info_section_collapsed => 0, info_section_title => "<h4 style='display:inline'>Your Marker Alleles</h4>", info_section_subtitle => 'View your marker allele info', buttons_html => '<button class="btn btn-sm btn-primary" style="margin:3px" id="add_new_markerset_button">Create new List of Marker Alleles</button><button class="btn btn-sm btn-primary" style="margin:3px" id="add_marker_dosage_button">Add Marker Alleles to existing List</button><button class="btn btn-default" style="margin:3px" data-toggle="modal" data-target="#markerset_usage_modal">Usage Help <span class="glyphicon glyphicon-question-sign"></span></button>', icon_class => "glyphicon glyphicon-list-alt", info_section_id => "marker_set_summary_section" &>
+<& /page/detail_page_2_col_section.mas, info_section_collapsed => 0, info_section_title => "<h4 style='display:inline'>Seus alelos de marcadores</h4>", info_section_subtitle => 'Visualize as informações dos seus alelos de marcadores.', buttons_html => '<button class="btn btn-sm btn-primary" style="margin:3px" id="add_new_markerset_button">Criar nova lista de alelos de marcadores</button><button class="btn btn-sm btn-primary" style="margin:3px" id="add_marker_dosage_button">Adicionar alelos de marcadores a uma lista existente</button><button class="btn btn-default" style="margin:3px" data-toggle="modal" data-target="#markerset_usage_modal">Ajuda de uso <span class="glyphicon glyphicon-question-sign"></span></button>', icon_class => "glyphicon glyphicon-list-alt", info_section_id => "marker_set_summary_section" &>
 
-<& /page/detail_page_3_col_section.mas, icon_class => "glyphicon glyphicon-search", title => "Use marker alleles to search for accessions with specific genotype.", go_btn_id => "accession_search_link" &>
+<& /page/detail_page_3_col_section.mas, icon_class => "glyphicon glyphicon-search", title => "Use alelos de marcadores para localizar acessos com um genótipo específico.", go_btn_id => "accession_search_link" &>
 
 
 <div class="modal fade" id="add_markerset_dialog" name="add_markerset_dialog" tabindex="-1" role="dialog" aria-labelledby="addMarkerSetDialog">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="addMarkerSetDialog">Create New Marker Allele List</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="addMarkerSetDialog">Criar nova lista de alelos de marcadores</h4>
             </div>
             <div class="modal-body">
                 <div class="container-fluid">
@@ -38,15 +38,15 @@ Titima Tantikanjana <tt15@cornell.edu>
                                 <div class="col-sm-11">
                                     <div class="form-horizontal">
                                         <div class="form-group">
-                                            <label class="control-label col-sm-4">List Name:</label>
+                                            <label class="control-label col-sm-4">Nome da lista:</label>
                                                 <div class="col-sm-8" >
                                                     <div class="input-group">
-                                                        <input type="text" class="form-control" id="new_marker_set" placeholder="Enter list name">
+                                                        <input type="text" class="form-control" id="new_marker_set" placeholder="Informe o nome da lista">
                                                     </div>
                                                 </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="control-label col-sm-4">Genotyping protocol:</label>
+                                            <label class="control-label col-sm-4">Protocolo de genotipagem:</label>
                                                 <div class="col-sm-8">
                                                     <div class="input-group">
                                                         <select class="form-control" id="selected_protocol">
@@ -55,23 +55,23 @@ Titima Tantikanjana <tt15@cornell.edu>
                                                 </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="control-label col-sm-4">Data type:</label>
+                                            <label class="control-label col-sm-4">Tipo de dados:</label>
                                                 <div class="col-sm-8">
                                                     <div class="input-group">
                                                         <select class="form-control" id="genotyping_data_type">
-                                                        <option value="">Select genotyping data type</option>
+                                                        <option value="">Selecione o tipo de dados de genotipagem</option>
                                                         <option value="SNP">SNP</option>
-                                                        <option value="Dosage">Dosage</option>
+                                                        <option value="Dosage">Dosagem</option>
                                                         <!-- option value="Download">Download</option-->
                                                         </select>
                                                     </div>
                                                 </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="control-label col-sm-4">Description:</label>
+                                            <label class="control-label col-sm-4">Descrição:</label>
                                                 <div class="col-sm-8" >
                                                     <div class="input-group">
-                                                        <input type="text" class="form-control" id="marker_set_desc" placeholder="Enter description">
+                                                        <input type="text" class="form-control" id="marker_set_desc" placeholder="Informe a descrição">
                                                     </div>
                                                 </div>
                                         </div>
@@ -83,8 +83,8 @@ Titima Tantikanjana <tt15@cornell.edu>
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" name="save_marker_set" id="save_marker_set">Create List</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                <button type="button" class="btn btn-primary" name="save_marker_set" id="save_marker_set">Criar lista</button>
             </div>
         </div>
     </div>
@@ -94,8 +94,8 @@ Titima Tantikanjana <tt15@cornell.edu>
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="addMarkerDosageDialog">Add Marker Alleles to List</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="addMarkerDosageDialog">Adicionar alelos de marcadores à lista</h4>
             </div>
             <div class="modal-body">
                 <div class="container-fluid">
@@ -105,7 +105,7 @@ Titima Tantikanjana <tt15@cornell.edu>
                                 <div class="col-sm-12 panel-body">
                                     <div class="form-horizontal">
                                         <div class="form-group">
-                                            <label class="control-label col-sm-4">List Name:</label>
+                                            <label class="control-label col-sm-4">Nome da lista:</label>
                                             <div class="col-sm-8">
                                                 <div class="input-group">
                                                     <select class="form-control" id="selected_marker_set1">
@@ -115,28 +115,28 @@ Titima Tantikanjana <tt15@cornell.edu>
                                         </div>
                                         <div id = "markerset_download_section" style="display:none">
                                             <div class="form-group">
-                                                <label class="control-label col-sm-4">Marker Name(s):</label>
+                                                <label class="control-label col-sm-4">Nome(s) do(s) marcador(es):</label>
                                                 <div class="col-sm-8">
-                                                    <textarea class="form-control" id="marker_name_download" placeholder="To add more than one marker, separate marker names using a new line."></textarea>
+                                                    <textarea class="form-control" id="marker_name_download" placeholder="Para adicionar mais de um marcador, informe cada nome em uma nova linha."></textarea>
                                                 </div>
                                             </div>
                                         </div>
                                         <div id = "markerset_dosage_section" style="display:none">
                                             <hr />
                                             <div class="form-group">
-                                                <label class="control-label col-sm-4">Marker Name:</label>
+                                                <label class="control-label col-sm-4">Nome do marcador:</label>
                                                 <div class="col-sm-8">
                                                     <div class="input-group">
-                                                        <input type="text" class="form-control marker_name" id="marker_name_dosage" placeholder="Enter marker name">
+                                                        <input type="text" class="form-control marker_name" id="marker_name_dosage" placeholder="Informe o nome do marcador">
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label class="control-label col-sm-4">Allele Dosage:</label>
+                                                <label class="control-label col-sm-4">Dosagem do alelo:</label>
                                                 <div class="col-sm-8" >
                                                     <div class="input-group">
                                                         <select class="form-control" id="allele_dosage">
-                                                            <option value="">Select Allele Dosage</option>
+                                                            <option value="">Selecione a dosagem do alelo</option>
                                                             <option value="0">0</option>
                                                             <option value="1">1</option>
                                                             <option value="2">2</option>
@@ -149,12 +149,12 @@ Titima Tantikanjana <tt15@cornell.edu>
                                             <ul class="nav nav-pills nav-justified" id="markerset_snp_section_tab" style="display: none; margin-bottom: 30px">
                                                 <li class="active" id="markerset_snp_section_single">
                                                     <a data-toggle="tab" href="#markerset_snp_section_single_tab">
-                                                        Add alleles for a single marker by marker name
+                                                        Adicionar alelos de um único marcador pelo nome do marcador
                                                     </a>
                                                 </li>
                                                 <li id="markerset_snp_section_multiple">
                                                     <a data-toggle="tab" href="#markerset_snp_section_multiple_tab">
-                                                        Add alleles for multiple markers by allele names
+                                                        Adicionar alelos de vários marcadores pelos nomes dos alelos
                                                     </a>
                                                 </li>
                                             </ul>
@@ -164,22 +164,22 @@ Titima Tantikanjana <tt15@cornell.edu>
                                                 <!-- Specify individual Allele by Marker -->
                                                 <div id="markerset_snp_section_single_tab" class="tab-pane fade in active">
                                                     <div class="form-group">
-                                                        <label class="control-label col-sm-4">Marker Name:</label>
+                                                        <label class="control-label col-sm-4">Nome do marcador:</label>
                                                         <div class="col-sm-8">
                                                             <div class="input-group">
-                                                                <input type="text" class="form-control marker_name" id="marker_name_snp" placeholder="Enter marker name">
+                                                                <input type="text" class="form-control marker_name" id="marker_name_snp" placeholder="Informe o nome do marcador">
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
-                                                        <label class="control-label col-sm-4">Specify Alleles:</label>
+                                                        <label class="control-label col-sm-4">Especifique os alelos:</label>
                                                         <div class="col-sm-8" >
                                                             <div class="input-group">
                                                                 <select class="form-control" id="allele_1" disabled>
-                                                                    <option value="">Enter marker name first</option>
+                                                                    <option value="">Informe primeiro o nome do marcador</option>
                                                                 </select>
                                                                 <select class="form-control" id="allele_2" disabled>
-                                                                    <option value="">Enter marker name first</option>
+                                                                    <option value="">Informe primeiro o nome do marcador</option>
                                                                 </select>
                                                             </div>
                                                         </div>
@@ -189,7 +189,7 @@ Titima Tantikanjana <tt15@cornell.edu>
                                                 <!-- Specify multiple Alleles by Allele Names -->
                                                 <div id="markerset_snp_section_multiple_tab" class="tab-pane fade in">
                                                     <div class="form-group">
-                                                        <label class="control-label col-sm-4">Specify Alleles:</label>
+                                                        <label class="control-label col-sm-4">Especifique os alelos:</label>
                                                         <div class="col-sm-8" >
                                                             <div class="input-group">
                                                                 <textarea id="allele_names" class="form-control" rows=10 cols=40></textarea>
@@ -209,8 +209,8 @@ Titima Tantikanjana <tt15@cornell.edu>
                 <div id="add-marker-success" role="alert" style="display: none"></div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal" id="close_add_marker">Close</button>
-                <button type="button" class="btn btn-primary" name="add_marker" id="add_marker">Add Marker Allele</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal" id="close_add_marker">Fechar</button>
+                <button type="button" class="btn btn-primary" name="add_marker" id="add_marker">Adicionar alelo de marcador</button>
             </div>
         </div>
     </div>
@@ -332,8 +332,8 @@ Titima Tantikanjana <tt15@cornell.edu>
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="markersetDetailDialog">List detail</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="markersetDetailDialog">Detalhes da lista</h4>
             </div>
             <div class="modal-body">
                 <div class="container-fluid">
@@ -346,7 +346,7 @@ Titima Tantikanjana <tt15@cornell.edu>
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
             </div>
         </div>
     </div>
@@ -356,24 +356,24 @@ Titima Tantikanjana <tt15@cornell.edu>
     <div class="modal-dialog modal-lg " role="document">
         <div class="modal-content">
             <div class="modal-header" style="text-align: center">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="UsageMarkersetDialog">How to Create and Use Lists of Marker Alleles</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="UsageMarkersetDialog">Como criar e usar listas de alelos de marcadores</h4>
             </div>
             <div class="modal-body">
                 <div class="container-fluid">
 
                 <h4>
-                  Background:
+                  Contexto:
                 </h4>
-                  <p>Lists of Marker Alleles can be used to <b>Search for accessions</b> containing the specified genotypes.<br>
-                     These lists can also be used in the <b>Search Wizard</b> to filter the results of genotype downloads.</p>
+                  <p>As listas de alelos de marcadores podem ser usadas para <b>localizar acessos</b> que contenham os genótipos especificados.<br>
+                     Essas listas também podem ser usadas no <b>Assistente de busca</b> para filtrar os resultados de downloads de genótipos.</p>
                 <h4>
-                  Instructions:
+                  Instruções:
                 </h4>
-                  <ol><li><b>Create a list</b> of accessions from a genotype protocol. This is a population that you will be searching after you have defined the list of marker alleles. The easiest way of creating the accession list is using the "Search Wizard". Select a genotype protocol, select a genotype project, select an accession, then in the section "Create New List" type in a name for the list and select "Create List".
-                  <li>Return to the "Manage Marker Alleles" screen. Select <b>Create a new List of Marker Alleles</b>. Type in a name, description, select Data type SNP or Dosage, and select the genotype protocol that you used in step 1. Then select "Create List".
-                  <li>Return to the "Manage Marker Alleles" screen. Select <b>Add Marker Alleles to an existing List</b>. Select the list that was just created. Then add the marker name and allele values that you are searching for. The easiest way of getting the name and allele values is to use the "Search Wizard" and download the genotype data from step 1. Note that you should not use markers that have missing genotype data.
-                  <li>From the "Manage Marker Alleles" screen find "<b>Search for accessions</b> with specific genotype" and select "GO". In the "Select a list of accessions" select the list created in step 1. Then find "Select a set of markers" and select the list created in 2. Then select "Search Accessions". The list of accessions will appear in the "Search Results" at the bottom of the screen.
+                  <ol><li><b>Crie uma lista</b> de acessos a partir de um protocolo de genotipagem. Esta é a população que será pesquisada depois que você definir a lista de alelos de marcadores. A maneira mais fácil de criar a lista de acessos é usar o "Assistente de busca". Selecione um protocolo de genotipagem, um projeto de genotipagem e um acesso; depois, na seção "Criar nova lista", informe um nome para a lista e selecione "Criar lista".
+                  <li>Volte à tela "Gerenciar alelos de marcadores". Selecione <b>Criar nova lista de alelos de marcadores</b>. Informe um nome e uma descrição, selecione o tipo de dados SNP ou Dosagem e escolha o protocolo de genotipagem usado na etapa 1. Em seguida, selecione "Criar lista".
+                  <li>Volte à tela "Gerenciar alelos de marcadores". Selecione <b>Adicionar alelos de marcadores a uma lista existente</b>. Escolha a lista que acabou de ser criada. Depois, adicione o nome do marcador e os valores dos alelos que deseja pesquisar. A maneira mais fácil de obter esses nomes e valores é usar o "Assistente de busca" e baixar os dados de genótipos da etapa 1. Não use marcadores cujos dados de genótipos estejam ausentes.
+                  <li>Na tela "Gerenciar alelos de marcadores", localize "<b>Localizar acessos</b> com genótipo específico" e selecione "IR". Em "Selecionar uma lista de acessos", escolha a lista criada na etapa 1. Em seguida, localize "Selecionar um conjunto de marcadores" e escolha a lista criada na etapa 2. Selecione "Buscar acessos". A lista de acessos será exibida em "Resultados da busca", na parte inferior da tela.
                   </ol>
                 </div>
             </div>

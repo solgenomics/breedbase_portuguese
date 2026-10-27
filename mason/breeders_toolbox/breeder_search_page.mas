@@ -19,12 +19,12 @@ $dataset_id => undef
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 
-<& /page/page_title.mas, title=>"Search Wizard" &>
+<& /page/page_title.mas, title=>"Assistente de pesquisa" &>
 
 <div class="row">
   <div class="col-md-12" style="margin-bottom:1em; text-align:right;">
-    Don't see your data? <button id="update_wizard_lists" class="btn btn-default">Refresh Lists</button>
-    <button id="update_wizard_show" class="btn btn-default">Update Wizard</button>
+    Não está vendo seus dados? <button id="update_wizard_lists" class="btn btn-default">Recarregar listas</button>
+    <button id="update_wizard_show" class="btn btn-default">Atualizar assistente</button>
   </div>
 </div>
 
@@ -54,18 +54,18 @@ $dataset_id => undef
 
           <div class="panel-heading">
             <select class="wizard-type-select form-control input-sm form-inline">
-              <option value="" disabled selected>Select Column Type</option>
+              <option value="" disabled selected>Selecione o tipo de coluna</option>
               <optgroup class="wizard-types-group" label="--------------------"></optgroup>
-              <optgroup class="wizard-lists-group" label="Load Selection from List:"></optgroup>
+              <optgroup class="wizard-lists-group" label="Carregar seleção de uma lista:"></optgroup>
             </select>
           </div>
 
           <div class="wizard-search-container">
-            <textarea class="wizard-search form-control" placeholder="Search"></textarea>
+            <textarea class="wizard-search form-control" placeholder="Pesquisar"></textarea>
             <div class="wizard-search-options">
               <div class="wizard-search-options-group btn-group" role="group">
-                <button type="button" class="btn btn-xs btn-primary active wizard-search-options-btn wizard-search-options-contains">Contains</button>
-                <button type="button" class="btn btn-xs btn-default wizard-search-options-btn wizard-search-options-exact">Exact</button>
+                <button type="button" class="btn btn-xs btn-primary active wizard-search-options-btn wizard-search-options-contains">Contém</button>
+                <button type="button" class="btn btn-xs btn-default wizard-search-options-btn wizard-search-options-exact">Exato</button>
               </div>
               <div class="btn-group" role="group">
                 <button type="button" class="btn btn-xs btn-danger wizard-search-options-clear">
@@ -82,11 +82,11 @@ $dataset_id => undef
 
             <div class="wizard-btn-center">
               <div class="btn-group">
-                <button class="wizard-select-all btn btn-default btn-xs">Select All</button
+                <button class="wizard-select-all btn btn-default btn-xs">Selecionar todos</button
                 ><button class="wizard-btn-tag btn btn-primary btn-xs">
                   <span class="wizard-count-selected">0</span>/<span class="wizard-count-all">0</span>
                 </button
-                ><button class="wizard-select-clear btn btn-default btn-xs">Clear</button>
+                ><button class="wizard-select-clear btn btn-default btn-xs">Limpar</button>
               </div>
             </div>
 
@@ -98,10 +98,10 @@ $dataset_id => undef
 
             <div class="wizard-btn-center wizard-union-toggle">
               <div class="btn-group wizard-union-toggle-btn-group">
-                <button type="button" class="btn btn-xs btn-default disabled">Match</button>
-                <button type="button" class="btn btn-xs wizard-union-toggle-btn wizard-union-toggle-btn-any btn-primary active">ANY</button>
-                <button type="button" class="btn btn-xs wizard-union-toggle-btn wizard-union-toggle-btn-min btn-default">MIN</button>
-                <button type="button" class="btn btn-xs wizard-union-toggle-btn wizard-union-toggle-btn-all btn-default">ALL</button>
+                <button type="button" class="btn btn-xs btn-default disabled">Correspondência</button>
+                <button type="button" class="btn btn-xs wizard-union-toggle-btn wizard-union-toggle-btn-any btn-primary active">QUALQUER</button>
+                <button type="button" class="btn btn-xs wizard-union-toggle-btn wizard-union-toggle-btn-min btn-default">MÍN.</button>
+                <button type="button" class="btn btn-xs wizard-union-toggle-btn wizard-union-toggle-btn-all btn-default">TODOS</button>
               </div>
               <div class="input-group input-group-sm wizard-union-toggle-min-group">
                 <span class="input-group-btn">
@@ -122,26 +122,26 @@ $dataset_id => undef
               <tr>
                 <td>
                   <select class="wizard-add-to-list-id form-control input-sm">
-                    <option selected value="" disabled>Add to List...</option>
+                    <option selected value="" disabled>Adicionar à lista...</option>
                     <optgroup class="wizard-lists-group" label="--------------------"></optgroup>
                   </select>
                 </td>
                 <td>
-                  <button class="wizard-add-to-list btn btn-sm btn-primary btn-block">Add</button>
+                  <button class="wizard-add-to-list btn btn-sm btn-primary btn-block">Adicionar</button>
                 </td>
               </tr>
               <tr>
                 <td>
-                  <input class="wizard-create-list-name form-control input-sm" type="text" placeholder="Create New List..."></input>
+                  <input class="wizard-create-list-name form-control input-sm" type="text" placeholder="Criar nova lista..."></input>
                 </td>
                 <td>
-                  <button class="wizard-create-list btn btn-primary btn-sm btn-block">Create</button>
+                  <button class="wizard-create-list btn btn-primary btn-sm btn-block">Criar</button>
                 </td>
               </tr>
             </&>
             <&| /util/user.mas:logged_out &>
               <tr>
-                <td><button class="btn btn-xs btn-primary" name="site_login_button">Log In</button> to save lists.</td>
+                <td><button class="btn btn-xs btn-primary" name="site_login_button">Entrar</button> para salvar listas.</td>
               </tr>
             </&>
           </table>
@@ -157,28 +157,28 @@ $dataset_id => undef
   <div class="wizard-datasets panel-group col-sm-12 col-md-6">
     <div class="panel panel-default wizard-panel">
       <div class="panel-heading">
-        <&| /util/user.mas:logged_out &><button class="btn btn-xs btn-primary" name="site_login_button">Log In</button> to</&>
-        Load/Create Datasets using <button class="btn btn-xs btn-default disabled wizard-btn-tag">Match</button> Columns
+        <&| /util/user.mas:logged_out &><button class="btn btn-xs btn-primary" name="site_login_button">Entrar</button> para</&>
+        carregar/criar conjuntos de dados usando as colunas de <button class="btn btn-xs btn-default disabled wizard-btn-tag">Correspondência</button>
       </div>
       <&| /util/user.mas:logged_in &>
         <div class="panel-body">
           <div class="input-group">
             <select class="form-control input-sm wizard-dataset-select">
-              <option selected value="" disabled>Load Dataset</option>
+              <option selected value="" disabled>Carregar conjunto de dados</option>
               <optgroup class="wizard-dataset-group" label="--------------------"></optgroup>
             </select>
             <span class="input-group-btn">
-              <span><button style="width:5em;margin-left:4px;" class="btn btn-sm btn-primary wizard-dataset-load">Load</button></span>
-              <span><button style="width:9em;margin-left:4px;" class="btn btn-sm btn-primary wizard-dataset-public">Make Public</button></span>
-              <span><button style="width:5em;margin-left:4px;" class="btn btn-sm btn-danger wizard-dataset-delete">Delete</button></span>
+              <span><button style="min-width:5em;margin-left:4px;" class="btn btn-sm btn-primary wizard-dataset-load">Carregar</button></span>
+              <span><button style="min-width:9em;margin-left:4px;" class="btn btn-sm btn-primary wizard-dataset-public">Tornar público</button></span>
+              <span><button style="min-width:5em;margin-left:4px;" class="btn btn-sm btn-danger wizard-dataset-delete">Excluir</button></span>
             </span>
           </div>
         </div>
         <div class="panel-body" style="margin-top:-1px;">
           <div class="input-group">
-            <input type="text" placeholder="Create New Dataset" class="form-control input-sm wizard-dataset-name" />
+            <input type="text" placeholder="Criar novo conjunto de dados" class="form-control input-sm wizard-dataset-name" />
             <span class="input-group-btn">
-              <span><button style="width:5em;margin-left:4px;" class="btn btn-sm btn-primary wizard-dataset-create">Create</button></span>
+              <span><button style="min-width:5em;margin-left:4px;" class="btn btn-sm btn-primary wizard-dataset-create">Criar</button></span>
             </span>
           </div>
         </div>
@@ -190,30 +190,30 @@ $dataset_id => undef
     <&| /util/user.mas:logged_out &>
       <div class="panel panel-default">
         <div class="panel-heading">
-          <button class="btn btn-xs btn-primary" name="site_login_button">Log In</button> to download related data.
+          <button class="btn btn-xs btn-primary" name="site_login_button">Entrar</button> para baixar dados relacionados.
         </div>
       </div>
     </&>
     <&| /util/user.mas:logged_in &>
       <div class="panel panel-default">
         <div class="panel-heading" role="button" data-toggle="collapse" data-parent="#wiz-down-group" href="#wiz-down-1-c" aria-controls="wiz-down-1-c">
-          <span class="btnn btn-link">Related Genotype Data</span>
+          <span class="btnn btn-link">Dados genotípicos relacionados</span>
         </div>
         <div id="wiz-down-1-c" class="panel-collapse collapse" role="tabpanel">
-          <p style="margin: 15px; text-color: #999; font-size: 90%">Download matching genotype records from the database.  Select a <strong>single genotyping protocol</strong> and <strong>one or more accessions</strong> to download the matching genotype data.</p>
+          <p style="margin: 15px; text-color: #999; font-size: 90%">Baixe os registros genotípicos correspondentes do banco de dados. Selecione <strong>um único protocolo de genotipagem</strong> e <strong>um ou mais acessos</strong> para baixar os dados correspondentes.</p>
           <table class="table">
             <tr>
               <td colspan="4">
-                <span class="glyphicon glyphicon-info-sign" title="To download related genotype data, select 1 or more Accessions and optionally no more than 1 Genotyping Protocol in the wizard. If no genotyping protocol is selected, the database default protocol will be used. Click the checkbox here to compute genotypes for the selected accessions from genotypes of parents; this works for downloading genotypes, downloading the GRM, and performing GWAS."></span>
-                <span>Download Genotype Data</span>
+                <span class="glyphicon glyphicon-info-sign" title="Para baixar dados genotípicos relacionados, selecione um ou mais acessos e, opcionalmente, no máximo um protocolo de genotipagem no assistente. Se nenhum protocolo for selecionado, será usado o padrão do banco de dados. Marque esta opção para calcular os genótipos dos acessos selecionados a partir dos genótipos dos genitores; isso se aplica ao download de genótipos, da GRM e à realização de GWAS."></span>
+                <span>Baixar dados genotípicos</span>
                 <input class="wizard-download-genotypes-info form-control input-sm" type="text" disabled></input>
               </td>
               <td colspan="4">
-                  <span>Compute From Parents</span><br/>
+                  <span>Calcular a partir dos genitores</span><br/>
                   <input type="checkbox" class="wizard-download-genotypes-parents-compute">
               </td>
               <td colspan="4">
-                  <span>Include Duplicate Genotypes</span><br/>
+                  <span>Incluir genótipos duplicados</span><br/>
                   <input type="checkbox" class="wizard-download-genotypes-duplicates-include">
               </td>
             </tr>
@@ -222,40 +222,40 @@ $dataset_id => undef
             <table class="table">
                 <tr>
                     <td colspan="12">
-                        <span class="glyphicon glyphicon-info-sign" title="You can use either chromosome or marker alleles to filter genotyping data. You cannot use both criteria at the same time."></span>
-                        <span>Filter by Chromosome or Marker Alleles</span>
+                        <span class="glyphicon glyphicon-info-sign" title="Use cromossomos ou alelos de marcadores para filtrar os dados de genotipagem. Não é possível usar os dois critérios ao mesmo tempo."></span>
+                        <span>Filtrar por cromossomo ou alelos de marcadores</span>
                     </td>
                 </tr>
                 <tr>
                     <td colspan="4">
-                        <span>Chromosome</span>
+                        <span>Cromossomo</span>
                         <select class="wizard-download-genotypes-chromosome-number form-control input-sm"></select>
                     </td>
                     <td colspan="4">
-                        <span>Start Position</span>
+                        <span>Posição inicial</span>
                         <input placeholder="" type="number" class="wizard-download-genotypes-start-position form-control input-sm">
                     </td>
                     <td colspan="4">
-                        <span>End Position</span>
+                        <span>Posição final</span>
                         <input placeholder="" type="number" class="wizard-download-genotypes-end-position form-control input-sm">
                     </td>
                 </tr>
                 <tr>
                     <td colspan="6">
-                        <span>Marker Allele Filter</span>
+                        <span>Filtro de alelos de marcadores</span>
                         <select class="wizard-download-genotypes-marker-set-list-id form-control input-sm" id="wizard-download-genotypes-marker-set-list-id"></select>
                     </td>
                     <td colspan="6">
                         <br/>
-                        <button class="btn btn-sm btn-default" onClick="window.open('/breeders/markers', '_blank');">Manage Marker Alleles</button>
+                        <button class="btn btn-sm btn-default" onClick="window.open('/breeders/markers', '_blank');">Gerenciar alelos de marcadores</button>
                     </td>
                 </tr>
                 <tr>
                     <td colspan="6">
-                        <span>Genotypes Download Format</span>
+                        <span>Formato de download dos genótipos</span>
                         <select class="wizard-download-genotypes-format form-control input-sm" >
-                            <option value="VCF">VCF File Format</option>
-                            <option value="DosageMatrix">Dosage Matrix File Format (.tsv)</option>
+                            <option value="VCF">Formato de arquivo VCF</option>
+                            <option value="DosageMatrix">Formato de matriz de dosagem (.tsv)</option>
                         </select>
                     </td>
                     <td colspan="6">
@@ -263,13 +263,13 @@ $dataset_id => undef
                 </tr>
                 <tr>
                     <td colspan="8">
-                        <span class="glyphicon glyphicon-info-sign" title="Select accessions, and optionally a genotyping protocol. If no genotyping protocol is selected, the default genotyping protocol is used in your system. If you want to filter genotypes, use the chromosome, start position, end position, or marker alleles. Can compute genotypes from parents if the parents of the accessions you selected have genotypes by checking the checkbox. Genotypes can be downloaded in VCF and Dosage Matrix Formats."></span>
-                        <span>Download Genotypes</span><br/>
+                        <span class="glyphicon glyphicon-info-sign" title="Selecione acessos e, opcionalmente, um protocolo de genotipagem. Se nenhum protocolo for selecionado, será usado o padrão do sistema. Para filtrar genótipos, use cromossomo, posição inicial, posição final ou alelos de marcadores. Marque a opção para calcular genótipos a partir dos genitores, caso estes tenham dados genotípicos. Os genótipos podem ser baixados nos formatos VCF e matriz de dosagem."></span>
+                        <span>Baixar genótipos</span><br/>
                         <button class="wizard-download-genotypes btn btn-sm btn-primary">
                             <span class="glyphicon glyphicon-download" aria-hidden="true"></span>
-                            Download Genotypes
+                            Baixar genótipos
                         </button>
-                        <input class="wizard-download-genotypes-info2 form-control btn-warning" type="text"></input>  <!-- warn too many genotype protocols-->
+                        <input class="wizard-download-genotypes-info2 form-control btn-warning" type="text"></input>  <!-- warn Há protocolos de genotipagem demais-->
                         <input class="wizard-download-genotypes-info3 form-control btn-warning" type="text"></input>  <!-- show default protocol -->
                         <input class="wizard-download-genotypes-info4 form-control btn-warning" type="text"></input>  <!-- show slow download warning -->
                     </td>
@@ -282,60 +282,60 @@ $dataset_id => undef
             <table class="table">
                 <tr>
                     <td colspan="6">
-                      <span>Minor Allele Frequency</span>
+                      <span>Frequência do alelo menor</span>
                       <input placeholder="0.05" value="0.05" type="number" class="wizard-download-genotypes-grm-maf form-control input-sm">
                     </td>
                     <td colspan="3">
-                      <span>Marker Filter</span>
+                      <span>Filtro de marcadores</span>
                       <input placeholder="0.60" value="0.60" type="number" class="wizard-download-genotypes-grm-marker-filter form-control input-sm">
                     </td>
                     <td colspan="3">
-                      <span>Individuals Filter</span>
+                      <span>Filtro de indivíduos</span>
                       <input placeholder="0.80" value="0.80" type="number" class="wizard-download-genotypes-grm-individuals-filter form-control input-sm">
                     </td>
                 </tr>
               <tr>
                 <td colspan="12">
-                  <span>Genomic Relationship Matrix (GRM) Download Format</span>
+                  <span>Formato de download da matriz de parentesco genômico (GRM)</span>
                   <select class="wizard-download-genotypes-grm-format form-control input-sm" >
-                      <option value="matrix_uniquenames">Matrix Stock Names (.tsv)</option>
-                      <option value="three_column_uniquenames">3-Column Stock Names (.tsv)</option>
-                      <option value="three_column_reciprocal_uniquenames">3-Column Reciprocal Stock Names (.tsv)</option>
-                      <option value="heatmap">Heatmap (.pdf)</option>
-                      <option value="matrix">Matrix Stock IDs (.tsv)</option>
-                      <option value="three_column">3-Column Stock IDs(.tsv)</option>
-                      <option value="three_column_stock_id_integer">3-Column Stock IDs Integer (.tsv)</option>
-                      <option value="three_column_reciprocal">3-Column Reciprocal Stock IDs (.tsv)</option>
-                      <option value="three_column_reciprocal_stock_id_integer">3-Column Reciprocal Stock IDs Integer (.tsv)</option>
+                      <option value="matrix_uniquenames">Matriz com nomes dos materiais (.tsv)</option>
+                      <option value="three_column_uniquenames">Três colunas com nomes dos materiais (.tsv)</option>
+                      <option value="three_column_reciprocal_uniquenames">Três colunas recíprocas com nomes dos materiais (.tsv)</option>
+                      <option value="heatmap">Mapa de calor (.pdf)</option>
+                      <option value="matrix">Matriz com IDs dos materiais (.tsv)</option>
+                      <option value="three_column">Três colunas com IDs dos materiais (.tsv)</option>
+                      <option value="three_column_stock_id_integer">Três colunas com IDs inteiros dos materiais (.tsv)</option>
+                      <option value="three_column_reciprocal">Três colunas recíprocas com IDs dos materiais (.tsv)</option>
+                      <option value="three_column_reciprocal_stock_id_integer">Três colunas recíprocas com IDs inteiros dos materiais (.tsv)</option>
                   </select>
                   <br/>
-                    <span class="glyphicon glyphicon-info-sign" title="Select accessions, and optionally a genotyping protocol. If no genotyping protocol is selected, the default genotyping protocol is used in your system. Specify minor allele frequency (MAF), marker filter, and individuals filter. Can compute genotypes from parents if the parents of the accessions you selected have genotypes by checking the checkbox. GRM can be downloaded in a matrix format (.tsv) and a three column format."></span>
-                    <span>Download GRM</span><br/>
+                    <span class="glyphicon glyphicon-info-sign" title="Selecione acessos e, opcionalmente, um protocolo de genotipagem. Se nenhum protocolo for selecionado, será usado o padrão do sistema. Informe a frequência do alelo menor (MAF) e os filtros de marcadores e indivíduos. Marque a opção para calcular genótipos a partir dos genitores, caso estes tenham dados genotípicos. A GRM pode ser baixada como matriz (.tsv) ou em três colunas."></span>
+                    <span>Baixar GRM</span><br/>
                     <button class="wizard-download-genetic-relationship-matrix btn btn-sm btn-primary">
                         <span class="glyphicon glyphicon-download" aria-hidden="true"></span>
-                        Download GRM
+                        Baixar GRM
                     </button>
                 </td>
               </tr>
               <tr>
                   <td colspan="12">
-                    <span>Genome Wide Association Study (GWAS) Download Format</span>
+                    <span>Formato de download do estudo de associação genômica ampla (GWAS)</span>
                     <select class="wizard-download-genotypes-gwas-format form-control input-sm" >
-                        <option value="manhattan_qq_plots">Manhattan + QQ Plots (.pdf)</option>
-                        <option value="results_tsv">GWAS Results (.tsv)</option>
+                        <option value="manhattan_qq_plots">Gráficos Manhattan + QQ (.pdf)</option>
+                        <option value="results_tsv">Resultados GWAS (.tsv)</option>
                     </select>
                     <br/>
-                    <span>Selected Traits Are All Repeated Measurements</span>
+                    <span>Todas as características selecionadas são medidas repetidas</span>
                     <select class="wizard-download-genotypes-gwas-repeated-measurements form-control input-sm" >
-                        <option value="no">No</option>
-                        <option value="yes">Yes</option>
+                        <option value="no">Não</option>
+                        <option value="yes">Sim</option>
                     </select>
                     <br/>
-                        <span class="glyphicon glyphicon-info-sign" title="Select accessions, traits, and optionally a genotyping protocol. If no genotyping protocol is selected, the default genotyping protocol is used in your system. When many traits are selected and these traits are not treated as repeated measurements, the traits are treated separately and distinct results are returned e.g. several Manhattan plots are returned. If the selected traits are in fact repeated measurements, then select 'yes'; a single GWAS will be run against all of the phenotypes e.g. a single Manhattan plot is returned. Specify minor allele frequency (MAF), marker filter, and individuals filter. Can compute genotypes from parents if the parents of the accessions you selected have genotypes by checking the checkbox. GWAS uses a fixed effect for different field trials and a fixed effect for replicate. GWAS uses Kinship matrix calculated from the genotype data. MAF and missing data used to filter prior to GWAS and Kinship matrix calculation. Can select whether to return results in Manhattan and QQ Plot (.pdf) form or as the tabular results (.tsv)."></span>
-                        <span>Run GWAS</span><br/>
+                        <span class="glyphicon glyphicon-info-sign" title="Selecione acessos, características e, opcionalmente, um protocolo de genotipagem. Se nenhum protocolo for selecionado, será usado o padrão do sistema. Características que não são medidas repetidas são analisadas separadamente, gerando resultados distintos, como vários gráficos Manhattan. Se forem medidas repetidas, selecione 'Sim' para executar uma única GWAS com todos os fenótipos, gerando, por exemplo, um único gráfico Manhattan. Informe a frequência do alelo menor (MAF) e os filtros de marcadores e indivíduos. Marque a opção para calcular genótipos a partir dos genitores, caso estes tenham dados genotípicos. A GWAS usa efeitos fixos para ensaios de campo e repetições, além de uma matriz de parentesco calculada dos dados genotípicos. A MAF e os dados ausentes são usados na filtragem antes da GWAS e do cálculo da matriz. Escolha resultados em gráficos Manhattan e QQ (.pdf) ou em tabela (.tsv)."></span>
+                        <span>Executar GWAS</span><br/>
                       <button class="wizard-download-gwas btn btn-sm btn-primary">
                           <span class="glyphicon glyphicon-download" aria-hidden="true"></span>
-                          Download GWAS
+                          Baixar GWAS
                       </button>
                   </td>
               </tr>
@@ -347,27 +347,27 @@ $dataset_id => undef
 
       <div class="panel panel-default">
         <div class="panel-heading" role="button" data-toggle="collapse" data-parent="#wiz-down-group" href="#wiz-down-1-c-a" aria-controls="wiz-down-1-c-a">
-          <span class="btnn btn-link">Archived Genotype Data</span>
+          <span class="btnn btn-link">Dados genotípicos armazenados</span>
         </div>
         <div id="wiz-down-1-c-a" class="panel-collapse collapse" role="tabpanel">
-          <p style="margin: 15px; text-color: #999; font-size: 90%">Download the original archived VCF files of entire genotyping projects.  Select <strong>one or more genotyping projects and/or genotyping protocols</strong> to download a VCF file of any matching project(s).</p>
+          <p style="margin: 15px; text-color: #999; font-size: 90%">Baixe os arquivos VCF originais armazenados de projetos completos de genotipagem. Selecione <strong>um ou mais projetos e/ou protocolos de genotipagem</strong> para baixar os arquivos VCF dos projetos correspondentes.</p>
           <div id="wiz-down-1-c-a-body" style="min-height: 50px"></div>
         </div>
       </div>
 
       <div class="panel panel-default">
         <div class="panel-heading" role="button" data-toggle="collapse" data-parent="#wiz-down-group" href="#wiz-down-2-c" aria-controls="wiz-down-2-c">
-          <span class="btnn btn-link">Related Trial Metadata</span>
+          <span class="btnn btn-link">Metadados de ensaios relacionados</span>
         </div>
         <div id="wiz-down-2-c" class="panel-collapse collapse" role="tabpanel">
           <table class="table">
             <tr>
               <td>
-                <input class="wizard-download-tmetadata-info form-control input-sm" type="text" disabled value="No Trials Selected"></input>
+                <input class="wizard-download-tmetadata-info form-control input-sm" type="text" disabled value="Nenhum ensaio selecionado"></input>
               </td>
               <td>
                 <select class="wizard-download-tmetadata-format form-control input-sm">
-                  <option value="" disabled>Format</option>
+                  <option value="" disabled>Formato</option>
                   <option selected value="csv">CSV</option>
                   <option value="xlsx">XLSX</option>
                 </select>
@@ -377,7 +377,7 @@ $dataset_id => undef
           <div class="panel-footer" style="border-top: 1px solid #ddd;">
             <button class="wizard-download-tmetadata btn btn-sm btn-primary">
                 <span class="glyphicon glyphicon-download" aria-hidden="true"></span>
-                Metadata
+                Metadados
             </button>
           </div>
         </div>
@@ -385,7 +385,7 @@ $dataset_id => undef
 
       <div class="panel panel-default">
         <div class="panel-heading" role="button" data-toggle="collapse" data-parent="#wiz-down-group" href="#wiz-down-3-c" aria-controls="wiz-down-3-c">
-          <span class="btnn btn-link">Related Trial Phenotypes</span>
+          <span class="btnn btn-link">Fenótipos de ensaios relacionados</span>
         </div>
         <div id="wiz-down-3-c" class="panel-collapse collapse" role="tabpanel">
           <table class="table">
@@ -397,24 +397,24 @@ $dataset_id => undef
             <tr>
             <td colspan="1">
               <select class="wizard-download-phenotypes-speed form-control input-sm">
-                <option value="" disabled>Download Type</option>
-                <option selected value="Native">Default</option>
-                <option value="MaterializedViewTable">Fast (Improves speed but may miss recent changes)</option>
+                <option value="" disabled>Tipo de download</option>
+                <option selected value="Native">Padrão</option>
+                <option value="MaterializedViewTable">Rápido (acelera o download, mas pode omitir alterações recentes)</option>
               </select>
             </td>
               <td colspan="1">
                 <select class="wizard-download-phenotypes-format form-control input-sm">
-                  <option value="" disabled>Download Format</option>
+                  <option value="" disabled>Formato de download</option>
                   <option selected value="csv">CSV</option>
                   <option value="xlsx">XLSX</option>
                 </select>
               </td>
               <td colspan="1">
                 <select class="wizard-download-phenotypes-level form-control input-sm">
-                  <option value="" disabled>Data Level</option>
-                  <option selected value="all">All</option>
-                  <option value="plot">Plots</option>
-                  <option value="plant">Plants</option>
+                  <option value="" disabled>Nível dos dados</option>
+                  <option selected value="all">Todos</option>
+                  <option value="plot">Parcelas</option>
+                  <option value="plant">Plantas</option>
                 </select>
               </td>
             </tr>
@@ -423,7 +423,7 @@ $dataset_id => undef
                 <div class="checkbox">
                   <label>
                     <input class="wizard-download-phenotypes-timestamp" type="checkbox" />
-                    Include timestamps
+                    Incluir data e hora
                   </label>
                 </div>
               </td>
@@ -431,7 +431,7 @@ $dataset_id => undef
                 <div class="checkbox">
                   <label>
                     <input class="wizard-download-phenotypes-entry-numbers" type="checkbox" />
-                    Include accession entry numbers
+                    Incluir números de entrada dos acessos
                   </label>
                 </div>
               </td>
@@ -441,7 +441,7 @@ $dataset_id => undef
                 <div class="checkbox">
                   <label>
                     <input class="wizard-download-phenotypes-trait-synonyms" type="checkbox" />
-                    Include trait synonyms
+                    Incluir sinônimos das características
                   </label>
                 </div>
               </td>
@@ -449,7 +449,7 @@ $dataset_id => undef
                 <div class="checkbox">
                   <label>
                     <input class="wizard-download-phenotypes-intercrop" type="checkbox" />
-                    Include intercrop accessions
+                    Incluir acessos de culturas consorciadas
                   </label>
                 </div>
               </td>
@@ -459,49 +459,49 @@ $dataset_id => undef
                 <div class="checkbox">
                   <label>
                     <input class="wizard-download-phenotypes-pedigree_parents" type="checkbox" />
-                    Include parents
+                    Incluir genitores
                   </label>
                 </div>
               </td>
             </tr>
             <tr>
               <td colspan="3">
-                Repetitive measurements: <br />
+                Medidas repetidas: <br />
                 <select class="wizard-download-repetitive-measurements-type form-control" >
-                  <option value="first">First value</option>
-                  <option value="last">Last value</option>
-                  <option value="average">Averaged value</option>
-                  <option value="sum">Sum values</option>
-                  <option value="all_values_single_line">All Values Single Line</option>
-                  <option value="all_values_multiple_line">All Values Multiple Line</option>
+                  <option value="first">Primeiro valor</option>
+                  <option value="last">Último valor</option>
+                  <option value="average">Valor médio</option>
+                  <option value="sum">Soma dos valores</option>
+                  <option value="all_values_single_line">Todos os valores em uma linha</option>
+                  <option value="all_values_multiple_line">Todos os valores em várias linhas</option>
                 </select>
               </td>
             </tr>
             <tr>
               <td style="border-top: none; padding-top: 0">
-                From:<br /><input type="text" class="wizard-download-start-date form-control" id="phenotype_start_date" title="phenotype_start_date"  />
+                De:<br /><input type="text" class="wizard-download-start-date form-control" id="phenotype_start_date" title="phenotype_start_date"  />
               </td>
               <td style="border-top: none; padding-top: 0" colspan="2">
-                To:<br /><input type="text" class="wizard-download-end-date form-control" id="phenotype_end_date" title="phenotype_end_date" />
+                Até:<br /><input type="text" class="wizard-download-end-date form-control" id="phenotype_end_date" title="phenotype_end_date" />
               </td>
             </tr>
             <tr>
               <td style="border-top: none; padding-top: 0">
                 <input type="checkbox" id="include_dateless_items" checked="1" />
-                Include items without a date
+                Incluir itens sem data
               </td>
             </tr>
             <tr>
               <td>
-                <span>Trait Name Contains</span>
-                <input placeholder="e.g. plant height" type="text" class="wizard-download-phenotypes-name form-control">
+                <span>O nome da característica contém</span>
+                <input placeholder="ex.: altura da planta" type="text" class="wizard-download-phenotypes-name form-control">
               </td>
               <td>
-                <span>Min Value</span>
+                <span>Valor mínimo</span>
                 <input placeholder="-&#8734;" type="text" class="wizard-download-phenotypes-min form-control">
               </td>
               <td>
-                <span>Max Value</span>
+                <span>Valor máximo</span>
                 <input placeholder="&#8734;" type="text" class="wizard-download-phenotypes-max form-control">
               </td>
             </tr>
@@ -510,7 +510,7 @@ $dataset_id => undef
                 <div class="checkbox">
                   <label>
                     <input class="wizard-download-phenotypes-outliers" type="checkbox" />
-                    Supress user defined phenotype outliers
+                    Excluir valores fenotípicos atípicos definidos pelo usuário
                   </label>
                 </div>
               </td>
@@ -519,7 +519,7 @@ $dataset_id => undef
           <div class="panel-footer" style="border-top: 1px solid #ddd;">
             <button class="wizard-download-phenotypes btn btn-sm btn-primary">
                 <span class="glyphicon glyphicon-download" aria-hidden="true"></span>
-                Download Phenotypes
+                Baixar fenótipos
             </button>
           </div>
         </div>
@@ -527,7 +527,7 @@ $dataset_id => undef
 
       <div class="panel panel-default">
         <div class="panel-heading" role="button" data-toggle="collapse" data-parent="#wiz-down-group" href="#wiz-down-4-c" aria-controls="wiz-down-4-c">
-          <span class="btnn btn-link">Related Trial High Dimensional Phenotypes</span>
+          <span class="btnn btn-link">Fenótipos de alta dimensionalidade de ensaios relacionados</span>
         </div>
         <div id="wiz-down-4-c" class="panel-collapse collapse" role="tabpanel">
           <table class="table">
@@ -540,14 +540,14 @@ $dataset_id => undef
             <tr>
             <td colspan="1">
               <select class="wizard-download-high-dim-phenotypes-speed form-control input-sm">
-                <option value="" disabled>Download Type</option>
-                <option selected value="Native">Default</option>
-                <option value="MaterializedViewTable">Fast (Improves speed but may miss recent changes)</option>
+                <option value="" disabled>Tipo de download</option>
+                <option selected value="Native">Padrão</option>
+                <option value="MaterializedViewTable">Rápido (acelera o download, mas pode omitir alterações recentes)</option>
               </select>
             </td>
               <td colspan="1">
                 <select class="wizard-download-high-dim-phenotypes-format form-control input-sm">
-                  <option value="" disabled>Download Format</option>
+                  <option value="" disabled>Formato de download</option>
                   <option selected value="csv">CSV</option>
                   <option value="xlsx">XLSX</option>
                 </select>
@@ -558,7 +558,7 @@ $dataset_id => undef
                 <div class="checkbox">
                   <label>
                     <input class="wizard-download-high-dim-phenotypes-timestamp" type="checkbox" />
-                    Include timestamps
+                    Incluir data e hora
                   </label>
                 </div>
               </td>
@@ -566,7 +566,7 @@ $dataset_id => undef
                 <div class="checkbox">
                   <label>
                     <input class="wizard-download-high-dim-phenotypes-entry-numbers" type="checkbox" checked />
-                    Include accession entry numbers
+                    Incluir números de entrada dos acessos
                   </label>
                 </div>
               </td>
@@ -577,7 +577,7 @@ $dataset_id => undef
                 <div class="checkbox">
                   <label>
                     <input class="wizard-download-high-dim-phenotypes-outliers" type="checkbox" />
-                    Supress user defined phenotype outliers
+                    Excluir valores fenotípicos atípicos definidos pelo usuário
                   </label>
                 </div>
               </td>
@@ -586,7 +586,7 @@ $dataset_id => undef
                 <div class="checkbox">
                   <label>
                     <input class="wizard-download-high-dim-phenotypes-intercrop" type="checkbox" checked />
-                    Include intercrop accessions
+                    Incluir acessos de culturas consorciadas
                   </label>
                 </div>
               </td>
@@ -594,43 +594,43 @@ $dataset_id => undef
             <!--
             <tr>
               <td colspan="3">
-                Repetitive measurements: <br />
+                Medidas repetidas: <br />
                 <select class="wizard-download-repetitive-measurements-type form-control" disabled>
-                  <option value="first">First value</option>
-                  <option value="last">Last value</option>
-                  <option value="average" selected>Averaged value</option>
-                  <option value="sum">Sum values</option>
-                  <option value="all_values_single_line">All Values Single Line</option>
-                  <option value="all_values_multiple_line">All Values Multiple Line</option>
+                  <option value="first">Primeiro valor</option>
+                  <option value="last">Último valor</option>
+                  <option value="average" selected>Valor médio</option>
+                  <option value="sum">Soma dos valores</option>
+                  <option value="all_values_single_line">Todos os valores em uma linha</option>
+                  <option value="all_values_multiple_line">Todos os valores em várias linhas</option>
                 </select>
               </td>
             </tr>
             !-->
             <tr>
               <td style="border-top: none; padding-top: 0">
-                From:<br /><input type="text" class="wizard-download-start-date form-control" id="phenotype_start_date" title="phenotype_start_date"  />
+                De:<br /><input type="text" class="wizard-download-start-date form-control" id="phenotype_start_date" title="phenotype_start_date"  />
               </td>
               <td style="border-top: none; padding-top: 0">
-                To:<br /><input type="text" class="wizard-download-end-date form-control" id="phenotype_end_date" title="phenotype_end_date" />
+                Até:<br /><input type="text" class="wizard-download-end-date form-control" id="phenotype_end_date" title="phenotype_end_date" />
               </td>
               <td style="border-top: none; padding-top: 0">
                 <input type="checkbox" id="include_dateless_items" checked="1" />
-                Include items without a date
+                Incluir itens sem data
               </td>
             </tr>
             <tr>
               <td>
-                <span>High Dimensional Phenotype</span>
+                <span>Fenótipo de alta dimensionalidade</span>
               <select class="wizard-download-high-dim-phenotypes-type form-control input-sm">
                 <option selected value="NIRS">NIRS</option>
               </select>
               </td>
               <td>
-                <span>Min Wavelength</span>
+                <span>Comprimento de onda mínimo</span>
                 <input placeholder="-&#8734;" type="text" class="wizard-download-high-dim-phenotypes-min form-control">
               </td>
               <td>
-                <span>Max Wavelength</span>
+                <span>Comprimento de onda máximo</span>
                 <input placeholder="&#8734;" type="text" class="wizard-download-high-dim-phenotypes-max form-control">
               </td>
             </tr>
@@ -638,7 +638,7 @@ $dataset_id => undef
           <div class="panel-footer" style="border-top: 1px solid #ddd;">
             <button class="wizard-download-high-dim-phenotypes btn btn-sm btn-primary">
                 <span class="glyphicon glyphicon-download" aria-hidden="true"></span>
-                Download Phenotypes
+                Baixar fenótipos
             </button>
           </div>
         </div>
@@ -656,20 +656,20 @@ $dataset_id => undef
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h3 class="modal-title" id="updateWizardDialog">Update Search Wizard</h3>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+        <h3 class="modal-title" id="updateWizardDialog">Atualizar assistente de pesquisa</h3>
       </div>
       <div class="modal-body">
         <div class="container-fluid">
-	     <h4>How the wizard works</h4>
-	     	     <p>For the search wizard to be fast and flexible, it avoids querying the database directly. Instead, it stores a copy of the data from the database in a temporary format that is optimized for the types of queries the wizard makes.</p><p>For this to be practical, the copy must be updated regularly. Updates usually start every time new data is uploaded, however users with submitter status or higher can also initiate them manually.</p><p>If an update isn't already in progress, you can initiate one below. It will run independently on the server without any additional input required from the user. Depending on the size of the database, it will take from a few minutes to a few hours to complete.</p>
-	<div><h4>Current status:</h4><p id="wizard_status"></p></div>
+	     <h4>Como funciona o assistente</h4>
+          <p>Para oferecer pesquisas rápidas e flexíveis, o assistente armazena uma cópia dos dados em um formato temporário otimizado para suas consultas.</p><p>Essa cópia precisa ser atualizada regularmente. As atualizações geralmente começam quando novos dados são enviados, mas usuários com permissão de envio ou superior também podem iniciá-las manualmente.</p><p>Se nenhuma atualização estiver em andamento, você poderá iniciar uma abaixo. Ela será executada no servidor sem exigir outras ações. Dependendo do tamanho do banco de dados, poderá levar de alguns minutos a algumas horas.</p>
+	<div><h4>Estado atual:</h4><p id="wizard_status"></p></div>
         </div>
       </div>
       <div class="modal-footer">
         <div class="well well-sm" id="update_wizard_error" style="display:none;"></div>
-        <button type="button" class="btn btn-primary wiz-update" name="update_wizard" data-loading-text="Working..." id="update_wizard">Update search wizard</button>
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary wiz-update" name="update_wizard" data-loading-text="Processando..." id="update_wizard">Atualizar assistente de pesquisa</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
       </div>
     </div>
   </div>
@@ -712,12 +712,12 @@ $dataset_id => undef
       .then(function(isLoading){
         if(isLoading) {
           d3.select("#update_wizard")
-          .attr("title","A search wizard update is already in progress...")
+          .attr("title","Uma atualização do assistente de pesquisa já está em andamento...")
           .attr("disabled",true);
         }
         else {
           d3.select("#update_wizard")
-          .attr("title","Refresh the search wizard to include newly uploaded data")
+          .attr("title","Atualize o assistente de pesquisa para incluir os dados recém-enviados")
           .attr("disabled",null)
         }
       });
@@ -762,21 +762,21 @@ $dataset_id => undef
   });
   updateArchivedVCFFiles({ no_geno_selected: true });
 
-  // Set the display of the Archived Genotype Data section
+  // Set the display of the Dados genotípicos armazenados section
   function updateArchivedVCFFiles({ no_geno_selected = false, loading = false, error = false, data = {} } = {}) {
     let html = '';
     if ( no_geno_selected ) {
-      html += "<p style='text-align: center; margin: 15px; font-size: 90%'>Select one or more <em>genotyping protocols</em> and/or <em>genotyping projects</em>...</p>";
+      html += "<p style='text-align: center; margin: 15px; font-size: 90%'>Selecione um ou mais <em>protocolos de genotipagem</em> e/ou <em>projetos de genotipagem</em>...</p>";
     }
     else if ( loading ) {
-      html += "<p style='text-align: center; margin: 15px'>Loading...</p>";
+      html += "<p style='text-align: center; margin: 15px'>Carregando...</p>";
     }
     else if ( error ) {
-      html += "<p style='text-align: center; margin: 15px'>Error: Could not check for archived files</p>";
+      html += "<p style='text-align: center; margin: 15px'>Erro: não foi possível verificar os arquivos armazenados</p>";
     }
     else if ( data ) {
       html += "<table class='table table-hover table-striped'>";
-      html += "<thead><tr><th>Protocol</th><th>Project</th><th>VCF File</th></tr></thead>";
+      html += "<thead><tr><th>Protocolo</th><th>Projeto</th><th>Arquivo VCF</th></tr></thead>";
       html += "<tbody>";
       Object.keys(data).forEach((proj_id) => {
         const files = data[proj_id];
@@ -785,10 +785,10 @@ $dataset_id => undef
           html += `<td><a href="/breeders_toolbox/protocol/${file.genotyping_protocol_id}" target="_blank">${file.genotyping_protocol_name}</td>`;
           html += `<td><a href="/breeders/trial/${file.genotyping_project_id}" target="_blank">${file.genotyping_project_name}</td>`;
           if ( file.exists === 'true' ) {
-            html += `<td><a href="/ajax/genotyping_project/download_archived_vcf?genotyping_project_id=${file.genotyping_project_id}&basename=${file.basename}" target="_blank">Download</a></td>`;
+            html += `<td><a href="/ajax/genotyping_project/download_archived_vcf?genotyping_project_id=${file.genotyping_project_id}&basename=${file.basename}" target="_blank">Baixar</a></td>`;
           }
           else {
-            html += "<td>File not found</td>";
+            html += "<td>Arquivo não encontrado</td>";
           }
           html += "</tr>";
         });
@@ -855,7 +855,7 @@ $dataset_id => undef
       }
       if ( selected_genotyping_protocols.length > 1 ) {
         $(".wizard-download-genotypes-info2").show();
-        $(".wizard-download-genotypes-info2").val("too many genotype protocols");
+        $(".wizard-download-genotypes-info2").val("Há protocolos de genotipagem demais");
       } else {
         $(".wizard-download-genotypes-info2").hide();
       }
@@ -883,7 +883,7 @@ $dataset_id => undef
               // console.log(genotyping_protocol[0]["protocol_name"]);
               if ( selected_genotyping_protocols.length < 1 ) {
                 $(".wizard-download-genotypes-info3").show();
-                $(".wizard-download-genotypes-info3").val("genotype protocol \"" + genotyping_protocol[0]["protocol_name"] + "\"");
+                $(".wizard-download-genotypes-info3").val("protocolo de genotipagem \"" + genotyping_protocol[0]["protocol_name"] + "\"");
               }
             }
             jQuery.ajax({
@@ -929,7 +929,7 @@ $dataset_id => undef
     } else {
       var protocol_name = '<% $c->config->{default_genotyping_protocol} %>';
       $(".wizard-download-genotypes-info3").show();
-      $(".wizard-download-genotypes-info3").val("genotype protocol \"" + protocol_name + "\"");
+      $(".wizard-download-genotypes-info3").val("protocolo de genotipagem \"" + protocol_name + "\"");
       jQuery.ajax({
           url: '/get/genotyping/protocols/',
           method: "POST",
@@ -970,7 +970,7 @@ $dataset_id => undef
       download_units = parseInt((num_markers * selected_accessions) / 1000000);
       if (download_units > 1) {
             $(".wizard-download-genotypes-info4").show();
-            $(".wizard-download-genotypes-info4").val(download_units + "M values, download will be slow");
+            $(".wizard-download-genotypes-info4").val(download_units + " milhões de valores; o download será lento");
             // console.log("download units " + download_units);
       } else {
             $(".wizard-download-genotypes-info4").hide();
@@ -984,7 +984,7 @@ $dataset_id => undef
   function updateChromosomeNames(names) {
     var html = "";
     if ( names )  {
-      html += "<option value=''>All</option>";
+      html += "<option value=''>Todos</option>";
       for ( var i = 0; i < names.length; i++ ) {
         html += "<option value='" + names[i] + "'>" + names[i] + "</option>";
       }
@@ -1002,7 +1002,15 @@ $dataset_id => undef
        "minDate": "1960-01-01",
        "maxDate": "2030-12-31",
        locale: {
-        format: 'YYYY-MM-DD'
+        format: 'YYYY-MM-DD',
+        applyLabel: 'Aplicar',
+        cancelLabel: 'Cancelar',
+        fromLabel: 'De',
+        toLabel: 'Até',
+        customRangeLabel: 'Intervalo personalizado',
+        weekLabel: 'Sem.',
+        daysOfWeek: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'],
+        monthNames: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro']
       }
    },
 
@@ -1019,7 +1027,15 @@ jQuery('input[title="phenotype_end_date"]').daterangepicker(
        "minDate": "1960-01-01",
        "maxDate": "2030-12-31",
        locale: {
-        format: 'YYYY-MM-DD'
+        format: 'YYYY-MM-DD',
+        applyLabel: 'Aplicar',
+        cancelLabel: 'Cancelar',
+        fromLabel: 'De',
+        toLabel: 'Até',
+        customRangeLabel: 'Intervalo personalizado',
+        weekLabel: 'Sem.',
+        daysOfWeek: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'],
+        monthNames: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro']
       }
    },
 

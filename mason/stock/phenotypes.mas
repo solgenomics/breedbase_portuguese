@@ -8,10 +8,10 @@ $stock_id
 <table id="phenotype_summary_data" class="display">
 <thead>
   <tr>
-    <th>Trial</th>
-    <th>Trait code</th>
-    <th>Trait</th>
-    <th>Value</th>
+    <th>Ensaio</th>
+    <th>Código da característica</th>
+    <th>Característica</th>
+    <th>Valor</th>
   </tr>
 </thead>
 

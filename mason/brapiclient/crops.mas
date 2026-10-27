@@ -1,10 +1,10 @@
 <%args>
 </%args>
 
-<h4>Crops</h4>
+<h4>Culturas</h4>
 
 <div id="brapi_crops_div">
-<button class="btn btn-primary" id="brapi_home_show_crops">Show Crops</button>
+<button class="btn btn-primary" id="brapi_home_show_crops">Mostrar culturas</button>
 
 </div>
 
@@ -26,7 +26,7 @@ jQuery("#brapi_home_show_crops").click(function() {
         jQuery("#brapi_crops_div").empty().html(html);
       },
       error: function(response) {
-        alert('An error occurred getting crops');
+        alert('Ocorreu um erro ao obter as culturas');
       }
     });
 });

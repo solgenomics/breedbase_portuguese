@@ -1,6 +1,7 @@
 
 package CXGN::BreedersToolbox::Projects;
 
+use utf8;
 use Moose;
 use Data::Dumper;
 use Try::Tiny;
@@ -562,12 +563,12 @@ sub store_breeding_program {
     my $type_id = $self->get_breeding_program_cvterm_id();
 
     if (!$name) {
-        return { error => "Cannot save a breeding program with an undefined name. A name is required." };
+        return { error => "Não é possível salvar um programa de melhoramento sem nome. O nome é obrigatório." };
     }
 
     my $existing_name_rs = $schema->resultset("Project::Project")->search({ name => $name });
     if (!$id && $existing_name_rs->count() > 0) {
-        return { error => "A breeding program with name '$name' already exists.",
+        return { error => "Já existe um programa de melhoramento com o nome '$name'.",
             nameExists => 1
         };
     }
@@ -624,10 +625,10 @@ sub store_breeding_program {
 
         if ($error) {
             print STDERR "Error creating program $name: $error\n";
-            return { error => $error };
+            return { error => "Não foi possível criar o programa de melhoramento $name." };
         } else {
             print STDERR "Breeding program $name was added successfully with description $description and id $id\n";
-            return { success => "Breeding program $name was added successfully with description $description\n", id => $id };
+            return { success => "O programa de melhoramento $name foi adicionado com sucesso com a descrição $description\n", id => $id };
         }
     }
     # Edit existing program if id supplied
@@ -678,10 +679,10 @@ sub store_breeding_program {
 
         if ($error) {
             print STDERR "Error editing program $name: $error\n";
-            return { error => $error };
+            return { error => "Não foi possível atualizar o programa de melhoramento $name." };
         } else {
             print STDERR "Breeding program $name was updated successfully with description $description and id $id\n";
-            return { success => "Breeding program $name was updated successfully with description $description\n", id => $id };
+            return { success => "O programa de melhoramento $name foi atualizado com sucesso com a descrição $description\n", id => $id };
         }
     }
 }

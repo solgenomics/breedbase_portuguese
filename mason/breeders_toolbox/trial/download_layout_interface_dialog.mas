@@ -6,6 +6,15 @@ $download_type
 $trial_stock_type => undef
 </%args>
 
+<%perl>
+my %download_type_labels = (
+    Fieldbook           => 'Caderno de campo',
+    TrialLayout         => 'Disposição do ensaio',
+    TrialFieldMapLayout => 'Disposição do mapa de campo',
+);
+my $download_type_label = $download_type_labels{$download_type} || $download_type;
+</%perl>
+
 <style>
     div.layout-container {
         margin: 15px 0;
@@ -31,29 +40,29 @@ $trial_stock_type => undef
   <div class="modal-dialog modal-xl" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="createFieldbookDialog_<% $download_type %>">Download <% $download_type %> for <% $trial_name %></h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="createFieldbookDialog_<% $download_type %>">Baixar <% $download_type_label %> de <% $trial_name %></h4>
       </div>
       <div class="modal-body">
         <div class="container-fluid">
             <form class="form-horizontal" role="form" method="post" >
                 <div class="well">
                     <div class="form-group">
-                        <label class="col-sm-3 control-label">Trial: </label>
+                        <label class="col-sm-3 control-label">Ensaio: </label>
                         <div class="col-sm-9" >
                             <div id="select_trial_for_create_fieldbook_<% $download_type %>">
 % if ($trial_id) {
                                 <input type="text" class="form-control" value="<% $trial_name %>" disabled/>
                                 <input type="hidden" id="html_select_trial_for_create_fieldbook_<% $download_type %>" name="html_select_trial_for_create_fieldbook_<% $download_type %>" value="<% $trial_id %>" />
 % } else {
-                    [Loading...]
+                    [Carregando...]
 % }
                             </div>
                         </div>
                     </div>
                     <div id="create_fieldbook_format_div_<% $download_type %>" style="display:none">
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">Format: </label>
+                            <label class="col-sm-3 control-label">Formato: </label>
                             <div class="col-sm-9" >
                                 <select class="form-control" id="create_fieldbook_format_<% $download_type %>">
                                     <option value="csv">CSV</option>
@@ -64,38 +73,38 @@ $trial_stock_type => undef
                     </div>
                     <div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">Include treatments: </label>
+                            <label class="col-sm-3 control-label">Incluir tratamentos: </label>
                             <div class="col-sm-9" >
                                 <select class="form-control" id="create_fieldbook_include_treatments_<% $download_type %>">
-                                    <option value="true">Yes</option>
-                                    <option value="false">No</option>
+                                    <option value="true">Sim</option>
+                                    <option value="false">Não</option>
                                 </select>
                             </div>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-3 control-label">Data Level: </label>
+                        <label class="col-sm-3 control-label">Nível dos dados: </label>
                         <div class="col-sm-9" >
                             <select class="form-control" id="create_fieldbook_data_level_<% $download_type %>">
-                                <option value="plots">Plots</option>
-                                <option value="plants">Plants</option>
-                                <option value="subplots">Subplots</option>
-                                <option value="field_trial_tissue_samples">Tissue Samples</option>
+                                <option value="plots">Parcelas</option>
+                                <option value="plants">Plantas</option>
+                                <option value="subplots">Subparcelas</option>
+                                <option value="field_trial_tissue_samples">Amostras de tecido</option>
                             </select>
                         </div>
                     </div>
                 </div>
                 <div id="selected_columns_well">
                     <div class="well">
-                        <center><h4>Choose the columns you want to include (Or simply use defaults and click "Submit")</h4></center>
+                        <center><h4>Escolha as colunas que deseja incluir (ou use os padrões e clique em "Enviar")</h4></center>
                         <hr>
                         <div class="layout-container" style="align-items: flex-start !important";>
                             <div class="layout-item">
-                                <label>Included Columns: </label>
+                                <label>Colunas incluídas: </label>
                                 <div id="create_fieldbook_included_columns_<% $download_type %>"></div>
                             </div>
                             <div class="layout-item">
-                                <label>Not Included Columns: </label>
+                                <label>Colunas não incluídas: </label>
                                 <div id="create_fieldbook_not_included_columns_<% $download_type %>"></div>
                             </div>
                         </div>
@@ -105,47 +114,47 @@ $trial_stock_type => undef
                     <div class="well">
                         <div class="layout-container">
                             <div class="layout-item">
-                                <label>Include existing plot phenotypes: </label>
-                                <input id="create_fieldbook_include_measured_<% $download_type %>" type="checkbox" data-toggle="toggle" />
+                                <label>Incluir fenótipos existentes das parcelas: </label>
+                                <input id="create_fieldbook_include_measured_<% $download_type %>" type="checkbox" data-toggle="toggle" data-on="Sim" data-off="Não" />
                             </div>
                             <div class="layout-item">
-                                <label>Include summary of overall accession performance (for a list of traits): </label>
+                                <label>Incluir resumo do desempenho geral dos acessos (para uma lista de características): </label>
                                 <div id="create_fieldbook_with_trait_list_<% $download_type %>"></div>
                             </div>
                             <div class="layout-item">
-                                <label>Include all stats: </label>
-                                <input id="create_fieldbook_all_stats_<% $download_type %>" type="checkbox" checked data-toggle="toggle" />
+                                <label>Incluir todas as estatísticas: </label>
+                                <input id="create_fieldbook_all_stats_<% $download_type %>" type="checkbox" checked data-toggle="toggle" data-on="Sim" data-off="Não" />
                             </div>
                             <div class="layout-item">
-                                <label>Use trait synonyms: </label>
-                                <input id="create_fieldbook_use_synonyms_<% $download_type %>" type="checkbox" checked data-toggle="toggle" />
+                                <label>Usar sinônimos das características: </label>
+                                <input id="create_fieldbook_use_synonyms_<% $download_type %>" type="checkbox" checked data-toggle="toggle" data-on="Sim" data-off="Não" />
                             </div>
                         </div>
                     </div>
                     <div class="well">
                         <div class="layout-container">
                             <div class="layout-item">
-                                <label>Include Plot Order:</label>
-                                <input id="create_fieldbook_include_plot_order_<% $download_type %>" type="checkbox" data-toggle="toggle">
+                                <label>Incluir ordem das parcelas:</label>
+                                <input id="create_fieldbook_include_plot_order_<% $download_type %>" type="checkbox" data-toggle="toggle" data-on="Sim" data-off="Não">
                             </div>
                             <div class="layout-item">
-                                <label>Plot&nbsp;Order:</label>
+                                <label>Ordem&nbsp;das&nbsp;parcelas:</label>
                                 <select class="form-control" name="create_fieldbook_plot_order_<% $download_type %>" id="create_fieldbook_plot_order_<% $download_type %>">
-                                    <option value="">--Select plot order--</option>
-                                    <option value="by_col_serpentine">By Column: Serpentine</option>
-                                    <option value="by_col_zigzag">By Column: Zigzag</option>
-                                    <option value="by_row_serpentine">By Row: Serpentine</option>
-                                    <option value="by_row_zigzag">By Row: Zigzag</option>
+                                    <option value="">--Selecione a ordem das parcelas--</option>
+                                    <option value="by_col_serpentine">Por coluna: serpentina</option>
+                                    <option value="by_col_zigzag">Por coluna: zigue-zague</option>
+                                    <option value="by_row_serpentine">Por linha: serpentina</option>
+                                    <option value="by_row_zigzag">Por linha: zigue-zague</option>
                                 </select>
                             </div>
                             <div class="layout-item">
-                                <label>Starting&nbsp;Plot:</label>
+                                <label>Parcela&nbsp;inicial:</label>
                                 <select class="form-control" id="create_fieldbook_plot_start_<% $download_type %>" name="create_fieldbook_plot_start_<% $download_type %>">
-                                    <option value="">--Select start plot--</option>
-                                    <option value="bottom_left">Bottom Left</option>
-                                    <option value="top_left">Top Left</option>
-                                    <option value="top_right">Top Right</option>
-                                    <option value="bottom_right">Bottom Right</option>
+                                    <option value="">--Selecione a parcela inicial--</option>
+                                    <option value="bottom_left">Inferior esquerda</option>
+                                    <option value="top_left">Superior esquerda</option>
+                                    <option value="top_right">Superior direita</option>
+                                    <option value="bottom_right">Inferior direita</option>
                                 </select>
                             </div>
                         </div>
@@ -155,8 +164,8 @@ $trial_stock_type => undef
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" name="create_fieldbook_cancel_button_<% $download_type %>" id="create_fieldbook_cancel_button_<% $download_type %>" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" name="create_fieldbook_ok_button_<% $download_type %>" id="create_fieldbook_ok_button_<% $download_type %>" title="Submit">Submit</button>
+        <button type="button" class="btn btn-default" name="create_fieldbook_cancel_button_<% $download_type %>" id="create_fieldbook_cancel_button_<% $download_type %>" data-dismiss="modal">Fechar</button>
+        <button type="button" class="btn btn-primary" name="create_fieldbook_ok_button_<% $download_type %>" id="create_fieldbook_ok_button_<% $download_type %>" title="Enviar">Enviar</button>
       </div>
     </div>
   </div>
@@ -166,20 +175,20 @@ $trial_stock_type => undef
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="createFieldbookSavedDialog_<% $download_type %>"><% $download_type %> for <% $trial_name %> Created</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="createFieldbookSavedDialog_<% $download_type %>"><% $download_type_label %> de <% $trial_name %> gerado com sucesso</h4>
       </div>
       <div class="modal-body">
         <div class="container-fluid">
             <p>
               <span class="ui-icon ui-icon-circle-check" style="float: left; margin: 0 7px 50px 0;"></span>
-              The field book layout file(s) were saved successfully
+              Os arquivos da disposição do caderno de campo foram salvos com sucesso
             </p>
             <div id="tablet_field_layout_get_file_<% $download_type %>"></div>
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" name="create_fieldbook_cancel_button_<% $download_type %>" id="create_fieldbook_cancel_button_<% $download_type %>" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-default" name="create_fieldbook_cancel_button_<% $download_type %>" id="create_fieldbook_cancel_button_<% $download_type %>" data-dismiss="modal">Fechar</button>
       </div>
     </div>
   </div>
@@ -192,6 +201,11 @@ var not_selected_columns_<% $download_type %> = {};
 var has_plants_<% $download_type %> = 0;
 var has_subplots_<% $download_type %> = 0;
 var has_tissue_samples_<% $download_type %> = 0;
+var data_level_labels_<% $download_type %> = {
+    plants: 'plantas',
+    subplots: 'subparcelas',
+    field_trial_tissue_samples: 'amostras de tecido'
+};
 
 jQuery(document).ready(function() {
 
@@ -271,7 +285,7 @@ jQuery(document).ready(function() {
                             if(response.has_plants == 0){
                                 has_plants_<% $download_type %> = 0;
                                 if (!warned && level == 'plants'){
-                                    alert('This trial does not have '+level);
+                                    alert('Este ensaio não possui '+data_level_labels_<% $download_type %>[level]);
                                     show_available_columns_<% $download_type %>('plots');
                                     jQuery('#create_fieldbook_data_level_<% $download_type %>').val('plots');
                                     warned = true;
@@ -285,7 +299,7 @@ jQuery(document).ready(function() {
                         },
                         error: function () {
                             jQuery("#working_modal").modal("hide");
-                            alert('An error occurred checking trial for plants or subplots.');
+                            alert('Ocorreu um erro ao verificar se o ensaio possui plantas ou subparcelas.');
                         }
                     });
                     jQuery.ajax({
@@ -301,7 +315,7 @@ jQuery(document).ready(function() {
                             if(response.has_subplots == 0){
                                 has_subplots_<% $download_type %> = 0;
                                 if (!warned && level == 'subplots'){
-                                    alert('This trial does not have '+level);
+                                    alert('Este ensaio não possui '+data_level_labels_<% $download_type %>[level]);
                                     show_available_columns_<% $download_type %>('plots');
                                     jQuery('#create_fieldbook_data_level_<% $download_type %>').val('plots');
                                     warned = true;
@@ -315,7 +329,7 @@ jQuery(document).ready(function() {
                         },
                         error: function () {
                             jQuery("#working_modal").modal("hide");
-                            alert('An error occurred checking trial for plants or subplots.');
+                            alert('Ocorreu um erro ao verificar se o ensaio possui plantas ou subparcelas.');
                         }
                     });
                     jQuery.ajax({
@@ -331,7 +345,7 @@ jQuery(document).ready(function() {
                             if(response.has_tissue_samples == 0){
                                 has_tissue_samples_<% $download_type %> = 0;
                                 if (!warned && level == 'field_trial_tissue_samples'){
-                                    alert('This trial does not have '+level);
+                                    alert('Este ensaio não possui '+data_level_labels_<% $download_type %>[level]);
                                     show_available_columns_<% $download_type %>('plots');
                                     jQuery('#create_fieldbook_data_level_<% $download_type %>').val('plots');
                                     warned = true;
@@ -345,7 +359,7 @@ jQuery(document).ready(function() {
                         },
                         error: function () {
                             jQuery("#working_modal").modal("hide");
-                            alert('An error occurred checking trial for plants or subplots.');
+                            alert('Ocorreu um erro ao verificar se o ensaio possui plantas, subparcelas ou amostras de tecido.');
                         }
                     });
                 }
@@ -355,6 +369,54 @@ jQuery(document).ready(function() {
     });
 
 });
+
+function translate_fieldbook_column_tooltips_<% $download_type %>() {
+    var descriptions = {
+        accession_name: 'Nome do acesso plantado na parcela.',
+        block_number: 'Parâmetro do delineamento usado para distinguir os blocos no campo.',
+        col_number: 'Número da coluna da parcela, correspondente à posição horizontal (coordenada x) na grade do campo.',
+        cross_unique_id: 'Identificador exclusivo do cruzamento plantado na parcela.',
+        family_name: 'Nome da família plantada na parcela.',
+        is_a_control: 'Valor 1 ou 0 que indica se a parcela é uma testemunha no experimento.',
+        location_name: 'Local onde o ensaio foi realizado.',
+        num_seed_per_plot: 'Número de sementes retiradas do lote de sementes e plantadas nesta parcela.',
+        pedigree: 'Pedigree do acesso plantado na parcela; exibe somente os genitores.',
+        plant_id: 'Identificador exclusivo da planta no banco de dados.',
+        plant_name: 'Nome exclusivo da planta no banco de dados e, quando aplicável, conteúdo de seu código de barras.',
+        plant_number: 'Número da planta na parcela no delineamento de campo.',
+        plot_geo_json: 'Coordenadas GPS da parcela em formato GeoJSON.',
+        plot_id: 'Identificador exclusivo da parcela no banco de dados.',
+        plot_name: 'Nome exclusivo da parcela no banco de dados e, quando aplicável, conteúdo de seu código de barras.',
+        plot_number: 'Número da parcela no delineamento de campo, geralmente 1001, 1002, 2001, 2002 etc.',
+        range_number: 'Número da faixa da parcela, frequentemente equivalente a col_number.',
+        rep_number: 'Parâmetro do delineamento usado para determinar o número da repetição.',
+        row_number: 'Número da linha da parcela, correspondente à posição vertical (coordenada y) na grade do campo.',
+        seed_transaction_operator: 'Operador que registrou a transação entre o lote de sementes de origem e a parcela.',
+        seedlot_name: 'Nome do lote de sementes de origem usado para plantar a parcela.',
+        subplot_id: 'Identificador exclusivo da subparcela no banco de dados.',
+        subplot_name: 'Nome exclusivo da subparcela no banco de dados e, quando aplicável, conteúdo de seu código de barras.',
+        subplot_number: 'Número da subparcela no delineamento de campo.',
+        synonyms: 'Os sinônimos registram outros nomes usados localmente para o acesso.',
+        tier: 'Visualização combinada de row_number e col_number, correspondentes às coordenadas y e x da grade do campo.',
+        tissue_sample_id: 'Identificador exclusivo da amostra de tecido no banco de dados.',
+        tissue_sample_name: 'Nome exclusivo da amostra de tecido no banco de dados e, quando aplicável, conteúdo de seu código de barras.',
+        tissue_sample_number: 'Número da amostra de tecido no delineamento de campo.',
+        trial_name: 'Nome do ensaio ao qual pertence a parcela.',
+        year: 'Ano em que o ensaio foi realizado.'
+    };
+    var prefix = 'fieldbook_columns_';
+    var suffix = '_<% $download_type %>';
+
+    jQuery("[id^='" + prefix + "'][id$='" + suffix + "']").each(function() {
+        var id = jQuery(this).attr('id');
+        var column = id.substring(prefix.length, id.length - suffix.length);
+        if (descriptions[column]) {
+            jQuery(this).find('.glyphicon-info-sign').attr('title', descriptions[column]);
+        }
+    });
+    jQuery('#create_fieldbook_included_columns_<% $download_type %> .glyphicon-remove-circle').attr('title', 'Não incluir');
+    jQuery('#create_fieldbook_not_included_columns_<% $download_type %> .glyphicon-ok-circle').attr('title', 'Incluir');
+}
 
 function show_available_columns_<% $download_type %>(level){
     var download_type = "<% $download_type %>";
@@ -481,8 +543,11 @@ function show_available_columns_<% $download_type %>(level){
 
     included_html_<% $download_type %> += '<h2 id="fieldbook_columns_synonyms_<% $download_type %>" style="display:none"><span class="label label-primary">synonyms <span title="Accession names can have many synonyms. Synonyms are useful for capturing locally used accession names." class="glyphicon glyphicon-info-sign"></span>&nbsp;<a onClick="do_not_include_column_<% $download_type %>(\'synonyms\')"><span title="Do not include" class="glyphicon glyphicon-remove-circle" style="color:red"></span></a></span></h2><h2 id="fieldbook_columns_trial_name_<% $download_type %>" style="display:none"><span class="label label-primary">trial_name <span title="The trial name that the plot is in will appear." class="glyphicon glyphicon-info-sign"></span>&nbsp;<a onClick="do_not_include_column_<% $download_type %>(\'trial_name\')"><span title="Do not include" class="glyphicon glyphicon-remove-circle" style="color:red"></span></a></span></h2><h2 id="fieldbook_columns_location_name_<% $download_type %>" style="display:none"><span class="label label-primary">location_name <span title="The location that this trial is in will appear." class="glyphicon glyphicon-info-sign"></span>&nbsp;<a onClick="do_not_include_column_<% $download_type %>(\'location_name\')"><span title="Do not include" class="glyphicon glyphicon-remove-circle" style="color:red"></span></a></span></h2><h2 id="fieldbook_columns_year_<% $download_type %>" style="display:none"><span class="label label-primary">year <span title="The year that this trial occured will appear." class="glyphicon glyphicon-info-sign"></span>&nbsp;<a onClick="do_not_include_column_<% $download_type %>(\'year\')"><span title="Do not include" class="glyphicon glyphicon-remove-circle" style="color:red"></span></a></span></h2><h2 id="fieldbook_columns_pedigree_<% $download_type %>" style="display:none"><span class="label label-primary">pedigree <span title="The pedigree of the accession which was planted in the plot will appear. Only shows parents." class="glyphicon glyphicon-info-sign"></span>&nbsp;<a onClick="do_not_include_column_<% $download_type %>(\'pedigree\')"><span title="Do not include" class="glyphicon glyphicon-remove-circle" style="color:red"></span></a></span></h2><h2 id="fieldbook_columns_tier_<% $download_type %>" style="display:none"><span class="label label-primary">tier <span title="A combined view of row_number/col_number. If the field is drawn as a grid, the row_number is the y coordinate and the col_number is the x coordinate." class="glyphicon glyphicon-info-sign"></span>&nbsp;<a onClick="do_not_include_column_<% $download_type %>(\'tier\')"><span title="Do not include" class="glyphicon glyphicon-remove-circle" style="color:red"></span></a></span></h2><h2 id="fieldbook_columns_seedlot_name_<% $download_type %>" style="display:none"><span class="label label-primary">seedlot_name <span title="The source seedlot_name from which the plot was planted. Not all trials have this information saved." class="glyphicon glyphicon-info-sign"></span>&nbsp;<a onClick="do_not_include_column_<% $download_type %>(\'seedlot_name\')"><span title="Do not include" class="glyphicon glyphicon-remove-circle" style="color:red"></span></a></span></h2><h2 id="fieldbook_columns_seed_transaction_operator_<% $download_type %>" style="display:none"><span class="label label-primary">seed_transaction_operator <span title="The operator who created the seedlot_transaction between the seedlot and the plot. The seedlot_name indicates the source from which the plot was planted. Not all trials have this information saved." class="glyphicon glyphicon-info-sign"></span>&nbsp;<a onClick="do_not_include_column_<% $download_type %>(\'seed_transaction_operator\')"><span title="Do not include" class="glyphicon glyphicon-remove-circle" style="color:red"></span></a></span></h2><h2 id="fieldbook_columns_num_seed_per_plot_<% $download_type %>" style="display:none"><span class="label label-primary">num_seed_per_plot <span title="The number of seeds that were taken from the seedlot and planted in this plot. The seedlot_name indicates the source from which the plot was planted. Not all trials have this information saved." class="glyphicon glyphicon-info-sign"></span>&nbsp;<a onClick="do_not_include_column_<% $download_type %>(\'num_seed_per_plot\')"><span title="Do not include" class="glyphicon glyphicon-remove-circle" style="color:red"></span></a></span></h2><h2 id="fieldbook_columns_range_number_<% $download_type %>" style="display:none"><span class="label label-primary">range_number <span title="The range number for the plot. This is often synonymous with col_number. Not all trials have this information saved." class="glyphicon glyphicon-info-sign"></span>&nbsp;<a onClick="do_not_include_column_<% $download_type %>(\'range_number\')"><span title="Do not include" class="glyphicon glyphicon-remove-circle" style="color:red"></span></a></span></h2><h2 id="fieldbook_columns_plot_geo_json_<% $download_type %>" style="display:none"><span class="label label-primary">plot_geo_json <span title="GPS Coordinates for the plot. It will show as a GEO JSON string." class="glyphicon glyphicon-info-sign"></span>&nbsp;<a onClick="do_not_include_column_<% $download_type %>(\'plot_geo_json\')"><span title="Do not include" class="glyphicon glyphicon-remove-circle" style="color:red"></span></a></span></h2>';
 
+    included_html_<% $download_type %> = included_html_<% $download_type %>.replace(/title="[^"]*"/g, 'title=""');
+    not_inc_html_<% $download_type %> = not_inc_html_<% $download_type %>.replace(/title="[^"]*"/g, 'title=""');
     jQuery('#create_fieldbook_included_columns_<% $download_type %>').html(included_html_<% $download_type %>);
     jQuery('#create_fieldbook_not_included_columns_<% $download_type %>').html(not_inc_html_<% $download_type %>);
+    translate_fieldbook_column_tooltips_<% $download_type %>();
 }
 
 function do_not_include_column_<% $download_type %>(name){
@@ -501,7 +566,9 @@ function display_not_selected_columns_<% $download_type %>(){
             html_<% $download_type %> += '<h2><span class="label label-info">'+name+'&nbsp;<a onClick="include_column_<% $download_type %>(\''+name+'\')"><span title="Include" class="glyphicon glyphicon-ok-circle" style="color:green"></span></a></span></h2>';
         }
     }
+    html_<% $download_type %> = html_<% $download_type %>.replace(/title="[^"]*"/g, 'title=""');
     jQuery('#create_fieldbook_not_included_columns_<% $download_type %>').html(html_<% $download_type %>);
+    translate_fieldbook_column_tooltips_<% $download_type %>();
 }
 
 function include_column_<% $download_type %>(name){
@@ -518,7 +585,7 @@ function include_column_<% $download_type %>(name){
 function open_create_fieldbook_dialog_<% $download_type %>() {
     var trial_stock_type = "<% $trial_stock_type %>";
     let trial_ids = jQuery('#html_select_trial_for_create_fieldbook_<% $download_type %>').val().split(',').filter((e) => !!e && e !== '');
-    if ( !trial_ids || trial_ids.length < 1 ) return alert("Please select one or more trials first");
+    if ( !trial_ids || trial_ids.length < 1 ) return alert("Primeiro, selecione um ou mais ensaios");
 
     jQuery("#working_modal").modal("show");
     for ( let i = 0; i < trial_ids.length; i++ ) {
@@ -555,7 +622,7 @@ function open_create_fieldbook_dialog_<% $download_type %>() {
             },
             error: function () {
                 jQuery("#working_modal").modal("hide");
-                alert('An error occurred creating the field book.');
+                alert('Ocorreu um erro ao criar o caderno de campo.');
                 jQuery('#create_fieldbook_dialog_<% $download_type %>').modal("hide");
             }
         });

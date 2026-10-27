@@ -10,7 +10,7 @@ $program_name
 
 <form class="form-horizontal" >
     <div class="form-group">
-        <label class="col-sm-2" for="analyzed_tissue_type">Tissue Type: </label>
+        <label class="col-sm-2" for="analyzed_tissue_type">Tipo de tecido: </label>
         <div class="col-sm-3">
             <select class="form-control" id="analyzed_tissue_types_select">
 % my @tissue_types = split ',',$vector_analyzed_tissue_types;
@@ -21,7 +21,7 @@ $program_name
         </div>
     </div>
     <div class="form-group">
-        <label class="col-sm-2 control-label">Assay Date: </label>
+        <label class="col-sm-2 control-label">Data do ensaio: </label>
         <div class="col-sm-3" >
             <div id="assay_date_select_div">
             </div>
@@ -34,16 +34,16 @@ $program_name
     <table class="table table-hover table-bordered display" id="vector_transgenic_line_details_table">
         <thead>
             <tr>
-                <th>Accession</th>
-                <th>Number of Insertions</th>
+                <th>Acesso</th>
+                <th>Número de inserções</th>
 % my @column_header = split ',',$vector_related_genes;
 % foreach my $column_header(@column_header) {
-                <th><%$column_header. " ".'(Relative)'%></th>
+                <th><%$column_header. " ".'(Relativo)'%></th>
 %}
-                <th>qPCR Tissue Type</th>
-                <th>qPCR Assay Date</th>
+                <th>Tipo de tecido para qPCR</th>
+                <th>Data do ensaio de qPCR</th>
 % if (!$transformation_id) {
-                <th>Transformation ID</th>
+                <th>ID da transformação</th>
 % }
             </tr>
         </thead>
@@ -52,7 +52,7 @@ $program_name
 
 <div class="panel panel-default">
     <div class="panel-body">
-        <&| /page/info_section.mas, title => 'Copy accessions to a List', collapsible=>1, collapsed=>0, subtitle=>'<i>Copy the accession names to a new or exisiting list</i>'&>
+        <&| /page/info_section.mas, title => 'Copiar acessos para uma lista', collapsible=>1, collapsed=>0, subtitle=>'<i>Copie os nomes dos acessos para uma lista nova ou existente</i>'&>
         <br>
         <div id="transformant_names" style="display:none"></div>
         <div id="transformants_to_list_menu"></div>
@@ -114,7 +114,7 @@ jQuery(document).ready(function(){
             "fnInitComplete": function(oSettings, json) {
                 //console.log(json);
                 if (!isLoggedIn()) {
-                    jQuery('#transformants_to_list_menu').html("<div class='well well-sm'><h3>Please login to use lists!</h3></div>");
+                    jQuery('#transformants_to_list_menu').html("<div class='well well-sm'><h3>Entre no sistema para usar listas!</h3></div>");
                 } else {
                     var html = "";
                     for(var i=0; i<json.data.length; i++){

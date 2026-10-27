@@ -8,8 +8,8 @@ $trial_name => undef
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="setEntryNumbersDialog">Generate Entry Numbers Template</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="setEntryNumbersDialog">Gerar modelo de números de entrada</h4>
       </div>
       <div class="modal-body">
         <div class="container-fluid">
@@ -17,24 +17,24 @@ $trial_name => undef
           <&| /util/workflow.mas, id=> "set_entry_numbers_workflow" &>
             
             <!-- Step 1: Intro -->
-            <&| /util/workflow.mas:step, title=> "Intro" &>
-              <& /page/page_title.mas, title=>"Generate Entry Numbers Template" &>
+            <&| /util/workflow.mas:step, title=> "Introdução" &>
+              <& /page/page_title.mas, title=>"Gerar modelo de números de entrada" &>
               <div class="well">
-                  <p>This workflow will generate an Excel spreadsheet which can be used to upload entry numbers (numbers assigned to acccessions in a set of trials).  In the first step, select one or more trials you want to assign accession entry numbers.  Then, download the Excel template containing the selected trials' accessions.  Once you have the entry numbers filled in, use the <strong>Upload Template</strong> function to upload the accession numbers to the database.</p>
+                  <p>Este fluxo gerará uma planilha do Excel que poderá ser usada para enviar números de entrada (números atribuídos aos acessos de um conjunto de ensaios). Na primeira etapa, selecione um ou mais ensaios aos quais deseja atribuir números de entrada aos acessos. Depois, baixe o modelo do Excel que contém os acessos dos ensaios selecionados. Após preencher os números de entrada, use a função <strong>Enviar modelo</strong> para gravá-los no banco de dados.</p>
               </div>
 
               <div class="center">
-                <button class="btn btn-primary" id="set_entry_numbers_intro_step">Start</button>
+                <button class="btn btn-primary" id="set_entry_numbers_intro_step">Iniciar</button>
               </div>
             </&>
             <!-- End Intro -->
 
             <!-- Step 2: Select Trials -->
-            <&| /util/workflow.mas:step, title=> "Select Trials" &>
-              <& /page/page_title.mas, title=>"Select Trial(s) to assign Entry Numbers" &>
+            <&| /util/workflow.mas:step, title=> "Selecionar ensaios" &>
+              <& /page/page_title.mas, title=>"Selecionar ensaio(s) para atribuir números de entrada" &>
               <p>
-                <strong>Select Trial(s):</strong> 
-                Select one or more individual Trials or a List of Trials to assign entry numbers.
+                <strong>Selecionar ensaio(s):</strong>
+                Selecione um ou mais ensaios individuais ou uma lista de ensaios para atribuir números de entrada.
               </p>
 
 % if ( $trial_id && $trial_name ) {
@@ -46,7 +46,7 @@ $trial_name => undef
                     </select>
                   </div>
                   <div class="col-md-4">
-                    <button id="set_entry_numbers_selection_change" class="btn btn-primary btn-block">Change Trial Selections</button>
+                    <button id="set_entry_numbers_selection_change" class="btn btn-primary btn-block">Alterar seleção de ensaios</button>
                   </div>
                 </div>
               </div>
@@ -57,27 +57,27 @@ $trial_name => undef
               <br /><br />
 
               <div class="center">
-                <button class="btn btn-primary" id="set_entry_numbers_select_trials_step">Go to Next Step</button>
+                <button class="btn btn-primary" id="set_entry_numbers_select_trials_step">Ir para a próxima etapa</button>
               </div>
             </&>
             <!-- End Select Trials -->
 
             <!-- Step 2: Generate Template -->
-            <&| /util/workflow.mas:step, title=> "Download Template" &>
-              <& /page/page_title.mas, title=>"Download Entry Number Template" &>
+            <&| /util/workflow.mas:step, title=> "Baixar modelo" &>
+              <& /page/page_title.mas, title=>"Baixar modelo de números de entrada" &>
               <div id="set_entry_numbers_template_loading" style="max-width: 250px; margin: 50px auto; text-align: center;">
-                <p>Generating Template...</p>
+                <p>Gerando modelo...</p>
               </div>
 
               <div id="set_entry_numbers_template">
                 <div class="well">
-                  <p style="margin: 0">Download the generated template and fill in the <strong>entry_number</strong> column for each Accession 
-                  you want to assign an entry number to.  An entry number is not required for each Accession, but each entry number 
-                  should be unique for this set of Trial(s).  Once you have filled out the template, you can upload it to the database 
-                  using the <strong>Upload Template</strong> function.</p>
+                  <p style="margin: 0">Baixe o modelo gerado e preencha a coluna <strong>entry_number</strong> para cada acesso
+                  ao qual deseja atribuir um número de entrada. Não é obrigatório informar um número para todos os acessos, mas cada número
+                  deve ser único neste conjunto de ensaios. Depois de preencher o modelo, envie-o ao banco de dados
+                  usando a função <strong>Enviar modelo</strong>.</p>
                 </div>
                 <div style="max-width: 250px; margin: 50px auto; text-align: center">
-                  <button class="btn btn-primary" id="set_entry_numbers_template_download">Download Template</button>
+                  <button class="btn btn-primary" id="set_entry_numbers_template_download">Baixar modelo</button>
                 </div>
               </div>
             </&>
@@ -89,7 +89,7 @@ $trial_name => undef
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" name="set_entry_numbers_cancel_button" id="set_entry_numbers_cancel_button" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-default" name="set_entry_numbers_cancel_button" id="set_entry_numbers_cancel_button" data-dismiss="modal">Fechar</button>
       </div>
     </div>
   </div>
@@ -160,7 +160,7 @@ $trial_name => undef
     
     // Verify at least one trial is selected
     if ( trials.length === 0 ) {
-      return alert("Please select at least one Trial");
+      return alert("Selecione pelo menos um ensaio");
     }
 
     // Generate the Upload Template
@@ -195,12 +195,12 @@ $trial_name => undef
       }
       else {
         console.log(resp);
-        alert("ERROR: Could not generate upload template!");
+        alert("ERRO: Não foi possível gerar o modelo para envio!");
       }
     })
     .fail(function() {
       jQuery("#set_entry_numbers_template_loading").hide();
-      alert("ERROR: Could not generate upload template!");
+      alert("ERRO: Não foi possível gerar o modelo para envio!");
     });
   }
 </script>

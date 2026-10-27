@@ -7,6 +7,6 @@ $stock_uniquename
 <& /util/import_javascript.mas, classes => [ 'jquery', 'CXGN.BreedersToolbox.Accessions' ] &>
 
 
-<a name="manage_populations_delete_population" data-population_id="<%$stock_id%>" data-population_name="<%$stock_uniquename%>">Delete Population</a>
+<a name="manage_populations_delete_population" data-population_id="<%$stock_id%>" data-population_name="<%$stock_uniquename%>">Excluir população</a>
 
 <& /breeders_toolbox/manage_populations_dialogs.mas &>

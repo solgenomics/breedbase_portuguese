@@ -9,35 +9,35 @@ $facilities
     <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content ui-front">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
                 <div style="text-align: center">
-                    <h4 class="modal-title" id="createGenotypingProjectdialog">Add New Genotyping Project</h4>
+                    <h4 class="modal-title" id="createGenotypingProjectdialog">Adicionar novo projeto de genotipagem</h4>
                 </div>
             </div>
             <div class="modal-body">
                 <div class="container-fluid">
                     <&| /util/workflow.mas, id=> "add_genotyping_project_workflow" &>
-                        <&| /util/workflow.mas:step, title=> "Intro" &>
-                            <& /page/page_title.mas, title=>"Genotyping Project" &>
-                            <p>Genotyping Project can be used to group a series of genotyping plates and genotyping data. Genotyping Project should match Vendor Project if you have one.</p>
+                        <&| /util/workflow.mas:step, title=> "Introdução" &>
+                            <& /page/page_title.mas, title=>"Projeto de genotipagem" &>
+                            <p>O projeto de genotipagem agrupa uma série de placas e dados de genotipagem. Ele deve corresponder ao projeto do fornecedor, caso exista.</p>
                             <hr>
                             <div style="text-align: center">
-                                <button id="next_step_add_new_genotyping_project" class="btn btn-primary" onclick="Workflow.complete(this);">Go to Next Step</button>
+                                <button id="next_step_add_new_genotyping_project" class="btn btn-primary" onclick="Workflow.complete(this);">Ir para a próxima etapa</button>
                             </div>
                         </&>
 
                         <form class="form-horizontal" role="form" name="create_genotyping_project_form" id="create_genotyping_project_form">
-                            <&| /util/workflow.mas:step, title=> "Add a genotyping project" &>
-                            <& /page/page_title.mas, title=>"Enter basic information about the genotyping project" &>
+                            <&| /util/workflow.mas:step, title=> "Adicionar projeto de genotipagem" &>
+                            <& /page/page_title.mas, title=>"Informe os dados básicos do projeto de genotipagem" &>
                                 <br/>
                                 <div class="form-group">
-                                    <label class="col-sm-5 control-label">Genotyping Project Name: </label>
+                                    <label class="col-sm-5 control-label">Nome do projeto de genotipagem: </label>
                                     <div class="col-sm-7">
-                                        <input class="form-control" id="new_genotyping_project_name" name="new_genotyping_project_name" type="text" placeholder="Should match Vendor Project if you have one"/>
+                                        <input class="form-control" id="new_genotyping_project_name" name="new_genotyping_project_name" type="text" placeholder="Deve corresponder ao projeto do fornecedor, caso exista"/>
                                     </div>
                                 </div><br/>
                                 <div class="form-group">
-                                    <label class="col-sm-5 control-label">Genotyping Facility: </label>
+                                    <label class="col-sm-5 control-label">Laboratório de genotipagem: </label>
                                     <div class="col-sm-7">
                                         <select class="form-control" id="genotyping_project_facility_select" name="genotyping_project_facility_select">
 %  foreach my $facility (@$facilities) {
@@ -47,35 +47,35 @@ $facilities
                                     </div>
                                 </div><br/>
                                 <div class="form-group">
-                                    <label class="col-sm-5 control-label">Data Type: </label>
+                                    <label class="col-sm-5 control-label">Tipo de dado: </label>
                                     <div class="col-sm-7">
                                         <select class="form-control" id="data_type">
-                                            <option value="">Select a data type</option>
+                                            <option value="">Selecione um tipo de dado</option>
                                             <option value="snp">SNP</option>
                                             <option value="ssr">SSR</option>
                                         </select>
                                     </div>
                                 </div><br/>
                                 <div class="form-group">
-                                    <label class="col-sm-5 control-label">Breeding Program: </label>
+                                    <label class="col-sm-5 control-label">Programa de melhoramento: </label>
                                     <div class="col-sm-7">
                                         <span id="genotyping_project_breeding_program_select_div"></span>
                                     </div>
                                 </div><br/>
                                 <div class="form-group">
-                                    <label class="col-sm-5 control-label">Year: </label>
+                                    <label class="col-sm-5 control-label">Ano: </label>
                                     <div class="col-sm-7">
                                         <span id="genotyping_project_year_select_div"></span>
                                     </div>
                                 </div><br/>
                                 <div class="form-group">
-                                    <label class="col-sm-5 control-label">Location of Data Generation (optional): </label>
+                                    <label class="col-sm-5 control-label">Local de geração dos dados (opcional): </label>
                                     <div class="col-sm-7">
                                         <span id="genotyping_project_location_select_div"></span>
                                     </div>
                                 </div><br/>
                                 <div class="form-group">
-                                    <label class="col-sm-5 control-label">Description: </label>
+                                    <label class="col-sm-5 control-label">Descrição: </label>
                                     <div class="col-sm-7">
                                         <textarea class="form-control" id="genotyping_project_description" name="genotyping_project_description" maxlength="250"></textarea>
                                     </div>
@@ -84,14 +84,14 @@ $facilities
                                 <br/>
                                 <br/>
                                 <div style="text-align: center">
-                                    <button type="button" class="btn btn-primary" onclick="Workflow.complete(this, false);" name="add_new_genotyping_project_submit" id="add_new_genotyping_project_submit">Submit</button>
+                                    <button type="button" class="btn btn-primary" onclick="Workflow.complete(this, false);" name="add_new_genotyping_project_submit" id="add_new_genotyping_project_submit">Enviar</button>
                                 </div>
                             </&>
                         </form>
-                        <&| /util/workflow.mas:complete, title=> "Complete" &>
-                            <& /page/page_title.mas, title=>"Finished! Your genotyping project is now in the database" &>
+                        <&| /util/workflow.mas:complete, title=> "Concluído" &>
+                            <& /page/page_title.mas, title=>"Concluído! Seu projeto de genotipagem está no banco de dados" &>
                             <ul>
-                                <li>You may want to proceed to add genotyping plates and/or genotyping data in the genotyping project you just created.</li>
+                                <li>Agora você pode adicionar placas e/ou dados de genotipagem ao projeto criado.</li>
                             </ul>
                             <br/>
                         </&>
@@ -99,7 +99,7 @@ $facilities
                 </div>
             </div>
             <div class="modal-footer">
-                <button id="add_new_genotyping_project_close_modal" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button id="add_new_genotyping_project_close_modal" type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
             </div>
         </div>
     </div>
@@ -118,7 +118,7 @@ jQuery(document).ready(function(){
 
         var project_name = jQuery("#new_genotyping_project_name").val();
         if (!project_name) {
-            alert("Genotyping project name is required");
+            alert("O nome do projeto de genotipagem é obrigatório");
             return;
         }
 
@@ -126,25 +126,25 @@ jQuery(document).ready(function(){
 
         var data_type = jQuery("#data_type").val();
         if (!data_type) {
-            alert("Data type is required");
+            alert("O tipo de dado é obrigatório");
             return;
         }
 
         var project_breeding_program = jQuery("#genotyping_project_breeding_program_select").val();
         if (!project_breeding_program) {
-            alert ("Breeding program is required");
+            alert ("O programa de melhoramento é obrigatório");
             return;
         }
 
         var project_year = jQuery("#genotyping_project_year_select").val();
         if (!project_year) {
-            alert ("Year is required");
+            alert ("O ano é obrigatório");
             return;
         }
 
         var project_description = jQuery("#genotyping_project_description").val();
         if (!project_description) {
-            alert ("Description is required");
+            alert ("A descrição é obrigatória");
             return;
         }
 
@@ -179,7 +179,7 @@ jQuery(document).ready(function(){
             },
             error: function() {
                 jQuery("#working_modal").modal("hide");
-                alert('An error occurred saving genotyping project.');
+                alert('Ocorreu um erro ao salvar o projeto de genotipagem.');
                 jQuery('#create_genotyping_project_dialog').modal("hide");
             },
         });

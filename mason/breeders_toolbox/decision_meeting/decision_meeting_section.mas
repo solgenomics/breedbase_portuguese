@@ -3,9 +3,9 @@
 <div class="well">
 
   <&| /page/info_section.mas,
-       title=>'Meeting Tracker',
+       title=>'Acompanhamento de reuniões',
        is_subsection=>1, collapsible=>1, collapsed=>0,
-       subtitle=>'View Meetings Record'
+       subtitle=>'Visualize o registro de reuniões'
   &>
     <div class="panel panel-default">
       <div class="panel-body">
@@ -13,13 +13,13 @@
           <table id="meeting_table" class="table table-striped table-bordered" width="100%">
             <thead>
               <tr>
-                <th>Select</th>
-                <th>Meeting</th>
-                <th>Programs</th>
-                <th>Date</th>
-                <th>Location</th>
-                <th>Attendees</th>
-                <th>Download</th>
+                <th>Selecionar</th>
+                <th>Reunião</th>
+                <th>Programas</th>
+                <th>Data</th>
+                <th>Local</th>
+                <th>Participantes</th>
+                <th>Baixar</th>
               </tr>
             </thead>
             <tbody></tbody>

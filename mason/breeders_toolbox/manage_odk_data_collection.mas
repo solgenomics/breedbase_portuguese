@@ -12,16 +12,16 @@ $odk_phenotyping_data_service_url => undef
 <& /util/import_css.mas, paths => ['/static/documents/inc/jstree_theme/jstree-bstheme-min.css'] &>
 
 
-<& /page/page_title.mas, title=>"Manage ODK Data Collection" &>
+<& /page/page_title.mas, title=>"Gerenciar coleta de dados ODK" &>
 
 <div class="container-fluid">
 
 <div class="well">
-<h4>What is ODK?</h4>
-<ul><li>ODK is an application that allows mobile data collection using user defined forms on Android or IOS devices. Data collected on the device can be instantaneously synched to the ODK server. To find out more go to the <a href="https://opendatakit.org/">ODK site</a>. Many services have developed web interfaces to better streamline the ODK experience. These services assist in creating forms, deploying forms to your mobile application, and visualizing data uploaded back from the mobile device. Currently we are working with <a href="https://ona.io/home/">ONA</a> as an ODK service.</li></ul>
-<h4>What do I do from this page?</h4>
+<h4>O que é ODK?</h4>
+<ul><li>ODK é um aplicativo de coleta móvel de dados que usa formulários definidos pelo usuário em dispositivos Android ou iOS. Os dados coletados no dispositivo podem ser sincronizados imediatamente com o servidor ODK. Para saber mais, acesse o <a href="https://opendatakit.org/">site do ODK</a>. Vários serviços desenvolveram interfaces web para simplificar o uso do ODK. Eles auxiliam na criação e distribuição de formulários para o aplicativo móvel e na visualização dos dados enviados pelo dispositivo. Atualmente usamos a <a href="https://ona.io/home/">ONA</a> como serviço ODK.</li></ul>
+<h4>O que posso fazer nesta página?</h4>
 <ul>
-<li>ONA is currently being used for collecting crossing information. This requires exporting a crossing plan from here to the ONA server. The crossing plan guides collection of cross information and this data is synched with ONA using ODK. From here, we run a script twice a day, which pulls data on ONA into our database.
+<li>A ONA é usada para coletar informações de cruzamentos. Para isso, um plano de cruzamento é exportado desta página para o servidor ONA. O plano orienta a coleta das informações, que são sincronizadas com a ONA por meio do ODK. Duas vezes ao dia, um script transfere os dados da ONA para o nosso banco de dados.
 </li>
 <!--
 <li>SMAP is currently being used for collecting phenotype information. The user collects phenotypes using a form they previously created. The questions in the form map directly to terms in the ontology. As they collect data on the mobile device, the data is synched to SMAP. From here, we run a script twice a day, which pulls data on SMAP into our database.
@@ -32,22 +32,22 @@ $odk_phenotyping_data_service_url => undef
 
 <div class="well">
 
-<&| /page/info_section.mas, title=>'Crossing Data: ONA ODK Application', collapsible=>1, collapsed=>0, is_subsection=>1, subtitle=>'' &>
+<&| /page/info_section.mas, title=>'Dados de cruzamentos: aplicativo ONA ODK', collapsible=>1, collapsed=>0, is_subsection=>1, subtitle=>'' &>
 
 <div class="panel panel-default">
     <div class="panel-body">
         <form class="form-horizontal" id="import_odk_cross_data_form" name="import_odk_cross_data_form">
             <div class="form-group">
-                <label class="col-sm-4 control-label">Select An ODK Form on ONA: </label>
+                <label class="col-sm-4 control-label">Selecione um formulário ODK na ONA: </label>
                 <div class="col-sm-8" >
-                    <div id="import_odk_cross_data_available_forms">LOADING...</div>
+                    <div id="import_odk_cross_data_available_forms">CARREGANDO...</div>
                 </div>
             </div>
         </form>
     </div>
 </div>
 
-<&| /page/info_section.mas, title=>'Management', collapsible=>1, collapsed=>0, is_subsection=>1, subtitle=>'' &>
+<&| /page/info_section.mas, title=>'Gerenciamento', collapsible=>1, collapsed=>0, is_subsection=>1, subtitle=>'' &>
 
 <div class="panel panel-default">
     <div class="panel-body">
@@ -56,7 +56,7 @@ $odk_phenotyping_data_service_url => undef
                 <span style="font-size:3em;" class="glyphicon glyphicon-transfer"></span>
             </div>
             <div class="col-sm-11">
-                <button class="pull-right btn btn-info btn-sm" id="import_odk_cross_data" >Import Crossing Data from Selected Form on ONA</button>
+                <button class="pull-right btn btn-info btn-sm" id="import_odk_cross_data" >Importar dados de cruzamentos do formulário selecionado na ONA</button>
             </div>
         </div>
     </div>
@@ -103,15 +103,15 @@ $odk_phenotyping_data_service_url => undef
 
 </&>
 
-<&| /page/info_section.mas, title=>'Progress', collapsible=>1, collapsed=>0, is_subsection=>1, subtitle=>'' &>
+<&| /page/info_section.mas, title=>'Progresso', collapsible=>1, collapsed=>0, is_subsection=>1, subtitle=>'' &>
 
 <div id="testing_div"></div>
 
 <div class="panel panel-default">
     <div class="panel-body">
-        <h3>Summary of Received Plant Status</h3>
+        <h3>Resumo dos estados de plantas recebidos</h3>
         <div id="odk_cross_plant_status_progress_summary_div">
-        [LOADING...]
+        [CARREGANDO...]
         </div>
     </div>
 </div>
@@ -220,7 +220,7 @@ jQuery(document).ready(function () {
                                     console.log(response);
                                     summary = response.summary;
                                     plot_data_fill = [];
-                                    html = '<table id="odk_cross_info_status_table" class="table table-hover table-bordered"><thead><tr><th>Cross Information</th><th>Seeds Produced Graphs</th></tr></thead><tbody>';
+                                    html = '<table id="odk_cross_info_status_table" class="table table-hover table-bordered"><thead><tr><th>Informações do cruzamento</th><th>Gráficos das sementes produzidas</th></tr></thead><tbody>';
                                     for (var top_level in summary) {
                                         if (summary.hasOwnProperty(top_level)) {
                                             for (var cross_name in summary[top_level]){
@@ -243,51 +243,51 @@ jQuery(document).ready(function () {
 
                                                                 if (activity == 'seedExtraction'){
                                                                     var date = action['extraction_date'].replace('-','').replace('-','').replace('/','').replace('/','');
-                                                                    var datum = { "type":activity, "label":"Total Seeds Extracted", "x_pos":parseInt(date), "y_pos":parseInt(action['total_seeds_extracted']) };
+                                                                    var datum = { "type":activity, "label":"Total de sementes extraídas", "x_pos":parseInt(date), "y_pos":parseInt(action['total_seeds_extracted']) };
                                                                     plot_data.push(datum);
                                                                 }
                                                                 if (activity == 'embryoRescue'){
                                                                     var date = action['embryorescue_date'].replace('-','').replace('-','').replace('/','').replace('/','');
-                                                                    var datum = { "type":activity, "label":"Good Seeds", "x_pos":parseInt(date), "y_pos":parseInt(action['good_seeds']) };
+                                                                    var datum = { "type":activity, "label":"Sementes boas", "x_pos":parseInt(date), "y_pos":parseInt(action['good_seeds']) };
                                                                     plot_data.push(datum);
-                                                                    var datum = { "type":activity, "label":"Bad Seeds", "x_pos":parseInt(date), "y_pos":parseInt(action['bad_seeds']) };
+                                                                    var datum = { "type":activity, "label":"Sementes ruins", "x_pos":parseInt(date), "y_pos":parseInt(action['bad_seeds']) };
                                                                     plot_data.push(datum);
-                                                                    var datum = { "type":activity, "label":"Embryo Rescued Seeds", "x_pos":parseInt(date), "y_pos":parseInt(action['embryorescue_seeds']) };
+                                                                    var datum = { "type":activity, "label":"Sementes submetidas ao resgate de embriões", "x_pos":parseInt(date), "y_pos":parseInt(action['embryorescue_seeds']) };
                                                                     plot_data.push(datum);
                                                                 }
                                                                 if (activity == 'screenhouse_humiditychamber'){
                                                                     var date = action['screenhse_transfer_date'].replace('-','').replace('-','').replace('/','').replace('/','');
-                                                                    var datum = { "type":activity, "label":"Screenhouse Humidity Chamber", "x_pos":parseInt(date), "y_pos":1 };
+                                                                    var datum = { "type":activity, "label":"Câmara de umidade do telado", "x_pos":parseInt(date), "y_pos":1 };
                                                                     plot_data.push(datum);
                                                                 }
                                                                 if (activity == 'rooting'){
                                                                     var date = action['rooting_date'].replace('-','').replace('-','').replace('/','').replace('/','');
-                                                                    var datum = { "type":activity, "label":"Rooting", "x_pos":parseInt(date), "y_pos":1 };
+                                                                    var datum = { "type":activity, "label":"Enraizamento", "x_pos":parseInt(date), "y_pos":1 };
                                                                     plot_data.push(datum);
                                                                 }
                                                                 if (activity == 'hardening'){
                                                                     var date = action['hardening_date'].replace('-','').replace('-','').replace('/','').replace('/','');
-                                                                    var datum = { "type":activity, "label":"Hardening", "x_pos":parseInt(date), "y_pos":1 };
+                                                                    var datum = { "type":activity, "label":"Aclimatização", "x_pos":parseInt(date), "y_pos":1 };
                                                                     plot_data.push(datum);
                                                                 }
                                                                 if (activity == 'contamination'){
                                                                     var date = action['lab_contamination_date'].replace('-','').replace('-','').replace('/','').replace('/','');
-                                                                    var datum = { "type":activity, "label":"Contamination", "x_pos":parseInt(date), "y_pos":1 };
+                                                                    var datum = { "type":activity, "label":"Contaminação", "x_pos":parseInt(date), "y_pos":1 };
                                                                     plot_data.push(datum);
                                                                 }
                                                                 if (activity == 'subculture'){
                                                                     var date = action['subculture_date'].replace('-','').replace('-','').replace('/','').replace('/','');
-                                                                    var datum = { "type":activity, "label":"Subcultures Count", "x_pos":parseInt(date), "y_pos":parseInt(action['subcultures_count']) };
+                                                                    var datum = { "type":activity, "label":"Quantidade de subculturas", "x_pos":parseInt(date), "y_pos":parseInt(action['subcultures_count']) };
                                                                     plot_data.push(datum);
                                                                 }
                                                                 if (activity == 'germinating_after_2wks'){
                                                                     var date = action['germinating_2wks_date'].replace('-','').replace('-','').replace('/','').replace('/','');
-                                                                    var datum = { "type":activity, "label":"Active Seeds 2weeks", "x_pos":parseInt(date), "y_pos":parseInt(action['actively_2wks']) };
+                                                                    var datum = { "type":activity, "label":"Sementes ativas após 2 semanas", "x_pos":parseInt(date), "y_pos":parseInt(action['actively_2wks']) };
                                                                     plot_data.push(datum);
                                                                 }
                                                                 if (activity == 'germinating_after_8weeks'){
                                                                     var date = action['germinating_8wksdate'].replace('-','').replace('-','').replace('/','').replace('/','');
-                                                                    var datum = { "type":activity, "label":"Active Seeds 8weeks", "x_pos":parseInt(date), "y_pos":parseInt(action['active_8weeks']) };
+                                                                    var datum = { "type":activity, "label":"Sementes ativas após 8 semanas", "x_pos":parseInt(date), "y_pos":parseInt(action['active_8weeks']) };
                                                                     plot_data.push(datum);
                                                                 }
                                                             }
@@ -306,14 +306,14 @@ jQuery(document).ready(function () {
                                     jQuery('#odk_cross_progress_summary_div').html(html);
                                     for (var i=0; i<plot_data_fill.length; i++){
                                         if (plot_data_fill[i][0].length > 0){
-                                            SGND3ScatterPlot(plot_data_fill[i][0], plot_data_fill[i][1], "Date of Activity");
+                                            SGND3ScatterPlot(plot_data_fill[i][0], plot_data_fill[i][1], "Data da atividade");
                                         }
                                     }
                                     jQuery('#odk_cross_info_status_table').DataTable({
                                         "order": [[ 0, "desc" ]]
                                     });
 
-                                    var plant_status_html = '<table id="odk_cross_plant_status_table" class="table table-hover table-bordered"><thead><tr><th>Plot Name</th><th>Date</th><th>Status</th></tr></thead><tbody>';
+                                    var plant_status_html = '<table id="odk_cross_plant_status_table" class="table table-hover table-bordered"><thead><tr><th>Nome da parcela</th><th>Data</th><th>Estado</th></tr></thead><tbody>';
                                     var plant_status_summary = response.plant_status_summary;
                                     console.log(plant_status_summary);
                                     for (var plot_name in plant_status_summary){
@@ -325,10 +325,10 @@ jQuery(document).ready(function () {
                                                     var status = plant_status_summary[plot_name][status_type];
                                                     //console.log(status);
                                                     if (status_type == 'status'){
-                                                        plant_status_html = plant_status_html + '<tr><td>' + plot_name + '</td><td>' + status['status_date'] + '</td><td><b>Status:</b><br/>Accession Name: ' + status['status_accession_name'] + '<br/>Trial Name: ' + status['status_trial_name'] + '<br/>User: ' + status['status_user'] + '<br/>Status Location: ' + status['status_location'] + '<br/>Status: ' + status['status_message'] + '<br/>Note: ' + status['status_note'] + '<br/>Image: ' + status['attachment_display_thumb'] + '<br/></td></tr>';
+                                                        plant_status_html = plant_status_html + '<tr><td>' + plot_name + '</td><td>' + status['status_date'] + '</td><td><b>Estado:</b><br/>Nome do acesso: ' + status['status_accession_name'] + '<br/>Nome do ensaio: ' + status['status_trial_name'] + '<br/>Usuário: ' + status['status_user'] + '<br/>Local do estado: ' + status['status_location'] + '<br/>Estado: ' + status['status_message'] + '<br/>Observação: ' + status['status_note'] + '<br/>Imagem: ' + status['attachment_display_thumb'] + '<br/></td></tr>';
                                                     }
                                                     if (status_type == 'flowering'){
-                                                        plant_status_html = plant_status_html + '<tr><td>' + plot_name + '</td><td>' + status['FieldActivities/Flowering/flowering_date'] + '</td><td><b>Flowering:</b><br/>Accession Name: ' + status['FieldActivities/Flowering/flowerName'] + '<br/>Plant Sex: ' + status['FieldActivities/Flowering/plantSex'] + '<br/></td></tr>';
+                                                        plant_status_html = plant_status_html + '<tr><td>' + plot_name + '</td><td>' + status['FieldActivities/Flowering/flowering_date'] + '</td><td><b>Florescimento:</b><br/>Nome do acesso: ' + status['FieldActivities/Flowering/flowerName'] + '<br/>Sexo da planta: ' + status['FieldActivities/Flowering/plantSex'] + '<br/></td></tr>';
                                                     }
                                                 }
                                             }
@@ -344,7 +344,7 @@ jQuery(document).ready(function () {
                                     });
                                 },
                                 error: function(response){
-                                    alert("Error retrieving available ODK cross summary");
+                                    alert("Erro ao recuperar o resumo disponível de cruzamentos ODK");
                                 }
                             });
 
@@ -372,7 +372,7 @@ jQuery(document).ready(function () {
                         }
                     },
                     error: function(response_forms){
-                        alert("Error retrieving saved ODK ONA forms");
+                        alert("Erro ao recuperar os formulários ODK ONA salvos");
                     }
                 });
 
@@ -380,7 +380,7 @@ jQuery(document).ready(function () {
         },
         error: function(response){
             jQuery("#working_modal").modal("hide");
-            alert("Error retrieving available ODK crossing forms");
+            alert("Erro ao recuperar os formulários ODK de cruzamentos disponíveis");
         }
     });
 
@@ -397,18 +397,18 @@ jQuery(document).ready(function () {
                 alert(response.error);
             }
             if (response.success){
-                var html = 'Not Set';
+                var html = 'Não definido';
                 if (response.entries[0] == '0-59/1 * * * * '){
-                    html = '<input type="text" disabled value="Once per minute" class="form-control" />';
+                    html = '<input type="text" disabled value="Uma vez por minuto" class="form-control" />';
                 }
                 if (response.entries[0] == '1 0 * * * '){
-                    html = '<input type="text" disabled value="Once per day at midnight" class="form-control" />';
+                    html = '<input type="text" disabled value="Uma vez por dia à meia-noite" class="form-control" />';
                 }
                 if (response.entries[0] == '0 * * * * '){
-                    html = '<input type="text" disabled value="Once per hour" class="form-control" />';
+                    html = '<input type="text" disabled value="Uma vez por hora" class="form-control" />';
                 }
                 if (response.entries[0] == '0 0,12 * * * '){
-                    html = '<input type="text" disabled value="Twice daily at midnight and noon" class="form-control" />';
+                    html = '<input type="text" disabled value="Duas vezes por dia, à meia-noite e ao meio-dia" class="form-control" />';
                 }
                 jQuery('#scheduled_odk_cross_import_time').html(html);
             }
@@ -431,11 +431,11 @@ jQuery(document).ready(function () {
                 if (response.error){
                     alert(response.error);
                 }
-                alert('Not currently working.');
+                alert('Esta função não está disponível no momento.');
             },
             error: function(response){
                 jQuery("#working_modal").modal("hide");
-                alert("Error retrieving ODK phenotyping data.");
+                alert("Erro ao recuperar os dados de fenotipagem ODK.");
             }
         });
     });
@@ -457,7 +457,7 @@ jQuery(document).ready(function () {
             },
             error: function(response){
                 jQuery("#working_modal").modal("hide");
-                alert("Error retrieving ODK crossing data.");
+                alert("Erro ao recuperar os dados de cruzamentos ODK.");
             }
         });
     });
@@ -478,7 +478,7 @@ jQuery(document).ready(function () {
             },
             error: function(response){
                 jQuery("#working_modal").modal("hide");
-                alert("Error scheduling import of ODK crossing data.");
+                alert("Erro ao agendar a importação dos dados de cruzamentos ODK.");
             }
         });
     });

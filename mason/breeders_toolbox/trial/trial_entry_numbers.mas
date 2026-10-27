@@ -15,11 +15,11 @@ $trial_name
     <br /><br />
 </div>
 
-<button id="set_entry_numbers_template_btn" class="btn btn-default">Generate Entry Number Template</button>
+<button id="set_entry_numbers_template_btn" class="btn btn-default">Gerar modelo de números de entrada</button>
 
-<button id="set_entry_numbers_upload_btn" class="btn btn-default">Upload Entry Number Template</button>
+<button id="set_entry_numbers_upload_btn" class="btn btn-default">Enviar modelo de números de entrada</button>
 
-<button id="delete_entry_numbers_btn" class="btn btn-default" disabled="1">Delete Entry Numbers</button>
+<button id="delete_entry_numbers_btn" class="btn btn-default" disabled="1">Excluir números de entrada</button>
 
 <script src="//cdn.datatables.net/plug-ins/1.11.3/sorting/natural.js" defer></script>
 <script type="text/javascript">
@@ -32,7 +32,7 @@ $trial_name
         });
 
 	jQuery('#delete_entry_numbers_btn').click(function() {
-	    var yes = confirm("Are you sure you would like to remove the entry numbers from this trial? This action cannot be undone.");
+	    var yes = confirm("Deseja realmente remover os números de entrada deste ensaio? Esta ação não poderá ser desfeita.");
 
 	    if (yes) {
 	       var p = jQuery.ajax( {
@@ -41,7 +41,7 @@ $trial_name
 	     	   data: { trial_id : <% $trial_id %> },
 	       } );
 
-	       p.then( function(value) { loadEntryNumbers(); alert("Success!"); }, function(error) { alert("An error occurred deleting the entry numbers." ) } )
+	       p.then( function(value) { loadEntryNumbers(); alert("Sucesso!"); }, function(error) { alert("Ocorreu um erro ao excluir os números de entrada." ) } )
  	    }
 	});
 	
@@ -65,7 +65,7 @@ $trial_name
             data: [],
             columns: [
                 { title: "Accession", data: "stock_name" },
-                { title: "Entry Number", data: "entry_number"}
+                { title: "Número de entrada", data: "entry_number"}
             ],
             columnDefs: [
                 { type: 'natural', targets: 1 }
@@ -99,11 +99,11 @@ $trial_name
                     displayEntryNumbers(response.entry_numbers);
                 }
                 else {
-                    alert("ERROR: Could not load entry numbers due to a server error!");
+                    alert("ERRO: não foi possível carregar os números de entrada devido a um erro do servidor.");
                 }
             },
             error: function() {
-                alert("ERROR: Could not load entry numbers due to a server error!");
+                alert("ERRO: não foi possível carregar os números de entrada devido a um erro do servidor.");
             }
         });
     }

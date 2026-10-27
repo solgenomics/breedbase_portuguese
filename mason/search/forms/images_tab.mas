@@ -27,7 +27,7 @@ $q ||= CXGN::Searches::Images->new()->new_query();
 
 
   <table class="search_form_title"><tr><td>
-    <span class="search_form_title">Image search</span>
+    <span class="search_form_title">Pesquisa de imagens</span>
   </td>
   </tr>
   </table>
@@ -38,6 +38,5 @@ $q ||= CXGN::Searches::Images->new()->new_query();
       <% $q->to_html() %>
   </div>
 </form>
-
 
 

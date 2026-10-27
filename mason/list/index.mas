@@ -5,13 +5,13 @@ $user_id
 
 <& /util/import_javascript.mas, classes => [ 'CXGN.List' ] &>
 
-<& /page/page_title.mas, title=>"Available lists" &>
+<& /page/page_title.mas, title=>"Listas disponíveis" &>
 <div id="list_div">
 
 </div>
 
 % if (! $user_id) { 
-  <& /generic_message.mas, message=>"Login required for viewing your lists" &>
+  <& /generic_message.mas, message=>"Entre na sua conta para visualizar suas listas" &>
 % return;
 % }
 
@@ -32,7 +32,7 @@ pasteListMenu("test_area");
 </script>
 
 <form action="javascript:addNewList('new_list_name')">
-Create new list <input type="text" id="new_list_name" on/>
+Criar lista <input type="text" id="new_list_name" on/>
 <input type="submit" name="add" />
 </form>
 

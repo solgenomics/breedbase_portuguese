@@ -51,23 +51,23 @@ input[type="text"] {
     <form class="form-horizontal" role="form" >
         <div style="display: flex; align-items: flex-start; gap: 25px; width: max-content; margin: 0 auto;">
             <div>
-                <label for="summary_start_date">Start Date: </label>
+                <label for="summary_start_date">Data inicial: </label>
 	            <input type="text" id="summary_start_date" title="summary_start_date" />
             </div>
             <div>
-                <label for="summary_end_date">End Date: </label>
+                <label for="summary_end_date">Data final: </label>
 	            <input type="text" id="summary_end_date" title="summary_end_date" />
             </div>
             <div>
-                <label>Data Level: </label>
+                <label>Nível dos dados: </label>
                 <div style="margin-top: 4px;">
 % if ($trial_stock_type eq 'analysis_instance') {
-                    <div><input type="radio" name="pheno_summary_table_data_level" id="pheno_summary_analysis_level" value="analysis_instance" checked> <label for="pheno_summary_analysis_level">Analysis values</label></div>
+                    <div><input type="radio" name="pheno_summary_table_data_level" id="pheno_summary_analysis_level" value="analysis_instance" checked> <label for="pheno_summary_analysis_level">Valores da análise</label></div>
 % } else {
-                    <div><input type="radio" name="pheno_summary_table_data_level" id="pheno_summary_plot_level" value="plots" checked> <label for="pheno_summary_plot_level">Plots</label></div>
-                    <div><input type="radio" name="pheno_summary_table_data_level" id="pheno_summary_subplot_level" value="subplots"> <label for="pheno_summary_subplot_level">Subplots</label></div>
-                    <div><input type="radio" name="pheno_summary_table_data_level" id="pheno_summary_plant_level" value="plants"> <label for="pheno_summary_plant_level">Plants</label></div>
-                    <div><input type="radio" name="pheno_summary_table_data_level" id="pheno_summary_tissue_sample_level" value="tissue_samples"> <label for="pheno_summary_tissue_sample_level">Tissue Samples</label></div>
+                    <div><input type="radio" name="pheno_summary_table_data_level" id="pheno_summary_plot_level" value="plots" checked> <label for="pheno_summary_plot_level">Parcelas</label></div>
+                    <div><input type="radio" name="pheno_summary_table_data_level" id="pheno_summary_subplot_level" value="subplots"> <label for="pheno_summary_subplot_level">Subparcelas</label></div>
+                    <div><input type="radio" name="pheno_summary_table_data_level" id="pheno_summary_plant_level" value="plants"> <label for="pheno_summary_plant_level">Plantas</label></div>
+                    <div><input type="radio" name="pheno_summary_table_data_level" id="pheno_summary_tissue_sample_level" value="tissue_samples"> <label for="pheno_summary_tissue_sample_level">Amostras de tecido</label></div>
 % }
                 </div>
             </div>
@@ -75,11 +75,11 @@ input[type="text"] {
             <div style="display: flex; flex-direction: column; gap: 10px;">
                 <div style="display: flex; align-items: center; gap: 6px;">
                     <input type="checkbox" id="group_by_accession_check" title="group_by_accession_check" />
-                    <label for="group_by_accession_check">Group by accession</label>
+                    <label for="group_by_accession_check">Agrupar por acesso</label>
                 </div>
                 <div style="display: flex; align-items: center; gap: 6px;">
                     <input type="checkbox" id="group_by_treatments_check" title="group_by_treatments_check" />
-                    <label for="group_by_treatments_check">Group by treatments</label>
+                    <label for="group_by_treatments_check">Agrupar por tratamentos</label>
                 </div>
             </div>
 % }
@@ -87,7 +87,7 @@ input[type="text"] {
     </form>
     <br>
     <div style="display:flex; align-items:center; white-space:nowrap; width:70%; margin-center: auto;">
-        <label for="summary_phenotype_slider_range" style="margin-right: 10px;">Choose Date Range:</label>
+        <label for="summary_phenotype_slider_range" style="margin-right: 10px;">Escolha o intervalo de datas:</label>
         <div id="summary_phenotype_slider_range" style="width: 80%; margin: 10px auto;"></div>
     </div>
     <hr>
@@ -96,15 +96,15 @@ input[type="text"] {
         <table id="phenotype_summary_data" class="display">
         <thead>
         <tr>
-        <th>Trait</th>
-        <th>Mean</th>
-        <th>Min</th>
-        <th>Max</th>
-        <th>Std Dev</th>
+        <th>Característica</th>
+        <th>Média</th>
+        <th>Mín.</th>
+        <th>Máx.</th>
+        <th>Desvio padrão</th>
         <th>CV</th>
-        <th>Count</th>
-        <th>Percent Missing</th>
-        <th>Histogram</th>
+        <th>Contagem</th>
+        <th>Percentual ausente</th>
+        <th>Histograma</th>
         </tr>
         </thead>
         <tbody>
@@ -112,16 +112,16 @@ input[type="text"] {
         </table>
     </div>
     <div>
-        <button type="button" class="selectAll-dt">Select All</button>
-        <button type="button" class="deselectAll-dt">Deselect All</button>
+        <button type="button" class="selectAll-dt">Selecionar tudo</button>
+        <button type="button" class="deselectAll-dt">Desmarcar tudo</button>
     </div>
     <br>
     <div class="panel panel-default">
         <div class="panel-body">
 
-            <&| /page/info_section.mas, title => 'Copy Selected Results to a List', collapsible=>1, collapsed=>0, subtitle=>'<i>Copy the names currently selected in the first column of the summary table to a new or exisiting list</i>'&>
+            <&| /page/info_section.mas, title => 'Copiar resultados selecionados para uma lista', collapsible=>1, collapsed=>0, subtitle=>'<i>Copie os nomes atualmente selecionados na primeira coluna da tabela de resumo para uma lista nova ou existente</i>'&>
             <br>
-            <p><em><span id="selected_row_count">0</span> row(s) selected.</em></p>
+            <p><em><span id="selected_row_count">0</span> linha(s) selecionada(s).</em></p>
             <div style="text-align:right" id="names_to_list_menu"></div>
             <div id="selected_names" style="display: none;"></div>
             </&>
@@ -131,29 +131,29 @@ input[type="text"] {
 </div>
 
 <div class="well well-sm" id="raw_data_histogram_well">
-    <center><h4>Raw Data Histogram</h4></center><hr>
+    <center><h4>Histograma dos dados brutos</h4></center><hr>
     <div id="trial_summary_hist_div">
         <div class="row">
             <div class="col-sm-8">
                 <form class="form-horizontal">
                     <div class="form-group form-group-sm">
-                        <label for="trial_summary_hist_dropdown" class="col-sm-2 control-label">Select:</label>
+                        <label for="trial_summary_hist_dropdown" class="col-sm-2 control-label">Selecionar:</label>
                         <div class="col-sm-10">
                             <div id="traits_assayed_dropdown">
                             </div>
                         </div>
                     </div>
                     <div class="form-group form-group-sm">
-                        <label class="col-sm-2 control-label">Data level: </label>
+                        <label class="col-sm-2 control-label">Nível dos dados: </label>
                         <div class="col-sm-10" >
                             <select class="form-control" id="display_trial_phenosummary_hist">
 %  if ($trial_stock_type eq 'analysis_instance') {
-                                <option id="phenosummary_hist_analysis_instance_level" value="analysis_instance">Values for Analysis</option>
+                                <option id="phenosummary_hist_analysis_instance_level" value="analysis_instance">Valores da análise</option>
 %  } else {
-                                <option id="phenosummary_hist_plot_level" value="plot">Plots</option>
-                                <option id="phenosummary_hist_plant_level" value="plant">Plants</option>
-                                <option id="phenosummary_hist_subplot_level" value="subplot">Subplots</option>
-                                <option id="phenosummary_hist_tissue_sample_level" value="tissue_sample">Tissue Samples</option>
+                                <option id="phenosummary_hist_plot_level" value="plot">Parcelas</option>
+                                <option id="phenosummary_hist_plant_level" value="plant">Plantas</option>
+                                <option id="phenosummary_hist_subplot_level" value="subplot">Subparcelas</option>
+                                <option id="phenosummary_hist_tissue_sample_level" value="tissue_sample">Amostras de tecido</option>
 %  }
                             </select>
                         </div>
@@ -262,7 +262,7 @@ input[type="text"] {
                 }
             });
 	    }).fail( function(xhr, status, error) { 
-            alert('An error occurred!' + xhr.responseText);
+            alert('Ocorreu um erro! ' + xhr.responseText);
             console.error("the status:", xhr.status);
             console.error("the error:", error);
         });
@@ -368,17 +368,17 @@ input[type="text"] {
         var tissue_samples_stock_text = '';
 
         if (type == 'family_name') {
-            plots_stock_text = 'Plots grouped by Family Name';
-            plants_stock_text = 'Plants grouped by Family Name';
-            tissue_samples_stock_text = 'Tissue Samples grouped by Family Name';
+            plots_stock_text = 'Parcelas agrupadas por nome de família';
+            plants_stock_text = 'Plantas agrupadas por nome de família';
+            tissue_samples_stock_text = 'Amostras de tecido agrupadas por nome de família';
         } else if (type == 'cross') {
-            plots_stock_text = 'Plots grouped by Cross Unique ID';
-            plants_stock_text = 'Plants grouped by Cross Unique ID';
-            tissue_samples_stock_text = 'Tissue Samples grouped by Cross Unique ID';
+            plots_stock_text = 'Parcelas agrupadas por ID exclusivo de cruzamento';
+            plants_stock_text = 'Plantas agrupadas por ID exclusivo de cruzamento';
+            tissue_samples_stock_text = 'Amostras de tecido agrupadas por ID exclusivo de cruzamento';
         } else {
-            plots_stock_text = 'Plots grouped by Accession';
-            plants_stock_text = 'Plants grouped by Accession';
-            tissue_samples_stock_text = 'Tissue Samples grouped by Accession';
+            plots_stock_text = 'Parcelas agrupadas por acesso';
+            plants_stock_text = 'Plantas agrupadas por acesso';
+            tissue_samples_stock_text = 'Amostras de tecido agrupadas por acesso';
         }
         jQuery('#plots_stock_option').text(plots_stock_text);
         jQuery('#plants_stock_option').text(plants_stock_text);
@@ -406,13 +406,22 @@ input[type="text"] {
                 'style':    'multi'
             },
             "buttons":  [
-                'pageLength','copy', 'excel', 'csv', 'pdf'
+                { extend: 'pageLength', text: 'Linhas por página' },
+                { extend: 'copy', text: 'Copiar' },
+                { extend: 'excel', text: 'Excel' },
+                { extend: 'csv', text: 'CSV' },
+                { extend: 'pdf', text: 'PDF' }
             ],
             "ajax": '/ajax/breeders/trial/'+ trial_id + '/phenotypes?display='+jQuery('input[name="pheno_summary_table_data_level"]:checked').val() + '&trial_stock_type='+type + '&start_date='+start_date+'&end_date='+end_date+'&include_dateless_items=1&group_by_treatments='+group_by_treatments+'&group_by_accession='+group_by_accession,
             "processing": true,
             'language':{
-                "zeroRecords": "No data available",
-                "processing": "Loading..."
+                "zeroRecords": "Nenhum dado disponível",
+                "processing": "Carregando...",
+                "search": "Pesquisar:",
+                "lengthMenu": "Mostrar _MENU_ registros",
+                "info": "Mostrando _START_ a _END_ de _TOTAL_ registros",
+                "infoEmpty": "Mostrando 0 a 0 de 0 registros",
+                "paginate": { "first": "Primeira", "last": "Última", "next": "Próxima", "previous": "Anterior" }
             }
         });
 
@@ -515,7 +524,7 @@ input[type="text"] {
                       trait_summary_hist_change(this.value);
                     });
 
-                    jQuery('#traits_assayed_histogram_cvterm_link').html("<a href='/cvterm/"+response.traits_assayed[0][0][0]+"/view'>Definition</a>");
+                    jQuery('#traits_assayed_histogram_cvterm_link').html("<a href='/cvterm/"+response.traits_assayed[0][0][0]+"/view'>Definição</a>");
 
 
                 let trait_value = jQuery('#trial_summary_hist_dropdown').val();
@@ -534,7 +543,7 @@ input[type="text"] {
                                 alert(response.error);
                             }
                             else if (response.status!="success"){
-                                alert("Problem loading plant/plot data: "+response.status);
+                                alert("Problema ao carregar os dados de plantas/parcelas: "+response.status);
                             }
                             else {
                                 draw_histogram(response.data, d3.select("#trial_summary_hist").node());
@@ -542,18 +551,18 @@ input[type="text"] {
                         },
                         error: function(response) {
                             jQuery("#working_modal").modal("hide");
-                            alert('An error occured retrieving trait histogram data.');
+                            alert('Ocorreu um erro ao obter os dados do histograma da característica.');
                         }
                     });
                 } else {
                     jQuery("#working_modal").modal("hide");
-                    jQuery("#trial_summary_hist").html("<center><h4>There is no data to plot.</h4></center>");
+                    jQuery("#trial_summary_hist").html("<center><h4>Não há dados para representar graficamente.</h4></center>");
                 }
 
             },
             error: function(response){
                 jQuery("#working_modal").modal("hide");
-                alert('Error retrieving traits assayed in this trial');
+                alert('Erro ao obter as características avaliadas neste ensaio.');
             }
 
         });
@@ -580,17 +589,17 @@ input[type="text"] {
         var group_by_accession = jQuery('#group_by_accession_check').prop('checked') ? 1 : 0;
         var treatment_html = '';
         if (group_by_treatments) {
-            treatment_html = '<th>Treatment</th>';
+            treatment_html = '<th>Tratamento</th>';
         }
         if (!group_by_accession) {
-            html = html +'<table id="phenotype_summary_data" class="display"><thead><tr>'+treatment_html+'<th>Trait</th><th>Mean</th><th>Min</th><th>Max</th><th>Std Dev</th><th>CV</th><th>Count</th><th>Percent Missing</th><th>Histogram</th></tr></thead><tbody></tbody></table>';
+            html = html +'<table id="phenotype_summary_data" class="display"><thead><tr>'+treatment_html+'<th>Característica</th><th>Média</th><th>Mín.</th><th>Máx.</th><th>Desvio padrão</th><th>CV</th><th>Contagem</th><th>Percentual ausente</th><th>Histograma</th></tr></thead><tbody></tbody></table>';
         } else {
             if (type == 'family_name') {
-                html = html +'<table id="phenotype_summary_data" class="display"><thead><tr><th>Family Name</th>'+treatment_html+'<th>Trait</th><th>Mean</th><th>Min</th><th>Max</th><th>Std Dev</th><th>CV</th><th>Count</th><th>Percent Missing</th><th>Histogram</th></tr></thead><tbody></tbody></table>';
+                html = html +'<table id="phenotype_summary_data" class="display"><thead><tr><th>Nome da família</th>'+treatment_html+'<th>Característica</th><th>Média</th><th>Mín.</th><th>Máx.</th><th>Desvio padrão</th><th>CV</th><th>Contagem</th><th>Percentual ausente</th><th>Histograma</th></tr></thead><tbody></tbody></table>';
             } else if (type == 'cross') {
-                html = html +'<table id="phenotype_summary_data" class="display"><thead><tr><th>Cross Unique ID</th>'+treatment_html+'<th>Trait</th><th>Mean</th><th>Min</th><th>Max</th><th>Std Dev</th><th>CV</th><th>Count</th><th>Percent Missing</th><th>Histogram</th></tr></thead><tbody></tbody></table>';
+                html = html +'<table id="phenotype_summary_data" class="display"><thead><tr><th>ID exclusivo do cruzamento</th>'+treatment_html+'<th>Característica</th><th>Média</th><th>Mín.</th><th>Máx.</th><th>Desvio padrão</th><th>CV</th><th>Contagem</th><th>Percentual ausente</th><th>Histograma</th></tr></thead><tbody></tbody></table>';
             } else {
-                html = html +'<table id="phenotype_summary_data" class="display"><thead><tr><th>Accession</th>'+treatment_html+'<th>Trait</th><th>Mean</th><th>Min</th><th>Max</th><th>Std Dev</th><th>CV</th><th>Count</th><th>Percent Missing</th><th>Histogram</th></tr></thead><tbody></tbody></table>';
+                html = html +'<table id="phenotype_summary_data" class="display"><thead><tr><th>Acesso</th>'+treatment_html+'<th>Característica</th><th>Média</th><th>Mín.</th><th>Máx.</th><th>Desvio padrão</th><th>CV</th><th>Contagem</th><th>Percentual ausente</th><th>Histograma</th></tr></thead><tbody></tbody></table>';
             }
         }
         return html;
@@ -598,7 +607,7 @@ input[type="text"] {
 
     function trait_summary_hist_change(value) {
         jQuery("#trial_summary_hist_dropdown").val(value);
-        jQuery('#traits_assayed_histogram_cvterm_link').html("<a href='/cvterm/"+value+"/view'>Definition</a>");
+        jQuery('#traits_assayed_histogram_cvterm_link').html("<a href='/cvterm/"+value+"/view'>Definição</a>");
         var start_date = jQuery('#summary_start_date').val();
         var end_date = jQuery('#summary_end_date').val();
     
@@ -615,7 +624,7 @@ input[type="text"] {
                     alert(response.error);
                 }
                 else if (response.status!="success"){
-                    alert("Problem loading plant/plot data: "+response.status);
+                    alert("Problema ao carregar os dados de plantas/parcelas: "+response.status);
                 }
                 else {
                     draw_histogram(response.data, d3.select("#trial_summary_hist").node());
@@ -623,7 +632,7 @@ input[type="text"] {
             },
             error: function(response) {
                 jQuery("#working_modal").modal("hide");
-                alert('An error occured retrieving trait histogram data.');
+                alert('Ocorreu um erro ao obter os dados do histograma da característica.');
             }
         });
     }

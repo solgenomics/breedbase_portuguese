@@ -1,5 +1,5 @@
 
-<h3>BrAPI Study POST</h3>
+<h3>Envio de estudo via BrAPI (POST)</h3>
 
 <script>
 
@@ -33,7 +33,7 @@ jQuery.ajax({
 			},
 			error: function(response) { 
 				jQuery('#working_modal').modal("hide");
-				alert("An error occurred.");
+				alert("Ocorreu um erro.");
 			}
     	});
 

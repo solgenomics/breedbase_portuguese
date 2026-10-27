@@ -3,17 +3,17 @@
 
 <div id="brapi_home_germplasm_attributes_div">
 
-    <h4>Germplasm Attributes List</h4>
-    <button class="btn btn-primary" name="brapi_home_germplasm_attributes_submit" id="brapi_home_germplasm_attributes_submit">Get Attributes</button>
+    <h4>Lista de atributos de germoplasma</h4>
+    <button class="btn btn-primary" name="brapi_home_germplasm_attributes_submit" id="brapi_home_germplasm_attributes_submit">Obter atributos</button>
     <br/><br/>
     <div id="brapi_germplasm_attributes_result_div">
     </div>
     <div id="brapi_germplasm_attributes_categories_result_div">
     </div>
 
-    <h4>Germplasm Attributes Detail</h4>
-    <input name="brapi_home_germplasm_attribute_dbid" id="brapi_home_germplasm_attribute_dbid" class="form-control" type="text" placeholder="GermplasmDbId e.g. 38841" value="38841"/>
-    <button class="btn btn-primary" name="brapi_home_germplasmdbid_attributes_submit" id="brapi_home_germplasmdbid_attributes_submit">Get Attributes for Germplasm</button>
+    <h4>Detalhes dos atributos de germoplasma</h4>
+    <input name="brapi_home_germplasm_attribute_dbid" id="brapi_home_germplasm_attribute_dbid" class="form-control" type="text" placeholder="ID do germoplasma, ex.: 38841" value="38841"/>
+    <button class="btn btn-primary" name="brapi_home_germplasmdbid_attributes_submit" id="brapi_home_germplasmdbid_attributes_submit">Obter atributos do germoplasma</button>
     <br/><br/>
     <div id="brapi_germplasm_dbid_attributes_result_div">
     </div>
@@ -32,7 +32,7 @@ jQuery(document).ready(function() {
             brapi_create_paginated_table(response.result.data, response.metadata.pagination, 'brapi_germplasm_attributes_result_div', jQuery('#brapi_home_url_select').val()+'/brapi/v1/attributes', undefined);
           },
           error: function(response) {
-            alert('An error occurred');
+            alert('Ocorreu um erro');
           }
         });
 
@@ -44,7 +44,7 @@ jQuery(document).ready(function() {
             brapi_create_paginated_table(response.result.data, response.metadata.pagination, 'brapi_germplasm_attributes_categories_result_div', jQuery('#brapi_home_url_select').val()+'/brapi/v1/attributes/categories', undefined);
           },
           error: function(response) {
-            alert('An error occurred');
+            alert('Ocorreu um erro');
           }
         });
     });
@@ -58,7 +58,7 @@ jQuery(document).ready(function() {
             brapi_create_paginated_table(response.result.data, response.metadata.pagination, 'brapi_germplasm_dbid_attributes_result_div', jQuery('#brapi_home_url_select').val()+'/brapi/v1/germplasm'+jQuery('#brapi_home_germplasm_attribute_dbid').val()+'/attributes', undefined);
           },
           error: function(response) {
-            alert('An error occurred');
+            alert('Ocorreu um erro');
           }
         });
     });

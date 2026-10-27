@@ -1,46 +1,46 @@
-<li class="dropdown"><a class="menu_click_dropdown dropdown-toggle" data-toggle="dropdown" href="/breeders/home">Manage</a>
+<li class="dropdown"><a class="menu_click_dropdown dropdown-toggle" data-toggle="dropdown" href="/breeders/home">Gerenciar</a>
 <!-- <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Tools<span class="caret"></span></a> -->
   <ul class="dropdown-menu">
-    <li><a href="/breeders/manage_roles/">User Roles</a></li>
-    <li><a href="/breeders/manage_programs/">Breeding Programs</a></li>
-    <li><a href="/breeders/locations">Locations</a></li>
-    <li><a href="/tools/report/">Report Factory</a></li>
-    <li><a href="/breeders/meeting/">Decision Meetings</a></li>
+    <li><a href="/breeders/manage_roles/">Perfis de usuário</a></li>
+    <li><a href="/breeders/manage_programs/">Programas de melhoramento</a></li>
+    <li><a href="/breeders/locations">Locais</a></li>
+    <li><a href="/tools/report/">Gerador de relatórios</a></li>
+    <li><a href="/breeders/meeting/">Reuniões de decisão</a></li>
 
 
     <li role="separator" class="divider"></li>
-    <li><a href="/breeders/accessions/">Accessions</a></li>
-    <li><a href="/breeders/seedlots/">Seed Lots</a></li>
-    <li><a href="/breeders/crosses/">Crosses</a></li>
-    <li><a href="/breeders/propagations/">Propagations</a></li>
+    <li><a href="/breeders/accessions/">Acessos</a></li>
+    <li><a href="/breeders/seedlots/">Lotes de sementes</a></li>
+    <li><a href="/breeders/crosses/">Cruzamentos</a></li>
+    <li><a href="/breeders/propagations/">Propagações</a></li>
 
     <li role="separator" class="divider"></li>
-    <li><a href="/order/stocks/view">Order Stocks</a></li>
-    <li><a href="/breeders/activities">Tracking Activities</a></li>
-    <li><a href="/breeders/transformations/">Transformations</a></li>
+    <li><a href="/order/stocks/view">Solicitar materiais</a></li>
+    <li><a href="/breeders/activities">Atividades de rastreamento</a></li>
+    <li><a href="/breeders/transformations/">Transformações</a></li>
 
     <li role="separator" class="divider"></li>
-    <li><a href="/breeders/trials/">Field Trials</a></li>
-    <li><a href="/tools/trialallocation">Trial Allocation</a></li>
-    <li><a href="/fieldbook">Field Book App</a></li>
-    <li><a href="/breeders/phenotyping/">Phenotyping</a></li>
-    <li><a href="/barcode">Barcodes</a></li>
-    <li><a href="/tools/label_designer">Label Designer</a></li>
+    <li><a href="/breeders/trials/">Ensaios de campo</a></li>
+    <li><a href="/tools/trialallocation">Alocação de ensaios</a></li>
+    <li><a href="/fieldbook">Aplicativo Field Book</a></li>
+    <li><a href="/breeders/phenotyping/">Fenotipagem</a></li>
+    <li><a href="/barcode">Códigos de barras</a></li>
+    <li><a href="/tools/label_designer">Editor de etiquetas</a></li>
 
     <li role="separator" class="divider"></li>
-    <li><a href="/breeders/genotyping_projects/">Genotyping Projects</a></li>
-    <li><a href="/breeders/genotyping/">Genotyping Plates</a></li>
-    <li><a href="/breeders/markers/">Marker Allele Lists</a></li>
+    <li><a href="/breeders/genotyping_projects/">Projetos de genotipagem</a></li>
+    <li><a href="/breeders/genotyping/">Placas de genotipagem</a></li>
+    <li><a href="/breeders/markers/">Listas de alelos de marcadores</a></li>
 
     <li role="separator" class="divider"></li>
-    <li><a href="/breeders/download">Download</a></li>
-    <li><a href="/breeders/upload">Upload</a></li>
-    <li><a href="/breeders/identifier_generation">Identifier Generation</a></li>
+    <li><a href="/breeders/download">Baixar dados</a></li>
+    <li><a href="/breeders/upload">Enviar dados</a></li>
+    <li><a href="/breeders/identifier_generation">Geração de identificadores</a></li>
 <!--    <li><a href="/breeders/odk">ODK Data Collection</a></li>  -->
-    <li><a href="/breeders/file_share_dump">File Share</a></li>
+    <li><a href="/breeders/file_share_dump">Compartilhamento de arquivos</a></li>
 
     <li role="seperator" class="divider"></li>
     <li><a href="/breeders/nirs">NIRS</a></li>
-    <li><a href="/breeders/transcriptomics">Transcriptomics</a></li>
+    <li><a href="/breeders/transcriptomics">Transcriptômica</a></li>
   </ul>
 </li>

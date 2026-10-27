@@ -11,7 +11,7 @@ $trial_id
 </div>
 <div class="panel panel-default">
     <div class="panel-body">
-        <&| /page/info_section.mas, title => 'Add Crosses to a List', collapsible=>1, collapsed=>0, subtitle=>'<i>Adding crosses in this crossing experiment to a new or exisiting list</i>'&>
+        <&| /page/info_section.mas, title => 'Adicionar cruzamentos a uma lista', collapsible=>1, collapsed=>0, subtitle=>'<i>Adicione os cruzamentos deste experimento a uma lista nova ou existente</i>'&>
         <br>
         <div id="crosses_to_new_list" style="display:none"></div>
         <div id="crosses_add_to_list"></div>
@@ -29,43 +29,46 @@ jQuery(document).ready(function(){
             'destroy': true,
             'ajax':'/ajax/breeders/trial/'+ <% $trial_id %> + '/crosses_and_details_in_trial',
             columns: [
-                { title: "Cross Unique ID", "data": null, "render": function ( data, type, row ) { return "<a href='/cross/"+row.cross_id+"'>"+row.cross_name+"</a>"; } },
-                { title: "Cross Combination", "data": "cross_combination" },
-                { title: "Cross Type", "data": "cross_type" },
-                { title: "Female Parent", "data": null, "render": function ( data, type, row ) { return "<a href='/stock/"+row.female_parent_id+"/view'>"+row.female_parent_name+"</a>"; } },
-                { title: "Female Ploidy", "data": "female_ploidy_level" },
-                { title: "Male Parent", "data": null, "render": function ( data, type, row ) {
+                { title: "ID exclusivo do cruzamento", "data": null, "render": function ( data, type, row ) { return "<a href='/cross/"+row.cross_id+"'>"+row.cross_name+"</a>"; } },
+                { title: "Combinação do cruzamento", "data": "cross_combination" },
+                { title: "Tipo de cruzamento", "data": "cross_type", "render": function (data, type) {
+                    if (type !== 'display') return data;
+                    return { biparental: 'biparental', self: 'autofecundação', open: 'polinização aberta', polycross: 'policruzamento' }[data] || data;
+                } },
+                { title: "Genitor feminino", "data": null, "render": function ( data, type, row ) { return "<a href='/stock/"+row.female_parent_id+"/view'>"+row.female_parent_name+"</a>"; } },
+                { title: "Ploidia feminina", "data": "female_ploidy_level" },
+                { title: "Genitor masculino", "data": null, "render": function ( data, type, row ) {
                     if (row.male_parent_id === null){
-                        return 'NA';
+                        return 'N/D';
                     } else {
                         return "<a href='/stock/"+row.male_parent_id+"/view'>"+row.male_parent_name+"</a>";
                     }
                 }},
-                { title: "Male Ploidy", "data": "male_ploidy_level" },
-                { title: "Female Plot", "data": null, "render": function ( data, type, row ) {
+                { title: "Ploidia masculina", "data": "male_ploidy_level" },
+                { title: "Parcela feminina", "data": null, "render": function ( data, type, row ) {
                     if (row.female_plot_id === null){
-                        return 'NA';
+                        return 'N/D';
                     } else {
                         return "<a href='/stock/"+row.female_plot_id+"/view'>"+row.female_plot_name+"</a>";
                     }
                 }},
-                { title: "Male Plot", "data": null, "render": function ( data, type, row ) {
+                { title: "Parcela masculina", "data": null, "render": function ( data, type, row ) {
                     if (row.male_plot_id === null){
-                        return 'NA';
+                        return 'N/D';
                     } else {
                         return "<a href='/stock/"+row.male_plot_id+"/view'>"+row.male_plot_name+"</a>";
                     }
                 }},
-                { title: "Female Plant", "data": null, "render": function ( data, type, row ) {
+                { title: "Planta feminina", "data": null, "render": function ( data, type, row ) {
                     if (row.female_plant_id === null){
-                        return 'NA';
+                        return 'N/D';
                     } else {
                         return "<a href='/stock/"+row.female_plant_id+"/view'>"+row.female_plant_name+"</a>";
                     }
                 }},
-                { title: "Male Plant", "data": null, "render": function ( data, type, row ) {
+                { title: "Planta masculina", "data": null, "render": function ( data, type, row ) {
                     if (row.male_plant_id === null){
-                        return 'NA';
+                        return 'N/D';
                     } else {
                         return "<a href='/stock/"+row.male_plant_id+"/view'>"+row.male_plant_name+"</a>";
                     }
@@ -74,7 +77,7 @@ jQuery(document).ready(function(){
             "fnInitComplete": function(oSettings, json) {
                 //console.log(json);
                 if (!isLoggedIn()) {
-                    jQuery('#crosses_add_to_list').html("<div class='well well-sm'><h3>Please login to use lists!</h3></div>");
+                    jQuery('#crosses_add_to_list').html("<div class='well well-sm'><h3>Faça login para usar as listas!</h3></div>");
                 } else {
                     var html = "";
                     for(var i=0; i<json.data.length; i++){

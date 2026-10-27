@@ -15,15 +15,15 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="downloadTrialsPhenotypesDialog">Download Phenotypes for Trials</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="downloadTrialsPhenotypesDialog">Baixar fenótipos dos ensaios</h4>
       </div>
       <div class="modal-body">
         <div class="container-fluid">
 
 	       <form class="form-horizontal" role="form" method="post" >
 	        <div class="form-group">
-                <label class="col-sm-3 control-label">Format: </label>
+                <label class="col-sm-3 control-label">Formato: </label>
                 <div class="col-sm-9" >
                     <select class="form-control" id="download_trials_phenotypes_format">
                         <option value="csv">CSV</option>
@@ -32,90 +32,90 @@
                 </div>
 	        </div>
             <div class="form-group">
-                <label class="col-sm-3 control-label">Data Level: </label>
+                <label class="col-sm-3 control-label">Nível dos dados: </label>
                 <div class="col-sm-9" >
                     <select class="form-control" id="download_trials_phenotypes_level_option">
-                        <option value="all">All</option>
-                        <option value="plot">Plots</option>
-                        <option value="plant">Plants</option>
-                        <option value="subplot">Subplots</option>
+                        <option value="all">Todos</option>
+                        <option value="plot">Parcelas</option>
+                        <option value="plant">Plantas</option>
+                        <option value="subplot">Subparcelas</option>
                     </select>
                 </div>
             </div>
 
-<&| /page/info_section.mas, title=>"Additional Search Options",  collapsible => 1, collapsed=>1 &>
+<&| /page/info_section.mas, title=>"Opções adicionais de busca",  collapsible => 1, collapsed=>1 &>
 
             <div class="form-group">
-                <label class="col-sm-7 control-label">For repeated measurements, return the </label>
+                <label class="col-sm-7 control-label">Para medições repetidas, retornar: </label>
                 <div class="col-sm-5">
                     <select class="form-control" id="download_repetitive_measurements_trials_option">
-                        <option value="first">First value</option>
-                        <option value="last">Last value</option>
-                        <option value="average">Averaged value</option>
-                        <option value="sum">Sum values</option>
-                        <option value="all_values_single_line">All Values in Single Line</option>
-                        <option value="all_values_multiple_line">All Values in Multiple Line</option>
+                        <option value="first">Primeiro valor</option>
+                        <option value="last">Último valor</option>
+                        <option value="average">Valor médio</option>
+                        <option value="sum">Soma dos valores</option>
+                        <option value="all_values_single_line">Todos os valores em uma linha</option>
+                        <option value="all_values_multiple_line">Todos os valores em várias linhas</option>
                     </select>
                 </div>
             </div>
 
 
             <div class="form-group">
-                <label class="col-sm-7 control-label">Include Timestamps: </label>
+                <label class="col-sm-7 control-label">Incluir data e hora: </label>
                 <div class="col-sm-5" >
                     <select class="form-control" id="download_trials_phenotypes_timestamp_option">
-                        <option value="0">No</option>
-                        <option value="1">Yes</option>
+                        <option value="0">Não</option>
+                        <option value="1">Sim</option>
                     </select>
                 </div>
             </div>
 
             <div class="form-group">
-                <label class="col-sm-7 control-label">Include Intercrop Accessions: </label>
+                <label class="col-sm-7 control-label">Incluir acessos em consórcio: </label>
                 <div class="col-sm-5" >
                     <select class="form-control" id="download_trials_phenotypes_intercrop_accessions_option">
-                        <option value="0">No</option>
-                        <option value="1">Yes</option>
+                        <option value="0">Não</option>
+                        <option value="1">Sim</option>
                     </select>
                 </div>
             </div>
 
             <div class="form-group">
-                <label class="col-sm-7 control-label">Include Entry Numbers: </label>
+                <label class="col-sm-7 control-label">Incluir números de entrada: </label>
                 <div class="col-sm-5" >
                     <select class="form-control" id="download_trials_phenotypes_entry_numbers_option">
-                        <option value="0">No</option>
-                        <option value="1">Yes</option>
+                        <option value="0">Não</option>
+                        <option value="1">Sim</option>
                     </select>
                 </div>
             </div>
 
             <div class="form-group">
-                <label class="col-sm-7 control-label">Include Parents: </label>
+                <label class="col-sm-7 control-label">Incluir parentais: </label>
                 <div class="col-sm-5" >
                     <select class="form-control" id="download_trials_phenotypes_pedigrees_option">
-                        <option value="0">No</option>
-                        <option value="1">Yes</option>
+                        <option value="0">Não</option>
+                        <option value="1">Sim</option>
                     </select>
                 </div>
             </div>
 
             <div class="form-group">
-                <label class="col-sm-7 control-label">Accession List (None gives all available accessions): </label>
+                <label class="col-sm-7 control-label">Lista de acessos (sem lista, inclui todos os disponíveis): </label>
                 <div class="col-sm-5" >
                     <div id="download_trials_phenotypes_accessions">
                     </div>
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-sm-7 control-label">Plot List (None gives all available plots): </label>
+                <label class="col-sm-7 control-label">Lista de parcelas (sem lista, inclui todas as disponíveis): </label>
                 <div class="col-sm-5" >
                     <div id="download_trials_phenotypes_plots">
                     </div>
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-sm-7 control-label">Plant List (None gives all available plants): </label>
+                <label class="col-sm-7 control-label">Lista de plantas (sem lista, inclui todas as disponíveis): </label>
                 <div class="col-sm-5" >
                     <div id="download_trials_phenotypes_plants">
                     </div>
@@ -123,7 +123,7 @@
             </div>
 
             <div class="form-group">
-                <label class="col-sm-7 control-label">Trait List (None gives all available traits): </label>
+                <label class="col-sm-7 control-label">Lista de características (sem lista, inclui todas as disponíveis): </label>
                 <div class="col-sm-5" >
                     <div id="download_trials_phenotypes_traits">
                     </div>
@@ -131,28 +131,28 @@
             </div>
 
             <div class="form-group">
-                <label class="col-sm-7 control-label">Trait Name Contains: </label>
+                <label class="col-sm-7 control-label">O nome da característica contém: </label>
                 <div class="col-sm-5" >
                     <input id="download_trials_phenotype_trait_contains" name="download_trials_phenotype_trait_contains" type="text" class="form-control" placeholder="storage root,oxoglutarate" style="width: 100%"/>
                 </div>
             </div>
 
             <div class="form-group">
-                <label class="col-sm-7 control-label">Include Trait Synonyms: </label>
+                <label class="col-sm-7 control-label">Incluir sinônimos das características: </label>
                 <div class="col-sm-5" >
                     <select class="form-control" id="download_trials_phenotypes_trait_synonyms_option">
-                        <option value="0">No</option>
-                        <option value="1">Yes</option>
+                        <option value="0">Não</option>
+                        <option value="1">Sim</option>
                     </select>
                 </div>
             </div>
 
             <div class="form-group">
-                <label class="col-sm-7 control-label">Suppress User Defined Phenotype Outliers: </label>
+                <label class="col-sm-7 control-label">Excluir valores fenotípicos atípicos definidos pelo usuário: </label>
                 <div class="col-sm-5" >
                     <select class="form-control" id="download_trials_phenotype_exclude_outliers">
-                        <option value="0">No</option>
-                        <option value="1">Yes</option>
+                        <option value="0">Não</option>
+                        <option value="1">Sim</option>
                     </select>
                 </div>
             </div>
@@ -160,7 +160,7 @@
             <div class="row">
                 <div class="col-sm-6">
                     <div class="form-group">
-                        <label class="col-sm-7 control-label">Min Phenotype Value: </label>
+                        <label class="col-sm-7 control-label">Valor fenotípico mínimo: </label>
                         <div class="col-sm-5" >
                             <input id="download_trials_phenotype_phenotype_min" name="download_trials_phenotype_phenotype_min" type="number" class="form-control" />
                         </div>
@@ -168,7 +168,7 @@
                 </div>
                 <div class="col-sm-6">
                     <div class="form-group">
-                        <label class="col-sm-7 control-label">Max Phenotype Value: </label>
+                        <label class="col-sm-7 control-label">Valor fenotípico máximo: </label>
                         <div class="col-sm-5" >
                             <input id="download_trials_phenotype_phenotype_max" name="download_trials_phenotype_phenotype_max" type="number" class="form-control" />
                         </div>
@@ -182,8 +182,8 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" name="download_trials_phenotypes_cancel_button" id="download_trials_phenotypes_cancel_button" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" name="download_trials_phenotypes_submit_button" id="download_trials_phenotypes_submit_button" title="Submit">Submit</button>
+        <button type="button" class="btn btn-default" name="download_trials_phenotypes_cancel_button" id="download_trials_phenotypes_cancel_button" data-dismiss="modal">Fechar</button>
+        <button type="button" class="btn btn-primary" name="download_trials_phenotypes_submit_button" id="download_trials_phenotypes_submit_button" title="Enviar">Baixar</button>
       </div>
     </div>
   </div>
@@ -198,10 +198,10 @@ jQuery(document).ready(function() {
     var opened_already = 0;
     jQuery('#trials_download_phenotypes_button').click( function () {
         if (opened_already == 0) {
-            jQuery("#download_trials_phenotypes_traits").append(list.listSelect("download_trials_phenotypes_traits", [ 'traits' ], 'None', undefined, undefined));
-            jQuery("#download_trials_phenotypes_accessions").append(list.listSelect("download_trials_phenotypes_accessions", [ 'accessions' ], 'None', undefined, undefined));
-            jQuery("#download_trials_phenotypes_plots").append(list.listSelect("download_trials_phenotypes_plots", [ 'plots' ], 'None', undefined, undefined));
-            jQuery("#download_trials_phenotypes_plants").append(list.listSelect("download_trials_phenotypes_plants", [ 'plants' ], 'None', undefined, undefined));
+            jQuery("#download_trials_phenotypes_traits").append(list.listSelect("download_trials_phenotypes_traits", [ 'traits' ], 'Nenhuma', undefined, undefined));
+            jQuery("#download_trials_phenotypes_accessions").append(list.listSelect("download_trials_phenotypes_accessions", [ 'accessions' ], 'Nenhuma', undefined, undefined));
+            jQuery("#download_trials_phenotypes_plots").append(list.listSelect("download_trials_phenotypes_plots", [ 'plots' ], 'Nenhuma', undefined, undefined));
+            jQuery("#download_trials_phenotypes_plants").append(list.listSelect("download_trials_phenotypes_plants", [ 'plants' ], 'Nenhuma', undefined, undefined));
             opened_already = 1;
         }
         jQuery('#download_trials_phenotypes_dialog').modal("show");
@@ -245,7 +245,7 @@ jQuery(document).ready(function() {
         if (selected.length !== 0) {
             window.open("/breeders/trials/phenotype/download?trial_list="+JSON.stringify(trial_id_array)+"&format="+format+"&timestamp="+timestamp+"&trait_contains="+JSON.stringify(trait_contains_array)+"&trait_list="+JSON.stringify(traits)+"&accession_list="+JSON.stringify(accessions)+"&plot_list="+JSON.stringify(plots)+"&plant_list="+JSON.stringify(plants)+"&dataLevel="+data_level+"&phenotype_min_value="+phenotype_min_value+"&phenotype_max_value="+phenotype_max_value+"&exclude_phenotype_outlier="+exclude_phenotype_outlier+"&repetitive_measurements="+repetitive_measurements+"&intercrop="+intercrop_accessions+"&entry_numbers="+entry_numbers+"&trait_synonyms="+trait_synonyms+"&include_pedigree_parents="+pedigrees);
         }
-        else { alert("No leaf nodes selected for download."); }
+        else { alert("Nenhum ensaio foi selecionado para download."); }
     });
 
 });

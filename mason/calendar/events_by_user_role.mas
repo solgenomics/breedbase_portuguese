@@ -17,8 +17,8 @@
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="calendarDialog">Your Calendar</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="calendarDialog">Seu calendário</h4>
       </div>
       <div class="modal-body">
         <div class="container-fluid">
@@ -28,14 +28,14 @@
 
             <div class="well well-sm">
                 <center>
-                    <p><b>Having trouble viewing events on the calendar?</b> <br/>Are you associated with the breeding program you are interested in viewing?</p>
-                    <a class="btn btn-primary" id="calendar_bp_user_roles_show" href="/breeders/manage_roles/">Calendar Permissions</a>
+                    <p><b>Está com dificuldade para visualizar eventos no calendário?</b> <br/>Verifique se você está associado ao programa de melhoramento desejado.</p>
+                    <a class="btn btn-primary" id="calendar_bp_user_roles_show" href="/breeders/manage_roles/">Permissões do calendário</a>
                 </center>
             </div>
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
       </div>
     </div>
   </div>
@@ -47,26 +47,26 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="addEventDialog">Add New Event</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="addEventDialog">Adicionar novo evento</h4>
       </div>
       <div class="modal-body">
         <div class="container-fluid">
   	  <form class="form-horizontal" role="form" name="day_dialog_add_event_form" id="day_dialog_add_event_form">
     	    <div class="form-group">
-      	      <label class="col-sm-2 control-label">Project: </label>
+              <label class="col-sm-2 control-label">Projeto: </label>
       	      <div class="col-sm-10">
 		<select class="form-control" name="event_project_select" id="event_project_select"></select>
               </div>
 	    </div>
 	    <div class="form-group">
-      	      <label class="col-sm-2 control-label">Event Type: </label>
+              <label class="col-sm-2 control-label">Tipo de evento: </label>
       	      <div class="col-sm-10">
 	        <select class="form-control" name="event_type_select" id="event_type_select" ></select>
               </div>
 	    </div>
 	    <div class="form-group">
-      	      <label class="col-sm-2 control-label">Start: </label>
+              <label class="col-sm-2 control-label">Início: </label>
       	      <div class="col-sm-10">
 	        <div class="input-group date">
     		  <input type="text" class="form-control datepicker" name="event_start" id="event_start">
@@ -77,10 +77,10 @@
               </div>
 	    </div>
 	    <div class="form-group">
-      	      <label class="col-sm-2 control-label">End: </label>
+              <label class="col-sm-2 control-label">Fim: </label>
       	      <div class="col-sm-10">
 	        <div class="input-group date">
-    		  <input type="text" class="form-control datepicker" name="event_end" id="event_end" placeholder="Leave Blank if Not Applicable">
+                  <input type="text" class="form-control datepicker" name="event_end" id="event_end" placeholder="Deixe em branco se não se aplicar">
     		  <div class="input-group-addon">
         	    <span class="glyphicon glyphicon-th"></span>
     		  </div>
@@ -88,7 +88,7 @@
               </div>
 	    </div>
 	    <div class="form-group">
-      	      <label class="col-sm-2 control-label">Description: </label>
+              <label class="col-sm-2 control-label">Descrição: </label>
       	      <div class="col-sm-10">
 		<input class="form-control" name="event_description" id="event_description" type="text" >
               </div>
@@ -106,8 +106,8 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" name="add_event_submit" id="add_event_submit">Add Event</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+        <button type="button" class="btn btn-primary" name="add_event_submit" id="add_event_submit">Adicionar evento</button>
       </div>
     </div>
   </div>
@@ -117,44 +117,44 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="eventDialog">Event Info</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="eventDialog">Informações do evento</h4>
       </div>
       <div class="modal-body">
         <div class="container-fluid">
 	  <table class="table table-hover">
 	    <thead>
 	      <tr>
-	        <th>Attribute</th>
-	        <th>Value</th>
+	        <th>Atributo</th>
+	        <th>Valor</th>
 	      </tr>
 	    </thead>
 	    <tbody>
     	      <tr>
-      	        <td>Project Name: </td>
+                <td>Nome do projeto: </td>
       	        <td id="event_info_title"></td>
     	      <tr>
     	      <tr>
-      	        <td>Start Date: </td>
+                <td>Data de início: </td>
       	        <td id="event_info_start_display"></td>
 		<input id="event_info_start" type="hidden" />
     	      </tr>
     	      <tr>
-      	        <td>End Date: </td>
+                <td>Data de término: </td>
       	        <td id="event_info_end_display"></td>
 		<input id="event_info_end" type="hidden" />
     	      </tr>
     	      <tr>
-      	        <td>Event Type: </td>
+                <td>Tipo de evento: </td>
       	        <td id="event_info_property"></td>
 		<input id="event_info_cvterm_id" type="hidden" />
     	      </tr>
     	      <tr>
-      	        <td>Event Description: </td>
+                <td>Descrição do evento: </td>
       	        <td id="event_info_description"></td>
     	      </tr>
     	      <tr>
-      	        <td>Event Web URL: </td>
+                <td>Endereço web do evento: </td>
       	        <td id="event_info_url"></td>
 		<input id="event_info_url_raw" type="hidden" />
     	      </tr>
@@ -170,10 +170,10 @@
 	<form name="event_dialog_delete_event_form" id="event_dialog_delete_event_form">
           <input type="hidden" name="event_projectprop_id" id="event_projectprop_id" />
         </form>
-	<button type="button" class="btn btn-primary" name="event_edit_display" id="event_edit_display">Edit Event</button>
-	<button type="button" class="btn btn-danger" name="delete_event_submit" id="delete_event_submit">Delete Event</button>
-	<button type="button" class="btn btn-info" name="export_event_display" id="export_event_display">Export Event</button>
-	<button type="button" class="btn btn-default" data-dismiss="modal" id="event_dialog_dismiss">Close</button>
+	<button type="button" class="btn btn-primary" name="event_edit_display" id="event_edit_display">Editar evento</button>
+	<button type="button" class="btn btn-danger" name="delete_event_submit" id="delete_event_submit">Excluir evento</button>
+	<button type="button" class="btn btn-info" name="export_event_display" id="export_event_display">Exportar evento</button>
+	<button type="button" class="btn btn-default" data-dismiss="modal" id="event_dialog_dismiss">Fechar</button>
       </div>
     </div>
   </div>
@@ -184,26 +184,26 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="editEventDialog">Edit Event</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="editEventDialog">Editar evento</h4>
       </div>
       <div class="modal-body">
         <div class="container-fluid">
   	  <form class="form-horizontal" role="form" name="edit_event_form" id="edit_event_form">
     	    <div class="form-group">
-      	      <label class="col-sm-2 control-label">Project: </label>
+              <label class="col-sm-2 control-label">Projeto: </label>
       	      <div class="col-sm-10">
 		<select class="form-control" name="edit_event_project_select" id="edit_event_project_select"></select>
               </div>
 	    </div>
 	    <div class="form-group">
-      	      <label class="col-sm-2 control-label">Event Type: </label>
+              <label class="col-sm-2 control-label">Tipo de evento: </label>
       	      <div class="col-sm-10">
 		<select class="form-control" name="edit_event_type_select" id="edit_event_type_select" ></select>
               </div>
 	    </div>
 	    <div class="form-group">
-      	      <label class="col-sm-2 control-label">Start: </label>
+              <label class="col-sm-2 control-label">Início: </label>
       	      <div class="col-sm-10">
 	        <div class="input-group date">
     		  <input type="text" class="form-control datepicker" name="edit_event_start" id="edit_event_start">
@@ -214,10 +214,10 @@
               </div>
 	    </div>
 	    <div class="form-group">
-      	      <label class="col-sm-2 control-label">End: </label>
+              <label class="col-sm-2 control-label">Fim: </label>
       	      <div class="col-sm-10">
 	        <div class="input-group date">
-    		  <input type="text" class="form-control datepicker" name="edit_event_end" id="edit_event_end" placeholder="Leave Blank if Not Applicable">
+                  <input type="text" class="form-control datepicker" name="edit_event_end" id="edit_event_end" placeholder="Deixe em branco se não se aplicar">
     		  <div class="input-group-addon">
         	    <span class="glyphicon glyphicon-th"></span>
     		  </div>
@@ -225,7 +225,7 @@
               </div>
 	    </div>
 	    <div class="form-group">
-      	      <label class="col-sm-2 control-label">Description: </label>
+              <label class="col-sm-2 control-label">Descrição: </label>
       	      <div class="col-sm-10">
 		<input class="form-control" name="edit_event_description" id="edit_event_description" type="text" >
               </div>
@@ -241,8 +241,8 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" name="edit_event_submit" id="edit_event_submit">Save</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+        <button type="button" class="btn btn-primary" name="edit_event_submit" id="edit_event_submit">Salvar</button>
       </div>
     </div>
   </div>
@@ -271,8 +271,24 @@ jQuery(document).ready(function() {
         jQuery("#calendar").fullCalendar('render');
     });
 
+    if (jQuery.fn.datepicker && jQuery.fn.datepicker.dates) {
+        jQuery.fn.datepicker.dates['pt-BR'] = {
+            days: ['Domingo', 'Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira', 'Sábado'],
+            daysShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'],
+            daysMin: ['Do', 'Se', 'Te', 'Qua', 'Qui', 'Se', 'Sá'],
+            months: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+            monthsShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
+            today: 'Hoje',
+            clear: 'Limpar',
+            monthsTitle: 'Meses',
+            format: 'yyyy-mm-dd',
+            titleFormat: 'MM yyyy'
+        };
+    }
+
     jQuery('.datepicker').datepicker({
         format: 'yyyy-mm-dd',
+        language: 'pt-BR',
     });
 
     var fcSources = {
@@ -309,6 +325,18 @@ jQuery(document).ready(function() {
         editable: true,
         eventLimit: true,
         lazyFetching: false,
+        monthNames: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+        monthNamesShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
+        dayNames: ['Domingo', 'Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira', 'Sábado'],
+        dayNamesShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'],
+        buttonText: {
+            today: 'Hoje',
+            month: 'Mês',
+            week: 'Semana',
+            day: 'Dia',
+            list: 'Lista'
+        },
+        allDayText: 'Dia inteiro',
         header: {
             left:   'title',
             center: 'month,agendaWeek',
@@ -350,7 +378,7 @@ jQuery(document).ready(function() {
                     return;
                 },
                 error: function() {
-                    alert("Error preparing Day dialog!");
+                    alert("Erro ao preparar a janela do dia.");
                 }
             });
             jQuery('#day_dialog').modal('show');
@@ -380,10 +408,10 @@ jQuery(document).ready(function() {
         },
         eventMouseover: function(event, jsEvent) {
             if (event.url) {
-                jQuery(this).popover({html:true, title:event.title, placement:'right', container:'body', content: 'Location: ' + event.location + '<br/>Description: ' + event.description,}).popover('show');
+                jQuery(this).popover({html:true, title:event.title, placement:'right', container:'body', content: 'Local: ' + event.location + '<br/>Descrição: ' + event.description,}).popover('show');
                 return false;
             } else {
-                jQuery(this).popover({html:true, title:event.title, placement:'right', container:'body', content: 'Start: ' + event.start_display + '<br/>End: ' + event.end_display + '<br/>Type: ' + event.property + '<br/>Description: ' + event.event_description + '<br/>URL: ' + event.event_url,}).popover('show');
+                jQuery(this).popover({html:true, title:event.title, placement:'right', container:'body', content: 'Início: ' + event.start_display + '<br/>Fim: ' + event.end_display + '<br/>Tipo: ' + event.property + '<br/>Descrição: ' + event.event_description + '<br/>URL: ' + event.event_url,}).popover('show');
                 return false;
               }
         },
@@ -392,7 +420,7 @@ jQuery(document).ready(function() {
             return false;
         },
         eventDrop: function(event, delta, revertFunc, jsEvent, ui, view) {
-            if (!confirm("Are you sure about this change?")) {
+            if (!confirm("Tem certeza de que deseja fazer esta alteração?")) {
                 revertFunc();
                 return;
             }
@@ -414,9 +442,9 @@ jQuery(document).ready(function() {
                 }),
                 success: function(data) {
                     if (data.status ==3) {
-                        alert("You do not have the permissions to edit this event.");
+                        alert("Você não possui permissão para editar este evento.");
                     } else if (data.error ==1) {
-                        alert("The was a problem editing this event.");
+                        alert("Ocorreu um problema ao editar este evento.");
                     } else if (data.success == 1) {
                         event.start = data.start;
                         event.start_drag = data.start_drag;
@@ -430,12 +458,12 @@ jQuery(document).ready(function() {
                 },
                 error: function() {
                     revertFunc();
-                    alert("Error! Did Not Update Event! E.001");
+                    alert("Erro: o evento não foi atualizado. E.001");
                 }
             });
         },
         eventResize: function(event, delta, revertFunc, jsEvent, ui, view) {
-            if (!confirm("Are you sure about this change?")) {
+            if (!confirm("Tem certeza de que deseja fazer esta alteração?")) {
                 revertFunc();
                 return;
             }
@@ -457,9 +485,9 @@ jQuery(document).ready(function() {
                 }),
                 success: function(data) {
                     if (data.status ==3) {
-                        alert("You do not have the permissions to edit this event.");
+                        alert("Você não possui permissão para editar este evento.");
                     } else if (data.error ==1) {
-                        alert("The was a problem editing this event.");
+                        alert("Ocorreu um problema ao editar este evento.");
                     } else if (data.success == 1) {
                         event.start = data.start;
                         event.start_drag = data.start_drag;
@@ -473,7 +501,7 @@ jQuery(document).ready(function() {
                 },
                 error: function() {
                     revertFunc();
-                    alert("Error! Did Not Update Event! E.001");
+                    alert("Erro: o evento não foi atualizado. E.001");
                 }
             });
         },
@@ -488,17 +516,17 @@ jQuery(document).ready(function() {
             data: jQuery('form#day_dialog_add_event_form').serialize(),
             success: function(data) {
                 if(data.status == 1){
-                    alert("Event Successfully Added!");
+                    alert("Evento adicionado com sucesso.");
                     jQuery('#day_dialog').modal('hide');
                     jQuery('#calendar').fullCalendar('refetchEvents');
                 }else if(data.status == 2){
-                    alert("Error! Event Not Added! E.002");
+                    alert("Erro: o evento não foi adicionado. E.002");
                 }else if(data.status == 3){
-                    alert("You do not have the permissions to add an event.");
+                    alert("Você não possui permissão para adicionar um evento.");
                 }
             },
             error: function() {
-                alert("Error! Event Not Added! E.001");
+                alert("Erro: o evento não foi adicionado. E.001");
             }
         });
     });
@@ -506,7 +534,7 @@ jQuery(document).ready(function() {
     jQuery('button#delete_event_submit').click( function(event) {
         event.preventDefault();
         jQuery('button#export_event_display').popover('hide');
-        if (!confirm("Are you sure you want to delete this event?")) {
+        if (!confirm("Tem certeza de que deseja excluir este evento?")) {
             return;
         }
         jQuery.ajax({
@@ -518,13 +546,13 @@ jQuery(document).ready(function() {
                 jQuery('#event_dialog').modal('hide');
                 jQuery('#calendar').fullCalendar( 'refetchEvents' );
                 if (data.status==3){
-                    alert("You do not have the permissions to delete an event.");
+                    alert("Você não possui permissão para excluir este evento.");
                 } else if (data.status==0){
-                    alert("The event was not deleted!");
+                    alert("O evento não foi excluído.");
                 }
             },
             error: function() {
-                alert("Did Not Delete Event! E.001");
+                alert("Não foi possível excluir o evento. E.001");
             }
         });
     });
@@ -551,7 +579,7 @@ jQuery(document).ready(function() {
                 return;
             },
             error: function() {
-                alert("Error Preparing Edit Event Dialog!");
+                alert("Erro ao preparar a janela de edição do evento.");
             }
         });
 
@@ -565,7 +593,7 @@ jQuery(document).ready(function() {
 
     jQuery('button#edit_event_submit').click( function(event) {
         event.preventDefault();
-        if (!confirm("Are you sure you want to save this edit?")) {
+        if (!confirm("Tem certeza de que deseja salvar esta alteração?")) {
             return;
         }
         jQuery.ajax({
@@ -579,19 +607,19 @@ jQuery(document).ready(function() {
                     jQuery('#edit_event_dialog').modal('hide');
                     jQuery('#calendar').fullCalendar( 'refetchEvents' );
                 } else if (data.status == 0) {
-                    alert("Event Already Existed! Your Edit Was Not Saved!");
+                    alert("O evento já existe. Sua alteração não foi salva.");
                 } else if (data.status == 3) {
-                    alert("You do not have the permissions to edit thie event.");
+                    alert("Você não possui permissão para editar este evento.");
                 }
             },
             error: function() {
-                alert("Did Not Save Edit! E.001");
+                alert("Não foi possível salvar a alteração. E.001");
             }
         });
     });
 
     jQuery('button#export_event_display').click( function() {
-    	jQuery(this).popover({html:true, title:"Export Event", placement:'right', container:'body', content: "Google Calendar: <a href='http://www.google.com/calendar' target='_blank' >Export</a>"}).popover('toggle');
+        jQuery(this).popover({html:true, title:"Exportar evento", placement:'right', container:'body', content: "Google Agenda: <a href='http://www.google.com/calendar' target='_blank' >Exportar</a>"}).popover('toggle');
     });
 
     jQuery('#event_dialog').on('hide.bs.modal', function (e) {

@@ -9,39 +9,39 @@ $trial_name
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="uploadSoilDataDialog">Upload Soil Data for this Trial </h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="uploadSoilDataDialog">Enviar dados do solo deste ensaio</h4>
             </div>
             <div class="modal-body">
                 <div class="container-fluid">
                     <form class="form-horizontal" role="form" method="post" enctype="multipart/form-data" encoding="multipart/form-data" id="upload_soil_data_form" name="upload_soil_data_form">
                         <div class="form-group">
-                            <label class="col-sm-4 control-label">Soil data for trial: </label>
+                            <label class="col-sm-4 control-label">Dados do solo do ensaio: </label>
                             <div class="col-sm-8" >
                                 <input class="form-control" name="trial_soil_data" id="trial_soil_data" disabled value="<% $trial_name %>">
                                 <input name="soil_data_trial_id" id="soil_data_trial_id" type="hidden" value="<% $trial_id %>">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-4 control-label">Description:</label>
+                            <label class="col-sm-4 control-label">Descrição:</label>
                             <div class="col-sm-8">
                                 <input class="form-control" type="text" id="soil_data_description" name="soil_data_description" />
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-4 control-label">Sampling Date:</label>
+                            <label class="col-sm-4 control-label">Data da amostragem:</label>
                             <div class="col-sm-8">
                                 <input class="form-control" id="soil_data_date" name="soil_data_date" title="data_date" type="text"/>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-4 control-label">GPS (optional):</label>
+                            <label class="col-sm-4 control-label">GPS (opcional):</label>
                             <div class="col-sm-8">
                                 <input class="form-control" type="text" id="soil_data_gps" name="soil_data_gps" />
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-4 control-label">Type of Sampling:</label>
+                            <label class="col-sm-4 control-label">Tipo de amostragem:</label>
                             <div class="col-sm-8">
                                 <input class="form-control" type="text" id="type_of_sampling" name="type_of_sampling" />
                             </div>
@@ -49,11 +49,11 @@ $trial_name
                         <div class="well well-sm">
                             <div class="row">
                                 <div class="col-sm-4">
-                                    <&| /page/explanation.mas, title=>'Template information' &>
+                                    <&| /page/explanation.mas, title=>'Informações do modelo' &>
                                         <p>
-                                            <b>File format information</b>
+                                            <b>Informações sobre o formato do arquivo</b>
                                             <br>
-                                            <a id="soil_data_spreadsheet_format">Spreadsheet format</a>
+                                            <a id="soil_data_spreadsheet_format">Formato da planilha</a>
                                         </p>
                                     </&>
                                 </div>
@@ -62,7 +62,7 @@ $trial_name
                                     <div class="panel panel-default">
                                         <div class="panel-body">
                                             <div class="form-group">
-                                                <label class="col-sm-6 control-label">Select an XLS File: </label>
+                                                <label class="col-sm-6 control-label">Selecione um arquivo XLS: </label>
                                                 <div class="col-sm-6">
                                                     <input type="file" name="soil_data_upload_file" id="soil_data_upload_file" encoding="multipart/form-data" />
                                                 </div>
@@ -76,8 +76,8 @@ $trial_name
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" name="soil_data_submit" id="soil_data_submit">Upload File</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                <button type="button" class="btn btn-primary" name="soil_data_submit" id="soil_data_submit">Enviar arquivo</button>
             </div>
         </div>
     </div>
@@ -87,8 +87,8 @@ $trial_name
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="uploadSoilDataErrorDialog">Upload Soil Data File Error</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="uploadSoilDataErrorDialog">Erro ao enviar o arquivo de dados do solo</h4>
             </div>
             <div class="modal-body">
                 <div class="container-fluid">
@@ -98,7 +98,7 @@ $trial_name
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
             </div>
         </div>
     </div>
@@ -108,20 +108,20 @@ $trial_name
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="uploadSoilDataFormatDialog">Template Information</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="uploadSoilDataFormatDialog">Informações do modelo</h4>
             </div>
             <div class="modal-body">
                 <div class="container-fluid">
                     <b>
-                        Soil data may be uploaded in an Excel file (.xls or .xlsx)
+                        Os dados do solo podem ser enviados em um arquivo Excel (.xls ou .xlsx).
                     </b>
                     <br>
                     <b>
-                        Header:
+                        Cabeçalho:
                     </b>
                     <br>
-                        The first row (header) must contain the following:
+                        A primeira linha (cabeçalho) deve conter as seguintes colunas:
                     <br>
 
                     <table class="table table-bordered table-hover">
@@ -133,7 +133,7 @@ $trial_name
                         </tbody>
                     </table>
                     <b>
-                        Example:
+                        Exemplo:
                     </b>
                     <table class="table table-bordered table-hover">
                         <tbody>
@@ -154,7 +154,7 @@ $trial_name
                                 <td>3.200</td>
                             </tr>
                             <tr>
-                                <td>Organic matter (%)</td>
+                                <td>Matéria orgânica (%)</td>
                                 <td>3.500</td>
                             </tr>
                         </tbody>
@@ -162,7 +162,7 @@ $trial_name
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
             </div>
         </div>
     </div>
@@ -172,19 +172,19 @@ $trial_name
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="soilDataSavedDialog">Success</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="soilDataSavedDialog">Sucesso</h4>
             </div>
             <div class="modal-body">
                 <div class="container-fluid">
                     <p>
                         <span class="ui-icon ui-icon-circle-check" style="float: left; margin: 0 7px 50px 0;"></span>
-                        Soil data were saved successfully.
+                        Os dados do solo foram salvos com sucesso.
                     </p>
                 </div>
             </div>
             <div class="modal-footer">
-                <button id="dismiss_soil_data_saved_dialog" type="button" class="btn btn-default" data-dismiss="modal">Close & Reload</button>
+                <button id="dismiss_soil_data_saved_dialog" type="button" class="btn btn-default" data-dismiss="modal">Fechar e recarregar</button>
             </div>
         </div>
     </div>
@@ -221,25 +221,25 @@ jQuery(document).ready(function(){
 
         var soil_data_description = jQuery("#soil_data_description").val();
         if ( soil_data_description === ''){
-            alert("Please provide description");
+            alert("Informe uma descrição.");
             return;
         }
 
         var soil_data_date = jQuery("#soil_data_date").val();
         if ( soil_data_date === ''){
-            alert("Please select a date");
+            alert("Selecione uma data.");
             return;
         }
 
         var type_of_sampling = jQuery("#type_of_sampling").val();
         if ( type_of_sampling === ''){
-            alert("Please indicate type of sampling");
+            alert("Informe o tipo de amostragem.");
             return;
         }
 
         var uploadFile = jQuery("#soil_data_upload_file").val();
         if (uploadFile === ''){
-            alert("Please select a file");
+            alert("Selecione um arquivo.");
             return;
         }
 

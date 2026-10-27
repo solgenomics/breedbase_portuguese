@@ -10,8 +10,8 @@ $program_id
 <table id="trial_summary_data_<% $program_id %>" class="display">
     <thead>
         <tr>
-            <th>Trial name</th>
-            <th>Description</th>
+            <th>Nome do ensaio</th>
+            <th>Descrição</th>
         </tr>
     </thead>
 </table>

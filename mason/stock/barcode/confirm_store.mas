@@ -25,8 +25,8 @@ $message => undef
 
 </%perl>
 
-<& /page/page_title.mas, title => "Store uploaded barcode data" &>
-<&| /page/info_section.mas, title => "Upload status" &>
+<& /page/page_title.mas, title => "Armazenar dados de códigos de barras enviados" &>
+<&| /page/info_section.mas, title => "Estado do envio" &>
     <h4><div> <% $error %> </div></h4>
     <div> <% $message %></div>
   </form>

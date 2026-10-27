@@ -7,7 +7,7 @@ $user_can_modify
 <& /util/import_javascript.mas, classes => [ ] &>
 
 % if ($user_can_modify) {
-    <button class="btn btn-sm btn-primary" style="margin:3px" id="trial_detail_page_add_treatment">Add Treatments</button>
+    <button class="btn btn-sm btn-primary" style="margin:3px" id="trial_detail_page_add_treatment">Adicionar tratamentos</button>
 % }
 
 <div id="trial_treatments_html">
@@ -18,12 +18,12 @@ $user_can_modify
     <select id="trial_treatment_to_stock_select">
     </select>
     <select id="trial_treatment_level_applied_select">
-        <option value="plot">Plot</option>
-        <option value="subplot">Subplot</option>
-        <option value="plant">Plant</option>
-        <option value="tissue_sample">Tissue Sample</option>
+        <option value="plot">Parcela</option>
+        <option value="subplot">Subparcela</option>
+        <option value="plant">Planta</option>
+        <option value="tissue_sample">Amostra de tecido</option>
     </select>
-    <button class="btn btn-sm btn-primary" id="treatments_get_raw_data_btn">Get treatment data</button>
+    <button class="btn btn-sm btn-primary" id="treatments_get_raw_data_btn">Obter dados dos tratamentos</button>
     <br>
     <table id="trial_treatments_raw_data">
     </table>
@@ -51,7 +51,7 @@ jQuery(document).ready(function () {
                             columns: [
                                 {
                                     data : 'trait_name', 
-                                    title : 'Treatment',
+                                    title : 'Tratamento',
                                     orderable : false,
                                     render : function(data, type, row, meta) {
                                         
@@ -64,10 +64,10 @@ jQuery(document).ready(function () {
                                         return html;
                                     }
                                 },
-                                {data : 'count', title : 'Total Stock Count'},
+                                {data : 'count', title : 'Total de materiais'},
                                 {
                                     data : 'trait_id',
-                                    title : 'Remove treatment',
+                                    title : 'Remover tratamento',
                                     orderable : false,
                                     render : function(data, type, row, meta) {
                                         let html = `<button class="btn btn-small btn-danger treatment-delete-btn" id="delete_treatment_${data}"><span class="glyphicon glyphicon-trash"></span></button>`;
@@ -82,7 +82,7 @@ jQuery(document).ready(function () {
                             columns: [
                                 {
                                     data : 'trait_name', 
-                                    title : 'Treatment',
+                                    title : 'Tratamento',
                                     orderable : false,
                                     render : function(data, type, row, meta) {
                                         
@@ -95,7 +95,7 @@ jQuery(document).ready(function () {
                                         return html;
                                     }
                                 },
-                                {data : 'count', title : 'Total Stock Count'},
+                                {data : 'count', title : 'Total de materiais'},
                             ]
                         });
                     }
@@ -104,7 +104,7 @@ jQuery(document).ready(function () {
             },
             error: function(response){
                 jQuery("#working_modal").modal("hide");
-                alert("Error retrieving treatments.");
+                alert("Erro ao obter os tratamentos.");
             }
         });
     }
@@ -131,14 +131,14 @@ jQuery(document).ready(function () {
                 columns : [
                     {
                         data : 'observationUnitName',
-                        title : 'Stock',
+                        title : 'Material',
                         orderable : true,
                         render : function(data, type, row, meta) {
                             let html = '<a href="/stock/'+row.observationUnitDbId+'/view/">'+data+'</a>';
                             return html;
                         }
                     },
-                    {data : 'value', title : 'Treatment Value'}
+                    {data : 'value', title : 'Valor do tratamento'}
                 ],
                 columnDefs : [
                     {targets : 0, width : "50%"}
@@ -178,8 +178,8 @@ jQuery(document).ready(function () {
     jQuery('#trial_treatments_raw_data').DataTable({
         'destroy': true,
         'columns': [
-            { title: 'Stock' },
-            { title: 'Treatment value' },
+            { title: 'Material' },
+            { title: 'Valor do tratamento' },
         ]
     });
 
@@ -189,7 +189,7 @@ jQuery(document).ready(function () {
         let splits = this_id.split('_');
         let treatment_id = splits[2];
 
-        if (confirm("Delete treatment data from all stocks?")) {
+        if (confirm("Excluir os dados deste tratamento de todos os materiais?")) {
             jQuery.ajax({
                 url : '/ajax/breeders/trial/'+<% $trial_id %>+'/remove_treatment',
                 data : {
@@ -203,14 +203,14 @@ jQuery(document).ready(function () {
                     if (response.error) {
                         alert(response.error);
                     } else {
-                        alert("Treatment data removed.");
+                        alert("Dados do tratamento removidos.");
                         window.location.reload();
                     }
                 },
                 error : function(response) {
                     jQuery('#working_modal').modal("hide");
                     console.log(response);
-                    alert("An error occurred deleting treatment data.");
+                    alert("Ocorreu um erro ao excluir os dados do tratamento.");
                 }
             });
         }

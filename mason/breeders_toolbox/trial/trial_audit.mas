@@ -42,15 +42,27 @@ $project_id
             jQuery('#audit_results').DataTable({
               data: json_object,
               columns: [
-                  { title: 'Timestamp' },
-                    { title: 'Operation' },
-                    { title: 'Username' },
-                    { title: 'Logged in User' },
-                    { title: 'Before' },
-                    { title: 'After' },
-                    { title: 'Transaction Code'},
-                    { title: 'Primary Key'},
-                    { title: 'Is Undo'},
+                    { title: 'Data e hora' },
+                    {
+                        title: 'Operação',
+                        render: function(data, type) {
+                            if (type !== 'display') return data;
+                            return { INSERT: 'INSERÇÃO', UPDATE: 'ATUALIZAÇÃO', DELETE: 'EXCLUSÃO' }[data] || data;
+                        }
+                    },
+                    { title: 'Nome de usuário' },
+                    { title: 'Usuário conectado' },
+                    { title: 'Antes' },
+                    { title: 'Depois' },
+                    { title: 'Código da transação'},
+                    { title: 'Chave primária'},
+                    {
+                        title: 'É desfazer',
+                        render: function(data, type) {
+                            if (type !== 'display') return data;
+                            return data === true || data === '1' ? 'Sim' : 'Não';
+                        }
+                    },
               ],
               "rowCallback" : function (row, data, index){
                     if(data[1] == "INSERT"){

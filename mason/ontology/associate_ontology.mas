@@ -127,40 +127,40 @@ $trait_db_name => 'SP'
   <form name="cvterm_form" >
     <div id="cvterm_search"  >
       <table width="100%">
-        <tr><td width = "30%"><b>Select ontology</b><br />
+        <tr><td width = "30%"><b>Selecione a ontologia</b><br />
             <select id = "db_name" onchange = "jQuery('#term_name').val('');" >
-              <option value="GO">GO (gene ontology)</option>
-              <option value="PO">PO (plant ontology)</option>
-              <option value="<% $trait_db_name %>"><% $trait_db_name %>  phenotype ontology</option>
+              <option value="GO">GO (ontologia gênica)</option>
+              <option value="PO">PO (ontologia de plantas)</option>
+              <option value="<% $trait_db_name %>"><% $trait_db_name %>  ontologia de fenótipos</option>
             </select>
             </td>
-          <td><b>Type a term name</b><br /><input type="text" size ="60"  id="term_name" name="term_name" />
+          <td><b>Digite o nome de um termo</b><br /><input type="text" size ="60"  id="term_name" name="term_name" />
             <input type="hidden" id="object_id" name="object_id" value="<% $object_id %>" />
         </td></tr>
         <tr><td colspan="2">
-            <b>Relationship type:</b>
+            <b>Tipo de relação:</b>
             <select id="relationship_select" style="width: 100%"
 	            onchange="Ontology.populateEvidence('evidence_code_select', '<% $evidence_uri %>' )">
             </select>
         </td></tr>
         <tr><td colspan="2">
-            <b>Evidence code:</b>
+            <b>Código de evidência:</b>
             <select id="evidence_code_select" style="width: 100%"
 	            onchange="jQuery('#associate_ontology_button').removeAttr('disabled');Ontology.populateEvidence('evidence_description_select', '<% $evidence_description_uri %>' + '?evidence_code_id=' + jQuery('#evidence_code_select').val() );Ontology.populateEvidence('evidence_with_select', '<% $evidence_with_uri %>');Ontology.populateEvidence('reference_select', '<% $reference_uri %>')">
             </select>
         </td></tr>
         <tr><td colspan = "2">
-            <b>Evidence description:</b>
+            <b>Descrição da evidência:</b>
             <select id="evidence_description_select" style="width: 100%">
             </select>
         </td></tr>
         <tr><td colspan = "2">
-            <b>Evidence with:</b>
+            <b>Evidência com:</b>
             <select id="evidence_with_select" style="width: 100%">
             </select>
         </td></tr>
         <tr><td colspan = "2">
-            <b>Reference:</b>
+            <b>Referência:</b>
             <select id="reference_select" style="width: 100%">
             </select>
         </td></tr>
@@ -168,7 +168,7 @@ $trait_db_name => 'SP'
             <div id="ontology_select_button">
               <input type="button"
                      id="associate_ontology_button"
-                     value="associate term"
+                     value="Associar termo"
                      disabled="true"
                      onclick="javascript:Ontology.submitCvtermForm('<% $cvterm_add_uri %>', '<% $ontology_url %>');this.disabled=true;" />
             </div>
@@ -184,11 +184,11 @@ $trait_db_name => 'SP'
 
 <div id="ontology_show_details" style="display: none">
   <form> <input type="checkbox" id="show_details" disabled="true" />
-    <label for="show_details">Show complete details</label>
+    <label for="show_details">Mostrar detalhes completos</label>
   </form>
 </div>
 
-<div id="ontology" >[loading...] </div>
+<div id="ontology" >[carregando...] </div>
 
 <script language="javascript">
   

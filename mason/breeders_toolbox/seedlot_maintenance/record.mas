@@ -6,7 +6,7 @@
 
 <%init>
     if ( !$ontology ) {
-        print "<p><strong>ERROR:</strong> Seedlot Maintenance Event Ontology not loaded!</p>";
+        print "<p><strong>ERRO:</strong> a ontologia de eventos de manutenção de lotes de sementes não foi carregada!</p>";
         return;
     }
     use JSON;
@@ -15,31 +15,31 @@
 
 <& /util/import_javascript.mas, classes => [ 'bootstrap_min.js', 'jquery' ] &>
 
-<& /page/page_title.mas, title => 'Record Seedlot Maintenance' &>
+<& /page/page_title.mas, title => 'Registrar manutenção de lote de sementes' &>
 
 <!-- SEEDLOT INFORMATION -->
-<&| /page/info_section.mas, title=>"Seedlot",  collapsible=>1, collapsed=>0, subtitle=>"" &>
+<&| /page/info_section.mas, title=>"Lote de sementes",  collapsible=>1, collapsed=>0, subtitle=>"" &>
     <br /><br />
     <div class="well seedlot_event_well">
         <form class="form-horizontal">
 
             <!-- Seedlot Name -->
             <div class="form-group">
-                <label class="col-sm-3 control-label">Name: </label>
+                <label class="col-sm-3 control-label">Nome: </label>
                 <div class="col-sm-5">
                     <input class="form-control" id="seedlot_event_name" type="text" value="">
                 </div>
                 <div class="col-sm-2">
-                    <button id="seedlot_event_name_update" class="btn btn-block btn-info"><span class="glyphicon glyphicon-refresh"></span> Update</button>
+                    <button id="seedlot_event_name_update" class="btn btn-block btn-info"><span class="glyphicon glyphicon-refresh"></span> Atualizar</button>
                 </div>
                 <div class="col-sm-2">
-                    <button id="seedlot_event_name_barcode" class="btn btn-block btn-default"><span class="glyphicon glyphicon-qrcode"></span> Barcode</button>
+                    <button id="seedlot_event_name_barcode" class="btn btn-block btn-default"><span class="glyphicon glyphicon-qrcode"></span> Código de barras</button>
                 </div>
             </div>
 
             <!-- Seedlot Contents -->
             <div class="form-group">
-                <label class="col-sm-3 control-label">Contents: </label>
+                <label class="col-sm-3 control-label">Conteúdo: </label>
                 <div class="col-sm-9">
                     <p class="seedlot_event_info" id="seedlot_event_contents"></p>
                 </div>
@@ -47,7 +47,7 @@
 
             <!-- Seedlot Location -->
             <div class="form-group">
-                <label class="col-sm-3 control-label">Location: </label>
+                <label class="col-sm-3 control-label">Local: </label>
                 <div class="col-sm-9">
                     <p class="seedlot_event_info" id="seedlot_event_location"></p>
                 </div>
@@ -55,7 +55,7 @@
 
             <!-- Seedlot Box -->
             <div class="form-group">
-                <label class="col-sm-3 control-label">Box: </label>
+                <label class="col-sm-3 control-label">Caixa: </label>
                 <div class="col-sm-9">
                     <p class="seedlot_event_info" id="seedlot_event_box"></p>
                 </div>
@@ -64,15 +64,15 @@
 % if ( defined $info_event_cvterms && scalar(@{$info_event_cvterms}) > 0 ) {
             <!-- Seedlot Events -->
             <div class="form-group">
-                <label class="col-sm-3 control-label">Recent Events: </label>
+                <label class="col-sm-3 control-label">Eventos recentes: </label>
                 <div class="col-sm-9">
                     <table class="table table-hover">
                         <thead>
                             <tr>
-                                <th>Event</th>
-                                <th>Value</th>
-                                <th>Notes</th>
-                                <th>Timestamp</th>
+                                <th>Evento</th>
+                                <th>Valor</th>
+                                <th>Observações</th>
+                                <th>Data e hora</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -96,20 +96,20 @@
 
 
 <!-- MAINTENANCE EVENTS -->
-<&| /page/info_section.mas, title=>"Maintenance Events",  collapsible=>1, collapsed=>0, subtitle=>"" &>
+<&| /page/info_section.mas, title=>"Eventos de manutenção",  collapsible=>1, collapsed=>0, subtitle=>"" &>
     <div id="seedlot_event_container"></div>
 </&>
 
 
 <!-- EVENT INFORMATION -->
-<&| /page/info_section.mas, title=>"Username/Timestamp",  collapsible=>1, collapsed=>0, subtitle=>"" &>
+<&| /page/info_section.mas, title=>"Usuário/data e hora",  collapsible=>1, collapsed=>0, subtitle=>"" &>
     <br /><br />
     <div class="well seedlot_event_well">
         <form class="form-horizontal">
 
             <!-- Operator -->
             <div class="form-group">
-                <label class="col-sm-3 control-label">Operator: </label>
+                <label class="col-sm-3 control-label">Responsável: </label>
                 <div class="col-sm-9">
                     <input class="form-control" id="seedlot_event_operator" name="seedlot_event_operator" type="text" value="<% $operator %>">
                 </div>
@@ -117,7 +117,7 @@
 
             <!-- Timestamp -->
             <div class="form-group">
-                <label class="col-sm-3 control-label">Timestamp: </label>
+                <label class="col-sm-3 control-label">Data e hora: </label>
                 <div class="col-sm-9">
                     <input class="form-control" id="seedlot_event_timestamp" name="seedlot_event_timestamp" type="text" value="">
                 </div>
@@ -131,7 +131,7 @@
 
 <!-- Submit Button -->
 <div class="center">
-    <button id="seedlot_event_submit" class="btn btn-primary btn-block" style="max-width: 600px; margin: auto" disabled>Submit</button>
+    <button id="seedlot_event_submit" class="btn btn-primary btn-block" style="max-width: 600px; margin: auto" disabled>Enviar</button>
 </div>
 <br /><br />
 
@@ -142,7 +142,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div id="seedlot_modal_body" class="modal-body"></div>
-            <div class="modal-footer"><button id="seedlot_modal_close" type="button" class="btn btn-default">Close</button></div>
+            <div class="modal-footer"><button id="seedlot_modal_close" type="button" class="btn btn-default">Fechar</button></div>
         </div>
     </div>
 </div>
@@ -188,7 +188,7 @@
      */
     jQuery(window).bind('beforeunload', function(e) {
         if ( PENDING_CHANGES ) {
-            return e.originalEvent.returnValue = "There are pending changes that have not yet been submitted to the database! Are you sure you want to leave the page?";
+            return e.originalEvent.returnValue = "Há alterações pendentes que ainda não foram enviadas ao banco de dados. Tem certeza de que deseja sair da página?";
         }
     });
 
@@ -231,7 +231,7 @@
                 jQuery('#seedlot_event_name').attr('disabled', true);
                 jQuery('#seedlot_event_name_update').attr('disabled', true);
                 jQuery('#seedlot_event_name_barcode').attr('disabled', true);
-                jQuery(".seedlot_event_info").html("Loading...");
+                jQuery(".seedlot_event_info").html("Carregando...");
                 jQuery(".seedlot_event_info_cvterm_value").html("");
                 jQuery(".seedlot_event_info_cvterm_notes").html("");
                 jQuery(".seedlot_event_info_cvterm_timestamp").html("");
@@ -362,7 +362,7 @@
 
                     // Values: Add buttons for pre-determined values
                     if ( values && values.length > 0 ) {
-                        html += "<button type='button' class='btn btn-primary seedlot_event_value seedlot_event_value_btn'>Not Recorded</button>";
+                        html += "<button type='button' class='btn btn-primary seedlot_event_value seedlot_event_value_btn'>Não registrado</button>";
                         for ( let k = 0; k < values.length; k++ ) {
                             let value = values[k];
                             html += "<button type='button' class='btn btn-default seedlot_event_value seedlot_event_value_btn'>" + value.name + "</button>";
@@ -387,7 +387,7 @@
 
                     // Notes Input
                     html += "<div id='seedlot_event_notes_input_div_" + event.cvterm_id + "' class='seedlot_event_notes_input_div'>";
-                    html += "<textarea class='form-control seedlot_event_notes_input' rows='3' placeholder='Notes about the Event'></textarea>";
+                    html += "<textarea class='form-control seedlot_event_notes_input' rows='3' placeholder='Observações sobre o evento'></textarea>";
                     html += "</div>";
 
                     // End Event Well
@@ -464,7 +464,7 @@
 
         // Check for Seedlot ID
         if ( !SEEDLOT_ID ) {
-            displayError("Please enter a valid Seedlot name");
+            displayError("Informe um nome de lote de sementes válido.");
             return;
         }
 
@@ -480,7 +480,7 @@
             let value = event_value.hasClass('seedlot_event_value_btn') ? event_value.html() : event_value.val();
             let notes = jQuery("#seedlot_event_notes_input_div_" + cvterm_id).find(".seedlot_event_notes_input").val();
 
-            if ( value && value !== "" && value !== "Not Recorded" ) {
+            if ( value && value !== "" && value !== "Não registrado" ) {
                 let event = {
                     cvterm_id: cvterm_id,
                     value: value,
@@ -494,13 +494,13 @@
 
         // Make sure there's at least one recorded event
         if ( !events || events.length === 0 ) {
-            displayError("One or more Events must be recorded");
+            displayError("É necessário registrar pelo menos um evento.");
             return;
         }
 
         // Disable Submit Button
         jQuery("#seedlot_event_submit").attr('disabled', true);
-        jQuery("#seedlot_event_submit").html("Submitting...");
+        jQuery("#seedlot_event_submit").html("Enviando...");
 
         // Submit the events
         jQuery.ajax({
@@ -511,27 +511,27 @@
             dataType: "json",
             success: function(data) {
                 if ( data && data.events && data.events.length === events.length ) {
-                    displaySuccess(data.events.length + " events successfully stored for Seedlot " + SEEDLOT_NAME);
+                    displaySuccess(data.events.length + " evento(s) armazenado(s) com sucesso para o lote de sementes " + SEEDLOT_NAME);
                     return _finish(true);
                 }
                 else if ( data && data.error ) {
-                    displayError("The events could not be submitted due to a database error:<br /><br /><pre><code>" + data.error + "</code></pre>");
+                    displayError("Não foi possível enviar os eventos devido a um erro no banco de dados:<br /><br /><pre><code>" + data.error + "</code></pre>");
                     return _finish();
                 }
                 else {
-                    displayError("The events could not be submitted due to an unknown database error");
+                    displayError("Não foi possível enviar os eventos devido a um erro desconhecido no banco de dados.");
                     return _finish();
                 }
             },
             error: function(msg) {
-                displayError("The events could not be submitted due to a database error:<br /><br /><pre><code>" + msg + "</code></pre>");
+                displayError("Não foi possível enviar os eventos devido a um erro no banco de dados:<br /><br /><pre><code>" + msg + "</code></pre>");
                 return _finish();
             }
         });
 
         function _finish(complete) {
             jQuery("#seedlot_event_submit").attr('disabled', false);
-            jQuery("#seedlot_event_submit").html("Submit");
+            jQuery("#seedlot_event_submit").html("Enviar");
             if ( complete ) {
                 window.scrollTo(0, 0);
                 resetUI();
@@ -544,7 +544,7 @@
      * @param {string} msg Error message to display (can include HTML)
      */
     function displayError(msg) {
-        displayModal("Error", "#a94442", msg);
+        displayModal("Erro", "#a94442", msg);
     }
 
     /**
@@ -552,7 +552,7 @@
      * @param {string} msg Success message to display (can include HTML)
      */
     function displaySuccess(msg) {
-        displayModal("Success", "#3c763d", msg);
+        displayModal("Sucesso", "#3c763d", msg);
     }
 
     /**

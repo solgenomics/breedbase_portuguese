@@ -11,22 +11,22 @@ $list_size
 <& /util/import_javascript.mas, classes => [ 'jquery.iframe-post-form', 'jquery', 'jquery.dataTables', 'CXGN.List'] &>
 <& /util/import_css.mas, paths => ['/documents/inc/datatables/jquery.dataTables.css'] &>
 
-<& /page/page_title.mas, title => "Details for List '$list_name'" &>
+<& /page/page_title.mas, title => "Detalhes da lista '$list_name'" &>
 
-<&| /page/info_section.mas, title=>"Details",  collapsible => 1, collapsed=>0,&>
+<&| /page/info_section.mas, title=>"Detalhes",  collapsible => 1, collapsed=>0,&>
     <table class="table table-bordered table-hover">
-        <tr><td><b>List Name</b></td><td><% $list_name %></td></tr>
-        <tr><td><b>List ID</b></td><td><% $list_id %></td></tr>
-        <tr><td><b>Type</b></td><td><% $list_type %></td></tr>
-        <tr><td><b>Number of Items</b></td><td><% $list_size %></td></tr>
-        <tr><td><b>Description</b></td><td><% $list_description %></td></tr>
+        <tr><td><b>Nome da lista</b></td><td><% $list_name %></td></tr>
+        <tr><td><b>ID da lista</b></td><td><% $list_id %></td></tr>
+        <tr><td><b>Tipo</b></td><td><% $list_type %></td></tr>
+        <tr><td><b>Número de itens</b></td><td><% $list_size %></td></tr>
+        <tr><td><b>Descrição</b></td><td><% $list_description %></td></tr>
     </table>
 </&>
 
-<&| /page/info_section.mas, title => 'List Items', collapsible=>1, collapsed=>0 &>
+<&| /page/info_section.mas, title => 'Itens da lista', collapsible=>1, collapsed=>0 &>
     <div class = "well well-sm">
         <form id="download_list_details" action="/list/download_details" method="POST">
-            <button class="btn btn-primary" type="button" id="download_details_button">Download List Items</button>
+            <button class="btn btn-primary" type="button" id="download_details_button">Baixar itens da lista</button>
             <input type="hidden" id="list_download_token" name="list_download_token"/>
             <input name="list_id" id="list_id" type="hidden" value="<% $list_id %>">
         </form>
@@ -51,21 +51,21 @@ jQuery(document).ready( function() {
         'autoWidth': false,
         'ajax': '/ajax/list/details/' + <% $list_id %>,
         'columns': [
-            { title: "Seedlot Name", "data": null, "render": function ( data, type, row ){return "<a href='/breeders/seedlot/"+row.seedlot_id+"'>"+row.seedlot_name+"</a>"}},
-            { title: "Content Name", "data": null, "render": function ( data, type, row ) {
+            { title: "Nome do lote de sementes", "data": null, "render": function ( data, type, row ){return "<a href='/breeders/seedlot/"+row.seedlot_id+"'>"+row.seedlot_name+"</a>"}},
+            { title: "Nome do conteúdo", "data": null, "render": function ( data, type, row ) {
                 if (row.content_type == 'accession'){
                     return "<a href='/stock/"+row.content_id+"/view'>"+row.content_name+"</a>"
                 } else if (row.content_type == 'cross') {
                     return "<a href='/cross/"+row.content_id+"'>"+row.content_name+"</a>"
                 }
             }},
-            { title: "Content Type", "data": "content_type" },
-            { title: "Material Type", "data": "material_type" },
-            { title: "Description", "data": "description" },
-            { title: "Box Name", "data": "box_name" },
-            { title: "Current Count", "data": "current_count" },
-            { title: "Current Weight", "data": "current_weight" },
-            { title: "Quality", "data": "quality" },
+            { title: "Tipo de conteúdo", "data": "content_type" },
+            { title: "Tipo de material", "data": "material_type" },
+            { title: "Descrição", "data": "description" },
+            { title: "Nome da caixa", "data": "box_name" },
+            { title: "Quantidade atual", "data": "current_count" },
+            { title: "Peso atual", "data": "current_weight" },
+            { title: "Qualidade", "data": "quality" },
         ],
     });
 

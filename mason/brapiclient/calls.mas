@@ -1,10 +1,10 @@
 <%args>
 </%args>
 
-<h4>Calls</h4>
+<h4>Chamadas</h4>
 
 <div id="brapi_calls_home_div">
-<button class="btn btn-primary" id="brapi_home_show_calls">Show Calls</button>
+<button class="btn btn-primary" id="brapi_home_show_calls">Mostrar chamadas</button>
 
 </div>
 
@@ -40,7 +40,7 @@ jQuery("#brapi_home_show_calls").click(function() {
         jQuery("#brapi_calls_home_div").empty().html(html);
       },
       error: function(response) {
-        alert('An error occurred getting calls');
+        alert('Ocorreu um erro ao obter as chamadas');
       }
     });
 });

@@ -8,9 +8,9 @@ $marker_names => []
     <table id="project_pcr_genotype_data" width="100%" class="table table-hover table-striped">
         <thead>
             <tr>
-                <th>Sample Name</th>
-                <th>Sample Type</th>
-                <th>Ploidy</th>
+                <th>Nome da amostra</th>
+                <th>Tipo de amostra</th>
+                <th>Ploidia</th>
 % foreach my $column_header(sort @$marker_names){
                 <th><%$column_header%></th>
 %}
@@ -23,17 +23,17 @@ $marker_names => []
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
             </div>
             <div class="modal-body">
                 <div class="container-fluid">
                     <p>
-                        <a id="project_pcr_genotyping_data_download_link">Download SSR Genotype Data</a>
+                        <a id="project_pcr_genotyping_data_download_link">Baixar dados de genótipos SSR</a>
                     </p>
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" name="project_pcr_genotype_data_close_button" id="project_pcr_genotype_data_close_button" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-default" name="project_pcr_genotype_data_close_button" id="project_pcr_genotype_data_close_button" data-dismiss="modal">Fechar</button>
             </div>
         </div>
     </div>

@@ -8,11 +8,11 @@ $stock_id
 <table class="table table-hover table-bordered" id="traitlist_summary_data" >
 <thead>
   <tr>
-    <th>Trait ID</th>
-    <th>Trait name</th>
-    <th>Average Value</th>
-    <th>Standard deviation</th>
-    <th>Count</th>
+    <th>ID da característica</th>
+    <th>Nome da característica</th>
+    <th>Valor médio</th>
+    <th>Desvio padrão</th>
+    <th>Quantidade</th>
   </tr>
 </thead>
 

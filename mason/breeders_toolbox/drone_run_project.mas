@@ -49,14 +49,14 @@ $drone_run_date => undef
 
 <br/>
 
-<& /page/page_title.mas, title=>"Imaging Event Project: ".$trial_name &>
+<& /page/page_title.mas, title=>"Projeto de evento de imageamento: ".$trial_name &>
 
-<& /page/detail_page_2_col_section.mas, info_section_collapsed => 0, trial_id => $trial_id, info_section_title => "<h4 style='display:inline'>Imaging Event Details</h4>", info_section_subtitle => 'View basic information about the imaging event project.', buttons_html => '<button class="btn btn-primary btn-sm" id="edit_drone_run_details" style="margin:3px">Edit Imaging Event Details</button>', icon_class => "glyphicon glyphicon-dashboard", info_section_id => "drone_run_project_details", trial_name => $trial_name, trial_description => $trial_description, identifier_prefix => $identifier_prefix, drone_run_date=>$drone_run_date &>
+<& /page/detail_page_2_col_section.mas, info_section_collapsed => 0, trial_id => $trial_id, info_section_title => "<h4 style='display:inline'>Detalhes do evento de imageamento</h4>", info_section_subtitle => 'Consulte as informações básicas do projeto do evento de imageamento.', buttons_html => '<button class="btn btn-primary btn-sm" id="edit_drone_run_details" style="margin:3px">Editar detalhes do evento de imageamento</button>', icon_class => "glyphicon glyphicon-dashboard", info_section_id => "drone_run_project_details", trial_name => $trial_name, trial_description => $trial_description, identifier_prefix => $identifier_prefix, drone_run_date=>$drone_run_date &>
 
-% my $data_agreement_link = '<button class="btn btn-sm btn-primary" disabled style="margin:3px">Add/edit data agreement</button>';
-% if ($user_can_modify) { $data_agreement_link = '<button class="btn btn-sm btn-primary" style="margin:3px" id="add_data_agreement">Add/edit data agreement</button>'; }
+% my $data_agreement_link = '<button class="btn btn-sm btn-primary" disabled style="margin:3px">Adicionar/editar acordo de dados</button>';
+% if ($user_can_modify) { $data_agreement_link = '<button class="btn btn-sm btn-primary" style="margin:3px" id="add_data_agreement">Adicionar/editar acordo de dados</button>'; }
 
-<& /page/detail_page_2_col_section.mas, trial_id => $trial_id, info_section_title => "<h4 style='display:inline'>Data Agreement License</h4>", info_section_subtitle => 'View and edit the public data agreement on this experiment.', icon_class => "glyphicon glyphicon-inbox", info_section_id => "trial_data_agreement_section", buttons_html => $data_agreement_link &>
+<& /page/detail_page_2_col_section.mas, trial_id => $trial_id, info_section_title => "<h4 style='display:inline'>Licença do acordo de dados</h4>", info_section_subtitle => 'Consulte e edite o acordo público de dados deste experimento.', icon_class => "glyphicon glyphicon-inbox", info_section_id => "trial_data_agreement_section", buttons_html => $data_agreement_link &>
 
 <& /breeders_toolbox/add_data_agreement_dialogs.mas, trial_id => $trial_id &>
 
@@ -65,14 +65,14 @@ $drone_run_date => undef
 <div class="modal-dialog modal-xl" role="document">
     <div class="modal-content ui-front">
         <div class="modal-header text-center">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title" id="droneRunDetailsEditDialog">Edit Imaging Event Details</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="droneRunDetailsEditDialog">Editar detalhes do evento de imageamento</h4>
         </div>
         <div class="modal-body" id="drone_run_details_edit_body">
             <div class="container-fluid">
             <form class="form-horizontal" role="form" method="post" enctype="multipart/form-data" encoding="multipart/form-data">
                 <div class="form-group">
-                    <label class="col-sm-3 control-label" for="edit_drone_run_name">Imaging Event Name: </label>
+                    <label class="col-sm-3 control-label" for="edit_drone_run_name">Nome do evento de imageamento: </label>
                     <div class="col-sm-8">
                       <div class="input-group">
                         <input class="form-control col-sm-8" id="edit_drone_run_name" title="name" type="text" value="<%$trial_name%>"/>
@@ -80,7 +80,7 @@ $drone_run_date => undef
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-3 control-label" for="edit_trial_description">Description: </label>
+                    <label class="col-sm-3 control-label" for="edit_trial_description">Descrição: </label>
                     <div class="col-sm-8">
                       <div class="input-group">
                         <textarea class="form-control" id="edit_drone_run_description" title="description" rows="5" maxlength="250"><% $trial_description %></textarea>
@@ -91,8 +91,8 @@ $drone_run_date => undef
             </div>
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal" id="edit_drone_run_details_cancel_button">Cancel</button>
-            <button type="button" class="btn btn-primary" id="save_drone_run_details">Save Changes</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal" id="edit_drone_run_details_cancel_button">Cancelar</button>
+            <button type="button" class="btn btn-primary" id="save_drone_run_details">Salvar alterações</button>
         </div>
     </div>
 </div>
@@ -123,12 +123,12 @@ jQuery(document).ready(function () {
           },
           success: function(response){
             if (response.success) {
-                alert('Details saved!');
+                alert('Detalhes salvos!');
             }
             location.reload();
           },
           error: function(response){
-              alert('Error saving details');
+              alert('Erro ao salvar os detalhes');
           }
 
       });

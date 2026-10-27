@@ -4,44 +4,37 @@
 
 <& /util/import_javascript.mas, classes => [ 'bootstrap_min.js', 'jquery' ] &>
 
-<& /page/page_title.mas, title => 'Seedlot Maintenance' &>
+<& /page/page_title.mas, title => 'Manutenção de lotes de sementes' &>
 
-<&| /page/info_section.mas, title=>"About Seedlot Maintenance",  collapsible => 1, collapsed => 1 &>
+<&| /page/info_section.mas, title=>"Sobre a manutenção de lotes de sementes",  collapsible => 1, collapsed => 1 &>
     <div class="well well-sm">
         <div class="panel panel-default">
             <div class="panel-body">
-                <p>Seedlot Maintenance allows you to record and document certain actions and/or observations taken 
-                for the proper maintenance of your Seedlots.  The actions and observations are timestamped so you can 
-                clearly track the maintenance and state of your Seedlots over time.</p>
-                <p>To record a new maintenance event for a particular Seedlot, use the <strong>Record Maintenance</strong> 
-                button below to enter the event information directly on the website.  You can also bulk upload maintenance 
-                events for one or more Seedlots using the <strong>Upload Maintenance</strong> button.</p>
-                <p>You can view the maintenance events for a single Seedlot on the Seedlot detail page by going to the 
-                <a href='/breeders/seedlots'><strong>Manage &gt; Seedlots</strong></a> page, searching for the Seedlot, 
-                and clicking its name in the results table.  You can also filter through all of the stored maintenance 
-                events using the search below.  The events can then be downloaded from the table displaying the results or 
-                downloaded in bulk from the <a href='/breeders/download'><strong>Manage &gt; Download</strong></a>
-                page using a list of Seedlots.</p>
+                <p>A manutenção de lotes de sementes permite registrar e documentar ações e observações realizadas para conservar adequadamente os lotes. As ações e observações recebem data e hora, permitindo acompanhar claramente a manutenção e o estado dos lotes ao longo do tempo.</p>
+                <p>Para registrar um novo evento de manutenção em um lote específico, use o botão <strong>Registrar manutenção</strong> abaixo e informe os dados diretamente no site. Também é possível enviar em lote eventos de manutenção de um ou mais lotes usando o botão <strong>Enviar registros de manutenção</strong>.</p>
+                <p>Para visualizar os eventos de manutenção de um único lote, acesse a página de detalhes por meio de
+                <a href='/breeders/seedlots'><strong>Gerenciar &gt; Lotes de sementes</strong></a>, localize o lote e clique em seu nome na tabela de resultados. A busca abaixo permite filtrar todos os eventos armazenados. Depois, os eventos podem ser baixados pela tabela de resultados ou em lote na página
+                <a href='/breeders/download'><strong>Gerenciar &gt; Baixar</strong></a>, usando uma lista de lotes de sementes.</p>
             </div>
         </div>
     </div>
 </&>
 
 <!-- Additional crop-specific seedlot maintenance tools -->
-<&| /page/info_section.mas, title=>"Seedlot Maintenance Tools",  collapsible => 1, collapsed => !$tool &>
+<&| /page/info_section.mas, title=>"Ferramentas de manutenção de lotes de sementes",  collapsible => 1, collapsed => !$tool &>
     <& /breeders_toolbox/seedlot_maintenance/tools.mas, collapsed => !$tool &>
 </&>
 
 <%perl>
     my $seedlot_subtitle = '';
     if ( !$c->user() ) {
-        $seedlot_subtitle = "Login to add Seedlot maintenance events";
+        $seedlot_subtitle = "Entre no sistema para adicionar eventos de manutenção de lotes de sementes";
     }
     elsif ( $c->user()->check_roles("curator") || $c->user()->check_roles("submitter") ) {
-        $seedlot_subtitle = '<button class="btn btn-sm btn-primary" style="margin:3px" id="record_events">Record Maintenace</button> <button class="btn btn-sm btn-primary" style="margin:3px" id="upload_events">Upload Maintenance</button>'
+        $seedlot_subtitle = '<button class="btn btn-sm btn-primary" style="margin:3px" id="record_events">Registrar manutenção</button> <button class="btn btn-sm btn-primary" style="margin:3px" id="upload_events">Enviar registros de manutenção</button>'
     }
 </%perl>
-<&| /page/info_section.mas, title=>"Seedlot Maintenance Events",  collapsible => 1, collapsed => !!$tool, subtitle => $seedlot_subtitle &>
+<&| /page/info_section.mas, title=>"Eventos de manutenção de lotes de sementes",  collapsible => 1, collapsed => !!$tool, subtitle => $seedlot_subtitle &>
     
     <& /breeders_toolbox/seedlot_maintenance/table.mas &>
 

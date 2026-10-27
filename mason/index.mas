@@ -13,17 +13,17 @@ $editable_stock_props => {}
       </div>
 
       <div>
-	<h3>What is Breedbase?</h3>
-	Breedbase is a comprehensive breeding management and analysis software. It can be used to design field layouts, collect phenotypic information using tablets, support the collection of genotyping samples in a field, store large amounts of high density genotypic information, and provide Genomic Selection related analyses and predictions. Breedbase supports the BrAPI standard.
-	<h3>How can I use Breedbase?</h3>
-	Breedbase is a web application that only requires a browser. To get your Breedbase instance, contact the <a href="/contact/form">Breedbase development team</a>.
-	<h3>What crops are using Breedbase?</h3>
-	There are a number of instances running for diverse crops, including Cassava (<a href="https://cassavabase.org/">https://cassavabase.org</a>), sweet potato (<a href="https://sweetpotatobase.org/">https://sweetpotatobase.org</a>), banana (<a href="https://musabase.org/">https://musabase.org</a>), rice (<a href="https://ricebase.org/">https://ricebase.org</a>), tomato and other Solanaceae (<a href="https://solgenomics.net">https://solgenomics.net/</a>) and many others.
+	<h3>O que é o Breedbase?</h3>
+	O Breedbase é um software completo para gestão e análise de programas de melhoramento. Ele permite criar delineamentos de campo, coletar dados fenotípicos com tablets, apoiar a coleta de amostras para genotipagem em campo, armazenar grandes volumes de dados genotípicos de alta densidade e realizar análises e predições relacionadas à seleção genômica. O Breedbase é compatível com o padrão BrAPI.
+	<h3>Como posso usar o Breedbase?</h3>
+	O Breedbase é uma aplicação web que requer apenas um navegador. Para obter sua própria instância do Breedbase, entre em contato com a <a href="/contact/form">equipe de desenvolvimento</a>.
+	<h3>Quais culturas usam o Breedbase?</h3>
+	Há várias instâncias para diferentes culturas, incluindo mandioca (<a href="https://cassavabase.org/">https://cassavabase.org</a>), batata-doce (<a href="https://sweetpotatobase.org/">https://sweetpotatobase.org</a>), banana (<a href="https://musabase.org/">https://musabase.org</a>), arroz (<a href="https://ricebase.org/">https://ricebase.org</a>), tomate e outras solanáceas (<a href="https://solgenomics.net">https://solgenomics.net/</a>), entre muitas outras.
       </div>
 
-      <h3>How can I learn more about Breedbase?</h3>
+      <h3>Como posso aprender mais sobre o Breedbase?</h3>
 
-      You can watch the Breedbase workshops on <a href="https://www.youtube.com/channel/UC3jrvvzGKKEHzOriDBgnj0A">Youtube</a>, covering topics such as ontologies, trial design, data collection using fieldbook, data analysis, and genomic selection. 
+      Você pode assistir às oficinas do Breedbase no <a href="https://www.youtube.com/channel/UC3jrvvzGKKEHzOriDBgnj0A">YouTube</a>. Os vídeos abordam ontologias, delineamento de ensaios, coleta de dados com o Field Book, análise de dados e seleção genômica.
       
       
 <div class="container-fluid">

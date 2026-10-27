@@ -1,6 +1,7 @@
 
 package SGN::Controller::AJAX::BreedersToolbox;
 
+use utf8;
 use Moose;
 
 use URI::FromHash 'uri';
@@ -49,7 +50,7 @@ sub store_breeding_program :Path('/breeders/program/store') Args(0) {
     my $desc = $c->req->param("desc");
 
     if (!($c->user() || $c->user()->check_roles('submitter'))) {
-        $c->stash->{rest} = { error => 'You need to be logged in and have sufficient privileges to add or edit a breeding program.' };
+        $c->stash->{rest} = { error => 'Você precisa entrar em sua conta e ter privilégios suficientes para adicionar ou editar um programa de melhoramento.' };
     }
 
     my $sp_person_id = $c->user() ? $c->user->get_object()->get_sp_person_id() : undef;
@@ -79,7 +80,7 @@ sub delete_breeding_program :Path('/breeders/program/delete') Args(1) {
     	$c->stash->{rest} = [ 1 ];
     }
     else {
-        $c->stash->{rest} = { error => "You need to be logged in with curator privileges to delete a breeding program." };
+        $c->stash->{rest} = { error => "Você precisa entrar em sua conta com privilégios de curador para excluir um programa de melhoramento." };
     }
 }
 

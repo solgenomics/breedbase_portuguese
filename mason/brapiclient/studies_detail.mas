@@ -3,9 +3,9 @@
 
 <div id="brapi_home_study_detail_div">
 
-    <h4>Study Details</h4>
-    <input name="brapi_home_studydbid" id="brapi_home_studydbid" class="form-control" type="text" placeholder="StudyDbId e.g. 137" value="137"/>
-    <button class="btn btn-primary" name="brapi_home_studydbid_submit" id="brapi_home_studydbid_submit">Get Details</button>
+    <h4>Detalhes do estudo</h4>
+    <input name="brapi_home_studydbid" id="brapi_home_studydbid" class="form-control" type="text" placeholder="ID do estudo, ex.: 137" value="137"/>
+    <button class="btn btn-primary" name="brapi_home_studydbid_submit" id="brapi_home_studydbid_submit">Obter detalhes</button>
     <br/><br/>
     <div id="brapi_studies_detail_result_div">
     </div>
@@ -25,7 +25,7 @@ jQuery(document).ready(function() {
 
           },
           error: function(response) {
-            alert('An error occurred');
+            alert('Ocorreu um erro');
           }
         });
     });

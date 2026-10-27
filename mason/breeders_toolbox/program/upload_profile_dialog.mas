@@ -11,89 +11,89 @@ $program_name
     <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="uploadProfileDialog">Upload Product Profile</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="uploadProfileDialog">Enviar perfil de produto</h4>
             </div>
             <div class="modal-body">
                 <div class="container-fluid">
                     <&| /util/workflow.mas, id=> "upload_profile_workflow" &>
-                        <&| /util/workflow.mas:step, title=> "Intro" &>
-                            <& /page/page_title.mas, title=>"Product Profile" &>
+                        <&| /util/workflow.mas:step, title=> "Introdução" &>
+                            <& /page/page_title.mas, title=>"Perfil de produto" &>
                             <ul>
-                                <li>Product profiles can be stored in the database for downstream variety selection process for each breeding program.</li>
-                                <li>To facilitate data curation, targeted trait names and trait IDs can be retrieved directly from the database.</li>
-                                <li>Please use the product profile template generated from our database to fill out product profile details.</li>
-                                <li>You can find the link for creating the template in the product profile section, simply provide a file name and a list of traits.</li>
-                                <li>Instructions for filling out the form are on the next page</li>
+                                <li>Os perfis de produto podem ser armazenados no banco de dados para apoiar o processo posterior de seleção de cultivares de cada programa de melhoramento.</li>
+                                <li>Para facilitar a curadoria dos dados, os nomes e IDs das características-alvo podem ser recuperados diretamente do banco de dados.</li>
+                                <li>Use o modelo de perfil de produto gerado pelo banco de dados para preencher os detalhes do perfil.</li>
+                                <li>O link para criar o modelo está na seção de perfis de produto; basta informar um nome de arquivo e uma lista de características.</li>
+                                <li>As instruções de preenchimento estão na próxima etapa.</li>
                             </ul>
                             <br/><br/>
                             <center>
-                                <button class="btn btn-primary" onclick="Workflow.complete(this);">Go to Next Step</button>
+                                <button class="btn btn-primary" onclick="Workflow.complete(this);">Ir para a próxima etapa</button>
                             </center>
                         </&>
-                        <&| /util/workflow.mas:step, title=> "File format" &>
-                            <& /page/page_title.mas, title=>"Make sure your file matches the correct file format" &>
+                        <&| /util/workflow.mas:step, title=> "Formato do arquivo" &>
+                            <& /page/page_title.mas, title=>"Verifique se o arquivo está no formato correto" &>
                             <center>
-                                <&| /page/explanation.mas, title=>'Product Profile Spreadsheet' &>
+                                <&| /page/explanation.mas, title=>'Planilha de perfil de produto' &>
                                     <p>
                                         <br>
-                                        <a id="product_profile_instructions">Instructions for Product Profile Spreadsheet</a>
+                                        <a id="product_profile_instructions">Instruções para a planilha de perfil de produto</a>
                                         <br>
                                         <br>
                                     </p>
                                 </&>
-                                <button class="btn btn-primary" onclick="Workflow.complete(this);">Once you think your file matches, go to Next Step</button>
+                                <button class="btn btn-primary" onclick="Workflow.complete(this);">Quando o arquivo estiver correto, vá para a próxima etapa</button>
                             </center>
                         </&>
-                        <&| /util/workflow.mas:step, title=> "Upload Product Profile" &>
-                            <& /page/page_title.mas, title=>"Provide basic information about the product profile and upload your file" &>
+                        <&| /util/workflow.mas:step, title=> "Enviar perfil de produto" &>
+                            <& /page/page_title.mas, title=>"Informe os dados básicos do perfil de produto e envie o arquivo" &>
                             <form class="form-horizontal" role="form" method="post" enctype="multipart/form-data" encoding="multipart/form-data" id="upload_profile_form" name="upload_profile_form">
                                 <div class="form-group">
-                                    <label class="col-sm-3 control-label">Breeding Program: </label>
+                                    <label class="col-sm-3 control-label">Programa de melhoramento: </label>
                                     <div class="col-sm-9">
                                         <input class="form-control" name="profile_program_name" id="profile_program_name" disabled value="<% $program_name %>">
                                         <input name="profile_program_id" id="profile_program_id" type="hidden" value="<% $program_id %>">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-sm-3 control-label">Product Profile Name: </label>
+                                    <label class="col-sm-3 control-label">Nome do perfil de produto: </label>
                                     <div class="col-sm-9">
                                         <input class="form-control" id="new_profile_name" name="new_profile_name" type="text"/>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-sm-3 control-label">Scope: </label>
+                                    <label class="col-sm-3 control-label">Escopo: </label>
                                     <div class="col-sm-9">
                                         <input class="form-control" id="new_profile_scope" name="new_profile_scope" type="text"/>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-sm-3 control-label">Upload File (.xls or .xlsx): </label>
+                                    <label class="col-sm-3 control-label">Enviar arquivo (.xls ou .xlsx): </label>
                                     <div class="col-sm-9" >
                                         <input type="file" name="profile_uploaded_file" id="profile_uploaded_file" encoding="multipart/form-data" />
                                     </div>
                                 </div>
                             </form>
                             <center>
-                                <button type="button" class="btn btn-lg btn-primary" onclick="Workflow.complete(this, false);" id ="upload_profile_submit" name="upload_profile_submit" >Upload Profile</button><br/><br/>
+                                <button type="button" class="btn btn-lg btn-primary" onclick="Workflow.complete(this, false);" id ="upload_profile_submit" name="upload_profile_submit" >Enviar perfil</button><br/><br/>
                             </center>
                         </&>
-                        <&| /util/workflow.mas:complete, title=> "Complete" &>
-                            <& /page/page_title.mas, title=>"Finished! Your profile is now in the database" &>
+                        <&| /util/workflow.mas:complete, title=> "Concluído" &>
+                            <& /page/page_title.mas, title=>"Concluído! Seu perfil está no banco de dados" &>
                             <p>
                                 <span class="ui-icon ui-icon-circle-check" style="float: left; margin: 0 7px 50px 0;"></span>
-                                The profile file was uploaded successfully
+                                O arquivo do perfil foi enviado com sucesso.
                             </p>
                             <br/>
                             <center>
-                                <button class="btn btn-primary" name="upload_profile_success_complete_button">The profile was saved to the database with no errors! Congrats Click Here</button><br/><br/>
+                                <button class="btn btn-primary" name="upload_profile_success_complete_button">O perfil foi salvo no banco de dados sem erros. Clique aqui para concluir</button><br/><br/>
                             </center>
                         </&>
                     </&>
                 </div>
             </div>
             <div class="modal-footer">
-                <button id="close_profile_upload_dialog" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button id="close_profile_upload_dialog" type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
             </div>
         </div>
     </div>
@@ -103,8 +103,8 @@ $program_name
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="uploadProfileErrorDialog">Upload Profile File Error</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="uploadProfileErrorDialog">Erro ao enviar o arquivo do perfil</h4>
             </div>
             <div class="modal-body">
                 <div class="container-fluid">
@@ -114,7 +114,7 @@ $program_name
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
             </div>
         </div>
     </div>
@@ -124,55 +124,55 @@ $program_name
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="profileInstructionDialog">Instructions for Product Profile Spreadsheet</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="profileInstructionDialog">Instruções para a planilha de perfil de produto</h4>
             </div>
             <div class="modal-body">
                 <div class="container-fluid">
                     <b>
-                        Product Profile Template
+                        Modelo de perfil de produto
                     </b>
                     <ul>
-                        <li>Product profile template is an Excel file (.xls)</li>
-                        <li>After filling out the product profile details, please also save the spreadsheet in the .xls format</li>
-                        <li>Please do not modify or delete any column header in the template.
+                        <li>O modelo de perfil de produto é um arquivo Excel (.xls).</li>
+                        <li>Após preencher os detalhes do perfil de produto, salve também a planilha no formato .xls.</li>
+                        <li>Não modifique nem exclua nenhum cabeçalho de coluna do modelo.</li>
                     </ul>
                     <br>
                     <b>
-                        Header:
+                        Cabeçalho:
                     </b>
                     <br>
                     <table class="table table-bordered table-hover">
                         <tbody>
                             <tr>
-                                <td>Trait Name</td>
-                                <td>Target Value</td>
-                                <td>Benchmark Variety</td>
-                                <td>Performance (equal, smaller, larger)</td>
-                                <td>Weight</td>
-                                <td>Trait Type</td>
+                                <td>Trait Name (nome da característica)</td>
+                                <td>Target Value (valor-alvo)</td>
+                                <td>Benchmark Variety (cultivar de referência)</td>
+                                <td>Performance (desempenho: equal, smaller, larger)</td>
+                                <td>Weight (peso)</td>
+                                <td>Trait Type (tipo de característica)</td>
                             </tr>
                         </tbody>
                     </table>
                     <b>
-                        Required columns:
+                        Colunas obrigatórias:
                     </b>
                     <ul>
-                        <li><b>Trait Name:</b> The template already contains trait names based on your trait list</li>
-                        <li><b>Target Value or Benchmark Variety:</b> Please indicates <b>either</b> a target value <b>or</b> a benchmark variety for each targeted trait. Benchmark variety must exist in the database.</li>
-                        <li><b>Performance:</b> Please specifies the performance of each targeted trait (equal, smaller or larger) compared to the target value or benchmark variety </li>
+                        <li><b>Trait Name:</b> o modelo já contém os nomes das características com base na sua lista.</li>
+                        <li><b>Target Value ou Benchmark Variety:</b> informe <b>um</b> valor-alvo <b>ou</b> uma cultivar de referência para cada característica-alvo. A cultivar de referência deve existir no banco de dados.</li>
+                        <li><b>Performance:</b> informe o desempenho de cada característica-alvo (<code>equal</code>, <code>smaller</code> ou <code>larger</code>) em comparação ao valor-alvo ou à cultivar de referência.</li>
                     </ul>
                     <b>
-                        Optional columns:
+                        Colunas opcionais:
                     </b>
                     <ul>
-                        <li><b>Weight:</b> Default is 1</li>
-                        <li><b>Trait Type:</b> e.g. basic trait, value-added trait</li>
+                        <li><b>Weight:</b> o valor padrão é 1.</li>
+                        <li><b>Trait Type:</b> por exemplo, característica básica ou característica de valor agregado.</li>
                     </ul>
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
             </div>
         </div>
     </div>
@@ -199,15 +199,15 @@ jQuery(document).ready(function(){
         jQuery('#upload_profile_form').attr("action", '/ajax/breeders/program/upload_profile');
 
         if (program_id === '') {
-            alert("Please choose a breeding program");
+            alert("Selecione um programa de melhoramento");
             return;
         }
         if (new_profile_name === '') {
-            alert("Please enter a profile name");
+            alert("Informe um nome para o perfil");
             return;
         }
         if (new_profile_scope == '') {
-            alert("Please enter a scope");
+            alert("Informe um escopo");
             return;
         }
         jQuery('#upload_profile_form').submit();
@@ -221,7 +221,7 @@ jQuery(document).ready(function(){
             jQuery('#working_modal').modal("show");
             if (profile_uploaded_file == '') {
                 jQuery('#working_modal').modal("hide");
-                alert("No file selected");
+                alert("Nenhum arquivo selecionado");
             }
         },
         complete: function(response) {

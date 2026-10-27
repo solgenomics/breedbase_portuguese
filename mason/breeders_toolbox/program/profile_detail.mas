@@ -8,9 +8,9 @@ $profile_name
 <& /util/import_css.mas, paths => ['/documents/inc/datatables/jquery.dataTables.css'] &>
 
 
-<& /page/page_title.mas, title => "Profile: '$profile_name'" &>
+<& /page/page_title.mas, title => "Perfil: '$profile_name'" &>
 
-<&| /page/info_section.mas, title => 'Details', collapsible=>1, collapsed=>0 &>
+<&| /page/info_section.mas, title => 'Detalhes', collapsible=>1, collapsed=>0 &>
     <div class = "well well-sm">
         <div class = "panel panel-default">
             <div class = "panel-body">
@@ -18,12 +18,12 @@ $profile_name
                     <table id = "profile_detail_table" class="table table-hover table-striped">
                         <thead>
                             <tr>
-                                <th>Trait Name</th>
-                                <th>Target Value</th>
-                                <th>Benchmark Variety</th>
-                                <th>Performance</th>
-                                <th>Weight</th>
-                                <th>Trait Type</th>
+                                <th>Nome da característica</th>
+                                <th>Valor-alvo</th>
+                                <th>Cultivar de referência</th>
+                                <th>Desempenho</th>
+                                <th>Peso</th>
+                                <th>Tipo de característica</th>
                             </tr>
                         </thead>
                     </table>

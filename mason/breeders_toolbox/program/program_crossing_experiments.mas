@@ -9,8 +9,8 @@ $program_id
 <table id="program_crossing_experiments" class="display">
     <thead>
         <tr>
-            <th>Crossing Experiment Name</th>
-            <th>Description</th>
+            <th>Nome do experimento de cruzamento</th>
+            <th>Descrição</th>
         </tr>
     </thead>
 </table>

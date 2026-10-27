@@ -9,9 +9,9 @@ $main_production_site_url
 </%args>
 
 <div class="well">
-    <h3>Export to Expression Atlas</h3>
-    <button class="btn btn-primary" id="export_trial_to_expression_atlas" name="export_trial_to_expression_atlas">Export</button>
-    <a href="<% $expression_atlas_url %>/expression_viewer/input" target="_blank" class="btn btn-primary" >Go To Expression Atlas</a>
+    <h3>Exportar para o Expression Atlas</h3>
+    <button class="btn btn-primary" id="export_trial_to_expression_atlas" name="export_trial_to_expression_atlas">Exportar</button>
+    <a href="<% $expression_atlas_url %>/expression_viewer/input" target="_blank" class="btn btn-primary" >Acessar o Expression Atlas</a>
 </div>
 
 
@@ -19,59 +19,59 @@ $main_production_site_url
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="expressionAtlasExportDialog">Export <% $trial_name %> Phenotypes to Expression Atlas</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="expressionAtlasExportDialog">Exportar os fenótipos de <% $trial_name %> para o Expression Atlas</h4>
       </div>
       <div class="modal-body">
         <div class="container-fluid">
 
             <form class="form-horizontal" >
                 <div class="form-group">
-                    <label class="col-sm-3 control-label">Project Name: </label>
+                    <label class="col-sm-3 control-label">Nome do projeto: </label>
                     <div class="col-sm-9" >
                         <input type="text" class="form-control" id="expression_atlas_export_name" value="<% $trial_name %>" />
                     </div>
                 </div>
 				<div class="form-group">
-					<label class="col-sm-3 control-label">Trial Name(s): </label>
+					<label class="col-sm-3 control-label">Nome(s) do(s) ensaio(s): </label>
 					<div class="col-sm-9" >
 						<div id="expression_atlas_trial_select_div">
 % if ($trial_id) {
 						<input type="text" class="form-control" value="<% $trial_id %>" disabled/>
 						<input type="hidden" id="expression_atlas_trial_id" name="expression_atlas_trial_id" value="<% $trial_id %>" />
 % } else {
-[Loading...]
+[Carregando...]
 % }
 						</div>
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-sm-3 control-label">Trait Name(s): <br/><small>Select None for All</small></label>
+					<label class="col-sm-3 control-label">Nome(s) da(s) característica(s): <br/><small>Não selecione nenhuma para incluir todas</small></label>
 					<div class="col-sm-9" >
 						<div id="expression_atlas_trait_select_div">
-							<p>First Select One or More Trials</p>
+							<p>Primeiro selecione um ou mais ensaios</p>
 						</div>
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-sm-3 control-label">Accession Name(s): <br/><small>Select None for All</small></label>
+					<label class="col-sm-3 control-label">Nome(s) do(s) acesso(s): <br/><small>Não selecione nenhum para incluir todos</small></label>
 					<div class="col-sm-9" >
 						<div id="expression_atlas_accession_select_div">
-							<p>First Select One or More Trials</p>
+							<p>Primeiro selecione um ou mais ensaios</p>
 						</div>
 					</div>
 				</div>
                 <div class="form-group">
-                    <label class="col-sm-3 control-label">Export Options: </label>
+                    <label class="col-sm-3 control-label">Opções de exportação: </label>
                     <div class="col-sm-9" >
                         <select class="form-control" id="expression_atlas_export_type">
-                            <option value="6">3 Dimensions are: Traits, Row Number, Col Number</option>
+                            <option value="6">As 3 dimensões são: características, número da linha e número da coluna</option>
 %  if ($site_project_name eq 'CassBase'){
-                            <option value="1">3 Dimensions are: Metabolites, Accessions + Plant Age + Sampling Time of Day, Tissues</option>
-                            <option value="2">2 Dimensions are: Metabolites + Tissues and Agronomic Traits, Accessions + Plant Age</option>
-                            <option value="3">2 Dimensions are: Metabolites + Tissues (Week 16) and Agronomic Traits (Week 16), Accessions</option>
-                            <option value="4">2 Dimensions are: Metabolites + Tissues (Week 16) and Agronomic Traits (Week 52), Accessions</option>
-                            <option value="5">2 Dimensions are: Metabolites + Tissues (Week 16) and Agronomic Traits (Week 52), Accessions (EXCLUDING TMEB419)</option>
+                            <option value="1">As 3 dimensões são: metabólitos, acessos + idade da planta + horário da amostragem e tecidos</option>
+                            <option value="2">As 2 dimensões são: metabólitos + tecidos e características agronômicas; acessos + idade da planta</option>
+                            <option value="3">As 2 dimensões são: metabólitos + tecidos (semana 16) e características agronômicas (semana 16); acessos</option>
+                            <option value="4">As 2 dimensões são: metabólitos + tecidos (semana 16) e características agronômicas (semana 52); acessos</option>
+                            <option value="5">As 2 dimensões são: metabólitos + tecidos (semana 16) e características agronômicas (semana 52); acessos (EXCETO TMEB419)</option>
 %  }
                         </select>
                     </div>
@@ -81,8 +81,8 @@ $main_production_site_url
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" name="expression_atlas_export_cancel_button" id="expression_atlas_export_cancel_button" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" name="expression_atlas_export_ok_button" id="expression_atlas_export_ok_button" title="Submit">Submit</button>
+        <button type="button" class="btn btn-default" name="expression_atlas_export_cancel_button" id="expression_atlas_export_cancel_button" data-dismiss="modal">Fechar</button>
+        <button type="button" class="btn btn-primary" name="expression_atlas_export_ok_button" id="expression_atlas_export_ok_button" title="Enviar">Enviar</button>
       </div>
     </div>
   </div>
@@ -92,7 +92,7 @@ $main_production_site_url
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header" style="text-align: center">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title" id="submitExpressionAtlasDialog">Expression Atlas</h4>
             </div>
             <div class="modal-body">
@@ -102,7 +102,7 @@ $main_production_site_url
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
             </div>
         </div>
     </div>
@@ -146,13 +146,13 @@ jQuery(document).ready(function() {
         var export_name = jQuery('#expression_atlas_export_name').val();
         var export_type = jQuery('#expression_atlas_export_type').val();
         if (export_name == '' || !export_name){
-            jQuery('#submit_export_to_expression_atlas_message').html("Project Name is required. This is the project name that will appear in the expression atlas.");
+            jQuery('#submit_export_to_expression_atlas_message').html("O nome do projeto é obrigatório. Esse é o nome que aparecerá no Expression Atlas.");
             jQuery('#submit_export_to_expression_atlas_modal').modal('show');
         } else if (export_type == '' || !export_type){
-            jQuery('#submit_export_to_expression_atlas_message').html("Export type is required.");
+            jQuery('#submit_export_to_expression_atlas_message').html("O tipo de exportação é obrigatório.");
             jQuery('#submit_export_to_expression_atlas_modal').modal('show');
         } else if (combined_trial_ids.length < 1 || !combined_trial_ids){
-            jQuery('#submit_export_to_expression_atlas_message').html("Please select at least one trial.");
+            jQuery('#submit_export_to_expression_atlas_message').html("Selecione pelo menos um ensaio.");
             jQuery('#submit_export_to_expression_atlas_modal').modal('show');
         } else {
 
@@ -164,12 +164,12 @@ jQuery(document).ready(function() {
                 },
                 success: function (response) {
                     jQuery('#working_modal').modal("hide");
-                    jQuery('#submit_export_to_expression_atlas_message').html("Succesfully exported trial to Expression Atlas!");
+                    jQuery('#submit_export_to_expression_atlas_message').html("Ensaio exportado para o Expression Atlas com sucesso!");
                     jQuery('#submit_export_to_expression_atlas_modal').modal('show');
                 },
                 error: function () {
                     jQuery('#working_modal').modal("hide");
-                    jQuery('#submit_export_to_expression_atlas_message').html('An error occurred exporting trial to Expression Atlas.');
+                    jQuery('#submit_export_to_expression_atlas_message').html('Ocorreu um erro ao exportar o ensaio para o Expression Atlas.');
                     jQuery('#submit_export_to_expression_atlas_modal').modal('show');
                 }
             });

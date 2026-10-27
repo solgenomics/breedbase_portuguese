@@ -3,14 +3,14 @@
 
 <& /util/import_javascript.mas, classes => [ 'brapi.Table' ] &>
 
-<h4>MarkerProfile Search</h4>
+<h4>Busca de perfis de marcadores</h4>
 
 <div id="brapi_markerprofile_search_home_div">
 
-<input name="brapi_markerprofile_search_germplasmDbId" id="brapi_markerprofile_search_germplasmDbId" class="form-control" type="text" placeholder="GermplasmDbId" />
-<input name="brapi_markerprofile_search_studyDbId" id="brapi_markerprofile_search_studyDbId" class="form-control" type="text" placeholder="StudyDbId" />
-<input name="brapi_markerprofile_search_methodDbId" id="brapi_markerprofile_search_methodDbId" class="form-control" type="text" placeholder="MethodDbId" />
-<button class="btn btn-primary" name="brapi_markerprofile_search_submit" id="brapi_markerprofile_search_submit">Search</button>
+<input name="brapi_markerprofile_search_germplasmDbId" id="brapi_markerprofile_search_germplasmDbId" class="form-control" type="text" placeholder="ID do germoplasma" />
+<input name="brapi_markerprofile_search_studyDbId" id="brapi_markerprofile_search_studyDbId" class="form-control" type="text" placeholder="ID do estudo" />
+<input name="brapi_markerprofile_search_methodDbId" id="brapi_markerprofile_search_methodDbId" class="form-control" type="text" placeholder="ID do método" />
+<button class="btn btn-primary" name="brapi_markerprofile_search_submit" id="brapi_markerprofile_search_submit">Buscar</button>
 
 <br/><br/>
 
@@ -33,7 +33,7 @@ jQuery(document).ready(function() {
 
           },
           error: function(response) {
-            alert('An error occurred');
+            alert('Ocorreu um erro');
           }
         });
     });

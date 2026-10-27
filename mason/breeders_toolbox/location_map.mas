@@ -4,7 +4,7 @@ $user_id => undef
 </%args>
 
 <& /util/import_javascript.mas, classes => ['leaflet', 'esri-leaflet', 'esri-leaflet-geocoder-debug', 'leaflet_extra-markers_min', 'jquery.dstk'] &>
-<center><p><i> Add a new location by clicking on the map. Or select an exisiting location to view details and options.</i></p></center>
+<center><p><i>Adicione um novo local clicando no mapa ou selecione um local existente para ver seus detalhes e opções.</i></p></center>
 <br>
 <div id="location_map" style="height: 540px;"></div>
 
@@ -12,27 +12,27 @@ $user_id => undef
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="storeLocationDialog">Location Details</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="storeLocationDialog">Dados do local</h4>
       </div>
       <div class="modal-body">
         <div class="container-fluid">
 	  <form class="form-horizontal" role="form" name="store_location_form" id="store_location_form">
         <div class="form-group" id="location_id" style="display: none"></div>
 	    <div class="form-group">
-      	      <label class="col-sm-2 control-label">Name: </label>
+              <label class="col-sm-2 control-label">Nome: </label>
       	      <div class="col-sm-10">
 		<input class="form-control" name="location_name" id="location_name" type="text" />
               </div>
 	    </div>
         <div class="form-group">
-      	      <label class="col-sm-2 control-label">Abbreviation: </label>
+              <label class="col-sm-2 control-label">Abreviação: </label>
       	      <div class="col-sm-10">
 		<input class="form-control" name="location_abbreviation" id="location_abbreviation" type="text" />
               </div>
 	    </div>
         <div class="form-group">
-      	      <label class="col-sm-2 control-label">Country: </label>
+              <label class="col-sm-2 control-label">País: </label>
       	      <div class="col-sm-10">
                   <select class="form-control" id="location_country" name="location_country">
                     <option value=""></option>
@@ -286,23 +286,23 @@ $user_id => undef
               </div>
 	    </div>
         <div class="form-group">
-      	      <label class="col-sm-2 control-label">Program: (One or More)</label>
+              <label class="col-sm-2 control-label">Programa: (um ou mais)</label>
       	      <div class="col-sm-10" id="breeding_program" name="breeding_program">
               </div>
 	    </div>
         <div class="form-group">
-      	      <label class="col-sm-2 control-label">Type: </label>
+              <label class="col-sm-2 control-label">Tipo: </label>
       	      <div class="col-sm-10">
                   <select class="form-control" id="location_type" name="location_type">
                       <option value=""></option>
-                      <option value="Town">Town</option>
-                      <option value="Farm">Farm</option>
-                      <option value="Field">Field</option>
-                      <option value="Greenhouse">Greenhouse</option>
-                      <option value="Screenhouse">Screenhouse</option>
-                      <option value="Lab">Lab</option>
-                      <option value="Storage">Storage</option>
-                      <option value="Other">Other</option>
+                      <option value="Town">Cidade</option>
+                      <option value="Farm">Fazenda</option>
+                      <option value="Field">Campo</option>
+                      <option value="Greenhouse">Estufa</option>
+                      <option value="Screenhouse">Telado</option>
+                      <option value="Lab">Laboratório</option>
+                      <option value="Storage">Armazenamento</option>
+                      <option value="Other">Outro</option>
                   </select>
               </div>
         </div>
@@ -325,17 +325,17 @@ $user_id => undef
             </div>
         </div>
         <div class="form-group">
-            <label class="col-sm-6 control-label"><i>Optional:</i> Nearest NOAA Weather Station ID (<a href="https://www.ncdc.noaa.gov/cdo-web/datatools/findstation" target="_blank">Search Here</a>)</label>
+            <label class="col-sm-6 control-label"><i>Opcional:</i> ID da estação meteorológica NOAA mais próxima (<a href="https://www.ncdc.noaa.gov/cdo-web/datatools/findstation" target="_blank">Pesquisar aqui</a>)</label>
             <div class="col-sm-6">
-                <input class="form-control" name="location_noaa_station_id" id="location_noaa_station_id" type="text" placeholder="e.g. GHCND:USC00300331"/>
+                <input class="form-control" name="location_noaa_station_id" id="location_noaa_station_id" type="text" placeholder="ex.: GHCND:USC00300331"/>
             </div>
         </div>
 	  </form>
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" name="store_location_submit" id="store_location_submit">Store Location Details</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+        <button type="button" class="btn btn-primary" name="store_location_submit" id="store_location_submit">Salvar dados do local</button>
       </div>
     </div>
   </div>
@@ -344,6 +344,23 @@ $user_id => undef
 <script defer="defer">
 
 jQuery(document).ready(function() {
+
+  var countryAlpha2Codes = {"ABW":"AW","AFG":"AF","AGO":"AO","AIA":"AI","ALA":"AX","ALB":"AL","AND":"AD","ARE":"AE","ARG":"AR","ARM":"AM","ASM":"AS","ATA":"AQ","ATF":"TF","ATG":"AG","AUS":"AU","AUT":"AT","AZE":"AZ","BDI":"BI","BEL":"BE","BEN":"BJ","BES":"BQ","BFA":"BF","BGD":"BD","BGR":"BG","BHR":"BH","BHS":"BS","BIH":"BA","BLM":"BL","BLR":"BY","BLZ":"BZ","BMU":"BM","BOL":"BO","BRA":"BR","BRB":"BB","BRN":"BN","BTN":"BT","BVT":"BV","BWA":"BW","CAF":"CF","CAN":"CA","CCK":"CC","CHE":"CH","CHL":"CL","CHN":"CN","CIV":"CI","CMR":"CM","COD":"CD","COG":"CG","COK":"CK","COL":"CO","COM":"KM","CPV":"CV","CRI":"CR","CUB":"CU","CUW":"CW","CXR":"CX","CYM":"KY","CYP":"CY","CZE":"CZ","DEU":"DE","DJI":"DJ","DMA":"DM","DNK":"DK","DOM":"DO","DZA":"DZ","ECU":"EC","EGY":"EG","ERI":"ER","ESH":"EH","ESP":"ES","EST":"EE","ETH":"ET","FIN":"FI","FJI":"FJ","FLK":"FK","FRA":"FR","FRO":"FO","FSM":"FM","GAB":"GA","GBR":"GB","GEO":"GE","GGY":"GG","GHA":"GH","GIB":"GI","GIN":"GN","GLP":"GP","GMB":"GM","GNB":"GW","GNQ":"GQ","GRC":"GR","GRD":"GD","GRL":"GL","GTM":"GT","GUF":"GF","GUM":"GU","GUY":"GY","HKG":"HK","HMD":"HM","HND":"HN","HRV":"HR","HTI":"HT","HUN":"HU","IDN":"ID","IMN":"IM","IND":"IN","IOT":"IO","IRL":"IE","IRN":"IR","IRQ":"IQ","ISL":"IS","ISR":"IL","ITA":"IT","JAM":"JM","JEY":"JE","JOR":"JO","JPN":"JP","KAZ":"KZ","KEN":"KE","KGZ":"KG","KHM":"KH","KIR":"KI","KNA":"KN","KOR":"KR","KWT":"KW","LAO":"LA","LBN":"LB","LBR":"LR","LBY":"LY","LCA":"LC","LIE":"LI","LKA":"LK","LSO":"LS","LTU":"LT","LUX":"LU","LVA":"LV","MAC":"MO","MAF":"MF","MAR":"MA","MCO":"MC","MDA":"MD","MDG":"MG","MDV":"MV","MEX":"MX","MHL":"MH","MKD":"MK","MLI":"ML","MLT":"MT","MMR":"MM","MNE":"ME","MNG":"MN","MNP":"MP","MOZ":"MZ","MRT":"MR","MSR":"MS","MTQ":"MQ","MUS":"MU","MWI":"MW","MYS":"MY","MYT":"YT","NAM":"NA","NCL":"NC","NER":"NE","NFK":"NF","NGA":"NG","NIC":"NI","NIU":"NU","NLD":"NL","NOR":"NO","NPL":"NP","NRU":"NR","NZL":"NZ","OMN":"OM","PAK":"PK","PAN":"PA","PCN":"PN","PER":"PE","PHL":"PH","PLW":"PW","PNG":"PG","POL":"PL","PRI":"PR","PRK":"KP","PRT":"PT","PRY":"PY","PSE":"PS","PYF":"PF","QAT":"QA","REU":"RE","ROU":"RO","RUS":"RU","RWA":"RW","SAU":"SA","SDN":"SD","SEN":"SN","SGP":"SG","SGS":"GS","SHN":"SH","SJM":"SJ","SLB":"SB","SLE":"SL","SLV":"SV","SMR":"SM","SOM":"SO","SPM":"PM","SRB":"RS","SSD":"SS","STP":"ST","SUR":"SR","SVK":"SK","SVN":"SI","SWE":"SE","SWZ":"SZ","SXM":"SX","SYC":"SC","SYR":"SY","TCA":"TC","TCD":"TD","TGO":"TG","THA":"TH","TJK":"TJ","TKL":"TK","TKM":"TM","TLS":"TL","TON":"TO","TTO":"TT","TUN":"TN","TUR":"TR","TUV":"TV","TWN":"TW","TZA":"TZ","UGA":"UG","UKR":"UA","UMI":"UM","URY":"UY","USA":"US","UZB":"UZ","VAT":"VA","VCT":"VC","VEN":"VE","VGB":"VG","VIR":"VI","VNM":"VN","VUT":"VU","WLF":"WF","WSM":"WS","YEM":"YE","ZAF":"ZA","ZMB":"ZM","ZWE":"ZW"};
+  if (typeof Intl !== 'undefined' && Intl.DisplayNames) {
+      var countryNamesPtBr = new Intl.DisplayNames(['pt-BR'], { type: 'region' });
+      window.breedbaseCountryDisplayNamePtBr = function(countryCode, fallbackName) {
+          return countryAlpha2Codes[countryCode] ? countryNamesPtBr.of(countryAlpha2Codes[countryCode]) : fallbackName;
+      };
+      $('#location_country option').each(function() {
+          var countryCode = $(this).val();
+          if (!countryCode || !countryAlpha2Codes[countryCode]) {
+              return;
+          }
+          var originalName = $(this).text().replace(/^[^\s]+(.*)/, '$1').trim();
+          $(this).attr('data-country-name', originalName);
+          $(this).text(countryCode + ' ' + window.breedbaseCountryDisplayNamePtBr(countryCode, originalName));
+      });
+  }
 
   $('#add_location_link').click( function() {
       $('#add_location_dialog').modal("show");
@@ -354,7 +371,7 @@ jQuery(document).ready(function() {
        {
            empty: 1,
            id: 'breeding_program_select',
-           default: 'please select',
+           default: 'selecione',
            multiple: 1,
        });
 
@@ -366,7 +383,7 @@ jQuery(document).ready(function() {
        var abbreviation = $('#location_abbreviation').val();
        var country_code = $('#location_country').val();
        var country_text = $('#location_country option:selected').text();
-       var country_name = country_text.replace(/^[^\s]+(.*)/, '$1').trim();
+       var country_name = $('#location_country option:selected').attr('data-country-name') || country_text.replace(/^[^\s]+(.*)/, '$1').trim();
         var programs = [];
         $('#breeding_program_select option:selected').each( function() {
             programs.push($(this).text());
@@ -383,13 +400,13 @@ jQuery(document).ready(function() {
         //console.log("Location name to store is "+name);
         //console.log("Location country name to store is "+country_name+" and country code is "+country_code);
 
-        if (name == '') { alert('A location name is required.');  return; }
-        if (abbreviation == '') { alert('A location abbreviation is required.');  return; }
-        if ($('#location_country').val() == '') { alert('A location country is required.');  return; }
-        if (type == '') { alert('A location type is required.');  return; }
-        if (latitude == '') { alert('A location latitude is required.');  return; }
-        if (longitude == '') { alert('A location longitude is required.');  return; }
-        if (altitude == '') { alert('A location altitude is required.');  return; }
+        if (name == '') { alert('O nome do local é obrigatório.');  return; }
+        if (abbreviation == '') { alert('A abreviação do local é obrigatória.');  return; }
+        if ($('#location_country').val() == '') { alert('O país do local é obrigatório.');  return; }
+        if (type == '') { alert('O tipo de local é obrigatório.');  return; }
+        if (latitude == '') { alert('A latitude do local é obrigatória.');  return; }
+        if (longitude == '') { alert('A longitude do local é obrigatória.');  return; }
+        if (altitude == '') { alert('A altitude do local é obrigatória.');  return; }
 
         $.ajax({
             type: 'POST',
@@ -414,7 +431,7 @@ jQuery(document).ready(function() {
                     if (noaa_station_id == '') {
                       // do nothing
                     } else if (token == 'NULL') {
-                      alert(`Configuration variable 'noaa_ncdc_access_token' is undefined. Data from station `+noaa_station_id+` can't be accessed without a token.\r\nPlease visit https://www.ncdc.noaa.gov/cdo-web/token to generate a valid access token, then include the token in sgn_local.conf`);
+                      alert(`A variável de configuração 'noaa_ncdc_access_token' não está definida. Não é possível acessar os dados da estação `+noaa_station_id+` sem um token.\r\nAcesse https://www.ncdc.noaa.gov/cdo-web/token para gerar um token válido e inclua-o em sgn_local.conf.`);
                     } else {
                         $.ajax({
                             url:'https://www.ncdc.noaa.gov/cdo-web/api/v2/stations/'+noaa_station_id,
@@ -422,23 +439,23 @@ jQuery(document).ready(function() {
                             success: function(response) {
                                 console.log(response);
                                 if (response.name) {
-                                    alert('Found NOAA Station from given NOAA StationID: '+response.name);
+                                    alert('Estação NOAA encontrada para o ID informado: '+response.name);
                                 }
                                 else {
-                                    alert('Could not verify the NOAA StationID you provided, however, your details were still updated.');
+                                    alert('Não foi possível verificar o ID da estação NOAA informado, mas os dados do local foram atualizados.');
                                 }
                                 $('#store_location_dialog').modal("hide");
                                 location.reload();
                             },
                             error: function() {
-                                alert('The NOAA NCDC authorization token may not be valid! We could not verify your NOAA StationID. Please contact us!');
+                                alert('O token de autorização NOAA NCDC pode não ser válido. Não foi possível verificar o ID da estação NOAA. Entre em contato conosco.');
                             }
                         });
                     }
                     alert(response.success);
                 }
             },
-            error: function() { alert('An error occurred while storing the location details. Please try again later.'); }
+            error: function() { alert('Ocorreu um erro ao salvar os dados do local. Tente novamente mais tarde.'); }
         });
    });
 });
@@ -458,9 +475,9 @@ function initialize_map (id, locationJSON, table) {
     });
 
     var baseMaps = {
-        "Street (Default)": streetmap,
-        "Topographical": topomap,
-        "Satellite": satellite
+        "Ruas (padrão)": streetmap,
+        "Topográfico": topomap,
+        "Satélite": satellite
     };
 
     var location_layer = L.geoJSON(locationJSON, {
@@ -471,7 +488,7 @@ function initialize_map (id, locationJSON, table) {
     });
 
     var overlayMaps = {
-        "Locations": location_layer
+        "Locais": location_layer
     };
 
     var mymap = L.map( id, {
@@ -484,7 +501,7 @@ function initialize_map (id, locationJSON, table) {
 
             container.style.backgroundColor = 'white';
             container.style.cursor = "pointer";
-            container.title = 'Zoom to my location';
+            container.title = 'Aproximar da minha localização';
             container.style.width = '30px';
             container.style.height = '30px';
 
@@ -513,7 +530,7 @@ function initialize_map (id, locationJSON, table) {
         popup
             .setLatLng(e.latlng)
             .setContent(
-                'Add a new location here?<br><center><a href="javascript:;" onclick="add_from_map(\''+e.latlng.lat+','+e.latlng.lng+'\')">Add Location</a></center>'
+                'Adicionar um novo local aqui?<br><center><a href="javascript:;" onclick="add_from_map(\''+e.latlng.lat+','+e.latlng.lng+'\')">Adicionar local</a></center>'
             )
             .openOn(mymap);
     }
@@ -556,7 +573,7 @@ function initialize_map (id, locationJSON, table) {
            onEachFeature: onEachFeature
         });
 
-        layerControl.addOverlay(location_layer, "Locations");
+        layerControl.addOverlay(location_layer, "Locais");
         location_layer.addTo(mymap);
         mymap.fitBounds(location_layer.getBounds());
     });
@@ -664,12 +681,15 @@ function style(feature) {
 function onEachFeature(feature, layer) {
         // var keys = ["Id","Name","Abbreviation","Country","Program","Type","Latitude","Longitude","Altitude","Trials"];
         var keys = ["Abbreviation","Program","Type","Trials"];
+        var keyLabels = {"Abbreviation":"Abreviação", "Program":"Programa", "Type":"Tipo", "Trials":"Ensaios"};
+        var typeLabels = {"Town":"Cidade", "Farm":"Fazenda", "Field":"Campo", "Greenhouse":"Estufa", "Screenhouse":"Telado", "Lab":"Laboratório", "Storage":"Armazenamento", "Other":"Outro"};
         var popupContent = '<table class="table table-sm"><caption style="text-align: center;"><font id="'+feature.properties.Id+'_name" size="3" color="black">'+feature.properties.Name+'</font></caption><tbody>';
         for (var i = 0; i < keys.length; i++) {
-            popupContent += '<tr><th>'+keys[i]+'</th><td>'+feature.properties[keys[i]]+'</td></tr>';
+            var value = keys[i] === 'Type' ? (typeLabels[feature.properties[keys[i]]] || feature.properties[keys[i]]) : feature.properties[keys[i]];
+            popupContent += '<tr><th>'+keyLabels[keys[i]]+'</th><td>'+value+'</td></tr>';
         }
-        var options = '[<a href="javascript:;" onclick="edit_location('+feature.properties.Id+')">Edit</a>]&nbsp[<a href="javascript:;" onclick="delete_location('+feature.properties.Id+')">Delete</a>]';
-        popupContent += '<tr><th>Options</th><td>'+options+'</td></tr></tbody></table>';
+        var options = '[<a href="javascript:;" onclick="edit_location('+feature.properties.Id+')">Editar</a>]&nbsp[<a href="javascript:;" onclick="delete_location('+feature.properties.Id+')">Excluir</a>]';
+        popupContent += '<tr><th>Opções</th><td>'+options+'</td></tr></tbody></table>';
         layer.bindPopup(popupContent);
         layer.on('mouseover', function (e) {
             this.openPopup();
@@ -678,7 +698,7 @@ function onEachFeature(feature, layer) {
 
   function delete_location(id) {
     var name = $('#'+id+'_name').text();
-    var yes = confirm('Are you sure you want to delete location '+name+'? ');
+    var yes = confirm('Deseja excluir o local '+name+'?');
 
     if (! yes) { return; }
 
@@ -693,7 +713,7 @@ function onEachFeature(feature, layer) {
                   }
                },
       error: function(response) {
-                 alert("An error occurred");
+                 alert("Ocorreu um erro ao excluir o local.");
              }
       });
    }

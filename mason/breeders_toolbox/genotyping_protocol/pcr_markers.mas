@@ -5,14 +5,14 @@ $protocol_id
 <table id="pcr_protocol_markers_table" class="table table-hover table-bordered">
     <thead>
         <tr>
-            <th>Marker Name</th>
-            <th>Product Sizes</th>
-            <th>Forword Primer</th>
-            <th>Reverse Primer</th>
-            <th>Annealing Temperature</th>
-            <th>Sequence Motif</th>
-            <th>Sequence Source</th>
-            <th>Linkage Group</th>
+            <th>Nome do marcador</th>
+            <th>Tamanhos dos produtos</th>
+            <th>Primer direto</th>
+            <th>Primer reverso</th>
+            <th>Temperatura de anelamento</th>
+            <th>Motivo da sequência</th>
+            <th>Origem da sequência</th>
+            <th>Grupo de ligação</th>
         </tr>
     </thead>
     </tbody>

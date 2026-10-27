@@ -3,17 +3,47 @@
   $optional_column => undef
 </%args>
 
+<%perl>
+my %type_labels = (
+  'Data' => 'Dados',
+  'Simple phenotype spreadsheets' => 'Planilhas simples de fenótipos',
+  'Seedlots' => 'Lotes de sementes',
+  'Accessions' => 'Acessos',
+  'Crosses' => 'Cruzamentos',
+  'qPCR Data' => 'Dados de qPCR',
+  'Transgenic Historical Data' => 'Dados históricos de transgênicos',
+  'Transformation Identifiers' => 'Identificadores de transformação',
+  'Seedlot Inventory' => 'Inventário de lotes de sementes',
+  'Derived Accessions' => 'Acessos derivados',
+  'Propagation Group Identifiers' => 'Identificadores de grupos de propagação',
+  'Trial Coordinates' => 'Coordenadas de ensaios',
+  'Propagation ID Status' => 'Status de IDs de propagação',
+  'Propagation Identifiers' => 'Identificadores de propagação',
+  'Accession exchanges' => 'Substituições de acessos',
+  'Simple treatment spreadsheets' => 'Planilhas simples de tratamentos',
+  'Vectors' => 'Vetores',
+  'Single Trial Designs' => 'Delineamentos de um único ensaio',
+  'Multiple Trial Designs' => 'Delineamentos de vários ensaios',
+  'Trials' => 'Ensaios',
+  'Trial Metadata' => 'Metadados de ensaios',
+  'Marker Metadata' => 'Metadados de marcadores',
+  'Locations' => 'Locais',
+  'Pedigrees' => 'Genealogias',
+);
+my $type_label = $type_labels{$type} || $type;
+</%perl>
+
 <div class="file_upload_type">
   <span class="file_icon glyphicon glyphicon-file"></span>
   <div>
     <p>
-      <% $type %> may be uploaded using any of the supported file types: MS Excel (<strong>.xls or .xlsx</strong>),
-      comma-separated file (<strong>.csv</strong>), LibreOffice / OpenOffice OpenDocument spreadsheet (<strong>.ods</strong>), 
-      tab-delimited file (<strong>.txt or .tsv</strong>), or semicolon-separated file (<strong>.ssv</strong>).
+      É possível enviar <% $type_label %> em qualquer um dos formatos aceitos: MS Excel (<strong>.xls ou .xlsx</strong>),
+      arquivo separado por vírgulas (<strong>.csv</strong>), planilha OpenDocument do LibreOffice/OpenOffice (<strong>.ods</strong>),
+      arquivo delimitado por tabulações (<strong>.txt ou .tsv</strong>) ou arquivo separado por ponto e vírgula (<strong>.ssv</strong>).
     </p>
 % if ($optional_column) {
     <p>
-      Optional columns may be left out, if not used in your data.
+      As colunas opcionais podem ser omitidas quando não forem usadas nos seus dados.
     </p>
 % }
   </div>

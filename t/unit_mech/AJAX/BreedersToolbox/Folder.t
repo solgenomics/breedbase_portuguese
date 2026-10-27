@@ -1,5 +1,6 @@
 use strict;
 use warnings;
+use utf8;
 
 use lib 't/lib';
 use SGN::Test::Fixture;
@@ -22,7 +23,7 @@ my $trial_id = $schema->resultset('Project::Project')->find({name=>'test_trial'}
 $mech->post_ok('http://localhost:3010/ajax/folder/new', [ "folder_name"=> "test_folder_1", "breeding_program_id"=> $breeding_program_id, "project_type" => 'field_trial']);
 $response = decode_json $mech->content;
 print STDERR Dumper $response;
-is_deeply($response, {'error' => 'You need to be logged in.'}, 'check not logged in create new folder.');
+is_deeply($response, {'error' => 'Você precisa entrar em sua conta.'}, 'check not logged in create new folder.');
 
 $mech->post_ok('http://localhost:3010/brapi/v1/token', [ "username"=> "janedoe", "password"=> "secretpw"=> "grant_type"=> "password" ]);
 $response = decode_json $mech->content;
@@ -38,7 +39,7 @@ my $folder_id = $response->{'folder_id'};
 $mech->post_ok('http://localhost:3010/ajax/folder/new', [ "parent_folder_id"=>$folder_id, "folder_name"=> "test_folder_1", "breeding_program_id"=> $breeding_program_id, "project_type"=>'field_trial']);
 $response = decode_json $mech->content;
 print STDERR Dumper $response;
-is($response->{'error'}, 'A folder or trial with that name already exists in the database. Please select another name.');
+is($response->{'error'}, 'Já existe uma pasta ou um ensaio com esse nome no banco de dados. Escolha outro nome.');
 
 $mech->post_ok('http://localhost:3010/ajax/folder/new', [ "parent_folder_id"=>$folder_id, "folder_name"=> "test_folder_2", "breeding_program_id"=> $breeding_program_id, "project_type"=>'field_trial' ]);
 $response = decode_json $mech->content;
@@ -74,7 +75,7 @@ is($response->{'success'}, '1');
 $mech->get_ok("http://localhost:3010/ajax/folder/$folder2_id/delete");
 $response = decode_json $mech->content;
 print STDERR Dumper $response;
-is($response->{'error'}, 'Folder Not Deleted! To delete a folder first move all trials and sub-folders out of it.');
+is($response->{'error'}, 'A pasta não foi excluída. Antes de excluí-la, mova todos os ensaios e subpastas para fora dela.');
 
 $mech->get_ok("http://localhost:3010/ajax/folder/$trial_id/associate/parent/0");
 $response = decode_json $mech->content;

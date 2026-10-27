@@ -5,10 +5,10 @@ $stockref => undef
 
 % my $stock_id = $stockref->{stock_id};
 
-<& /page/page_title.mas, title=> 'Create a New Stock' &>
+<& /page/page_title.mas, title=> 'Criar um novo material' &>
 
 
-<&| /page/info_section.mas, title=>"Stock details"  &>
+<&| /page/info_section.mas, title=>"Detalhes do material"  &>
 
 <div class="row">
   <div class="col-sm-12">
@@ -21,7 +21,7 @@ $stockref => undef
   form_div_name=>'stock_details',
   js_object_name=> 'stockForm',
   page_url => "/stock/$stock_id/view/" ,
-  alternate_new_button => '<a class="btn btn-sm btn-default" href ="/stock/0/new">New</a>'
+  alternate_new_button => '<a class="btn btn-sm btn-default" href ="/stock/0/new">Novo</a>'
   &>
 
   </div>

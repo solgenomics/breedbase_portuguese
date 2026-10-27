@@ -5,5 +5,5 @@ $cross_name => undef
 
 
 <%perl>
-print "Created cross: $cross_name\n";
+print "Cruzamento criado: $cross_name\n";
 </%perl>

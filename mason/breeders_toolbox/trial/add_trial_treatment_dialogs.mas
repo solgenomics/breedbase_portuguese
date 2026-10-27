@@ -7,51 +7,51 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="addSpreadsheetTreatmentDialog">Upload Treatment Spreadsheet</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="addSpreadsheetTreatmentDialog">Enviar planilha de tratamentos</h4>
       </div>
       <div class="modal-body">
         <div class="container-fluid">
 
-            <&| /page/explanation.mas, title=>'Template Information' &>
+            <&| /page/explanation.mas, title=>'Informações do modelo' &>
                 <p>
-                <b>File format information</b>
+                <b>Informações sobre o formato do arquivo</b>
                 <br>
-                <a id="treatment_upload_spreadsheet_format_info">Spreadsheet Format</a>
+                <a id="treatment_upload_spreadsheet_format_info">Formato da planilha</a>
                 </p>
             </&>
 
             <form class="form-horizontal" role="form" method="POST" enctype="multipart/form-data" encoding="multipart/form-data" id="upload_spreadsheet_treatment_file_form" name="upload_spreadsheet_treatment_file_form">
                 <div class="form-group">
-                    <label class="col-sm-6 control-label">Spreadsheet Format: </label>
+                    <label class="col-sm-6 control-label">Formato da planilha: </label>
                     <div class="col-sm-6" >
                         <select class="form-control" id="upload_spreadsheet_treatment_file_format" name="upload_spreadsheet_treatment_file_format">
-                            <option value="detailed">Detailed</option>
-                            <option value="simple">Simple</option>
+                            <option value="detailed">Detalhado</option>
+                            <option value="simple">Simples</option>
                         </select>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-6 control-label">Timestamps Included: </label>
+                    <label class="col-sm-6 control-label">Incluir data e hora: </label>
                     <div class="col-sm-6" >
                         <input type="checkbox" id="upload_spreadsheet_treatment_timestamp_checkbox" name="upload_spreadsheet_treatment_timestamp_checkbox" />
                     </div>
                 </div>
                 <div id="upload_spreadsheet_treatment_data_level_div">
                     <div class="form-group">
-                        <label class="col-sm-6 control-label">Data Level: </label>
+                        <label class="col-sm-6 control-label">Nível dos dados: </label>
                         <div class="col-sm-6" >
                             <select class="form-control" id="upload_spreadsheet_treatment_data_level" name="upload_spreadsheet_treatment_data_level">
-                                <option value="plots">Plots</option>
-                                <option value="plants">Plants</option>
-                                <option value="subplots">Subplots</option>
-                                <option value="tissue_samples">Tissue Samples</option>
+                                <option value="plots">Parcelas</option>
+                                <option value="plants">Plantas</option>
+                                <option value="subplots">Subparcelas</option>
+                                <option value="tissue_samples">Amostras de tecido</option>
                             </select>
                         </div>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-6 control-label">Treatment Spreadsheet: </label>
+                    <label class="col-sm-6 control-label">Planilha de tratamentos: </label>
                     <div class="col-sm-6" >
                         <input type="file" id="upload_spreadsheet_treatment_file_input" name="upload_spreadsheet_treatment_file_input" encoding="multipart/form-data" />
                     </div>
@@ -61,7 +61,7 @@
                 </div>
 
                 <div id="upload_treatment_spreadsheet_info" style="display: none">
-                    <& /help/file_upload_type.mas, type => "Simple treatment spreadsheets" &>
+                    <& /help/file_upload_type.mas, type => "Planilhas simples de tratamentos" &>
                 </div>
 
             </form><br/>
@@ -69,10 +69,10 @@
         </div>
 
         <div class="modal-footer">
-	    <button type="button" class="btn btn-default" name="reset_dialog" id="treatment_reset_dialog">Reset form</button>
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-info" name="upload_spreadsheet_treatment_submit_verify" id="upload_spreadsheet_treatment_submit_verify">Verify</button>
-            <button disabled type="button" class="btn btn-primary" name="upload_spreadsheet_treatment_submit_store" id="upload_spreadsheet_treatment_submit_store" title="First Verify Your File">Store</button>
+	    <button type="button" class="btn btn-default" name="reset_dialog" id="treatment_reset_dialog">Limpar formulário</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+            <button type="button" class="btn btn-info" name="upload_spreadsheet_treatment_submit_verify" id="upload_spreadsheet_treatment_submit_verify">Verificar</button>
+            <button disabled type="button" class="btn btn-primary" name="upload_spreadsheet_treatment_submit_store" id="upload_spreadsheet_treatment_submit_store" title="Primeiro, verifique o arquivo">Armazenar</button>
         </div>
 
     </div>
@@ -83,42 +83,42 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="treatmentUploadInfoDialog">Template Information</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="treatmentUploadInfoDialog">Informações do modelo</h4>
       </div>
       <div class="modal-body">
         <div class="container-fluid">
 
-            <h4>Treatment spreadsheet must be uploaded in .xls or .xlsx excel file format</h4>
-            <p>(tab-delimited text formats are NOT supported)</p>
+            <h4>A planilha de tratamentos deve ser enviada no formato Excel .xls ou .xlsx</h4>
+            <p>(arquivos de texto delimitados por tabulação NÃO são aceitos)</p>
 
             <hr>
-            <button class="btn btn-primary" name="create_spreadsheet_link">Create Treatment Spreadsheet for Trial</button>
+            <button class="btn btn-primary" name="create_spreadsheet_link">Criar planilha de tratamentos do ensaio</button>
             <hr>
 
-            <h4>Required Data:</h4>
+            <h4>Dados obrigatórios:</h4>
             <ul>
-                <li>Please click the above button to generate the required treatment spreadsheet. Note that treatment lists can be made just like trait lists.</li>
+                <li>Clique no botão acima para gerar a planilha de tratamentos necessária. As listas de tratamentos podem ser criadas da mesma forma que as listas de características.</li>
             </ul>
 
-            <h4>Notes:</h4>
+            <h4>Observações:</h4>
             <ul>
-                <li>For  a hypothetical term <i>"light intensity"</i>, <i>"treatment name|treatment id"</i><br> should be written as <i>"light intensity|EXPERIMENT_TREATMENT:00000XX"</i>.</li>
-                <li>Two or more treatments can be uploaded at the same time.</li>
+                <li>Para o termo hipotético <i>“intensidade luminosa”</i>, <i>“nome do tratamento|ID do tratamento”</i><br> deve ser escrito como <i>“intensidade luminosa|EXPERIMENT_TREATMENT:00000XX”</i>.</li>
+                <li>Dois ou mais tratamentos podem ser enviados ao mesmo tempo.</li>
             </ul>
 
-            <h4>Simple and Detailed Spreadsheet Format:</h4>
+            <h4>Formatos de planilha simples e detalhado:</h4>
             <ul>
-                <li>The "Simple" format requires only a column called 'observationunit_name' followed by your treatment columns.  Other acceptable headers for the first column include: 'plot_name', 'subplot_name', 'plant_name', 'observationUnitName', 'plotName', 'sublotName', 'plantName'</li>
-                <li>The "Detailed" format includes a special header as well as additional columns for design information.</li>
+                <li>O formato “Simples” exige apenas uma coluna chamada <code>observationunit_name</code>, seguida das colunas de tratamentos. Outros cabeçalhos aceitos para a primeira coluna são: <code>plot_name</code>, <code>subplot_name</code>, <code>plant_name</code>, <code>observationUnitName</code>, <code>plotName</code>, <code>sublotName</code> e <code>plantName</code>.</li>
+                <li>O formato “Detalhado” inclui um cabeçalho especial e colunas adicionais com informações do delineamento.</li>
             </ul>
 
-            <h4>Timestamps:</h4>
+            <h4>Data e hora:</h4>
             <ul>
-                <li>To include timestamp information for your measurements, click the checkbox "Includes Timestamps".</li>
-                <li>For timestamps, values should be recorded as <i>"Value,Timestamp"</i>.<br/>For no timestamps, values should be recorded as <i>"Value"</i>.</li>
-                <li>Timestamp format must be YYYY-MM-DD HH:MM:SS-0000 or YYYY-MM-DD HH:MM:SS+0000</li><br/>
-                <li>Example with timestamps: <br/><br/>
+                <li>Para incluir data e hora nas medições, marque a opção “Incluir data e hora”.</li>
+                <li>Com data e hora, registre os dados como <i>“Valor,DataHora”</i>.<br/>Sem data e hora, registre apenas <i>“Valor”</i>.</li>
+                <li>O formato deve ser AAAA-MM-DD HH:MM:SS-0000 ou AAAA-MM-DD HH:MM:SS+0000.</li><br/>
+                <li>Exemplo com data e hora: <br/><br/>
                 <table class="table table-hover table-bordered">
                     <thead>
                         <tr>
@@ -132,7 +132,7 @@
                     </tbody>
                 </table>
                 </li>
-                <li>Example without timestamps: <br/><br/>
+                <li>Exemplo sem data e hora: <br/><br/>
                 <table class="table table-hover table-bordered">
                     <thead>
                         <tr>
@@ -151,7 +151,7 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
       </div>
     </div>
   </div>

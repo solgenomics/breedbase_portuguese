@@ -39,32 +39,32 @@ $has_child_folders => undef
 
 <br/>
 
-<& /page/page_title.mas, title=>"Folder detail for ".$folder_name &>
+<& /page/page_title.mas, title=>"Detalhes da pasta ".$folder_name &>
 
 <& /breeders_toolbox/folder/folder_set.mas, folder_id=>$folder_id, folder_name=>$folder_name, breeding_program_id=>$breeding_program->project_id(), breeding_program_name=>$breeding_program->name(), folder_for_trials => $folder_for_trials, folder_for_crosses => $folder_for_crosses, folder_for_genotyping_trials => $folder_for_genotyping_trials, folder_for_genotyping_projects => $folder_for_genotyping_projects , folder_for_tracking_activities => $folder_for_tracking_activities, folder_for_transformations => $folder_for_transformations &>
 <& /breeders_toolbox/folder/folder_move.mas, breeding_program_id=>$breeding_program->project_id(), breeding_program_name=>$breeding_program->name()   &>
-<& /breeders_toolbox/folder/edit_folder_name.mas, trial_id=>$folder_id, trial_name=>$folder_name, trial_type=>"Folder" &>
+<& /breeders_toolbox/folder/edit_folder_name.mas, trial_id=>$folder_id, trial_name=>$folder_name, trial_type=>"Pasta" &>
 <& /breeders_toolbox/folder/folder_category_set.mas, folder_id=>$folder_id, folder_name=>$folder_name, folder_for_trials=>$folder_for_trials, folder_for_crosses=>$folder_for_crosses, folder_for_genotyping_trials=>$folder_for_genotyping_trials, folder_for_genotyping_projects=>$folder_for_genotyping_projects , folder_for_tracking_activities=>$folder_for_tracking_activities, folder_for_transformations=>$folder_for_transformations&>
 
 <div>
 
   <ul class="nav nav-tabs" role="tablist">
-    <li role="presentation" class="active"><a href="#trials" aria-controls="trials" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-leaf text-success"></span>&nbsp;&nbsp;&nbsp;Trials</a></li>
-    <li role="presentation"><a href="#analyses" aria-controls="analyses" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-stats text-success"></span>&nbsp;&nbsp;&nbsp;Analyses</a></li>
-    <li role="presentation"><a href="#crosses" aria-controls="crosses" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-grain text-success"></span>&nbsp;&nbsp;&nbsp;Crossing Experiments</a></li>
-    <li role="presentation"><a href="#genotyping_trials" aria-controls="genotyping_trials" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-th text-success"></span>&nbsp;&nbsp;&nbsp;Genotyping Plates</a></li>
-    <li role="presentation"><a href="#genotyping_projects" aria-controls="genotyping_projects" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-th text-success"></span>&nbsp;&nbsp;&nbsp;Genotyping Projects</a></li>
-    <li role="presentation"><a href="#tracking_activities" aria-controls="tracking_activities" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-list-alt text-success"></span>&nbsp;&nbsp;&nbsp;Tracking Activities</a></li>
-    <li role="presentation"><a href="#folders" aria-controls="folders" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-folder-open text-danger"></span>&nbsp;&nbsp;&nbsp;Folders</a></li>
-    <li role="presentation"><a href="#breeding_program" aria-controls="breeding_program" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-briefcase text-info"></span>&nbsp;&nbsp;&nbsp;Breeding Program</a></li>
+    <li role="presentation" class="active"><a href="#trials" aria-controls="trials" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-leaf text-success"></span>&nbsp;&nbsp;&nbsp;Ensaios</a></li>
+    <li role="presentation"><a href="#analyses" aria-controls="analyses" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-stats text-success"></span>&nbsp;&nbsp;&nbsp;Análises</a></li>
+    <li role="presentation"><a href="#crosses" aria-controls="crosses" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-grain text-success"></span>&nbsp;&nbsp;&nbsp;Experimentos de cruzamento</a></li>
+    <li role="presentation"><a href="#genotyping_trials" aria-controls="genotyping_trials" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-th text-success"></span>&nbsp;&nbsp;&nbsp;Placas de genotipagem</a></li>
+    <li role="presentation"><a href="#genotyping_projects" aria-controls="genotyping_projects" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-th text-success"></span>&nbsp;&nbsp;&nbsp;Projetos de genotipagem</a></li>
+    <li role="presentation"><a href="#tracking_activities" aria-controls="tracking_activities" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-list-alt text-success"></span>&nbsp;&nbsp;&nbsp;Atividades de rastreamento</a></li>
+    <li role="presentation"><a href="#folders" aria-controls="folders" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-folder-open text-danger"></span>&nbsp;&nbsp;&nbsp;Pastas</a></li>
+    <li role="presentation"><a href="#breeding_program" aria-controls="breeding_program" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-briefcase text-info"></span>&nbsp;&nbsp;&nbsp;Programa de melhoramento</a></li>
   </ul>
 
   <div class="tab-content">
     <div role="tabpanel" class="tab-pane fade in active" id="trials">
       <div class="well">
-        <h3>Trials in Folder</h3>
+        <h3>Ensaios na pasta</h3>
         <table name="folder_datatables_table" class="table table-hover table-bordered">
-        <thead><tr><th>Trial Name</th></tr></thead>
+        <thead><tr><th>Nome do ensaio</th></tr></thead>
         <tbody>
 % my @trial_ids;
 % foreach (@$trials) {
@@ -76,16 +76,16 @@ $has_child_folders => undef
         </table>
 
         <br/>
-        <button class="btn btn-primary" id="trial_download_phenotypes_button">Download Phenotypes</button>
+        <button class="btn btn-primary" id="trial_download_phenotypes_button">Baixar fenótipos</button>
 
       </div>
     </div>
 
     <div role="tabpanel" class="tab-pane fade" id="analyses">
       <div class="well">
-        <h3>Analyses in Folder</h3>
+        <h3>Análises na pasta</h3>
         <table name="folder_datatables_table" class="table table-hover table-bordered">
-        <thead><tr><th>Analyses Name</th></tr></thead>
+        <thead><tr><th>Nome da análise</th></tr></thead>
         <tbody>
 % foreach (@$analyses_trials) {
     <tr><td><a href="/analyses/<% $_->folder_id() %>" target=_blank><% $_->name() %></a></td></tr>
@@ -97,9 +97,9 @@ $has_child_folders => undef
 
     <div role="tabpanel" class="tab-pane fade" id="crosses">
       <div class="well">
-        <h3>Crosses in Folder</h3>
+        <h3>Cruzamentos na pasta</h3>
         <table name="folder_datatables_table" class="table table-hover table-bordered">
-        <thead><tr><th>Cross Unique ID</th></tr></thead>
+        <thead><tr><th>ID único do cruzamento</th></tr></thead>
         <tbody>
 % foreach (@$crossing_trials) {
             <tr><td><a href="/breeders/trial/<% $_->folder_id() %>" target=_blank><% $_->name() %></a></td></tr>
@@ -111,9 +111,9 @@ $has_child_folders => undef
 
     <div role="tabpanel" class="tab-pane fade" id="genotyping_projects">
       <div class="well">
-        <h3>Genotyping Projects in Folder</h3>
+        <h3>Projetos de genotipagem na pasta</h3>
         <table name="folder_datatables_table" class="table table-hover table-bordered">
-        <thead><tr><th>Genotyping Project Name</th></tr></thead>
+        <thead><tr><th>Nome do projeto de genotipagem</th></tr></thead>
         <tbody>
 % foreach (@$genotyping_projects) {
             <tr><td><a href="/breeders/trial/<% $_->folder_id() %>" target=_blank><% $_->name() %></a></td></tr>
@@ -125,9 +125,9 @@ $has_child_folders => undef
 
     <div role="tabpanel" class="tab-pane fade" id="tracking_activities">
         <div class="well">
-            <h3>Projects in Folder</h3>
+            <h3>Projetos na pasta</h3>
             <table name="folder_datatables_table" class="table table-hover table-bordered">
-                <thead><tr><th>Tracking Activities Project Name</th></tr></thead>
+                <thead><tr><th>Nome do projeto de atividades de rastreamento</th></tr></thead>
                 <tbody>
 % foreach (@$tracking_activities) {
                     <tr><td><a href="/breeders/trial/<% $_->folder_id() %>" target=_blank><% $_->name() %></a></td></tr>
@@ -139,9 +139,9 @@ $has_child_folders => undef
 
     <div role="tabpanel" class="tab-pane fade" id="genotyping_trials">
       <div class="well">
-        <h3>Genotyping Plates in Folder</h3>
+        <h3>Placas de genotipagem na pasta</h3>
         <table name="folder_datatables_table" class="table table-hover table-bordered">
-        <thead><tr><th>Genotyping Plate Name</th></tr></thead>
+        <thead><tr><th>Nome da placa de genotipagem</th></tr></thead>
         <tbody>
 % my @genotyping_trial_ids;
 % foreach (@$genotyping_trials) {
@@ -153,22 +153,22 @@ $has_child_folders => undef
         </table>
 
         <br/>
-        <button class="btn btn-primary" id="folder_download_genotyping_plates_button">Download Genotyping Plate Layouts</button>
+        <button class="btn btn-primary" id="folder_download_genotyping_plates_button">Baixar disposições das placas de genotipagem</button>
       </div>
     </div>
 
     <div role="tabpanel" class="tab-pane fade" id="folders">
       <div class="well">
-        <h3>Parent Folder</h3>
+        <h3>Pasta principal</h3>
 % if ($breeding_program->name() ne $project_parent->name()) {
         <a href="/folder/<% $project_parent->project_id %>" target=_blank><% $project_parent->name() %></a>
 % } else {
-      No Parent Folder
+      Nenhuma pasta principal
 % }
       </div>
 
       <div class="well">
-        <h3>Child Folders</h3>
+        <h3>Subpastas</h3>
 % if ($has_child_folders) {
         <table class="table table-hover table-bordered">
         <tbody>
@@ -180,19 +180,19 @@ $has_child_folders => undef
         </tbody>
         </table>
 % } else {
-      No Child Folders
+      Nenhuma subpasta
 % }
       </div>
 
       <div class="well">
-        <button class="btn btn-primary" id="move_folder_dialog_link">Move folder</button>
+        <button class="btn btn-primary" id="move_folder_dialog_link">Mover pasta</button>
       </div>
 
     </div>
 
     <div role="tabpanel" class="tab-pane fade" id="breeding_program">
       <div class="well">
-        <h3>Folder's Breeding Program</h3>
+        <h3>Programa de melhoramento da pasta</h3>
         <% $breeding_program->name() %>
       </div>
     </div>
@@ -210,7 +210,7 @@ $has_child_folders => undef
                 <thead></thead>
                 <tbody>
                     <tr>
-                        <td><h5>Folder For Trials</h5></td>
+                        <td><h5>Pasta para ensaios</h5></td>
 % if($folder_for_trials){
                         <td><h4><span class="glyphicon glyphicon-ok"></span></h4></td>
 % } else {
@@ -219,7 +219,7 @@ $has_child_folders => undef
 
                     </tr>
                     <tr>
-                        <td><h5>Folder For Crosses</h5></td>
+                        <td><h5>Pasta para cruzamentos</h5></td>
 % if($folder_for_crosses){
                         <td><h4><span class="glyphicon glyphicon-ok"></span></h4></td>
 % } else {
@@ -227,7 +227,7 @@ $has_child_folders => undef
 % }
                     </tr>
                     <tr>
-                        <td><h5>Folder For Genotyping Projects</h5></td>
+                        <td><h5>Pasta para projetos de genotipagem</h5></td>
 % if($folder_for_genotyping_projects){
                         <td><h4><span class="glyphicon glyphicon-ok"></span></h4></td>
 % } else {
@@ -235,7 +235,7 @@ $has_child_folders => undef
 % }
                     </tr>
                     <tr>
-                        <td><h5>Folder For Genotyping Plates</h5></td>
+                        <td><h5>Pasta para placas de genotipagem</h5></td>
 % if($folder_for_genotyping_trials){
                         <td><h4><span class="glyphicon glyphicon-ok"></span></h4></td>
 % } else {
@@ -243,7 +243,7 @@ $has_child_folders => undef
 % }
                     </tr>
                     <tr>
-                        <td><h5>Folder For Tracking Activities</h5></td>
+                        <td><h5>Pasta para atividades de rastreamento</h5></td>
 % if($folder_for_tracking_activities){
                         <td><h4><span class="glyphicon glyphicon-ok"></span></h4></td>
 % } else {
@@ -251,7 +251,7 @@ $has_child_folders => undef
 % }
                     </tr>
                     <tr>
-                        <td><h5>Folder For Transformation Projects</h5></td>
+                        <td><h5>Pasta para projetos de transformação</h5></td>
 % if($folder_for_transformations){
                         <td><h4><span class="glyphicon glyphicon-ok"></span></h4></td>
 % } else {
@@ -261,7 +261,7 @@ $has_child_folders => undef
 
                 </tbody>
             </table>
-            <button class="btn btn-sm btn-default" id="change_folder_categories_button">Add Additional Folder Type</button>
+            <button class="btn btn-sm btn-default" id="change_folder_categories_button">Adicionar outro tipo de pasta</button>
         </div>
     </div>
     <div class="col-sm-6">
@@ -271,14 +271,14 @@ $has_child_folders => undef
             <button class="btn btn-sm btn-primary" id="open_folder_dialog_link">Add Trial and Analyses to Folder</button>
             <br/><br/>
 -->
-            <button class="btn btn-sm btn-default" id="edit_trial_name">Rename Folder</button>&nbsp;&nbsp;&nbsp;&nbsp;
-            <button class="btn btn-sm btn-default" id="delete_folder_button">Delete Folder</button>
+            <button class="btn btn-sm btn-default" id="edit_trial_name">Renomear pasta</button>&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="btn btn-sm btn-default" id="delete_folder_button">Excluir pasta</button>
             </center>
         </div>
     </div>
 </div>
 
-<& /breeders_toolbox/trial/download_phenotypes_dialog.mas, trial_ids => $trial_ids, dialog_name => $folder_name, dialog_type => 'Folder' &>
+<& /breeders_toolbox/trial/download_phenotypes_dialog.mas, trial_ids => $trial_ids, dialog_name => $folder_name, dialog_type => 'Pasta' &>
 <& /breeders_toolbox/genotyping_trials/download_genotyping_trial_layouts_dialogs.mas, genotyping_trial_ids => $genotyping_trial_ids &>
 
 <script>
@@ -288,19 +288,19 @@ jQuery(document).ready(function() {
     jQuery("[name=folder_datatables_table]").DataTable();
 
     jQuery('#delete_folder_button').click( function() {
-        if (confirm("Are you sure you want to delete this folder?")) {
+        if (confirm("Tem certeza de que deseja excluir esta pasta?")) {
             jQuery.ajax( {
                 url: '/ajax/folder/'+<% $folder_id %>+'/delete',
                 success: function(response) {
                     if (response.error) {
                         alert(response.error);
                     } else {
-                        alert("Folder successfully deleted.");
+                        alert("Pasta excluída com sucesso.");
                         window.location.replace("/breeders/trials");
                     }
                 },
                 error: function(response) {
-                    alert('An error occurred trying to delete folder.');
+                    alert('Ocorreu um erro ao tentar excluir a pasta.');
                 }
             });
         }

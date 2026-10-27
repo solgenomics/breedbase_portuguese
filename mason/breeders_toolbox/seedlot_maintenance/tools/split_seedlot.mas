@@ -1,27 +1,32 @@
 <%args>
-    $timestamp => localtime()
+    $timestamp => undef
 </%args>
+
+<%init>
+    use POSIX qw(strftime);
+    $timestamp = strftime("%Y-%m-%d %H:%M:%S", localtime()) unless defined $timestamp;
+</%init>
 
 <div class="panel panel-default">
     <div class="panel-heading">
-        <h5 class="panel-title">Split Seedlot</h5>
+        <h5 class="panel-title">Dividir lote de sementes</h5>
     </div>
     <div class="panel-body">
-        <p>This tool will split an existing Seedlot - keeping the existing Seedlot and creating a new one with the same Accession as the contents.</p>
+        <p>Esta ferramenta divide um lote de sementes existente: o lote original é mantido e um novo lote é criado com o mesmo acesso como conteúdo.</p>
 
         <br />
 
         <!-- Seedlot to Split -->
         <div class="form-group">
-            <label class="col-sm-3 control-label" style="text-align: right">Original Seedlot to Split</label>
+            <label class="col-sm-3 control-label" style="text-align: right">Lote de sementes original a dividir</label>
             <div class="col-sm-5">
                 <input class="form-control" id="seedlot_split_name" type="text" value="">
             </div>
             <div class="col-sm-2">
-                <button id="seedlot_split_name_update" class="btn btn-block btn-info"><span class="glyphicon glyphicon-refresh"></span> Update</button>
+                <button id="seedlot_split_name_update" class="btn btn-block btn-info"><span class="glyphicon glyphicon-refresh"></span> Atualizar</button>
             </div>
             <div class="col-sm-2">
-                <button id="seedlot_split_name_barcode" class="btn btn-block btn-default"><span class="glyphicon glyphicon-qrcode"></span> Barcode</button>
+                <button id="seedlot_split_name_barcode" class="btn btn-block btn-default"><span class="glyphicon glyphicon-qrcode"></span> Código de barras</button>
             </div>
         </div>
 
@@ -35,15 +40,15 @@
             <!-- New Seedlot Attributes -->
             <div id="seedlot_split_new_attributes_panel" class="panel panel-info" style="max-width: 600px; margin: 0 auto">
                 <div class="panel-heading">
-                    <h5 class="panel-title">New Seedlot Attributes</h5>
+                    <h5 class="panel-title">Atributos do novo lote de sementes</h5>
                 </div>
                 <div class="panel-body">
 
                     <!-- New Seedlot Name -->
                     <div class="form-group">
-                        <label class="col-sm-3 control-label" style="text-align: right">Seedlot Name</label>
+                        <label class="col-sm-3 control-label" style="text-align: right">Nome do lote de sementes</label>
                         <div class="col-sm-9">
-                            <input class="form-control" id="seedlot_split_new_name" type="text" value="" placeholder="Required, must be a unique Seedlot name">
+                            <input class="form-control" id="seedlot_split_new_name" type="text" value="" placeholder="Obrigatório; deve ser um nome de lote único">
                         </div>
                     </div>
 
@@ -51,9 +56,9 @@
 
                     <!-- New Seedlot Contents -->
                     <div class="form-group">
-                        <label class="col-sm-3 control-label" style="text-align: right">Contents</label>
+                        <label class="col-sm-3 control-label" style="text-align: right">Conteúdo</label>
                         <div class="col-sm-9">
-                            <input class="form-control" id="seedlot_split_new_contents" type="text" value="" placeholder="Required, must be an existing Accession name">
+                            <input class="form-control" id="seedlot_split_new_contents" type="text" value="" placeholder="Obrigatório; deve ser o nome de um acesso existente">
                         </div>
                     </div>
 
@@ -61,7 +66,7 @@
 
                     <!-- New Seedlot Material Type -->
                     <div class="form-group">
-                        <label class="col-sm-3 control-label" style="text-align: right">Material Type</label>
+                        <label class="col-sm-3 control-label" style="text-align: right">Tipo de material</label>
                         <div class="col-sm-9">
                             <div id="seedlot_split_new_material_type_div"></div>
                         </div>
@@ -71,7 +76,7 @@
 
                     <!-- New Seedlot Breeding Program -->
                     <div class="form-group">
-                        <label class="col-sm-3 control-label" style="text-align: right">Breeding Program</label>
+                        <label class="col-sm-3 control-label" style="text-align: right">Programa de melhoramento</label>
                         <div class="col-sm-9">
                             <div id="seedlot_split_new_breeding_program_div"></div>
                         </div>
@@ -81,9 +86,9 @@
 
                     <!-- New Seedlot Location -->
                     <div class="form-group">
-                        <label class="col-sm-3 control-label" style="text-align: right">Location</label>
+                        <label class="col-sm-3 control-label" style="text-align: right">Local</label>
                         <div class="col-sm-9">
-                            <input class="form-control" id="seedlot_split_new_location" type="text" value="" placeholder="Required">
+                            <input class="form-control" id="seedlot_split_new_location" type="text" value="" placeholder="Obrigatório">
                         </div>
                     </div>
 
@@ -91,9 +96,9 @@
 
                     <!-- New Seedlot Box -->
                     <div class="form-group">
-                        <label class="col-sm-3 control-label" style="text-align: right">Box</label>
+                        <label class="col-sm-3 control-label" style="text-align: right">Caixa</label>
                         <div class="col-sm-9">
-                            <input class="form-control" id="seedlot_split_new_box" type="text" value="" placeholder="Required">
+                            <input class="form-control" id="seedlot_split_new_box" type="text" value="" placeholder="Obrigatório">
                         </div>
                     </div>
 
@@ -101,9 +106,9 @@
 
                     <!-- New Seedlot Quality Issues -->
                     <div class="form-group">
-                        <label class="col-sm-3 control-label" style="text-align: right">Quality Issues</label>
+                        <label class="col-sm-3 control-label" style="text-align: right">Problemas de qualidade</label>
                         <div class="col-sm-9">
-                            <input class="form-control" id="seedlot_split_new_quality_issues" type="text" value="" placeholder="Optional, list quality issues here, or 'ok' for good quality seed">
+                            <input class="form-control" id="seedlot_split_new_quality_issues" type="text" value="" placeholder="Opcional; liste os problemas ou informe 'ok' para sementes de boa qualidade">
                         </div>
                     </div>
 
@@ -111,9 +116,9 @@
 
                     <!-- New Seedlot Organization -->
                     <div class="form-group">
-                        <label class="col-sm-3 control-label" style="text-align: right">Organization</label>
+                        <label class="col-sm-3 control-label" style="text-align: right">Organização</label>
                         <div class="col-sm-9">
-                            <input class="form-control" id="seedlot_split_new_organization" type="text" value="" placeholder="Optional">
+                            <input class="form-control" id="seedlot_split_new_organization" type="text" value="" placeholder="Opcional">
                         </div>
                     </div>
 
@@ -121,7 +126,7 @@
 
                     <!-- New Seedlot Timestamp -->
                     <div class="form-group">
-                        <label class="col-sm-3 control-label" style="text-align: right">Timestamp</label>
+                        <label class="col-sm-3 control-label" style="text-align: right">Data e hora</label>
                         <div class="col-sm-9">
                             <input class="form-control" id="seedlot_split_new_timestamp" type="text" value="<% $timestamp %>" placeholder="<% $timestamp %>">
                         </div>
@@ -131,9 +136,9 @@
 
                     <!-- New Seedlot Description -->
                     <div class="form-group">
-                        <label class="col-sm-3 control-label" style="text-align: right">Description</label>
+                        <label class="col-sm-3 control-label" style="text-align: right">Descrição</label>
                         <div class="col-sm-9">
-                            <input class="form-control" id="seedlot_split_new_description" type="text" value="" placeholder="Optional">
+                            <input class="form-control" id="seedlot_split_new_description" type="text" value="" placeholder="Opcional">
                         </div>
                     </div>
 
@@ -145,13 +150,13 @@
             <!-- New Seedlot Contents -->
             <div id="seedlot_split_new_contents_panel" class="panel panel-info" style="max-width: 600px; margin: 0 auto">
                 <div class="panel-heading">
-                    <h5 class="panel-title">New Seedlot Contents</h5>
+                    <h5 class="panel-title">Conteúdo do novo lote de sementes</h5>
                 </div>
                 <div class="panel-body">
 
                     <!-- Original Seedlot Count -->
                     <div class="form-group">
-                        <label class="col-sm-3 control-label" style="text-align: right">Original Seedlot Count</label>
+                        <label class="col-sm-3 control-label" style="text-align: right">Quantidade no lote original</label>
                         <div class="col-sm-9">
                             <p id="seedlot_split_original_contents_count">&nbsp;</p>
                         </div>
@@ -161,7 +166,7 @@
 
                     <!-- Original Seedlot Weight -->
                     <div class="form-group">
-                        <label class="col-sm-3 control-label" style="text-align: right">Original Seedlot Weight (g)</label>
+                        <label class="col-sm-3 control-label" style="text-align: right">Peso do lote original (g)</label>
                         <div class="col-sm-9">
                             <p id="seedlot_split_original_contents_weight">&nbsp;</p>
                         </div>
@@ -171,11 +176,11 @@
 
                     <!-- New Seedlot Contents Type -->
                     <div class="form-group">
-                        <label class="col-sm-3 control-label" style="text-align: right">New Seedlot Contents Type</label>
+                        <label class="col-sm-3 control-label" style="text-align: right">Tipo de conteúdo do novo lote</label>
                         <div class="col-sm-9">
                             <select class="form-control" id="seedlot_split_new_contents_type">
-                                <option value="amount">Amount / Count</option>
-                                <option value="weight">Weight (g)</option>
+                                <option value="amount">Quantidade / contagem</option>
+                                <option value="weight">Peso (g)</option>
                             </select>
                         </div>
                     </div>
@@ -184,9 +189,9 @@
 
                     <!-- New Seedlot Contents Value -->
                     <div class="form-group">
-                        <label class="col-sm-3 control-label" style="text-align: right">New Seedlot Contents Value</label>
+                        <label class="col-sm-3 control-label" style="text-align: right">Valor do conteúdo do novo lote</label>
                         <div class="col-sm-9">
-                            <input class="form-control" id="seedlot_split_new_contents_value" value="" placeholder="Required">
+                            <input class="form-control" id="seedlot_split_new_contents_value" value="" placeholder="Obrigatório">
                         </div>
                     </div>
 
@@ -196,8 +201,8 @@
                     <div class="form-group">
                         <label class="col-sm-3 control-label" style="text-align: right"></label>
                         <div class="col-sm-9">
-                            <p><strong>Subtract initial contents of new seedlot from original seedlot:</strong></p>
-                            <input id="seedlot_split_new_contents_transaction" name="seedlot_split_new_contents_transaction" type="checkbox" data-toggle="toggle">
+                            <p><strong>Subtrair o conteúdo inicial do novo lote do lote original:</strong></p>
+                            <input id="seedlot_split_new_contents_transaction" name="seedlot_split_new_contents_transaction" type="checkbox" data-toggle="toggle" data-on="Sim" data-off="Não">
                         </div>
                     </div>
 
@@ -208,7 +213,7 @@
 
             <!-- Create New Seedlot -->
             <div style="max-width: 400px; margin: 0 auto">
-                <button id="seedlot_split_new_create" class="btn btn-primary btn-block">Create Seedlot</button>
+                <button id="seedlot_split_new_create" class="btn btn-primary btn-block">Criar lote de sementes</button>
             </div>
 
         </div>
@@ -221,7 +226,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div id="seedlot_split_modal_body" class="modal-body"></div>
-            <div class="modal-footer"><button id="seedlot_split_modal_close" type="button" class="btn btn-default">Close</button></div>
+            <div class="modal-footer"><button id="seedlot_split_modal_close" type="button" class="btn btn-default">Fechar</button></div>
         </div>
     </div>
 </div>
@@ -351,7 +356,7 @@
      */
     function setNewSeedlotName() {
         let origin_name = jQuery("#seedlot_split_name").val();
-        _setNewName("Generating...", false)
+        _setNewName("Gerando...", false)
         _generateSeedlotName(origin_name);
 
         /**
@@ -449,28 +454,28 @@
 
         // Check for required parameters
         if ( !data.seedlot_name || data.seedlot_name === "" ) {
-            return displayError("Seedlot name required!");
+            return displayError("O nome do lote de sementes é obrigatório!");
         }
         if ( !data.seedlot_location || data.seedlot_location === "" ) {
-            return displayError("Location required!");
+            return displayError("O local é obrigatório!");
         }
         if ( !data.seedlot_box_name || data.seedlot_box_name === "" ) {
-            return displayError("Box name required!");
+            return displayError("O nome da caixa é obrigatório!");
         }
         if ( !data.seedlot_accession_uniquename || data.seedlot_accession_uniquename === "" ) {
-            return displayError("Seedlot Contents / Accession required!");
+            return displayError("O conteúdo do lote / acesso é obrigatório!");
         }
         if ( !data.seedlot_breeding_program_id || data.seedlot_breeding_program_id === "" ) {
-            return displayError("Breeding Program required!");
+            return displayError("O programa de melhoramento é obrigatório!");
         }
         if ( (!data.seedlot_amount || data.seedlot_amount === "") && (!data.seedlot_weight || data.seedlot_weight === "") ) {
-            return displayError("Seedlot contents value required!");
+            return displayError("O valor do conteúdo do lote é obrigatório!");
         }
         if ( add_transaction && (!data.origin_seedlot_uniquename || data.origin_seedlot_uniquename === "") ) {
-            return displayError("Original Seedlot name required for initial transaction!");
+            return displayError("O nome do lote original é obrigatório para a transação inicial!");
         }
         if ( !data.seedlot_material_type || data.seedlot_material_type === "" ) {
-            return displayError("Material type required!");
+            return displayError("O tipo de material é obrigatório!");
         }
 
 
@@ -481,15 +486,15 @@
             data: data,
             success: function(response) {
                 if (response.success === 1) {
-                    displaySuccess("Seedlot successfully created!");
+                    displaySuccess("Lote de sementes criado com sucesso!");
                 }
                 if (response.error) {
-                    let msg = "Could not create Seedlot:<br /><code>" + response.error + "</code>";
+                    let msg = "Não foi possível criar o lote de sementes:<br /><code>" + response.error + "</code>";
                     displayError(msg);
                 }
             },
             error: function(response){
-                displayError("Could not create Seedlot: AJAX error");
+                displayError("Não foi possível criar o lote de sementes: erro na requisição AJAX.");
             },
             complete: function() {
                 jQuery('#working_modal').modal('hide');
@@ -503,7 +508,7 @@
      * @param {string} msg Error message to display (can include HTML)
      */
     function displayError(msg) {
-        displayModal("Error", "#a94442", msg);
+        displayModal("Erro", "#a94442", msg);
     }
 
     /**
@@ -511,7 +516,7 @@
      * @param {string} msg Success message to display (can include HTML)
      */
     function displaySuccess(msg) {
-        displayModal("Success", "#3c763d", msg);
+        displayModal("Sucesso", "#3c763d", msg);
     }
 
     /**

@@ -6,49 +6,49 @@
     <div class="modal-dialog modal-xl " role="document">
         <div class="modal-content">
             <div class="modal-header" style="text-align: center">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="derivedAccessionUsageInfoDialog">Derived Accession</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="derivedAccessionUsageInfoDialog">Acesso derivado</h4>
             </div>
             <div class="modal-body">
                 <div class="container-fluid">
                     <h4>
-                        What are derived accessions:
+                        O que são acessos derivados:
                     </h4>
-                    <p>In some cases, you may want to add new accession names that have special relationships to other stock types in the database. For example, after preliminary phenotypic screening of progenies derived from different crosses in a trial, you may want to add new accession names for some plants in that trial. </p>
+                    <p>Em alguns casos, pode ser necessário adicionar nomes de acessos com relações especiais com outros tipos de material do banco de dados. Por exemplo, após uma avaliação fenotípica preliminar das progênies derivadas de diferentes cruzamentos em um ensaio, você pode adicionar novos nomes de acesso para algumas plantas desse ensaio.</p>
                     <br>
                     <h4>
-                        Allowed Stock Types:
+                        Tipos de material permitidos:
                     </h4>
-                    <p>The derived accession (stored as accession stock type) can be linked to another accession, or plant or tissue sample in the database. </p>
+                    <p>O acesso derivado, armazenado como material do tipo acesso, pode ser vinculado a outro acesso, a uma planta ou a uma amostra de tecido do banco de dados.</p>
                     <ul>
-                        <li><b>Derived from accession</b>: e.g., new accession derived from another accession because of a mutation.</li>
-                        <li><b>Derived from plant</b>: e.g., new accessions derived from plants originated from crosses or family names in trials.</li>
-                        <li><b>Derived from tissue sample: </b> e.g., new accessions derived from tissue samples via tissue culture.</li>
+                        <li><b>Derivado de acesso</b>: por exemplo, um novo acesso derivado de outro acesso em razão de uma mutação.</li>
+                        <li><b>Derivado de planta</b>: por exemplo, novos acessos derivados de plantas originadas de cruzamentos ou famílias em ensaios.</li>
+                        <li><b>Derivado de amostra de tecido</b>: por exemplo, novos acessos derivados de amostras por meio de cultura de tecidos.</li>
                     </ul>
                     <br>
                     <h4>
-                        Linkage between derived accession, direct source and original source:
+                        Vínculo entre o acesso derivado, a origem direta e a origem original:
                     </h4>
-                    <p>Relationship between each derived accession and its source is displayed on the accession detail page and its source detail page (accession/plant/tissue sample) </p>
+                    <p>A relação entre cada acesso derivado e sua origem é exibida na página de detalhes do acesso e na página de detalhes da origem (acesso, planta ou amostra de tecido).</p>
                     <ul class="a" >
-                        <li><b>Additional Info Section:</b> Both direct source of that derived accession and its origin are displayed in the Additional Info section. If the direct source is a plant or tissue sample, the original source will also be provided (e.g., if the direct source is a plant in a trial, the original source of that plant name can be accession, cross or family name).</li>
-                        <li><b>Pedigree:</b> Pedigree information of each derived accession depends on stock type of the original source (accession or cross or family name).</li>
+                        <li><b>Seção Informações adicionais:</b> tanto a origem direta do acesso derivado quanto sua origem original são exibidas nessa seção. Se a origem direta for uma planta ou amostra de tecido, a origem original também será informada (por exemplo, se a origem direta for uma planta de um ensaio, sua origem original poderá ser um acesso, cruzamento ou família).</li>
+                        <li><b>Pedigree:</b> as informações de pedigree de cada acesso derivado dependem do tipo de material da origem original (acesso, cruzamento ou família).</li>
                         <ul class="b" >
-                            <li><b>Originated from an accession:</b> The original accession is used as parents (both female and male parents) of the derived accession with the "derived" cross type.</li>
-                            <li><b>Originated from a cross or a family name:</b> The female parent, male parent and cross type of the cross or family name are used as parents and cross type of the derived accession. If the derived accession is originated from a cross, the accession is also stored as a progeny of that cross.</li>
+                            <li><b>Originado de um acesso:</b> o acesso original é usado como parental feminino e masculino do acesso derivado, com o tipo de cruzamento "derivado".</li>
+                            <li><b>Originado de um cruzamento ou família:</b> o parental feminino, o parental masculino e o tipo do cruzamento ou da família são usados como parentais e tipo de cruzamento do acesso derivado. Se o acesso derivado se originar de um cruzamento, ele também será armazenado como progênie desse cruzamento.</li>
                         </ul>
                     </ul>
                     <br>
                     <h4>
-                        How to add derived accessions:
+                        Como adicionar acessos derivados:
                     </h4>
                     <ul>
-                        <li><b>Using a List:</b> You can add derived accessions by using a list of accessions, plants or tissue samples as the sources of new accessions. A form will be generated for you to fill out new accession names and description. Please see 'Using a List' link.</li>
-                        <li><b>Upload a File:</b> To upload derived accessions, please use a file with three columns: source_name, derived_accession_name, description. Please see 'Upload a File' link</li>
+                        <li><b>Usando uma lista:</b> você pode adicionar acessos derivados usando uma lista de acessos, plantas ou amostras de tecido como origem dos novos acessos. Será gerado um formulário para preencher os nomes e as descrições. Consulte o link "Usar uma lista".</li>
+                        <li><b>Enviando um arquivo:</b> use um arquivo com três colunas: <code>source_name</code>, <code>derived_accession_name</code> e <code>description</code>. Consulte o link "Enviar um arquivo".</li>
                     </ul>
                 </div>
                 <div class="modal-footer">
-                    <button id="close_derived_accession_info_dialog" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button id="close_derived_accession_info_dialog" type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
                 </div>
             </div>
         </div>

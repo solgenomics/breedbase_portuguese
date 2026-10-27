@@ -1,6 +1,7 @@
 
 package SGN::Controller::AJAX::BreedersToolbox::Folder;
 
+use utf8;
 use Moose;
 use List::MoreUtils qw | any |;
 use Data::Dumper;
@@ -64,7 +65,7 @@ sub create_folder :Path('/ajax/folder/new') Args(0) {
     my $existing = $schema->resultset("Project::Project")->find( { name => $folder_name });
 
     if ($existing) {
-        $c->stash->{rest} = { error => "A folder or trial with that name already exists in the database. Please select another name." };
+        $c->stash->{rest} = { error => "Já existe uma pasta ou um ensaio com esse nome no banco de dados. Escolha outro nome." };
         $c->detach;
     }
     my $folder = CXGN::Trial::Folder->create({
@@ -104,7 +105,7 @@ sub delete_folder : Chained('get_folder') PathPart('delete') Args(0) {
     if ($delete_folder) {
         $c->stash->{rest} = { success => 1 };
     } else {
-        $c->stash->{rest} = { error => 'Folder Not Deleted! To delete a folder first move all trials and sub-folders out of it.' };
+        $c->stash->{rest} = { error => 'A pasta não foi excluída. Antes de excluí-la, mova todos os ensaios e subpastas para fora dela.' };
     }
 
 }
@@ -125,7 +126,7 @@ sub rename_folder : Chained('get_folder') PathPart('name') Args(0) {
     if ($rename_folder) {
         $c->stash->{rest} = { success => 1 };
     } else {
-        $c->stash->{rest} = { error => 'Folder could not be renamed!' };
+        $c->stash->{rest} = { error => 'Não foi possível renomear a pasta.' };
     }
 
 }
@@ -181,12 +182,12 @@ sub check_privileges {
 
     if (!$c->user()) {
         print STDERR "User not logged in... not uploading coordinates.\n";
-        $c->stash->{rest} = {error => "You need to be logged in." };
+        $c->stash->{rest} = {error => "Você precisa entrar em sua conta." };
         $c->detach;
     }
 
     if (!any { $_ eq "curator" || $_ eq "submitter" } ($c->user()->roles)  ) {
-        $c->stash->{rest} = {error =>  "You have insufficient privileges." };
+        $c->stash->{rest} = {error =>  "Você não tem privilégios suficientes." };
         $c->detach;
     }
     return 1;

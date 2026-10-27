@@ -11,18 +11,18 @@ $odk_service => undef
 <%perl>
     my $subtitle;
     if ($odk_service eq 'ONA') {
-        $subtitle = '<button class="btn btn-sm btn-primary" style="margin:3px" name="create_crossingtrial_link">Add Crossing Experiment</button> <button class="btn btn-sm btn-primary" style="margin:3px" name="create_cross_link">Add Cross</button> <button class="btn btn-sm btn-primary" style="margin:3px" name="upload_crosses_link">Upload Crosses</button> <button class="btn btn-sm btn-primary" style="margin:3px" id="create_cross_wishlist">Add Cross Wishlist</button>';
+        $subtitle = '<button class="btn btn-sm btn-primary" style="margin:3px" name="create_crossingtrial_link">Adicionar experimento de cruzamento</button> <button class="btn btn-sm btn-primary" style="margin:3px" name="create_cross_link">Adicionar cruzamento</button> <button class="btn btn-sm btn-primary" style="margin:3px" name="upload_crosses_link">Enviar cruzamentos</button> <button class="btn btn-sm btn-primary" style="margin:3px" id="create_cross_wishlist">Adicionar lista de cruzamentos desejados</button>';
     } else {
-        $subtitle = '<button class="btn btn-sm btn-primary" style="margin:3px" name="create_crossingtrial_link">Add Crossing Experiment</button> <button class="btn btn-sm btn-primary" style="margin:3px" name="create_cross_link">Add Cross</button> <button class="btn btn-sm btn-primary" style="margin:3px" name="upload_crosses_link">Upload Crosses</button>';
+        $subtitle = '<button class="btn btn-sm btn-primary" style="margin:3px" name="create_crossingtrial_link">Adicionar experimento de cruzamento</button> <button class="btn btn-sm btn-primary" style="margin:3px" name="create_cross_link">Adicionar cruzamento</button> <button class="btn btn-sm btn-primary" style="margin:3px" name="upload_crosses_link">Enviar cruzamentos</button>';
     }
 </%perl>
 
 <br />
-<& /page/page_title.mas, title => "Manage Crosses" &>
+<& /page/page_title.mas, title => "Gerenciar cruzamentos" &>
 
 <div class="container-fluid">
 
-<&| /page/info_section.mas, title=>"Crosses" , collapsible=>1, collapsed=>0, subtitle=> $subtitle &>
+<&| /page/info_section.mas, title=>"Cruzamentos" , collapsible=>1, collapsed=>0, subtitle=> $subtitle &>
 
 <& /breeders_toolbox/crossing_experiment_tree.mas, user_id=>$user_id, locations=>$locations, programs=>$programs, roles=>$roles, odk_service=>$odk_service &>
 

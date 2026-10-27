@@ -8,15 +8,15 @@ $trial_name => undef
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="uploadTrialEntryNumbersDialog">Upload Trial Entry Numbers</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="uploadTrialEntryNumbersDialog">Enviar números de entrada dos ensaios</h4>
       </div>
       <div class="modal-body">
         <div class="container-fluid">
-          <b>Trial Entry Numbers may be uploaded in an Excel file (.xls or .xlsx)</b><br>
+          <b>Os números de entrada dos ensaios podem ser enviados em um arquivo do Excel (.xls ou .xlsx)</b><br>
           <br><br>
-          <b>Header:</b><br>
-          The first row (header) must contain the following:
+          <b>Cabeçalho:</b><br>
+          A primeira linha (cabeçalho) deve conter o seguinte:
           <br>
           <table class="table table-bordered table-hover">
             <tbody>
@@ -27,16 +27,16 @@ $trial_name => undef
               </tr>
             </tbody>
           </table>
-          <b>Column Definitions:</b><br>
-          <b>accession_name:</b> (required) the unique name of the Accession record, must exist in the database<br>
-          <b>trial_names:</b> (required) the name(s) of the Trials to assign entry numbers in (can include more than one comma-separated Trial name)<br>
-          <b>entry_number:</b> The entry number to assign to the Accession in all of the specified Trial(s).  The entry number should be unique in this set of Trial(s).<br>
+          <b>Definições das colunas:</b><br>
+          <b>accession_name:</b> (obrigatório) nome exclusivo do registro de acesso; deve existir no banco de dados<br>
+          <b>trial_names:</b> (obrigatório) nome do(s) ensaio(s) nos quais os números de entrada serão atribuídos (pode conter mais de um nome de ensaio, separado por vírgulas)<br>
+          <b>entry_number:</b> número de entrada a ser atribuído ao acesso em todos os ensaios especificados. O número deve ser único neste conjunto de ensaios.<br>
           <br>
           <form method="post" enctype="multipart/form-data" encoding="multipart/form-data" id="upload_entry_numbers_form" name="upload_entry_numbers_form">
-            <label for="upload_entry_numbers_file" style="display: inline-block;">Entry Numbers File:</label>
+            <label for="upload_entry_numbers_file" style="display: inline-block;">Arquivo de números de entrada:</label>
             <input class="form-control" type="file" name="upload_entry_numbers_file" id="upload_entry_numbers_file" encoding="multipart/form-data" />
             <input id="upload_entry_numbers_ignore_warnings_cb" name="upload_entry_numbers_ignore_warnings_cb" type="checkbox" value="">
-            <label for="upload_entry_numbers_ignore_warnings_cb"> Ignore Warnings - check to upload even if there are warnings with the file</label><br>
+            <label for="upload_entry_numbers_ignore_warnings_cb"> Ignorar avisos — marque para enviar mesmo que haja avisos relacionados ao arquivo</label><br>
           </form>
 
           <br /><br />
@@ -47,8 +47,8 @@ $trial_name => undef
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-	      <button type="button" class="btn btn-primary" name="upload_entry_numbers_submit" id="upload_entry_numbers_submit">Upload</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+	      <button type="button" class="btn btn-primary" name="upload_entry_numbers_submit" id="upload_entry_numbers_submit">Enviar</button>
       </div>
     </div>
   </div>
@@ -64,7 +64,7 @@ jQuery(document).ready(function() {
   jQuery('#upload_entry_numbers_submit').click( function() {
     var uploadFile = jQuery("#upload_entry_numbers_file").val();
     if (uploadFile === '') {
-      alert("Please select a file");
+      alert("Selecione um arquivo");
       return;
     }
 
@@ -92,7 +92,7 @@ jQuery(document).ready(function() {
             addWarnings(response.warning);
           }
           if ( response.success === 1) {
-            addSuccess("Trial entry numbers stored!");
+            addSuccess("Números de entrada dos ensaios armazenados!");
 	    loadEntryNumbers();
           }
         }
@@ -100,7 +100,7 @@ jQuery(document).ready(function() {
       error: function() {
         jQuery('#working_modal').modal("hide");
         jQuery("#upload_entry_numbers_file").val("");
-        alert("ERROR: Could not upload and process file due to server error!");
+        alert("ERRO: Não foi possível enviar e processar o arquivo devido a um erro no servidor!");
       }
     });
   });

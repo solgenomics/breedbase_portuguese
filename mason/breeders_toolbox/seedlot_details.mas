@@ -33,40 +33,40 @@ $default_seedlot_material_type => undef
 % my $edit_seedlot_link;
 % my $new_transaction_link;
 % if (!$discard_info) {
-%    $edit_seedlot_link = "[<a id='edit_seedlot_details_link' >Edit Seedlot Details</a>]";
-%    $new_transaction_link = "[<a id='add_seedlot_transaction_button' >Add New Transaction</a>]";
+%    $edit_seedlot_link = "[<a id='edit_seedlot_details_link' >Editar detalhes do lote de sementes</a>]";
+%    $new_transaction_link = "[<a id='add_seedlot_transaction_button' >Adicionar nova transação</a>]";
 % }
 
-<& /page/page_title.mas, title => 'Seedlot '.$uniquename &>
+<& /page/page_title.mas, title => 'Lote de sementes '.$uniquename &>
 
-<&| /page/info_section.mas, title=>"Details",  collapsible => 1, collapsed=>0, subtitle=> $edit_seedlot_link &>
+<&| /page/info_section.mas, title=>"Detalhes",  collapsible => 1, collapsed=>0, subtitle=> $edit_seedlot_link &>
 
 <table class="table table-bordered table-hover">
 % if ($discard_info) {
-    <tr><td><b>Discard Info</b></td><td><% $discard_info %></td></tr>
+    <tr><td><b>Informações do descarte</b></td><td><% $discard_info %></td></tr>
 % }
-<tr><td><b>Breeding Program</b></td><td><div id="seedlot_breeding_program_div">[LOADING...]</div></td></tr>
-<tr><td><b>Seedlot Name</b></td><td><a href="/stock/<% $seedlot_id %>/view"><% $uniquename %></a></td></tr>
-<tr><td><b>Material Type</b></td><td><% $material_type %></td></tr>
-<tr><td><b>Seedlot Description</b></td><td><% $description %></td></tr>
-<tr><td><b>Organization</b></td><td><% $organization_name %></td></tr>
-<tr><td><b>Location Code</b><td><div id="seedlot_location_code_div">[LOADING...]</div></td></tr>
-<tr><td><b>Box Name</b></td><td><% $box_name %></td></tr>
-<tr><td><b>Quality issues</b></td><td><% $quality %></td></tr>
-<tr><td><b>Contents</b></td><td><% $content_html %></td></tr>
+<tr><td><b>Programa de melhoramento</b></td><td><div id="seedlot_breeding_program_div">[CARREGANDO...]</div></td></tr>
+<tr><td><b>Nome do lote de sementes</b></td><td><a href="/stock/<% $seedlot_id %>/view"><% $uniquename %></a></td></tr>
+<tr><td><b>Tipo de material</b></td><td><% $material_type %></td></tr>
+<tr><td><b>Descrição do lote de sementes</b></td><td><% $description %></td></tr>
+<tr><td><b>Organização</b></td><td><% $organization_name %></td></tr>
+<tr><td><b>Código do local</b><td><div id="seedlot_location_code_div">[CARREGANDO...]</div></td></tr>
+<tr><td><b>Nome da caixa</b></td><td><% $box_name %></td></tr>
+<tr><td><b>Problemas de qualidade</b></td><td><% $quality %></td></tr>
+<tr><td><b>Conteúdo</b></td><td><% $content_html %></td></tr>
 <!--<tr><td><b>Population</b></td><td><% $population_name %></td></tr>-->
-<tr><td><b>Current count</b></td><td><% $current_count %></td></tr>
-<tr><td><b>Current weight (g)</b></td><td><% $current_weight %></td></tr>
-<tr><td><b>Submitters</b></td><td><% $owners_string %></td></tr>
+<tr><td><b>Quantidade atual</b></td><td><% $current_count %></td></tr>
+<tr><td><b>Peso atual (g)</b></td><td><% $current_weight %></td></tr>
+<tr><td><b>Responsáveis pelo envio</b></td><td><% $owners_string %></td></tr>
 </table>
 
 </&>
 
 <div style="text-align: center">
-    <h3>Transactions</h3>
+    <h3>Transações</h3>
 </div>
 
-<&| /page/info_section.mas, title=>"Transactions Table",  collapsible => 1, collapsed=>0, subtitle=>$new_transaction_link &>
+<&| /page/info_section.mas, title=>"Tabela de transações",  collapsible => 1, collapsed=>0, subtitle=>$new_transaction_link &>
 
 <div style="overflow:scroll">
     <table id="available_seedlot_transactions_table" class="table table-hover table-bordered">
@@ -75,21 +75,21 @@ $default_seedlot_material_type => undef
 
 </&>
 
-<&| /page/info_section.mas, title=>"Mark this seedlot as DISCARDED",  collapsible => 1, collapsed=>1 &>
+<&| /page/info_section.mas, title=>"Marcar este lote de sementes como DESCARTADO",  collapsible => 1, collapsed=>1 &>
 % if ($user_role eq "curator" ) {
     <div class="well well-sm">
         <div class="panel panel-default">
             <div class="panel-body">
 % if ($discard_info) {
-    <button class="btn btn-sm btn-default" style="margin:3px" id ="discard_seedlot_usage_info" name = "discard_seedlot_usage_info">Usage Help <span class="glyphicon glyphicon-question-sign"></span></button><button class="btn btn-sm btn-primary" style="margin:3px" id="undo_discarding_seedlot_link">Undo Discarding this Seedlot</button>
+    <button class="btn btn-sm btn-default" style="margin:3px" id ="discard_seedlot_usage_info" name = "discard_seedlot_usage_info">Ajuda sobre o uso <span class="glyphicon glyphicon-question-sign"></span></button><button class="btn btn-sm btn-primary" style="margin:3px" id="undo_discarding_seedlot_link">Desfazer o descarte deste lote</button>
 % } else {
-    <button class="btn btn-sm btn-default" style="margin:3px" id ="discard_seedlot_usage_info" name = "discard_seedlot_usage_info">Usage Help <span class="glyphicon glyphicon-question-sign"></span></button><button class="btn btn-sm btn-primary" style="margin:3px" id="discard_seedlot_details_page_link">Mark this Seedlot as DISCARDED</button>
+    <button class="btn btn-sm btn-default" style="margin:3px" id ="discard_seedlot_usage_info" name = "discard_seedlot_usage_info">Ajuda sobre o uso <span class="glyphicon glyphicon-question-sign"></span></button><button class="btn btn-sm btn-primary" style="margin:3px" id="discard_seedlot_details_page_link">Marcar este lote como DESCARTADO</button>
 % }
             </div>
         </div>
     </div>
 % } else {
-    You need to be logged in or you do not have sufficient privileges to mark this seedlot as DISCARDED.
+    Você precisa entrar no sistema e ter privilégios suficientes para marcar este lote como DESCARTADO.
 % }
 </&>
 
@@ -97,9 +97,9 @@ $default_seedlot_material_type => undef
 <& /breeders_toolbox/discard_undo_seedlot_usage.mas &>
 
 % if ( $maintenance_enabled ) {
-    <& /page/page_title.mas, title => 'Maintenance Events' &>
+    <& /page/page_title.mas, title => 'Eventos de manutenção' &>
 
-    <&| /page/info_section.mas, title=>"Events Table",  collapsible=>1, collapsed=>0, subtitle=>"[<a href='/breeders/seedlot/maintenance/record?seedlot_name=$uniquename' id='add_seedlot_maintenance_button' >Record Maintenance</a>]" &>
+    <&| /page/info_section.mas, title=>"Tabela de eventos",  collapsible=>1, collapsed=>0, subtitle=>"[<a href='/breeders/seedlot/maintenance/record?seedlot_name=$uniquename' id='add_seedlot_maintenance_button' >Registrar manutenção</a>]" &>
         <& /breeders_toolbox/seedlot_maintenance/table.mas, seedlot_id => $seedlot_id, seedlot_name => $uniquename &>
     </&>
 % }
@@ -108,26 +108,26 @@ $default_seedlot_material_type => undef
   <div class="modal-dialog modal-xl" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="seedlot_transaction_dialog">Add New Seedlot Transaction</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="seedlot_transaction_dialog">Adicionar nova transação de lote de sementes</h4>
       </div>
       <div class="modal-body">
         <div class="container-fluid">
             <form class="form-horizontal" role="form" method="post" id="create_new_seedlot_transaction_form" name="create_new_seedlot_transaction_form">
 
                 <div class="form-group">
-                    <label class="col-sm-3 control-label">Transaction Type: </label>
+                    <label class="col-sm-3 control-label">Tipo de transação: </label>
                     <div class="col-sm-9" >
                         <select class="form-control" id="seedlot_transaction_factor">
-                            <option value="1">Added to this Seedlot (<% $uniquename %>)</option>
-                            <option value="-1">Taken from this Seedlot (<% $uniquename %>)</option>
+                            <option value="1">Adicionado a este lote (<% $uniquename %>)</option>
+                            <option value="-1">Retirado deste lote (<% $uniquename %>)</option>
                         </select>
                     </div>
                 </div>
 
                 <div id="seedlot_transaction_from_seedlot">
                     <div class="form-group">
-                        <label class="col-sm-3 control-label">Taken From Existing Seedlot:<br/><small>Only showing seedlots with matching content</small></label>
+                        <label class="col-sm-3 control-label">Retirado de um lote existente:<br/><small>Exibindo somente lotes com o mesmo conteúdo</small></label>
                         <div class="col-sm-9" >
                             <div id="seedlot_transaction_seedlot_div"></div>
                         </div>
@@ -136,17 +136,17 @@ $default_seedlot_material_type => undef
 
                 <div id="seedlot_transaction_to_seedlot" style="display: none">
                     <div class="form-group">
-                        <label class="col-sm-3 control-label">Transferring to a new seed lot?: </label>
+                        <label class="col-sm-3 control-label">Transferir para um novo lote de sementes? </label>
                         <div class="col-sm-9" >
                             <select class="form-control" id="seedlot_transaction_to_seedlot_new">
-                                <option value="no">No</option>
-                                <option value="yes">Yes</option>
+                                <option value="no">Não</option>
+                                <option value="yes">Sim</option>
                             </select>
                         </div>
                     </div>
                     <div id="seedlot_transaction_to_seedlot_new_no">
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">To Existing Seedlot:<br/><small>Only showing seedlots with matching content</small> </label>
+                            <label class="col-sm-3 control-label">Para um lote existente:<br/><small>Exibindo somente lotes com o mesmo conteúdo</small> </label>
                             <div class="col-sm-9" >
                                 <div id="seedlot_transaction_to_seedlot_existing"></div>
                             </div>
@@ -157,44 +157,44 @@ $default_seedlot_material_type => undef
                             <div class="panel panel-default">
                                 <div class="panel-body">
                                     <div class="form-group">
-                                        <label class="col-sm-3 control-label">To New Seedlot: </label>
+                                        <label class="col-sm-3 control-label">Para um novo lote: </label>
                                         <div class="col-sm-9" >
 
                                             <div class="form-group">
-                                                <label class="col-sm-3 control-label">Name: </label>
+                                                <label class="col-sm-3 control-label">Nome: </label>
                                                 <div class="col-sm-9" >
-                                                    <input class="form-control" id="transaction_new_seedlot_name" placeholder="Required">
+                                                    <input class="form-control" id="transaction_new_seedlot_name" placeholder="Obrigatório">
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label class="col-sm-3 control-label">Seedlot Description: </label>
+                                                <label class="col-sm-3 control-label">Descrição do lote de sementes: </label>
                                                 <div class="col-sm-9" >
-                                                    <input class="form-control" id="transaction_new_seedlot_description" placeholder="Optional">
+                                                    <input class="form-control" id="transaction_new_seedlot_description" placeholder="Opcional">
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label class="col-sm-3 control-label">Breeding Program: </label>
+                                                <label class="col-sm-3 control-label">Programa de melhoramento: </label>
                                                 <div class="col-sm-9" >
                                                     <div id="transaction_new_seedlot_breeding_program_div"></div>
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label class="col-sm-3 control-label">Location: </label>
+                                                <label class="col-sm-3 control-label">Local: </label>
                                                 <div class="col-sm-9" >
-                                                    <input class="form-control" id="transaction_new_seedlot_location" placeholder="Required">
+                                                    <input class="form-control" id="transaction_new_seedlot_location" placeholder="Obrigatório">
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label class="col-sm-3 control-label">Box Name: </label>
+                                                <label class="col-sm-3 control-label">Nome da caixa: </label>
                                                 <div class="col-sm-9" >
-                                                    <input class="form-control" id="transaction_new_seedlot_box_name" placeholder="Required">
+                                                    <input class="form-control" id="transaction_new_seedlot_box_name" placeholder="Obrigatório">
                                                 </div>
                                             </div>
 
 					    			    <div class="form-group">
-					      <label class="col-sm-3 control-label">Quality issues: </label>
+					      <label class="col-sm-3 control-label">Problemas de qualidade: </label>
                                               <div class="col-sm-9" >
-                                                <input class="form-control" id="transaction_new_seedlot_quality" placeholder="Leave blank for no issues">
+                                                <input class="form-control" id="transaction_new_seedlot_quality" placeholder="Deixe em branco se não houver problemas">
                                               </div>
 					    </div>
 
@@ -202,7 +202,7 @@ $default_seedlot_material_type => undef
                                                 <div class="row">
                                                     <div class="col-sm-3">
                                                        <div class="form-group">
-                                                            <label class="col-sm-12 control-label">Contents:<br/><small>Contents must match between seedlots</small> </label>
+                                                            <label class="col-sm-12 control-label">Conteúdo:<br/><small>Os lotes devem ter o mesmo conteúdo</small> </label>
                                                         </div>
                                                     </div>
                                                     <div class="col-sm-9">
@@ -210,13 +210,13 @@ $default_seedlot_material_type => undef
                                                             <div class="panel-body">
                                                                 <div class="form-group">
 % if ($content_accession_name){
-                                                                    <label class="col-sm-3 control-label">Accession name: </label>
+                                                                    <label class="col-sm-3 control-label">Nome do acesso: </label>
                                                                     <div class="col-sm-9" >
                                                                         <input class="form-control" id="transaction_new_seedlot_accession_uniquename" disabled value="<% $content_accession_name %>">
                                                                     </div>
 % }
 % if ($content_cross_name){
-                                                                    <label class="col-sm-3 control-label">Cross Unique ID: </label>
+                                                                    <label class="col-sm-3 control-label">ID único do cruzamento: </label>
                                                                     <div class="col-sm-9" >
                                                                         <input class="form-control" id="transaction_new_seedlot_cross_uniquename" disabled value="<% $content_cross_name %>">
                                                                     </div>
@@ -229,41 +229,41 @@ $default_seedlot_material_type => undef
                                             </div>
 
                                             <div class="form-group">
-                                                <label class="col-sm-3 control-label">Starting Amount (number of materials): </label>
+                                                <label class="col-sm-3 control-label">Quantidade inicial (número de materiais): </label>
                                                 <div class="col-sm-9" >
-                                                    <input class="form-control" id="transaction_new_seedlot_amount" placeholder="Amount OR Weight Required" disabled value="0">
+                                                    <input class="form-control" id="transaction_new_seedlot_amount" placeholder="Quantidade OU peso obrigatório" disabled value="0">
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label class="col-sm-3 control-label">Starting Weight (g): </label>
+                                                <label class="col-sm-3 control-label">Peso inicial (g): </label>
                                                 <div class="col-sm-9" >
-                                                    <input class="form-control" id="transaction_new_seedlot_weight" placeholder="Amount OR Weight Required" disabled value="0">
+                                                    <input class="form-control" id="transaction_new_seedlot_weight" placeholder="Quantidade OU peso obrigatório" disabled value="0">
                                                 </div>
                                             </div>
                                             <!--
                                             <div class="form-group">
                                                 <label class="col-sm-3 control-label">Population: </label>
                                                 <div class="col-sm-9" >
-                                                    <input class="form-control" id="transaction_new_seedlot_population_name" placeholder="Optional">
+                                                    <input class="form-control" id="transaction_new_seedlot_population_name" placeholder="Opcional">
                                                 </div>
                                             </div>
                                             -->
                                             <div class="form-group">
-                                                <label class="col-sm-3 control-label">Organization: </label>
+                                                <label class="col-sm-3 control-label">Organização: </label>
                                                 <div class="col-sm-9" >
-                                                    <input class="form-control" id="transaction_new_seedlot_organization" placeholder="Optional">
+                                                    <input class="form-control" id="transaction_new_seedlot_organization" placeholder="Opcional">
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label class="col-sm-3 control-label">Timestamp: </label>
+                                                <label class="col-sm-3 control-label">Data e hora: </label>
                                                 <div class="col-sm-9" >
                                                     <input class="form-control" id="transaction_new_seedlot_timestamp" value="<% $timestamp %>" placeholder="<% $timestamp %>">
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label class="col-sm-3 control-label">Transaction Description: </label>
+                                                <label class="col-sm-3 control-label">Descrição da transação: </label>
                                                 <div class="col-sm-9" >
-                                                    <input class="form-control" id="transaction_new_seedlot_transaction_description" placeholder="Optional">
+                                                    <input class="form-control" id="transaction_new_seedlot_transaction_description" placeholder="Opcional">
                                                 </div>
                                             </div>
                                         </div>
@@ -275,35 +275,35 @@ $default_seedlot_material_type => undef
                 </div>
 
                 <div class="form-group">
-                    <label class="col-sm-3 control-label">Transaction Amount (number of materials): </label>
+                    <label class="col-sm-3 control-label">Quantidade da transação (número de materiais): </label>
                     <div class="col-sm-9" >
-                        <input class="form-control" id="seedlot_transaction_amount" placeholder="Amount OR Weight Required">
+                        <input class="form-control" id="seedlot_transaction_amount" placeholder="Quantidade OU peso obrigatório">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-3 control-label">Transaction Weight (g): </label>
+                    <label class="col-sm-3 control-label">Peso da transação (g): </label>
                     <div class="col-sm-9" >
-                        <input class="form-control" id="seedlot_transaction_weight" placeholder="Amount OR Weight Required">
+                        <input class="form-control" id="seedlot_transaction_weight" placeholder="Quantidade OU peso obrigatório">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-3 control-label">Timestamp: </label>
+                    <label class="col-sm-3 control-label">Data e hora: </label>
                     <div class="col-sm-9" >
                         <input class="form-control" id="seedlot_transaction_timestamp" value="<% $timestamp %>" placeholder="<% $timestamp %>">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-3 control-label">Transaction Description: </label>
+                    <label class="col-sm-3 control-label">Descrição da transação: </label>
                     <div class="col-sm-9" >
-                        <input class="form-control" id="seedlot_transaction_description" placeholder="Optional">
+                        <input class="form-control" id="seedlot_transaction_description" placeholder="Opcional">
                     </div>
                 </div>
             </form>
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button id="create_new_seedlot_transaction_button" type="button" class="btn btn-primary" >Submit</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+        <button id="create_new_seedlot_transaction_button" type="button" class="btn btn-primary" >Enviar</button>
       </div>
     </div>
   </div>
@@ -313,8 +313,8 @@ $default_seedlot_material_type => undef
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="seedlot_edit_transaction_dialog">Edit Seedlot Transaction</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="seedlot_edit_transaction_dialog">Editar transação de lote de sementes</h4>
       </div>
       <div class="modal-body">
         <div class="container-fluid">
@@ -323,8 +323,8 @@ $default_seedlot_material_type => undef
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button id="edit_seedlot_transaction_button" type="button" class="btn btn-primary" >Save</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+        <button id="edit_seedlot_transaction_button" type="button" class="btn btn-primary" >Salvar</button>
       </div>
     </div>
   </div>
@@ -334,20 +334,20 @@ $default_seedlot_material_type => undef
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="seedlot_edit_details_dialog">Edit Seedlot Details</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="seedlot_edit_details_dialog">Editar detalhes do lote de sementes</h4>
       </div>
       <div class="modal-body">
         <div class="container-fluid">
             <form class="form-horizontal">
                 <div class="form-group">
-                    <label class="col-sm-3 control-label">Seedlot Name: </label>
+                    <label class="col-sm-3 control-label">Nome do lote de sementes: </label>
                     <div class="col-sm-9" >
-                        <input class="form-control" type="text" id="edit_seedlot_details_uniquename" value="LOADING..."/>
+                        <input class="form-control" type="text" id="edit_seedlot_details_uniquename" value="CARREGANDO..."/>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-3 control-label">Material Type: </label>
+                    <label class="col-sm-3 control-label">Tipo de material: </label>
 % if ($default_seedlot_material_type) {
                     <div class="col-sm-9">
                         <input class="form-control" id="edit_seedlot_details_default_material_type" disabled value="<% $default_seedlot_material_type %>">
@@ -360,40 +360,40 @@ $default_seedlot_material_type => undef
                 </div>
 
                 <div class="form-group">
-                    <label class="col-sm-3 control-label">Seedlot Description: </label>
+                    <label class="col-sm-3 control-label">Descrição do lote de sementes: </label>
                     <div class="col-sm-9" >
-                        <input class="form-control" type="text" id="edit_seedlot_details_description" placeholder="Optional"/>
+                        <input class="form-control" type="text" id="edit_seedlot_details_description" placeholder="Opcional"/>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-3 control-label">Breeding Program: </label>
+                    <label class="col-sm-3 control-label">Programa de melhoramento: </label>
                     <div class="col-sm-9" >
-                        <input class="form-control" type="text" id="edit_seedlot_details_breeding_program" value="LOADING..."/>
+                        <input class="form-control" type="text" id="edit_seedlot_details_breeding_program" value="CARREGANDO..."/>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-3 control-label">Organization: </label>
+                    <label class="col-sm-3 control-label">Organização: </label>
                     <div class="col-sm-9" >
-                        <input class="form-control" type="text" id="edit_seedlot_details_organization" value="LOADING..."/>
+                        <input class="form-control" type="text" id="edit_seedlot_details_organization" value="CARREGANDO..."/>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-3 control-label">Location Code: </label>
+                    <label class="col-sm-3 control-label">Código do local: </label>
                     <div class="col-sm-9" >
-                        <input class="form-control" type="text" id="edit_seedlot_details_location" value="LOADING..."/>
+                        <input class="form-control" type="text" id="edit_seedlot_details_location" value="CARREGANDO..."/>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-3 control-label">Box Name: </label>
+                    <label class="col-sm-3 control-label">Nome da caixa: </label>
                     <div class="col-sm-9" >
-                        <input class="form-control" type="text" id="edit_seedlot_details_box_name" value="LOADING..."/>
+                        <input class="form-control" type="text" id="edit_seedlot_details_box_name" value="CARREGANDO..."/>
                     </div>
                 </div>
 
 		<div class="form-group">
-		  <label class="col-sm-3 control-label">Quality issues: </label>
+		  <label class="col-sm-3 control-label">Problemas de qualidade: </label>
                   <div class="col-sm-9" >
-                    <input class="form-control" id="edit_seedlot_details_quality" placeholder="Leave blank for no issues">
+                    <input class="form-control" id="edit_seedlot_details_quality" placeholder="Deixe em branco se não houver problemas">
                   </div>
                 </div>
 
@@ -401,25 +401,25 @@ $default_seedlot_material_type => undef
                     <div class="row">
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <label class="col-sm-12 control-label">Contents: </label>
+                                <label class="col-sm-12 control-label">Conteúdo: </label>
                             </div>
                         </div>
                         <div class="col-sm-9">
                             <div class="panel panel-default">
                                 <div class="panel-body">
                                     <div class="form-group">
-                                        <label class="col-sm-3 control-label">Accession name: </label>
+                                        <label class="col-sm-3 control-label">Nome do acesso: </label>
                                         <div class="col-sm-9" >
                                             <input class="form-control" id="edit_seedlot_details_accession" value="<% $content_accession_name %>">
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div style="text-align: center"><h4>OR</h4></div>
+                            <div style="text-align: center"><h4>OU</h4></div>
                             <div class="panel panel-default">
                                 <div class="panel-body">
                                     <div class="form-group">
-                                        <label class="col-sm-3 control-label">Cross Unique ID: </label>
+                                        <label class="col-sm-3 control-label">ID único do cruzamento: </label>
                                         <div class="col-sm-9" >
                                             <input class="form-control" id="edit_seedlot_details_cross" value="<% $content_cross_name %>">
                                         </div>
@@ -434,7 +434,7 @@ $default_seedlot_material_type => undef
                 <div class="form-group">
                     <label class="col-sm-3 control-label">Population: </label>
                     <div class="col-sm-9" >
-                        <input class="form-control" type="text" id="edit_seedlot_details_population" value="LOADING..."/>
+                        <input class="form-control" type="text" id="edit_seedlot_details_population" value="CARREGANDO..."/>
                     </div>
                 </div>
                 -->
@@ -442,8 +442,8 @@ $default_seedlot_material_type => undef
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button id="edit_seedlot_details_button" type="button" class="btn btn-primary" >Save</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+        <button id="edit_seedlot_details_button" type="button" class="btn btn-primary" >Salvar</button>
       </div>
     </div>
   </div>
@@ -453,19 +453,19 @@ $default_seedlot_material_type => undef
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="transactionSavedDialog">Success</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="transactionSavedDialog">Sucesso</h4>
             </div>
             <div class="modal-body">
                 <div class="container-fluid">
                     <p>
                         <span class="ui-icon ui-icon-circle-check" style="float: left; margin: 0 7px 50px 0;"></span>
-                        The transaction was saved successfully.
+                        A transação foi salva com sucesso.
                     </p>
                 </div>
             </div>
             <div class="modal-footer">
-                <button id="dismiss_transaction_saved_dialog" type="button" class="btn btn-default" data-dismiss="modal">Close & Reload</button>
+                <button id="dismiss_transaction_saved_dialog" type="button" class="btn btn-default" data-dismiss="modal">Fechar e recarregar</button>
             </div>
         </div>
     </div>
@@ -495,20 +495,20 @@ $default_seedlot_material_type => undef
     var seedlot_transactions_table = jQuery('#available_seedlot_transactions_table').DataTable( {
         'ajax': '/ajax/breeders/seedlot/<% $seedlot_id %>/transactions',
         columns: [
-            { title: "Transaction Id", "data": "transaction_id" },
-            { title: "Transaction Date", "data": "timestamp" },
-            { title: "From", "data": "from" },
-            { title: "To", "data": "to" },
-            { title: "Transaction Num Seeds", "data": "value" },
-            { title: "Transaction Weight (g)", "data": "weight" },
-            { title: "Operator", "data": "operator" },
-            { title: "Transaction Description", "data": "description" },
-            { title: "Edit Transaction", "data": "null", "render" : function ( data, type, row ) {
+            { title: "ID da transação", "data": "transaction_id" },
+            { title: "Data da transação", "data": "timestamp" },
+            { title: "Origem", "data": "from" },
+            { title: "Destino", "data": "to" },
+            { title: "Número de sementes da transação", "data": "value" },
+            { title: "Peso da transação (g)", "data": "weight" },
+            { title: "Responsável", "data": "operator" },
+            { title: "Descrição da transação", "data": "description" },
+            { title: "Editar transação", "data": "null", "render" : function ( data, type, row ) {
                 if (status == 'discarded') {
                     return "";
-                } else {return "<a onclick='editSeedlotTransaction("+row.transaction_id+")' >[Edit]</a>";}
+                } else {return "<a onclick='editSeedlotTransaction("+row.transaction_id+")' >[Editar]</a>";}
             }},
-            { title: "Delete Transaction", "data": "null", "render" : function ( data, type, row ) { return "<a onclick='deleteSeedlotTransaction("+row.transaction_id+")' >X</a>"; } },
+            { title: "Excluir transação", "data": "null", "render" : function ( data, type, row ) { return "<a onclick='deleteSeedlotTransaction("+row.transaction_id+")' >X</a>"; } },
         ],
     });
 
@@ -533,7 +533,7 @@ $default_seedlot_material_type => undef
             }
         },
         error: function(response) {
-            alert('An error occurred retrieving seedlot details');
+            alert('Ocorreu um erro ao recuperar os detalhes do lote de sementes');
         }
     });
 
@@ -561,7 +561,7 @@ $default_seedlot_material_type => undef
         if (factor == 1){
             from_existing_seedlot_id_array = jQuery('#seedlot_transaction_seedlot_id').val();
             if (from_existing_seedlot_id_array.length > 1) {
-                alert("Please select only one seedlot.");
+                alert("Selecione somente um lote de sementes.");
                 return;
             } else {
                 from_existing_seedlot_id = from_existing_seedlot_id_array[0];
@@ -571,7 +571,7 @@ $default_seedlot_material_type => undef
             if (to_new == 'no'){
                 to_existing_seedlot_id_array = jQuery('#seedlot_transaction_to_seedlot_existing_id').val();
                 if (to_existing_seedlot_id_array.length > 1) {
-                    alert("Please select only one seedlot.");
+                    alert("Selecione somente um lote de sementes.");
                     return;
                 } else {
                     to_existing_seedlot_id = to_existing_seedlot_id_array[0];
@@ -593,22 +593,22 @@ $default_seedlot_material_type => undef
                 to_new_seedlot_quality = jQuery('#transaction_new_seedlot_quality').val();
 
                 if (to_new_seedlot_accession_name == '' && to_new_seedlot_cross_name == '') {
-                    alert("Please provide an accession name or a cross unique id as the content of the seedlot."); return;
+                    alert("Informe o nome de um acesso ou o ID único de um cruzamento como conteúdo do lote."); return;
                 }
                 if (to_new_seedlot_accession_name != '' && to_new_seedlot_cross_name != '') {
-                    alert("Please provide an accession name OR a cross unique id as the content of the seedlot. Not both."); return;
+                    alert("Informe o nome de um acesso OU o ID único de um cruzamento como conteúdo do lote. Não informe ambos."); return;
                 }
                 if (to_new_seedlot_location_name == ''){
-                    alert("Please provide a location for new seedlot."); return;
+                    alert("Informe um local para o novo lote."); return;
                 }
                 if (to_new_seedlot_box_name == ''){
-                    alert("Please provide a box name for new seedlot."); return;
+                    alert("Informe o nome da caixa do novo lote."); return;
                 }
                 if (to_new_seedlot_amount == '' && to_new_seedlot_weight == ''){
-                    alert("Please provide a starting amount OR weight in grams for new seedlot."); return;
+                    alert("Informe a quantidade inicial OU o peso em gramas do novo lote."); return;
                 }
                 if (to_new_seedlot_timestamp == ''){
-                    alert("Please provide a timestamp for new seedlot created."); return;
+                    alert("Informe a data e a hora de criação do novo lote."); return;
                 }
             }
         }
@@ -617,10 +617,10 @@ $default_seedlot_material_type => undef
         var timestamp = jQuery('#seedlot_transaction_timestamp').val();
         var transaction_description = jQuery('#seedlot_transaction_description').val();
 
-        if (factor == '') { alert("Please provide a factor"); }
-        else if (amount == '' && weight == '') { alert("Please provide an amount OR a weight in grams"); }
-        else if (timestamp == '') { alert("Please provide a timestamp"); }
-        else if (from_existing_seedlot_id == '' && to_existing_seedlot_id == '' && to_new_seedlot_name == '') { alert("Please provide seed lot"); }
+        if (factor == '') { alert("Informe o tipo de transação"); }
+        else if (amount == '' && weight == '') { alert("Informe uma quantidade OU um peso em gramas"); }
+        else if (timestamp == '') { alert("Informe a data e a hora"); }
+        else if (from_existing_seedlot_id == '' && to_existing_seedlot_id == '' && to_new_seedlot_name == '') { alert("Informe um lote de sementes"); }
         else {
 
             jQuery.ajax( {
@@ -664,7 +664,7 @@ $default_seedlot_material_type => undef
                 },
                 error: function(response) {
                     jQuery('#working_modal').modal('hide');
-                    alert('An error occurred creating seedlot transaction');
+                    alert('Ocorreu um erro ao criar a transação do lote de sementes');
                 }
             });
         }
@@ -702,13 +702,13 @@ $default_seedlot_material_type => undef
         var transaction_description =  jQuery('#edit_seedlot_transaction_description').val();
         var timestamp = jQuery('#edit_seedlot_transaction_timestamp').val();
         if (transaction_id == ''){
-            alert('Transaction ID must not be blank');
+            alert('O ID da transação não pode ficar em branco');
         } else if (operator == ''){
-            alert('Operator must not be blank');
+            alert('O responsável não pode ficar em branco');
         } else if (amount == '' && weight == ''){
-            alert('Amount OR weight must not be blank');
+            alert('Informe a quantidade OU o peso');
         } else if (timestamp == ''){
-            alert('Timestamp must not be blank');
+            alert('A data e a hora não podem ficar em branco');
         } else {
             jQuery.ajax({
                 url: '/ajax/breeders/seedlot/<% $seedlot_id %>/transaction/'+transaction_id+'/edit',
@@ -735,7 +735,7 @@ $default_seedlot_material_type => undef
                 },
                 error: function(response) {
                     jQuery('#working_modal').modal('hide');
-                    alert('An error occurred editing seedlot transaction details');
+                    alert('Ocorreu um erro ao editar os detalhes da transação do lote');
                 }
             });
         }
@@ -767,18 +767,18 @@ $default_seedlot_material_type => undef
         }
 
         if (uniquename == ''){
-            alert('Seedlot name must not be blank');
+            alert('O nome do lote de sementes não pode ficar em branco');
         } else if (breeding_program == ''){
-            alert('Breeding program must not be blank');
+            alert('O programa de melhoramento não pode ficar em branco');
         } else if (location == ''){
-            alert('Location must not be blank');
+            alert('O local não pode ficar em branco');
         } else if (accession == '' && cross == '') {
-            alert("Please provide an accession name or a cross unique id as the content of the seedlot."); return;
+            alert("Informe o nome de um acesso ou o ID único de um cruzamento como conteúdo do lote."); return;
         }
         else if (accession != '' && cross != '') {
-            alert("Please provide an accession name OR a cross unique id as the content of the seedlot. Not both."); return;
+            alert("Informe o nome de um acesso OU o ID único de um cruzamento como conteúdo do lote. Não informe ambos."); return;
         } else if (material_type == ''){
-            alert('Please select a material type');
+            alert('Selecione um tipo de material');
         }
         else {
             jQuery.ajax({
@@ -802,7 +802,7 @@ $default_seedlot_material_type => undef
                 success: function(response) {
                     jQuery('#working_modal').modal('hide');
                     if (response.success == 1) {
-                        alert('Seedlot updated!');
+                        alert('Lote de sementes atualizado!');
                         document.location.reload();
                     }
                     if (response.error) {
@@ -811,7 +811,7 @@ $default_seedlot_material_type => undef
                 },
                 error: function(response) {
                     jQuery('#working_modal').modal('hide');
-                    alert('An error occurred editing seedlot details');
+                    alert('Ocorreu um erro ao editar os detalhes do lote de sementes');
                 }
             });
         }
@@ -832,7 +832,7 @@ function editSeedlotTransaction(transaction_id){
         success: function(response) {
             jQuery('#working_modal').modal('hide');
             if (response.success == 1) {
-                html = '<form class="form-horizontal"><div class="form-group"><label class="col-sm-3 control-label">Transaction ID: </label><div class="col-sm-9" ><input type="text" class="form-control" id="edit_seedlot_transaction_id" value="'+response.transaction_id+'" disabled /></div></div><div class="form-group"><label class="col-sm-3 control-label">Operator: </label><div class="col-sm-9" ><input type="text" id="edit_seedlot_transaction_operator" class="form-control" value="'+response.operator+'" /></div></div><div class="form-group"><label class="col-sm-3 control-label">Transaction Type: </label><div class="col-sm-9" ><input type="text" class="form-control" id="edit_seedlot_transaction_type" value="'+response.transaction_type+'" disabled/></div></div><div class="form-group"><label class="col-sm-3 control-label">Amount (Number of materials): </label><div class="col-sm-9" ><input type="number" class="form-control" id="edit_seedlot_transaction_amount" value="'+response.amount+'" /></div></div><div class="form-group"><label class="col-sm-3 control-label">Weight (g): </label><div class="col-sm-9" ><input type="text" class="form-control" id="edit_seedlot_transaction_weight" value="'+response.weight_gram+'" /></div></div><div class="form-group"><label class="col-sm-3 control-label">Timestamp: </label><div class="col-sm-9" ><input type="text" class="form-control" id="edit_seedlot_transaction_timestamp" value="'+response.timestamp+'" disabled /></div></div><div class="form-group"><label class="col-sm-3 control-label">Transaction Description: </label><div class="col-sm-9" ><input type="text" class="form-control" id="edit_seedlot_transaction_description" value="'+response.description+'" /></div></div></form>';
+                html = '<form class="form-horizontal"><div class="form-group"><label class="col-sm-3 control-label">ID da transação: </label><div class="col-sm-9" ><input type="text" class="form-control" id="edit_seedlot_transaction_id" value="'+response.transaction_id+'" disabled /></div></div><div class="form-group"><label class="col-sm-3 control-label">Responsável: </label><div class="col-sm-9" ><input type="text" id="edit_seedlot_transaction_operator" class="form-control" value="'+response.operator+'" /></div></div><div class="form-group"><label class="col-sm-3 control-label">Tipo de transação: </label><div class="col-sm-9" ><input type="text" class="form-control" id="edit_seedlot_transaction_type" value="'+response.transaction_type+'" disabled/></div></div><div class="form-group"><label class="col-sm-3 control-label">Quantidade (número de materiais): </label><div class="col-sm-9" ><input type="number" class="form-control" id="edit_seedlot_transaction_amount" value="'+response.amount+'" /></div></div><div class="form-group"><label class="col-sm-3 control-label">Peso (g): </label><div class="col-sm-9" ><input type="text" class="form-control" id="edit_seedlot_transaction_weight" value="'+response.weight_gram+'" /></div></div><div class="form-group"><label class="col-sm-3 control-label">Data e hora: </label><div class="col-sm-9" ><input type="text" class="form-control" id="edit_seedlot_transaction_timestamp" value="'+response.timestamp+'" disabled /></div></div><div class="form-group"><label class="col-sm-3 control-label">Descrição da transação: </label><div class="col-sm-9" ><input type="text" class="form-control" id="edit_seedlot_transaction_description" value="'+response.description+'" /></div></div></form>';
                 jQuery('#edit_seedlot_transaction_div').html(html);
                 jQuery('#edit_seedlot_transaction_dialog').modal('show');
             }
@@ -842,13 +842,13 @@ function editSeedlotTransaction(transaction_id){
         },
         error: function(response){
             jQuery('#working_modal').modal('hide');
-            alert('An error occurred getting seedlot transaction');
+            alert('Ocorreu um erro ao obter a transação do lote de sementes');
         }
     });
 }
 
 function deleteSeedlotTransaction(transaction_id){
-    if (confirm("Are you sure you want to delete this seedlot transaction?")){
+    if (confirm("Tem certeza de que deseja excluir esta transação do lote de sementes?")){
         jQuery.ajax({
             url: '/ajax/breeders/seedlot/<% $seedlot_id %>/transaction/'+transaction_id+'/delete',
             beforeSend: function(){
@@ -857,7 +857,7 @@ function deleteSeedlotTransaction(transaction_id){
             success: function(response) {
                 jQuery('#working_modal').modal('hide');
                 if (response.success == 1) {
-                    alert('The seedlot transaction has been deleted');
+                    alert('A transação do lote de sementes foi excluída');
                     location.reload();
                 }
                 if (response.error) {
@@ -866,7 +866,7 @@ function deleteSeedlotTransaction(transaction_id){
             },
             error: function(response){
                 jQuery('#working_modal').modal('hide');
-                alert('An error occurred deleting seedlot transaction');
+                alert('Ocorreu um erro ao excluir a transação do lote de sementes');
             }
         });
     }

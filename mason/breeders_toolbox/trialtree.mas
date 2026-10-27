@@ -14,24 +14,24 @@ $breeding_programs
 <table class="table table-bordered">
   <thead>
     <tr>
-      <th>Information</th>
-      <th>Breeding Programs -- -- Trials</th>
+      <th>Informações</th>
+      <th>Programas de melhoramento -- -- Ensaios</th>
     </tr>
   </thead>
   <tbody>
   <tr>
     <td>
-      <h4>Download Trial</h4>
-      <button class="btn btn-primary" id="download_button" disabled="disabled" title="First Select a Trial to Download">Excel</button>
-      <button class="btn btn-primary" id="download_button_csv" disabled="disabled" title="First Select a Trial to Download">CSV</button><br />
+      <h4>Baixar ensaio</h4>
+      <button class="btn btn-primary" id="download_button" disabled="disabled" title="Primeiro selecione um ensaio para baixar">Excel</button>
+      <button class="btn btn-primary" id="download_button_csv" disabled="disabled" title="Primeiro selecione um ensaio para baixar">CSV</button><br />
       <hr>
-      <h5><i>Double click<br />trial to view</i></h5>
+      <h5><i>Clique duas vezes<br />no ensaio para visualizá-lo</i></h5>
       <!-- hr>
       <button id="delete" disabled="disabled" >Delete</button -->
       <br />
     </td>
     <td>
-      <div id="trial_list" >[loading...]</div>
+      <div id="trial_list" >[carregando...]</div>
     </td>
   </tr>
   </tbody>
@@ -53,7 +53,7 @@ $breeding_programs
 
       },
       error: function(response) { 
-        alert("An error occurred");
+        alert("Ocorreu um erro");
       }
   });
 
@@ -99,7 +99,7 @@ $breeding_programs
         if (selected.length !== 0) { 
 	  window.open('/breeders/trials/phenotype/download/'+selected.join(","));
         }
-        else { alert("No leaf nodes selected for download."); }
+        else { alert("Nenhum ensaio foi selecionado para baixar."); }
        
     });
 
@@ -108,7 +108,7 @@ $breeding_programs
         if (selected.length !== 0) { 
 	  window.open('/breeders/trials/phenotype/download/'+selected.join(",")+'?format=csv');
         }
-        else { alert("No leaf nodes selected for download."); }
+        else { alert("Nenhum ensaio foi selecionado para baixar."); }
        
     });
 

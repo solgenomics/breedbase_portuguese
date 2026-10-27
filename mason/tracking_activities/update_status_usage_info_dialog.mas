@@ -9,28 +9,28 @@
                 <div class="panel panel-default">
                     <div class="panel-body">
                         <div class="modal-header" style="text-align: center">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title" id="updateStatusUsageInfoDialog">Update Status as Completed/Terminated and Undo Options</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="updateStatusUsageInfoDialog">Alterar situação para concluído/encerrado e opções para desfazer</h4>
                         </div>
                         <div class="modal-body">
                             <div class="container-fluid">
-                                <p> Only curators can update status to completed/terminated or undo the update status.</p>
+                                <p> Somente curadores podem alterar a situação para concluído/encerrado ou desfazer essa alteração.</p>
                                 <hr class ="solid">
                                 <h4>
-                                    Updating status to completed/terminated vs. Deleting:
+                                    Alterar a situação para concluído/encerrado ou excluir:
                                 </h4>
                                 <p> Terminating a process/experiment is different from deleting a process/experiment.
-                                <li>Deleting a process/experiment removes its identifier from the database. Marking a process/experiment as completed/terminated inactivates that process/experiment, but its related information is still kept in the database.</li>
-                                <li>You can delete a process/experiment only if there is no associated data</li>
-                                <li>You can still access the details page but the page is marked as "COMPLETED" or "TERMINATED". You can no longer add additional info to that page.</li>
+                                <li>Excluir um processo/experimento remove seu identificador do banco de dados. Marcar um processo/experimento como concluído/encerrado o desativa, mas mantém as informações relacionadas no banco de dados.</li>
+                                <li>Só é possível excluir um processo/experimento se não houver dados associados</li>
+                                <li>A página de detalhes continua acessível, mas é marcada como "CONCLUÍDO" ou "ENCERRADO". Não é mais possível adicionar informações a essa página.</li>
                                 <hr class ="solid">
                                 <h4>
                                     Undo updating status:
                                 </h4>
-                                <p>Completed or Terminated status can be reversed by using UNDO option. Deleting a process/experiment cannot be undone</p>
+                                <p>A situação concluído ou encerrado pode ser revertida com a opção DESFAZER. A exclusão de um processo/experimento não pode ser desfeita</p>
                             </div>
                             <div class="modal-footer">
-                                <button id="close_update_status_usage_dialog" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                <button id="close_update_status_usage_dialog" type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
                             </div>
                         </div>
                     </div>

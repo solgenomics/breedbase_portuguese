@@ -8,7 +8,7 @@ use Tie::UrlEncoder;
 our %urlencode;
 </%perl>
 
-Keypad
+Teclado numérico
 
 <table border="1">
 <tr><td><% key(".") %></td><td><% key("/") %></td><td><% key("0") %></td></tr>

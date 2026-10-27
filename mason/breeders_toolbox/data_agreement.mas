@@ -23,12 +23,12 @@ jQuery(document).ready(function () {
              jQuery('#'+div).html(response.text);
            }
            else { 
-             jQuery('#'+div).html('By default, trial data is provided under the Toronto agreement, as explained in the <a href="/usage_policy">data usage policy</a>.');
+             jQuery('#'+div).html('Por padrão, os dados do ensaio são fornecidos nos termos do Acordo de Toronto, conforme explicado na <a href="/usage_policy">política de uso de dados</a>.');
            }
            if (response.message) { alert(response.message); }
         },
         error: function(response) { 
-           alert('An error occurred fetching the data agreement data.');
+           alert('Ocorreu um erro ao obter os dados do acordo de uso.');
         }
       });
     }

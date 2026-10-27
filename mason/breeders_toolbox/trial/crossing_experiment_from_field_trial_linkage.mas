@@ -11,7 +11,7 @@ $trial_id
             <table class="table table-hover table-bordered" id="crossing_experiments_from_field_trial_table">
                 <thead>
                     <tr>
-                        <th>Crossing Experiment(s) From This Field Trial</th>
+                        <th>Experimentos de cruzamento originados deste ensaio de campo</th>
                     </tr>
                 </thead>
             </table>

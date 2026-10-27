@@ -8,15 +8,15 @@ $user_id
 
 <%perl>
     my $subtitle;
-    $subtitle = '<button class="btn btn-sm btn-primary" style="margin:3px" id="add_propagation_project_link">Add Propagation Project</button>';
+    $subtitle = '<button class="btn btn-sm btn-primary" style="margin:3px" id="add_propagation_project_link">Adicionar projeto de propagação</button>';
 </%perl>
 
 <br />
-<& /page/page_title.mas, title => "Manage Propagations" &>
+<& /page/page_title.mas, title => "Gerenciar propagações" &>
 
 <div class="container-fluid">
 
-        <&| /page/info_section.mas, title=>"Propagation" , collapsible=>1, collapsed=>0, subtitle=> $subtitle &>
+        <&| /page/info_section.mas, title=>"Propagação" , collapsible=>1, collapsed=>0, subtitle=> $subtitle &>
         <& /propagation/propagation_project_tree.mas, user_id=>$user_id, locations=>$locations, programs=>$programs, roles=>$roles,  &>
     </&>
 

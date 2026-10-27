@@ -3,6 +3,6 @@
 $file
 </%args>
 
-Download unique barcodes as a PDF file:
+Baixar códigos de barras únicos como arquivo PDF:
 
-<a href="<% $file %>">Download</a>
+<a href="<% $file %>">Baixar</a>

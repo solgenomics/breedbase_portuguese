@@ -3,9 +3,9 @@
 
 <div id="brapi_home_study_layout_detail_div">
 
-    <h4>Study Layout</h4>
-    <input name="brapi_home_studylayoutdbid" id="brapi_home_studylayoutdbid" class="form-control" type="text" placeholder="StudyDbId e.g. 139" value="139"/>
-    <button class="btn btn-primary" name="brapi_home_studylayoutdbid_submit" id="brapi_home_studylayoutdbid_submit">Get Layout</button>
+    <h4>Disposição do estudo</h4>
+    <input name="brapi_home_studylayoutdbid" id="brapi_home_studylayoutdbid" class="form-control" type="text" placeholder="ID do estudo, ex.: 139" value="139"/>
+    <button class="btn btn-primary" name="brapi_home_studylayoutdbid_submit" id="brapi_home_studylayoutdbid_submit">Obter disposição</button>
     <br/><br/>
     <div id="brapi_studylayout_data_result_div">
     </div>
@@ -30,7 +30,7 @@ jQuery(document).ready(function() {
           },
           error: function(response) {
             jQuery('#working_modal').modal('hide');
-            alert('An error occurred');
+            alert('Ocorreu um erro');
           }
         });
     });

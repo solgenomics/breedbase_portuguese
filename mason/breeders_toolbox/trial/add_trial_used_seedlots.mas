@@ -7,24 +7,24 @@ $trial_stock_type
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="upload_trial_used_seedlot_dialog">Upload Used Seedlots in Trial</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="upload_trial_used_seedlot_dialog">Enviar lotes de sementes usados no ensaio</h4>
             </div>
             <div class="modal-body">
                 <div class="container-fluid">
 
-                    <&| /page/explanation.mas, title=>'Template information' &>
+                    <&| /page/explanation.mas, title=>'Informações do modelo' &>
                         <p>
-                            <b>File format information</b>
+                            <b>Informações sobre o formato do arquivo</b>
                             <br>
-                            <a id="trial_seedlot_used_upload_spreadsheet_info_format">Spreadsheet format</a>
+                            <a id="trial_seedlot_used_upload_spreadsheet_info_format">Formato da planilha</a>
                         </p>
                     </&>
 
                     <form class="form-horizontal" role="form" method="post" enctype="multipart/form-data" encoding="multipart/form-data" id="trial_upload_used_seedlot_form" name="trial_upload_used_seedlot_form">
 
                         <div class="form-group">
-                            <label class="col-sm-4 control-label">Upload File:</label>
+                            <label class="col-sm-4 control-label">Enviar arquivo:</label>
                             <div class="col-sm-8" >
                                 <input type="file" name="trial_upload_used_seedlot_file" id="trial_upload_used_seedlot_file" encoding="multipart/form-data" />
                             </div>
@@ -34,8 +34,8 @@ $trial_stock_type
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button id="trial_upload_used_seedlot_submit" type="button" class="btn btn-default" >Submit</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                <button id="trial_upload_used_seedlot_submit" type="button" class="btn btn-default" >Enviar</button>
             </div>
         </div>
     </div>
@@ -45,17 +45,17 @@ $trial_stock_type
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header" style="text-align: center">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="trialUploadUsedSeedlotInfoDialog">Upload Template Information</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="trialUploadUsedSeedlotInfoDialog">Informações do modelo de envio</h4>
             </div>
             <div class="modal-body">
                 <div class="container-fluid">
-                    <b>This is for recording which seedlots were planted in which plots in this trial.</b>
+                    <b>Este arquivo registra quais lotes de sementes foram plantados em cada parcela deste ensaio.</b>
                     <br/>
                     <br />
-                    <b>Header:</b>
+                    <b>Cabeçalho:</b>
                     <br>
-                    The first row (header) should contain the following:
+                    A primeira linha (cabeçalho) deve conter as seguintes colunas:
                     <br />
 
                     <table class="table table-hover table-bordered table-condensed" >
@@ -71,29 +71,29 @@ $trial_stock_type
                         </tbody>
                     </table>
 
-                    <b>Required fields:</b>
+                    <b>Campos obrigatórios:</b>
                     <ul>
-                    <li>seedlot_name (must exist in the database. the seedlot that was planted in the plot)</li>
-                    <li>plot_name (must exist in the database. the plot that the seedlot was planted in)</li>
+                    <li>seedlot_name (deve existir no banco de dados; é o lote de sementes plantado na parcela)</li>
+                    <li>plot_name (deve existir no banco de dados; é a parcela onde o lote de sementes foi plantado)</li>
                     <li>
-                        num_seed_per_plot (number of seeds transferred from seedlot to the plot)
-                        <br/><b>AND/OR</b></br>
-                        weight_gram_seed_per_plot (weight in grams of seed transferred from seedlot to the plot)
+                        num_seed_per_plot (número de sementes transferidas do lote para a parcela)
+                        <br/><b>E/OU</b></br>
+                        weight_gram_seed_per_plot (peso, em gramas, das sementes transferidas do lote para a parcela)
                     </li>
                     </ul>
-                    <b>Optional fields:</b>
+                    <b>Campos opcionais:</b>
                     <ul>
-                    <li>description (any additional information)</li>
+                    <li>description (qualquer informação adicional)</li>
                     </ul>
-                    <b>Notes:</b>
+                    <b>Observações:</b>
                     <ul>
-                    <li>For plots of family name stock type, seedlots of cross members in the family can be used.</li>
+                    <li>Em parcelas cujo tipo de material seja nome de família, podem ser usados lotes de sementes dos cruzamentos que compõem a família.</li>
                     </ul>
                 </div>
                 <& /help/file_upload_type.mas, type => "Seedlots", optional_column => 1 &>
             </div>
             <div class="modal-footer">
-                <button id="close_seedlot_info_trial_upload_used_dialog" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button id="close_seedlot_info_trial_upload_used_dialog" type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
             </div>
         </div>
     </div>
@@ -103,19 +103,19 @@ $trial_stock_type
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="uploadTrialUsedSeedlotSavedDialog">Success</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="uploadTrialUsedSeedlotSavedDialog">Sucesso</h4>
             </div>
             <div class="modal-body">
                 <div class="container-fluid">
                     <p>
                         <span class="ui-icon ui-icon-circle-check" style="float: left; margin: 0 7px 50px 0;"></span>
-                        File uploaded successfully.
+                        Arquivo enviado com sucesso.
                     </p>
                 </div>
             </div>
             <div class="modal-footer">
-                <button id="dismiss_upload_trial_used_seedlot_saved_dialog" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button id="dismiss_upload_trial_used_seedlot_saved_dialog" type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
             </div>
         </div>
     </div>
@@ -139,7 +139,7 @@ jQuery(document).ready(function(){
         var uploadFile = jQuery("#trial_upload_used_seedlot_file").val();
         jQuery('#trial_upload_used_seedlot_form').attr("action", "/ajax/breeders/trial/<% $trial_id %>/upload_used_seedlots?trial_stock_type=<% $trial_stock_type %>");
         if (uploadFile === '') {
-            alert("Please select a file");
+            alert("Selecione um arquivo.");
             return;
         }
         jQuery("#trial_upload_used_seedlot_form").submit();
@@ -153,7 +153,7 @@ jQuery(document).ready(function(){
             jQuery('#working_modal').modal("show");
             if (uploadedSeedlotFile === '') {
                 jQuery('#working_modal').modal("hide");
-                alert("No file selected");
+                alert("Nenhum arquivo selecionado.");
             }
         },
         complete: function (response) {

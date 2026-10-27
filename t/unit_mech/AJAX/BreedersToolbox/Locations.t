@@ -3,6 +3,7 @@
 
 use strict;
 use warnings;
+use utf8;
 
 use lib 't/lib';
 use SGN::Test::Fixture;
@@ -54,7 +55,7 @@ $mech->post_ok('http://localhost:3010/ajax/location/store', [
     ]);
 $response = decode_json $mech->content;
 #print STDERR Dumper $response->{'success'};
-$expected_response = "Location Boyce Thompson Institute added successfully\n";
+$expected_response = "O local Boyce Thompson Institute foi adicionado com sucesso.\n";
 is_deeply($response->{'success'}, $expected_response, 'store a new location');
 ok($response->{'nd_geolocation_id'});
 my $new_geolocation_id = $response->{'nd_geolocation_id'};
@@ -66,7 +67,7 @@ $mech->post_ok('http://localhost:3010/breeders/program/store', [
 ]);
 $response = decode_json $mech->content;
 #print STDERR Dumper $response;
-$expected_response = "Breeding program test2 was added successfully with description added for Locations.t\n";
+$expected_response = "O programa de melhoramento test2 foi adicionado com sucesso com a descrição added for Locations.t\n";
 is_deeply($response->{'success'}, $expected_response, 'adding a breeding program');
 my $new_program_id = $response->{'id'};
 
@@ -85,7 +86,7 @@ $mech->post_ok('http://localhost:3010/ajax/location/store', [
     ]);
 $response = decode_json $mech->content;
 #print STDERR Dumper $response->{'success'};
-$expected_response = "Location Boyce Thompson Institute was successfully updated\n";
+$expected_response = "O local Boyce Thompson Institute foi atualizado com sucesso.\n";
 is_deeply($response->{'success'}, $expected_response, 'edit an existing location');
 
 #test delete on location with data
@@ -109,7 +110,7 @@ $location_id = $new_geolocation_id;
 $mech->post_ok('http://localhost:3010/ajax/location/delete/'.$location_id);
 $response = decode_json $mech->content;
 #print STDERR Dumper $response->{'success'};
-$expected_response = "Location Boyce Thompson Institute was successfully deleted.\n";
+$expected_response = "O local Boyce Thompson Institute foi excluído com sucesso.\n";
 is_deeply($response->{'success'}, $expected_response, 'test delete of unused location');
 
 # delete added breeding program

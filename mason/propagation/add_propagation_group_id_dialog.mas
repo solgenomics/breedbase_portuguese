@@ -11,95 +11,95 @@ $date
     <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title" id="addPropagationGroupIdDialog">Add New Propagation Group ID</h4>
+                <h4 class="modal-title" id="addPropagationGroupIdDialog">Adicionar novo ID de grupo de propagação</h4>
             </div>
             <div class="modal-body" id = "propagation_group_id_dialog">
                 <div class="container-fluid">
                     <form class="form-horizontal" role="form" method="post" id="add_new_propagation_group_id_form" name="add_new_propagation_group_id_form">
                         <div class="form-group">
-                            <label class="col-sm-4 control-label">Propagation Project: </label>
+                            <label class="col-sm-4 control-label">Projeto de propagação: </label>
                             <div class="col-sm-8" >
                                 <input class="form-control" name="propagation_project" id="propagation_project" disabled value="<% $trial_name %>">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-4 control-label">Propagation Group Identifier: </label>
+                            <label class="col-sm-4 control-label">Identificador do grupo de propagação: </label>
                             <div class="col-sm-8" >
-                                <input class="form-control" type="text" id="new_propagation_group_identifier" name="new_propagation_group_identifier" placeholder="Must be unique in the database">
+                                <input class="form-control" type="text" id="new_propagation_group_identifier" name="new_propagation_group_identifier" placeholder="Deve ser único no banco de dados">
                             </div>
                         </div>
                         <div class="form-group" id = "get_propagation_accession_name">
-                            <label class="col-sm-4 control-label">Accession Name: </label>
+                            <label class="col-sm-4 control-label">Nome do acesso: </label>
                             <div class="col-sm-8" >
-                                <input class="form-control" type="text" id="propagation_accession_name" name="propagation_accession_name" placeholder="Must be in the database">
+                                <input class="form-control" type="text" id="propagation_accession_name" name="propagation_accession_name" placeholder="Deve estar no banco de dados">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-4 control-label">Material Type: </label>
+                            <label class="col-sm-4 control-label">Tipo de material: </label>
                             <div class="col-sm-8">
                                 <select class="form-control" id="propagation_material_type">
-                                    <option value="">Please select a type</option>
-                                    <option value="budwood">budwood</option>
-                                    <option value="stem">stem</option>
-                                    <option value="shoot">shoot</option>
-                                    <option value="root">root</option>
-                                    <option value="corm">corm</option>
-                                    <option value="plant">plant</option>
-                                    <option value="seed">seed</option>
+                                    <option value="">Selecione um tipo</option>
+                                    <option value="budwood">ramo para enxertia</option>
+                                    <option value="stem">caule</option>
+                                    <option value="shoot">broto</option>
+                                    <option value="root">raiz</option>
+                                    <option value="corm">cormo</option>
+                                    <option value="plant">planta</option>
+                                    <option value="seed">semente</option>
                                 </select>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-4 control-label">Source Type: </label>
+                            <label class="col-sm-4 control-label">Tipo de origem: </label>
                             <div class="col-sm-8">
                                 <select class="form-control" id="propagation_material_source_type">
-                                    <option value="">Please select a type (optional)</option>
-                                    <option value="plot">plot</option>
-                                    <option value="subplot">subplot</option>
-                                    <option value="plant">plant</option>
-                                    <option value="seedlot">seedlot</option>
-                                    <option value="new">new</option>
+                                    <option value="">Selecione um tipo (opcional)</option>
+                                    <option value="plot">parcela</option>
+                                    <option value="subplot">subparcela</option>
+                                    <option value="plant">planta</option>
+                                    <option value="seedlot">lote de sementes</option>
+                                    <option value="new">novo</option>
                                 </select>
                             </div>
                         </div>
 
                         <div class="form-group" id = "get_propagation_source_name">
-                            <label class="col-sm-4 control-label">Source Name: </label>
+                            <label class="col-sm-4 control-label">Nome de origem: </label>
                             <div class="col-sm-8" >
-                                <input class="form-control" type="text" id="propagation_source_name" name="propagation_source_name" placeholder="optional (source name must be in the database)">
+                                <input class="form-control" type="text" id="propagation_source_name" name="propagation_source_name" placeholder="opcional (o nome de origem deve existir no banco de dados)">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-4 control-label">Sub-Location: </label>
+                            <label class="col-sm-4 control-label">Sublocal: </label>
                             <div class="col-sm-8" >
-                                <input class="form-control" type="text" id="propagation_sub_location" name="propagation_sub_location" placeholder="optional">
+                                <input class="form-control" type="text" id="propagation_sub_location" name="propagation_sub_location" placeholder="opcional">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-4 control-label">Date (YYYY-MM-DD): </label>
+                            <label class="col-sm-4 control-label">Data (AAAA-MM-DD): </label>
                             <div class="col-sm-8" >
                                 <input class="form-control" name="propagation_date" id="propagation_date" value="<%$date%>">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-4 control-label">Purpose: </label>
+                            <label class="col-sm-4 control-label">Finalidade: </label>
                             <div class="col-sm-8">
                                 <select class="form-control" id="propagation_purpose">
-                                    <option value="">Please select (optional)</option>
-                                    <option value="replicate">replicate</option>
-                                    <option value="backup">backup</option>
-                                    <option value="replacement">replacement</option>
+                                    <option value="">Selecione (opcional)</option>
+                                    <option value="replicate">repetição</option>
+                                    <option value="backup">reserva</option>
+                                    <option value="replacement">substituição</option>
                                 </select>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-4 control-label">Description:</label>
+                            <label class="col-sm-4 control-label">Descrição:</label>
                             <div class="col-sm-8">
                                 <textarea class="form-control" id="propagation_description" name="propagation_description" ></textarea>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-4 control-label">Operator: </label>
+                            <label class="col-sm-4 control-label">Responsável: </label>
                             <div class="col-sm-8" >
                                 <input class="form-control" type="text" id="propagation_operator" name="propagation_operator" value="<%$logged_in_name%>" >
                             </div>
@@ -107,8 +107,8 @@ $date
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="reset" id="close_add_propagation_group_id_dialog" name="close_add_propagation_group_id_dialog" class="btn btn-default" >Close</button>
-                    <button id="submit_new_propagation_group_id" type="button" class="btn btn-primary" >Add</button>
+                    <button type="reset" id="close_add_propagation_group_id_dialog" name="close_add_propagation_group_id_dialog" class="btn btn-default" >Fechar</button>
+                    <button id="submit_new_propagation_group_id" type="button" class="btn btn-primary" >Adicionar</button>
                 </div>
             </form>
         </div>
@@ -119,19 +119,19 @@ $date
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="addPropagationGroupIdSavedDialog">Success</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="addPropagationGroupIdSavedDialog">Sucesso</h4>
             </div>
             <div class="modal-body">
                 <div class="container-fluid">
                     <p>
                         <span class="ui-icon ui-icon-circle-check" style="float: left; margin: 0 7px 50px 0;"></span>
-                        The propagation group identifier was saved successfully.
+                        O identificador de grupo de propagação foi salvo com sucesso.
                     </p>
                 </div>
             </div>
             <div class="modal-footer">
-                <button id="dismiss_propagation_group_id_saved_dialog" type="button" class="btn btn-default" data-dismiss="modal">Close & Reload</button>
+                <button id="dismiss_propagation_group_id_saved_dialog" type="button" class="btn btn-default" data-dismiss="modal">Fechar e recarregar</button>
             </div>
         </div>
     </div>
@@ -156,27 +156,27 @@ jQuery(document).ready(function(){
         const propagation_project_id = "<%$trial_id%>";
 
         if (propagation_group_identifier == '') {
-            alert("Please provide a propagation group identifier");
+            alert("Informe um identificador de grupo de propagação");
             return;
         }
         if (accession_name == '') {
-            alert("Please provide accession name");
+            alert("Informe o nome do acesso");
             return;
         }
         if (material_type == '') {
-            alert("Please provide material type");
+            alert("Informe o tipo de material");
             return;
         }
         if (date == '') {
-            alert("Please provide date");
+            alert("Informe a data");
             return;
         }
         if (description == '') {
-            alert("Please provide description");
+            alert("Informe a descrição");
             return;
         }
         if (operator_name == '') {
-            alert("Please provide operator name");
+            alert("Informe o nome do responsável");
             return;
         }
 
@@ -213,7 +213,7 @@ jQuery(document).ready(function(){
             },
             error: function(response){
                 jQuery('#working_modal').modal('hide');
-                alert('An error occurred adding propagation group identifier');
+                alert('Ocorreu um erro ao adicionar o identificador de grupo de propagação');
             }
         });
     });

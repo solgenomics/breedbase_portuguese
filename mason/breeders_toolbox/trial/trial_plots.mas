@@ -12,24 +12,24 @@ $trial_id
 
 <br>
 
-<button id="select_all_plots_btn" class="btn btn-primary">Select/Deselect All</button>
+<button id="select_all_plots_btn" class="btn btn-primary">Selecionar/desmarcar todas</button>
 
 <br>
 
 <div class="panel panel-default">
     <div class="panel-body">
-        <&| /page/info_section.mas, title => 'Add plots to a list', collapsible=>1, collapsed=>0, subtitle=>'<i>Add plots in this trial to a new or exisiting list</i>'&>
+        <&| /page/info_section.mas, title => 'Adicionar parcelas a uma lista', collapsible=>1, collapsed=>0, subtitle=>'<i>Adicione as parcelas deste ensaio a uma lista nova ou existente</i>'&>
         <br>
             <table style="width:100%">
                 <tr>
                     <td>
-                        <input style="width:85%" class="form-control input-sm" type="text" id="plot_select_new_list_name" placeholder="New list name..."/>
-                        <input style="width:85%" class="form-control input-sm" type="text" id="plot_select_new_list_description" placeholder="New list description..."/>
-                        <button class="btn btn-primary btn-sm" id="plot_select_add_to_new_list_btn" type="button">Add selection to new list</button>
+                        <input style="width:85%" class="form-control input-sm" type="text" id="plot_select_new_list_name" placeholder="Nome da nova lista..."/>
+                        <input style="width:85%" class="form-control input-sm" type="text" id="plot_select_new_list_description" placeholder="Descrição da nova lista..."/>
+                        <button class="btn btn-primary btn-sm" id="plot_select_add_to_new_list_btn" type="button">Adicionar seleção à nova lista</button>
                     </td>
                     <td>
                         <div id="plot_select_existing_list_name" style="width:85%"></div>
-                        <button class="btn btn-primary btn-sm" id="plot_select_add_to_existing_list_btn" type="button">Add selection to existing list</button>
+                        <button class="btn btn-primary btn-sm" id="plot_select_add_to_existing_list_btn" type="button">Adicionar seleção à lista existente</button>
                     </td>
                 </tr>
             </table>
@@ -68,8 +68,8 @@ jQuery(document).ready(function () {
                 jQuery('#plot_select_existing_list_name').html(lo.listSelect('plot_select_existing_list_name', ['plots'], undefined, undefined, undefined));
             },
             error: function(response) {
-                jQuery('#trial_plots_html').html("error");
-                alert("An error occurred");
+                jQuery('#trial_plots_html').html("erro");
+                alert("Ocorreu um erro.");
             }
         });
     });
@@ -97,7 +97,7 @@ jQuery(document).ready(function () {
             success : function(response) {
                 if (response.error) {
                     jQuery('#working_modal').modal("hide");
-                    alert("An error occurred: " + response.error);
+                    alert("Ocorreu um erro: " + response.error);
                 } else {
                     let new_list_id = response.list_id;
                     jQuery.ajax({
@@ -105,7 +105,7 @@ jQuery(document).ready(function () {
                         success: function(response) {
                             if (response.error) {
                                 jQuery('#working_modal').modal("hide");
-                                alert("The new list was created, but an error occurred adding items to it: " + response.error);
+                                alert("A nova lista foi criada, mas ocorreu um erro ao adicionar os itens: " + response.error);
                             } else {
                                 jQuery.ajax({
                                     url : '/list/add/bulk',
@@ -121,30 +121,30 @@ jQuery(document).ready(function () {
                                     success : function(response) { 
                                         jQuery('#working_modal').modal("hide");
                                         if (response.error) {
-                                            alert("The new list was created, but an error occurred adding items to it: " + response.error);
+                                            alert("A nova lista foi criada, mas ocorreu um erro ao adicionar os itens: " + response.error);
                                         } else {
-                                            alert("List created.");
+                                            alert("Lista criada.");
                                             var lo = new CXGN.List();
                                             jQuery('#plot_select_existing_list_name').html(lo.listSelect('plot_select_existing_list_name', ['plots'], undefined, undefined, undefined));
                                         }
                                     },
                                     error : function(error) {
                                         jQuery('#working_modal').modal("hide");
-                                        alert("The new list was created, but a server error occurred adding items to it.");
+                                        alert("A nova lista foi criada, mas ocorreu um erro do servidor ao adicionar os itens.");
                                     }
                                 });
                             }
                         },
                         error : function() {
                             jQuery('#working_modal').modal("hide");
-                            alert("The new list was created, but a server error occurred adding items to it.");
+                            alert("A nova lista foi criada, mas ocorreu um erro do servidor ao adicionar os itens.");
                         }
                     });
                 }
             },
             error : function() {
                 jQuery('#working_modal').modal("hide");
-                alert("A server error occurred making new list.");
+                alert("Ocorreu um erro do servidor ao criar a nova lista.");
             }
         })
     });
@@ -167,14 +167,14 @@ jQuery(document).ready(function () {
             success : function(response) {
                 jQuery('#working_modal').modal("hide");
                 if (response.error) {
-                    alert("Error adding items to list: " + response.error);
+                    alert("Erro ao adicionar itens à lista: " + response.error);
                 } else {
-                    alert("Plots added to list.");
+                    alert("Parcelas adicionadas à lista.");
                 }
             },
             error : function() {
                 jQuery('#working_modal').modal("hide");
-                alert("Server error adding plots to list.");
+                alert("Erro do servidor ao adicionar parcelas à lista.");
             }
         });
     }); 

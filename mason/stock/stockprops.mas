@@ -68,8 +68,8 @@ my $prop_select = simple_selectbox_html(
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header" style="text-align: center">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="add<% $div_name %>Dialog">Add Property</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="add<% $div_name %>Dialog">Adicionar propriedade</h4>
       </div>
       <div class="modal-body">
 	<div class="container-fluid">
@@ -88,8 +88,8 @@ my $prop_select = simple_selectbox_html(
         </div>
       
       <div class="modal-footer">
-        <button id="close_add_<% $div_name %>_stockprop_dialog" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" name="<% $div_name %>_addProp_submit" id="<% $div_name %>_addProp_submit" title="submit">Submit</button>  
+        <button id="close_add_<% $div_name %>_stockprop_dialog" type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+        <button type="button" class="btn btn-primary" name="<% $div_name %>_addProp_submit" id="<% $div_name %>_addProp_submit" title="Enviar">Enviar</button>
       </div>
       </form>
     </div>
@@ -99,6 +99,10 @@ my $prop_select = simple_selectbox_html(
 <script defer="defer" >
 
 jQuery(document).ready(function() {
+   jQuery('#<% $div_name %>_select option').each(function() {
+      var label = <% $div_name %>_propertyLabel(jQuery(this).val());
+      jQuery(this).text(label).attr('title', label);
+   });
    <% $div_name %>_getProps();
 
 
@@ -113,13 +117,65 @@ jQuery(document).ready(function() {
  
 // note: the $div_name prefix is needed when several instances are created on a page
 
+function <% $div_name %>_propertyLabel(name) {
+  var labels = {
+    stock_synonym: 'Sinônimo',
+    'solcap number': 'Número SolCAP',
+    variety: 'Variedade',
+    released_variety_name: 'Nome da variedade lançada',
+    donor: 'Doador',
+    'donor institute': 'Instituição doadora',
+    'donor PUI': 'Identificador permanente do doador',
+    'country of origin': 'País de origem',
+    state: 'Estado',
+    'institute code': 'Código da instituição',
+    'institute name': 'Nome da instituição',
+    'biological status of accession code': 'Código do estado biológico do acesso',
+    notes: 'Observações',
+    'accession number': 'Número do acesso',
+    PUI: 'Identificador permanente (PUI)',
+    'seed source': 'Origem das sementes',
+    'type of germplasm storage code': 'Código do tipo de armazenamento de germoplasma',
+    'acquisition date': 'Data de aquisição',
+    organization: 'Organização',
+    location_code: 'Código do local',
+    ploidy: 'Ploidia',
+    ploidy_level: 'Nível de ploidia',
+    genome_structure: 'Estrutura do genoma',
+    ncbi_taxonomy_id: 'ID taxonômico do NCBI',
+    transgenic: 'Transgênico',
+    introgression_parent: 'Genitor de origem da introgressão',
+    introgression_backcross_parent: 'Genitor de retrocruzamento da introgressão',
+    introgression_map_version: 'Versão do mapa da introgressão',
+    introgression_chromosome: 'Cromossomo da introgressão',
+    introgression_start_position_bp: 'Posição inicial da introgressão (pb)',
+    introgression_end_position_bp: 'Posição final da introgressão (pb)',
+    number_of_insertions: 'Número de inserções',
+    GenbankRecord: 'Registro no GenBank',
+    catalog: 'Catálogo',
+    Strain: 'Linhagem',
+    CloningOrganism: 'Organismo hospedeiro da clonagem',
+    InherentMarker: 'Marcador inerente',
+    Backbone: 'Estrutura-base',
+    SelectionMarker: 'Marcador de seleção',
+    CassetteName: 'Nome do cassete',
+    VectorType: 'Tipo de vetor',
+    Gene: 'Gene',
+    Promotors: 'Promotores',
+    Terminators: 'Terminadores',
+    PlantAntibioticResistantMarker: 'Marcador de resistência a antibióticos no hospedeiro',
+    BacterialResistantMarker: 'Marcador de resistência bacteriana'
+  };
+  return Object.prototype.hasOwnProperty.call(labels, name) ? labels[name] : name;
+}
+
 function <% $div_name %>_getProps() {
   jQuery.ajax( {
     type: 'GET',
     url: '/stock/prop/get',
     data: { stock_id: <% $stock_id %> },
     success: function(response) { <% $div_name %>_renderProps(response);  },
-    error: function(response) { alert('an error occurred'); } 
+    error: function(response) { alert('Ocorreu um erro'); }
   });
  
 }
@@ -153,7 +209,7 @@ function <% $div_name %>_renderProps(props) {
         }
 
       }
-      html = html + '<b>'+n+'</b>&nbsp;&nbsp;';
+      html = html + '<b>'+<% $div_name %>_propertyLabel(n)+'</b>&nbsp;&nbsp;';
       //html  = html + lineStr;
       html = html + lines.join(", ");
       html = html + '<br />\n';
@@ -168,7 +224,7 @@ function <% $div_name %>_addProp() {
   var prop_type = jQuery('#<% $div_name %>_select').val();
   var prop = jQuery('#<% $div_name %>_prop').val();
   prop = prop.trim();
-  if (prop === '') { alert("Please fill in the field."); return; }
+  if (prop === '') { alert("Preencha o campo."); return; }
 
   jQuery.ajax( {
     type: 'POST',
@@ -179,14 +235,14 @@ function <% $div_name %>_addProp() {
     data: { 'stock_id' : <% $stock_id %>, 'prop' : prop, 'prop_type': prop_type },
     success: function(response) {
         jQuery('#working_modal').modal('hide');
-        if ("error" in response) { alert ('ERROR '+response.error); }
+        if ("error" in response) { alert ('ERRO: '+response.error); }
         if ("message" in response) {
-            alert('Successfully added property: ' + prop + '. ('+response.message+')');
+            alert('Propriedade adicionada com sucesso: ' + prop + '. ('+response.message+')');
         }
     },
     error: function(response) {
         jQuery('#working_modal').modal('hide');
-        alert('an error occurred while storing the prop ' + response.error);
+        alert('Ocorreu um erro ao armazenar a propriedade: ' + response.error);
     },
     complete: function() {
 	<% $div_name %>_getProps();
@@ -198,7 +254,7 @@ function <% $div_name %>_addProp() {
 
 
 function <% $div_name %>_deleteProp(stockprop_value, stockprop_id) {
-    var yes = confirm('Delete stockprop '+stockprop_value+'?');
+    var yes = confirm('Excluir a propriedade '+stockprop_value+'?');
     if (yes) {
         jQuery.ajax( {
             method: 'GET',
@@ -211,7 +267,7 @@ function <% $div_name %>_deleteProp(stockprop_value, stockprop_id) {
             }
             if ('error'   in response) {  alert(response.error);   }
            },
-           error: function(response) { alert('An error occurred. Please try again later.');
+           error: function(response) { alert('Ocorreu um erro. Tente novamente mais tarde.');
            },
          complete: function() {
            <% $div_name %>_getProps();

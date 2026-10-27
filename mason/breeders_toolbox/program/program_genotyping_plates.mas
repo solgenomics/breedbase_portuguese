@@ -9,8 +9,8 @@ $program_id
 <table id="program_genotyping_plates" class="display">
     <thead>
         <tr>
-            <th>Genotyping Plate Name</th>
-            <th>Description</th>
+            <th>Nome da placa de genotipagem</th>
+            <th>Descrição</th>
         </tr>
     </thead>
 </table>

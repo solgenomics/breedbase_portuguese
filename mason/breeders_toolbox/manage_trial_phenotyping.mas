@@ -4,7 +4,7 @@ $trial_name
 $trial_stock_type => undef
 </%args>
 
-<& /page/page_title.mas, title=>"Manage Phenotyping for $trial_name" &>
+<& /page/page_title.mas, title=>"Gerenciar fenotipagem de $trial_name" &>
 <& /breeders_toolbox/trial/download_phenotypes_dialog.mas, trial_ids => $trial_id &>
 
 <div class="well well-sm">
@@ -15,7 +15,7 @@ $trial_stock_type => undef
 
         <form class="form-horizontal" role="form" action="/barcode/direct_trial_phenotyping">
             <div class="form-group form-group-sm">
-                <label class="col-sm-4 control-label">Plot Name: </label>
+                <label class="col-sm-4 control-label">Nome da parcela: </label>
                 <div class="col-sm-8" id="plot_name_1">
 
                 </div>
@@ -27,19 +27,19 @@ $trial_stock_type => undef
                 </div>
             </div>
             <div class="form-group form-group-sm">
-                <label class="col-sm-4 control-label">Plot No: </label>
+                <label class="col-sm-4 control-label">Nº da parcela: </label>
                 <div class="col-sm-8" id="plot_no">
 
                 </div>
             </div>
             <div class="form-group form-group-sm">
-                <label class="col-sm-4 control-label">Block No: </label>
+                <label class="col-sm-4 control-label">Nº do bloco: </label>
                 <div class="col-sm-8" id="block_no">
 
                 </div>
             </div>
             <div class="form-group form-group-sm">
-                <label class="col-sm-4 control-label">Rep No: </label>
+                <label class="col-sm-4 control-label">Nº da repetição: </label>
                 <div class="col-sm-8" id="rep_no">
 
                 </div>
@@ -59,14 +59,14 @@ $trial_stock_type => undef
     <div class="col-md-10 col-lg-10">
 
         <div class="form-group form-group-sm" id="all_traits">
-          <label class="col-sm-4 control-label" for="select_traits_for_trait_file">Select trait: </label>
+          <label class="col-sm-4 control-label" for="select_traits_for_trait_file">Selecione a característica: </label>
           <div class="col-sm-8">
             <select class="form-control" id="select_traits_for_trait_file"></select>
           </div>
         </div>
 
         <div class="form-group form-group-sm">
-          <label class="col-sm-4 control-label">Or Use Trait List: </label>
+          <label class="col-sm-4 control-label">Ou use uma lista de características: </label>
             <div class="col-sm-8">
               <input type="checkbox"  id="use_trait_list" value="use_trait_list"/>
           </div>
@@ -76,7 +76,7 @@ $trial_stock_type => undef
 
         <div id="show_trait_textbox" style="display: none">
           <div class="form-group form-group-sm" >
-              <label class="col-sm-4 control-label">Enter a List of Trait Names: </label>
+              <label class="col-sm-4 control-label">Informe uma lista de nomes de características: </label>
               <div class="col-sm-8" id="show_trait_selectbox">
 
               </div>
@@ -86,12 +86,12 @@ $trial_stock_type => undef
 
         <div id="show_trait_list_box" style="display: none">
             <div class="form-group form-group-sm">
-              <label class="col-sm-4 control-label">Or Paste From a List: </label>
+              <label class="col-sm-4 control-label">Ou cole a partir de uma lista: </label>
               <div class="col-sm-8">
                   <div id="list_menu_traits"></div>
                   <script defer="defer">
                     jQuery(document).ready(function() {
-                        pasteTraitListMenu('show_trait_selectbox', 'list_menu_traits', 'Paste Trait List');
+                        pasteTraitListMenu('show_trait_selectbox', 'list_menu_traits', 'Colar lista de características');
 
                         function pasteTraitListMenu (div_name, menu_div, button_name) {
                             var list = new CXGN.List();
@@ -108,7 +108,7 @@ $trial_stock_type => undef
         </div>
         <br /><br />
         <div class="form-group form-group-sm" id = "new_pheno_input" style="display: none">
-            <label class="col-sm-4 control-label">Enter trait value: </label>
+            <label class="col-sm-4 control-label">Informe o valor da característica: </label>
             <div class="col-sm-3">
                 <input type="number" class="form-control" id="select_pheno_value" name="select_pheno_value"></input>
             </div>
@@ -123,7 +123,7 @@ $trial_stock_type => undef
             </div>
         </div>
         <div class="form-group form-group-sm" id = "stored_pheno_input" style="display: none">
-            <label class="col-sm-4 control-label">Stored trait value: </label>
+            <label class="col-sm-4 control-label">Valor armazenado da característica: </label>
             <div class="col-sm-3">
                 <input class="form-control" name="stored_pheno_value" id="stored_pheno_value" disabled ></input>
             </div>
@@ -139,7 +139,7 @@ $trial_stock_type => undef
     <div id="virtualKeyboard"></div>
     <hr>
 </div>-->
-<&| /page/info_section.mas, id=> "trial_detail_traits_assayed", title => "Traits assayed", collapsible=>1, collapsed=>1, hide_if_empty=>1, subtitle=>"[<a id='trial_download_phenotypes_button'>Download Trial Data</a>]" &>
+<&| /page/info_section.mas, id=> "trial_detail_traits_assayed", title => "Características avaliadas", collapsible=>1, collapsed=>1, hide_if_empty=>1, subtitle=>"[<a id='trial_download_phenotypes_button'>Baixar dados do ensaio</a>]" &>
 
     <& /breeders_toolbox/trial/phenotype_summary.mas, trial_id => $trial_id, trial_stock_type => $trial_stock_type &>
 
@@ -165,7 +165,7 @@ var trial_info_object = [];
            success: function(response) {
                 trial_info_object = response.trial_info;
                if (response.error){
-                 alert("Error Retrieving Trial Information: "+response.error);
+                 alert("Erro ao recuperar as informações do ensaio: "+response.error);
                }
 
                var trial_plot_name_html = "<select class='form-control' id='plot_name' >";
@@ -206,7 +206,7 @@ var trial_info_object = [];
 
               },
               error: function() {
-                alert('An error occurred retrieving trial information');
+                alert('Ocorreu um erro ao recuperar as informações do ensaio');
               }
 
       });
@@ -287,7 +287,7 @@ var trial_info_object = [];
         success: function (response) {
           jQuery("#loading-trial-phenotype").hide();
           if (response.error){
-            alert("Error Saving Trait Value: "+response.error);
+            alert("Erro ao salvar o valor da característica: "+response.error);
             jQuery("#error-trial-phenotype").show();
           }
           else {
@@ -295,7 +295,7 @@ var trial_info_object = [];
           }
         },
           error: function() {
-            alert('An error occurred saving trait value');
+            alert('Ocorreu um erro ao salvar o valor da característica');
             jQuery("#loading-trial-phenotype").hide();
             jQuery("#error-trial-phenotype").show();
           },
@@ -330,7 +330,7 @@ var trial_info_object = [];
                 var value = response.trait_value;
                 var red = {'color': 'red'};
                 if (response.error){
-                    alert("Error Retrieving Trait Value: "+response.error);
+                    alert("Erro ao recuperar o valor da característica: "+response.error);
                 } else if (value) {
                     jQuery('#new_pheno_input').hide();
                     jQuery("#stored_pheno_value").css(red);
@@ -344,7 +344,7 @@ var trial_info_object = [];
                 }
             },
             error: function() {
-                alert('An error occurred retrieving trait value');
+                alert('Ocorreu um erro ao recuperar o valor da característica');
             }
         });
     }

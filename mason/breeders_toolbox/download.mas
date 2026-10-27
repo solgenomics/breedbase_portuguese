@@ -5,34 +5,34 @@ $is_curator => 0
 
 <& /util/import_javascript.mas, classes => [ 'jqueryui', 'jquery.cookie', 'CXGN.BreederSearch', 'CXGN.List', 'CXGN.BreedersToolbox.HTMLSelect', 'spin_min', 'ladda_min' ] &>
 
-<& /page/page_title.mas, title=>"Download Using Lists" &>
+<& /page/page_title.mas, title=>"Baixar usando listas" &>
 
 <div class="container-fluid">
 
 <div class="well">
-Choose a list for each parameter and click "Download".
+Escolha uma lista para cada parâmetro e clique em "Baixar".
 </div>
 
 <div class="well well-sm">
-<h4>Download Phenotypes Using Lists</h4><p>Select Parameters:</p>
+<h4>Baixar fenótipos usando listas</h4><p>Selecione os parâmetros:</p>
 <form id="download_form" action="/breeders/download_action" method="POST" >
 <table class="table table-bordered" >
   <thead>
   <tr>
     <th>
-      Accessions
+      Acessos
     </th>
     <th>
-      Trials
+      Ensaios
     </th>
     <th>
-      Traits
+      Características
     </th>
     <th>
-        Options
+        Opções
     </th>
     <th>
-      Action
+      Ação
     </th>
   </tr>
   </thead>
@@ -51,52 +51,52 @@ Choose a list for each parameter and click "Download".
       </div>
    </td>
     <td>
-    <b>Format:</b><br/>
+    <b>Formato:</b><br/>
     <select class="form-control" id="format" name="format">
         <option value=".csv">CSV</option>
         <option value=".xlsx">XLSX</option>
         <option value="html">HTML</option>
     </select>
     <br/>
-    <b>Data Level:</b><br/>
+    <b>Nível dos dados:</b><br/>
     <select class="form-control" id="phenotype_datalevel" name="phenotype_datalevel">
-        <option value="all">All</option>
-        <option value="plot">Plot</option>
-        <option value="plant">Plant</option>
+        <option value="all">Todos</option>
+        <option value="plot">Parcela</option>
+        <option value="plant">Planta</option>
     </select>
     <br/>
-    <b>Timestamp:</b><br/>
+    <b>Data e hora:</b><br/>
     <select class="form-control" id="timestamp" name="timestamp">
-        <option value="0">No</option>
-        <option value="1">Yes</option>
+        <option value="0">Não</option>
+        <option value="1">Sim</option>
     </select>
     <br/>
-    <b>Exclude Phenotype Outliers:</b><br/>
+    <b>Excluir valores fenotípicos atípicos:</b><br/>
     <select class="form-control" id="exclude_phenotype_outlier" name="exclude_phenotype_outlier">
-        <option value="0">No</option>
-        <option value="1">Yes</option>
+        <option value="0">Não</option>
+        <option value="1">Sim</option>
     </select>
     <br/>
-    <b>Include Intercrop Accessions:</b><br/>
+    <b>Incluir acessos de culturas consorciadas:</b><br/>
     <select class="form-control" id="intercrop" name="intercrop">
-        <option value="0">No</option>
-        <option value="1">Yes</option>
+        <option value="0">Não</option>
+        <option value="1">Sim</option>
     </select>
     <br/>
-    <b>Include Accession Entry Numbers:</b><br/>
+    <b>Incluir números de entrada dos acessos:</b><br/>
     <select class="form-control" id="entry_numbers" name="entry_numbers">
-        <option value="0">No</option>
-        <option value="1">Yes</option>
+        <option value="0">Não</option>
+        <option value="1">Sim</option>
     </select>
     <br/>
-    <b>Include Parents:</b><br/>
+    <b>Incluir genitores:</b><br/>
     <select class="form-control" id="pedigrees" name="pedigrees">
-        <option value="0">No</option>
-        <option value="1">Yes</option>
+        <option value="0">Não</option>
+        <option value="1">Sim</option>
     </select>
     </td>
     <td>
-      <button class="btn btn-primary" type="button" id="phenotype">Download</button>
+      <button class="btn btn-primary" type="button" id="phenotype">Baixar</button>
       <input type="hidden" id="phenotype_download_token" name="phenotype_download_token"/>
     </td>
   </tr>
@@ -106,12 +106,12 @@ Choose a list for each parameter and click "Download".
 </div>
 
 <div class="well well-sm">
-<h4>Inspect Datasets</h4>
+<h4>Inspecionar conjuntos de dados</h4>
 <table class="table table-bordered" >
   <thead>
   <tr>
     <th>
-      Datasets
+      Conjuntos de dados
     </th>
   </tr>
   </thead>
@@ -127,19 +127,19 @@ Choose a list for each parameter and click "Download".
 </div>
 
 <div class="well well-sm">
-<h4>Download Metadata</h4><p>Select Parameters:</p>
+<h4>Baixar metadados</h4><p>Selecione os parâmetros:</p>
 <form id="download_metadata_form" action="/breeders/download_action" method="POST" >
 <table class="table table-bordered" >
   <thead>
   <tr>
     <th>
-      Trials
+      Ensaios
     </th>
     <th>
-        Options
+        Opções
     </th>
     <th>
-      Action
+      Ação
     </th>
   </tr>
   </thead>
@@ -150,7 +150,7 @@ Choose a list for each parameter and click "Download".
       </div>
     </td>
     <td>
-    <b>Format:</b><br/>
+    <b>Formato:</b><br/>
     <select class="form-control" id="metadata_format" name="metadata_format">
         <option value=".xlsx">XLSX</option>
         <option value=".csv">CSV</option>
@@ -159,12 +159,12 @@ Choose a list for each parameter and click "Download".
     <br/>
     <div id="datalevel" style="display:none">
       <select class="form-control" id="metadata_datalevel" name="metadata_datalevel">
-          <option value="metadata">Metadata</option>
+          <option value="metadata">Metadados</option>
       </select>
     </div>
     </td>
     <td>
-      <button class="btn btn-primary" type="button" id="metadata">Download</button>
+      <button class="btn btn-primary" type="button" id="metadata">Baixar</button>
       <input type="hidden" id="metadata_download_token" name="metadata_download_token"/>
     </td>
   </tr>
@@ -178,10 +178,10 @@ $(document).ready(function() {
 
     var lo = new CXGN.List();
 
-    $('#accession_list').html(lo.listSelect('accession_list', [ 'accessions' ], 'select', undefined, undefined));
-    $('#trial_list').html(lo.listSelect('trial_list', [ 'trials' ], 'select', undefined, undefined ));
-    $('#trait_list').html(lo.listSelect('trait_list', [ 'traits' ], 'select', undefined, undefined  ));
-    $('#trial_metadata_list').html(lo.listSelect('trial_metadata_list', ['trials'], 'select', undefined, undefined));
+    $('#accession_list').html(lo.listSelect('accession_list', [ 'accessions' ], 'selecione', undefined, undefined));
+    $('#trial_list').html(lo.listSelect('trial_list', [ 'trials' ], 'selecione', undefined, undefined ));
+    $('#trait_list').html(lo.listSelect('trait_list', [ 'traits' ], 'selecione', undefined, undefined  ));
+    $('#trial_metadata_list').html(lo.listSelect('trial_metadata_list', ['trials'], 'selecione', undefined, undefined));
 
     get_select_box('datasets', 'phenotype_download_dataset_list');
 
@@ -191,7 +191,7 @@ $(document).ready(function() {
       if (trial_list_id) { trial_validation = lo.validate(trial_list_id, 'trials', true).then(
          function(r) {
             if (r.missing.length != 0) {
-               alert("The following lists did not pass validation: "+r.missing.join(", ")+". Please correct the list(s) and try again");
+               alert("As seguintes listas não passaram na validação: "+r.missing.join(", ")+". Corrija as listas e tente novamente");
             }
             else {
 
@@ -239,7 +239,7 @@ $(document).ready(function() {
             names_str += r.invalid_lists[n][1];
 	 }
          if(names_str.length > 0) {
-            alert('Some lists ('+names_str+') are not valid, please check.');
+            alert('Algumas listas ('+names_str+') são inválidas. Verifique-as.');
             jQuery('#working_modal').modal('hide');
          }
          else {
@@ -257,7 +257,7 @@ $(document).ready(function() {
 
 
 
-//alert("The following lists did not pass validation: "+problem_lists.join(", ")+". Please correct the list(s) and try again");
+//alert("As seguintes listas não passaram na validação: "+problem_lists.join(", ")+". Corrija as listas e tente novamente");
 //	 return;
 //
 
@@ -287,11 +287,11 @@ function download_phenotypes() {
   <form id="download_accession_properties" action="/breeders/download_accession_properties_action" method="POST">
     <table class="table"  cellpadding="10">
       <thead>
-        <tr><td colspan="2"><h4>Download Accession Properties</h4><p>Select parameters:</p></tr>
+        <tr><td colspan="2"><h4>Baixar propriedades dos acessos</h4><p>Selecione os parâmetros:</p></tr>
         <tr>
-          <th>Accessions</th>
-          <th>Format</th>
-          <th>Action</th>
+          <th>Acessos</th>
+          <th>Formato</th>
+          <th>Ação</th>
         </tr>
       </thead>
       <tbody>
@@ -306,7 +306,7 @@ function download_phenotypes() {
           </select>
         </td>
         <td>
-          <button class="btn btn-primary" type="button" id="accession_properties_download">Download</button>
+          <button class="btn btn-primary" type="button" id="accession_properties_download">Baixar</button>
           <input type="hidden" id="accession_properties_download_token" name="accession_properties_download_token"/>
         </td>
       </tr>
@@ -321,13 +321,13 @@ $(document).ready(function() {
 
     var lo = new CXGN.List();
 
-    $('#accession_list5').html(lo.listSelect('accession_properties_accession_list', [ 'accessions' ], 'select', undefined, undefined));
+    $('#accession_list5').html(lo.listSelect('accession_properties_accession_list', [ 'accessions' ], 'selecione', undefined, undefined));
 
     $('#accession_properties_download').click(function() {
 
         var accession_list_id = $('#accession_properties_accession_list_list_select').val();
         if (!accession_list_id) {
-            alert("You need to select an accession list!");
+            alert("Selecione uma lista de acessos!");
             return;
         }
 
@@ -337,7 +337,7 @@ $(document).ready(function() {
               lo.validate(accession_list_id, 'accessions', true).then(
               function(r) {
                  if (r.valid != 1) {
-                    alert("The accession list did not pass validation. Please correct the list and try again");
+                    alert("A lista de acessos não passou na validação. Corrija a lista e tente novamente");
                     jQuery('#working_modal').modal('hide');
                  }
                  else {
@@ -368,19 +368,19 @@ $(document).ready(function() {
 <form id="download_pedigree" action="/breeders/download_pedigree_action" method="POST">
 <table class="table"  cellpadding="10">
   <thead>
-  <tr><td colspan="2"><h4>Download Pedigrees </h4><p>Select parameter:</p></tr>
+  <tr><td colspan="2"><h4>Baixar pedigrees </h4><p>Selecione o parâmetro:</p></tr>
   <tr>
     <th>
-      Accessions
+      Acessos
     </th>
     <th>
-      Query
+      Consulta
     </th>
     <th>
-      Format
+      Formato
     </th>
     <th>
-      Action
+      Ação
     </th>
   </tr>
   </thead>
@@ -392,30 +392,30 @@ $(document).ready(function() {
     </td>
     <td>
       <div style="width: 175px">
-        <p><strong>Depth:</strong></p>
+        <p><strong>Profundidade:</strong></p>
         <div class="radio">
-          <label><input type="radio" id="ped_format_parents" name="ped_format" value="parents_only" checked>Only One Generation</label>
+          <label><input type="radio" id="ped_format_parents" name="ped_format" value="parents_only" checked>Somente uma geração</label>
         </div>
         <div class="radio">
-          <label><input type="radio" id="ped_format_full" name="ped_format" value="full">All Generations</label>
+          <label><input type="radio" id="ped_format_full" name="ped_format" value="full">Todas as gerações</label>
         </div>
-        <p><strong>Include:</strong></p>
+        <p><strong>Incluir:</strong></p>
         <div class="radio">
-          <label><input type="radio" id="include_ancestors" name="ped_include" value="ancestors" checked>Only Ancestors</label>
+          <label><input type="radio" id="include_ancestors" name="ped_include" value="ancestors" checked>Somente ancestrais</label>
         </div>
         <div class="radio">
-          <label><input type="radio" id="include_ancestors_descendants" name="ped_include" value="ancestors_descendants">Ancestors and Descendants</label>
+          <label><input type="radio" id="include_ancestors_descendants" name="ped_include" value="ancestors_descendants">Ancestrais e descendentes</label>
         </div>
       </div>
     </td>
     <td>
       <select class="form-control" id="pedigree_file_format" name="file_format">
-        <option value=".txt">Plain Text</option>
-        <option value=".helium">Helium Format</option>
+        <option value=".txt">Texto simples</option>
+        <option value=".helium">Formato Helium</option>
       </select>
     </td>
     <td>
-      <button class="btn btn-primary" type="button" id="pedigree">Download</button>
+      <button class="btn btn-primary" type="button" id="pedigree">Baixar</button>
       <input type="hidden" id="pedigree_download_token" name="pedigree_download_token"/>
     </td>
   </tr>
@@ -430,13 +430,13 @@ $(document).ready(function() {
 
     var lo = new CXGN.List();
 
-    $('#accession_list4').html(lo.listSelect('pedigree_accession_list', [ 'accessions' ], 'select', undefined, undefined));
+    $('#accession_list4').html(lo.listSelect('pedigree_accession_list', [ 'accessions' ], 'selecione', undefined, undefined));
 
     $('#pedigree').click(function() {
 
         var accession_list_id = $('#pedigree_accession_list_list_select').val();
         if (!accession_list_id) {
-            alert("You need to select an accession list!");
+            alert("Selecione uma lista de acessos!");
             return;
         }
 
@@ -444,7 +444,7 @@ $(document).ready(function() {
            accession_validation = lo.validate(accession_list_id, 'accessions', true).then(
              function(r) {
                  if(r.valid != 1) {
-                   alert("The accession list did not pass validation. Please correct the list and try again");
+                   alert("A lista de acessos não passou na validação. Corrija a lista e tente novamente");
                  }
                  else {
                     //var ladda = Ladda.create(this);
@@ -485,11 +485,11 @@ $(document).ready(function() {
     <form id="download_cross_family" action="/breeders/download_cross_family_of_progenies" method="POST">
         <table class="table"  cellpadding="10">
             <thead>
-                <tr><td colspan="2"><h4>Download Crosses and Families of Progenies </h4><p>Select parameters:</p></tr>
+                <tr><td colspan="2"><h4>Baixar cruzamentos e famílias das progênies </h4><p>Selecione os parâmetros:</p></tr>
                 <tr>
-                    <th>Accessions</th>
-                    <th>Format</th>
-                    <th>Action</th>
+                    <th>Acessos</th>
+                    <th>Formato</th>
+                    <th>Ação</th>
                 </tr>
             </thead>
             <tbody>
@@ -503,7 +503,7 @@ $(document).ready(function() {
                         </select>
                     </td>
                     <td>
-                        <button class="btn btn-primary" type="button" id="cross_family">Download</button>
+                        <button class="btn btn-primary" type="button" id="cross_family">Baixar</button>
                         <input type="hidden" id="progeny_list_id" name="list_id" />
                         <input type="hidden" id="cross_family_download_token" name="list_download_token" />
                     </td>
@@ -517,17 +517,17 @@ $(document).ready(function() {
 <script>
 $(document).ready(function() {
     const lo = new CXGN.List();
-    jQuery('#progeny_list').html(lo.listSelect('progeny_list', [ 'accessions' ], 'select', undefined, undefined));
+    jQuery('#progeny_list').html(lo.listSelect('progeny_list', [ 'accessions' ], 'selecione', undefined, undefined));
     jQuery('#cross_family').click(function() {
         const progeny_list_id = $('#progeny_list_list_select').val();
         if (!progeny_list_id) {
-            alert("You need to select an accession list!");
+            alert("Selecione uma lista de acessos!");
             return;
         }
         else {
             lo.validate(progeny_list_id, 'accessions', true).then((r) => {
                 if (r.missing.length > 0) {
-                   alert("The accession list did not pass validation. Please correct the list and try again");
+                   alert("A lista de acessos não passou na validação. Corrija a lista e tente novamente");
                 }
                 else {
                     jQuery("#progeny_list_id").val(seedlot_list_id);
@@ -549,11 +549,11 @@ $(document).ready(function() {
     <form id="download_seedlot_details" action="/list/download_details" method="POST">
         <table class="table"  cellpadding="10">
             <thead>
-                <tr><td colspan="2"><h4>Download Seedlot Details </h4><p>Select parameters:</p></tr>
+                <tr><td colspan="2"><h4>Baixar detalhes dos lotes de sementes </h4><p>Selecione os parâmetros:</p></tr>
                 <tr>
-                    <th>Seedlots</th>
-                    <th>Format</th>
-                    <th>Action</th>
+                    <th>Lotes de sementes</th>
+                    <th>Formato</th>
+                    <th>Ação</th>
                 </tr>
             </thead>
             <tbody>
@@ -563,11 +563,11 @@ $(document).ready(function() {
                     </td>
                     <td>
                         <select class="form-control" id="seedlot_file_format" name="file_format">
-                            <option value=".txt">Plain Text</option>
+                            <option value=".txt">Texto simples</option>
                         </select>
                     </td>
                     <td>
-                        <button class="btn btn-primary" type="button" id="seedlot">Download</button>
+                        <button class="btn btn-primary" type="button" id="seedlot">Baixar</button>
                         <input type="hidden" id="seedlot_list_id" name="list_id" />
                         <input type="hidden" id="seedlot_download_token" name="list_download_token" />
                     </td>
@@ -581,17 +581,17 @@ $(document).ready(function() {
 <script>
 $(document).ready(function() {
     var lo = new CXGN.List();
-    $('#seedlot_list').html(lo.listSelect('seedlot_list', [ 'seedlots' ], 'select', undefined, undefined));
+    $('#seedlot_list').html(lo.listSelect('seedlot_list', [ 'seedlots' ], 'selecione', undefined, undefined));
     $('#seedlot').click(function() {
         var seedlot_list_id = $('#seedlot_list_list_select').val();
         if (!seedlot_list_id) {
-            alert("You need to select a seedlot list!");
+            alert("Selecione uma lista de lotes de sementes!");
             return;
         }
         else {
             lo.validate(seedlot_list_id, 'seedlots', true).then((r) => {
                 if (r.missing.length > 0) {
-                   alert("The seedlot list did not pass validation. Please correct the list and try again");
+                   alert("A lista de lotes de sementes não passou na validação. Corrija a lista e tente novamente");
                 }
                 else {
                     jQuery("#seedlot_list_id").val(seedlot_list_id);
@@ -616,11 +616,11 @@ $(document).ready(function() {
   <form id="download_seedlot_maintenance_events" action="/breeders/download_seedlot_maintenance_events_action" method="POST">
       <table class="table"  cellpadding="10">
         <thead>
-          <tr><td colspan="2"><h4>Download Seedlot Maintenance Events</h4><p>Select parameters:</p></tr>
+          <tr><td colspan="2"><h4>Baixar eventos de manutenção dos lotes de sementes</h4><p>Selecione os parâmetros:</p></tr>
           <tr>
-            <th>Seedlots</th>
-            <th>Format</th>
-            <th>Action</th>
+            <th>Lotes de sementes</th>
+            <th>Formato</th>
+            <th>Ação</th>
           </tr>
         </thead>
         <tbody>
@@ -634,7 +634,7 @@ $(document).ready(function() {
             </select>
           </td>
           <td>
-            <button class="btn btn-primary" type="button" id="seedlot_maintenance_events_download">Download</button>
+            <button class="btn btn-primary" type="button" id="seedlot_maintenance_events_download">Baixar</button>
             <input type="hidden" id="seedlot_maintenance_events_download_token" name="seedlot_maintenance_events_download_token"/>
           </td>
         </tr>
@@ -648,13 +648,13 @@ $(document).ready(function() {
 
     var lo = new CXGN.List();
 
-    $('#seedlot_list1').html(lo.listSelect('seedlot_maintenance_events_list', [ 'seedlots' ], 'select', undefined, undefined));
+    $('#seedlot_list1').html(lo.listSelect('seedlot_maintenance_events_list', [ 'seedlots' ], 'selecione', undefined, undefined));
 
     $('#seedlot_maintenance_events_download').click(function() {
 
         var seedlot_list_id = $('#seedlot_maintenance_events_list_list_select').val();
         if (!seedlot_list_id) {
-            alert("You need to select a seedlot list!");
+            alert("Selecione uma lista de lotes de sementes!");
             return;
         }
 
@@ -664,7 +664,7 @@ $(document).ready(function() {
         }
 
         if (seedlot_validation != 1) {
-            alert("The seedlot list did not pass validation. Please correct the list and try again");
+            alert("A lista de lotes de sementes não passou na validação. Corrija a lista e tente novamente");
             return;
         }
 
@@ -693,11 +693,11 @@ $(document).ready(function() {
     <form id="download_obsolete_metadata_action" action="/breeders/download_obsolete_metadata_action" method="POST">
         <table class="table" cellpadding="10">
             <thead>
-                <tr><td colspan="2"><h4>Download Obsolete Metadata</h4><p>Select parameters:</p></tr>
+                <tr><td colspan="2"><h4>Baixar metadados de materiais obsoletos</h4><p>Selecione os parâmetros:</p></tr>
                 <tr>
-                    <th>Obsoleted Stocks</th>
-                    <th>Format</th>
-                    <th>Action</th>
+                    <th>Materiais obsoletos</th>
+                    <th>Formato</th>
+                    <th>Ação</th>
                 </tr>
             </thead>
             <tbody>
@@ -711,7 +711,7 @@ $(document).ready(function() {
                         </select>
                     </td>
                     <td>
-                        <button class="btn btn-primary" type="button" id="obsolete_metadata_download">Download</button>
+                        <button class="btn btn-primary" type="button" id="obsolete_metadata_download">Baixar</button>
                         <input type="hidden" id="obsolete_metadata_download_token" name="obsolete_metadata_download_token"/>
                     </td>
                 </tr>
@@ -724,17 +724,17 @@ $(document).ready(function() {
 jQuery(document).ready(function() {
 
     var lo = new CXGN.List();
-    jQuery('#obsoleted_stock_list').html(lo.listSelect('obsoleted_stock_list', [ 'obsoleted_stocks' ], 'Please select', undefined, undefined));
+    jQuery('#obsoleted_stock_list').html(lo.listSelect('obsoleted_stock_list', [ 'obsoleted_stocks' ], 'Selecione', undefined, undefined));
 
     jQuery('#obsolete_metadata_download').click(function() {
         var obsoleted_stock_list_id = jQuery('#obsoleted_stock_list_list_select').val();
         if (!obsoleted_stock_list_id) {
-            alert("Please select an obsoleted stock list!");
+            alert("Selecione uma lista de materiais obsoletos!");
             return;
         } else {
             lo.validate(obsoleted_stock_list_id, 'obsoleted_stocks', true).then((r) => {
                 if (r.missing.length > 0) {
-                   alert("The obsoleted stock list did not pass validation. Please correct the list and try again");
+                   alert("A lista de materiais obsoletos não passou na validação. Corrija a lista e tente novamente");
                 } else {
                     var token = new Date().getTime(); //use the current timestamp as the token name and value
                     jQuery('#obsolete_metadata_download_token').val(token);
@@ -757,16 +757,16 @@ jQuery(document).ready(function() {
 <form id="download_gbs" action="/breeders/download_gbs_action" method="POST">
 <table class="table"  cellpadding="10">
   <thead>
-  <tr><td colspan="2"><h4>Download Genotypes </h4><p>Select parameter:</p></tr>
+  <tr><td colspan="2"><h4>Baixar genótipos </h4><p>Selecione o parâmetro:</p></tr>
   <tr>
     <th>
-      Accessions
+      Acessos
     </th>
     <th>
-      Genotyping Protocol
+      Protocolo de genotipagem
     </th>
     <th>
-      Action
+      Ação
     </th>
   </tr>
   </thead>
@@ -781,7 +781,7 @@ jQuery(document).ready(function() {
       </div>
     </td>
     <td>
-      <button class="btn btn-primary" type="button" id="genotype">Download</button>
+      <button class="btn btn-primary" type="button" id="genotype">Baixar</button>
       <input type="hidden" id="gbs_download_token" name="gbs_download_token"/>
     </td>
   </tr>
@@ -795,7 +795,7 @@ jQuery(document).ready(function() {
 
       var lo = new CXGN.List();
 
-      $('#accession_list2').html(lo.listSelect('genotype_accession_list', [ 'accessions' ], 'select', undefined, undefined));
+      $('#accession_list2').html(lo.listSelect('genotype_accession_list', [ 'accessions' ], 'selecione', undefined, undefined));
       get_select_box("genotyping_protocol", "protocol_list");
 
       $('#genotype').click(function() {
@@ -808,10 +808,10 @@ jQuery(document).ready(function() {
   accession_validation = lo.validate(accession_list_id, 'accessions', true).then(
      function(r) {
          if (!( accession_list_id || protocol_list_id) ) {
-             alert("You need to select a list of accessions and a protocol !");
+             alert("Selecione uma lista de acessos e um protocolo!");
          }
          else if(r.valid != 1)  {
-             alert("The accession list could not be validated. Please correct the list(s) and try again");
+             alert("Não foi possível validar a lista de acessos. Corrija as listas e tente novamente");
          }
   else  {
 
@@ -823,7 +823,7 @@ jQuery(document).ready(function() {
       //jQuery('#gbs_download_token').val(token);
       jQuery('#download_gbs').submit();
    }
-  }, function(e) { alert('An error occurred.'); });
+  }, function(e) { alert('Ocorreu um erro.'); });
   }
 
   });
@@ -834,19 +834,19 @@ jQuery(document).ready(function() {
 <form id="gbs_qc" action="/breeders/gbs_qc_action" method="POST">
 <table class="table" cellpadding="10">
   <thead>
-  <tr><td colspan="3"><h4>Genotyping QC</h4><p>Select parameter:</p></tr>
+  <tr><td colspan="3"><h4>Controle de qualidade da genotipagem</h4><p>Selecione o parâmetro:</p></tr>
   <tr>
     <th>
-      Trials
+      Ensaios
     </th>
     <th>
-      Accessions
+      Acessos
     </th>
     <th>
-      Genotyping Protocol
+      Protocolo de genotipagem
     </th>
     <th>
-      Action
+      Ação
     </th>
   </tr>
   </thead>
@@ -865,7 +865,7 @@ jQuery(document).ready(function() {
       </div>
     </td>
     <td>
-      <button class="btn btn-primary" type="button" id="genotype_qc">Download</button>
+      <button class="btn btn-primary" type="button" id="genotype_qc">Baixar</button>
       <input type="hidden" id="qc_download_token" name="qc_download_token"/>
     </td>
   </tr>
@@ -881,8 +881,8 @@ jQuery(document).ready(function() {
 
       var lo = new CXGN.List();
 
-      $('#accession_list3').html(lo.listSelect('genotype_qc_accession_list', [ 'accessions' ], 'select', undefined, undefined));
-      $('#trial_list3').html(lo.listSelect('genotype_trial_list', [ 'trials' ], 'select', undefined, undefined ));
+      $('#accession_list3').html(lo.listSelect('genotype_qc_accession_list', [ 'accessions' ], 'selecione', undefined, undefined));
+      $('#trial_list3').html(lo.listSelect('genotype_trial_list', [ 'trials' ], 'selecione', undefined, undefined ));
       get_select_box("genotyping_protocol", "protocol_list2", {'id':'protocol_list2_select', 'name':'protocol_list2_select'});
 
       $('#genotype_qc').click(function() {
@@ -896,7 +896,7 @@ jQuery(document).ready(function() {
 		draggable: true,
 		resizable: true,
 		open: function() { $(this).closest('.ui-dialog').find('.ui-dialog-titlebar-close').hide(); },
-		title: 'Downloading genotype...'
+		title: 'Baixando genótipo...'
 		});
 
       var lists = new Array();
@@ -906,7 +906,7 @@ jQuery(document).ready(function() {
 
 
       if (! (accession_list_id || trial_list_id) ) {
-        alert("You need to select an accession or a trial, or both!");
+        alert("Selecione um acesso, um ensaio ou ambos!");
         return;
       }
 
@@ -931,7 +931,7 @@ jQuery(document).ready(function() {
             names_str += r.invalid_lists[n][1];
 	 }
          if(names_str.length > 0) {
-            alert('Some lists ('+names_str+') are not valid, please check.');
+            alert('Algumas listas ('+names_str+') são inválidas. Verifique-as.');
             jQuery('#working_modal').modal('hide');
          }
          else {

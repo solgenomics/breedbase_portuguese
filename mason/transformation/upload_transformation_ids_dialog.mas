@@ -7,21 +7,21 @@ $trial_name
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="uploadTransformationIDsDialog">Upload Transformation IDs</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="uploadTransformationIDsDialog">Enviar IDs de transformação</h4>
             </div>
             <div class="modal-body">
                 <div class="container-fluid">
-                    <&| /page/explanation.mas, title=>'Template Information' &>
+                    <&| /page/explanation.mas, title=>'Informações do modelo' &>
                         <p>
-                            <b>File format information</b>
+                            <b>Informações sobre o formato do arquivo</b>
                             <br>
-                            <a id="transformation_ids_upload_spreadsheet_format_info">Spreadsheet Format</a>
+                            <a id="transformation_ids_upload_spreadsheet_format_info">Formato da planilha</a>
                         </p>
                     </&>
                     <form method="post" enctype="multipart/form-data" encoding="multipart/form-data" id="upload_transformation_ids_form" name="upload_transformation_ids_form">
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">Upload File: </label>
+                            <label class="col-sm-3 control-label">Enviar arquivo: </label>
                             <div class="col-sm-9" >
                                 <input type="file" name="transformation_ids_file" id="transformation_ids_file" encoding="multipart/form-data" />
                                 <input name="transformation_project_id" id="transformation_project_id" type="hidden" value="<% $trial_id %>">
@@ -31,8 +31,8 @@ $trial_name
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" name="upload_transformation_ids_submit" id="upload_transformation_ids_submit">Upload</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                <button type="button" class="btn btn-primary" name="upload_transformation_ids_submit" id="upload_transformation_ids_submit">Enviar</button>
             </div>
         </div>
     </div>
@@ -42,19 +42,19 @@ $trial_name
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="transformationIdsSavedDialog">Success</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="transformationIdsSavedDialog">Sucesso</h4>
             </div>
             <div class="modal-body">
                 <div class="container-fluid">
                     <p>
                         <span class="ui-icon ui-icon-circle-check" style="float: left; margin: 0 7px 50px 0;"></span>
-                        The transformation identifiers were saved successfully.
+                        Os identificadores de transformação foram salvos com sucesso.
                     </p>
                 </div>
             </div>
             <div class="modal-footer">
-                <button id="dismiss_transformation_ids_saved_dialog" type="button" class="btn btn-default" data-dismiss="modal">Close & Reload</button>
+                <button id="dismiss_transformation_ids_saved_dialog" type="button" class="btn btn-default" data-dismiss="modal">Fechar e recarregar</button>
             </div>
         </div>
     </div>
@@ -64,8 +64,8 @@ $trial_name
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="uploadTransformationIdsErrorDialog">Upload Transformation Identifiers Error</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="uploadTransformationIdsErrorDialog">Erro no envio de identificadores de transformação</h4>
             </div>
             <div class="modal-body">
                 <div class="container-fluid">
@@ -75,7 +75,7 @@ $trial_name
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
             </div>
         </div>
     </div>
@@ -85,14 +85,14 @@ $trial_name
     <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content">
             <div class="modal-header" style="text-align: center">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="uploadTransformationIDInfoDialog">Upload Template Information For Transformation Identifiers</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="uploadTransformationIDInfoDialog">Informações do modelo de envio de identificadores de transformação</h4>
             </div>
             <div class="modal-body">
                 <div class="container-fluid">
-                    <b>Header:</b>
+                    <b>Cabeçalho:</b>
                     <br>
-                    The first row (header) should contain the following:
+                    A primeira linha (cabeçalho) deve conter os seguintes campos:
                     <br />
 
                     <table class="table table-hover table-bordered table-condensed" >
@@ -108,23 +108,23 @@ $trial_name
                         </tbody>
                     </table>
 
-                    <b>Required fields:</b>
+                    <b>Campos obrigatórios:</b>
                     <ul>
-                        <li>transformation_identifier (must be unique)</li>
-                        <li>accession_name (must exist in the database)</li>
-                        <li>vector_construct (must exist in the database)</li>
+                        <li>transformation_identifier (deve ser único)</li>
+                        <li>accession_name (deve existir no banco de dados)</li>
+                        <li>vector_construct (deve existir no banco de dados)</li>
                     </ul>
 
-                    <b>Optional fields:</b>
+                    <b>Campos opcionais:</b>
                     <ul>
-                        <li>notes (additional information about transformation identifier)</li>
-                        <li>is_a_control (if you would like to set any transformation identifier <b>as a control</b>, please indicate "1" for the "is_a_control" column. To <b>set a control</b> for any transformation ID, please use the link "Set Transformation Control" on the transformation ID detail page.)</li>
+                        <li>notes (informações complementares do identificador de transformação)</li>
+                        <li>is_a_control (para definir um identificador de transformação <b>como controle</b>, informe "1" nesta coluna; para <b>selecionar um controle</b> de um ID, use o link "Definir controle da transformação" na página de detalhes)</li>
                     </ul>
                 </div>
                 <& /help/file_upload_type.mas, type => "Transformation Identifiers", optional_column => 1 &>
             </div>
             <div class="modal-footer">
-                <button id="close_transformation_id_info_upload_dialog" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button id="close_transformation_id_info_upload_dialog" type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
             </div>
         </div>
     </div>
@@ -149,7 +149,7 @@ jQuery(document).ready(function(){
         jQuery('#upload_transformation_ids_form').attr("action", "/ajax/transformation/upload_transformation_identifiers");
 
         if (uploadFile === ''){
-            alert("Please select a file");
+            alert("Selecione um arquivo");
             return;
         }
 

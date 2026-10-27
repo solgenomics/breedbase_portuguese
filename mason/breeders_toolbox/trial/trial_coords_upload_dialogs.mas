@@ -7,22 +7,22 @@ $trial_name
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="uploadTrialCoordDialog">Upload Coordinates to <% $trial_name %></h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="uploadTrialCoordDialog">Enviar coordenadas para <% $trial_name %></h4>
       </div>
       <div class="modal-body">
         <div class="container-fluid">
 
-            <&| /page/explanation.mas, title=>'Template information' &>
+            <&| /page/explanation.mas, title=>'Informações do modelo' &>
                 <p>
-                    <b>File format information</b>
+                    <b>Informações sobre o formato do arquivo</b>
                     <br>
-                    <a id="trial_coordinates_upload_spreadsheet_format_info">Spreadsheet format</a>
+                    <a id="trial_coordinates_upload_spreadsheet_format_info">Formato da planilha</a>
                 </p>
             </&>
 
             <form method="post" enctype="multipart/form-data" encoding="multipart/form-data" id="upload_trial_coordinates_form" name="upload_trial_coordinates_form">
-                <label for="trial_coordinates_uploaded_file" style="display: inline-block; width: 100px;">Upload trial coordinates file:</label>
+                <label for="trial_coordinates_uploaded_file" style="display: inline-block; width: 100px;">Arquivo de coordenadas do ensaio:</label>
                 <input type="file" name="trial_coordinates_uploaded_file" id="trial_coordinates_uploaded_file" encoding="multipart/form-data" />
                 <input type="hidden" name="trial_coordinates_upload_trial_id" id="trial_coordinates_upload_trial_id" value="<% $trial_id %>" />
             </form>
@@ -30,8 +30,8 @@ $trial_name
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" name="upload_trial_coords_cancel_button" id="upload_trial_coords_cancel_button" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" name="upload_trial_coords_ok_button" id="upload_trial_coords_ok_button" title="Submit">Submit</button>
+        <button type="button" class="btn btn-default" name="upload_trial_coords_cancel_button" id="upload_trial_coords_cancel_button" data-dismiss="modal">Fechar</button>
+        <button type="button" class="btn btn-primary" name="upload_trial_coords_ok_button" id="upload_trial_coords_ok_button" title="Enviar">Enviar</button>
       </div>
     </div>
   </div>
@@ -42,8 +42,8 @@ $trial_name
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="uploadTrialCoordErrorDialog">Upload Coordinates Error</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="uploadTrialCoordErrorDialog">Erro no envio das coordenadas</h4>
       </div>
       <div class="modal-body">
         <div class="container-fluid">
@@ -53,7 +53,7 @@ $trial_name
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" name="upload_trial_coord_error_display_cancel" id="upload_trial_coords_cancel_button" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-default" name="upload_trial_coord_error_display_cancel" id="upload_trial_coords_cancel_button" data-dismiss="modal">Fechar</button>
       </div>
     </div>
   </div>
@@ -63,16 +63,16 @@ $trial_name
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="uploadTrialCoordSuccessDialog">Upload Coordinates Uploaded Sucessfully</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="uploadTrialCoordSuccessDialog">Coordenadas enviadas com sucesso</h4>
       </div>
       <div class="modal-body">
         <div class="container-fluid">
-            <h3>The trial coord upload finished with no errors.</h3>
+            <h3>O envio das coordenadas do ensaio foi concluído sem erros.</h3>
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" name="trial_coord_upload_success_dialog_message_cancel" id="trial_coord_upload_success_dialog_message_cancel" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-default" name="trial_coord_upload_success_dialog_message_cancel" id="trial_coord_upload_success_dialog_message_cancel" data-dismiss="modal">Fechar</button>
       </div>
     </div>
   </div>
@@ -82,20 +82,20 @@ $trial_name
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="uploadTrialCoordHelpDialog">Upload Coordinates Help</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="uploadTrialCoordHelpDialog">Ajuda para envio de coordenadas</h4>
       </div>
       <div class="modal-body">
         <div class="container-fluid">
 
-<& /help/file_upload_type.mas, type => "Trial Coordinates" &>
+<& /help/file_upload_type.mas, type => "Coordenadas do ensaio" &>
 <br>
 <br>
 <b>
-  Header:
+  Cabeçalho:
 </b>
 <br>
-The first row (header) should contain the following:
+A primeira linha deve conter o cabeçalho a seguir:
 <br>
 
 <table class="table table-bordered" cellspacing="1" cellpadding="2" border="1">
@@ -108,25 +108,25 @@ The first row (header) should contain the following:
 
 <br>
 
-<h4>Required fields:</h4>
+<h4>Campos obrigatórios:</h4>
 <ul>
-<li>plot_name (must exist in the database for this trial)</li>
-<li>row_number (needed for the display of physical layout)</li>
-<li>col_number (needed for the display of physical layout)</li>
+<li>plot_name (deve existir no banco de dados para este ensaio)</li>
+<li>row_number (necessário para exibir a disposição física)</li>
+<li>col_number (necessário para exibir a disposição física)</li>
 </ul>
 
 
-<h4>Notes</h4>
+<h4>Observações</h4>
 <ul>
-<li>Field plots will be displayed in the physical trial layout based on the coordinates you provided in the row and column number.</li>
-<li>Physical trial layout will capture serpentine, zigzag and any other planting format use.</li>
+<li>As parcelas serão exibidas na disposição física do ensaio conforme as coordenadas de linha e coluna informadas.</li>
+<li>A disposição física representará formatos de plantio em serpentina, zigue-zague ou qualquer outro formato utilizado.</li>
 </ul>
 
 
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" name="trial_coord_upload_spreadsheet_info_dialog_close" id="trial_coord_upload_spreadsheet_info_dialog_close" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-default" name="trial_coord_upload_spreadsheet_info_dialog_close" id="trial_coord_upload_spreadsheet_info_dialog_close" data-dismiss="modal">Fechar</button>
       </div>
     </div>
   </div>

@@ -7,7 +7,7 @@ $locations => undef
 
 <& /util/import_javascript.mas, classes => [ 'CXGN.BreedersToolbox.Trial','CXGN.BreedersToolbox.FieldBook','CXGN.BreedersToolbox.UploadPhenotype', 'CXGN.BreedersToolbox.UploadImages', 'CXGN.BreederSearch', 'CXGN.Trial' ] &>
 
-<& /page/page_title.mas, title=>"Manage Phenotypic Data" &>
+<& /page/page_title.mas, title=>"Gerenciar dados fenotípicos" &>
 
 <div class="container-fluid">
 
@@ -22,7 +22,7 @@ $locations => undef
 
 <div class="well">
 
-<&| /page/info_section.mas, title=>'Your Uploaded Files', is_subsection=>1, subtitle=>'[<a id="upload_spreadsheet_phenotypes_link" >Upload Phenotype Spreadsheet</a>] [<a id="upload_images_link" >Upload Images</a>] <br/> [<a name="create_spreadsheet_link" >Create Phenotype Spreadsheet</a>]' &>
+<&| /page/info_section.mas, title=>'Seus arquivos enviados', is_subsection=>1, subtitle=>'[<a id="upload_spreadsheet_phenotypes_link" >Enviar planilha de fenótipos</a>] [<a id="upload_images_link" >Enviar imagens</a>] <br/> [<a name="create_spreadsheet_link" >Criar planilha de fenótipos</a>]' &>
   <br/>
   <& /breeders_toolbox/file_list.mas, files=>$phenotype_files, allow_delete=>1 &>
 
@@ -31,7 +31,7 @@ $locations => undef
 </div>
 <div class="well">
 
-<&| /page/info_section.mas, title=>'Your Obsoleted Files', subtitle=>'These files will not be shown anywhere else on the website', is_subsection=>1 &>
+<&| /page/info_section.mas, title=>'Seus arquivos obsoletos', subtitle=>'Estes arquivos não serão exibidos em nenhuma outra parte do site', is_subsection=>1 &>
 
   <& /breeders_toolbox/file_list.mas, files=>$deleted_phenotype_files, allow_delete=>0 &>
 
@@ -47,7 +47,7 @@ jQuery(document).ready(function() {
 
     jQuery('.files_datatables').on('click', 'button[name=delete_pheno_file_link]', function() {
         var delete_phenotypes_file_id = jQuery(this).data('file_id');
-        if (confirm('Are you sure you want to delete all phenotype values related to this file from the database and make this file obsolete?')){
+        if (confirm('Deseja excluir do banco de dados todos os valores fenotípicos relacionados a este arquivo e marcá-lo como obsoleto?')){
             jQuery.ajax ( {
                 url : '/ajax/breeders/phenotyping/delete/'+delete_phenotypes_file_id,
                 beforeSend : function() {
@@ -55,12 +55,12 @@ jQuery(document).ready(function() {
                 },
                 success: function(response){
                     jQuery('#working_modal').modal('hide');
-                    alert('Made phenotype file obsolete and deleted all related phenotype values in the database!');
+                    alert('O arquivo de fenótipos foi marcado como obsoleto e todos os valores fenotípicos relacionados foram excluídos do banco de dados.');
                     location.reload();
                 },
                 error: function(response){
                     jQuery('#working_modal').modal('hide');
-                    alert("Error deleting file and phenotypes!");
+                    alert("Erro ao excluir o arquivo e os fenótipos.");
                 }
             });
         }

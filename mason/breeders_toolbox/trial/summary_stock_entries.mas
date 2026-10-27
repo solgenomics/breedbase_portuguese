@@ -10,7 +10,7 @@ $trial_stock_type
     <div class="panel panel-default">
         <form id="download_summary_stock_entries" action="/breeders/download_summary_stock_entries" method="POST">
             <div class="panel-body">
-                <button class="btn btn-primary" id="download_summary_stock_entries_button">Download Entries</button>
+                <button class="btn btn-primary" id="download_summary_stock_entries_button">Baixar entradas</button>
                 <input name ="stock_entries_trial_id" id="stock_entries_trial_id" type="hidden" value="<% $trial_id %>" />
                 <input type="hidden" id="trial_stock_entries_download_token" name="trial_stock_entries_download_token" />
             </div>
@@ -22,15 +22,15 @@ $trial_stock_type
                     <thead>
                         <tr>
 % if ($trial_stock_type eq 'cross') {
-                            <th>Cross Unique ID</th>
+                            <th>ID exclusivo do cruzamento</th>
 % } elsif ($trial_stock_type eq 'family_name') {
-                            <th>Family Name</th>
+                            <th>Nome da família</th>
 % } else {
-                            <th>Accession</th>
+                            <th>Acesso</th>
 % }
-                            <th>Plot</th>
-                            <th>Plant</th>
-                            <th>Tissue Sample</th>
+                            <th>Parcela</th>
+                            <th>Planta</th>
+                            <th>Amostra de tecido</th>
                         </tr>
                     </thead>
                 </table>

@@ -18,60 +18,60 @@ $breeding_program_name => undef
 % my $folder_for_tracking_activities;
 % my $folder_for_transformations;
 % my $folder_for_propagations;
-% if ($project_type eq 'field_trial') { $folder_for_trials = 1;  $dialog_type = 'trial'}
-% if ($project_type eq 'genotyping_plate') { $folder_for_genotyping_trials = 1; $dialog_type = 'genotyping plate' }
-% if ($project_type eq 'crossing_experiment') { $folder_for_crosses = 1; $dialog_type = 'crossing experiment' }
-% if ($project_type eq 'genotyping_project') { $folder_for_genotyping_projects = 1; $dialog_type = 'genotyping project' }
-% if ($project_type eq 'activity_record') { $folder_for_tracking_activities = 1; $dialog_type = 'tracking activities' }
-% if ($project_type eq 'transformation_project') { $folder_for_transformations = 1; $dialog_type = 'transformation project' }
-% if ($project_type eq 'propagation_project') { $folder_for_propagations = 1; $dialog_type = 'propagation project' }
+% if ($project_type eq 'field_trial') { $folder_for_trials = 1;  $dialog_type = 'ensaio'}
+% if ($project_type eq 'genotyping_plate') { $folder_for_genotyping_trials = 1; $dialog_type = 'placas de genotipagem' }
+% if ($project_type eq 'crossing_experiment') { $folder_for_crosses = 1; $dialog_type = 'experimentos de cruzamento' }
+% if ($project_type eq 'genotyping_project') { $folder_for_genotyping_projects = 1; $dialog_type = 'projetos de genotipagem' }
+% if ($project_type eq 'activity_record') { $folder_for_tracking_activities = 1; $dialog_type = 'atividades de rastreamento' }
+% if ($project_type eq 'transformation_project') { $folder_for_transformations = 1; $dialog_type = 'projetos de transformação' }
+% if ($project_type eq 'propagation_project') { $folder_for_propagations = 1; $dialog_type = 'projetos de propagação' }
 
 <div class="modal fade" id="move_folder_dialog" name="move_folder_dialog" tabindex="-1" role="dialog" aria-labelledby="moveFolderDialog">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="moveFolderDialog">Move a <% $dialog_type %> folder</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="moveFolderDialog">Mover uma pasta de <% $dialog_type %></h4>
       </div>
       <div class="modal-body">
         <div class="container-fluid">
 
 	       <form class="form-horizontal" role="form" method="post" id="move_folder_dialog_form" name="move_folder_dialog_form">
           <div class="form-group">
-             <label class="col-sm-4 control-label">Breeding Program: </label>
+             <label class="col-sm-4 control-label">Programa de melhoramento: </label>
              <div class="col-sm-8" >
                <div id="move_folder_breeding_program_select_div">
 % if ($breeding_program_id) {
                <input type="text" class="form-control" value="<% $breeding_program_name %>" disabled/>
                <input type="hidden" id="move_folder_breeding_program_id" name="move_folder_breeding_program_id" value="<% $breeding_program_id %>" />
 % } else {
- [Loading...]
+ [Carregando...]
 % }
                </div>
              </div>
           </div>
           <div class="form-group">
-      	      <label class="col-sm-4 control-label">Parent Folder: </label>
+              <label class="col-sm-4 control-label">Pasta principal: </label>
       	      <div class="col-sm-8" >
                 <div id="move_folder_parent_folder_select_div">
 % if ($parent_folder_id) {
                   <input type="text" class="form-control" value="<% $parent_folder_name %>" disabled/>
                   <input type="hidden" id="move_folder_parent_folder_id" name="move_folder_parent_folder_id" value="<% $parent_folder_id %>" />
 % } else {
-  [Loading...]
+  [Carregando...]
 % }
                 </div>
               </div>
 	        </div>
 	        <div class="form-group">
-      	      <label class="col-sm-4 control-label">Folder Name: </label>
+              <label class="col-sm-4 control-label">Nome da pasta: </label>
       	      <div class="col-sm-8" >
                 <div id="move_folder_select_div">
 % if ($folder_id) {
               <input type="text" class="form-control" value="<% $folder_name %>" disabled/>
               <input type="hidden" id="move_folder_id" name="move_folder_id" value="<% $folder_id %>" />
 % } else {
-[Loading...]
+[Carregando...]
 % }
                 </div>
               </div>
@@ -80,8 +80,8 @@ $breeding_program_name => undef
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-	      <button type="button" class="btn btn-primary" name="move_folder_submit" id="move_folder_submit" title="Move folder">Save</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+	      <button type="button" class="btn btn-primary" name="move_folder_submit" id="move_folder_submit" title="Mover pasta">Salvar</button>
       </div>
     </div>
   </div>
@@ -91,19 +91,19 @@ $breeding_program_name => undef
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header" style="text-align: center">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="moveFolderSuccessDialog">Folder Move Successful</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="moveFolderSuccessDialog">Pasta movida</h4>
             </div>
             <div class="modal-body">
                 <div class="container-fluid">
                     <p>
                         <span class="ui-icon ui-icon-circle-check" style="float: left; margin: 0 7px 50px 0;"></span>
-                        The folder was moved successfully
+                        A pasta foi movida com sucesso.
                     </p>
                 </div>
             </div>
             <div class="modal-footer">
-                <button id="close_move_folder_success_dialog" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button id="close_move_folder_success_dialog" type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
             </div>
         </div>
     </div>
@@ -217,7 +217,7 @@ function move_folder() {
   //console.log(parent_folder_id);
   //console.log(folder_id);
   if (parent_folder_id == folder_id) {
-    alert("Cannot make a folder its own parent.");
+    alert("Uma pasta não pode ser sua própria pasta principal.");
     return;
   }
   jQuery.ajax( {
@@ -234,7 +234,7 @@ function move_folder() {
       }
     },
     error: function(response) {
-      alert('An error occurred trying to move folder.');
+      alert('Ocorreu um erro ao mover a pasta.');
       jQuery('#move_folder_dialog').modal("hide");
     }
   });

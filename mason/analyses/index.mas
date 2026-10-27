@@ -22,9 +22,9 @@ Lukas Mueller <lam87@cornell.edu>
 
 <& /util/import_javascript.mas, classes => [ 'jquery', 'jquery.dataTables' ], entries => ['analyses' ] &>
 
-<& /page/page_title.mas, title => "Your Analyses and Analysis Models" &>
+<& /page/page_title.mas, title => "Suas análises e modelos de análise" &>
 
-<button class='btn btn-primary' style='margin:3px;float:right' id='drone_imagery_calculate_statistics_link'>Drone Imagery Statistics</button><button class='btn btn-primary' style='margin:3px;float:right' id='analysis_calculate_statistics_link'>Single/Multi Trial GEBV Analysis</button><button class="btn btn-default" name="upload_new_analysis_button" style="margin:3px;float:right">Upload Analysis</button><br />
+<button class='btn btn-primary' style='margin:3px;float:right' id='drone_imagery_calculate_statistics_link'>Estatísticas de imagens de drone</button><button class='btn btn-primary' style='margin:3px;float:right' id='analysis_calculate_statistics_link'>Análise GEBV de um ou vários ensaios</button><button class="btn btn-default" name="upload_new_analysis_button" style="margin:3px;float:right">Enviar análise</button><br />
 <hr>
 
 <& /analyses/analysis_calculate_statistics.mas &>
@@ -33,27 +33,27 @@ Lukas Mueller <lam87@cornell.edu>
 <& /analyses/store_new_analysis_values_and_model.mas &>
 
 <div class="well">
-<h3>Your Analyses</h3>
+<h3>Suas análises</h3>
 <table class="table table-bordered table-hover" id="analyses_by_user_table">
   <thead>
   <tr>
     <th>
-      Analysis Name
+      Nome da análise
     </th>
     <th>
-      Description
+      Descrição
     </th>
     <th>
-      Model Type
+      Tipo de modelo
     </th>
     <th>
-      Protocol
+      Protocolo
     </th>
     <th>
-      Application
+      Aplicação
     </th>
     <th>
-      Language
+      Linguagem
     </th>
   </tr>
   </thead>
@@ -63,27 +63,27 @@ Lukas Mueller <lam87@cornell.edu>
 </div>
 
 <div class="well">
-<h3>Your Models</h3>
+<h3>Seus modelos</h3>
 <table class="table table-bordered table-hover" id="models_by_user_table">
   <thead>
   <tr>
     <th>
-      Model Name
+      Nome do modelo
     </th>
     <th>
-      Description
+      Descrição
     </th>
     <th>
-      Model Type
+      Tipo de modelo
     </th>
     <th>
-      Protocol
+      Protocolo
     </th>
     <th>
-      Application
+      Aplicação
     </th>
     <th>
-      Language
+      Linguagem
     </th>
   </tr>
   </thead>

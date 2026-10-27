@@ -19,6 +19,7 @@ Bryan Ellerbrock <bje24@cornell.edu>
 
 package CXGN::Location;
 
+use utf8;
 use Moose;
 use Data::Dumper;
 use Try::Tiny;
@@ -147,29 +148,29 @@ sub store_location {
     # Validate properties
 
     if (!$nd_geolocation_id && !$name) {
-        return { error => "Cannot add a new location with an undefined name. A location name is required" };
+        return { error => "Não é possível adicionar um local sem nome. O nome do local é obrigatório." };
     }
     elsif (!$nd_geolocation_id && !$self->_is_valid_name($name)) { # can't add a new location with name that already exists
-        return { error => "The location - $name - already exists. Please choose another name, or use the existing location" };
+        return { error => "O local $name já existe. Escolha outro nome ou use o local existente." };
     }
 
     if (!$nd_geolocation_id && $abbreviation && !$self->_is_valid_abbreviation($abbreviation)) {
-       return { error => "Abbreviation $abbreviation already exists in the database. Please choose another abbreviation" };
+       return { error => "A abreviação $abbreviation já existe no banco de dados. Escolha outra abreviação." };
     }
 
     if ($country_name && $country_name =~ m/[0-9]/) {
-       return { error => "Country name $country_name is not a valid ISO standard country name." };
+       return { error => "O nome de país $country_name não é válido conforme o padrão ISO." };
     }
 
     if ($country_code && (($country_code !~ m/^[^a-z]*$/) || (length($country_code) != 3 ))) {
-       return { error => "Country code $country_code is not a valid ISO Alpha-3 code." };
+       return { error => "O código de país $country_code não é um código ISO Alfa-3 válido." };
     }
 
     my @breeding_program_ids;
     foreach my $breeding_program (split ("&", $breeding_programs)) {
         $breeding_program = _trim($breeding_program);
         if ($breeding_program && !$self->_is_valid_program($breeding_program)) { # can't use a breeding program that doesn't exist
-    	    return { error => "Breeding program $breeding_program doesn't exist in the database." };
+            return { error => "O programa de melhoramento $breeding_program não existe no banco de dados." };
         } else {
             push @breeding_program_ids, $self->bcs_schema->resultset("Project::Project")->search({ name => $breeding_program })->first->project_id();
         }
@@ -177,19 +178,19 @@ sub store_location {
     my $breeding_program_ids = join '&', @breeding_program_ids;
 
     if ($location_type && !$self->_is_valid_type($location_type)) {
-        return { error => "Location type $location_type must be must be one of the following: Town, Farm, Field, Greenhouse, Screenhouse, Lab, Storage, Other." };
+        return { error => "O tipo de local $location_type deve ser um destes valores: Town, Farm, Field, Greenhouse, Screenhouse, Lab, Storage ou Other." };
     }
 
     if ( ($latitude && $latitude !~ /^-?[0-9.]+$/) || ($latitude && $latitude < -90) || ($latitude && $latitude > 90)) {
-	    return { error => "Latitude (in degrees) must be a number between 90 and -90." };
+	    return { error => "A latitude, em graus, deve ser um número entre -90 e 90." };
     }
 
     if ( ($longitude && $longitude !~ /^-?[0-9.]+$/) || ($longitude && $longitude < -180) || ($longitude && $longitude > 180)) {
-	    return { error => "Longitude (in degrees) must be a number between 180 and -180." };
+	    return { error => "A longitude, em graus, deve ser um número entre -180 e 180." };
     }
 
     if ( ($altitude && $altitude !~ /^-?[0-9.]+$/) || ($altitude && $altitude < -418) || ($altitude && $altitude > 8848) ) {
-        return { error => "Altitude (in meters) must be a number between -418 (Dead Sea) and 8,848 (Mt. Everest)." };
+        return { error => "A altitude, em metros, deve ser um número entre -418 (Mar Morto) e 8.848 (Monte Everest)." };
     }
 
     # Add new location if no id supplied
@@ -256,10 +257,10 @@ sub store_location {
 
         if ($transaction_error) {
             print STDERR "Error creating location $name: $transaction_error\n";
-            return { error => $transaction_error };
+            return { error => "Não foi possível criar o local $name." };
         } else {
             print STDERR "Location $name added successfully\n";
-            return { success => "Location $name added successfully\n", nd_geolocation_id=>$self->location()->nd_geolocation_id() };
+            return { success => "O local $name foi adicionado com sucesso.\n", nd_geolocation_id=>$self->location()->nd_geolocation_id() };
         }
     }
     # Edit existing location if id supplied
@@ -285,10 +286,10 @@ sub store_location {
 
         if ($error) {
             print STDERR "Error editing location $name: $error\n";
-            return { error => $error };
+            return { error => "Não foi possível atualizar o local $name." };
         } else {
             print STDERR "Location $name was successfully updated\n";
-            return { success => "Location $name was successfully updated\n", nd_geolocation_id=>$self->location()->nd_geolocation_id() };
+            return { success => "O local $name foi atualizado com sucesso.\n", nd_geolocation_id=>$self->location()->nd_geolocation_id() };
         }
     }
 }
@@ -301,7 +302,7 @@ sub delete_location {
     #print STDERR "Associated experiments: ".Dumper(@experiments)."\n";
 
     if (@experiments) {
-        my $error = "Location $name cannot be deleted because there are ".scalar @experiments." measurements associated with it from at least one trial.\n";
+        my $error = "O local $name não pode ser excluído porque há ".scalar @experiments." medições associadas a ele em pelo menos um ensaio.\n";
         print STDERR $error;
         return { error => $error };
     }
@@ -312,7 +313,7 @@ sub delete_location {
         while (my $r = $projectprop_rows->next()){ # remove any links to deleted location in projectprop
             $r->delete();
         }
-        return { success => "Location $name was successfully deleted.\n" };
+        return { success => "O local $name foi excluído com sucesso.\n" };
 	}
 }
 

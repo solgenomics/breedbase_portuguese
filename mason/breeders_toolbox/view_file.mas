@@ -20,22 +20,22 @@ sub n2a {
 
 <center>
 <br/>
-<h1>File Viewer</h1>
+<h1>Visualizador de arquivos</h1>
 <br/>
 </center>
 
 <div class="panel panel-info">
 	<div class="panel-heading">
-		<h3>File Info</h3>
+		<h3>Informações do arquivo</h3>
 	</div>
 	<div class="panel-body">
 		<table class="table">
 		<thead>
 		<tr>
-		<th>Filename</th>
-		<th>File Type</th>
-		<th>Number of Sheets</th>
-		<th>Parser</th>
+		<th>Nome do arquivo</th>
+		<th>Tipo de arquivo</th>
+		<th>Número de planilhas</th>
+		<th>Analisador</th>
 		</tr>
 		</thead>
 		<tbody>
@@ -54,7 +54,7 @@ sub n2a {
 
 <div class="panel panel-info">
 	<div class="panel-heading">
-		<h3>File Contents</h3>
+		<h3>Conteúdo do arquivo</h3>
 	</div>
 	<div class="panel-body">
 
@@ -125,7 +125,6 @@ sub n2a {
 
 </div>
 </div>
-
 
 
 

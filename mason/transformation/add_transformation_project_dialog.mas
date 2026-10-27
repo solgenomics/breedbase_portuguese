@@ -10,44 +10,44 @@ $locations
     <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content ui-front">
             <div class="modal-header">
-                <button type="reset" class="close" id="add_transformation_project_dismiss_button_1" name="add_transformation_project_dismiss_button" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <center><h4 class="modal-title" id="createTransformationProjectDialog">Add New Transformation Project</h4></center>
+                <button type="reset" class="close" id="add_transformation_project_dismiss_button_1" name="add_transformation_project_dismiss_button" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+                <center><h4 class="modal-title" id="createTransformationProjectDialog">Adicionar novo projeto de transformação</h4></center>
             </div>
             <div class="modal-body">
                 <div class="container-fluid">
 
                     <&| /util/workflow.mas, id=> "add_transformation_project_workflow" &>
-                        <&| /util/workflow.mas:step, title=> "Intro" &>
-                            <& /page/page_title.mas, title=>"What are Transformation Projects?" &>
+                        <&| /util/workflow.mas:step, title=> "Introdução" &>
+                            <& /page/page_title.mas, title=>"O que são projetos de transformação?" &>
 
-                            <p>You can use Transformation Projects to manage and organize your transformation experiemnts</p>
+                            <p>Use projetos de transformação para gerenciar e organizar os experimentos de transformação</p>
                             <ul>
-                                <li>Each transformation experiment is linked to a globally unique transformation ID.</li>
-                                <li>Transformation ID captures information about plant material and vector construct used in that experiment.</li>
-                                <li>You can use transformation details page to automatically add new transformant (accession) names to database by simply indicating the number of transformants generated.</li>
-                                <li>Each auto-generated transformant (accession) name has transformation ID as basename and an incremental serial number. </li>
+                                <li>Cada experimento de transformação é vinculado a um ID de transformação único globalmente.</li>
+                                <li>O ID de transformação reúne informações sobre o material vegetal e a construção vetorial usados no experimento.</li>
+                                <li>Na página de detalhes da transformação, adicione automaticamente nomes de novos transformantes (acessos) ao banco de dados informando a quantidade de transformantes gerados.</li>
+                                <li>Cada nome de transformante (acesso) gerado automaticamente usa o ID de transformação como base e um número de série sequencial. </li>
                             </ul>
                             <hr>
                             <center>
-                                <button id="next_step_add_new_intro" class="btn btn-primary" onclick="Workflow.complete(this);">Go to Next Step</button>
+                                <button id="next_step_add_new_intro" class="btn btn-primary" onclick="Workflow.complete(this);">Ir para a próxima etapa</button>
                             </center>
                         </&>
 
                         <form class="form-horizontal" role="form" name="create_transformation_project_form" id="create_transformation_project_form">
-                            <&| /util/workflow.mas:step, title=> "Add a transformation project" &>
-                                <& /page/page_title.mas, title=>"Enter basic information about the transformation project" &>
+                            <&| /util/workflow.mas:step, title=> "Adicionar um projeto de transformação" &>
+                                <& /page/page_title.mas, title=>"Informe os dados básicos do projeto de transformação" &>
                                     <br/>
                                     <div class="form-group">
-                                        <label class="col-sm-3 control-lable">Project Name: </label>
+                                        <label class="col-sm-3 control-lable">Nome do projeto: </label>
                                         <div class="col-sm-9">
                                             <input class="form-control" type="text" id="transformation_project_name" name="transformation_project_name"  />
                                         </div>
                                     </div><br/>
                                     <div class="form-group">
-                                        <label class="col-sm-3 control-label">Breeding Program: </label>
+                                        <label class="col-sm-3 control-label">Programa de melhoramento: </label>
                                         <div class="col-sm-9">
                                             <select class="form-control" id="transformation_project_program" name="transformation_project_program">
-                                                <option value="">Select Breeding Program</option>
+                                                <option value="">Selecione um programa de melhoramento</option>
 <%perl>
 foreach my $program (@$programs) {
     if (@$program[3]) {
@@ -61,10 +61,10 @@ foreach my $program (@$programs) {
                                         </div>
                                     </div><br/>
                                     <div class="form-group">
-                                        <label class="col-sm-3 control-label">Location: </label>
+                                        <label class="col-sm-3 control-label">Local: </label>
                                         <div class="col-sm-9">
                                             <select class="form-control" id="transformation_project_location" name="transformation_project_location">
-                                                <option value="">Select Location</option>
+                                                <option value="">Selecione um local</option>
 <%perl>
     foreach my $location_hashref (@$locations) {
         my $properties = $location_hashref->{'properties'};
@@ -77,13 +77,13 @@ foreach my $program (@$programs) {
                                         </div>
                                     </div><br/>
                                     <div class="form-group">
-                                        <label class="col-sm-3 control-label">Year:</label>
+                                        <label class="col-sm-3 control-label">Ano:</label>
                                         <div class="col-sm-9">
                                             <div id="transformation_project_year" name="transformation_project_year" ></div>
                                         </div>
                                     </div><br/>
                                     <div class="form-group">
-                                        <label class="col-sm-3 control-label">Description:</label>
+                                        <label class="col-sm-3 control-label">Descrição:</label>
                                         <div class="col-sm-9">
                                             <textarea class="form-control" id="transformation_project_description" name="transformation_project_description" ></textarea>
                                         </div>
@@ -92,17 +92,17 @@ foreach my $program (@$programs) {
                                 <br/>
                                 <br/>
                                 <center>
-                                    <button type="button" class="btn btn-primary" onclick="Workflow.complete(this, false);" name="create_transformation_project_submit" id="create_transformation_project_submit">Submit</button>
+                                    <button type="button" class="btn btn-primary" onclick="Workflow.complete(this, false);" name="create_transformation_project_submit" id="create_transformation_project_submit">Enviar</button>
                                 </center>
                             </&>
                         </form>
 
-                        <&| /util/workflow.mas:complete, title=> "Complete" &>
-                            <& /page/page_title.mas, title=>"Finished! Your transformation project is now in the database" &>
+                        <&| /util/workflow.mas:complete, title=> "Concluído" &>
+                            <& /page/page_title.mas, title=>"Concluído! O projeto de transformação está no banco de dados" &>
                             <ul>
-                                <li>Please click on 'Refresh' button to view your newly created project on the manage page.</li>
-                                <li>You can use your transformation project page to create transformation IDs.</li>
-                                <li><b>If your transformation project is automatically linked to the tracking tool, please set up a naming format for the autogenerated names of your transformation project before using the tracking tool.</b></li>
+                                <li>Clique em 'Atualizar' para visualizar o novo projeto na página de gerenciamento.</li>
+                                <li>Use a página do projeto de transformação para criar IDs de transformação.</li>
+                                <li><b>Se o projeto de transformação estiver vinculado automaticamente à ferramenta de acompanhamento, configure o formato dos nomes gerados automaticamente antes de usar essa ferramenta.</b></li>
                             </ul>
                             <br/>
                         </&>
@@ -110,7 +110,7 @@ foreach my $program (@$programs) {
                 </div>
             </div>
             <div class="modal-footer">
-                <button id="add_transformation_project_dismiss_button_2" name="add_transformation_project_dismiss_button" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button id="add_transformation_project_dismiss_button_2" name="add_transformation_project_dismiss_button" type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
             </div>
         </div>
     </div>
@@ -140,31 +140,31 @@ jQuery(document).ready(function(){
     jQuery('#create_transformation_project_submit').click(function() {
         var transformation_project_name = jQuery("#transformation_project_name").val();
         if (!transformation_project_name) {
-            alert("Project name is required");
+            alert("O nome do projeto é obrigatório");
             return;
         }
 
         var selectedProgram = jQuery("#transformation_project_program").val();
         if (!selectedProgram) {
-            alert("Breeding program is required");
+            alert("O programa de melhoramento é obrigatório");
             return;
         }
 
         var transformation_project_location = jQuery("#transformation_project_location").val();
         if (!transformation_project_location) {
-            alert ("Location is required");
+            alert ("O local é obrigatório");
             return;
         }
 
         var year = jQuery("#transformation_project_year_select").val();
         if (!year) {
-            alert ("Year is required");
+            alert ("O ano é obrigatório");
             return;
         }
 
         var project_description = jQuery('textarea#transformation_project_description').val();
         if (!project_description) {
-            alert ("Description is required");
+            alert ("A descrição é obrigatória");
             return;
         }
 
@@ -183,11 +183,11 @@ jQuery(document).ready(function(){
                 jQuery("#working_modal").modal("show");
             },
             error: function(response) {
-                alert("An error occurred!" + JSON.stringify(response));
+                alert("Ocorreu um erro!" + JSON.stringify(response));
                 return;
             },
             parseerror: function(response) {
-                alert("A parse error occurred!" + response);
+                alert("Ocorreu um erro ao interpretar os dados!" + response);
                 return;
             },
             success: function(response) {

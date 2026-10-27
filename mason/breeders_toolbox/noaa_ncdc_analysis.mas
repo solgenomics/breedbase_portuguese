@@ -5,11 +5,11 @@ $locations => undef
 
 <& /util/import_javascript.mas, classes => [ ] &>
 
-<& /page/page_title.mas, title=>"Analyze NOAA NCDC Weather Data" &>
+<& /page/page_title.mas, title=>"Analisar dados meteorológicos NOAA NCDC" &>
 
 <div class="form-horizontal">
     <div class="form-group">
-        <label class="col-sm-4 control-label">Select Location: </label>
+        <label class="col-sm-4 control-label">Selecione o local: </label>
         <div class="col-sm-8" >
             <div id="noaa_ncdc_analysis_location_select"></div>
         </div>
@@ -19,7 +19,7 @@ $locations => undef
 <div id="noaa_ncdc_analysis_input_div" style="display:none">
     <div class="form-horizontal">
         <div class="form-group">
-            <label class="col-sm-4 control-label">Start Date (YYYY-MM-DD): </label>
+            <label class="col-sm-4 control-label">Data inicial (AAAA-MM-DD): </label>
             <div class="col-sm-8" >
                 <input class="form-control" id="noaa_ncdc_analysis_start_date" name="noaa_ncdc_analysis_start_date" type="text" />
             </div>
@@ -27,7 +27,7 @@ $locations => undef
     </div>
     <div class="form-horizontal">
         <div class="form-group">
-            <label class="col-sm-4 control-label">End Date (YYYY-MM-DD): </label>
+            <label class="col-sm-4 control-label">Data final (AAAA-MM-DD): </label>
             <div class="col-sm-8" >
                 <input class="form-control" id="noaa_ncdc_analysis_end_date" name="noaa_ncdc_analysis_end_date" type="text" />
             </div>
@@ -35,28 +35,28 @@ $locations => undef
     </div>
     <div class="form-horizontal">
         <div class="form-group">
-            <label class="col-sm-4 control-label">Results: </label>
+            <label class="col-sm-4 control-label">Resultados: </label>
             <div class="col-sm-8" >
                 <select class="form-control" id="noaa_ncdc_analysis_type">
-                    <option value="daily_temp_prec">Daily Temperature and Precipitation Chart</option>
+                    <option value="daily_temp_prec">Gráfico diário de temperatura e precipitação</option>
                 </select>
             </div>
         </div>
     </div>
     <div class="form-horizontal">
         <div class="form-group">
-            <label class="col-sm-4 control-label">Cumulative Values by Year: </label>
+            <label class="col-sm-4 control-label">Valores acumulados por ano: </label>
             <div class="col-sm-8" >
                 <select class="form-control" id="noaa_ncdc_analysis_cumulative_year">
-                    <option value="no">No</option>
-                    <option value="yes">Yes</option>
+                    <option value="no">Não</option>
+                    <option value="yes">Sim</option>
                 </select>
             </div>
         </div>
     </div>
     <div class="form-horizontal">
         <div class="form-group">
-            <label class="col-sm-4 control-label">Window Start (YYYY-MM-DD) (Optional): </label>
+            <label class="col-sm-4 control-label">Início do intervalo (AAAA-MM-DD) (opcional): </label>
             <div class="col-sm-8" >
                 <input class="form-control" id="noaa_ncdc_analysis_window_start_date" name="noaa_ncdc_analysis_window_start_date" type="text" />
             </div>
@@ -64,7 +64,7 @@ $locations => undef
     </div>
     <div class="form-horizontal">
         <div class="form-group">
-            <label class="col-sm-4 control-label">Window End (YYYY-MM-DD) (Optional): </label>
+            <label class="col-sm-4 control-label">Fim do intervalo (AAAA-MM-DD) (opcional): </label>
             <div class="col-sm-8" >
                 <input class="form-control" id="noaa_ncdc_analysis_window_end_date" name="noaa_ncdc_analysis_window_end_date" type="text" />
             </div>
@@ -72,7 +72,7 @@ $locations => undef
     </div>
     <br/><br/>
     <center>
-        <button class="btn btn-primary" type="button" id="noaa_ncdc_analysis_submit" name="noaa_ncdc_analysis_submit">Submit</button>
+        <button class="btn btn-primary" type="button" id="noaa_ncdc_analysis_submit" name="noaa_ncdc_analysis_submit">Enviar</button>
     </center>
 </div>
 
@@ -94,7 +94,7 @@ jQuery(document).ready(function() {
     var noaa_ncdc_token = '<% $c->config->{noaa_ncdc_access_token} %>';
 
     if (noaa_ncdc_token == 'NULL') {
-        alert(`Configuration variable 'noaa_ncdc_access_token' is undefined. Data from station `+noaa_station_id+` can't be accessed without a token.\r\nPlease visit https://www.ncdc.noaa.gov/cdo-web/token to generate a valid access token, then include the token in sgn_local.conf`);
+        alert(`A variável de configuração 'noaa_ncdc_access_token' não está definida. Os dados da estação `+noaa_station_id+` não podem ser acessados sem um token.\r\nAcesse https://www.ncdc.noaa.gov/cdo-web/token para gerar um token de acesso válido e inclua-o em sgn_local.conf`);
     }
 
     jQuery(document).on('change', '#noaa_ncdc_analysis_location_id', function(){
@@ -112,27 +112,27 @@ jQuery(document).ready(function() {
                         success: function(response) {
                             console.log(response);
                             if (response.name) {
-                                alert('Found a valid NOAA Station for this location: '+response.name);
+                                alert('Foi encontrada uma estação NOAA válida para este local: '+response.name);
                                 jQuery('#noaa_ncdc_analysis_input_div').show();
                             }
                             else {
-                                alert('Could not verify the NOAA StationID you provided. Go to Manage->Locations and make sure your location has a valid NOAA station id!');
+                                alert('Não foi possível verificar o StationID da NOAA informado. Acesse Gerenciar -> Locais e confirme se o local tem um ID de estação NOAA válido!');
                                 jQuery('#noaa_ncdc_analysis_input_div').hide();
                             }
                         },
                         error: function() {
-                            alert('The NOAA NCDC authorization token may not be valid! We could not verify your NOAA StationID. Please contact us!');
+                            alert('O token de autorização NOAA NCDC pode ser inválido! Não foi possível verificar o StationID da NOAA. Entre em contato conosco!');
                             jQuery('#noaa_ncdc_analysis_input_div').hide();
                         }
                     });
                 }
                 else {
-                    alert('No NOAA NCDC station id for this location. Go to Manage->Locations and edit your location to add a valid NOAA station id!');
+                    alert('Este local não tem um ID de estação NOAA NCDC. Acesse Gerenciar -> Locais e edite o local para adicionar um ID de estação NOAA válido!');
                     jQuery('#noaa_ncdc_analysis_input_div').hide();
                 }
             },
             error: function(response){
-                alert('Error getting NOAA NCDC ID for location!');
+                alert('Erro ao obter o ID NOAA NCDC do local!');
                 jQuery('#noaa_ncdc_analysis_input_div').hide();
             }
         });
@@ -146,11 +146,11 @@ jQuery(document).ready(function() {
         noaa_ncdc_analysis_window_end_date = jQuery('#noaa_ncdc_analysis_window_end_date').val();
         noaa_ncdc_analysis_cumulative_year = jQuery('#noaa_ncdc_analysis_cumulative_year').val();
         if (noaa_ncdc_analysis_start_date == '') {
-            alert('Please give a start date!');
+            alert('Informe uma data inicial!');
             return false;
         }
         if (noaa_ncdc_analysis_end_date == '') {
-            alert('Please give a end date!');
+            alert('Informe uma data final!');
             return false;
         }
 
@@ -166,11 +166,11 @@ jQuery(document).ready(function() {
                     jQuery('#noaa_ndcd_analysis_result').html(html);
                 }
                 else {
-                    alert('There was an error getting NOAA analysis!');
+                    alert('Ocorreu um erro ao obter a análise NOAA!');
                 }
             },
             error: function(response){
-                alert('Error getting NOAA NCDC analysis!');
+                alert('Erro ao obter a análise NOAA NCDC!');
             }
         });
     });

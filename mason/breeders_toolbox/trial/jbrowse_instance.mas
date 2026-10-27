@@ -2,7 +2,7 @@
 $trial_id
 </%args>
 
-<p id="trial_jbrowse_check">[loading...]</p>
+<p id="trial_jbrowse_check">[carregando...]</p>
 
 <%perl>
 
@@ -21,14 +21,14 @@ jQuery(document).ready(function () {
 		url: "<% $test_url %>",
 		success: function(response) {
 			if ( response.indexOf("Trial_<%$trial_id%>") > -1 ) { // if jbrowse instance is found, create and display link
-				jQuery('#trial_jbrowse_check').replaceWith('<a id="jbrowse_link" href="<% $jbrowse_url %>">View the dataset for this trial in JBrowse</a>');
+				jQuery('#trial_jbrowse_check').replaceWith('<a id="jbrowse_link" href="<% $jbrowse_url %>">Visualizar no JBrowse o conjunto de dados deste ensaio</a>');
 			}
 			else { // if not found, display message that jbrowse instance wasn't found
-				jQuery('#trial_jbrowse_check').html(" <i>This trial does not have a dataset in Jbrowse.</i>");
+				jQuery('#trial_jbrowse_check').html(" <i>Este ensaio não possui um conjunto de dados no JBrowse.</i>");
 			}
 		},
 		error: function() {
-			jQuery('#trial_jbrowse_check').html(" <i>Jbrowse has not been set up for this database.</i>");
+			jQuery('#trial_jbrowse_check').html(" <i>O JBrowse não foi configurado para este banco de dados.</i>");
 		}
 	});
 });

@@ -27,55 +27,55 @@ const regression = d3.regressionLinear()
 </style>
 
 <div class="well well-sm table-responsive">
-    <center><h4>View plots for repetitive measurement traits</h4>
+    <center><h4>Visualizar gráficos de características com medições repetidas</h4>
 
     <form class="form-horizontal" role="form">
 	<div style="display: flex; align-items: center; white-space: nowrap; width: 100%; margin: 12px auto;">
         <div style="display: flex; align-items: center; margin-right: 30px; flex: 1;">
-	    	<label for="select_trait_for_repetitive_data_and_plot"  style="width: 130px; margin-right: 10px; text-align: right; white-space: nowrap;">Select Trait:</label>
+		<label for="select_trait_for_repetitive_data_and_plot"  style="width: 130px; margin-right: 10px; text-align: right; white-space: nowrap;">Selecionar característica:</label>
             <select id="select_trait_for_repetitive_data_and_plot" class="form-control" style="flex: 1; min-width: 100px;">
-                <option value="">[Loading...]</option>
+                <option value="">[Carregando...]</option>
             </select>
 	    </div>
     </div>
     <div style="display: flex; align-items: center; white-space: nowrap; width: 100%;margin: 12px auto;">
          <div style="display: flex; align-items: center; margin-right: 30px;">
-            <label for="repetitive_measurement_start_date" style="width: 130px; margin-right: 10px; text-align: right; white-space: nowrap;">Start Date:</label>
+            <label for="repetitive_measurement_start_date" style="width: 130px; margin-right: 10px; text-align: right; white-space: nowrap;">Data inicial:</label>
             <input type="text" id="repetitive_measurement_start_date" title="repetitive_measurement_start_date" class="form-control" style="width: 160px; padding: 4px;" />
         </div>
         <div style="display: flex; align-items: center; margin-left: 30px;">
-            <label for="repetitive_measurement_end_date" style="width: 200px; margin-right: 10px; text-align: right; white-space: nowrap;"> End Date:</label>
+            <label for="repetitive_measurement_end_date" style="width: 200px; margin-right: 10px; text-align: right; white-space: nowrap;">Data final:</label>
             <input type="text" id="repetitive_measurement_end_date" title="repetitive_measurement_end_date" class="form-control" style="width: 160px; padding: 4px;"/>
         </div>
     </div>
     <div style="display: flex;align-items: center;margin-right: 30px;">
-            <label for="repetitive_slider_range" style="width: 130px; margin-right: 10px; text-align: right; white-space: nowrap;">DateRange Slider:</label>
+            <label for="repetitive_slider_range" style="width: 130px; margin-right: 10px; text-align: right; white-space: nowrap;">Intervalo de datas:</label>
             <div id="repetitive_slider_range" style="flex: 1; margin: 10px;"></div>
     </div>
     <div style="display: flex; align-items: center; white-space: nowrap;width: 100%; margin: 12px auto;">
         <div style="display: flex; align-items: center; margin-right: 30px;">
-            <label for="repetitive_measurement_observation_level" style="width: 130px; margin-right: 10px; text-align: right; white-space: nowrap;">Observation Level: </label>
+            <label for="repetitive_measurement_observation_level" style="width: 130px; margin-right: 10px; text-align: right; white-space: nowrap;">Nível de observação: </label>
             <select class="form-control" id="repetitive_measurement_observation_level" style="min-width: 160px; padding: 4px;">
-                <option value="plot">Plots</option>
-                <option value="plant">Plants</option>
-                <option value="accession">Accessions</option>
-                <option value="subplot">Subplots</option>
-                <option value="tissue_sample">Tissue Samples</option>
+                <option value="plot">Parcelas</option>
+                <option value="plant">Plantas</option>
+                <option value="accession">Acessos</option>
+                <option value="subplot">Subparcelas</option>
+                <option value="tissue_sample">Amostras de tecido</option>
             </select>
         </div>
         <div style="display: flex; align-items: center; margin-left: 15px; margin-right: 50px;">
-            <label for="repetitive_measurements_level" style="width: 250px; margin-right: 10px; text-align: right; white-space: nowrap;">Repetitive Measurements Level:</label>
+            <label for="repetitive_measurements_level" style="width: 250px; margin-right: 10px; text-align: right; white-space: nowrap;">Resumo das medições repetidas:</label>
             <select class="form-control" id="repetitive_measurements_level" style="min-width: 100px; padding: 4px;">
-                <option value="first">First value</option>
-                <option value="last">Last value</option>
-                <option value="average" selected>Average value</option>
-                <option value="sum">Sum values</option>
-                <option value="all">All values</option>
+                <option value="first">Primeiro valor</option>
+                <option value="last">Último valor</option>
+                <option value="average" selected>Valor médio</option>
+                <option value="sum">Soma dos valores</option>
+                <option value="all">Todos os valores</option>
             </select>
         </div>
     </div>
     <div style="display: flex; align-items: center; justify-content: center; margin-top:20px; margin-bottom: 12px;">
-        <button id="repetitive_measurement_select_button" disabled class="btn btn-primary">Submit</button>
+        <button id="repetitive_measurement_select_button" disabled class="btn btn-primary">Enviar</button>
     </div>
     <br>
         <table id="repetitive_measurement_data_table" style="width:100%"></table>
@@ -87,7 +87,7 @@ const regression = d3.regressionLinear()
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Trait Name: <span id="title_trait_name"></span></h4>
+                <h4 class="modal-title">Nome da característica: <span id="title_trait_name"></span></h4>
             </div>
             <div class="modal-body">
                 <div class="form-row">
@@ -148,7 +148,7 @@ jQuery(document).ready(function() {
         })
         .fail((xhr) => {
             jQuery('#working_modal').modal('hide'); // Hide modal on error
-            alert(`An error occurred retrieving repetitive measurement data: ${xhr}`); // Show error message
+            alert(`Ocorreu um erro ao obter os dados de medições repetidas: ${xhr}`); // Show error message
         });
     });
 
@@ -214,7 +214,7 @@ jQuery(document).ready(function() {
             }
         });
     }).fail(function(xhr, status, error) {
-        alert('An error occured in the repetitive measurement!' + xhr.responseText);
+        alert('Ocorreu um erro nas medições repetidas! ' + xhr.responseText);
         //console.error("the status:", xhr.status);
         //console.error("the error:", error);
     })
@@ -340,7 +340,7 @@ jQuery(document).ready(function() {
 
 			var repetitive_line_graph = (repetitive_measurement_level === 'all') ?
                 `<div class="small-graph" data-observation="${unique_id}"></div>`
-                : 'Select "All values" option to view graph';
+				: 'Selecione "Todos os valores" para visualizar o gráfico';
 
             if (observation_level == 'accession') {
                 data.push([group.germplasmName, valueToShow, repetitive_line_graph]);
@@ -350,17 +350,17 @@ jQuery(document).ready(function() {
         }
 
         var tableCols = [
-                { title: 'Observation Unit Name'},
-                { title: 'Accession Name' },
-                { title: 'Repetitive Values' },
-                { title: 'Repetitive Line Graph'}
+                { title: 'Nome da unidade de observação'},
+                { title: 'Nome do acesso' },
+                { title: 'Valores repetidos' },
+                { title: 'Gráfico de linha das medições'}
         ];
 
         if (observation_level == 'accession') {
             tableCols = [
-		       { title: 'Accession Name' },
-               { title: 'Repetitive Values' },
-			   { title: 'Repetitive Line Graph'}
+		       { title: 'Nome do acesso' },
+               { title: 'Valores repetidos' },
+			   { title: 'Gráfico de linha das medições'}
 		   ];
         } 
 

@@ -9,49 +9,49 @@
     <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content ui-front">
             <div class="modal-header">
-                <button type="reset" class="close" id="add_transactions_dismiss_button_1" name="add_transactions_dismiss_button" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <center><h4 class="modal-title" id="addTransactions">Add New Transactions Using a List</h4></center>
+                <button type="reset" class="close" id="add_transactions_dismiss_button_1" name="add_transactions_dismiss_button" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+                <center><h4 class="modal-title" id="addTransactions">Adicionar novas transações usando uma lista</h4></center>
             </div>
             <div class="modal-body">
                 <div class="container-fluid">
 
                     <&| /util/workflow.mas, id=> "add_transactions_workflow" &>
-                        <&| /util/workflow.mas:step, title=> "Intro" &>
-                            <& /page/page_title.mas, title=>"Seedlot Transactions" &>
+                        <&| /util/workflow.mas:step, title=> "Introdução" &>
+                            <& /page/page_title.mas, title=>"Transações de lotes de sementes" &>
 
-                            <p>There are four different types of seedlot transactions: Transferring seeds from an existing seedlot to another existing seedlot, to a new seedlot, to a plot or to unspecified seedlot or plot. </p>
+                            <p>Há quatro tipos de transação de lotes de sementes: transferir sementes de um lote existente para outro lote existente, para um novo lote, para uma parcela ou para um lote ou uma parcela não especificados.</p>
                             <ul>
-                                <li>You can use upload option for all transaction types</li>
-                                <li><b>Seedlot list option can be used only for transferring seeds from existing seedlots to unspecified seedlots/plots.</b></li>
+                                <li>A opção de envio de arquivo pode ser usada para todos os tipos de transação</li>
+                                <li><b>A opção de lista de lotes de sementes só pode ser usada para transferir sementes de lotes existentes para lotes ou parcelas não especificados.</b></li>
                             </ul>
                             <hr>
 
                             <center>
-                                <button id="next_step_add_new_intro" class="btn btn-primary" onclick="Workflow.complete(this);">Go to Next Step</button>
+                                <button id="next_step_add_new_intro" class="btn btn-primary" onclick="Workflow.complete(this);">Ir para a próxima etapa</button>
                             </center>
                         </&>
 
                         <form class="form-horizontal" role="form" name="add_new_transaction_form" id="add_new_transaction_form">
-                            <&| /util/workflow.mas:step, title=> "Add New Transactions" &>
-                                <& /page/page_title.mas, title=>"Enter information about the transactions" &>
-                                <center><label style="color:DarkOliveGreen" class="col-sm-12 control-label">Note: This option is for transferring seeds to unspecified seedlots/plots only</label></center>
+                            <&| /util/workflow.mas:step, title=> "Adicionar novas transações" &>
+                                <& /page/page_title.mas, title=>"Informe os dados das transações" &>
+                                <center><label style="color:DarkOliveGreen" class="col-sm-12 control-label">Observação: esta opção serve somente para transferir sementes para lotes ou parcelas não especificados</label></center>
                                 <br/>
                                 <br/>
                                 <div class="form-horizontal">
                                     <div class="form-group">
-                                        <label class="col-sm-4 control-label">Unit Type: </label>
+                                        <label class="col-sm-4 control-label">Tipo de unidade: </label>
                                         <div class="col-sm-8">
                                             <div class="input-group">
                                                 <select class="form-control" id="unit_type">
-                                                    <option value="">Please select a unit type </option>
-                                                    <option value="number_of_seeds">using number of seeds</option>
-                                                    <option value="weight_g">using weight (g)</option>
+                                                    <option value="">Selecione um tipo de unidade</option>
+                                                    <option value="number_of_seeds">número de sementes</option>
+                                                    <option value="weight_g">peso (g)</option>
                                                 </select>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="control-label col-sm-4">List of Seedlots:</label>
+                                        <label class="control-label col-sm-4">Lista de lotes de sementes:</label>
                                         <div class="col-sm-8" >
                                             <div class="input-group">
                                                 <select class="form-control" id="seedlot_list_select"></select>
@@ -64,17 +64,17 @@
                                 <br/>
                                 <div id="form_footer" style="display:none" >
                                     <center>
-                                        <button type="button" class="btn btn-primary" onclick="Workflow.complete(this, false);" name="new_transaction_submit" id="new_transaction_submit">Submit</button>
+                                        <button type="button" class="btn btn-primary" onclick="Workflow.complete(this, false);" name="new_transaction_submit" id="new_transaction_submit">Enviar</button>
                                     </center>
                                 </div>
                             </&>
                         </form>
 
-                        <&| /util/workflow.mas:complete, title=> "Complete" &>
-                            <& /page/page_title.mas, title=>"Finished! Your seedlot transactions were stored" &>
+                        <&| /util/workflow.mas:complete, title=> "Concluído" &>
+                            <& /page/page_title.mas, title=>"Concluído! Suas transações de lotes de sementes foram armazenadas" &>
                             <p>
                                 <span class="ui-icon ui-icon-circle-check" style="float: left; margin: 0 7px 50px 0;"></span>
-                                New seedlot transactions were added successfully
+                                As novas transações de lotes de sementes foram adicionadas com sucesso
                             </p>
                             <br/>
                         </&>
@@ -82,7 +82,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button id="add_transactions_dismiss_button_2" name="add_transactions_dismiss_button" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button id="add_transactions_dismiss_button_2" name="add_transactions_dismiss_button" type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
             </div>
         </div>
     </div>
@@ -92,19 +92,19 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="transactionsSavedDialog">Success</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="transactionsSavedDialog">Sucesso</h4>
             </div>
             <div class="modal-body">
                 <div class="container-fluid">
                     <p>
                         <span class="ui-icon ui-icon-circle-check" style="float: left; margin: 0 7px 50px 0;"></span>
-                        The seedlot transactions were saved successfully.
+                        As transações de lotes de sementes foram salvas com sucesso.
                     </p>
                 </div>
             </div>
             <div class="modal-footer">
-                <button id="dismiss_transactions_saved_dialog" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button id="dismiss_transactions_saved_dialog" type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
             </div>
         </div>
     </div>
@@ -116,7 +116,7 @@
 jQuery(document).ready(function(){
 
     var lo = new CXGN.List();
-    jQuery('#seedlot_list_select').html(lo.listSelect('seedlot_list_select', ['seedlots'], 'Select a list of seedlots', undefined, undefined));
+    jQuery('#seedlot_list_select').html(lo.listSelect('seedlot_list_select', ['seedlots'], 'Selecione uma lista de lotes de sementes', undefined, undefined));
 
     jQuery("#add_transactions_using_list_link").click(function(){
         jQuery("#add_transactions_using_list_dialog").modal("show");
@@ -146,10 +146,10 @@ jQuery(document).ready(function(){
             var seedlot_validation = 1;
             seedlot_validation = lo.legacy_validate(seedlot_list_id, 'seedlots', true);
             if (seedlot_validation != 1) {
-                alert("This seedlot list did not pass validation. Names in the list must exist in the database and are not marked as discarded.");
+                alert("Esta lista de lotes de sementes não passou na validação. Os nomes da lista devem existir no banco de dados e não podem estar marcados como descartados.");
                 return;
             } else if (!unit_type) {
-                alert("Please select a unit type");
+                alert("Selecione um tipo de unidade");
                 return;
             } else if (unit_type && seedlot_list_id) {
                 transaction_form(unit_type, seedlot_list_id);
@@ -161,14 +161,14 @@ jQuery(document).ready(function(){
         var seedlot_list = lo.getList(seedlot_list_id);
 
         if (unit_type == 'number_of_seeds') {
-            var html = '<table class="table table-bordered" id="amount_info_table"><thead><tr><th>Seedlot Name</th><th>Number of Seeds Taken</th><th>Reason</th></tr></thead><tbody>';
+            var html = '<table class="table table-bordered" id="amount_info_table"><thead><tr><th>Nome do lote de sementes</th><th>Número de sementes retiradas</th><th>Motivo</th></tr></thead><tbody>';
             for (var i=0; i<seedlot_list.length; i++){
-                html = html + '<tr><td>' + seedlot_list[i] + '</td><td><input class="form-control"  name ="number_of_seeds_info" id="number_of_seeds_info_'+ i +'" value="" placeholder="Required"/></td><td><input class="form-control"  name ="transaction_description" id="transaction_description_'+ i +'" value="" placeholder="Required"/></td></tr>';
+                html = html + '<tr><td>' + seedlot_list[i] + '</td><td><input class="form-control"  name ="number_of_seeds_info" id="number_of_seeds_info_'+ i +'" value="" placeholder="Obrigatório"/></td><td><input class="form-control"  name ="transaction_description" id="transaction_description_'+ i +'" value="" placeholder="Obrigatório"/></td></tr>';
             };
         } else if (unit_type == 'weight_g') {
-            var html = '<table class="table table-bordered" id="weight_info_table"><thead><tr><th>Seedlot Name</th><th>Weight (g) Taken</th><th>Reason</th></tr></thead><tbody>';
+            var html = '<table class="table table-bordered" id="weight_info_table"><thead><tr><th>Nome do lote de sementes</th><th>Peso retirado (g)</th><th>Motivo</th></tr></thead><tbody>';
             for (var i=0; i<seedlot_list.length; i++){
-                html = html + '<tr><td>' + seedlot_list[i] + '</td><td><input class="form-control"  name ="weight_info" id="weight_info_'+ i +'" value="" placeholder="Required"/></td><td><input class="form-control"  name ="transaction_description" id="transaction_description_'+ i +'" value="" placeholder="Required"/></td></tr>';
+                html = html + '<tr><td>' + seedlot_list[i] + '</td><td><input class="form-control"  name ="weight_info" id="weight_info_'+ i +'" value="" placeholder="Obrigatório"/></td><td><input class="form-control"  name ="transaction_description" id="transaction_description_'+ i +'" value="" placeholder="Obrigatório"/></td></tr>';
             };
         }
 
@@ -194,18 +194,18 @@ jQuery(document).ready(function(){
             var transaction_description = jQuery('#transaction_description_'+ i ).val();
             if (unit_type == 'number_of_seeds') {
                 if (number_of_seeds === '') {
-                    alert("please provide number of seeds taken from seedlot:" + seedlot_name);
+                    alert("Informe o número de sementes retiradas do lote: " + seedlot_name);
                     return;
                 }
             } else if (unit_type == 'weight_g') {
                 if (weight_g === '') {
-                    alert("please provide weight(g) taken from seedlot:" + seedlot_name);
+                    alert("Informe o peso (g) retirado do lote: " + seedlot_name);
                     return;
                 }
             }
 
             if (transaction_description === '') {
-                alert("Please provide transaction description for seedlot:" + seedlot_name);
+                alert("Informe o motivo da transação do lote: " + seedlot_name);
                 return;
             }
 
@@ -235,7 +235,7 @@ jQuery(document).ready(function(){
             },
             error: function() {
                 jQuery("#working_modal").modal("hide");
-                alert('An error occurred storing new transactions.');
+                alert('Ocorreu um erro ao armazenar as novas transações.');
             },
         });
     });

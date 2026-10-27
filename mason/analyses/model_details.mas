@@ -10,7 +10,7 @@ $analysis_metadata
         <table class="table table-hover table-bordered" >
 
         <tr>
-            <td><b>Model Name</b></td>
+            <td><b>Nome do modelo</b></td>
             <td>
                 <div id="model_name">
                 </div>
@@ -18,7 +18,7 @@ $analysis_metadata
         </tr>
 
         <tr>
-            <td><b>Model Description</b></td>
+            <td><b>Descrição do modelo</b></td>
             <td>
                 <div id="model_description">
                 </div>
@@ -26,7 +26,7 @@ $analysis_metadata
         </tr>
 
         <tr>
-            <td><b>Model Type</b></td>
+            <td><b>Tipo de modelo</b></td>
             <td>
                 <div id="model_type">
                 </div>
@@ -34,7 +34,7 @@ $analysis_metadata
         </tr>
 
         <tr>
-            <td><b>Model Properties</b></td>
+            <td><b>Propriedades do modelo</b></td>
             <td>
                 <div id="model_properties">
                 </div>
@@ -42,7 +42,7 @@ $analysis_metadata
         </tr>
 
         <tr>
-            <td><b>Model Files</b></td>
+            <td><b>Arquivos do modelo</b></td>
             <td>
                 <div id="model_files">
                 </div>
@@ -87,7 +87,7 @@ jQuery(document).ready(function(){
                 for (var key in response.model_info.model_file_ids) {
                     if (response.model_info.model_file_ids.hasOwnProperty(key)) {
                         if (key) {
-                            model_files_string = model_files_string + response.model_info.model_file_ids[key] + " : <a href='/breeders/phenotyping/download/" + key + "'>Download</a><br/>";
+                            model_files_string = model_files_string + response.model_info.model_file_ids[key] + " : <a href='/breeders/phenotyping/download/" + key + "'>Baixar</a><br/>";
                         }
                     }
                 }
@@ -96,7 +96,7 @@ jQuery(document).ready(function(){
         },
         error: function(response){
             jQuery('#working_modal').modal('hide');
-            alert('Error getting analysis details!');
+            alert('Erro ao obter os detalhes da análise!');
         }
     });
 

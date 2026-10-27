@@ -10,55 +10,55 @@ $locations
     <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content ui-front">
             <div class="modal-header">
-                <button type="reset" class="close" id="add_propagation_project_dismiss_button_1" name="add_propagation_project_dismiss_button" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <center><h4 class="modal-title" id="addPropagationProjectDialog">Add New Propagation Project</h4></center>
+                <button type="reset" class="close" id="add_propagation_project_dismiss_button_1" name="add_propagation_project_dismiss_button" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+                <center><h4 class="modal-title" id="addPropagationProjectDialog">Adicionar novo projeto de propagação</h4></center>
             </div>
             <div class="modal-body">
                 <div class="container-fluid">
 
                     <&| /util/workflow.mas, id=> "add_propagation_project_workflow" &>
-                        <&| /util/workflow.mas:step, title=> "Intro" &>
-                            <& /page/page_title.mas, title=>"What are Propagation Projects?" &>
-                            <p>Propagation Project page acts as a centralized page for different propagation processes .</p>
+                        <&| /util/workflow.mas:step, title=> "Introdução" &>
+                            <& /page/page_title.mas, title=>"O que são projetos de propagação?" &>
+                            <p>A página do projeto de propagação centraliza os diferentes processos de propagação.</p>
                             <ul>
-                                <li>Each project page may be used to group propagation processes having the same propagation type, objective or done in the same year.</li>
-                                <li>Metadata for each propagation process (e.g., accession name, material type, date, operator) is linked to a globally unique <b>Propagation Group Identifier</b>.</li>
-                                <li>Within each Propagation Group, the progress of each plant produced is tracked by a globally unique <b>Propagation Identifier</b>.</li>
+                                <li>Cada projeto pode agrupar processos com o mesmo tipo de propagação, objetivo ou ano de execução.</li>
+                                <li>Os metadados de cada processo (nome do acesso, tipo de material, data e responsável) são vinculados a um <b>identificador de grupo de propagação</b> único globalmente.</li>
+                                <li>Em cada grupo, o progresso de cada planta produzida é acompanhado por um <b>identificador de propagação</b> único globalmente.</li>
                             </ul>
                             <hr>
                             <center>
-                                <button id="next_step_add_new_propagation_project" class="btn btn-primary" onclick="Workflow.complete(this);">Go to Next Step</button>
+                                <button id="next_step_add_new_propagation_project" class="btn btn-primary" onclick="Workflow.complete(this);">Ir para a próxima etapa</button>
                             </center>
                         </&>
 
                         <form class="form-horizontal" role="form" name="add_propagation_project_form" id="add_propagation_project_form">
-                            <&| /util/workflow.mas:step, title=> "Add a propagation project" &>
-                                <& /page/page_title.mas, title=>"Enter basic information about the propagation project" &>
+                            <&| /util/workflow.mas:step, title=> "Adicionar um projeto de propagação" &>
+                                <& /page/page_title.mas, title=>"Informe os dados básicos do projeto de propagação" &>
                                     <br/>
                                     <div class="form-group">
-                                        <label class="col-sm-3 control-lable">Project Name: </label>
+                                        <label class="col-sm-3 control-lable">Nome do projeto: </label>
                                         <div class="col-sm-9">
                                             <input class="form-control" type="text" id="propagation_project_name" name="propagation_project_name"  />
                                         </div>
                                     </div><br/>
 
                                     <div class="form-group">
-                                        <label class="col-sm-3 control-label">Propagation Type: </label>
+                                        <label class="col-sm-3 control-label">Tipo de propagação: </label>
                                         <div class="col-sm-9">
                                             <select class="form-control" id="propagation_type" name="propagation_type">
-                                                <option value="Macropropagation">Macropropagation</option>
+                                                <option value="Macropropagation">Macropropagação</option>
                                                 <!--
                                                 <option value="">Select a Type</option>
-                                                <option value="Micropropagation">Micropropagation</option>
+                                                <option value="Micropropagation">Micropropagação</option>
                                                 -->
                                             </select>
                                         </div>
                                     </div><br/>
                                     <div class="form-group">
-                                        <label class="col-sm-3 control-label">Breeding Program: </label>
+                                        <label class="col-sm-3 control-label">Programa de melhoramento: </label>
                                         <div class="col-sm-9">
                                             <select class="form-control" id="propagation_project_program" name="propagation_project_program">
-                                                <option value="">Select Breeding Program</option>
+                                                <option value="">Selecione um programa de melhoramento</option>
 <%perl>
 foreach my $program (@$programs) {
     if (@$program[3]) {
@@ -72,10 +72,10 @@ foreach my $program (@$programs) {
                                         </div>
                                     </div><br/>
                                     <div class="form-group">
-                                        <label class="col-sm-3 control-label">Location: </label>
+                                        <label class="col-sm-3 control-label">Local: </label>
                                         <div class="col-sm-9">
                                             <select class="form-control" id="propagation_project_location" name="propagation_project_location">
-                                                <option value="">Select Location</option>
+                                                <option value="">Selecione um local</option>
 <%perl>
     foreach my $location_hashref (@$locations) {
         my $properties = $location_hashref->{'properties'};
@@ -88,13 +88,13 @@ foreach my $program (@$programs) {
                                         </div>
                                     </div><br/>
                                     <div class="form-group">
-                                        <label class="col-sm-3 control-label">Year:</label>
+                                        <label class="col-sm-3 control-label">Ano:</label>
                                         <div class="col-sm-9">
                                             <div id="propagation_project_year" name="propagation_project_year" ></div>
                                         </div>
                                     </div><br/>
                                     <div class="form-group">
-                                        <label class="col-sm-3 control-label">Description:</label>
+                                        <label class="col-sm-3 control-label">Descrição:</label>
                                         <div class="col-sm-9">
                                             <textarea class="form-control" id="propagation_project_description" name="propagation_project_description" ></textarea>
                                         </div>
@@ -103,15 +103,15 @@ foreach my $program (@$programs) {
                                 <br/>
                                 <br/>
                                 <center>
-                                    <button type="button" class="btn btn-primary" onclick="Workflow.complete(this, false);" name="add_propagation_project_submit" id="add_propagation_project_submit">Submit</button>
+                                    <button type="button" class="btn btn-primary" onclick="Workflow.complete(this, false);" name="add_propagation_project_submit" id="add_propagation_project_submit">Enviar</button>
                                 </center>
                             </&>
                         </form>
 
-                        <&| /util/workflow.mas:complete, title=> "Complete" &>
-                            <& /page/page_title.mas, title=>"Finished! Your propagation project is now in the database" &>
+                        <&| /util/workflow.mas:complete, title=> "Concluído" &>
+                            <& /page/page_title.mas, title=>"Concluído! O projeto de propagação está no banco de dados" &>
                             <ul>
-                                <li>Please click on 'Refresh' button to view your newly created project on the manage page.</li>
+                                <li>Clique em 'Atualizar' para visualizar o novo projeto na página de gerenciamento.</li>
                             </ul>
                             <br/>
                         </&>
@@ -119,7 +119,7 @@ foreach my $program (@$programs) {
                 </div>
             </div>
             <div class="modal-footer">
-                <button id="add_propagation_project_dismiss_button_2" name="add_propagation_project_dismiss_button" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button id="add_propagation_project_dismiss_button_2" name="add_propagation_project_dismiss_button" type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
             </div>
         </div>
     </div>
@@ -150,37 +150,37 @@ jQuery(document).ready(function(){
     jQuery('#add_propagation_project_submit').click(function() {
         var propagation_project_name = jQuery("#propagation_project_name").val();
         if (!propagation_project_name) {
-            alert("Project name is required");
+            alert("O nome do projeto é obrigatório");
             return;
         }
 
         var propagation_type = jQuery("#propagation_type").val();
         if (!propagation_type) {
-            alert ("Propagation Type is required");
+            alert ("O tipo de propagação é obrigatório");
             return;
         }
 
         var selectedProgram = jQuery("#propagation_project_program").val();
         if (!selectedProgram) {
-            alert("Breeding program is required");
+            alert("O programa de melhoramento é obrigatório");
             return;
         }
 
         var propagation_project_location = jQuery("#propagation_project_location").val();
         if (!propagation_project_location) {
-            alert ("Location is required");
+            alert ("O local é obrigatório");
             return;
         }
 
         var year = jQuery("#propagation_project_year_select").val();
         if (!year) {
-            alert ("Year is required");
+            alert ("O ano é obrigatório");
             return;
         }
 
         var project_description = jQuery('textarea#propagation_project_description').val();
         if (!project_description) {
-            alert ("Description is required");
+            alert ("A descrição é obrigatória");
             return;
         }
 
@@ -200,11 +200,11 @@ jQuery(document).ready(function(){
                 jQuery("#working_modal").modal("show");
             },
             error: function(response) {
-                alert("An error occurred!" + JSON.stringify(response));
+                alert("Ocorreu um erro!" + JSON.stringify(response));
                 return;
             },
             parseerror: function(response) {
-                alert("A parse error occurred!" + response);
+                alert("Ocorreu um erro ao interpretar os dados!" + response);
                 return;
             },
             success: function(response) {

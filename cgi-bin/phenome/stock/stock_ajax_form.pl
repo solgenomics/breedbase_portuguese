@@ -1,5 +1,6 @@
 use strict;
 use warnings;
+use utf8;
 
 package CXGN::Phenome::Stock::StockForm;
 my $stock_form = CXGN::Phenome::Stock::StockForm->new();
@@ -45,10 +46,10 @@ sub define_object {
 
     if ( $self->get_object()->is_obsolete() == 1 && $user_type ne 'curator' )
     {
-        $json_hash{error}="Stock $stock_id is obsolete!";
+        $json_hash{error}="O material $stock_id está obsoleto!";
     }
     unless ( ( $stock_id =~ m /^\d+$/ || !$stock_id  )  ) {
-        $json_hash{error}="No stock exists for identifier $stock_id";
+        $json_hash{error}="Não existe material com o identificador $stock_id";
     }
     $self->set_json_hash(%json_hash);
     $self->set_primary_key("stock_id");
@@ -82,13 +83,13 @@ sub store {
     my $message = $stock->exists_in_database();
     my $validate;
     if ($message) {
-        $error = " Stock $args{uniquename}  already exists in the database ";
+        $error = " O material $args{uniquename} já existe no banco de dados ";
     }else {
         try{
             $self->SUPER::store(); #this sets $json_hash{validate} if the form validation failed.
             $stock_id = $stock->stock_id() ;
         } catch {
-            $error = " An error occurred. Cannot store to the database\n An  email message has been sent to the SGN development team";
+            $error = " Ocorreu um erro. Não foi possível salvar no banco de dados.\n Uma mensagem de e-mail foi enviada à equipe de desenvolvimento da SGN.";
             CXGN::Contact::send_email('stock_ajax_form.pl died', $error . "\n" . $_ , 'sgn-bugs@sgn.cornell.edu');
         };
     }
@@ -126,7 +127,7 @@ sub delete {
             $stock->is_obsolete(1) ;
             $stock->store();
         }catch {
-            $json_hash{error} = " An error occurred. Cannot delete stock\n An  email message has been sent to the SGN development team";
+            $json_hash{error} = " Ocorreu um erro. Não foi possível excluir o material.\n Uma mensagem de e-mail foi enviada à equipe de desenvolvimento da SGN.";
             $self->send_form_email({subject=>"Stock delete failed!  ($stock_name) $_", mailing_list=>'sgn-db-curation@sgn.cornell.edu', refering_page=>"www.solgenomics.net".$refering_page, action=>'delete'});
         };
         $json_hash{reload} = 1;
@@ -146,6 +147,16 @@ sub generate_form {
     my $stock = $self->get_object();
     my %args  = $self->get_args();
     my $form = $self->get_form();
+    my %stock_type_labels = (
+        accession => 'Acesso', population => 'População', plot => 'Parcela',
+        subplot => 'Subparcela', plant => 'Planta', tissue_sample => 'Amostra de tecido',
+        seedlot => 'Lote de sementes', cross => 'Cruzamento', family_name => 'Família',
+        vector_construct => 'Construção vetorial',
+        'backcross population' => 'População de retrocruzamento',
+        'f2 population' => 'População F2',
+        'mutant population' => 'População mutante',
+        'training population' => 'População de treinamento',
+    );
 
     #########
     my $species = $stock->get_species() ;
@@ -159,7 +170,7 @@ sub generate_form {
         my $cvterm_res = $stock_type->
             search_related('cvterms');
         while (my $cvterm = $cvterm_res->next() ) {
-            push @types, $cvterm->name() ;
+            push @types, $stock_type_labels{$cvterm->name()} || $cvterm->name();
             push @type_ids, $cvterm->cvterm_id();
         }
     }
@@ -167,7 +178,7 @@ sub generate_form {
 
     if ( $self->get_action =~ /new|store|edit/ ) {
         $form->add_field(
-            display_name => "Organism",
+            display_name => "Organismo",
             field_name   => "Organism",
             id           => "species_name",
             object       => $stock,
@@ -176,7 +187,7 @@ sub generate_form {
             autocomplete => '/ajax/organism/autocomplete',
             );
         $self->get_form->add_select(
-            display_name       => "Stock type",
+            display_name       => "Tipo de material",
             field_name         => "type_id",
             contents           => $stock->type_id(),
             length             => 20,
@@ -189,26 +200,26 @@ sub generate_form {
     }
     if ( $stock->is_obsolete()  ) {
         $form->add_label(
-            display_name => "Status",
+            display_name => "Estado",
             field_name   => "obsolete_stat",
-            contents     => 'OBSOLETE',
+            contents     => 'OBSOLETO',
             );
     }
     if ( $self->get_action =~ /view/ ) {
         $form->add_label(
-            display_name => "Organism",
+            display_name => "Organismo",
             field_name   => "stock_organism",
             contents => $species ? qq|<a href="/organism/$organism_id/view"> | . $species . "</a>" : '',
             );
         $form->add_label(
-            display_name => "Stock type",
+            display_name => "Tipo de material",
             field_name   => "stock_type",
-            contents => $stock->type() ,
+            contents => $stock_type_labels{$stock->type()} || $stock->type(),
             );
     }
 
     $form->add_field(
-        display_name => "Uniquename ",
+        display_name => "Nome único",
         field_name   => "uniquename",
         object       => $stock,
         getter       => "uniquename",
@@ -217,7 +228,7 @@ sub generate_form {
         );
 
     $form->add_textarea(
-        display_name => "Description",
+        display_name => "Descrição",
         field_name   => "description",
         object       => $stock,
         getter       => "description",

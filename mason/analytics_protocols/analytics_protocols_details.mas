@@ -15,31 +15,31 @@ $analytics_protocol_result_summary
         <table class="table table-hover table-bordered" >
 
             <tr>
-                <td><b>Analytics Protocol Name</b></td>
+                <td><b>Nome do protocolo de análise</b></td>
                 <td>
                     <div id="analytics_protocol_name">
 % if ($analytics_protocol_name) {
 %   print "$analytics_protocol_name";
 % } else {
-%   print "<span class='text-danger'>[No Analytics Protocol Name]</span>";
+%   print "<span class='text-danger'>[Nome do protocolo de análise não informado]</span>";
 % }
                     </div>
                 </td>
             </tr>
 
-            <tr><td><b>Description</b></td>
+            <tr><td><b>Descrição</b></td>
                 <td>
                     <div id="analytics_protocol_description">
 % if ($analytics_protocol_description) {
 %  print "$analytics_protocol_description";
 % } else {
-%  print "<span class='text-danger'>[No Description]</span>";
+%  print "<span class='text-danger'>[Descrição não informada]</span>";
 % }
                     </div>
                 </td>
             </tr>
 
-            <tr><td><b>Type</b></td>
+            <tr><td><b>Tipo</b></td>
                 <td>
                     <div id="analytics_protocol_type_name">
 %  print "$analytics_protocol_type_name";
@@ -47,7 +47,7 @@ $analytics_protocol_result_summary
                 </td>
             </tr>
 
-            <tr><td><b>Created</b></td>
+            <tr><td><b>Criado em</b></td>
                 <td>
                     <div id="analytics_protocol_create_date">
 %  print "$analytics_protocol_create_date";
@@ -55,7 +55,7 @@ $analytics_protocol_result_summary
                 </td>
             </tr>
 
-            <tr><td><b>Properties</b></td>
+            <tr><td><b>Propriedades</b></td>
                 <td>
                     <div id="analytics_protocol_properties">
 %  if ($analytics_protocol_properties) {
@@ -67,7 +67,7 @@ $analytics_protocol_result_summary
                 </td>
             </tr>
 
-            <tr><td><b>Result Summary</b></td>
+            <tr><td><b>Resumo dos resultados</b></td>
                 <td>
                     <div id="analytics_protocol_result_summary">
 %  if ($analytics_protocol_result_summary) {
@@ -81,11 +81,11 @@ $analytics_protocol_result_summary
 %           my $avg_varcomps_display = $s->{avg_varcomps_display};
 %           my $avg_cross_validation_display = $s->{avg_cross_validation_display};
 %           if ($analytics_result_type) {
-%               print "<h4>Type: ".$analytics_result_type."</h4>";
+%               print "<h4>Tipo: ".$analytics_result_type."</h4>";
 %           }
 %           if ($env_corr_results) {
-%               print "<strong>Simulated Environment Correlation Results</strong><br/>";
-%               print $number_iterations." iterations<br/>";
+%               print "<strong>Resultados de correlação de ambientes simulados</strong><br/>";
+%               print $number_iterations." iterações<br/>";
 %               foreach my $env_type (sort keys %$env_corr_results) {
 %                   my $mean = $env_corr_results->{$env_type}->{mean};
 %                   my $std = $env_corr_results->{$env_type}->{std};
@@ -93,7 +93,7 @@ $analytics_protocol_result_summary
 %               }
 %           }
 %           if ($env_iterations) {
-%               print "<br/><strong>Simulated Environment Parameters</strong><br/>";
+%               print "<br/><strong>Parâmetros dos ambientes simulados</strong><br/>";
 %               foreach my $iteration (sort keys %$env_iterations) {
 %                   print $iteration." : ";
 %                   foreach my $param (sort keys %{$env_iterations->{$iteration}}) {
@@ -104,7 +104,7 @@ $analytics_protocol_result_summary
 %           }
 %           my @types = ('original', 'altered', 'env_linear', 'env_1DN', 'env_2DN', 'env_ar1xar1', 'env_random', 'env_realdata');
 %           #if ($varcomps) {
-%           #    print "<br/><strong>Variance Components</strong>";
+%           #    print "<br/><strong>Componentes de variância</strong>";
 %           #    foreach my $i (@$varcomps) {
 %           #       print "<br/>$i->{type}<br/>";
 %           #        foreach my $t (@types) {
@@ -125,7 +125,7 @@ $analytics_protocol_result_summary
 %           #    }
 %           #}
 %           if ($avg_varcomps_display) {
-%               print "<br/><strong>Variance Components</strong><br/>";
+%               print "<br/><strong>Componentes de variância</strong><br/>";
 %               foreach my $i (@$avg_varcomps_display) {
 %                   if (defined($i->{mean})) {
 %                       print "$i->{type}: $i->{type_scenario}: $i->{level}: $i->{mean} +- $i->{std}<br/>";
@@ -133,7 +133,7 @@ $analytics_protocol_result_summary
 %               }
 %           }
 %           if ($avg_cross_validation_display) {
-%               print "<br/><strong>Cross Validation</strong><br/>";
+%               print "<br/><strong>Validação cruzada</strong><br/>";
 %               foreach my $i (@$avg_cross_validation_display) {
 %                   print "$i->{type}: $i->{type_scenario}: CV1: $i->{cv1_mean} +- $i->{cv1_std} CV2: $i->{cv2_mean} +- $i->{cv2_std}<br/>";
 %               }

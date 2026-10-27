@@ -9,11 +9,11 @@ $program_id
 <table id="product_profile_table" class="display">
     <thead>
         <tr>
-            <th>Product Profile Name</th>
-            <th>Scope</th>
-            <th>Trait</th>
-            <th>Submitter</th>
-            <th>Date (Y-M-D)</th>
+            <th>Nome do perfil de produto</th>
+            <th>Escopo</th>
+            <th>Característica</th>
+            <th>Responsável pelo envio</th>
+            <th>Data (A-M-D)</th>
         </tr>
     </thead>
 </table>

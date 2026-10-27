@@ -20,7 +20,7 @@ $q => undef
 </%perl>
 
   <table class="search_form_title"><tr><td>
-    <span class="search_form_title">Expression search by experiment</span>
+    <span class="search_form_title">Pesquisa de expressão por experimento</span>
   </td>
   </tr>
   </table>
@@ -31,4 +31,3 @@ $q => undef
       <% $q->to_html() %>
   </div>
 </form>
-

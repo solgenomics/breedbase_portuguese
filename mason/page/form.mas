@@ -80,9 +80,9 @@ $alternate_edit_button => undef
 
 <& /util/import_javascript.mas, classes => ["CXGN.Page.Form.JSFormPage"] &>
 
-<table><tr><td><div id="<% $form_div_name %>_buttons" >[loading edit links...]</div>
+<table><tr><td><div id="<% $form_div_name %>_buttons" >[carregando links de edição...]</div>
 </td></tr></table>
-<div id="<% $form_div_name %>" >[loading...]</div>
+<div id="<% $form_div_name %>" >[carregando...]</div>
 
 <script language="javascript" type="text/javascript">
 
@@ -115,5 +115,4 @@ $alternate_edit_button => undef
   <% $js_object_name %>.render();
   
 </script>  
-
 

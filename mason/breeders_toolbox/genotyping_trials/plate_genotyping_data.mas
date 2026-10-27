@@ -10,15 +10,15 @@ $trial_id
     <table id="plate_genotyping_data" width="100%" class="table table-hover table-striped">
         <thead>
             <tr>
-                <th>Protocol</th>
-                <th>Sample Name</th>
-                <th>Sample Type</th>
-                <th>Accession Name</th>
-                <th>Synonyms</th>
-                <th>Description</th>
-                <th>Number of Marker Scores</th>
-                <th>IGD Number</th>
-                <th>Download</th>
+                <th>Protocolo</th>
+                <th>Nome da amostra</th>
+                <th>Tipo de amostra</th>
+                <th>Nome do acesso</th>
+                <th>Sinônimos</th>
+                <th>Descrição</th>
+                <th>Número de escores de marcadores</th>
+                <th>Número IGD</th>
+                <th>Baixar</th>
             </tr>
         </thead>
     </table>
@@ -28,19 +28,19 @@ $trial_id
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header" style="text-align: center">
-                <button type="reset" class="close" id="plate_sample_unit_level_dismiss_button_1" name="plate_sample_unit_level_dismiss_button" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="plateSampleUnitLevelSelectDialog">Sample Unit level</h4>
+                <button type="reset" class="close" id="plate_sample_unit_level_dismiss_button_1" name="plate_sample_unit_level_dismiss_button" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="plateSampleUnitLevelSelectDialog">Nível da unidade amostral</h4>
             </div>
             <div class="modal-body">
                 <div class="container-fluid">
                     <form class="form-horizontal">
                         <div class="form-group">
-                            <label class="col-sm-4 control-label">Sample Unit Level: </label>
+                            <label class="col-sm-4 control-label">Nível da unidade amostral: </label>
                             <div class="col-sm-8">
                                 <select class="form-control" id="genotyping_plate_sample_unit_level">
-                                    <option value="accession">accession</option>
-                                    <option value="genotyping_plate_sample_name">sample name</option>
-                                    <option value="sample_name_and_accession">sample name and accession name</option>
+                                    <option value="accession">acesso</option>
+                                    <option value="genotyping_plate_sample_name">nome da amostra</option>
+                                    <option value="sample_name_and_accession">nome da amostra e nome do acesso</option>
                                 </select>
                             </div>
                         </div>
@@ -48,8 +48,8 @@ $trial_id
                 </div>
             </div>
             <div class="modal-footer">
-                <button id="plate_sample_unit_level_dismiss_button_2" name="plate_sample_unit_level_dismiss_button" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" id="plate_genotype_download">Download</button>
+                <button id="plate_sample_unit_level_dismiss_button_2" name="plate_sample_unit_level_dismiss_button" type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                <button type="button" class="btn btn-primary" id="plate_genotype_download">Baixar</button>
             </div>
         </div>
     </div>

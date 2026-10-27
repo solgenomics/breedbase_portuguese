@@ -6,30 +6,30 @@ $number_of_samples_with_data => undef
 <& /util/import_javascript.mas, classes => [ 'jquery', 'jquery.dataTables', 'CXGN.BreedersToolbox.GenotypingTrial' ] &>
 <& /util/import_css.mas, paths => ['/documents/inc/datatables/jquery.dataTables.css'] &>
 
-<&| /page/info_section.mas, id=>'delete_genotyping_data_section', title => 'Delete Genotyping Data', subtitle => '<font color="red">Deletion cannot be undone</font>', collapsible=>1, collapsed=>1 &>
+<&| /page/info_section.mas, id=>'delete_genotyping_data_section', title => 'Excluir dados de genotipagem', subtitle => '<font color="red">A exclusão não pode ser desfeita</font>', collapsible=>1, collapsed=>1 &>
     <div class="well well-sm">
-        <div style="text-align: center">Delete all genotyping data derived from this genotyping plate.</div>
+        <div style="text-align: center">Excluir todos os dados de genotipagem derivados desta placa.</div>
     </div>
     <div class="well well-sm">
         <div class="panel panel-default">
             <div class="panel-body">
-                <button class="btn btn-primary" id="delete_plate_genotyping_data" role="button">Delete genotyping data</button><br/><br/>
+                <button class="btn btn-primary" id="delete_plate_genotyping_data" role="button">Excluir dados de genotipagem</button><br/><br/>
             </div>
         </div>
     </div>
 </&>
 
-<&| /page/info_section.mas, id=>'delete_genotyping_plate_layout_section', title => 'Delete Genotyping Plate Layout', subtitle => '<font color="red">Deletion cannot be undone.</font>', collapsible=>1, collapsed=>1 &>
+<&| /page/info_section.mas, id=>'delete_genotyping_plate_layout_section', title => 'Excluir disposição da placa de genotipagem', subtitle => '<font color="red">A exclusão não pode ser desfeita.</font>', collapsible=>1, collapsed=>1 &>
     <div class="well well-sm">
-        <div style="text-align: center">Do not delete a genotype layout for an experiment that has already been submitted to the sequencing facility.</div>
+        <div style="text-align: center">Não exclua a disposição de genotipagem de um experimento que já tenha sido enviado ao laboratório de sequenciamento.</div>
     </div>
     <div class="well well-sm">
         <div class="panel panel-default">
             <div class="panel-body">
 %if ($number_of_samples_with_data > 0) {
-                <div class="boxbgcolor5" >Cannot delete genotyping plate layout. This layout has associated genotyping data.</div>
+                <div class="boxbgcolor5" >Não é possível excluir a disposição da placa porque há dados de genotipagem associados.</div>
 %} else {
-                <button class="btn btn-primary" id="delete_layout_data_by_trial_id" role="button">Delete genotyping plate layout</button><br/><br/>
+                <button class="btn btn-primary" id="delete_layout_data_by_trial_id" role="button">Excluir disposição da placa de genotipagem</button><br/><br/>
 %}
             </div>
         </div>
@@ -40,17 +40,17 @@ $number_of_samples_with_data => undef
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title" id="genotypingDataDeleteMessageDialog"></h4>
             </div>
             <div class="modal-body">
                 <div class="container-fluid">
-                    <div style="text-align: center">The genotyping data was deleted successfully.</div>
+                    <div style="text-align: center">Os dados de genotipagem foram excluídos com sucesso.</div>
                     <div id="genotyping_data_delete_complete"></div>
                 </div>
             </div>
             <div class="modal-footer">
-                <button id="genotyping_data_delete_dismiss_button_1" name="genotyping_data_delete_dismiss_button" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button id="genotyping_data_delete_dismiss_button_1" name="genotyping_data_delete_dismiss_button" type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
             </div>
 
         </div>
@@ -61,18 +61,18 @@ $number_of_samples_with_data => undef
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
                 <div style="text-align: center">
-                    <h4 class="modal-title" id="createGenotypingProjectdialog">The genotyping data was deleted successfully.</h4>
+                    <h4 class="modal-title" id="createGenotypingProjectdialog">Os dados de genotipagem foram excluídos com sucesso.</h4>
                 </div>
             </div>
             <div class="modal-body">
                 <div class="container-fluid">
                     <div style="text-align: center">
                         <div id="empty_protocol_message"></div>
-                        <p>Do you want to delete this protocol?</p>
-                        <button id="delete_empty_protocol_submit" name="delete_empty_protocol_submit" type="button" class="btn btn-primary" data-dismiss="modal">Yes</button>
-                        <button id="empty_dismiss_button_1" name="empty_protocol_dismiss_button" type="button" class="btn btn-primary" data-dismiss="modal">No</button>
+                        <p>Deseja excluir este protocolo?</p>
+                        <button id="delete_empty_protocol_submit" name="delete_empty_protocol_submit" type="button" class="btn btn-primary" data-dismiss="modal">Sim</button>
+                        <button id="empty_dismiss_button_1" name="empty_protocol_dismiss_button" type="button" class="btn btn-primary" data-dismiss="modal">Não</button>
                         <br/>
                     </div>
                 </div>
@@ -90,7 +90,7 @@ jQuery(document).ready(function(){
 
     jQuery('#delete_plate_genotyping_data').click(function() {
         const trial_id = get_trial_id();
-        const confirmation = confirm("Are you sure you want to delete all genotyping data derived from this genotyping plate? This action cannot be undone.");
+        const confirmation = confirm("Tem certeza de que deseja excluir todos os dados de genotipagem derivados desta placa? Esta ação não pode ser desfeita.");
         if (confirmation) {
             jQuery.ajax({
                 url: '/ajax/breeders/plate_genotyping_data_delete',
@@ -101,7 +101,7 @@ jQuery(document).ready(function(){
                 },
                 beforeSend: function(){
                     jQuery('#working_modal').modal("show");
-                    jQuery('#working_msg').html("Deleting genotyping data...<br />");
+                    jQuery('#working_msg').html("Excluindo dados de genotipagem...<br />");
                 },
                 success: function(response) {
                     jQuery('#working_modal').modal('hide');
@@ -109,7 +109,7 @@ jQuery(document).ready(function(){
                         empty_protocol_id = response.empty_protocol_id;
                         empty_protocol_name = response.empty_protocol_name;
 
-                        const empty_protocol_message_string = "The protocol: " +empty_protocol_name+ " has no associated genotyping data.";
+                        const empty_protocol_message_string = "O protocolo " +empty_protocol_name+ " não possui dados de genotipagem associados.";
                         jQuery('#empty_protocol_message').html(empty_protocol_message_string);
                         jQuery("#empty_protocol_message_dialog").modal("show");
                     }
@@ -122,7 +122,7 @@ jQuery(document).ready(function(){
                 },
                 error: function(response) {
                     jQuery('#working_modal').modal('hide');
-                    alert('An error occurred during deletion');
+                    alert('Ocorreu um erro durante a exclusão');
                 }
             });
         }
@@ -139,7 +139,7 @@ jQuery(document).ready(function(){
     });
 
     jQuery('#delete_empty_protocol_submit').click(function() {
-        const confirmation = confirm("Are you sure you want to delete this genotyping protocol? This action cannot be undone.");
+        const confirmation = confirm("Tem certeza de que deseja excluir este protocolo de genotipagem? Esta ação não pode ser desfeita.");
         if (confirmation) {
             jQuery.ajax({
                 url: '/ajax/breeders/empty_protocol_delete',
@@ -150,12 +150,12 @@ jQuery(document).ready(function(){
                 },
                 beforeSend: function(){
                     jQuery('#working_modal').modal("show");
-                    jQuery('#working_msg').html("Deleting genotyping protocol...<br />");
+                    jQuery('#working_msg').html("Excluindo protocolo de genotipagem...<br />");
                 },
                 success: function(response) {
                     jQuery('#working_modal').modal('hide');
                     if (response.success == 1) {
-                        alert("The genotyping protocol was deleted successfully.");
+                        alert("O protocolo de genotipagem foi excluído com sucesso.");
                         location.reload();
                     }
                     if (response.error) {
@@ -164,7 +164,7 @@ jQuery(document).ready(function(){
                 },
                 error: function(response) {
                     jQuery('#working_modal').modal('hide');
-                    alert('An error occurred during deletion');
+                    alert('Ocorreu um erro durante a exclusão');
                 }
             });
         }

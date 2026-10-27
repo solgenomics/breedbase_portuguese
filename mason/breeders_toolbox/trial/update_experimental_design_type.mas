@@ -13,16 +13,16 @@ $design_name
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="updateTrialDesignTypeDialog">Update <% $trial_name %> Experimental Design Type</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="updateTrialDesignTypeDialog">Atualizar o tipo de delineamento experimental de <% $trial_name %></h4>
             </div>
             <div class="modal-body">
                 <div class="container-fluid">
                     <div class="form-group">
-                    <label class="control-label">Current Experimental Design type: <% $design_name %></label><br></div>
+                    <label class="control-label">Tipo de delineamento experimental atual: <% $design_name %></label><br></div>
                     <form class="form-horizontal">
                         <div class="form-group">
-                            <label class="col-sm-6 control-label">Change to Experimental Design Type: </label>
+                            <label class="col-sm-6 control-label">Alterar para o tipo de delineamento experimental: </label>
                             <div class="col-sm-6" >
                                         <select class="form-control" id="select_design_method" name="select_design_method">
 % foreach my $type(@design_types){
@@ -52,7 +52,33 @@ $design_name
 %    } else {
 %        $method = $type;
 %    }
-                                                <option value="<%$method%>"><%$type%></option>
+%    my $display_type = $type;
+%    if ($type eq 'Completely Randomized') {
+%        $display_type = 'Inteiramente casualizado';
+%    } elsif ($type eq 'Complete Block') {
+%        $display_type = 'Blocos completos casualizados';
+%    } elsif ($type eq 'Resolvable Row-Column') {
+%        $display_type = 'Linhas e colunas resolúveis';
+%    } elsif ($type eq 'Doubly-Resolvable Row-Column') {
+%        $display_type = 'Linhas e colunas duplamente resolúveis';
+%    } elsif ($type eq 'Un-Replicated Diagonal Design') {
+%        $display_type = 'Delineamento diagonal não repetido';
+%    } elsif ($type eq 'Alpha Lattice') {
+%        $display_type = 'Látice alfa';
+%    } elsif ($type eq 'Modified Augmented Design') {
+%        $display_type = 'Delineamento aumentado modificado';
+%    } elsif ($type eq 'Nursery/Greenhouse') {
+%        $display_type = 'Viveiro/casa de vegetação';
+%    } elsif ($type eq 'Split Plot') {
+%        $display_type = 'Parcelas subdivididas';
+%    } elsif ($type eq 'Strip Plot') {
+%        $display_type = 'Parcelas em faixas';
+%    } elsif ($type eq 'Partially Replicated') {
+%        $display_type = 'Parcialmente repetido';
+%    } elsif ($type eq 'Please select a design method') {
+%        $display_type = 'Selecione um método de delineamento';
+%    }
+                                                <option value="<%$method%>"><%$display_type%></option>
 %}
                                         </select>
                             </div>
@@ -61,8 +87,8 @@ $design_name
                 </div>
             </div>
             <div class="modal-footer">
-                <button id="close_trial_set_phenotypes_fully_loaded_modal" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" name="update_trial_design_type_submit" id="update_trial_design_type_submit" >Update</button>
+                <button id="close_trial_set_phenotypes_fully_loaded_modal" type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                <button type="button" class="btn btn-primary" name="update_trial_design_type_submit" id="update_trial_design_type_submit" >Atualizar</button>
             </div>
         </div>
     </div>
@@ -72,19 +98,19 @@ $design_name
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="updateTrialDesignTypeMessage">Success</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="updateTrialDesignTypeMessage">Sucesso</h4>
             </div>
             <div class="modal-body">
                 <div class="container-fluid">
                     <p>
                         <span class="ui-icon ui-icon-circle-check" style="float: left; margin: 0 7px 50px 0;"></span>
-                        Trial Design Type was updated successfully.
+                        O tipo de delineamento do ensaio foi atualizado com sucesso.
                     </p>
                 </div>
             </div>
             <div class="modal-footer">
-                <button id="dismiss_update_message_dialog" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button id="dismiss_update_message_dialog" type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
             </div>
         </div>
     </div>
@@ -101,7 +127,7 @@ jQuery(document).ready(function(){
     jQuery("#update_trial_design_type_submit").click(function() {
         var trial_design_type = jQuery("#select_design_method").val();
         if (trial_design_type == 'Please select a design method') {
-            alert("Please select a design method");
+            alert("Selecione um método de delineamento.");
             return;
         }
 
@@ -127,7 +153,7 @@ jQuery(document).ready(function(){
             },
             error: function(response){
                 jQuery('#working_modal').modal('hide');
-                alert('An error occurred updating trial status');
+                alert('Ocorreu um erro ao atualizar o tipo de delineamento do ensaio.');
             }
         });
     });

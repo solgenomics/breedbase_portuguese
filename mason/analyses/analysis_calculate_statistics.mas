@@ -1,57 +1,57 @@
 <%args>
 </%args>
 
-<!--button class='btn btn-primary' style='margin:3px;float:right' id='analysis_calculate_statistics_link'>Single/Multi Trial GEBV Analysis</button-->
+<!--button class='btn btn-primary' style='margin:3px;float:right' id='analysis_calculate_statistics_link'>Análise GEBV de um ou vários ensaios</button-->
 
 <div class="modal fade" id="analysis_calculate_statistics_dialog" name="analysis_calculate_statistics_dialog" tabindex="-1" role="dialog" aria-labelledby="analysisCalculateStatisticsDialog" data-backdrop="static">
   <div class="modal-dialog modal-xl" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="analysisCalculateStatisticsDialog">Calculate statistics</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="analysisCalculateStatisticsDialog">Calcular estatísticas</h4>
       </div>
       <div class="modal-body">
         <div class="container-fluid">
 
             <&| /util/workflow.mas, id=> "analysis_calculate_statistics_workflow" &>
-                <&| /util/workflow.mas:step, title=> "Field Trial" &>
-                    <& /page/page_title.mas, title=>"Select the field trial(s) you are interested in." &>
+                <&| /util/workflow.mas:step, title=> "Ensaio de campo" &>
+                    <& /page/page_title.mas, title=>"Selecione os ensaios de campo de interesse." &>
                     <br/><br/>
                     <form class="form-horizontal">
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">Field Trial(s): </label>
+                            <label class="col-sm-3 control-label">Ensaios de campo: </label>
                             <div class="col-sm-9" >
                                 <div id="analysis_calculate_statistics_trial_select_div"></div>
                             </div>
                         </div>
                     </form>
                     <center>
-                    <button class="btn btn-primary" id="analysis_calculate_statistics_field_trial_select_step">Go to Next Step</button>
+                    <button class="btn btn-primary" id="analysis_calculate_statistics_field_trial_select_step">Ir para a próxima etapa</button>
                     </center>
                 </&>
-                <&| /util/workflow.mas:step, title=> "Trait Selection" &>
-                    <& /page/page_title.mas, title=>"Select the observation variable you are interested in" &>
+                <&| /util/workflow.mas:step, title=> "Seleção de características" &>
+                    <& /page/page_title.mas, title=>"Selecione a variável de observação de interesse" &>
                     <br/><br/>
                     <form class="form-horizontal">
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">Observation Variables Phenotyped in the Selected Field Trial(s): </label>
+                            <label class="col-sm-3 control-label">Variáveis de observação avaliadas nos ensaios de campo selecionados: </label>
                             <div class="col-sm-9" >
                                 <div id="analysis_calculate_statistics_trait_select_div"></div>
                             </div>
                         </div>
                     </form>
                     <center>
-                    <button class="btn btn-primary" id="analysis_calculate_statistics_trait_select_step">Go to Next Step</button>
+                    <button class="btn btn-primary" id="analysis_calculate_statistics_trait_select_step">Ir para a próxima etapa</button>
                     </center>
                 </&>
-                <&| /util/workflow.mas:step, title=> "Statistics" &>
-                    <& /page/page_title.mas, title=>"Select statistics to calculate" &>
+                <&| /util/workflow.mas:step, title=> "Estatísticas" &>
+                    <& /page/page_title.mas, title=>"Selecione as estatísticas a calcular" &>
 
                     <div id="analysis_calculate_statistics_model_select_div"></div>
 
                     <br/><br/>
                     <center>
-                    <button class="btn btn-default" id="analysis_calculate_statistics_create_new_model_button">My Model is Not Shown, So Create New Model</button>
+                    <button class="btn btn-default" id="analysis_calculate_statistics_create_new_model_button">Meu modelo não está na lista; criar novo modelo</button>
                     </center>
 
                     <div id="analysis_calculate_statistics_create_new_model_div" style="display:none">
@@ -59,22 +59,22 @@
 
                         <div class="well well-sm">
                             <select class="form-control" id="analysis_calculate_statistics_select_input">
-                                <option value="">Select A Model</option>
-                                <option value="lmer_germplasmname_replicate">LMER BLUPs y~replicate+location_year+1|Germplasm. Univariate genetic effects across location_years</option>
-                                <option value="sommer_grm_genetic_blups">Sommer GBLUPs Y~replicate+location_year+GRM. Multivariate genetic effects using GRM across location_years</option>
-                                <option value="sommer_grm_spatial_genetic_blups">Sommer Spatial GBLUPs Y~replicate+location_year+GRM+spatial. Multivariate genetic + 2Dspl spatial effects across location_years</option>
+                                <option value="">Selecione um modelo</option>
+                                <option value="lmer_germplasmname_replicate">LMER BLUPs y~replicate+location_year+1|Germplasm. Efeitos genéticos univariados entre combinações de local e ano</option>
+                                <option value="sommer_grm_genetic_blups">Sommer GBLUPs Y~replicate+location_year+GRM. Efeitos genéticos multivariados com GRM entre combinações de local e ano</option>
+                                <option value="sommer_grm_spatial_genetic_blups">Sommer Spatial GBLUPs Y~replicate+location_year+GRM+spatial. Efeitos genéticos multivariados e espaciais 2Dspl entre combinações de local e ano</option>
                             </select>
 
                             <div id="analysis_calculate_statistics_relationship_matrix_type_div" style="display:none">
                                 <hr>
                                 <div class="form-horizontal">
                                     <div class="form-group">
-                                        <label class="col-sm-3 control-label">Relationship Matrix Type: </label>
+                                        <label class="col-sm-3 control-label">Tipo de matriz de parentesco: </label>
                                         <div class="col-sm-9" >
                                             <select class="form-control" id="analysis_calculate_statistics_relationship_matrix_type_select_div">
-                                                <option value="">Identity</option>
-                                                <option value="htp_phenotypes">High-throughput Phenotyping Data</option>
-                                                <option value="genotypes">Genotyping Data</option>
+                                                <option value="">Identidade</option>
+                                                <option value="htp_phenotypes">Dados de fenotipagem de alto rendimento</option>
+                                                <option value="genotypes">Dados de genotipagem</option>
                                             </select>
                                         </div>
                                     </div>
@@ -85,17 +85,17 @@
                                 <hr>
                                 <div class="form-horizontal">
                                     <div class="form-group">
-                                        <label class="col-sm-3 control-label">Genotyping Protocol To Calculate Genomic Relationship Matrix (optional. If none selected, an identity matrix is used): </label>
+                                        <label class="col-sm-3 control-label">Protocolo de genotipagem para calcular a matriz de parentesco genômico (opcional; se não for selecionado, será usada uma matriz identidade): </label>
                                         <div class="col-sm-9" >
                                             <div id="analysis_calculate_statistics_genotyping_protocol_select_div"></div>
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="col-sm-3 control-label">Compute Genotypes From Parents: </label>
+                                        <label class="col-sm-3 control-label">Calcular genótipos a partir dos genitores: </label>
                                         <div class="col-sm-9" >
                                             <select class="form-control" id="analysis_calculate_statistics_genotyping_protocol_compute_from_parents_select">
-                                                <option value="no">No</option>
-                                                <option value="yes">Yes</option>
+                                                <option value="no">Não</option>
+                                                <option value="yes">Sim</option>
                                             </select>
                                         </div>
                                     </div>
@@ -105,28 +105,28 @@
                             <div id="analysis_calculate_statistics_htp_phenotypes_rel_matrix_div" class="well well-sm" style="display:none">
                                 <div class="form-horizontal">
                                     <div class="form-group">
-                                        <label class="col-sm-3 control-label">How to calculate the relationship matrix with high-throughput phenotypes: </label>
+                                        <label class="col-sm-3 control-label">Como calcular a matriz de parentesco com fenótipos de alto rendimento: </label>
                                         <div class="col-sm-9" >
                                             <select class="form-control" id="analysis_calculate_statistics_htp_phenotypes_rel_matrix_select">
-                                                <option value="correlations">Correlations</option>
+                                                <option value="correlations">Correlações</option>
                                                 <option value="blues">BLUEs</option>
                                             </select>
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="col-sm-3 control-label">Time Points to Use: </label>
+                                        <label class="col-sm-3 control-label">Pontos temporais a usar: </label>
                                         <div class="col-sm-9" >
                                             <select class="form-control" id="analysis_calculate_statistics_htp_phenotypes_rel_matrix_times_select">
-                                                <option value="all">All Available</option>
-                                                <option value="latest_trait">Up to latest days after planting selecting in traits</option>
-                                                <option value="vegetative" disabled>Vegetative Growth Stage</option>
-                                                <option value="reproductive" disabled>Reproductive Growth Stage</option>
-                                                <option value="mature" disabled>Mature Growth Stage</option>
+                                                <option value="all">Todos os disponíveis</option>
+                                                <option value="latest_trait">Até o último dia após o plantio selecionado nas características</option>
+                                                <option value="vegetative" disabled>Estádio de crescimento vegetativo</option>
+                                                <option value="reproductive" disabled>Estádio de crescimento reprodutivo</option>
+                                                <option value="mature" disabled>Estádio de maturidade</option>
                                             </select>
                                         </div>
                                     </div>
                                     <div class="form-group" id="analysis_calculate_statistics_htp_phenotypes_rel_matrix_inversion_select_div" style="display:none">
-                                        <label class="col-sm-3 control-label">HTP BLUEs Inversion Tolerance: </label>
+                                        <label class="col-sm-3 control-label">Tolerância de inversão dos BLUEs de alto rendimento: </label>
                                         <div class="col-sm-9" >
                                             <select class="form-control" id="analysis_calculate_statistics_htp_phenotypes_rel_matrix_inversion_select">
                                                 <option value="0.00001">0.00001</option>
@@ -144,7 +144,7 @@
                             <hr>
                             <div class="form-horizontal">
                                 <div class="form-group">
-                                    <label class="col-sm-3 control-label">Inversion Tolerance: </label>
+                                    <label class="col-sm-3 control-label">Tolerância de inversão: </label>
                                     <div class="col-sm-9" >
                                         <select class="form-control" id="analysis_calculate_statistics_tolparinv_select">
                                             <option value="0.000001">0.000001</option>
@@ -165,29 +165,29 @@
                             <hr>
                             <div class="form-horizontal">
                                 <div class="form-group">
-                                    <label class="col-sm-3 control-label">Fixed Effects: </label>
+                                    <label class="col-sm-3 control-label">Efeitos fixos: </label>
                                     <div class="col-sm-9" >
                                         <select class="form-control" id="analysis_calculate_statistics_fixed_effect_select_div">
-                                            <option value="replicate">Replicate</option>
-                                            <option value="fixed_effect_trait">Select a continuous trait (e.g. soil elevation curvature)</option>
+                                            <option value="replicate">Repetição</option>
+                                            <option value="fixed_effect_trait">Selecione uma característica contínua (por exemplo, curvatura da elevação do solo)</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="form-group" id="analysis_calculate_statistics_fixed_effect_select_trait_div" style="display:none">
-                                    <label class="col-sm-3 control-label">Fixed Effect Trait: </label>
+                                    <label class="col-sm-3 control-label">Característica de efeito fixo: </label>
                                     <div class="col-sm-9" >
                                         <div id="analysis_calculate_statistics_fixed_effect_trait_select_div"></div>
                                     </div>
                                 </div>
                                 <div class="form-group" id="analysis_calculate_statistics_fixed_effect_select_quantile_div" style="display:none">
-                                    <label class="col-sm-3 control-label">Fixed Effect Continuous Trait Quantile Binning: </label>
+                                    <label class="col-sm-3 control-label">Agrupamento por quantis da característica contínua de efeito fixo: </label>
                                     <div class="col-sm-9" >
                                         <select class="form-control" id="analysis_calculate_statistics_fixed_effect_select_quantile">
-                                            <option value="10">10% Quantiles</option>
-                                            <option value="5">20% Quantiles</option>
-                                            <option value="4">25% Quantiles</option>
-                                            <option value="3">33% Quantiles</option>
-                                            <option value="20">5% Quantiles</option>
+                                            <option value="10">10% — quantis</option>
+                                            <option value="5">20% — quantis</option>
+                                            <option value="4">25% — quantis</option>
+                                            <option value="3">33% — quantis</option>
+                                            <option value="20">5% — quantis</option>
                                         </select>
                                     </div>
                                 </div>
@@ -199,18 +199,18 @@
 
                     <br/><br/>
                     <center>
-                    <button class="btn btn-primary" id="analysis_calculate_statistics_select_step">Submit</button>
+                    <button class="btn btn-primary" id="analysis_calculate_statistics_select_step">Enviar</button>
                     </center>
                 </&>
-                <&| /util/workflow.mas:step, title=> "Results" &>
-                    <& /page/page_title.mas, title=>"Statistics results" &>
+                <&| /util/workflow.mas:step, title=> "Resultados" &>
+                    <& /page/page_title.mas, title=>"Resultados estatísticos" &>
 
                     <hr>
-                    <button class="btn btn-primary" id="analysis_calculate_statistics_analysis_save_blups_genetic_pe_residual" style="display:none">Go To Save Analysis Results For Genetic and Environment BLUPS and Residuals</button>
-                    <button class="btn btn-primary" id="analysis_calculate_statistics_analysis_save_blups_genetic" style="display:none">Go To Save Analysis Results For Genetic BLUPS</button>
-                    <button class="btn btn-primary" id="analysis_calculate_statistics_analysis_save_blups_spatial" style="display:none">Go To Save Analysis Results For Spatial BLUPS</button>
-                    <button class="btn btn-primary" id="analysis_calculate_statistics_analysis_save_residuals" style="display:none">Go To Save Analysis Results For Residuals</button>
-                    <button class="btn btn-primary" id="analysis_calculate_statistics_analysis_save_fitted" style="display:none">Go To Save Analysis Results For Fitted Values</button>
+                    <button class="btn btn-primary" id="analysis_calculate_statistics_analysis_save_blups_genetic_pe_residual" style="display:none">Salvar resultados da análise de BLUPs genéticos, ambientais e resíduos</button>
+                    <button class="btn btn-primary" id="analysis_calculate_statistics_analysis_save_blups_genetic" style="display:none">Salvar resultados da análise de BLUPs genéticos</button>
+                    <button class="btn btn-primary" id="analysis_calculate_statistics_analysis_save_blups_spatial" style="display:none">Salvar resultados da análise de BLUPs espaciais</button>
+                    <button class="btn btn-primary" id="analysis_calculate_statistics_analysis_save_residuals" style="display:none">Salvar resultados da análise dos resíduos</button>
+                    <button class="btn btn-primary" id="analysis_calculate_statistics_analysis_save_fitted" style="display:none">Salvar resultados da análise dos valores ajustados</button>
                     <hr>
 
                     <div id ="analysis_calculate_statistics_result_div">
@@ -222,7 +222,7 @@
 
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
       </div>
     </div>
   </div>
@@ -233,7 +233,7 @@
 jQuery(document).ready(function() {
 
     //
-    // Calculate statistics
+    // Calcular estatísticas
     //
 
     var analysis_calculate_statistics_field_trial_id_array = undefined;
@@ -260,7 +260,7 @@ jQuery(document).ready(function() {
 
         analysis_calculate_statistics_field_trial_id_string = analysis_calculate_statistics_field_trial_id_array.join(",");
         if (analysis_calculate_statistics_field_trial_id_string == '') {
-            alert('Please select a field trial first!');
+            alert('Primeiro selecione um ensaio de campo!');
         } else {
             get_select_box('traits', 'analysis_calculate_statistics_trait_select_div', { 'name' : 'analysis_calculate_statistics_trait_id_select', 'id' : 'analysis_calculate_statistics_trait_id_select', 'empty':1, 'multiple':0, 'trial_ids':analysis_calculate_statistics_field_trial_id_string, 'stock_type':'plot' });
 
@@ -285,7 +285,7 @@ jQuery(document).ready(function() {
 
         analysis_calculate_statistics_trait_id = jQuery('#analysis_calculate_statistics_trait_id_select').val();
         if (analysis_calculate_statistics_trait_id == null || analysis_calculate_statistics_trait_id == undefined) {
-            alert('Please select one observation variable!');
+            alert('Selecione uma variável de observação!');
             return false;
         }
 
@@ -433,7 +433,7 @@ jQuery(document).ready(function() {
                         analysis_calculate_statistics_phenotype_training_file = response.stats_tempfile;
                         analysis_calculate_statistics_grm_training_file = response.grm_file;
 
-                        html = html + '<table class="table table-bordered table-hover"><thead><tr><th>Accessions</th>';
+                        html = html + '<table class="table table-bordered table-hover"><thead><tr><th>Acessos</th>';
                         for (var i=0; i<analysis_calculate_statistics_trait_names.length; i++) {
                             html = html + '<th>'+analysis_calculate_statistics_trait_names[i]+'</th>';
                         }
@@ -458,7 +458,7 @@ jQuery(document).ready(function() {
                         analysis_calculate_statistics_plot_names = response.unique_plots;
                         analysis_calculate_statistics_trait_names = response.unique_traits;
 
-                        html = html + '<table class="table table-bordered table-hover"><thead><tr><th>Plots</th>';
+                        html = html + '<table class="table table-bordered table-hover"><thead><tr><th>Parcelas</th>';
                         for (var i=0; i<response.unique_traits.length; i++) {
                             html = html + '<th>'+response.unique_traits[i]+'</th>';
                         }
@@ -475,7 +475,7 @@ jQuery(document).ready(function() {
                     }
 
                     if (response.results.length > 0) {
-                        html = '<table class="table table-bordered table-hover"><thead><tr><th>Observation Variable</th><th>Statistics</th><th>Plot</th></tr></thead><tbody>';
+                        html = '<table class="table table-bordered table-hover"><thead><tr><th>Variável de observação</th><th>Estatísticas</th><th>Parcela</th></tr></thead><tbody>';
                         for (var i=0; i<response.results.length; i++) {
                             html = html + '<tr><td>'+response.results[i][0]+'</td><td>'+response.results[i][1]+'</td><td><img src="'+response.results[i][2]+'"></td></tr>';
                         }
@@ -496,7 +496,7 @@ jQuery(document).ready(function() {
             },
             error: function(response){
                 jQuery("#working_modal").modal("hide");
-                alert('Error calculating statistics!')
+                alert('Erro ao calcular as estatísticas!')
             }
         });
     });
@@ -512,15 +512,15 @@ jQuery(document).ready(function() {
         var generic_save_analysis_template_breeding_program_id = jQuery('#generic_save_analysis_template_breeding_program_id').val();
 
         if (generic_save_analysis_template_analysis_name == '') {
-            alert('Please give an analysis template name');
+            alert('Informe um modelo de nome da análise');
             return false;
         }
         if (generic_save_analysis_template_analysis_description == '') {
-            alert('Please give an analysis template description');
+            alert('Informe a descrição do modelo da análise');
             return false;
         }
         if (generic_save_analysis_template_analysis_year == '') {
-            alert('Please give an analysis template year');
+            alert('Informe o ano do modelo da análise');
             return false;
         }
 
@@ -633,10 +633,10 @@ jQuery(document).ready(function() {
                 if (response.success) {
                     var html = '<center>';
                     if (response.model_id) {
-                        html = html + '<p>Go to saved <a href="/analyses_model/'+response.model_id+'" target=_blank >model</a></p>';
+                        html = html + '<p>Ver itens salvos <a href="/analyses_model/'+response.model_id+'" target=_blank >model</a></p>';
                     }
                     if (response.analysis_id) {
-                        html = html + '<p>Go to saved <a href="/analyses/'+response.analysis_id+'" target=_blank >GBLUP analysis</a></p>';
+                        html = html + '<p>Ver itens salvos <a href="/analyses/'+response.analysis_id+'" target=_blank >GBLUP analysis</a></p>';
                     }
                     html = html + '</center>';
                     jQuery('#generic_save_analysis_template_response_div').html(html);
@@ -698,7 +698,7 @@ jQuery(document).ready(function() {
                                 html = html + '<center>';
                                 if (response.analysis_id) {
                                     if (analysis_calculate_statistics_select == 'sommer_grm_spatial_genetic_blups') {
-                                        html = html + '<p>Go to saved <a href="/analyses/'+response.analysis_id+'" target=_blank >spatial BLUP analysis</a></p>';
+                                        html = html + '<p>Ver itens salvos <a href="/analyses/'+response.analysis_id+'" target=_blank >spatial BLUP analysis</a></p>';
                                     }
                                 }
                                 html = html + '</center>';
@@ -709,7 +709,7 @@ jQuery(document).ready(function() {
 
                                 if (analysis_calculate_statistics_select == 'sommer_grm_spatial_genetic_blups') {
                                     jQuery('#working_modal').modal('hide');
-                                    alert('Analysis and/or model saved!');
+                                    alert('Análise e/ou modelo salvos!');
                                     return false;
                                 }
 
@@ -754,30 +754,30 @@ jQuery(document).ready(function() {
                                             alert(response.error);
                                         }
                                         if (response.success) {
-                                            alert('Analysis and/or model saved!');
+                                            alert('Análise e/ou modelo salvos!');
                                             html = html + '<center>';
                                             if (response.analysis_id) {
-                                                html = html + '<p>Go to saved <a href="/analyses/'+response.analysis_id+'" target=_blank >residuals analysis</a></p>';
+                                                html = html + '<p>Ver itens salvos <a href="/analyses/'+response.analysis_id+'" target=_blank >residuals analysis</a></p>';
                                             }
                                             html = html + '</center>';
                                             jQuery('#generic_save_analysis_template_response_div').html(html);
                                         }
                                     },
                                     error: function(response){
-                                        alert('Error saving analysis multiple!');
+                                        alert('Erro ao salvar as análises!');
                                     }
                                 });
                             }
                         },
                         error: function(response){
-                            alert('Error saving analysis multiple!');
+                            alert('Erro ao salvar as análises!');
                         }
                     });
                 }
             },
             error: function(response){
                 jQuery('#working_modal').modal('hide');
-                alert('Error saving analysis multiple!');
+                alert('Erro ao salvar as análises!');
             }
         });
     });
@@ -873,7 +873,7 @@ jQuery(document).ready(function() {
 
     jQuery('#analysis_calculate_statistics_analysis_save_blups_spatial').click(function(){
         if (analysis_calculate_statistics_field_trial_id_array.length>1) {
-            alert('Saving spatial BLUPs currently only implemented for a single trial, so only select one field trial in your analysis');
+            alert('O armazenamento de BLUPs espaciais está disponível para um único ensaio. Selecione somente um ensaio de campo na análise');
             return false;
         }
 

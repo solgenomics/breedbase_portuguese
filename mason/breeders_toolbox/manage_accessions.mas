@@ -12,13 +12,13 @@ $show_grafting_interface => ''
 
 <& /util/import_css.mas, paths => ['/documents/inc/datatables/jquery.dataTables.css'] &>
 
-<& /page/page_title.mas, title=>"Manage Accessions" &>
+<& /page/page_title.mas, title=>"Gerenciar acessos" &>
 
 <div class="container-fluid">
 
 <div class="well">
 
-<&| /page/info_section.mas, title=>'Accessions', collapsible=>1, collapsed=>0, subtitle=> ""  &>
+<&| /page/info_section.mas, title=>'Acessos', collapsible=>1, collapsed=>0, subtitle=> ""  &>
 
 <& /breeders_toolbox/accessions.mas, accessions=>$accessions &>
 <& /breeders_toolbox/add_accessions_dialogs.mas, preferred_species=>$preferred_species, editable_stock_props=>$editable_stock_props, editable_stock_props_definitions=>$editable_stock_props_definitions &>
@@ -31,37 +31,37 @@ $show_grafting_interface => ''
 <& /breeders_toolbox/derived_accession_usage_info_dialog.mas &>
 
 </br>
-<button class="btn btn-default" name="add_accessions_link">Add Accessions Or Upload Accession Info</button> <button class="btn btn-default" id="upload_pedigrees_link">Upload Pedigree File</button> <button class="btn btn-default" id="upload_rename_accessions_link" name="upload_rename_accessions_link">Rename Accessions</button>
+<button class="btn btn-default" name="add_accessions_link">Adicionar acessos ou enviar informações de acessos</button> <button class="btn btn-default" id="upload_pedigrees_link">Enviar arquivo de genealogia</button> <button class="btn btn-default" id="upload_rename_accessions_link" name="upload_rename_accessions_link">Renomear acessos</button>
 % if (<%$show_grafting_interface%>) {
-    <button class="btn btn-default" id="upload_grafts_link" >Upload Grafts</button>
+    <button class="btn btn-default" id="upload_grafts_link" >Enviar enxertias</button>
 % }
 </br>
-<div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Add Derived Accessions&nbsp;<span class="caret"></span></button><ul class="dropdown-menu"><li><a href="#" id="about_derived_accessions_link">About Derived Accessions</a></li><li><a href="#" id="add_derived_accessions_using_list_link">Using a List</a></li><li><a href="#" id="upload_derived_accession_file_link" name="upload_derived_accession_file_link">Upload a File</a></li><li></ul></div>
+<div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Adicionar acessos derivados&nbsp;<span class="caret"></span></button><ul class="dropdown-menu"><li><a href="#" id="about_derived_accessions_link">Sobre acessos derivados</a></li><li><a href="#" id="add_derived_accessions_using_list_link">Usar uma lista</a></li><li><a href="#" id="upload_derived_accession_file_link" name="upload_derived_accession_file_link">Enviar um arquivo</a></li><li></ul></div>
 
 <div>
   </br>
-  <a href="/search/stocks">Search Accessions</a>
+  <a href="/search/stocks">Pesquisar acessos</a>
 </div>
 
 </&>
 </div><!-- closes well -->
 
 <div class="well">
-  <&| /page/info_section.mas, title=>"Accessions with Pedigree Information", id=> "accessions_with_pedigree", collapsible=>1, collapsed=>1&>
+  <&| /page/info_section.mas, title=>"Acessos com informações de genealogia", id=> "accessions_with_pedigree", collapsible=>1, collapsed=>1&>
     <table class="table table-hover table-bordered" id="accessions_with_pedigree_table">
       <thead>
         <tr>
-          <th>Accession Name</th>
-          <th>Female Parent</th>
-          <th>Male Parent</th>
-          <th>Cross Type</th>
+          <th>Nome do acesso</th>
+          <th>Genitor feminino</th>
+          <th>Genitor masculino</th>
+          <th>Tipo de cruzamento</th>
         </tr>
       </thead>
     </table>
-    <a href="/search/download_all_accessions_with_pedigree" class="btn btn-sm btn-default">Download All Accessions and Pedigree Info</a>
+    <a href="/search/download_all_accessions_with_pedigree" class="btn btn-sm btn-default">Baixar todos os acessos e suas genealogias</a>
     <br>
     <br>
-    <&| /page/info_section.mas, title => 'Copy accessions to a List', collapsible=>1, collapsed=>1, subtitle=>'<i>Copy the accession names to a new or exisiting list</i>'&>
+    <&| /page/info_section.mas, title => 'Copiar acessos para uma lista', collapsible=>1, collapsed=>1, subtitle=>'<i>Copie os nomes dos acessos para uma lista nova ou existente</i>'&>
       <br>
       <div style="text-align:right" id="accessions_with_pedigree_to_list_menu"></div>
       <div id="accession_names_with_pedigree" style="display: none;"></div>
@@ -70,18 +70,18 @@ $show_grafting_interface => ''
 </div><!-- closes well -->
 
 <div class="well">
-  <&| /page/info_section.mas, title=>"Accessions Missing Pedigree Information", id=> "accessions_missing_pedigree", collapsible=>1, collapsed=>1&>
+  <&| /page/info_section.mas, title=>"Acessos sem informações de genealogia", id=> "accessions_missing_pedigree", collapsible=>1, collapsed=>1&>
     <table class="table table-hover table-bordered" id="accessions_missing_pedigree_table">
       <thead>
         <tr>
-          <th>Accession Name</th>
-          <th>Submitter</th>
+          <th>Nome do acesso</th>
+          <th>Responsável pelo envio</th>
         </tr>
       </thead>
     </table>
     <br>
     <br>
-    <&| /page/info_section.mas, title => 'Copy accessions to a List', collapsible=>1, collapsed=>1, subtitle=>'<i>Copy the accession names to a new or exisiting list</i>'&>
+    <&| /page/info_section.mas, title => 'Copiar acessos para uma lista', collapsible=>1, collapsed=>1, subtitle=>'<i>Copie os nomes dos acessos para uma lista nova ou existente</i>'&>
       <br>
       <div style="text-align:right" id="accessions_missing_pedigree_to_list_menu"></div>
       <div id="accession_names_missing_pedigree" style="display: none;"></div>
@@ -90,7 +90,7 @@ $show_grafting_interface => ''
 </div><!-- closes well -->
 
 <div class="well">
-  <&| /page/info_section.mas, title=>'Find Trials in Common', collapsible=>1, collapsed=>0, subtitle=>'<i>Use a list of accessions to search for trials that contain them all</i>'&>
+  <&| /page/info_section.mas, title=>'Encontrar ensaios em comum', collapsible=>1, collapsed=>0, subtitle=>'<i>Use uma lista de acessos para pesquisar ensaios que contenham todos eles</i>'&>
 
   <& /breeders_toolbox/accessions/find_trials_by_accessions.mas &>
 
@@ -99,7 +99,7 @@ $show_grafting_interface => ''
 </div><!-- closes well -->
 
 <div class="well">
-  <&| /page/info_section.mas, title=>"Populations", id=> "manage_accessions_populations", collapsible=>1, collapsed=>1, subtitle=>"<a id='manage_accessions_populations_new'>[Create Population]</a>"&>
+  <&| /page/info_section.mas, title=>"Populações", id=> "manage_accessions_populations", collapsible=>1, collapsed=>1, subtitle=>"<a id='manage_accessions_populations_new'>[Criar população]</a>"&>
     <div class="panel-group" id="accordion"></div>
   </&>
 </div><!-- closes well -->
@@ -137,7 +137,7 @@ $show_grafting_interface => ''
             'ajax': { 'url': '/ajax/stock/accessions_with_pedigree' },
             "fnInitComplete": function(oSettings, json) {
                 if (!isLoggedIn()) {
-                    jQuery('#accessions_with_pedigree_to_list_menu').html("<div class='well well-sm'><h3>Please login to use lists!</h3></div>");
+                    jQuery('#accessions_with_pedigree_to_list_menu').html("<div class='well well-sm'><h3>Entre em sua conta para usar listas.</h3></div>");
                 } else {
                     var html = "";
                     for(var i=0; i<json.data.length; i++){
@@ -158,7 +158,7 @@ $show_grafting_interface => ''
             'ajax': { 'url': '/ajax/stock/accessions_missing_pedigree' },
             "fnInitComplete": function(oSettings, json) {
                 if (!isLoggedIn()) {
-                    jQuery('#accessions_missing_pedigree_to_list_menu').html("<div class='well well-sm'><h3>Please login to use lists!</h3></div>");
+                    jQuery('#accessions_missing_pedigree_to_list_menu').html("<div class='well well-sm'><h3>Entre em sua conta para usar listas.</h3></div>");
                 } else {
                     var html = "";
                     for(var i=0; i<json.data.length; i++){

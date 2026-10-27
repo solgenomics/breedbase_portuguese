@@ -12,7 +12,7 @@
 <& /util/import_javascript.mas, entries => [], classes => [ 'jquery', 'jquery.dataTables','jquery.dataTables-buttons-min', 'jszip-min', 'buttons.bootstrap-min', 'buttons.html5-min' ],  &>
 
 <div id="marker_metadata_loading">
-    <p>Loading...</p>
+    <p>Carregando...</p>
 </div>
 
 <div id="marker_metadata_table_container" style="display: none">
@@ -21,36 +21,36 @@
 
 <div id="marker_metadata_upload" style="display:none">
     <p>
-        To upload metadata and alleles for markers in this protocol, go to the 
-        <a href="/breeders/genotyping_projects">Manage Genotyping Projects</a>
-        page and select the <strong>Add Marker Metadata</strong> button.
+        Para enviar metadados e alelos dos marcadores deste protocolo, acesse a página
+        <a href="/breeders/genotyping_projects">Gerenciar projetos de genotipagem</a>
+        e selecione o botão <strong>Adicionar metadados dos marcadores</strong>.
     </p>
 </div>
 
 <div id="marker_metadata_delete" style="margin-top: 15px; display:none">
-    <button class="btn btn-danger" <% $curator ? '' : 'disabled' %> onclick="deleteMetadata()"><span class="glyphicon glyphicon-trash"></span>&nbsp;&nbsp;Delete All Marker Metadata</button>
+    <button class="btn btn-danger" <% $curator ? '' : 'disabled' %> onclick="deleteMetadata()"><span class="glyphicon glyphicon-trash"></span>&nbsp;&nbsp;Excluir todos os metadados dos marcadores</button>
 </div>
 
 <div class="modal fade" id="edit_marker_metadata_dialog" name="edit_marker_metadata_dialog" tabindex="-1" role="dialog" aria-labelledby="EditMarkerMetadataDialog">
     <div class="modal-dialog " role="document">
         <div class="modal-content">
             <div class="modal-header" style="text-align: center">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="EditMarkerMetadataDialog">Edit Marker Metadata</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="EditMarkerMetadataDialog">Editar metadados do marcador</h4>
             </div>
             <div class="modal-body">
 
-                <p><strong>Marker Name:</strong><input class="form-control" id="edit_marker_metadata_marker" name="Marker" /></p>
-                <p><strong>Alias:</strong><input class="form-control" id="edit_marker_metadata_alias" name="Alias" /></p>
-                <p><strong>Description:</strong><textarea class="form-control" id="edit_marker_metadata_description" name="Description" rows="3"></textarea></p>
-                <p><strong>Alleles (one per line):</strong><textarea class="form-control" id="edit_marker_metadata_alleles" name="Alleles" rows="5"></textarea></p>
-                <p><strong>References (one per line):</strong><textarea class="form-control" id="edit_marker_metadata_references" name="References" rows="5"></textarea></p>
-                <span>The references include the associated trait categories and external database references.  The format of each reference is <code>{database name}:{entity name}</code></span>
+                <p><strong>Nome do marcador:</strong><input class="form-control" id="edit_marker_metadata_marker" name="Marker" /></p>
+                <p><strong>Nome alternativo:</strong><input class="form-control" id="edit_marker_metadata_alias" name="Alias" /></p>
+                <p><strong>Descrição:</strong><textarea class="form-control" id="edit_marker_metadata_description" name="Description" rows="3"></textarea></p>
+                <p><strong>Alelos (um por linha):</strong><textarea class="form-control" id="edit_marker_metadata_alleles" name="Alleles" rows="5"></textarea></p>
+                <p><strong>Referências (uma por linha):</strong><textarea class="form-control" id="edit_marker_metadata_references" name="References" rows="5"></textarea></p>
+                <span>As referências incluem as categorias de características associadas e as referências de bancos de dados externos. O formato de cada referência é <code>{nome do banco de dados}:{nome da entidade}</code></span>
                 <input type="hidden" id="edit_marker_metadata_locus_id" />
             </div>
             <div class="modal-footer">
-                <button id="close_delete_model_dialog" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" name="edit_marker_metadata_dialog_submit" id="edit_marker_metadata_dialog_submit">Save</button>
+                <button id="close_delete_model_dialog" type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                <button type="button" class="btn btn-primary" name="edit_marker_metadata_dialog_submit" id="edit_marker_metadata_dialog_submit">Salvar</button>
             </div>
         </div>
     </div>
@@ -98,16 +98,16 @@
                 ],
                 data: Object.values(response),
                 columns: [
-                    { title: "Marker", render: (data, type, row) => {
+                    { title: "Marcador", render: (data, type, row) => {
                         var html = `<a href='/locus/${row.locus_id}/view'>`;
                         html += row.marker_name;
                         if ( row.locus_name !== row.marker_name ) html += ` = ${row.locus_name}`;
                         html += '</a>';
                         return html;
                     }},
-                    { title: "Description", data: "locus_description" },
-                    { title: "Alleles", render: (data, type, row) => { return row.alleles.map((x) => x.allele_name).join(type === 'export' ? ', ' : '<br />') } },
-                    { title: "References", render: (data, type, row) => {
+                    { title: "Descrição", data: "locus_description" },
+                    { title: "Alelos", render: (data, type, row) => { return row.alleles.map((x) => x.allele_name).join(type === 'export' ? ', ' : '<br />') } },
+                    { title: "Referências", render: (data, type, row) => {
                         var html = "<ul style='padding-left: 15px;'>";
                         row.references.forEach((r) => {
                             html += `<li>`;
@@ -120,7 +120,7 @@
                         html += "</ul>";
                         return html;
                     }},
-                    { title: "Edit", render: (data, type, row) => { 
+                    { title: "Editar", render: (data, type, row) => {
                         var html = `<button class="btn btn-sm btn-info" style="margin: 5px" onclick="editMetadata('${row.locus_name}')" <% $curator ? '' : 'disabled' %>><span class="glyphicon glyphicon-pencil"></span></button>`;
                         html += `<button class="btn btn-sm btn-danger" style="margin: 5px" onclick="deleteMetadata(${row.locus_id})" <% $curator ? '' : 'disabled' %>><span class="glyphicon glyphicon-trash"></span></button>`;
                         return html;
@@ -131,7 +131,7 @@
 
         // No Metadata found, show upload information...
         else {
-            let html = "<p style='font-style: italic; padding-bottom: 10px'>There are no metadata or allele values set for the markers in this protocol.</p>";
+            let html = "<p style='font-style: italic; padding-bottom: 10px'>Não há metadados nem valores de alelos definidos para os marcadores deste protocolo.</p>";
             jQuery("#marker_metadata_table_container").html(html);
             jQuery("#marker_metadata_upload").show();
             jQuery("#marker_metadata_delete").hide();
@@ -143,7 +143,7 @@
     }
 
     function displayError() {
-        let html = "<p><strong>ERROR:</strong> There was an error getting the marker metadata for this protocol.</p>";
+        let html = "<p><strong>ERRO:</strong> Ocorreu um erro ao obter os metadados dos marcadores deste protocolo.</p>";
         jQuery("#marker_metadata_table_container").html(html);
 
         jQuery("#marker_metadata_loading").hide();
@@ -190,7 +190,7 @@
             success: (response) => {
                 jQuery("#working_modal").modal("hide");
                 if ( response?.error ) {
-                    alert("Could not update marker metadata: " + response.error);
+                    alert("Não foi possível atualizar os metadados do marcador: " + response.error);
                 }
                 else {
                     jQuery('#edit_marker_metadata_dialog').modal('hide');
@@ -199,19 +199,19 @@
             },
             error: () => {
                 jQuery("#working_modal").modal("hide");
-                alert("Could not update marker metadata");
+                alert("Não foi possível atualizar os metadados do marcador");
             }
         });
     }
 
     function deleteMetadata(locus_id) {
-        if ( confirm(`Are you sure you want to delete ${locus_id ? "this marker's metadata" : "all of the marker metadata for this protocol"}?  This cannot be undone!`) ) {
+        if ( confirm(`Tem certeza de que deseja excluir ${locus_id ? "os metadados deste marcador" : "todos os metadados dos marcadores deste protocolo"}? Esta ação não pode ser desfeita!`) ) {
             jQuery.ajax({
                 url: `/ajax/genotyping_protocol/delete_marker_metadata/<% $protocol_id %>?${locus_id ? "locus_id=" + locus_id : ""}`,
                 method: 'DELETE',
                 success: (resp) => {
                     if ( resp?.error ) {
-                        alert("Could not delete marker meatadata: " + resp.error);
+                        alert("Não foi possível excluir os metadados do marcador: " + resp.error);
                     }
                     else {
                         loadMetadata();
@@ -219,7 +219,7 @@
                 },
                 error: (err) => {
                     console.log(err);
-                    alert("Could not delete marker metadata: " + err?.statusText);
+                    alert("Não foi possível excluir os metadados do marcador: " + err?.statusText);
                 }
             });
         }

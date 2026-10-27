@@ -17,29 +17,29 @@ my $encoded_date     = $urlencode{$date};
 </%perl>
 
 <center>
-<h1>CASSAVABASE METADATA BARCODE SHEET</h1>
-<font size="7">Operator</font><br />
+<h1>FOLHA DE CÓDIGOS DE BARRAS DE METADADOS DO CASSAVABASE</h1>
+<font size="7">Responsável</font><br />
 
 <img src="/barcode/image/?code=O:<% $encoded_operator %>&size=<% $size %>" />
 
 <br />
 <br />
 
-<font size="7">Today's Date</font>
+<font size="7">Data de hoje</font>
 <br />
 <img src="/barcode/image/?code=D:<% $encoded_date %>&size=<% $size %>" />
 
 <br />
 <br />
 
-<font size="7">Project</font>
+<font size="7">Projeto</font>
 <br />
 <img src="/barcode/image/?code=P:<% $project %>&size=<% $size %>" />
 
 <br />
 <br />
 
-<font size="7">Location</font>
+<font size="7">Local</font>
 <br />
 <img src="/barcode/image/?code=L:<% $location %>&size=<% $size %>" />
 

@@ -7,7 +7,7 @@ $trial_id
 
 <div class="panel panel-default">
     <div class="panel-body">
-        <&| /page/info_section.mas, title=>"Downloaded Intercross Files (Parents and Wishlist Files)", is_subsection => 1, collapsible=>1, collapsed=>1 &>
+        <&| /page/info_section.mas, title=>"Arquivos do Intercross baixados (parentais e lista de desejos)", is_subsection => 1, collapsible=>1, collapsed=>1 &>
             <table class="table table-hover table-bordered" id="downloaded_intercross_files_table">
             </table>
         </&>
@@ -15,7 +15,7 @@ $trial_id
 </div>
 <div class="panel panel-default">
     <div class="panel-body">
-        <&| /page/info_section.mas, title=>"Uploaded Intercross Files", is_subsection => 1, collapsible=>1, collapsed=>1 &>
+        <&| /page/info_section.mas, title=>"Arquivos do Intercross enviados", is_subsection => 1, collapsible=>1, collapsed=>1 &>
             <table class="table table-hover table-bordered" id="uploaded_intercross_files_table">
             </table>
         </&>
@@ -34,11 +34,11 @@ jQuery('#intercross_section_onswitch').click(function(){
         'destroy': true,
         'ajax': { 'url': '/ajax/breeders/trial/<% $trial_id %>/downloaded_intercross_file_metadata' },
         columns: [
-            { title: "Filename", "data": null, "render": function ( data, type, row ) { return row[4]; } },
-            { title: "Create Date", "data": null, "render": function ( data, type, row ) { return row[1]; } },
-            { title: "Created By", "data": null, "render": function ( data, type, row ) { return '<a href="/solpeople/profile/'+row[2]+'">'+row[3]+'</a>'; } },
-            { title: "File Type", "data": null, "render": function ( data, type, row ) { return row[6]; } },
-            { title: "Options", "data": null, "render": function ( data, type, row ) { return '<a href="/breeders/phenotyping/view/'+row[0]+'">View</a> | <a href="/breeders/phenotyping/download/'+row[0]+'">Download</a>'; } },
+            { title: "Nome do arquivo", "data": null, "render": function ( data, type, row ) { return row[4]; } },
+            { title: "Data de criação", "data": null, "render": function ( data, type, row ) { return row[1]; } },
+            { title: "Criado por", "data": null, "render": function ( data, type, row ) { return '<a href="/solpeople/profile/'+row[2]+'">'+row[3]+'</a>'; } },
+            { title: "Tipo de arquivo", "data": null, "render": function ( data, type, row ) { return row[6]; } },
+            { title: "Opções", "data": null, "render": function ( data, type, row ) { return '<a href="/breeders/phenotyping/view/'+row[0]+'">Visualizar</a> | <a href="/breeders/phenotyping/download/'+row[0]+'">Baixar</a>'; } },
         ]
     });
 
@@ -47,11 +47,11 @@ jQuery('#intercross_section_onswitch').click(function(){
         'destroy': true,
         'ajax': { 'url': '/ajax/breeders/trial/<% $trial_id %>/uploaded_intercross_file_metadata' },
         columns: [
-            { title: "Filename", "data": null, "render": function ( data, type, row ) { return row[4]; } },
-            { title: "Create Date", "data": null, "render": function ( data, type, row ) { return row[1]; } },
-            { title: "Created By", "data": null, "render": function ( data, type, row ) { return '<a href="/solpeople/profile/'+row[2]+'">'+row[3]+'</a>'; } },
-            { title: "File Type", "data": null, "render": function ( data, type, row ) { return row[6]; } },
-            { title: "Options", "data": null, "render": function ( data, type, row ) { return '<a href="/breeders/phenotyping/view/'+row[0]+'">View</a> | <a href="/breeders/phenotyping/download/'+row[0]+'">Download</a>'; } },
+            { title: "Nome do arquivo", "data": null, "render": function ( data, type, row ) { return row[4]; } },
+            { title: "Data de criação", "data": null, "render": function ( data, type, row ) { return row[1]; } },
+            { title: "Criado por", "data": null, "render": function ( data, type, row ) { return '<a href="/solpeople/profile/'+row[2]+'">'+row[3]+'</a>'; } },
+            { title: "Tipo de arquivo", "data": null, "render": function ( data, type, row ) { return row[6]; } },
+            { title: "Opções", "data": null, "render": function ( data, type, row ) { return '<a href="/breeders/phenotyping/view/'+row[0]+'">Visualizar</a> | <a href="/breeders/phenotyping/download/'+row[0]+'">Baixar</a>'; } },
         ]
     });
 

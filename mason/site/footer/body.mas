@@ -23,7 +23,7 @@
     <div class="container-fluid">
       <div class="row">
           <div class="col-12 col-md-9">
-            <span style="font-face:arial;font-size:10pt;color:darkgreen;font-weight:light;">BREE<b>DB</b>ASE</span> is located at the <a href="https://btiscience.org">Boyce Thompson Institute</a>.<br />
+            O <span style="font-face:arial;font-size:10pt;color:darkgreen;font-weight:light;">BREE<b>DB</b>ASE</span> está sediado no <a href="https://btiscience.org">Boyce Thompson Institute</a>.<br />
             <a href="https://btiscience.org"><img src="/static/img/bti_logo_2024.png" width="200"></a>
           </div>
 
@@ -31,7 +31,7 @@
           <div class="col-12 col-md-3">
             <div class="git-version">
               <p>
-                <strong>Version</strong>
+                <strong>Versão</strong>
                 <br />
 % if($isGit == 0) {
                 <span class="git-version-commit"><a href="https://github.com/solgenomics/sgn/commits/<% $commit %>"><% $commit %></a></span>&nbsp;

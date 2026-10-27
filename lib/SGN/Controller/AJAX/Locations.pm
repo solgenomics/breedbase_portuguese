@@ -12,6 +12,7 @@ Managing Locations
 
 package SGN::Controller::AJAX::Locations;
 
+use utf8;
 use Moose;
 use CXGN::Location;
 use CXGN::BreedersToolbox::Projects;
@@ -59,12 +60,12 @@ sub store_location :Path("/ajax/location/store") Args(0) {
     my $noaa_station_id = $params->{noaa_station_id} || undef;
 
     if (! $c->user()) {
-        $c->stash->{rest} = { error => 'You must be logged in to add or edit a location.' };
+        $c->stash->{rest} = { error => 'Você precisa entrar em sua conta para adicionar ou editar um local.' };
         return;
     }
 
     if (! $c->user->check_roles("submitter") && !$c->user->check_roles("curator")) {
-        $c->stash->{rest} = { error => 'You do not have the necessary privileges to add or edit locations.' };
+        $c->stash->{rest} = { error => 'Você não tem os privilégios necessários para adicionar ou editar locais.' };
         return;
     }
 
@@ -102,12 +103,12 @@ sub delete_location :Path('/ajax/location/delete') Args(1) {
     my $location_id = shift;
 
     if (!$c->user) {  # require login
-        $c->stash->{rest} = { error => "You need to be logged in to delete a location." };
+        $c->stash->{rest} = { error => "Você precisa entrar em sua conta para excluir um local." };
         return;
     }
 
     if (! ($c->user->check_roles('curator') || $c->user->check_roles('submitter'))) { # require curator or submitter roles
-        $c->stash->{rest} = { error => "You don't have the privileges to delete a location." };
+        $c->stash->{rest} = { error => "Você não tem os privilégios necessários para excluir um local." };
         return;
     }
 
@@ -117,7 +118,7 @@ sub delete_location :Path('/ajax/location/delete') Args(1) {
     } );
 
     if ($location_to_delete->name() eq '[Computation]') {
-	$c->stash->{rest} = { error => "The location [Computation] is needed by the system to store analyses and cannot be deleted." };
+	$c->stash->{rest} = { error => "O local [Computation] é necessário para o sistema armazenar análises e não pode ser excluído." };
 	return;
     }
     
@@ -148,7 +149,7 @@ sub upload_locations_POST : Args(0) {
 
     if (!$c->user()) {
         print STDERR "User not logged in... not uploading locations.\n";
-        push @errors, "You need to be logged in to upload locations.";
+        push @errors, "Você precisa entrar em sua conta para enviar locais.";
         $c->stash->{rest} = {filename => $upload_original_name, error => \@errors };
         return;
     }
@@ -170,7 +171,7 @@ sub upload_locations_POST : Args(0) {
     my $archived_filename_with_path = $uploader->archive();
     my $md5 = $uploader->get_md5($archived_filename_with_path);
     if (!$archived_filename_with_path) {
-        push @errors, "Could not save file $upload_original_name in archive";
+        push @errors, "Não foi possível salvar o arquivo $upload_original_name no arquivo permanente.";
         $c->stash->{rest} = {filename => $upload_original_name, error => \@errors };
         return;
     }
@@ -184,7 +185,7 @@ sub upload_locations_POST : Args(0) {
     print STDERR "Dump of parsed result:\t" . Dumper($parse_result) . "\n";
 
     if (!$parse_result) {
-        push @errors, "Error parsing file.";
+        push @errors, "Erro ao processar o arquivo.";
         $c->stash->{rest} = {filename => $upload_original_name, error => \@errors };
         return;
     }
@@ -230,7 +231,7 @@ sub get_noaa_station_id :Path("/ajax/location/get_noaa_station_id") Args(1) {
     my $location_id = shift;
 
     if (! $c->user()) {
-        $c->stash->{rest} = { error => 'You must be logged in to add or edit a location.' };
+        $c->stash->{rest} = { error => 'Você precisa entrar em sua conta para adicionar ou editar um local.' };
         return;
     }
 
@@ -261,7 +262,7 @@ sub noaa_ncdc_analysis :Path("/ajax/location/noaa_ncdc_analysis") Args(0) {
     my $schema = $c->dbic_schema("Bio::Chado::Schema");
 
     if (! $c->user()) {
-        $c->stash->{rest} = { error => 'You must be logged in to add or edit a location.' };
+        $c->stash->{rest} = { error => 'Você precisa entrar em sua conta para adicionar ou editar um local.' };
         return;
     }
 

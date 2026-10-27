@@ -36,34 +36,34 @@ $has_col_and_row_numbers
 
 <& /util/import_javascript.mas, entries => ['analyses'], classes => [ 'jquery', 'jquery.dataTables', 'CXGN.Trial' ],  &>
 
-<& /page/page_title.mas, title => "Analysis <span id=\"analyis_name_title\">$analysis_name</span>" &>
+<& /page/page_title.mas, title => "Análise <span id=\"analyis_name_title\">$analysis_name</span>" &>
 
-<& /page/detail_page_2_col_section.mas, info_section_collapsed => 0, trial_id => $analysis_id, info_section_title => "<h4 style='display:inline'>Analysis Details</h4>", info_section_subtitle => 'View basic information about the analysis.', buttons_html => '', icon_class => "glyphicon glyphicon-dashboard", info_section_id => "analysis_details", trial_name => $analysis_name, trial_description => $analysis_description, breeding_program_name => $breeding_program_name, breeding_program_id => $breeding_program_id, year => $year, identifier_prefix => $identifier_prefix, trial_stock_type => $trial_stock_type, analysis_metadata => $analysis_metadata &>
+<& /page/detail_page_2_col_section.mas, info_section_collapsed => 0, trial_id => $analysis_id, info_section_title => "<h4 style='display:inline'>Detalhes da análise</h4>", info_section_subtitle => 'Visualize as informações básicas da análise.', buttons_html => '', icon_class => "glyphicon glyphicon-dashboard", info_section_id => "analysis_details", trial_name => $analysis_name, trial_description => $analysis_description, breeding_program_name => $breeding_program_name, breeding_program_id => $breeding_program_id, year => $year, identifier_prefix => $identifier_prefix, trial_stock_type => $trial_stock_type, analysis_metadata => $analysis_metadata &>
 
-<& /page/detail_page_2_col_section.mas, info_section_collapsed => 1, trial_id => $analysis_id, info_section_title => "<h4 style='display:inline'>Model Details</h4>", info_section_subtitle => 'View basic information about the model.', buttons_html => '', icon_class => "glyphicon glyphicon-option-horizontal", info_section_id => "model_details", trial_name => $analysis_name, analysis_metadata => $analysis_metadata &>
+<& /page/detail_page_2_col_section.mas, info_section_collapsed => 1, trial_id => $analysis_id, info_section_title => "<h4 style='display:inline'>Detalhes do modelo</h4>", info_section_subtitle => 'Visualize as informações básicas do modelo.', buttons_html => '', icon_class => "glyphicon glyphicon-option-horizontal", info_section_id => "model_details", trial_name => $analysis_name, analysis_metadata => $analysis_metadata &>
 
-<& /page/detail_page_2_col_section.mas, trial_id => $analysis_id, info_section_title => "<h4 style='display:inline'>Analysis Results</h4>", info_section_subtitle => 'View and download phenotype data.', buttons_html => "<button class='btn btn-sm btn-primary' style='margin:3px' id='trial_download_phenotypes_button'>Download Analysis Data</button>", icon_class => "glyphicon glyphicon-equalizer", info_section_id => "trial_detail_traits_assayed", trial_name => $analysis_name, trial_stock_type => $trial_phenotype_stock_type &>
+<& /page/detail_page_2_col_section.mas, trial_id => $analysis_id, info_section_title => "<h4 style='display:inline'>Resultados da análise</h4>", info_section_subtitle => 'Visualize e baixe os dados fenotípicos.', buttons_html => "<button class='btn btn-sm btn-primary' style='margin:3px' id='trial_download_phenotypes_button'>Baixar dados da análise</button>", icon_class => "glyphicon glyphicon-equalizer", info_section_id => "trial_detail_traits_assayed", trial_name => $analysis_name, trial_stock_type => $trial_phenotype_stock_type &>
 
-% my $subtitle = 'View and edit the spatial layout of the experiment. Also view a heatmap for phenotyped traits.';
+% my $subtitle = 'Visualize e edite a disposição espacial do experimento e o mapa de calor das características avaliadas.';
 % my $layout_buttons = '';
 % if ($has_col_and_row_numbers){
-%     $layout_buttons = '<h3><span class="glyphicon glyphicon-ok-sign text-success"></span>&nbsp;&nbsp;&nbsp;This experiment has spatial layout info uploaded!</h3><button class="btn btn-primary" style="margin:3px" id="trial_fieldmap_download_layout_button">Download Spatial Layout</button> <button class="btn btn-danger" id="delete_field_map_hm_link" style="margin:3px">Delete Spatial Layout</button>';
+%     $layout_buttons = '<h3><span class="glyphicon glyphicon-ok-sign text-success"></span>&nbsp;&nbsp;&nbsp;Este experimento tem informações de disposição espacial!</h3><button class="btn btn-primary" style="margin:3px" id="trial_fieldmap_download_layout_button">Baixar disposição espacial</button> <button class="btn btn-danger" id="delete_field_map_hm_link" style="margin:3px">Excluir disposição espacial</button>';
 % } else {
-%    $layout_buttons = '<h3><span class="glyphicon glyphicon-remove-sign text-danger"></span>&nbsp;&nbsp;&nbsp;This experiment does not have spatial layout info!</h3><button class="btn btn-primary" style="margin:3px" id="heatmap_upload_trial_coords_link">Upload Spatial Layout</button>';
+%    $layout_buttons = '<h3><span class="glyphicon glyphicon-remove-sign text-danger"></span>&nbsp;&nbsp;&nbsp;Este experimento não tem informações de disposição espacial!</h3><button class="btn btn-primary" style="margin:3px" id="heatmap_upload_trial_coords_link">Enviar disposição espacial</button>';
 % }
 
-<& /page/detail_page_2_col_section.mas, trial_id => $analysis_id, has_col_and_row_numbers => $has_col_and_row_numbers, info_section_title => "<h4 style='display:inline'>Field Layout Tools and Phenotype Heatmap</h4>", info_section_subtitle => $subtitle, buttons_html => $layout_buttons, icon_class => "glyphicon glyphicon-th", info_section_id => "pheno_heatmap" &>
+<& /page/detail_page_2_col_section.mas, trial_id => $analysis_id, has_col_and_row_numbers => $has_col_and_row_numbers, info_section_title => "<h4 style='display:inline'>Ferramentas de disposição no campo e mapa de calor dos fenótipos</h4>", info_section_subtitle => $subtitle, buttons_html => $layout_buttons, icon_class => "glyphicon glyphicon-th", info_section_id => "pheno_heatmap" &>
 
-<& /page/detail_page_2_col_section.mas, trial_id => $analysis_id, info_section_title => "<h4 style='display:inline'>Analysis Tools</h4>", info_section_subtitle => 'Run analyses', icon_class => "glyphicon glyphicon-signal", info_section_id => "analysis_page_analysis_tools" &>
+<& /page/detail_page_2_col_section.mas, trial_id => $analysis_id, info_section_title => "<h4 style='display:inline'>Ferramentas de análise</h4>", info_section_subtitle => 'Executar análises', icon_class => "glyphicon glyphicon-signal", info_section_id => "analysis_page_analysis_tools" &>
 
-<& /page/detail_page_2_col_section.mas, trial_id => $analysis_id, info_section_title => "<h4 style='display:inline'>Upload Data Files</h4>", info_section_subtitle => 'Also upload any additional files for this analysis.', icon_class => "glyphicon glyphicon-cloud-upload", info_section_id => "trial_upload_files", trial_stock_type => $trial_stock_type, for_analysis_page => 1, data_level => 'analysis_instance' &>
+<& /page/detail_page_2_col_section.mas, trial_id => $analysis_id, info_section_title => "<h4 style='display:inline'>Enviar arquivos de dados</h4>", info_section_subtitle => 'Envie também arquivos adicionais para esta análise.', icon_class => "glyphicon glyphicon-cloud-upload", info_section_id => "trial_upload_files", trial_stock_type => $trial_stock_type, for_analysis_page => 1, data_level => 'analysis_instance' &>
 
-<& /page/detail_page_2_col_section.mas, trial_id => $analysis_id, info_section_title => "<h4 style='display:inline'>Delete Experiment Data</h4>", info_section_subtitle => 'Delete phenotypes, layout, and/or the entire experiment from the database.', icon_class => "glyphicon glyphicon-trash", info_section_id => "trial_deletion_section" &>
+<& /page/detail_page_2_col_section.mas, trial_id => $analysis_id, info_section_title => "<h4 style='display:inline'>Excluir dados do experimento</h4>", info_section_subtitle => 'Exclua fenótipos, disposição e/ou o experimento completo do banco de dados.', icon_class => "glyphicon glyphicon-trash", info_section_id => "trial_deletion_section" &>
 
-% my $data_agreement_link = '<button class="btn btn-sm btn-primary" disabled style="margin:3px">Add/edit data agreement</button>';
-% if ($user_can_modify) { $data_agreement_link = '<button class="btn btn-sm btn-primary" style="margin:3px" id="add_data_agreement">Add/edit data agreement</button>'; }
+% my $data_agreement_link = '<button class="btn btn-sm btn-primary" disabled style="margin:3px">Adicionar/editar acordo de dados</button>';
+% if ($user_can_modify) { $data_agreement_link = '<button class="btn btn-sm btn-primary" style="margin:3px" id="add_data_agreement">Adicionar/editar acordo de dados</button>'; }
 
-<& /page/detail_page_2_col_section.mas, trial_id => $analysis_id, info_section_title => "<h4 style='display:inline'>Data Agreement License</h4>", info_section_subtitle => 'View and edit the public data agreement on this experiment.', icon_class => "glyphicon glyphicon-inbox", info_section_id => "trial_data_agreement_section", buttons_html => $data_agreement_link &>
+<& /page/detail_page_2_col_section.mas, trial_id => $analysis_id, info_section_title => "<h4 style='display:inline'>Licença do acordo de dados</h4>", info_section_subtitle => 'Visualize e edite o acordo público de dados deste experimento.', icon_class => "glyphicon glyphicon-inbox", info_section_id => "trial_data_agreement_section", buttons_html => $data_agreement_link &>
 
 <& /breeders_toolbox/trial/download_phenotypes_dialog.mas, trial_ids => $analysis_id, dialog_name => $analysis_name, dialog_type => 'Analysis' &>
 
@@ -98,7 +98,7 @@ jQuery(document).ready(function(){
     //    },
     //    error: function(response){
     //        jQuery('#working_modal').modal('hide');
-    //        alert('Error getting analysis details!');
+    //        alert('Erro ao obter os detalhes da análise!');
     //    }
     //});
 

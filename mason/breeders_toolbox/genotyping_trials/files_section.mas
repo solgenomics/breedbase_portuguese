@@ -6,7 +6,7 @@ $trial_id
 
     <div class="panel panel-default">
         <div class="panel-body">
-            <&| /page/info_section.mas, title=>"Uploaded Additional Files", is_subsection => 1, collapsible=>1, collapsed=>0, subtitle=>'<button class="btn btn-sm btn-primary" style="margin:3px" id="trial_upload_additional_files_link">Upload Additional Files</button>' &>
+            <&| /page/info_section.mas, title=>"Arquivos adicionais enviados", is_subsection => 1, collapsible=>1, collapsed=>0, subtitle=>'<button class="btn btn-sm btn-primary" style="margin:3px" id="trial_upload_additional_files_link">Enviar arquivos adicionais</button>' &>
 
             <& /breeders_toolbox/trial/upload_additional_file.mas, trial_id => $trial_id &>
 

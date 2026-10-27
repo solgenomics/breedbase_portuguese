@@ -8,33 +8,33 @@ $folder_tree_refresh_name
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="editFoldersDialog">Edit Selected Folder(s)</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="editFoldersDialog">Editar pasta(s) selecionada(s)</h4>
       </div>
       <div class="modal-body">
         <div class="container-fluid">
 
 	       <form class="form-horizontal" role="form" method="post" id="edit_folders_category_dialog_form" name="edit_folders_category_dialog_form">
 	        <div class="form-group">
-      	      <label class="col-sm-3 control-label">Folder(s) for Trials:</label>
+              <label class="col-sm-3 control-label">Pasta(s) para ensaios:</label>
       	      <div class="col-sm-9" >
                 <input name="edit_folders_for_trials" id="edit_folders_for_trials" type="checkbox"/>
               </div>
 	        </div>
             <div class="form-group">
-      	      <label class="col-sm-3 control-label">Folder(s) for Crosses:</label>
+              <label class="col-sm-3 control-label">Pasta(s) para cruzamentos:</label>
       	      <div class="col-sm-9" >
                 <input name="edit_folders_for_crosses" id="edit_folders_for_crosses" type="checkbox"/>
               </div>
 	        </div>
             <div class="form-group">
-      	      <label class="col-sm-3 control-label">Folder(s) for Genotyping Plates:</label>
+              <label class="col-sm-3 control-label">Pasta(s) para placas de genotipagem:</label>
       	      <div class="col-sm-9" >
                 <input name="edit_folders_for_genotyping_trials" id="edit_folders_for_genotyping_trials" type="checkbox"/>
               </div>
 	        </div>
             <div class="form-group">
-      	      <label class="col-sm-3 control-label">Folder(s) for Genotyping Projects:</label>
+              <label class="col-sm-3 control-label">Pasta(s) para projetos de genotipagem:</label>
       	      <div class="col-sm-9" >
                 <input name="edit_folders_for_genotyping_projects" id="edit_folders_for_genotyping_projects" type="checkbox"/>
               </div>
@@ -44,8 +44,8 @@ $folder_tree_refresh_name
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" name="edit_folders_categories_cancel_button" id="edit_folders_categories_cancel_button" data-dismiss="modal">Close</button>
-	      <button type="button" class="btn btn-primary" name="edit_folders_categories_save_button" id="edit_folders_categories_save_button" title="Save">Save</button>
+        <button type="button" class="btn btn-default" name="edit_folders_categories_cancel_button" id="edit_folders_categories_cancel_button" data-dismiss="modal">Fechar</button>
+	      <button type="button" class="btn btn-primary" name="edit_folders_categories_save_button" id="edit_folders_categories_save_button" title="Salvar">Salvar</button>
       </div>
     </div>
   </div>
@@ -95,9 +95,9 @@ function save_folders_categories() {
         });
     }
     if (error == 1){
-        alert('Error setting folder categories!');
+        alert('Erro ao definir as categorias das pastas.');
     } else {
-        if(confirm('Categories set for folder(s)! Refresh <% $folder_tree_type %> Tree?')){
+        if(confirm('As categorias das pastas foram definidas. Atualizar a árvore?')){
             jQuery("[name='<% $folder_tree_refresh_name %>']").trigger("click");
         }
     }

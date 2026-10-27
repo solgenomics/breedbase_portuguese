@@ -15,32 +15,32 @@ $identifier_prefix
         <table class="table table-hover table-bordered" >
 
             <tr>
-                <td><b>Model Name</b></td>
+                <td><b>Nome do modelo</b></td>
                 <td>
                     <div id="model_name">
 % if ($model_name) {
 %   print "<a href=\"/analyses_model/$model_id\">$model_name</a>";
 % } else {
-%   print "<span class='text-danger'>[No Model Name]</span>";
+%   print "<span class='text-danger'>[Nome do modelo não informado]</span>";
 % }
                     </div>
                 </td>
             </tr>
 
-            <tr><td><b>Description</b></td>
+            <tr><td><b>Descrição</b></td>
                 <td>
                     <div id="model_description">
 % if ($model_description) {
 %  print "$model_description";
 % } else {
-%  print "<span class='text-danger'>[No Description]</span>";
+%  print "<span class='text-danger'>[Descrição não informada]</span>";
 % }
                     </div>
                 </td>
             </tr>
 
             <tr>
-                <td><b>Model Type</b></td>
+                <td><b>Tipo de modelo</b></td>
                 <td>
                     <div id="model_type">
 %  print "$model_type_name";
@@ -49,7 +49,7 @@ $identifier_prefix
             </tr>
 
             <tr>
-                <td><b>Model Properties</b></td>
+                <td><b>Propriedades do modelo</b></td>
                 <td>
                     <div id="model_properties">
 %  my $model_properties_string = '';
@@ -62,13 +62,13 @@ $identifier_prefix
             </tr>
 
             <tr>
-                <td><b>Model Files</b></td>
+                <td><b>Arquivos do modelo</b></td>
                 <td>
                     <div id="model_files">
 %  my $model_files_string = '';
 %  while (my ($key, $val) = each %$model_file_ids) {
 %   if ($key) {
-%       $model_files_string .= "$val : <a href=\"/breeders/phenotyping/download/$key\">Download</a><br/>";
+%       $model_files_string .= "$val : <a href=\"/breeders/phenotyping/download/$key\">Baixar</a><br/>";
 %   }
 %  }
 %  print "$model_files_string";

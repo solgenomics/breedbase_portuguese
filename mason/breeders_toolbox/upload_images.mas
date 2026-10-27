@@ -8,40 +8,40 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="uploadImagesDialog">Upload Images</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="uploadImagesDialog">Enviar imagens</h4>
       </div>
       <div class="modal-body">
         <div class="container-fluid">
 
-            <&| /page/explanation.mas, title=>'Template Information' &>
+            <&| /page/explanation.mas, title=>'Informações do modelo' &>
                 <p>
-                <b>File format information</b>
+                <b>Informações sobre o formato do arquivo</b>
                 <br>
-                <a id="upload_images_format_info">Image File Format</a>
+                <a id="upload_images_format_info">Formato do arquivo de imagem</a>
                 </p>
             </&>
 
             <form class="form-horizontal" role="form" method="post" enctype="multipart/form-data" encoding="multipart/form-data" id="upload_images_file_form" name="upload_images_file_form">
                 <div class="form-group">
-                    <label class="col-sm-3 control-label">File Format: </label>
+                    <label class="col-sm-3 control-label">Formato do arquivo: </label>
                     <div class="col-sm-9" >
                         <select class="form-control" id="upload_images_file_format" name="upload_images_file_format">
-                            <option value="images">Images</option>
-                            <option value="images_with_barcodes">Images with Barcodes</option>
-                            <option value="images_with_associated_phenotypes">Images with Associated Phenotypes</option>
+                            <option value="images">Imagens</option>
+                            <option value="images_with_barcodes">Imagens com códigos de barras</option>
+                            <option value="images_with_associated_phenotypes">Imagens com fenótipos associados</option>
                         </select>
                     </div>
                 </div>
                 <div id="upload_images_with_associated_phenotypes_div" style="display:none">
                     <div class="form-group">
-                        <label class="col-sm-3 control-label">Phenotype Spreadsheet: </label>
+                        <label class="col-sm-3 control-label">Planilha de fenótipos: </label>
                         <div class="col-sm-9" >
                             <input type="file" id="upload_associated_phenotypes_file_input" name="upload_images_file_input" encoding="multipart/form-data" accept=".xls, .xlsx"/>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-3 control-label">Images (.zip): </label>
+                        <label class="col-sm-3 control-label">Imagens (.zip): </label>
                         <div class="col-sm-9" >
                             <input type="file" id="upload_images_zip_file_input" name="upload_images_zip_file_input" encoding="multipart/form-data" accept=".zip"/>
                         </div>
@@ -49,7 +49,7 @@
                 </div>
                 <div id="upload_images_div">
                     <div class="form-group">
-                        <label class="col-sm-3 control-label">Image Files: </label>
+                        <label class="col-sm-3 control-label">Arquivos de imagem: </label>
                         <div class="col-sm-9" >
                             <input type="file" id="upload_images_file_input" name="upload_images_file_input" multiple="multiple" accept="image/*">
                         </div>
@@ -65,9 +65,9 @@
         </div>
 
         <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-info" name="upload_images_submit_verify" id="upload_images_submit_verify">Verify</button>
-            <button disabled type="button" class="btn btn-primary" name="upload_images_submit_store" id="upload_images_submit_store" title="First Verify Your File">Store</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+            <button type="button" class="btn btn-info" name="upload_images_submit_verify" id="upload_images_submit_verify">Verificar</button>
+            <button disabled type="button" class="btn btn-primary" name="upload_images_submit_store" id="upload_images_submit_store" title="Primeiro verifique o arquivo">Armazenar</button>
         </div>
 
     </div>
@@ -78,29 +78,29 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="uploadImagesInfoDialog">Template Information</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="uploadImagesInfoDialog">Informações do modelo</h4>
       </div>
       <div class="modal-body">
         <div class="container-fluid">
 
-            <h4>Images Alone:</h4>
+            <h4>Somente imagens:</h4>
             <ul>
-                <li>Select multiple images directly for upload.</li>
-                <li>If the images being uploaded were taken using Fieldbook, they have EXIF data that contains the observationUnitName, traitname, and timestamp. They can be uploaded without needing to change the file name.</li>
-                <li>If images were NOT taken using Fieldbook, image file names should consist of the observationUnitName, traitname, number, and timestamp, all joined by underscores (the default naming system used by Fieldbook App).</li>
+                <li>Selecione diretamente várias imagens para enviar.</li>
+                <li>Se as imagens foram obtidas com o Fieldbook, elas contêm dados EXIF com <code>observationUnitName</code>, <code>traitname</code> e <code>timestamp</code>. Elas podem ser enviadas sem alterar o nome do arquivo.</li>
+                <li>Se as imagens NÃO foram obtidas com o Fieldbook, seus nomes devem conter <code>observationUnitName</code>, <code>traitname</code>, número e <code>timestamp</code>, todos separados por sublinhados (o sistema de nomes padrão do aplicativo Fieldbook).</li>
             </ul>
             <br/>
-            <h4>Images with Barcodes:</h4>
+            <h4>Imagens com códigos de barras:</h4>
             <ul>
-                <li>Upload multiple selected images that contain a barcode with a stock ID.</li>
-                <li>There should only be one barcode in each image, and the associated stock must already exist in the database.</li>
+                <li>Envie várias imagens selecionadas que contenham um código de barras com o ID do material.</li>
+                <li>Deve haver somente um código de barras em cada imagem, e o material associado já deve existir no banco de dados.</li>
             </ul>
             <br/>
-            <h4>Images with Associated Phenotypes:</h4>
+            <h4>Imagens com fenótipos associados:</h4>
             <ul>
-                <li>The "Associated Images" format is useful for uploading a zipfile of images in association with phenotype values.</li>
-                <li>The phenotype values should be included in a .xls or .xlsx spreadsheet with the following columns:</li>
+                <li>O formato "Imagens associadas" permite enviar um arquivo ZIP de imagens associadas a valores fenotípicos.</li>
+                <li>Os valores fenotípicos devem estar em uma planilha .xls ou .xlsx com as seguintes colunas:</li>
                 <br/><table class="table table-hover table-bordered table-condensed table-responsive" >
                     <thead></thead>
                     <tbody>
@@ -114,13 +114,13 @@
                         </tr>
                     </tbody>
                 </table>
-                <li>The values in the <b>image_name</b> column should should match the image filenames in the zipfile.</li>
+                <li>Os valores da coluna <b>image_name</b> devem corresponder aos nomes dos arquivos de imagem contidos no arquivo ZIP.</li>
             </ul>
 
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
       </div>
     </div>
   </div>

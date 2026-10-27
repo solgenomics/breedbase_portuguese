@@ -5,20 +5,20 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="uploadRenameAccessionValidateDialog">Results From Validation</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="uploadRenameAccessionValidateDialog">Resultados da validação</h4>
       </div>
       <div class="modal-body">
         <div class="container-fluid">
-          <input type="checkbox" checked id="store_old_name_as_synonym" />&nbsp;Store old names as synonyms of the accessions</div>
+          <input type="checkbox" checked id="store_old_name_as_synonym" />&nbsp;Armazenar os nomes antigos como sinônimos dos acessos</div>
  	<table class="table table-hover">
     	  <tbody></tbody>
   	</table>
       </div>
 
       <div class="modal-footer">
-	<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-	<button type="button" class="btn btn-primary" name="upload_rename_accessions_store" id="upload_rename_accessions_store" data-dismiss="modal">Rename and store</button>
+	<button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+	<button type="button" class="btn btn-primary" name="upload_rename_accessions_store" id="upload_rename_accessions_store" data-dismiss="modal">Renomear e armazenar</button>
       </div>
     </div>
   </div>
@@ -30,16 +30,16 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="uploadRenameAccessionsSuccessDialog">Upload Successful</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="uploadRenameAccessionsSuccessDialog">Envio concluído com sucesso</h4>
       </div>
       <div class="modal-body">
         <div class="container-fluid">
- 	  <h2>The accession renaming list upload was successful.</h2>
+          <h2>A lista para renomear acessos foi enviada com sucesso.</h2>
 	  
-	  Successfully renamed:<br />
+	  Renomeados com sucesso:<br />
 	  <div class="bg-success" id="list_of_uploaded_rename_accessions">
-	       [loading...]
+	       [carregando...]
 	  </div>
 	  <br />
 	  
@@ -48,7 +48,7 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" id="rename_accessions_upload_success_dismiss" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" id="rename_accessions_upload_success_dismiss" class="btn btn-default" data-dismiss="modal">Fechar</button>
       </div>
     </div>
   </div>
@@ -59,28 +59,28 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="uploadRenameAccessionsDialog">Upload Rename Accessions Information</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="uploadRenameAccessionsDialog">Enviar informações para renomear acessos</h4>
       </div>
       <div class="modal-body">
         <div class="container-fluid">
-    	  <&| /page/explanation.mas, title=>'Template Information' &>
+          <&| /page/explanation.mas, title=>'Informações do modelo' &>
     	  <p>
-      	  <b>File format information</b>
+            <b>Informações sobre o formato do arquivo</b>
       	  <br>
-      	  <a id="rename_accessions_upload_spreadsheet_format_info_link" data-toggle='modal' data-target='#rename_accessions_upload_spreadsheet_format_info_dialog'>Spreadsheet Format</a>
+            <a id="rename_accessions_upload_spreadsheet_format_info_link" data-toggle='modal' data-target='#rename_accessions_upload_spreadsheet_format_info_dialog'>Formato da planilha</a>
     	  </p>
   	  </&>
 
   	  <form method="post" enctype="multipart/form-data" encoding="multipart/form-data" id="upload_rename_accessions_form" name="upload_rename_accessions_form">
-    	    <label for="rename_accession_uploaded_file" style="display: inline-block; width: 300px;">Upload Rename Accessions File:</label>
+            <label for="rename_accession_uploaded_file" style="display: inline-block; width: 300px;">Enviar arquivo para renomear acessos:</label>
     	    <input type="file" name="rename_accessions_uploaded_file" id="rename_accessions_uploaded_file" encoding="multipart/form-data" />
     	  </form>
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-	<button type="button" class="btn btn-primary" name="upload_rename_accessions_dialog_submit" id="upload_rename_accessions_dialog_submit">Validate</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+	<button type="button" class="btn btn-primary" name="upload_rename_accessions_dialog_submit" id="upload_rename_accessions_dialog_submit">Validar</button>
       </div>
     </div>
   </div>
@@ -90,39 +90,38 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="renameAccessionsUploadInfoDialog">Template Information</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="renameAccessionsUploadInfoDialog">Informações do modelo</h4>
       </div>
       <div class="modal-body">
         <div class="container-fluid">
- 	  <b>Accession renaming information may be uploaded in tab-delimited text file format</b>
+	  <b>As informações para renomear acessos podem ser enviadas em um arquivo de texto delimitado por tabulações.</b>
 	  <br>
-	  <p>(.xls or .xlsx formats are <b>NOT</b> supported)</p>
+	  <p>Os formatos .xls e .xlsx <b>NÃO</b> são aceitos.</p>
 	  <hr>
-	  <b>Header:</b>
+	  <b>Cabeçalho:</b>
 	  <br>
-	  <p>The first row (header) should contain the following:</p>
+	  <p>A primeira linha (cabeçalho) deve conter:</p>
 	  
 	  <table class="table table-hover table-bordered">
   	    <body>
 	      <tr>
-    		<td>old_name</td>
-		<td>new_name</td>
+		<td>Nome antigo<br><code>old_name</code></td>
+		<td>Novo nome<br><code>new_name</code></td>
   	      </tr>
 	    </body>
 	  </table>
 	  
-	  <h4>Required fields:</h4>
+	  <h4>Campos obrigatórios:</h4>
 	  <ul>
-            <li>old_name (exact name MUST exist in the database)</li>
-            <li>new_name (must NOT exist in the database)</li>
+            <li>Nome antigo — <code>old_name</code> (o nome exato DEVE existir no banco de dados)</li>
+            <li>Novo nome — <code>new_name</code> (NÃO pode existir no banco de dados)</li>
 	  </ul>
 	</div>
       </div>
       <div class="modal-footer">
-	<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	<button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
       </div>
     </div>
   </div>
 </div>
-

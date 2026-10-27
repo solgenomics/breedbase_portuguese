@@ -20,25 +20,25 @@ my $size = "small";
 
 
 <center>
-<h1>CASSAVABASE MULTI-BARCODE SHEET</h1>
+<h1>FOLHA DE MÚLTIPLOS CÓDIGOS DE BARRAS DO CASSAVABASE</h1>
 
 <br />
 <br />
 <div class="boxbgcolor5">
-Scan the following barcodes once
+Leia os códigos de barras abaixo uma vez
 </div>
 
 <table>
-<tr><td><font size="4">Operator</font></td>
+<tr><td><font size="4">Responsável</font></td>
 
 <td><img src="/barcode/image/?code=O:<% $encoded_operator %>&size=<% $size %>" /></td></tr>
 
-<tr><td><font size="4">Today's Date</font></td>
+<tr><td><font size="4">Data de hoje</font></td>
 <td><img src="/barcode/image/?code=D:<% $encoded_date %>&size=<% $size %>" /></td></tr>
-<tr><td><font size="4">Project</font></td>
+<tr><td><font size="4">Projeto</font></td>
 
 <td><img src="/barcode/image/?code=P:<% $project %>&size=<% $size %>" /></td></tr>
-<tr><td><font size="4">Location</font></td>
+<tr><td><font size="4">Local</font></td>
 <td><img src="/barcode/image/?code=L:<% $location %>&size=<% $size %>" /></td></tr>
 </table>
 
@@ -47,7 +47,7 @@ Scan the following barcodes once
 
 
 <div class="boxbgcolor5">
-Scan the barcode for the plant to be phenotyped, then scan the phenotype barcode, then enter the number on the keypad
+Leia o código da planta a ser fenotipada, depois o código do fenótipo e informe o número no teclado numérico
 </div>
 
 

@@ -9,62 +9,62 @@ $management_factor_type => undef
 
 <table class="table table-hover table-bordered" >
     <tr>
-    <td><b>Treatment Name</b></td>
+    <td><b>Nome do tratamento</b></td>
     <td>
         <div id="management_factor_name">
 % if ($trial_name) {
 %   print "$trial_name";
 % } else {
-%   print "[No Name]";
+%   print "[Sem nome]";
 % }
         </div>
     </td>
     </tr>
     <tr>
-    <td><b>Treatment Description</b></td>
+    <td><b>Descrição do tratamento</b></td>
     <td>
         <div id="management_factor_description">
 % if ($trial_description) {
 %   print "$trial_description";
 % } else {
-%   print "[No Description]";
+%   print "[Sem descrição]";
 % }
         </div>
     </td>
     </tr>
     <tr>
-    <td><b>Treatment Type</b></td>
+    <td><b>Tipo de tratamento</b></td>
     <td>
         <div id="management_factor_type">
 % if ($management_factor_type) {
 %   print "$management_factor_type";
 % } else {
-%   print "[No Type]";
+%   print "[Sem tipo]";
 % }
         </div>
     </td>
     </tr>
     <tr>
-    <td><b>Treatment Year</b></td>
+    <td><b>Ano do tratamento</b></td>
     <td>
         <div id="management_factor_year">
 % if ($year) {
 %   print "$year";
 % } else {
-%   print "[No Year]";
+%   print "[Sem ano]";
 % }
         </div>
     </td>
     </tr>
     </tr>
     <tr>
-    <td><b>Treatment Date</b></td>
+    <td><b>Data do tratamento</b></td>
     <td>
         <div id="management_factor_date">
 % if ($management_factor_date) {
 %   print "$management_factor_date";
 % } else {
-%   print "[No Date]";
+%   print "[Sem data]";
 % }
         </div>
     </td>

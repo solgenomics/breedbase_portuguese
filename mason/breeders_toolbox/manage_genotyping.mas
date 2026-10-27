@@ -6,25 +6,25 @@ $breeding_programs
 $facilities => ();
 </%args>
 
-<& /page/page_title.mas, title=>"Manage Genotyping Plates" &>
+<& /page/page_title.mas, title=>"Gerenciar placas de genotipagem" &>
 
 <div class="container-fluid">
-    <&| /page/explanation.mas, title=>'Important Notice', collapsible=>1, collapsed=>0, &>
+    <&| /page/explanation.mas, title=>'Aviso importante', collapsible=>1, collapsed=>0, &>
         <p>
-            <b>Important notice:</b> Manage Genotyping Plates page will soon be removed and replaced by Manage Genotyping Projects page. Genotyping project can be used to organize both genotyping plates and associated genotyping data.
+            <b>Aviso importante:</b> a página Gerenciar placas de genotipagem será removida em breve e substituída pela página Gerenciar projetos de genotipagem. Um projeto de genotipagem pode organizar tanto as placas quanto os dados de genotipagem associados.
             <br/><br/>
-            <b>For previously created genotyping plates:</b>Please move your genotyping plates to a desired genotyping project. On each genotyping project details page, you will find <b>Genotyping Plates</b> section which displays all of the plates included in the project, as well as a link for <b>Move Genotyping Plates to this Project</b> dialog.
+            <b>Para placas de genotipagem já criadas:</b> mova-as para o projeto de genotipagem desejado. Na página de detalhes de cada projeto, a seção <b>Placas de genotipagem</b> exibe todas as placas incluídas e oferece o diálogo <b>Mover placas de genotipagem para este projeto</b>.
             <br/><br/>
-            <b>For new genotyping plates:</b>You can specify genotyping project during creating or uploading new genotyping plates.
+            <b>Para novas placas de genotipagem:</b> você pode especificar o projeto ao criar ou enviar as placas.
             <br/><br/>
-            Folders for genotyping plates are now obsoleted.
+            As pastas de placas de genotipagem agora são obsoletas.
             <br/><br/>
-            Links for adding/uploading genotyping plates and related data have been moved to Manage Genotyping Projects page.
-            <a href="/breeders/genotyping_projects"><p>Go To Manage Genotyping Projects</p></a>
+            Os links para adicionar ou enviar placas de genotipagem e dados relacionados foram transferidos para a página Gerenciar projetos de genotipagem.
+            <a href="/breeders/genotyping_projects"><p>Ir para Gerenciar projetos de genotipagem</p></a>
         </p>
     </&>
 
-    <&| /page/info_section.mas, title=>'Genotyping Plates', collapsible=>1, collapsed=>0, subtitle => ' ' &>
+    <&| /page/info_section.mas, title=>'Placas de genotipagem', collapsible=>1, collapsed=>0, subtitle => ' ' &>
         <& /breeders_toolbox/genotyping_trials/trials.mas, trials_by_breeding_project=>$genotyping_trials_by_breeding_project, locations=>$locations,  breeding_programs=>$breeding_programs, facilities=>$facilities &>
     </&>
 

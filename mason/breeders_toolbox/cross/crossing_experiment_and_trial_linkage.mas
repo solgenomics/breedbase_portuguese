@@ -8,11 +8,11 @@ $trial_id
 <div class="well well-sm">
     <div class="panel panel-default">
         <div class="panel-body">
-            <&| /page/info_section.mas, title=>"Field trial source(s) of parents used in crossing", id => 'field_trial_sources_of_parent_section', is_subsection => 1, collapsible=>1, collapsed=>1 &>
+            <&| /page/info_section.mas, title=>"Ensaios de campo de origem dos parentais usados nos cruzamentos", id => 'field_trial_sources_of_parent_section', is_subsection => 1, collapsible=>1, collapsed=>1 &>
                 <table class="table table-hover table-bordered" id="field_trial_sources_of_parents_table">
                     <thead>
                         <tr>
-                            <th>Field Trial</th>
+                            <th>Ensaio de campo</th>
                         </tr>
                     </thead>
                 </table>
@@ -21,11 +21,11 @@ $trial_id
     </div>
     <div class="panel panel-default">
         <div class="panel-body">
-            <&| /page/info_section.mas, title=>"Field trial(s) for evaluating crosses in this experiment", id => 'field_trials_for_evaluating_crosses_section', is_subsection => 1, collapsible=>1, collapsed=>1 &>
+            <&| /page/info_section.mas, title=>"Ensaios de campo que avaliam os cruzamentos deste experimento", id => 'field_trials_for_evaluating_crosses_section', is_subsection => 1, collapsible=>1, collapsed=>1 &>
                 <table class="table table-hover table-bordered" id="field_trials_for_evaluating_crosses_table">
                     <thead>
                         <tr>
-                            <th>Field Trial</th>
+                            <th>Ensaio de campo</th>
                         </tr>
                     </thead>
                 </table>

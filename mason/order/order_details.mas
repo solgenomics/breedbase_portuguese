@@ -19,52 +19,52 @@ $tracking_order_activity => undef
 <& /util/import_javascript.mas, classes => [ 'jquery', 'jquery.dataTables'] &>
 <& /util/import_css.mas, paths => ['/documents/inc/datatables/jquery.dataTables.css'] &>
 
-<& /page/page_title.mas, title => "Details for Order Number: $order_id" &>
+<& /page/page_title.mas, title => "Detalhes do pedido número: $order_id" &>
 
-<&| /page/info_section.mas, title=>"Details",  collapsible => 1, collapsed=>0 &>
+<&| /page/info_section.mas, title=>"Detalhes",  collapsible => 1, collapsed=>0 &>
 
     <div class="panel panel-default">
         <div class="panel-body">
             <div class="row">
                 <div class="col-sm-6">
                     <table class="table table-bordered table-hover">
-                        <tr><td><b>Ordered by</b></td><td><% $order_from %></td></tr>
-                        <tr><td><b>Submitted Date</b></td><td><% $create_date %></td></tr>
-                        <tr><td><b>Items</b></td><td><% $item_list %></td></tr>
-                        <tr><td><b>Sent Order to</b></td><td><% $order_to %></td></tr>
-                        <tr><td><b>Status</b><td><% $order_status %></td></tr>
-                        <tr><td><b>Comments</b></td><td><% $comments %></td></tr>
+                        <tr><td><b>Solicitado por</b></td><td><% $order_from %></td></tr>
+                        <tr><td><b>Data de envio</b></td><td><% $create_date %></td></tr>
+                        <tr><td><b>Itens</b></td><td><% $item_list %></td></tr>
+                        <tr><td><b>Pedido enviado para</b></td><td><% $order_to %></td></tr>
+                        <tr><td><b>Situação</b><td><% $order_status %></td></tr>
+                        <tr><td><b>Comentários</b></td><td><% $comments %></td></tr>
                     </table>
                 </div>
             </div>
-            <td><a href="/order/stocks/view"><p>Go to Manage Order Page</p></a></td>
+            <td><a href="/order/stocks/view"><p>Ir para a página de gerenciamento de pedidos</p></a></td>
         </div>
     </div>
 % if (($ordering_type eq 'single_step') && ($order_status ne 'completed') && ($check_vendor_role != 1)) {
-    <button class="btn btn-sm btn-primary" style="margin:3px" id="re_order_link">Re-Order</button>
+    <button class="btn btn-sm btn-primary" style="margin:3px" id="re_order_link">Repetir pedido</button>
 %}
 % if (($ordering_type eq 'single_step') && ($order_status eq 'completed') && ($check_vendor_role != 1)) {
-    <button class="btn btn-sm btn-primary" style="margin:3px" id="re_order_link">Re-Order</button><button class="btn btn-sm btn-primary" style="margin:3px" id="requester_re_open_link">Re-Open</button>
+    <button class="btn btn-sm btn-primary" style="margin:3px" id="re_order_link">Repetir pedido</button><button class="btn btn-sm btn-primary" style="margin:3px" id="requester_re_open_link">Reabrir</button>
 %}
 % if (($ordering_type eq 'single_step') && ($order_status eq 'completed') && ($check_vendor_role == 1)) {
-    <button class="btn btn-sm btn-primary" style="margin:3px" id="requester_re_open_link">Re-Open</button>
+    <button class="btn btn-sm btn-primary" style="margin:3px" id="requester_re_open_link">Reabrir</button>
 %}
 %if ($ordering_type ne 'single_step' && $order_status eq 'completed') {
-    <button class="btn btn-sm btn-primary" style="margin:3px" id="re_open_link">Re-Open</button>
+    <button class="btn btn-sm btn-primary" style="margin:3px" id="re_open_link">Reabrir</button>
 %}
 
 </&>
 
 % if (($check_vendor_role == 1) && $tracking_order_activity) {
-    <&| /page/info_section.mas, title => 'Tracking Order Progress', collapsible=>1, collapsed=>0 &>
+    <&| /page/info_section.mas, title => 'Acompanhamento dos pedidos', collapsible=>1, collapsed=>0 &>
         <div class = "well well-sm">
             <div class = "panel panel-default">
                 <div class = "panel-body">
                     <!--
-                    <button id="download_item_file_button" class="btn btn-primary">Download Item File</button>
-                    <button id="download_ontology_file_button" class="btn btn-primary">Download Data Collection Ontologies</button>
+                    <button id="download_item_file_button" class="btn btn-primary">Baixar arquivo de itens</button>
+                    <button id="download_ontology_file_button" class="btn btn-primary">Baixar ontologias de coleta de dados</button>
                     -->
-                    <button id="generate_item_barcode_button" class="btn btn-primary">Generate Item Barcode</button>
+                    <button id="generate_item_barcode_button" class="btn btn-primary">Gerar código de barras do item</button>
                 </div>
             </div>
         </div>

@@ -6,9 +6,9 @@ $analytics_protocol_name
 <table class="table table-hover table-bordered" id="analytics_protocols_result_files_table">
     <thead>
         <tr>
-            <th>File Name</th>
-            <th>File Type</th>
-            <th>Download</th>
+            <th>Nome do arquivo</th>
+            <th>Tipo de arquivo</th>
+            <th>Baixar</th>
         </tr>
     </thead>
     <tbody>

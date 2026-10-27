@@ -10,7 +10,7 @@ $allow_delete => 0
 % if (scalar(@$files)>0) {
 <table class="table table-bordered files_datatables" alt="">
 <thead>
-  <tr><th>Filename</th><th>Date Uploaded</th><th>Options</th></tr>
+  <tr><th>Nome do arquivo</th><th>Data de envio</th><th>Opções</th></tr>
 </thead>
 <tbody>
 % foreach my $f (@$files) { 
@@ -19,9 +19,9 @@ $allow_delete => 0
     <td><% $f->{create_date} %></td>
     <td>
 % if ($allow_delete){
-    <button class="btn btn-default btn-sm" name="delete_pheno_file_link" data-file_id="<% $f->{file_id} %>" >Delete</button> | 
+    <button class="btn btn-default btn-sm" name="delete_pheno_file_link" data-file_id="<% $f->{file_id} %>" >Excluir</button> |
 % }
-    <a href="/breeders/phenotyping/view/<% $f->{file_id} %>">View</a> | <a href="/breeders/phenotyping/download/<% $f->{file_id} %>">Download</a></td>
+    <a href="/breeders/phenotyping/view/<% $f->{file_id} %>">Visualizar</a> | <a href="/breeders/phenotyping/download/<% $f->{file_id} %>">Baixar</a></td>
   </tr>
 % }
 </tbody>

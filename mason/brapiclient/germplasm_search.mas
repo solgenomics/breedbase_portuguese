@@ -3,9 +3,9 @@
 
 <& /util/import_javascript.mas, classes => [ 'brapi.Table' ] &>
 
-<& /page/page_title.mas, title=>"Germplasm Search and Exchange" &>
+<& /page/page_title.mas, title=>"Busca e intercâmbio de germoplasma" &>
 
-<h4>Database Select</h4>
+<h4>Selecionar banco de dados</h4>
 <select name="brapi_home_url_select" id="brapi_home_url_select" class="form-control" />
     <option value="">local</option>
     <option value="https://cassbase.org">cassbase.org</option>
@@ -18,22 +18,22 @@
     <option value="https://www.crop-diversity.org/mgis">crop-diversity.org</option>
 </select>
 
-<h4>Germplasm Search</h4>
+<h4>Busca de germoplasma</h4>
 
 <div id="brapi_germplasm_search_home_div" class="well">
 
-<input name="brapi_germplasm_search_germplasmName" id="brapi_germplasm_search_germplasmname" class="form-control" type="text" placeholder="GermplasmName(s) e.g. TMEB419,TMEB529" />
-<input name="brapi_germplasm_search_accessionNumber" id="brapi_germplasm_search_accessionNumber" class="form-control" type="text" placeholder="AccessionNumber" />
-<input name="brapi_germplasm_search_germplasmGenus" id="brapi_germplasm_search_germplasmGenus" class="form-control" type="text" placeholder="GermplasmGenus" />
-<input name="brapi_germplasm_search_germplasmSpecies" id="brapi_germplasm_search_germplasmSpecies" class="form-control" type="text" placeholder="GermplasmSpecies" />
-<input name="brapi_germplasm_search_germplasmDbId" id="brapi_germplasm_search_germplasmDbId" class="form-control" type="text" placeholder="GermplasmDbId" />
-<input name="brapi_germplasm_search_germplasmPUI" id="brapi_germplasm_search_germplasmPUI" class="form-control" type="text" placeholder="GermplasmPUI" />
+<input name="brapi_germplasm_search_germplasmName" id="brapi_germplasm_search_germplasmname" class="form-control" type="text" placeholder="Nomes do germoplasma, ex.: TMEB419,TMEB529" />
+<input name="brapi_germplasm_search_accessionNumber" id="brapi_germplasm_search_accessionNumber" class="form-control" type="text" placeholder="Número do acesso" />
+<input name="brapi_germplasm_search_germplasmGenus" id="brapi_germplasm_search_germplasmGenus" class="form-control" type="text" placeholder="Gênero do germoplasma" />
+<input name="brapi_germplasm_search_germplasmSpecies" id="brapi_germplasm_search_germplasmSpecies" class="form-control" type="text" placeholder="Espécie do germoplasma" />
+<input name="brapi_germplasm_search_germplasmDbId" id="brapi_germplasm_search_germplasmDbId" class="form-control" type="text" placeholder="ID do germoplasma" />
+<input name="brapi_germplasm_search_germplasmPUI" id="brapi_germplasm_search_germplasmPUI" class="form-control" type="text" placeholder="Identificador único permanente do germoplasma" />
 <select name="brapi_germplasm_search_matchMethod" id="brapi_germplasm_search_matchMethod" class="form-control" />
-    <option value="exact">Exact</option>
-    <option value="wildcard">Wildcard. Wildcard allows % or * for multiple characters and ? for single characters.</option>
+    <option value="exact">Exata</option>
+    <option value="wildcard">Curingas: use % ou * para vários caracteres e ? para um único caractere.</option>
 </select>
 <br/>
-<button class="btn btn-primary" name="brapi_germplasm_search_submit" id="brapi_germplasm_search_submit">Search</button>
+<button class="btn btn-primary" name="brapi_germplasm_search_submit" id="brapi_germplasm_search_submit">Buscar</button>
 
 <br/><br/>
 
@@ -46,8 +46,8 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header" style="text-align: center">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="brapiGermplasmSearchSavedDialog">BrAPI Germplasm Exchange</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="brapiGermplasmSearchSavedDialog">Intercâmbio de germoplasma via BrAPI</h4>
             </div>
             <div class="modal-body">
                 <div class="container-fluid">
@@ -55,7 +55,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button id="close_brapi_germplasm_saved_message_modal" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button id="close_brapi_germplasm_saved_message_modal" type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
             </div>
         </div>
     </div>
@@ -140,7 +140,7 @@ jQuery(document).ready(function() {
           },
           error: function(response) {
             jQuery('#working_modal').modal('hide');
-            alert('An error occurred');
+            alert('Ocorreu um erro');
           }
         });
     });
@@ -176,14 +176,14 @@ jQuery(document).ready(function() {
                 }
                 console.log(response);
 
-                var html = '<h3>How Selected Organisms Compare to This Database:</h3>';
-                html = html + '<table class="table table-bordered"><thead><tr><th>Species</th><th>Status</th><th>Possible Matches</th></tr></thead><tbody>';
+                var html = '<h3>Comparação dos organismos selecionados com este banco de dados:</h3>';
+                html = html + '<table class="table table-bordered"><thead><tr><th>Espécie</th><th>Situação</th><th>Possíveis correspondências</th></tr></thead><tbody>';
                 for (var i=0; i<response.found_organisms.length; i++){
-                    html = html + '<tr><td>' + response.found_organisms[i].unique_name + '</td><td class="bg-success">Exact Species Found in This Database</td><td>Exact Match</td></tr>';
+                    html = html + '<tr><td>' + response.found_organisms[i].unique_name + '</td><td class="bg-success">Espécie exata encontrada neste banco de dados</td><td>Correspondência exata</td></tr>';
                     allowed_organism_results.push(response.found_organisms[i].unique_name);
                 }
                 for (var i=0; i<response.fuzzy_organisms.length; i++){
-                    html = html + '<tr><td>' + response.fuzzy_organisms[i].name + '</td><td class="bg-danger">Possible Species Matches Found in This Database, but Not Exact Match. Please Contact Us to Add Your Organism, or change Your Species to Match Our Species Name!</td>';
+                    html = html + '<tr><td>' + response.fuzzy_organisms[i].name + '</td><td class="bg-danger">Foram encontradas possíveis correspondências para a espécie neste banco de dados, mas nenhuma exata. Entre em contato conosco para adicionar seu organismo ou ajuste o nome da espécie para corresponder ao nome usado aqui!</td>';
                     html = html + '<td><select class="form-control">'
                     for (var j=0; j<response.fuzzy_organisms[i].matches.length; j++){
                         html = html + '<option value="'+response.fuzzy_organisms[i].matches[j].name+'">'+response.fuzzy_organisms[i].matches[j].name+'</option>'
@@ -191,17 +191,17 @@ jQuery(document).ready(function() {
                     html = html + '</select></td></tr>';
                 }
                 for (var i=0; i<response.absent_organisms.length; i++){
-                    html = html + '<tr><td>' + response.absent_organisms[i] + '</td><td class="bg-danger">Please Contact Us to Add Your Organism, or change Your Species to Match Our Species Name!</td><td>No Match</td></tr>';
+                    html = html + '<tr><td>' + response.absent_organisms[i] + '</td><td class="bg-danger">Entre em contato conosco para adicionar seu organismo ou ajuste o nome da espécie para corresponder ao nome usado aqui!</td><td>Nenhuma correspondência</td></tr>';
                 }
                 html = html + '</tbody></table>';
 
-                html = html + '<h3>How Selected GermplasmNames Compare to This Database:</h3>';
-                html = html + '<table class="table table-bordered"><thead><tr><th>Select</th><th>GermplasmName</th><th>Status</th><th>Possible Matches</th></tr></thead><tbody>';
+                html = html + '<h3>Comparação dos nomes de germoplasma selecionados com este banco de dados:</h3>';
+                html = html + '<table class="table table-bordered"><thead><tr><th>Selecionar</th><th>Nome do germoplasma</th><th>Situação</th><th>Possíveis correspondências</th></tr></thead><tbody>';
                 for (var i=0; i<response.found.length; i++){
-                    html = html + '<tr><td><input type="checkbox" name="brapi_germplasm_search_collection_select" disabled/></td><td>' + response.found[i].unique_name + '</td><td class="bg-success">Exact GermplasmName Found in This Database</td><td>Exact Match</td></tr>';
+                    html = html + '<tr><td><input type="checkbox" name="brapi_germplasm_search_collection_select" disabled/></td><td>' + response.found[i].unique_name + '</td><td class="bg-success">Nome exato de germoplasma encontrado neste banco de dados</td><td>Correspondência exata</td></tr>';
                 }
                 for (var i=0; i<response.fuzzy.length; i++){
-                    html = html + '<tr><td><input type="checkbox" name="brapi_germplasm_search_collection_select" value="' + response.fuzzy[i].name + '"/></td><td>' + response.fuzzy[i].name + '</td><td class="bg-info">Possible GermplasmName Matches Found in This Database</td>';
+                    html = html + '<tr><td><input type="checkbox" name="brapi_germplasm_search_collection_select" value="' + response.fuzzy[i].name + '"/></td><td>' + response.fuzzy[i].name + '</td><td class="bg-info">Possíveis correspondências de nomes de germoplasma encontradas neste banco de dados</td>';
                     html = html + '<td><select class="form-control">'
                     for (var j=0; j<response.fuzzy[i].matches.length; j++){
                         html = html + '<option value="'+response.fuzzy[i].matches[j].name+'">'+response.fuzzy[i].matches[j].name+'</option>'
@@ -209,15 +209,15 @@ jQuery(document).ready(function() {
                     html = html + '</select></td></tr>';
                 }
                 for (var i=0; i<response.absent.length; i++){
-                    html = html + '<tr><td><input type="checkbox" name="brapi_germplasm_search_collection_select" value="' + response.absent[i] + '"/></td><td>' + response.absent[i] + '</td><td class="bg-warning">GermplasmName Not Found in This Database</td><td>No Match</td></tr>';
+                    html = html + '<tr><td><input type="checkbox" name="brapi_germplasm_search_collection_select" value="' + response.absent[i] + '"/></td><td>' + response.absent[i] + '</td><td class="bg-warning">Nome de germoplasma não encontrado neste banco de dados</td><td>Nenhuma correspondência</td></tr>';
                 }
-                html = html + '</tbody></table><button class="btn btn-primary" name="brapi_germplasm_search_submit_final" id="brapi_germplasm_search_submit_final">Save in Database</button>';
+                html = html + '</tbody></table><button class="btn btn-primary" name="brapi_germplasm_search_submit_final" id="brapi_germplasm_search_submit_final">Salvar no banco de dados</button>';
                 jQuery('#working_modal').modal('hide');
                 jQuery('#brapi_germplasm_search_result_div_collection').html(html);
             },
             'error': function(response){
                 jQuery('#working_modal').modal('hide');
-                alert('An error occurred in fuzzy search!');
+                alert('Ocorreu um erro na busca aproximada!');
             }
         })
     });
@@ -241,7 +241,7 @@ jQuery(document).ready(function() {
                 'success': function(response){
                     //console.log(response);
                     if (jQuery.inArray(response.result.data[0].species, allowed_organism_results) == -1){
-                        alert('Will Skip '+response.result.data[0].germplasmName+' because the species '+response.result.data[0].species+' is not in this database!');
+                        alert('Será ignorado '+response.result.data[0].germplasmName+' porque a espécie '+response.result.data[0].species+' não está neste banco de dados!');
                     } else {
                         to_save.push(response.result.data[0]);
                     }
@@ -251,7 +251,7 @@ jQuery(document).ready(function() {
                     request++;
                 },
                 'error': function(response){
-                    alert('An error occurred getting details to save!');
+                    alert('Ocorreu um erro ao obter os detalhes para salvar!');
                 }
             });
         }
@@ -287,7 +287,7 @@ function perform_save(to_save){
             jQuery('#working_modal').modal('hide');
         },
         'error': function(response){
-            alert('An error occurred in fuzzy search!');
+            alert('Ocorreu um erro na busca aproximada!');
             jQuery('#working_modal').modal('hide');
         }
     })

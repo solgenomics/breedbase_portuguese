@@ -13,30 +13,30 @@ $curator => undef
 
 <br>
 
-<button id="select_all_subplots_btn" class="btn btn-primary">Select/Deselect All</button>
+<button id="select_all_subplots_btn" class="btn btn-primary">Selecionar/desmarcar todas</button>
 
 <br>
 
 <div class="panel panel-default">
     <div class="panel-body">
-        <&| /page/info_section.mas, title => 'Add subplots to a list', collapsible=>1, collapsed=>0, subtitle=>'<i>Add subplots in this trial to a new or exisiting list</i>'&>
+        <&| /page/info_section.mas, title => 'Adicionar subparcelas a uma lista', collapsible=>1, collapsed=>0, subtitle=>'<i>Adicione as subparcelas deste ensaio a uma lista nova ou existente</i>'&>
         <br>
             <table style="width:100%">
                 <tr>
                     <td>
-                        <input style="width:85%" class="form-control input-sm" type="text" id="subplot_select_new_list_name" placeholder="New list name..."/>
-                        <input style="width:85%" class="form-control input-sm" type="text" id="subplot_select_new_list_description" placeholder="New list description..."/>
-                        <button class="btn btn-primary btn-sm" id="subplot_select_add_to_new_list_btn" type="button">Add selection to new list</button>
+                        <input style="width:85%" class="form-control input-sm" type="text" id="subplot_select_new_list_name" placeholder="Nome da nova lista..."/>
+                        <input style="width:85%" class="form-control input-sm" type="text" id="subplot_select_new_list_description" placeholder="Descrição da nova lista..."/>
+                        <button class="btn btn-primary btn-sm" id="subplot_select_add_to_new_list_btn" type="button">Adicionar seleção à nova lista</button>
                     </td>
                     <td>
                         <div id="subplot_select_existing_list_name" style="width:85%"></div>
-                        <button class="btn btn-primary btn-sm" id="subplot_select_add_to_existing_list_btn" type="button">Add selection to existing list</button>
+                        <button class="btn btn-primary btn-sm" id="subplot_select_add_to_existing_list_btn" type="button">Adicionar seleção à lista existente</button>
                     </td>
                 </tr>
             </table>
 % if ($curator) {
             <br>
-            <button id="subplot_select_delete_subplots" class="btn btn-danger">Delete selected subplots</button>
+            <button id="subplot_select_delete_subplots" class="btn btn-danger">Excluir subparcelas selecionadas</button>
 % } 
         </&>
     </div>
@@ -74,8 +74,8 @@ jQuery(document).ready(function () {
                 jQuery('#subplot_select_existing_list_name').html(lo.listSelect('subplot_select_existing_list_name', ['subplots'], undefined, undefined, undefined));
             },
             error: function(response) {
-                jQuery('#trial_subplots_html').html("error");
-                alert("An error occurred");
+                jQuery('#trial_subplots_html').html("erro");
+                alert("Ocorreu um erro.");
             }
         });
     });
@@ -103,7 +103,7 @@ jQuery(document).ready(function () {
             success : function(response) {
                 if (response.error) {
                     jQuery('#working_modal').modal("hide");
-                    alert("An error occurred: " + response.error);
+                    alert("Ocorreu um erro: " + response.error);
                 } else {
                     let new_list_id = response.list_id;
                     jQuery.ajax({
@@ -111,7 +111,7 @@ jQuery(document).ready(function () {
                         success: function(response) {
                             if (response.error) {
                                 jQuery('#working_modal').modal("hide");
-                                alert("The new list was created, but an error occurred adding items to it: " + response.error);
+                                alert("A nova lista foi criada, mas ocorreu um erro ao adicionar os itens: " + response.error);
                             } else {
                                 jQuery.ajax({
                                     url : '/list/add/bulk',
@@ -127,30 +127,30 @@ jQuery(document).ready(function () {
                                     success : function(response) { 
                                         jQuery('#working_modal').modal("hide");
                                         if (response.error) {
-                                            alert("The new list was created, but an error occurred adding items to it: " + response.error);
+                                            alert("A nova lista foi criada, mas ocorreu um erro ao adicionar os itens: " + response.error);
                                         } else {
-                                            alert("List created.");
+                                            alert("Lista criada.");
                                             var lo = new CXGN.List();
                                             jQuery('#subplot_select_existing_list_name').html(lo.listSelect('subplot_select_existing_list_name', ['subplots'], undefined, undefined, undefined));
                                         }
                                     },
                                     error : function(error) {
                                         jQuery('#working_modal').modal("hide");
-                                        alert("The new list was created, but a server error occurred adding items to it.");
+                                        alert("A nova lista foi criada, mas ocorreu um erro do servidor ao adicionar os itens.");
                                     }
                                 });
                             }
                         },
                         error : function() {
                             jQuery('#working_modal').modal("hide");
-                            alert("The new list was created, but a server error occurred adding items to it.");
+                            alert("A nova lista foi criada, mas ocorreu um erro do servidor ao adicionar os itens.");
                         }
                     });
                 }
             },
             error : function() {
                 jQuery('#working_modal').modal("hide");
-                alert("A server error occurred making new list.");
+                alert("Ocorreu um erro do servidor ao criar a nova lista.");
             }
         })
     });
@@ -173,20 +173,20 @@ jQuery(document).ready(function () {
             success : function(response) {
                 jQuery('#working_modal').modal("hide");
                 if (response.error) {
-                    alert("Error adding items to list: " + response.error);
+                    alert("Erro ao adicionar itens à lista: " + response.error);
                 } else {
-                    alert("Subplots added to list.");
+                    alert("Subparcelas adicionadas à lista.");
                 }
             },
             error : function() {
                 jQuery('#working_modal').modal("hide");
-                alert("Server error adding subplots to list.");
+                alert("Erro do servidor ao adicionar subparcelas à lista.");
             }
         });
     }); 
 
     jQuery('#subplot_select_delete_subplots').click(function() {
-        if (confirm("Are you sure you want to delete the selected subplots? Any child stocks, such as plants or tissue samples, will also be deleted. This action cannot be undone.")) {
+        if (confirm("Tem certeza de que deseja excluir as subparcelas selecionadas? Todos os materiais derivados, como plantas ou amostras de tecido, também serão excluídos. Esta ação não pode ser desfeita.")) {
             let subplot_ids = jQuery('.exp_design_subplot_select:checkbox:checked')
                 .map(function() {
                     return this.id.replace('select_subplot_', '');
@@ -206,15 +206,15 @@ jQuery(document).ready(function () {
                 success : function(response) {
                     jQuery('#working_modal').modal("hide");
                     if (response.error) {
-                        alert("Error: " + response.error);
+                        alert("Erro: " + response.error);
                     } else {
-                        alert("Subplots deleted.");
+                        alert("Subparcelas excluídas.");
                         window.location.reload();
                     }
                 },
                 error : function(response) {
                     jQuery('#working_modal').modal("hide");
-                    alert("A server error occurred, check console.");
+                    alert("Ocorreu um erro do servidor. Consulte o console.");
                 }
             });
         } 

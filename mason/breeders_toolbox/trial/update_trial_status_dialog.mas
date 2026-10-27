@@ -15,24 +15,26 @@ $user_name
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="updateTrialStatusDialog">Update <% $trial_name %> Status</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="updateTrialStatusDialog">Atualizar status de <% $trial_name %></h4>
             </div>
             <div class="modal-body">
                 <div class="container-fluid">
                     <form class="form-horizontal">
                         <div class="form-group">
-                            <label class="col-sm-4 control-label">Trial Status: </label>
+                            <label class="col-sm-4 control-label">Status do ensaio: </label>
                             <div class="col-sm-6" >
                                 <select class="form-control" id="trial_status_select">
 % foreach my $activity(@all_activities){
-                                    <option value="<%$activity%>"><%$activity%></option>
+%   my %activity_labels = ('Please select a status' => 'Selecione um status', 'Started Phenotyping' => 'Fenotipagem iniciada', 'Phenotyping Completed' => 'Fenotipagem concluída', 'Data Cleaning Completed' => 'Limpeza de dados concluída', 'Data Analysis Completed' => 'Análise de dados concluída');
+%   my $activity_label = $activity_labels{$activity} || $activity;
+                                    <option value="<%$activity%>"><%$activity_label%></option>
 %}
                                 </select>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-4 control-label" for="trial_activity_date">Trial Activity Date: </label>
+                            <label class="col-sm-4 control-label" for="trial_activity_date">Data da atividade do ensaio: </label>
                             <div class="col-sm-6">
                                 <input class="form-control" id="trial_activity_date" title="activity_date" type="text" value=""/>
                             </div>
@@ -41,8 +43,8 @@ $user_name
                 </div>
             </div>
             <div class="modal-footer">
-                <button id="close_trial_set_phenotypes_fully_loaded_modal" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" name="update_trial_status_submit" id="update_trial_status_submit" >Update</button>
+                <button id="close_trial_set_phenotypes_fully_loaded_modal" type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                <button type="button" class="btn btn-primary" name="update_trial_status_submit" id="update_trial_status_submit" >Atualizar</button>
             </div>
         </div>
     </div>
@@ -52,19 +54,19 @@ $user_name
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="updateTrialStatusMessage">Success</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="updateTrialStatusMessage">Sucesso</h4>
             </div>
             <div class="modal-body">
                 <div class="container-fluid">
                     <p>
                         <span class="ui-icon ui-icon-circle-check" style="float: left; margin: 0 7px 50px 0;"></span>
-                        Trial status was updated successfully.
+                        O status do ensaio foi atualizado com sucesso.
                     </p>
                 </div>
             </div>
             <div class="modal-footer">
-                <button id="dismiss_update_message_dialog" type="button" class="btn btn-default" data-dismiss="modal">Close & Reload</button>
+                <button id="dismiss_update_message_dialog" type="button" class="btn btn-default" data-dismiss="modal">Fechar e recarregar</button>
             </div>
         </div>
     </div>
@@ -94,13 +96,13 @@ jQuery(document).ready(function(){
     jQuery("#update_trial_status_submit").click(function() {
         var trial_status = jQuery("#trial_status_select").val();
         if (trial_status == 'Please select a status') {
-            alert("Please select a status");
+            alert("Selecione um status.");
             return;
         }
 
         var activity_date = jQuery("#trial_activity_date").val();
         if (activity_date == '') {
-            alert("Please select a date");
+            alert("Selecione uma data.");
             return;
         }
 
@@ -129,7 +131,7 @@ jQuery(document).ready(function(){
             },
             error: function(response){
                 jQuery('#working_modal').modal('hide');
-                alert('An error occurred updating trial status');
+                alert('Ocorreu um erro ao atualizar o status do ensaio.');
             }
         });
     });

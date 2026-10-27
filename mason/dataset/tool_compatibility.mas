@@ -3,11 +3,11 @@ $dataset_id
 $dataset_name
 </%args>
 
-<p><small>Predicted tool compatibility based on dataset definition. The table details the traits and types of analyses that can be performed. If database elements are updated, such as phenotypes added to field trials or accessions, you may wish to recalculate tool compatibility for more accurate results. Warning symbols indicate compatibility, but with low sample sizes.</small></p>
+<p><small>Compatibilidade prevista das ferramentas com base na definição do conjunto de dados. A tabela detalha as características e os tipos de análise disponíveis. Se os dados forem atualizados, por exemplo com a inclusão de fenótipos em ensaios de campo ou acessos, recalcule a compatibilidade para obter resultados mais precisos. Os símbolos de aviso indicam compatibilidade, mas com amostras pequenas.</small></p>
 
 <div id="predicted-tool-compatibility" style="width:100%;overflow-x:auto;overflow-y:auto"></div>
 <div style="margin-top: 15px">
-    <button type="button" class="btn btn-sm btn-success" id="tool-compatibility-calc-button">Calculate Tool Compatibility</button>
+    <button type="button" class="btn btn-sm btn-success" id="tool-compatibility-calc-button">Calcular compatibilidade das ferramentas</button>
 </div>
 
 <script>
@@ -19,7 +19,7 @@ jQuery(document).ready(function() {
 
         for (key in json) {
             if (key == "Data Summary"){
-                var newkey = '<b>' + key + '</b>';
+                var newkey = '<b>Resumo dos dados</b>';
                 data_summary[newkey] = json[key];
                 delete json[key];
             } else {
@@ -72,9 +72,9 @@ jQuery(document).ready(function() {
             success: function(response) {
                 if (response.error) {
                     jQuery('#working_modal').modal("hide");
-                    alert("An error occured calculating tool compatibility: \n" + response.error);
+                    alert("Ocorreu um erro ao calcular a compatibilidade das ferramentas: \n" + response.error);
                     jQuery('#predicted-tool-compatibility').css('height', '100px');
-                    jQuery('#predicted-tool-compatibility').text("Error calculating tool compatibility.");
+                    jQuery('#predicted-tool-compatibility').text("Erro ao calcular a compatibilidade das ferramentas.");
                 } else {
                     //jQuery('#predicted-tool-compatibility').css('height', '400px');
                     //jQuery('#predicted-tool-compatibility').html(populate_tool_compatibility(JSON.parse(response.tool_compatibility)));
@@ -85,8 +85,8 @@ jQuery(document).ready(function() {
             error: function(response) {
                 jQuery('#working_modal').modal("hide");
                 jQuery('#predicted-tool-compatibility').css('height', '100px');
-                alert("An error occurred calculating tool compatibility");
-                jQuery('#predicted-tool-compatibility').text("Error calculating tool compatibility.");
+                alert("Ocorreu um erro ao calcular a compatibilidade das ferramentas");
+                jQuery('#predicted-tool-compatibility').text("Erro ao calcular a compatibilidade das ferramentas.");
             }
         });
     });
@@ -95,11 +95,11 @@ jQuery(document).ready(function() {
         url: '/ajax/dataset/retrieve/' + <% $dataset_id %> + '/tool_compatibility',
         success: function(response) {
             if (response.error) {
-                alert("An error occurred. \n" + response.error);
-                jQuery('#predicted-tool-compatibility').text("Error retrieving tool compatibility.");
+                alert("Ocorreu um erro. \n" + response.error);
+                jQuery('#predicted-tool-compatibility').text("Erro ao recuperar a compatibilidade das ferramentas.");
             } else {
                 if (response.tool_compatibility == "(not calculated)") {
-                        jQuery('#predicted-tool-compatibility').text(response.tool_compatibility);
+                        jQuery('#predicted-tool-compatibility').text('(não calculada)');
                 } else {
                     //console.log(JSON.parse(response.tool_compatibility));
                     jQuery('#predicted-tool-compatibility').css('height', '400px');
@@ -108,9 +108,9 @@ jQuery(document).ready(function() {
             }
         },
         error: function(response) {
-            alert("An error occurred retrieving tool compatibility");
+            alert("Ocorreu um erro ao recuperar a compatibilidade das ferramentas");
             jQuery('#predicted-tool-compatibility').css('height', '100px');
-            jQuery('#predicted-tool-compatibility').text("Error retrieving tool compatibility.");
+            jQuery('#predicted-tool-compatibility').text("Erro ao recuperar a compatibilidade das ferramentas.");
         }
     });
 });

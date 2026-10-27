@@ -8,9 +8,9 @@ $marker_names => []
     <table id="pcr_protocol_genotype_data" width="100%" class="table table-hover table-striped">
         <thead>
             <tr>
-                <th>Sample Name</th>
-                <th>Sample Type</th>
-                <th>Ploidy</th>
+                <th>Nome da amostra</th>
+                <th>Tipo de amostra</th>
+                <th>Ploidia</th>
 % foreach my $column_header(sort @$marker_names){
                 <th><%$column_header%></th>
 %}
@@ -31,17 +31,17 @@ $marker_names => []
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
             </div>
             <div class="modal-body">
                 <div class="container-fluid">
                     <p>
-                        <a id="pcr_genotyping_data_download_link">Download SSR Genotype Data</a>
+                        <a id="pcr_genotyping_data_download_link">Baixar dados de genótipos SSR</a>
                     </p>
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" name="pcr_genotype_data_close_button" id="pcr_genotype_data_close_button" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-default" name="pcr_genotype_data_close_button" id="pcr_genotype_data_close_button" data-dismiss="modal">Fechar</button>
             </div>
         </div>
     </div>
@@ -62,11 +62,11 @@ jQuery(document).ready(function () {
     var pcr_genotypes_data_table_summary = jQuery('#pcr_protocol_genotype_data_summary').DataTable({
         'ajax': '/ajax/pcr_genotyping_data_summary/search?protocol_id_list=<% $protocol_id %>',
         columns: [
-            { title: "Sample Name", "data": null, "render": function ( data, type, row ) { return "<a href='/stock/"+row.stock_id+"/view'>"+row.stock_name+"</a>"; } },
-            { title: "Sample Type", "data": "stock_type" },
-            { title: "Number of Markers", "data": "number_of_markers" },
-            { title: "Description", "data": "genotype_description" },
-            { title: "Download", "data": "null", "render": function ( data, type, row ) { return "<a onclick='downloadSSRData(\""+row.stock_id+"\", \""+row.genotype_id+"\")' >Download</a>"; } },
+            { title: "Nome da amostra", "data": null, "render": function ( data, type, row ) { return "<a href='/stock/"+row.stock_id+"/view'>"+row.stock_name+"</a>"; } },
+            { title: "Tipo de amostra", "data": "stock_type" },
+            { title: "Número de marcadores", "data": "number_of_markers" },
+            { title: "Descrição", "data": "genotype_description" },
+            { title: "Baixar", "data": "null", "render": function ( data, type, row ) { return "<a onclick='downloadSSRData(\""+row.stock_id+"\", \""+row.genotype_id+"\")' >Baixar</a>"; } },
 
         ]
     });

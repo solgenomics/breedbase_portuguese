@@ -31,34 +31,34 @@ $design_types => ()
 <table class="table table-bordered">
   <thead>
     <tr>
-      <th>Information</th>
-      <th>Breeding Programs -- Folders -- Trials&nbsp;&nbsp;&nbsp;&nbsp;<button class="btn btn-sm btn-default" id="refresh_jstree_html_trialtree_button" name="refresh_jstree_html">Refresh</button></th>
+      <th>Informações</th>
+      <th>Programas de melhoramento — Pastas — Ensaios&nbsp;&nbsp;&nbsp;&nbsp;<button class="btn btn-sm btn-default" id="refresh_jstree_html_trialtree_button" name="refresh_jstree_html">Atualizar</button></th>
     </tr>
   </thead>
   <tbody>
   <tr>
     <td>
-        <h4>Search</h4>
-        <input type="text" class="form-control input-sm" id="trial_tree_search" placeholder="Search" />
+        <h4>Pesquisar</h4>
+        <input type="text" class="form-control input-sm" id="trial_tree_search" placeholder="Pesquisar" />
         <hr>
-      <h4>Download Trial Phenotypes</h4>
-      <h5><i>Select multiple trials by holding 'Ctrl'.</i></h5>
-      <button class="btn btn-primary" id="trials_download_phenotypes_button" disabled="disabled" title="First Select Trial(s) to Download">Download Phenotypes</button>
+      <h4>Baixar fenótipos dos ensaios</h4>
+      <h5><i>Para selecionar vários ensaios, mantenha a tecla Ctrl pressionada.</i></h5>
+      <button class="btn btn-primary" id="trials_download_phenotypes_button" disabled="disabled" title="Primeiro selecione o(s) ensaio(s) que deseja baixar">Baixar fenótipos</button>
       <hr>
-      <h5><i>Double click<br />trial (&nbsp;<span class="glyphicon glyphicon-leaf text-success"></span>&nbsp;) or folder (&nbsp;<span class="glyphicon glyphicon-folder-open text-danger"></span>&nbsp;)<br/>to view detail page.</i></h5>
-      <h5><i>Breeding programs (&nbsp;<span class="glyphicon glyphicon-briefcase text-info"></span>&nbsp;)</i></h5>
-      <h5><i>Analyses (&nbsp;<span class="glyphicon glyphicon-stats text-success"></span>&nbsp;)</i></h5>
-      <h5><i>Sampling trials (&nbsp;<span class="glyphicon glyphicon-th text-success"></span>&nbsp;)</i></h5>
+      <h5><i>Clique duas vezes<br />no ensaio (&nbsp;<span class="glyphicon glyphicon-leaf text-success"></span>&nbsp;) ou na pasta (&nbsp;<span class="glyphicon glyphicon-folder-open text-danger"></span>&nbsp;)<br/>para ver a página de detalhes.</i></h5>
+      <h5><i>Programas de melhoramento (&nbsp;<span class="glyphicon glyphicon-briefcase text-info"></span>&nbsp;)</i></h5>
+      <h5><i>Análises (&nbsp;<span class="glyphicon glyphicon-stats text-success"></span>&nbsp;)</i></h5>
+      <h5><i>Ensaios de amostragem (&nbsp;<span class="glyphicon glyphicon-th text-success"></span>&nbsp;)</i></h5>
       <hr>
-      <h4>Folders</h4>
-      <button class="btn btn-sm btn-default" id="new_folder_dialog_link">Create new folder</button><br/><br/>
-      <button class="btn btn-sm btn-default" id="open_folder_dialog_link">Move trial(s) to folder</button><br/><br/>
-      <button class="btn btn-sm btn-default" id="move_folder_dialog_link">Move folder</button>
+      <h4>Pastas</h4>
+      <button class="btn btn-sm btn-default" id="new_folder_dialog_link">Criar nova pasta</button><br/><br/>
+      <button class="btn btn-sm btn-default" id="open_folder_dialog_link">Mover ensaio(s) para uma pasta</button><br/><br/>
+      <button class="btn btn-sm btn-default" id="move_folder_dialog_link">Mover pasta</button>
 
       <div id="folder_edit_options" style="display:none">
           <hr>
-          <h5><i>Select multiple folders by holding 'Ctrl'.</i></h5>
-          <button class="btn btn-primary" id="edit_folders_button" title="First Select Folder(s) to Edit">Edit Folder(s)</button>
+          <h5><i>Para selecionar várias pastas, mantenha a tecla Ctrl pressionada.</i></h5>
+          <button class="btn btn-primary" id="edit_folders_button" title="Primeiro selecione a(s) pasta(s) que deseja editar">Editar pasta(s)</button>
           <br/>
       </div>
 
@@ -66,7 +66,7 @@ $design_types => ()
       <br />
     </td>
     <td>
-        <div id="trial_list" >[loading...]</div>
+        <div id="trial_list" >[carregando...]</div>
     </td>
   </tr>
   </tbody>
@@ -167,7 +167,7 @@ $design_types => ()
         },
         error: function(xhr) {
           console.log('Trial tree load failed:', xhr.status, xhr.responseText);
-          alert("An error occurred while loading the trial data.");
+          alert("Ocorreu um erro ao carregar os dados dos ensaios.");
         }
       });
     }

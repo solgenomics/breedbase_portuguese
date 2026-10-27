@@ -9,17 +9,17 @@
                     <div class="row">
                         <div class="col-sm-6">
                             <div class="form-group form-group-sm">
-                                <label class="col-sm-6 control-label">Number of Rows: </label>
+                                <label class="col-sm-6 control-label">Número de linhas: </label>
                                 <div class="col-sm-6">
-                                    <input class="form-control" id="drone_imagery_standard_process_plot_polygons_num_rows" name="drone_imagery_standard_process_plot_polygons_num_rows" type="number" placeholder="Number of rows in image section" />
+                                    <input class="form-control" id="drone_imagery_standard_process_plot_polygons_num_rows" name="drone_imagery_standard_process_plot_polygons_num_rows" type="number" placeholder="Número de linhas na seção da imagem" />
                                 </div>
                             </div>
                         </div>
                         <div class="col-sm-6">
                             <div class="form-group form-group-sm">
-                                <label class="col-sm-6 control-label">Number of Columns: </label>
+                                <label class="col-sm-6 control-label">Número de colunas: </label>
                                 <div class="col-sm-6">
-                                    <input class="form-control" id="drone_imagery_standard_process_plot_polygons_num_cols" name="drone_imagery_standard_process_plot_polygons_num_cols" type="number" placeholder="Number of columns in image section"/>
+                                    <input class="form-control" id="drone_imagery_standard_process_plot_polygons_num_cols" name="drone_imagery_standard_process_plot_polygons_num_cols" type="number" placeholder="Número de colunas na seção da imagem"/>
                                 </div>
                             </div>
                         </div>
@@ -34,23 +34,23 @@
 
             <div class="row">
                 <div class="col-sm-12">
-                    <h4> Either (A) click the four corners of the area of interest: </h4>
+                    <h4>Opção (A): clique nos quatro cantos da área de interesse:</h4>
 
-                    <button class="btn btn-sm btn-info" id="drone_imagery_standard_process_plot_polygons_top_left_click">Click Top Left Corner</button>
-                    <button class="btn btn-sm btn-info" id="drone_imagery_standard_process_plot_polygons_top_right_click">Click Top Right Corner</button>
-                    <button class="btn btn-sm btn-info" id="drone_imagery_standard_process_plot_polygons_bottom_left_click">Click Bottom Left Corner</button>
-                    <button class="btn btn-sm btn-info" id="drone_imagery_standard_process_plot_polygons_bottom_right_click">Click Bottom Right Corner</button>
+                    <button class="btn btn-sm btn-info" id="drone_imagery_standard_process_plot_polygons_top_left_click">Clicar no canto superior esquerdo</button>
+                    <button class="btn btn-sm btn-info" id="drone_imagery_standard_process_plot_polygons_top_right_click">Clicar no canto superior direito</button>
+                    <button class="btn btn-sm btn-info" id="drone_imagery_standard_process_plot_polygons_bottom_left_click">Clicar no canto inferior esquerdo</button>
+                    <button class="btn btn-sm btn-info" id="drone_imagery_standard_process_plot_polygons_bottom_right_click">Clicar no canto inferior direito</button>
                 </div>
             </div>
             <hr>
 
-            <&| /page/info_section.mas, title => 'Template Parameters', collapsible=>1, collapsed => 1, subtitle=> 'View and edit template parameters. These parameters can be filled using the above button clicks' &>
+            <&| /page/info_section.mas, title => 'Parâmetros do modelo', collapsible=>1, collapsed => 1, subtitle=> 'Visualize e edite os parâmetros do modelo. Eles podem ser preenchidos pelos botões acima.' &>
                 <div class="well well-sm">
                     <form class="form-horizontal">
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="form-group form-group-sm">
-                                    <label class="col-sm-6 control-label">Left-most Column Top Margin: </label>
+                                    <label class="col-sm-6 control-label">Margem superior da coluna mais à esquerda: </label>
                                     <div class="col-sm-6">
                                         <input class="form-control" id="drone_imagery_standard_process_plot_polygons_left_column_top_offset" name="drone_imagery_standard_process_plot_polygons_left_column_top_offset" type="number" value="0" placeholder="0"/>
                                     </div>
@@ -58,7 +58,7 @@
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group form-group-sm">
-                                    <label class="col-sm-6 control-label">Left-most Column Bottom Margin: </label>
+                                    <label class="col-sm-6 control-label">Margem inferior da coluna mais à esquerda: </label>
                                     <div class="col-sm-6">
                                         <input class="form-control" id="drone_imagery_standard_process_plot_polygons_left_column_bottom_offset" name="drone_imagery_standard_process_plot_polygons_left_column_bottom_offset" type="number" value="0" placeholder="0"/>
                                     </div>
@@ -68,7 +68,7 @@
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="form-group form-group-sm">
-                                    <label class="col-sm-6 control-label">Top-most Row Left Margin: </label>
+                                    <label class="col-sm-6 control-label">Margem esquerda da linha superior: </label>
                                     <div class="col-sm-6">
                                         <input class="form-control" id="drone_imagery_standard_process_plot_polygons_top_row_left_offset" name="drone_imagery_standard_process_plot_polygons_top_row_left_offset" type="number" placeholder="0" value="0" />
                                     </div>
@@ -76,7 +76,7 @@
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group form-group-sm">
-                                    <label class="col-sm-6 control-label">Top-most Row Right Margin: </label>
+                                    <label class="col-sm-6 control-label">Margem direita da linha superior: </label>
                                     <div class="col-sm-6">
                                         <input class="form-control" id="drone_imagery_standard_process_plot_polygons_top_row_right_offset" name="drone_imagery_standard_process_plot_polygons_top_row_right_offset" type="number" placeholder="0" value="0" />
                                     </div>
@@ -86,7 +86,7 @@
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="form-group form-group-sm">
-                                    <label class="col-sm-6 control-label">Bottom-most Row Left Margin: </label>
+                                    <label class="col-sm-6 control-label">Margem esquerda da linha inferior: </label>
                                     <div class="col-sm-6">
                                         <input class="form-control" id="drone_imagery_standard_process_plot_polygons_bottom_row_left_offset" name="drone_imagery_standard_process_plot_polygons_bottom_row_left_offset" type="number" placeholder="0" value="0" />
                                     </div>
@@ -94,7 +94,7 @@
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group form-group-sm">
-                                    <label class="col-sm-6 control-label">Right-most Column Bottom Margin: </label>
+                                    <label class="col-sm-6 control-label">Margem inferior da coluna mais à direita: </label>
                                     <div class="col-sm-6">
                                         <input class="form-control" id="drone_imagery_standard_process_plot_polygons_right_col_bottom_offset" name="drone_imagery_standard_process_plot_polygons_right_col_bottom_offset" type="number" placeholder="0" value="0" />
                                     </div>
@@ -106,7 +106,7 @@
             </&>
 
             <br/>
-            <button class="btn btn-sm btn-primary" id="drone_imagery_standard_process_plot_polygons_rectangles_apply">(A) Draw Plot Polygon Template (Does not save. Apply multiple templates if needed.)</button>
+            <button class="btn btn-sm btn-primary" id="drone_imagery_standard_process_plot_polygons_rectangles_apply">(A) Desenhar modelo de polígonos das parcelas (não salva; aplique vários modelos se necessário)</button>
             
         </div>
     </div>
@@ -116,17 +116,17 @@
 
             <div class="row">
                 <div class="col-sm-12">
-                    <h4> Or (B) paste a previously used template: </h4>
+                    <h4>Ou, na opção (B), cole um modelo usado anteriormente:</h4>
                 </div>
             </div>
 
-            <&| /page/info_section.mas, title => 'Previously Used Plot Polygon Templates', collapsible=>1, collapsed => 1, subtitle=> 'View and use previous plot polygon templates used on this field trial' &>
+            <&| /page/info_section.mas, title => 'Modelos de polígonos de parcelas usados anteriormente', collapsible=>1, collapsed => 1, subtitle=> 'Visualize e use modelos aplicados anteriormente neste ensaio de campo.' &>
                 <div class="well well-sm">
                     <form class="form-horizontal">
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="form-group form-group-sm">
-                                    <label class="col-sm-6 control-label">Previously Used Plot Polygon Templates For This Field Trial: </label>
+                                    <label class="col-sm-6 control-label">Modelos usados anteriormente neste ensaio de campo: </label>
                                     <div class="col-sm-6">
                                         <div id="plot_polygons_standard_process_previously_saved_plot_polygon_templates">
                                         </div>
@@ -135,7 +135,7 @@
                             </div>
                         </div>
                     </form>
-                    <button class="btn btn-primary" id="plot_polygons_standard_process_use_previously_saved_template">(B) Draw Plot Polygon Template (Does not save)</button>
+                    <button class="btn btn-primary" id="plot_polygons_standard_process_use_previously_saved_template">(B) Desenhar modelo de polígonos das parcelas (não salva)</button>
                 </div>
             </&>
         </div>

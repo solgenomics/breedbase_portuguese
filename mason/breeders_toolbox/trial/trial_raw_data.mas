@@ -26,7 +26,7 @@ $user_can_modify
 </style>
 
 <div class="well well-sm" id="phenotypes_recorded_observation_level">
-	<center><h4>Traits recorded across observation levels</h4></center></hr>
+	<center><h4>Características registradas por nível de observação</h4></center></hr>
 	<div id="phenotypes_measured_per_observation_level">
 		<div class="row">
 			<div class="col-sm-8">
@@ -34,15 +34,15 @@ $user_can_modify
 				<table id="phenotypes_measured_per_observation_level" style= "text-align:left; width:100%;">
 					<thead>
 						<tr>
-							<th>Observation Level </th>
-							<th>Number of Traits Measured</th>
+							<th>Nível de observação</th>
+							<th>Número de características medidas</th>
 						</tr>
 					</thead>
 					<tbody>
-						<tr><td>Plot</td><td id="phenotypes_per_plot"></td></tr>
-						<tr><td>Plant</td><td id="phenotypes_per_plant"></td></tr>
-						<tr><td>Sub plot</td><td id="phenotypes_per_subplot"></td></tr>
-						<tr><td>Tissue sample</td><td id="phenotypes_per_tissue_sample"></td></tr>
+						<tr><td>Parcela</td><td id="phenotypes_per_plot"></td></tr>
+						<tr><td>Planta</td><td id="phenotypes_per_plant"></td></tr>
+						<tr><td>Subparcela</td><td id="phenotypes_per_subplot"></td></tr>
+						<tr><td>Amostra de tecido</td><td id="phenotypes_per_tissue_sample"></td></tr>
 					</tbody>
 				</table>
 				</form>
@@ -52,26 +52,26 @@ $user_can_modify
 </div>
 
 <div class="well well-sm" id="raw_phenotypic_data">
-	<h4 style= "text-align:center">Choose trait and observation level</h4>
+	<h4 style= "text-align:center">Escolha a característica e o nível de observação</h4>
 	<br/>
 
 	<table>
 	<tr>
 	    <td>
 			<div class="form-group">
-				<label for="trait_selector_for_raw_data"> Trait:</label>
-	    	  <div id="trait_selector_for_raw_data">[Loading...]</div>
+				<label for="trait_selector_for_raw_data">Característica:</label>
+			  <div id="trait_selector_for_raw_data">[Carregando...]</div>
 			</div>
 	    </td>
 	    <td width="30"></td>
 	    <td>
 			<div class="form-group">
-				<label for="raw_data_observation_level">Observation Level:</label>
+				<label for="raw_data_observation_level">Nível de observação:</label>
 				<select class="form-control" id="raw_data_observation_level">
-					<option value="plot">Plots</option>
-					<option value="plant">Plants</option>
-					<option value="subplot">Subplots</option>
-					<option value="tissue_sample">Tissue samples</option>
+					<option value="plot">Parcelas</option>
+					<option value="plant">Plantas</option>
+					<option value="subplot">Subparcelas</option>
+					<option value="tissue_sample">Amostras de tecido</option>
 	      		</select>
 			</div>
 	    </td>
@@ -79,13 +79,12 @@ $user_can_modify
 			<div class="form-group">
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				<span class="glyphicon glyphicon-question-sign" style="color:blue;font-size:18px" title="
-				The site will automatically refresh
-				materialized views periodically, but
-				you can do this manually to ensure 
-				views are updated before analyses or
-				data downloads.
+				O site atualiza automaticamente as
+				visões materializadas de forma periódica,
+				mas você pode atualizá-las manualmente
+				antes de análises ou downloads de dados.
 				"></span> &nbsp;
-				<button id="refresh_phenoview_btn" class="btn btn-primary btn-sm">Refresh Materialized Phenotype View</button>
+				<button id="refresh_phenoview_btn" class="btn btn-primary btn-sm">Atualizar visão materializada dos fenótipos</button>
 			</div>
 		</td>
 	</tr>
@@ -93,14 +92,14 @@ $user_can_modify
 	<!--
 	    <td>
 			<div class="form-group">
-				<label for="raw_data_start_date">Start Date:</label>
+				<label for="raw_data_start_date">Data inicial:</label>
 				<input type="text" id="raw_data_start_date" title="raw_data_start_date"/>
 			</div>
 		</td>
 		<td width="30"></td>
 	    <td>
 			<div class="form-group">
-				<label for="raw_data_end_date"> End Date:</label>
+				<label for="raw_data_end_date">Data final:</label>
 				<input type="text" id="raw_data_end_date" title="raw_data_end_date"/>
 			</div>
 	    </td>
@@ -108,7 +107,7 @@ $user_can_modify
 	</tr>
 	<tr>
 	    <td colspan="4", style="text-align: center;">
-	      <button id="raw_data_trait_select_button" class="btn btn-primary">Submit</button>
+	      <button id="raw_data_trait_select_button" class="btn btn-primary">Enviar</button>
 	    </td>
 	</tr>
 	</table>
@@ -170,7 +169,7 @@ function save_single_observation(observation_id) {
 		},
 		error : function() {
 			jQuery('#working_modal').modal("hide");
-			alert("Server error, check console.");
+			alert("Erro no servidor. Consulte o console.");
 		}
 	});
 }
@@ -240,7 +239,7 @@ jQuery(window).ready( function() {
 	   	})
         .fail(() => {
             jQuery('#working_modal').modal('hide');
-            alert('An error occurred while processing the request.');
+            alert('Ocorreu um erro ao processar a solicitação.');
         });;
     });
 	/*
@@ -416,12 +415,12 @@ jQuery(window).ready( function() {
 			jQuery('#raw_trait_data_table').DataTable( {
 				'destroy': true,
 				'columns': [
-						{ title: 'observation id'},
-						{ title: 'observation unit' },
-						{ title: 'observation variable' },
-						{ title: 'value, timestamp' },
-						{ title: 'Sort Date', visible: false },//this column will be hidden !!!
-						{ title: 'collector' },
+						{ title: 'ID da observação'},
+						{ title: 'Unidade de observação' },
+						{ title: 'Variável observada' },
+						{ title: 'Valor, data e hora' },
+						{ title: 'Data de ordenação', visible: false },//this column will be hidden !!!
+						{ title: 'Coletor' },
 						{ title: '', }
 					],
 				'data' : data,
@@ -431,12 +430,12 @@ jQuery(window).ready( function() {
 			jQuery('#raw_trait_data_table').DataTable( {
 				'destroy': true,
 				'columns': [
-						{ title: 'observation id'},
-						{ title: 'observation unit' },
-						{ title: 'observation variable' },
-						{ title: 'value, timestamp' },
-						{ title: 'Sort Date', visible: false },//this column will be hidden !!!
-						{ title: 'collector' }
+						{ title: 'ID da observação'},
+						{ title: 'Unidade de observação' },
+						{ title: 'Variável observada' },
+						{ title: 'Valor, data e hora' },
+						{ title: 'Data de ordenação', visible: false },//this column will be hidden !!!
+						{ title: 'Coletor' }
 					],
 				'data' : data,
 				'order': [[4, 'asc']] 

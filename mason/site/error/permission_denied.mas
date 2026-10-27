@@ -2,9 +2,9 @@
 </%args>
 
 <div style="text-align: center; margin: 2em 0">
-   <h1 style="margin-bottom: 1em">Access denied</h1>
+   <h1 style="margin-bottom: 1em">Acesso negado</h1>
 
    <div>
-     You do not have sufficient permissions to view this page. This could be due to your user status or server configuration. Contact a server administrator for more details. 
+     Você não possui permissão suficiente para visualizar esta página. Isso pode ocorrer devido ao status do seu usuário ou à configuração do servidor. Entre em contato com um administrador para obter mais informações.
    </div>
 </div>

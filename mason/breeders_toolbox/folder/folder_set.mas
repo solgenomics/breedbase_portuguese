@@ -24,14 +24,14 @@ $folder_for_propagations => undef
 % my $get_transformation_projects = $folder_for_transformations ? 1 : 0;
 % my $get_propagation_projects = $folder_for_propagations ? 1 : 0;
 % my $dialog_type;
-% if ($project_type eq 'field_trial') { $get_field_trials = 1; $folder_for_trials = 1; $dialog_type = 'Trial', }
-% if ($project_type eq 'genotyping_plate') { $get_genotyping_trials = 1; $folder_for_genotyping_trials = 1; $dialog_type = 'Genotyping Plate'}
-% if ($project_type eq 'crossing_experiment') { $get_crossing_trials = 1; $folder_for_crosses = 1; $dialog_type = 'Crossing Experiment' }
-% if ($project_type eq 'genotyping_project') { $get_genotyping_projects = 1; $folder_for_genotyping_projects = 1; $dialog_type = 'Genotyping Project'}
-% if ($project_type eq 'activity_record') { $get_tracking_activities_projects = 1; $folder_for_tracking_activities = 1; $dialog_type = 'Tracking Activities'}
-% if ($project_type eq 'transformation_project') { $get_transformation_projects = 1; $folder_for_transformations = 1; $dialog_type = 'Transformation Project'}
-% if ($project_type eq 'propagation_project') { $get_propagation_projects = 1; $folder_for_propagations = 1; $dialog_type = 'Propagation Project'}
-% if (!$project_type) { $dialog_type = 'Trial(s)' }
+% if ($project_type eq 'field_trial') { $get_field_trials = 1; $folder_for_trials = 1; $dialog_type = 'ensaio', }
+% if ($project_type eq 'genotyping_plate') { $get_genotyping_trials = 1; $folder_for_genotyping_trials = 1; $dialog_type = 'placa de genotipagem'}
+% if ($project_type eq 'crossing_experiment') { $get_crossing_trials = 1; $folder_for_crosses = 1; $dialog_type = 'experimento de cruzamento' }
+% if ($project_type eq 'genotyping_project') { $get_genotyping_projects = 1; $folder_for_genotyping_projects = 1; $dialog_type = 'projeto de genotipagem'}
+% if ($project_type eq 'activity_record') { $get_tracking_activities_projects = 1; $folder_for_tracking_activities = 1; $dialog_type = 'atividade de rastreamento'}
+% if ($project_type eq 'transformation_project') { $get_transformation_projects = 1; $folder_for_transformations = 1; $dialog_type = 'projeto de transformação'}
+% if ($project_type eq 'propagation_project') { $get_propagation_projects = 1; $folder_for_propagations = 1; $dialog_type = 'projeto de propagação'}
+% if (!$project_type) { $dialog_type = 'ensaio(s)' }
 
 <& /util/import_javascript.mas, classes => [ 'CXGN.TrialTreeFolders' ] &>
 
@@ -39,8 +39,8 @@ $folder_for_propagations => undef
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="setFolderDialog">Place <% $dialog_type %> in folder</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="setFolderDialog">Colocar <% $dialog_type %> em uma pasta</h4>
       </div>
       <div class="modal-body">
         <div class="container-fluid">
@@ -48,28 +48,28 @@ $folder_for_propagations => undef
 	       <form class="form-horizontal" role="form" method="post" id="set_folder_dialog_form" name="set_folder_dialog_form">
 
          <div class="form-group">
-             <label class="col-sm-4 control-label">Breeding Program: </label>
+             <label class="col-sm-4 control-label">Programa de melhoramento: </label>
              <div class="col-sm-8" >
                <div id="folder_set_breeding_program_select_div">
 % if ($breeding_program_id) {
                <input type="text" class="form-control" value="<% $breeding_program_name %>" disabled/>
                <input type="hidden" id="folder_set_breeding_program_id" name="folder_set_breeding_program_id" value="<% $breeding_program_id %>" />
 % } else {
- [Loading...]
+ [Carregando...]
 % }
                </div>
              </div>
          </div>
          <hr>
          <div class="form-group">
-             <label class="col-sm-4 control-label"><% $dialog_type %> Folders: </label>
+             <label class="col-sm-4 control-label">Pastas de <% $dialog_type %>: </label>
              <div class="col-sm-8" >
                <div id="trial_folder_select_div">
 % if ($folder_id) {
                 <input type="text" class="form-control" value="<% $folder_name %>" disabled/>
                 <input type="hidden" id="html_select_folder_for_trial" name="html_select_folder_for_trial" value="<% $folder_id %>" />
 % } else {
- [Loading...]
+ [Carregando...]
 % }
                </div>
              </div>
@@ -82,7 +82,7 @@ $folder_for_propagations => undef
                 <input type="text" class="form-control" value="<% $trial_name %>" disabled/>
                 <input type="hidden" id="html_select_trial_for_folder" name="html_select_trial_for_folder" value="<% $trial_id %>" />
 % } else {
-  [Loading...]
+  [Carregando...]
 % }
                 </div>
               </div>
@@ -91,8 +91,8 @@ $folder_for_propagations => undef
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-	      <button type="button" class="btn btn-primary" name="set_trial_folder" id="set_trial_folder" title="Save a trial to a folder">Save</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+	      <button type="button" class="btn btn-primary" name="set_trial_folder" id="set_trial_folder" title="Salvar em uma pasta">Salvar</button>
       </div>
     </div>
   </div>
@@ -102,19 +102,19 @@ $folder_for_propagations => undef
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header" style="text-align: center">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="setFolderSuccessDialog"><% $dialog_type %> Move Successful</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="setFolderSuccessDialog">Movimentação concluída</h4>
             </div>
             <div class="modal-body">
                 <div class="container-fluid">
                     <p>
                         <span class="ui-icon ui-icon-circle-check" style="float: left; margin: 0 7px 50px 0;"></span>
-                        The <% $dialog_type %> was moved into the folder successfully
+                        O item <% $dialog_type %> foi movido para a pasta com sucesso.
                     </p>
                 </div>
             </div>
             <div class="modal-footer">
-                <button id="close_set_folder_success_dialog" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button id="close_set_folder_success_dialog" type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
             </div>
         </div>
     </div>
@@ -143,7 +143,7 @@ jQuery(document).ready(function() {
   });
 
   jQuery('#set_trial_folder').click( function() {
-    jQuery('#trial_folder_div').html('[Updating...]');
+    jQuery('#trial_folder_div').html('[Atualizando...]');
     set_trial_folder();
     display_trial_folder();
     jQuery('#set_folder_dialog').modal("hide");
@@ -210,7 +210,7 @@ function set_trial_folder() {
     jQuery.each(trial_ids, function(index, value) {
         //console.log(value);
         if (value == folder_id) {
-          alert("Cannot make a folder its own parent.");
+          alert("Uma pasta não pode ser sua própria pasta principal.");
           return;
         }
         jQuery.ajax( {
@@ -223,7 +223,7 @@ function set_trial_folder() {
             },
             error: function(response) {
                 errors = 1;
-                alert('An error occurred trying to associate a folder to the trial.');
+                alert('Ocorreu um erro ao associar a pasta ao ensaio.');
             }
         });
     });
@@ -247,7 +247,7 @@ function set_trial_folder() {
     }
   } else {
       if (trial_ids == folder_id) {
-        alert("Cannot make a folder its own parent.");
+        alert("Uma pasta não pode ser sua própria pasta principal.");
         return;
       }
       jQuery.ajax( {
@@ -261,7 +261,7 @@ function set_trial_folder() {
               }
           },
           error: function(response) {
-              alert('An error occurred trying to associate a folder to the trial.');
+              alert('Ocorreu um erro ao associar a pasta ao ensaio.');
           }
       });
   }
@@ -276,7 +276,7 @@ function display_trial_folder() {
                 jQuery('#trial_folder_div').html("<a href='/folder/"+response.folder[0]+"'>"+response.folder[1]+"</a>");
             },
             error: function(response) {
-                jQuery('#trial_folder_div').html('[ Protocol error. ]');
+                jQuery('#trial_folder_div').html('[ Erro de protocolo. ]');
             }
         });
     }

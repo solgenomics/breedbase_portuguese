@@ -3,9 +3,9 @@
 
 <& /util/import_javascript.mas, classes => [ 'brapi.Table' ] &>
 
-<& /page/page_title.mas, title=>"Phenotype Retrieval" &>
+<& /page/page_title.mas, title=>"Obtenção de fenótipos" &>
 
-<h4>Database Select</h4>
+<h4>Selecionar banco de dados</h4>
 <select name="brapi_home_phenotypes_url_select" id="brapi_home_phenotypes_url_select" class="form-control" />
     <option value="">local</option>
     <option value="https://cassbase.org">cassbase.org</option>
@@ -18,22 +18,22 @@
     <option value="https://www.crop-diversity.org/mgis">crop-diversity.org</option>
 </select>
 
-<h4>Phenotype Search</h4>
+<h4>Busca de fenótipos</h4>
 
 <div id="brapi_home_phenotype_search_div" class="well">
 
-    <input name="brapi_home_phenosearch_germplasmDbIds" id="brapi_home_phenosearch_germplasmDbIds" class="form-control" type="text" placeholder="GermplasmDbIds e.g. 139" />
-    <input name="brapi_home_phenosearch_studyDbIds" id="brapi_home_phenosearch_studyDbIds" class="form-control" type="text" placeholder="StudyDbIds e.g. 139,137" />
-    <input name="brapi_home_phenosearch_observationVariableDbIds" id="brapi_home_phenoseach_observationVariableDbIds" class="form-control" type="text" placeholder="ObservationDbIds e.g. 70741,70666,70773" />
-    <input name="brapi_home_phenosearch_locationDbIds" id="brapi_home_phenosearch_locationDbIds" class="form-control" type="text" placeholder="LocationDbIds e.g. 23" value="23"/>
-    <input name="brapi_home_phenosearch_years" id="brapi_home_phenosearch_years" class="form-control" type="text" placeholder="Years e.g. 2014,2015" />
+    <input name="brapi_home_phenosearch_germplasmDbIds" id="brapi_home_phenosearch_germplasmDbIds" class="form-control" type="text" placeholder="IDs do germoplasma, ex.: 139" />
+    <input name="brapi_home_phenosearch_studyDbIds" id="brapi_home_phenosearch_studyDbIds" class="form-control" type="text" placeholder="IDs dos estudos, ex.: 139,137" />
+    <input name="brapi_home_phenosearch_observationVariableDbIds" id="brapi_home_phenoseach_observationVariableDbIds" class="form-control" type="text" placeholder="IDs das observações, ex.: 70741,70666,70773" />
+    <input name="brapi_home_phenosearch_locationDbIds" id="brapi_home_phenosearch_locationDbIds" class="form-control" type="text" placeholder="IDs dos locais, ex.: 23" value="23"/>
+    <input name="brapi_home_phenosearch_years" id="brapi_home_phenosearch_years" class="form-control" type="text" placeholder="Anos, ex.: 2014,2015" />
     <select name="brapi_home_phenosearch_observations_level" id="brapi_home_phenosearch_observations_level" class="form-control" />
-        <option value="all">All</option>
-        <option value="plot">Plot</option>
-        <option value="plant">Plant</option>
+        <option value="all">Todos</option>
+        <option value="plot">Parcela</option>
+        <option value="plant">Planta</option>
     </select>
     <br/>
-    <button class="btn btn-primary" name="brapi_home_phenosearch_submit" id="brapi_home_phenosearch_submit">Search Phenotypes</button>
+    <button class="btn btn-primary" name="brapi_home_phenosearch_submit" id="brapi_home_phenosearch_submit">Buscar fenótipos</button>
     <br/><br/>
     <div id="brapi_phenosearch_data_result_div">
     </div>
@@ -41,7 +41,7 @@
 </div>
 
 <br/>
-<h4>Phenotypes For a Study in Table Format</h4>
+<h4>Fenótipos de um estudo em formato de tabela</h4>
 
 <div id="brapi_home_phenotype_study_table_div" class="well">
 
@@ -61,7 +61,7 @@
 </div>
 
 <br/>
-<h4>Phenotypes For a Study in ObservationUnits Format</h4>
+<h4>Fenótipos de um estudo em formato de unidades de observação</h4>
 
 <div id="brapi_home_phenotype_study_observation_units_div" class="well">
 
@@ -74,7 +74,7 @@
 </div>
 
 <br/>
-<h4>Phenotypes For a Study in Granular Format</h4>
+<h4>Fenótipos de um estudo em formato detalhado</h4>
 
 <div id="brapi_home_phenotype_study_granular_div" class="well">
 
@@ -159,7 +159,7 @@ jQuery(document).ready(function() {
           },
           error: function(response) {
             jQuery('#working_modal').modal('hide');
-            alert('An error occurred');
+            alert('Ocorreu um erro');
           }
         });
     });
@@ -182,7 +182,7 @@ jQuery(document).ready(function() {
             'success': function(response) {
                 //console.log(response);
                 if (response.metadata.datafiles.length > 0){
-                    var html = "<h4>Download Study Phenotype File(s) From Here: <br/>";
+                    var html = "<h4>Baixe aqui os arquivos de fenótipos do estudo: <br/>";
                     for (var j=0; j<response.metadata.datafiles.length; j++){
                         html = html + "<a href='"+response.metadata.datafiles[j]+"'>"+response.metadata.datafiles[j]+"</a><br/>";
                     }
@@ -194,7 +194,7 @@ jQuery(document).ready(function() {
             },
             error: function(response) {
                 jQuery('#working_modal').modal('hide');
-                alert('An error occurred');
+                alert('Ocorreu um erro');
             }
         });
 
@@ -217,7 +217,7 @@ jQuery(document).ready(function() {
             'success': function(response) {
                 //console.log(response);
                 if (response.metadata.datafiles.length > 0){
-                    var html = "<h4>Download Study Phenotype File(s) From Here: <br/>";
+                    var html = "<h4>Baixe aqui os arquivos de fenótipos do estudo: <br/>";
                     for (var j=0; j<response.metadata.datafiles.length; j++){
                         html = html + "<a href='"+response.metadata.datafiles[j]+"'>"+response.metadata.datafiles[j]+"</a><br/>";
                     }
@@ -229,7 +229,7 @@ jQuery(document).ready(function() {
             },
             error: function(response) {
                 jQuery('#working_modal').modal('hide');
-                alert('An error occurred');
+                alert('Ocorreu um erro');
             }
         });
 
@@ -252,7 +252,7 @@ jQuery(document).ready(function() {
             'success': function(response) {
                 //console.log(response);
                 if (response.metadata.datafiles.length > 0){
-                    var html = "<h4>Download Study Phenotype File(s) From Here: <br/>";
+                    var html = "<h4>Baixe aqui os arquivos de fenótipos do estudo: <br/>";
                     for (var j=0; j<response.metadata.datafiles.length; j++){
                         html = html + "<a href='"+response.metadata.datafiles[j]+"'>"+response.metadata.datafiles[j]+"</a><br/>";
                     }
@@ -264,7 +264,7 @@ jQuery(document).ready(function() {
             },
             error: function(response) {
                 jQuery('#working_modal').modal('hide');
-                alert('An error occurred');
+                alert('Ocorreu um erro');
             }
         });
 
@@ -287,7 +287,7 @@ function brapi_phenotypes_get_studies(url, div_id) {
         },
         error: function(response) {
             jQuery('#working_modal').modal('hide');
-            alert('An error occurred');
+            alert('Ocorreu um erro');
         }
     });
 }

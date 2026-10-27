@@ -8,51 +8,51 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="addSpreadsheetPhenotypeDialog">Upload Phenotype Spreadsheet</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="addSpreadsheetPhenotypeDialog">Enviar planilha de fenótipos</h4>
       </div>
       <div class="modal-body">
         <div class="container-fluid">
 
-            <&| /page/explanation.mas, title=>'Template Information' &>
+            <&| /page/explanation.mas, title=>'Informações do modelo' &>
                 <p>
-                <b>File format information</b>
+                <b>Informações sobre o formato do arquivo</b>
                 <br>
-                <a id="phenotype_upload_spreadsheet_format_info">Spreadsheet Format</a>
+                <a id="phenotype_upload_spreadsheet_format_info">Formato da planilha</a>
                 </p>
             </&>
 
             <form class="form-horizontal" role="form" method="post" enctype="multipart/form-data" encoding="multipart/form-data" id="upload_spreadsheet_phenotype_file_form" name="upload_spreadsheet_phenotype_file_form">
                 <div class="form-group">
-                    <label class="col-sm-6 control-label">Spreadsheet Format: </label>
+                    <label class="col-sm-6 control-label">Formato da planilha: </label>
                     <div class="col-sm-6" >
                         <select class="form-control" id="upload_spreadsheet_phenotype_file_format" name="upload_spreadsheet_phenotype_file_format">
-                            <option value="detailed">Detailed</option>
-                            <option value="simple">Simple</option>
+                            <option value="detailed">Detalhado</option>
+                            <option value="simple">Simples</option>
                         </select>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-6 control-label">Timestamps Included: </label>
+                    <label class="col-sm-6 control-label">Incluir datas e horas: </label>
                     <div class="col-sm-6" >
                         <input type="checkbox" id="upload_spreadsheet_phenotype_timestamp_checkbox" name="upload_spreadsheet_phenotype_timestamp_checkbox" />
                     </div>
                 </div>
                 <div id="upload_spreadsheet_phenotype_data_level_div">
                     <div class="form-group">
-                        <label class="col-sm-6 control-label">Data Level: </label>
+                        <label class="col-sm-6 control-label">Nível dos dados: </label>
                         <div class="col-sm-6" >
                             <select class="form-control" id="upload_spreadsheet_phenotype_data_level" name="upload_spreadsheet_phenotype_data_level">
-                                <option value="plots">Plots</option>
-                                <option value="plants">Plants</option>
-                                <option value="subplots">Subplots</option>
-                                <option value="tissue_samples">Tissue Samples</option>
+                                <option value="plots">Parcelas</option>
+                                <option value="plants">Plantas</option>
+                                <option value="subplots">Subparcelas</option>
+                                <option value="tissue_samples">Amostras de tecido</option>
                             </select>
                         </div>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-6 control-label">Phenotype Spreadsheet: </label>
+                    <label class="col-sm-6 control-label">Planilha de fenótipos: </label>
                     <div class="col-sm-6" >
                         <input type="file" id="upload_spreadsheet_phenotype_file_input" name="upload_spreadsheet_phenotype_file_input" encoding="multipart/form-data" />
                     </div>
@@ -69,10 +69,10 @@
         </div>
 
         <div class="modal-footer">
-	    <button type="button" class="btn btn-default" name="reset_dialog" id="phenotype_reset_dialog">Reset form</button>
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-info" name="upload_spreadsheet_phenotype_submit_verify" id="upload_spreadsheet_phenotype_submit_verify">Verify</button>
-            <button disabled type="button" class="btn btn-primary" name="upload_spreadsheet_phenotype_submit_store" id="upload_spreadsheet_phenotype_submit_store" title="First Verify Your File">Store</button>
+	    <button type="button" class="btn btn-default" name="reset_dialog" id="phenotype_reset_dialog">Reiniciar formulário</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+            <button type="button" class="btn btn-info" name="upload_spreadsheet_phenotype_submit_verify" id="upload_spreadsheet_phenotype_submit_verify">Verificar</button>
+            <button disabled type="button" class="btn btn-primary" name="upload_spreadsheet_phenotype_submit_store" id="upload_spreadsheet_phenotype_submit_store" title="Primeiro verifique o arquivo">Armazenar</button>
         </div>
 
     </div>
@@ -83,44 +83,44 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="phenotypeUploadInfoDialog">Template Information</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="phenotypeUploadInfoDialog">Informações do modelo</h4>
       </div>
       <div class="modal-body">
         <div class="container-fluid">
 
-            <h4>Phenotype spreadsheet must be uploaded in .xls or .xlsx excel file format</h4>
-            <p>(tab-delimited text formats are NOT supported)</p>
+            <h4>A planilha de fenótipos deve ser enviada no formato Excel .xls ou .xlsx.</h4>
+            <p>Arquivos de texto delimitados por tabulações NÃO são aceitos.</p>
 
             <hr>
-            <button class="btn btn-primary" name="create_spreadsheet_link">Create Phenotyping Spreadsheet for Trial</button>
+            <button class="btn btn-primary" name="create_spreadsheet_link">Criar planilha de fenotipagem para o ensaio</button>
             <hr>
 
-            <h4>Required Data:</h4>
+            <h4>Dados obrigatórios:</h4>
             <ul>
-                <li>Please click the above button to generate the required phenotype spreadsheet.</li>
+                <li>Clique no botão acima para gerar a planilha de fenótipos exigida.</li>
             </ul>
 
-            <h4>Notes:</h4>
+            <h4>Observações:</h4>
             <ul>
-                <li>For <i>"sprouting proportion"</i>, <i>"trait name|trait id"</i><br> should be written as <i>"sprouting proportion|CO_334:0000008"</i>.</li>
-                <li>If spreadsheet file was not generated from the database, </br>consult the <i>Trait Ontology</i> to ensure you have the correct trait id.</li>
-                <li>Two or more traits can be uploaded at the same time.</li>
+                <li>Para a característica técnica <code>sprouting proportion</code>, <code>trait name|trait id</code> deve ser preenchido como <code>sprouting proportion|CO_334:0000008</code>.</li>
+                <li>Se a planilha não tiver sido gerada pelo banco de dados, consulte a ontologia de características para confirmar o ID correto.</li>
+                <li>Duas ou mais características podem ser enviadas ao mesmo tempo.</li>
             </ul>
 
-            <h4>Simple and Detailed Spreadsheet Format:</h4>
+            <h4>Formatos de planilha simples e detalhado:</h4>
             <ul>
-                <li>The "Simple" format requires only a column called 'observationunit_name' followed by your trait columns.  Other acceptable headers for the first column include: 'plot_name', 'subplot_name', 'plant_name', 'observationUnitName', 'observationUnitDbId', 'plotName', 'sublotName', 'plantName'</li>
-                <li>The "Detailed" format includes a special header as well as additional columns for design information.</li>
-                <li>The "NIRS" format is built on top of the simple format - a column called 'observationunit_name' followed by trait columns derived from the NIR spectra, followed by columns of NIR spectra data themselves. Trait column names must come form the trait ontology but NIR spectra column names should simply be copied from whateve standard output file the NIR device produces.</li>
+                <li>O formato "Simples" exige apenas uma coluna <code>observationunit_name</code>, seguida pelas colunas das características. Outros cabeçalhos aceitos para a primeira coluna são: <code>plot_name</code>, <code>subplot_name</code>, <code>plant_name</code>, <code>observationUnitName</code>, <code>observationUnitDbId</code>, <code>plotName</code>, <code>sublotName</code> e <code>plantName</code>.</li>
+                <li>O formato "Detalhado" inclui um cabeçalho especial e colunas adicionais com informações do delineamento.</li>
+                <li>O formato "NIRS" baseia-se no formato simples: uma coluna <code>observationunit_name</code>, seguida pelas colunas de características derivadas dos espectros NIR e pelas próprias colunas dos dados espectrais. Os nomes das características devem vir da ontologia; os nomes das colunas espectrais devem ser copiados do arquivo de saída padrão produzido pelo dispositivo NIR.</li>
             </ul>
 
-            <h4>Timestamps:</h4>
+            <h4>Datas e horas:</h4>
             <ul>
-                <li>To include timestamp information for your measurements, click the checkbox "Includes Timestamps".</li>
-                <li>For timestamps, values should be recorded as <i>"Value,Timestamp"</i>.<br/>For no timestamps, values should be recorded as <i>"Value"</i>.</li>
-                <li>Timestamp format must be YYYY-MM-DD HH:MM:SS-0000 or YYYY-MM-DD HH:MM:SS+0000</li><br/>
-                <li>Example with timestamps: <br/><br/>
+                <li>Para incluir data e hora nas medições, marque a caixa "Incluir datas e horas".</li>
+                <li>Com data e hora, registre os valores como <code>Valor,DataHora</code>.<br/>Sem data e hora, registre-os como <code>Valor</code>.</li>
+                <li>O formato deve ser <code>AAAA-MM-DD HH:MM:SS-0000</code> ou <code>AAAA-MM-DD HH:MM:SS+0000</code>.</li><br/>
+                <li>Exemplo com data e hora:<br/><br/>
                 <table class="table table-hover table-bordered">
                     <thead>
                         <tr>
@@ -134,7 +134,7 @@
                     </tbody>
                 </table>
                 </li>
-                <li>Example without timestamps: <br/><br/>
+                <li>Exemplo sem data e hora:<br/><br/>
                 <table class="table table-hover table-bordered">
                     <thead>
                         <tr>
@@ -153,7 +153,7 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
       </div>
     </div>
   </div>

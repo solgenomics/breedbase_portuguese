@@ -11,17 +11,17 @@ $editable_stock_props_definitions => {}
 
 <& /util/import_javascript.mas, classes => [ 'bootstrap_min.js', 'jquery.iframe-post-form','CXGN.List','CXGN.BreedersToolbox.Vector'] &>
 
-<& /page/page_title.mas, title=> 'Create a New Vector' &>
+<& /page/page_title.mas, title=> 'Criar um novo vetor' &>
 
 
-<&| /page/info_section.mas, title=>"Vector details"  &>
+<&| /page/info_section.mas, title=>"Detalhes do vetor"  &>
 
 <& /breeders_toolbox/add_vectors_dialogs.mas, preferred_species=>$preferred_species, editable_vector_props=>$editable_vector_props, editable_stock_props_definitions=>$editable_stock_props_definitions &>
 
 <div class="infosectioncontent">
 
-<p>Add new vector and details.</p>
-<div style="margin-bottom:10px"><button style="float:right" class="btn btn-default" name="add_vectors_link"> Upload Vectors</button></div>
+<p>Adicione um novo vetor e seus detalhes.</p>
+<div style="margin-bottom:10px"><button style="float:right" class="btn btn-default" name="add_vectors_link"> Enviar vetores</button></div>
 <div class="row">
   <div class="col-sm-12">
 
@@ -32,58 +32,58 @@ $editable_stock_props_definitions => {}
   <form class="form-horizontal" id="newVectorForm" action="#" onsubmit="handleSubmit();return false">
 
     <div class="form-group">
-      <label class="col-sm-3 control-label">Uniquename <font color="red">*</font>
+      <label class="col-sm-3 control-label">Nome único <font color="red">*</font>
       </label>
       <div class="col-sm-6">
-        <input type="text" class="form-control" value="" name="uniqueName" id="uniqueName" placeholder="Required"/>
+        <input type="text" class="form-control" value="" name="uniqueName" id="uniqueName" placeholder="Obrigatório"/>
       </div>
       <input class="col-sm-1" type="checkbox" id="uniqueNameAutoCheck" name="uniqueNameAutoCheck" value="uniqueNameAutoCheck" onclick="jqueryAutoUniqueName()">
-      <label class="col-sm-2" for="uniqueNameAutoCheck"> Auto generate uniquename</label><br>
+      <label class="col-sm-2" for="uniqueNameAutoCheck"> Gerar nome único automaticamente</label><br>
     </div>
     <div class="form-group">
-      <label class="col-sm-3 control-label">Cloning Organism Host</label>
+      <label class="col-sm-3 control-label">Organismo hospedeiro da clonagem</label>
       <div class="col-sm-9">
         <input type="text" class="form-control" value="" id="CloningOrganism" name="CloningOrganism">
       </div>
     </div>
     <div class="form-group">
-      <label class="col-sm-3 control-label">Strain </label>
+      <label class="col-sm-3 control-label">Linhagem </label>
       <div class="col-sm-9">
         <input type="text" class="form-control" value="" id="Strain" name="Strain">
       </div>
     </div>
     <div class="form-group">
-      <label class="col-sm-3 control-label">Backbone </label>
+      <label class="col-sm-3 control-label">Estrutura-base </label>
       <div class="col-sm-9">
         <input type="text" class="form-control" value="" id="Backbone" name="Backbone">
       </div>
     </div>
     <div class="form-group">
-      <label class="col-sm-3 control-label">Inherent Marker </label>
+      <label class="col-sm-3 control-label">Marcador inerente </label>
       <div class="col-sm-9">
         <input type="text" class="form-control" value="" id="InherentMarker" name="InherentMarker">
       </div>
     </div>
     <div class="form-group">
-      <label class="col-sm-3 control-label">Selection Marker </label>
+      <label class="col-sm-3 control-label">Marcador de seleção </label>
       <div class="col-sm-9">
         <input type="text" class="form-control" value="" id="SelectionMarker" name="SelectionMarker">
       </div>
     </div>
     <div class="form-group">
-      <label class="col-sm-3 control-label">Host Antibiotic Resistant Marker </label>
+      <label class="col-sm-3 control-label">Marcador de resistência a antibióticos no hospedeiro </label>
       <div class="col-sm-9">
         <input type="text" class="form-control" value="" id="PlantAntibioticResistantMarker" name="PlantAntibioticResistantMarker">
       </div>
     </div>
     <div class="form-group">
-      <label class="col-sm-3 control-label">Bacterial Resistant Marker </label>
+      <label class="col-sm-3 control-label">Marcador de resistência bacteriana </label>
       <div class="col-sm-9">
         <input type="text" class="form-control" value="" id="BacterialResistantMarker" name="BacterialResistantMarker">
       </div>
     </div>
     <div class="form-group">
-      <label class="col-sm-3 control-label">Cassette Name </label>
+      <label class="col-sm-3 control-label">Nome do cassete </label>
       <div class="col-sm-9">
         <input type="text" class="form-control" value="" id="CassetteName" name="CassetteName">
       </div>
@@ -95,20 +95,20 @@ $editable_stock_props_definitions => {}
       </div>
     </div>
     <div class="form-group">
-      <label class="col-sm-3 control-label">Promotors </label>
+      <label class="col-sm-3 control-label">Promotores </label>
       <div class="col-sm-9">
         <input type="text" class="form-control" value="" id="Promotors" name="Promotors">
       </div>
     </div>
     <div class="form-group">
-      <label class="col-sm-3 control-label">Terminators </label>
+      <label class="col-sm-3 control-label">Terminadores </label>
       <div class="col-sm-9">
         <input type="text" class="form-control" value="" id="Terminators" name="Terminators">
       </div>
     </div>
   <hr>
-  <button style="float:right" class="btn btn-primary btn-lg" id="contact_form_submit">Add new vector</button>
-  <input type="reset" value="Reset" class="btn btn-primary btn-lg" style="float:right;background-color: white; color:black" />
+  <button style="float:right" class="btn btn-primary btn-lg" id="contact_form_submit">Adicionar novo vetor</button>
+  <input type="reset" value="Limpar" class="btn btn-primary btn-lg" style="float:right;background-color: white; color:black" />
   <br><br>
 
 </form>
@@ -143,11 +143,11 @@ function handleSubmit() {
             alert(response.error);
           } else {
             jQuery('#uniqueName').val('');
-            alert('Saved!');
+            alert('Salvo!');
           }
         },
         error: function(response) {
-          alert( 'An Error occured while storing vectors.');
+          alert( 'Ocorreu um erro ao armazenar os vetores.');
         }
     });
 }

@@ -16,7 +16,7 @@ $trial_id
 <&| /page/info_section.mas, 
   collapsible => 1, 
   collapsed   => 1, 
-  title       => "Analysis tools on saved measurements"
+  title       => "Ferramentas de análise das medições salvas"
   &>
 
 

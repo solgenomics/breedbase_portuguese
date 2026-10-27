@@ -14,21 +14,21 @@ $catalog_stock_property => undef
 <& /util/import_javascript.mas, classes => [ 'jquery.iframe-post-form', 'jquery', 'jquery.dataTables', 'CXGN.List'] &>
 <& /util/import_css.mas, paths => ['/documents/inc/datatables/jquery.dataTables.css'] &>
 
-<& /page/page_title.mas, title => "Order Form and Catalog" &>
+<& /page/page_title.mas, title => "Formulário de pedido e catálogo" &>
 
 % if ($catalog_stock_property eq 'transgenic') {
     <& /order/catalog_transgenic_lines.mas, order_properties_dialog => $order_properties_dialog, order_properties => $order_properties &>
 % }
 
 % if (($check_vendor_role == 1) && (!$catalog_stock_type)) {
-    <&| /page/info_section.mas, title => 'Manage Catalog', collapsible=>1, collapsed=>0 &>
+    <&| /page/info_section.mas, title => 'Gerenciar catálogo', collapsible=>1, collapsed=>0 &>
         <div class = "well well-sm">
             <div class = "panel panel-default">
                 <div class = "panel-body">
-                    <button id ="manage_catalog_usage_info_button" class="btn btn-default" >Usage Help <span class="glyphicon glyphicon-question-sign"></span></button>
-                    <button id="add_catalog_item_button" class="btn btn-primary">Add Single Item</button>
-                    <button id="add_catalog_using_list_button" class="btn btn-primary">Add Multiple Items Using List</button>
-                    <button id="upload_catalog_items_button" class="btn btn-primary">Upload Multiple Items</button>
+                    <button id ="manage_catalog_usage_info_button" class="btn btn-default" >Ajuda de uso <span class="glyphicon glyphicon-question-sign"></span></button>
+                    <button id="add_catalog_item_button" class="btn btn-primary">Adicionar item</button>
+                    <button id="add_catalog_using_list_button" class="btn btn-primary">Adicionar vários itens usando lista</button>
+                    <button id="upload_catalog_items_button" class="btn btn-primary">Enviar vários itens</button>
                 </div>
             </div>
         </div>
@@ -36,7 +36,7 @@ $catalog_stock_property => undef
 % }
 
 % if (($check_vendor_role == 1) && (!$catalog_stock_type)) {
-<&| /page/info_section.mas, title => 'Catalog Items', collapsible=>1, collapsed=>0 &>
+<&| /page/info_section.mas, title => 'Itens do catálogo', collapsible=>1, collapsed=>0 &>
     <div class = "well well-sm">
         <div class = "panel panel-default">
             <div class = "panel-body">
@@ -50,13 +50,13 @@ $catalog_stock_property => undef
         <div class="panel panel-default">
             <div class="panel-body">
                 <button id="your_cart_button" type="button" class="btn btn-primary btn-sm">
-                    <span class="glyphicon glyphicon-shopping-cart"></span> Your Cart
+                    <span class="glyphicon glyphicon-shopping-cart"></span> Seu carrinho
                 </button>
             </div>
         </div>
 %}
         <td>
-            <a href="/order/stocks/view"><p>Go to Manage Order Page</p></a>
+            <a href="/order/stocks/view"><p>Ir para a página de gerenciamento de pedidos</p></a>
         </td>
     </div>
 </&>
@@ -66,8 +66,8 @@ $catalog_stock_property => undef
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header" style="text-align:center">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="cartItemDialog">Your Cart</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="cartItemDialog">Seu carrinho</h4>
             </div>
             <div class="modal-body">
                 <div class="container-fluid">
@@ -76,8 +76,8 @@ $catalog_stock_property => undef
                 </div>
             </div>
             <div class="modal-footer">
-                <button id="close_cart_item_dialog" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button id="submit_order" type="button" class="btn btn-primary" >Submit Order</button>
+                <button id="close_cart_item_dialog" type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                <button id="submit_order" type="button" class="btn btn-primary" >Enviar pedido</button>
             </div>
         </div>
     </div>
@@ -87,18 +87,18 @@ $catalog_stock_property => undef
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header" style="text-align:center">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="cartMessageDialog">Your Cart</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="cartMessageDialog">Seu carrinho</h4>
             </div>
             <div class="modal-body" style="text-align:center">
                 <div class="container-fluid">
                     <p>
-                        You do not have any item in your cart
+                        Seu carrinho está vazio
                     </p>
                 </div>
             </div>
             <div class="modal-footer">
-                <button id="dismiss_cart_message_dialog" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button id="dismiss_cart_message_dialog" type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
             </div>
         </div>
     </div>
@@ -108,8 +108,8 @@ $catalog_stock_property => undef
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="orderResponseDialog">Your Order</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="orderResponseDialog">Seu pedido</h4>
             </div>
             <div class="modal-body">
                 <div class="container-fluid">
@@ -117,7 +117,7 @@ $catalog_stock_property => undef
                 </div>
             </div>
             <div class="modal-footer">
-                <button id="dismiss_order_response_dialog" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button id="dismiss_order_response_dialog" type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
             </div>
         </div>
     </div>
@@ -127,8 +127,8 @@ $catalog_stock_property => undef
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="addItemDetailDialog">Add Item Details</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="addItemDetailDialog">Adicionar detalhes do item</h4>
             </div>
             <div class="modal-body">
                 <div class="container-fluid">
@@ -138,13 +138,13 @@ $catalog_stock_property => undef
             </div>
 % if ($ordering_type eq 'single_step') {
             <div class="modal-footer">
-                <button id="close_submit_item_detail_dialog" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button id="single_step_submission_button" type="button" class="btn btn-primary" >Submit</button>
+                <button id="close_submit_item_detail_dialog" type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                <button id="single_step_submission_button" type="button" class="btn btn-primary" >Enviar</button>
             </div>
 %} else {
             <div class="modal-footer">
-                <button id="close_add_item_detail_dialog" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button id="add_item_button" type="button" class="btn btn-primary" >Add Item</button>
+                <button id="close_add_item_detail_dialog" type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                <button id="add_item_button" type="button" class="btn btn-primary" >Adicionar item</button>
             </div>
 %}
         </div>
@@ -176,19 +176,19 @@ jQuery(document).ready( function() {
             'search':'applied',
             'ajax': '/ajax/catalog/items',
             columns: [
-                { title: "Name", "data": null, "render": function ( data, type, row ) { return "<a href='/catalog/item_details/"+row.item_id+"'>"+row.item_name+"</a>"; } },
-                { title: "Type", "data": "item_type" },
-                { title: "Material Type", "data": "material_type" },
-                { title: "Species", "data": "species" },
-                { title: "Variety", "data": "variety" },
-                { title: "Category", "data": "category" },
-                { title: "Additional Info", "data": "additional_info" },
-                { title: "Material Source", "data": "material_source" },
-                { title: "Program", "data": "breeding_program" },
-                { title: "Availability", "data": "availability"},
+                { title: "Nome", "data": null, "render": function ( data, type, row ) { return "<a href='/catalog/item_details/"+row.item_id+"'>"+row.item_name+"</a>"; } },
+                { title: "Tipo", "data": "item_type" },
+                { title: "Tipo de material", "data": "material_type" },
+                { title: "Espécie", "data": "species" },
+                { title: "Variedade", "data": "variety" },
+                { title: "Categoria", "data": "category" },
+                { title: "Informações adicionais", "data": "additional_info" },
+                { title: "Origem do material", "data": "material_source" },
+                { title: "Programa", "data": "breeding_program" },
+                { title: "Disponibilidade", "data": "availability"},
                 { title: " ", "data": "null", "render": function ( data, type, row ) {
                     if (row.availability == 'available') {
-                        return "<a onclick='addToCart(\""+row.item_name+"\", \""+additional_order_info+"\", \""+ordering_service_name+"\", \""+ordering_type+"\", \""+order_properties_dialog+"\")'>Request</a>";
+                        return "<a onclick='addToCart(\""+row.item_name+"\", \""+additional_order_info+"\", \""+ordering_service_name+"\", \""+ordering_type+"\", \""+order_properties_dialog+"\")'>Solicitar</a>";
                     } else {
                         return ' '
                     }
@@ -202,17 +202,17 @@ jQuery(document).ready( function() {
             'search':'applied',
             'ajax': '/ajax/catalog/items',
             columns: [
-                { title: "Name", "data": null, "render": function ( data, type, row ) { return "<a href='/catalog/item_details/"+row.item_id+"'>"+row.item_name+"</a>"; } },
-                { title: "Type", "data": "item_type" },
-                { title: "Material Type", "data": "material_type" },
-                { title: "Species", "data": "species" },
-                { title: "Variety", "data": "variety" },
-                { title: "Category", "data": "category" },
-                { title: "Additional Info", "data": "additional_info" },
-                { title: "Material Source", "data": "material_source" },
-                { title: "Program", "data": "breeding_program" },
-                { title: "Availability", "data": "availability"},
-                { title: "Add to Cart", "data": "null", "render": function ( data, type, row ) {
+                { title: "Nome", "data": null, "render": function ( data, type, row ) { return "<a href='/catalog/item_details/"+row.item_id+"'>"+row.item_name+"</a>"; } },
+                { title: "Tipo", "data": "item_type" },
+                { title: "Tipo de material", "data": "material_type" },
+                { title: "Espécie", "data": "species" },
+                { title: "Variedade", "data": "variety" },
+                { title: "Categoria", "data": "category" },
+                { title: "Informações adicionais", "data": "additional_info" },
+                { title: "Origem do material", "data": "material_source" },
+                { title: "Programa", "data": "breeding_program" },
+                { title: "Disponibilidade", "data": "availability"},
+                { title: "Adicionar ao carrinho", "data": "null", "render": function ( data, type, row ) {
                     if (row.availability == 'available') {
                         return "<a onclick='addToCart(\""+row.item_name+"\", \""+additional_order_info+"\", \""+ordering_service_name+"\", \""+ordering_type+"\", \""+order_properties_dialog+"\" )'><span class='glyphicon glyphicon-shopping-cart'></span></a>";
                     } else {
@@ -261,11 +261,11 @@ jQuery(document).ready( function() {
             var itemAdded = lo.addToList(list_id, item_string);
             lo.setListType(list_id, 'catalog_items');
         } else {
-            alert ('Error retrieving your cart')
+            alert ('Erro ao recuperar seu carrinho')
         }
         if (itemAdded) {
             jQuery('#add_item_detail_dialog').modal('hide');
-            alert("Saved " + item_name + " in your cart");
+            alert("Item " + item_name + " salvo no seu carrinho");
             location.reload();
         }
 
@@ -304,7 +304,7 @@ jQuery(document).ready( function() {
             },
             error: function(response){
                 jQuery('#working_modal').modal('hide');
-                alert('An error occurred saving your order');
+                alert('Ocorreu um erro ao salvar seu pedido');
             }
 
         });
@@ -347,7 +347,7 @@ jQuery(document).ready( function() {
             },
             error: function(response){
                 jQuery('#working_modal').modal('hide');
-                alert('An error occurred saving your request');
+                alert('Ocorreu um erro ao salvar sua solicitação');
             }
         });
     });
@@ -360,7 +360,7 @@ function addToCart(item_name, additional_order_info, ordering_service_name, orde
     var properties = order_properties_dialog.split(",");
     var html = '';
 
-    html = html + '<form class="form-horizontal"><div class="form-group"><label class="col-sm-3 control-label">Item Name: </label><div class="col-sm-9" ><input class="form-control" id="item_name" name="item_name" value="'+item_name+'" disabled></div><br><br>';
+    html = html + '<form class="form-horizontal"><div class="form-group"><label class="col-sm-3 control-label">Nome do item: </label><div class="col-sm-9" ><input class="form-control" id="item_name" name="item_name" value="'+item_name+'" disabled></div><br><br>';
     for(var i=0; i<properties.length; i++){
         var each_property_info = properties[i].split(":");
         if (each_property_info.length == 1 && (properties[i].includes("Date"))) {

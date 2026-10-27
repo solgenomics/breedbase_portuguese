@@ -8,13 +8,13 @@ $for_analysis_page => undef
 
     <div class="panel panel-default">
         <div class="panel-body">
-            <&| /page/info_section.mas, title=>"Data Collection Files", is_subsection => 1, collapsible=>1, collapsed=>0, &>
-                <&| /page/info_section.mas, title=>"Phenotyping Spreadsheets", empty_message=>'', is_subsection => 1, collapsible=>0, collapsed=>0, subtitle=>'<button class="btn btn-sm btn-default" style="margin:3px" name="create_spreadsheet_link">Create Spreadsheet</button>' &>
+            <&| /page/info_section.mas, title=>"Arquivos de coleta de dados", is_subsection => 1, collapsible=>1, collapsed=>0, &>
+                <&| /page/info_section.mas, title=>"Planilhas de fenotipagem", empty_message=>'', is_subsection => 1, collapsible=>0, collapsed=>0, subtitle=>'<button class="btn btn-sm btn-default" style="margin:3px" name="create_spreadsheet_link">Criar planilha</button>' &>
                 </&>
 %  if (!$for_analysis_page) {
-                <&| /page/info_section.mas, title=>"Android Field Book Layout", empty_message=>'', is_subsection => 1, collapsible=>0, collapsed=>0, subtitle=>'<button class="btn btn-sm btn-default" style="margin:3px" name="create_fieldbook_link">Create Field Book</button>' &>
+                <&| /page/info_section.mas, title=>"Esquema do Field Book para Android", empty_message=>'', is_subsection => 1, collapsible=>0, collapsed=>0, subtitle=>'<button class="btn btn-sm btn-default" style="margin:3px" name="create_fieldbook_link">Criar Field Book</button>' &>
                 </&>
-                <&| /page/info_section.mas, title=>"Data Collector Spreadsheet", empty_message=>'', is_subsection => 1, collapsible=>0, collapsed=>0, subtitle=> '<button class="btn btn-sm btn-default" style="margin:3px" id="create_DataCollector_link">Create DataCollector Spreadsheet</button>' &>
+                <&| /page/info_section.mas, title=>"Planilha do Data Collector", empty_message=>'', is_subsection => 1, collapsible=>0, collapsed=>0, subtitle=> '<button class="btn btn-sm btn-default" style="margin:3px" id="create_DataCollector_link">Criar planilha do Data Collector</button>' &>
                 </&>
 %  }
             </&><!-- closes create new phenotyping file section -->
@@ -22,13 +22,13 @@ $for_analysis_page => undef
     </div>
     <div class="panel panel-default">
         <div class="panel-body">
-            <&| /page/info_section.mas, title=>"Upload Phenotyping Files", is_subsection => 1, collapsible=>1, collapsed=>0, &>
-                <&| /page/info_section.mas, title=>"Phenotyping Spreadsheets", empty_message=>'', is_subsection => 1, collapsible=>0, collapsed=>0, subtitle=>'<button class="btn btn-sm btn-primary" style="margin:3px" id="upload_spreadsheet_phenotypes_link">Upload</button>'&>
+            <&| /page/info_section.mas, title=>"Enviar arquivos de fenotipagem", is_subsection => 1, collapsible=>1, collapsed=>0, &>
+                <&| /page/info_section.mas, title=>"Planilhas de fenotipagem", empty_message=>'', is_subsection => 1, collapsible=>0, collapsed=>0, subtitle=>'<button class="btn btn-sm btn-primary" style="margin:3px" id="upload_spreadsheet_phenotypes_link">Enviar</button>'&>
                 </&>
 %  if (!$for_analysis_page) {
-                <&| /page/info_section.mas, title=>"Android Field Book Exported", empty_message=>'', is_subsection => 1, collapsible=>0, collapsed=>0, subtitle=>'<button class="btn btn-sm btn-primary" style="margin:3px" id="upload_fieldbook_phenotypes_link">Upload</button>'&>
+                <&| /page/info_section.mas, title=>"Arquivo exportado pelo Field Book para Android", empty_message=>'', is_subsection => 1, collapsible=>0, collapsed=>0, subtitle=>'<button class="btn btn-sm btn-primary" style="margin:3px" id="upload_fieldbook_phenotypes_link">Enviar</button>'&>
                 </&>
-                <&| /page/info_section.mas, title=>"Data Collector Spreadsheet", empty_message=>'', is_subsection => 1, collapsible=>0, collapsed=>0, subtitle=>'<button class="btn btn-sm btn-primary" style="margin:3px" id="upload_datacollector_phenotypes_link">Upload</button>'&>
+                <&| /page/info_section.mas, title=>"Planilha do Data Collector", empty_message=>'', is_subsection => 1, collapsible=>0, collapsed=>0, subtitle=>'<button class="btn btn-sm btn-primary" style="margin:3px" id="upload_datacollector_phenotypes_link">Enviar</button>'&>
                 </&>
 %  }
             </&><!-- closes upload new phenotype file section -->
@@ -36,7 +36,7 @@ $for_analysis_page => undef
     </div>
     <div class="panel panel-default">
         <div class="panel-body">
-            <&| /page/info_section.mas, title=>"Uploaded Phenotyping Files", is_subsection => 1, collapsible=>1, collapsed=>0 &>
+            <&| /page/info_section.mas, title=>"Arquivos de fenotipagem enviados", is_subsection => 1, collapsible=>1, collapsed=>0 &>
 
                 <table class="table table-bordered" id="trial_phenotype_files_datatables" alt="">
                 </table>
@@ -46,7 +46,7 @@ $for_analysis_page => undef
     </div>
     <div class="panel panel-default">
         <div class="panel-body">
-            <&| /page/info_section.mas, title=>"Uploaded Additional Files", is_subsection => 1, collapsible=>1, collapsed=>0, subtitle=>'<button class="btn btn-sm btn-primary" style="margin:3px" id="trial_upload_additional_files_link">Upload Additional Files</button>' &>
+            <&| /page/info_section.mas, title=>"Arquivos adicionais enviados", is_subsection => 1, collapsible=>1, collapsed=>0, subtitle=>'<button class="btn btn-sm btn-primary" style="margin:3px" id="trial_upload_additional_files_link">Enviar arquivos adicionais</button>' &>
 
             <& /breeders_toolbox/trial/upload_additional_file.mas, trial_id => $trial_id &>
 
@@ -63,11 +63,11 @@ jQuery(document).ready(function() {
         jQuery('#trial_phenotype_files_datatables').DataTable({
             'ajax': { 'url': '/ajax/breeders/trial/<% $trial_id %>/phenotype_metadata' },
             columns: [
-                { title: "Filename", "data": null, "render": function ( data, type, row ) { return row[4]; } },
-                { title: "Date Uploaded", "data": null, "render": function ( data, type, row ) { return row[1]; } },
-                { title: "Uploaded By", "data": null, "render": function ( data, type, row ) { return '<a href="/solpeople/profile/'+row[2]+'">'+row[3]+'</a>'; } },
-                { title: "File Type", "data": null, "render": function ( data, type, row ) { return row[6]; } },
-                { title: "Options", "data": null, "render": function ( data, type, row ) { return '<a href="/breeders/phenotyping/view/'+row[0]+'">View</a> | <a href="/breeders/phenotyping/download/'+row[0]+'">Download</a>'; } },
+                { title: "Nome do arquivo", "data": null, "render": function ( data, type, row ) { return row[4]; } },
+                { title: "Data do envio", "data": null, "render": function ( data, type, row ) { return row[1]; } },
+                { title: "Enviado por", "data": null, "render": function ( data, type, row ) { return '<a href="/solpeople/profile/'+row[2]+'">'+row[3]+'</a>'; } },
+                { title: "Tipo de arquivo", "data": null, "render": function ( data, type, row ) { return row[6]; } },
+                { title: "Opções", "data": null, "render": function ( data, type, row ) { return '<a href="/breeders/phenotyping/view/'+row[0]+'">Visualizar</a> | <a href="/breeders/phenotyping/download/'+row[0]+'">Baixar</a>'; } },
             ]
         });
 

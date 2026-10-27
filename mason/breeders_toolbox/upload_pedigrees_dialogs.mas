@@ -5,20 +5,20 @@
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="uploadPedigreesValidateDialog">Results From Validation</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="uploadPedigreesValidateDialog">Resultados da validação</h4>
       </div>
       <div class="modal-body">
         <div class="container-fluid">
-            <div class="well">To Overwrite Parents In the Case That An Accession Already Has Male or Female Parents <input type="checkbox" checked id="pedigree_upload_overwrite_pedigrees" /></div>
+            <div class="well">Sobrescrever os parentais quando um acesso já possuir parental masculino ou feminino <input type="checkbox" checked id="pedigree_upload_overwrite_pedigrees" /></div>
  	  <table class="table table-hover">
     	    <tbody></tbody>
   	  </table>
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" name="upload_pedigrees_store" id="upload_pedigrees_store" data-dismiss="modal">Store</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+        <button type="button" class="btn btn-primary" name="upload_pedigrees_store" id="upload_pedigrees_store" data-dismiss="modal">Armazenar</button>
       </div>
     </div>
   </div>
@@ -28,8 +28,8 @@
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="uploadPedigreesErrorDialog">Results From Validation</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="uploadPedigreesErrorDialog">Resultados da validação</h4>
       </div>
       <div class="modal-body">
         <table class="table table-hover">
@@ -37,7 +37,7 @@
         </table>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
       </div>
     </div>
   </div>
@@ -47,16 +47,16 @@
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="uploadPedigreesSuccessDialog">Upload Successful</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="uploadPedigreesSuccessDialog">Envio concluído com sucesso</h4>
       </div>
       <div class="modal-body">
         <div class="container-fluid">
- 	  <h4>The Pedigree Upload Finished With No Errors.</h4>
+          <h4>O envio dos pedigrees foi concluído sem erros.</h4>
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" id="pedigrees_upload_success_dismiss" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" id="pedigrees_upload_success_dismiss" class="btn btn-default" data-dismiss="modal">Fechar</button>
       </div>
     </div>
   </div>
@@ -66,21 +66,21 @@
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="uploadPedigreesDialog">Upload Pedigrees</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="uploadPedigreesDialog">Enviar pedigrees</h4>
             </div>
             <div class="modal-body">
                 <div class="container-fluid">
-                    <&| /page/explanation.mas, title=>'Template Information' &>
+                    <&| /page/explanation.mas, title=>'Informações do modelo' &>
                         <p>
-                            <b>File format information</b>
+                            <b>Informações sobre o formato do arquivo</b>
                             <br>
-                            <a id="pedigrees_upload_spreadsheet_format_info">Spreadsheet Format</a>
+                            <a id="pedigrees_upload_spreadsheet_format_info">Formato da planilha</a>
                         </p>
                     </&>
                     <form method="post" enctype="multipart/form-data" encoding="multipart/form-data" id="upload_pedigrees_form" name="upload_pedigrees_form">
                         <div class="form-group">
-                            <label class="col-sm-4 control-label">Upload Pedigree File: </label>
+                            <label class="col-sm-4 control-label">Enviar arquivo de pedigree: </label>
                             <div class="col-sm-8" >
                                 <input type="file" name="pedigrees_uploaded_file" id="pedigrees_uploaded_file" encoding="multipart/form-data" />
                             </div>
@@ -89,8 +89,8 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" name="upload_pedigrees_dialog_submit" id="upload_pedigrees_dialog_submit">Validate</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                <button type="button" class="btn btn-primary" name="upload_pedigrees_dialog_submit" id="upload_pedigrees_dialog_submit">Validar</button>
             </div>
         </div>
     </div>
@@ -100,66 +100,66 @@
   <div class="modal-dialog modal-xl" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="pedigreeUploadInfoDialog">Template Information</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="pedigreeUploadInfoDialog">Informações do modelo</h4>
       </div>
       <div class="modal-body">
         <div class="container-fluid">
         <& /help/file_upload_type.mas, type => "Pedigrees", optional_column => 0 &>
 	  <hr>
-	  <b>Header:</b>
+	  <b>Cabeçalho:</b>
 	  <br>
-	  <p>The first row (header) should contain the following:</p>
+	  <p>A primeira linha (cabeçalho) deve conter:</p>
 
 	  <table class="table table-hover table-bordered">
   	  <body>
 	    <tr>
-    	      <td>progeny name</td>
-    	      <td>female parent accession</td>
+              <td>Nome da progênie<br><code>progeny name</code></td>
+              <td>Acesso do parental feminino<br><code>female parent accession</code></td>
     	      <!--<td>male parent accession(s) (if more than one, separate using commas)</td>-->
-              <td>male parent accession</td>
-              <td>type</td>
+              <td>Acesso do parental masculino<br><code>male parent accession</code></td>
+              <td>Tipo<br><code>type</code></td>
 
   	    </tr>
 	  </body>
 	  </table>
 
-	  <h4>Required fields:</h4>
+	  <h4>Campos obrigatórios:</h4>
 	  <ul>
-        <li>progeny name (must exist in the database and can be accession uniquename or accession synonym)</li>
-        <li>female parent accession (must exist in the database)</li>
-        <li>type (biparental, self, open, backcross, sib, polycross, reselected)</li>
+        <li>Nome da progênie — <code>progeny name</code> (deve existir no banco de dados e pode ser o nome único ou um sinônimo do acesso)</li>
+        <li>Acesso do parental feminino — <code>female parent accession</code> (deve existir no banco de dados)</li>
+        <li>Tipo — <code>type</code> (<code>biparental</code>, <code>self</code>, <code>open</code>, <code>backcross</code>, <code>sib</code>, <code>polycross</code> ou <code>reselected</code>)</li>
             <ul class="a">
-                <li>cross type descriptions:</li>
+                <li>Descrições dos tipos de cruzamento:</li>
                 <ul class="b">
-                    <li>biparental: An individual plant pollinated by another individual plant.</li>
-                    <li>self: A self pollinated individual plant.</li>
-                    <li>open: An individual plant pollinated by a group of plants or open pollinated (pollen may be from a group with known or unknown members).</li>
-                    <li>backcross: An individual plant pollinated by one of its parents.</li>
-                    <li>sib: Mating between individuals that have at least one parent in common. Generally between two individuals within the same plot.</li>
-                    <li>polycross: Mating between individual female parent from a population and the corresponding male population.</li>
-                    <li>reselected: Selection of a new accession from an existing line (e.g. caused by a mutation).</li>
-                    <li>doubled_haploid: Chromosome doubling of a haploid plant.</li>
-                    <li>dihaploid_induction: Generation of dihaploids from a tetraploid plant.</li>
+                    <li><code>biparental</code>: uma planta individual polinizada por outra planta individual.</li>
+                    <li><code>self</code>: uma planta individual autopolinizada.</li>
+                    <li><code>open</code>: uma planta individual polinizada por um grupo de plantas ou por polinização aberta; o pólen pode vir de um grupo com membros conhecidos ou desconhecidos.</li>
+                    <li><code>backcross</code>: uma planta individual polinizada por um de seus parentais.</li>
+                    <li><code>sib</code>: cruzamento entre indivíduos que possuem pelo menos um parental em comum, geralmente entre dois indivíduos da mesma parcela.</li>
+                    <li><code>polycross</code>: cruzamento entre um parental feminino individual de uma população e a população masculina correspondente.</li>
+                    <li><code>reselected</code>: seleção de um novo acesso a partir de uma linhagem existente, por exemplo, em razão de uma mutação.</li>
+                    <li><code>doubled_haploid</code>: duplicação cromossômica de uma planta haploide.</li>
+                    <li><code>dihaploid_induction</code>: geração de di-haploides a partir de uma planta tetraploide.</li>
                 </ul>
             </ul>
       </ul>
 
-	  <h4>Optional fields</h4>
+	  <h4>Campos opcionais</h4>
 	  <ul>
-        <li>male parent accession (can be accession uniquename or accession synonym or population name). Required for most cross types. </li>
+        <li>Acesso do parental masculino — <code>male parent accession</code> (pode ser o nome único ou um sinônimo do acesso, ou o nome de uma população). Obrigatório para a maioria dos tipos de cruzamento.</li>
 	  </ul>
 
-	  <h4>Notes</h4>
+	  <h4>Observações</h4>
 	  <ul>
-	    <li>Always specify the type of the cross (biparental, self, open, sib, backcross, polycross or reselected).</li>
-	    <li>If the type is open and no potential male parent is known, leave the male parent field empty.</li>
-	     <li>For all other cases, list both known parents, even if they are the same, such as in the case of self.</li>
+	    <li>Sempre especifique o tipo de cruzamento (<code>biparental</code>, <code>self</code>, <code>open</code>, <code>sib</code>, <code>backcross</code>, <code>polycross</code> ou <code>reselected</code>).</li>
+	    <li>Se o tipo for <code>open</code> e nenhum possível parental masculino for conhecido, deixe esse campo vazio.</li>
+	     <li>Nos demais casos, informe os dois parentais conhecidos, mesmo que sejam iguais, como na autofecundação (<code>self</code>).</li>
 	  </ul>
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
       </div>
     </div>
   </div>

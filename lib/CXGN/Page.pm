@@ -18,6 +18,7 @@ of the argument-retrieval.
 use base qw/ CXGN::Scrap /;
 use strict;
 use warnings;
+use utf8;
 use HTML::Entities qw/encode_entities/;
 use URI::Escape;
 use Carp;
@@ -195,7 +196,7 @@ sub simple_header {
     print "\n"; #< just in case we printed some plain headers
     print <<END_HTML;
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html>
+<html lang="pt-BR" xml:lang="pt-BR">
 $head
 
 <body>
@@ -489,11 +490,11 @@ sub login_form {
 	<form name="CXGN_LOGIN" method="POST" style="margin:0px;padding0px">
 	<table>
 	<td>
-	Username:</td><td><input type="text" id="CXGN_LOGIN_USERNAME" name="CXGN_LOGIN_USERNAME" /></td></tr>
+	Nome de usuário:</td><td><input type="text" id="CXGN_LOGIN_USERNAME" name="CXGN_LOGIN_USERNAME" /></td></tr>
 	<tr><td>
-	Password:</td><td><input type="password" id="CXGN_LOGIN_PASSWORD" name="CXGN_LOGIN_PASSWORD" /></td></tr>
+	Senha:</td><td><input type="password" id="CXGN_LOGIN_PASSWORD" name="CXGN_LOGIN_PASSWORD" /></td></tr>
 	<tr><td>
-	<input type="submit" value="Login" />
+	<input type="submit" value="Entrar" />
 	</td>
 	<td>
 	</td>

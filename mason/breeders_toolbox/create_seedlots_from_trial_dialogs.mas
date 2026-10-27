@@ -7,8 +7,8 @@ $default_seedlot_material_type => undef
     <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="create_seedlots_trial_dialog_title">Create Seedlots from a Trial</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="create_seedlots_trial_dialog_title">Criar lotes de sementes a partir de um ensaio</h4>
             </div>
             <div class="modal-body">
                 <div class="container-fluid">
@@ -18,31 +18,31 @@ $default_seedlot_material_type => undef
 
 
                         <!-- STEP 1: Intro -->
-                        <&| /util/workflow.mas:step, title=> "Intro" &>
-                            <& /page/page_title.mas, title=>"Introduction" &>
+                        <&| /util/workflow.mas:step, title=> "Introdução" &>
+                            <& /page/page_title.mas, title=>"Introdução" &>
                             <p>
-                                This workflow will guide you through the process of creating seedlots from the accessions
-                                in a field trial.  You can create one new seedlot for each plot or unique accession
-                                in the trial.  You can also set the initial contents (count or weight) of the seedlot
-                                as the value of a recorded trait from the trial.
+                                Este fluxo orienta a criação de lotes de sementes a partir dos acessos de um ensaio
+                                de campo. Você pode criar um novo lote para cada parcela ou acesso único do ensaio.
+                                Também é possível definir o conteúdo inicial do lote (quantidade ou peso) usando
+                                o valor de uma característica registrada no ensaio.
                             </p>
                             <br/><br/>
                             <div style="text-align: center">
-                                <button class="btn btn-primary" onclick="Workflow.complete(this);">Go to Next Step</button>
+                                <button class="btn btn-primary" onclick="Workflow.complete(this);">Ir para a próxima etapa</button>
                             </div>
                         </&>
 
                         <!-- STEP 2: Select Trial -->
-                        <&| /util/workflow.mas:step, title=> "Select Trial" &>
-                            <& /page/page_title.mas, title=>"Select a Field Trial" &>
+                        <&| /util/workflow.mas:step, title=> "Selecionar ensaio" &>
+                            <& /page/page_title.mas, title=>"Selecione um ensaio de campo" &>
                             <p>
-                                Enter the name of the field trial from which to create the seedlots:
+                                Informe o nome do ensaio de campo a partir do qual os lotes serão criados:
                             </p>
                             <br /><br />
                             <div class="form-group">
-                                <label class="col-sm-3 control-label" style="text-align: right">Trial: </label>
+                                <label class="col-sm-3 control-label" style="text-align: right">Ensaio: </label>
                                 <div class="col-sm-9" >
-                                    <input class="form-control" id="create_seedlots_trial_name" placeholder="Trial Name..." value="">
+                                    <input class="form-control" id="create_seedlots_trial_name" placeholder="Nome do ensaio..." value="">
                                 </div>
                             </div>
                             <br /><br /><br /><br />
@@ -51,25 +51,25 @@ $default_seedlot_material_type => undef
                             </div>
                             <br/><br/>
                             <div style="text-align: center">
-                                <button id="create_seedlots_trial_complete_select_trial" class="btn btn-primary">Go to Next Step</button>
+                                <button id="create_seedlots_trial_complete_select_trial" class="btn btn-primary">Ir para a próxima etapa</button>
                             </div>
                         </&>
 
                         <!-- STEP 3: Select Seedlots -->
-                        <&| /util/workflow.mas:step, title=> "Select Seedlots" &>
-                            <& /page/page_title.mas, title=>"Select Seedlots" &>
+                        <&| /util/workflow.mas:step, title=> "Selecionar lotes de sementes" &>
+                            <& /page/page_title.mas, title=>"Selecionar lotes de sementes" &>
 
                             <p>
-                                Seedlots can be generated from either each <strong>accession</strong> or <strong>plot</strong>
-                                <span class='create_seedlots_trial_subplots_available'> or <strong>subplot</strong></span>
-                                <span class='create_seedlots_trial_plants_available'> or <strong>plant</strong></span>
-                                in this trial.
+                                É possível gerar lotes de sementes para cada <strong>acesso</strong> ou <strong>parcela</strong>
+                                <span class='create_seedlots_trial_subplots_available'> ou <strong>subparcela</strong></span>
+                                <span class='create_seedlots_trial_plants_available'> ou <strong>planta</strong></span>
+                                deste ensaio.
                             </p>
                             <ul>
-                                <li>If you select <strong>accessions</strong>: <span id="create_seedlots_trial_accession_count"></span> seedlots will be created</li>
-                                <li>If you select <strong>plots</strong>: <span id="create_seedlots_trial_plot_count"></span> seedlots will be created</li>
-                                <li class='create_seedlots_trial_subplots_available_list'>If you select <strong>subplots</strong>: <span id="create_seedlots_trial_subplot_count"></span> seedlots will be created</li>
-                                <li class='create_seedlots_trial_plants_available_list'>If you select <strong>plants</strong>: <span id="create_seedlots_trial_plant_count"></span> seedlots will be created</li>
+                                <li>Se você selecionar <strong>acessos</strong>: <span id="create_seedlots_trial_accession_count"></span> lotes de sementes serão criados</li>
+                                <li>Se você selecionar <strong>parcelas</strong>: <span id="create_seedlots_trial_plot_count"></span> lotes de sementes serão criados</li>
+                                <li class='create_seedlots_trial_subplots_available_list'>Se você selecionar <strong>subparcelas</strong>: <span id="create_seedlots_trial_subplot_count"></span> lotes de sementes serão criados</li>
+                                <li class='create_seedlots_trial_plants_available_list'>Se você selecionar <strong>plantas</strong>: <span id="create_seedlots_trial_plant_count"></span> lotes de sementes serão criados</li>
                             </ul>
 
                             <br /><br />
@@ -78,10 +78,10 @@ $default_seedlot_material_type => undef
                                 <div class="col-sm-3"></div>
                                 <div class="col-sm-6" >
                                     <select id="create_seedlots_trial_stock_type" class="form-control">
-                                        <option value="accessions">Accessions</option>
-                                        <option value="plots">Plots</option>
-                                        <option class="create_seedlots_trial_subplots_available" value="subplots">Subplots</option>
-                                        <option class="create_seedlots_trial_plants_available" value="plants">Plants</option>
+                                        <option value="accessions">Acessos</option>
+                                        <option value="plots">Parcelas</option>
+                                        <option class="create_seedlots_trial_subplots_available" value="subplots">Subparcelas</option>
+                                        <option class="create_seedlots_trial_plants_available" value="plants">Plantas</option>
                                     </select>
                                 </div>
                                 <div class="col-sm-3"></div>
@@ -89,16 +89,16 @@ $default_seedlot_material_type => undef
 
                             <br/><br/><br /><br />
                             <div style="text-align: center">
-                                <button id="create_seedlots_trial_complete_select_stock_type" class="btn btn-primary">Go to Next Step</button>
+                                <button id="create_seedlots_trial_complete_select_stock_type" class="btn btn-primary">Ir para a próxima etapa</button>
                             </div>
                         </&>
 
                         <!-- STEP 4: Name Seedlots -->
-                        <&| /util/workflow.mas:step, title=> "Name Seedlots" &>
-                            <& /page/page_title.mas, title=>"Name Seedlots" &>
+                        <&| /util/workflow.mas:step, title=> "Nomear lotes de sementes" &>
+                            <& /page/page_title.mas, title=>"Nomear lotes de sementes" &>
 
                             <p>
-                                Enter a template for naming each new seedlot.  The following variables (surrounded by curly braces) can be used in the template and the value of that variable will be replaced.
+                                Informe um modelo para nomear os novos lotes. As variáveis abaixo, entre chaves, podem ser usadas no modelo e serão substituídas pelos valores correspondentes.
                             </p>
                             <ul>
                                 <li><code>trial_name</code></li>
@@ -111,55 +111,54 @@ $default_seedlot_material_type => undef
                                 <li class="subplot_level_variable"><code>subplot_index</code></li>
                                 <li class="plant_level_variable"><code>plant_name</code></li>
                                 <li class="plant_level_variable"><code>plant_index</code></li>
-                                <li><code>index</code> - an incrementing index number, starting with 1</li>
+                                <li><code>index</code> - um número sequencial iniciado em 1</li>
                             </ul>
 
                             <br /><br />
 
                             <div class="form-group">
-                                <label class="col-sm-3 control-label" style="text-align: right">Name Template: </label>
+                                <label class="col-sm-3 control-label" style="text-align: right">Modelo de nome: </label>
                                 <div class="col-sm-7" >
                                     <input class="form-control" id="create_seedlots_trial_name_template" value="">
                                 </div>
                                 <div class="col-sm-2">
-                                    <button id="create_seedlots_trial_name_update" type="button" class="btn btn-primary btn-block" disabled>Update</button>
+                                    <button id="create_seedlots_trial_name_update" type="button" class="btn btn-primary btn-block" disabled>Atualizar</button>
                                 </div>
                             </div>
 
                             <br /><br /><br />
 
                             <div style="text-align: center">
-                                <button id="create_seedlots_trial_complete_name_seedlots" class="btn btn-primary">Go to Next Step</button>
+                                <button id="create_seedlots_trial_complete_name_seedlots" class="btn btn-primary">Ir para a próxima etapa</button>
                             </div>
 
                             <br /><br />
 
-                            <h4>Seedlot Names</h4>
+                            <h4>Nomes dos lotes de sementes</h4>
                             <table id="create_seedlots_trial_name_table" class="table table-striped table-hover"></table>
                         </&>
 
                         <!-- STEP 5: Seedlot Contents -->
-                        <&| /util/workflow.mas:step, title=> "Set Contents" &>
-                            <& /page/page_title.mas, title=>"Set Seedlot Contents" &>
+                        <&| /util/workflow.mas:step, title=> "Definir conteúdo" &>
+                            <& /page/page_title.mas, title=>"Definir conteúdo dos lotes de sementes" &>
 
                             <p>
-                                Each seedlot needs to have its initial contents (either a count or a weight) set.  You
-                                can either set the same initial value for each seedlot, use the value from one of the
-                                traits recorded for this trial, or compute a new value from the recorded traits for this
-                                trial.  If you are creating a seedlot for each accession and select a trait or a computed
-                                value as their initial value, then the sum of the trait values for each of the accession's
-                                plots will be used.  The contents of each seedlot can be modified in the table below
-                                before its creation.
+                                Cada lote precisa de um conteúdo inicial (quantidade ou peso). Você pode definir
+                                o mesmo valor para todos os lotes, usar uma característica registrada no ensaio
+                                ou calcular um novo valor a partir das características registradas. Ao criar um
+                                lote por acesso e usar uma característica ou um valor calculado, será usada a
+                                soma dos valores das parcelas daquele acesso. O conteúdo de cada lote pode
+                                ser alterado na tabela abaixo antes da criação.
                             </p>
 
                             <br /><br />
 
                             <div class="form-group">
-                                <label class="col-sm-3 control-label" style="text-align: right">Contents Type: </label>
+                                <label class="col-sm-3 control-label" style="text-align: right">Tipo de conteúdo: </label>
                                 <div class="col-sm-9" >
                                     <select class="form-control" id="create_seedlots_trial_contents_type">
-                                        <option value="amount">Amount / Count</option>
-                                        <option value="weight">Weight</option>
+                                        <option value="amount">Quantidade / Contagem</option>
+                                        <option value="weight">Peso</option>
                                     </select>
                                 </div>
                             </div>
@@ -167,12 +166,12 @@ $default_seedlot_material_type => undef
                             <br /><br />
 
                             <div class="form-group">
-                                <label class="col-sm-3 control-label" style="text-align: right">Contents Value: </label>
+                                <label class="col-sm-3 control-label" style="text-align: right">Valor do conteúdo: </label>
                                 <div class="col-sm-9" >
                                     <select class="form-control" id="create_seedlots_trial_contents_value">
-                                        <option value="constant">Constant Value</option>
-                                        <option value="trait">Trait Value</option>
-                                        <option value="computed">Computed Value from Traits</option>
+                                        <option value="constant">Valor constante</option>
+                                        <option value="trait">Valor de característica</option>
+                                        <option value="computed">Valor calculado a partir das características</option>
                                     </select>
                                 </div>
                             </div>
@@ -180,80 +179,79 @@ $default_seedlot_material_type => undef
                             <br /><br />
 
                             <div class="form-group" id="create_seedlots_trial_contents_constant_form">
-                                <label class="col-sm-3 control-label" style="text-align: right">Constant: </label>
+                                <label class="col-sm-3 control-label" style="text-align: right">Constante: </label>
                                 <div class="col-sm-9" >
                                     <input class="form-control" id="create_seedlots_trial_contents_constant" value="1">
                                 </div>
                             </div>
 
                             <div class="form-group" id="create_seedlots_trial_contents_trait_form" style="display: none">
-                                <label class="col-sm-3 control-label" style="text-align: right">Trait: </label>
+                                <label class="col-sm-3 control-label" style="text-align: right">Característica: </label>
                                 <div class="col-sm-9" >
                                     <select class="form-control" id="create_seedlots_trial_contents_trait"></select>
                                 </div>
                             </div>
 
                             <div class="form-group" id="create_seedlots_trial_contents_computed_form" style="display: none">
-                                <label class="col-sm-3 control-label" style="text-align: right">Trait Variables: </label>
+                                <label class="col-sm-3 control-label" style="text-align: right">Variáveis das características: </label>
                                 <div class="col-sm-9">
                                     <p>
-                                        Use the following variables as substitutions for the trait values to compute a new value
-                                        for the initial seedlot contents.  If you are creating one seedlot <strong>per plot</strong>, then
-                                        the single plot trait value will be used in the computation.  If you are creating one seedlot
-                                        <strong>per accession</strong>, then the sum of the trait values for each plot of that accession
-                                        will be used in the computation.
+                                        Use as variáveis abaixo para representar os valores das características no cálculo
+                                        do conteúdo inicial dos lotes. Ao criar um lote <strong>por parcela</strong>, será usado
+                                        o valor da característica daquela parcela. Ao criar um lote <strong>por acesso</strong>,
+                                        será usada a soma dos valores das parcelas daquele acesso.
                                     </p>
                                     <table class="table table-striped">
                                         <thead>
                                             <tr>
-                                                <th>Variable</th>
-                                                <th>Trait</th>
+                                                <th>Variável</th>
+                                                <th>Característica</th>
                                             </tr>
                                         </thead>
                                         <tbody id="create_seedlots_trial_contents_computed_table"></tbody>
                                     </table>
                                 </div>
 
-                                <label class="col-sm-3 control-label" style="text-align: right">Contents Formula: </label>
+                                <label class="col-sm-3 control-label" style="text-align: right">Fórmula do conteúdo: </label>
                                 <div class="col-sm-9">
                                     <input class="form-control" id="create_seedlots_trial_contents_computed_formula" value="" placeholder="{trait_1}/10">
                                     <p>
-                                        <strong>NOTE:</strong> The formula is evaluated using javascript, so any basic operators (+-*/) or
-                                        javascript Math functions (Math.abs(x)) can be used.
+                                        <strong>OBSERVAÇÃO:</strong> a fórmula é calculada em JavaScript. Você pode usar operadores
+                                        básicos (+-*/) e funções de Math, como Math.abs(x).
                                     </p>
                                 </div>
 
                                 <div class="col-sm-12" style="text-align: center; margin: 25px 0">
-                                    <button id="create_seedlots_trial_complete_computed_compute" class="btn btn-primary" disabled>Compute</button>
+                                    <button id="create_seedlots_trial_complete_computed_compute" class="btn btn-primary" disabled>Calcular</button>
                                 </div>
                             </div>
 
                             <br /><br />
 
                             <div style="text-align: center">
-                                <button id="create_seedlots_trial_complete_set_contents" class="btn btn-primary">Go to Next Step</button>
+                                <button id="create_seedlots_trial_complete_set_contents" class="btn btn-primary">Ir para a próxima etapa</button>
                             </div>
 
                             <br /><br />
 
-                            <h4>Seedlot Contents</h4>
+                            <h4>Conteúdo dos lotes de sementes</h4>
                             <table id="create_seedlots_trial_contents_table" class="table table-striped table-hover"></table>
                         </&>
 
                         <!-- STEP 6: Seedlot Metadata -->
-                        <&| /util/workflow.mas:step, title=> "Set Metadata" &>
-                            <& /page/page_title.mas, title=>"Set Seedlot Metadata" &>
+                        <&| /util/workflow.mas:step, title=> "Definir metadados" &>
+                            <& /page/page_title.mas, title=>"Definir metadados dos lotes de sementes" &>
 
                             <p>
-                                The following metadata is required for each seedlot.  Fill out the form at the top
-                                apply the metadata to all of the seedlots.  Then, each seedlot can be manually
-                                modified in the table below.
+                                Os metadados abaixo são necessários para cada lote. Preencha o formulário acima
+                                para aplicá-los a todos os lotes. Depois, altere os dados de cada lote
+                                individualmente na tabela abaixo, se necessário.
                             </p>
 
                             <br /><br />
 
                             <div class="form-group">
-                                <label class="col-sm-3 control-label" style="text-align: right">Breeding Program: </label>
+                                <label class="col-sm-3 control-label" style="text-align: right">Programa de melhoramento: </label>
                                 <div class="col-sm-9" >
                                     <div id="create_seedlots_trial_breeding_program_div"></div>
                                 </div>
@@ -262,32 +260,32 @@ $default_seedlot_material_type => undef
                             <br /><br />
 
                             <div class="form-group">
-                                <label class="col-sm-3 control-label" style="text-align: right">Location: </label>
+                                <label class="col-sm-3 control-label" style="text-align: right">Local: </label>
                                 <div class="col-sm-9" >
-                                    <input class="form-control create_seedlots_trial_metadata_input" id="create_seedlots_trial_location" value="" placeholder="Required">
+                                    <input class="form-control create_seedlots_trial_metadata_input" id="create_seedlots_trial_location" value="" placeholder="Obrigatório">
                                 </div>
                             </div>
 
                             <br /><br />
 
                             <div class="form-group">
-                                <label class="col-sm-3 control-label" style="text-align: right">Box Name: </label>
+                                <label class="col-sm-3 control-label" style="text-align: right">Nome da caixa: </label>
                                 <div class="col-sm-9" >
-                                    <input class="form-control create_seedlots_trial_metadata_input" id="create_seedlots_trial_box_name" value="" placeholder="Required">
+                                    <input class="form-control create_seedlots_trial_metadata_input" id="create_seedlots_trial_box_name" value="" placeholder="Obrigatório">
                                 </div>
                             </div>
 
                             <br /><br />
 %if ($default_seedlot_material_type) {
                             <div class="form-group">
-                                <label class="col-sm-3 control-label" style="text-align: right">Material Type: </label>
+                                <label class="col-sm-3 control-label" style="text-align: right">Tipo de material: </label>
                                 <div class="col-sm-9">
                                     <input class="form-control" name="create_seedlots_trial_default_material_type" id="create_seedlots_trial_default_material_type" disabled value="<% $default_seedlot_material_type %>">
                                 </div>
                             </div>
 % } else {
                             <div class="form-group">
-                                <label class="col-sm-3 control-label" style="text-align: right">Material Type: </label>
+                                <label class="col-sm-3 control-label" style="text-align: right">Tipo de material: </label>
                                 <div class="col-sm-9" >
                                     <div id="create_seedlots_trial_material_type_div"></div>
                                 </div>
@@ -296,25 +294,25 @@ $default_seedlot_material_type => undef
                             <br /><br />
 
                             <div class="form-group">
-                                <label class="col-sm-3 control-label" style="text-align: right">Quality Issues: </label>
+                                <label class="col-sm-3 control-label" style="text-align: right">Problemas de qualidade: </label>
                                 <div class="col-sm-9" >
-                                    <input class="form-control create_seedlots_trial_metadata_input" id="create_seedlots_trial_quality_issues" value="" placeholder="Optional, list quality issues here, or 'ok' for good quality seed">
+                                    <input class="form-control create_seedlots_trial_metadata_input" id="create_seedlots_trial_quality_issues" value="" placeholder="Opcional: descreva os problemas de qualidade ou informe 'bom' para sementes de boa qualidade">
                                 </div>
                             </div>
 
                             <br /><br />
 
                             <div class="form-group">
-                                <label class="col-sm-3 control-label" style="text-align: right">Organization: </label>
+                                <label class="col-sm-3 control-label" style="text-align: right">Organização: </label>
                                 <div class="col-sm-9" >
-                                    <input class="form-control create_seedlots_trial_metadata_input" id="create_seedlots_trial_organization" value="" placeholder="Optional">
+                                    <input class="form-control create_seedlots_trial_metadata_input" id="create_seedlots_trial_organization" value="" placeholder="Opcional">
                                 </div>
                             </div>
 
                             <br /><br />
 
                             <div class="form-group">
-                                <label class="col-sm-3 control-label" style="text-align: right">Timestamp: </label>
+                                <label class="col-sm-3 control-label" style="text-align: right">Data e hora: </label>
                                 <div class="col-sm-9" >
                                     <input class="form-control create_seedlots_trial_metadata_input" id="create_seedlots_trial_timestamp" value="<% $timestamp %>" placeholder="<% $timestamp %>">
                                 </div>
@@ -323,62 +321,62 @@ $default_seedlot_material_type => undef
                             <br /><br />
 
                             <div class="form-group">
-                                <label class="col-sm-3 control-label" style="text-align: right">Description: </label>
+                                <label class="col-sm-3 control-label" style="text-align: right">Descrição: </label>
                                 <div class="col-sm-9" >
-                                    <input class="form-control create_seedlots_trial_metadata_input" id="create_seedlots_trial_description" value="" placeholder="Optional">
+                                    <input class="form-control create_seedlots_trial_metadata_input" id="create_seedlots_trial_description" value="" placeholder="Opcional">
                                 </div>
                             </div>
 
                             <br /><br /><br />
 
                             <div style="text-align: center">
-                                <button id="create_seedlots_trial_update_metadata" class="btn btn-primary">Update</button>
+                                <button id="create_seedlots_trial_update_metadata" class="btn btn-primary">Atualizar</button>
                                 <br />
-                                <button id="create_seedlots_trial_complete_set_metadata" class="btn btn-primary" disabled>Go to Next Step</button>
+                                <button id="create_seedlots_trial_complete_set_metadata" class="btn btn-primary" disabled>Ir para a próxima etapa</button>
                             </div>
 
                             <br /><br />
 
-                            <h4>Seedlot Metadata</h4>
+                            <h4>Metadados dos lotes de sementes</h4>
                             <table id="create_seedlots_trial_metadata_table" class="table table-striped table-hover"></table>
                         </&>
 
                         <!-- STEP 7: Confirm -->
-                        <&| /util/workflow.mas:step, title=> "Confirm" &>
-                            <& /page/page_title.mas, title=>"Confirm Seedlots" &>
+                        <&| /util/workflow.mas:step, title=> "Confirmar" &>
+                            <& /page/page_title.mas, title=>"Confirmar lotes de sementes" &>
 
                             <p>
-                                Confirm the attributes for the new seedlots in the table below.  If something
-                                is incorrect, navigate to the previous step and correct the information.  Once
-                                all the information is correct, continue to the next step to create the seedlots.
+                                Confira os dados dos novos lotes na tabela abaixo. Se houver alguma informação
+                                incorreta, volte à etapa anterior e corrija-a. Quando todos os dados estiverem
+                                corretos, avance para a próxima etapa para criar os lotes.
                             </p>
 
                             <br /><br />
 
                             <div style="text-align: center">
                                 <button id="create_seedlots_trial_complete_confirm_seedlots" class="btn btn-primary">
-                                    <span class="glyphicon glyphicon-ok"></span>&nbsp;Create Seedlots
+                                    <span class="glyphicon glyphicon-ok"></span>&nbsp;Criar lotes de sementes
                                 </button>
                             </div>
 
                             <br /><br />
 
-                            <h4>Seedlots to Create</h4>
+                            <h4>Lotes de sementes a criar</h4>
                             <table id="create_seedlots_trial_confirm_table" class="table table-striped table-hover"></table>
                         </&>
 
                         <!-- STEP 8: Create -->
-                        <&| /util/workflow.mas:step, title=> "Create" &>
-                            <& /page/page_title.mas, title=>"Create Seedlots" &>
+                        <&| /util/workflow.mas:step, title=> "Criar" &>
+                            <& /page/page_title.mas, title=>"Criar lotes de sementes" &>
 
                             <br /><br />
 
                             <div id="create_seedlots_trial_uploading">
-                                <p id="create_seedlots_trial_status"><strong>Creating Seedlots...</strong></p>
+                                <p id="create_seedlots_trial_status"><strong>Criando lotes de sementes...</strong></p>
                                 <div class="progress">
                                     <div id="create_seedlots_trial_progress" class="progress-bar" role="progressbar" aria-valuenow="70"
                                     aria-valuemin="0" aria-valuemax="100" style="width:70%">
-                                        <span class="sr-only">70% Complete</span>
+                                        <span class="sr-only">70% concluído</span>
                                     </div>
                                 </div>
                             </div>
@@ -387,7 +385,7 @@ $default_seedlot_material_type => undef
 
                             <br /><br />
 
-                            <h4>Seedlot Progress</h4>
+                            <h4>Progresso dos lotes de sementes</h4>
                             <table id="create_seedlots_trial_results_table" class="table table-striped table-hover"></table>
                         </&>
 
@@ -522,7 +520,7 @@ $default_seedlot_material_type => undef
         // Make sure trial name was entered
         let trial_name = jQuery("#create_seedlots_trial_name").val();
         if ( !trial_name || trial_name === '' ) {
-            alert("Enter a trial name to continue");
+            alert("Informe o nome de um ensaio para continuar");
             return;
         }
 
@@ -561,7 +559,7 @@ $default_seedlot_material_type => undef
         catch (err) {
             jQuery('#working_modal').modal("hide");
             jQuery("#create_seedlots_trial_complete_select_trial").attr("disabled", false);
-            jQuery("#trial_error_message").html(err || 'An Unknown Error Occurred!');
+            jQuery("#trial_error_message").html(err || 'Ocorreu um erro desconhecido!');
             jQuery("#trial_error_message_container").show();
         };
     }
@@ -624,7 +622,7 @@ $default_seedlot_material_type => undef
             }
         }
         else {
-            alert("ERROR: unknown seedlot stock type!");
+            alert("ERRO: tipo de material do lote desconhecido!");
         }
 
         Workflow.complete('#create_seedlots_trial_complete_select_stock_type');
@@ -644,14 +642,14 @@ $default_seedlot_material_type => undef
         let names = [];
         for ( let i = 0; i < SEEDLOTS.length; i++ ) {
             if ( names.includes(SEEDLOTS[i].name) ) {
-                alert("Seedlot names must be unique - '" + SEEDLOTS[i].name + "' is used more than once");
+                alert("Os nomes dos lotes devem ser únicos — '" + SEEDLOTS[i].name + "' está sendo usado mais de uma vez");
                 return;
             }
             names.push(SEEDLOTS[i].name);
         }
 
         // Set trait values
-        let html = "<option value=''>Choose trait...</option>";
+        let html = "<option value=''>Selecione uma característica...</option>";
         for ( let i = 0; i < TRAITS.length; i++ ) {
             html += "<option value='" + TRAITS[i].id + "'>" + TRAITS[i].name + "</option>";
         }
@@ -709,20 +707,20 @@ $default_seedlot_material_type => undef
         let stock_type = jQuery("#create_seedlots_trial_stock_type").val();
         let name_template = jQuery("#create_seedlots_trial_name_template").val();
         if ( name_template === '{plot_name}' ) {
-            return alert("The seedlot name cannot be the same as the plot name, please add a prefix or suffix to make the name unique");
+            return alert("O nome do lote não pode ser igual ao nome da parcela. Adicione um prefixo ou sufixo para torná-lo único");
         }
 
         let html = "<thead></tr>";
-        if ( stock_type === 'accessions' ) html += "<th>Trial Name</th>";
-        html += "<th>Accession Name</th>";
-        if ( ["plots", "subplots", "plants"].includes(stock_type) ) html += "<th>Plot Number</th>";
-        if ( ["plots", "subplots", "plants"].includes(stock_type)  ) html += "<th>Rep</th>";
-        if ( ["plots", "subplots", "plants"].includes(stock_type)  ) html += "<th>Block</th>";
-        if ( stock_type === 'subplots' ) html += "<th>Subplot Name</th>";
-        if ( stock_type === 'subplots' ) html += "<th>Subplot Index</th>";
-        if ( stock_type === 'plants' ) html += "<th>Plant Name</th>";
-        if ( stock_type === 'plants' ) html += "<th>Plant Index</th>";
-        html += "<th>Seedlot Name</th>";
+        if ( stock_type === 'accessions' ) html += "<th>Nome do ensaio</th>";
+        html += "<th>Nome do acesso</th>";
+        if ( ["plots", "subplots", "plants"].includes(stock_type) ) html += "<th>Número da parcela</th>";
+        if ( ["plots", "subplots", "plants"].includes(stock_type)  ) html += "<th>Repetição</th>";
+        if ( ["plots", "subplots", "plants"].includes(stock_type)  ) html += "<th>Bloco</th>";
+        if ( stock_type === 'subplots' ) html += "<th>Nome da subparcela</th>";
+        if ( stock_type === 'subplots' ) html += "<th>Índice da subparcela</th>";
+        if ( stock_type === 'plants' ) html += "<th>Nome da planta</th>";
+        if ( stock_type === 'plants' ) html += "<th>Índice da planta</th>";
+        html += "<th>Nome do lote de sementes</th>";
         html += "</tr></thead>";
 
         for ( let i = 0; i < SEEDLOTS.length; i++ ) {
@@ -781,8 +779,8 @@ $default_seedlot_material_type => undef
         let formula = jQuery("#create_seedlots_trial_contents_computed_formula").val();
 
         let html = "<thead></tr>";
-        html += "<th>Seedlot Name</th>";
-        html += "<th>Contents</th>";
+        html += "<th>Nome do lote de sementes</th>";
+        html += "<th>Conteúdo</th>";
         html += "</tr></thead>";
 
         for ( let i = 0; i < SEEDLOTS.length; i++ ) {
@@ -879,26 +877,26 @@ $default_seedlot_material_type => undef
 
         // Check for required fields
         if ( !p_id || p_id === '' ) {
-            if (!quiet) alert("Breeding Program is required");
+            if (!quiet) alert("O programa de melhoramento é obrigatório");
             return;
         }
         if ( !l || l === '' ) {
-            if (!quiet) alert("Location is required");
+            if (!quiet) alert("O local é obrigatório");
             return;
         }
         if ( !b || b === '' ) {
-            if (!quiet) alert("Box Name is required");
+            if (!quiet) alert("O nome da caixa é obrigatório");
             return;
         }
         if ( !mt || mt === '' ) {
-            if (!quiet) alert("Material type is required");
+            if (!quiet) alert("O tipo de material é obrigatório");
             return;
         }
 
         // Build Table
         let html = "<thead><tr>";
-        html += "<th>Seedlot Name</th>";
-        html += "<th>Metadata</th>";
+        html += "<th>Nome do lote de sementes</th>";
+        html += "<th>Metadados</th>";
         html += "</tr></thead>";
 
         for ( let i = 0; i < SEEDLOTS.length; i++ ) {
@@ -907,13 +905,13 @@ $default_seedlot_material_type => undef
             html += "<tr>";
             html += "<td>" + SEEDLOTS[i].name + "</td>";
             html += "<td>";
-            html += "<strong>Breeding Program:</strong><select class='form-control  create_seedlots_trial_metadata_input_seedlot_breeding_program' data-index='" + i + "'>" + p_select + "</select><br />";
-            html += "<strong>Location:</strong><input class='form-control create_seedlots_trial_metadata_input_seedlot' data-prop='location' data-index='" + i + "' value='" + l + "'><br />";
-            html += "<strong>Box Name:</strong><input class='form-control create_seedlots_trial_metadata_input_seedlot' data-prop='box_name' data-index='" + i + "' value='" + b + "'><br />";
-            html += "<strong>Quality Issues:</strong><input class='form-control create_seedlots_trial_metadata_input_seedlot' data-prop='quality_issues' data-index='" + i + "' value='" + q + "'><br />";
-            html += "<strong>Organization:</strong><input class='form-control create_seedlots_trial_metadata_input_seedlot' data-prop='organization' data-index='" + i + "' value='" + o + "'><br />";
-            html += "<strong>Timestamp:</strong><input class='form-control create_seedlots_trial_metadata_input_seedlot' data-prop='timestamp' data-index='" + i + "' value='" + t + "'><br />";
-            html += "<strong>Description:</strong><input class='form-control create_seedlots_trial_metadata_input_seedlot' data-prop='description' data-index='" + i + "' value='" + d + "'><br />";
+            html += "<strong>Programa de melhoramento:</strong><select class='form-control  create_seedlots_trial_metadata_input_seedlot_breeding_program' data-index='" + i + "'>" + p_select + "</select><br />";
+            html += "<strong>Local:</strong><input class='form-control create_seedlots_trial_metadata_input_seedlot' data-prop='location' data-index='" + i + "' value='" + l + "'><br />";
+            html += "<strong>Nome da caixa:</strong><input class='form-control create_seedlots_trial_metadata_input_seedlot' data-prop='box_name' data-index='" + i + "' value='" + b + "'><br />";
+            html += "<strong>Problemas de qualidade:</strong><input class='form-control create_seedlots_trial_metadata_input_seedlot' data-prop='quality_issues' data-index='" + i + "' value='" + q + "'><br />";
+            html += "<strong>Organização:</strong><input class='form-control create_seedlots_trial_metadata_input_seedlot' data-prop='organization' data-index='" + i + "' value='" + o + "'><br />";
+            html += "<strong>Data e hora:</strong><input class='form-control create_seedlots_trial_metadata_input_seedlot' data-prop='timestamp' data-index='" + i + "' value='" + t + "'><br />";
+            html += "<strong>Descrição:</strong><input class='form-control create_seedlots_trial_metadata_input_seedlot' data-prop='description' data-index='" + i + "' value='" + d + "'><br />";
             html += "</td>";
             html += "</tr>";
 
@@ -947,21 +945,21 @@ $default_seedlot_material_type => undef
         let contents_type = jQuery("#create_seedlots_trial_contents_type").val();
 
         let html = "<thead><tr>";
-        html += "<th>Seedlot Name</th>";
-        html += "<th>Breeding Program</th>";
-        html += "<th>Source Accession</th>";
-        if ( stock_type === 'plots' ) html += "<th>Source Plot</th>";
-        if ( stock_type === 'subplots' ) html += "<th>Source Subplot</th>";
-        if ( stock_type === 'plants' ) html += "<th>Source Plant</th>";
-        if ( contents_type === 'amount' ) html += "<th>Contents (Amount)</th>";
-        if ( contents_type === 'weight' ) html += "<th>Contents (Weight)</th>";
-        html += "<th>Location</th>";
-        html += "<th>Box Name</th>";
-        html += "<th>Material Type</th>";
-        html += "<th>Quality Issues</th>";
-        html += "<th>Organization</th>";
-        html += "<th>Timestamp</th>";
-        html += "<th>Description</th>";
+        html += "<th>Nome do lote de sementes</th>";
+        html += "<th>Programa de melhoramento</th>";
+        html += "<th>Acesso de origem</th>";
+        if ( stock_type === 'plots' ) html += "<th>Parcela de origem</th>";
+        if ( stock_type === 'subplots' ) html += "<th>Subparcela de origem</th>";
+        if ( stock_type === 'plants' ) html += "<th>Planta de origem</th>";
+        if ( contents_type === 'amount' ) html += "<th>Conteúdo (quantidade)</th>";
+        if ( contents_type === 'weight' ) html += "<th>Conteúdo (peso)</th>";
+        html += "<th>Local</th>";
+        html += "<th>Nome da caixa</th>";
+        html += "<th>Tipo de material</th>";
+        html += "<th>Problemas de qualidade</th>";
+        html += "<th>Organização</th>";
+        html += "<th>Data e hora</th>";
+        html += "<th>Descrição</th>";
         html += "</tr></thead>";
 
         for ( let i = 0; i < SEEDLOTS.length; i++ ) {
@@ -1001,19 +999,19 @@ $default_seedlot_material_type => undef
         let errors = [];                            // Array of errors encountered during upload
 
         return new Promise(async (resolve) => {
-            jQuery("#create_seedlots_trial_status").html("<strong>Creating Seedlots...</strong>");
+            jQuery("#create_seedlots_trial_status").html("<strong>Criando lotes de sementes...</strong>");
             jQuery("#create_seedlots_trial_progress").css('width', '0%').attr('aria-valuenow', 0);
             jQuery("#create_seedlots_trial_results").empty();
 
             // Create Results table
             let html = "<thead><tr>";
-            html += "<th>Seedlot</th>";
-            html += "<th>Progress</th>";
+            html += "<th>Lote de sementes</th>";
+            html += "<th>Progresso</th>";
             html += "</tr></thead>";
             html += "<tbody id='create_seedlots_trial_results_table_body'></tbody>";
             for ( let i = 0; i < SEEDLOTS.length; i++ ) {
                 let status_id = "create_seedlots_trial_results_row_" + i;
-                html += "<tr><td>" + SEEDLOTS[i].name + "</td><td id='" + status_id + "'>Pending...</td>";
+                html += "<tr><td>" + SEEDLOTS[i].name + "</td><td id='" + status_id + "'>Pendente...</td>";
                 SEEDLOTS[i].status_id = status_id;
             }
             jQuery("#create_seedlots_trial_results_table").html(html);
@@ -1051,7 +1049,7 @@ $default_seedlot_material_type => undef
          * Process the specified seedlot
          */
         async function _processSeedlot(seedlot) {
-            _setStatusInfo(seedlot, "Creating...");
+            _setStatusInfo(seedlot, "Criando...");
 
             // Set seedlot request data
             let data = {
@@ -1100,7 +1098,7 @@ $default_seedlot_material_type => undef
                         resolve();
                     },
                     error: () => {
-                        _setStatusError(seedlot, "AJAX error");
+                        _setStatusError(seedlot, "Erro na solicitação AJAX");
                         resolve();
                     }
                 });
@@ -1119,7 +1117,7 @@ $default_seedlot_material_type => undef
          */
         function _setStatusComplete(seedlot) {
             upload_count++;
-            _setStatusInfo(seedlot, "<strong><span class='glyphicon glyphicon-ok-sign text-success'></span></strong>&nbsp;Seedlot Created!");
+            _setStatusInfo(seedlot, "<strong><span class='glyphicon glyphicon-ok-sign text-success'></span></strong>&nbsp;Lote de sementes criado!");
         }
 
         /**
@@ -1131,7 +1129,7 @@ $default_seedlot_material_type => undef
                 seedlot: seedlot,
                 error: error
             });
-            _setStatusInfo(seedlot, "<strong><span class='glyphicon glyphicon-exclamation-sign text-danger'></span>&nbsp;ERROR:</strong> " + error);
+            _setStatusInfo(seedlot, "<strong><span class='glyphicon glyphicon-exclamation-sign text-danger'></span>&nbsp;ERRO:</strong> " + error);
         }
     }
 
@@ -1141,21 +1139,21 @@ $default_seedlot_material_type => undef
      * @param {int} upload_count Count of successfully uploaded seedlots
      */
     function displayUploadResults(errors, upload_count) {
-        jQuery("#create_seedlots_trial_status").html("<strong>Upload Complete</strong>");
+        jQuery("#create_seedlots_trial_status").html("<strong>Envio concluído</strong>");
         jQuery("#create_seedlots_trial_progress").css('width', '100%').attr('aria-valuenow', 100);
 
         let html = "<br /><br />";
         if ( !errors || errors.length === 0 ) {
             html += "<div class='alert-success' role='alert'>";
             html += "<strong><span class='glyphicon glyphicon-ok-sign'></span></strong>&nbsp;";
-            html += upload_count + " seedlots successfully created!";
+            html += upload_count + " lotes de sementes criados com sucesso!";
             html += "</div>";
         }
         if ( errors && errors.length > 0 ) {
             html += "<div class='alert-danger' role='alert'>"
-            html += "<strong><span class='glyphicon glyphicon-exclamation-sign'></span>&nbsp; " + errors.length + " errors encountered!<br />";
-            html += "See below for which seedlots failed and more details<br />";
-            if ( upload_count > 0 ) html += "<br /><strong><span class='glyphicon glyphicon-ok-sign'></span>&nbsp; " + upload_count + " seedlots successfully created";
+            html += "<strong><span class='glyphicon glyphicon-exclamation-sign'></span>&nbsp; " + errors.length + " erros encontrados!<br />";
+            html += "Veja abaixo os lotes que apresentaram falhas e os detalhes<br />";
+            if ( upload_count > 0 ) html += "<br /><strong><span class='glyphicon glyphicon-ok-sign'></span>&nbsp; " + upload_count + " lotes de sementes criados com sucesso";
             html += "</div>";
         }
 
@@ -1187,10 +1185,10 @@ $default_seedlot_material_type => undef
                         resolve(response.trial_id);
                     }
                     else {
-                        reject('Could not lookup trial');
+                        reject('Não foi possível consultar o ensaio');
                     }
                 },
-                error: () => reject('Could not lookup trial')
+                error: () => reject('Não foi possível consultar o ensaio')
             });
         });
     }
@@ -1236,10 +1234,10 @@ $default_seedlot_material_type => undef
                             resolve(response.projects[0][0]);
                         }
                         else {
-                            reject('Could not lookup trial breeding program');
+                            reject('Não foi possível consultar o programa de melhoramento do ensaio');
                         }
                     },
-                    error: () => reject('Could not lookup trial breeding program')
+                    error: () => reject('Não foi possível consultar o programa de melhoramento do ensaio')
                 });
             });
         }
@@ -1258,7 +1256,7 @@ $default_seedlot_material_type => undef
                             let accessions = [];
                             for ( let i = 0; i < response.accessions[0].length; i++ ) {
                                 if ( response.accessions[0][i].stock_type !== 'accession' ) {
-                                    error = `This tool only supports trials with plots that contain accessions.  This trial has one or more plots that contain a ${response.accessions[0][i].stock_type}.`;
+                                    error = `Esta ferramenta aceita somente ensaios com parcelas que contêm acessos. Este ensaio tem uma ou mais parcelas com material do tipo ${response.accessions[0][i].stock_type}.`;
                                 }
                                 accessions.push({
                                     id: response.accessions[0][i].stock_id,
@@ -1268,10 +1266,10 @@ $default_seedlot_material_type => undef
                             resolve(accessions);
                         }
                         else {
-                            reject('Could not lookup trial accessions');
+                            reject('Não foi possível consultar os acessos do ensaio');
                         }
                     },
-                    error: () => reject('Could not lookup trial accessions')
+                    error: () => reject('Não foi possível consultar os acessos do ensaio')
                 });
             });
         }
@@ -1352,10 +1350,10 @@ $default_seedlot_material_type => undef
                             }
                         }
                         else {
-                            reject('Could not lookup trial plots');
+                            reject('Não foi possível consultar as parcelas do ensaio');
                         }
                     },
-                    error: () => reject('Could not lookup trial plots')
+                    error: () => reject('Não foi possível consultar as parcelas do ensaio')
                 });
             });
         }
@@ -1389,10 +1387,10 @@ $default_seedlot_material_type => undef
                             resolve(traits);
                         }
                         else {
-                            reject('Could not lookup trial traits');
+                            reject('Não foi possível consultar as características do ensaio');
                         }
                     },
-                    error: () => reject('Could not lookup trial traits')
+                    error: () => reject('Não foi possível consultar as características do ensaio')
                 });
             });
         }
@@ -1429,10 +1427,10 @@ $default_seedlot_material_type => undef
                             resolve(data);
                         }
                         else {
-                            reject('Could not get trait data');
+                            reject('Não foi possível obter os dados da característica');
                         }
                     },
-                    error: () => reject('Could not get trait data')
+                    error: () => reject('Não foi possível obter os dados da característica')
                 });
             });
         }

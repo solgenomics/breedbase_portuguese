@@ -9,13 +9,13 @@ $trial_id
     <table class="table table-hover table-bordered" id="target_numbers_and_progress_table">
         <thead>
             <tr>
-                <th>Female Accession</th>
-                <th>Male Accession</th>
-                <th>Target No. of Seeds</th>
-                <th>Actual No. of Seeds</th>
-                <th>Target No. of Progenies</th>
-                <th>Actual No. of Progenies</th>
-                <th>Cross Unique IDs</th>
+                <th>Acesso feminino</th>
+                <th>Acesso masculino</th>
+                <th>Meta de sementes</th>
+                <th>Número atual de sementes</th>
+                <th>Meta de progênies</th>
+                <th>Número atual de progênies</th>
+                <th>IDs exclusivos dos cruzamentos</th>
             </tr>
         </thead>
     </table>

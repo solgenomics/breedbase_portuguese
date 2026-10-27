@@ -8,36 +8,36 @@ $trial_name
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="uploadIntercrossFileDialog">Upload Intercross File </h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="uploadIntercrossFileDialog">Enviar arquivo do Intercross</h4>
             </div>
             <div class="modal-body">
                 <div class="container-fluid">
-                    <&| /page/explanation.mas, title=>'Intercross Upload Information' &>
+                    <&| /page/explanation.mas, title=>'Informações para envio ao Intercross' &>
                         <p>
-                            <a id="upload_intercross_file_spreadsheet_format_info">Intercross Upload Information</a>
+                            <a id="upload_intercross_file_spreadsheet_format_info">Informações para envio ao Intercross</a>
                         </p>
                     </&>
                     <form class="form-horizontal" role="form" method="post" enctype="multipart/form-data" encoding="multipart/form-data" id="upload_intercross_form" name="upload_intercross_form">
                         <div class="form-group">
-                            <label class="col-sm-4 control-label">Crossing Experiment: </label>
+                            <label class="col-sm-4 control-label">Experimento de cruzamento: </label>
                             <div class="col-sm-8" >
                                 <input class="form-control" name="intercross_experiment_name" id="intercross_experiment_name" disabled value="<% $trial_name %>">
                                 <input name="intercross_experiment_id" id="intercross_experiment_id" type="hidden" value="<% $trial_id %>">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-4 control-label">Select Cross Unique ID Format: </label>
+                            <label class="col-sm-4 control-label">Selecione o formato do ID exclusivo do cruzamento: </label>
                             <div class="col-sm-8">
                                 <select class="form-control" id="cross_id_format_option" name="cross_id_format_option">
-                                    <option value="">Select your cross unique id format for intercross file</option>
-                                    <option value="customized_id">Use your customized cross unique ID previously stored in the database</option>
-                                    <option value="auto_generated_id">Use auto-generated cross unique ID</option>
+                                    <option value="">Selecione o formato do ID exclusivo do cruzamento no arquivo do Intercross</option>
+                                    <option value="customized_id">Usar o ID exclusivo personalizado já armazenado no banco de dados</option>
+                                    <option value="auto_generated_id">Usar um ID exclusivo gerado automaticamente</option>
                                 </select>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-4 control-label">Upload File (.csv): </label>
+                            <label class="col-sm-4 control-label">Enviar arquivo (.csv): </label>
                             <div class="col-sm-8">
                                 <input type="file" name="intercross_file" id="intercross_file" encoding="multipart/form-data" />
                             </div>
@@ -46,8 +46,8 @@ $trial_name
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" name="upload_intercross_file_submit" id="upload_intercross_file_submit">Upload File</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                <button type="button" class="btn btn-primary" name="upload_intercross_file_submit" id="upload_intercross_file_submit">Enviar arquivo</button>
             </div>
         </div>
     </div>
@@ -57,8 +57,8 @@ $trial_name
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="uploadIntercrossErrorDialog">Upload Intercross File Error</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="uploadIntercrossErrorDialog">Erro ao enviar o arquivo do Intercross</h4>
             </div>
             <div class="modal-body">
                 <div class="container-fluid">
@@ -68,7 +68,7 @@ $trial_name
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
             </div>
         </div>
     </div>
@@ -78,19 +78,19 @@ $trial_name
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="intercrossSavedDialog">Success</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="intercrossSavedDialog">Sucesso</h4>
             </div>
             <div class="modal-body">
                 <div class="container-fluid">
                     <p>
                         <span class="ui-icon ui-icon-circle-check" style="float: left; margin: 0 7px 50px 0;"></span>
-                        The crossing data from intercross file were saved successfully.
+                        Os dados de cruzamento do arquivo do Intercross foram salvos com sucesso.
                     </p>
                 </div>
             </div>
             <div class="modal-footer">
-                <button id="dismiss_intercross_saved_dialog" type="button" class="btn btn-default" data-dismiss="modal">Close & Reload</button>
+                <button id="dismiss_intercross_saved_dialog" type="button" class="btn btn-default" data-dismiss="modal">Fechar e recarregar</button>
             </div>
         </div>
     </div>
@@ -100,18 +100,18 @@ $trial_name
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="intercrossFileInfoDialog">Cross Unique ID and Template Information</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="intercrossFileInfoDialog">Informações sobre o ID exclusivo do cruzamento e o modelo</h4>
             </div>
             <div class="modal-body">
                 <div class="container-fluid">
-                    <b>Cross Unique ID:</b> You can let database automatically generate cross unique IDs for you or you can set up your own cross unique IDs in the database before uploading Intercross file. For the auto-generated cross unique ID, cross unique ID is a combination of crossing experiment name and incremental suffix number.
+                    <b>ID exclusivo do cruzamento:</b> o banco de dados pode gerar automaticamente os IDs exclusivos, ou você pode cadastrar IDs personalizados antes de enviar o arquivo do Intercross. O ID gerado automaticamente combina o nome do experimento de cruzamento com um número sequencial.
                     <br><br>
-                    <b>Intercross file is an CSV file (.csv).</b> Crosses in an intercross file must be in the same crossing experiment.
+                    <b>O arquivo do Intercross deve estar no formato CSV (.csv).</b> Todos os cruzamentos do arquivo devem pertencer ao mesmo experimento de cruzamento.
                     <br><br>
-                    <b>Header:</b>
+                    <b>Cabeçalho:</b>
                     <br>
-                    Please do not modify header of the Intercross file. The first row (header) must contain the following:
+                    Não altere o cabeçalho do arquivo do Intercross. A primeira linha deve conter os seguintes campos:
                     <br>
                     <table class="table table-bordered table-hover">
                         <tbody>
@@ -129,23 +129,23 @@ $trial_name
                             </tr>
                         </tbody>
                     </table>
-                    <b>Field Info:</b>
+                    <b>Informações dos campos:</b>
                     <ul>
-                        <li>crossDbId (called transaction ID in the database. Transaction ID is a unique identifier for each activity)</li>
-                        <li>femaleObsUnitDbId (must exist as uniquename in the database, can be accession, plot or plant stock type.)</li>
-                        <li>maleObsUnitDbId (must exist as uniquename in the database, can be accession, plot or plant stock type.)</li>
-                        <li>person (operator name, the operator does not need to have database user account)</li>
-                        <li>experiment (called crossing experiment in the database. The crossing experiment must exist in the database.)</li>
-                        <li>type (cross type, Intercross supports biparental, self, open and polycross cross types)</li>
-                        <li>fruits (Number of Fruits)</li>
-                        <li>flowers (Number of Flowers)</li>
-                        <li>seeds (Number of Seeds)</li>
+                        <li>crossDbId (ID da transação no banco de dados; identificador exclusivo de cada atividade)</li>
+                        <li>femaleObsUnitDbId (deve existir como uniquename no banco de dados e pode ser um acesso, uma parcela ou uma planta)</li>
+                        <li>maleObsUnitDbId (deve existir como uniquename no banco de dados e pode ser um acesso, uma parcela ou uma planta)</li>
+                        <li>person (nome do operador; não é necessário que ele possua uma conta de usuário)</li>
+                        <li>experiment (experimento de cruzamento, que deve existir no banco de dados)</li>
+                        <li>type (tipo de cruzamento; o Intercross aceita biparental, self, open e polycross)</li>
+                        <li>fruits (número de frutos)</li>
+                        <li>flowers (número de flores)</li>
+                        <li>seeds (número de sementes)</li>
                     </ul>
                     <br>
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
             </div>
         </div>
     </div>
@@ -170,12 +170,12 @@ jQuery(document).ready(function(){
         jQuery('#upload_intercross_form').attr("action", "/ajax/cross/upload_intercross_file");
 
         if (crossIDformat === ''){
-            alert("Please select your cross ID format");
+            alert("Selecione o formato do ID do cruzamento");
             return;
         }
 
         if (uploadFile === ''){
-            alert("Please select a file");
+            alert("Selecione um arquivo");
             return;
         }
         jQuery("#upload_intercross_form").submit();

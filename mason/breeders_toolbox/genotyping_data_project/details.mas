@@ -18,100 +18,100 @@ $trial_owner
         <table class="table table-hover table-bordered" >
 
             <tr>
-                <td><b>Genotyping Project Name</b></td>
+                <td><b>Nome do projeto de genotipagem</b></td>
                 <td>
                     <div id="trial_name">
 % if ($trial_name) {
 %   print "$trial_name";
 % } else {
-%   print "<span class='text-danger'>[No Project Name]</span>";
+%   print "<span class='text-danger'>[Sem nome do projeto]</span>";
 % }
                     </div>
                 </td>
             </tr>
 
             <tr>
-                <td><b>Breeding Program </b></td>
+                <td><b>Programa de melhoramento</b></td>
                 <td>
                     <span id="breeding_program">
 % if ($breeding_program_name) {
         <a href="/breeders/program/<% $breeding_program_id %>"><% $breeding_program_name %></a>
 % }
 % else {
-%  print "<span class='text-danger'>[No Breeding Program]</span>";
+%  print "<span class='text-danger'>[Sem programa de melhoramento]</span>";
 % }
                     </span>
                 </td>
             </tr>
 
             <tr>
-                <td><b>Location</b></td>
+                <td><b>Local</b></td>
                 <td>
                     <div id="trial_location">
 % if ($location_name) {
 %  print "$location_name";
 % } else {
-%  print "<span class='text-danger'>[No Location]</span>";
+%  print "<span class='text-danger'>[Sem local]</span>";
 % }
                     </div>
                 </td>
             </tr>
 
             <tr>
-                <td><b>Year</b></td>
+                <td><b>Ano</b></td>
                 <td>
                     <div id="trial_year">
 % if ($year) {
 %  print "$year";
 % } else {
-%  print "<span class='text-danger'>[No Year]</span>";
+%  print "<span class='text-danger'>[Sem ano]</span>";
 % }
                     </div>
                 </td>
             </tr>
 
-            <tr><td><b>Genotyping Facility</b></td>
+            <tr><td><b>Laboratório de genotipagem</b></td>
                 <td>
                     <div id="trial_genotyping_facility">
 % if ($genotyping_facility) {
 %  print "$genotyping_facility";
 % } else {
-%  print "<span class='text-danger'>[No Genotyping Facility]</span>";
+%  print "<span class='text-danger'>[Sem laboratório de genotipagem]</span>";
 % }
                     </div>
                 </td>
             </tr>
 
-            <tr><td><b>Data Type</b></td>
+            <tr><td><b>Tipo de dado</b></td>
                 <td>
                     <div id="trial_data_type">
 % if ($genotype_data_type) {
 %  print "$genotype_data_type";
 % } else {
-%      print "<span class='text-danger'>[No Data Type]</span>";
+%      print "<span class='text-danger'>[Sem tipo de dado]</span>";
 % }
                     </div>
                 </td>
             </tr>
 
-            <tr><td><b>Description</b></td>
+            <tr><td><b>Descrição</b></td>
                 <td>
                     <div id="trial_description">
 % if ($trial_description) {
 %  print "$trial_description";
 % } else {
-%  print "<span class='text-danger'>[No Description]</span>";
+%  print "<span class='text-danger'>[Sem descrição]</span>";
 % }
                     </div>
                 </td>
             </tr>
-            <tr><td><b>Created by</b></td>
+            <tr><td><b>Criado por</b></td>
                 <td>
                     <div id="trial_owner">
 % if ($trial_owner) {
 %  print "$trial_owner";
 % } else {
-%  print "<span class='text-danger'>[N/A]</span>";
+%  print "<span class='text-danger'>[Não disponível]</span>";
 % }
                     </div>
                 </td>

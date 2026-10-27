@@ -3,33 +3,33 @@
 
 <& /page/page_title.mas, title=>"BrAPI" &>
 
-<h1>Modules</h1>
+<h1>Módulos</h1>
 <div class="well">
 <ul>
-    <li><a href="/brapihome/germplasm">Germplasm Search and Exchange</a></li>
+    <li><a href="/brapihome/germplasm">Busca e intercâmbio de germoplasma</a></li>
 </ul>
 </div>
 <div class="well">
 <ul>
-    <li><a href="/brapihome/phenotyping_handhelds">Phenotyping Handhelds</a></li>
+    <li><a href="/brapihome/phenotyping_handhelds">Dispositivos móveis de fenotipagem</a></li>
 </ul>
 </div>
 <div class="well">
 <ul>
-    <li><a href="/brapihome/phenotype">Phenotype Retrieval</a></li>
+    <li><a href="/brapihome/phenotype">Obtenção de fenótipos</a></li>
 </ul>
 </div>
 <div class="well">
 <ul>
-    <li><a href="/brapihome/genotype">Genotype Retrieval</a></li>
+    <li><a href="/brapihome/genotype">Obtenção de genótipos</a></li>
 </ul>
 </div>
 
-<&| /page/info_section.mas, title=>'Calls Testing', collapsible=>1, collapsed=>1 &>
+<&| /page/info_section.mas, title=>'Teste de chamadas', collapsible=>1, collapsed=>1 &>
 
 <div id="brapi_home_url_select_div">
 
-    <h4>URL Select</h4>
+    <h4>Selecionar URL</h4>
     <select name="brapi_home_url_select" id="brapi_home_url_select" class="form-control" />
         <option value="">local</option>
         <option value="https://cassbase.org">cassbase.org</option>

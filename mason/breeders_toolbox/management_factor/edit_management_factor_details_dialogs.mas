@@ -11,39 +11,39 @@ $management_factor_date
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header texkkt-center">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="managementFactorDetailsEditDialog">Edit Treatment Details</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="managementFactorDetailsEditDialog">Editar detalhes do tratamento</h4>
             </div>
             <div class="modal-body">
                 <div class="container-fluid">
 
                   <div class="form-horizontal">
                     <div class="form-group">
-                        <label class="col-sm-4 control-label" >Treatment Name: </label>
+                        <label class="col-sm-4 control-label" >Nome do tratamento: </label>
                         <div class="col-sm-8">
-                            <input class="form-control" id="edit_management_factor_name" title="name" type="text" value="<%$trial_name%>" placeholder="Fertilizer01_20N40P50K" />
+                            <input class="form-control" id="edit_management_factor_name" title="name" type="text" value="<%$trial_name%>" placeholder="Fertilizante01_20N40P50K" />
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-4 control-label" >Treatment Description: </label>
+                        <label class="col-sm-4 control-label" >Descrição do tratamento: </label>
                         <div class="col-sm-8">
-                            <input class="form-control" id="edit_management_factor_description" title="description" type="text" value="<%$trial_description%>" placeholder="e.g. Fertilizer Brand 40N20P30K" />
+                            <input class="form-control" id="edit_management_factor_description" title="description" type="text" value="<%$trial_description%>" placeholder="Ex.: fertilizante da marca 40N20P30K" />
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-4 control-label" >Treatment Type: </label>
+                        <label class="col-sm-4 control-label" >Tipo de tratamento: </label>
                         <div class="col-sm-8">
-                            <input class="form-control" id="edit_management_factor_type" title="management_factor_type" type="text" value="<%$management_factor_type%>" placeholder="e.g. Fertilizer, Watering, Hormones, Weeding" />
+                            <input class="form-control" id="edit_management_factor_type" title="management_factor_type" type="text" value="<%$management_factor_type%>" placeholder="Ex.: fertilizante, irrigação, hormônios, capina" />
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-4 control-label" >Year: </label>
+                        <label class="col-sm-4 control-label" >Ano: </label>
                         <div class="col-sm-8">
                             <div id="edit_management_factor_year_div"></div>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-4 control-label" >Date: </label>
+                        <label class="col-sm-4 control-label" >Data: </label>
                         <div class="col-sm-8">
                             <input class="form-control" id="edit_management_factor_date" title="treatment_date" type="text" value="<%$management_factor_date%>" placeholder="MM/DD/YYYY" />
                         </div>
@@ -55,8 +55,8 @@ $management_factor_date
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal" id="edit_management_factor_details_cancel_button">Cancel</button>
-                <button type="button" class="btn btn-primary" id="edit_management_factor_details_submit">Save Changes</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal" id="edit_management_factor_details_cancel_button">Cancelar</button>
+                <button type="button" class="btn btn-primary" id="edit_management_factor_details_submit">Salvar alterações</button>
             </div>
         </div>
     </div>
@@ -88,7 +88,7 @@ jQuery(document).ready(function () {
     jQuery('#edit_management_factor_details_submit').click(function(){
         var new_treatment_date = jQuery('#edit_management_factor_date').val();
         if (new_treatment_date == '') {
-            alert('Please give a treatment date!');
+            alert('Informe a data do tratamento!');
             return false;
         }
         new_treatment_date = moment(new_treatment_date).format('YYYY/MM/DD HH:mm:ss');
@@ -99,19 +99,19 @@ jQuery(document).ready(function () {
         var new_treatment_year = jQuery('#edit_management_factor_year').val();
 
         if (new_treatment_name == '') {
-            alert('Please give a treatment name!');
+            alert('Informe o nome do tratamento!');
             return false;
         }
         if (new_treatment_description == '') {
-            alert('Please give a treatment description!');
+            alert('Informe a descrição do tratamento!');
             return false;
         }
         if (new_treatment_type == '') {
-            alert('Please give a treatment type!');
+            alert('Informe o tipo de tratamento!');
             return false;
         }
         if (new_treatment_year == '') {
-            alert('Please give a treatment year!');
+            alert('Informe o ano do tratamento!');
             return false;
         }
 
@@ -138,12 +138,12 @@ jQuery(document).ready(function () {
                     jQuery('#edit_management_factor_error_messages').html(response.message);
                 }
                 else {
-                    alert('Successfully saved details!');
+                    alert('Detalhes salvos com sucesso!');
                     location.reload();
                 }
             },
             error: function(response){
-                alert('Error saving treatment details!');
+                alert('Erro ao salvar os detalhes do tratamento!');
                 jQuery("#working_modal").modal("hide");
             }
         });

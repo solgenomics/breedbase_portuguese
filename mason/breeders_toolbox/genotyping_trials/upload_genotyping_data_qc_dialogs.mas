@@ -8,8 +8,8 @@ $facilities
     <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="uploadGenotypesQCDialog">Upload Genotypes QC</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="uploadGenotypesQCDialog">Enviar dados para controle de qualidade de genótipos</h4>
             </div>
             <div class="modal-body">
                 <form class="form-horizontal" role="form" method="post" enctype="multipart/form-data" encoding="multipart/form-data" id="upload_genotypes_qc_form" name="upload_genotypes_qc_form" action="/ajax/genotype_qc/upload">
@@ -17,26 +17,26 @@ $facilities
                     <div class="container-fluid">
 
                         <&| /util/workflow.mas, id=> "upload_genotypes_qc_workflow" &>
-                            <&| /util/workflow.mas:step, title=> "Intro" &>
-                                <& /page/page_title.mas, title=>"This workflow will guide you through genotype QC" &>
+                            <&| /util/workflow.mas:step, title=> "Introdução" &>
+                                <& /page/page_title.mas, title=>"Este fluxo orientará o controle de qualidade dos genótipos" &>
 
                                 <ul>
-                                    <li>Genotype QC does not save your genotypes in the database, it only scans them against genotyping protocols already saved in the database.</li>
-                                    <li>To actually store data into the database, please use "Upload Genotyping Data".</li>
-                                    <li>The marker names should be exactly the marker names that you want to compare against and not any other ID</li>
+                                    <li>O controle de qualidade não salva os genótipos no banco de dados; ele apenas os compara aos protocolos de genotipagem já armazenados.</li>
+                                    <li>Para armazenar os dados no banco, use “Enviar dados de genotipagem”.</li>
+                                    <li>Os nomes dos marcadores devem ser exatamente os que você deseja comparar, e não outros IDs.</li>
                                 </ul>
 
                                 <br/><br/>
                                 <div style="text-align: center">
-                                    <button class="btn btn-primary" onclick="Workflow.complete(this); return false;">Go to Next Step</button>
+                                    <button class="btn btn-primary" onclick="Workflow.complete(this); return false;">Ir para a próxima etapa</button>
                                 </div>
                             </&>
 
-                            <&| /util/workflow.mas:step, title=> "Genotype Protocol" &>
-                                <& /page/page_title.mas, title=>"Select the genotyping protocol you want to compare against" &>
+                            <&| /util/workflow.mas:step, title=> "Protocolo de genotipagem" &>
+                                <& /page/page_title.mas, title=>"Selecione o protocolo de genotipagem usado na comparação" &>
 
                                 <ul>
-                                    <li>Select a genotyping protocol in the database against which you want to compare genotypes against.</li>
+                                    <li>Selecione no banco de dados o protocolo com o qual deseja comparar os genótipos.</li>
                                 </ul>
                                 <br/><br/>
 
@@ -45,21 +45,21 @@ $facilities
 
                                 <br/><br/>
                                 <div style="text-align: center">
-                                    <button class="btn btn-primary" onclick="Workflow.complete(this); return false;">Go to Next Step</button>
+                                    <button class="btn btn-primary" onclick="Workflow.complete(this); return false;">Ir para a próxima etapa</button>
                                 </div>
                             </&>
 
-                            <&| /util/workflow.mas:step, title=> "Genotype Info" &>
-                                <& /page/page_title.mas, title=>"Provide genotype information" &>
+                            <&| /util/workflow.mas:step, title=> "Informações dos genótipos" &>
+                                <& /page/page_title.mas, title=>"Forneça as informações dos genótipos" &>
                                 <br/><br/>
 
                                 <div class="row">
                                     <div class="col-sm-4">
-                                        <&| /page/explanation.mas, title=>'Template information' &>
+                                        <&| /page/explanation.mas, title=>'Informações do modelo' &>
                                             <p>
-                                                <b>File format information</b>
+                                                <b>Informações sobre o formato do arquivo</b>
                                                 <br>
-                                                <a id="upload_genotype_qc_spreadsheet_info_format">File format</a>
+                                                <a id="upload_genotype_qc_spreadsheet_info_format">Formato do arquivo</a>
                                             </p>
                                         </&>
                                     </div>
@@ -68,7 +68,7 @@ $facilities
                                         <div class="panel panel-default">
                                             <div class="panel-body">
                                                 <div class="form-group">
-                                                    <label class="col-sm-6 control-label">Select File: </label>
+                                                    <label class="col-sm-6 control-label">Selecionar arquivo: </label>
                                                     <div class="col-sm-6">
                                                         <input type="file" name="upload_genotype_qc_file_input" id="upload_genotype_qc_file_input" encoding="multipart/form-data" />
                                                     </div>
@@ -80,11 +80,11 @@ $facilities
 
                                 <br/><br/>
                                 <div style="text-align: center">
-                                    <button class="btn btn-primary" id="genotype_qc_upload_submit_button">Submit</button>
+                                    <button class="btn btn-primary" id="genotype_qc_upload_submit_button">Enviar</button>
                                 </div>
                             </&>
-                            <&| /util/workflow.mas:step, title=> "Results" &>
-                                <& /page/page_title.mas, title=>"A similarity matrix between the samples in your file and the saved genotypes for the protocol you selected" &>
+                            <&| /util/workflow.mas:step, title=> "Resultados" &>
+                                <& /page/page_title.mas, title=>"Matriz de similaridade entre as amostras do arquivo e os genótipos armazenados para o protocolo selecionado" &>
 
                                 <div id="genotype_qc_result_div"></div>
 
@@ -95,7 +95,7 @@ $facilities
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
             </div>
         </div>
     </div>
@@ -105,17 +105,17 @@ $facilities
     <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content">
             <div class="modal-header" style="text-align: center">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="uploadGenotypeQCInfoDialog">Upload Genotype QC Template Information</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="uploadGenotypeQCInfoDialog">Informações do modelo para controle de qualidade de genótipos</h4>
             </div>
             <div class="modal-body">
                 <div class="container-fluid">
-                    <b>This is for uploading genotype QC data.</b>
+                    <b>Este modelo é usado para enviar dados ao controle de qualidade de genótipos.</b>
                     <br/>
-                    <b>Please use CSV formatted files</b>
+                    <b>Use arquivos no formato CSV.</b>
                     <p>
                     <br />
-                    <b>Header:</b>
+                    <b>Cabeçalho:</b>
                     <br>
 
                     <table class="table table-hover table-bordered table-condensed" >
@@ -123,7 +123,7 @@ $facilities
                         <tbody>
                             <tr>
                                 <td>SampleName.LabID</td>
-                                <td>Separate Column For Each Marker Name (e.g. S12_7926132)</td>
+                                <td>Uma coluna separada para cada nome de marcador (por exemplo, S12_7926132)</td>
                             </tr>
                         </tbody>
                     </table>
@@ -131,7 +131,7 @@ $facilities
                 </div>
             </div>
             <div class="modal-footer">
-                <button id="close_upload_genotyping_qc_spreadsheet_info_dialog" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button id="close_upload_genotyping_qc_spreadsheet_info_dialog" type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
             </div>
         </div>
     </div>
@@ -175,7 +175,7 @@ jQuery(document).ready(function(){
             jQuery('#working_modal').modal('hide');
             if (response.success) {
 
-                var html = '<table class="table table-hover"><thead><tr><th>Samples In File</th>';
+                var html = '<table class="table table-hover"><thead><tr><th>Amostras no arquivo</th>';
                 for(var i=0; i<response.protocol_stock_names.length; i++) {
                     html = html + '<th>'+response.protocol_stock_names[i]+'</th>';
                 }

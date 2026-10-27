@@ -3,9 +3,9 @@
 
 <div id="brapi_home_programs_div">
 
-    <h4>Programs</h4>
-    <input name="brapi_home_program_name" id="brapi_home_program_name" class="form-control" type="text" placeholder="ProgramName e.g. test" value="test"/>
-    <button class="btn btn-primary" name="brapi_home_program_submit" id="brapi_home_program_submit">Get Programs</button>
+    <h4>Programas</h4>
+    <input name="brapi_home_program_name" id="brapi_home_program_name" class="form-control" type="text" placeholder="Nome do programa, ex.: test" value="test"/>
+    <button class="btn btn-primary" name="brapi_home_program_submit" id="brapi_home_program_submit">Obter programas</button>
     <br/><br/>
     <div id="brapi_programs_result_div">
     </div>
@@ -25,7 +25,7 @@ jQuery(document).ready(function() {
 
           },
           error: function(response) {
-            alert('An error occurred');
+            alert('Ocorreu um erro');
           }
         });
 

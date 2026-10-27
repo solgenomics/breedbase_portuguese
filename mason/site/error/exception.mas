@@ -9,7 +9,7 @@
 % for my $e (@$exception) {
 
 <h1 style="text-align: center">
-   <% $e->title || ( $e->is_server_error ? 'Server Error' : $e->is_client_error ? 'Error' : 'Message' ) %>
+   <% $e->title || ( $e->is_server_error ? 'Erro do servidor' : $e->is_client_error ? 'Erro' : 'Mensagem' ) %>
 </h1>
 
 <div style="margin: auto; width: 60%">
@@ -17,23 +17,22 @@
 % if( $e->public_message ) {
     <% $e->public_message . ( $e->public_message =~ /\.\s*$/ ? '' : '.' ) %>
 % } else {
-    Our apologies, there was an error processing your request.  
+    Desculpe, ocorreu um erro ao processar sua solicitação.
 % }
     </p>
 
     <p>
 % if( $e->notify ) {
-    An error report has been sent to the <% $project_name %> development team.
+    Um relatório do erro foi enviado à equipe de desenvolvimento do <% $project_name %>.
 % }
 
 % if( $e->is_client_error || $e->is_server_error ) {
 
-    Feel free to contact the <a href="/contact/form">development team</a>,
-        if the problem persists, and
+    Se o problema persistir, entre em contato com a <a href="/contact/form">equipe de desenvolvimento</a> e
 %   if( $e->is_server_error ) {
-      we will keep you informed of our progress in resolving it.
+      manteremos você informado sobre o andamento da resolução.
 %   } else {
-      we will work with you to resolve it.
+      trabalharemos com você para resolvê-lo.
 %   }
    </p>
 
@@ -53,8 +52,8 @@
      </style>
 
     <div style="margin: 1em 0; border: 2px solid orange; padding: 0 1em 1em 1em">
-      <h3>Developer message:</h3>
-        <pre><% defined $e->developer_message ? $e->developer_message : 'none provided' | h %></pre>
+      <h3>Mensagem para o desenvolvedor:</h3>
+        <pre><% defined $e->developer_message ? $e->developer_message : 'nenhuma mensagem fornecida' | h %></pre>
     </div>
 %   }
 % }

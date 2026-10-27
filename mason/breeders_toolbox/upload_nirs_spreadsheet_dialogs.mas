@@ -9,53 +9,53 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="addSpreadsheetNIRSDialog">Upload NIRS Spreadsheet</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="addSpreadsheetNIRSDialog">Enviar planilha NIRS</h4>
       </div>
       <div class="modal-body">
         <div class="container-fluid">
 
-            <&| /page/explanation.mas, title=>'Template Information' &>
+            <&| /page/explanation.mas, title=>'Informações do modelo' &>
                 <p>
-                <b>File format information</b>
+                <b>Informações sobre o formato do arquivo</b>
                 <br>
-                <a id="phenotype_upload_spreadsheet_format_info">Spreadsheet Format</a>
+                <a id="phenotype_upload_spreadsheet_format_info">Formato da planilha</a>
                 </p>
             </&>
 
             <form class="form-horizontal" role="form" method="post" enctype="multipart/form-data" encoding="multipart/form-data" id="upload_spreadsheet_phenotype_file_form" name="upload_spreadsheet_phenotype_file_form">
                 <div class="form-group">
-                    <label class="col-sm-3 control-label">Spreadsheet Format: </label>
+                    <label class="col-sm-3 control-label">Formato da planilha: </label>
                     <div class="col-sm-9" >
-                        <b>General upload format.</b>
+                        <b>Formato geral de envio.</b>
                         <select class="form-control" id="upload_spreadsheet_phenotype_file_format" name="upload_spreadsheet_phenotype_file_format">
-                            <option value="scio">NIRS all formats</option>
+                            <option value="scio">Todos os formatos NIRS</option>
                             <!-- <option value="nirs">General NIRS upload</option> -->
 
                         </select>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-3 control-label">Timestamps Included: </label>
+                    <label class="col-sm-3 control-label">Incluir datas e horas: </label>
                     <div class="col-sm-9" >
                         <input type="checkbox" id="upload_spreadsheet_phenotype_timestamp_checkbox" name="upload_spreadsheet_phenotype_timestamp_checkbox" />
                     </div>
                 </div>
                 <div id="upload_spreadsheet_phenotype_data_level_div">
                     <div class="form-group">
-                        <label class="col-sm-3 control-label">Data Level: </label>
+                        <label class="col-sm-3 control-label">Nível dos dados: </label>
                         <div class="col-sm-9" >
                             <select class="form-control" id="upload_spreadsheet_phenotype_data_level" name="upload_spreadsheet_phenotype_data_level">
-                                <option value="plots">Plots</option>
-                                <option value="plants">Plants</option>
-                                <option value="subplots">Subplots</option>
-                                <option value="tissue_samples">Tissue Samples</option>
+                                <option value="plots">Parcelas</option>
+                                <option value="plants">Plantas</option>
+                                <option value="subplots">Subparcelas</option>
+                                <option value="tissue_samples">Amostras de tecido</option>
                             </select>
                         </div>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-3 control-label">NIRS Spreadsheet: </label>
+                    <label class="col-sm-3 control-label">Planilha NIRS: </label>
                     <div class="col-sm-9" >
                         <input type="file" id="upload_spreadsheet_phenotype_file_input" name="upload_spreadsheet_phenotype_file_input" encoding="multipart/form-data" />
                     </div>
@@ -69,9 +69,9 @@
         </div>
 
         <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-info" name="upload_spreadsheet_phenotype_submit_verify" id="upload_spreadsheet_phenotype_submit_verify">Verify</button>
-            <button disabled type="button" class="btn btn-primary" name="upload_spreadsheet_phenotype_submit_store" id="upload_spreadsheet_phenotype_submit_store" title="First Verify Your File">Store</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+            <button type="button" class="btn btn-info" name="upload_spreadsheet_phenotype_submit_verify" id="upload_spreadsheet_phenotype_submit_verify">Verificar</button>
+            <button disabled type="button" class="btn btn-primary" name="upload_spreadsheet_phenotype_submit_store" id="upload_spreadsheet_phenotype_submit_store" title="Primeiro verifique o arquivo">Armazenar</button>
         </div>
 
     </div>
@@ -82,50 +82,50 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="phenotypeUploadInfoDialog">Template Information</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="phenotypeUploadInfoDialog">Informações do modelo</h4>
       </div>
       <div class="modal-body">
         <div class="container-fluid">
 
-            <h5>With this model is possible to upload NIRS data just need to follow these columns</h5>
+            <h5>Este modelo permite enviar dados NIRS seguindo as colunas descritas abaixo.</h5>
 
-            <h3>Upload NIRS .csv:</h3>
+            <h3>Enviar arquivo NIRS .csv:</h3>
 
             <ul>
-                <li><strong>id</strong>: Optional identifier for each NIRS read. The id must be an integer.</li>
-                <li><strong>sampling_id</strong>: Optional identifier for each sample. Strings are allowed.</li>
-                <li><strong>sampling_date</strong>: Optional field. The format allowed is: YYYY-MM-DD.</li>
-                <li><strong>observationunit_name</strong>: Required field that matches with existing data in the database. It can be the plot name, subplots, plant name, or tissue sample, depending how your trial is designed.</li>
-                <li><strong>device_id</strong>: Optional field to identify your device. Strings are allowed.</li>
-                <li><strong>device_type</strong>: Required field. It is possible upload data for a single device type. They can be: <strong>SCiO, QST, Foss6500,FOSSDS2500, FOSSXDS, ASDQualityspec,ASDLabSpec,SpecimFX17, BunchiN500, InnoSpectraNIR-S-G1, LinkSquare, FTIR6X, or Viavi microNIR </strong>.</li>
-                <li><strong>comments</strong>: Optional field for general comments.</li>
-                <li>All other columns are required wavelengths. You can add how many columns you want upload -- there is no limit.</li>
+                <li><code>id</code>: identificador opcional de cada leitura NIRS. Deve ser um número inteiro.</li>
+                <li><code>sampling_id</code>: identificador opcional de cada amostra. Textos são aceitos.</li>
+                <li><code>sampling_date</code>: campo opcional. O formato aceito é <code>AAAA-MM-DD</code>.</li>
+                <li><code>observationunit_name</code>: campo obrigatório que deve corresponder a dados existentes no banco. Pode ser o nome da parcela, subparcela, planta ou amostra de tecido, conforme o delineamento do ensaio.</li>
+                <li><code>device_id</code>: campo opcional para identificar o dispositivo. Textos são aceitos.</li>
+                <li><code>device_type</code>: campo obrigatório. Só é possível enviar dados de um tipo de dispositivo por vez. Os valores aceitos são: <strong>SCiO, QST, Foss6500, FOSSDS2500, FOSSXDS, ASDQualityspec, ASDLabSpec, SpecimFX17, BunchiN500, InnoSpectraNIR-S-G1, LinkSquare, FTIR6X ou Viavi microNIR</strong>.</li>
+                <li><code>comments</code>: campo opcional para comentários gerais.</li>
+                <li>Todas as demais colunas representam comprimentos de onda obrigatórios. É possível adicionar quantas colunas forem necessárias.</li>
             </ul>
             <table class="table table-hover table-bordered table-condensed" >
                         <thead></thead>
                         <tbody>
                             <tr>
-                                <td>id</td>
-                                <td>sample_id</td>
-                                <td>sampling_date</td>
-                                <td>obserbationunit_name</td>
-                                <td>device_id</td>
-                                <td>device_type</td>
-                                <td>comments</td>
+                                <td>ID<br><code>id</code></td>
+                                <td>ID da amostra<br><code>sample_id</code></td>
+                                <td>Data da amostragem<br><code>sampling_date</code></td>
+                                <td>Nome da unidade de observação<br><code>obserbationunit_name</code></td>
+                                <td>ID do dispositivo<br><code>device_id</code></td>
+                                <td>Tipo de dispositivo<br><code>device_type</code></td>
+                                <td>Comentários<br><code>comments</code></td>
                             </tr>
                         </tbody>
                     </table>
 
-            <h3>Template for Upload NIRS .csv:</h3>
+            <h3>Modelo para envio de NIRS .csv:</h3>
             <ul>
-                <li>The observationunit_name and device_type must be valid for BreedBase.</li>
-                <li><a href="https://docs.google.com/spreadsheets/d/1Zxxwhq6Dz1PvvUEMz3Xj3gBYTkchp4tGDfgsIHDNJB8/edit?usp=sharing">Upload NIRS .csv template</a></li>
+                <li>Os valores de <code>observationunit_name</code> e <code>device_type</code> devem ser válidos no Breedbase.</li>
+                <li><a href="https://docs.google.com/spreadsheets/d/1Zxxwhq6Dz1PvvUEMz3Xj3gBYTkchp4tGDfgsIHDNJB8/edit?usp=sharing">Modelo para envio de NIRS .csv</a></li>
             </ul>
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
       </div>
     </div>
   </div>

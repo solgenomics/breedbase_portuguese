@@ -6,16 +6,16 @@
         <div class="panel-body">
 
             <div class="well well-sm">
-                <p>If a previous imaging event on this field experiment has already completed the standard process and has ground control points (GCPs) defined, then that imaging event can be used to automate the rest of the standard process on this new imaging event.</p>
+                <p>Se um evento de imageamento anterior deste ensaio de campo já concluiu o processo padrão e tem pontos de controle em solo (GCPs) definidos, ele pode ser usado para automatizar o restante do processo padrão neste novo evento.</p>
             </div>
 
             <div class="form-horizontal">
                 <div class="form-group form-group-sm">
-                    <label class="col-sm-6 control-label">Has a previous imaging event on this field trial completed the standard process and also has GCPs defined already?: </label>
+                    <label class="col-sm-6 control-label">Algum evento de imageamento anterior deste ensaio concluiu o processo padrão e já tem GCPs definidos? </label>
                     <div class="col-sm-6">
                         <select class="form-control" id="manage_drone_imagery_standard_process_interative_ground_control_points_option">
-                            <option value="No">No</option>
-                            <option value="Yes">Yes</option>
+                            <option value="No">Não</option>
+                            <option value="Yes">Sim</option>
                         </select>
                     </div>
                 </div>
@@ -26,7 +26,7 @@
                     <div class="panel panel-default">
                         <div class="panel-body">
                             <div class="form-group form-group-sm">
-                                <label class="col-sm-6 control-label">Select the aerial imaging event to use as a template: </label>
+                                <label class="col-sm-6 control-label">Selecione o evento de imageamento aéreo a ser usado como modelo: </label>
                                 <div class="col-sm-6">
                                     <div id="manage_drone_imagery_standard_process_interactive_ground_control_points_select"></div>
                                 </div>
@@ -36,10 +36,10 @@
 
                             <div class="well well-sm">
                                 <ul>
-                                    <li>Click on the ground control points (GCPs) in the image below and save them.</li>
-                                    <li>Please click and save at least three points. The names of the GCPs MUST be consistent across imaging events!</li>
-                                    <li>For best results, use ground control points at the far four corners of the field.</li>
-                                    <li>You can zoom out on your browser (Cntrl + -).</li>
+                                    <li>Clique nos pontos de controle em solo (GCPs) na imagem abaixo e salve-os.</li>
+                                    <li>Clique e salve pelo menos três pontos. Os nomes dos GCPs DEVEM ser consistentes entre os eventos de imageamento!</li>
+                                    <li>Para obter melhores resultados, use pontos de controle nos quatro cantos mais distantes do campo.</li>
+                                    <li>Você pode reduzir o zoom do navegador (Ctrl + -).</li>
                                 </ul>
                             </div>
 
@@ -48,8 +48,8 @@
 
                                 <br/><br/>
                                 <center>
-                                <button class="btn btn-primary" id="manage_drone_imagery_standard_process_interactive_ground_control_points_step">Draw Computed Plot Polygons</button>
-                                <button class="btn btn-primary" id="manage_drone_imagery_standard_process_interactive_ground_control_points_step_confirm">Confirm and Save</button>
+                                <button class="btn btn-primary" id="manage_drone_imagery_standard_process_interactive_ground_control_points_step">Desenhar polígonos calculados das parcelas</button>
+                                <button class="btn btn-primary" id="manage_drone_imagery_standard_process_interactive_ground_control_points_step_confirm">Confirmar e salvar</button>
                                 </center>
                             </div>
 

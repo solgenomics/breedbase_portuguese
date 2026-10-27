@@ -6,70 +6,70 @@ $timestamp => localtime()
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title" id="addCatalogUsingListDialog">Add New Catalog Items Using List</h4>
+                <h4 class="modal-title" id="addCatalogUsingListDialog">Adicionar itens ao catálogo usando lista</h4>
             </div>
             <div class="modal-body">
                 <div class="container-fluid">
                     <form class="form-horizontal" role="form" method="post" id="add_new_catalog_using_list_form" name="add_new_catalog_using_list_form">
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">List Type: </label>
+                            <label class="col-sm-3 control-label">Tipo de lista: </label>
                             <div class="col-sm-9">
                                 <select class="form-control" id="catalog_list_type">
-                                    <option value="">Select a list type</option>
-                                    <option value="accessions">accessions</option>
-                                    <option value="seedlots">seedlots</option>
-                                    <option value="vector_constructs">vector_constructs</option>
-                                    <option value="populations">populations</option>
+                                    <option value="">Selecione um tipo de lista</option>
+                                    <option value="accessions">acessos</option>
+                                    <option value="seedlots">lotes de sementes</option>
+                                    <option value="vector_constructs">construções vetoriais</option>
+                                    <option value="populations">populações</option>
                                 </select>
                             </div>
                         </div>
                         <div id="catalog_info_section" style="display:none">
                             <div class="form-group" id="catalog_list_section" >
-                                <label class="col-sm-3 control-label">Select a List:</label>
+                                <label class="col-sm-3 control-label">Selecione uma lista:</label>
                                 <div class="col-sm-9" id="select_catalog_list" name="select_catalog_list"></div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">Category: </label>
+                                <label class="col-sm-3 control-label">Categoria: </label>
                                 <div class="col-sm-9">
                                     <select class="form-control" id="list_category">
-                                        <option value="">Please select a category</option>
-                                        <option value="released variety">released variety</option>
-                                        <option value="pathogen assay ">pathogen assay</option>
-                                        <option value="control">control</option>
-                                        <option value="transgenic line">transgenic line</option>
+                                        <option value="">Selecione uma categoria</option>
+                                        <option value="released variety">variedade lançada</option>
+                                        <option value="pathogen assay ">ensaio de patógeno</option>
+                                        <option value="control">controle</option>
+                                        <option value="transgenic line">linhagem transgênica</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">Additional Info: </label>
+                                <label class="col-sm-3 control-label">Informações adicionais: </label>
                                 <div class="col-sm-9" >
-                                    <input class="form-control" id="list_additional_info" placeholder="optional">
+                                    <input class="form-control" id="list_additional_info" placeholder="opcional">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">Material Source: </label>
+                                <label class="col-sm-3 control-label">Origem do material: </label>
                                 <div class="col-sm-9" >
-                                    <input class="form-control" id="list_material_source" placeholder="optional">
+                                    <input class="form-control" id="list_material_source" placeholder="opcional">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">Breeding Program: </label>
+                                <label class="col-sm-3 control-label">Programa de melhoramento: </label>
                                 <div class="col-sm-9" >
                                     <div id="list_item_breeding_program_div"></div>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">Contact Person Username: </label>
+                                <label class="col-sm-3 control-label">Usuário da pessoa de contato: </label>
                                 <div class="col-sm-9" >
-                                    <input class="form-control" id="list_contact_person_name" placeholder="Please provide contact person username">
+                                    <input class="form-control" id="list_contact_person_name" placeholder="Informe o nome de usuário da pessoa de contato">
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="reset" id="close_catalog_list_dialog" name="close_catalog_list_dialog" class="btn btn-default" >Close</button>
-                    <button id="submit_catalog_using_list" type="button" class="btn btn-primary" >Add</button>
+                    <button type="reset" id="close_catalog_list_dialog" name="close_catalog_list_dialog" class="btn btn-default" >Fechar</button>
+                    <button id="submit_catalog_using_list" type="button" class="btn btn-primary" >Adicionar</button>
                 </div>
             </form>
         </div>
@@ -80,19 +80,19 @@ $timestamp => localtime()
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="addItemListSavedDialog">Success</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="addItemListSavedDialog">Sucesso</h4>
             </div>
             <div class="modal-body">
                 <div class="container-fluid">
                     <p>
                         <span class="ui-icon ui-icon-circle-check" style="float: left; margin: 0 7px 50px 0;"></span>
-                        The catalog items were saved successfully.
+                        Os itens do catálogo foram salvos com sucesso.
                     </p>
                 </div>
             </div>
             <div class="modal-footer">
-                <button id="dismiss_list_saved_dialog" type="button" class="btn btn-default" data-dismiss="modal">Close & Reload</button>
+                <button id="dismiss_list_saved_dialog" type="button" class="btn btn-default" data-dismiss="modal">Fechar e recarregar</button>
             </div>
         </div>
     </div>
@@ -111,7 +111,7 @@ jQuery(document).ready(function(){
         var list = new CXGN.List();
         var list_type = jQuery('#catalog_list_type').val();
         jQuery("#catalog_info_section").show();
-        document.getElementById("select_catalog_list").innerHTML = list.listSelect("select_catalog_list", [ list_type ], 'Please select a list','', undefined);
+        document.getElementById("select_catalog_list").innerHTML = list.listSelect("select_catalog_list", [ list_type ], 'Selecione uma lista','', undefined);
         get_select_box('breeding_programs', 'list_item_breeding_program_div', { 'name' : 'list_breeding_program_id', 'id' : 'list_breeding_program_id', 'empty': 1 });
     });
 
@@ -124,24 +124,24 @@ jQuery(document).ready(function(){
         var breeding_program = jQuery('#list_breeding_program_id').val();
         var contact_person = jQuery('#list_contact_person_name').val();
         if (catalog_list_type == '') {
-            alert("Please select a list type");
+            alert("Selecione um tipo de lista");
             return;
         }
 
         if (catalog_list == '') {
-            alert("Please select a list");
+            alert("Selecione uma lista");
             return;
         }
         if (category == '') {
-            alert("Please select a category");
+            alert("Selecione uma categoria");
             return;
         }
         if (breeding_program == '') {
-            alert("Please select a program");
+            alert("Selecione um programa");
             return;
         }
         if (contact_person == '') {
-            alert("Please provide contact username");
+            alert("Informe o nome de usuário da pessoa de contato");
             return;
         }
 
@@ -173,7 +173,7 @@ jQuery(document).ready(function(){
             },
             error: function(response){
                 jQuery('#working_modal').modal('hide');
-                alert('An error occurred adding item');
+                alert('Ocorreu um erro ao adicionar o item');
             }
         });
     });

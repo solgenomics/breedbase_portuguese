@@ -15,28 +15,35 @@ $dialog_name => undef
     my $default_include_pedigree_parents = $c->get_conf('pheno_download_default_include_pedigree_parents');
 </%once>
 
+% my $dialog_type_label = $dialog_type;
+% if (defined $dialog_type && $dialog_type eq 'Trial') {
+%     $dialog_type_label = 'ensaio';
+% } elsif (defined $dialog_type && $dialog_type eq 'Analysis') {
+%     $dialog_type_label = 'análise';
+% }
+
 <div class="modal fade" id="download_trial_phenotypes_dialog" name="download_trial_phenotypes_dialog" tabindex="-1" role="dialog" aria-labelledby="downloadTrialPhenotypesDialog">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="downloadTrialPhenotypesDialog">Download Phenotypes for <% $dialog_type %>  <% $dialog_name %></h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="downloadTrialPhenotypesDialog">Baixar fenótipos da <% $dialog_type_label %> <% $dialog_name %></h4>
       </div>
       <div class="modal-body">
         <div class="container-fluid">
 
 	       <form class="form-horizontal" role="form" method="post" >
                <div class="form-group">
-                   <label class="col-sm-3 control-label">Speed: </label>
+                   <label class="col-sm-3 control-label">Velocidade: </label>
                    <div class="col-sm-9" >
                        <select class="form-control" id="download_trial_phenotypes_speed">
-                           <option selected value="Native">Default</option>
-                           <option value="MaterializedViewTable">Fast (Improves speed but may miss recent changes)</option>
+                           <option selected value="Native">Padrão</option>
+                           <option value="MaterializedViewTable">Rápida (melhora a velocidade, mas pode omitir alterações recentes)</option>
                        </select>
                    </div>
                </div>
 	        <div class="form-group">
-                <label class="col-sm-3 control-label">Format: </label>
+                <label class="col-sm-3 control-label">Formato: </label>
                 <div class="col-sm-9" >
                     <select class="form-control" id="download_trial_phenotypes_format">
                         <option value="csv">CSV</option>
@@ -45,101 +52,101 @@ $dialog_name => undef
                 </div>
 	        </div>
             <div class="form-group">
-                <label class="col-sm-3 control-label">Data Level: </label>
+                <label class="col-sm-3 control-label">Nível dos dados: </label>
                 <div class="col-sm-9" >
                     <select class="form-control" id="download_trial_phenotypes_level_option">
-                        <option value="all">All</option>
+                        <option value="all">Todos</option>
 %  if ($dialog_type ne 'Analysis') {
-                        <option value="plot">Plots</option>
-                        <option value="plant">Plants</option>
-                        <option value="subplot">Subplots</option>
+                        <option value="plot">Parcelas</option>
+                        <option value="plant">Plantas</option>
+                        <option value="subplot">Subparcelas</option>
 %  }
                     </select>
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-sm-3 control-label">Traits:<br/><small>(Select none for all traits)</small></label>
+                <label class="col-sm-3 control-label">Características:<br/><small>(não selecione nenhuma para incluir todas)</small></label>
                 <div class="col-sm-9" >
                     <div id="download_trial_phenotypes_traits">
                     </div>
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-sm-3 control-label">Trait Components:<br/><small>(Select none for all)</small></label>
+                <label class="col-sm-3 control-label">Componentes das características:<br/><small>(não selecione nenhum para incluir todos)</small></label>
                 <div class="col-sm-9" >
                     <div id="download_trial_phenotypes_trait_components">
                     </div>
                 </div>
             </div>
 
-<&| /page/info_section.mas, title=>"Additional Search Options",  collapsible => 1, collapsed=>1 &>
+<&| /page/info_section.mas, title=>"Opções adicionais de pesquisa",  collapsible => 1, collapsed=>1 &>
 
             <div class="form-group">
-                <label class="col-sm-7 control-label">For repeated measurements, return the: </label>
+                <label class="col-sm-7 control-label">Para medições repetidas, retornar: </label>
                 <div class="col-sm-5">
                     <select class="form-control" id="download_trial_phenotypes_repetitive_measurements_option">
-                        <option value="first">First value</option>
-                        <option value="last">Last value</option>
-                        <option value="average">Averaged value</option>
-                        <option value="sum">Sum values</option>
-                        <option value="all_values_single_line">All Values Single Line</option>
-                        <option value="all_values_multiple_line">All Values Multiple Line</option>
+                        <option value="first">Primeiro valor</option>
+                        <option value="last">Último valor</option>
+                        <option value="average">Valor médio</option>
+                        <option value="sum">Soma dos valores</option>
+                        <option value="all_values_single_line">Todos os valores em uma única linha</option>
+                        <option value="all_values_multiple_line">Todos os valores em várias linhas</option>
                     </select>
                 </div>
             </div>
 
             <div class="form-group">
-                <label class="col-sm-7 control-label">Include Timestamps: </label>
+                <label class="col-sm-7 control-label">Incluir data e hora: </label>
                 <div class="col-sm-5" >
                     <select class="form-control" id="download_trial_phenotypes_timestamp_option">
-                        <option value="0">No</option>
-                        <option value="1">Yes</option>
+                        <option value="0">Não</option>
+                        <option value="1">Sim</option>
                     </select>
                 </div>
             </div>
 
             <div class="form-group">
-                <label class="col-sm-7 control-label">Include Intercrop Accessions: </label>
+                <label class="col-sm-7 control-label">Incluir acessos de cultivo consorciado: </label>
                 <div class="col-sm-5" >
                     <select class="form-control" id="download_trial_phenotypes_intercrop_option">
-                        <option value="0">No</option>
-                        <option value="1">Yes</option>
+                        <option value="0">Não</option>
+                        <option value="1">Sim</option>
                     </select>
                 </div>
             </div>
 
             <div class="form-group">
-                <label class="col-sm-7 control-label">Include Entry Numbers: </label>
+                <label class="col-sm-7 control-label">Incluir números de entrada: </label>
                 <div class="col-sm-5" >
                     <select class="form-control" id="download_trial_phenotypes_entry_numbers_option">
-                        <option value="0">No</option>
-                        <option value="1">Yes</option>
+                        <option value="0">Não</option>
+                        <option value="1">Sim</option>
                     </select>
                 </div>
             </div>
 
             <div class="form-group">
-                <label class="col-sm-7 control-label">Include Trait Synonyms: </label>
+                <label class="col-sm-7 control-label">Incluir sinônimos das características: </label>
                 <div class="col-sm-5" >
                     <select class="form-control" id="download_trial_phenotypes_trait_synonyms_option">
-                        <option value="0">No</option>
-                        <option value="1">Yes</option>
+                        <option value="0">Não</option>
+                        <option value="1">Sim</option>
                     </select>
                 </div>
             </div>
 
             <div class="form-group">
-                <label class="col-sm-7 control-label">Include Parents: </label>
+                <label class="col-sm-7 control-label">Incluir parentais: </label>
                 <div class="col-sm-5" >
                     <select class="form-control" id="download_trial_phenotypes_pedigrees_option">
-                        <option value="0">No</option>
-                        <option value="1">Yes</option>
+                        <option value="0">Não</option>
+                        <option value="1">Sim</option>
                     </select>
                 </div>
             </div>
 
             <div class="form-group">
-                <label class="col-sm-7 control-label">Trait Name Contains: </label>
+                <label class="col-sm-7 control-label">O nome da característica contém: </label>
                 <div class="col-sm-5" >
                     <input id="download_trial_phenotype_trait_contains" name="download_trial_phenotype_trait_contains" type="text" class="form-control" placeholder="storage root,oxoglutarate" style="width: 100%"/>
                 </div>
@@ -148,7 +155,7 @@ $dialog_name => undef
             <div class="row">
                 <div class="col-sm-6">
                     <div class="form-group">
-                        <label class="col-sm-7 control-label">Min Phenotype Value: </label>
+                        <label class="col-sm-7 control-label">Valor fenotípico mínimo: </label>
                         <div class="col-sm-5" >
                             <input id="download_trial_phenotype_phenotype_min" name="download_trial_phenotype_phenotype_min" type="number" class="form-control" />
                         </div>
@@ -156,7 +163,7 @@ $dialog_name => undef
                 </div>
                 <div class="col-sm-6">
                     <div class="form-group">
-                        <label class="col-sm-7 control-label">Max Phenotype Value: </label>
+                        <label class="col-sm-7 control-label">Valor fenotípico máximo: </label>
                         <div class="col-sm-5" >
                             <input id="download_trial_phenotype_phenotype_max" name="download_trial_phenotype_phenotype_max" type="number" class="form-control" />
                         </div>
@@ -165,11 +172,11 @@ $dialog_name => undef
             </div>
 
             <div class="form-group">
-                <label class="col-sm-7 control-label">Suppress User Defined Phenotype Outliers: </label>
+                <label class="col-sm-7 control-label">Suprimir valores fenotípicos atípicos definidos pelo usuário: </label>
                 <div class="col-sm-5" >
                     <select class="form-control" id="download_trial_phenotypes_exclude_outliers">
-                        <option value="0">No</option>
-                        <option value="1">Yes</option>
+                        <option value="0">Não</option>
+                        <option value="1">Sim</option>
                     </select>
                 </div>
             </div>
@@ -179,8 +186,8 @@ $dialog_name => undef
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" name="download_trial_phenotypes_cancel_button" id="download_trial_phenotypes_cancel_button" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" name="download_trial_phenotypes_submit_button" id="download_trial_phenotypes_submit_button" title="Submit">Submit</button>
+        <button type="button" class="btn btn-default" name="download_trial_phenotypes_cancel_button" id="download_trial_phenotypes_cancel_button" data-dismiss="modal">Fechar</button>
+        <button type="button" class="btn btn-primary" name="download_trial_phenotypes_submit_button" id="download_trial_phenotypes_submit_button" title="Enviar">Enviar</button>
       </div>
     </div>
   </div>

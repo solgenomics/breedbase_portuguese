@@ -105,6 +105,38 @@ if ($plot_name_template) {
         $plot_name_template_display = join('_', @parts);
     }
 }
+
+my %stock_type_labels = (
+    accession   => 'acesso',
+    cross       => 'cruzamento',
+    family_name => 'nome de família',
+);
+my %trial_type_labels = (
+    'Seedling Nursery'        => 'Viveiro de plântulas',
+    phenotyping_trial         => 'Ensaio de fenotipagem',
+    'Advanced Yield Trial'    => 'Ensaio avançado de produtividade',
+    'Preliminary Yield Trial' => 'Ensaio preliminar de produtividade',
+    'Uniform Yield Trial'     => 'Ensaio uniforme de produtividade',
+    'Variety Release Trial'   => 'Ensaio de lançamento de cultivar',
+    'Clonal Evaluation'       => 'Avaliação clonal',
+    genetic_gain_trial        => 'Ensaio de ganho genético',
+    storage_trial             => 'Ensaio de armazenamento',
+    heterosis_trial           => 'Ensaio de heterose',
+    health_status_trial       => 'Ensaio de estado fitossanitário',
+    grafting_trial            => 'Ensaio de enxertia',
+    'Screen House'            => 'Telado',
+    'Seed Multiplication'     => 'Multiplicação de sementes',
+    crossing_block_trial      => 'Ensaio de bloco de cruzamentos',
+    'Specialty Trial'         => 'Ensaio especial',
+);
+my %activity_labels = (
+    'Trial Created'            => 'Ensaio criado',
+    'Trial Uploaded'           => 'Ensaio enviado',
+    'Started Phenotyping'      => 'Fenotipagem iniciada',
+    'Phenotyping Completed'    => 'Fenotipagem concluída',
+    'Data Cleaning Completed'  => 'Limpeza de dados concluída',
+    'Data Analysis Completed'  => 'Análise de dados concluída',
+);
 </%init>
 
 
@@ -114,99 +146,99 @@ if ($plot_name_template) {
         <table class="table table-hover table-bordered" >
 
             <tr>
-                <td><b>Trial Name</b></td>
+                <td><b>Nome do ensaio</b></td>
                 <td>
                     <div id="trial_name">
 % if ($trial_name) {
 %   print "$trial_name";
 % } else {
-%   print "<span class='text-danger'>[No Trial Name]</span>";
+%   print "<span class='text-danger'>[Sem nome de ensaio]</span>";
 % }
                     </div>
                 </td>
             </tr>
 
             <tr>
-                <td><b>Breeding Program </b></td>
+                <td><b>Programa de melhoramento</b></td>
                 <td>
                     <span id="breeding_program">
 % if ($breeding_program_name) {
                     <a href="/breeders/program/<% $breeding_program_id %>"><% $breeding_program_name %></a>
 % }
 % else {
-%  print "<span class='text-danger'>[No Breeding Program]</span>";
+%  print "<span class='text-danger'>[Sem programa de melhoramento]</span>";
 % }
                     </span>
                 </td>
             </tr>
 
             <tr>
-                <td><b>Trial Location</b></td>
+                <td><b>Local do ensaio</b></td>
                 <td>
                     <div id="trial_location">
 % if ($location_name) {
 %  print "$location_name ( $country_name )";
 % } else {
-%  print "<span class='text-danger'>[No Location]</span>";
+%  print "<span class='text-danger'>[Sem local]</span>";
 % }
                     </div>
                 </td>
             </tr>
 
             <tr>
-                <td><b>Year</b></td>
+                <td><b>Ano</b></td>
                 <td>
                     <div id="trial_year">
 % if ($year) {
 %  print "$year";
 % } else {
-%  print "<span class='text-danger'>[No Year]</span>";
+%  print "<span class='text-danger'>[Sem ano]</span>";
 % }
                     </div>
                 </td>
             </tr>
 
             <tr>
-                <td><b>Stock Type Being Evaluated in This Trial</b></td>
+                <td><b>Tipo de material avaliado neste ensaio</b></td>
                 <td>
                     <div id="stock_type_in_trial">
 % if ($trial_stock_type) {
-%     print "$trial_stock_type";
+%     print $stock_type_labels{$trial_stock_type} || $trial_stock_type;
 % } else {
-%     print "accession";
+%     print "acesso";
 % }
                     </div>
                 </td>
             </tr>
 
 	    <tr>
-                <td><b>Number of Stocks in This Trial</b></td>
+                <td><b>Número de materiais neste ensaio</b></td>
                 <td>
                     <div id="stock_number_in_trial">
 % if ($trial_stock_count) {
 %     print "$trial_stock_count";
 % } else {
-% print "<span class='text-danger'>[No Stocks in Trial]</span>";
+% print "<span class='text-danger'>[Sem materiais no ensaio]</span>";
 % }
                     </div>
                 </td>
             </tr>
 
             <tr>
-                <td><b>Trial Type</b></td>
+                <td><b>Tipo de ensaio</b></td>
                 <td>
                     <div id="trial_type">
 % if ($trial_type) {
-%  print "$trial_type";
+%  print $trial_type_labels{$trial_type} || $trial_type;
 % } else {
-% print "<span class='text-danger'>[Type not set]</span>";
+% print "<span class='text-danger'>[Tipo não definido]</span>";
 % }
                     </div>
                 </td>
             </tr>
 
             <tr>
-                <td><b>Planting Date</b></td>
+                <td><b>Data de plantio</b></td>
                 <td>
                     <div id="planting_date">
 % if ($planting_date) {
@@ -215,14 +247,14 @@ if ($plot_name_template) {
 &nbsp;<span>| DAP: <% $dap_display %> </span>
 % }
 % } else {
-%  print "<span class='text-danger'>[No Planting Date]</span>";
+%  print "<span class='text-danger'>[Sem data de plantio]</span>";
 % }
                     </div>
                 </td>
             </tr>
 % if ($transplanting_date && $transplanting_date ne '') {
 <tr>
-    <td><b>Transplanting Date</b></td>
+    <td><b>Data de transplantio</b></td>
     <td>
         <div id="transplanting_date">
             <a href="/breeders/trial/<% $trial_id %>?currentDate=<% $transplanting_date %>" ><% $transplanting_date %></a>
@@ -231,41 +263,41 @@ if ($plot_name_template) {
 </tr>
 % }
             <tr>
-                <td><b>Harvest Date</b></td>
+                <td><b>Data de colheita</b></td>
                 <td>
                     <div id="harvest_date">
 % if ($harvest_date) {
 <a href="/breeders/trial/<% $trial_id %>?currentDate=<% $harvest_date %>" ><% $harvest_date %></a>
 % if (defined $dah_display) {
-&nbsp;<span> | DAH: <% $dah_display %> </span>
+&nbsp;<span> | DAC: <% $dah_display %> </span>
 % }
 % } else {
-%  print "<span class='text-danger'>[No Harvest Date]</span>";
+%  print "<span class='text-danger'>[Sem data de colheita]</span>";
 % }
                     </div>
                 </td>
             </tr>
 
-            <tr><td><b>Description</b></td>
+            <tr><td><b>Descrição</b></td>
                 <td>
 % if ($trial_description) {
 %  print "<div id='trial_description' style='white-space: pre-wrap;'>$trial_description</div>";
 % } else {
-%  print "<div id='trial_description'><span class='text-danger'>[No Description]</span></div>";
+%  print "<div id='trial_description'><span class='text-danger'>[Sem descrição]</span></div>";
 % }
                 </td>
             </tr>
 
             <tr>
-                <td><b>Folder</b></td>
+                <td><b>Pasta</b></td>
                 <td>
                     <span id="trial_folder_div"><a href="/folder/<% $folder_id %>"><% $folder_name %></a></span>
                     <br/><br/>
-                    <button class="btn btn-sm btn-default" style="margin:3px" id="new_folder_dialog_link">New Folder</button> <button class="btn btn-sm btn-default" style="margin:3px" id="open_folder_dialog_link">Change Folder</button>
+                    <button class="btn btn-sm btn-default" style="margin:3px" id="new_folder_dialog_link">Nova pasta</button> <button class="btn btn-sm btn-default" style="margin:3px" id="open_folder_dialog_link">Alterar pasta</button>
                 </td>
             </tr>
 
-	    <tr><td><b>Created by</b></td>
+	    <tr><td><b>Criado por</b></td>
                 <td>
                     <div id="trial_owner">
 % if ($trial_owner) {
@@ -278,13 +310,14 @@ if ($plot_name_template) {
             </tr>
 
             <tr>
-                <td><b>Latest Trial Activity</b></td>
+                <td><b>Atividade mais recente do ensaio</b></td>
                 <td>
                         <div id="latest_trial_activity">
 % if ($latest_trial_activity) {
-%  print "<span class='text-success'>$latest_trial_activity</span>";
+%  my $latest_activity_display = $activity_labels{$latest_trial_activity} || $latest_trial_activity;
+%  print "<span class='text-success'>$latest_activity_display</span>";
 % } else {
-%  print "<span class='text-danger'>[No Record]</span>";
+%  print "<span class='text-danger'>[Sem registro]</span>";
 % }
                         </div>
                     </td>
@@ -292,7 +325,7 @@ if ($plot_name_template) {
 
 % if ($plot_name_template_display) {
             <tr>
-                <td><b>Plot Name Template</b></td>
+                <td><b>Modelo de nome de parcela</b></td>
                 <td>
                     <div id="plot_name_template">
                         <div><b><% $plot_name_template_name %></b></div>
@@ -311,57 +344,57 @@ if ($plot_name_template) {
         </div>
 
         <table class="table table-hover table-bordered">
-            <tr><td><b>Plot Width (m)</b></td>
+            <tr><td><b>Largura da parcela (m)</b></td>
                 <td>
                     <div id="plot_width">
 % if ($plot_width) {
 %  print "$plot_width";
 % } else {
-%  print "<span class='text-default'>[No Plot Width]</span>";
+%  print "<span class='text-default'>[Sem largura da parcela]</span>";
 % }
                     </div>
                 </td>
             </tr>
-            <tr><td><b>Plot Length (m)</b></td>
+            <tr><td><b>Comprimento da parcela (m)</b></td>
                 <td>
                     <div id="plot_length">
 % if ($plot_length) {
 %  print "$plot_length";
 % } else {
-%  print "<span class='text-default'>[No Plot Length]</span>";
+%  print "<span class='text-default'>[Sem comprimento da parcela]</span>";
 % }
                     </div>
                 </td>
             </tr>
-            <tr><td><b>Field Size (ha)</b></td>
+            <tr><td><b>Área do campo (ha)</b></td>
                 <td>
                     <div id="field_size">
 % if ($field_size) {
 %  print "$field_size";
 % } else {
-%  print "<span class='text-default'>[No Field Size]</span>";
+%  print "<span class='text-default'>[Sem área do campo]</span>";
 % }
                     </div>
                 </td>
             </tr>
-            <tr><td><b>Trial Will Be Genotyped</b></td>
+            <tr><td><b>O ensaio será genotipado</b></td>
                 <td>
                     <div id="planned_to_be_genotyped">
 % if ($field_trial_is_planned_to_be_genotyped) {
-%  print "$field_trial_is_planned_to_be_genotyped";
+%  print lc($field_trial_is_planned_to_be_genotyped) eq 'yes' ? 'Sim' : lc($field_trial_is_planned_to_be_genotyped) eq 'no' ? 'Não' : $field_trial_is_planned_to_be_genotyped;
 % } else {
-%  print "no";
+%  print "Não";
 % }
                     </div>
                 </td>
             </tr>
-            <tr><td><b>Trial Will Be In Crosses</b></td>
+            <tr><td><b>O ensaio será usado em cruzamentos</b></td>
                 <td>
                     <div id="planned_to_cross">
 % if ($field_trial_is_planned_to_cross) {
-%  print "$field_trial_is_planned_to_cross";
+%  print lc($field_trial_is_planned_to_cross) eq 'yes' ? 'Sim' : lc($field_trial_is_planned_to_cross) eq 'no' ? 'Não' : $field_trial_is_planned_to_cross;
 % } else {
-%  print "no";
+%  print "Não";
 % }
                     </div>
                 </td>

@@ -6,7 +6,7 @@ $vector_id
 </%args>
 
 
-<&| /page/info_section.mas, title => 'Transgenic Lines (Accessions) Derived from this Transformation ', collapsible=>1, collapsed=>0 &>
+<&| /page/info_section.mas, title => 'Linhagens transgênicas (acessos) derivadas desta transformação ', collapsible=>1, collapsed=>0 &>
     <div class = "well well-sm">
         <div class = "panel panel-default">
             <div class = "panel-body">
@@ -16,7 +16,7 @@ $vector_id
                 </div>
                 <div class="panel panel-default">
                     <div class="panel-body">
-                        <&| /page/info_section.mas, title => 'Add accessions to a List', collapsible=>1, collapsed=>1, subtitle=>'<i>Adding transgenic lines (accessions) to a new or exisiting list</i>'&>
+                        <&| /page/info_section.mas, title => 'Adicionar acessos a uma lista', collapsible=>1, collapsed=>1, subtitle=>'<i>Adicione linhagens transgênicas (acessos) a uma lista nova ou existente</i>'&>
                             <br>
                             <div id="transformant_to_new_list" style="display:none"></div>
                             <div id="transformant_add_to_list"></div>
@@ -24,7 +24,7 @@ $vector_id
                     </div>
                 </div>
 % if($can_obsolete) {
-                <button class="btn btn-sm btn-primary" style="margin:3px" id="obsolete_accessions_in_bulk_link">Obsolete Accessions in Bulk</button>
+                <button class="btn btn-sm btn-primary" style="margin:3px" id="obsolete_accessions_in_bulk_link">Marcar acessos como obsoletos in Bulk</button>
 % }
             </div>
         </div>
@@ -45,8 +45,8 @@ jQuery(document).ready(function(){
         'autoWidth': false,
         'order': false,
         'columns': [
-            { title: "Accession", "data": null, "render": function ( data, type, row ) { return "<a href='/stock/"+row.transformant_id+"/view'>"+row.transformant_name+"</a>"; } },
-            { title: "Obsolete Accession", "data": null, "render": function ( data, type, row ) {
+            { title: "Acesso", "data": null, "render": function ( data, type, row ) { return "<a href='/stock/"+row.transformant_id+"/view'>"+row.transformant_name+"</a>"; } },
+            { title: "Marcar acesso como obsoleto", "data": null, "render": function ( data, type, row ) {
                 if (can_obsolete) {
                     if (row.is_a_parent){
                         return 'Used as a parent, cannot obsolete';
@@ -62,7 +62,7 @@ jQuery(document).ready(function(){
         "fnInitComplete": function(oSettings, json) {
             //console.log(json);
             if (!isLoggedIn()) {
-                jQuery('#transformant_add_to_list').html("<div class='well well-sm'><h3>Please login to use lists!</h3></div>");
+                jQuery('#transformant_add_to_list').html("<div class='well well-sm'><h3>Entre no sistema para usar listas!</h3></div>");
             } else {
                 let html = "";
                 for(let i=0; i<json.data.length; i++){

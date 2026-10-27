@@ -5,30 +5,30 @@ $trial_id => undef
 <& /util/import_javascript.mas, classes => [ ] &>
 
 <div id="trial_additional_uploaded_files_div">
-[LOADING...]
+[CARREGANDO...]
 </div>
 
 <div class="modal fade" id="trial_upload_additional_file_dialog" name="trial_upload_additional_file_dialog" tabindex="-1" role="dialog" aria-labelledby="trialUploadAdditionalFileDialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="trialUploadAdditionalFileDialog">Upload Additional File to Trial</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="trialUploadAdditionalFileDialog">Enviar arquivo adicional para o ensaio</h4>
             </div>
             <div class="modal-body">
                 <div class="container-fluid">
-                    <&| /page/explanation.mas, title=>'Template information' &>
+                    <&| /page/explanation.mas, title=>'Informações do envio' &>
                         <p>
-                            <b>File upload information</b>
+                            <b>Informações sobre o envio de arquivos</b>
                             <br>
-                            <a id="trial_upload_additional_file_format">Upload Information</a>
+                            <a id="trial_upload_additional_file_format">Informações de envio</a>
                         </p>
                     </&>
 
                     <form class="form-horizontal" role="form" method="post" enctype="multipart/form-data" encoding="multipart/form-data" id="trial_upload_additional_file_form" name="trial_upload_additional_file_form">
 
                         <div class="form-group">
-                            <label class="col-sm-4 control-label">Upload File: </label>
+                            <label class="col-sm-4 control-label">Enviar arquivo: </label>
                             <div class="col-sm-8" >
                                 <input type="file" name="trial_upload_additional_file" id="trial_upload_additional_file" encoding="multipart/form-data" />
                             </div>
@@ -38,8 +38,8 @@ $trial_id => undef
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" name="trial_upload_additional_file_cancel_button" id="trial_upload_additional_file_cancel_button"     data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" name="trial_upload_additional_file_submit_button" id="trial_upload_additional_file_submit_button" title="Submit">Submit</button>
+                <button type="button" class="btn btn-default" name="trial_upload_additional_file_cancel_button" id="trial_upload_additional_file_cancel_button"     data-dismiss="modal">Fechar</button>
+                <button type="button" class="btn btn-primary" name="trial_upload_additional_file_submit_button" id="trial_upload_additional_file_submit_button" title="Enviar">Enviar</button>
             </div>
         </div>
     </div>
@@ -49,24 +49,24 @@ $trial_id => undef
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header" style="text-align: center">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="trialUploadAdditionalFileInfoDialog">Upload Information</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="trialUploadAdditionalFileInfoDialog">Informações de envio</h4>
             </div>
             <div class="modal-body">
                 <div class="container-fluid">
-                    <b>This is for uploading any additional files you may have for a trial.</b>
+                    <b>Use esta opção para enviar qualquer arquivo adicional relacionado a um ensaio.</b>
                     <br/><br/>
-                    <p>Possible additional files inlude, but are not limited to:</p>
+                    <p>Os arquivos adicionais podem incluir, entre outros:</p>
                     <ul>
-                        <li>Trial Related Images, such as a physical field image or an aerial picture of the field.</li>
-                        <li>Trial Related Documentation, such as protocols or permits for the trial.</li>
-                        <li>Trial Related Reports, such as supplementary information or publications.</li>
-                        <li>Trial Related Recordings, whether audio or video.</li>
+                        <li>Imagens do ensaio, como uma fotografia do campo ou uma imagem aérea.</li>
+                        <li>Documentação do ensaio, como protocolos ou autorizações.</li>
+                        <li>Relatórios do ensaio, como informações complementares ou publicações.</li>
+                        <li>Gravações do ensaio, em áudio ou vídeo.</li>
                     </ul>
                 </div>
             </div>
             <div class="modal-footer">
-                <button id="close_trial_upload_additional_file_info_dialog" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button id="close_trial_upload_additional_file_info_dialog" type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
             </div>
         </div>
     </div>
@@ -93,7 +93,7 @@ jQuery(document).ready(function(){
         var uploadFile = jQuery("#trial_upload_additional_file").val();
         jQuery('#trial_upload_additional_file_form').attr("action", "/ajax/breeders/trial/<% $trial_id %>/upload_additional_file");
         if (uploadFile === '') {
-            alert("Please select a file");
+            alert("Selecione um arquivo.");
             return;
         }
         jQuery("#trial_upload_additional_file_form").submit();
@@ -106,7 +106,7 @@ jQuery(document).ready(function(){
             jQuery('#working_modal').modal("show");
             if (uploadedAdditionalFile === '') {
                 jQuery('#working_modal').modal("hide");
-                alert("No file selected");
+                alert("Nenhum arquivo selecionado.");
             }
         },
         complete: function (response) {
@@ -122,7 +122,7 @@ jQuery(document).ready(function(){
                 return;
             }
             if (response.success) {
-                alert("File uploaded successfully");
+                alert("Arquivo enviado com sucesso.");
                 display_trial_additional_upload_files();
             }
         }
@@ -137,20 +137,20 @@ jQuery(document).ready(function(){
         jQuery.ajax ({
             url : '/ajax/breeders/trial/'+<% $trial_id %>+'/get_uploaded_additional_file',
             beforeSend : function(){
-                jQuery('#trial_additional_uploaded_files_div').html("[LOADING...]");
+                jQuery('#trial_additional_uploaded_files_div').html("[CARREGANDO...]");
             },
             success: function(response){
                 //console.log(response);
-                var html = "<table class='table table-hover table-condensed table-bordered' id='trial_additional_uploaded_files_table'><thead><tr><th>Filename</th><th>Date Uploaded</th><th>Uploaded By</th><th>Options</th></tr></thead><tbody>";
+                var html = "<table class='table table-hover table-condensed table-bordered' id='trial_additional_uploaded_files_table'><thead><tr><th>Nome do arquivo</th><th>Data de envio</th><th>Enviado por</th><th>Opções</th></tr></thead><tbody>";
                 for (i=0; i<response.files.length; i++) {
-                    html = html + '<tr><td>'+response.files[i][4]+'</td><td>'+response.files[i][1]+'</td><td><a href="/solpeople/profile/'+response.files[i][2]+'">'+response.files[i][3]+'</a></td><td><a href="/breeders/phenotyping/download/'+response.files[i][0]+'">Download</a> | <a href="javascript:obsolete_additional_file('+<% $trial_id %>+', '+response.files[i][0]+')">Remove</a></td></tr>';
+                    html = html + '<tr><td>'+response.files[i][4]+'</td><td>'+response.files[i][1]+'</td><td><a href="/solpeople/profile/'+response.files[i][2]+'">'+response.files[i][3]+'</a></td><td><a href="/breeders/phenotyping/download/'+response.files[i][0]+'">Baixar</a> | <a href="javascript:obsolete_additional_file('+<% $trial_id %>+', '+response.files[i][0]+')">Remover</a></td></tr>';
                 }
                 html = html + "</tbody></table>";
                 jQuery('#trial_additional_uploaded_files_div').html(html);
                 jQuery('#trial_additional_uploaded_files_table').DataTable();
             },
             error: function(response){
-                alert("Error retrieving additional uploaded files.");
+                alert("Erro ao obter os arquivos adicionais enviados.");
             }
        });
    
@@ -163,7 +163,7 @@ jQuery(document).ready(function(){
 
 						   
  function obsolete_additional_file(trial_id, file_id) {
-       var yes = confirm('Are you sure you want to obsolete this file? This operation cannot be undone.');
+       var yes = confirm('Deseja realmente tornar este arquivo obsoleto? Esta operação não pode ser desfeita.');
        if (yes) {
           jQuery.ajax({
               url: '/ajax/breeders/trial/'+trial_id+'/obsolete_uploaded_additional_file/'+file_id,
@@ -171,10 +171,10 @@ jQuery(document).ready(function(){
 	          if (r.error) { alert(r.error); }
 						   else {
 						    jQuery('#trial_additional_uploaded_files_table').DataTable().clear().draw();
-	              alert("The file has been obsoleted.");
+	              alert("O arquivo foi marcado como obsoleto.");
 		  }
 	       },
-	       error: function(r) {  alert("An error occurred!") }
+	       error: function(r) {  alert("Ocorreu um erro!") }
 	  });
 	}
    }

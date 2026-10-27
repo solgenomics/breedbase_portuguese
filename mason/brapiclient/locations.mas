@@ -3,8 +3,8 @@
 
 <div id="brapi_home_locations_div">
 
-    <h4>Locations</h4>
-    <button class="btn btn-primary" name="brapi_home_locations_submit" id="brapi_home_locations_submit">Get Locations</button>
+    <h4>Locais</h4>
+    <button class="btn btn-primary" name="brapi_home_locations_submit" id="brapi_home_locations_submit">Obter locais</button>
     <br/><br/>
     <div id="brapi_locations_data_result_div">
     </div>
@@ -29,7 +29,7 @@ jQuery(document).ready(function() {
           },
           error: function(response) {
             jQuery('#working_modal').modal('hide');
-            alert('An error occurred');
+            alert('Ocorreu um erro');
           }
         });
     });

@@ -12,17 +12,17 @@ $is_dataset_public => 0
 </%once>
 
 <div id="dataset-archive-loading" style="margin: 50px auto; text-align: center">
-    <p><em>Loading...</em></p>
+    <p><em>Carregando...</em></p>
 </div>
 
 <div id="dataset-archive-enabled" style="display: none">
     <table class="table table-hover">
         <thead>
             <tr>
-                <th>Date Published</th>
-                <th>User</th>
-                <th>Files</th>
-                <th>Published To</th>
+                <th>Data de publicação</th>
+                <th>Usuário</th>
+                <th>Arquivos</th>
+                <th>Publicado em</th>
                 <th></th>
             </tr>
         </thead>
@@ -32,48 +32,48 @@ $is_dataset_public => 0
     <br /><br />
 
 % if ( $is_dataset_owner ) {
-    <button id="dataset-generate-archive" class="btn btn-primary"><span class="glyphicon glyphicon-folder-open"></span>&nbsp;&nbsp;Generate Archive Files</button>
+    <button id="dataset-generate-archive" class="btn btn-primary"><span class="glyphicon glyphicon-folder-open"></span>&nbsp;&nbsp;Gerar arquivos para arquivamento</button>
 % } else {
-    <button class="btn btn-primary" disabled><span class="glyphicon glyphicon-folder-open"></span>&nbsp;&nbsp;Generate Archive Files</button>
-    <p><small>Only the dataset owner can generate archive files</small></p>
+    <button class="btn btn-primary" disabled><span class="glyphicon glyphicon-folder-open"></span>&nbsp;&nbsp;Gerar arquivos para arquivamento</button>
+    <p><small>Somente o proprietário do conjunto de dados pode gerar arquivos para arquivamento</small></p>
 % }
 </div>
 
 <div id="dataset-archive-no-services" style="display: none; margin-top: 50px">
-    <& /generic_message.mas, message=>"<p>Dataset Publishing has not been enabled on this database.</p><p>You may generate archive files but they cannot be published to an external service.  Contact an administrator to have this feature enabled.</p>" &>
+    <& /generic_message.mas, message=>"<p>A publicação de conjuntos de dados não está habilitada neste banco de dados.</p><p>É possível gerar arquivos para arquivamento, mas não publicá-los em um serviço externo. Entre em contato com um administrador para habilitar esse recurso.</p>" &>
 </div>
 
 <br /><br />
 
-<&| /page/info_section.mas, id=> "publish_dataset_info", title => "Information about Publishing Datasets", collapsible=>1, collapsed=>1, hide_if_empty=>1 &>
-    <p>Dataset publishing allows the owner of a dataset to take a snapshot of the data contained within the dataset and publish it to an external service (such as FigShare), where it can be made publicly available and have a DOI assigned to it.</p>
-    <p>The steps to publish a dataset are:</p>
+<&| /page/info_section.mas, id=> "publish_dataset_info", title => "Informações sobre a publicação de conjuntos de dados", collapsible=>1, collapsed=>1, hide_if_empty=>1 &>
+    <p>A publicação permite que o proprietário de um conjunto de dados gere uma cópia dos dados e a publique em um serviço externo (como o FigShare), onde ela pode ser disponibilizada publicamente e receber um DOI.</p>
+    <p>Etapas para publicar um conjunto de dados:</p>
     <ol>
-        <li><strong>Generate the archived files</strong> - this creates a static snapshot of the data within the dataset at the time when the files are generated</li>
-        <li><strong>Upload the files to an external service</strong> - this will upload the archived files to a new or existing dataset on the external service</li>
-        <li><strong>Publish the external dataset</strong> - make the external dataset publicly available for others to find</li>
-        <li><strong>Reserve a DOI</strong> - generate a Digital Object Identifier (DOI) for the external dataset that can be used as a reference in publications.</li>
+        <li><strong>Gerar arquivos para arquivamento</strong> - cria uma cópia estática dos dados do conjunto no momento em que os arquivos são gerados</li>
+        <li><strong>Enviar os arquivos para um serviço externo</strong> - envia os arquivos para um conjunto de dados novo ou existente no serviço externo</li>
+        <li><strong>Publicar o conjunto de dados externo</strong> - disponibiliza publicamente o conjunto de dados externo</li>
+        <li><strong>Reservar um DOI</strong> - gera um identificador de objeto digital (DOI) para o conjunto de dados externo, que pode ser usado como referência em publicações.</li>
     </ol>
     <hr />
-    <p>Important Notes:</p>
+    <p>Observações importantes:</p>
     <ul>
-        <li>Once the external dataset has been published (made public), the uploaded files and metadata are <em>permanently available</em>.  Any changes you make will need to be republished to a new version of the external dataset.</li>
+        <li>Após a publicação do conjunto de dados externo, os arquivos enviados e os metadados ficam <em>disponíveis permanentemente</em>. Qualquer alteração precisará ser publicada em uma nova versão do conjunto de dados externo.</li>
     </ul> 
 </&>
 
-<!-- Generate Archive Files Dialog -->
+<!-- Gerar arquivos para arquivamento Dialog -->
 <div class="modal fade" id="dataset-archive-generate-dialog" name="dataset-archive-generate-dialog" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-          <h4 class="modal-title">Generating Archive Files</h4>
+          <h4 class="modal-title">Gerando arquivos para arquivamento</h4>
       </div>
       <div class="modal-body">
         <div class="container-fluid" id="dataset-archive-generate-dialog-content">
         </div>
       </div>
       <div class="modal-footer">
-        <button id="dataset-archive-generate-dialog-close" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button id="dataset-archive-generate-dialog-close" type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
     </div>
     </div>
   </div>
@@ -84,77 +84,77 @@ $is_dataset_public => 0
   <div class="modal-dialog modal-xl" role="document">
     <div class="modal-content ui-front">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="datasetArchiveUploadDialog">Upload Dataset</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="datasetArchiveUploadDialog">Enviar conjunto de dados</h4>
       </div>
       <div class="modal-body">
         <div class="container-fluid">
             <div class="warning-alert">
                 <span class="warning-alert-icon glyphicon glyphicon-exclamation-sign"></span>
                 <div>
-                    <p><strong>IMPORTANT!</strong> By continuing to upload these files, you acknowledge that this data is allowed to be shared on <span class="dataset-archive-publish-service-name">the external service</span> and can be made publicly available (once the dataset on <span class="dataset-archive-publish-service-name">the external service</span> is published).</p>
+                    <p><strong>IMPORTANTE!</strong> Ao continuar o envio destes arquivos, você declara que estes dados podem ser compartilhados no <span class="dataset-archive-publish-service-name">o serviço externo</span> e disponibilizados publicamente (assim que o conjunto de dados no <span class="dataset-archive-publish-service-name">o serviço externo</span> for publicado).</p>
                 </div>
             </div>
 
             <ol id="dataset-archive-publish-instructions">
                 <li>
-                    <p>Select the external service to upload this dataset to:</p>
+                    <p>Selecione o serviço externo para o qual deseja enviar este conjunto de dados:</p>
                     <select id="dataset-archive-publish-services" class="form-control"></select>
                 </li>
                 <li class="dataset-archive-publish-connect">
-                    <p>Make sure you have an account and are logged in to <span class="dataset-archive-publish-service-name"></span></p>
+                    <p>Verifique se você tem uma conta e está conectado a <span class="dataset-archive-publish-service-name"></span></p>
                     <a id="dataset-archive-publish-account" class="btn btn-info btn-sm" href="#" target="_blank">
-                        <span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;View your <span class="dataset-archive-publish-service-name"></span> account
+                        <span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;Visualizar sua conta em <span class="dataset-archive-publish-service-name"></span>
                     </a>
                 </li>
                 <li class="dataset-archive-publish-connect">
-                    <p>Grant <% $project_name %> access to your <span class="dataset-archive-publish-service-name"></span> account</p>
+                    <p>Autorize <% $project_name %> a acessar sua conta em <span class="dataset-archive-publish-service-name"></span></p>
                     <button class="dataset-archive-publish-connect-btn btn btn-primary btn-sm">
-                        <span class="glyphicon glyphicon-resize-small"></span>&nbsp;&nbsp;Connect Accounts
+                        <span class="glyphicon glyphicon-resize-small"></span>&nbsp;&nbsp;Conectar contas
                     </button>
                 </li>
                 <li class="dataset-archive-publish-connected">
-                    <p>You are connected to this <span class="dataset-archive-publish-service-name"></span> account:</p>
-                    <p><strong>Name:</strong> <span class="dataset-archive-publish-connected-name"></span></p>
+                    <p>Você está conectado a esta conta em <span class="dataset-archive-publish-service-name"></span>:</p>
+                    <p><strong>Nome:</strong> <span class="dataset-archive-publish-connected-name"></span></p>
                     <p><strong>Email:</strong> <span class="dataset-archive-publish-connected-email"></span></p>
                     <button class="dataset-archive-publish-disconnect-btn btn btn-danger btn-sm">
-                        <span class="glyphicon glyphicon-resize-full"></span>&nbsp;&nbsp;Disconnect Accounts
+                        <span class="glyphicon glyphicon-resize-full"></span>&nbsp;&nbsp;Desconectar contas
                     </button>
                 </li>
                 <li class="dataset-archive-publish-connected">
-                    <p>Select a <span class="dataset-archive-publish-service-name"></span> dataset to associate this data with:</p>
+                    <p>Selecione um conjunto de dados em <span class="dataset-archive-publish-service-name"></span> para associar a estes dados:</p>
                     <select id="dataset-archive-publish-articles" class="form-control">
-                        <option value="">Create a new <span class="dataset-archive-publish-service-name"></span> dataset</option>
+                        <option value="">Criar um conjunto de dados em <span class="dataset-archive-publish-service-name"></span></option>
                     </select>
                     <hr />
-                    <label>Title:</label>
+                    <label>Título:</label>
                     <div class="input-group">
                         <span id="dataset-archive-publish-article-title-addon" class="input-group-addon"></span>
                         <input id="dataset-archive-publish-article-title" class="form-control dataset-archive-publish-article-details" />
                     </div>
                     <br />
-                    <label>Description:</label>
+                    <label>Descrição:</label>
                     <textarea id="dataset-archive-publish-article-description" class="form-control dataset-archive-publish-article-details"></textarea>
                     <br />
-                    <label>Additional Authors (one per line):</label>
-                    <textarea id="dataset-archive-publish-article-authors" class="form-control dataset-archive-publish-article-details" placeholder="You will automatically be added as an Author"></textarea>
+                    <label>Autores adicionais (um por linha):</label>
+                    <textarea id="dataset-archive-publish-article-authors" class="form-control dataset-archive-publish-article-details" placeholder="Você será adicionado automaticamente como autor"></textarea>
                     <br />
-                    <p><em>The dataset metadata can be updated later on <span class="dataset-archive-publish-service-name dataset-archive-publish-article-details"></span> until the dataset on <span class="dataset-archive-publish-service-name"></span> is published and made public.</em></p>
+                    <p><em>Os metadados do conjunto de dados podem ser atualizados posteriormente em <span class="dataset-archive-publish-service-name dataset-archive-publish-article-details"></span> até que o conjunto de dados em <span class="dataset-archive-publish-service-name"></span> seja publicado e disponibilizado publicamente.</em></p>
                 </li>
                 <li class="dataset-archive-publish-connected">
-                    <p>Send and attach the files to the selected <span class="dataset-archive-publish-service-name"></span> dataset.</p>
+                    <p>Envie e anexe os arquivos ao conjunto de dados selecionado em <span class="dataset-archive-publish-service-name"></span>.</p>
                     <button id="dataset-archive-publish-send" class="dataset-archive-publish-connected-btn btn btn-primary btn-sm">
-                        <span class="glyphicon glyphicon-export"></span>&nbsp;&nbsp;<span id="dataset-archive-publish-send-label">Send Files</span>
+                        <span class="glyphicon glyphicon-export"></span>&nbsp;&nbsp;<span id="dataset-archive-publish-send-label">Enviar arquivos</span>
                     </button>
                     <br /><br />
                     <div class="progress">
                         <div id="dataset-archive-publish-send-pb" class="progress-bar progress-bar-striped" role="progressbar" style="width: 0%;">
-                            <span class="sr-only">60% Complete</span>
+                            <span class="sr-only">60% concluído</span>
                         </div>
                     </div>
                     <div class="progress">
                         <div id="dataset-archive-publish-send-subpb" class="progress-bar progress-bar-info" role="progressbar" style="width: 0%;">
-                            <span class="sr-only">60% Complete</span>
+                            <span class="sr-only">60% concluído</span>
                         </div>
                     </div>
                     <div style="display: flex; justify-content: space-between; gap: 15px">
@@ -166,122 +166,122 @@ $is_dataset_public => 0
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
       </div>
     </div>
   </div>
 </div>
 
-<!-- Publish Dataset Dialog -->
+<!-- Publicar conjunto de dados Dialog -->
 <div class="modal modal-md fade" id="dataset-archive-publish-dialog" name="dataset-archive-publish-dialog" tabindex="-1" role="dialog" aria-labelledby="datasetArchivePublishDialog" data-backdrop="static" data-keyboard="false">
   <div class="modal-dialog modal-md" role="document">
     <div class="modal-content ui-front">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="datasetArchivePublishDialog">Publish Dataset</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="datasetArchivePublishDialog">Publicar conjunto de dados</h4>
       </div>
       <div class="modal-body">
         <div class="container-fluid">
             <div class="warning-alert">
                 <span class="warning-alert-icon glyphicon glyphicon-exclamation-sign"></span>
                 <div>
-                    <p><strong>IMPORTANT!</strong> Once you make the external dataset public, all of the uploaded files and metadata become <em>permanently available</em> and cannot be removed or modified from this version of the dataset.  If you need to make updates, changes can be made and new files can be uploaded and a new version of the external dataset will need to be published (the original version will still be accessible).</p>
-                    <p><strong><em>Make sure everything is correct before publishing!</em></strong></p>
+                    <p><strong>IMPORTANTE!</strong> Ao tornar público o conjunto de dados externo, todos os arquivos enviados e metadados ficam <em>disponíveis permanentemente</em> e não podem ser removidos nem modificados nessa versão. Para atualizar os dados, será necessário enviar os novos arquivos e publicar uma nova versão do conjunto de dados externo (a versão original continuará acessível).</p>
+                    <p><strong><em>Verifique se tudo está correto antes de publicar!</em></strong></p>
                 </div>
             </div>
 
             <hr />
 
             <div class="dataset-archive-publish-connect">
-                <p>Grant <% $project_name %> access to your <span class="dataset-archive-publish-service-name"></span> account</p>
+                <p>Autorize <% $project_name %> a acessar sua conta em <span class="dataset-archive-publish-service-name"></span></p>
                 <button class="dataset-archive-publish-connect-btn btn btn-primary btn-sm">
-                    <span class="glyphicon glyphicon-resize-small"></span>&nbsp;&nbsp;Connect Accounts
+                    <span class="glyphicon glyphicon-resize-small"></span>&nbsp;&nbsp;Conectar contas
                 </button>
             </div>
             <div class="dataset-archive-publish-connected">
-                <p>You are connected to this <span class="dataset-archive-publish-service-name"></span> account:</p>
-                <p><strong>Name:</strong> <span class="dataset-archive-publish-connected-name"></span></p>
+                <p>Você está conectado a esta conta em <span class="dataset-archive-publish-service-name"></span>:</p>
+                <p><strong>Nome:</strong> <span class="dataset-archive-publish-connected-name"></span></p>
                 <p><strong>Email:</strong> <span class="dataset-archive-publish-connected-email"></span></p>
                 <button class="dataset-archive-publish-disconnect-btn btn btn-danger btn-sm">
-                    <span class="glyphicon glyphicon-resize-full"></span>&nbsp;&nbsp;Disconnect Accounts
+                    <span class="glyphicon glyphicon-resize-full"></span>&nbsp;&nbsp;Desconectar contas
                 </button>
             </div>
 
             <hr />
 
-            <p><strong>Service:</strong> <span class="dataset-archive-publish-service-name"></span></p>
-            <p><strong>Title:</strong> <span id="dataset-archive-publish-title"></span></p>
-            <p><strong>Authors:</strong> <span id="dataset-archive-publish-authors"></span></p>
-            <p><strong>Description:</strong><br /><span id="dataset-archive-publish-description"></span></p>
-            <p><strong>Files:</strong> <span id="dataset-archive-publish-files"></span></p>
-            <p><a id="dataset-archive-publish-link" href="#" target="_blank">View Details on <span class="dataset-archive-publish-service-name"></span></a></p>
+            <p><strong>Serviço:</strong> <span class="dataset-archive-publish-service-name"></span></p>
+            <p><strong>Título:</strong> <span id="dataset-archive-publish-title"></span></p>
+            <p><strong>Autores:</strong> <span id="dataset-archive-publish-authors"></span></p>
+            <p><strong>Descrição:</strong><br /><span id="dataset-archive-publish-description"></span></p>
+            <p><strong>Arquivos:</strong> <span id="dataset-archive-publish-files"></span></p>
+            <p><a id="dataset-archive-publish-link" href="#" target="_blank">Visualizar detalhes em <span class="dataset-archive-publish-service-name"></span></a></p>
 
             <hr />
 
             <button id="dataset-archive-publish-public" class="dataset-archive-publish-connected-btn btn btn-primary btn-sm">
-                <span class="glyphicon glyphicon-share"></span>&nbsp;&nbsp;<span id="dataset-archive-publish-send-label">Publish &amp; Make Public</span>
+                <span class="glyphicon glyphicon-share"></span>&nbsp;&nbsp;<span id="dataset-archive-publish-send-label">Publicar e disponibilizar publicamente</span>
             </button>
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
       </div>
     </div>
   </div>
 </div>
 
-<!-- Reserve DOI Dialog -->
+<!-- Reservar DOI Dialog -->
 <div class="modal modal-md fade" id="dataset-archive-doi-dialog" name="dataset-archive-doi-dialog" tabindex="-1" role="dialog" aria-labelledby="datasetArchiveDOIDialog" data-backdrop="static" data-keyboard="false">
   <div class="modal-dialog modal-md" role="document">
     <div class="modal-content ui-front">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="datasetArchiveDOIDialog">Reserve a DOI</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="datasetArchiveDOIDialog">Reservar um DOI</h4>
       </div>
       <div class="modal-body">
         <div class="container-fluid">
             <div id="dataset-archive-doi-private-warning" class="warning-alert">
                 <span class="warning-alert-icon glyphicon glyphicon-exclamation-sign"></span>
                 <div>
-                    <p>This dataset on <span class="dataset-archive-publish-service-name"></span> is still private. The generated DOI will become active once the dataset is published and made public.</p>
+                    <p>Este conjunto de dados em <span class="dataset-archive-publish-service-name"></span> ainda é privado. O DOI gerado será ativado quando o conjunto de dados for publicado e disponibilizado publicamente.</p>
                 </div>
             </div>
 
             <hr />
 
             <div class="dataset-archive-publish-connect">
-                <p>Grant <% $project_name %> access to your <span class="dataset-archive-publish-service-name"></span> account</p>
+                <p>Autorize <% $project_name %> a acessar sua conta em <span class="dataset-archive-publish-service-name"></span></p>
                 <button class="dataset-archive-publish-connect-btn btn btn-primary btn-sm">
-                    <span class="glyphicon glyphicon-resize-small"></span>&nbsp;&nbsp;Connect Accounts
+                    <span class="glyphicon glyphicon-resize-small"></span>&nbsp;&nbsp;Conectar contas
                 </button>
             </div>
             <div class="dataset-archive-publish-connected">
-                <p>You are connected to this <span class="dataset-archive-publish-service-name"></span> account:</p>
-                <p><strong>Name:</strong> <span class="dataset-archive-publish-connected-name"></span></p>
+                <p>Você está conectado a esta conta em <span class="dataset-archive-publish-service-name"></span>:</p>
+                <p><strong>Nome:</strong> <span class="dataset-archive-publish-connected-name"></span></p>
                 <p><strong>Email:</strong> <span class="dataset-archive-publish-connected-email"></span></p>
                 <button class="dataset-archive-publish-disconnect-btn btn btn-danger btn-sm">
-                    <span class="glyphicon glyphicon-resize-full"></span>&nbsp;&nbsp;Disconnect Accounts
+                    <span class="glyphicon glyphicon-resize-full"></span>&nbsp;&nbsp;Desconectar contas
                 </button>
             </div>
 
             <hr />
 
-            <p><strong>Service:</strong> <span class="dataset-archive-publish-service-name"></span></p>
-            <p><strong>Title:</strong> <span id="dataset-archive-doi-title"></span></p>
-            <p><strong>Authors:</strong> <span id="dataset-archive-doi-authors"></span></p>
-            <p><strong>Description:</strong><br /><span id="dataset-archive-doi-description"></span></p>
-            <p><strong>Files:</strong> <span id="dataset-archive-doi-files"></span></p>
-            <p><a id="dataset-archive-doi-link" href="#" target="_blank">View Details on <span class="dataset-archive-publish-service-name"></span></a></p>
+            <p><strong>Serviço:</strong> <span class="dataset-archive-publish-service-name"></span></p>
+            <p><strong>Título:</strong> <span id="dataset-archive-doi-title"></span></p>
+            <p><strong>Autores:</strong> <span id="dataset-archive-doi-authors"></span></p>
+            <p><strong>Descrição:</strong><br /><span id="dataset-archive-doi-description"></span></p>
+            <p><strong>Arquivos:</strong> <span id="dataset-archive-doi-files"></span></p>
+            <p><a id="dataset-archive-doi-link" href="#" target="_blank">Visualizar detalhes em <span class="dataset-archive-publish-service-name"></span></a></p>
 
             <hr />
 
             <button id="dataset-archive-publish-doi" class="dataset-archive-publish-connected-btn btn btn-primary btn-sm">
-                <span class="glyphicon glyphicon-barcode"></span>&nbsp;&nbsp;<span id="dataset-archive-publish-send-label">Generate a DOI</span>
+                <span class="glyphicon glyphicon-barcode"></span>&nbsp;&nbsp;<span id="dataset-archive-publish-send-label">Gerar um DOI</span>
             </button>
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
       </div>
     </div>
   </div>
@@ -326,14 +326,14 @@ function updateServices() {
                 }
             },
             error: () => {
-                alert("Could not get external services");
+                alert("Não foi possível obter os serviços externos");
             }
         });
     })
 }
 
 /**
- * Display the external services as options in the select menu
+ * Display o serviço externos as options in the select menu
  */
 function displayServices(services = {}) {
     SERVICES = services;
@@ -381,7 +381,7 @@ function updateConnection() {
             url: `/ajax/dataset/publish/connection/${SELECTED_SERVICE.key}`,
             success: (resp) => {
                 if ( resp?.error ) {
-                    alert("Could not update connection info [" + resp.error + "]");
+                    alert("Não foi possível atualizar as informações da conexão [" + resp.error + "]");
                     displayConnection();
                 }
                 else {
@@ -389,7 +389,7 @@ function updateConnection() {
                 }
             },
             error: () => {
-                alert("Could not update connection info");
+                alert("Não foi possível atualizar as informações da conexão");
                 displayConnection();
             }
         });
@@ -459,7 +459,7 @@ function connectService() {
 
         if ( !popup ) {
             jQuery(".dataset-archive-publish-connect-btn").attr("disabled", false);
-            alert("You must allow popup windows in your browser to continue");
+            alert("Permita janelas pop-up no navegador para continuar");
         }
 
         const interval = setInterval(() => {
@@ -504,7 +504,7 @@ function updateArticles() {
             }
         },
         error: () => {
-            alert("Could not get account articles");
+            alert("Não foi possível obter os registros da conta");
         }
     });
 }
@@ -514,7 +514,7 @@ function updateArticles() {
  * @param articles = Array of article metadata
  */
 function displayArticles(articles = []) {
-    var html = `<option value="">Create a new ${SELECTED_SERVICE.display_name} dataset</option>`;
+    var html = `<option value="">Criar um conjunto de dados em ${SELECTED_SERVICE.display_name}</option>`;
     articles.forEach((a) => {
         html += `<option value='${a.id}'>${a.title}</a>`;
     });
@@ -538,7 +538,7 @@ async function onArticleChanged() {
             jQuery("#dataset-archive-publish-article-title-addon").html(details.status.toUpperCase());
             jQuery("#dataset-archive-publish-article-description").val(details.description);
             jQuery("#dataset-archive-publish-article-authors").val(details.authors.map((e) => e.full_name).join('\n'));
-            jQuery("#dataset-archive-publish-send-label").html("Add files to selected dataset");
+            jQuery("#dataset-archive-publish-send-label").html("Adicionar arquivos ao conjunto de dados selecionado");
             jQuery(".dataset-archive-publish-connected-btn").attr("disabled", false);
         }
         catch (err) {
@@ -549,16 +549,16 @@ async function onArticleChanged() {
         jQuery(".dataset-archive-publish-connected-btn").attr("disabled", false);
         jQuery(".dataset-archive-publish-article-details").attr("disabled", false);
         jQuery("#dataset-archive-publish-article-title").val("");
-        jQuery("#dataset-archive-publish-article-title-addon").html("NEW");
+        jQuery("#dataset-archive-publish-article-title-addon").html("NOVO");
         jQuery("#dataset-archive-publish-article-description").val("");
         jQuery("#dataset-archive-publish-article-authors").val("");
-        jQuery("#dataset-archive-publish-send-label").html("Create new dataset and add files");
+        jQuery("#dataset-archive-publish-send-label").html("Criar conjunto de dados e adicionar arquivos");
     }
 }
 
 /**
- * Get the details of the specified article from the external service
- * @param service = key of the external service where the article is hosted
+ * Get the details of the specified article from o serviço externo
+ * @param service = key of o serviço externo where the article is hosted
  * @param article_id = id of the specific article
  */
 function getArticleDetails(service, article_id) {
@@ -574,7 +574,7 @@ function getArticleDetails(service, article_id) {
                 }
             },
             error: () => {
-                reject("Could not get article details");
+                reject("Não foi possível obter os detalhes do registro externo");
             }
         });
     })
@@ -589,14 +589,14 @@ function updateIssues() {
         url: '/ajax/dataset/publish/issues/<% $dataset_id %>',
         success: (resp) => {
             if ( resp?.error ) {
-                alert(`Could not get the dataset published issues [${resp.error}]`);
+                alert(`Não foi possível obter as versões publicadas do conjunto de dados [${resp.error}]`);
             }
             else {
                 displayIssues(resp?.published);
             }
         },
         error: () => {
-            alert("Could not get dataset published issues");
+            alert("Não foi possível obter as versões publicadas do conjunto de dados");
         }
     });
 }
@@ -656,14 +656,14 @@ async function displayIssues(issues = {}) {
 
                 // Display Public Link
                 if ( s.article.is_public ) {
-                    html += `<div><span class="label label-primary">Public</span>&nbsp;<a href='${s.article.url_public_html}' target='_blank'>${s.article.title}</a></div>`;
+                    html += `<div><span class="label label-primary">Público</span>&nbsp;<a href='${s.article.url_public_html}' target='_blank'>${s.article.title}</a></div>`;
                 }
 
                 // Display Private Link, only to the dataset owner
 % if ( $is_dataset_owner ) {
-                    html += `<div><span class="label label-info">Preview</span>&nbsp;<a href='${s.article.url_private_html}' target='_blank'>${s.article.title}</a></div>`;
+                    html += `<div><span class="label label-info">Prévia</span>&nbsp;<a href='${s.article.url_private_html}' target='_blank'>${s.article.title}</a></div>`;
 % } else {
-                    if ( !s.article.is_public ) html += `<em>Published to a private dataset</em>`;
+                    if ( !s.article.is_public ) html += `<em>Publicado em um conjunto de dados privado</em>`;
 % }
 
                 // Display DOI, if available
@@ -671,19 +671,19 @@ async function displayIssues(issues = {}) {
                 html += `</div></td>`;
             }
             else {
-                html += `<td><em>Not uploaded</em></td>`;
+                html += `<td><em>Não enviado</em></td>`;
             }
 
             // Display actions only to owner
 % if ( $is_dataset_owner ) {
             html += `<td><div style='display: flex; flex-wrap: wrap; gap: 5px;'>`
             if ( Object.keys(SERVICES).length > 0 ) {
-                if ( !overallSubmitted || !overallComplete ) html += `<button class='btn btn-primary btn-xs' onclick='uploadIssue(${s.key})'><span class='glyphicon glyphicon-export'></span>&nbsp;&nbsp;Upload</button>`;
-                if ( overallSubmitted && overallComplete ) html += `<button class='btn btn-primary btn-xs' onclick='editIssue(${s.key}, "${s.service}")'><span class='glyphicon glyphicon-pencil'></span>&nbsp;&nbsp;Edit on ${SERVICES[s.service]?.display_name}</button>`;
-                if ( overallSubmitted && overallComplete && s.published !== 1 ) html += `<button class='btn btn-warning btn-xs' onclick='publishIssue(${s.key}, "${s.service}")'><span class='glyphicon glyphicon-share'></span>&nbsp;&nbsp;Publish</button>`;
-                if ( s.article?.id && (!s.article?.doi || s.article?.doi === '') ) html += `<button class='btn btn-primary btn-xs' onclick='reserveDOI(${s.key}, "${s.service}")'><span class='glyphicon glyphicon-barcode'></span>&nbsp;&nbsp;Reserve DOI</button>`;
+                if ( !overallSubmitted || !overallComplete ) html += `<button class='btn btn-primary btn-xs' onclick='uploadIssue(${s.key})'><span class='glyphicon glyphicon-export'></span>&nbsp;&nbsp;Enviar</button>`;
+                if ( overallSubmitted && overallComplete ) html += `<button class='btn btn-primary btn-xs' onclick='editIssue(${s.key}, "${s.service}")'><span class='glyphicon glyphicon-pencil'></span>&nbsp;&nbsp;Editar em ${SERVICES[s.service]?.display_name}</button>`;
+                if ( overallSubmitted && overallComplete && s.published !== 1 ) html += `<button class='btn btn-warning btn-xs' onclick='publishIssue(${s.key}, "${s.service}")'><span class='glyphicon glyphicon-share'></span>&nbsp;&nbsp;Publicar</button>`;
+                if ( s.article?.id && (!s.article?.doi || s.article?.doi === '') ) html += `<button class='btn btn-primary btn-xs' onclick='reserveDOI(${s.key}, "${s.service}")'><span class='glyphicon glyphicon-barcode'></span>&nbsp;&nbsp;Reservar DOI</button>`;
             }
-            html += `<button class='btn btn-danger btn-xs' onclick='removeIssue(${s.key})'><span class='glyphicon glyphicon-trash'></span>&nbsp;&nbsp;Remove</button>`;
+            html += `<button class='btn btn-danger btn-xs' onclick='removeIssue(${s.key})'><span class='glyphicon glyphicon-trash'></span>&nbsp;&nbsp;Remover</button>`;
             html += `</div></td>`;
 % } else {
             html += `<td></td>`;
@@ -694,25 +694,25 @@ async function displayIssues(issues = {}) {
         jQuery("#dataset-publish-status").html(`<tr>${rows.join('</tr><tr>')}</tr>`);
     }
     else {
-        const html = "<tr><td colspan=5><p style='text-align: center'><em>This dataset has not been published</em></p><br /><p style='text-align: center'>To publish this dataset, first generate a set of archived files.</p></td></tr>";
+        const html = "<tr><td colspan=5><p style='text-align: center'><em>Este conjunto de dados não foi publicado</em></p><br /><p style='text-align: center'>Para publicar este conjunto de dados, primeiro gere os arquivos para arquivamento.</p></td></tr>";
         jQuery("#dataset-publish-status").html(html);
     }
 }
 
 /**
- * Generate the archived files that are stored on breedbase
+ * Gerar arquivos para arquivamento that are stored on breedbase
  * - Initialize a new issue for this dataset, which calculates which files need to be generated
  * - After initialization, display the generate dialog and start to generate each file
  */
 function initArchive() {
-    jQuery("#dataset-archive-generate-dialog-content").html("<p>Analyzing Dataset...</p>");
+    jQuery("#dataset-archive-generate-dialog-content").html("<p>Analisando conjunto de dados...</p>");
     jQuery("#dataset-archive-generate-dialog").modal("show");
     jQuery("#dataset-archive-generate-dialog-close").attr("disabled", true);
     jQuery.ajax({
         url: '/ajax/dataset/publish/init/<% $dataset_id %>',
         success: (resp = {}) => {
             if ( resp?.error ) {
-                alert(`Could not initialize dataset archive files [${resp.error}]`);
+                alert(`Não foi possível iniciar o arquivamento do conjunto de dados [${resp.error}]`);
             }
             else {
                 const { key, data } = resp;
@@ -720,7 +720,7 @@ function initArchive() {
             }
         },
         error: () => {
-            alert(`Could not initialize dataset archive files`);
+            alert(`Não foi possível iniciar o arquivamento do conjunto de dados`);
         }
     });
 }
@@ -736,13 +736,13 @@ async function displayArchiveFiles(key, data = {}) {
     const types = Object.keys(data).sort();
 
     // Display the file type table
-    let html = `<p>Files to generate:</p>`;
+    let html = `<p>Arquivos a gerar:</p>`;
     html += `<table class='table table-striped'>`;
-    html += `<thead><tr><th>Data Type</th><th>Item Count</th><th>Status</th></tr></thead>`;
+    html += `<thead><tr><th>Tipo de dado</th><th>Quantidade de itens</th><th>Situação</th></tr></thead>`;
     for (const t of types ) {
         const ids = data[t];
         if ( ids && ids.length > 0 ) {
-            html += `<tr><td>${t}</td><td>${ids.length}</td><td id='dataset-archive-generate-dialog-status-${t}'><span class='glyphicon glyphicon-option-horizontal'></span>&nbsp;&nbsp;<em>Pending...</em></td></tr>`;
+            html += `<tr><td>${t}</td><td>${ids.length}</td><td id='dataset-archive-generate-dialog-status-${t}'><span class='glyphicon glyphicon-option-horizontal'></span>&nbsp;&nbsp;<em>Pendente...</em></td></tr>`;
         }
     }
     html += `</table>`
@@ -755,10 +755,10 @@ async function displayArchiveFiles(key, data = {}) {
             if ( ids && ids.length > 0 ) {
                 const file = await generateArchiveFile(key, t);
                 if ( file && file !== '' ) {
-                    jQuery(`#dataset-archive-generate-dialog-status-${t}`).html(`<strong><span class='glyphicon glyphicon-ok text-success'></span></strong>&nbsp;&nbsp;Created archived file: ${file}`);
+                    jQuery(`#dataset-archive-generate-dialog-status-${t}`).html(`<strong><span class='glyphicon glyphicon-ok text-success'></span></strong>&nbsp;&nbsp;Arquivo de arquivamento criado: ${file}`);
                 }
                 else {
-                    jQuery(`#dataset-archive-generate-dialog-status-${t}`).html(`<strong><span class='glyphicon glyphicon-exclamation-sign text-danger'></span></strong>&nbsp;&nbsp;Could not generate file`);
+                    jQuery(`#dataset-archive-generate-dialog-status-${t}`).html(`<strong><span class='glyphicon glyphicon-exclamation-sign text-danger'></span></strong>&nbsp;&nbsp;Não foi possível gerar o arquivo`);
                 }
             }
         }
@@ -812,7 +812,7 @@ function uploadIssue(key) {
 }
 
 /**
- * Open the Article edit page on the external service
+ * Open the Article edit page on o serviço externo
  */
 function editIssue(key, service) {
     SELECTED_ISSUE = ISSUES[key];
@@ -829,7 +829,7 @@ function publishIssue(key, service) {
     SELECTED_ISSUE = ISSUES[key];
     onServiceChanged(service);
     if ( !SELECTED_ISSUE.article || !SELECTED_ISSUE.article.id ) {
-        alert("The selected dataset archive is not associated with an external article!");
+        alert("O arquivo do conjunto de dados selecionado não está associado a um registro externo!");
         return;
     }
 
@@ -850,7 +850,7 @@ function reserveDOI(key, service) {
     SELECTED_ISSUE = ISSUES[key];
     onServiceChanged(service);
     if ( !SELECTED_ISSUE.article || !SELECTED_ISSUE.article.id ) {
-        alert("The selected dataset archive is not associated with an external article!");
+        alert("O arquivo do conjunto de dados selecionado não está associado a um registro externo!");
         return;
     }
 
@@ -871,26 +871,26 @@ function reserveDOI(key, service) {
  * - Call updateIssues() when complete to reflect changes
  */
 function removeIssue(key) {
-    if (confirm("Are you sure you want to unlink this published metadata from the dataset?  This will remove the archived data on this server and the connection between the dataset and the external service.  This will NOT remove anything from the external service.") ) {
+    if (confirm("Deseja realmente desvincular estes metadados publicados do conjunto de dados? Isso removerá os dados arquivados neste servidor e o vínculo entre o conjunto de dados e o serviço externo. NADA será removido do serviço externo.") ) {
         jQuery.ajax({
             url: `/ajax/dataset/publish/issues/remove/<% $dataset_id %>/${key}`,
             success: (resp) => {
                 if ( resp?.error ) {
-                    alert(`Could not remove dataset published issues [${resp.error}]`);
+                    alert(`Não foi possível remover as versões publicadas do conjunto de dados [${resp.error}]`);
                 }
                 else {
                     updateIssues();
                 }
             },
             error: () => {
-                alert("Could not remove dataset published issues");
+                alert("Não foi possível remover as versões publicadas do conjunto de dados");
             }
         });
     }
 }
 
 /**
- * Submit the archived files to a new or existing dataset on the external service
+ * Submit the archived files to a new or existing dataset on o serviço externo
  * - This will call createArticle() to create a new article on the service, if needed
  * - Submit each of the dataset's archived files, using submitFile() to the specified article
  * - Upload each of the chunks for each file
@@ -898,7 +898,7 @@ function removeIssue(key) {
  * - Update the Issues when complete to reflect the changes
  */
 async function sendArchive() {
-    if ( confirm(`Are you sure you want to upload the files to ${SELECTED_SERVICE.display_name} now?`) ) {
+    if ( confirm(`Deseja realmente enviar os arquivos para ${SELECTED_SERVICE.display_name} agora?`) ) {
         try {
             jQuery(".dataset-archive-publish-connected-btn").attr("disabled", true);
             let article_id = jQuery("#dataset-archive-publish-articles").val();
@@ -915,7 +915,7 @@ async function sendArchive() {
             // Create article first, if necessary
             if ( !article_id || article_id === '' ) {
                 const title = jQuery("#dataset-archive-publish-article-title").val();
-                progress({ msg: `Creating new dataset: ${title}`, count, total });
+                progress({ msg: `Criando conjunto de dados: ${title}`, count, total });
                 article_id = await createArticle();
                 count ++;
             }
@@ -926,7 +926,7 @@ async function sendArchive() {
                 let subCount = 0;
 
                 // Submit the file
-                progress({ msg: `Sending data type: ${t}`, count, total });
+                progress({ msg: `Enviando tipo de dado: ${t}`, count, total });
                 subProgress({ clear: true });
                 const { parts = {}, file_id, upload_url } = await submitFile(article_id, t);
                 subTotal = Object.keys(parts).length;
@@ -936,25 +936,25 @@ async function sendArchive() {
                 const partNos = Object.keys(parts);
                 for ( const partNo of partNos ) {
                     const part = parts[partNo];
-                    subProgress({ msg: `Uploading chunk: ${subCount}/${subTotal}`, count: subCount, total: subTotal+1 });
+                    subProgress({ msg: `Enviando parte: ${subCount}/${subTotal}`, count: subCount, total: subTotal+1 });
                     await submitPart(t, upload_url, part);
                     subCount++;
                 };
 
                 // Finalize the File
-                subProgress({ msg: `Finalizing File`, count: subCount, total: subTotal });
+                subProgress({ msg: `Finalizando arquivo`, count: subCount, total: subTotal });
                 await finalizeFile(t, file_id, article_id);
 
                 // Show success for file
                 subCount++;
                 count++;
                 subProgress({ msg: '', count: subCount, total: subTotal });
-                progress({ msg: `Uploaded file: ${t}`, count, total });
+                progress({ msg: `Arquivo enviado: ${t}`, count, total });
             };
 
             // Show completed status
             count++;
-            progress({ msg: `<strong>All Files Uploaded!</strong>`, count, total });
+            progress({ msg: `<strong>Todos os arquivos foram enviados!</strong>`, count, total });
             subProgress({ clear: true });
             jQuery(".dataset-archive-publish-connected-btn").attr("disabled", false);
             updateIssues();
@@ -977,7 +977,7 @@ function createArticle() {
         const description = jQuery("#dataset-archive-publish-article-description").val();
         const authors = jQuery("#dataset-archive-publish-article-authors").val();
 
-        if ( !title || title === '' ) return reject('Please provide a name for the new dataset');
+        if ( !title || title === '' ) return reject('Informe um nome para o novo conjunto de dados');
         if ( !description || description === '' ) return reject('Please provide a description for the new dataset');
 
         jQuery.ajax({
@@ -992,14 +992,14 @@ function createArticle() {
             },
             success: (resp) => {
                 if ( resp?.error || !resp?.entity_id) {
-                    reject(`Could not create new article [${resp.error}]`);
+                    reject(`Não foi possível criar o registro externo [${resp.error}]`);
                 }
                 else {
                     resolve(resp.entity_id);
                 }
             },
             error: () => {
-                reject("Could not create new article")
+                reject("Não foi possível criar o registro externo")
             }
         });
     });
@@ -1023,14 +1023,14 @@ function submitFile(article, data_type) {
             },
             success: (resp) => {
                 if ( resp?.error ) {
-                    reject(`Could not submit data type: ${data_type} [${resp.error}]`);
+                    reject(`Não foi possível enviar o tipo de dado: ${data_type} [${resp.error}]`);
                 }
                 else {
                     resolve(resp);
                 }
             },
             error: () => {
-                reject(`Could not submit data_type: ${data_type}`);
+                reject(`Não foi possível enviar o tipo de dado: ${data_type}`);
             }
         });
     });
@@ -1060,14 +1060,14 @@ function submitPart(data_type, upload_url, part) {
             },
             success: (resp) => {
                 if ( resp?.error ) {
-                    reject(`Could not upload file: ${data_type} [${resp.error}]`);
+                    reject(`Não foi possível enviar o arquivo: ${data_type} [${resp.error}]`);
                 }
                 else {
                     resolve();
                 }
             },
             error: () => {
-                reject(`Could not upload file: ${data_type}`);
+                reject(`Não foi possível enviar o arquivo: ${data_type}`);
             }
         });
     });
@@ -1091,14 +1091,14 @@ function finalizeFile(data_type, file_id, article_id) {
             },
             success: (resp) => {
                 if ( resp?.error ) {
-                    reject(`Could not finalize file: ${data_type} [${resp.error}]`);
+                    reject(`Não foi possível finalizar o arquivo: ${data_type} [${resp.error}]`);
                 }
                 else {
                     resolve();
                 }
             },
             error: () => {
-                reject(`Could not finalize file: ${data_type}`);
+                reject(`Não foi possível finalizar o arquivo: ${data_type}`);
             }
         });
     });
@@ -1109,62 +1109,62 @@ function finalizeFile(data_type, file_id, article_id) {
  */
 function makePublic() {
     if ( !SELECTED_ISSUE.article || !SELECTED_ISSUE.article.id ) {
-        alert("The selected dataset archive is not associated with an external article!");
+        alert("O arquivo do conjunto de dados selecionado não está associado a um registro externo!");
         return;
     }
 
-    if ( confirm("Are you sure you want to publish this dataset now? This cannot be undone.") ) {
+    if ( confirm("Deseja realmente publicar este conjunto de dados agora? Esta ação não pode ser desfeita.") ) {
         jQuery("#working_modal").modal("show");
         jQuery.ajax({
             url: `/ajax/dataset/publish/issues/publish/<% $dataset_id %>/${SELECTED_ISSUE.key}`,
             success: (resp) => {
                 jQuery("#working_modal").modal("hide");
                 if ( resp?.error ) {
-                    alert(`Could not publish dataset [${resp.error}]`);
+                    alert(`Não foi possível publicar o conjunto de dados [${resp.error}]`);
                 }
                 else {
                     updateIssues();
-                    if ( confirm(`The dataset has been published and is now publicly available on ${SELECTED_SERVICE.display_name}`) ) {
+                    if ( confirm(`O conjunto de dados foi publicado e está disponível publicamente em ${SELECTED_SERVICE.display_name}`) ) {
                         jQuery("#dataset-archive-publish-dialog").modal("hide");
                     }
                 }
             },
             error: () => {
                 jQuery("#working_modal").modal("hide");
-                alert("Could not publish dataset");
+                alert("Não foi possível publicar o conjunto de dados");
             }
         });
     }
 }
 
 /**
- * Reserve a DOI for the specified dataset on the specified service
+ * Reservar um DOI for the specified dataset on the specified service
  */
 function getDOI(key, service) {
     if ( !SELECTED_ISSUE.article || !SELECTED_ISSUE.article.id ) {
-        alert("The selected dataset archive is not associated with an external article!");
+        alert("O arquivo do conjunto de dados selecionado não está associado a um registro externo!");
         return;
     }
 
-    if ( confirm("Are you sure you want to reserve a DOI now?  If the external dataset is still private, the DOI will become active once it is published.  Once a DOI is active, it cannot be disabled.") ) {
+    if ( confirm("Deseja realmente reservar um DOI agora? Se o conjunto de dados externo ainda for privado, o DOI será ativado quando ele for publicado. Após a ativação, o DOI não poderá ser desativado.") ) {
         jQuery("#working_modal").modal("show");
         jQuery.ajax({
             url: `/ajax/dataset/publish/issues/reserveDOI/<% $dataset_id %>/${SELECTED_ISSUE.key}`,
             success: (resp) => {
                 jQuery("#working_modal").modal("hide");
                 if ( resp?.error ) {
-                    alert(`Could not reserve a DOI for this dataset [${resp.error}]`);
+                    alert(`Não foi possível reservar um DOI para este conjunto de dados [${resp.error}]`);
                 }
                 else {
                     updateIssues();
-                    if ( confirm(`A DOI has been generated for this dataset on ${SELECTED_SERVICE.display_name}`) ) {
+                    if ( confirm(`Um DOI foi gerado para este conjunto de dados em ${SELECTED_SERVICE.display_name}`) ) {
                         jQuery("#dataset-archive-doi-dialog").modal("hide");
                     }
                 }
             },
             error: () => {
                 jQuery("#working_modal").modal("hide");
-                alert("Could not reserve a DOI for this dataset");
+                alert("Não foi possível reservar um DOI para este conjunto de dados");
             }
         });
     }
@@ -1207,7 +1207,7 @@ function fail(msg) {
     jQuery("#dataset-archive-publish-send-pb").removeClass('progress-bar-info');
     jQuery("#dataset-archive-publish-send-pb").addClass('progress-bar-danger');
     jQuery("#dataset-archive-publish-send-pb").css("width", `100%`);
-    jQuery("#dataset-archive-publish-send-status").html(`<strong>(Upload Failed) ${msg}</strong>`);
+    jQuery("#dataset-archive-publish-send-status").html(`<strong>(Falha no envio) ${msg}</strong>`);
 }
 
 /**

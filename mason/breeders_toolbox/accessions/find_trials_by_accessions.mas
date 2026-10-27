@@ -7,13 +7,13 @@
 <form id="accession_list_selector">
 <table class="table borderless" cellpadding="10" border="0" >
   <tbody>
-  <p>Select accession list:</p>
+  <p>Selecione a lista de acessos:</p>
     <td>
       <div id="accession_list">
       </div>
     </td>
     <td>
-      <input class="btn btn-primary" type="button" id="find_trials" value="Find Trials" />
+      <input class="btn btn-primary" type="button" id="find_trials" value="Localizar ensaios" />
     </td>
   </tbody>
   </table>
@@ -22,9 +22,9 @@
 <table id="trial_summary_data" style="margin-top: 50px;" class="display">
 <thead>
   <tr>
-    <th>Accession name</th>
-    <th>Number of associated trials</th>
-    <th>Trial list</th>
+    <th>Nome do acesso</th>
+    <th>Número de ensaios associados</th>
+    <th>Lista de ensaios</th>
   </tr>
 </thead>
 
@@ -34,7 +34,7 @@
 <tbody>
 	<tr>
 	<td>
-	<p style="font-size:14px"><b>Use the trials in common in lists:</b></p>
+	<p style="font-size:14px"><b>Usar os ensaios em comum nas listas:</b></p>
 	</td>
        </tr>
        <tr>
@@ -45,13 +45,13 @@
 	</td>
 	<td>
 		<hr style="margin-top:4px;margin-bottom:4px" />
-		<div class="well well-sm"><div id="c1_data_count">No Selection</div></div>
+		<div class="well well-sm"><div id="c1_data_count">Nenhuma seleção</div></div>
 		<div id="c1_to_list_menu" align="center"></div>
 	</td>
 	</tr>
 	<tr>
 	<td>
-		<button class="btn btn-default btn-sm" id="c1_select_all" name ="1" align="center"/>Select All</button>
+		<button class="btn btn-default btn-sm" id="c1_select_all" name ="1" align="center"/>Selecionar tudo</button>
 	</td>
 </tr>
 </tbody>
@@ -86,13 +86,13 @@ jQuery('#shared_trials_2_lists').hide();
 
 	if (!accession_list_id) {
       	    enable_ui();
-      	    alert("You need to select an accession list!");
+	    alert("Você precisa selecionar uma lista de acessos!");
 	    return;
       	    }
 
       	if (accession_validation != 1) {
       	    enable_ui();
-      	    alert("Accession list did not pass validation. Please correct the list and try again");
+	    alert("A lista de acessos não passou na validação. Corrija a lista e tente novamente.");
 	    return;
       	    }
 
@@ -123,7 +123,7 @@ jQuery('#shared_trials_2_lists').hide();
 			});
 		    }
 	    	    },
-	    error: function(response) { alert("An error occurred while transforming the list "+list_id); }
+	    error: function(response) { alert("Ocorreu um erro ao transformar a lista "+accession_list_id); }
 	    });
   });
 
@@ -143,7 +143,7 @@ jQuery('#shared_trials_2_lists').hide();
 	}
 	return html;
     }
-    return "no data";
+    return "sem dados";
   }
 
 });

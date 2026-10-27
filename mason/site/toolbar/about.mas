@@ -1,16 +1,16 @@
-<li class="dropdown"><a class="menu_click_dropdown dropdown-toggle" data-toggle="dropdown" >About</a>
+<li class="dropdown"><a class="menu_click_dropdown dropdown-toggle" data-toggle="dropdown" >Sobre</a>
 <!-- <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">About Us<span class="caret"></span></a> -->
   <ul class="dropdown-menu">
-    <li><a href="/about">About</a></li>
-    <li><a href="/contact/form">Contact</a></li>
-    <li><a href="/about/">Cite Breedbase</a></li>
+    <li><a href="/about">Sobre</a></li>
+    <li><a href="/contact/form">Contato</a></li>
+    <li><a href="/about/">Como citar o Breedbase</a></li>
     
     <li role="separator" class="divider"></li>
     
     <li><a href="https://solgenomics.github.io/sgn">Manual</a></li>
-    <li><a href="https://www.youtube.com/channel/UC3jrvvzGKKEHzOriDBgnj0A">Video Tutorials</a></li>
-    <li><a href="/help/faq.pl">FAQ</a></li>
-    <li><a href="/forum/topics.pl">Forum</a></li>
+    <li><a href="https://www.youtube.com/channel/UC3jrvvzGKKEHzOriDBgnj0A">Tutoriais em vídeo</a></li>
+    <li><a href="/help/faq.pl">Perguntas frequentes</a></li>
+    <li><a href="/forum/topics.pl">Fórum</a></li>
     <!-- li><a href="ftp://ftp.breedbase.org/">FTP site</a></li -->
     
     <!-- li role="separator" class="divider"></li>

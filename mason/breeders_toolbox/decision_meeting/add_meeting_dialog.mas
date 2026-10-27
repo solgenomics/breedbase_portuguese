@@ -11,7 +11,7 @@ $high_dimensional_phenotype_type => undef #either NIRS, Transcriptomics, Metabol
 
       <form id="create-meeting-form">
         <div class="modal-header">
-          <h4 class="modal-title">New Decision Meeting</h4>
+          <h4 class="modal-title">Nova reunião de decisão</h4>
         </div>
 
         <div class="modal-body">
@@ -19,49 +19,49 @@ $high_dimensional_phenotype_type => undef #either NIRS, Transcriptomics, Metabol
 
           <!-- Fields expected by your JS -->
           <div class="form-group">
-            <label for="mtg_name">Meeting Name</label>
+            <label for="mtg_name">Nome da reunião</label>
             <input id="mtg_name" class="form-control" type="text">
           </div>
 
           <div class="form-group">
-			  <label for="mtg_program" class="control-label">Breeding Program</label>
+			  <label for="mtg_program" class="control-label">Programa de melhoramento</label>
 			  <select id="mtg_program" name="breeding_program" class="form-control">
-			    <option value="">— Select a program —</option>
+			    <option value="">— Selecione um programa —</option>
 			    <!-- options are populated via AJAX -->
 			  </select>
 		  </div>
 
 		   <div class="form-group">
-				<label for="mtg_location" class="control-label">Location</label>
+				<label for="mtg_location" class="control-label">Local</label>
 				<select id="mtg_location" name="location_id" class="form-control">
-					<option value="">— Select a location —</option>
+					<option value="">— Selecione um local —</option>
 					<!-- options populated via AJAX -->
 				</select>
 			</div>
 
 
           <div class="form-group">
-            <label for="mtg_year">Year</label>
+            <label for="mtg_year">Ano</label>
             <input id="mtg_year" class="form-control" type="number">
           </div>
 
           <div class="form-group">
-            <label for="mtg_date">Date</label>
+            <label for="mtg_date">Data</label>
             <input id="mtg_date" class="form-control" type="date">
           </div>
 
           <div class="form-group">
-            <label for="mtg_data">Description</label>
+            <label for="mtg_data">Descrição</label>
             <textarea id="mtg_data" class="form-control" rows="3"></textarea>
           </div>
            <div class="form-group" id="attendees_group">
-            <label class="control-label" for="people_search">Attendees</label>
+            <label class="control-label" for="people_search">Participantes</label>
 
             <!-- single global search box -->
             <input type="search"
                    id="people_search"
                    class="form-control"
-                   placeholder="Search by first or last name…"
+                   placeholder="Buscar pelo nome ou sobrenome…"
                    autocomplete="off"
                    style="max-width: 420px; margin-bottom: 8px;">
 
@@ -70,11 +70,11 @@ $high_dimensional_phenotype_type => undef #either NIRS, Transcriptomics, Metabol
                 <thead>
                   <tr>
                     <th style="width:42px; text-align:center;">
-                      <input type="checkbox" id="people_select_all" aria-label="Select all"/>
+                      <input type="checkbox" id="people_select_all" aria-label="Selecionar tudo"/>
                     </th>
-                    <th>First name</th>
-                    <th>Last name</th>
-                    <th>Contact Email</th>
+                    <th>Nome</th>
+                    <th>Sobrenome</th>
+                    <th>E-mail de contato</th>
                   </tr>
                 </thead>
                 <tbody><!-- populated via JS --></tbody>
@@ -87,9 +87,9 @@ $high_dimensional_phenotype_type => undef #either NIRS, Transcriptomics, Metabol
         </div>
 
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
 
-          <button id="create_meeting_save" type="submit" class="btn btn-success">Save Meeting</button>
+          <button id="create_meeting_save" type="submit" class="btn btn-success">Salvar reunião</button>
           
         </div>
       </form>

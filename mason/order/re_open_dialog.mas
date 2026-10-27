@@ -8,8 +8,8 @@ $order_to
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="requesterReOpenOrderDialog">Re-Open Order</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="requesterReOpenOrderDialog">Reabrir pedido</h4>
             </div>
             <div class="modal-body">
                 <div class="container-fluid">
@@ -18,8 +18,8 @@ $order_to
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button id="requester_re_open_order_submit" type="button" class="btn btn-primary" >Submit</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                <button id="requester_re_open_order_submit" type="button" class="btn btn-primary" >Enviar</button>
             </div>
         </div>
     </div>
@@ -29,19 +29,19 @@ $order_to
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="reOpenSavedDialog">Success</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="reOpenSavedDialog">Sucesso</h4>
             </div>
             <div class="modal-body">
                 <div class="container-fluid">
                     <p>
                         <span class="ui-icon ui-icon-circle-check" style="float: left; margin: 0 7px 50px 0;"></span>
-                        The order has been re-opened.
+                        O pedido foi reaberto.
                     </p>
                 </div>
             </div>
             <div class="modal-footer">
-                <button id="dismiss_re_open_saved_dialog" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button id="dismiss_re_open_saved_dialog" type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
             </div>
         </div>
     </div>
@@ -91,7 +91,7 @@ jQuery(document).ready( function() {
             },
             error: function(response){
                 jQuery('#working_modal').modal('hide');
-                alert('An error occurred re-opening the order');
+                alert('Ocorreu um erro ao reabrir o pedido');
             }
         });
     });
@@ -106,10 +106,10 @@ jQuery(document).ready( function() {
 function requesterReOpen(order_id, order_to){
     var re_open = "re-opened"
     var html = '';
-    html += '<form class="form-horizontal"><div class="form-group"><label class="col-sm-3 control-label">Order Number: </label><div class="col-sm-9" ><input class="form-control" id="requester_re_open_order_id" name="requester_re_open_order_id" value="'+order_id+'" disabled></div></div>';
+    html += '<form class="form-horizontal"><div class="form-group"><label class="col-sm-3 control-label">Número do pedido: </label><div class="col-sm-9" ><input class="form-control" id="requester_re_open_order_id" name="requester_re_open_order_id" value="'+order_id+'" disabled></div></div>';
     html += '<div class="form-group"><label class="col-sm-3 control-label">Vendor: </label><div class="col-sm-9" ><input class="form-control" id="re_open_order_to" name="re_open_order_to" value="'+order_to+'" disabled></div></div>';
-    html += '<div class="form-group"><label class="col-sm-3 control-label">Status: </label><div class="col-sm-9" ><input class="form-control" id="requester_re_open_status" name="requester_re_open_status" value="'+re_open+'" disabled></div></div>';
-    html += '<div class="form-group"><label class="col-sm-3 control-label">Comments: </label><div class="col-sm-9" ><input class="form-control" id="requester_re_open_comments" placeholder="Required"></div></div></form>'
+    html += '<div class="form-group"><label class="col-sm-3 control-label">Situação: </label><div class="col-sm-9" ><input class="form-control" id="requester_re_open_status" name="requester_re_open_status" value="'+re_open+'" disabled></div></div>';
+    html += '<div class="form-group"><label class="col-sm-3 control-label">Comentários: </label><div class="col-sm-9" ><input class="form-control" id="requester_re_open_comments" placeholder="Obrigatório"></div></div></form>'
 
     jQuery('#requester_re_open_order_div').html(html);
     jQuery('#requester_re_open_order_dialog').modal('show');

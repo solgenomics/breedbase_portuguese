@@ -7,7 +7,7 @@ $stock_id
 
 <div class = "well well-sm">
     <form id="download_population_seedlots_action" action="/breeders/download_population_seedlots_action" method="POST">
-        <button class="btn btn-primary" type="button" id="population_seedlots_download_button">Download Seedlot Info</button>
+        <button class="btn btn-primary" type="button" id="population_seedlots_download_button">Baixar informações dos lotes de sementes</button>
         <input name="population_stock_id" id="population_stock_id" type="hidden" value="<% $stock_id %>">
         <input type="hidden" id="population_seedlots_download_token" name="population_seedlots_download_token"/>
     </form>
@@ -29,19 +29,19 @@ jQuery(document).ready(function(){
         'autoWidth': false,
         destroy: true,
         columns: [
-            { title: "Member Name", "data": null, "render": function ( data, type, row ) { return "<a href='/stock/"+row.member_id+"/view'>"+row.member_name+"</a>"; } },
-            { title: "Member Type", "data": "member_type" },
-            { title: "Seedlot Name", "data": null, "render": function ( data, type, row ) {
+            { title: "Nome do membro", "data": null, "render": function ( data, type, row ) { return "<a href='/stock/"+row.member_id+"/view'>"+row.member_name+"</a>"; } },
+            { title: "Tipo de membro", "data": "member_type" },
+            { title: "Nome do lote de sementes", "data": null, "render": function ( data, type, row ) {
                 if (row.seedlot_id === null){
-                    return 'No Seedlot'
+                    return 'Nenhum lote de sementes'
                 } else {
                     return "<a href='/breeders/seedlot/"+row.seedlot_id+"'>"+row.seedlot_name+"</a>"
                 }
             }},
-            { title: "Current Count", "data": "current_count" },
-            { title: "Current Weight (g) ", "data": "current_weight_gram" },
-            { title: "Box Name", "data": "box_name" },
-            { title: "Location", "data": "location" },
+            { title: "Quantidade atual", "data": "current_count" },
+            { title: "Peso atual (g)", "data": "current_weight_gram" },
+            { title: "Nome da caixa", "data": "box_name" },
+            { title: "Local", "data": "location" },
         ],
     });
 

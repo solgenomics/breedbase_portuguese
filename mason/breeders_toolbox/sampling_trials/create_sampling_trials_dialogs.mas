@@ -10,8 +10,8 @@ $sample_tissue_types => ();
     <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="addSamplingTrialDialog">Add Sampling Trial</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="addSamplingTrialDialog">Adicionar ensaio de amostragem</h4>
             </div>
             <div class="modal-body">
                 <form class="form-horizontal" role="form" method="post" enctype="multipart/form-data" encoding="multipart/form-data" id="upload_sampling_trials_form" name="upload_sampling_trials_form" >
@@ -19,23 +19,23 @@ $sample_tissue_types => ();
                     <div class="container-fluid">
 
                         <&| /util/workflow.mas, id=> "sampling_trial_create_workflow" &>
-                            <&| /util/workflow.mas:step, title=> "Intro" &>
-                                <& /page/page_title.mas, title=>"This workflow will guide you through adding a sampling trial in the database" &>
-                                <p>Sampling trials can represent 96 or 384 well plates, or more generically any sampling scheme.</p>
-                                <p>Each sample has a globally unique tissue sample ID.</p>
-                                <p>The "contents" of each sample can be either a tissue sample, plant name, plot name, or accession name. This "source" name must be in the database already. This is useful if you provide a field trial entity (such as a plot or plant or tissue sample name), so that phenotypes and genotypes can be directly compared.</p>
+                            <&| /util/workflow.mas:step, title=> "Introdução" &>
+                                <& /page/page_title.mas, title=>"Este fluxo orientará você na adição de um ensaio de amostragem ao banco de dados" &>
+                                <p>Os ensaios de amostragem podem representar placas de 96 ou 384 poços ou, de forma mais geral, qualquer esquema de amostragem.</p>
+                                <p>Cada amostra tem um ID de amostra de tecido globalmente único.</p>
+                                <p>O "conteúdo" de cada amostra pode ser uma amostra de tecido, o nome de uma planta, o nome de uma parcela ou o nome de um acesso. Esse nome de "origem" já deve existir no banco de dados. Ao informar uma entidade de ensaio de campo (como uma parcela, planta ou amostra de tecido), fenótipos e genótipos poderão ser comparados diretamente.</p>
 
                                 <br/><br/>
                                 <center>
-                                <button class="btn btn-primary" onclick="Workflow.complete(this); return false;">Go to Next Step</button>
+                                <button class="btn btn-primary" onclick="Workflow.complete(this); return false;">Ir para a próxima etapa</button>
                                 </center>
                             </&>
 
-                            <&| /util/workflow.mas:step, title=> "Basic Info" &>
-                                <& /page/page_title.mas, title=>"Provide info about your sampling trial" &>
+                            <&| /util/workflow.mas:step, title=> "Informações básicas" &>
+                                <& /page/page_title.mas, title=>"Forneça informações sobre o ensaio de amostragem" &>
 
                                 <div class="form-group">
-                                    <label class="col-sm-5 control-label">Sampling Facility: </label>
+                                    <label class="col-sm-5 control-label">Unidade de amostragem: </label>
                                     <div class="col-sm-7">
                                         <select class="form-control" id="sampling_trial_facility_select">
 % foreach my $facility(@$sampling_facilities){
@@ -45,41 +45,41 @@ $sample_tissue_types => ();
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-sm-5 control-label">Sampling Trial Name: </label>
+                                    <label class="col-sm-5 control-label">Nome do ensaio de amostragem: </label>
                                     <div class="col-sm-7">
                                         <input class="form-control" id="sampling_trial_name" name="sampling_trial_name" type="text" placeholder=" e.g. 18DNA00001"/>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-sm-5 control-label">Sample Type: </label>
+                                    <label class="col-sm-5 control-label">Tipo de amostra: </label>
                                     <div class="col-sm-7">
                                         <select class="form-control" id="sampling_trial_plate_sample_type">
-                                            <option value="Tissue">Tissue</option>
+                                            <option value="Tissue">Tecido</option>
                                             <option value="DNA">DNA</option>
                                             <option value="RNA">RNA</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-sm-5 control-label">Sampling Trial's Breeding Program: </label>
+                                    <label class="col-sm-5 control-label">Programa de melhoramento do ensaio: </label>
                                     <div class="col-sm-7">
                                         <span id="sampling_trial_breeding_program_select_div"></span>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-sm-5 control-label">Sampling Trial's Location: </label>
+                                    <label class="col-sm-5 control-label">Local do ensaio de amostragem: </label>
                                     <div class="col-sm-7">
                                         <span id="sampling_trial_location_select_div"></span>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-sm-5 control-label">Sampling Trial's Year: </label>
+                                    <label class="col-sm-5 control-label">Ano do ensaio de amostragem: </label>
                                     <div class="col-sm-7">
                                         <span id="sampling_trial_year_select_div"></span>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-sm-5 control-label">Sampling Trials's Description: </label>
+                                    <label class="col-sm-5 control-label">Descrição do ensaio de amostragem: </label>
                                     <div class="col-sm-7">
                                         <textarea class="form-control" id="sampling_trial_description" name="sampling_trial_description" maxlength="250"></textarea>
                                     </div>
@@ -87,34 +87,34 @@ $sample_tissue_types => ();
 
                                 <br/>
                                 <center>
-                                <button class="btn btn-primary" onclick="Workflow.complete(this); return false;">Go to Next Step</button>
+                                <button class="btn btn-primary" onclick="Workflow.complete(this); return false;">Ir para a próxima etapa</button>
                                 </center>
                             </&>
-                            <&| /util/workflow.mas:step, title=> "Samples Info" &>
-                                <& /page/page_title.mas, title=>"Provide information about the samples" &>
+                            <&| /util/workflow.mas:step, title=> "Informações das amostras" &>
+                                <& /page/page_title.mas, title=>"Forneça informações sobre as amostras" &>
                                 <br/><br/>
 
                                 <div class="form-group">
-                                    <label class="col-sm-3 control-label">Select One: </label>
+                                    <label class="col-sm-3 control-label">Selecione uma opção: </label>
                                     <div class="col-sm-9">
                                         <select class="form-control" id="sampling_trial_well_input_option">
-                                            <option value="xls">I am uploading a sampling design I made in Excel</option>
-                                            <option value="design">I need to design a completely new sampling trial</option>
+                                            <option value="xls">Quero enviar um delineamento de amostragem criado no Excel</option>
+                                            <option value="design">Preciso criar um ensaio de amostragem totalmente novo</option>
                                         </select>
                                     </div>
                                 </div>
 
                                 <div id="sampling_trial_well_upload_section">
-                                    <h3>You want to upload an existing samples layout</h3>
+                                    <h3>Enviar uma disposição de amostras existente</h3>
 
                                     <div class="well well-sm">
                                         <div class="row">
                                             <div class="col-sm-4">
-                                                <&| /page/explanation.mas, title=>'Template information' &>
+                                                <&| /page/explanation.mas, title=>'Informações do modelo' &>
                                                     <p>
-                                                        <b>File format information</b>
+                                                        <b>Informações sobre o formato do arquivo</b>
                                                         <br>
-                                                        <a id="sampling_trial_layout_upload_spreadsheet_info_format">Spreadsheet format</a>
+                                                        <a id="sampling_trial_layout_upload_spreadsheet_info_format">Formato da planilha</a>
                                                     </p>
                                                 </&>
                                             </div>
@@ -123,7 +123,7 @@ $sample_tissue_types => ();
                                                 <div class="panel panel-default">
                                                     <div class="panel-body">
                                                         <div class="form-group">
-                                                            <label class="col-sm-6 control-label">Select Samples Layout XLSX (or XLS) File: </label>
+                                                            <label class="col-sm-6 control-label">Selecione o arquivo XLSX (ou XLS) da disposição das amostras: </label>
                                                             <div class="col-sm-6">
                                                                 <input type="file" name="sampling_trial_layout_upload" id="sampling_trial_layout_upload" encoding="multipart/form-data" />
                                                             </div>
@@ -137,40 +137,40 @@ $sample_tissue_types => ();
                                 </div>
 
                                 <div id="sampling_trial_well_design_section" style="display:none">
-                                    <h3>You want to design a completely new sampling trial.</h3>
+                                    <h3>Criar um ensaio de amostragem totalmente novo</h3>
 
                                     <div class="well well-sm">
                                         <ul>
-                                            <li>Select a list for the source material of each tissue sample. Then indicate how many replicates are required.</li>
-                                            <li>Note: From the most desirable to least desirable source observation unit you can choose: tissue samples, plants, plots, or accessions</li>
+                                            <li>Selecione uma lista com o material de origem de cada amostra de tecido. Em seguida, indique quantas repetições são necessárias.</li>
+                                            <li>Observação: da unidade de observação de origem mais desejável para a menos desejável, você pode escolher amostras de tecido, plantas, parcelas ou acessos.</li>
                                         </ul>
                                     </div>
                                     <div class="form-group">
-                                        <label class="col-sm-7 control-label">Source Observation Unit List: </label>
+                                        <label class="col-sm-7 control-label">Lista de unidades de observação de origem: </label>
                                         <div class="col-sm-5">
-                                            <span id="sampling_trial_accession_select_box_span">[loading...]</span>
+                                            <span id="sampling_trial_accession_select_box_span">[carregando...]</span>
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="col-sm-7 control-label">Replicates: </label>
+                                        <label class="col-sm-7 control-label">Repetições: </label>
                                         <div class="col-sm-5">
                                             <input class="form-control" id="sampling_trial_replicates" name="sampling_trial_replicates" type="number" placeholder="1"/>
                                         </div>
                                     </div>
                                     <div class="form-group form-group-sm">
-                                        <label class="col-sm-7 control-label"><i>Optional</i> Sample Concentration (ng/ul): <small>(If you used the same conc for all samples)</small></label>
+                                        <label class="col-sm-7 control-label"><i>Opcional</i> Concentração da amostra (ng/µl): <small>(se foi usada a mesma concentração para todas as amostras)</small></label>
                                         <div class="col-sm-5">
                                             <input class="form-control" id="sampling_trial_concentration" name="sampling_trial_concentration" type="text" />
                                         </div>
                                     </div>
                                     <div class="form-group form-group-sm">
-                                        <label class="col-sm-7 control-label"><i>Optional</i> Sampling Volume (ul): <small>(If you used the same vol for all samples)</small></label>
+                                        <label class="col-sm-7 control-label"><i>Opcional</i> Volume de amostragem (µl): <small>(se foi usado o mesmo volume para todas as amostras)</small></label>
                                         <div class="col-sm-5">
                                             <input class="form-control" id="sampling_trial_volume" name="sampling_well_volume" type="text" />
                                         </div>
                                     </div>
                                     <div class="form-group form-group-sm">
-                                        <label class="col-sm-7 control-label"><i>Optional</i> Tissue: <small>(If used the same tissue for all samples)</small> </label>
+                                        <label class="col-sm-7 control-label"><i>Opcional</i> Tecido: <small>(se foi usado o mesmo tecido para todas as amostras)</small> </label>
                                         <div class="col-sm-5">
                                             <select class="form-control" id="sampling_trial_tissue">
 % foreach my $tissue_type(@$sample_tissue_types){
@@ -180,31 +180,31 @@ $sample_tissue_types => ();
                                         </div>
                                     </div>
                                     <div class="form-group form-group-sm">
-                                        <label class="col-sm-7 control-label"><i>Optional</i> NCBI Taxonomy ID: <small>(Official NCBI ID.)</small> </label>
+                                        <label class="col-sm-7 control-label"><i>Opcional</i> ID de taxonomia do NCBI: <small>(ID oficial do NCBI)</small> </label>
                                         <div class="col-sm-5">
                                             <input class="form-control" id="sampling_trial_ncbi_taxonomy_id" name="sampling_trial_ncbi_taxonomy_id" type="text" />
                                         </div>
                                     </div>
                                     <div class="form-group form-group-sm">
-                                        <label class="col-sm-7 control-label"><i>Optional</i> Extraction: <small>(If used the same extraction for all samples)</small> </label>
+                                        <label class="col-sm-7 control-label"><i>Opcional</i> Extração: <small>(se foi usada a mesma extração para todas as amostras)</small> </label>
                                         <div class="col-sm-5">
                                             <input class="form-control" id="sampling_trial_extraction" name="sampling_trial_extraction" type="text" />
                                         </div>
                                     </div>
                                     <div class="form-group form-group-sm">
-                                        <label class="col-sm-7 control-label"><i>Optional</i> Person: <small>(If same person prepared all samples.)</small> </label>
+                                        <label class="col-sm-7 control-label"><i>Opcional</i> Responsável: <small>(se a mesma pessoa preparou todas as amostras)</small> </label>
                                         <div class="col-sm-5">
                                             <input class="form-control" id="sampling_trial_person" name="sampling_trial_person" type="text" />
                                         </div>
                                     </div>
                                     <div class="form-group form-group-sm">
-                                        <label class="col-sm-7 control-label"><i>Optional</i> Date: <small>(If sampled on same date. YYYY/MM/DD)</small> </label>
+                                        <label class="col-sm-7 control-label"><i>Opcional</i> Data: <small>(se todas as amostras foram coletadas na mesma data; AAAA/MM/DD)</small> </label>
                                         <div class="col-sm-5">
-                                            <input class="form-control" id="sampling_trial_date" name="sampling_trial_date" type="text" placeholder="YYYY/MM/DD"/>
+                                            <input class="form-control" id="sampling_trial_date" name="sampling_trial_date" type="text" placeholder="AAAA/MM/DD"/>
                                         </div>
                                     </div>
                                     <div class="form-group form-group-sm">
-                                        <label class="col-sm-7 control-label"><i>Optional</i> Notes: <small>(Additional notes for these samples.)</small> </label>
+                                        <label class="col-sm-7 control-label"><i>Opcional</i> Observações: <small>(observações adicionais sobre estas amostras)</small> </label>
                                         <div class="col-sm-5">
                                             <input class="form-control" id="sampling_trial_notes" name="sampling_trial_notes" type="text" />
                                         </div>
@@ -213,33 +213,33 @@ $sample_tissue_types => ();
 
                                 <br/><br/>
                                 <center>
-                                <button class="btn btn-primary" onclick="Workflow.complete(this); return false;">Go to Next Step</button>
+                                <button class="btn btn-primary" onclick="Workflow.complete(this); return false;">Ir para a próxima etapa</button>
                                 </center>
                             </&>
-                            <&| /util/workflow.mas:step, title=> "Linkage" &>
-                                <& /page/page_title.mas, title=>"Is your sampling trial linked with field trials in the database? This information can also be added from the sampling trial detail page once the trial is saved in the database." &>
+                            <&| /util/workflow.mas:step, title=> "Vinculação" &>
+                                <& /page/page_title.mas, title=>"O ensaio de amostragem está vinculado a ensaios de campo no banco de dados? Esta informação também pode ser adicionada na página de detalhes após o ensaio ser salvo." &>
 
-                                <p>If you provided us with information about where the sample originated (e.g. it came from a plot name or plant name or tissue sample name in a field trial), we will automatically create linkage between the field trial(s) and this sampling trial.</p>
+                                <p>Se você informou a origem da amostra (por exemplo, o nome de uma parcela, planta ou amostra de tecido de um ensaio de campo), a vinculação entre o(s) ensaio(s) de campo e este ensaio de amostragem será criada automaticamente.</p>
 
                                 <br/>
                                 <center>
-                                <button class="btn btn-lg btn-primary" onclick="Workflow.complete(this); return false;" >Continue to Next Step</button>
+                                <button class="btn btn-lg btn-primary" onclick="Workflow.complete(this); return false;" >Continuar para a próxima etapa</button>
                                 <center>
                             </&>
-                            <&| /util/workflow.mas:step, title=> "Confirm" &>
-                                <& /page/page_title.mas, title=>"Finalize and submit your sampling trial" &>
+                            <&| /util/workflow.mas:step, title=> "Confirmar" &>
+                                <& /page/page_title.mas, title=>"Finalize e envie o ensaio de amostragem" &>
 
                                 <hr>
                                 <center>
-                                <button type="button" class="btn btn-primary" name="add_sampling_trial_submit" id="add_sampling_trial_submit">Submit</button>
+                                <button type="button" class="btn btn-primary" name="add_sampling_trial_submit" id="add_sampling_trial_submit">Enviar</button>
                                 </center>
                             </&>
-                            <&| /util/workflow.mas:complete, title=> "Complete" &>
-                                <& /page/page_title.mas, title=>"Complete! Your sampling trial was saved in the database." &>
+                            <&| /util/workflow.mas:complete, title=> "Concluído" &>
+                                <& /page/page_title.mas, title=>"Concluído! Seu ensaio de amostragem foi salvo no banco de dados." &>
 
                                 <p>
                                     <span class="ui-icon ui-icon-circle-check" style="float: left; margin: 0 7px 50px 0;"></span>
-                                    The sampling trial was saved successfully
+                                    O ensaio de amostragem foi salvo com sucesso.
                                 </p>
 
                             </&>
@@ -249,7 +249,7 @@ $sample_tissue_types => ();
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
             </div>
         </div>
     </div>
@@ -259,18 +259,18 @@ $sample_tissue_types => ();
     <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content">
             <div class="modal-header" style="text-align: center">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="uploadSamplingTrialInfoDialog">Upload Template Information</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="uploadSamplingTrialInfoDialog">Informações do modelo de envio</h4>
             </div>
             <div class="modal-body">
                 <div class="container-fluid">
-                    <b>This is for uploading a pre-existing sampling trial layout.</b>
+                    <b>Use esta opção para enviar a disposição de um ensaio de amostragem já existente.</b>
                     <br/>
-                    <b>File must be Excel file (.xls or .xlsx)</b>
+                    <b>O arquivo deve estar no formato Excel (.xls ou .xlsx).</b>
                     <br />
-                    <b>Header:</b>
+                    <b>Cabeçalho:</b>
                     <br>
-                    The first row (header) must contain the following:
+                    A primeira linha (cabeçalho) deve conter os seguintes campos:
 
                     <table class="table table-hover table-bordered table-condensed" >
                         <thead></thead>
@@ -292,31 +292,31 @@ $sample_tissue_types => ();
                         </tbody>
                     </table>
 
-                    <b>Required fields:</b>
+                    <b>Campos obrigatórios:</b>
                     <ul>
-                    <li>date (should be YYYY-MM-DD)</li>
-                    <li>sample_name (the globally unique identifier for the sample)</li>
-                    <li>source_observation_unit_name (must exist in the database. the identifier of the origin material. in order of most desirable identifier to least desirable identifier that can be used here: tissue sample name, plant name, plot name, accession name. For blank wells, you can write BLANK here and place a 1 in the is_blank column also.)</li>
-                    <li>sample_number (the sample number for the sample. Must be unique within this sampling trial)</li>
-                    <li>replicate (the replicate number for the sample)</li>
+                    <li>date (deve estar no formato AAAA-MM-DD)</li>
+                    <li>sample_name (identificador globalmente único da amostra)</li>
+                    <li>source_observation_unit_name (deve existir no banco de dados; é o identificador do material de origem. Da opção mais recomendada para a menos recomendada, podem ser usados: nome da amostra de tecido, nome da planta, nome da parcela ou nome do acesso. Para poços vazios, informe BLANK neste campo e também 1 na coluna is_blank.)</li>
+                    <li>sample_number (número da amostra; deve ser único neste ensaio de amostragem)</li>
+                    <li>replicate (número da repetição da amostra)</li>
 % my $tissue_string = join(', ', @$sample_tissue_types);
-                    <li>tissue_type (must be one of: <% $tissue_string %>)</li>
+                    <li>tissue_type (deve ser um destes valores: <% $tissue_string %>)</li>
                     </ul>
 
-                    <b>Optional fields:</b>
+                    <b>Campos opcionais:</b>
                     <ul>
-                    <li>ncbi_taxonomy_id (NCBI taxonomy identifier)</li>
-                    <li>person (the name of the person who prepared the sample)</li>
-                    <li>notes (any additional notes on the sample)</li>
-                    <li>extraction (free-text for the extraction method e.g. CTAB)</li>
-                    <li>concentration (concentration in ng/ul)</li>
-                    <li>volume (volume in ul)</li>
+                    <li>ncbi_taxonomy_id (identificador de taxonomia do NCBI)</li>
+                    <li>person (nome da pessoa que preparou a amostra)</li>
+                    <li>notes (observações adicionais sobre a amostra)</li>
+                    <li>extraction (texto livre para o método de extração, por exemplo, CTAB)</li>
+                    <li>concentration (concentração em ng/µl)</li>
+                    <li>volume (volume em µl)</li>
                     </ul>
 
                 </div>
             </div>
             <div class="modal-footer">
-                <button id="close_upload_sampling_spreadsheet_info_dialog" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button id="close_upload_sampling_spreadsheet_info_dialog" type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
             </div>
         </div>
     </div>
@@ -376,27 +376,27 @@ jQuery(document).ready(function(){
         sampling_data.sample_notes = jQuery('#sampling_trial_notes').val();
 
         if (sampling_data.breeding_program == '') {
-            alert("A breeding program is required. Please try again.");
+            alert("É necessário selecionar um programa de melhoramento. Tente novamente.");
             return;
         }
         if (sampling_data.year == '') {
-            alert("A year is required. Please try again.");
+            alert("É necessário informar o ano. Tente novamente.");
             return;
         }
         if (sampling_data.location == '') {
-            alert("A location is required. Please try again.");
+            alert("É necessário selecionar um local. Tente novamente.");
             return;
         }
         if (sampling_data.name == '') {
-            alert("A sampling trial name is required and it should be unique in the database. Please try again.");
+            alert("É necessário informar um nome de ensaio de amostragem que seja único no banco de dados. Tente novamente.");
             return;
         }
         if (sampling_data.description == '') {
-            alert("A sampling trial description is required. Please try again.");
+            alert("É necessário informar a descrição do ensaio de amostragem. Tente novamente.");
             return;
         }
         if (sampling_data.sample_type == '') {
-            alert("A sampling trial type is required. Please try again.");
+            alert("É necessário selecionar o tipo do ensaio de amostragem. Tente novamente.");
             return;
         }
         if (sampling_data.replicates == '') {
@@ -408,12 +408,12 @@ jQuery(document).ready(function(){
             sampling_data.list_id = jQuery('#sampling_trial_accession_select_box_list_select').val();
             var l = new CXGN.List();
             if (! l.validate(sampling_data.list_id, 'accessions', true) && ! l.validate(sampling_data.list_id, 'plots', true) && ! l.validate(sampling_data.list_id, 'plants', true) && ! l.validate(sampling_data.list_id, 'tissue_samples', true)) {
-                alert('The list contains elements that are not accessions or plots or plants or tissue_samples.');
+                alert('A lista contém elementos que não são acessos, parcelas, plantas nem amostras de tecido.');
                 return;
             }
             var elements = l.getList(sampling_data.list_id);
             if (typeof elements == 'undefined' ) {
-                alert("There are no elements in the list provided.");
+                alert("A lista fornecida não contém elementos.");
                 return;
             }
             sampling_data.elements = elements;
@@ -439,7 +439,7 @@ jQuery(document).ready(function(){
                     }
                 },
                 error: function(response) {
-                    alert('An error occurred trying the create the sampling trial layout.');
+                    alert('Ocorreu um erro ao tentar criar a disposição do ensaio de amostragem.');
                     jQuery("working_modal").modal('hide');
                 }
             });
@@ -494,7 +494,7 @@ jQuery(document).ready(function(){
                 }
             },
             error: function(response) {
-                alert('An error occurred trying the create the layout.');
+                alert('Ocorreu um erro ao tentar criar a disposição.');
                 jQuery("#working_modal").modal('hide');
             }
         });

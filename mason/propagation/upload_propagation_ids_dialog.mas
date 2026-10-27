@@ -6,21 +6,21 @@
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="reset" class="close" id="upload_propagation_ids_dismiss_button_2" name="upload_propagation_ids_dismiss_button" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="uploadPropagationIDsDialog">Upload Propagation IDs</h4>
+                <button type="reset" class="close" id="upload_propagation_ids_dismiss_button_2" name="upload_propagation_ids_dismiss_button" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="uploadPropagationIDsDialog">Enviar IDs de propagação</h4>
             </div>
             <div class="modal-body">
                 <div class="container-fluid">
-                    <&| /page/explanation.mas, title=>'Template Information' &>
+                    <&| /page/explanation.mas, title=>'Informações do modelo' &>
                         <p>
-                            <b>File format information</b>
+                            <b>Informações sobre o formato do arquivo</b>
                             <br>
-                            <a id="propagation_ids_upload_spreadsheet_format_info">Spreadsheet Format</a>
+                            <a id="propagation_ids_upload_spreadsheet_format_info">Formato da planilha</a>
                         </p>
                     </&>
                     <form method="post" enctype="multipart/form-data" encoding="multipart/form-data" id="upload_propagation_ids_form" name="upload_propagation_ids_form">
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">Upload File: </label>
+                            <label class="col-sm-3 control-label">Enviar arquivo: </label>
                             <div class="col-sm-9" >
                                 <input type="file" name="propagation_ids_file" id="propagation_ids_file" encoding="multipart/form-data" />
                             </div>
@@ -29,8 +29,8 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button id="upload_propagation_ids_dismiss_button_1" name="upload_propagation_ids_dismiss_button" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" name="upload_propagation_ids_submit" id="upload_propagation_ids_submit">Upload</button>
+                <button id="upload_propagation_ids_dismiss_button_1" name="upload_propagation_ids_dismiss_button" type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                <button type="button" class="btn btn-primary" name="upload_propagation_ids_submit" id="upload_propagation_ids_submit">Enviar</button>
             </div>
         </div>
     </div>
@@ -40,19 +40,19 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="propagationIdsSavedDialog">Success</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="propagationIdsSavedDialog">Sucesso</h4>
             </div>
             <div class="modal-body">
                 <div class="container-fluid">
                     <p>
                         <span class="ui-icon ui-icon-circle-check" style="float: left; margin: 0 7px 50px 0;"></span>
-                        The propagation ids were saved successfully.
+                        Os IDs de propagação foram salvos com sucesso.
                     </p>
                 </div>
             </div>
             <div class="modal-footer">
-                <button id="dismiss_propagation_ids_saved_dialog" type="button" class="btn btn-default" data-dismiss="modal">Close & Reload</button>
+                <button id="dismiss_propagation_ids_saved_dialog" type="button" class="btn btn-default" data-dismiss="modal">Fechar e recarregar</button>
             </div>
         </div>
     </div>
@@ -62,8 +62,8 @@
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="uploadPropagationIdsErrorDialog">Upload Propagation Identifiers Error</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="uploadPropagationIdsErrorDialog">Erro no envio dos identificadores de propagação</h4>
             </div>
             <div class="modal-body">
                 <div class="container-fluid">
@@ -73,7 +73,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
             </div>
         </div>
     </div>
@@ -83,14 +83,14 @@
     <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content">
             <div class="modal-header" style="text-align: center">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="uploadPropagationIDInfoDialog">Upload Template Information For Propagation Identifiers</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="uploadPropagationIDInfoDialog">Informações do modelo de envio de identificadores de propagação</h4>
             </div>
             <div class="modal-body">
                 <div class="container-fluid">
-                    <b>Header:</b>
+                    <b>Cabeçalho:</b>
                     <br>
-                    The first row (header) must contain the <b>propagation_group_identifier</b>, <b>propagation_identifier</b>, <b>status_type</b>, <b>status_date</b>, <b>status_updated_by</b>. Additional information can be included by selecting optional column(s) (see below):
+                    A primeira linha (cabeçalho) deve conter <b>propagation_group_identifier</b>, <b>propagation_identifier</b>, <b>status_type</b>, <b>status_date</b> e <b>status_updated_by</b>. Inclua informações adicionais nas colunas opcionais indicadas abaixo:
                     <br/>
                     <br>
                     <table class="table table-hover table-bordered table-condensed" >
@@ -109,26 +109,26 @@
                         </tbody>
                     </table>
 
-                    <b>Required fields:</b>
+                    <b>Campos obrigatórios:</b>
                     <ul>
-                        <li>propagation_group_identifier (must exist in the database)</li>
-                        <li>propagation_identifier (must not exist in the database)</li>
-                        <li>status_type (must be one of the following:'in progress', 'inventoried', 'distributed', 'planted in trial', 'dead', 'disposed')</li>
-                        <li>status_date (must be in the <b>YYYY-MM-DD</b> format)</li>
-                        <li>status_updated_by (person name)</li>
+                        <li>propagation_group_identifier (deve existir no banco de dados)</li>
+                        <li>propagation_identifier (não pode existir no banco de dados)</li>
+                        <li>status_type (use um dos valores: 'in progress', 'inventoried', 'distributed', 'planted in trial', 'dead' ou 'disposed')</li>
+                        <li>status_date (deve estar no formato <b>AAAA-MM-DD</b>)</li>
+                        <li>status_updated_by (nome da pessoa)</li>
                     </ul>
 
-                    <b>Optional fields:</b>
+                    <b>Campos opcionais:</b>
                     <ul>
-                        <li>rootstock (rootstock accession must exist in the database)</li>
+                        <li>rootstock (o acesso do porta-enxerto deve existir no banco de dados)</li>
                         <li>status_notes</li>
-                        <li>inventory_identifier (must not exist in the database and must be globally unique. If any propagation_identifier has Inventoried status type, the propagation identifier and the derived inventory identifier can be uploaded at the same time)</li>
+                        <li>inventory_identifier (deve ser único globalmente e não pode existir no banco de dados; para propagation_identifier com estado Inventoried, os identificadores de propagação e de inventário derivado podem ser enviados juntos)</li>
                     </ul>
                 </div>
                 <& /help/file_upload_type.mas, type => "Propagation Identifiers", optional_column => 1 &>
             </div>
             <div class="modal-footer">
-                <button id="close_propagation_id_info_upload_dialog" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button id="close_propagation_id_info_upload_dialog" type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
             </div>
         </div>
     </div>
@@ -154,7 +154,7 @@ jQuery(document).ready(function(){
     function upload_propagation_ids() {
         var uploadFile = jQuery("#propagation_ids_file").val();
         if (uploadFile === '') {
-            alert("Please select a file");
+            alert("Selecione um arquivo");
             return;
         }
 

@@ -9,8 +9,8 @@ $trial_id
     <table class="table table-hover table-bordered" id="cross_additional_info_crossingtrial_table">
         <thead>
             <tr>
-                <th>Cross Unique ID</th>
-                <th>Cross Combination</th>
+                <th>ID exclusivo do cruzamento</th>
+                <th>Combinação do cruzamento</th>
 % my $cross_additional_info_string = $c->config->{cross_additional_info_header};
 % my @column_header = split ',',$cross_additional_info_string;
 % foreach my $column_header(@column_header){

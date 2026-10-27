@@ -1,25 +1,25 @@
-<li class="dropdown"><a class="menu_click_dropdown dropdown-toggle" data-toggle="dropdown">Search</a>
+<li class="dropdown"><a class="menu_click_dropdown dropdown-toggle" data-toggle="dropdown">Pesquisar</a>
   <ul class="dropdown-menu">
-    <li><a href="/breeders/search">Wizard</a></li>
-    <li><a href="/search/bulk">Bulk Search</a></li>
-    <li><a href="/search/stocks">Accessions and Plots</a></li>
-    <li><a href="/search/organisms">Organisms</a></li>
-    <li><a href="/search/cross">Progenies, Parents, Crosses</a></li>
-    <li><a href="/search/trials">Field Trials</a></li>
+    <li><a href="/breeders/search">Assistente</a></li>
+    <li><a href="/search/bulk">Pesquisa em massa</a></li>
+    <li><a href="/search/stocks">Acessos e parcelas</a></li>
+    <li><a href="/search/organisms">Organismos</a></li>
+    <li><a href="/search/cross">Progênies, genitores e cruzamentos</a></li>
+    <li><a href="/search/trials">Ensaios de campo</a></li>
 
     <li role="separator" class="divider"></li>
-    <li><a href="/search/genotyping_trials">Genotyping Plates</a></li>
-    <li><a href="/search/genotyping_data_projects">Genotyping Projects</a></li>
-    <li><a href="/search/genotyping_protocols">Genotyping Protocols</a></li>
-    <li><a href="/search/stocks_using_genotypes">Accessions Using Genotypes</a></li>    
-    <li><a href="/search/vectors">Vector Constructs</a></li>
+    <li><a href="/search/genotyping_trials">Placas de genotipagem</a></li>
+    <li><a href="/search/genotyping_data_projects">Projetos de genotipagem</a></li>
+    <li><a href="/search/genotyping_protocols">Protocolos de genotipagem</a></li>
+    <li><a href="/search/stocks_using_genotypes">Acessos usando genótipos</a></li>
+    <li><a href="/search/vectors">Construções vetoriais</a></li>
 
     <li role="separator" class="divider"></li>
-    <li><a href="/search/traits">Traits</a></li>
-    <li><a href="/search/treatments">Treatments</a></li>
+    <li><a href="/search/traits">Características</a></li>
+    <li><a href="/search/treatments">Tratamentos</a></li>
     <!--<li><a href="/search/markers">Markers</a></li>-->
-    <li><a href="/search/images">Images</a></li>
-    <li><a href="/search/people">People</a></li>
-    <li><a href="/help/faq.pl">FAQ</a></li>
+    <li><a href="/search/images">Imagens</a></li>
+    <li><a href="/search/people">Pessoas</a></li>
+    <li><a href="/help/faq.pl">Perguntas frequentes</a></li>
   </ul>
 </li>

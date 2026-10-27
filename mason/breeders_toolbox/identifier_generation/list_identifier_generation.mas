@@ -4,14 +4,14 @@
 <table class="table table-hover table-bordered" id="identifier_generator_list_table">
     <thead>
         <tr>
-            <th>Name</th>
-            <th>Description</th>
-            <th>Prefix</th>
-            <th>Number of Digits</th>
-            <th>Current Number</th>
-            <th>Next Identifier</th>
-            <th>History</th>
-            <th>Download Next Identifiers</th>
+            <th>Nome</th>
+            <th>Descrição</th>
+            <th>Prefixo</th>
+            <th>Número de dígitos</th>
+            <th>Número atual</th>
+            <th>Próximo identificador</th>
+            <th>Histórico</th>
+            <th>Baixar próximos identificadores</th>
         </tr>
     </thead>
 </table>
@@ -20,8 +20,8 @@
     <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content">
             <div class="modal-header" style="text-align: center">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="identifierGenerationHistoryDialog">Identifier Generation History</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="identifierGenerationHistoryDialog">Histórico de geração de identificadores</h4>
             </div>
             <div class="modal-body">
                 <div class="container-fluid">
@@ -30,7 +30,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
             </div>
         </div>
     </div>
@@ -63,7 +63,7 @@ jQuery(document).ready(function(){
                 }
             },
             error: function(response){
-                alert('Error downloading new identifiers!');
+                alert('Erro ao baixar os novos identificadores!');
             }
         });
     });
@@ -81,7 +81,7 @@ jQuery(document).ready(function(){
                     alert(response.error);
                 }
                 if(response.success){
-                    var html = '<table class="table table-bordered table-hover"><thead><tr><th>Timestamp</th><th>Username</th><th>Next Count</th><th>Action Type</th></tr></thead><tbody>';
+                    var html = '<table class="table table-bordered table-hover"><thead><tr><th>Data e hora</th><th>Usuário</th><th>Próxima contagem</th><th>Tipo de ação</th></tr></thead><tbody>';
                     for(var i=0; i<response.records.length; i++){
                         html = html + '<tr><td>' + response.records[i].timestamp + '</td><td>' + response.records[i].username + '</td><td>' + response.records[i].next_number + '</td><td>' + response.records[i].type + '</td></tr>';
                     }
@@ -91,7 +91,7 @@ jQuery(document).ready(function(){
                 }
             },
             error: function(response){
-                alert('Error getting identifier list history!');
+                alert('Erro ao obter o histórico da lista de identificadores!');
             }
         });
     });

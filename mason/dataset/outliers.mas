@@ -8,9 +8,9 @@ $dataset_name
 
 <div class="row">
     <div id="trait_selections" style="margin: 15px">
-        <label for="trait_selection">Select a Trait: </label>
+        <label for="trait_selection">Selecione uma característica: </label>
         <select id="trait_selection" class="form-control" name="trait_selection">
-            <option value="default">Select Trait</option>
+            <option value="default">Selecione uma característica</option>
         </select>
     </div>
 
@@ -23,13 +23,13 @@ $dataset_name
 
         <div class="input-group">
             <span class="input-group-addon">
-                <input type="radio" aria-label="median" id="median" value="median" name="dataset_metric" checked="true">
+                <input type="radio" aria-label="mediana" id="median" value="median" name="dataset_metric" checked="true">
             </span>
-            <label for="median" class="form-control" aria-label="median">Median</label>
+            <label for="median" class="form-control" aria-label="mediana">Mediana</label>
             <span class="input-group-addon">
-                <input type="radio" aria-label="mean" id="mean" value="mean" name="dataset_metric" >
+                <input type="radio" aria-label="média" id="mean" value="mean" name="dataset_metric" >
             </span>
-            <label for="mean" class="form-control" aria-label="mean">Mean</label>
+            <label for="mean" class="form-control" aria-label="média">Média</label>
             <span class="input-group-addon">
                 <input type="radio" aria-label="IQR" id="iqr" value="iqr" name="dataset_metric" >
             </span>
@@ -41,16 +41,16 @@ $dataset_name
 <div style="margin: 15px 0;">
     <div id="trait_graph"></div>
     <div class="hide_until_trait_selected" style="display: none; flex-wrap: wrap; gap: 5px; justify-content: space-around">
-        <button class="btn btn-sm btn-success btn-dataset" id="store_outliers">Add selection to outliers</button>
-        <button class="btn btn-sm btn-danger btn-dataset" id="reset_trait">Reset outliers for current trait</button>
-        <button class="btn btn-sm btn-danger btn-dataset" id="reset_outliers">Reset all outliers</button>
-        <button class="btn btn-sm btn-primary btn-dataset" id="outliers_phenotype_download">Download Phenotype Table without outliers</button>
-        <button class="btn btn-sm btn-primary btn-dataset" id="rosner_test">Make Rosner outlier test</button>
+        <button class="btn btn-sm btn-success btn-dataset" id="store_outliers">Adicionar seleção aos valores atípicos</button>
+        <button class="btn btn-sm btn-danger btn-dataset" id="reset_trait">Redefinir valores atípicos da característica atual</button>
+        <button class="btn btn-sm btn-danger btn-dataset" id="reset_outliers">Redefinir todos os valores atípicos</button>
+        <button class="btn btn-sm btn-primary btn-dataset" id="outliers_phenotype_download">Baixar tabela de fenótipos sem valores atípicos</button>
+        <button class="btn btn-sm btn-primary btn-dataset" id="rosner_test">Executar teste de Rosner para valores atípicos</button>
     </div>
 </div>
 
 <div class="row well" style="margin: 5px 10px;">
-    Rosner's test is calculated by the R function rosnerTest{EnvStats} from package EnvStats.<br>
+    O teste de Rosner é calculado pela função R rosnerTest{EnvStats} do pacote EnvStats.<br>
     <a href="https://cran.r-project.org/web/packages/EnvStats/index.html">https://cran.r-project.org/web/packages/EnvStats/index.html</a>
 </div>
 

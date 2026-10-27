@@ -7,38 +7,38 @@
     <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="reset" class="close" id="upload_transactions_dismiss_button_1" name="upload_transactions_dismiss_button" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="uploadTransactionsDialog">Upload Transactions</h4>
+                <button type="reset" class="close" id="upload_transactions_dismiss_button_1" name="upload_transactions_dismiss_button" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="uploadTransactionsDialog">Enviar transações</h4>
             </div>
             <div class="modal-body">
                 <div class="container-fluid">
                     <&| /util/workflow.mas, id=> "transactions_upload_workflow" &>
-                        <&| /util/workflow.mas:step, title=> "Intro" &>
-                            <& /page/page_title.mas, title=>"Upload Seedlot Transactions" &>
-                            <center>You can upload 3 different types of seedlot transactions. All of the transactions in each file have to be the same type.</center>
+                        <&| /util/workflow.mas:step, title=> "Introdução" &>
+                            <& /page/page_title.mas, title=>"Enviar transações de lotes de sementes" &>
+                            <center>Você pode enviar três tipos de transações de lotes de sementes. Todas as transações de um arquivo devem ser do mesmo tipo.</center>
                             <ul>
-                                <li>Transferring seeds from existing seedlot to another existing seedlot.</li>
-                                <li>Transferring seeds from existing seedlot to a new seedlot. A new seedlot is created beforing adding new transaction.</li>
-                                <li>Removing seeds from existing seedlot to unspecified seedlot name or plot name</li>
-                                <li><b>Note:</b>To transfer seeds from existing seedlot to a previously stored plot, Please use <b>Upload Seedlots Planted in Trial</b> link in the Experimental Design section on the Trial Detail page.</li>
+                                <li>Transferência de sementes de um lote existente para outro lote existente.</li>
+                                <li>Transferência de sementes de um lote existente para um novo lote. O novo lote é criado antes da inclusão da transação.</li>
+                                <li>Retirada de sementes de um lote existente para um lote ou uma parcela não especificados</li>
+                                <li><b>Observação:</b> para transferir sementes de um lote existente para uma parcela já cadastrada, use o link <b>Enviar lotes de sementes plantados no ensaio</b> na seção Delineamento experimental da página de detalhes do ensaio.</li>
                             </ul>
                             <br/><br/>
                             <center>
-                                <button id="next_step_intro_button" class="btn btn-primary" onclick="Workflow.complete(this);">Go to Next Step</button>
+                                <button id="next_step_intro_button" class="btn btn-primary" onclick="Workflow.complete(this);">Ir para a próxima etapa</button>
                             </center>
                         </&>
-                        <&| /util/workflow.mas:step, title=> "Upload Seedlot Transactions" &>
-                            <& /page/page_title.mas, title=>"Select a transaction type and upload your file" &>
+                        <&| /util/workflow.mas:step, title=> "Enviar transações de lotes de sementes" &>
+                            <& /page/page_title.mas, title=>"Selecione um tipo de transação e envie o arquivo" &>
                             <br/>
                             <form class="form-horizontal" role="form" method="post" enctype="multipart/form-data" encoding="multipart/form-data" id="upload_transactions_form" name="upload_transactions_form">
                                 <div class="form-group">
-                                    <label class="col-sm-3 control-label">Transaction Type: </label>
+                                    <label class="col-sm-3 control-label">Tipo de transação: </label>
                                     <div class="col-sm-9">
                                         <select class="form-control" id="transaction_type_option">
-                                            <option value="">Select a transaction type that you want to upload</option>
-                                            <option value="seedlots_to_seedlots">From existing seedlots to other existing seedlots</option>
-                                            <option value="seedlots_to_new_seedlots">From existing seedlots to new seedlots</option>
-                                            <option value="seedlots_to_unspecified_names">From existing seedlots to unpecified seedlots/plots</option>
+                                            <option value="">Selecione o tipo de transação que deseja enviar</option>
+                                            <option value="seedlots_to_seedlots">De lotes existentes para outros lotes existentes</option>
+                                            <option value="seedlots_to_new_seedlots">De lotes existentes para novos lotes</option>
+                                            <option value="seedlots_to_unspecified_names">De lotes existentes para lotes ou parcelas não especificados</option>
                                         </select>
                                     </div>
                                 </div>
@@ -46,16 +46,16 @@
                                     <br/>
                                     <hr class ="solid">
                                     <center>
-                                        <h4>You want to transfer seeds from existing seedlots to other existing seedlots</h4>
+                                        <h4>Transferência de sementes de lotes existentes para outros lotes existentes</h4>
                                     </center>
                                     <div class="well well-sm">
                                         <div class="row">
                                             <div class="col-sm-4">
-                                                <&| /page/explanation.mas, title=>'Template information' &>
+                                                <&| /page/explanation.mas, title=>'Informações do modelo' &>
                                                     <p>
-                                                        <b>File format information</b>
+                                                        <b>Informações sobre o formato do arquivo</b>
                                                         <br>
-                                                        <a id="seedlots_to_seedlots_format">Spreadsheet format</a>
+                                                        <a id="seedlots_to_seedlots_format">Formato da planilha</a>
                                                     </p>
                                                 </&>
                                             </div>
@@ -64,7 +64,7 @@
                                                 <div class="panel panel-default">
                                                     <div class="panel-body">
                                                         <div class="form-group">
-                                                            <label class="col-sm-6 control-label">Select an .xls or .xlsx File: </label>
+                                                            <label class="col-sm-6 control-label">Selecione um arquivo .xls ou .xlsx: </label>
                                                             <div class="col-sm-6">
                                                                 <input type="file" name="seedlots_to_seedlots_file" id="seedlots_to_seedlots_file" encoding="multipart/form-data" />
                                                             </div>
@@ -79,34 +79,34 @@
                                     <br/>
                                     <hr class ="solid">
                                     <center>
-                                        <h4>Please provide basic information about the <b>new seedlots</b> and upload your file</h4>
+                                        <h4>Informe os dados básicos dos <b>novos lotes de sementes</b> e envie o arquivo</h4>
                                     </center>
                                         <div class="form-group">
-                                            <label class="col-sm-4 control-label">Breeding Program: </label>
+                                            <label class="col-sm-4 control-label">Programa de melhoramento: </label>
                                             <div class="col-sm-8" >
                                                 <div id="new_seedlot_breeding_program_div"></div>
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="col-sm-4 control-label">Location of seedlot storage: </label>
+                                            <label class="col-sm-4 control-label">Local de armazenamento dos lotes: </label>
                                             <div class="col-sm-8" >
-                                                <input class="form-control" name="new_seedlot_location" id="new_seedlot_location" placeholder="Required">
+                                                <input class="form-control" name="new_seedlot_location" id="new_seedlot_location" placeholder="Obrigatório">
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="col-sm-4 control-label">Organization Name: </label>
+                                            <label class="col-sm-4 control-label">Nome da organização: </label>
                                             <div class="col-sm-8" >
-                                                <input class="form-control" name="new_seedlot_organization_name" id="new_seedlot_organization_name" placeholder="Optional">
+                                                <input class="form-control" name="new_seedlot_organization_name" id="new_seedlot_organization_name" placeholder="Opcional">
                                             </div>
                                         </div>
                                     <div class="well well-sm">
                                         <div class="row">
                                             <div class="col-sm-4">
-                                                <&| /page/explanation.mas, title=>'Template information' &>
+                                                <&| /page/explanation.mas, title=>'Informações do modelo' &>
                                                     <p>
-                                                        <b>File format information</b>
+                                                        <b>Informações sobre o formato do arquivo</b>
                                                         <br>
-                                                        <a id="seedlots_to_new_seedlots_format">Spreadsheet format</a>
+                                                        <a id="seedlots_to_new_seedlots_format">Formato da planilha</a>
                                                     </p>
                                                 </&>
                                             </div>
@@ -115,7 +115,7 @@
                                                 <div class="panel panel-default">
                                                     <div class="panel-body">
                                                         <div class="form-group">
-                                                            <label class="col-sm-6 control-label">Select an .xls or .xlsx File: </label>
+                                                            <label class="col-sm-6 control-label">Selecione um arquivo .xls ou .xlsx: </label>
                                                             <div class="col-sm-6">
                                                                 <input type="file" name="seedlots_to_new_seedlots_file" id="seedlots_to_new_seedlots_file" encoding="multipart/form-data" />
                                                             </div>
@@ -130,16 +130,16 @@
                                     <br/>
                                     <hr class ="solid">
                                     <center>
-                                        <h4>You want to use seeds from existing seedlots for plots</h4>
+                                        <h4>Uso de sementes de lotes existentes em parcelas</h4>
                                     </center>
                                     <div class="well well-sm">
                                         <div class="row">
                                             <div class="col-sm-4">
-                                                <&| /page/explanation.mas, title=>'Template information' &>
+                                                <&| /page/explanation.mas, title=>'Informações do modelo' &>
                                                     <p>
-                                                        <b>File format information</b>
+                                                        <b>Informações sobre o formato do arquivo</b>
                                                         <br>
-                                                        <a id="seedlots_to_plots_format">Spreadsheet format</a>
+                                                        <a id="seedlots_to_plots_format">Formato da planilha</a>
                                                     </p>
                                                 </&>
                                             </div>
@@ -148,7 +148,7 @@
                                                 <div class="panel panel-default">
                                                     <div class="panel-body">
                                                         <div class="form-group">
-                                                            <label class="col-sm-6 control-label">Select an .xls or .xlsx File: </label>
+                                                            <label class="col-sm-6 control-label">Selecione um arquivo .xls ou .xlsx: </label>
                                                             <div class="col-sm-6">
                                                                 <input type="file" name="seedlots_to_plots_file" id="seedlots_to_plots_file" encoding="multipart/form-data" />
                                                             </div>
@@ -163,16 +163,16 @@
                                     <br/>
                                     <hr class ="solid">
                                     <center>
-                                        <h4>You want to remove seeds from existing seedlots to unspefified seedlots/plots</h4>
+                                        <h4>Retirada de sementes de lotes existentes para lotes ou parcelas não especificados</h4>
                                     </center>
                                     <div class="well well-sm">
                                         <div class="row">
                                             <div class="col-sm-4">
-                                                <&| /page/explanation.mas, title=>'Template information' &>
+                                                <&| /page/explanation.mas, title=>'Informações do modelo' &>
                                                     <p>
-                                                        <b>File format information</b>
+                                                        <b>Informações sobre o formato do arquivo</b>
                                                         <br>
-                                                        <a id="seedlots_to_unspecified_names_format">Spreadsheet format</a>
+                                                        <a id="seedlots_to_unspecified_names_format">Formato da planilha</a>
                                                     </p>
                                                 </&>
                                             </div>
@@ -181,7 +181,7 @@
                                                 <div class="panel panel-default">
                                                     <div class="panel-body">
                                                         <div class="form-group">
-                                                            <label class="col-sm-6 control-label">Select an .xls or .xlsx File: </label>
+                                                            <label class="col-sm-6 control-label">Selecione um arquivo .xls ou .xlsx: </label>
                                                             <div class="col-sm-6">
                                                                 <input type="file" name="seedlots_to_unspecified_names_file" id="seedlots_to_unspecified_names_file" encoding="multipart/form-data" />
                                                             </div>
@@ -195,22 +195,22 @@
                             </form>
                             <div id="submit_transactions_button_section" style="display:none">
                                 <center>
-                                    <button type="button" onclick="Workflow.complete(this, false);" class="btn btn-primary" name="upload_transactions_submit" id="upload_transactions_submit">Upload File</button>
+                                    <button type="button" onclick="Workflow.complete(this, false);" class="btn btn-primary" name="upload_transactions_submit" id="upload_transactions_submit">Enviar arquivo</button>
                                 </center>
                             </div>
                         </&>
-                        <&| /util/workflow.mas:complete, title=> "Complete" &>
-                            <& /page/page_title.mas, title=>"Finished! Your transactions are now in the database" &>
+                        <&| /util/workflow.mas:complete, title=> "Concluído" &>
+                            <& /page/page_title.mas, title=>"Concluído! As transações estão no banco de dados" &>
                             <p>
                                 <span class="ui-icon ui-icon-circle-check" style="float: left; margin: 0 7px 50px 0;"></span>
-                                The transactions file was uploaded successfully
+                                O arquivo de transações foi enviado com sucesso
                             </p>
                         </&>
                     </&><!-- End of workflow -->
                 </div>
             </div>
             <div class="modal-footer">
-                <button id="upload_transactions_dismiss_button_2" name="upload_transactions_dismiss_button" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button id="upload_transactions_dismiss_button_2" name="upload_transactions_dismiss_button" type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
             </div>
         </div>
     </div>
@@ -220,8 +220,8 @@
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="uploadTransactionsErrorDialog">Upload Transactions File Error</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="uploadTransactionsErrorDialog">Erro no envio do arquivo de transações</h4>
             </div>
             <div class="modal-body">
                 <div class="container-fluid">
@@ -231,7 +231,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
             </div>
         </div>
     </div>
@@ -241,16 +241,16 @@
     <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content">
             <div class="modal-header" style="text-align: center">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="seedlotsToseedlotsInfoDialog">Upload Template Information For Existing Seedlot to Existing Seedlot Transactions  </h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="seedlotsToseedlotsInfoDialog">Modelo para transações entre lotes de sementes existentes  </h4>
             </div>
             <div class="modal-body">
                 <div class="container-fluid">
-                    <b>Transactions may be uploaded in an Excel file (.xls or .xlsx)</b>
+                    <b>As transações podem ser enviadas em um arquivo Excel (.xls ou .xlsx)</b>
                     <br />
-                    <b>Header:</b>
+                    <b>Cabeçalho:</b>
                     <br>
-                    The first row (header) must contain the following:
+                    A primeira linha (cabeçalho) deve conter os seguintes campos:
                     <br />
                     <table class="table table-hover table-bordered table-condensed" >
                         <thead></thead>
@@ -265,25 +265,25 @@
                             </tr>
                         </tbody>
                     </table>
-                    <b>Required fields:</b>
+                    <b>Campos obrigatórios:</b>
                     <ul>
-                        <li><b>from_seedlot_name:</b> Must exist in the database. Seeds were taken from this seedlot.</li>
-                        <li><b>to_seedlot_name:</b> Must exist in the database. Seeds were added to this seedlot.</li>
+                        <li><b>from_seedlot_name:</b> Deve existir no banco de dados. As sementes foram retiradas deste lote.</li>
+                        <li><b>to_seedlot_name:</b> Deve existir no banco de dados. As sementes foram adicionadas a este lote.</li>
                         <li>
-                            <b>amount:</b> Number of seeds being transaferred. Can be provided in conjunction with weight(g). Must provide a value for amount or weight(g) or both.
-                            <br/><b>AND/OR</b><br/>
-                            <b>weight(g):</b> Weight in grams of seedlot being transferred. Can be provided in conjunction with amount. Must provide a value for amount or weight(g) or both.
+                            <b>amount:</b> Número de sementes transferidas. Pode ser informado junto com <code>weight(g)</code>. Informe <code>amount</code>, <code>weight(g)</code> ou ambos.
+                            <br/><b>E/OU</b><br/>
+                            <b>weight(g):</b> Peso em gramas das sementes transferidas. Pode ser informado junto com <code>amount</code>. Informe <code>amount</code>, <code>weight(g)</code> ou ambos.
                         </li>
-                        <li><b>operator_name:</b> Name of the person who oversaw the transaction process. Can be any name.</li>
+                        <li><b>operator_name:</b> Nome da pessoa responsável pela transação. Pode ser qualquer nome.</li>
                     </ul>
-                    <b>Optional fields:</b>
+                    <b>Campos opcionais:</b>
                     <ul>
-                        <li><b>transaction_description:</b> Information about why this transaction is processed.</li>
+                        <li><b>transaction_description:</b> Motivo da realização desta transação.</li>
                     </ul>
                 </div>
             </div>
             <div class="modal-footer">
-                <button id="close_seedlots_to_seedlots_info_dialog" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button id="close_seedlots_to_seedlots_info_dialog" type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
             </div>
         </div>
     </div>
@@ -293,16 +293,16 @@
     <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content">
             <div class="modal-header" style="text-align: center">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="seedlotsToNewSeedlotsInfoDialog">Upload Template Information For Existing Seedlot to New Seedlot Transactions  </h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="seedlotsToNewSeedlotsInfoDialog">Modelo para transações de lotes existentes para novos lotes  </h4>
             </div>
             <div class="modal-body">
                 <div class="container-fluid">
-                    <b>Transactions may be uploaded in an Excel file (.xls or .xlsx)</b>
+                    <b>As transações podem ser enviadas em um arquivo Excel (.xls ou .xlsx)</b>
                     <br />
-                    <b>Header:</b>
+                    <b>Cabeçalho:</b>
                     <br>
-                    The first row (header) must contain the following:
+                    A primeira linha (cabeçalho) deve conter os seguintes campos:
                     <br />
                     <table class="table table-hover table-bordered table-condensed" >
                         <thead></thead>
@@ -320,28 +320,28 @@
                             </tr>
                         </tbody>
                     </table>
-                    <b>Required fields:</b>
+                    <b>Campos obrigatórios:</b>
                     <ul>
-                        <li><b>from_seedlot_name:</b> Must exist in the database. Seeds were taken from this seedlot.</li>
+                        <li><b>from_seedlot_name:</b> Deve existir no banco de dados. As sementes foram retiradas deste lote.</li>
                         <li>
-                            <b>amount:</b> Number of seeds being transaferred. Can be provided in conjunction with weight(g). Must provide a value for amount or weight(g) or both.
-                            <br/><b>AND/OR</b><br/>
-                            <b>weight(g):</b> Weight in grams of seedlot being transferred. Can be provided in conjunction with amount. Must provide a value for amount or weight(g) or both.
+                            <b>amount:</b> Número de sementes transferidas. Pode ser informado junto com <code>weight(g)</code>. Informe <code>amount</code>, <code>weight(g)</code> ou ambos.
+                            <br/><b>E/OU</b><br/>
+                            <b>weight(g):</b> Peso em gramas das sementes transferidas. Pode ser informado junto com <code>amount</code>. Informe <code>amount</code>, <code>weight(g)</code> ou ambos.
                         </li>
-                        <li><b>operator_name:</b> Name of the person who oversaw the transaction process. Can be any name.</li>
-                        <li><b>to_new_seedlot_name:</b> Must NOT exist in the database. New seedlot will be created using amount/weight of seeeds from existing seedlot.</li>
-                        <li><b>new_seedlot_box_name:</b> Box name that this new seedlot is stored. Can be any name.</li>
+                        <li><b>operator_name:</b> Nome da pessoa responsável pela transação. Pode ser qualquer nome.</li>
+                        <li><b>to_new_seedlot_name:</b> NÃO deve existir no banco de dados. O novo lote será criado com a quantidade ou o peso das sementes retiradas do lote existente.</li>
+                        <li><b>new_seedlot_box_name:</b> Nome da caixa onde o novo lote será armazenado. Pode ser qualquer nome.</li>
                     </ul>
-                    <b>Optional fields:</b>
+                    <b>Campos opcionais:</b>
                     <ul>
-                        <li><b>transaction_description:</b> Information about why this transaction is processed.</li>
-                        <li><b>new_seedlot_description:</b> Information about this new seedlot.</li>
-                        <li><b>new_seedlot_quality:</b> Status or condition of the seedlot, for example "ok", "moldy", "insect damage" etc.</li>
+                        <li><b>transaction_description:</b> Motivo da realização desta transação.</li>
+                        <li><b>new_seedlot_description:</b> Informações sobre o novo lote.</li>
+                        <li><b>new_seedlot_quality:</b> Estado ou condição do lote, por exemplo, "bom", "com mofo" ou "danificado por insetos".</li>
                     </ul>
                 </div>
             </div>
             <div class="modal-footer">
-                <button id="close_seedlots_to_new_seedlots_info_dialog" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button id="close_seedlots_to_new_seedlots_info_dialog" type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
             </div>
         </div>
     </div>
@@ -351,16 +351,16 @@
     <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content">
             <div class="modal-header" style="text-align: center">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="seedlotsToPlotsInfoDialog">Upload Template Information For Existing Seedlot to Plot Transactions  </h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="seedlotsToPlotsInfoDialog">Modelo para transações de lotes existentes para parcelas  </h4>
             </div>
             <div class="modal-body">
                 <div class="container-fluid">
-                    <b>Transactions may be uploaded in an Excel file (.xls or .xlsx)</b>
+                    <b>As transações podem ser enviadas em um arquivo Excel (.xls ou .xlsx)</b>
                     <br />
-                    <b>Header:</b>
+                    <b>Cabeçalho:</b>
                     <br>
-                    The first row (header) must contain the following:
+                    A primeira linha (cabeçalho) deve conter os seguintes campos:
                     <br />
 
                     <table class="table table-hover table-bordered table-condensed" >
@@ -376,25 +376,25 @@
                             </tr>
                         </tbody>
                     </table>
-                    <b>Required fields:</b>
+                    <b>Campos obrigatórios:</b>
                     <ul>
-                        <li><b>from_seedlot_name:</b> Must exist in the database. Seeds were taken from this seedlot.</li>
-                        <li><b>to_plot_name:</b> Must exist in the database. Seeds were used for this plot. You can also record seedlot used for each plot during uploading existing trial on the Manage Trials page</li>
+                        <li><b>from_seedlot_name:</b> Deve existir no banco de dados. As sementes foram retiradas deste lote.</li>
+                        <li><b>to_plot_name:</b> Deve existir no banco de dados. As sementes foram usadas nesta parcela. Também é possível registrar o lote usado em cada parcela ao enviar um ensaio existente na página Gerenciar ensaios.</li>
                         <li>
-                            <b>amount:</b> Number of seeds being transaferred. Can be provided in conjunction with weight(g). Must provide a value for amount or weight(g) or both.
-                            <br/><b>AND/OR</b><br/>
-                            <b>weight(g):</b> Weight in grams of seedlot being transferred. Can be provided in conjunction with amount. Must provide a value for amount or weight(g) or both.
+                            <b>amount:</b> Número de sementes transferidas. Pode ser informado junto com <code>weight(g)</code>. Informe <code>amount</code>, <code>weight(g)</code> ou ambos.
+                            <br/><b>E/OU</b><br/>
+                            <b>weight(g):</b> Peso em gramas das sementes transferidas. Pode ser informado junto com <code>amount</code>. Informe <code>amount</code>, <code>weight(g)</code> ou ambos.
                         </li>
-                        <li><b>operator_name:</b> Name of the person who oversaw the transaction process. Can be any name.</li>
+                        <li><b>operator_name:</b> Nome da pessoa responsável pela transação. Pode ser qualquer nome.</li>
                     </ul>
-                    <b>Optional fields:</b>
+                    <b>Campos opcionais:</b>
                     <ul>
-                        <li><b>transaction_description:</b> Information about why this transaction is processed.</li>
+                        <li><b>transaction_description:</b> Motivo da realização desta transação.</li>
                     </ul>
                 </div>
             </div>
             <div class="modal-footer">
-                <button id="close_seedlots_to_plots_info_dialog" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button id="close_seedlots_to_plots_info_dialog" type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
             </div>
         </div>
     </div>
@@ -404,16 +404,16 @@
     <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content">
             <div class="modal-header" style="text-align: center">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="seedlotsToUnspecifiedNamesInfoDialog">Upload Template Information For Existing Seedlot to Unspecified Seedlots/Plots Transactions  </h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="seedlotsToUnspecifiedNamesInfoDialog">Modelo para transações de lotes existentes para lotes ou parcelas não especificados  </h4>
             </div>
             <div class="modal-body">
                 <div class="container-fluid">
-                    <b>Transactions may be uploaded in an Excel file (.xls or .xlsx)</b>
+                    <b>As transações podem ser enviadas em um arquivo Excel (.xls ou .xlsx)</b>
                     <br />
-                    <b>Header:</b>
+                    <b>Cabeçalho:</b>
                     <br>
-                    The first row (header) must contain the following:
+                    A primeira linha (cabeçalho) deve conter os seguintes campos:
                     <br />
                     <table class="table table-hover table-bordered table-condensed" >
                         <thead></thead>
@@ -427,21 +427,21 @@
                             </tr>
                         </tbody>
                     </table>
-                    <b>Required fields:</b>
+                    <b>Campos obrigatórios:</b>
                     <ul>
-                        <li><b>from_seedlot_name:</b> Must exist in the database. Seeds were taken from this seedlot.</li>
+                        <li><b>from_seedlot_name:</b> Deve existir no banco de dados. As sementes foram retiradas deste lote.</li>
                         <li>
-                            <b>amount:</b> Number of seeds being transaferred. Can be provided in conjunction with weight(g). Must provide a value for amount or weight(g) or both.
-                            <br/><b>AND/OR</b><br/>
-                            <b>weight(g):</b> Weight in grams of seedlot being transferred. Can be provided in conjunction with amount. Must provide a value for amount or weight(g) or both.
+                            <b>amount:</b> Número de sementes transferidas. Pode ser informado junto com <code>weight(g)</code>. Informe <code>amount</code>, <code>weight(g)</code> ou ambos.
+                            <br/><b>E/OU</b><br/>
+                            <b>weight(g):</b> Peso em gramas das sementes transferidas. Pode ser informado junto com <code>amount</code>. Informe <code>amount</code>, <code>weight(g)</code> ou ambos.
                         </li>
-                        <li><b>operator_name:</b> Name of the person who oversaw the transaction process. Can be any name.</li>
-                        <li><b>transaction_description:</b> Information about why this transaction is processed.</li>
+                        <li><b>operator_name:</b> Nome da pessoa responsável pela transação. Pode ser qualquer nome.</li>
+                        <li><b>transaction_description:</b> Motivo da realização desta transação.</li>
                     </ul>
                 </div>
             </div>
             <div class="modal-footer">
-                <button id="close_seedlots_to_unspecified_names_info_dialog" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button id="close_seedlots_to_unspecified_names_info_dialog" type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
             </div>
         </div>
     </div>
@@ -575,7 +575,7 @@ function upload_transactions_file() {
             if (uploadSeedlotsToPlots === ''){
                 var uploadSeedlotsToUnspecified = jQuery("#seedlots_to_unspecified_names_file").val();
                 if (uploadSeedlotsToUnspecified === '') {
-                    alert("Please select a file");
+                    alert("Selecione um arquivo");
                     return;
                 }
             }
@@ -586,11 +586,11 @@ function upload_transactions_file() {
         var breeding_program = jQuery("#new_seedlot_breeding_program_id").val();
         var location = jQuery("#new_seedlot_location").val();
         if (breeding_program === '') {
-            alert("Please choose a breeding program for new seedlots");
+            alert("Selecione um programa de melhoramento para os novos lotes");
             return;
         }
         if (location === '') {
-            alert("Please give a location for new seedlots");
+            alert("Informe um local para os novos lotes");
             return;
         }
     }

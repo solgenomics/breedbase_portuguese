@@ -9,41 +9,41 @@ $vector_name
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="reset" class="close" id="upload_qPCR_data_dismiss_button_1" name="upload_qPCR_data_dismiss_button" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="uploadqPCRDataDialog">Upload qPCR Data (Cq values)</h4>
+                <button type="reset" class="close" id="upload_qPCR_data_dismiss_button_1" name="upload_qPCR_data_dismiss_button" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="uploadqPCRDataDialog">Enviar dados de qPCR (valores Cq)</h4>
             </div>
             <div class="modal-body">
                 <div class="container-fluid">
                     <center>
-                        <&| /page/explanation.mas, title=>'Template Information' &>
+                        <&| /page/explanation.mas, title=>'Informações do modelo' &>
                             <p>
-                                <b>File format information</b>
+                                <b>Informações sobre o formato do arquivo</b>
                                 <br>
-                                <a id="Cq_values_upload_spreadsheet_format_info">Spreadsheet Format</a>
+                                <a id="Cq_values_upload_spreadsheet_format_info">Formato da planilha</a>
                             </p>
                         </&>
                     </center>
                     <form class="form-horizontal" role="form" method="post" enctype="multipart/form-data" encoding="multipart/form-data" id="upload_qPCR_data_form" name="upload_qPCR_data_form">
                         <div class="form-group">
-                            <label class="col-sm-4 control-label">Tissue Type: </label>
+                            <label class="col-sm-4 control-label">Tipo de tecido: </label>
                             <div class="col-sm-8" >
                                 <div id="qPCR_tissue_type_div"></div>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-4 control-label">Endogenous Control: </label>
+                            <label class="col-sm-4 control-label">Controle endógeno: </label>
                             <div class="col-sm-8" >
                                 <div id="qPCR_endogenous_control_div"></div>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-4 control-label" >Assay Date: </label>
+                            <label class="col-sm-4 control-label" >Data do ensaio: </label>
                             <div class="col-sm-8">
                                 <input class="form-control" id="assay_date" name="assay_date" title="assay_date" type="text" />
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-4 control-label">Normalization Method: </label>
+                            <label class="col-sm-4 control-label">Método de normalização: </label>
                             <div class="col-sm-8" >
                                 <div id="qPCR_normalization_methods_div"></div>
                             </div>
@@ -51,13 +51,13 @@ $vector_name
                         <div id="normalization_method_description_div">
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-4 control-label">Notes:</label>
+                            <label class="col-sm-4 control-label">Observações:</label>
                             <div class="col-sm-8">
                                 <textarea class="form-control" id="qPCR_notes" name="qPCR_notes" ></textarea>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-4 control-label">Upload File (Cq values): </label>
+                            <label class="col-sm-4 control-label">Enviar arquivo (valores Cq): </label>
                             <div class="col-sm-8" >
                                 <input type="file" name="Cq_qPCR_data_file" id="Cq_qPCR_data_file" encoding="multipart/form-data" />
                                 <input name="qPCR_data_vector_id" id="qPCR_data_vector_id" type="hidden" value="<% $vector_id %>">
@@ -68,8 +68,8 @@ $vector_name
                 </div>
             </div>
             <div class="modal-footer">
-                <button id="upload_qPCR_data_dismiss_button_2" name="upload_qPCR_data_dismiss_button" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" name="upload_qPCR_data_submit" id="upload_qPCR_data_submit">Upload</button>
+                <button id="upload_qPCR_data_dismiss_button_2" name="upload_qPCR_data_dismiss_button" type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                <button type="button" class="btn btn-primary" name="upload_qPCR_data_submit" id="upload_qPCR_data_submit">Enviar</button>
             </div>
         </div>
     </div>
@@ -79,19 +79,19 @@ $vector_name
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="qPCRDataSavedDialog">Success</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="qPCRDataSavedDialog">Sucesso</h4>
             </div>
             <div class="modal-body">
                 <div class="container-fluid">
                     <p>
                         <span class="ui-icon ui-icon-circle-check" style="float: left; margin: 0 7px 50px 0;"></span>
-                        The qPCR data were saved successfully.
+                        Os dados de qPCR foram salvos com sucesso.
                     </p>
                 </div>
             </div>
             <div class="modal-footer">
-                <button id="dismiss_qPCR_data_saved_dialog" type="button" class="btn btn-default" data-dismiss="modal">Close & Reload</button>
+                <button id="dismiss_qPCR_data_saved_dialog" type="button" class="btn btn-default" data-dismiss="modal">Fechar e recarregar</button>
             </div>
         </div>
     </div>
@@ -101,8 +101,8 @@ $vector_name
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="uploadqPCRDataErrorDialog">Upload qPCR Data Error</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="uploadqPCRDataErrorDialog">Erro no envio dos dados de qPCR</h4>
             </div>
             <div class="modal-body">
                 <div class="container-fluid">
@@ -112,7 +112,7 @@ $vector_name
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
             </div>
         </div>
     </div>
@@ -122,14 +122,14 @@ $vector_name
     <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content">
             <div class="modal-header" style="text-align: center">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="uploadCQqPCRDataInfoDialog">Upload Template Information For qPCR Data (Cq values)</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="uploadCQqPCRDataInfoDialog">Informações do modelo de envio de dados de qPCR (valores Cq)</h4>
             </div>
             <div class="modal-body">
                 <div class="container-fluid">
-                    <b>Header:</b>
+                    <b>Cabeçalho:</b>
                     <br>
-                    The first row (header) should contain the following:
+                    A primeira linha (cabeçalho) deve conter os seguintes campos:
                     <br />
                     <table class="table table-hover table-bordered table-condensed" >
                         <thead></thead>
@@ -143,16 +143,16 @@ $vector_name
                         </tbody>
                     </table>
                     <br>
-                    <b>Required fields:</b>
+                    <b>Campos obrigatórios:</b>
                     <ul>
-                        <li>accession_name (must exist in the database)</li>
-                        <li>replicate_number (If there is no replicate, please indicate 1. If any sample has replicates, the derived normalized value is an average value.)</li>
-                        <li>gene (gene names in the spreadsheet must be stored in the database as genes in the vector construct or the selected endogenous control. <b>Each vector construct can be associated with more than one gene by using comma-separated values (e.g., geneA,geneB,geneC).</b>)</li>
-                        <li>Cq (must be numeric values. Cq values are used to calculate normalized values, both Cq and the derived normalized values are stored in the database. If there is no Cq value, please use ND)</li>
+                        <li>accession_name (deve existir no banco de dados)</li>
+                        <li>replicate_number (informe 1 se não houver repetição; se uma amostra tiver repetições, o valor normalizado derivado será a média)</li>
+                        <li>gene (os genes da planilha devem estar cadastrados como genes da construção vetorial ou do controle endógeno selecionado; <b>uma construção vetorial pode ter vários genes separados por vírgulas, por exemplo, geneA,geneB,geneC</b>)</li>
+                        <li>Cq (valores numéricos usados para calcular os valores normalizados; ambos são armazenados no banco de dados; se não houver valor Cq, use ND)</li>
                     </ul>
                     <br>
                     <b>For example:</b>
-                    Cq data of an endogenous control (geneA) and two targets (geneB and geneC). Each sample has two replicates. Note: there is no need to group the same replicate together as in the sample spreadsheet.
+                    Dados Cq de um controle endógeno (geneA) e dois alvos (geneB e geneC). Cada amostra tem duas repetições. Não é necessário agrupar as mesmas repetições como na planilha de exemplo.
                     <br />
                     <table class="table table-hover table-bordered table-condensed" >
                         <thead></thead>
@@ -242,7 +242,7 @@ $vector_name
                 <& /help/file_upload_type.mas, type => "qPCR Data", optional_column => 0 &>
             </div>
             <div class="modal-footer">
-                <button id="close_relative_expression_data_info_upload_dialog" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button id="close_relative_expression_data_info_upload_dialog" type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
             </div>
         </div>
     </div>
@@ -266,7 +266,15 @@ jQuery(document).ready(function(){
             "showDropdowns": true,
             "autoUpdateInput": true,
             locale: {
-                format: 'YYYY-MM-DD'
+                format: 'YYYY-MM-DD',
+                applyLabel: 'Aplicar',
+                cancelLabel: 'Cancelar',
+                fromLabel: 'De',
+                toLabel: 'Até',
+                customRangeLabel: 'Intervalo personalizado',
+                weekLabel: 'Sem.',
+                daysOfWeek: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'],
+                monthNames: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro']
             },
         },
     );
@@ -275,7 +283,7 @@ jQuery(document).ready(function(){
         let normalization_method = ''
         normalization_method = jQuery("#qPCR_normalization_method").val();
         if (normalization_method == "CASS_Delta_Cq"){
-            jQuery('#normalization_method_description_div').html('<br/><div class="well" style="text-align: center"><p>Normalized values are calculated using the formula:<br><b>2^Cq(Endogenous Control) / 2^Cq(Target)</b>.</p></div>');
+            jQuery('#normalization_method_description_div').html('<br/><div class="well" style="text-align: center"><p>Os valores normalizados são calculados pela fórmula:<br><b>2^Cq(Controle endógeno) / 2^Cq(Alvo)</b>.</p></div>');
         } else {
             jQuery('#normalization_method_description_div').html('');
         }
@@ -297,27 +305,27 @@ jQuery(document).ready(function(){
         const normalization_method = jQuery("#qPCR_normalization_method").val();
 
         if (tissue_type === ''){
-            alert("Please select a tissue type");
+            alert("Selecione um tipo de tecido");
             return;
         }
 
         if (endogenous_control === ''){
-            alert("Please select an endogenous control");
+            alert("Selecione um controle endógeno");
             return;
         }
 
         if (assay_date === ''){
-            alert("Please provide assay date");
+            alert("Informe a data do ensaio");
             return;
         }
 
         if (normalization_method === '') {
-            alert("Please select a normalization method");
+            alert("Selecione um método de normalização");
             return;
         }
 
         if (Cq_upload_file === ''){
-            alert("Please select a file");
+            alert("Selecione um arquivo");
             return;
         }
 

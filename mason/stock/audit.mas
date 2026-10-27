@@ -83,15 +83,15 @@ jQuery(document).ready(function(){
             jQuery('#stock_audit_results').DataTable({
                 data: json_object,
                 columns: [
-                    { title: 'Timestamp' },
-                    { title: 'Operation' },
-                    { title: 'Username' },
-                    { title: 'Logged in User' },
-                    { title: 'Before' },
-                    { title: 'After' },
-                    { title: 'Transaction Code'},
-                    { title: 'Primary Key'},
-                    { title: 'Is Undo'},
+                    { title: 'Data e hora' },
+                    { title: 'Operação' },
+                    { title: 'Nome de usuário' },
+                    { title: 'Usuário conectado' },
+                    { title: 'Antes' },
+                    { title: 'Depois' },
+                    { title: 'Código da transação'},
+                    { title: 'Chave primária'},
+                    { title: 'É uma reversão'},
                 ],
                 "rowCallback" : function (row, data, index){
                     if(data[1] == "INSERT"){

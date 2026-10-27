@@ -9,34 +9,34 @@ $accession_stock_id
     <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title" id="addPropagationIdDialog">Add New Propagation ID</h4>
+                <h4 class="modal-title" id="addPropagationIdDialog">Adicionar novo ID de propagação</h4>
             </div>
             <div class="modal-body" id = "propagation_id_dialog">
                 <div class="container-fluid">
                     <form class="form-horizontal" role="form" method="post" id="add_new_propagation_id_form" name="add_new_propagation_id_form">
                         <div class="form-group">
-                            <label class="col-sm-4 control-label">Group ID: </label>
+                            <label class="col-sm-4 control-label">ID do grupo: </label>
                             <div class="col-sm-8" >
                                 <input class="form-control" name="propagation_group_id" id="propagation_group_id" disabled value="<% $propagation_group_name %>">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-4 control-label">Propagation Identifier: </label>
+                            <label class="col-sm-4 control-label">Identificador de propagação: </label>
                             <div class="col-sm-8" >
-                                <input class="form-control" type="text" id="new_propagation_identifier" name="new_propagation_identifier" placeholder="Must not exist in the database.">
+                                <input class="form-control" type="text" id="new_propagation_identifier" name="new_propagation_identifier" placeholder="Não pode existir no banco de dados.">
                             </div>
                         </div>
                         <div class="form-group" id = "get_propagation_rootstock_name">
-                            <label class="col-sm-4 control-label">Rootstock Name: </label>
+                            <label class="col-sm-4 control-label">Nome do porta-enxerto: </label>
                             <div class="col-sm-8" >
-                                <input class="form-control" type="text" id="propagation_rootstock_name" name="propagation_rootstock_name" placeholder="Must exist in the database">
+                                <input class="form-control" type="text" id="propagation_rootstock_name" name="propagation_rootstock_name" placeholder="Deve existir no banco de dados">
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button id="add_propagation_id_dismiss_button" name="add_propagation_id_dismiss_button" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button id="submit_new_propagation_id" type="button" class="btn btn-primary" >Add</button>
+                    <button id="add_propagation_id_dismiss_button" name="add_propagation_id_dismiss_button" type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                    <button id="submit_new_propagation_id" type="button" class="btn btn-primary" >Adicionar</button>
                 </div>
             </form>
         </div>
@@ -47,19 +47,19 @@ $accession_stock_id
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="addPropagationIdSavedDialog">Success</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="addPropagationIdSavedDialog">Sucesso</h4>
             </div>
             <div class="modal-body">
                 <div class="container-fluid">
                     <p>
                         <span class="ui-icon ui-icon-circle-check" style="float: left; margin: 0 7px 50px 0;"></span>
-                        The propagation identifier was saved successfully.
+                        O identificador de propagação foi salvo com sucesso.
                     </p>
                 </div>
             </div>
             <div class="modal-footer">
-                <button id="dismiss_propagation_id_saved_dialog" type="button" class="btn btn-default" data-dismiss="modal">Close & Reload</button>
+                <button id="dismiss_propagation_id_saved_dialog" type="button" class="btn btn-default" data-dismiss="modal">Fechar e recarregar</button>
             </div>
         </div>
     </div>
@@ -75,7 +75,7 @@ jQuery(document).ready(function(){
         const propagation_group_stock_id = "<%$propagation_group_id%>";
 
         if (propagation_identifier == '') {
-            alert("Please provide a propagation identifier");
+            alert("Informe um identificador de propagação");
             return;
         }
 
@@ -103,7 +103,7 @@ jQuery(document).ready(function(){
             },
             error: function(response){
                 jQuery('#working_modal').modal('hide');
-                alert('An error occurred adding propagation identifier');
+                alert('Ocorreu um erro ao adicionar o identificador de propagação');
             }
         });
     });

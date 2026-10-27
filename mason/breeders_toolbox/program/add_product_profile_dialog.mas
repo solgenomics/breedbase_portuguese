@@ -7,40 +7,40 @@ $program_name
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header" style="text-align: center">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="addProductProfileDialog">Add Product Profile</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="addProductProfileDialog">Adicionar perfil de produto</h4>
             </div>
             <div class="modal-body">
                 <div class="container-fluid">
                     <form class="form-horizontal" role="form">
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">Breeding Program: </label>
+                            <label class="col-sm-3 control-label">Programa de melhoramento: </label>
                             <div class="col-sm-9">
                                 <input class="form-control" name="profile_program_name" id="profile_program_name" disabled value="<% $program_name %>">
                                 <input name="profile_program_id" id="profile_program_id" type="hidden" value="<% $program_id %>">
                             </div>
                         </div><br/><br/>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">Product Profile Name: </label>
+                            <label class="col-sm-3 control-label">Nome do perfil de produto: </label>
                             <div class="col-sm-9">
                                 <input class="form-control" id="new_product_profile_name" name="new_product_profile_name" type="text"/>
                             </div>
                         </div><br/><br/>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">Scope: </label>
+                            <label class="col-sm-3 control-label">Escopo: </label>
                             <div class="col-sm-9">
                                 <input class="form-control" id="new_product_profile_scope" name="new_product_profile_scope" type="text"/>
                             </div>
                         </div><br/><br/>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label" for="select_list_list_selectxx">Select a List of Traits: </label>
+                            <label class="col-sm-3 control-label" for="select_list_list_selectxx">Selecione uma lista de características: </label>
                             <div class="col-sm-9">
                                 <span id="select_list_div"></span>
                             </div>
                         </div>
                         <div class="form-group form-group-sm" id="target_value_section" style="display: none" >
                             <hr>
-                            <center><h4>Add Target Value:</h4></center>
+                            <center><h4>Adicionar valor-alvo:</h4></center>
                             <div id="target_value_for_trait" >
                             </div>
                         </div
@@ -48,8 +48,8 @@ $program_name
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-info" id="submit_new_profile" >Submit</button>
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-info" id="submit_new_profile" >Enviar</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
             </div>
         </div>
     </div>
@@ -87,17 +87,17 @@ jQuery(document).ready(function () {
         trait_list_json = JSON.stringify(trait_list);
 
         if (product_profile_name === '') {
-            alert("Please supply a product profile name");
+            alert("Informe um nome para o perfil de produto");
             return;
         }
 
         if (product_profile_scope === '') {
-            alert("Please supply a product profile scope");
+            alert("Informe o escopo do perfil de produto");
             return;
         }
 
         if (trait_list_id === '') {
-            alert("Please select a trait list");
+            alert("Selecione uma lista de características");
             return;
         }
 
@@ -125,17 +125,17 @@ jQuery(document).ready(function () {
                 jQuery("#working_modal").modal("show");
             },
             error: function(response) {
-                alert("An error occurred. Please try again later!" + JSON.stringify(response));
+                alert("Ocorreu um erro. Tente novamente mais tarde!" + JSON.stringify(response));
             },
             parseerror: function(response) {
-                alert("A parse error occurred. Please try again." + response);
+                alert("Ocorreu um erro ao processar a resposta. Tente novamente." + response);
             },
             success: function(response) {
                 jQuery("#working_modal").modal("hide");
                 if (response.error) {
                     alert(response.error);
                 } else {
-                    alert('The product profile was saved successfully.');
+                    alert('O perfil de produto foi salvo com sucesso.');
                 }
             },
 

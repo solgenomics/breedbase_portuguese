@@ -2,7 +2,7 @@
 $location
 </%args>
 
-<p id="trial_weather_check">[loading...]</p>
+<p id="trial_weather_check">[carregando...]</p>
 
 <script type="text/javascript" defer="defer">
 jQuery(document).ready(function () {
@@ -15,11 +15,11 @@ jQuery(document).ready(function () {
     for (var i=0; i < locations.length; i++) {
       if (locations[i] == trial_location) {
         location_status = 'found';
-        jQuery('#trial_weather_check').html('<a href="https://weather.rtbbase.org?location='+trial_location+'">Weather for '+trial_location+'</a>')
+        jQuery('#trial_weather_check').html('<a href="https://weather.rtbbase.org?location='+trial_location+'">Dados meteorológicos de '+trial_location+'</a>')
       }
     }
     if (location_status != 'found') {
-      jQuery('#trial_weather_check').html('<p><i> No weather data available for location '+trial_location+'</i></p>')
+      jQuery('#trial_weather_check').html('<p><i>Nenhum dado meteorológico disponível para o local '+trial_location+'</i></p>')
     }
   });
 

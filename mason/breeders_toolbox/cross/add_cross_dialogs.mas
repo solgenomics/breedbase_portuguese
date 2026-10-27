@@ -22,275 +22,275 @@ $locations
     <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content ui-front">
             <div class="modal-header">
-                <button type="reset" class="close" id="new_cross_close_modal_1" name="new_cross_close_modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="createNewCrosses">Add New Cross</h4>
+                <button type="reset" class="close" id="new_cross_close_modal_1" name="new_cross_close_modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="createNewCrosses">Adicionar novo cruzamento</h4>
             </div>
             <div class="modal-body">
                 <div class="container-fluid">
 
                     <&| /util/workflow.mas, id=> "add_cross_workflow" &>
-                        <&| /util/workflow.mas:step, title=> "Intro" &>
-                            <& /page/page_title.mas, title=>"What is a cross?" &>
+                        <&| /util/workflow.mas:step, title=> "Introdução" &>
+                            <& /page/page_title.mas, title=>"O que é um cruzamento?" &>
 
                             <ul>
-                                <li>The Cross Tool can track any pollinations in a breeding program.</li>
-                                <li>Each cross has a globally unique cross id.</li>
-                                <li>Supported cross types are: biparental, self, open, backcross, sib, polycross, bulk, bulk_self, bulk_open, doubled_haploid, or dihaploid_induction</li>
-                                <li>For an open pollinated cross, the cross can be defined as between female accession A and male population P1 (populations in the database are defined strictly as groups of accessions). If the male parent is not known, it can be left blank.</li>
-                                <li>For backcross cross type, cross unique id can be used as one of the parents.</li>
-                                <li>An individual cross can be linked to the specific female plot or plant, as well as to the specific male plot or plant.</li>
-                                <li>A cross can have other data associated to it, such as number of flowers, pollination date, etc.</li>
-                                <li>Seed produced by a cross can be managed using a seedlot.</li>
-                                <li>Progenies from a cross can become named accessions in the database.</li>
+                                <li>A ferramenta de cruzamentos acompanha qualquer polinização de um programa de melhoramento.</li>
+                                <li>Cada cruzamento possui um ID exclusivo global.</li>
+                                <li>Os tipos aceitos são: biparental, self, open, backcross, sib, polycross, bulk, bulk_self, bulk_open, doubled_haploid ou dihaploid_induction.</li>
+                                <li>Um cruzamento por polinização aberta pode ocorrer entre o acesso feminino A e a população masculina P1. No banco de dados, populações são estritamente grupos de acessos. Se o genitor masculino for desconhecido, deixe-o em branco.</li>
+                                <li>Em um retrocruzamento, um ID exclusivo de cruzamento pode ser usado como um dos genitores.</li>
+                                <li>Um cruzamento individual pode ser vinculado às parcelas ou plantas específicas dos genitores feminino e masculino.</li>
+                                <li>Outros dados podem ser associados, como número de flores e data de polinização.</li>
+                                <li>As sementes produzidas podem ser gerenciadas em um lote de sementes.</li>
+                                <li>As progênies podem se tornar acessos nomeados no banco de dados.</li>
                             </ul>
 
                             <br/>
                             <center>
-                                <button id="next_step_cross_intro" class="btn btn-primary" onclick="Workflow.complete(this);">Go to Next Step</button>
+                                <button id="next_step_cross_intro" class="btn btn-primary" onclick="Workflow.complete(this);">Ir para a próxima etapa</button>
                             </center>
                         </&>
-                        <&| /util/workflow.mas:step, title=> "Crossing Experiment" &>
-                            <& /page/page_title.mas, title=>"Select a crossing experiment" &>
+                        <&| /util/workflow.mas:step, title=> "Experimento de cruzamento" &>
+                            <& /page/page_title.mas, title=>"Selecione um experimento de cruzamento" &>
 
-                            <p>Crossing experiments are for grouping crosses together. The grouping is most often done for crosses derived from the same field trial, the same year, or for crosses that have the same breeding objective.</p>
+                            <p>Os experimentos agrupam cruzamentos derivados do mesmo ensaio de campo, realizados no mesmo ano ou com o mesmo objetivo de melhoramento.</p>
                             <center>
-                                <button class="btn btn-info" name="create_crossingtrial_link">If you need to create a crossing experiment, click here</button><br/><br/>
-                                <button id="next_step_cross_experiment" class="btn btn-primary" onclick="Workflow.complete(this);">Once you have a crossing experiment, go to Next Step</button>
+                                <button class="btn btn-info" name="create_crossingtrial_link">Clique aqui para criar um experimento de cruzamento</button><br/><br/>
+                                <button id="next_step_cross_experiment" class="btn btn-primary" onclick="Workflow.complete(this);">Depois de selecionar o experimento, vá para a próxima etapa</button>
                             </center>
 
                         </&>
 
                         <form class="form-horizontal" role="form" name="create_cross_form" id="create_cross_form">
 
-                            <&| /util/workflow.mas:step, title=> "Enter cross information" &>
-                                <& /page/page_title.mas, title=>"Enter basic information about the cross" &>
+                            <&| /util/workflow.mas:step, title=> "Informações do cruzamento" &>
+                                <& /page/page_title.mas, title=>"Informe os dados básicos do cruzamento" &>
 
-                                <&| /page/explanation.mas, title=>'Cross Type information' &>
+                                <&| /page/explanation.mas, title=>'Informações sobre os tipos de cruzamento' &>
                                     <p>
-                                        <b>Cross type information</b>
+                                        <b>Informações sobre os tipos de cruzamento</b>
                                         <br>
-                                        <a id="cross_type_info">Descriptions of cross types</a>
+                                        <a id="cross_type_info">Descrições dos tipos de cruzamento</a>
                                     </p>
                                 </&>
                                 <div class="form-group">
-                                    <label class="col-sm-3 control-label">Breeding Program: </label>
+                                    <label class="col-sm-3 control-label">Programa de melhoramento: </label>
                                     <div class="col-sm-9">
                                         <div id="add_cross_breeding_program_select_div" name="add_cross_breeding_program_select_div">
                                         </div>
                                     </div>
                                 </div><br/><br/>
                                 <div class="form-group">
-                                    <label class="col-sm-3 control-label">Crossing Experiment: </label>
+                                    <label class="col-sm-3 control-label">Experimento de cruzamento: </label>
                                     <div class="col-sm-9">
                                         <div id="add_cross_crossing_experiment_select_div" name="add_cross_crossing_experiment_select_div" >
                                         </div>
                                     </div>
                                 </div><br/><br/>
                                 <div class="form-group">
-                                    <label class="col-sm-3 control-label">Cross Unique ID: </label>
+                                    <label class="col-sm-3 control-label">ID exclusivo do cruzamento: </label>
                                     <div class="col-sm-9">
                                         <input class="form-control" type="text" id="cross_name" name="cross_name" />
                                     </div>
                                 </div><br/><br/>
                                 <div class="form-group">
-                                    <label class="col-sm-3 control-label">Cross Combination (optional): </label>
+                                    <label class="col-sm-3 control-label">Combinação do cruzamento (opcional): </label>
                                     <div class="col-sm-9">
-                                        <input class="form-control" type="text" id="dialog_cross_combination" name="dialog_cross_combination" placeholder="e.g. female_name/male_name"/>
+                                        <input class="form-control" type="text" id="dialog_cross_combination" name="dialog_cross_combination" placeholder="ex.: nome_feminino/nome_masculino"/>
                                     </div>
                                 </div><br/><br/>
                                 <div class="form-group">
-                                    <label class="col-sm-3 control-label">Cross Type: </label>
+                                    <label class="col-sm-3 control-label">Tipo de cruzamento: </label>
                                     <div class="col-sm-9">
                                         <select class="form-control" id="cross_type">
-                                            <option value="">Select a cross type</option>
+                                            <option value="">Selecione o tipo de cruzamento</option>
                                             <option value="biparental">biparental</option>
                                             <option value="self">self</option>
-                                            <option value="open">open pollinated</option>
-                                            <option value="backcross">backcross</option>
+                                            <option value="open">polinização aberta</option>
+                                            <option value="backcross">retrocruzamento</option>
                                             <option value="sib">sib</option>
                                             <option value="bulk">bulk</option>
-                                            <option value="bulk_self">bulk selfed</option>
-                                            <option value="bulk_open">bulk and open pollinated</option>
-                                            <option value="doubled_haploid">doubled haploid</option>
-                                            <option value="dihaploid_induction">dihaploid induction</option>
+                                            <option value="bulk_self">bulk autopolinizado</option>
+                                            <option value="bulk_open">bulk com polinização aberta</option>
+                                            <option value="doubled_haploid">duplo-haploide</option>
+                                            <option value="dihaploid_induction">indução di-haploide</option>
                                             <option value="polycross">polycross</option>
-                                            <option value="reciprocal">reciprocal</option>
-                                            <option value="multicross">multicross</option>
+                                            <option value="reciprocal">recíproco</option>
+                                            <option value="multicross">multicruzamento</option>
                                         </select>
                                     </div>
                                 </div>
                                 <br/><br/>
                                 <center>
-                                    <button id="next_step_cross_information" class="btn btn-primary" onclick="Workflow.complete(this);">Go to Next Step</button>
+                                    <button id="next_step_cross_information" class="btn btn-primary" onclick="Workflow.complete(this);">Ir para a próxima etapa</button>
                                 </center>
                             </&>
-                            <&| /util/workflow.mas:step, title=> "Enter parentage information" &>
-                                <& /page/page_title.mas, title=>"Enter basic information about the cross" &>
+                            <&| /util/workflow.mas:step, title=> "Informações de parentesco" &>
+                                <& /page/page_title.mas, title=>"Informe os genitores do cruzamento" &>
 
                                 <div class="form-group" id="get_maternal_parent" style="display: none">
-                                    <label class="col-sm-2 control-label">Female Parent: </label>
+                                    <label class="col-sm-2 control-label">Genitor feminino: </label>
                                     <div class="col-sm-10">
-                                        <input class="form-control" id="maternal_parent" type="text" name="maternal" placeholder="Enter female parent name" />
+                                        <input class="form-control" id="maternal_parent" type="text" name="maternal" placeholder="Informe o nome do genitor feminino" />
                                     </div><br/><br/>
                                 </div>
                                 <div class="form-group" id="get_paternal_parent" style="display: none">
-                                    <label class="col-sm-2 control-label">Male Parent: </label>
+                                    <label class="col-sm-2 control-label">Genitor masculino: </label>
                                     <div class="col-sm-10">
-                                        <input class="form-control" id="paternal_parent" type="text" name="paternal" placeholder="Enter male parent name"  />
+                                        <input class="form-control" id="paternal_parent" type="text" name="paternal" placeholder="Informe o nome do genitor masculino"  />
                                     </div><br/><br/>
                                 </div>
                                 <div class="form-group" id="get_selfed_parent" style="display: none">
-                                    <label class="col-sm-2 control-label">Selfed Parent: </label>
+                                    <label class="col-sm-2 control-label">Genitor autopolinizado: </label>
                                     <div class="col-sm-10">
-                                        <input class="form-control" id="selfed_parent" type="text" name="selfed" placeholder="Enter parent name" />
+                                        <input class="form-control" id="selfed_parent" type="text" name="selfed" placeholder="Informe o nome do genitor" />
                                     </div><br/><br/>
                                 </div>
                                 <div class="form-group" id="get_open_maternal_parent" style="display: none">
-                                    <label class="col-sm-2 control-label">Female Parent: </label>
+                                    <label class="col-sm-2 control-label">Genitor feminino: </label>
                                     <div class="col-sm-10">
-                                        <input class="form-control" id="open_maternal_parent" type="text" name="open maternal" placeholder="Enter female parent name" />
+                                        <input class="form-control" id="open_maternal_parent" type="text" name="open maternal" placeholder="Informe o nome do genitor feminino" />
                                     </div><br/><br/>
                                 </div>
                                 <div class="form-group" id="get_open_paternal_population" style="display: none">
-                                    <div class="col-sm-2"><center><label class="control-label">Male Population: </label><i>(optional)</i></center></div>
+                                    <div class="col-sm-2"><center><label class="control-label">População masculina: </label><i>(opcional)</i></center></div>
                                     <div class="col-sm-10">
-                                        <input class="form-control" id="open_paternal_population" type="text" name="open paternal" placeholder="Enter male population name" />
+                                        <input class="form-control" id="open_paternal_population" type="text" name="open paternal" placeholder="Informe o nome da população masculina" />
                                     </div><br/><br/>
                                 </div>
                                 <div class="form-group" id="get_bulk_maternal_population" style="display: none">
-                                    <label class="col-sm-2 control-label">Female Population: </label>
+                                    <label class="col-sm-2 control-label">População feminina: </label>
                                     <div class="col-sm-10">
-                                        <input class="form-control" id="bulk_maternal_population" type="text" name="bulk maternal" placeholder="Enter female population name" />
+                                        <input class="form-control" id="bulk_maternal_population" type="text" name="bulk maternal" placeholder="Informe o nome da população feminina" />
                                     </div><br/><br/>
                                 </div>
                                 <div class="form-group" id="get_bulk_paternal_parent" style="display: none">
-                                    <label class="col-sm-2 control-label">Male Parent: </label>
+                                    <label class="col-sm-2 control-label">Genitor masculino: </label>
                                     <div class="col-sm-10">
-                                        <input class="form-control" id="bulk_paternal_parent" type="text" name="bulk paternal" placeholder="Enter male parent name" />
+                                        <input class="form-control" id="bulk_paternal_parent" type="text" name="bulk paternal" placeholder="Informe o nome do genitor masculino" />
                                     </div><br/><br/>
                                 </div>
                                 <div class="form-group" id="get_bulk_selfed_population" style="display: none">
-                                    <label class="col-sm-2 control-label">Selfed Population: </label>
+                                    <label class="col-sm-2 control-label">População autopolinizada: </label>
                                     <div class="col-sm-10">
-                                        <input class="form-control" id="bulk_selfed_population" type="text" name="bulk selfed" placeholder="Enter parent population name" />
+                                        <input class="form-control" id="bulk_selfed_population" type="text" name="bulk selfed" placeholder="Informe o nome da população genitora" />
                                     </div><br/><br/>
                                 </div>
                                 <div class="form-group" id="get_bulk_open_maternal_population" style="display: none">
-                                    <label class="col-sm-2 control-label">Female Population: </label>
+                                    <label class="col-sm-2 control-label">População feminina: </label>
                                     <div class="col-sm-10">
-                                        <input class="form-control" id="bulk_open_maternal_population" type="text" name="bulk open maternal" placeholder="Enter female population name" />
+                                        <input class="form-control" id="bulk_open_maternal_population" type="text" name="bulk open maternal" placeholder="Informe o nome da população feminina" />
                                     </div><br/><br/>
                                 </div>
                                 <div class="form-group" id="get_bulk_open_paternal_population" style="display: none">
-                                    <div class="col-sm-2"><center><label class="control-label">Male Population: </label><i>(optional)</i></center></div>
+                                    <div class="col-sm-2"><center><label class="control-label">População masculina: </label><i>(opcional)</i></center></div>
                                     <div class="col-sm-10">
-                                        <input class="form-control" id="bulk_open_paternal_population" type="text" name="bulk open paternal" placeholder="Enter male population name" />
+                                        <input class="form-control" id="bulk_open_paternal_population" type="text" name="bulk open paternal" placeholder="Informe o nome da população masculina" />
                                     </div><br/><br/>
                                 </div>
                                 <div class="form-group" id="get_doubled_haploid_parent" style="display: none">
-                                    <label class="col-sm-2 control-label">Doubled Haploid Parent: </label>
+                                    <label class="col-sm-2 control-label">Genitor do duplo-haploide: </label>
                                     <div class="col-sm-10">
-                                        <input class="form-control" id="doubled_haploid_parent" type="text" name="doubled haploid" placeholder="Enter parent name" />
+                                        <input class="form-control" id="doubled_haploid_parent" type="text" name="doubled haploid" placeholder="Informe o nome do genitor" />
                                     </div><br/><br/>
                                 </div>
                                 <div class="form-group" id="get_dihaploid_induction_parent" style="display: none">
-                                    <label class="col-sm-2 control-label">Dihaploid induction Parent: </label>
+                                    <label class="col-sm-2 control-label">Genitor da indução di-haploide: </label>
                                     <div class="col-sm-10">
-                                        <input class="form-control" id="dihaploid_induction_parent" type="text" name="dihaploid_induction" placeholder="Enter parent name" />
+                                        <input class="form-control" id="dihaploid_induction_parent" type="text" name="dihaploid_induction" placeholder="Informe o nome do genitor" />
                                      </div><br/><br/>
                                 </div>
                                 <div class="form-group" id="polycross_accessions" style="display: none">
-                                    <label class="col-sm-2 control-label">Accessions to use in Polycross: </label>
+                                    <label class="col-sm-2 control-label">Acessos a usar no policruzamento: </label>
                                     <div class="col-sm-10">
                                         <div id="polycross_accession_list"></div>
                                     </div><br/><br/>
                                 </div>
                                 <div class="form-group" id="reciprocal_accessions" style="display: none">
-                                    <label class="col-sm-2 control-label">Accessions to use in Reciprocal cross: </label>
+                                    <label class="col-sm-2 control-label">Acessos a usar no cruzamento recíproco: </label>
                                     <div class="col-sm-10">
                                         <div id="reciprocal_accession_list"></div>
                                     </div><br/><br/>
                                 </div>
                                 <div class="form-group" id="maternal_accessions" style="display: none">
-                                    <label class="col-sm-2 control-label">Multicross Female Parents: </label>
+                                    <label class="col-sm-2 control-label">Genitores femininos do multicruzamento: </label>
                                     <div class="col-sm-10">
                                         <div id="maternal_accession_list"></div>
                                     </div><br/><br/>
                                 </div>
                                 <div class="form-group" id="paternal_accessions" style="display: none">
-                                    <label class="col-sm-2 control-label">Multicross Male Parents: </label>
+                                    <label class="col-sm-2 control-label">Genitores masculinos do multicruzamento: </label>
                                     <div class="col-sm-10">
                                         <div id="paternal_accession_list"></div>
                                     </div><br/><br/>
                                 </div>
                                 <div class="form-group" id="exact_parents" style="display: none">
-                                    <& /page/page_title.mas, title=>"Optional: If you choose to record exact cross parents, you can do so." &>
+                                    <& /page/page_title.mas, title=>"Opcional: registre os genitores exatos do cruzamento" &>
 
                                     <div class="form-group">
-                                        <label class="col-sm-2 control-label">Field Trial: </label>
+                                        <label class="col-sm-2 control-label">Ensaio de campo: </label>
                                         <div class="col-sm-10">
                                             <div class="input-group">
-                                                <input type ="text" class ="form-control" id="parents_field_trial" name="parents_field_trial" placeholder="Enter trial name">
+                                                <input type ="text" class ="form-control" id="parents_field_trial" name="parents_field_trial" placeholder="Informe o nome do ensaio">
                                                 <div class ="input-group-btn">
-                                                    <button class = "btn btn-info" id="search_parents_plots_plants" name="search_plots_plants"></i>Search Plots/Plants</button>
+                                                    <button class = "btn btn-info" id="search_parents_plots_plants" name="search_plots_plants"></i>Pesquisar parcelas/plantas</button>
                                                 </div>
                                             </div>
                                         </div>
                                     </div><br/><br/>
                                     <div class="form-group">
-                                        <label class="col-sm-2 control-label">Female Plot/Plant: </label>
+                                        <label class="col-sm-2 control-label">Parcela/planta feminina: </label>
                                         <div class="col-sm-10">
                                             <select class="form-control" id="female_plot_plant" name="female_plot_plant">
-                                                <option value="">Enter trial name first</option>
+                                                <option value="">Informe primeiro o nome do ensaio</option>
                                             </select>
                                         </div>
                                     </div><br/><br/>
                                     <div class="form-group">
-                                        <label class="col-sm-2 control-label">Male Plot/Plant: </label>
+                                        <label class="col-sm-2 control-label">Parcela/planta masculina: </label>
                                         <div class="col-sm-10">
                                             <select class="form-control" id="male_plot_plant" name="male_plot_plant">
-                                                <option value="">Enter trial name first</option>
+                                                <option value="">Informe primeiro o nome do ensaio</option>
                                             </select>
                                         </div>
                                     </div><br/><br/>
                                 </div>
                                 <div class="form-group" id="exact_female" style="display: none">
-                                    <& /page/page_title.mas, title=>"Optional: If you choose to record exact cross female parent, you can do so." &>
+                                    <& /page/page_title.mas, title=>"Opcional: registre o genitor feminino exato do cruzamento" &>
 
                                     <div class="form-group">
-                                        <label class="col-sm-2 control-label">Field Trial: </label>
+                                        <label class="col-sm-2 control-label">Ensaio de campo: </label>
                                         <div class="col-sm-10">
                                             <div class="input-group">
-                                                <input type ="text" class ="form-control" id="female_field_trial" name ="female_field_trial" placeholder="Enter trial name">
+                                                <input type ="text" class ="form-control" id="female_field_trial" name ="female_field_trial" placeholder="Informe o nome do ensaio">
                                                 <div class ="input-group-btn">
-                                                    <button class = "btn btn-info" id="search_female_plots_plants" name="search_plots_plants"></i>Search Plots/Plants</button>
+                                                    <button class = "btn btn-info" id="search_female_plots_plants" name="search_plots_plants"></i>Pesquisar parcelas/plantas</button>
                                                 </div>
                                             </div>
                                         </div>
                                     </div><br/><br/>
                                     <div class="form-group">
-                                        <label class="col-sm-2 control-label">Female Plot/Plant: </label>
+                                        <label class="col-sm-2 control-label">Parcela/planta feminina: </label>
                                         <div class="col-sm-10">
                                             <select class="form-control" id="open_female_plot_plant" name="open_female_plot_plant">
-                                                <option value="">Enter trial name first</option>
+                                                <option value="">Informe primeiro o nome do ensaio</option>
                                             </select>
                                         </div>
                                     </div><br/><br/>
                                 </div>
                                 <br>
                                 <center>
-                                    <button id="next_step_basic_information" class="btn btn-primary" onclick="Workflow.complete(this);">Go to Next Step</button>
+                                    <button id="next_step_basic_information" class="btn btn-primary" onclick="Workflow.complete(this);">Ir para a próxima etapa</button>
                                 </center>
                             </&>
-                            <&| /util/workflow.mas:step, title=> "Additional cross info" &>
-                                <& /page/page_title.mas, title=>"If you would like to add auto-generated progeny names for this cross, you can add it here" &>
-                                <h3>Optional:</h3>
+                            <&| /util/workflow.mas:step, title=> "Informações adicionais" &>
+                                <& /page/page_title.mas, title=>"Adicione aqui nomes de progênies gerados automaticamente para este cruzamento" &>
+                                <h3>Opcional:</h3>
                                 <table>
                                 <!--
                                     <tr>
                                         <td>
                                             <div class="form-group">
-                                                <label class="col-sm-9 control-label">Specify Pollination Date: </label>
+                                                <label class="col-sm-9 control-label">Informar data de polinização: </label>
                                                 <div class="col-sm-3">
                                                     <input id= "pollination_date_checkbox" type="checkbox" />
                                                 </div>
@@ -298,7 +298,7 @@ $locations
                                         </td>
                                         <td>
                                             <div class="form-group" id="get_pollination_date" style="display: none">
-                                                <label class="col-sm-6 control-label">Pollination Date (YYYY/MM/DD): </label>
+                                                <label class="col-sm-6 control-label">Data de polinização (AAAA/MM/DD): </label>
                                                 <div class="col-sm-6">
                                                     <input class="form-control" type="text" id="pollination_date" />
                                                 </div>
@@ -308,13 +308,13 @@ $locations
                                     <tr>
                                         <td>
                                             <div class="form-group">
-                                                <label class="col-sm-9 control-label">Specify Number of Flowers: </label>
+                                                <label class="col-sm-9 control-label">Informar número de flores: </label>
                                                 <div class="col-sm-3">
                                                     <input id= "flower_number_checkbox" type="checkbox" />
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label class="col-sm-9 control-label">Specify Number of Fruits: </label>
+                                                <label class="col-sm-9 control-label">Informar número de frutos: </label>
                                                 <div class="col-sm-3">
                                                     <input id= "fruit_number_checkbox" type="checkbox" />
                                                 </div>
@@ -322,13 +322,13 @@ $locations
                                         </td>
                                         <td>
                                             <div class="form-group" id="get_flower_number" style="display: none">
-                                                <label class="col-sm-6 control-label">Number of Flowers: </label>
+                                                <label class="col-sm-6 control-label">Número de flores: </label>
                                                 <div class="col-sm-6">
                                                     <input class="form-control" type="text" id="flower_number" />
                                                 </div>
                                             </div>
                                             <div class="form-group" id="get_fruit_number" style="display: none">
-                                                <label class="col-sm-6 control-label">Number of Fruits: </label>
+                                                <label class="col-sm-6 control-label">Número de frutos: </label>
                                                 <div class="col-sm-6">
                                                     <input class="form-control" type="text" id="fruit_number" />
                                                 </div>
@@ -338,7 +338,7 @@ $locations
                                     <tr>
                                         <td>
                                             <div class="form-group">
-                                                <label class="col-sm-9 control-label">Specify Number of Seeds: </label>
+                                                <label class="col-sm-9 control-label">Informar número de sementes: </label>
                                                 <div class="col-sm-3">
                                                     <input id= "seed_number_checkbox" type="checkbox" />
                                                 </div>
@@ -346,7 +346,7 @@ $locations
                                         </td>
                                         <td>
                                             <div class="form-group" id="get_seed_number" style="display: none">
-                                                <label class="col-sm-6 control-label">Number of Seeds: </label>
+                                                <label class="col-sm-6 control-label">Número de sementes: </label>
                                                 <div class="col-sm-6">
                                                     <input class="form-control" type="text" id="seed_number" />
                                                 </div>
@@ -357,7 +357,7 @@ $locations
                                     <tr>
                                         <td>
                                             <div class="form-group">
-                                                <label title="You may choose to create accessions for the progeny of the cross at this time." class="col-sm-9 control-label">Add New Accessions for Progeny: </label>
+                                                <label title="Você pode criar agora os acessos correspondentes às progênies do cruzamento." class="col-sm-9 control-label">Adicionar novos acessos para as progênies: </label>
                                                 <div class="col-sm-3">
                                                     <input id="create_progeny_checkbox" type="checkbox"/>
                                                 </div>
@@ -365,7 +365,7 @@ $locations
                                         </td>
                                         <td>
                                             <div class="form-group" id="create_progeny_number" style="display: none">
-                                                <label class="col-sm-6 control-label">Number of progeny: </label>
+                                                <label class="col-sm-6 control-label">Número de progênies: </label>
                                                 <div class="col-sm-6">
                                                     <input class="form-control" type="text" id="progeny_number" />
                                                 </div>
@@ -375,7 +375,7 @@ $locations
                                     <tr id="use_prefix_suffix" style = "display: none">
                                         <td>
                                             <div class="form-group">
-                                                <label class="col-sm-9 control-label">Use Prefix and/or Suffix: </label>
+                                                <label class="col-sm-9 control-label">Usar prefixo e/ou sufixo: </label>
                                                 <div class="col-sm-3">
                                                     <input id="use_prefix_suffix_checkbox" type="checkbox" checked/>
                                                 </div>
@@ -383,13 +383,13 @@ $locations
                                         </td>
                                         <td id="get_prefix_suffix" style="display: none">
                                             <div class="form-group" >
-                                                <label class="col-sm-6 control-label">Prefix: </label>
+                                                <label class="col-sm-6 control-label">Prefixo: </label>
                                                 <div class="col-sm-6">
                                                     <input class="form-control" id="prefix" name="prefix" value="P" size="5" />
                                                 </div>
                                             </div>
                                             <div class="form-group" >
-                                                <label class="col-sm-6 control-label">Suffix: </label>
+                                                <label class="col-sm-6 control-label">Sufixo: </label>
                                                 <div class="col-sm-6">
                                                     <input class="form-control" id="suffix" name="suffix" size="5" />
                                                 </div>
@@ -399,22 +399,22 @@ $locations
                                 </table>
                                 <br/>
                                 <center>
-                                    <button class="btn btn-primary" name="create_cross_submit" id="create_cross_submit" onclick="Workflow.complete(this, false);">Submit Cross</button>
+                                    <button class="btn btn-primary" name="create_cross_submit" id="create_cross_submit" onclick="Workflow.complete(this, false);">Salvar cruzamento</button>
                                 </center>
                             </&>
                         </form>
 
-                        <&| /util/workflow.mas:complete, title=> "Complete" &>
-                            <& /page/page_title.mas, title=>"Finished! Your cross is now in the database" &>
+                        <&| /util/workflow.mas:complete, title=> "Concluído" &>
+                            <& /page/page_title.mas, title=>"Concluído! Seu cruzamento está no banco de dados" &>
                             <p>
                                 <span class="ui-icon ui-icon-circle-check" style="float: left; margin: 0 7px 50px 0;"></span>
                                 The cross was added successfully
                             </p>
 
                             <ul>
-                                <li>You may want to proceed to the cross detail page for the cross you just created.</li>
-                                <li>You can print barcodes for the cross.</li>
-                                <li>You can add crossing information as it becomes available (e.g. number of seeds, progeny, etc).</li>
+                                <li>Você pode acessar a página de detalhes do cruzamento recém-criado.</li>
+                                <li>Você pode imprimir códigos de barras para o cruzamento.</li>
+                                <li>Adicione informações conforme elas estiverem disponíveis, como número de sementes e progênies.</li>
                             </ul>
                             <br/>
                         </&>
@@ -422,7 +422,7 @@ $locations
                 </div>
             </div>
             <div class="modal-footer">
-                <button id="new_cross_close_modal" name="new_cross_close_modal" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button id="new_cross_close_modal" name="new_cross_close_modal" type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
             </div>
         </div>
     </div>
@@ -432,8 +432,8 @@ $locations
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="crossTypeDialog">Template Information</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="crossTypeDialog">Informações sobre os tipos de cruzamento</h4>
             </div>
             <div class="modal-body">
                 <div class="container-fluid">
@@ -441,29 +441,29 @@ $locations
                         Individual Crosses:
                     </h2>
 
-                    <p><b>biparental:</b> An individual plant pollinated by another individual plant.</p>
-                    <p><b>self:</b> A self pollinated individual plant.</p>
-                    <p><b>open pollinated:</b> An individual plant pollinated by a group of plants or open pollinated (pollen may be from a group with known or unknown members).</p>
-                    <p><b>backcross:</b> An individual plant pollinated by one of its parents.</p>
-                    <p><b>sib:</b> Mating between individuals that have at least one parent in common. Generally between two individuals within the same plot.</p>
-                    <p><b>bulk:</b> A group of plants (usually a related family) pollinated by an individual plant.</p>
-                    <p><b>bulk selfed:</b> A group of plants (usually a related family) that are self pollinated (each individual selfed, not combined pollen).</p>
-                    <p><b>bulk and open pollinated:</b> A group of plants (usually a related family) that are pollinated by another group of plants or open pollinated (pollen may be from a group with known or unknown members).</p>
-                    <p><b>doubled haploid:</b> Plants derived from doubling the chromosome number of haploid tissue.</p>
-                    <p><b>dihaploid induction:</b> Plants derived from a chromosome reduction from tetraploid to diploid</p>
+                    <p><b>biparental:</b> uma planta individual polinizada por outra planta individual.</p>
+                    <p><b>self:</b> uma planta individual autopolinizada.</p>
+                    <p><b>open pollinated:</b> uma planta individual polinizada por um grupo ou por polinização aberta; o pólen pode vir de membros conhecidos ou desconhecidos.</p>
+                    <p><b>backcross:</b> uma planta individual polinizada por um de seus genitores.</p>
+                    <p><b>sib:</b> cruzamento entre indivíduos com pelo menos um genitor em comum, geralmente dentro da mesma parcela.</p>
+                    <p><b>bulk:</b> um grupo de plantas, geralmente uma família relacionada, polinizado por uma planta individual.</p>
+                    <p><b>bulk selfed:</b> um grupo em que cada planta é autopolinizada, sem combinação de pólen.</p>
+                    <p><b>bulk and open pollinated:</b> um grupo de plantas polinizado por outro grupo ou por polinização aberta.</p>
+                    <p><b>doubled haploid:</b> plantas obtidas pela duplicação dos cromossomos de tecido haploide.</p>
+                    <p><b>dihaploid induction:</b> plantas obtidas pela redução cromossômica de tetraploide para diploide.</p>
                     <br>
 
                     <h2>
                       Group of Crosses:
                     </h2>
 
-                    <p><b>polycross:</b> Creates a group of open pollinated crosses. Each accession in the selected list becomes the female parent in an open cross, and all the members of the list grouped together form the male parent.<p>
-                    <p><b>reciprocal:</b> Creates a group of biparental crosses. Starting with a list of accessions, all possible biparental cross combinations are made between them.<p>
-                    <p><b>multicross:</b> Creates a group of biparental crosses. Starting with a list of maternal accessions and a list of paternal accessions, direct crosses are made in order.<p>
+                    <p><b>polycross:</b> cria um grupo de cruzamentos por polinização aberta. Cada acesso da lista selecionada torna-se o genitor feminino de um cruzamento, enquanto todos os membros agrupados formam o genitor masculino.<p>
+                    <p><b>reciprocal:</b> cria todas as combinações possíveis de cruzamentos biparentais entre os acessos da lista.<p>
+                    <p><b>multicross:</b> cria cruzamentos biparentais diretos, em ordem, entre uma lista de acessos maternos e outra de acessos paternos.<p>
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
             </div>
         </div>
     </div>
@@ -473,8 +473,8 @@ $locations
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="crossSavedDialog">Success</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="crossSavedDialog">Sucesso</h4>
       </div>
       <div class="modal-body">
         <div class="container-fluid">
@@ -485,7 +485,7 @@ $locations
         </div>
       </div>
       <div class="modal-footer">
-        <button id="dismiss_cross_saved_dialog" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button id="dismiss_cross_saved_dialog" type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
       </div>
     </div>
   </div>
@@ -518,19 +518,19 @@ jQuery(document).ready(function($) {
         }
 
         if (!field_trial) {
-            alert("Please provide trial name");
+            alert("Informe o nome do ensaio.");
             return;
         }
 
         if (!maternal_parent) {
-            alert("Please provide female parent name");
+            alert("Informe o nome do genitor feminino.");
             return;
         }
 
         if ((crossType == 'biparental') || (crossType == 'backcross') || (crossType == 'sib')) {
             paternal_parent = jQuery('#paternal_parent').val();
             if (!paternal_parent) {
-                alert("Please provide male parent name");
+                alert("Informe o nome do genitor masculino.");
                 return;
              }
         }
@@ -556,7 +556,7 @@ jQuery(document).ready(function($) {
                 console.log(html);
 
                 if(i ==''){
-                    alert("No female plot");
+                    alert("Nenhuma parcela feminina foi encontrada.");
                     return;
                 }
 
@@ -568,7 +568,7 @@ jQuery(document).ready(function($) {
             },
 
             error:function(response){
-                alert("An error occurred getting female plots or plants.");
+                alert("Ocorreu um erro ao obter as parcelas ou plantas femininas.");
             }
         });
 
@@ -588,7 +588,7 @@ jQuery(document).ready(function($) {
                     console.log(html);
 
                     if(i ==''){
-                        alert("No male plot");
+                        alert("Nenhuma parcela masculina foi encontrada.");
                         return;
                     }
 

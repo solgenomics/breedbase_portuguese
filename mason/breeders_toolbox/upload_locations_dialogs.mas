@@ -7,53 +7,53 @@
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="uploadLocationsDialog">Upload Locations</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="uploadLocationsDialog">Enviar locais</h4>
       </div>
       <div class="modal-body">
         <div class="container-fluid">
-                <b>Header:</b><br>
-                The first row (header) must contain the following:
+                <b>Cabeçalho:</b><br>
+                A primeira linha (cabeçalho) deve conter:
                 <br>
                 <table class="table table-bordered table-hover">
                   <tbody>
                   <tr>
-                    <td>Name</td>
-                    <td>Abbreviation</td>
-                    <td>Country Code</td>
-                    <td>Country Name</td>
-                    <td>Program</td>
-                    <td>Type</td>
+                    <td>Nome</td>
+                    <td>Abreviação</td>
+                    <td>Código do país</td>
+                    <td>Nome do país</td>
+                    <td>Programa</td>
+                    <td>Tipo</td>
                     <td>Latitude</td>
                     <td>Longitude</td>
-                    <td>Elevation</td>
-                    <td>NOAA Station ID</td>
+                    <td>Elevação</td>
+                    <td>ID da estação NOAA</td>
                   </tr>
                   </tbody>
                 </table>
-                <b>Required values:</b><br>
-                <b>Name:</b> must not conflict with an existing location name<br>
-                <b>Abbreviation:</b> used in the map and in uploads, must not conflict with an existing abbreviation<br>
-                <b>Country Code:</b> must be an <a href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3">ISO Alpha-3 country code</a><br>
-                <b>Country Name:</b> must be an uppercase english short name from the <a href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3">ISO standard</a><br>
-                <b>Program:</b> must be an exisiting Breeding Program in the database, or multiple breeding programs separated by '&'<br>
-                <b>Type:</b> must be one of the following: Town, Farm, Field, Greenhouse, Screenhouse, Lab, Storage, Other<br>
-                <b>Latitude:</b> (in degrees) must be a number between 90 and -90.<br>
-                <b>Longitude:</b> (in degrees) must be a number between 180 and -180.<br>
-                <b>Elevation:</b> (in meters) must be a number between -418 (Dead Sea) and 8,848 (Mt. Everest).<br>
-                <br><b>Optional values:</b><br>
-                <b>NOAA Station ID:</b> The NOAA Station ID that is nearest and most relevant to the location. <a href="https://www.ncdc.noaa.gov/cdo-web/search" target="_blank">Search Here</a><br>
+                <b>Valores obrigatórios:</b><br>
+                <b>Nome:</b> não pode ser igual ao nome de um local existente<br>
+                <b>Abreviação:</b> usada no mapa e nos envios; não pode ser igual a uma abreviação existente<br>
+                <b>Código do país:</b> deve ser um <a href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3">código de país ISO Alfa-3</a><br>
+                <b>Nome do país:</b> deve ser o nome curto em inglês, em letras maiúsculas, conforme o <a href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3">padrão ISO</a><br>
+                <b>Programa:</b> deve ser um programa de melhoramento existente no banco de dados; vários programas devem ser separados por '&'<br>
+                <b>Tipo:</b> deve ser um destes valores: Town, Farm, Field, Greenhouse, Screenhouse, Lab, Storage ou Other<br>
+                <b>Latitude:</b> em graus, deve ser um número entre -90 e 90.<br>
+                <b>Longitude:</b> em graus, deve ser um número entre -180 e 180.<br>
+                <b>Elevação:</b> em metros, deve ser um número entre -418 (Mar Morto) e 8.848 (Monte Everest).<br>
+                <br><b>Valores opcionais:</b><br>
+                <b>ID da estação NOAA:</b> o ID da estação NOAA mais próxima e relevante para o local. <a href="https://www.ncdc.noaa.gov/cdo-web/search" target="_blank">Pesquisar aqui</a><br>
 
           <& /help/file_upload_type.mas, type => "Locations" , optional_column => 1 &>
           <form method="post" enctype="multipart/form-data" encoding="multipart/form-data" id="upload_locations_form" name="upload_locations_form">
-    <label for="locations_upload_file" style="display: inline-block;">Location File:</label>
+    <label for="locations_upload_file" style="display: inline-block;">Arquivo de locais:</label>
     <input type="file" name="locations_upload_file" id="locations_upload_file" encoding="multipart/form-data" />
   </form>
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-	<button type="button" class="btn btn-primary" name="upload_locations_dialog_submit" id="upload_locations_dialog_submit">Upload</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+	<button type="button" class="btn btn-primary" name="upload_locations_dialog_submit" id="upload_locations_dialog_submit">Enviar</button>
       </div>
     </div>
   </div>
@@ -63,13 +63,13 @@
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content ui-front">
             <div class="modal-header text-center">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="locationsResultDialog">Results</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="locationsResultDialog">Resultados</h4>
             </div>
             <div id="locations_result_body" class="container-fluid">
             </div>
             <div class="modal-footer">
-                <button id="locations_result_close_button" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button id="locations_result_close_button" type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
             </div>
         </div>
     </div>
@@ -87,7 +87,7 @@ jQuery(document).ready(function() {
         var uploadFile = jQuery("#locations_upload_file").val();
         jQuery('#upload_locations_form').attr("action", "/ajax/locations/upload");
         if (uploadFile === '') {
-            alert("Please select a file");
+            alert("Selecione um arquivo.");
             return;
         }
         jQuery("#upload_locations_form").submit();
@@ -110,7 +110,7 @@ jQuery(document).ready(function() {
                 for (i = 0; i < response.error.length; i++) {
                     errors.push( '<p>'+response.error[i]+'</p>');
                 }
-                var html = '<br><center><b>Upload failed.</b><br><b>Please fix the following errors in </b>'+response.filename+'<b> and try again:</b></center><br>';
+                var html = '<br><center><b>Falha no envio.</b><br><b>Corrija os seguintes erros em </b>'+response.filename+'<b> e tente novamente:</b></center><br>';
                 html += errors.join('') + '<br>';
                 document.getElementById('locations_result_body').innerHTML = html;
                 jQuery('#locations_result_dialog').modal("show");
@@ -131,7 +131,7 @@ jQuery(document).ready(function() {
         },
         error: function(response) {
             jQuery('#working_modal').modal("hide");
-            alert("An error occurred");
+            alert("Ocorreu um erro durante o envio.");
         }
     });
 

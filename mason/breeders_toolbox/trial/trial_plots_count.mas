@@ -17,12 +17,12 @@ jQuery(document).ready(function(){
               //alert(response.plots[0].length);
               //console.log(response.plots[0]);
               var html = '';
-              html += 'Number of plots: ';
+              html += 'Número de parcelas: ';
                html += response.plots[0].length;
               jQuery("#plots_counts").html(html);
           },
           error: function(response){
-              alert('Error displaying plots count');
+              alert('Erro ao exibir o número de parcelas.');
           }
 
       });
