@@ -18,11 +18,11 @@ jQuery(document).ready(function () {
         solGS.analysisSave.checkStoredAnalysis(pcaArgs).done(function (res) {
             if (res.analysis_id) {
                 jQuery("#save_pcs_btn").hide();
-                var link = '<a href="/analyses/' + res.analysis_id + '">View stored PCs</a>';
+                var link = '<a href="/analyses/' + res.analysis_id + "\">Visualizar componentes principais armazenados</a>";
                 jQuery(savePcaBtnId).html(link);
             } else {
                 jQuery(pcaSaveMsgDiv)
-                .html("Please wait...saving the PCs may take a few minutes.")
+                .html("Aguarde... Salvar os componentes principais pode levar alguns minutos.")
                 .show();
                 jQuery(`#${elemId}`).hide();
 
@@ -31,7 +31,7 @@ jQuery(document).ready(function () {
                         solGS.submitJob.loginAlert();
                     } 
                 }).fail(function () {
-                    solGS.alertMessage("Error occured checking for user status");
+                    solGS.alertMessage("Ocorreu um erro ao verificar o status do usuário");
                 });
 
                 solGS.analysisSave.getPcaResultDetails(pcaArgs).done(function (res) {
@@ -52,7 +52,7 @@ jQuery(document).ready(function () {
                             } else {
                                 jQuery(pcaSaveMsgDiv).hide();
 
-                                var link = '<a href="/analyses/' + res.analysis_id + '">View stored PC scores</a>';
+                                var link = '<a href="/analyses/' + res.analysis_id + "\">Visualizar escores dos componentes principais armazenados</a>";
                                 jQuery(`#${elemId}`).html(link).show();
                             }
                         }).fail(function (res) {

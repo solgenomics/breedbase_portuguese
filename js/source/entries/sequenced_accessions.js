@@ -37,14 +37,14 @@ export function init(main_div, stock_id, stockprop_id) {
             success: function (r) {
                 if (r.error) { alert(r.error + r); }
                 else {
-                    alert("The entry has been saved. Thank you!");
+                    alert("O registro foi salvo. Obrigado!");
                     jQuery('#edit_sequencing_info_dialog').modal('toggle');
                     clear_dialog_entries();
                     jQuery('#sequenced_stocks_table').DataTable().ajax.reload();
                 }
             },
             error: function (r, e) {
-                alert("An error occurred. (" + r.responseText + ")");
+                alert("Ocorreu um erro. (" + r.responseText + ")");
                 var err = eval("(" + r.responseText + ")");
             }
         });
@@ -75,19 +75,19 @@ function clear_dialog_entries() {
 }
 
 export function delete_sequencing_info(stockprop_id) {
-    var answer = confirm("Are you sure you want to delete this entry? (stockprop_id= " + stockprop_id + "). This action cannot be undone.");
+    var answer = confirm("Tem certeza de que deseja excluir este registro? (stockprop_id= " + stockprop_id + "). Esta ação não pode ser desfeita.");
     if (answer) {
         jQuery.ajax({
             url: '/ajax/genomes/sequencing_info/delete/' + stockprop_id,
             success: function (r) {
                 if (r.error) { alert(r.error); }
                 else {
-                    alert("The entry has been deleted.");
+                    alert("O registro foi excluído.");
                     jQuery('#sequenced_stocks_table').DataTable().ajax.reload();
                 }
             },
             error: function (r) {
-                alert("An error occurred. The entry was not deleted.");
+                alert("Ocorreu um erro. O registro não foi excluído.");
             }
         });
     }
@@ -119,7 +119,7 @@ export function edit_sequencing_info(stockprop_id) {
                 jQuery('#edit_sequencing_info_dialog').modal("show");
             }
         },
-        error: function (r) { alert("an error occurred"); }
+        error: function (r) { alert("ocorreu um erro"); }
     });
 
 

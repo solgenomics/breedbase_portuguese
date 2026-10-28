@@ -1,7 +1,7 @@
 
 function run_blast(database_types, input_option_types) { 
   clear_status();
-  update_status("Initializing run... ");
+  update_status("Iniciando a execução... ");
 
   jQuery('#prereqs').html('');
   // jQuery('#blast_report').html('');
@@ -32,16 +32,16 @@ function run_blast(database_types, input_option_types) {
     var word_size = jQuery('#word_size').val();
     
   if (sequence === '') { 
-    alert("Please enter a sequence :-)"); 
+    alert("Informe uma sequência :-)");
     return;
   }
   
   if (!blast_program_ok(program,  input_option_types[input_option], database_types[database])) { 
-    alert("The BLAST program does not match the selected database and query.");
+    alert("O programa BLAST não corresponde ao banco de dados e à consulta selecionados.");
     return;
   }
   
-  update_status("Submitting job... ");
+  update_status("Enviando tarefa... ");
   
   var jobid ="";
   var seq_count = 0;
@@ -68,7 +68,7 @@ function run_blast(database_types, input_option_types) {
       }
     },
     error: function(response) {
-      alert("An error occurred. The service may not be available right now.");
+      alert("Ocorreu um erro. O serviço pode estar indisponível no momento.");
       enable_ui();
       return;
     }
@@ -96,7 +96,7 @@ function wait_result(jobid, job_dbid, seq_count) {
         }
       },
       error: function(response) { 
-        alert("An  error occurred. "); 
+        alert("Ocorreu um erro. ");
         enable_ui(); 
         done=true; 
         error=true; 
@@ -108,7 +108,7 @@ function wait_result(jobid, job_dbid, seq_count) {
 
 function finish_blast(jobid, seq_count) {
 
-  update_status('Run complete.<br />');
+  update_status("Execução concluída.<br />");
   
   var format   =  jQuery('#parse_options').val();
   
@@ -120,7 +120,7 @@ function finish_blast(jobid, seq_count) {
   
   if (seq_count > 1) { 
     format = [ "Table", "Basic" ];
-    alert("Multiple sequences were detected. The output will be shown in the tabular and basic format");
+    alert("Foram detectadas várias sequências. A saída será exibida nos formatos tabular e básico");
   } else {
     
     // get BLAST Graph
@@ -156,7 +156,7 @@ function finish_blast(jobid, seq_count) {
         
         enable_ui();
       },
-      error: function(response) { alert("SGN BLAST Graph: An error occurred. "+response.error); enable_ui();}
+      error: function(response) { alert("Gráfico BLAST do SGN: ocorreu um erro. "+response.error); enable_ui();}
     });
     
   } //else closed
@@ -164,7 +164,7 @@ function finish_blast(jobid, seq_count) {
   if (format) {
 
     for (var n in format) {
-      update_status('Formatting output ('+format[n]+')<br />');
+      update_status("Formatando a saída ("+format[n]+')<br />');
 
       jQuery.ajax( {
         url: '/tools/blast/result/'+jobid,
@@ -199,7 +199,7 @@ function finish_blast(jobid, seq_count) {
           jQuery('#notes').css("width","75%")
           enable_ui();
         },
-        error: function(response) { alert("Parse BLAST: An error occurred. "+response.error); enable_ui();}
+        error: function(response) { alert("Análise do BLAST: ocorreu um erro. "+response.error); enable_ui();}
       });
     } // for close
 

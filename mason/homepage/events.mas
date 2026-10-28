@@ -17,7 +17,7 @@ eval {
 
 <div>
 <% $contents %>
-<a href="oldevents.pl">See all events...</a>
+<a href="oldevents.pl">Veja todos os eventos...</a>
 </div>
 
 

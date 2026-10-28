@@ -20,103 +20,103 @@ my @sequencing_center_options = split ",", $c->config->{genotyping_facilities};
   <div class="modal-dialog modal-xl" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="addHighDimDataDialog">Upload High-Dimensional Phenotype Data</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="addHighDimDataDialog">Envie dados fenotipos de alta dimensão</h4>
       </div>
       <div class="modal-body">
         <div class="container-fluid">
 
             <&| /util/workflow.mas, id=> "high_dim_data_upload_workflow" &>
-                <&| /util/workflow.mas:step, title=> "Intro" &>
-                    <& /page/page_title.mas, title=>"This workflow will guide you through uploading high-dimensional data into the database." &>
+                <&| /util/workflow.mas:step, title=> "Introdução" &>
+                    <& /page/page_title.mas, title=>"Este fluxo de trabalho irá guiá-lo através do upload de dados de alta dimensão no banco de dados." &>
 
                     <center>
                         <div class="well">
-                            <h4>High-dimensional phenotype data includes:</h4>
+                            <h4>Dados de fenótipo de alta dimensão incluem:</h4>
                             <p>NIRS</p>
-                            <p>Transcriptomics</p>
-                            <p>Metabolomics</p>
+                            <p>Transcrição</p>
+                            <p>Metabolômica</p>
                         </div>
                     </center>
 
                     <center>
-                    <button class="btn btn-primary" onclick="Workflow.complete(this); return false;">Go to Next Step</button>
+                    <button class="btn btn-primary" onclick="Workflow.complete(this); return false;">Vá para o próximo passo</button>
                     </center>
                 </&>
-                <&| /util/workflow.mas:step, title=> "Samples" &>
-                    <& /page/page_title.mas, title=>"Make sure your samples are already in the database." &>
+                <&| /util/workflow.mas:step, title=> "Amostras" &>
+                    <& /page/page_title.mas, title=>"Certifique-se de que suas amostras já estão no banco de dados." &>
 
                     <center>
                         <div class="well">
-                            <h4>The samples for which you are uploading high-dimensional phenotypes must exist in the database already. They can be field trial entities such as plot names, plant names, and tissue sample names. They can be genotyping plate well tissue sample names. They can also be sample names from a sampling trial in the database.</h4>
-                            <p>Go to <a href="/breeders/samples">Manage Tissue Samples</a> for more guidance.</p>
-                            <p>You can upload or create a new sampling trial <button class="btn btn-sm btn-primary" style="margin:3px" name="create_sampling_trial_button">Create new sampling trial</button></p>
+                            <h4>As amostras para as quais você está carregando fenótipos de alta dimensão já devem existir no banco de dados. Podem ser entidades de campo, como nomes de parcelas, nomes de plantas e nomes de amostras de tecido. Podem ser nomes de amostras de tecido. Também podem ser nomes de amostras de um ensaio de amostragem no banco de dados.</h4>
+                            <p>Vá para <a href="/breeders/samples">Gerenciar amostras de tecido</a> para mais orientação.</p>
+                            <p>Você pode carregar ou criar um novo ensaio de amostragem <button class="btn btn-sm btn-primary" style="margin:3px" name="create_sampling_trial_button">Criar um novo ensaio de amostragem</button></p>
                         </div>
                     </center>
 
                     <center>
-                    <button class="btn btn-primary" onclick="Workflow.complete(this); return false;">Go to Next Step</button>
+                    <button class="btn btn-primary" onclick="Workflow.complete(this); return false;">Vá para o próximo passo</button>
                     </center>
                 </&>
-                <&| /util/workflow.mas:step, title=> "Data Type" &>
-                    <& /page/page_title.mas, title=>"Select the type of high-dimensional data being uploaded" &>
+                <&| /util/workflow.mas:step, title=> "Tipo de Dados" &>
+                    <& /page/page_title.mas, title=>"Selecione o tipo de dados de alta dimensão que estão sendo enviados" &>
                     <br/><br/>
                     <form class="form-horizontal">
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">Data Type: </label>
+                            <label class="col-sm-3 control-label">Tipo de dados: </label>
                             <div class="col-sm-9" >
                                 <select class="form-control" id="high_dim_data_upload_type_select">
 %  if ($high_dimensional_phenotype_type eq 'NIRS') {
-                                    <option value="">Select One</option>
+                                    <option value="">Selecione um</option>
                                     <option value="NIRS">NIRS</option>
-                                    <option disabled value="Transcriptomics">Transcriptomics</option>
-                                    <option disabled value="Metabolomics">Metabolomics</option>
+                                    <option disabled value="Transcriptomics">Transcrição</option>
+                                    <option disabled value="Metabolomics">Metabolômica</option>
 %  } elsif ($high_dimensional_phenotype_type eq 'Transcriptomics') {
-                                    <option value="">Select One</option>
-                                    <option value="Transcriptomics">Transcriptomics</option>
+                                    <option value="">Selecione um</option>
+                                    <option value="Transcriptomics">Transcrição</option>
                                     <option disabled value="NIRS">NIRS</option>
-                                    <option disabled value="Metabolomics">Metabolomics</option>
+                                    <option disabled value="Metabolomics">Metabolômica</option>
 %  } elsif ($high_dimensional_phenotype_type eq 'Metabolomics') {
-                                    <option value="">Select One</option>
-                                    <option value="Metabolomics">Metabolomics</option>
-                                    <option disabled value="Transcriptomics">Transcriptomics</option>
+                                    <option value="">Selecione um</option>
+                                    <option value="Metabolomics">Metabolômica</option>
+                                    <option disabled value="Transcriptomics">Transcrição</option>
                                     <option disabled value="NIRS">NIRS</option>
 %  } else {
-                                    <option value="">Select One</option>
+                                    <option value="">Selecione um</option>
                                     <option value="NIRS">NIRS</option>
-                                    <option value="Transcriptomics">Transcriptomics</option>
-                                    <option value="Metabolomics">Metabolomics</option>
+                                    <option value="Transcriptomics">Transcrição</option>
+                                    <option value="Metabolomics">Metabolômica</option>
 %  }
                                 </select>
                             </div>
                         </div>
                     </form>
                     <center>
-                    <button class="btn btn-primary" id="high_dim_data_upload_data_type_step">Go to Next Step</button>
+                    <button class="btn btn-primary" id="high_dim_data_upload_data_type_step">Vá para o próximo passo</button>
                     </center>
                 </&>
-                <&| /util/workflow.mas:step, title=> "Protocol Info" &>
-                    <& /page/page_title.mas, title=>"Select a protocol for how your data was generated or create a new protocol" &>
+                <&| /util/workflow.mas:step, title=> "Informação do Protocolo" &>
+                    <& /page/page_title.mas, title=>"Selecione um protocolo para como seus dados foram gerados ou crie um novo protocolo." &>
 
                     <div id="high_dim_data_upload_protocol_select">
                     </div>
 
                     <hr>
                     <center>
-                    <button class="btn btn-primary" id="high_dim_data_upload_new_protocol">Protocol Not Shown. Create a New Protocol</button>
+                    <button class="btn btn-primary" id="high_dim_data_upload_new_protocol">Protocolo não mostrado. Criar um Novo Protocolo</button>
                     </center>
                     <br/><br/>
 
                     <div id="high_dim_data_upload_protocol_div" style="display:none">
                         <div class="form-horizontal">
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">Protocol Name: </label>
+                                <label class="col-sm-3 control-label">Nome do protocolo: </label>
                                 <div class="col-sm-9" >
                                     <input class="form-control" id="high_dim_data_upload_protocol_name" type="text">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">Protocol Description: </label>
+                                <label class="col-sm-3 control-label">Descrição do protocolo: </label>
                                 <div class="col-sm-9" >
                                     <input class="form-control" id="high_dim_data_upload_protocol_desc"  type="text">
                                 </div>
@@ -127,7 +127,7 @@ my @sequencing_center_options = split ",", $c->config->{genotyping_facilities};
                     <div id="high_dim_data_upload_nirs_protocol_div" style="display:none">
                         <div class="form-horizontal">
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">NIRS Device: </label>
+                                <label class="col-sm-3 control-label">Dispositivo NIRS: </label>
                                 <div class="col-sm-9" >
                                     <select class="form-control" id="high_dim_data_upload_nirs_device_type_select">
                                         <option value="SCIO">SCIO</option>
@@ -138,7 +138,7 @@ my @sequencing_center_options = split ",", $c->config->{genotyping_facilities};
                                         <option value="BunchiN500">BunchiN500</option>
                                         <option value="LinkSquare">LinkSquare</option>
                                         <option value="ASD Qualityspec">ASD Qualityspec</option>
-                                        <option value="ASD LabSpec">ASD LabSpec</option>
+                                        <option value="ASD LabSpec">ASD Lab Spec</option>
                                         <option value="Specim FX17">Specim FX17</option>
                                         <option value="FTIR6X">FT/IR-6X</option>
                                         <option value="InnoSpectraNIR-S-G1">InnoSpectraNIR-S-G1</option>
@@ -152,7 +152,7 @@ my @sequencing_center_options = split ",", $c->config->{genotyping_facilities};
                     <div id="high_dim_data_upload_transcriptomics_protocol_div" style="display:none">
                         <div class="form-horizontal">
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">Transcriptomics Unit: </label>
+                                <label class="col-sm-3 control-label">Unidade de Transcrição: </label>
                                 <div class="col-sm-9" >
                                     <select class="form-control" id="high_dim_data_upload_transcriptomics_unit_select">
                                     <option value="RPKM">RPKM</option>
@@ -165,21 +165,21 @@ my @sequencing_center_options = split ",", $c->config->{genotyping_facilities};
                             </div>
 
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">Genome Version: </label>
+                                <label class="col-sm-3 control-label">Versão Genoma: </label>
                                 <div class="col-sm-9" >
-                                    <input class="form-control" id="high_dim_data_upload_transcriptomics_genome_version_select" type="text" placeholder="e.g. v6.1, v7.0, v8.0">
+                                    <input class="form-control" id="high_dim_data_upload_transcriptomics_genome_version_select" type="text" placeholder="ex.: v6.1, v7.0, v8.0">
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">Genome Annotation Version: </label>
+                                <label class="col-sm-3 control-label">Versão da Anotação Genoma: </label>
                                 <div class="col-sm-9" >
-                                    <input class="form-control" id="high_dim_data_upload_transcriptomics_genome_annotation_version_select" type="text" placeholder="e.g. v6.0, v6.1, v7.0">
+                                    <input class="form-control" id="high_dim_data_upload_transcriptomics_genome_annotation_version_select" type="text" placeholder="ex.: v6.0, v6.1, v7.0">
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">Instrument Model: </label>
+                                <label class="col-sm-3 control-label">Modelo do instrumento: </label>
                                 <div class="col-sm-9" >
                                     <select class="form-control" id="high_dim_data_upload_transcriptomics_instrument_model_select">
                                     <option value="blank"></option>
@@ -195,9 +195,9 @@ my @sequencing_center_options = split ",", $c->config->{genotyping_facilities};
                             </div>
 
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">Layout: </label>
+                                <label class="col-sm-3 control-label">Disposição espacial: </label>
                                 <div class="col-sm-9" >
-                                    <select class="form-control" id="high_dim_data_upload_transcriptomics_layout_select" type = "text" placeholder="e.g. Paired end">
+                                    <select class="form-control" id="high_dim_data_upload_transcriptomics_layout_select" type = "text" placeholder="Por exemplo. Fim emparelhado">
                                     <option value="blank"></option>
                                     <%perl>
                                     foreach my $option (@layout_options) {
@@ -211,7 +211,7 @@ my @sequencing_center_options = split ",", $c->config->{genotyping_facilities};
                             </div>
 
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">Library Method: </label>
+                                <label class="col-sm-3 control-label">Método da Biblioteca: </label>
                                 <div class="col-sm-9" >
                                     <select class="form-control" id="high_dim_data_upload_transcriptomics_library_method_select">
                                     <option value="blank"></option>
@@ -227,16 +227,16 @@ my @sequencing_center_options = split ",", $c->config->{genotyping_facilities};
                             </div>
 
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">Library Comments: </label>
+                                <label class="col-sm-3 control-label">Comentários da Biblioteca: </label>
                                 <div class="col-sm-9" >
-                                    <input class="form-control" id="high_dim_data_upload_transcriptomics_library_comments_select" type = "text" placeholder="e.g. Used the 3'RNA-seq method">
+                                    <input class="form-control" id="high_dim_data_upload_transcriptomics_library_comments_select" type = "text" placeholder="Por exemplo. Usei o método 3&#x27;RNA-seq">
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">Mapping Software: </label>
+                                <label class="col-sm-3 control-label">Software de mapeamento: </label>
                                 <div class="col-sm-9" >
-                                    <select class="form-control" id="high_dim_data_upload_transcriptomics_mapping_software_select" type = "text" placeholder="e.g. HISAT2">
+                                    <select class="form-control" id="high_dim_data_upload_transcriptomics_mapping_software_select" type = "text" placeholder="Por exemplo. HISAT2">
                                     <option value="blank"></option>
                                     <%perl>
                                     foreach my $option (@mapping_software_options) {
@@ -252,7 +252,7 @@ my @sequencing_center_options = split ",", $c->config->{genotyping_facilities};
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">Sequencing Center: </label>
                                 <div class="col-sm-9" >
-                                    <select class="form-control" id="high_dim_data_upload_transcriptomics_sequencing_center_select" type = "text" placeholder="e.g. Cornell University Institute of Biotechnology">
+                                    <select class="form-control" id="high_dim_data_upload_transcriptomics_sequencing_center_select" type = "text" placeholder="Por exemplo. Instituto Universitário de Biotecnologia de Cornell">
                                     <option value="blank"></option>
                                     <%perl>
                                     foreach my $option (@sequencing_center_options) {
@@ -268,7 +268,7 @@ my @sequencing_center_options = split ",", $c->config->{genotyping_facilities};
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">Sequencing Platform: </label>
                                 <div class="col-sm-9" >
-                                    <select class="form-control" id="high_dim_data_upload_transcriptomics_sequencing_platform_select" type = "text" placeholder="e.g. Illumina">
+                                    <select class="form-control" id="high_dim_data_upload_transcriptomics_sequencing_platform_select" type = "text" placeholder="Por exemplo. Illumina">
                                     <option value="blank"></option>
                                     <%perl>
                                     foreach my $option (@sequencing_platform_options) {
@@ -282,16 +282,16 @@ my @sequencing_center_options = split ",", $c->config->{genotyping_facilities};
                             </div>
 
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">Read Length: </label>
+                                <label class="col-sm-3 control-label">Comprimento de leitura: </label>
                                 <div class="col-sm-9" >
-                                    <input class="form-control" id="high_dim_data_upload_transcriptomics_read_length_select" type = "text" placeholder="e.g. 5x depth with 150 bp reads">
+                                    <input class="form-control" id="high_dim_data_upload_transcriptomics_read_length_select" type = "text" placeholder="Por exemplo, 5x de profundidade com 150 bp">
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">Nucleic Acid Extraction Method: </label>
+                                <label class="col-sm-3 control-label">Método de extração de ácido nucleico: </label>
                                 <div class="col-sm-9" >
-                                    <select class="form-control" id="high_dim_data_upload_transcriptomics_nucleic_acid_extraction_method_select" type = "text" placeholder="e.g. Hot borate">
+                                    <select class="form-control" id="high_dim_data_upload_transcriptomics_nucleic_acid_extraction_method_select" type = "text" placeholder="Por exemplo. Borato quente">
                                     <option value="blank"></option>
                                     <%perl>
                                     foreach my $option (@na_extraction_method_options) {
@@ -310,7 +310,7 @@ my @sequencing_center_options = split ",", $c->config->{genotyping_facilities};
                     <div id="high_dim_data_upload_metabolomics_protocol_div" style="display:none">
                         <div class="form-horizontal">
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">Equipment Type: </label>
+                                <label class="col-sm-3 control-label">Tipo de Equipamento: </label>
                                 <div class="col-sm-9" >
                                     <select class="form-control" id="high_dim_data_upload_metabolomics_equipment_type">
                                         <option value="NMR">NMR</option>
@@ -319,49 +319,49 @@ my @sequencing_center_options = split ",", $c->config->{genotyping_facilities};
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">Targeted: </label>
+                                <label class="col-sm-3 control-label">Alvo: </label>
                                 <div class="col-sm-9" >
                                 <select class="form-control" id="high_dim_data_upload_metabolomics_targeted">
-                                    <option value="True">True</option>
-                                    <option value="False">False</option>
+                                    <option value="True">Verdade</option>
+                                    <option value="False">Falso</option>
                                 </select>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">Phenotype Protocol: </label>
+                                <label class="col-sm-3 control-label">Protocolo de Fenótipo: </label>
                                 <div class="col-sm-9" >
-                                    <input class="form-control" id="high_dim_data_upload_metabolomics_phenotype_type" type="text" placeholder="e.g. relative abundance, BLUP, drBLUP, concentration">
+                                    <input class="form-control" id="high_dim_data_upload_metabolomics_phenotype_type" type="text" placeholder="Por exemplo, abundância relativa, BLUP, drBLUP, concentração">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">Phenotype Units: </label>
+                                <label class="col-sm-3 control-label">Unidades fenotípicas: </label>
                                 <div class="col-sm-9" >
-                                    <input class="form-control" id="high_dim_data_upload_metabolomics_phenotype_units" type="text" placeholder="e.g. ug/g">
+                                    <input class="form-control" id="high_dim_data_upload_metabolomics_phenotype_units" type="text" placeholder="Por exemplo, ug/g">
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">Sample Collection protocol: </label>
+                                <label class="col-sm-3 control-label">Protocolo de coleta de amostras: </label>
                                 <div class="col-sm-9" >
-                                    <input class="form-control" id="high_dim_data_upload_metabolomics_sample_collection_protocol" type="text" placeholder="e.g. mature dehulled oat seeds">
+                                    <input class="form-control" id="high_dim_data_upload_metabolomics_sample_collection_protocol" type="text" placeholder="Por exemplo, sementes maduras de aveia descascadas">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">Sample Extraction Protocol: </label>
+                                <label class="col-sm-3 control-label">Protocolo de extração de amostras: </label>
                                 <div class="col-sm-9" >
-                                    <input class="form-control" id="high_dim_data_upload_metabolomics_sample_extraction_protocol" type="text" placeholder="e.g. describe extraction protocol used">
+                                    <input class="form-control" id="high_dim_data_upload_metabolomics_sample_extraction_protocol" type="text" placeholder="Por exemplo, descrever protocolo de extração usado">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">RawData Transformation Protocol: </label>
+                                <label class="col-sm-3 control-label">Protocolo de Transformação de Dados Raw: </label>
                                 <div class="col-sm-9" >
-                                    <input class="form-control" id="high_dim_data_upload_metabolomics_rawdata_transformation_protocol" type="text" placeholder="e.g. describe the raw data transformation protocol used">
+                                    <input class="form-control" id="high_dim_data_upload_metabolomics_rawdata_transformation_protocol" type="text" placeholder="Por exemplo, descrever o protocolo de transformação de dados em bruto usado">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">Metabolite Identification Protocol: </label>
+                                <label class="col-sm-3 control-label">Protocolo de identificação de metabolitos: </label>
                                 <div class="col-sm-9" >
-                                    <input class="form-control" id="high_dim_data_upload_metabolomics_metabolite_identification_protocol" type="text" placeholder="e.g. describe the metabolomics identification protocol used">
+                                    <input class="form-control" id="high_dim_data_upload_metabolomics_metabolite_identification_protocol" type="text" placeholder="Por exemplo, descrever o protocolo de identificação metabolômica usado">
                                 </div>
                             </div>
                         </div>
@@ -369,7 +369,7 @@ my @sequencing_center_options = split ",", $c->config->{genotyping_facilities};
                         <div id="high_dim_data_upload_metabolomics_protocol_ms_div" style="display:none">
                             <div class="form-horizontal">
                                 <div class="form-group">
-                                    <label class="col-sm-3 control-label">Chromatography Type: </label>
+                                    <label class="col-sm-3 control-label">Tipo de Cromatografia: </label>
                                     <div class="col-sm-9" >
                                         <select class="form-control" id="high_dim_data_upload_metabolomics_chromatography_type">
                                             <option value="LCMS">LCMS</option>
@@ -378,73 +378,73 @@ my @sequencing_center_options = split ",", $c->config->{genotyping_facilities};
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-sm-3 control-label">Chromatography Instrument: </label>
+                                    <label class="col-sm-3 control-label">Instrumento de Cromatografia: </label>
                                     <div class="col-sm-9" >
-                                        <input class="form-control" id="high_dim_data_upload_metabolomics_chromatography_system_brand" type="text" placeholder="e.g. ThermoFisher MS100 System">
+                                        <input class="form-control" id="high_dim_data_upload_metabolomics_chromatography_system_brand" type="text" placeholder="Por exemplo. Sistema ThermoFisher MS100">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-sm-3 control-label">Chromatography AutoSampler Model: </label>
+                                    <label class="col-sm-3 control-label">Cromatografia AutoSampler Modelo: </label>
                                     <div class="col-sm-9" >
-                                        <input class="form-control" id="high_dim_data_upload_metabolomics_chromatography_AutoSampler_Model" type="text" placeholder="e.g. write the name of AutoSampler Model used">
+                                        <input class="form-control" id="high_dim_data_upload_metabolomics_chromatography_AutoSampler_Model" type="text" placeholder="Por exemplo, escreva o nome do modelo AutoSampler usado">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-sm-3 control-label">Chromatography Column Model: </label>
+                                    <label class="col-sm-3 control-label">Cromatografia Coluna Modelo: </label>
                                     <div class="col-sm-9" >
-                                        <input class="form-control" id="high_dim_data_upload_metabolomics_chromatography_column_brand" type="text" placeholder="e.g. ThermoFisher MS100 Column">
+                                        <input class="form-control" id="high_dim_data_upload_metabolomics_chromatography_column_brand" type="text" placeholder="Por exemplo. Coluna ThermoFisher MS100">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-sm-3 control-label">Chromatography Column Type: </label>
+                                    <label class="col-sm-3 control-label">Tipo de Coluna de Cromatografia: </label>
                                     <div class="col-sm-9" >
-                                        <input class="form-control" id="high_dim_data_upload_metabolomics_chromatography_column_type" type="text" placeholder="e.g. high polarity">
+                                        <input class="form-control" id="high_dim_data_upload_metabolomics_chromatography_column_type" type="text" placeholder="Por exemplo, alta polaridade">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-sm-3 control-label">Chromatography Protocol: </label>
+                                    <label class="col-sm-3 control-label">Protocolo de Cromatografia: </label>
                                     <div class="col-sm-9" >
-                                        <input class="form-control" id="high_dim_data_upload_metabolomics_chromatography_protocol" type="text" placeholder="e.g. describe chromatography protocol used">
+                                        <input class="form-control" id="high_dim_data_upload_metabolomics_chromatography_protocol" type="text" placeholder="Por exemplo, descrever protocolo de cromatografia usado">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-sm-3 control-label">Mass Spectrometry Protocol: </label>
+                                    <label class="col-sm-3 control-label">Protocolo de Espectrometria de Massa: </label>
                                     <div class="col-sm-9" >
-                                        <input class="form-control" id="high_dim_data_upload_metabolomics_mass_spectrometry_protocol" type="text" placeholder="e.g. describe mass spectrometry protocol used">
+                                        <input class="form-control" id="high_dim_data_upload_metabolomics_mass_spectrometry_protocol" type="text" placeholder="Por exemplo, descrever protocolo de espectrometria de massa usado">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-sm-3 control-label">MS Instrument: </label>
+                                    <label class="col-sm-3 control-label">Instrumento MS: </label>
                                     <div class="col-sm-9" >
-                                        <input class="form-control" id="high_dim_data_upload_metabolomics_ms_brand" type="text" placeholder="e.g. ThermoFisher MS100">
+                                        <input class="form-control" id="high_dim_data_upload_metabolomics_ms_brand" type="text" placeholder="Por exemplo. ThermoFisher MS100">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-sm-3 control-label">MS Mass Analyzer: </label>
+                                    <label class="col-sm-3 control-label">Analisador de Massa MS: </label>
                                     <div class="col-sm-9" >
                                         <input class="form-control" id="high_dim_data_upload_metabolomics_ms_mass_analyzer" type="text" placeholder="e.g. single quadropole">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-sm-3 control-label">MS Ion Source: </label>
+                                    <label class="col-sm-3 control-label">Fonte do MS Ion: </label>
                                     <div class="col-sm-9" >
-                                        <input class="form-control" id="high_dim_data_upload_metabolomics_ms_ion_source" type="text" placeholder="e.g. EI, ESI, APCI, MALDI">
+                                        <input class="form-control" id="high_dim_data_upload_metabolomics_ms_ion_source" type="text" placeholder="Por exemplo. EI, ESI, APCI, Maldi">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-sm-3 control-label">MS Scan Polarity: </label>
+                                    <label class="col-sm-3 control-label">Polaridade da varredura de espectrometria de massas: </label>
                                     <div class="col-sm-9" >
                                         <select class="form-control" id="high_dim_data_upload_metabolomics_ms_scan_polarity">
-                                            <option value="negative">Negative</option>
-                                            <option value="positive">Positive</option>
-                                            <option value="both">Both</option>
+                                            <option value="negative">Negativo</option>
+                                            <option value="positive">Positivo</option>
+                                            <option value="both">Ambos</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-sm-3 control-label">MS Scan MZ Range: </label>
+                                    <label class="col-sm-3 control-label">Intervalo m/z da varredura de espectrometria de massas: </label>
                                     <div class="col-sm-9" >
-                                        <input class="form-control" id="high_dim_data_upload_metabolomics_ms_scan_MZ_Range" type="text" placeholder="e.g. 60-800">
+                                        <input class="form-control" id="high_dim_data_upload_metabolomics_ms_scan_MZ_Range" type="text" placeholder="Por exemplo, 60-800">
                                     </div>
                                 </div>
                             </div>
@@ -452,50 +452,50 @@ my @sequencing_center_options = split ",", $c->config->{genotyping_facilities};
 
                         <div class="form-horizontal">
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">Equipment Description: </label>
+                                <label class="col-sm-3 control-label">Descrição do equipamento: </label>
                                 <div class="col-sm-9" >
-                                    <input class="form-control" id="high_dim_data_upload_metabolomics_equipment_description" type="text" placeholder="e.g. ThermoFisher MS100 Electron Ionization TOF Negative Ion Mode">
+                                    <input class="form-control" id="high_dim_data_upload_metabolomics_equipment_description" type="text" placeholder="Por exemplo. TermoFisher MS100 Elétrons Ionização TOF Modo Íon Negativo">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">Data Process Description: </label>
+                                <label class="col-sm-3 control-label">Descrição do Processo de Dados: </label>
                                 <div class="col-sm-9" >
-                                    <textarea rows="10" class="form-control" id="high_dim_data_upload_metabolomics_data_process_description" placeholder="e.g. This describes mode, instrument settings, calibration procedure. Also, describes how the files from the LCMS machine were transformed into peak area. Finally, describes how metabolite annotations were assinged to peaks"></textarea>
+                                    <textarea rows="10" class="form-control" id="high_dim_data_upload_metabolomics_data_process_description" placeholder="Por exemplo. Isso descreve o modo, configurações do instrumento, procedimento de calibração. Também descreve como os arquivos da máquina LCMS foram transformados em área de pico. Finalmente, descreve como as anotações de metabólitos foram avaliadas até os picos."></textarea>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">Publication: </label>
+                                <label class="col-sm-3 control-label">Publicação: </label>
                                 <div class="col-sm-9" >
-                                    <input class="form-control" id="high_dim_data_upload_metabolomics_publication" type="text" placeholder="e.g. https://doi.org/10.3389/fgene.2021.643733">
+                                    <input class="form-control" id="high_dim_data_upload_metabolomics_publication" type="text" placeholder="Por exemplo. https://doi.org/10.3389/fgene.2021.643733">
                                 </div>
                             </div>
                         </div>
                     </div>
 
                     <center>
-                    <button class="btn btn-primary" id="high_dim_data_upload_data_protocol_step">Go to Next Step</button>
+                    <button class="btn btn-primary" id="high_dim_data_upload_data_protocol_step">Vá para o próximo passo</button>
                     </center>
                 </&>
-                <&| /util/workflow.mas:step, title=> "Template Info" &>
-                    <& /page/page_title.mas, title=>"High-dimensional data must be uploaded using the template information provided" &>
+                <&| /util/workflow.mas:step, title=> "Informação do Modelo" &>
+                    <& /page/page_title.mas, title=>"Dados de alta dimensão devem ser enviados usando as informações do modelo fornecidas" &>
 
                     <center>
-                    <&| /page/explanation.mas, title=>'Data Matrix Spreadsheet Template Information' &>
+                    <&| /page/explanation.mas, title=>'Informações sobre o Modelo da Matriz de Dados' &>
                         <p>
-                        <b>File format information</b>
+                        <b>Informação do formato de arquivo</b>
                         <br>
-                        <a id="high_dim_data_spreadsheet_format_info">Data Matrix Spreadsheet Format</a>
+                        <a id="high_dim_data_spreadsheet_format_info">Formato da Folha de Dados Matrix</a>
                         </p>
                     </&>
                     </center>
 
                     <div id="high_dim_data_upload_transcriptomics_protocol_template_div">
                         <center>
-                        <&| /page/explanation.mas, title=>'Transcript Details Spreadsheet Template Information' &>
+                        <&| /page/explanation.mas, title=>'Tradução:' &>
                             <p>
-                            <b>File format information</b>
+                            <b>Informação do formato de arquivo</b>
                             <br>
-                            <a id="high_dim_data_spreadsheet_transcripts_format_info">Functional Annotation Spreadsheet Format</a>
+                            <a id="high_dim_data_spreadsheet_transcripts_format_info">Formato de Folha de Cálculo de Anotação Funcional</a>
                             </p>
                         </&>
                         </center>
@@ -503,22 +503,22 @@ my @sequencing_center_options = split ",", $c->config->{genotyping_facilities};
 
                     <div id="high_dim_data_upload_metabolomics_protocol_template_div">
                         <center>
-                        <&| /page/explanation.mas, title=>'Metabolite Details Spreadsheet Template Information' &>
+                        <&| /page/explanation.mas, title=>'Detalhes do metabolismo Informações do modelo da planilha' &>
                             <p>
-                            <b>File format information</b>
+                            <b>Informação do formato de arquivo</b>
                             <br>
-                            <a id="high_dim_data_spreadsheet_metabolites_format_info">Metabolite Details Spreadsheet Format</a>
+                            <a id="high_dim_data_spreadsheet_metabolites_format_info">Detalhes do metabolismo Formato da planilha</a>
                             </p>
                         </&>
                         </center>
                     </div>
 
                     <center>
-                    <button class="btn btn-primary" onclick="Workflow.complete(this); return false;">Go to Next Step</button>
+                    <button class="btn btn-primary" onclick="Workflow.complete(this); return false;">Vá para o próximo passo</button>
                     </center>
                 </&>
-                <&| /util/workflow.mas:step, title=> "Upload" &>
-                    <& /page/page_title.mas, title=>"Select your high-dimensional data file to upload" &>
+                <&| /util/workflow.mas:step, title=> "Enviar" &>
+                    <& /page/page_title.mas, title=>"Selecione seu arquivo de dados de alta dimensão para carregar" &>
 
                     <div id="high_dim_data_upload_nirs_div" style="display:none">
                         <form class="form-horizontal" role="form" method="post" enctype="multipart/form-data" encoding="multipart/form-data" id="upload_nirs_spreadsheet_file_form" name="upload_nirs_spreadsheet_file_form">
@@ -533,7 +533,7 @@ my @sequencing_center_options = split ",", $c->config->{genotyping_facilities};
                             </div>
                             -->
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">NIRS Spreadsheet: </label>
+                                <label class="col-sm-3 control-label">Planilha NIRS: </label>
                                 <div class="col-sm-9" >
                                     <input type="file" id="upload_nirs_spreadsheet_file_input" name="upload_nirs_spreadsheet_file_input" encoding="multipart/form-data" />
                                 </div>
@@ -547,8 +547,8 @@ my @sequencing_center_options = split ",", $c->config->{genotyping_facilities};
 
                         <hr>
                         <center>
-                            <button type="button" class="btn btn-info" name="upload_nirs_spreadsheet_submit_verify" id="upload_nirs_spreadsheet_submit_verify">Verify</button>
-                            <button disabled type="button" class="btn btn-primary" name="upload_nirs_spreadsheet_submit_store" id="upload_nirs_spreadsheet_submit_store" title="First Verify Your File">Store</button>
+                            <button type="button" class="btn btn-info" name="upload_nirs_spreadsheet_submit_verify" id="upload_nirs_spreadsheet_submit_verify">Verificar</button>
+                            <button disabled type="button" class="btn btn-primary" name="upload_nirs_spreadsheet_submit_store" id="upload_nirs_spreadsheet_submit_store" title="Primeiro verifique seu arquivo">Loja</button>
                         </center>
 
                         <div id="upload_nirs_spreadsheet_verify_status"></div>
@@ -562,19 +562,19 @@ my @sequencing_center_options = split ",", $c->config->{genotyping_facilities};
                                 <label class="col-sm-3 control-label">Data Level: </label>
                                 <div class="col-sm-9" >
                                     <select class="form-control" id="upload_transcriptomics_spreadsheet_data_level" name="upload_transcriptomics_spreadsheet_data_level">
-                                        <option value="tissue_samples">Tissue Samples</option>
+                                        <option value="tissue_samples">Amostras de tecido</option>
                                     </select>
                                 </div>
                             </div>
                             -->
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">Transcriptomics Data Matrix Spreadsheet: </label>
+                                <label class="col-sm-3 control-label">Tradução: </label>
                                 <div class="col-sm-9" >
                                     <input type="file" id="upload_transcriptomics_spreadsheet_file_input" name="upload_transcriptomics_spreadsheet_file_input" encoding="multipart/form-data" />
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">Transcripts Details Spreadsheet: </label>
+                                <label class="col-sm-3 control-label">Tradução: </label>
                                 <div class="col-sm-9" >
                                     <input type="file" id="upload_transcriptomics_transcript_metadata_spreadsheet_file_input" name="upload_transcriptomics_transcript_metadata_spreadsheet_file_input" encoding="multipart/form-data" />
                                 </div>
@@ -599,8 +599,8 @@ my @sequencing_center_options = split ",", $c->config->{genotyping_facilities};
 
                         <hr>
                         <center>
-                            <button type="button" class="btn btn-info" name="upload_transcriptomics_spreadsheet_submit_verify" id="upload_transcriptomics_spreadsheet_submit_verify">Verify</button>
-                            <button disabled type="button" class="btn btn-primary" name="upload_transcriptomics_spreadsheet_submit_store" id="upload_transcriptomics_spreadsheet_submit_store" title="First Verify Your File">Store</button>
+                            <button type="button" class="btn btn-info" name="upload_transcriptomics_spreadsheet_submit_verify" id="upload_transcriptomics_spreadsheet_submit_verify">Verificar</button>
+                            <button disabled type="button" class="btn btn-primary" name="upload_transcriptomics_spreadsheet_submit_store" id="upload_transcriptomics_spreadsheet_submit_store" title="Primeiro verifique seu arquivo">Loja</button>
                         </center>
 
                         <div id="upload_transcriptomics_spreadsheet_verify_status"></div>
@@ -609,21 +609,21 @@ my @sequencing_center_options = split ",", $c->config->{genotyping_facilities};
                     <div id="high_dim_data_upload_metabolomics_div" style="display:none">
                         <form class="form-horizontal" role="form" method="post" enctype="multipart/form-data" encoding="multipart/form-data" id="upload_metabolomics_spreadsheet_file_form" name="upload_metabolomics_spreadsheet_file_form">
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">Data Level: </label>
+                                <label class="col-sm-3 control-label">Nível de dados: </label>
                                 <div class="col-sm-9" >
                                     <select class="form-control" id="upload_metabolomics_spreadsheet_data_level" name="upload_metabolomics_spreadsheet_data_level">
-                                        <option value="tissue_samples">Tissue Samples</option>
+                                        <option value="tissue_samples">Amostras de tecido</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">Metabolomics Data Matrix Spreadsheet: </label>
+                                <label class="col-sm-3 control-label">Folha de dados metabolômicos da Matrix: </label>
                                 <div class="col-sm-9" >
                                     <input type="file" id="upload_metabolomics_spreadsheet_file_input" name="upload_metabolomics_spreadsheet_file_input" encoding="multipart/form-data" />
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">Metabolites Details Spreadsheet: </label>
+                                <label class="col-sm-3 control-label">Metabolites Detalhes Folha de Cálculo: </label>
                                 <div class="col-sm-9" >
                                     <input type="file" id="upload_metabolomics_metabolite_details_spreadsheet_file_input" name="upload_metabolomics_metabolite_details_spreadsheet_file_input" encoding="multipart/form-data" />
                                 </div>
@@ -664,8 +664,8 @@ my @sequencing_center_options = split ",", $c->config->{genotyping_facilities};
 
                         <hr>
                         <center>
-                            <button type="button" class="btn btn-info" name="upload_metabolomics_spreadsheet_submit_verify" id="upload_metabolomics_spreadsheet_submit_verify">Verify</button>
-                            <button disabled type="button" class="btn btn-primary" name="upload_metabolomics_spreadsheet_submit_store" id="upload_metabolomics_spreadsheet_submit_store" title="First Verify Your File">Store</button>
+                            <button type="button" class="btn btn-info" name="upload_metabolomics_spreadsheet_submit_verify" id="upload_metabolomics_spreadsheet_submit_verify">Verificar</button>
+                            <button disabled type="button" class="btn btn-primary" name="upload_metabolomics_spreadsheet_submit_store" id="upload_metabolomics_spreadsheet_submit_store" title="Primeiro verifique seu arquivo">Loja</button>
                         </center>
 
                         <div id="upload_metabolomics_spreadsheet_verify_status"></div>
@@ -676,7 +676,7 @@ my @sequencing_center_options = split ",", $c->config->{genotyping_facilities};
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" name="met_close_refresh" id="met_close_refresh" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" name="met_close_refresh" id="met_close_refresh" class="btn btn-default" data-dismiss="modal">Fechar</button>
       </div>
     </div>
   </div>
@@ -686,19 +686,19 @@ my @sequencing_center_options = split ",", $c->config->{genotyping_facilities};
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="nirsUploadInfoDialog">Template Information</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="nirsUploadInfoDialog">Informação do Modelo</h4>
       </div>
       <div class="modal-body">
         <div class="container-fluid">
 
-            <h3>Upload NIRS in a tabular spreadsheet (.csv) format with the following columns:</h3>
+            <h3>Envie NIRS em uma planilha tabular com as seguintes colunas:</h3>
 
             <ul>
-                <li><strong>sample_name</strong>: This should be a sample name that exists in the database. The sample can come from a sampling trial or a field trial or a genotyping plate.</li>
-                <li><strong>device_id</strong>: Optional identifier to differentiate device (e.g. serial number). Can be numeric or letter.</li>
-                <li><strong>comments</strong>: Optional comments for any information to include. Can include specific sample preparation for measurement.</li>
-                <li>All other columns are <strong>wavelengths</strong> (e.g. 100, 400, 2000, etc). You can add as many columns as you want to upload, there isn't a limit.</li>
+                <li><strong>sample_name</strong>Este deve ser um nome de amostra que existe no banco de dados. A amostra pode vir de um ensaio de amostragem, um ensaio de campo ou uma placa de genotipagem.</li>
+                <li><strong>device_id</strong>Identificador opcional para diferenciar o dispositivo (por exemplo, número de série). Pode ser numérico ou letra.</li>
+                <li><strong>Comentários</strong>Comentários opcionais para qualquer informação a incluir. Pode incluir preparação específica da amostra para medição.</li>
+                <li>Todas as outras colunas são <strong>comprimentos de onda</strong> (por exemplo, 100, 400, 2000, etc). Pode adicionar quantas colunas quiser, não há limite.</li>
             </ul>
             <table class="table table-hover table-bordered table-condensed" >
                 <thead></thead>
@@ -706,8 +706,8 @@ my @sequencing_center_options = split ",", $c->config->{genotyping_facilities};
                     <tr>
                         <td>sample_name</td>
                         <td>device_id</td>
-                        <td>comments</td>
-                        <td>wavelength columns (e.g. 400, 1200, etc)</td>
+                        <td>Comentários</td>
+                        <td>colunas de comprimento de onda (por exemplo 400, 1200, etc)</td>
                     </tr>
                 </tbody>
             </table>
@@ -715,7 +715,7 @@ my @sequencing_center_options = split ",", $c->config->{genotyping_facilities};
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
       </div>
     </div>
   </div>
@@ -726,20 +726,20 @@ my @sequencing_center_options = split ",", $c->config->{genotyping_facilities};
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="transcriptomicsUploadInfoDialog">Template Information</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="transcriptomicsUploadInfoDialog">Informação do Modelo</h4>
       </div>
       <div class="modal-body">
         <div class="container-fluid">
 
-            <h3>Upload Transcriptomics in a tabular spreadsheet (.csv) format with the following columns:</h3>
+            <h3>Envie transcriptomics em um formato tabular planilha (.csv) com as seguintes colunas:</h3>
 
             <ul>
 
-                <li><strong>sample_name</strong>: This should be a sample name that exists in the database. The sample can come from a sampling trial or a field trial or a genotyping plate.</li>
-                <li><strong>device_id</strong>: Optional identifier to differentiate device (e.g. serial number). Can be numeric or letter.</li>
-                <li><strong>comments</strong>: Optional comments for any information to include. Can include specific sample preparation for measurement.</li>
-                <li>All other columns are <strong>gene ids</strong>. You can add as many columns as you want to upload, there isn't a limit.</li>
+                <li><strong>sample_name</strong>Este deve ser um nome de amostra que existe no banco de dados. A amostra pode vir de um ensaio de amostragem, um ensaio de campo ou uma placa de genotipagem.</li>
+                <li><strong>device_id</strong>Identificador opcional para diferenciar o dispositivo (por exemplo, número de série). Pode ser numérico ou letra.</li>
+                <li><strong>Comentários</strong>Comentários opcionais para qualquer informação a incluir. Pode incluir preparação específica da amostra para medição.</li>
+                <li>Todas as outras colunas são <strong>IDs de genes</strong>. Pode adicionar quantas colunas quiser, não há limite.</li>
             </ul>
             <table class="table table-hover table-bordered table-condensed" >
                 <thead></thead>
@@ -747,8 +747,8 @@ my @sequencing_center_options = split ",", $c->config->{genotyping_facilities};
                     <tr>
                         <td>sample_name</td>
                         <td>device_id</td>
-                        <td>comments</td>
-                        <td>gene id columns</td>
+                        <td>Comentários</td>
+                        <td>Colunas gene id</td>
                     </tr>
                 </tbody>
             </table>
@@ -756,7 +756,7 @@ my @sequencing_center_options = split ",", $c->config->{genotyping_facilities};
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
       </div>
     </div>
   </div>
@@ -766,19 +766,19 @@ my @sequencing_center_options = split ",", $c->config->{genotyping_facilities};
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="metabolomicsUploadInfoDialog">Template Information</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="metabolomicsUploadInfoDialog">Informação do Modelo</h4>
       </div>
       <div class="modal-body">
         <div class="container-fluid">
 
-            <h3>Upload Metabolomics in a tabular spreadsheet (.csv) format with the following columns:</h3>
+            <h3>Envie Metabolômica em uma planilha tabular com as seguintes colunas:</h3>
 
             <ul>
-                <li><strong>sample_name</strong>: This should be a sample name that exists in the database. The sample can come from a sampling trial or a field trial or a genotyping plate.</li>
-                <li><strong>device_id</strong>: Optional identifier to differentiate device (e.g. serial number). Can be numeric or letter.</li>
-                <li><strong>comments</strong>: Optional comments for any information to include. Can include specific sample preparation for measurement.</li>
-                <li>All other columns are <strong>metabolite names</strong>. You can add as many columns as you want to upload, there isn't a limit.</li>
+                <li><strong>sample_name</strong>Este deve ser um nome de amostra que existe no banco de dados. A amostra pode vir de um ensaio de amostragem, um ensaio de campo ou uma placa de genotipagem.</li>
+                <li><strong>device_id</strong>Identificador opcional para diferenciar o dispositivo (por exemplo, número de série). Pode ser numérico ou letra.</li>
+                <li><strong>Comentários</strong>Comentários opcionais para qualquer informação a incluir. Pode incluir preparação específica da amostra para medição.</li>
+                <li>Todas as outras colunas são <strong>nomes de metabólitos</strong>. Pode adicionar quantas colunas quiser, não há limite.</li>
             </ul>
             <table class="table table-hover table-bordered table-condensed" >
                 <thead></thead>
@@ -786,8 +786,8 @@ my @sequencing_center_options = split ",", $c->config->{genotyping_facilities};
                     <tr>
                         <td>sample_name</td>
                         <td>device_id</td>
-                        <td>comments</td>
-                        <td>metabolite name columns</td>
+                        <td>Comentários</td>
+                        <td>Colunas de nomes de metabólitos</td>
                     </tr>
                 </tbody>
             </table>
@@ -795,7 +795,7 @@ my @sequencing_center_options = split ",", $c->config->{genotyping_facilities};
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
       </div>
     </div>
   </div>
@@ -805,39 +805,39 @@ my @sequencing_center_options = split ",", $c->config->{genotyping_facilities};
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="transcriptomicsDetailsUploadInfoDialog">Template Information</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="transcriptomicsDetailsUploadInfoDialog">Informação do Modelo</h4>
       </div>
       <div class="modal-body">
         <div class="container-fluid">
 
-            <h3>Upload details about the transcripts in a tabular spreadsheet (.csv) format with the following columns:</h3>
+            <h3>Envie detalhes sobre as transcrições em uma planilha tabular com as seguintes colunas:</h3>
 
             <ul>
-                <li>gene_id (required): This should be the same name as present in a column in your transcriptomics data matrix file.</li>
-                <li>chromosome (required): The chromosome where the transcript exists.</li>
-                <li>pos_left (required): The start position in base pairs of where the transcript begins.</li>
-                <li>pos_right (required): The end position in base pairs of where the transcript ends.</li>
-                <li>functional_annotation (optional): Descriptors for gene annotations.</li>
-                <li>notes (optional): Any additional descrptions.</li>
+                <li>gene_id (obrigatório): deve corresponder ao nome presente em uma coluna do arquivo de matriz de dados de transcriptômica.</li>
+                <li>O cromossomo onde a transcrição existe.</li>
+                <li>pos_left (obrigatório): posição inicial do transcrito, em pares de bases.</li>
+                <li>pos_right (obrigatório): posição final do transcrito, em pares de bases.</li>
+                <li>functional_annotation (opcional): Descritores para anotações de genes.</li>
+                <li>Qualquer descrença adicional.</li>
             </ul>
             <table class="table table-hover table-bordered table-condensed" >
                 <thead></thead>
                 <tbody>
                     <tr>
                         <td>gene_id</td>
-                        <td>chromosome</td>
+                        <td>cromossoma</td>
                         <td>pos_left</td>
                         <td>pos_right</td>
                         <td>functional_annotation</td>
-                        <td>notes</td>
+                        <td>Notas</td>
                     </tr>
                 </tbody>
             </table>
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
       </div>
     </div>
   </div>
@@ -847,36 +847,36 @@ my @sequencing_center_options = split ",", $c->config->{genotyping_facilities};
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="metabolomicsDetailsUploadInfoDialog">Template Information</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="metabolomicsDetailsUploadInfoDialog">Informação do Modelo</h4>
       </div>
       <div class="modal-body">
         <div class="container-fluid">
 
-            <h3>Upload details about the metabolites in a tabular spreadsheet (.csv) format with the following columns:</h3>
+            <h3>Envie detalhes sobre os metabólitos em uma planilha tabular com as seguintes colunas:</h3>
 
             <ul>
-                <li><strong>metabolite_name (required)</strong>: This should be the same name as present in a column in your metabolomics data matrix file.</li>
-                <li><strong>chebi_id (optional)</strong>: Standard formula (e.g., CHEBI:16971) identifier for the metabolite.</li>
-                <li><strong>inchi_id (optional)</strong>: The International Chemical Identifier (e.g, InChI=1S/C6H6O3/c7-4-1-2-5(8)6(9)3-4/h1-3,7-9H) for the metabolite.</li>
-                <li><strong>inchi_key (optional)</strong>: The International Chemical Identifier (shortened version of inchi_id) for the metabolite.</li>
-                <li><strong>pubchem_id (optional)</strong>: Standard formula (e.g., https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:75854) identifier for the metabolite.</li>
-                <li><strong>smiles_id (optional)</strong>: Standard identifier (eg., Oc1ccc(O)c(O)c1) for the metabolite.</li>
-                <li><strong>chemical_formula (required)</strong>: Chemical formula of the metabolite (e.g., C6H6O3).</li>
-                <li><strong>putative_metabolite_identification (required)</strong>: e.g., Phenylalanine, sucrose, avenanthramide.</li>
-                <li><strong>putative_metabolite_identification_synonyms (optional)</strong>: Metabolite synonyms, alternate names of any of the above.</li>
-                <li><strong>mass_to_charge (required)</strong>: M/Z ratio, standard from output, should be a number.</li>
-                <li><strong>retention_time (required)</strong>: Retention time, also standard from machine output; users should confirm that unit is 'seconds'.</li>
-                <li><strong>charge (optional)</strong>: Could be negative or positive.</li>
-                <li><strong>fragmentation (optional)</strong>: e.g. (239:3349 240:1454 342:3557 343:1562).</li>
-                <li><strong>modifications (optional)</strong>: This is if the metabolite was modified to make it easier to measure on the instrument, and what it was modified too (e.g. trimethylsilation).</li>
-                <li><strong>metabolite_species (optional)</strong>: e.g., Acid, alcohol.</li>
-                <li><strong>met_database (required)</strong>: Metabolomics database (e.g., gmd.mpimp-golm.mpg.de).</li>
-                <li><strong>met_database_version (required)</strong>: Metabolomics database version (e.g., var5 alk 161212).</li>
-                <li><strong>met_reliability (required)</strong>: A number 1 through 5, related to  dx.doi.org/10.1021/es5002105.</li>
-                <li><strong>met_search_engine (required)</strong>: e.g., TagFinder4.1 manual supervised annotation.</li>
-                <li><strong>met_search_engine_score (required)</strong>: Score given by search engine.</li>
-                <li><strong>compound_name (optional)</strong>: Name for the compound.</li>
+                <li><strong>metabolite_name (obrigatório)</strong>Este deve ser o mesmo nome que está presente em uma coluna no seu arquivo de dados metabolômicos.</li>
+                <li><strong>chebi_id (opcional)</strong>Fórmula padrão (por exemplo, CHEBI:16971) identificador para o metabólito.</li>
+                <li><strong>inchi_id (opcional)</strong>O identificador químico internacional (por exemplo, InChI=1S/C6H6O3/c7-4-1-2-5(8)6(9)3-4/h1-3,7-9H) para o metabólito.</li>
+                <li><strong>inchi_key (opcional)</strong>: identificador químico internacional do metabólito, na versão abreviada de inchi_id.</li>
+                <li><strong>pubchem_id (opcional)</strong>Fórmula padrão (por exemplo, identificador https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:75854) para o metabólito.</li>
+                <li><strong>smiles_id (opcional)</strong>: identificador padrão do metabólito (ex.: Oc1ccc(O)c(O)c1).</li>
+                <li><strong>chemical_formula (obrigatório)</strong>Fórmula química do metabólito (por exemplo, C6H6O3).</li>
+                <li><strong>putative_metabolite_identification (obrigatório)</strong>Por exemplo, fenilalanina, sacarose, avenantramide.</li>
+                <li><strong>putative_metabolite_identification_synonyms (opcional)</strong>Sinónimos metabólicos, nomes alternativos de qualquer um dos anteriores.</li>
+                <li><strong>mass_to_charge (obrigatório)</strong>Rácio M/Z, padrão de saída, deve ser um número.</li>
+                <li><strong>retention_time (obrigatório)</strong>Tempo de retenção, também padrão da saída da máquina, os usuários devem confirmar que a unidade é 'segundos'.</li>
+                <li><strong>carga (opcional)</strong>Pode ser negativo ou positivo.</li>
+                <li><strong>fragmentação (opcional)</strong>Por exemplo, (239:3349 240:1454 342:3557 343:1562).</li>
+                <li><strong>modificações (opcional)</strong>Isto é, se o metabólito foi modificado para tornar mais fácil medir no instrumento, e o que foi modificado também (por exemplo, trimetilsilação).</li>
+                <li><strong>metabolite_species (opcional)</strong>Por exemplo, ácido, álcool.</li>
+                <li><strong>met_database (obrigatório)</strong>: Metabolomics database (e.g., gmd.mpimp-golm.mpg.de).</li>
+                <li><strong>met_database_version (obrigatório)</strong>: Versão do banco de dados Metabolômico (por exemplo, Var5 Alk 161212).</li>
+                <li><strong>met_reliability (obrigatório)</strong>: um número de 1 a 5, relacionado a dx.doi.org/10.1021/es5002105.</li>
+                <li><strong>met_search_engine (obrigatório)</strong>Por exemplo, anotação supervisionada manual TagFinder4.1.</li>
+                <li><strong>met_search_engine_score (obrigatório)</strong>Pontuação dada pelo motor de busca.</li>
+                <li><strong>compound_name (opcional)</strong>O nome do complexo.</li>
             </ul>
             <table class="table table-hover table-bordered table-condensed" >
                 <thead></thead>
@@ -893,9 +893,9 @@ my @sequencing_center_options = split ",", $c->config->{genotyping_facilities};
                         <td><strong>putative_metabolite_identification_synonyms</strong></td>
                         <td><strong>mass_to_charge</strong></td>
                         <td><strong>retention_time<s/trong></td>
-                        <td><strong>charge</strong></td>
-                        <td><strong>fragmentation</strong></td>
-                        <td><strong>modifications</strong></td>
+                        <td><strong>Carregar</strong></td>
+                        <td><strong>fragmentação</strong></td>
+                        <td><strong>modificações</strong></td>
                         <td><strong>metabolite_species</strong></td>
                         <td><strong>met_database</strong></td>
                         <td><strong>met_database_version</strong></td>
@@ -909,7 +909,7 @@ my @sequencing_center_options = split ",", $c->config->{genotyping_facilities};
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
       </div>
     </div>
   </div>
@@ -944,7 +944,7 @@ jQuery(document).ready(function() {
         high_dim_data_upload_type = jQuery('#high_dim_data_upload_type_select').val();
 
         if (high_dim_data_upload_type == '') {
-            alert('Please select a data type first!');
+            alert("Selecione primeiro um tipo de dados!");
             return false;
         }
 
@@ -1056,7 +1056,7 @@ jQuery(document).ready(function() {
             selected.push(jQuery(this).val());
         });
         if(selected.length > 1) {
-            alert('Please select only one protocol!');
+            alert("Selecione apenas um protocolo!");
             return false;
         }
 
@@ -1064,15 +1064,15 @@ jQuery(document).ready(function() {
         var high_dim_protocol_desc = jQuery('#high_dim_data_upload_protocol_desc').val();
 
         if (selected.length>0 && high_dim_protocol_name != '') {
-            alert('Please select a protocol or give a name for a new one! Not both!');
+            alert("Selecione um protocolo ou informe um nome para criar um novo, não ambos!");
             return false;
         }
         if (selected.length==0 && high_dim_protocol_name == '') {
-            alert('Please select a protocol or create a new one!');
+            alert("Selecione um protocolo ou crie um novo!");
             return false;
         }
         if (selected.length==0 && high_dim_protocol_desc == '') {
-            alert('Please select a protocol or create a new one with a description!');
+            alert("Selecione um protocolo ou crie um novo com uma descrição!");
             return false;
         }
 
@@ -1142,11 +1142,11 @@ jQuery(document).ready(function() {
     jQuery('#upload_nirs_spreadsheet_submit_verify').click(function(){
         var file_input = jQuery("#upload_nirs_spreadsheet_file_input").val();
         if (file_input === '') {
-            alert("Please select a file");
+            alert("Selecione um arquivo");
             return false;
         }
         else {
-            jQuery('#working_msg').html("Verifying NIRS File and Data");
+            jQuery('#working_msg').html("Verificando arquivo e dados NIRS");
             jQuery('#working_modal').modal("show");
             jQuery('#upload_nirs_spreadsheet_file_form').attr("action", '/ajax/highdimensionalphenotypes/nirs_upload_verify');
             jQuery('#upload_nirs_spreadsheet_file_form').submit();
@@ -1166,7 +1166,7 @@ jQuery(document).ready(function() {
             var submit_store_button = "#upload_nirs_spreadsheet_submit_store";
             var upload_phenotype_status = "#upload_nirs_spreadsheet_verify_status";
 
-            jQuery('#upload_nirs_spreadsheet_verify_figure').html('<div class="well well-sm"><h3>Plot of Spectra: </h3><img width="80%" height="80%" src="'+response.figure+'"></div>');
+            jQuery('#upload_nirs_spreadsheet_verify_figure').html("<div class=\"well well-sm\"><h3>Gráfico dos espectros: </h3><img width=\"80%\" height=\"80%\" src=\""+response.figure+'"></div>');
 
             jQuery(submit_verify_button).attr('disabled', true);
             var message_text = "<hr><ul class='list-group'>";
@@ -1197,7 +1197,7 @@ jQuery(document).ready(function() {
                 if (warningarrayLength > 0) {
                     message_text += "<li class='list-group-item list-group-item-warning'>";
                     message_text += "<span class='badge'><span class='glyphicon glyphicon-asterisk'></span></span>";
-                    message_text += "Warnings are shown in yellow. Either fix the file and try again or continue with storing the data.<hr>If you continue, by default any new values will be uploaded and any previously stored values will be skipped.<hr>To overwrite previously stored values instead: <input type='checkbox' id='phenotype_upload_overwrite_values' name='phenotype_upload_overwrite_values' /><br><br>";
+                    message_text += "Avisos são mostrados em amarelo. Conserte o arquivo e tente novamente ou continue guardando os dados.<hr>Ao continuar, os novos valores serão enviados e os valores armazenados anteriormente serão mantidos por padrão.<hr>Para substituir valores armazenados anteriormente em vez disso: <input type='checkbox' id='phenotype_upload_overwrite_values' name='phenotype_upload_overwrite_values' /><br><br>";
                     message_text += "</li>";
                     for (var i = 0; i < warningarrayLength; i++) {
                         message_text += "<li class='list-group-item list-group-item-warning'>";
@@ -1213,11 +1213,11 @@ jQuery(document).ready(function() {
             jQuery("#upload_nirs_spreadsheet_submit_store").click( function() {
                 var file_input = jQuery("#upload_nirs_spreadsheet_file_input").val();
                 if (file_input === '') {
-                    alert("Please select a file");
+                    alert("Selecione um arquivo");
                     return false;
                 }
                 else {
-                    jQuery('#working_msg').html("Storing NIRS File and Data");
+                    jQuery('#working_msg').html("Armazenando arquivo e dados NIRS");
                     jQuery('#working_modal').modal("show");
                     jQuery('#upload_nirs_spreadsheet_file_form').attr("action", '/ajax/highdimensionalphenotypes/nirs_upload_store');
                     jQuery('#upload_nirs_spreadsheet_file_form').submit();
@@ -1253,10 +1253,10 @@ jQuery(document).ready(function() {
                             message_text += "</li>";
                         }
                         if (errorarrayLength == 0) {
-                            message_text += "<li class='list-group-item list-group-item-success'><hr><h3>Upload Successfull!</h3></li>";
+                            message_text += "<li class='list-group-item list-group-item-success'><hr><h3>Envio concluído com sucesso!</h3></li>";
                         }
                     } else {
-                        message_text += "<li class='list-group-item list-group-item-success'><hr><h3>Upload Successfull!</h3></li>";
+                        message_text += "<li class='list-group-item list-group-item-success'><hr><h3>Envio concluído com sucesso!</h3></li>";
                     }
                     message_text += "</ul>";
                     jQuery(upload_phenotype_status).html(message_text);
@@ -1275,11 +1275,11 @@ jQuery(document).ready(function() {
     jQuery('#upload_transcriptomics_spreadsheet_submit_verify').click(function(){
         var file_input = jQuery("#upload_transcriptomics_spreadsheet_file_input").val();
         if (file_input === '') {
-            alert("Please select a file");
+            alert("Selecione um arquivo");
             return false;
         }
         else {
-            jQuery('#working_msg').html("Verifying Transcriptomics File and Data");
+            jQuery('#working_msg').html("Verificando arquivo e dados de transcriptômica");
             jQuery('#working_modal').modal("show");
             jQuery('#upload_transcriptomics_spreadsheet_file_form').data("flag", "verify");
             jQuery('#upload_transcriptomics_spreadsheet_file_form').attr("action", '/ajax/highdimensionalphenotypes/transcriptomics_upload_verify');
@@ -1290,11 +1290,11 @@ jQuery(document).ready(function() {
     jQuery("#upload_transcriptomics_spreadsheet_submit_store").click( function() {
         var file_input = jQuery("#upload_transcriptomics_spreadsheet_file_input").val();
         if (file_input === '') {
-            alert("Please select a file");
+            alert("Selecione um arquivo");
             return false;
         }
         else {
-            jQuery('#working_msg').html("Storing Transcriptomics File and Data");
+            jQuery('#working_msg').html("Armazenando arquivo e dados de transcriptômica");
             jQuery('#working_modal').modal("show");
             jQuery('#upload_transcriptomics_spreadsheet_file_form').data("flag", "store");
             jQuery('#upload_transcriptomics_spreadsheet_file_form').attr("action", '/ajax/highdimensionalphenotypes/transcriptomics_upload_store');
@@ -1345,7 +1345,7 @@ jQuery(document).ready(function() {
                     if (warningarrayLength > 0) {
                         message_text += "<li class='list-group-item list-group-item-warning'>";
                         message_text += "<span class='badge'><span class='glyphicon glyphicon-asterisk'></span></span>";
-                        message_text += "Warnings are shown in yellow. Either fix the file and try again or continue with storing the data.<hr>If you continue, by default any new values will be uploaded and any previously stored values will be skipped.<hr>To overwrite previously stored values instead: <input type='checkbox' id='phenotype_upload_overwrite_values' name='phenotype_upload_overwrite_values' /><br><br>";
+                        message_text += "Avisos são mostrados em amarelo. Conserte o arquivo e tente novamente ou continue guardando os dados.<hr>Ao continuar, os novos valores serão enviados e os valores armazenados anteriormente serão mantidos por padrão.<hr>Para substituir valores armazenados anteriormente em vez disso: <input type='checkbox' id='phenotype_upload_overwrite_values' name='phenotype_upload_overwrite_values' /><br><br>";
                         message_text += "</li>";
                         for (var i = 0; i < warningarrayLength; i++) {
                             message_text += "<li class='list-group-item list-group-item-warning'>";
@@ -1378,10 +1378,10 @@ jQuery(document).ready(function() {
                         message_text += "</li>";
                     }
                     if (errorarrayLength == 0) {
-                        message_text += "<li class='list-group-item list-group-item-success'><hr><h3>Upload Successfull!</h3></li>";
+                        message_text += "<li class='list-group-item list-group-item-success'><hr><h3>Envio concluído com sucesso!</h3></li>";
                     }
                 } else {
-                    message_text += "<li class='list-group-item list-group-item-success'><hr><h3>Upload Successfull!</h3></li>";
+                    message_text += "<li class='list-group-item list-group-item-success'><hr><h3>Envio concluído com sucesso!</h3></li>";
                 }
             }
             message_text += "</ul>";
@@ -1398,11 +1398,11 @@ jQuery(document).ready(function() {
     jQuery('#upload_metabolomics_spreadsheet_submit_verify').click(function(){
         var file_input = jQuery("#upload_metabolomics_spreadsheet_file_input").val();
         if (file_input === '') {
-            alert("Please select a file");
+            alert("Selecione um arquivo");
             return false;
         }
         else {
-            jQuery('#working_msg').html("Verifying Metabolomics File and Data");
+            jQuery('#working_msg').html("Verificando arquivo e dados de metabolômica");
             jQuery('#working_modal').modal("show");
             jQuery('#upload_metabolomics_spreadsheet_file_form').attr("action", '/ajax/highdimensionalphenotypes/metabolomics_upload_verify');
             jQuery('#upload_metabolomics_spreadsheet_file_form').submit();
@@ -1451,7 +1451,7 @@ jQuery(document).ready(function() {
                 if (warningarrayLength > 0) {
                     message_text += "<li class='list-group-item list-group-item-warning'>";
                     message_text += "<span class='badge'><span class='glyphicon glyphicon-asterisk'></span></span>";
-                    message_text += "Warnings are shown in yellow. Either fix the file and try again or continue with storing the data.<hr>If you continue, by default any new values will be uploaded and any previously stored values will be skipped.<hr>To overwrite previously stored values instead: <input type='checkbox' id='phenotype_upload_overwrite_values' name='phenotype_upload_overwrite_values' /><br><br>";
+                    message_text += "Avisos são mostrados em amarelo. Conserte o arquivo e tente novamente ou continue guardando os dados.<hr>Ao continuar, os novos valores serão enviados e os valores armazenados anteriormente serão mantidos por padrão.<hr>Para substituir valores armazenados anteriormente em vez disso: <input type='checkbox' id='phenotype_upload_overwrite_values' name='phenotype_upload_overwrite_values' /><br><br>";
                     message_text += "</li>";
                     for (var i = 0; i < warningarrayLength; i++) {
                         message_text += "<li class='list-group-item list-group-item-warning'>";
@@ -1467,11 +1467,11 @@ jQuery(document).ready(function() {
             jQuery("#upload_metabolomics_spreadsheet_submit_store").click( function() {
                 var file_input = jQuery("#upload_metabolomics_spreadsheet_file_input").val();
                 if (file_input === '') {
-                    alert("Please select a file");
+                    alert("Selecione um arquivo");
                     return false;
                 }
                 else {
-                    jQuery('#working_msg').html("Storing Metabolomics File and Data");
+                    jQuery('#working_msg').html("Armazenando arquivo e dados de metabolômica");
                     jQuery('#working_modal').modal("show");
                     jQuery('#upload_metabolomics_spreadsheet_file_form').attr("action", '/ajax/highdimensionalphenotypes/metabolomics_upload_store');
                     jQuery('#upload_metabolomics_spreadsheet_file_form').submit();
@@ -1507,10 +1507,10 @@ jQuery(document).ready(function() {
                             message_text += "</li>";
                         }
                         if (errorarrayLength == 0) {
-                            message_text += "<li class='list-group-item list-group-item-success'><hr><h3>Upload Successfull!</h3></li>";
+                            message_text += "<li class='list-group-item list-group-item-success'><hr><h3>Envio concluído com sucesso!</h3></li>";
                         }
                     } else {
-                        message_text += "<li class='list-group-item list-group-item-success'><hr><h3>Upload Successfull!</h3></li>";
+                        message_text += "<li class='list-group-item list-group-item-success'><hr><h3>Envio concluído com sucesso!</h3></li>";
                     }
                     message_text += "</ul>";
                     jQuery(upload_phenotype_status).html(message_text);

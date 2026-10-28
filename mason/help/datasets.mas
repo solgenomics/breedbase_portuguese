@@ -1,44 +1,27 @@
 
-<& /page/page_title.mas, title => "Dataset Help" &>
+<& /page/page_title.mas, title => "Ajuda no conjunto de dados" &>
 
-<p><b>Working with Datasets</b></p>
+<p><b>Trabalhando com Datasets</b></p>
 
-<p>Datasets are collections of identifiers that are stored in
-the database. Datasets can be composed of accessions, plots, traits, locations,
-and trials. Datasets are attached to the individual user’s account, and can
-only be created and seen by the user while logged in. SGN databases use 
-Datasets in analysis tools on the website such as Wizard, GWAS, GS,
-Heritability, and Stability tools.</p>
+<p>Datasets são coleções de identificadores que são armazenados no banco de dados. Datasets podem ser compostos de acessos, parcelas, características, locais e ensaios. Os conjuntos de dados são anexados à conta individual do usuário, e só podem ser criados e vistos pelo usuário enquanto estão conectados. Bancos de dados da SGN usam Datasets em ferramentas de análise no site como Wizard, GWAS, GS, Heritability e Ferramentas de Estabilidade.</p>
 
-<p><b>Creating Datasets</b></p>
+<p><b>Criando Datasets</b></p>
 
-<p>Datasets are generated in the Wizard. Up to 4 identifiers
-can be selected. First select the categories and entries in each column. In
-this example we have selected Trials, Accessions, and Genotyping Protocols.
-Then enter a name in the “Create New Dataset” section. In this example we have
-used “Tinker QTL 2021”. After creating the dataset, you can make it public for
-others to use by first selecting the dataset using the “Load Dataset”
-list then selecting the “Make Public” button.</p>
+<p>Os dados são gerados no Mago. Até 4 identificadores podem ser selecionados. Primeiro selecione as categorias e entradas em cada coluna. Neste exemplo, selecionamos ensaios, acessos e protocolos de genotipagem. Então insira um nome na seção "Criar novos dados". Neste exemplo usamos "Tinker QTL 2021". Depois de criar o conjunto de dados, você pode torná-lo público para os outros a usar selecionando primeiro o conjunto de dados usando a lista "Load Dataset" e, em seguida, selecionando o botão "Make Public".</p>
 <img src="/static/documents/help/screenshots/DatasetHelpImage001.png" width="1000px">
 <img src="/static/documents/help/screenshots/DatasetHelpImage002.png" width="600px">
 
-<p><b>Retrieving Datasets</b></p>
+<p><b>Recuperando Datasets</b></p>
 
-<p>To retrieve a dataset in the Wizard, select the dataset in
-the “Load Dataset” input then select the “Load” button. This will populate the
-columns in the Wizard and then allow you to download and analyze the dataset.</p><br>
+<p>Para recuperar um conjunto de dados no Wizard, selecione o conjunto de dados na entrada "Load Dataset" e selecione o botão "Load". Isso vai preencher as colunas no Wizard e então permitir que você baixe e analise o conjunto de dados.</p><br>
 <img src="/static/documents/help/screenshots/DatasetHelpImage003.png" width="600px">
 
-<p><b>Searching Datasets</b></p>
+<p><b>Pesquisando Datasets</b></p>
 
-<p>To search for a dataset, select the “Datasets” link in the
-toolbar at the top right of the website. Selecting the Dataset name will
-give you a Dataset Detail page</p><br>
+<p>Para procurar por um conjunto de dados, selecione o link "Datasets" na barra de ferramentas na parte superior direita do site. Selecionar o nome do Dataset lhe dará uma página de Detalhes do Dataset.</p><br>
 <img src="/static/documents/help/screenshots/DatasetHelpImage004.png" width="800px">
 <img src="/static/documents/help/screenshots/DatasetHelpImage005.png" width="800px">
 
 <br><br>
-<p>Datasets can also be used in publications for linking available
-data. Copy the URL from the detail page found in the Search Datasets
-page.</p>
+<p>Os conjuntos de dados também podem ser usados em publicações para vincular dados disponíveis. Copie a URL da página de detalhes encontrada na página de dados de busca.</p>
 

@@ -19,13 +19,13 @@ jQuery( document ).ready( function() {
             var imageFiles = document.getElementById('upload_images_file_input').files;
             if (imageFiles.length < 1) {
                 jQuery('#working_modal').modal("hide");
-                alert("Please select image files");
+                alert("Selecione arquivos de imagem");
                 return false;
             }
 
             var formData = new FormData();
             for (var i = 0; i < imageFiles.length; i++) {
-                formData.append('images', imageFiles[i]);
+                formData.append("imagens", imageFiles[i]);
             }
             console.log("AJAX request", imageFiles);
             jQuery.ajax({
@@ -57,19 +57,19 @@ jQuery( document ).ready( function() {
                 }
                 jQuery('#working_modal').modal("hide");
             }).fail(function() {
-                reportVerifyResult({ "error": ["Error ocurred during EXIF verification."]});
+                reportVerifyResult({ "error": ["Ocorreu um erro durante a verificação dos dados EXIF."]});
                 jQuery('#working_modal').modal("hide");
             });
         } else if (type == 'images_with_barcodes') {
             var imageFiles = document.getElementById('upload_images_file_input').files;
             if (imageFiles.length < 1) {
                 jQuery('#working_modal').modal("hide");
-                alert("Please select image files");
+                alert("Selecione arquivos de imagem");
                 return false;
             }
             var formData = new FormData();
             for (var i = 0; i < imageFiles.length; i++) {
-                formData.append('images', imageFiles[i]);
+                formData.append("imagens", imageFiles[i]);
             }
             jQuery.ajax({
                 url: "/ajax/image/scan_barcode",
@@ -83,7 +83,7 @@ jQuery( document ).ready( function() {
                 jQuery('#working_modal').modal("hide");
 
             }).fail(function() {
-                reportVerifyResult({ "error": ["Error ocurred during barcode scan"]});
+                reportVerifyResult({ "error": ["Ocorreu um erro ao ler o código de barras"]});
                 jQuery('#working_modal').modal("hide");
             });
         } else { // verify associated phenotypes format
@@ -91,11 +91,11 @@ jQuery( document ).ready( function() {
             var zipFile =  document.getElementById('upload_images_zip_file_input').files[0];
             if (!(phenoFile instanceof File)) {
                 jQuery('#working_modal').modal("hide");
-                alert("Please select a phenotype spreadsheet");
+                alert("Selecione uma planilha de fenótipos");
                 return false;
             } else if (!(zipFile instanceof File)) {
                 jQuery('#working_modal').modal("hide");
-                alert('Please select an image zipfile');
+                alert("Selecione um arquivo ZIP de imagens");
                 return false;
             }
             submitAssociatedPhenotypes(phenoFile, zipFile, "/ajax/phenotype/upload_verify/spreadsheet").done(function(result) {
@@ -111,7 +111,7 @@ jQuery( document ).ready( function() {
         if (type == 'images') {
             var imageFiles = document.getElementById('upload_images_file_input').files;
             //console.log("imageFiles", imageFiles);
-            jQuery('#progress_msg').text('Preparing images for upload');
+            jQuery('#progress_msg').text("Preparando imagens para envio");
             jQuery('#progress_bar').css("width", "0%")
             .attr("aria-valuenow", 0)
             .text("0%");
@@ -189,7 +189,7 @@ jQuery( document ).ready( function() {
             }  
         } else if (type == "images_with_barcodes") {
             var imageFiles = document.getElementById('upload_images_file_input').files;
-            jQuery('#progress_msg').text('Preparing images for upload');
+            jQuery('#progress_msg').text("Preparando imagens para envio");
             jQuery('#progress_bar').css("width", "0%")
             .attr("aria-valuenow", 0)
             .text("0%");
@@ -220,11 +220,11 @@ jQuery( document ).ready( function() {
             var zipFile =  document.getElementById('upload_images_zip_file_input').files[0];
             if (!(phenoFile instanceof File)) {
                 jQuery('#working_modal').modal("hide");
-                alert("Please select a phenotype spreadsheet");
+                alert("Selecione uma planilha de fenótipos");
                 return false;
             } else if (!(zipFile instanceof File)) {
                 jQuery('#working_modal').modal("hide");
-                alert('Please select an image zipfile');
+                alert("Selecione um arquivo ZIP de imagens");
                 return false;
             }
 
@@ -253,7 +253,7 @@ function showImagePreview(imageFiles) {
         previewText.className = "col-sm-8";
         previewText.innerHTML =
         '<p class="font-weight-bold text-center"><b>'+file.name+'</b></p><br>' +
-        '<p class="text-center">and '+restCount+' additional image files selected and ready for verification.</p>';
+        "<p class=\"text-center\">E "+restCount+" arquivos de imagem adicionais selecionados e prontos para verificação.</p>";
         preview.append(previewText);
     }
     reader.readAsDataURL(file);
@@ -284,11 +284,11 @@ function verifyExifData(result) {
     //console.log("image data", result.images[0].exif);
 
     result.images.forEach((img, index) => {
-        const imgName = img.filename || `Image ${index + 1}`;
+        const imgName = img.filename || `Imagem ${index + 1}`;
         const exif = img.exif || {};
 
         if (result.images[index].status === "no_exif") {
-            errorMessages.push(`${imgName} does not have EXIF data`);
+            errorMessages.push(`${imgName} não possui dados EXIF`);
             nonExifFiles++;
             return;
         } else {
@@ -305,33 +305,33 @@ function verifyExifData(result) {
         if (hasObsUnit) {
             successMessages.push(`${imgName}: ObservationUnitDbId: ${exif.observation_unit.observation_unit_db_id}`);
         } else {
-            errorMessages.push(`${imgName}: Missing ObservationUnitDbId`);
+            errorMessages.push(`${imgName}: ObservationUnitDbId ausente`);
         }
 
         if (hasObsVar) {
-            successMessages.push(`${imgName}: Observation Variable: ${exif.observation_variable.observation_variable_name}`);
+            successMessages.push(`${imgName}: Variável de observação: ${exif.observation_variable.observation_variable_name}`);
         } else {
-            errorMessages.push(`${imgName}: Missing Observation Variable Name`);
+            errorMessages.push(`${imgName}: nome da variável de observação ausente`);
         }
 
         if (hasTimestamp) {
-            successMessages.push(`${imgName}: Timestamp: ${exif.timestamp}`);
+            successMessages.push(`${imgName}: Data e hora: ${exif.timestamp}`);
         } else {
-            errorMessages.push(`${imgName}: Missing Timestamp`);
+            errorMessages.push(`${imgName}: data e hora ausentes`);
         }
 
         if (!hasCvtermId) {
-            errorMessages.push(`${imgName} associated trait ${obsVariableName} does not exist in the database`);
+            errorMessages.push(`${imgName} característica associada ${obsVariableName} não existe no banco de dados`);
         }
 
         if (result.images[index].stock_exists === "false") {
-            errorMessages.push(`${imgName}: ObservationUnitDbId ${exif.observation_unit.observation_unit_db_id} does not exist in the database`);
+            errorMessages.push(`${imgName}: ObservationUnitDbId ${exif.observation_unit.observation_unit_db_id} não existe no banco de dados`);
         } else if (!stockName) {
-            errorMessages.push(`${imgName} Stock ${stockName} does not exist in the database`);
+            errorMessages.push(`${imgName} Material ${stockName} não existe no banco de dados`);
         }
 
         if (errorMessages.length === 0) {
-            finalSuccessMessage.push(`${imgName} has valid EXIF data. Associated stock: ${exif.stock_name} Associated trait: ${obsVariableName}. Ready to store image`);
+            finalSuccessMessage.push(`${imgName} possui dados EXIF válidos. Material associado: ${exif.stock_name} Característica associada: ${obsVariableName}. Ready to store image`);
         }
     });
 
@@ -343,7 +343,7 @@ function verifyExifData(result) {
         );
         return true;
     } else if (exifFiles > 0 && nonExifFiles > 0) {
-        errorMessages.push("Please load files all containing EXIF data or with the same file naming pattern");
+        errorMessages.push("Carregue arquivos que contenham dados EXIF ou que sigam o mesmo padrão de nomenclatura");
         validExif = errorMessages;
     } else if (errorMessages.length > 0 && successMessages.length > 0) {
         validExif = errorMessages;
@@ -435,12 +435,12 @@ function parseImageFilenames(imageFiles) {
                 "observationUnit" : justUnit
             };
         } else {
-            parseErrors.push("Filename <b>" + name + "</b> must start with a valid observationUnitName or observationUnitDbId.")
+            parseErrors.push("Nome do arquivo <b>" + name + "</b> deve começar com um observationUnitName ou observationUnitDbId válido.")
         }
     }
 
     if (id_count > 0 && name_count > 0) {
-        parseErrors.push("Image filenames include a mix of observationUnitDbIds and observationUnitNames. Please load files with only one naming pattern at a time.");
+        parseErrors.push("Os nomes dos arquivos misturam observationUnitDbIds e observationUnitNames. Carregue arquivos com um único padrão de nomenclatura por vez.");
     }
 
     if (id_count > 0) {
@@ -460,25 +460,25 @@ function verifyBarcodeData(result) {
     const finalSuccessMessage = [];
 
     result.images.forEach((img, index) => {
-        const imgName = img.filename || `Image ${index + 1}`;
+        const imgName = img.filename || `Imagem ${index + 1}`;
 
         if (result.images[index].multiple_codes === "true") {
-            errorMessages.push(`Multiple barcodes found in ${imgName}. Please make sure each image only contains one barcode`);
+            errorMessages.push(`Vários códigos de barras encontrados em ${imgName}. Please make sure each image only contains one barcode`);
         }
         
         if (result.images[index].valid_barcode === "false") {
-            errorMessages.push(`Barcode not found for ${imgName}`);
+            errorMessages.push(`Código de barras não encontrado para ${imgName}`);
             return;
         }
 
         const stockId = result.images[index].stock_id;
 
         if (result.images[index].stock_exists === "false") {
-            errorMessages.push(`Stock ID ${stockId} found in ${imgName} does not exist in the database`);
+            errorMessages.push(`ID do material ${stockId} encontrado em ${imgName} não existe no banco de dados`);
         }
 
         if (errorMessages.length === 0) {
-            finalSuccessMessage.push(`${imgName} barcode scanned successfully. Associated stock ID: ${stockId}. Ready to store image`);
+            finalSuccessMessage.push(`${imgName} código de barras lido com sucesso. ID do material associado: ${stockId}. Ready to store image`);
         }
     })
 
@@ -558,12 +558,12 @@ function verifyImageFiles(fileData, unitType, transformType) {
       // console.log("response is "+JSON.stringify(response));
       if (response.missing.length > 0) {
           var errors = response.missing.map(function(name) {
-              return "<b>" + name + "</b> is not a valid "+unitType;
+              return "<b>" + name + "</b> não é válido para "+unitType;
           });
           //console.log("Errors are "+errors);
           return { "error" : errors };
       } else {
-          var successText = "Verification complete. All image files match an existing observationUnit. Ready to store images.";
+          var successText = "Verificação concluída. Todos os arquivos de imagem correspondem a uma observationUnit existente. As imagens estão prontas para armazenamento.";
           return { "success" : successText };
       }
     }).fail(function(error){
@@ -611,7 +611,7 @@ function loadImagesSequentially(imageFiles, imageData, uploadStatus){
         // console.log("load single image response is: " +JSON.stringify(response));
 
         if (response.result) {
-            var msg = "Successfly uploaded image "+response.result.data[0].imageFileName;
+            var msg = "Imagem enviada com sucesso "+response.result.data[0].imageFileName;
             uploadStatus.success.push(msg);
         } else {
             // console.log("handling response errors: "+JSON.stringify(response.metadata.status));
@@ -644,7 +644,7 @@ function loadSingleImage(imageFiles, imageData, uploadStatus){
     //console.log("file", file);
 
     currentImage++;
-    jQuery('#progress_msg').html('<p class="form-group text-center">Working on image '+currentImage+' out of '+total+'</p>');
+    jQuery('#progress_msg').html("<p class=\"form-group text-center\">Processando imagem "+currentImage+" de um total de "+total+'</p>');
     jQuery('#progress_msg').append('<p class="form-group text-center"><b>'+image.imageFileName+'</b></p>')
     var progress = Math.round((currentImage / total) * 100)
     jQuery('#progress_bar').css("width", progress + "%")

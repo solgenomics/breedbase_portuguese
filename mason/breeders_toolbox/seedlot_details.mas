@@ -45,16 +45,16 @@ $default_seedlot_material_type => undef
 % if ($discard_info) {
     <tr><td><b>Informações do descarte</b></td><td><% $discard_info %></td></tr>
 % }
-<tr><td><b>Programa de melhoramento</b></td><td><div id="seedlot_breeding_program_div">[CARREGANDO...]</div></td></tr>
+<tr><td><b>Programa de melhoramento</b></td><td><div id="seedlot_breeding_program_div">[CARREGANDO ...]</div></td></tr>
 <tr><td><b>Nome do lote de sementes</b></td><td><a href="/stock/<% $seedlot_id %>/view"><% $uniquename %></a></td></tr>
 <tr><td><b>Tipo de material</b></td><td><% $material_type %></td></tr>
 <tr><td><b>Descrição do lote de sementes</b></td><td><% $description %></td></tr>
 <tr><td><b>Organização</b></td><td><% $organization_name %></td></tr>
-<tr><td><b>Código do local</b><td><div id="seedlot_location_code_div">[CARREGANDO...]</div></td></tr>
+<tr><td><b>Código do local</b><td><div id="seedlot_location_code_div">[CARREGANDO ...]</div></td></tr>
 <tr><td><b>Nome da caixa</b></td><td><% $box_name %></td></tr>
 <tr><td><b>Problemas de qualidade</b></td><td><% $quality %></td></tr>
 <tr><td><b>Conteúdo</b></td><td><% $content_html %></td></tr>
-<!--<tr><td><b>Population</b></td><td><% $population_name %></td></tr>-->
+<!--<tr><td><b>População</b></td><td><% $population_name %></td></tr>-->
 <tr><td><b>Quantidade atual</b></td><td><% $current_count %></td></tr>
 <tr><td><b>Peso atual (g)</b></td><td><% $current_weight %></td></tr>
 <tr><td><b>Responsáveis pelo envio</b></td><td><% $owners_string %></td></tr>
@@ -506,9 +506,9 @@ $default_seedlot_material_type => undef
             { title: "Editar transação", "data": "null", "render" : function ( data, type, row ) {
                 if (status == 'discarded') {
                     return "";
-                } else {return "<a onclick='editSeedlotTransaction("+row.transaction_id+")' >[Editar]</a>";}
+                } else {return "<a onclick='editSeedlotTransaction("+row.transaction_id+"[Editador]</a>";}
             }},
-            { title: "Excluir transação", "data": "null", "render" : function ( data, type, row ) { return "<a onclick='deleteSeedlotTransaction("+row.transaction_id+")' >X</a>"; } },
+            { title: "Excluir transação", "data": "null", "render" : function ( data, type, row ) { return "<a onclick='deleteSeedlotTransaction("+row.transaction_id+"\"X\"</a>"; } },
         ],
     });
 

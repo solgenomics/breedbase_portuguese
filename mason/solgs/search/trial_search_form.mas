@@ -19,7 +19,7 @@ Isaak Y Tecle (iyt2@cornell.edu)
 <&| /page/info_section.mas,
     collapsible => 1,
     collapsed   => 0,
-    title       => "Create a a training population using one or more trials",
+    title       => "Criar uma população de treinamento usando um ou mais ensaios",
   &>
 
   <div class="form-group">
@@ -27,7 +27,7 @@ Isaak Y Tecle (iyt2@cornell.edu)
 
     <input  type="text"
 	    class="form-control"
-	    placeholder="search for a trial"
+	    placeholder="Procure por um ensaio"
 	    size="50" id="trial_search_box"/>
 
     <button type="submit" class="btn btn-success" id="search_trial">

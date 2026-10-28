@@ -52,7 +52,7 @@ my $exp_comp_content;
 my @data;
 my $exp_composition_html;
 
-my $default_message = '<span class="ghosted">data not available</span>';
+my $default_message = '<span class="ghosted">Dados não disponíveis</span>';
 
 my @exp_list = @{ $exp_list };
 
@@ -134,7 +134,7 @@ if (scalar(@exp_list) > 0) {
                                                   __align  => ['l', 'l', 'l'],
                                                );
     my $exp_n = scalar(@data);
-    $exp_comp_content = info_section_html( title        => "Experiments (".$exp_n.")", 
+    $exp_comp_content = info_section_html( title        => "Experiências (".$exp_n.")", 
                                            contents     => $exp_composition_html,
 	   			           collapsible  => 1,
                                            collapsed    => 0, );

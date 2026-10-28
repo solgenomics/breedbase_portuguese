@@ -45,12 +45,12 @@ function selectedblastp(selection){
 }
 
 function selectedblastnfull(selection){
-      HTML = "<a class='external' href='http://www.ncbi.nlm.nih.gov/blast/Blast.cgi?CMD=Put&QUERY=" + selection + "&DATABASE=nr&PROGRAM=blastn&FILTER=L&HITLIST_SZE=500'>Perform BLASTN on Selection (" + selection.length + " bp)</a>";
+      HTML = "<a class='external' href='http://www.ncbi.nlm.nih.gov/blast/Blast.cgi?CMD=Put&QUERY=" + selection + "&DATABASE=nr&PROGRAM=blastn&FILTER=L&HITLIST_SZE=500'>Perform BLASTN on Selection (" + selection.length + " Bp)</a>";
       document.getElementById('selectedblastnfull').innerHTML = HTML;
 }
 
 function selectedblastncds(selection){
-      HTML = "<a class='external' href='http://www.ncbi.nlm.nih.gov/blast/Blast.cgi?CMD=Put&QUERY=" + selection + "&DATABASE=nr&PROGRAM=blastn&FILTER=L&HITLIST_SZE=500'>Perform BLASTN on Selection (" + selection.length + " bp)</a>";
+      HTML = "<a class='external' href='http://www.ncbi.nlm.nih.gov/blast/Blast.cgi?CMD=Put&QUERY=" + selection + "&DATABASE=nr&PROGRAM=blastn&FILTER=L&HITLIST_SZE=500'>Perform BLASTN on Selection (" + selection.length + " Bp)</a>";
       document.getElementById('selectedblastncds').innerHTML = HTML;
 }
 
@@ -239,13 +239,13 @@ function switchParen(id){
 
 	if(formparen.value=='0'){
 		formparen.value=1;
-		parencontent.innerHTML = "<span style='color:#442277'>(Unjoin)</span>";
+		parencontent.innerHTML = "<span style='color:#442277'>(Juntos)</span>";
 		jointop.innerHTML="";
 		joinbottom.innerHTML="";
 	}
 	else{
 		formparen.value=0;
-		parencontent.innerHTML = "(Join)";
+		parencontent.innerHTML = "(Junte-se)";
 		jointop.innerHTML="<br>";
 		joinbottom.innerHTML="<br>";
 	}
@@ -403,7 +403,7 @@ function check_password(password){
 		document.getElementById('choosepw').style.color= "black"; 
     }
 	else if(password.length < 7){
-		document.getElementById('quickwarning').innerHTML = "Password must be at least 7 characters long";
+		document.getElementById('quickwarning').innerHTML = "A senha deve ter pelo menos 7 caracteres";
 		document.getElementById('choosepw').style.color= "#dd4444"; 
 	}
 	else {
@@ -419,7 +419,7 @@ function check_password_match(passwordrep){
 		document.getElementById('confirmpw').style.color = "black";
 	}
 	else if(passwordrep != password){
-		document.getElementById('quickwarning').innerHTML = "Repeated password doesn't match";
+		document.getElementById('quickwarning').innerHTML = "A confirmação da senha não corresponde";
 		document.getElementById('confirmpw').style.color = "#dd4444";
 	}
 	else{
@@ -438,7 +438,7 @@ function check_name(username){
 	document.getElementById('uname_taken').style.display = "none";
   }
   else if(username.length < 7){
-  	document.getElementById('quickwarning').firstChild.nodeValue = "Username must be at least 7 characters long";
+    document.getElementById('quickwarning').firstChild.nodeValue = "O nome de usuário deve ter pelo menos 7 caracteres";
 	document.getElementById('chooseuname').style.color = "#dd4444";
 	document.getElementById('uname_available').style.display = "none";
 	document.getElementById('uname_taken').style.display = "none";
@@ -458,7 +458,7 @@ function check_email(email){
 	document.getElementById('chooseemail').style.color = "black";
   }
   else if(!email.match(ereg)){
-  	document.getElementById('quickwarning').innerHTML = "E-mail not of the form: name@address";
+    document.getElementById('quickwarning').innerHTML = "O e-mail deve ter o formato nome@endereço";
 	document.getElementById('chooseemail').style.color = "#dd4444";
   
   }
@@ -635,8 +635,8 @@ function clearList(list){
 
 function alterLink(id, action, list){
 	
-	if(action=="add") HTML = "<a href='#' onclick='alterList(\"" + id + "\", \"add\", \""+list+"\"); alterLink(\"" + id + "\", \"remove\", \""+list+"\"); return false;' style='text-decoration:none'>[ <img src='/img/hotlist_add.png' border=0 align='absmiddle'> Re-Add ]</a>";
-	else if (action=="remove") HTML = "<a href='#' onclick='alterList(\"" + id + "\", \"remove\", \""+list+"\"); alterLink(\"" + id + "\", \"add\", \""+list+"\"); return false;' style='text-decoration:none'>[ <img src='/img/hotlist_remove.png' border=0 align='absmiddle'> Remove ]</a>";
+	if(action=="add") HTML = "<a href='#' onclick='alterList(\"" + id + "\", \"add\", \""+list+"\"); alterLink(\"" + id + "\", \"remove\", \""+list+"\"); return false;' style='text-decoration:none'>[ <img src='/img/hotlist_add.png' border=0 align='absmiddle'> Readicionar ]</a>";
+	else if (action=="remove") HTML = "<a href='#' onclick='alterList(\"" + id + "\", \"remove\", \""+list+"\"); alterLink(\"" + id + "\", \"add\", \""+list+"\"); return false;' style='text-decoration:none'>[ <img src='/img/hotlist_remove.png' border=0 align='absmiddle'> Remover ]</a>";
 	document.getElementById(list + "_" + id).innerHTML = HTML;
 }
 

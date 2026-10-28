@@ -15,14 +15,14 @@ $genotyping_protocol_id => ''
 <& /util/import_javascript.mas, classes => ["solGS.solGS"] &>
 
 <& /page/page_title.mas,
-    title => 'Traits with genomic selection data',
+    title => 'Características com dados de seleção genômica',
 &>
   
 % if ($result) 
 % { 
 
 <&| /page/info_section.mas,
-      title => 'Search Results',
+      title => 'Resultados da Pesquisa',
 &>
   <& /page/columnar_table.mas,
      headings    => ['Name', 'Definition'],
@@ -38,15 +38,15 @@ $genotyping_protocol_id => ''
 %else
 %{
 <&| /page/info_section.mas,
-      title => 'Search Results',
+      title => 'Resultados da Pesquisa',
 &>
 %if ( $query )
 %{
-<br>No results found for <i><strong>'<% $query %>'.</strong></i><br />
+<br>Nenhum resultado encontrado para <i><strong>'<% $query %>'.</strong></i><br />
 %}
 %else
 %{
-<br>No results. Search again with a trait name.<br />
+<br>Sem resultados. Procure novamente com um nome característico.<br />
 %}
 </&>
 %}

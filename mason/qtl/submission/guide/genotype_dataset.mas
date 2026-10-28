@@ -13,23 +13,23 @@ Isaak Y Tecle (iyt2@cornell.edu)
 </%doc>
 
 <&| /page/info_section.mas, 
-   title      => "Step 4: Genotype dataset",
+   title      => "Passo 4: Conjunto de dados de genótipos",
   collapsible => 1,
   collapsed   => 1
 &>
 
-The genotype dataset should be in a text file and in the following format. The plant names in the genotype dataset must be exactly the same as the ones submitted in the phenotype dataset file in the previous step.
+O conjunto de dados do genótipo deve estar em um arquivo de texto e no seguinte formato. Os nomes das plantas no conjunto de dados do genótipo devem ser exatamente os mesmos que os apresentados no arquivo de dados do fenótipo na etapa anterior.
 <ul>
-  <li><strong>First row</strong>: first column refers to the label of the rows of lines. The rest of the columns are marker names.
+  <li><strong>Primeira fila</strong>A primeira coluna se refere ao rótulo das linhas de linhas. O resto das colunas são nomes de marcadores.
 </li>
 <li>
-<strong>Second row</strong>: first column is empty. The rest of the columns are chromosome names for the corresponding markers. 
+<strong>Segunda fila</strong>A primeira coluna está vazia. O resto das colunas são nomes cromossomos para os marcadores correspondentes. 
 </li>
 <li>
-<p><strong>Third row</strong>: first column is empty. The rest of the columns are marker positions in their respective chromosomes.
+<p><strong>Terceira fileira</strong>A primeira coluna está vazia. O resto das colunas são posições marcadas em seus respectivos cromossomos.
 </li>
 <li>
-<p><strong>The rest of the rows</strong>: first column is the genotype name and the rest are the genotype values for each marker. 
+<p><strong>O resto das fileiras</strong>A primeira coluna é o nome do genótipo e o resto são os valores do genótipo para cada marcador. 
 </li></ul>
   
 <pre>

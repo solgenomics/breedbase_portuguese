@@ -97,7 +97,7 @@ EOH
    }
 
    unless (defined $manual_annot_content) {
-       $manual_annot_content = '<font color="gray"><i>None manual annotation was found for this unigene</i></font>';
+       $manual_annot_content = '<font color="gray"><i>Nenhuma anotação manual foi encontrada para este unigene</i></font>';
    }
 
    ## And put the manual annotation data into a subsection
@@ -151,7 +151,7 @@ EOH
    my @blastdb_ids = sort keys (%blast_annotations);
    my (@blast_html, @blast_descript);
    my $blast_link = '[<a href="/search/unigene-all-blast-matches.pl?unigene_id=' . $id . '&amp;';
-   $blast_link .= 'l=' . $unigene_length . '&amp;' . 'target=blank">' . 'Show All</a>]';
+   $blast_link .= 'l=' . $unigene_length . '&amp;' . 'target=blank">' . 'Mostrar tudo</a>]';
 
    foreach my $blastdb_id (@blastdb_ids) {
        my @annotations = @{$blast_annotations{$blastdb_id}};
@@ -196,13 +196,13 @@ EOH
 	   my $blast_html_line = ["<b>".$blastdb_names{$blastdb_id}."</b>", $blastdb_prog{$blastdb_id}, $match_id_link, $score, 
 				  $evalue, $identity, "$alig_length bp ($span_perc)", $frame];
            push @blast_html, $blast_html_line;
-	   push @blast_html, ["<font color='gray'><b>Description:</b></font>", 
+	   push @blast_html, ["<font color='gray'><b>Descrição:</b></font>", 
         		      {colspan => 7, content => $defline_format}];
 	   
 	   $annotation_count{'blast'}++;   
        } 
        else {
-	   my $default = '<font color="darkslategray"><i>No significant hits ( or none blast was used over this dataset )</i></font>';
+	   my $default = '<font color="darkslategray"><i>Nenhum sucesso significativo (ou nenhuma explosão foi usada sobre este conjunto de dados)</i></font>';
 	   my $blast_html_default = ['<b>'.$blastdb_names{$blastdb_id}.'</b>', $blastdb_prog{$blastdb_id}, 
 				    { colspan => 6, content => $default} ];
 	   push @blast_html, $blast_html_default; 
@@ -216,7 +216,7 @@ EOH
                                              data         => \@blast_html, 
                                             );
 
-       my $title = "Blast Annotations $blast_link";
+       my $title = "Anotações de explosão $blast_link";
        $blast_content .= info_table_html (    $title       => $blast_html,  
 					      __border     => 0,
 					      __tableattrs => qq{width="700" height="100"});   
@@ -224,7 +224,7 @@ EOH
    unless (defined $blast_content) {
         $blast_content = '<tr><td class="center"><span class="ghosted">';
 	$blast_content .= 'No BLAST annotations have been pre-computed for this sequence. Please try our ';
-	$blast_content .= '<a href="/tools/blast/?preload_id=$unigene_id&preload_type=unigene+identifiers">online BLAST service</a>.</td></tr>';
+	$blast_content .= '<a href="/tools/blast/?preload_id=$unigene_id&preload_type=unigene+identifiers">Serviço online BLAST</a>.</td></tr>';
    }
    $annotation_html .= $blast_content;
 
@@ -246,10 +246,10 @@ EOH
        }
        $go_content .= "</ul>\n";
    } else {
-       $go_content = '<font color="gray"><i>No Gene Ontology annotation</i></font>';
+       $go_content = '<font color="gray"><i>Nenhuma anotação de Ontologia Geneica</i></font>';
    }
 
-   my $title2 = "GO Terms Annotations";
+   my $title2 = "Anotações dos Termos GO";
    $annotation_html .= info_table_html (    $title2       => $go_content,  
 					    __border     => 0,
 					    __tableattrs => qq{width="700" height="100"});   
@@ -257,7 +257,7 @@ EOH
 
 
 } else {
-    $annotation_html = '<span class="ghosted">None annotation data was found associated to this unigene</span>';
+    $annotation_html = '<span class="ghosted">Nenhum dado de anotação foi encontrado associado a este unigene</span>';
 }
 
 my $global_title = $ARGS{'title'} || 

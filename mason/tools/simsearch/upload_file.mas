@@ -6,19 +6,19 @@ $reference_files_menu => ""
 $format => ""
 </%args>
 
-<& /page/page_title.mas, title => "SimSearch: File $user_readable_filename uploaded for analysis [ $format format ]" &>
+<& /page/page_title.mas, title => "SimSearch: arquivo $user_readable_filename enviado para análise [formato $format]" &>
 
 (working file name <% $filename %>)
 
 <div id="simsearch_input_form">
 
-   Optional: Select reference genotyping file:<br /> 
+   Opcional: selecione o arquivo de genotipagem de referência:<br /> 
 
    <% $reference_files_menu %><br /><br />
 
    <input id="simsearch_filename" type="hidden" name="filename" value="<% $filename %>" />
 
-   <button class="btn" id="simsearch_run_button">Run SimSearch</button>
+   <button class="btn" id="simsearch_run_button">Executar SimSearch</button>
 
 </div>
 <br /><br />
@@ -27,10 +27,10 @@ $format => ""
 
    <table id="simsearch_results_table">
       <thead>
-         <tr><th>Group #</th><th>Member count</th><th>Max score</th><th>Average score</th><th>Group members</th></tr>
+         <tr><th>Grupo #</th><th>Contagem de membros</th><th>Pontuação máxima</th><th>Pontuação média</th><th>Membros do grupo</th></tr>
    </table>
 
-   <div id="simsearch_results_histogram">[HISTOGRAM]</div>
+   <div id="simsearch_results_histogram">[HISTOGRAMA]</div>
 
 </div>
 
@@ -39,7 +39,7 @@ $format => ""
 
 jQuery(document).ready( function() { 
     jQuery('#simsearch_run_button').click( function() {
-        alert("HELLO!");
+        alert("Olá!");
         var filename = jQuery('#simsearch_filename').val();
         var reference_file = jQuery('#reference_file').val();
 

@@ -1,18 +1,18 @@
 <span style="white-space:nowrap; display:block; padding:3px; background-color: #fff; text-align:center; color: #444; font-size:1.3em">
-Mass Spectrometry-based Proteomics Workshop
+Oficina de proteomics baseada em espectrometria de massa
 </span>
 
-<center><p><strong>April 3rd &amp; 4th, 2012</strong></p></center>
+<center><p><strong>3 e 4 de abril de 2012</strong></p></center>
 
-<center><p><em>Supported by NSF Plant Genome Program<br />
-Instruction: Drs. Jocelyn Rose and Ted Thannhauser and Sheng Zhang<br />
-Location: Cornell Proteomics &amp; Mass Spectrometry Core Facility</em></p></center>
+<center><p><em>Apoiado pelo Programa Genoma de Plantas NSF<br />
+Instrução: drs. Jocelyn Rose e Ted Thannauser e Sheng Zhang<br />
+Localização: Cornell Proteomics &amp; Mass Spectrometry Core Facility</em></p></center>
 
-<p>We had another extremely successful Proteomics Workshop this year that was highly oversubscribed. The workshop comprised both lectures and practical lab-based training in proteomic analysis, using advanced mass spectrometry techniques and bioinformatics and was targeted towards undergraduate and graduate students.  Based on the positive and enthusiastic feedback, a similar course will be offered next year.</p>
+<p>Tivemos outra oficina de proteomics extremamente bem sucedida este ano que foi altamente subscrita. A oficina era composta por palestras e treinamento prático baseado em laboratório em análise proteômica, usando técnicas avançadas de espectrometria de massa e bioinformática e foi direcionada para estudantes de graduação e pós-graduação. Baseado no feedback positivo e entusiasta, um curso similar será oferecido no próximo ano.</p>
 
-<p><a href="/documents/secretom/MSOct09WorkshopHandouts.pdf">Handouts from the workshop</a> [pdf]</p>
-<p><a href="#schedule">Schedule</a></p>
-<p><a href="#photos">Photos from this year's workshop</a></p>
+<p><a href="/documents/secretom/MSOct09WorkshopHandouts.pdf">Entregas da oficina</a> [pdf]</p>
+<p><a href="#schedule">Agendar</a></p>
+<p><a href="#photos">Fotos da oficina deste ano</a></p>
 
 <center><img src="/documents/img/secretom/spectrometer1.png" /><img src="/documents/img/secretom/spectrometer2.png" /></center>
 
@@ -20,101 +20,101 @@ Location: Cornell Proteomics &amp; Mass Spectrometry Core Facility</em></p></cen
 
 <p><center><strong><a name="schedule">SCHEDULE</a></strong></center></p>
 
-<p><strong>April 3rd:</strong></p>
-<p><strong>8:00am - 8:30am: Registration (badge, program handouts, breakfast</strong>) in room 130</p>
-<p><strong>8:30am - 8:35am </strong>in room 130:</p>
+<p><strong>3 de abril:</strong></p>
+<p><strong>8h00, 8h30, inscrições, folhetos, café da manhã</strong>No quarto 130</p>
+<p><strong>8:30 - 8:35 </strong>Na sala 130:</p>
 <ol type="1">
-<li><strong>Program introduction</strong> by Professor Joss Rose</li>
+<li><strong>Apresentação do programa</strong> Professor Joss Rose</li>
 </ol>
-<p><strong>8:35am - 10:00am</strong> in room 141:</p>
+<p><strong>8:35 - 10:00 da manhã</strong> No quarto 141:</p>
 <ol type="1" start="2">
-<li><strong>Experimental 1:</strong> Protein denaturing, reduction and alkylation of crude cell extract samples for shotgun proteomics analysis. (Attendees divided into 4 groups)</li>
+<li><strong>Experimental 1:</strong> Desnaturação, redução e alquilação de proteínas de amostras de extratos celulares brutos para análise proteômica shotgun. (Participantes divididos em 4 grupos)</li>
 </ol>
-<ul>Instructors: Huiming Yan (bench 1), Yong Yang (bench 2), Bob Sherwood (bench 3) and Celeste Ptak (bench 4).</ul>
-<p><strong>10:20am - 11:20am</strong> in room 130 </p>
+<ul>Instrutores: Huiming Yan (bench 1), Yong Yang (bench 2), Bob Sherwood (bench 3) e Celeste Ptak (bench 4).</ul>
+<p><strong>10:20 - 11:20</strong> no quarto 130 </p>
 <ol type="1" start="3">
-<li><strong>Lecture 1 Presentation: </strong> Sample preparation and separation prior to MS analysis by Dr. Ted Thannhauser</li>
+<li><strong>Palestra 1 Apresentação: </strong> Preparação e separação de amostras antes da análise de MS por Dr. Ted Thannauser</li>
 </ol>
-<p><strong>11:30am - 12:00pm</strong> in room 141:</p>
+<p><strong>11:30 - 12:00</strong> No quarto 141:</p>
 <ol type="1" start="4">
-<li><strong>Experimental 2: </strong> in solution trypsin digestion.</li>
+<li><strong>Experimental 2: </strong> na solução digestão da tripsina.</li>
 </ol>
-<p><strong>12:00pm - 1:00pm </strong> in room 130<strong>: </strong>Lunch and Break</p>
-<p><strong>1:00pm - 2:15pm</strong> in room 130:</p>
+<p><strong>12:00 – 13:00 </strong> no quarto 130<strong>: </strong>Almoço e intervalo</p>
+<p><strong>13:00 – 14:15</strong> Na sala 130:</p>
 <ol type="1" start="5">
-<li><strong>Lecture 2 Presentation: </strong> MS instrument fundamentals and Applications: (proteomics case studies) by Dr. Sheng Zhang</li>
+<li><strong>Palestra 2 Apresentação: </strong> Fundamentos e aplicações dos instrumentos de espectrometria de massas: estudos de caso em proteômica, pelo Dr. Sheng Zhang</li>
 </ol>
-<p><strong>2:30pm - 3:30pm</strong> in room 143:</p>
+<p><strong>2:30 pm - 3:30 pm</strong> No quarto 143:</p>
 <ol type="1" start="6">
-<li><strong>Experimental 3: </strong> Lab tour and demo, split into 3 groups (20 min/rotation)</li>
+<li><strong>Experimental 3: </strong> Excursão de laboratório e demonstração, divididos em 3 grupos (20 min/rotação)</li>
 </ol>
 <ul>
 <ul type="DISC">
-<li>nanoLC-MS/MS for iTRAQ samples in 4000 Q Trap: by Dr. Celeste Ptak</li>
-<li>MALDI-TOF/TOF analysis for 2D gel-based protein IDs: by Bob Sherwood</li>
-<li>NanoLC-MS/MS analysis for 1D gel bands: by Kevin Howe</li>
+<li>NanoLC-MS/MS para amostras iTRAQ em 4000 armadilhas Q: por Dr. Celeste Ptak</li>
+<li>Análise MALDI-TOF/TOF para identificação de proteína baseada em gel 2D: Bob Sherwood</li>
+<li>Análise NanoLC-MS/MS para bandas de gel 1D: Kevin Howe</li>
 </ul>
 </ul>
-<p><strong>4:00pm - 5:00pm: </strong></p>
+<p><strong>4:00 - 5:00: </strong></p>
 <ol type="1" start="7">
-<li><strong> Experimental 4:</strong> set up nanoLC-MS/MS overnight running for in-solution digested samples with 60-min gradient for each run.</li>
+<li><strong> Experimental 4:</strong> Preparar nanoLC-MS/MS durante a noite para amostras digeridas em solução com gradiente de 60 minutos para cada corrida.</li>
 <ol type="a">
-<li>10 samples on 4000 Q Trap by Dr. Celeste Ptak</li>
-<li>10 samples on Synapt HDMS by Kevin Howe and Yong Yang</li>
+<li>10 amostras na armadilha 4000 Q de Dr. Celeste Ptak</li>
+<li>10 amostras em Synapt HDMS de Kevin Howe e Yong Yang</li>
 </ol>
 </ol>
-<p><strong>April 4th:</strong></p>
-<p><strong>8:00am - 8:30am: </strong> breakfast and laptop computer setup in room 130</p>
-<p><strong>8:30am - 9:00am:</strong></p>
+<p><strong>4 de abril:</strong></p>
+<p><strong>8:00 - 8:30: </strong> Café da manhã e computador portátil no quarto 130</p>
+<p><strong>8:30 - 9:00:</strong></p>
 <ol type="1" start="8">
-<li><strong>Experimental 5:</strong> Database searching and file conversion for overnight LC-MS/MS files</li>
+<li><strong>Experimental 5:</strong> Pesquisa de banco de dados e conversão de arquivos LC-MS/MS</li>
 </ol>
 <ul>
 <ol type="a">
-<li>Mascot Maemon search and wiff file conversion to TMP file by Dr. Celeste Ptak in room 130</li>
+<li>Mascote Maemon busca e conversão de arquivos para TMP por Dr. Celeste Ptak na sala 130</li>
 </ol>
 <ol type="a" start="2">
-<li>PLGS 2.4-Mascot database search and generating PKL file by Yong Yang and Kevin Howe in room 143</li>
+<li>PLGS 2.4-Mascote banco de dados busca e geração de arquivo PKL por Yong Yang e Kevin Howe no quarto 143</li>
 </ol>
 </ul>
-<p><strong>9:30am - 10:30am: </strong></p>
+<p><strong>9:30 - 10:30: </strong></p>
 <ol type="1" start="9">
-<li><strong>Lecture 3 Presentation:</strong> Introduction to Mascot-based MS database search and data interpretation by Professor Joss Rose</li>
+<li><strong>Palestra 3 Apresentação:</strong> Introdução ao banco de dados MS baseado em Mascot busca e interpretação de dados pelo professor Joss Rose</li>
 </ol>
-<p><strong>10:30am - 10:45am:</strong> transfer PKL files and TMP files into individual laptop computers.</p>
-<p><strong>10:45am - 11:15am: </strong>in room 130 and room 143</p>
+<p><strong>10:30 - 10:45:</strong> Transfira arquivos PKL e arquivos TMP para computadores portáteis individuais.</p>
+<p><strong>10:45 - 11:15: </strong>no quarto 130 e quarto 143</p>
 <ol type="1" start="10">
-<li><strong>Experimental 6: </strong> Practice for generating PKL files and TMP files. Instructors: Celeste Ptak for TMP files, Huiming Yan and Kevin Howe for PKL files.</li>
+<li><strong>Experimental 6: </strong> Pratique para gerar arquivos PKL e arquivos TMP. Instrutores: Celeste Ptak para arquivos TMP, Huiming Yan e Kevin Howe para arquivos PKL.</li>
 </ol>
-<p><strong>12:00pm - 1:00pm </strong> in room 130<strong>: </strong>Lunch and Break</p>
-<p><strong> 1:00pm - 3:00pm </strong>in room 130</p>
+<p><strong>12:00 – 13:00 </strong> no quarto 130<strong>: </strong>Almoço e intervalo</p>
+<p><strong> 1:00 - 3:00 </strong>no quarto 130</p>
 <ol type="1" start="11">
-<li><strong>Experimental 7: </strong> database search practice against either Mascot public search engine or in-house licensed search engine. Assistants: Celeste Ptak, Huiming Yan, Kevin Howe and Yong Yang.</li>
+<li><strong>Experimental 7: </strong> Prática de busca de banco de dados contra o motor de busca público Mascot ou o motor de busca licenciado interno. Celeste Ptak, Huiming Yan, Kevin Howe e Yong Yang.</li>
 </ol>
-<p><strong>3:20pm - 4:00pm: </strong>in room 130</p>
+<p><strong>15:20 – 16:00: </strong>no quarto 130</p>
 <ol type="1" start="12">
-<li>Summary of the group results for shotgun analysis in 4000 Q Trap and Synapt HDMS. Summary of the iTRAQ demo results for quantitative proteomics by Sheng Zhang.</li>
+<li>Resumo dos resultados do grupo para análise de espingarda em 4000 Q Trap e Synapt HDMS. Resumo dos resultados de demonstração do iTRAQ para proteômica quantitativa de Sheng Zhang.</li>
 </ol>
-<p><strong>4:00pm - 5:00pm:</strong> in room 130</p>
+<p><strong>4:00 - 5:00:</strong> no quarto 130</p>
 <ol type="1" start="13">
-<li>Wrap-up comments, questions and suggestions</li>
+<li>Comentários, perguntas e sugestões</li>
 </ol>
 
 <br /><br /><br />
 
 
 <center><img src="/documents/img/secretom/mass_spec_workshop_2012.jpg" /></center>
-<center><p>Participants in the 2012 workshop</p></center>
-<p><a name="photos">Here are some pictures from previous workshops.</a> Thank you all for a great time!!!</p>
+<center><p>Participantes na oficina de 2012</p></center>
+<p><a name="photos">Aqui estão algumas fotos de oficinas anteriores.</a> Obrigado a todos por um grande momento!!!</p>
 
-<center>Participants</center><br />
+<center>Participantes</center><br />
 <center><img src="/documents/img/secretom/workshop1.png" /></center>
-<center><p>The Class of 2009... our brave band</p></center>
+<center><p>A turma de 2009... nossa corajosa banda</p></center>
 <center><img src="/documents/img/secretom/workshop2.png" /></center>
-<center><p>Bob explaining the mysteries of the MALDI TOF-TOF</p></center>
+<center><p>Bob explicando os mistérios do MALDI TOF-TOF</p></center>
 <center><img src="/documents/img/secretom/workshop3.png" /></center>
-<center><p>Celeste and the art of protein fractionation</p></center>
+<center><p>Celeste e a arte do fracionamento de proteínas</p></center>
 <center><img src="/documents/img/secretom/workshop4.png" /></center>
-<center><p>Kevin revealing some of the principles and wizardry of mass spectrometry</p></center>
+<center><p>Kevin revelando alguns dos princípios e magia da espectrometria de massa</p></center>
 <center><img src="/documents/img/secretom/workshop5.png" /></center>
-<center><p>Rapt attention as Bob demonstrates 2D gel analysis software</p></center>
+<center><p>Atenção como Bob demonstra software de análise de gel 2D</p></center>

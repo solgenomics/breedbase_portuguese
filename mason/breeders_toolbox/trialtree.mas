@@ -27,11 +27,11 @@ $breeding_programs
       <hr>
       <h5><i>Clique duas vezes<br />no ensaio para visualizá-lo</i></h5>
       <!-- hr>
-      <button id="delete" disabled="disabled" >Delete</button -->
+      <button id="delete" disabled="disabled" >Excluir</button -->
       <br />
     </td>
     <td>
-      <div id="trial_list" >[carregando...]</div>
+      <div id="trial_list" >[Carregando...]</div>
     </td>
   </tr>
   </tbody>

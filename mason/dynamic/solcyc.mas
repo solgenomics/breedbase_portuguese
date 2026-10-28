@@ -14,55 +14,53 @@ border:1px solid red;color:red;
 
 </style>
 
-<& /page/page_title.mas, title => "<a href=\"http://solcyc.solgenomics.net/\">SolCyc</a> Biochemical Pathways" &>
+<& /page/page_title.mas, title => "<a href=\"http://solcyc.solgenomics.net/\">SolCyc</a> Caminhos Bioquímicos" &>
 
 <div class="boxbgcolor1">
 <p>
-SolCyc is a collection of Pathway Genome Databases (PGDBs) for Solanaceae species generated using <a href="http://bioinformatics.ai.sri.com/ptools/">Pathway Tools</a> software from <a href="http://www.sri.com">SRI International</a>, the same software that is used in <a href="http://www.arabidopsis.org/tools/aracyc/">AraCyc</a> for <i>Arabidopsis thaliana</i> and <a href="http://www.ecocyc.org">EcoCyc</a> for <i>E. coli</i>. 
+SolCyc é uma coleção de bases de dados de genomas de Pathway (PGDBs) para espécies de Solanaceae geradas usando <a href="http://bioinformatics.ai.sri.com/ptools/">Ferramentas do Caminho</a> Software de <a href="http://www.sri.com">SRI Internacional</a>, the same software that is used in <a href="http://www.arabidopsis.org/tools/aracyc/">AraCyc</a> porque <i>Arabidopsis thaliana</i> e <a href="http://www.ecocyc.org">EcoCyc</a> porque <i>E. coli</i>. 
 </p>
 <p>
-Currently, databases for tomato, potato, and pepper are available, generated from the respective genome annotations. Databases that have received significant curation are marked with a <span class="tier">TIER 1</span>. The eggplant database is not longer supported or available.
+Atualmente, bancos de dados de tomate, batata e pimenta estão disponíveis, gerados a partir das respectivas anotações do genoma. Bancos de dados que receberam curadoria significativa são marcados com um <span class="tier">Nível 1</span>. O banco de dados de berinjela não é mais suportado ou disponível.
 </p>
 
 
-<h4>Species-specific databases:</h4>
+<h4>Bancos de dados específicos de espécies:</h4>
 <ul>
-  <li><a target="_blank" href="http://solcyc.solgenomics.net/organism-summary?object=LYCO"><b>Tomato</b> <i>Solanum lycopersicum</i> (LycoCyc)</a> </li>
+  <li><a target="_blank" href="http://solcyc.solgenomics.net/organism-summary?object=LYCO"><b>Tomate</b> <i>Solanum lycopersicum</i> (LycoCyc)</a> </li>
   
-  <li><a target="_blank" href="http://solcyc.solgenomics.net/POTATO/server.html"><a target="_blank" href="http://solcyc.solgenomics.net/organism-summary?object=POTATO"><b>Potato</b> <i>Solanum tuberosum</i> (PotatoCyc)</a></li>
+  <li><a target="_blank" href="http://solcyc.solgenomics.net/POTATO/server.html"><a target="_blank" href="http://solcyc.solgenomics.net/organism-summary?object=POTATO"><b>Batata</b> <i>Solanum tuberosum</i> (PotatoCyc)</a></li>
   
-  <li><a target="_blank" href="http://solcyc.solgenomics.net/organism-summary?object=CAP"><b>Pepper</b> <i>Capsicum annuum</i> (CapCyc)</a></li>
+  <li><a target="_blank" href="http://solcyc.solgenomics.net/organism-summary?object=CAP"><b>Pimenta</b> <i>Capsicum annuum</i> (CapCyc)</a></li>
   
-  <li><a target="_blank" href="http://solcyc.solgenomics.net/organism-summary?object=COFFEA"><b>Coffee</b> <i>Coffea arabica</i> (CoffeaCyc)</a></li>
+  <li><a target="_blank" href="http://solcyc.solgenomics.net/organism-summary?object=COFFEA"><b>Café</b> <i>Coffea arabica</i> (CoffeaCyc)</a></li>
   
   <li><a target="_blank" href="http://solcyc.solgenomics.net/organism-summary?object=PET"><b>Petunia</b> <i>Petunia hybrida</i> (PetCyc)</a></li>
 
-  <li><a target="_blank" href="http://solcyc.solgenomics.net/organism-summary?object=TobaccoCyc"><b>Tobacco</b> <i>Nicotiana tabacum</i> (K326Cyc)</a> <span class="tier">TIER 1</span></li>
+  <li><a target="_blank" href="http://solcyc.solgenomics.net/organism-summary?object=TobaccoCyc"><b>Tabaco</b> <i>Nicotiana tabacum</i> (K326Cyc)</a> <span class="tier">Nível 1</span></li>
   
-  <li><a target="_blank" href="http://solcyc.solgenomics.net/organism-summary?object=NATT"><i>Nicotiana attenuata</i> (NattCyc)</a> <span class="tier">TIER 1</span></li>
+  <li><a target="_blank" href="http://solcyc.solgenomics.net/organism-summary?object=NATT"><i>Nicotiana attenuata</i> (NattCyc)</a> <span class="tier">Nível 1</span></li>
 
-  <li><a target="_blank" href="http://solcyc.solgenomics.net/organism-summary?object=NISYL"><i>Nicotiana sylvestris</i> (NiSylCyc)</a> <span class="tier">TIER 1</span></li>
+  <li><a target="_blank" href="http://solcyc.solgenomics.net/organism-summary?object=NISYL"><i>Nicotiana sylvestris</i> (NiSylCyc)</a> <span class="tier">Nível 1</span></li>
 
   <li><a target="_blank" href="http://solcyc.solgenomics.net/organism-summary?object=NITOM"><i>Nicotiana tomentosiformis</i> (NiTomCyc)</a></li>
 
  </ul>
 <h4>Multi-species databases:</h4>
 <ul>
-  <li><a target="_blank" href="http://solcyc.solgenomics.net/organism-summary?object="><b>Tobacco</b> Combined Nicotiana genus (NicotianaCyc)</a> <span class="tier">TIER 1</span></li>
-  <li><a target="_blank" href="http://solcyc.solgenomics.net/organism-summary?object="><b>Solanaceae</b> Combined Solanaceae database (SolanaCyc)</a> <span class="tier">TIER 1</span></li>
+  <li><a target="_blank" href="http://solcyc.solgenomics.net/organism-summary?object="><b>Tabaco</b> Gênero Nicotiana combinado (NicotianaCyc)</a> <span class="tier">Nível 1</span></li>
+  <li><a target="_blank" href="http://solcyc.solgenomics.net/organism-summary?object="><b>Solanaceae</b> Banco de dados Solanaceae (SolanaCyc)</a> <span class="tier">Nível 1</span></li>
 </ul>
 
 <p>
-More databases will be generated in the future, and the annotation will be improved by adding more Solanaceae specific pathways.
+Mais bancos de dados serão gerados no futuro, e a anotação será melhorada adicionando mais caminhos específicos de Solanaceae.
 </p>
 <p>
-Note the availability of the <a href="http://solcyc.solgenomics.net/expression.html">Omics viewer</a>, which allows microarray, gene chip, proteomics, and metabolomic information to be overlaid over the pathway overview diagrams.
+Observe a disponibilidade do <a href="http://solcyc.solgenomics.net/expression.html">Visualizador de Omics</a>, which allows microarray, gene chip, proteomics, and metabolomic information to be overlaid over the pathway overview diagrams.
 </p>
 </div>
 
 
-<b>Programmatic interfaces for Pathway Tools</b>:<br />
-We currently maintain a Perl interface and a Java interface for Pathway Tools:
-<a href="ftp://ftp.solgenomics.net/programs/javacyc/javacyc.tar.gz">JavaCyc</a> and <a href="ftp://ftp.solgenomics.net/programs/perlcyc/perlcyc.tar.gz">PerlCyc</a>. More information is available on the <a href="/downloads/">software downloads</a> page.
-
-};
+<b>Interfaces programáticas para ferramentas de caminhos</b>:<br />
+Atualmente mantemos uma interface Perl e uma interface Java para Ferramentas de Caminho:
+<a href="ftp://ftp.solgenomics.net/programs/javacyc/javacyc.tar.gz">JavaCyc</a> e <a href="ftp://ftp.solgenomics.net/programs/perlcyc/perlcyc.tar.gz">PerlCyc</a>. Mais informações estão disponíveis sobre <a href="/downloads/">Transferências de software</a> Página

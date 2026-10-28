@@ -1,9 +1,9 @@
 <br/>
 <div class="text-center">
-    <p><b>Welcome to the Label Designer</b></p>
+    <p><b>Bem-vindos ao Label Designer</b></p>
     <br/>
-    <p>This workflow will guide you through each step of the design process. For detailed explanations of each step please refer to the <a href="https://solgenomics.github.io/sgn/using-the-label-designer.html">label designer section of the manual</a>.<p>
-    <p>To start, select a data source and a data level. The data source can be a list, crossing experiment, trial, or genotyping plate. When you are finished, click 'Next'.<p>
+    <p>Este fluxo de trabalho irá guiá-lo através de cada etapa do processo de design. Para explicações detalhadas de cada passo, por favor, consulte o <a href="https://solgenomics.github.io/sgn/using-the-label-designer.html">Seção de designer de etiquetas do manual</a>.<p>
+    <p>Para começar, selecione uma fonte de dados e um nível de dados. A fonte de dados pode ser uma lista, cruzamento de experiências, ensaio, ou genotipagem da placa. Quando terminar, clique em "Próximo".<p>
 </div>
 <br/><br/>
 <div class="container-fluid">
@@ -11,21 +11,21 @@
         <div class="col-md-6">
             <div class="row">
                 <div class="col-md-4 text-center">
-                    <label><strong>Datatype:</strong></label>
+                    <label><strong>Tipo de dados:</strong></label>
                 </div>
                 <div class="col-md-8" id="data_source_type"></div>
             </div>
             <br /><br />
             <div class="row">
                 <div class="col-md-4 text-center">
-                    <label><strong>Data Source:</strong></label>
+                    <label><strong>Fonte de dados:</strong></label>
                 </div>
                 <div class="col-md-8" id="data_source"></div>
             </div>
             <br /><br />
         </div>
         <div class="col-md-2 text-center">
-            <label>Label For Every:</label>
+            <label>Rótulo para cada:</label>
         </div>
         <div class="col-md-4" id="label_designer_data_level_select_div"></div>
     </div>

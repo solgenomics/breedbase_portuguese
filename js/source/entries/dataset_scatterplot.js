@@ -231,7 +231,7 @@ export function init(datasetId, datasetName, baseWidth) {
                     url: '/ajax/dataset/store_outliers/' + LocalThis.datasetId,
                     data: { outliers: stringOutliers, outlier_cutoffs: stringOutlierCutoffs },
                     success: function (response) {
-                        alert('outliers successfully stored!');
+                        alert("valores discrepantes armazenados com sucesso!");
                         LocalThis.storedOutliersIds = [...allOutliers];
                         d3.select("svg").remove();
                         LocalThis.render();
@@ -249,7 +249,7 @@ export function init(datasetId, datasetName, baseWidth) {
                     url: '/ajax/dataset/store_outliers/' + LocalThis.datasetId,
                     data: { outliers: "", outlier_cutoffs: "" },
                     success: function (response) {
-                        alert('outliers successfully reseted!');
+                        alert("valores discrepantes redefinidos com sucesso!");
                         LocalThis.storedOutliersIds = [];
                         d3.select("svg").remove();
                         LocalThis.render();
@@ -270,7 +270,7 @@ export function init(datasetId, datasetName, baseWidth) {
                     url: '/ajax/dataset/store_outliers/' + LocalThis.datasetId,
                     data: { outliers: stringFilteredNonTrait, outlier_cutoffs: "" },
                     success: function (response) {
-                        alert('outliers successfully reseted!');
+                        alert("valores discrepantes redefinidos com sucesso!");
                         LocalThis.storedOutliersIds = filteredNonTrait;
                         d3.select("svg").remove();
                         LocalThis.render();
@@ -322,7 +322,7 @@ export function init(datasetId, datasetName, baseWidth) {
                 }
                 addRosnerButton.setAttribute("id", "rosner_add");
                 addRosnerButton.classList = "btn btn-sm btn-success btn-dataset";
-                addRosnerButton.textContent = "Add Rosner test outliers";
+                addRosnerButton.textContent = "Adicionar valores discrepantes do teste de Rosner";
                 addRosnerButton.addEventListener('click', function () {
                     addRosnserOutliers(outliers);
                 });
@@ -354,7 +354,7 @@ export function init(datasetId, datasetName, baseWidth) {
                     url: '/ajax/dataset/store_outliers/' + LocalThis.datasetId,
                     data: { outliers: stringOutliers, outlier_cutoffs: stringOutlierCutoffs },
                     success: function (response) {
-                        alert('outliers successfully stored!');
+                        alert("valores discrepantes armazenados com sucesso!");
                         LocalThis.storedOutliersIds = [...allOutliers];
                         d3.select("svg").remove();
                         LocalThis.render();
@@ -397,16 +397,16 @@ export function init(datasetId, datasetName, baseWidth) {
                 let settings;
                 switch (LocalThis.metricValue) {
                     case "mean":
-                        settings = [mean, stdDev, "Mean", "Std Dev"];
+                        settings = [mean, stdDev, "Média", "Desvio padrão"];
                         break;
                     case "median":
-                        settings = [median, mad, "Median", "MAD"];
+                        settings = [median, mad, "Mediana", "MAD"];
                         break;
                     case "iqr":
                         settings = [quartiles, factor, "Q1,Q3", "IQR"];
                         break;
                     default:
-                        settings = [median, mad, "Median", "MAD"];
+                        settings = [median, mad, "Mediana", "MAD"];
                 }
                 const [metric, deviation, metricString, deviationString] = settings;
 
@@ -506,7 +506,7 @@ export function init(datasetId, datasetName, baseWidth) {
                     .attr("dy", ".65em")
                     .style("text-anchor", "middle")
                     .style("font", "16px arial")
-                    .text("Trait Value");
+                    .text("Valor da característica");
 
 
                 // Add dots
@@ -532,7 +532,7 @@ export function init(datasetId, datasetName, baseWidth) {
 
                 var mousemove = function (d) {
                     tooltip
-                        .html("id: " + LocalThis.phenoIds[d] + "<br>" + "val: " + LocalThis.traitVals[d])
+                        .html("id: " + LocalThis.phenoIds[d] + "<br>" + "Val: " + LocalThis.traitVals[d])
                         .style("left", (d3.mouse(this)[0] + 50) + "px")
                         .style("top", (d3.mouse(this)[1] + 40) + "px")
                 }
@@ -657,23 +657,23 @@ export function init(datasetId, datasetName, baseWidth) {
                     .attr('x', legendSize.posX + 25 + dotSize + 5)
                     .attr('y', legendSize.posY + 10 + dotSize / 2 + 1)
                     .style("font", "arial")
-                    .text('normal data point')
+                    .text("ponto de dados normal")
 
                 svg.append('text')
                     .attr('x', legendSize.posX + 25 + dotSize + 5)
                     .attr('y', legendSize.posY + 35 + dotSize / 2 + 1)
                     .style("font", "arial")
-                    .text('outliers value stored in database')
+                    .text("valores discrepantes armazenados no banco de dados")
 
                 svg.append('text')
                     .attr('x', legendSize.posX + 25 + dotSize + 5)
                     .attr('y', legendSize.posY + 60 + dotSize / 2 + 1)
                     .style("font", "arial")
-                    .text('outliers from current cutoff')
+                    .text("valores discrepantes com base no limite atual")
 
 
                 legend.append("text")
-                    .text(metricString + ": " + (LocalThis.metricValue == "iqr" ? "(" + metric[0].toFixed(1) + ", " + metric[1].toFixed(1) + ")" : metric.toFixed(2)))
+                    .text(metricString + ": " + (LocalThis.metricValue == "Iqr" ? "(" + metric[0].toFixed(1) + ", " + metric[1].toFixed(1) + ")" : metric.toFixed(2)))
                     .attr('x', legendSize.posX + 20 - dotSize / 2)
                     .attr('y', legendSize.posY + 85);
 
@@ -685,7 +685,7 @@ export function init(datasetId, datasetName, baseWidth) {
 
                 legend.append("text")
                     .text(() => {
-                        return "L. Cutoff: " + leftCutoff.toFixed(2);
+                        return "Limite inferior: " + leftCutoff.toFixed(2);
                     })
                     .style("font", "arial")
                     .attr('x', legendSize.posX + 20 - dotSize / 2)
@@ -693,7 +693,7 @@ export function init(datasetId, datasetName, baseWidth) {
 
                 legend.append("text")
                     .text(() => {
-                        return "R. Cutoff: " + rightCutoff.toFixed(2);
+                        return "Limite superior: " + rightCutoff.toFixed(2);
                     })
                     .style("font", "arial")
                     .attr('x', legendSize.posX + 130 - dotSize / 2)

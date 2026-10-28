@@ -41,10 +41,10 @@ my $qtl_prob = tooltipped_text('QTL genotype probablity method:',
 % if ( $referer =~ /qtl\/form\/stat_form/) 
 %{
 <& /page/page_title.mas, 
-   title => "Step 5: Submit Statistical Parameters" 
+   title => "Passo 5: Submeta parâmetros estatísticos" 
 &>
 <& /page/info_section.mas, 
-   title => "Statistical Parameters", 
+   title => "Parâmetros estatísticos", 
    subtitle => $guide 
 &> 
 %}
@@ -52,22 +52,22 @@ my $qtl_prob = tooltipped_text('QTL genotype probablity method:',
   <form action="/phenome/qtl_load.pl" method="POST" enctype="MULTIPART/FORM-DATA">  
     <table cellspacing=20>
       <tr>
-        <td>QTL model: 
+        <td>Modelo QTL: 
         </td>
 	<td>
           <select name="stat_qtl_model">
 	    <option>
-            <option>Single-QTL Scan	    
+            <option>Scan de QTL único	    
           </select>
 	</td>
-        <td>QTL mapping method:</td>
+        <td>Método de mapeamento QTL:</td>
 	<td>
           <select name="stat_qtl_method">	         
 	    <option>
-            <option>Marker Regression
-            <option>Maximum Likelihood 
-	    <option>Haley-Knott Regression
-            <option>Multiple Imputation
+            <option>Regressão ao marcador
+            <option>Máxima Probabilidade 
+	    <option>Regressão Haley-Knott
+            <option>Múltipla imputação
 	  </select>
 	</td>
       </tr>
@@ -77,11 +77,11 @@ my $qtl_prob = tooltipped_text('QTL genotype probablity method:',
         <td>
           <select name="stat_prob_method">
             <option>
-	    <option>Calculate
-            <option>Simulate
+	    <option>Calcular
+            <option>Simular
 	  </select>
 	</td>
-        <td>QTL genotype probability significance level:
+        <td>Nível de probabilidade do genótipo QTL:
         </td>
         <td>
           <select name="stat_prob_level">
@@ -118,12 +118,12 @@ my $qtl_prob = tooltipped_text('QTL genotype probablity method:',
         </td>       
       </tr>
       <tr>
-        <td>No. of permutations:
+        <td>Não. de permutações:
         </td>
         <td>
           <select name="stat_permu_test">
 	    <option>
-            <option>None
+            <option>Nenhum
             <option>100
 	    <option>1000		    
 	  </select>
@@ -151,12 +151,12 @@ my $qtl_prob = tooltipped_text('QTL genotype probablity method:',
         <td>
         </td>
         <td>
-          <input type="submit" value="Submit"> 
+          <input type="submit" value="Enviar"> 
         </td>
         <td>
         </td> 
         <td> 
-          <input type="reset"  value="Reset">
+          <input type="reset"  value="Redefinir">
         </td>      
       </tr>
     </table>

@@ -159,7 +159,7 @@ $has_child_folders => undef
 
     <div role="tabpanel" class="tab-pane fade" id="folders">
       <div class="well">
-        <h3>Pasta principal</h3>
+        <h3>Diretor de massas</h3>
 % if ($breeding_program->name() ne $project_parent->name()) {
         <a href="/folder/<% $project_parent->project_id %>" target=_blank><% $project_parent->name() %></a>
 % } else {
@@ -185,7 +185,7 @@ $has_child_folders => undef
       </div>
 
       <div class="well">
-        <button class="btn btn-primary" id="move_folder_dialog_link">Mover pasta</button>
+        <button class="btn btn-primary" id="move_folder_dialog_link">Massa movedora</button>
       </div>
 
     </div>
@@ -271,7 +271,7 @@ $has_child_folders => undef
             <button class="btn btn-sm btn-primary" id="open_folder_dialog_link">Add Trial and Analyses to Folder</button>
             <br/><br/>
 -->
-            <button class="btn btn-sm btn-default" id="edit_trial_name">Renomear pasta</button>&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="btn btn-sm btn-default" id="edit_trial_name">Massa Renomear</button>&nbsp;&nbsp;&nbsp;&nbsp;
             <button class="btn btn-sm btn-default" id="delete_folder_button">Excluir pasta</button>
             </center>
         </div>

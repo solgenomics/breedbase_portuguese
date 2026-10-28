@@ -5,7 +5,7 @@ $trial_id => undef
 <& /util/import_javascript.mas, classes => [ ] &>
 
 <div id="trial_additional_uploaded_files_div">
-[CARREGANDO...]
+[CARREGANDO ...]
 </div>
 
 <div class="modal fade" id="trial_upload_additional_file_dialog" name="trial_upload_additional_file_dialog" tabindex="-1" role="dialog" aria-labelledby="trialUploadAdditionalFileDialog">
@@ -137,13 +137,13 @@ jQuery(document).ready(function(){
         jQuery.ajax ({
             url : '/ajax/breeders/trial/'+<% $trial_id %>+'/get_uploaded_additional_file',
             beforeSend : function(){
-                jQuery('#trial_additional_uploaded_files_div').html("[CARREGANDO...]");
+                jQuery('#trial_additional_uploaded_files_div').html("[CARREGANDO ...]");
             },
             success: function(response){
                 //console.log(response);
                 var html = "<table class='table table-hover table-condensed table-bordered' id='trial_additional_uploaded_files_table'><thead><tr><th>Nome do arquivo</th><th>Data de envio</th><th>Enviado por</th><th>Opções</th></tr></thead><tbody>";
                 for (i=0; i<response.files.length; i++) {
-                    html = html + '<tr><td>'+response.files[i][4]+'</td><td>'+response.files[i][1]+'</td><td><a href="/solpeople/profile/'+response.files[i][2]+'">'+response.files[i][3]+'</a></td><td><a href="/breeders/phenotyping/download/'+response.files[i][0]+'">Baixar</a> | <a href="javascript:obsolete_additional_file('+<% $trial_id %>+', '+response.files[i][0]+')">Remover</a></td></tr>';
+                    html = html + '<tr><td>'+response.files[i][4]+'</td><td>'+response.files[i][1]+'</td><td><a href="/solpeople/profile/'+response.files[i][2]+'">'+response.files[i][3]+'</a></td><td><a href="/breeders/phenotyping/download/'+response.files[i][0]+'">Baixar</a> | <a href="javascript:obsolete_additional_file('+<% $trial_id %>+', '+response.files[i][0]+"\"Lemover</a></td></tr>";
                 }
                 html = html + "</tbody></table>";
                 jQuery('#trial_additional_uploaded_files_div').html(html);

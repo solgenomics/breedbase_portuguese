@@ -11,11 +11,11 @@ $gel_url => ''
   <&| /page/info_section.mas, title=>"In Silico Gel", collapsible=>1, collapsed=>0 &>
   <img class="img-thumbnail" src=<% $gel_url %>>
   </&>
-  <&| /page/info_section.mas, title=>"BLAST Results", collapsible=>1, collapsed=>1 &>
+  <&| /page/info_section.mas, title=>"Resultados do BLAST", collapsible=>1, collapsed=>1 &>
   <pre class="text-left"><% $blast_res %></pre>
   </&>
   <br><br>
-  <&| /page/info_section.mas, title=>"Amplified Fragments", collapsible=>1, collapsed=>0 &>
+  <&| /page/info_section.mas, title=>"Fragmentos amplificados", collapsible=>1, collapsed=>0 &>
   <pre class="text-left"><% $pcr_seq %></pre>
   </&>
 </center>

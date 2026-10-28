@@ -30,14 +30,14 @@ use SGN::Controller::Marker;
 
 sub fmt_sequence {
   my $seq = shift
-    or return '<span class="ghosted">not available</span>';
+    or return '<span class="ghosted">não disponível</span>';
   '<span class="sequence">'.CXGN::Page::FormattingHelpers::html_break_string($seq,90).'</span>'
 }
 sub fmt_rflp_image_link {
     my $marker = shift;
     my $l = SGN::Controller::Marker->rflp_image_link( $c, $marker )
-        or return '<span class="ghosted">'.$marker->get_name.' image not available</span>';
-    return '<a href="/marker/SGN-M'.$marker->marker_id.'/rflp_image/view">'.$marker->get_name.' RFLP image</a>';
+        or return '<span class="ghosted">'.$marker->get_name.' Imagem não disponível</span>';
+    return '<a href="/marker/SGN-M'.$marker->marker_id.'/rflp_image/view">'.$marker->get_name.' Imagem RFLP</a>';
 }
 sub len_pct {
     my ($len,$seq) = @_;
@@ -50,7 +50,7 @@ my $e_val_blast_cutoff = '1.0e-4';
 % if( my $r = $marker->rflp_data() ) {
 %     my ($forward_unigene_matches, $reverse_unigene_matches) = $marker->rflp_unigene_matches( $r->{forward_seq_id}, $r->{reverse_seq_id} );
 
-      <&| /page/info_section.mas, title=>'RFLP details' &>
+      <&| /page/info_section.mas, title=>'Detalhes da RFLP' &>
 
          <% info_table_html( __border => 0, __multicol => 5,
               'Insert size'     => $r->{insert_size},
@@ -65,7 +65,7 @@ my $e_val_blast_cutoff = '1.0e-4';
          )%>
 
       </&>
-       <&| /page/info_section.mas, title => 'RFLP sequence matches to unigenes' &>
+       <&| /page/info_section.mas, title => 'Sequência RFLP combina com unigenes' &>
 %          if( @$forward_unigene_matches || @$reverse_unigene_matches ) {
                <% columnar_table_html(
                       headings => ['Unigene','e value','Match length (bp)','Strand'],

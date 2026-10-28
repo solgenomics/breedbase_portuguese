@@ -7,7 +7,7 @@
   $bac_publish_subdir
 </%args>
 
-<& /page/page_title.mas, title => 'Tomato Genomic Clone Sequencing' &>
+<& /page/page_title.mas, title => 'Sequência de Clone Genômico de Tomate' &>
 
 <div class="page_introduction"> <& /genomes/Solanum_lycopersicum/project_background.mas &> </div>
 
@@ -21,7 +21,7 @@
 </&>
 
 <&| /page/info_section.mas,
-     title => 'Clone preliminary annotations',
+     title => 'Clone anotações preliminares',
  &>
 
 %   my $ftp_link  = qq|<a href="|.$c->get_conf('ftpsite_url'). '/'. $bac_publish_subdir.'">[FTP]</a>';
@@ -42,8 +42,8 @@
 
 <a name ="clones"></a>
 <&| /page/info_section.mas,
-     title    => 'Clone sequences',
-     subtitle => 'browse and download individual genomic clone sequences',
+     title    => 'Sequências de clones',
+     subtitle => 'Navegue e baixe sequências de clones genômicos individuais',
  &>
 
      <% clone_sequences_html( $dbh, $chrnum ) %>
@@ -112,7 +112,7 @@ EOQ
   foreach my $namepair (@$names) {
     my ($seqname,$acc,$seqlen,$clone_id) = @$namepair;
     my $p = parse_clone_ident($seqname,'versioned_bac_seq')
-      or die "Could not parse sequence ident '$seqname'";
+      or die "Não foi possível analisar a sequência ident '$seqname'";
     delete $p->{fragment};
     my $clone_name = assemble_clone_ident(agi_bac_with_chrom => $p);
     my $clone = CXGN::Genomic::Clone->retrieve($clone_id);
@@ -168,14 +168,14 @@ EOQ
 				 params   => { onchange => 'submit();',
 					       style => 'width: 4em',
 					     },
-				 label    => 'fragment',
+				 label    => 'fragmento',
 				 selected => '',
 			       )
 	 .qq|<input type="hidden" name="start" value="1" />|
 	 .qq|<input type="hidden" name="end" value="$clone_seqs->{seqlen}" />|
 	 .qq|</form>\n|
        ),
-       $details_url ? qq(&nbsp;<a href="$details_url">[details]</a>) : '',
+       $details_url ? qq(&nbsp;<a href="$details_url">[Detalhes]</a>) : '',
       ]
     } else {
       my $gbrowse = gbrowse_url('tomato_bacs',$fragnames[0]);
@@ -183,8 +183,8 @@ EOQ
        qq|<a style="color: black" href="$details_url">$clone_seqs->{seqname}</a>|,
        $clone_seqs->{accession} ? link_identifier($clone_seqs->{accession}) : '-',
        phase_html($clone_seqs->{phase}),
-       ($gbrowse ? CGI->a({href => $gbrowse}, '[browse]' ) : '<span class="ghosted">none</span>'),
-       $details_url ? qq(&nbsp;<a href="$details_url">[details]</a>) : '',
+       ($gbrowse ? CGI->a({href => $gbrowse}, '[browse]' ) : '<span class="ghosted">Nenhum</span>'),
+       $details_url ? qq(&nbsp;<a href="$details_url">[Detalhes]</a>) : '',
       ]
     }
   } sort {(maxphase($clones{$b}) <=> maxphase($clones{$a})) || ($a cmp $b) } keys %clones;

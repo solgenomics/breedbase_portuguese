@@ -36,7 +36,7 @@ function get_select_box(type, div_id, options = {}) {
         }
 	},
 	error: function(response) {
-	    alert("An error occurred");
+	    alert("Ocorreu um erro");
 	}
     });
 }

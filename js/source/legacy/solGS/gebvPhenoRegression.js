@@ -47,8 +47,8 @@ createGebvPhenoDownloadLinks: function () {
 
     var gebvPhenoRegPlotDivId = this.gebvPhenoRegPlotDivId.replace(/#/, '');
     var regDownloadBtn = "download_" + gebvPhenoRegPlotDivId;
-    var regPlotLink = "<a href='#'  onclick='event.preventDefault();' id='" + regDownloadBtn + "'> Regression plot</a>";
-    var downloadLinks = `Download:  ${regPlotLink}`;
+    var regPlotLink = "<a href='#'  onclick='event.preventDefault();' id='" + regDownloadBtn + "'> Gráfico de regressão</a>";
+    var downloadLinks = `Baixar:  ${regPlotLink}`;
 
     return downloadLinks;
 
@@ -68,7 +68,7 @@ jQuery(document).ready( function() {
                     'y_data': res.gebv_data,
                     'y_label': 'GEBVs',
                     'x_data': res.pheno_deviations,
-                    'x_label': 'Phenotypic deviations',
+                    'x_label': "Desvios fenotípicos",
                     'heritability': res.heritability,
                     'plot_div_id': gebvPhenoRegPlotDivId,
                     'canvas': canvas,
@@ -78,12 +78,12 @@ jQuery(document).ready( function() {
             jQuery("#gebv_pheno_regression_message").empty();
             solGS.scatterPlot.plotRegression(regressionData);
         } else {
-            jQuery("#gebvs_pheno_regression_message").html('There is no GEBVs vs observed phenotypes regression data.');
+            jQuery("#gebvs_pheno_regression_message").html("Não há dados de regressão dos GEBVs em relação aos fenótipos observados.");
         }
     }); 
 
     solGS.gebvPhenoRegression.getRegressionData(args).fail(function(res){ 
-        jQuery("#gebvs_pheno_regression_message").html('Error occured requesting for theGEBVs vs observed phenotypes regression data.');
+        jQuery("#gebvs_pheno_regression_message").html("Ocorreu um erro ao solicitar os dados de regressão de GEBVs em relação aos fenótipos observados.");
     });
 
     jQuery("#gebv_pheno_regression_canvas").on('click' , 'a', function(e) {

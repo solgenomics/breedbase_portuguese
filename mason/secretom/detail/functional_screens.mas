@@ -1,35 +1,25 @@
-<& /page/page_title.mas, title => 'Functional Screens to Identify Secreted Proteins' &>
+<& /page/page_title.mas, title => 'Telas funcionais para identificar proteínas secretas' &>
 
 <div class="page_introduction">
   <p>
-  We have been developing and applying functional screens to identify
-  genes encoding secreted proteins. The genes are identified based on
-  the ultimate localization of the encoded protein, utilizing protein
-  markers whose activities confirm targeting to the cell surface.
+  Temos desenvolvido e aplicado telas funcionais para identificar genes que codificam proteínas secretadas. Os genes são identificados com base na localização final da proteína codificada, utilizando marcadores proteicos cujas atividades confirmam o alvo para a superfície celular.
   </p>
 </div>
 
-<&| /page/info_section.mas, title => 'Yeast Secretion Trap (YST) Screen' &>
+<&| /page/info_section.mas, title => 'Armadilha de Secreção de Fermento (YST) Tela' &>
 
   <div style="width: 330px; margin: 0; margin-right: 2em; float: left" class="captioned_image caption_right">
 
     <img src="/documents/img/secretom/YST_control_170.jpg" />
 
     <p>
-    Sucrose plate with no yeast colonies growing (negative control).
+    Placa de sacarose sem colônias de levedura crescendo (controle negativo).
     </p>
 
   </div>
 
   <p>
-  The YST screen can be used to test a specific cDNA of interest, or to
-  screen a cDNA library.  The screen uses invertase, an enzyme that
-  hydrolyzes sucrose to generate glucose and fructose, as a reporter
-  gene/protein and yeast (<span class="species_binomial">S. cerevisiae</span>)
-  as a host. If yeast cells are streaked onto plates containing sucrose
-  as the sole carbon source, they must secrete invertase to break down
-  the sucrose in order to grow, and so an invertase-deficient yeast
-  mutant will be unable to grow.
+  A tela YST pode ser usada para testar um cDNA específico de interesse, ou para rastrear uma biblioteca cDNA. A tela usa invertase, uma enzima que hidrolisa a sacarose para gerar glicose e frutose, como um repórter gene/proteína e levedura (<span class="species_binomial">S. cerevisiae</span>) como hospedeiro. Se as células de levedura são estriadas em placas contendo sacarose como a única fonte de carbono, eles devem secretar invertase para quebrar a sacarose, a fim de crescer, e assim um mutante de levedura com deficiência de inversão será incapaz de crescer.
   </p>
 
 
@@ -38,7 +28,7 @@
     <img src="/documents/img/secretom/YST_transformed_170.jpg" />
 
     <p>
-    Sucrose plate showing yeast colonies transformed with the YST vector library.
+    Placa de sacarose mostrando colônias de levedura transformadas com a biblioteca vetorial YST.
     </p>
 
   </div>
@@ -46,45 +36,26 @@
 
   <p>
 
-  This system can also identify plasma membrane (PM)-spanning or
-  PM-anchored proteins if the orientation of the fusion protein is such
-  that the invertase component is external to the cell. The resulting
-  yeast transformants can then be isolated and the plasmids containing
-  the heterologous transgenes sequenced, allowing identification of the
-  secreted protein. We typically also confirm the localization of
-  candidates of interest by transient expression as GFP fusion proteins
-  in onion epidermal cells, coupled with staining using the FM-64 dye to
-  co-stain for the plasma membrane,
+  Este sistema também pode identificar membrana plasmática (PM)-espanhar ou proteínas PM-ancoradas se a orientação da proteína de fusão é tal que o componente de inversão é externo à célula. Os transformadores de levedura resultantes podem ser isolados e os plasmídeos contendo os transgenes heterólogos sequenciados, permitindo a identificação da proteína secretada. Nós normalmente também confirmamos a localização de candidatos de interesse por expressão transitória como proteínas de fusão GFP em células epidérmicas de cebola, juntamente com a coloração usando o corante FM-64 para co-marcar para a membrana plasmática,
 
   </p>
 
 </&>
 
-<&| /page/info_section.mas, title => 'Necrosis Inducing Protein (NIP) Secretion Trap Screen' &>
+<&| /page/info_section.mas, title => 'Necrose Induzindo Protein (NIP)' &>
 
   <div style="width: 350px; float: right; margin: 0 0 10px 20px;" class="captioned_image caption_left">
 
     <img src="/documents/img/secretom/N_benth_NIP_x210.jpg" />
 
     <p style="text-align: left">
-    A <span class="species_binomial">Nicotiana benthamiana</span> leaf
-    showing regions of HR indicating the presence of a secreted
-    protein fused to NIP.
+    A <span class="species_binomial">Nicotiana benthamiana</span> Folha mostrando regiões de RH indicando a presença de uma proteína secreta fundida com PNI.
     </p>
 
   </div>
 
   <p>
-  We have also developed a new technique termed the NIP secretion trap
-  screen. Briefly, this involves ligating cDNAs in frame at the 5&rsquo;
-  end of the DNA sequence encoding a gene termed necrosis-inducing
-  protein (NIP) that has been truncated to remove the native secretory
-  signal peptide. NIP was identified from the oomycete Phytophthora
-  sojae, as a protein that induces a hypersensitive response (HR),
-  resulting in cell death, in leaves of some plants when present in the
-  apoplast. It does not cause HR when expressed in the plant
-  cytosol. Constructs containing individual cDNA::Nip fusions are
-  transformed into <span class="species_binomial">Agrobacterium
+  Também desenvolvemos uma nova técnica chamada tela de armadilha de secreção NIP. Resumidamente, isso envolve ligantes de DNA cDNAs no quadro no final 5' da sequência de DNA que codifica um gene chamado proteína indutora de necrose (PNI) que foi truncado para remover o peptídeo secretor de sinal nativo. A PNI foi identificada a partir do oomycete Phytophthora sojae, como uma proteína que induz uma resposta hipersensível (HR), resultando em morte celular, em folhas de algumas plantas quando presentes no apoplast. Não causa HR quando expressa na planta citosol. Construtos contendo cDNA individual são transformados em <span class="species_binomial">Agrobacterium
   tumefaciens</span>, which is then infiltrated into the apoplastic
   compartment of Nicotiana benthamiana leaves. Any proteins encoding SPs
   will be secreted from infected plant cells as NIP fusion proteins,
@@ -92,86 +63,71 @@
   </p>
 
   <p>
-  The Nip fusion assay is a convenient and rapid means to confirm
-  secretion of proteins in planta and complements the YST screen.
+  O ensaio de fusão Nip é um meio conveniente e rápido para confirmar a secreção de proteínas na planta e complementa a tela YST.
   </p>
 
 </&>
 
-<&| /page/info_section.mas, title => 'Objectives', is_subsection => 0 &>
+<&| /page/info_section.mas, title => 'Objetivos', is_subsection => 0 &>
 
   <div style="width: 230px; margin: 0 0 10px 20px; float: right" class="captioned_image">
 
     <img src="/documents/img/secretom/onion_cyto_secreted_200.jpg" />
 
     <p style="text-align: left">
-    A cytoplasmic protein (green) and a secreted protein (red) in
-    plasmolyzed onion cells. Scale bar represents 50 microns.
+    Uma proteína citoplasmática (verde) e uma proteína secretada (vermelho) em células de cebola plasmolisadas. A barra de escala representa 50 mícrons.
     </p>
 
   </div>
 
   <ul>
     <li>
-    Screen a range of tomato tissues for genes encoding secreted
-    proteins, focusing particularly on fruit development and leaves at
-    various stages of infections with <span class="species_binomial">
+    Tela uma gama de tecidos de tomate para genes que codificam proteínas secretas, focando particularmente no desenvolvimento de frutos e folhas em vários estágios de infecções com <span class="species_binomial">
     Phytopthora infestans</span>.
     </li>
     <li>
-    Annotate the corresponding genes and confirm their localization in
-    the cell wall by transient expression as fluorescent fusion proteins
-    in onion epidermal cells.
+    Anote os genes correspondentes e confirme sua localização na parede celular por expressão transitória como proteínas fluorescentes de fusão em células epidérmicas de cebola.
     </li>
     <li>
-    Further examine the localization and trafficking pathways of
-    candidates that show unexpected localization in the apoplast.
+    Examine a localização e tráfico de candidatos que mostram localização inesperada no apoplast.
     </li>
   </ul>
 
 
 
   <p>
-  To date we have identified both known cell wall localized proteins as
-  well as a number of proteins whose presence in the apoplast is
-  unexpected, based on functional annotation, or the absence of a
-  predicted secretory signal peptide, suggesting alternative
-  non-canonical secretion pathways, as have describe in yeast and
-  mammalian cells. We have also identified several proteins that show
-  dual localization in the wall an intracellular compartments, and we
-  are now characterizing some of the complexity in the secretory
-  pathway.
+  Até o momento, identificamos proteínas localizadas na parede celular, bem como uma série de proteínas cuja presença no apoplasto é inesperada, baseada na anotação funcional, ou na ausência de um peptídeo de sinal secretor previsto, sugerindo vias alternativas de secreção não canônica, como têm descrito em células de levedura e mamíferos. Também identificamos várias proteínas que mostram localização dupla na parede de compartimentos intracelulares, e agora estamos caracterizando parte da complexidade no caminho secretor.
   </p>
 
 </&>
 
 <&| /secretom/section_templates/data_items.mas &>
-- text: "Tomato (cv. Ailsa Craig) fruit (multiple growth and ripening stages): YST clones"
+- texto: "Tomato (cv. Ailsa Craig) frutas (multiple crescimento e estágio de maturação): clones YST"
   ref: /download/data/secretom/Functional_screens/Tomato_fruit_YST_clones.xlsx
-- text: "Tomato (cv. Ailsa Craig) leaves infected with Phytophthora infestans: YST clones"
+- texto: "Tomato (cv. Ailsa Craig) folhas infectadas com Phytophthora infestans: clones YST"
   ref: /download/data/secretom/Functional_screens/Tomato_and_Pinfestans_YST_clones.xls
 </&>
 
 <&| /secretom/section_templates/publications.mas &>
 
-Lee, S.J. and Rose, J.K.C. (2012) A yeast secretion trap assay for identification of secreted proteins from eukaryotic phytopathogens and their plant hosts. Methods in Molecular Biology 835:519-30.
+Lee, S.J. e Rose, J.K.C. (2012) Um ensaio para identificar proteínas secretadas de fitopatógenos eucarióticos e seus hospedeiros. Métodos em Biologia Molecular 835:519-30.
 
 Lee, S.-J. and Rose, J.K.C. (2011) Characterization of the plant cell wall proteome using high throughput screens. In The Plant Cell Wall. Methods and Protocols. Methods in Molecular Biology. 715: 255-272.
 
-Yeom, S.-I., Baek, H.-K., Oh, S.-K., Kang, W.-H., Lee, S.-J., Lee, J.M., Seo, E., Rose, J.K.C., Kim, B.-D. and Choi, D. (2011) Title: Use of a secretion trap screen in pepper following Phytophthora capsici infection reveals novel functions of secreted plant proteins in modulating cell death. Molecular Plant Microbe Interactions 24: 671-684.
+Yeom, S.-I., Baek, H.-K., S.-K., Kang, W.-H., Lee, S.-J., Lee, J.M., Seo, E., Rose, J.K.C., Kim, B.-D. e Choi, D. (2011) Título: Uso de uma tela de armadilha de secreção em pimenta após a infecção por Phytophthora capsici revela novas funções de proteínas de plantas secretadas na modulação da morte celular. Interações de micróbios de plantas moleculares 24: 671-684.
 
-McCann, M.C. and Rose, J.K.C. (2010) Blueprints for building plant cell walls. Plant Physiology 153: 365.
+McCann, M.C. e Rose, J.K.C. (2010) Blueprints para construir paredes de células. Fisiologia vegetal 153: 365.
 
-Rose, J.K.C. and Lee, S.-J. (2010) Straying off the highway: trafficking of secreted plant proteins and complexity in the plant cell wall proteome. Plant Physiology 153: 433-436.
+Rose, J.K.C. e Lee, S.-J. (2010) Estrangulando-se na estrada: tráfico de proteínas vegetais secretadas e complexidade no proteoma da parede celular da planta. Fisiologia de plantas 153: 433-436.
 
-Mueller, L.A. et al. (2009) A snapshot of the emerging tomato genome sequence. The Plant Genome 2:  78-92.
+Mueller, L.A. et al. (2009) Um instantâneo da sequência emergente do genoma do tomate. O Genoma da Planta 2: 78-92.
 
-Tyler, B.M. et al. (2006) Phytophthora genome sequences uncover evolutionary origins and mechanisms of pathogenesis. Science 313: 1261-1266.
+Tyler, B.M. et al. (2006) Sequências do genoma de Phytophthora revelam origens evolutivas e mecanismos de patogênese. Ciência 313: 1261-1266.
 
 Isaacson, T., Saravanan, R.S., He, Y., Damasceno, C.M.B., Catal&agrave;, C., Saladi&eacute;, M. and Rose, J.K.C. (2006) Sample extraction techniques for enhanced proteomic analysis of plant tissues.  Nature Protocols 1: 769-774.
 
-Lee, S.-J. Kelley, B., Damasceno, C.M.B., St. John, B., Kim, B.-S. Kim, B.-D. and Rose, J.K.C. (2006) A functional screen to characterize the secretomes of eukaryotic phytopathogens and their hosts in planta.  Molecular Plant Microbe Interactions 12: 1368-1377.
+Lee, S.-J. Kelley, B., Damaceno, C.M.B., St. John, B, Kim, B.-S. Kim, B.-D. e Rose, J.K.C. (2006) Uma tela funcional para caracterizar os secretomas de fitopatógenos eucarióticos e seus hospedeiros em Planta. Interações de micróbios de plantas moleculares 12: 1368-1377.
 
-Lee, S.J., Kim, B.-D. and Rose, J.K.C. (2006) Identification of eukaryotic secreted and cell surface proteins using the yeast secretion trap screen. Nature Protocols 1: 2439-2447.
+Lee, S.J., Kim, B.-D. e Rose, J.K.C. (2006) Identificação de proteínas secretadas eucarióticas e de superfície celular usando a tela de secreção de levedura. Protocolos da Natureza 1: 2439-2447.
 </&>
 

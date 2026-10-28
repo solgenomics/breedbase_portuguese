@@ -1,5 +1,5 @@
 
-<& /page/page_title.mas, title=>"Toolbar Help" &>
+<& /page/page_title.mas, title=>"Ajuda na Barra de Ferramentas" &>
 
 <%perl>
 use CXGN::Page::Toolbar::SGN;

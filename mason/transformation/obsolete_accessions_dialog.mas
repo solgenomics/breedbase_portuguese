@@ -38,7 +38,7 @@ $program_name
             </div>
             <div class="modal-footer">
                 <button id="absolete_accessions_dismiss_button_2" name="obsolete_accessions_dismiss_button" type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
-                <button type="button" class="btn btn-primary" id="obsolete_stocks_submit">Obsolete</button>
+                <button type="button" class="btn btn-primary" id="obsolete_stocks_submit">Obsoleto</button>
             </div>
         </div>
     </div>

@@ -74,23 +74,23 @@ if (defined $unigene->get_unigene_id() ) {
 	   $deprecate_content .= "<br><div style='text-align:center; padding:3px; margin-left:5px;
                                   margin-bottom:10px; font-size:14px; border:1px dashed #772222; 
                                   background-color:#e5e5e5;'>";
-	   $deprecate_content .= "<span style=color:#660000'>This unigene is from an out-of-date build, 
+	   $deprecate_content .= "<span style=color:#660000'>Este unigene é de uma construção desatualizada, 
                                   <em>$org_group_name #$build_nr</em></span>";       
 	
 	   my ($new_build_organism, $new_build_nr) = $unigene_build->get_superseding_build_info();
 	   
 	   if(@updated_unigene == 0){ 
 	   
-	       $deprecate_content .= "<br>It does not exist"; 
+	       $deprecate_content .= "<br>Não existe"; 
 	   } 
 	   elsif(@updated_unigene == 1){
 	       
-	       $deprecate_content .= "<br />It has been superseded by <a href='unigene.pl?unigene_id=";
+	       $deprecate_content .= "<br />Foi substituído por <a href='unigene.pl?unigene_id=";
 	       $deprecate_content .= $updated_unigene[0] . "'>SGN-U" . $updated_unigene[0] . "</a>";
 	   } 
 	   elsif(@updated_unigene > 1){
 	       
-	       $deprecate_content .= "<br />It has been split into ";
+	       $deprecate_content .= "<br />Foi dividido em ";
 	       my $i = 0;
 	       
 	       while($i < @updated_unigene) {
@@ -110,7 +110,7 @@ if (defined $unigene->get_unigene_id() ) {
 		   $i++;
 	       }
 	   }
-	   $deprecate_content .= " in the current build, <em style='white-space:nowrap'>$new_build_organism #$new_build_nr</em>";
+	   $deprecate_content .= " na construção atual, <em style='white-space:nowrap'>$new_build_organism #$new_build_nr</em>";
 	   $deprecate_content .= "</div>";
        } 
        else {
@@ -120,9 +120,9 @@ if (defined $unigene->get_unigene_id() ) {
 	   $deprecate_content .= "<br><div style='text-align:center; padding:3px; margin-left:5px;
                                   margin-bottom:10px; font-size:14px; border:1px dashed #772222; 
                                   background-color:#e5e5e5;'>";
-	   $deprecate_content .= "<span style=color:#660000'>This unigene is from an out-of-date build, 
+	   $deprecate_content .= "<span style=color:#660000'>Este unigene é de uma construção desatualizada, 
                                   <em>$org_group_name #$build_nr</em></span>"; 
-	   $deprecate_content .= "<br> The current build is, <em style='white-space:nowrap'>$new_build_organism_b #$new_build_nr_b</em>";
+	   $deprecate_content .= "<br> A construção atual é, <em style='white-space:nowrap'>$new_build_organism_b #$new_build_nr_b</em>";
 	   $deprecate_content .= "</div>";
        }
    }

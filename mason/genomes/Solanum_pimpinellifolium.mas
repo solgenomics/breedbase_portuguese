@@ -4,19 +4,17 @@
 </%doc>
 
 
-<& /page/page_title.mas, title=>"Genome: <i>Solanum pimpinellifolium</i>" &>
+<& /page/page_title.mas, title=>"Genoma: <i>Solanum pimpinellifolium</i>" &>
 
 <div class="page_introduction">
 
   <a href="/chado/organism.pl?organism_id=770"><i>Solanum
-  pimpinellifolium</i></a> is the wild tomato that is most closely
-  related to the domesticated <a href="/chado/organism.pl?organism_id=1"><i>Solanum
-  lycopersicum</i></a>.  It was sequenced by a group of scientists at
-  the <a href="http://cshl.org">Cold Spring Harbor Laboratory</a>.
+  pimpinellifolium</i></a> é o tomate selvagem que está mais intimamente relacionado com o domesticado <a href="/chado/organism.pl?organism_id=1"><i>Solanum
+  lycopersicum</i></a>. Foi sequenciado por um grupo de cientistas no <a href="http://cshl.org">Laboratório Cold Spring Harbor</a>.
 
 </div>
 
-<&| /page/info_section.mas, title=>"Disclaimer and data access agreement" &>
+<&| /page/info_section.mas, title=>"Isenção de responsabilidade e acordo de acesso aos dados" &>
 
 <!-- div style="text-align: justify; border: 1px solid gray; padding: 2em 3em 3em 3em">
 
@@ -52,22 +50,22 @@
 </div -->  
 
 <div>
- These data have been published and are freely accessible. Please cite <a href="http://www.nature.com/nature/journal/v485/n7400/full/nature11119.html">Nature 485, 635-641</a> when using this resource. <br /><br />
- Please contact D. Ware or Z. B. Lippman (E-mail:
-  <a href="mailto:ware@cshl.edu">ware@cshl.edu</a> or
-  <a href="mailto:lippman@cshl.edu">lippman@cshl.edu</a>) with any questions.
+ Estes dados foram publicados e são livremente acessíveis. Por favor, cite <a href="http://www.nature.com/nature/journal/v485/n7400/full/nature11119.html">Nature 485, 635-641</a> ao usar esse recurso. <br /><br />
+ Por favor, contate D. Ware ou Z. B. Lippman (E-mail:
+  <a href="mailto:ware@cshl.edu">ware@cshl.edu</a> ou
+  <a href="mailto:lippman@cshl.edu">lippman@cshl.edu</a>) com qualquer pergunta.
 
 </div>
 </&>
 
 
-<&| /page/info_section.mas, title => 'Available Data' &>
+<&| /page/info_section.mas, title => 'Dados Disponíveis' &>
    <% info_table_html(
          __border   => 0,
          __multicol => 2,
          'Bulk Datasets (via FTP)' =>
-           '<a href="ftp://ftp.solgenomics.net/genomes/Solanum_pimpinellifolium/LA1589/assemblies/A-1.0/">Genomic scaffolds</a>',
-         BLAST => '<a href="/tools/blast/?db_id=114">Genomic scaffolds</a>'
+           '<a href="ftp://ftp.solgenomics.net/genomes/Solanum_pimpinellifolium/LA1589/assemblies/A-1.0/">Andaimes genômicos</a>',
+         BLAST => '<a href="/tools/blast/?db_id=114">Andaimes genômicos</a>'
      )
     %>
 </&>

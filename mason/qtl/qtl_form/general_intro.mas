@@ -19,24 +19,22 @@ $guide
 
 % if (!$guide) {$guide = 'guidelines';}
 
-<p>The uploading of QTL data needs to be done in one session. 
-  Therefore, prepare your data files in the required format before 
+<p>O upload de dados QTL precisa ser feito em uma sessão. 
+  Portanto, prepare seus arquivos de dados no formato necessário antes 
   starting the process. Please read the submission <% lc($guide) %> first. If you 
-  would like to have the formatting of your dataset checked 
-  beforehand, send your data to: <a href=mailto:iyt2\@cornell.edu>iyt2@cornell.edu</a>.
+  Gostaria de ter a formatação de seu conjunto de dados verificado 
+  Antes, envie seus dados para: <a href=mailto:iyt2\@cornell.edu>iyt2@cornell.edu</a>.
 </p> 
         
-<p>Required data:</p>
+<p>Dados necessários:</p>
        
 <ul>
-  <li>Some basic information about the population,</li>
-  <li>Traits data file (tab delimited),</li>
-  <li>Phenotype data file (tab delimited),</li> 
-  <li>Genotype data file (tab delimited) and</li> 
-  <li>Statistical parameters.</li>
-  <li><i>Markers with their sequences need to be already in SGN. 
-      Read <a href="/cview/help/map_submission">here</a> on how 
-      to submit markers to SGN.
+  <li>Algumas informações básicas sobre a população,</li>
+  <li>Arquivo de dados de trânsito (tab delimitado),</li>
+  <li>Arquivo de dados de fenotipo (tab delimitado),</li> 
+  <li>Arquivo de dados genotipo (tab delimitado) e</li> 
+  <li>Parâmetros estatísticos.</li>
+  <li><i>Marcadores com suas sequências precisam já estar na SGN. Leia <a href="/cview/help/map_submission">Aqui</a> sobre como enviar marcadores para a SGN.
   </i>
 </ul>
 

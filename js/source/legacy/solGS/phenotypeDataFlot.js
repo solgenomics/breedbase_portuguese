@@ -79,7 +79,7 @@ function plotPhenotypeScatter () {
     var plotPhenoData    = allPhenoData.bothAxisPhenoValues;
         
     if (plotPhenoData == 'undefined') {
-        var message = 'There is no phenotype data to plot. Please report this problem';  
+        var message = "Não há dados fenotípicos para gerar o gráfico. Relate este problema";
         jQuery('#phenoPlot').append(message).show();
     } else { 
         var optionsPheno = { 
@@ -112,7 +112,7 @@ function plotPhenotypeScatter () {
             yaxis: {                                
                 min: null,
                 max: null, 
-                axisLabel: 'Phenotype values',
+                axisLabel: "Valores fenotípicos",
                 position: 'left',
                 color: '#0066CC',                    
             },
@@ -186,9 +186,9 @@ function plotPhenotypeScatter () {
 
         var zoomHelp = function (lt, tp) {
             var help_txt = '<div style="width:140px;height:90px">' +
-                            'To zoom in, select an area ' + 
-                            'on the plot and release or double click at any ' +
-                            'point on the plot.' +
+                            "Para ampliar, selecione uma área " +
+                            "do gráfico e solte o botão ou clique duas vezes em qualquer " +
+                            "ponto do gráfico." +
                            '</div>';
                  
             jQuery('<div id="tooltipZoomPheno">' + help_txt  + '</div>').css({ 

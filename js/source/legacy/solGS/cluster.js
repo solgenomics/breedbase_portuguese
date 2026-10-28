@@ -113,7 +113,7 @@ solGS.cluster = {
       clusterTypeId +
       '">' +
       '<option value="k-means">K-Means</option>' +
-      '<option value="hierarchical">Hierarchical</option>' +
+      "<option value=\"hierarchical\">Hierárquico</option>" +
       "</select></div>";
 
     return clusterTypeGroup;
@@ -163,8 +163,9 @@ solGS.cluster = {
     var clusterDataTypeId = this.clusterDataTypeSelectId(rowId);
     var dataTypeGroup = '<select class="form-control" id="' + clusterDataTypeId + '">';
 
+    var dataTypeLabels = { Genotype: "Genótipo", Phenotype: "Fenótipo" };
     for (var i = 0; i < opts.length; i++) {
-      dataTypeGroup += '<option value="' + opts[i] + '">' + opts[i] + "</option>";
+      dataTypeGroup += '<option value="' + opts[i] + '">' + (dataTypeLabels[opts[i]] || opts[i]) + "</option>";
     }
     dataTypeGroup += "</select>";
 
@@ -235,19 +236,19 @@ solGS.cluster = {
     var kNumId = solGS.cluster.clusterKnumSelectId(clusterPopId) || this.defaultKNum;
     var runClusterBtnId = solGS.cluster.getRunClusterBtnId(clusterPopId);
 
-    var kNum = '<input class="form-control" type="text" placeholder="default" id="' + kNumId + '"/>';
+    var kNum = "<input class=\"form-control\" type=\"text\" placeholder=\"padrão\" id=\"" + kNumId + '"/>';
 
     var clusterArgs = JSON.stringify(clusterPop);
 
     var runClusterBtn =
       `<button type="button" id=${runClusterBtnId}` +
-      ` class="btn btn-success" data-selected-pop='${clusterArgs}'>Run cluster</button>`;
+      ` class="btn btn-success" data-selected-pop='${clusterArgs}'>Executar agrupamento</button>`;
 
     var compatibility_message = '';
     if (dataStr.match(/dataset/)) {
       popName = `<a href="/dataset/${popId}">${popName}</a>`;
       if (tool_compatibility == null || tool_compatibility == "(not calculated)"){
-        compatibility_message = "(not calculated)";
+        compatibility_message = "(não calculado)";
       } else {
           if (tool_compatibility["Clustering"]['compatible'] == 0) {
           compatibility_message = '<b><span class="glyphicon glyphicon-remove" style="color:red"></span></b>'
@@ -274,14 +275,14 @@ solGS.cluster = {
       '">' +
       "<thead>" +
       "<tr>" +
-      "<th>Name</th>" +
-      "<th>Data structure</th>" +
-      "<th>Compatibility</th>" +
-      "<th>Ownership</th>" +
-      "<th>Clustering method</th>" +
-      "<th>Data type</th>" +
-      "<th>No. of  clusters (K)</th>" +
-      "<th>Run cluster</th>" +
+      "<th>Nome</th>" +
+      "<th>Estrutura dos dados</th>" +
+      "<th>Compatibilidade</th>" +
+      "<th>Propriedade</th>" +
+      "<th>Método de agrupamento</th>" +
+      "<th>Tipo de dados</th>" +
+      "<th>Nº de grupos (K)</th>" +
+      "<th>Executar agrupamento</th>" +
       "</tr>" +
       "</thead></table>";
 
@@ -582,14 +583,14 @@ solGS.cluster = {
     if (popType == "selection_index") {
       if (dataType.match(/phenotype/i) || dataType.match(/gebv/i)) {
         msg =
-          "K-means clustering for selection index type" + " data works with genotype data only.";
+          "O agrupamento por K-médias para dados do tipo índice de seleção" + " funciona apenas com dados genotípicos.";
       }
 
       if (dataType.match(/genotype/i) != null && !selectionProp) {
         msg =
-          "The selection proportion value is empty." +
-          " You need to define the fraction of the" +
-          " population you want to select.";
+          "A proporção de seleção está vazia." +
+          " Defina a fração da" +
+          " população que deseja selecionar.";
       }
     }
 
@@ -603,11 +604,11 @@ solGS.cluster = {
       var listType = list.getListType(dataId);
 
       if (listType == "accessions" && dataType.match(/phenotype/i)) {
-        msg = "With list of clones, you can only cluster based on <em>genotype</em>.";
+        msg = "Com uma lista de clones, o agrupamento só pode se basear em <em>Genótipo</em>.";
       }
 
       if (listType == "plots" && dataType.match(/genotype/i)) {
-        msg = "With list of plots, you can only cluster based on <em>phenotype</em>.";
+        msg = "Com uma lista de parcelas, o agrupamento só pode se basear em <em>fenótipo</em>.";
       }
     }
 
@@ -633,7 +634,7 @@ solGS.cluster = {
       kclusterMeansFile = res.kcluster_means;
     } else {
       plotType = "Dendrogram";
-      outFileType = "Newick tree format";
+      outFileType = "Árvore no formato Newick";
       clustersFile = res.newick_file;
     }
 
@@ -647,7 +648,7 @@ solGS.cluster = {
 
     if (elbowPlotFile) {
       var elbowFileName = elbowPlotFile.split("/").pop();
-      elbowLink = '<a href="' + elbowPlotFile + '" download=' + elbowFileName + '">Elbow plot</a>';
+      elbowLink = '<a href="' + elbowPlotFile + '" download=' + elbowFileName + "\">Gráfico do cotovelo</a>";
 
       if (kclusterMeansFile) {
         var kclusterMeansFileName = kclusterMeansFile.split("/").pop();
@@ -656,7 +657,7 @@ solGS.cluster = {
           kclusterMeansFile +
           '" download=' +
           kclusterMeansFileName +
-          '">Cluster means</a>';
+          "\">Médias dos grupos</a>";
       }
 
       var kclusterVariancesFileName = kclusterVariancesFile.split("/").pop();
@@ -665,16 +666,16 @@ solGS.cluster = {
         kclusterVariancesFile +
         '" download=' +
         kclusterVariancesFileName +
-        '">Cluster variances </a>';
+        "\">Variâncias dos grupos </a>";
     }
 
     var reportFile = res.cluster_report;
     var reportFileName = reportFile.split("/").pop();
     var dataType = res.data_type;
     var reportLink =
-      '<a href="' + reportFile + '" download=' + reportFileName + '">Analysis Report </a>';
+      '<a href="' + reportFile + '" download=' + reportFileName + "\">Relatório da análise </a>";
 
-    var downloadLinks = `<strong>Download 
+    var downloadLinks = `<strong>Baixar
       ${popName} (${dataType})</strong>: 
       ${clustersLink} | 
       ${reportLink}`;
@@ -691,7 +692,7 @@ solGS.cluster = {
     var plotId = res.file_id;;
     var clusterDownloadLinkId = `download_${clusterPlotDiv}_${plotId}`;
     var clusterPlotDownload =
-      `<a href='#'  onclick='event.preventDefault();' id='${clusterDownloadLinkId}'>Cluster plot</a>`;
+      `<a href='#'  onclick='event.preventDefault();' id='${clusterDownloadLinkId}'>Gráfico de agrupamento</a>`;
 
     downloadLinks += " | " + clusterPlotDownload;
 
@@ -976,7 +977,7 @@ solGS.cluster = {
 
     clusterPlot
       .append("g")
-      .attr("class", "PC1 axis")
+      .attr("class", "Eixo PC1")
       .attr("transform", "translate(" + pad.left + "," + yAxisHeight + ")")
       .call(pc1Axis)
       .selectAll("text")
@@ -989,7 +990,7 @@ solGS.cluster = {
 
     clusterPlot
       .append("g")
-      .attr("class", "PC2 axis")
+      .attr("class", "Eixo PC2")
       .attr("transform", "translate(" + pad.left + "," + pad.top + ")")
       .call(pc2Axis)
       .selectAll("text")
@@ -1101,7 +1102,7 @@ solGS.cluster = {
       .attr("class", "cell")
       .attr("transform", "translate(" + legendXOrig + "," + legendYOrig + ")")
       .append("text")
-      .text("Clusters")
+      .text("Grupos")
       .attr("x", 0)
       .attr("y", 15)
       .style("font-size",'12px')
@@ -1172,7 +1173,7 @@ jQuery(document).ready(function () {
     var clusterPopId = clusterArgs.cluster_pop_id;
 
     if (clusterPopId) {
-      jQuery(clusterMsgDiv).text("Running cluster... please wait...it may take minutes.").show();
+      jQuery(clusterMsgDiv).text("Executando agrupamento... Aguarde... Isso pode levar alguns minutos.").show();
       jQuery(`${canvas} .multi-spinner-container`).show();
 
       solGS.cluster.checkCachedCluster(url, clusterArgs).done(function (res) {
@@ -1235,7 +1236,7 @@ jQuery(document).ready(function () {
   jQuery("#cluster_div").on("click", function (e) {
     var runClusterBtnId = e.target.id;
     if (runClusterBtnId.match(/run_cluster/)) {
-      jQuery(clusterMsgDiv).text("Running cluster... please wait...it may take minutes.").show();
+      jQuery(clusterMsgDiv).text("Executando agrupamento... Aguarde... Isso pode levar alguns minutos.").show();
 
       jQuery(`${canvas} .multi-spinner-container`).show();
 
@@ -1299,8 +1300,8 @@ jQuery(document).ready(function () {
             jQuery(`${canvas} .multi-spinner-container`).hide();
             jQuery(clusterMsgDiv).empty();
             var title =
-              "<p>This analysis may take a long time. " +
-              "Do you want to submit the analysis and get an email when it completes?</p>";
+              "<p>Esta análise pode demorar. " +
+              "Deseja enviar a análise e receber um e-mail quando ela for concluída?</p>";
 
             var jobSubmit = '<div id= "cluster_submit">' + title + "</div>";
 
@@ -1310,10 +1311,10 @@ jQuery(document).ready(function () {
               height: "auto",
               width: "auto",
               modal: true,
-              title: "cluster job submission",
+              title: "envio da tarefa de agrupamento",
               buttons: {
                 OK: {
-                  text: "Yes",
+                  text: "Sim",
                   class: "btn btn-success",
                   id: "queue_job",
                   click: function () {
@@ -1323,7 +1324,7 @@ jQuery(document).ready(function () {
                 },
 
                 No: {
-                  text: "No, I will wait till it completes.",
+                  text: "Não, vou aguardar a conclusão.",
                   class: "btn btn-warning",
                   id: "no_queue",
                   click: function () {
@@ -1331,7 +1332,7 @@ jQuery(document).ready(function () {
 
                     jQuery(runClusterBtnId).hide();
                     jQuery(clusterMsgDiv)
-                      .text("Running cluster... please wait...it may take minutes.")
+                      .text("Executando agrupamento... Aguarde... Isso pode levar alguns minutos.")
                       .show();
                     jQuery(`${canvas} .multi-spinner-container`).show();
 
@@ -1340,9 +1341,9 @@ jQuery(document).ready(function () {
                       .done(function (res) {
                         if (res.result == "success") {
                           if (res.cluster_type.match(/k-means/i) && !res.pc_scores_groups) {
-                            var msg = "There is no cluster groups data to plot. " + 
-                            "The R clustering script did not write cluster " + 
-                            "results to output files.";
+                            var msg = "Não há dados dos grupos para gerar o gráfico. " +
+                            "O script de agrupamento do R não gravou os " +
+                            "resultados do agrupamento nos arquivos de saída.";
 
                             solGS.cluster.cleanupFeedback(canvas, runClusterBtnId, clusterMsgDiv, msg);
                           } else {
@@ -1350,19 +1351,19 @@ jQuery(document).ready(function () {
                             solGS.cluster.displayClusterOutput(res);    
                           }
                         } else {
-                          var msg = "Error occured running the clustering. Possibly the R script failed.";
+                          var msg = "Ocorreu um erro ao executar o agrupamento. O script R pode ter falhado.";
                           solGS.cluster.cleanupFeedback(canvas, runClusterBtnId, clusterMsgDiv, msg);
                         }
                       })
                       .fail(function () {
-                        var msg = "Error occured running the clustering.";
+                        var msg = "Ocorreu um erro ao executar o agrupamento.";
                         solGS.cluster.cleanupFeedback(canvas, runClusterBtnId, clusterMsgDiv, msg);
                       });
                   },
                 },
 
                 Cancel: {
-                  text: "Cancel",
+                  text: "Cancelar",
                   class: "btn btn-info",
                   id: "cancel_queue_info",
                   click: function () {

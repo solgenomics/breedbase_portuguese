@@ -293,7 +293,7 @@ solGS.pca = {
 
     var runPcaBtn =
         `<button type="button" id=${runPcaBtnId}` +
-        ` class="btn btn-success" data-selected-pop='${pcaArgs}'>Run PCA</button>`;
+        ` class="btn btn-success" data-selected-pop='${pcaArgs}'>Executar PCA</button>`;
 
     var compatibilityMessage = '';
     if (dataStr.match(/dataset/)) {
@@ -323,7 +323,7 @@ solGS.pca = {
 
         if (dataStr.match(/dataset/)) {
             if (toolCompatibility == null || toolCompatibility == "(not calculated)"){
-            compatibilityMessage = "(not calculated)";
+            compatibilityMessage = "(não calculado)";
             } else {
                 if (toolCompatibility["Population Structure"]['compatible'] == 0) {
                 compatibilityMessage = '<b><span class="glyphicon glyphicon-remove" style="color:red"></span></b>'
@@ -349,7 +349,7 @@ solGS.pca = {
             info: false,
             pageLength: 5,
             'lengthMenu': [
-                [5,10,50,100,-1],[5,10,50,100,'All']
+                [5,10,50,100,-1],[5,10,50,100,"Todos"]
             ],
             'rowId': function (a) {
                 return a[6];
@@ -380,7 +380,7 @@ solGS.pca = {
         lists = list.addDataTypeAttr(lists, "");
         var datasets = solGS.dataset.getDatasetPops(["accessions", "trials"]);
 
-        datasets = solGS.dataset.addDataTypeAttr(datasets, "Population Structure");
+        datasets = solGS.dataset.addDataTypeAttr(datasets, "Estrutura populacional");
         var pcaPops = [lists, datasets];
 
         return pcaPops.flat();
@@ -479,12 +479,12 @@ solGS.pca = {
 
             if (listType.match(/accessions/) && dataType.match(/phenotype/i)) {
                 msg =
-                    "With list of clones, you can only do PCA based on <em>genotype</em>.";
+                    "Com uma lista de clones, a PCA só pode se basear em <em>Genótipo</em>.";
             }
 
             if (listType.match(/plots/) && dataType.match(/genotype/i)) {
                 msg =
-                    "With list of plots, you can only do PCA based on <em>phenotype</em>.";
+                    "Com uma lista de parcelas, a PCA só pode se basear em <em>fenótipo</em>.";
             }
         }
 
@@ -494,12 +494,12 @@ solGS.pca = {
     createTable: function (tableId) {
         var pcaTable =
             `<table id="${tableId}" class="table table-striped"><thead><tr>` +
-            "<th>Population</th>" +
-            "<th>Data structure type</th>" +
-            "<th>Compatibility</th>" +
-      "<th>Ownership</th>" +
-            "<th>Data type</th>" +
-            "<th>Run PCA</th>" +
+            "<th>População</th>" +
+            "<th>Tipo de estrutura de dados</th>" +
+            "<th>Compatibilidade</th>" +
+      "<th>Propriedade</th>" +
+            "<th>Tipo de dados</th>" +
+            "<th>Executar PCA</th>" +
             "</tr></thead></table>";
 
         return pcaTable;
@@ -510,9 +510,10 @@ solGS.pca = {
         var dataTypeGroup =
             '<select class="form-control" id="' + pcaDataTypeId + '">';
 
-        for (var i = 0; i < opts.length; i++) {
+        var dataTypeLabels = { Genotype: "Genótipo", Phenotype: "Fenótipo" };
+    for (var i = 0; i < opts.length; i++) {
             dataTypeGroup +=
-                '<option value="' + opts[i] + '">' + opts[i] + "</option>";
+                '<option value="' + opts[i] + '">' + (dataTypeLabels[opts[i]] || opts[i]) + "</option>";
         }
         dataTypeGroup += "</select>";
 
@@ -533,11 +534,11 @@ solGS.pca = {
             screePlotFile +
             '" download=' +
             screePlot +
-            ">Scree plot</a>";
+            ">Gráfico de sedimentação</a>";
 
         var scores = scoresFile.split("/").pop();
         var scoresLink =
-            '<a href="' + scoresFile + '" download=' + scores + "> Scores </a>";
+            '<a href="' + scoresFile + '" download=' + scores + "> Escores </a>";
 
         var loadings = loadingsFile.split("/").pop();
         var loadingsLink =
@@ -545,7 +546,7 @@ solGS.pca = {
             loadingsFile +
             '" download=' +
             loadings +
-            ">Loadings</a>";
+            ">Cargas</a>";
 
         var variances = variancesFile.split("/").pop();
         var variancesLink =
@@ -553,7 +554,7 @@ solGS.pca = {
             variancesFile +
             '" download=' +
             variances +
-            ">Variances</a>";
+            ">Variâncias</a>";
         
         var report = reportFile.split("/").pop();
         var reportLink = 
@@ -561,10 +562,10 @@ solGS.pca = {
             reportFile +
             '" download=' +
             report +
-            ">Analysis log</a>";
+            ">Registro da análise</a>";
 
         var pcaPlotDivId = this.pcaPlotDivId(res.file_id).replace(/#/, "");
-        var pcaPlotLink = `<a href='#'  onclick='event.preventDefault();' id='download_${pcaPlotDivId}'>PCA plot</a>`;
+        var pcaPlotLink = `<a href='#'  onclick='event.preventDefault();' id='download_${pcaPlotDivId}'>Gráfico de PCA</a>`;
 
         var runPcaBtnId;// = this.getRunPcaId(res.pca_pop_id);
 
@@ -582,7 +583,7 @@ solGS.pca = {
 
         var savePcs;
         if (res.analysis_name) {
-            savePcs = `<button id="save_pcs_btn_${res.file_id}" class="btn btn-success" data-selected-pop='${pcaArgs}'>Save PCs</button>`;
+            savePcs = `<button id="save_pcs_btn_${res.file_id}" class="btn btn-success" data-selected-pop='${pcaArgs}'>Salvar componentes principais</button>`;
         }
 
         var downloadLinks =
@@ -808,7 +809,7 @@ solGS.pca = {
 
         pcaPlot
             .append("g")
-            .attr("class", "PC1 axis")
+            .attr("class", "Eixo PC1")
             .attr(
                 "transform",
                 "translate(" + pad.left + "," + (pad.top + height) + ")"
@@ -848,7 +849,7 @@ solGS.pca = {
 
         pcaPlot
             .append("g")
-            .attr("class", "PC2 axis")
+            .attr("class", "Eixo PC2")
             .attr("transform", "translate(" + pad.left + "," + pad.top + ")")
             .call(pc2Axis)
             .selectAll("text")
@@ -935,7 +936,7 @@ solGS.pca = {
         popName = popName
             ? popName + " (" + plotData.data_type + ")"
             : " (" + plotData.data_type + ")";
-        var dld = "Download PCA " + popName + ": ";
+        var dld = "Baixar PCA " + popName + ": ";
 
         if (downloadLinks) {
             jQuery(pcaPlotDivId).append(
@@ -970,7 +971,7 @@ solGS.pca = {
                         groupName.push(trialsNames[id]);
                     });
 
-                    groupName = "common to: " + groupName.join(", ");
+                    groupName = "comuns a: " + groupName.join(", ");
                 } else {
                     groupName = trialsNames[id];
                 }
@@ -1097,7 +1098,7 @@ jQuery(document).ready(function () {
         url.match(/solgs\/selection\/|solgs\/combined\/model\/\d+\/selection\//)
     ) {
         jQuery("#pca_data_type_select").html(
-            '<option selected="genotype">Genotype</option>'
+            "<option selected=\"genotype\">Genótipo</option>"
         );
     }
 });
@@ -1108,7 +1109,7 @@ jQuery(document).ready(function () {
         if (pcaHtmlElem.match(/pca_data_type_select/)) {
             var pcaPopId = pcaHtmlElem.replace(/pca_data_type_select_/, "");
             var runPcaBtnId = solGS.pca.getRunPcaId(pcaPopId);
-            jQuery(`#${runPcaBtnId}`).html("Run PCA").show();
+            jQuery(`#${runPcaBtnId}`).html("Executar PCA").show();
         }
     });
 });
@@ -1147,7 +1148,7 @@ jQuery(document).ready(function () {
                             solGS.pca.plotPca(plotData, downloadLinks);
                         }
 
-                        jQuery(`#${runPcaBtnId}`).html("Done").show();
+                        jQuery(`#${runPcaBtnId}`).html("Concluído").show();
 
                         solGS.pca.cleanUpOnSuccess(pcaPopId);
                     } else {
@@ -1158,8 +1159,8 @@ jQuery(document).ready(function () {
                         runPcaBtnId = `#${runPcaBtnId}`;
 
                         var title =
-                            "<p>This analysis may take a long time. " +
-                            "Do you want to submit the analysis and get an email when it completes?</p>";
+                            "<p>Esta análise pode demorar. " +
+                            "Deseja enviar a análise e receber um e-mail quando ela for concluída?</p>";
 
                         var jobSubmit =
                             '<div id= "pca_submit">' + title + "</div>";
@@ -1170,10 +1171,10 @@ jQuery(document).ready(function () {
                             height: "auto",
                             width: "auto",
                             modal: true,
-                            title: "pca job submission",
+                            title: "envio da tarefa de PCA",
                             buttons: {
                                 OK: {
-                                    text: "Yes",
+                                    text: "Sim",
                                     class: "btn btn-success",
                                     id: "queue_job",
                                     click: function () {
@@ -1186,14 +1187,14 @@ jQuery(document).ready(function () {
                                 },
 
                                 No: {
-                                    text: "No, I will wait till it completes.",
+                                    text: "Não, vou aguardar a conclusão.",
                                     class: "btn btn-warning",
                                     id: "no_queue",
                                     click: function () {
                                         jQuery(this).dialog("close");
 
                                         jQuery(runPcaBtnId)
-                                            .html("Running...")
+                                            .html("Executando...")
                                             .show();
 
                                         jQuery(
@@ -1201,7 +1202,7 @@ jQuery(document).ready(function () {
                                         ).show();
                                         jQuery(pcaMsgDiv)
                                             .html(
-                                                "Running pca... please wait..."
+                                                "Executando PCA... Aguarde..."
                                             )
                                             .show();
 
@@ -1222,14 +1223,14 @@ jQuery(document).ready(function () {
                                                         downloadLinks
                                                     );
                                                     jQuery(runPcaBtnId)
-                                                        .html("Done")
+                                                        .html("Concluído")
                                                         .show();
                                                     solGS.pca.cleanUpOnSuccess(
                                                         pcaPopId
                                                     );
                                                 } else {
                                                     var msg =
-                                                        "There is no PCA output for this dataset.";
+                                                        "Não há resultados de PCA para este conjunto de dados.";
                                                     solGS.pca.feedBackOnFailure(
                                                         pcaPopId,
                                                         msg
@@ -1239,7 +1240,7 @@ jQuery(document).ready(function () {
                                             })
                                             .fail(function (res) {
                                                 var msg =
-                                                    "Error occured running the PCA.";
+                                                    "Ocorreu um erro ao executar a PCA.";
                                                 solGS.pca.feedBackOnFailure(
                                                     pcaPopId,
                                                     msg
@@ -1250,7 +1251,7 @@ jQuery(document).ready(function () {
                                 },
 
                                 Cancel: {
-                                    text: "Cancel",
+                                    text: "Cancelar",
                                     class: "btn btn-info",
                                     id: "cancel_queue_info",
                                     click: function () {
@@ -1278,11 +1279,11 @@ jQuery(document).ready(function () {
                                             plotData,
                                             downloadLinks
                                         );
-                                        jQuery(runPcaBtnId).html("Done").show();
+                                        jQuery(runPcaBtnId).html("Concluído").show();
                                         solGS.pca.cleanUpOnSuccess(pcaPopId);
                                     } else {
                                         var msg =
-                                            "There is no PCA output for this dataset.";
+                                            "Não há resultados de PCA para este conjunto de dados.";
                                         solGS.pca.feedBackOnFailure(
                                             pcaPopId,
                                             msg
@@ -1290,7 +1291,7 @@ jQuery(document).ready(function () {
                                     }
                                 })
                                 .fail(function (res) {
-                                    var msg = "Error occured running the PCA.";
+                                    var msg = "Ocorreu um erro ao executar a PCA.";
                                     solGS.pca.feedBackOnFailure(pcaPopId, msg);
                                     jQuery(runPcaBtnId).show();
                                 });
@@ -1298,7 +1299,7 @@ jQuery(document).ready(function () {
                     }
                 })
                 .fail(function () {
-                    var msg = "Error occured checking for cached output.";
+                    var msg = "Ocorreu um erro ao verificar os resultados em cache.";
                     solGS.pca.feedBackOnFailure(pcaPopId, msg);
                     jQuery(runPcaBtnId).show();
                 });

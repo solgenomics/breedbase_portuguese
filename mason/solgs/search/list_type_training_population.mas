@@ -25,7 +25,7 @@ my $search_params = '?dsp=genotyping_protocols,trials|plots,traits,accessions&ds
 <&| /page/info_section.mas, 
     collapsible => 1, 
   collapsed   => 0,
-  title       => "Or use a list or dataset as a training population",
+  title       => "Ou usar uma lista ou conjunto de dados como uma população de treinamento",
 &>
 
 

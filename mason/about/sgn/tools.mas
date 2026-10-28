@@ -4,52 +4,37 @@
 
 <&| /page/info_section.mas, title => 'Data' &>
 <dl>
-<dt>Solanaceae and other Genomes</dt>
-<dd>SGN is a home for Solanaceae and closely related genomes, such as selected Rubiaceae genomes (e.g., <i>Coffea</i>). The <a href="/organism/Solanum_lycopersicum/genome">tomato</a>, <a href="/organism/Solanum_tuberosum/genome">potato</a>, <a href="/organism/Capsicum_annuum/genome">pepper</a>, and <a href="/organism/Solanum_melongena">eggplant</a> genome are examples of genomes that are currently available. If you would like to include a Solanaceae genome that you sequenced in SGN, please <a href="/contact/form">contact us</a>.</dd>
+<dt>Solanaceae e outros genomas</dt>
+<dd>SGN é um lar para Solanaceae e genomas relacionados, como genomas de Rubiaceae selecionados (por exemplo, <i>Coffea</i>). O <a href="/organism/Solanum_lycopersicum/genome">Tomate</a>, <a href="/organism/Solanum_tuberosum/genome">Batata</a>, <a href="/organism/Capsicum_annuum/genome">Pimenta</a>, and <a href="/organism/Solanum_melongena">Berinjela</a> O genoma são exemplos de genomas atualmente disponíveis. Se você gostaria de incluir um genoma Solanaceae que você sequenciado na SGN, por favor <a href="/contact/form">Nos contate</a>.</dd>
 <dt>ESTs</dt>
-<dd>SGN houses EST collections for tomato, potato, pepper, eggplant and
-petunia and corresponding unigene builds. EST sequence data and cDNA
-clone resources greatly facilitate cloning strategies based on
-sequence similarity, the study of syntenic relationships between
-species in comparative mapping projects, and are essential for
-microarray technology.
+<dd>SGN abriga coleções EST para tomate, batata, pimenta, berinjela e petúnia e correspondentes construções unigenes. Dados de sequência EST e recursos de clones cDNA facilitam muito as estratégias de clonagem baseadas na similaridade de sequência, o estudo das relações sinténicas entre espécies em projetos de mapeamento comparativo, e são essenciais para a tecnologia de microarray.
 </dd>
 <dt>Unigenes</dt>
-<dd>SGN assembles and publishes unigene builds from these EST sequences.  For more information, see <a href="/methods/unigene/index.pl">Unigene Methods</a>.</dd>
-<dt>Maps and Markers</dt>
-<dd>SGN has genetic maps and a searchable catalog of markers for
-tomato, potato, pepper, and eggplant.</dd>
+<dd>SGN reúne e publica construções unigênicas a partir dessas sequências EST. Para mais informações, veja <a href="/methods/unigene/index.pl">Métodos Unigene</a>.</dd>
+<dt>Mapas e marcadores</dt>
+<dd>A SGN tem mapas genéticos e um catálogo de marcadores para tomate, batata, pimenta e berinjela.</dd>
   </ul>
 </dd>
-<dt>Tools</dt>
-<dd>SGN makes available a wide range of web-based bioinformatics tools
-for use by anyone, listed <a href="/tools/">here</a>.  Some of our
-most popular tools include <a href="/tools/blast/">BLAST</a> searches,
-the <a href="/tools/solcyc/">SolCyc biochemical pathways database</a>,
-a <a href="/tools/caps_designer/caps_input.pl">CAPS experiment
-designer</a>,  an <a href="/tools/align_viewer/">Alignment Analyzer</a> and <a href="/tools/tree_browser/">browser for phylogenetic trees</a>. The <a href="http://vigs.solgenomics.net">VIGS tool</a> can help predict the properties of VIGS (Viral Induced Gene Silencing) constructs.</dd>
+<dt>Ferramentas</dt>
+<dd>A SGN disponibiliza uma ampla gama de ferramentas de bioinformática para uso de qualquer um. <a href="/tools/">Aqui</a>. Algumas de nossas ferramentas mais populares incluem <a href="/tools/blast/">BLAST</a> buscas, o <a href="/tools/solcyc/">Banco de dados de vias bioquímicas do SolCyc</a>,
+a <a href="/tools/caps_designer/caps_input.pl">Planejador de experimentos CAPS</a>,  an <a href="/tools/align_viewer/">Analisador de alinhamento</a> e <a href="/tools/tree_browser/">navegador para árvores filogenéticas</a>. O <a href="http://vigs.solgenomics.net">Ferramenta VIGS</a> pode ajudar a prever as propriedades das construções de VIGS (Silenciamento de Gene Induzido Virtual).</dd>
 
 </dl>
 
-<p>The data in SGN have been submitted by many different research
-groups around the world which are acknowledged on the corresponding
-pages on SGN.  If you have data you would like to submit for display
-on SGN, please use the <a href="/contact/form">contact us</a> web form.</p>
+<p>Os dados na SGN foram enviados por vários grupos de pesquisa ao redor do mundo que são reconhecidos nas páginas correspondentes na SGN. Se você tem dados que gostaria de enviar para exibição na SGN, por favor, use o <a href="/contact/form">Nos contate</a> formulário na web.</p>
 
-<p>For more information about SGN datasets, see the <a href= "/content/sgn_data.pl">SGN Data
-Overview</a>. Entire datasets can also be downloaded from our <a href="ftp://ftp.solgenomics.net">FTP site</a>.</p>
+<p>Para mais informações sobre os conjuntos de dados da SGN, veja <a href= "/content/sgn_data.pl">Visão geral dos dados da SGN</a>. Conjuntos de dados inteiros também podem ser baixados de nossos <a href="ftp://ftp.solgenomics.net">Site FTP</a>.</p>
 
 </&>
 
 
-<&| /page/info_section.mas, title => 'SGN community-driven gene and phenotype database' &>
+<&| /page/info_section.mas, title => 'Banco de dados comunitário de genes e fenótipos da SGN' &>
 <ul style="margin: 0; padding-left: 1em">
 
-   <li>We have developed simple web interfaces for the SGN user-community to submit, annotate, and curate the Solanaceae locus and phenotype databases. Our goal is to share biological information, and have the experts in their field
-   review existing data and submit information about their favorite genes and phenotypes.</li>
+   <li>Desenvolvemos interfaces web simples para o usuário-comunidade do SGN enviar, anotar, e curar o locus Solanaceae e os bancos de dados fenótipos. Nosso objetivo é compartilhar informações biológicas, e ter os especialistas em seu campo de revisão de dados existentes e enviar informações sobre seus genes e fenótipos favoritos.</li>
 
-   <li>Please read more about the <a href="/phenome/index.pl">phenome database</a>
-    and how to submit information to SGN.</li>
+   <li>Por favor, leia mais sobre o <a href="/phenome/index.pl">banco de dados do fenoma</a>
+    e como enviar informações à SGN.</li>
 
 </ul>
 </&>

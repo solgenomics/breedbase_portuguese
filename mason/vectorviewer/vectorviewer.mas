@@ -77,12 +77,12 @@ $edit_privs
 <br />
 <!-- <button id="saveButton" style="btn"> Save Vector </button> -->
 <!-- <button id="loadButton" style="btn"> Load Vector </button> -->
-<button id="saveVector" style="btn">Save changes</button>
+<button id="saveVector" style="btn">Salvar mudanças</button>
 <!-- button id="loadVector" style="btn"> Load Vector </button -->
-<button id="update_vector" style="btn">Update View</button>
+<button id="update_vector" style="btn">Atualizar visão</button>
 <button id="zoomIn" style="btn"> + </button>
 <button id="zoomOut" style="btn"> - </button>
-<button id="vectorviewer_instructions_button">Instructions</button>
+<button id="vectorviewer_instructions_button">Instruções</button>
 
 <br />
 <br />
@@ -90,14 +90,14 @@ $edit_privs
 
 <table width="100%"><tr><td>
 
-<h4>Feature list</h4>
+<h4>Lista de recursos</h4>
 
-<!-- button id="add_feature_button">Add feature</button><br / -->
+<!-- button id="add_feature_button">Adicionar característica</button><br / -->
 <table id="vector_table" width="100%" class="display table table-hover table-striped">
-<thead><tr><td>No.</td><td>Feature</td><td>Start</td><td>End</td><td>Color</td><td>Orientation</td><td>Actions</td></tr></thead><tbody></tbody></table>
+<thead><tr><td>Nº</td><td>Característica</td><td>Início</td><td>Fim</td><td>Cor</td><td>Orientação</td><td>Ações</td></tr></thead><tbody></tbody></table>
 
 <br />
-<button type="button" id="open_add_feature_dialog_button" class="btn btn-primary" data-toggle="modal" >Add new feature</button> <!-- data-target="#add_feature_dialog">Add Feature</button -->
+<button type="button" id="open_add_feature_dialog_button" class="btn btn-primary" data-toggle="modal" >Adicione um novo recurso</button> <!-- data-target="#add_feature_dialog">Add Feature</button -->
 <br />
 <br />
 <br />
@@ -105,18 +105,18 @@ $edit_privs
 <!-- Add a svg area, empty -->
 </td><td width="160px">&nbsp;</td><td>
 
-<h4>Restriction enzyme list</h4>
+<h4>Lista de enzimas de restrição</h4>
 
 
 <table id="re_sites_table" width="100%" class="display table table-hover table-striped">
-<thead><tr><td>#</td><td>RE Site</td><td>Cut Coord</td><td>Actions</td></tr></thead><tbody></tbody></table>
+<thead><tr><td>#</td><td>Sítio de restrição</td><td>Coordenada de corte</td><td>Ações</td></tr></thead><tbody></tbody></table>
 
 <br /><br />
-<button type="button" id="add_re_site_button" class="btn btn-primary" data-toggle="modal" >Add restriction enzyme site</button>
+<button type="button" id="add_re_site_button" class="btn btn-primary" data-toggle="modal" >Adicione o local da enzima de restrição</button>
 </td></tr></table>
 
 <table id="metadata_table" width="40%" class="display table table-hover table-striped">
-<thead><tr><td>Vector Name</td><td>Vector length</td></tr></thead><tbody></tbody>
+<thead><tr><td>Nome do vetor</td><td>Comprimento do vetor</td></tr></thead><tbody></tbody>
 </table>
 
 <!-- table id="sequence_table" width="80%" class="display table table-hover table-striped">
@@ -129,20 +129,20 @@ $edit_privs
 
 </div>
 
-<div id="saveDialog" title="Save Vector!">
+<div id="saveDialog" title="Salve Vector!">
 
 <!-- input id="saveInput" ></input -->
-To save edits, please click on the Save button.
+Para salvar edições, clique no botão Salvar.
 
-<button id="dialogSaveButton">Save</button>
-<button id="dialogSaveCancelButton">Cancel</button>
+<button id="dialogSaveButton">Salve</button>
+<button id="dialogSaveCancelButton">Cancelar</button>
 </div>
 
-<div id="loadDialog" title="Load Vector">
+<div id="loadDialog" title="Carregar vetor">
 
 <input id="loadInput" ></input>
 
-<button id="dialogLoadButton"> Load !!! </button>
+<button id="dialogLoadButton"> Carregar!!! </button>
 
 </div>
 
@@ -150,24 +150,24 @@ To save edits, please click on the Save button.
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title"><span id="manage_feature_dialog_title">Add a feature</span></h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <h5 class="modal-title"><span id="manage_feature_dialog_title">Adicione um recurso</span></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
         <table>
-	<tr><td>Name</td><td>Start coord</td><td>End coord</td><td>Color</td><td>Orientation</td></tr>
+	<tr><td>Nome</td><td>Comece a coord</td><td>Coordenada final</td><td>Cor</td><td>Orientação</td></tr>
 	<tr><td width="200"><input type="text" id="feature_name" class="form-control" /></td>
 	  <td width="200" ><input type="text" id="feature_start_coord" class="form-control" /></td>
 	  <td width="200"><input type="text" id="feature_end_coord" class="form-control"></td>
 	  <td width="200">
 	    <select id="feature_color_select" class="form-control">
-              <option>red</option>
-	      <option>blue</option>
-	      <option>lightblue</option>
-	      <option>green</option>
-	      <option>grey</option>
+              <option value="red" data-original-label="red">Vermelho</option>
+	      <option value="blue" data-original-label="blue">Azul</option>
+	      <option value="lightblue" data-original-label="lightblue">Azul claro</option>
+	      <option value="green" data-original-label="green">Verde</option>
+	      <option value="grey" data-original-label="grey">Cinza</option>
 	    </select>
 	  </td>
 	  <td width="50">
@@ -182,8 +182,8 @@ To save edits, please click on the Save button.
 
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>	
-        <button id="add_feature_data_submit_button" type="button" class="btn btn-primary">Store</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+        <button id="add_feature_data_submit_button" type="button" class="btn btn-primary">Loja</button>
       </div>
     </div>
   </div>
@@ -193,14 +193,14 @@ To save edits, please click on the Save button.
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Add/Edit a restriction enzyme site</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <h5 class="modal-title">Adicionar/Editar um local de enzima de restrição</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
 	<table>
-	  <tr><td>Name</td><td>Cut coord</td></tr>
+	  <tr><td>Nome</td><td>Cortar coord</td></tr>
 	  <tr><td width="200"><input type="text" id="re_site_name" class="form-control" /></td>
 	    <td width="200" ><input type="text" id="re_site_cut_coord" class="form-control" /></td>
 	  </tr>
@@ -208,8 +208,8 @@ To save edits, please click on the Save button.
 	<input type="hidden" id="re_site_table_row_id" />
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button id="add_restriction_site_submit_button" type="button" class="btn btn-primary">Store</button>	
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+        <button id="add_restriction_site_submit_button" type="button" class="btn btn-primary">Loja</button>	
       </div>
     </div>
   </div>
@@ -220,32 +220,32 @@ To save edits, please click on the Save button.
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">VectorViewer Quick Instructions</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <h5 class="modal-title">Instruções rápidas do VectorViewer</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
 	
-	<h2>Quick Instructions for the VectorViewer</h2>
+	<h2>Instruções rápidas para o VectorViewer</h2>
 	
 	<ul>
-	  <li>The VectorViewer appears in a section in the vector detail page and can be used to visualize the vector, as well as edit aspects of the vector annotation.</li>
+	  <li>O VectorViewer aparece em uma seção na página de detalhes do vetor e pode ser usado para visualizar o vetor, bem como editar aspectos da anotação do vetor.</li>
 	  
-	  <li><b>Add vector data:</b> If the VectorViewer is empty, such as on a newly created vector page, you can upload a file describing the vector structure. If you have a Genbank-formatted file (usually with a .gb extension), you can go to the "Upload Additional Files" section and upload it. Make sure it retains the .gb extension, as the vectorviewer will recognize the file by this extension. The parsed data from the file will be used to display the vector.</li>
+	  <li><b>Adicione dados vetoriais:</b> Se o VectorViewer estiver vazio, como em uma página vetorial recém-criada, você pode carregar um arquivo descrevendo a estrutura vetorial. Se você tem um arquivo formatado pelo Genbank (normalmente com uma extensão .gb), você pode ir para a seção "Upload Additional Files" e enviá-lo. Certifique-se de manter a extensão .gb, como o visualizador de vetor reconhecerá o arquivo por esta extensão. Os dados analisados do arquivo serão usados para exibir o vetor.</li>
 	  
-	  <li><b>To edit the vector annotations</b> you can add, edit or remove features from the vector using the feature and restriction enzyme tables below the vector diagram. To remove an element, click on the "delete" button in the corresponding row. To edit an element, click on the "edit" button in the corresponding row. To add new feature elements, click on the "Add Feature" button below the table. To add a new restriction enzyme, click on the "Add Restriction Enzyme" button below the restriction enzyme table.</li>
+	  <li><b>Para editar as anotações vetoriais</b> Você pode adicionar, editar ou remover recursos do vetor usando a característica e tabelas de enzimas de restrição abaixo do diagrama do vetor. Para remover um elemento, clique no botão "delete" na linha correspondente. Para editar um elemento, clique no botão "editar" na linha correspondente. Para adicionar novos elementos, clique no botão "Adicionar recurso" abaixo da tabela. Para adicionar uma nova enzima de restrição, clique no botão "Adicionar Enzima de Restrição" abaixo da tabela da enzima de restrição.</li>
 	  
-	  <li><b>Saving your changes: </b> When you edit the vector, the changes are not saved. You can save the changes by clicking the "Save changes" button.</li>
+	  <li><b>Salvando suas mudanças: </b> Quando você edita o vetor, as mudanças não são salvas. Você pode salvar as alterações clicando no botão "Salvar alterações".</li>
 	  
-	  <li><b>zooming in and out</b>: you can zoom in and out of the vector using the "+" and "-" buttons.</li>
+	  <li><b>zoom dentro e fora</b>Você pode ampliar o vetor usando os botões "+" e "-".</li>
 	  
-	  <li>More information is available in the Breedbase manual.</li>
+	  <li>Mais informações estão disponíveis no manual da Breedbase.</li>
 	  
 	</ul> 
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
       </div>
     </div>
   </div>

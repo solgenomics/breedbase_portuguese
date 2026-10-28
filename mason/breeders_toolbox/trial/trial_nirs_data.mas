@@ -95,7 +95,7 @@ jQuery(document).ready(function() {
                 jQuery('#multi_graph_section').show();
             })
             .catch((error) => {
-                console.error('Error fetching NIRS data:', error);
+                console.error("Erro ao recuperar os dados NIRS:", error);
                 alert('Ocorreu um erro ao obter os dados.');
             })
             .finally(() => {

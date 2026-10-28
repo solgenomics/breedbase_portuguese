@@ -4,77 +4,77 @@
 </%args>
 
 <div style="text-align: center; margin: 2em 0">
-   <h2 style="margin-bottom: 1em">Design new experimental treatments</h2>
-   <h4>Experimental treatments are applied to the stocks of a trial. Subplots, plants, and tissue samples inherit treatments from their parent stocks.</h4>
+   <h2 style="margin-bottom: 1em">Projete novos tratamentos experimentais</h2>
+   <h4>Tratamentos experimentais são aplicados aos materiais de um ensaio. Subparcelas, plantas e amostras de tecido herdam tratamentos de seus materiais de pais.</h4>
 
-   <h4> Check the <a href='/search/treatments'>treatment search page</a> to see if your treatment has already been made before designing new treatments.</h4>
+   <h4> Verifique o <a href='/search/treatments'>Página de busca de tratamento</a> para ver se seu tratamento já foi feito antes de projetar novos tratamentos.</h4>
 
     <br>
 
    <div class="container-fluid">
         <form class="form-horizontal" role="form" method="post" id="new_treatment_design_form" name="new_treatment_design_form">
         <div class="form-group">
-                <label class="col-sm-3 control-label"> New treatment name: </label>
+                <label class="col-sm-3 control-label"> Novo nome de tratamento: </label>
                 <div class="col-sm-9">
-                    <input style="width:70%;" class="form-control" id="new_treatment_name" name="new_treatment_name" type="text" placeholder="Pipes (|)  will be removed from name."/>
+                    <input style="width:70%;" class="form-control" id="new_treatment_name" name="new_treatment_name" type="text" placeholder="Os tubos serão removidos do nome."/>
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-sm-3 control-label">Definition:</label>
+                <label class="col-sm-3 control-label">Definição:</label>
                 <div class="col-sm-9">
-                    <textarea style="width:70%;" class="form-control" id="new_treatment_definition" name="new_treatment_definition" placeholder="Make it descriptive. Be sure to describe category meanings if using categorical data."></textarea>
+                    <textarea style="width:70%;" class="form-control" id="new_treatment_definition" name="new_treatment_definition" placeholder="Que seja descritivo. Não se esqueça de descrever os significados da categoria usando dados categóricos."></textarea>
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-sm-3 control-label">Treatment format:</label>
+                <label class="col-sm-3 control-label">Formato do tratamento:</label>
                 <div class="col-sm-9">
                     <select style="width:70%;" class="form-control" id="new_treatment_format_select" name="new_treatment_format_select" type="select">
-                        <option value="numeric" selected>Numeric</option>
-                        <option value="categorical">Categorical</option>
-                        <option value="percent">Percent</option>
-                        <option value="boolean">Boolean</option>
-                        <option value="date">Date</option>
-                        <option value="text">Text</option>
-                        <option value="counter">Counter</option>
-                        <option value="ontology">Ontology (parent to child terms)</option>
+                        <option value="numeric" selected>Numérica</option>
+                        <option value="categorical">Categorial</option>
+                        <option value="percent">Percentagem</option>
+                        <option value="boolean">Booleano</option>
+                        <option value="date">Data</option>
+                        <option value="text">Texto</option>
+                        <option value="counter">Contador</option>
+                        <option value="ontology">Ontologia (termos de pai para filho)</option>
                     </select>
                 </div>
             </div>
             <div class="form-group" id="new_treatment_repeat_select_container">
-                <label class="col-sm-3 control-label">Application type:</label>
+                <label class="col-sm-3 control-label">Tipo de aplicação:</label>
                 <div class="col-sm-9">
                     <select style="width:70%;" class="form-control" id="new_treatment_repeat_select" name="new_treatment_repeat_select" type="select">
-                        <option value="single" selected>Single application</option>
-                        <option value="multiple">Repeated application</option>
-                        <option value="time_series">Time series</option>
+                        <option value="single" selected>Uma única aplicação</option>
+                        <option value="multiple">Aplicação repetida</option>
+                        <option value="time_series">Séries temporais</option>
                     </select>
                 </div>
             </div>
             <div class="form-group" id="new_treatment_default_value_container">
-                <label class="col-sm-3 control-label" id="new_treatment_default_value_label">Default value:</label>
+                <label class="col-sm-3 control-label" id="new_treatment_default_value_label">Valor padrão:</label>
                 <div class="col-sm-9">
-                    <input style="width:70%;" class="form-control" id="new_treatment_default_value" name="new_treatment_default_value" type="text" placeholder="(Optional)"/>
+                    <input style="width:70%;" class="form-control" id="new_treatment_default_value" name="new_treatment_default_value" type="text" placeholder="(Opcional)"/>
                 </div>
             </div>
             <div class="form-group" id="new_treatment_minimum_value_container">
-                <label class="col-sm-3 control-label">Minimum value:</label>
+                <label class="col-sm-3 control-label">Valor mínimo:</label>
                 <div class="col-sm-9">
-                    <input style="width:70%;" class="form-control" id="new_treatment_min_value" name="new_treatment_min_value" type="text" placeholder="(Optional)"/>
+                    <input style="width:70%;" class="form-control" id="new_treatment_min_value" name="new_treatment_min_value" type="text" placeholder="(Opcional)"/>
                 </div>
             </div>
             <div class="form-group" id="new_treatment_maximum_value_container">
-                <label class="col-sm-3 control-label">Maximum value:</label>
+                <label class="col-sm-3 control-label">Valor máximo:</label>
                 <div class="col-sm-9">
-                    <input style="width:70%;" class="form-control" id="new_treatment_max_value" name="new_treatment_max_value" type="text" placeholder="(Optional)"/>
+                    <input style="width:70%;" class="form-control" id="new_treatment_max_value" name="new_treatment_max_value" type="text" placeholder="(Opcional)"/>
                 </div>
             </div>
             <div class="form-group" id="new_treatment_add_categories_container" style="display:none;">
-                <label class="col-sm-3 control-label">Add categories:</label>
+                <label class="col-sm-3 control-label">Adicione categorias:</label>
                 <div class="col-sm-9">
                     <table style="width:70%;">
                         <tr>
-                            <td><input class="form-control" id="new_treatment_add_category" name="new_treatment_add_category" type="text" placeholder="Optional. No special characters."/></td>
-                            <td style="width:25%"><input  class="form-control" id="new_treatment_category_ordinal" name="new_treatment_category_ordinal" type="number" placeholder="Ordinate"></td>
+                            <td><input class="form-control" id="new_treatment_add_category" name="new_treatment_add_category" type="text" placeholder="Opcional. Sem personagens especiais."/></td>
+                            <td style="width:25%"><input  class="form-control" id="new_treatment_category_ordinal" name="new_treatment_category_ordinal" type="number" placeholder="Ordenar"></td>
                             <td><button id="new_treatment_add_category_btn" class="btn btn-small btn-success">+</button></td>
                         </tr>
                     </table>
@@ -84,12 +84,11 @@
                 </div>
             </div>
             <div class="form-group" id="chain_parent_term_container">
-                <label class="col-sm-3 control-label" id="chain_parent_term"><span class="glyphicon glyphicon-question-sign" style="color:blue;font-size:18px" title="Should not be a variable term.
-Will be the treatment root term by default if none are added."></span>&nbsp;Chain to existing term(s):</label>
+                <label class="col-sm-3 control-label" id="chain_parent_term"><span class="glyphicon glyphicon-question-sign" style="color:blue;font-size:18px" title="Não deveria ser um termo variável. Será o termo raiz do tratamento por padrão se nenhum for adicionado."></span>Corrente ao termo existente:</label>
                 <div class="col-sm-9">
                     <table style="width:70%;">
                         <tr>
-                            <td><input class="form-control" id="new_treatment_parent_term" name="new_treatment_parent_term" type="text" placeholder="Full name, as in 'Legacy experiment treatment|EXPERIMENT_TREATMENT:0000001'"/></td>
+                            <td><input class="form-control" id="new_treatment_parent_term" name="new_treatment_parent_term" type="text" placeholder="Nome completo, como em &#x27;Legacy experiment treatment|EXPERIMENT_TREATMENT:0000001&#x27;"/></td>
                             <td><button id="new_treatment_add_parent_btn" class="btn btn-small btn-success">+</button></td>
                         </tr>
                     </table>
@@ -98,11 +97,11 @@ Will be the treatment root term by default if none are added."></span>&nbsp;Chai
                 </div>
             </div>
         </form>
-        <button class="btn btn-primary" id="new_treatment_submit_btn">Submit</button>
+        <button class="btn btn-primary" id="new_treatment_submit_btn">Enviar</button>
     </div>
 </div>
 
-<button id="download_ontology_btn" class="btn btn-primary">Download Treatment Ontology</button>
+<button id="download_ontology_btn" class="btn btn-primary">Baixe a Ontologia do Tratamento</button>
 <br>
 <br>
 <& /ontology/embedded_browser.mas, cvterm => $exp_treatment_root &>
@@ -155,14 +154,14 @@ Will be the treatment root term by default if none are added."></span>&nbsp;Chai
                     if (response.error) {
                         alert(response.error);
                     } else {
-                        alert("New treatment saved.");
+                        alert("Novo tratamento salvo.");
                         window.location.reload();
                     }
                 },
                 error: function(response) { 
                     jQuery('#working_modal').modal("hide");
                     console.log(response);
-                    alert("An error occurred, check console.");
+                    alert("Ocorreu um erro. Consulte o console.");
                 }
             });
         });
@@ -196,7 +195,7 @@ Will be the treatment root term by default if none are added."></span>&nbsp;Chai
                 jQuery('#new_treatment_default_value_container').show();
                 jQuery('#new_treatment_maximum_value_container').show();
                 jQuery('#new_treatment_add_categories_container').hide();
-                jQuery('#new_treatment_default_value_label').html("Default value:");
+                jQuery('#new_treatment_default_value_label').html("Valor padrão:");
                 jQuery('#new_treatment_default_value').val('');
                 jQuery('#new_treatment_min_value').val('');
                 jQuery('#new_treatment_max_value').val('');
@@ -206,7 +205,7 @@ Will be the treatment root term by default if none are added."></span>&nbsp;Chai
                 jQuery('#new_treatment_default_value_container').show();
                 jQuery('#new_treatment_maximum_value_container').hide();
                 jQuery('#new_treatment_add_categories_container').show();
-                jQuery('#new_treatment_default_value_label').html("Default category:");
+                jQuery('#new_treatment_default_value_label').html("Categoria padrão:");
                 jQuery('#new_treatment_default_value').val('');
                 jQuery('#new_treatment_min_value').val('');
                 jQuery('#new_treatment_max_value').val('');
@@ -225,7 +224,7 @@ Will be the treatment root term by default if none are added."></span>&nbsp;Chai
                 jQuery('#new_treatment_default_value_container').show();
                 jQuery('#new_treatment_maximum_value_container').show();
                 jQuery('#new_treatment_add_categories_container').hide();
-                jQuery('#new_treatment_default_value_label').html("Default value:");
+                jQuery('#new_treatment_default_value_label').html("Valor padrão:");
                 jQuery('#new_treatment_default_value').val('');
                 jQuery('#new_treatment_min_value').val('0');
                 jQuery('#new_treatment_max_value').val('100');
@@ -235,7 +234,7 @@ Will be the treatment root term by default if none are added."></span>&nbsp;Chai
                 jQuery('#new_treatment_default_value_container').show();
                 jQuery('#new_treatment_maximum_value_container').show();
                 jQuery('#new_treatment_add_categories_container').hide();
-                jQuery('#new_treatment_default_value_label').html("Default value:");
+                jQuery('#new_treatment_default_value_label').html("Valor padrão:");
                 jQuery('#new_treatment_default_value').val('');
                 jQuery('#new_treatment_min_value').val('0');
                 jQuery('#new_treatment_max_value').val('');
@@ -245,7 +244,7 @@ Will be the treatment root term by default if none are added."></span>&nbsp;Chai
                 jQuery('#new_treatment_default_value_container').show();
                 jQuery('#new_treatment_maximum_value_container').show();
                 jQuery('#new_treatment_add_categories_container').hide();
-                jQuery('#new_treatment_default_value_label').html("Default value:");
+                jQuery('#new_treatment_default_value_label').html("Valor padrão:");
                 jQuery('#new_treatment_default_value').val('');
                 jQuery('#new_treatment_min_value').val('0');
                 jQuery('#new_treatment_max_value').val('1');
@@ -277,12 +276,12 @@ Will be the treatment root term by default if none are added."></span>&nbsp;Chai
             let new_ordinal = jQuery('#new_treatment_category_ordinal').val();
 
             if (! new_ordinal) {
-                alert("Assign an ordinal value to the new category.");
+                alert("Atribua um valor ordinal à nova categoria.");
                 return;
             }
 
             if (new_category.includes('/') || new_category.includes('=')){
-                alert("No special characters.");
+                alert("Não use caracteres especiais.");
                 return;
             }
 
@@ -335,8 +334,8 @@ Will be the treatment root term by default if none are added."></span>&nbsp;Chai
                 })
                 .catch(error => {
                     jQuery('#working_modal').modal("hide");
-                    alert("An error occurred: " + error);
-                    console.error('Download failed:', error)
+                    alert("Ocorreu um erro: " + error);
+                    console.error("Falha ao baixar:", error)
                 });
         });
 

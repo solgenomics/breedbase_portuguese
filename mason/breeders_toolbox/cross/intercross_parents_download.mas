@@ -106,9 +106,9 @@ $trial_id
                     <table class="table table-bordered table-hover">
                         <tbody>
                             <tr>
-                                <td>codeId</td>
-                                <td>sex</td>
-                                <td>name</td>
+                                <td>CodeId</td>
+                                <td>Sexo</td>
+                                <td>Nome</td>
                             </tr>
                         </tbody>
                     </table>
@@ -116,9 +116,9 @@ $trial_id
                         Informações das colunas:
                     </b>
                     <ul>
-                        <li><b>codeId:</b> stock_ids no banco de dados.</li>
-                        <li><b>sex:</b> 0 (feminino), 1 (masculino)</li>
-                        <li><b>name:</b> uniquenames no banco de dados.</li>
+                        <li><b>Código:</b> stock_ids no banco de dados.</li>
+                        <li><b>Sexo:</b> 0 (feminino), 1 (masculino)</li>
+                        <li><b>Nome:</b> uniquenames no banco de dados.</li>
                     </ul>
                 </div>
             </div>

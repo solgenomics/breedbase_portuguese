@@ -43,7 +43,7 @@ function authors_off( id_base ) {
 
 </script>
 
-<& /page/page_title.mas, title => "Tomato Genome Publications" &>
+<& /page/page_title.mas, title => "Publicações do genoma de tomate" &>
 
 <%args>
   $schema
@@ -74,7 +74,7 @@ for my $pub (@pubs) {
 }
 </%init>
 
-<&| /page/info_section.mas, title=>'Publications', collapsible => 0, empty_message => 'temporarily unavailable' &>
+<&| /page/info_section.mas, title=>'Publicações', collapsible => 0, empty_message => 'temporariamente indisponível' &>
 
 %  # for each year, print out the pubs associated with it
 %   my @sorted_years =  sort {$b <=> $a} keys %pubs_by_year; 

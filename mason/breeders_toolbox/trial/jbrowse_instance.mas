@@ -2,7 +2,7 @@
 $trial_id
 </%args>
 
-<p id="trial_jbrowse_check">[carregando...]</p>
+<p id="trial_jbrowse_check">[Carregando...]</p>
 
 <%perl>
 

@@ -18,7 +18,7 @@ solGS.heatmap = {
     var axisMode = heatmapArgs.axis_mode || 2;
 
     if (heatmapCanvasDiv == null) {
-      alert("The heatmap canvas div element is missing.");
+      alert("O elemento de exibição do mapa de calor está ausente.");
     }
 
     if (jQuery(heatmapPlotDivId).length == 0) {
@@ -60,7 +60,7 @@ solGS.heatmap = {
     if (heatmapInputData) {
         parsedHeatmaprInputData = JSON.parse(heatmapInputData);
     } else {
-        alert(`The heatmap output data is missing: ${heatmapInputData}`);
+        alert(`Os dados de saída do mapa de calor estão ausentes: ${heatmapInputData}`);
         return;
     }
 
@@ -269,7 +269,7 @@ solGS.heatmap = {
 
           if (parsedScatterInputData) {
             jQuery("#" + scatterPlotMsgDivId)
-              .html("Scatter plot: " + rowLabel + " vs. " + colLabel)
+              .html("Gráfico de dispersão: " + rowLabel + " Vs. " + colLabel)
               .show();
 
             var xData = [];
@@ -305,7 +305,7 @@ solGS.heatmap = {
               axis_mode: axisMode,
             });
           } else {
-            console.log("No input data available for scatter plot.");
+            console.log("Não há dados de entrada para o gráfico de dispersão.");
           }
         }
       })
@@ -335,7 +335,7 @@ solGS.heatmap = {
 
     if (heatmapCanvasDiv.match(/kinship/)) {
       legendValues.push(
-        [legendValues.length + 1, "Diag: inbreeding coefficients"],
+        [legendValues.length + 1, "Diagonal: coeficientes de endogamia"],
         [legendValues.length + 2, "Off-diag: kinship coefficients"]
       );
     }

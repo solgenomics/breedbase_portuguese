@@ -14,7 +14,7 @@ $facilities
     <ul>
         
     <li>Os conjuntos de marcadores de controle de qualidade da Intertek podem ser usados de duas maneiras:</li>
-    <ol>1. <b>Armazenar uma nova impressão digital do germoplasma</b> genotipado com os conjuntos de marcadores QC como um novo protocolo. São necessários dois arquivos: o <em>arquivo de grade da Intertek</em>, que contém as chamadas de alelos de cada genótipo — baixe um arquivo de exemplo <a href="docs/intertek_grid.csv" title="arquivo de grade de exemplo">aqui</a> — e o <em>arquivo de mapa</em>, que contém todas as informações dos SNPs — baixe um arquivo de exemplo <a href="docs/SNP_file.csv" title="arquivo SNP de exemplo">aqui</a>.</ol><br/>
+    <ol>1. <b>Armazenar uma nova impressão digital do germoplasma</b> genotipado com os conjuntos de marcadores QC como um novo protocolo. São necessários dois arquivos: o <em>arquivo de grade da Intertek</em>, que contém as chamadas de alelos de cada genótipo — baixe um arquivo de exemplo <a href="docs/intertek_grid.csv" title="arquivo de grade de exemplo">Aqui</a> — e o <em>arquivo de mapa</em>, que contém todas as informações dos SNPs — baixe um arquivo de exemplo <a href="docs/SNP_file.csv" title="arquivo SNP de exemplo">Aqui</a>.</ol><br/>
     <ol>2. <b>Executar o controle de qualidade dos genótipos</b> com os marcadores QC, comparando-os a um protocolo existente no banco de dados. Para isso, é necessário apenas o <a href="docs/intertek_grid.csv" title="arquivo de grade de exemplo">arquivo de grade</a>.
     </ol><br/>
     <li>As etapas abaixo orientarão o envio de uma nova impressão digital ou a execução de um controle de qualidade.</li>

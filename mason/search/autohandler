@@ -21,7 +21,7 @@ Lukas Mueller &st;lam87@cornell.edu&gt;. Based on Perl code by Rob Buels.
 
 </%doc>
 
-<& /page/page_title.mas, title => 'Pesquisar' &>
+<& /page/page_title.mas, title => 'Pesquisador' &>
 
 <& /page/mode_buttons.mas, buttons => [
 

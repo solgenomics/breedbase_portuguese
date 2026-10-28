@@ -50,7 +50,7 @@ $trial_stock_type
                         </div>
                         <b>Colunas obrigatórias:</b><br>
                         <b>plot_name:</b> nome da parcela cujo acesso será alterado<br>
-                        <b>accession_name, cross_unique_id ou family_name:</b> nome do acesso, ID exclusivo do cruzamento ou nome da família ao qual a parcela deverá ser vinculada.<br>
+                        <b>accession_name, cross_unique_id ou family_name</b> nome do acesso, ID exclusivo do cruzamento ou nome da família ao qual a parcela deverá ser vinculada.<br>
                         <br><b>Coluna opcional:</b><br>
                         <b>new_plot_name:</b> novo nome da parcela.<br>
                         <div class="list-group-item-warning" >

@@ -68,7 +68,7 @@ function listGenCorPopulations ()  {
     var trainingPopIdName = JSON.stringify(modelData);
    
     var  popsList =  '<dl id="h2_selected_population" class="h2_dropdown">'
-        + '<dt> <a href="#"><span>Choose a population</span></a></dt>'
+        + "<dt> <a href=\"#\"><span>Escolha uma população</span></a></dt>"
         + '<dd>'
         + '<ul>'
         + '<li>'
@@ -181,14 +181,14 @@ function formatGenCorInputData (popId, type, indexFile) {
             } else {
                 jQuery(divPlace +" #heritability_message")
                     .css({"padding-left": '0px'})
-                    .html("This trial has no valid traits to calculate heritability.");
+                    .html("Este ensaio não possui características válidas para calcular a herdabilidade.");
         
             }
         },
         error: function(response) {
             jQuery(divPlace +"#heritability_message")
                 .css({"padding-left": '0px'})
-                .html("Error 3 occured preparing the additive genetic data for heritability analysis.");
+                .html("Erro 3 ao preparar os dados genéticos aditivos para a análise de herdabilidade.");
              
             jQuery.unblockUI();
         }         
@@ -216,7 +216,7 @@ function phenotypicHeritability () {
  
     var population = getPopulationDetails();
     
-    jQuery("#heritability_message").html("Running heritability...");
+    jQuery("#heritability_message").html("Executando análise de herdabilidade...");
          
     jQuery.ajax({
             type: 'POST',
@@ -231,7 +231,7 @@ function phenotypicHeritability () {
                 } else {
                     jQuery("#heritability_message")
                         .css({"padding-left": '0px'})
-                        .html("This population has no phenotype data.");
+                        .html("Esta população não possui dados fenotípicos.");
 
 		    jQuery("#run_pheno_heritability").show();
                 }
@@ -239,7 +239,7 @@ function phenotypicHeritability () {
             error: function(response) {
                 jQuery("#heritability_message")
                     .css({"padding-left": '0px'})
-                    .html("Please check if the data has replicates.");
+                    .html("Verifique se os dados possuem repetições.");
 
 		jQuery("#run_pheno_heritability").show();
             }
@@ -261,7 +261,7 @@ function runPhenoHeritabilityAnalysis () {
                 plotHeritability(response.data);
         
         var h2Download = "<a href=\"/download/phenotypic/heritability/population/" 
-                            + popId + "\">Download heritability coefficients</a>";
+                            + popId + "\">Baixar coeficientes de herdabilidade</a>";
 
         jQuery("#heritability_canvas").append("<br />[ " + h2Download + " ]").show();
     
@@ -274,7 +274,7 @@ function runPhenoHeritabilityAnalysis () {
             } else {
                 jQuery("#heritability_message")
                     .css({"padding-left": '0px'})
-                    .html("Please, check if there is numerical data and replicates for this trial."); 
+                    .html("Verifique se há dados numéricos e repetições para este ensaio.");
         
 		jQuery("#run_pheno_heritability").show();
             }
@@ -282,7 +282,7 @@ function runPhenoHeritabilityAnalysis () {
         error: function(response) {                          
             jQuery("#heritability_message")
                 .css({"padding-left": '0px'})
-                .html("Error 2 occured running the heritability analysis.");
+                .html("Erro 2 ao executar a análise de herdabilidade.");
             
         jQuery("#run_pheno_heritability").show();
         }                
@@ -294,7 +294,7 @@ function createHeritabilityTable (tableId) {
     
     var table = '<table id="' + tableId + '" class="table" style="width:100%;text-align:left">';
     table    += '<thead><tr>';
-    table    += '<th>Trait</th><th>VG</th><th>Vres</th><th>Heritability</th>'; 
+    table    += "<th>Característica</th><th>VG</th><th>Vres</th><th>Herdabilidade</th>";
     table    += '</tr></thead>';
     table    += '</table>';
 
@@ -320,7 +320,7 @@ function plotHeritability (data, divPlace) {
                     "bInfo"        : false,
                     "paging"       : false,
                     'oLanguage'    : {
-                             "sSearch": "Filter traits: "
+                             "sSearch": "Filtrar características: "
                             },
             'data'         : data,
         });

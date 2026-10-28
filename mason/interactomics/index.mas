@@ -4,16 +4,16 @@
 
 
 
-<& /page/page_title.mas, title => "CytoScape Interactome Viewer" &>
+<& /page/page_title.mas, title => "CytoScape Interactom Viewer" &>
 
 
-This is a CytoScape Java Web Start app designed to preload with the coffee interactome data.  In order to use this app, please click the Launch Cytoscape button below, which will download the configuration file and load the java app from your browser.  The application itself will not be installed on your computer, but you should get full Cytoscape functionality, and be able to view, process, edit, and save the network shown.
+Este é um aplicativo Java Web Start da CytoScape projetado para pré-carregar com os dados do interactome do café. Para usar este aplicativo, clique no botão Iniciar Cytoscape abaixo, que irá baixar o arquivo de configuração e carregar o aplicativo java do seu navegador. O aplicativo em si não será instalado em seu computador, mas você deve obter toda a funcionalidade Cytoscape, e ser capaz de visualizar, processar, editar e salvar a rede mostrada.
 
 
 
 <center><form method="get" action="/tools/interactomics/coffee.jnlp" >
 <input type="hidden" name="Network" value = "http://andrew.sgn.cornell.edu:3000/CytoScape/coffee.cys" />
-<input type="submit" value="Launch CytoScape" align = "center" /> 
+<input type="submit" value="Lançar CytoScape" align = "center" /> 
 </form></center>
 
 
@@ -24,18 +24,16 @@ This is a CytoScape Java Web Start app designed to preload with the coffee inter
 		<tr><td>
 
 		<div id="footer">
-		<b>Funding for Cytoscape is provided by a federal grant from the U.S.
-		<a href="http://www.nigms.nih.gov">National Institute of General Medical Sciences (NIGMS)</a> of the
-		<a href="http://www.nih.gov">National Institutes of Health (NIH)</a> under award number GM070743-01 and
-		the U.S. <a href="http://www.nsf.gov">National Science Foundation (NSF) </a>.
-		Corporate funding is provided through a contract from
+		<b>O financiamento para Cytoscape é fornecido por uma bolsa federal dos EUA.
+		<a href="http://www.nigms.nih.gov">Instituto Nacional de Ciências Médicas Gerais (NIGMS)</a> da
+		<a href="http://www.nih.gov">Institutos Nacionais de Saúde (NIH)</a> sob o número GM070743-01 e os EUA. <a href="http://www.nsf.gov">Fundação Nacional de Ciência (NSF) </a>. O financiamento corporativo é fornecido através de um contrato de
 		<a href="http://www.unilever.com">Unilever PLC</a>.
 		</b>
 
 		<p>
 
 		<center>
-		<a href="http://cytoscape.org">Cytoscape home</a>
+		<a href="http://cytoscape.org">Citocape home</a>
 		|
 		<a href="http://www.systemsbiology.org">ISB</a>
 		|

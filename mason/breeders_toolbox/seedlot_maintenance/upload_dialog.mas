@@ -83,12 +83,12 @@
                         <thead></thead>
                             <tbody>
                                 <tr>
-                                    <td>seedlot</td>
-                                    <td>type</td>
-                                    <td>value</td>
-                                    <td>notes</td>
-                                    <td>operator</td>
-                                    <td>timestamp</td>
+                                    <td>Lote de sementes</td>
+                                    <td>tipo</td>
+                                    <td>valor</td>
+                                    <td>Notas</td>
+                                    <td>operador</td>
+                                    <td>Timetamp</td>
                                 </tr>
                         </tbody>
                     </table>
@@ -184,7 +184,7 @@
 
         // Build the FormData to pass as POST arguments
         let formData = new FormData();
-        formData.append('file', jQuery('#maintenance_events_upload_file').prop('files')[0]);
+        formData.append("arquivo", jQuery('#maintenance_events_upload_file').prop('files')[0]);
 
         // Make the POST request
         jQuery.ajax({

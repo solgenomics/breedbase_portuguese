@@ -31,7 +31,7 @@ jQuery(document).ready(function($) {
 
     jQuery('#create_new_trait_file_link').click(function() {
         var list = new CXGN.List();
-        var trait_lists = list.listSelect('select_list', ['traits'], 'Select a list', undefined, undefined);
+        var trait_lists = list.listSelect('select_list', ['traits'], 'Selecione uma lista', undefined, undefined);
         jQuery('#select_list_div').html(trait_lists);
         if (document.getElementById("html_select_traits_for_trait_file")) {
             show_list_counts_fb('trait_select_count', document.getElementById("html_select_traits_for_trait_file").length);
@@ -57,15 +57,15 @@ jQuery(document).ready(function($) {
     });
 
     jQuery('#delete_fieldbook_layout_link').click(function() {
-        alert('Layout deleted successfully.');
+        alert('Disposição excluída com sucesso.');
     });
 
 });
 
 function show_list_counts_fb(count_div, total_count, selected) {
-    var html = 'Traits: ' + total_count + '<br />';
+    var html = 'Características: ' + total_count + '<br />';
     if (selected) {
-        html += 'Selected: ' + selected;
+        html += 'Selecionadas: ' + selected;
     }
     jQuery('#' + count_div).html(html);
 }
@@ -100,7 +100,7 @@ function generate_trait_file() {
     }
 
     if (trait_ids == '') {
-        alert("Traits, from a list or selected individually, are required.");
+        alert("Selecione as características individualmente ou por meio de uma lista.");
         return;
     }
 
@@ -108,7 +108,7 @@ function generate_trait_file() {
     var trait_file_name = jQuery('#trait_file_name').val();
 
     if (trait_file_name == '') {
-        alert("A trait file name is required.");
+        alert("Informe um nome para o arquivo de características.");
         return;
     }
     jQuery.ajax({
@@ -137,7 +137,7 @@ function generate_trait_file() {
         },
         error: function() {
             jQuery("#working_modal").modal("hide");
-            alert('An error occurred creating the trait file.');
+            alert('Ocorreu um erro ao criar o arquivo de características.');
             jQuery('#create_trait_file_dialog').modal("hide");
         },
     });

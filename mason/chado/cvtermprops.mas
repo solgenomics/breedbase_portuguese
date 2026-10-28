@@ -66,8 +66,8 @@ sub prop_select {
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Add trait attributes</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <h5 class="modal-title">Adicione atributos de características</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
@@ -75,7 +75,7 @@ sub prop_select {
         <div id="<% $div_name %>_add_dialog">
           <form class="form-horizontal" role="form" id="add_cvtermprop_form">
             <div class="form-group">
-              <label class="control-label col-sm-3">Add</label> 
+              <label class="control-label col-sm-3">Adicionar</label>
               <div class="col-sm-4">
                 <% $prop_select %>
               </div>
@@ -89,8 +89,8 @@ sub prop_select {
         </div>
       </div>
       <div class="modal-footer">
-	      <button id="<% $div_name %>_addProp_submit" type="button" class="btn btn-primary">Store attribute</button>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+	      <button id="<% $div_name %>_addProp_submit" type="button" class="btn btn-primary">Armazenar atributo</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
       </div>
     </div>
   </div>
@@ -101,7 +101,7 @@ sub prop_select {
 </div>
 
 <!-- div id="<% $div_name %>_add_dialog" >
-Add <% $prop_select %>
+Adicionar <% $prop_select %>
 <input id="<% $div_name %>_prop" />
 </div -->
 
@@ -158,7 +158,7 @@ function <% $div_name %>_getProps() {
     url: '/cvterm/prop/get',
     data: { cvterm_id: <% $cvterm_id %> },
     success: function(response) { <% $div_name %>_renderProps(response);  },
-    error: function(response) { alert('an error occurred'); }
+    error: function(response) { alert("ocorreu um erro"); }
   });
 }
 
@@ -224,7 +224,7 @@ function <% $div_name %>_addProp() {
 
 //    alert('PROP READ: '+prop);
 
-  if (prop === '') { alert("Please fill in the field."); return; }
+  if (prop === '') { alert("Preencha o campo."); return; }
 
   jQuery.ajax( {
     type: 'POST',
@@ -235,14 +235,14 @@ function <% $div_name %>_addProp() {
     data: { 'cvterm_id' : <% $cvterm_id %>, 'prop' : prop, 'prop_type': prop_type, 'cv_name' : "<% $cv_name %>" },
     success: function(response) {
         jQuery('#working_modal').modal('hide');
-        if ("error" in response) { alert ('ERROR '+response.error); }
-        if ("message" in response) { alert('Successfully added property: ' + prop + '. ('+response.message+')'); }
+        if ("Erro" in response) { alert ("ERRO "+response.error); }
+        if ("Mensagem" in response) { alert("Propriedade adicionada com sucesso: " + prop + '. ('+response.message+')'); }
 	  <% $div_name %>_getProps();
 	jQuery('#<% $div_name %>_add_dialog').modal('hide');
     },
     error: function(response) {
         jQuery('#working_modal').modal('hide');
-        alert('an error occurred while storing the prop ' + response.error);
+        alert("ocorreu um erro ao armazenar a propriedade " + response.error);
 	jQuery('#<% $div_name %>_add_dialog').modal('hide');
     }
   });
@@ -252,19 +252,19 @@ function <% $div_name %>_addProp() {
 
 
 function <% $div_name %>_deleteProp(cvtermprop_value, cvtermprop_id) {
-  if (confirm('Delete cvtermprop '+cvtermprop_value+'?')) {
+  if (confirm("Excluir propriedade do termo da ontologia "+cvtermprop_value+'?')) {
     jQuery.ajax( {
       method: 'GET',
       url: '/cvterm/prop/delete',
       data: { 'cvtermprop_id' : cvtermprop_id },
       success: function(response) {
-        if ('message' in response) {  alert(response.message); }
-          if ('error'   in response) {  alert(response.error);   }
+        if ("Mensagem" in response) {  alert(response.message); }
+          if ("Erro"   in response) {  alert(response.error);   }
 	    <% $div_name %>_getProps();
 
       },
       error: function(response) {
-        alert('An error occurred. Please try again later.');
+        alert("Ocorreu um erro. Tente novamente mais tarde.");
       }
 
     });

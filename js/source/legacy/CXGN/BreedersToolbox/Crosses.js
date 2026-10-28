@@ -28,31 +28,31 @@ jQuery(document).ready(function($) {
     $('#create_crossingtrial_submit').click(function() {
         var crossingtrial_name = $("#crossingtrial_name").val();
         if (!crossingtrial_name) {
-            alert("Crossing Experiment name is required");
+            alert("Informe o nome do experimento de cruzamento");
             return;
         }
 
         var selectedProgram = $("#crossingtrial_program").val();
         if (!selectedProgram) {
-            alert("Breeding program is required");
+            alert("Informe o programa de melhoramento");
             return;
         }
 
         var crossingtrial_location = $("#crossingtrial_location").val();
         if (!crossingtrial_location) {
-            alert ("Location is required");
+            alert ("Informe o local");
             return;
         }
 
         var year = $("#crosses_add_project_year_select").val();
         if (!year) {
-            alert ("Year is required");
+            alert ("Informe o ano");
             return;
         }
 
         var project_description = $('textarea#crosses_add_project_description').val();
         if (!project_description) {
-            alert ("Description is required");
+            alert ("Informe a descrição");
             return;
         }
 
@@ -148,20 +148,20 @@ jQuery(document).ready(function($) {
 
         var crossType = $("#cross_type").val();
         if (!crossType) {
-            alert("No type was selected, please select a type before saving a cross/crosses");
+            alert("Nenhum tipo foi selecionado. Selecione um tipo antes de salvar os cruzamentos");
             return;
         }
 
         var crossName = $("#cross_name").val();
         crossName = crossName.trim();
         if (!crossName) {
-            alert("A cross unique id is required");
+            alert("Informe um identificador único para o cruzamento");
             return;
         }
 
         var crossing_trial_id = $("#add_cross_crossing_experiment_id").val();
         if (!crossing_trial_id) {
-            alert("A crossing experiment is required");
+            alert("Informe um experimento de cruzamento");
             return;
         }
 
@@ -212,7 +212,7 @@ jQuery(document).ready(function($) {
         post: function() {
             var uploadFile = $("#crosses_upload_file").val();
             if (uploadFile === '') {
-                alert("No file selected");
+                alert("Nenhum arquivo selecionado");
             }
             jQuery("#working_modal").modal("show");
         },
@@ -354,10 +354,10 @@ jQuery(document).ready(function($) {
                 jQuery("#working_modal").modal("show");
             },
             error: function(response) {
-                alert("An error occurred. Please try again later!" + JSON.stringify(response));
+                alert("Ocorreu um erro. Tente novamente mais tarde!" + JSON.stringify(response));
             },
             parseerror: function(response) {
-                alert("A parse error occurred. Please try again." + response);
+                alert("Ocorreu um erro de leitura. Tente novamente." + response);
             },
             success: function(response) {
                 jQuery("#working_modal").modal("hide");
@@ -376,20 +376,20 @@ jQuery(document).ready(function($) {
         const breeding_program = jQuery("#upload_crosses_breeding_program_id").val();
         const experiment_breeding_program = jQuery("#experiment_breeding_program_id").val();
         if (!breeding_program && !experiment_breeding_program) {
-            alert("Please select your breeding program");
+            alert("Selecione seu programa de melhoramento");
             return;
         }
 
         const crossing_trial_id = jQuery("#upload_crosses_crossing_experiment_id").val();
         const experiment_id = jQuery("#experiment_id").val();
         if (!crossing_trial_id && !experiment_id) {
-            alert("A crossing experiment is required");
+            alert("Informe um experimento de cruzamento");
             return;
         }
 
         const uploadFile = jQuery("#upload_crosses_file").val();
         if (!uploadFile) {
-            alert("Please select a file");
+            alert("Selecione um arquivo");
             return;
         }
 
@@ -409,12 +409,12 @@ jQuery(document).ready(function($) {
 
         if (!accession_list_id) {
             //alert("You need to select an accession list!");
-            return "You need to select an accession list!";
+            return "Selecione uma lista de acessos!";
         }
 
         if (accession_validation != 1) {
             //alert("The accession list did not pass validation. Please correct the list and try again");
-            return "The accession list did not pass validation. Please correct the list and try again";
+            return "A lista de acessos não passou na validação. Corrija a lista e tente novamente";
         }
 
         var list_data = lo.getListData(accession_list_id);
@@ -422,7 +422,7 @@ jQuery(document).ready(function($) {
         var names = [];
 
         if (accessions.length == 0) {
-            return "The selected list is empty";
+            return "A lista selecionada está vazia";
         } else {
             for (i = 0; i < accessions.length; i++) {
                 names.push(accessions[i][1]);
@@ -448,11 +448,11 @@ jQuery(document).ready(function($) {
                 jQuery("#working_modal").modal("show");
             },
             error: function(response) {
-                alert("An error occurred!" + JSON.stringify(response));
+                alert("Ocorreu um erro!" + JSON.stringify(response));
                 return;
             },
             parseerror: function(response) {
-                alert("A parse error occurred!" + response);
+                alert("Ocorreu um erro de leitura!" + response);
                 return;
             },
             success: function(response) {

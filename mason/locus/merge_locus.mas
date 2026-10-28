@@ -51,7 +51,7 @@ $curator => undef
 
 <& /util/import_javascript.mas, classes => ["CXGN.Phenome.Locus", "CXGN.Phenome.Locus"] &>
 
-<a href="javascript:Tools.toggleMergeFormDisplay()">[Merge locus]</a> Warning: Merged locus will be set to obsolete! Unobsoleting is possible only directly via the database! <br>
+<a href="javascript:Tools.toggleMergeFormDisplay()">[Mesclar locus]</a> Aviso: o lócus fundido ficará obsoleto! Sem obsolescência só é possível diretamente através do banco de dados! <br>
 <div id='mergeLocusForm' style="display:none">
   
   <div id='locus_merge'>
@@ -59,14 +59,14 @@ $curator => undef
 	   value="<% $common_name %>"
 	   id ="common_name"
 	   >
-    locus name
+    Nome do locus
     <input type="text" 
 	   style="width: 50%"
 	   id="locus_input"
 	   onkeyup="Locus.getMergeLocus(this.value, '<% $locus_id %>')">
     <input type="button"
 	   id="merge_locus_button"
-	   value="merge locus"
+	   value="lócus de fusão"
            disabled="true"
 	   onclick="Locus.mergeLocus('<% $locus_id %>');this.disabled=false;">
     

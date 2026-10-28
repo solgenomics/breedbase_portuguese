@@ -13,7 +13,7 @@ $marker_info_headers
         </div>
     </div>
     <div style="text-align: center">
-        <button class="btn btn-primary btn-sm" id="marker_table_search_submit">Pesquisar</button>
+        <button class="btn btn-primary btn-sm" id="marker_table_search_submit">Pesquisador</button>
     </div>
 </div>
 <div style="overflow:scroll">

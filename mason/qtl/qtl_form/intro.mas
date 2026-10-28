@@ -24,11 +24,11 @@ my $links = $guide . '|' .  qq | <a href="http://www.biomedcentral.com/1471-2105
 </%perl>
 
 <& /page/page_title.mas, 
-   title => "Step 0: Introduction" 
+   title => "Passo 0: Introdução" 
 &>
 
 <&| /page/info_section.mas, 
-    title    => "Introduction", 
+    title    => "Introdução", 
     subtitle => $links 
 &>
  <form action="/phenome/qtl_load.pl" method="POST" enctype="MULTIPART/FORM-DATA">  
@@ -36,8 +36,7 @@ my $links = $guide . '|' .  qq | <a href="http://www.biomedcentral.com/1471-2105
 	<tr>
           <td>	   
             <& general_intro.mas, guide =>$guide &>
-              <p>If you have any problems uploading your data or remarks, 
-                please send your feedback to: 
+              <p>Se tiver algum problema em enviar seus dados ou comentários, por favor envie seu feedback para: 
                 <a href=mailto:sgn-feedback\@sgn.cornell.edu> 
                 sgn-feedback@sgn.cornell.edu</a>. 
               </p>      
@@ -45,7 +44,7 @@ my $links = $guide . '|' .  qq | <a href="http://www.biomedcentral.com/1471-2105
         </tr>
         <tr> 
           <td> <input type="hidden"  name = "type" value="begin"> </td>
-          <td> <input type="submit" value="Begin Uploading"> </td>
+          <td> <input type="submit" value="Comece a carregar"> </td>
         </tr>
       </table>
  </form>

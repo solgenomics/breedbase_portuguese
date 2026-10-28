@@ -22,7 +22,7 @@
 
 
 <div id="external-links">
-    <div id="external-links-table"><p><em>Loading...</em></p></div>
+    <div id="external-links-table"><p><em>Carregando...</em></p></div>
     <div id="external-links-flankingseq"></div>
 </div>
 
@@ -55,7 +55,7 @@
                 renderLinks(props);
             },
             error: function(response) {
-                console.log("Could not load marker props");
+                console.log("Não foi possível carregar as propriedades do marcador");
                 console.log(response);
             }
         });
@@ -66,7 +66,7 @@
      * @param  {Object[]} props A list of marker_name props
      */
     function renderLinks(props) {
-        let html = "<p><em>No external links found</em></p>";
+        let html = "<p><em>Nenhum link externo encontrado</em></p>";
         if ( props && props.length > 0 ) {
             html = "<table style=\"border-spacing: 10px; border-collapse: separate;\">";
             for ( let i = 0; i < props.length; i++ ) {

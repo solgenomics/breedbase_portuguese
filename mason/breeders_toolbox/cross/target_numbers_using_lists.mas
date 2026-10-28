@@ -205,7 +205,7 @@ jQuery(document).ready(function(){
     function target_numbers_change_males(div_id, select_id){
         var male_names = jQuery(div_id).val();
         var female_name = jQuery(div_id).data('related');
-        var html = '<table class="table table-bordered" div="' + div_id +'_table"><thead><tr><th>Genitor masculino</th><th>Nº de sementes</th><th>Nº de progênies</th></tr></thead><tbody>';
+        var html = '<table class="table table-bordered" div="' + div_id +"_table\"><thead><tr><th>Genitor Masculino</th><th>Nº de sementes</th><th>Nº de progênies</th></tr></thead><tbody>";
         for (var i=0; i<male_names.length; i++){
             html = html + '<tr><td>' + male_names[i] + '</td><td><input class="form-control" male_name="' + male_names[i] + '" female_name="' + female_name + '" name ="seed_target_number" id="seed_target_number_'+ i +'" value="" placeholder=""/></td><td><input class="form-control" male_name="' + male_names[i] + '" female_name="' + female_name + '" name ="progeny_target_number" id="progeny_target_number_'+ i +'" value="" placeholder=""/></td></tr>';
         };

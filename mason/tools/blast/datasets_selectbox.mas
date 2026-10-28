@@ -66,7 +66,7 @@ sub blast_db_prog_selects {
 	push @db_choices, '__Other',  map [$_,opt($_)], @ungrouped_dbs;
     }
 
-    @db_choices or return '<span class="ghosted">The BLAST service is temporarily unavailable, we apologize for the inconvenience</span>';
+    @db_choices or return '<span class="ghosted">O serviço BLAST está temporariamente indisponível. Pedimos desculpas pelo inconveniente</span>';
 
     # DB select box will either the db_id supplied, or what the user last selected, or the tomato combined blast db
     my $selected_db_id = $db_id || $prefs->get_pref('last_blast_db_id')

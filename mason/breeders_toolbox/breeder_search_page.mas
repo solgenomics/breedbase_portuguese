@@ -61,7 +61,7 @@ $dataset_id => undef
           </div>
 
           <div class="wizard-search-container">
-            <textarea class="wizard-search form-control" placeholder="Pesquisar"></textarea>
+            <textarea class="wizard-search form-control" placeholder="Pesquisador"></textarea>
             <div class="wizard-search-options">
               <div class="wizard-search-options-group btn-group" role="group">
                 <button type="button" class="btn btn-xs btn-primary active wizard-search-options-btn wizard-search-options-contains">Contém</button>
@@ -157,7 +157,7 @@ $dataset_id => undef
   <div class="wizard-datasets panel-group col-sm-12 col-md-6">
     <div class="panel panel-default wizard-panel">
       <div class="panel-heading">
-        <&| /util/user.mas:logged_out &><button class="btn btn-xs btn-primary" name="site_login_button">Entrar</button> para</&>
+        <&| /util/user.mas:logged_out &><button class="btn btn-xs btn-primary" name="site_login_button">Entrar</button> Para</&>
         carregar/criar conjuntos de dados usando as colunas de <button class="btn btn-xs btn-default disabled wizard-btn-tag">Correspondência</button>
       </div>
       <&| /util/user.mas:logged_in &>
@@ -200,7 +200,7 @@ $dataset_id => undef
           <span class="btnn btn-link">Dados genotípicos relacionados</span>
         </div>
         <div id="wiz-down-1-c" class="panel-collapse collapse" role="tabpanel">
-          <p style="margin: 15px; text-color: #999; font-size: 90%">Baixe os registros genotípicos correspondentes do banco de dados. Selecione <strong>um único protocolo de genotipagem</strong> e <strong>um ou mais acessos</strong> para baixar os dados correspondentes.</p>
+          <p style="margin: 15px; text-color: #999; font-size: 90%">Baixe os registros genotípicos correspondentes do banco de dados. Selecione <strong>um único protocolo de genotipagem</strong> E <strong>um ou mais acessos</strong> para baixar os dados correspondentes.</p>
           <table class="table">
             <tr>
               <td colspan="4">
@@ -459,7 +459,7 @@ $dataset_id => undef
                 <div class="checkbox">
                   <label>
                     <input class="wizard-download-phenotypes-pedigree_parents" type="checkbox" />
-                    Incluir genitores
+                    Incluindo os genitores
                   </label>
                 </div>
               </td>
@@ -750,7 +750,7 @@ $dataset_id => undef
           limit: true
         },
         error: function(response) {
-          console.log(`ERROR: Could not query database for archived vcf files [protocols: ${protocols.join(',')}, projects: ${projects.join(',')}]`);
+          console.log(`ERRO: não foi possível consultar os arquivos VCF arquivados no banco de dados [protocolos: ${protocols.join(',')}, projects: ${projects.join(',')}]`);
           console.log(response);
           updateArchivedVCFFiles({ error: true });
         },
@@ -821,13 +821,13 @@ $dataset_id => undef
           method: "GET",
           data: { 'genotyping_protocol': SELECTED_GENOTYPING_PROTOCOL },
           error: function(response) {
-            console.log("ERROR: Could not get chromosome names for genotyping protocol #" + SELECTED_GENOTYPING_PROTOCOL);
+            console.log("ERRO: não foi possível obter os nomes dos cromossomos do protocolo de genotipagem nº" + SELECTED_GENOTYPING_PROTOCOL);
             console.log(response);
             updateChromosomeNames();
           },
           success: function(response) {
             if (response.error) {
-              console.log("ERROR: Server returned an error trying to get the chromosome names for genotyping protocol #" + SELECTED_GENOTYPING_PROTOCOL);
+              console.log("ERRO: o servidor retornou um erro ao obter os nomes dos cromossomos do protocolo de genotipagem nº" + SELECTED_GENOTYPING_PROTOCOL);
               console.log(repsonse.error);
               updateChromosomeNames();
             } else {
@@ -840,12 +840,12 @@ $dataset_id => undef
           method: "GET",
           data: { 'protocol_ids': SELECTED_GENOTYPING_PROTOCOL },
           error: function(response) {
-            console.log("ERROR: Could not get markers for genotyping protocol #" + SELECTED_GENOTYPING_PROTOCOL);
+            console.log("ERRO: não foi possível obter os marcadores do protocolo de genotipagem nº" + SELECTED_GENOTYPING_PROTOCOL);
             console.log(response);
           },
           success: function(response) {
             if (response.error) {
-              console.log("ERROR: Server returned an error trying to get markers for genotyping protocol #" + SELECTED_GENOTYPING_PROTOCOL);
+              console.log("ERRO: o servidor retornou um erro ao obter os marcadores do protocolo de genotipagem nº" + SELECTED_GENOTYPING_PROTOCOL);
               console.log(repsonse.error);
             } else {
               num_markers = response.data;
@@ -868,12 +868,12 @@ $dataset_id => undef
           method: "GET",
           data: { 'genotyping_project_id': SELECTED_GENOTYPING_PROJECT },
           error: function(response) {
-            console.log("ERROR: Could not get protocol for genotyping project #" + SELECTED_GENOTYPING_PROJECT);
+            console.log("ERRO: não foi possível obter o protocolo do projeto de genotipagem nº" + SELECTED_GENOTYPING_PROJECT);
             console.log(response);
           },
           success: function(response) {
             if (response.error) {
-              console.log("ERROR: Server returned an error trying to get protocol for genotyping project #" + SELECTED_GENOTYPING_PROJECT);
+              console.log("ERRO: o servidor retornou um erro ao obter o protocolo do projeto de genotipagem nº" + SELECTED_GENOTYPING_PROJECT);
               console.log(response.error);
             }
             else {
@@ -891,13 +891,13 @@ $dataset_id => undef
               method: "GET",
               data: { 'genotyping_protocol': SELECTED_GENOTYPING_PROTOCOL },
               error: function(response) {
-                console.log("ERROR: Could not get chromosome names for genotyping protocol #" + SELECTED_GENOTYPING_PROTOCOL);
+                console.log("ERRO: não foi possível obter os nomes dos cromossomos do protocolo de genotipagem nº" + SELECTED_GENOTYPING_PROTOCOL);
                 console.log(response);
                 updateChromosomeNames();
               },
               success: function(response) {
                 if (response.error) {
-                  console.log("ERROR: Server returned an error trying to get the chromosome names for genotyping protocol #" + SELECTED_GENOTYPING_PROTOCOL);
+                  console.log("ERRO: o servidor retornou um erro ao obter os nomes dos cromossomos do protocolo de genotipagem nº" + SELECTED_GENOTYPING_PROTOCOL);
                   console.log(repsonse.error);
                   updateChromosomeNames();
                 } else {
@@ -911,12 +911,12 @@ $dataset_id => undef
               method: "GET",
               data: { 'protocol_ids': SELECTED_GENOTYPING_PROTOCOL },
               error: function(response) {
-                console.log("ERROR: Could not get markers for genotyping protocol #" + SELECTED_GENOTYPING_PROTOCOL);
+                console.log("ERRO: não foi possível obter os marcadores do protocolo de genotipagem nº" + SELECTED_GENOTYPING_PROTOCOL);
                 console.log(response);
               },
               success: function(response) {
                 if (response.error) {
-                  console.log("ERROR: Server returned an error trying to get markers for genotyping protocol #" + SELECTED_GENOTYPING_PROTOCOL);
+                  console.log("ERRO: o servidor retornou um erro ao obter os marcadores do protocolo de genotipagem nº" + SELECTED_GENOTYPING_PROTOCOL);
                   console.log(repsonse.error);
                 } else {
                   num_markers = response.data;
@@ -935,12 +935,12 @@ $dataset_id => undef
           method: "POST",
           dataType: "json",
           error: function(response) {
-            console.log("ERROR: Could not get genotyping protocol");
+            console.log("ERRO: não foi possível obter o protocolo de genotipagem");
             console.log(response);
           },
           success: function(response) {
            if (response.error) {
-              console.log("ERROR: Server returned an error trying to get genotyping protocol #" + SELECTED_GENOTYPING_PROTOCOL);
+              console.log("ERRO: o servidor retornou um erro ao obter o protocolo de genotipagem nº" + SELECTED_GENOTYPING_PROTOCOL);
               console.log(repsonse.error);
             } else {
               SELECTED_GENOTYPING_PROTOCOL = response.default_protocol.protocol_id;
@@ -949,12 +949,12 @@ $dataset_id => undef
                 method: "GET",
                 data: { 'protocol_ids': SELECTED_GENOTYPING_PROTOCOL },
                 error: function(response) {
-                  console.log("ERROR: Could not get markers for genotyping protocol #" + SELECTED_GENOTYPING_PROTOCOL);
+                  console.log("ERRO: não foi possível obter os marcadores do protocolo de genotipagem nº" + SELECTED_GENOTYPING_PROTOCOL);
                   console.log(response);
                 },
                 success: function(response) {
                   if (response.error) {
-                    console.log("ERROR: Server returned an error trying to get markers for genotyping protocol #" + SELECTED_GENOTYPING_PROTOCOL);
+                    console.log("ERRO: o servidor retornou um erro ao obter os marcadores do protocolo de genotipagem nº" + SELECTED_GENOTYPING_PROTOCOL);
                     console.log(repsonse.error);
                   } else {
                     num_markers = response.data;

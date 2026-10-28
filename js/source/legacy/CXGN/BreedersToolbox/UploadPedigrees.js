@@ -44,7 +44,7 @@ jQuery(document).ready(function ($) {
             $('#working_modal').modal("show");
             if (uploadedPedigreesFile === '') {
                 $('#working_modal').modal("hide");
-                alert("No file selected");
+                alert("Nenhum arquivo selecionado");
             }
         },
         complete: function (r) {
@@ -59,15 +59,15 @@ jQuery(document).ready(function ($) {
             var html;
             pedigree_data = response.pedigree_data;
             if (response.error) {
-                html = '<h3>The Following Issues Were Identified</h3><p class="bg-warning">'+response.error+'</p>';
+                html = '<h3>Foram identificados os seguintes problemas</h3><p class="bg-warning">'+response.error+'</p>';
                 $("#upload_pedigrees_validate_display tbody").html(html);
                 $("#upload_pedigrees_validate_display").modal('show');
             } else if (response.error_string) {
-                html = '<h3>The Following Issues Were Identified</h3><p class="bg-warning">'+response.error_string+'</p>';
+                html = '<h3>Foram identificados os seguintes problemas</h3><p class="bg-warning">'+response.error_string+'</p>';
                 $("#upload_pedigrees_error_display tbody").html(html);
                 $("#upload_pedigrees_error_display").modal('show');
             } else {
-                html = '<h3>There Were No Issues Identified</h3>';
+                html = '<h3>Nenhum problema foi identificado</h3>';
                 $("#upload_pedigrees_validate_display tbody").html(html);
                 $("#upload_pedigrees_validate_display").modal('show');
             }
@@ -78,7 +78,7 @@ jQuery(document).ready(function ($) {
         var uploadFile = $("#pedigrees_uploaded_file").val();
         $('#upload_pedigrees_form').attr("action", "/ajax/pedigrees/upload_verify");
         if (uploadFile === '') {
-            alert("Please select a file");
+            alert("Selecione um arquivo");
             return;
         }
         $("#upload_pedigrees_form").submit();
@@ -102,7 +102,7 @@ jQuery(document).ready(function ($) {
             success: function(response) {
                 jQuery('#working_modal').modal('hide');
                 if (response.error) {
-                    alert('An Error Occured: No pedigrees were saved! Try Fixing Your File For The Issues Identified In the Validation. '+response.error);
+                    alert('Ocorreu um erro: nenhum pedigree foi salvo! Corrija no arquivo os problemas identificados na validação. '+response.error);
                 }
                 else {
                     jQuery('#pedigrees_upload_success_dialog_message').modal('show');
@@ -110,7 +110,7 @@ jQuery(document).ready(function ($) {
             },
             error: function(response) {
                 jQuery('#working_modal').modal('hide');
-                alert('An error occurred storing the pedigrees. None were uploaded.');
+                alert('Ocorreu um erro ao armazenar os pedigrees. Nenhum foi enviado.');
             }
         });
     });

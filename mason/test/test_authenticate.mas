@@ -2,16 +2,16 @@
 
 
 <br/><br/>
-<h1>User Information</h1>
+<h1>Informação do usuário</h1>
 <hr>
 
 <table class="table table-hover">
   <thead>
-    <th>Person ID</th>
-    <th>Username</th>
-    <th>First Name</th>
-    <th>Last Name</th>
-    <th>Roles</th>
+    <th>Identificação da pessoa</th>
+    <th>Nome de usuário</th>
+    <th>Primeiro Nome</th>
+    <th>Sobrenome</th>
+    <th>Funções</th>
   </thead>
   <tbody id="person_data">
   </tbody>

@@ -49,14 +49,14 @@ $person_id
 
 
 <div id="associateStockForm" style="display: none">
-  Accession name:
+  Nome do acesso:
   <input type="text"
          style="width: 50%"
          id="locus_name"
          onkeyup="Locus.getStocks(this.value, '<% $locus_id %>');">
   <input type="button"
          id="associate_stock_button"
-         value="associate accession"
+         value="acesso associada"
 	 disabled="true"
          onclick="Locus.associateAllele('<% $person_id %>');this.disabled=true;">
   <select id="stock_select"
@@ -65,7 +65,7 @@ $person_id
           size=10>
   </select>
   
-  <b>Would you Like to specify an allele?</b>
+  <b>Gostaria de especificar um alelo?</b>
   <select id="allele_select"
           style="width: 100%">
   </select>

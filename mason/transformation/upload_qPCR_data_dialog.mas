@@ -137,7 +137,7 @@ $vector_name
                             <tr>
                                 <td>accession_name</td>
                                 <td>replicate_number</td>
-                                <td>gene</td>
+                                <td>Gene</td>
                                 <td>Cq</td>
                             </tr>
                         </tbody>
@@ -151,7 +151,7 @@ $vector_name
                         <li>Cq (valores numéricos usados para calcular os valores normalizados; ambos são armazenados no banco de dados; se não houver valor Cq, use ND)</li>
                     </ul>
                     <br>
-                    <b>For example:</b>
+                    <b>Por exemplo:</b>
                     Dados Cq de um controle endógeno (geneA) e dois alvos (geneB e geneC). Cada amostra tem duas repetições. Não é necessário agrupar as mesmas repetições como na planilha de exemplo.
                     <br />
                     <table class="table table-hover table-bordered table-condensed" >
@@ -160,79 +160,79 @@ $vector_name
                             <tr>
                                 <td>accession_name</td>
                                 <td>replicate_number</td>
-                                <td>gene</td>
+                                <td>Gene</td>
                                 <td>Cq</td>
                             </tr>
                             <tr>
                                 <td>accession_1</td>
                                 <td>1</td>
-                                <td>geneA</td>
+                                <td>GeneA</td>
                                 <td>22.28</td>
                             </tr>
                             <tr>
                                 <td>accession_1</td>
                                 <td>1</td>
-                                <td>geneB</td>
+                                <td>GeneB</td>
                                 <td>24.26</td>
                             </tr>
                             <tr>
                                 <td>accession_1</td>
                                 <td>1</td>
-                                <td>geneC</td>
+                                <td>GeneC</td>
                                 <td>19.4</td>
                             </tr>
                             <tr>
                                 <td>accession_2</td>
                                 <td>1</td>
-                                <td>geneA</td>
+                                <td>GeneA</td>
                                 <td>20.18</td>
                             </tr>
                             <tr>
                                 <td>accession_2</td>
                                 <td>1</td>
-                                <td>geneB</td>
+                                <td>GeneB</td>
                                 <td>20.24</td>
                             </tr>
                             <tr>
                                 <td>accession_2</td>
                                 <td>1</td>
-                                <td>geneC</td>
+                                <td>GeneC</td>
                                 <td>18.29</td>
                             </tr>
                             <tr>
                                 <td>accession_1</td>
                                 <td>2</td>
-                                <td>geneA</td>
+                                <td>GeneA</td>
                                 <td>21.28</td>
                             </tr>
                             <tr>
                                 <td>accession_1</td>
                                 <td>2</td>
-                                <td>geneB</td>
+                                <td>GeneB</td>
                                 <td>23.16</td>
                             </tr>
                             <tr>
                                 <td>accession_1</td>
                                 <td>2</td>
-                                <td>geneC</td>
+                                <td>GeneC</td>
                                 <td>20.4</td>
                             </tr>
                             <tr>
                                 <td>accession_2</td>
                                 <td>2</td>
-                                <td>geneA</td>
+                                <td>GeneA</td>
                                 <td>20.25</td>
                             </tr>
                             <tr>
                                 <td>accession_2</td>
                                 <td>2</td>
-                                <td>geneB</td>
+                                <td>GeneB</td>
                                 <td>25.21</td>
                             </tr>
                             <tr>
                                 <td>accession_2</td>
                                 <td>2</td>
-                                <td>geneC</td>
+                                <td>GeneC</td>
                                 <td>20.6</td>
                             </tr>
                         </tbody>

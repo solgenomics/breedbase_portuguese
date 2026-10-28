@@ -6,7 +6,7 @@ function plot_histogram(values, div_id) {
   var identical = identical_check(values);
 
   if (identical == true) {
-      jQuery("#"+div_id).html("<center><h3>All "+values.length+" values were the same value of "+values[0]+".</h3></center>");
+      jQuery("#"+div_id).html("<center><h3>Todos "+values.length+" valores eram iguais a "+values[0]+".</h3></center>");
   }  else {
 
       // A formatter for counts.
@@ -66,7 +66,7 @@ function plot_histogram(values, div_id) {
 
       svg.append("g")
       .attr("id", "g_id")
-      .attr("class", "x axis")
+      .attr("class", "eixo x")
       .attr("transform", "translate(0," + height + ")")
       .call(xAxis);
 

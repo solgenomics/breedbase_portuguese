@@ -46,7 +46,7 @@ $is_curator => undef
                 <label class="col-sm-3 control-label">Função: </label>
                 <div class="col-sm-9" >
                     <div id="add_person_role_role_select_div">
-                    [CARREGANDO...]
+                    [CARREGANDO ...]
                     </div>
                 </div>
 	        </div>

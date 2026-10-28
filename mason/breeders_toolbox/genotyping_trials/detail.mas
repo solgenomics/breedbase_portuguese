@@ -178,17 +178,17 @@ DEPRECATED. THIS SHOULD BE DONE VIA BRAPI
                 </div>
                 <div class="col-sm-11">
 
-                    <&| /page/info_section.mas, title=>"<h4 style='display:inline'>Plate Design Info</h4>", collapsible=>1, collapsed=>0, subtitle=>"Download layout <a class='btn btn-sm btn-default' style='margin:3px' id=\"download_layout_xls_link\" href=\"/breeders/trial/$trial_id/download/layout?format=xls&dataLevel=plate\">XLS</a> <a class='btn btn-sm btn-default' style='margin:3px' id=\"download_layout_csv_link\" href=\"/breeders/trial/$trial_id/download/layout?format=csv&dataLevel=plate\">CSV</a>"  &>
+                    <&| /page/info_section.mas, title=>"<h4 style='display:inline'>Informações sobre o projeto da placa</h4>", collapsible=>1, collapsed=>0, subtitle=>"Disposição espacial de download <a class='btn btn-sm btn-default' style='margin:3px' id=\"download_layout_xls_link\" href=\"/breeders/trial/$trial_id/download/layout?format=xls&dataLevel=plate\">XLS</a> <a class='btn btn-sm btn-default' style='margin:3px' id=\"download_layout_csv_link\" href=\"/breeders/trial/$trial_id/download/layout?format=csv&dataLevel=plate\">CSV</a>"  &>
 
-                        <&| /page/info_section.mas, id => "trial_accessions", title=>"Accessions", is_subsection => 1, collapsible=>1, collapsed=>1 &>
+                        <&| /page/info_section.mas, id => "trial_accessions", title=>"Acessos", is_subsection => 1, collapsible=>1, collapsed=>1 &>
                             <& /breeders_toolbox/trial/trial_accessions.mas, trial_id => $trial_id &>
                         </&>
 
-                        <&| /page/info_section.mas, id => "trial_tissue_sources", title=>"Tissue Sources", is_subsection => 1, collapsible=>1, collapsed=>1 &>
+                        <&| /page/info_section.mas, id => "trial_tissue_sources", title=>"Fontes de Tecidos", is_subsection => 1, collapsible=>1, collapsed=>1 &>
                             <& /breeders_toolbox/trial/trial_tissue_sources.mas, trial_id => $trial_id &>
                         </&>
 
-                        <&| /page/info_section.mas, id => "trial_tissue_samples", title=>"Tissue Samples",  is_subsection => 1, collapsible=>1, collapsed=>1 &>
+                        <&| /page/info_section.mas, id => "trial_tissue_samples", title=>"Amostras de tecido",  is_subsection => 1, collapsible=>1, collapsed=>1 &>
                             <& /breeders_toolbox/trial/trial_tissue_samples.mas, trial_id => $trial_id &>
                         </&>
                     </&>
@@ -288,7 +288,7 @@ DEPRECATED. THIS SHOULD BE DONE VIA BRAPI
                 </div>
                 <div class="col-sm-11">
 
-                    <&| /page/info_section.mas, title=>"<h4 style='display:inline'>Trial Deletion</h4>", collapsible=>1, collapsed=>1, subtitle=>"<font color=\"red\">Deletion cannot be undone</font>" &>
+                    <&| /page/info_section.mas, title=>"<h4 style='display:inline'>Exclusão do ensaio</h4>", collapsible=>1, collapsed=>1, subtitle=>"<font color=\"red\">A eliminação não pode ser desfeita</font>" &>
                         <div class="boxbgcolor5">Note: Do not delete a genotype layout for an experiment that has already been submitted to the sequencing facility.</div>
                         <br /><br />
                         <button class="btn btn-default" id="delete_layout_data_by_trial_id">Delete this genotyping experiment</button>

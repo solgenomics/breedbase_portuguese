@@ -121,12 +121,12 @@ solGS.kinship = {
   createTable: function (tableId) {
     var kinshipTable =
       `<table id="${tableId}" class="table table-striped"><thead><tr>` +
-      "<th>Population</th>" +
-      "<th>Data structure type</th>" +
-      "<th>Compatibility</th>" + 
-      "<th>Ownership</th>" +
-      "<th>Data type</th>" +
-      "<th>Run Kinship</th>" +
+      "<th>População</th>" +
+      "<th>Tipo de estrutura de dados</th>" +
+      "<th>Compatibilidade</th>" +
+      "<th>Propriedade</th>" +
+      "<th>Tipo de dados</th>" +
+      "<th>Executar análise de parentesco</th>" +
       "</tr></thead></table>";
 
     return kinshipTable;
@@ -191,13 +191,13 @@ solGS.kinship = {
     var runKinshipBtnId = this.getRunKinshipBtnId(kinshipPopId);
     var runKinshipBtn =
       `<button type="button" id=${runKinshipBtnId}` +
-      ` class="btn btn-success" data-selected-pop='${kinshipArgs}'>Run kinship</button>`;
+      ` class="btn btn-success" data-selected-pop='${kinshipArgs}'>Executar análise de parentesco</button>`;
 
     var compatibility_message = '';
     if (dataStr.match(/dataset/)) {
       popName = `<a href="/dataset/${popId}">${popName}</a>`;
       if (tool_compatibility == null || tool_compatibility == "(not calculated)"){
-        compatibility_message = "(not calculated)";
+        compatibility_message = "(não calculado)";
       } else {
           if (tool_compatibility["Kinship & Inbreeding"]['compatible'] == 0) {
           compatibility_message = '<b><span class="glyphicon glyphicon-remove" style="color:red"></span></b>'
@@ -274,8 +274,9 @@ solGS.kinship = {
   createDataTypeSelect: function (opts) {
     var dataTypeGroup = '<select class="form-control" id="kinship_data_type_select">';
 
+    var dataTypeLabels = { Genotype: "Genótipo", Phenotype: "Fenótipo" };
     for (var i = 0; i < opts.length; i++) {
-      dataTypeGroup += '<option value="' + opts[i] + '">' + opts[i] + "</option>";
+      dataTypeGroup += '<option value="' + opts[i] + '">' + (dataTypeLabels[opts[i]] || opts[i]) + "</option>";
     }
     dataTypeGroup += "</select>";
 
@@ -353,22 +354,22 @@ solGS.kinship = {
     var fileNameInbreeding = inbreedingFile.split("/").pop();
 
     kinshipFile =
-      '<a href="' + kinshipFile + '" download=' + fileNameKinship + ">Kinship matrix</a>";
+      '<a href="' + kinshipFile + '" download=' + fileNameKinship + ">Matriz de parentesco</a>";
 
-    aveFile = '<a href="' + aveFile + '" download=' + fileNameAve + ">Average kinship</a>";
+    aveFile = '<a href="' + aveFile + '" download=' + fileNameAve + ">Parentesco médio</a>";
 
     inbreedingFile =
       '<a href="' +
       inbreedingFile +
       '" download=' +
       fileNameInbreeding +
-      ">Inbreeding coefficients</a>";
+      ">Coeficientes de endogamia</a>";
 
     var kinDownloadBtn = "download_" + "kinship_plot_" + kinFileId;
     var kinPlotLink =
-      "<a href='#'  onclick='event.preventDefault();' id='" + kinDownloadBtn + "'> plot</a>";
+      "<a href='#'  onclick='event.preventDefault();' id='" + kinDownloadBtn + "'> Lote</a>";
 
-    var links = "<strong>Download:</strong> ";
+    var links = "<strong>Baixar:</strong> ";
 
     if (popName) {
       links = links + popName + " ";
@@ -408,7 +409,7 @@ jQuery(document).ready(function () {
     
         jQuery(`#${runKinshipBtnId}`).hide();
         var kinshipMsgDiv = solGS.kinship.kinshipMsgDiv;
-        jQuery(kinshipMsgDiv).text("Running kinship... please wait...it may take minutes.").show();
+        jQuery(kinshipMsgDiv).text("Executando análise de parentesco... Aguarde... Isso pode levar alguns minutos.").show();
         jQuery(`${canvas} .multi-spinner-container`).show();
 
         var kinshipArgs = solGS.kinship.getKinshipArgs();
@@ -433,7 +434,7 @@ jQuery(document).ready(function () {
             .checkCachedKinship(kinshipUrl, kinshipArgs)
             .done(function (res) {
             if (res.kinship_output_data) {
-                jQuery(kinshipMsgDiv).html("Generating heatmap... please wait...").show();
+                jQuery(kinshipMsgDiv).html("Gerando mapa de calor... Aguarde...").show();
 
                 kinshipPlotDivId = `${kinshipPlotDivId}_${res.kinship_file_id}`;
 
@@ -456,8 +457,8 @@ jQuery(document).ready(function () {
                 jQuery(kinshipMsgDiv).empty();
 
                 var title =
-                "<p>This analysis may take a long time. " +
-                "Do you want to submit the analysis and get an email when it completes?</p>";
+                "<p>Esta análise pode demorar. " +
+                "Deseja enviar a análise e receber um e-mail quando ela for concluída?</p>";
 
                 var jobSubmit = '<div id= "kinship_submit">' + title + "</div>";
 
@@ -467,10 +468,10 @@ jQuery(document).ready(function () {
                 height: "auto",
                 width: "auto",
                 modal: true,
-                title: "Kinship job submission",
+                title: "Envio da tarefa de análise de parentesco",
                 buttons: {
                     OK: {
-                    text: "Yes",
+                    text: "Sim",
                     class: "btn btn-success",
                     id: "queue_job",
                     click: function () {
@@ -481,13 +482,13 @@ jQuery(document).ready(function () {
                     },
 
                     No: {
-                    text: "No, I will wait till it completes.",
+                    text: "Não, vou aguardar a conclusão.",
                     class: "btn btn-warning",
                     id: "no_queue",
                     click: function () {
                         jQuery(this).dialog("close");
 
-                        jQuery(kinshipMsgDiv).text("Running kinship... please wait...it may take minutes.").show();
+                        jQuery(kinshipMsgDiv).text("Executando análise de parentesco... Aguarde... Isso pode levar alguns minutos.").show();
                         jQuery(`${canvas} .multi-spinner-container`).show();
 
                         solGS.kinship
@@ -495,7 +496,7 @@ jQuery(document).ready(function () {
                         .done(function (res) {
                             if (res.kinship_output_data) {
                             jQuery(kinshipMsgDiv)
-                                .html("Generating heatmap... please wait...")
+                                .html("Gerando mapa de calor... Aguarde...")
                                 .show();
 
                             kinshipPlotDivId = `${kinshipPlotDivId}_${res.kinship_file_id}`;
@@ -519,7 +520,7 @@ jQuery(document).ready(function () {
                                 .css({
                                 "padding-left": "0px",
                                 })
-                                .html("This population has no kinship output data.")
+                                .html("Esta população não possui resultados de parentesco.")
                                 .fadeOut(8400);
 
                             jQuery(runKinshipBtnId).show();
@@ -527,7 +528,7 @@ jQuery(document).ready(function () {
                         })
                         .fail(function () {
                             jQuery(kinshipMsgDiv)
-                            .html("Error occured running the kinship.")
+                            .html("Ocorreu um erro ao executar a análise de parentesco.")
                             .show()
                             .fadeOut(8400);
 
@@ -538,7 +539,7 @@ jQuery(document).ready(function () {
                     },
 
                     Cancel: {
-                    text: "Cancel",
+                    text: "Cancelar",
                     class: "btn btn-info",
                     id: "cancel_queue_info",
                     click: function () {
@@ -551,7 +552,7 @@ jQuery(document).ready(function () {
             }
             })
             .fail(function () {
-            jQuery(kinshipMsgDiv).html("Error occured running the kinship.").show().fadeOut(8400);
+            jQuery(kinshipMsgDiv).html("Ocorreu um erro ao executar a análise de parentesco.").show().fadeOut(8400);
             jQuery(`${canvas} .multi-spinner-container`).hide();
             jQuery(runKinshipBtnId).show();
             });
@@ -574,7 +575,7 @@ jQuery(document).ready(function () {
           var kinshipMsgDiv = solGS.kinship.kinshipMsgDiv;
           var canvas = solGS.kinship.canvas;
 
-          jQuery(kinshipMsgDiv).html("Generating heatmap... please wait...").show();
+          jQuery(kinshipMsgDiv).html("Gerando mapa de calor... Aguarde...").show();
           jQuery(`${canvas} .multi-spinner-container`).show();
 
           var kinshipPlotDivId = solGS.kinship.kinshipPlotDivPrefix;

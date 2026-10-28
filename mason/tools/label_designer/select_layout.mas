@@ -1,14 +1,14 @@
 <div class="text-center">
-    <p>Now, define your layout. You may retrieve these settings from a saved design, or you can start a new design by selecting a page and label format.<p>
+    <p>Agora, defina seu disposição espacial. Você pode recuperar essas configurações de um design salvo, ou você pode começar um novo projeto selecionando uma página e formato de etiqueta.<p>
 </div>
 </br></br>
 <div class="col-md-12" style="margin-bottom:20px;">
     <div class="col-md-2 col-md-offset-3 text-center">
-        <label> New or Saved:</label>
+        <label> Novo ou salvo:</label>
     </div>
     <div class="col-md-4">
-        <label class="radio-inline"><input type="radio" name="optradio" value="new" checked>New</label>
-        <label class="radio-inline"><input type="radio" name="optradio" value="saved">Saved</label>
+        <label class="radio-inline"><input type="radio" name="optradio" value="new" checked>Novo</label>
+        <label class="radio-inline"><input type="radio" name="optradio" value="saved">Salvo</label>
     </div>
 </div>
 
@@ -18,13 +18,13 @@
 
 <div id="format_options" class="col-md-12" style="margin-bottom:20px;" >
    <div class="col-md-2">
-       <label>Page Format:</label>
+       <label>Formato da página:</label>
    </div>
    <div class="col-md-4">
        <select class="form-control" id="page_format" ></select>
    </div>
    <div class="col-md-2">
-       <label>Label Format:</label>
+       <label>Formato da etiqueta:</label>
    </div>
    <div class="col-md-4">
        <select class="form-control" id="label_format"></select>
@@ -35,13 +35,13 @@
        <div class="col-md-12">
            <div class="col-md-5">
                <center>
-                   <label>Page Width:</label><br>
+                   <label>Largura da Página:</label><br>
                    <input class="form-control"   type="number" id="page_width" style="max-width: 100%;">
                </center>
            </div>
            <div class="col-md-5">
                <center>
-                   <label>Page Height:</label><br>
+                   <label>Altura da Página:</label><br>
                    <input class="form-control"  type="number" id="page_height" style="max-width: 100%;">
                </center>
            </div>
@@ -52,23 +52,23 @@
        <div class="col-md-12">
            <div class="col-md-5">
                <center>
-                   <label>Label Width:</label><br>
+                   <label>Largura da etiqueta:</label><br>
                    <input class="form-control"  type="number" id="label_width" style="max-width: 100%;">
                </center>
            </div>
            <div class="col-md-5">
                <center>
-                   <label>Label Height:</label><br>
+                   <label>Altura da etiqueta:</label><br>
                    <input class="form-control"  type="number" id="label_height" style="max-width: 100%;">
                </center>
            </div>
            <div class="col-md-2">
-                <label class='radio'><input type="radio" name="dimoptradio" id="dim_inches" class="radio-select-imperial" value="inch">Imperial (inches)</label>
-                <label class='radio'><input type="radio" name="dimoptradio" id="dim_cm" class="radio-select-metric" value="cm" checked>Metric (cm)</label>
+                <label class='radio'><input type="radio" name="dimoptradio" id="dim_inches" class="radio-select-imperial" value="inch">Imperial</label>
+                <label class='radio'><input type="radio" name="dimoptradio" id="dim_cm" class="radio-select-metric" value="cm" checked>Sistema métrico (cm)</label>
            </div>
            <div class="col-md-2">
                <br>
-               <button id="d3-apply-custom-label-size" type="button" class="btn btn-primary">Apply</button>
+               <button id="d3-apply-custom-label-size" type="button" class="btn btn-primary">Aplicar</button>
            </div>
        </div>
        <!--<center><i style="margin-top:10px;">(72 pixels/inch - approx. 28.35 pixels/cm)</i></center>-->

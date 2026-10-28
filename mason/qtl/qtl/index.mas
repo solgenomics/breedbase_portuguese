@@ -32,10 +32,10 @@ $qtl_image = qq |<img src="$qtl_image" width=320 height=320 alt="QTL for $trait_
 
 
 <& /page/page_title.mas, 
-   title => "QTL for $trait_name in $pop_name" 
+   title => "QTL para $trait_name em $pop_name" 
 &>
 <&| /page/info_section.mas, 
-    title => "QTL map for $trait_name" 
+    title => "Mapa QTL para $trait_name" 
 &>
   <table cellpadding=20>
     <tr>
@@ -59,7 +59,7 @@ $qtl_image = qq |<img src="$qtl_image" width=320 height=320 alt="QTL for $trait_
 <&| /page/info_section.mas,
     collapsible => 1, 
     collapsed   => 1, 
-    title       => "QTL 95% Confidence Interval" 
+    title       => "Intervalo de confiança QTL 95%" 
 &>  
 
 <& /page/columnar_table.mas,
@@ -75,7 +75,7 @@ $qtl_image = qq |<img src="$qtl_image" width=320 height=320 alt="QTL for $trait_
 <&| /page/info_section.mas, 
     collapsible => 1, 
     collapsed   => 1, 
-    title       => "QTL markers' genetic positions and Comparative Map Viewer" 
+    title       => "Posições genéticas dos marcadores QTL e Visualizador Comparativo de Mapas" 
  &>
 
 <% $cmv_link %>
@@ -87,7 +87,7 @@ $qtl_image = qq |<img src="$qtl_image" width=320 height=320 alt="QTL for $trait_
 <&| /page/info_section.mas, 
     collapsible => 1, 
     collapsed   => 1, 
-    title       => "Browse QTL region" 
+    title       => "Navegue pela região QTL" 
 &>
 
 <% $download %>

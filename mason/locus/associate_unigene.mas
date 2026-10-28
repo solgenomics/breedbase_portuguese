@@ -10,7 +10,7 @@ $current     => undef
 
 <div id='associateUnigeneForm' style="display:none">
   <div id='unigene_search'>
-    Unigene ID:
+    ID Unigene:
     <input type="text"
 	   style="width: 50%"
 	   id="unigene_input"
@@ -19,7 +19,7 @@ $current     => undef
       >
     <input type="button"
 	   id="associate_unigene_button"
-	   value="associate unigene"
+	   value="Unigene associado"
            disabled="true"
 	   onclick="Locus.associateUnigene('<% $locus_id %>')">
   </div>

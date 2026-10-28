@@ -30,7 +30,7 @@ Special Alert for development sites with beta users, same pop-up alert box, but 
 
 function alertBeta(content) {
 	var notification = "======== Developer Error Box ======== \n";
-		notification += "There was a problem in the Javascript:\n";
+		notification += "Ocorreu um problema no JavaScript:\n";
 	notification += content;
 	alert(notification);
 }
@@ -51,7 +51,7 @@ function notify(content) {
 	var NOTIFY_CONTENT_ID = "SGN_NOTIFY_CONTENT";
 	document.getElementById("SGN_NOTIFY_BOX").style.display = "block";
 	if(!document.getElementById(NOTIFY_CONTENT_ID) || !document.getElementById(NOTIFY_BOX_ID)){
-		var warning = "The developer should have used the notify box at the top\nof the page, but the notifier page element with the\nIDs: '" + NOTIFY_BOX_ID + "' or '" + NOTIFY_CONTENT_ID + "' were not found.\n\nNotification: ";
+		var warning = "O desenvolvedor deveria ter usado a caixa de notificações no topo\nda página, mas o elemento de notificação com os\nIDs: '" + NOTIFY_BOX_ID + "' or '" + NOTIFY_CONTENT_ID + "' não foi encontrado.\n\nNotificação: ";
 		alertBeta(warning + content);
 		return false;
 	}

@@ -17,7 +17,7 @@ sol100.mas - SGN page for sol100 project organism data overview in a tree format
     $organism_autocomplete_uri => ''
 </%args>
 
-<div style="margin: 20px auto"><& /page/page_title.mas, title=>"The SOL-100 sequencing project" &></div>
+<div style="margin: 20px auto"><& /page/page_title.mas, title=>"O projeto de sequenciamento SOL-100" &></div>
 
 <& /util/import_javascript.mas, classes=>[qw[ CXGN.Page.FormattingHelpers  jquery jqueryui popup]] &>
 
@@ -52,30 +52,30 @@ sol100.mas - SGN page for sol100 project organism data overview in a tree format
 
 
 <&| /page/info_section.mas,
-  title         =>  'The questions',
+  title         =>  'As perguntas',
   collapsible   => 1,
   collapsed     => 1,
   &>
 
 <p>
-The Solanaceae include more than 3000 species with wide adaptation, shape, chemistry, and distribution. Species of the family are of great agricultural, nutritional, horticultural and medicinal importance (e.g., potato, tomato, pepper, petunia and tobacco). This enormous diversity is contrasted by high conservation of gene order and content at the macro and micro syntenic levels. Solanaceae genomes can be genetically tied to a common framework linkage map, thus facilitating the identification of genes with homologous phenotypes in the different species. These features make Solanaceae an excellent taxon with which to address a central question in biology:
+As Solanaceae incluem mais de 3000 espécies com ampla adaptação, forma, química e distribuição. Espécies da família são de grande importância agrícola, nutricional, horticultura e medicinal (por exemplo, batata, tomate, pimenta, petúnia e tabaco). Esta enorme diversidade é contrastada pela alta conservação da ordem genética e conteúdo nos níveis macro e microsintênico. Os genomas de Solanaceae podem ser geneticamente ligados a um mapa comum, facilitando assim a identificação de genes com fenótipos homólogos nas diferentes espécies. Essas características fazem de Solanaceae um excelente táxon com o qual abordar uma questão central em biologia:
 </p>
 
- <blockquote>How can a common set of genes/proteins give rise to such a wide range of morphologically and ecologically distinct species?</blockquote>
+ <blockquote>Como um conjunto comum de genes/proteínas pode dar origem a uma gama tão ampla de espécies morfologicamente e ecologicamente distintas?</blockquote>
 
 
 <p>
-But also, studying the Solanaceae can generate answers to the currently highly relevant and urgent question:  
+Mas também, estudar as Solanaceae pode gerar respostas para a questão atual altamente relevante e urgente:  
 </p>
 
 <blockquote>
-How can a deeper understanding of the genetic basis of plant biodiversity be harnessed to better meet the needs of society in an environmentally friendly and sustainable manner?
+Como uma compreensão mais profunda da base genética da biodiversidade vegetal pode ser aproveitada para atender melhor as necessidades da sociedade de forma ambientalmente amigável e sustentável?
 </blockquote>
 
 </&>
 
 <&| /page/info_section.mas,
-  title         =>  'The aim',
+  title         =>  'O objetivo',
   collapsible   => 1,
   collapsed     => 0,
   &>
@@ -85,50 +85,35 @@ How can a deeper understanding of the genetic basis of plant biodiversity be har
 
 
   <p>
-  The SOL community will create a common Solanaceae-based genomic
-  framework that includes sequences and phenotypes of 100 genomes
-  encompassing the phylogenetic diversity of the group. Specific
-  objectives are to:
+  A comunidade SOL criará uma estrutura genômica comum baseada em Solanaceae que inclui sequências e fenótipos de 100 genomas que englobam a diversidade filogenética do grupo. Os objetivos específicos são:
   </p>
 
   <ol>
      <li>
-        Tie the available tomato, tobacco, potato and Asterid relatives
-        coffee and Mimulus (monkey-flower) genome sequences to a common
-        SOL physical and genetic map as well as other Asterid taxonomic
-        groups, such as Antirrhinum, sweet potato and mint.
+        Amarre as seqüências de genoma disponíveis de tomate, tabaco, batata e Asterid, café e Mimulus (macaco-flor) em um mapa físico e genético comum da SOL, bem como outros grupos taxonômicos de Asterid, como Antirrino, batata doce e hortelã.
      </li>
      <li>
-       Select 100 Solanaceae species and Asterid outgroups (SOL-100)
-       that broadly span the evolutionary tree and reflect important
-       human uses.
+       Selecione 100 espécies de Solanaceae e Asterid outgroups (SOL-100) que abrangem amplamente a árvore evolutiva e refletem importantes usos humanos.
      </li>
      <li>
-       Apply emerging novel genome sequencing technologies to SOL-100
-       and link the sequences to the common SOL physical and genetic
-       maps.
+       Aplique novas tecnologias de sequenciamento do genoma para a SOL-100 e ligue as sequências aos mapas físicos e genéticos comuns da SOL.
      </li>
      <li>
-       Genetically map simple and complex phenotypes affecting chemical,
-       morphological, yield and fitness-related traits in the SOL-100
-       species.
+       Geneticamente mapeia fenótipos simples e complexos que afetam características químicas, morfológicas, de rendimento e de aptidão na espécie SOL-100.
      </li>
      <li>
-       Construct bioinformatic vehicles to effectively access and
-       utilize the information generated within SOL-100.
+       Construir veículos bioinformáticos para acessar efetivamente e utilizar as informações geradas no SOL-100.
      </li>
      <li>
-       Foster a broadly-based international community of interacting
-       scientists committed to exploring and conserving natural
-       biodiversity.
+       Promova uma ampla comunidade internacional de cientistas interagindo comprometidos em explorar e preservar a biodiversidade natural.
      </li>
   </ol>
 </&>
 
 <&| /page/info_section.mas,
-  title         =>  'SOL-100 Organisms',
-  subtitle      => 'click on an organism name to see more details ',
-  empty_message => 'Tree not available',
+  title         =>  'SOL-100 Organismos',
+  subtitle      => 'Clique em um nome de organismo para ver mais detalhes ',
+  empty_message => 'Árvore não disponível',
   collapsible   => 1,
   collapsed     => 0,
   &>
@@ -153,21 +138,19 @@ How can a deeper understanding of the genetic basis of plant biodiversity be har
 
  </style>
  <div id="sol100_add_organism">
-    <div class="boxtitle">Authorized user</div>
-    <h3>Add a SOL-100 organism</h3>
+    <div class="boxtitle">Usuário autorizado</div>
+    <h3>Adicione um organismo SOL-100</h3>
     <div>
       <form method="POST" name="sol100_add_form" action="<% $organism_add_uri %>">
-        <input name="species" type="text" size="30" id="sol100_species" /><input type="submit" name="add_to_tree" onclick="add_to_tree()" value="Add to Tree" />
-        <div style="font-size: 80%; margin-left: 1em; color: #333">type an organism name</div>
+        <input name="species" type="text" size="30" id="sol100_species" /><input type="submit" name="add_to_tree" onclick="add_to_tree()" value="Adicionar à Árvore" />
+        <div style="font-size: 80%; margin-left: 1em; color: #333">Digite um nome de organismo</div>
       </form>
     </div>
  </div>
 %}
 
   <p>
-  The tree below shows organisms that have been proposed for
-  sequencing by the SOL-100 project. Highlighted species are already 
-  being sequenced.
+  A árvore abaixo mostra organismos propostos para sequenciamento pelo projeto SOL-100. Espécies destacadas já estão sendo sequenciadas.
   </p>
 
   <& /organism/tree.mas, organism_tree => $organism_tree &>
@@ -175,24 +158,13 @@ How can a deeper understanding of the genetic basis of plant biodiversity be har
 </&>
 
 <&| /page/info_section.mas,
-  title         =>  'Who are we?',
+  title         =>  'Quem somos nós?',
   collapsible   => 1,
   collapsed     => 0,
   &>
 
   <p>
-    The International SOL Genome Project (SOL) is a "virtual umbrella"
-    organization for promoting, coordinating and actively seeking
-    additional scientists, countries and funding agencies to participate
-    in an expedition to understand, utilize and conserve natural
-    biodiversity (see <a href="/solanaceae-project/">http://solgenomics.net/solanaceae-project/</a>). SOL
-    includes scientists from more than 30 countries that are united and
-    excited about the sustainable and equitable use of natural
-    biodiversity in biological research, plant breeding and conservation
-    of these resources for the future. The SOL community has sequenced
-    both the tomato genome and the potato genome through grants from
-    national funding agencies as well as international collaborative
-    projects.
+    O Projeto SOL Genoma Internacional (Sol) é uma organização "guarda-chuva virtual" para promover, coordenar e buscar ativamente cientistas, países e agências de financiamento adicionais para participar de uma expedição para entender, utilizar e conservar a biodiversidade natural (ver <a href="/solanaceae-project/">http://solgenomics.net/solanaceae-project/</a>). SOL inclui cientistas de mais de 30 países que estão unidos e animados com o uso sustentável e equitativo da biodiversidade natural em pesquisa biológica, melhoramento de plantas e conservação desses recursos para o futuro. A comunidade SOL sequenciou o genoma de tomate e o genoma de batata através de subsídios de agências de fomento nacionais, bem como projetos colaborativos internacionais.
   </p>
 
 
@@ -200,8 +172,8 @@ How can a deeper understanding of the genetic basis of plant biodiversity be har
 
 </&>
 
-<&| /page/info_section.mas, title=>"Submit genome to SGN" &>
-If you are sequencing a SOL-100 genome, please submit the genome to SGN. <br /><br /><b>Submission to SGN requires prior submission to <a href="http://ncbi.nlm.nih.gov">Genbank</a></b> and a <b><a href="http://www.ncbi.nlm.nih.gov/genomes/static/gprj_help.html#what_projectID">Genbank Project ID</a></b>. Please contact <a href="mailto:smtwhite@ncbi.nlm.nih.gov">Brian Smith-White</a> at Genbank or <a href="mailto:sgn-feedback@solgenomics.net">SGN</a> for more information.
+<&| /page/info_section.mas, title=>"Envie genoma para a SGN" &>
+Se você está sequenciando um genoma SOL-100, por favor, envie o genoma para a SGN. <br /><br /><b>A submissão à SGN requer submissão prévia a <a href="http://ncbi.nlm.nih.gov">Genbank</a></b> e um <b><a href="http://www.ncbi.nlm.nih.gov/genomes/static/gprj_help.html#what_projectID">ID do Projeto Genbank</a></b>. Por favor, contate <a href="mailto:smtwhite@ncbi.nlm.nih.gov">Brian Smith-Branco</a> em Genbank ou <a href="mailto:sgn-feedback@solgenomics.net">SGN</a> para mais informações.
 </&>
 
 

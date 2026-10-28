@@ -8,8 +8,8 @@ $timestamp
     <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content">
             <div class="modal-header" style="text-align: center">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="guidedHelpSeedlotInventoryDialog">Workflow for seedlot inventory</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="guidedHelpSeedlotInventoryDialog">Fluxo de trabalho para inventário de sementes</h4>
             </div>
             <div class="modal-body">
                 <div class="container-fluid">
@@ -21,10 +21,10 @@ $timestamp
                                         <span style="font-size:2.5em;" class="glyphicon glyphicon-plus"></span>
                                     </div>
                                     <div class="col-sm-7">
-                                        <h4>I have new seedlots that need to be added into the database.</h4>
+                                        <h4>Tenho novas sementes que precisam ser adicionadas no banco de dados.</h4>
                                     </div>
                                     <div class="col-sm-2">
-                                        <button name="seedlot_bulk_upload" class="btn btn-primary btn-sm">Go</button>
+                                        <button name="seedlot_bulk_upload" class="btn btn-primary btn-sm">Vá</button>
                                     </div>
                                 </div>
                             </div>
@@ -36,10 +36,10 @@ $timestamp
                                         <span style="font-size:2.5em;" class="glyphicon glyphicon-scale"></span>
                                     </div>
                                     <div class="col-sm-7">
-                                        <h4>I conducted an inventory (in weight(g)) and want to update the database to reflect the current state of the inventory.</h4>
+                                        <h4>Eu conduzi um inventário (em peso (g)) e quero atualizar o banco de dados para refletir o estado atual do inventário.</h4>
                                     </div>
                                     <div class="col-sm-2">
-                                        <button name="seedlot_upload_inventory" class="btn btn-primary btn-sm">Go</button>
+                                        <button name="seedlot_upload_inventory" class="btn btn-primary btn-sm">Vá</button>
                                     </div>
                                 </div>
                             </div>
@@ -48,7 +48,7 @@ $timestamp
                 </div>
             </div>
             <div class="modal-footer">
-                <button id="close_guided_help_seedlot_inventory_dialog" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button id="close_guided_help_seedlot_inventory_dialog" type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
             </div>
         </div>
     </div>

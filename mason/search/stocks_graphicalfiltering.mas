@@ -5,14 +5,14 @@
 
 <& /util/import_javascript.mas, classes => [ 'CXGN.List', 'd3.d3v4Min', 'brapi.BrAPI', 'brapi.GraphicalFilter' ] &>
 
-<&| /page/info_section.mas, id=>"stock_search_graphical_filter", title => 'Graphical Filter Accessions By Traits (Includes all Search Criteria From Above Search Form)', collapsible=>1, collapsed=>1&>
+<&| /page/info_section.mas, id=>"stock_search_graphical_filter", title => 'Incluem todos os critérios de busca do formulário de busca.', collapsible=>1, collapsed=>1&>
 
 <div class="well well-sm">
 
 <div class="panel panel-default">
     <div class="panel-body">
         <div id="stock_search_graphical_filter_div" style="margin:1em">
-        [LOADING...]
+        [Carregando ...]
         </div>
     </div>
 </div>
@@ -30,7 +30,7 @@
 
 <br/>
 
-<&| /page/info_section.mas, title => 'Copy Filtered Accessions to a List', collapsible=>1, collapsed=>0, subtitle=>'<i>Copy the accession names in table to a new or exisiting list</i>'&>
+<&| /page/info_section.mas, title => 'Copiar Acesso Filtrada para uma Lista', collapsible=>1, collapsed=>0, subtitle=>'<i>Copie os nomes de acesso na tabela para uma nova ou exisiting lista</i>'&>
 <div style="text-align:right" id="graphical_filter_results_to_list_menu"></div>
 <div id="graphical_filter_result_names" style="display: none;"></div>
 </&>
@@ -52,7 +52,7 @@ function loadBrAPIData(server,parameters,success){
       var require_login = "<%  $c->get_conf('brapi_require_login') %>";
       if (require_login === '1'){
           auth_token = "<%  CXGN::Login->new($c->dbc->dbh)->get_login_cookie() %>";
-          if (!auth_token){ alert("Login required to display graphical filtering"); }
+          if (!auth_token){ alert("Entre na sua conta para exibir os filtros gráficos"); }
       }
 
     var data = {

@@ -61,15 +61,15 @@ $stock_id
                         <div class="form-group">
                             <label class="col-sm-3 control-label">O progenitor é: </label>
                             <div class="col-sm-9" >
-                                <input type="radio" id="female" name="parent_type" value="female" checked="1"  /> feminino<br />
-                                <input type="radio" id="male" name="parent_type" value="male" /> masculino<br />
+                                <input type="radio" id="female" name="parent_type" value="female" checked="1"  /> Feminino<br />
+                                <input type="radio" id="male" name="parent_type" value="male" /> Masculino<br />
                             </div>
                         </div>
                         <div class="form-group" id="add_parent_cross_type_div">
                             <label class="col-sm-3 control-label">Tipo de cruzamento: </label>
                             <div class="col-sm-9" >
                                 <select class="form-control" id="add_parent_cross_type">
-                                    <option value="biparental">biparental</option>
+                                    <option value="biparental">Biparental</option>
                                     <option value="self">autofecundação</option>
                                     <option value="open">polinização aberta</option>
                                     <option value="sib">cruzamento entre irmãos</option>
@@ -77,7 +77,7 @@ $stock_id
                                     <option value="bulk">mistura</option>
                                     <option value="bulk_self">mistura autofecundada</option>
                                     <option value="bulk_open">mistura com polinização aberta</option>
-                                    <option value="doubled_haploid">duplo-haploide</option>
+                                    <option value="doubled_haploid">Duplo-haploide</option>
 				    <option value="dihaploid_induction">indução de di-haploides</option>
                                     <option value="polycross">policruzamento</option>
                                     <option value="reciprocal">recíproco</option>
@@ -91,7 +91,7 @@ $stock_id
             </div>
             <div class="modal-footer">
                 <button id="close_add_parent_dialog" type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
-                <button type="button" class="btn btn-primary" name="add_parent_submit" id="add_parent_submit" title="Salvar progenitor">Salvar</button>
+                <button type="button" class="btn btn-primary" name="add_parent_submit" id="add_parent_submit" title="Progenitor salvar">Salvar</button>
             </div>
         </div>
     </div>
@@ -180,7 +180,7 @@ $stock_id
     </span>&nbsp;&nbsp;
     <span style="white-space:nowrap;">
         <span class="glyphicon glyphicon-minus" style="color:blue;" aria-hidden="true">
-        </span> Progenitor masculino
+        </span> Progenitor Masculino
     </span>&nbsp;&nbsp;
     <span style="white-space:nowrap;">
         <span class="glyphicon glyphicon-circle-arrow-right" style="color:purple;" aria-hidden="true">

@@ -19,7 +19,7 @@
     var query_length_text = new Kinetic.Text({
       x: 0,
       y: 35,
-      text: "Query length ("+seq_length+")",
+      text: "Comprimento da consulta ("+seq_length+")",
       fill: "#333",
       fontSize: 20,
       width: canvas_width,

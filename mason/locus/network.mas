@@ -6,7 +6,7 @@
 <& /util/import_javascript.mas, classes => [ "CXGN.Phenome.Locus"] &>
 
 
-<table><tr><td><div id="locus_network" >[loading...]</div>
+<table><tr><td><div id="locus_network" >[Carregando ...]</div>
 </td></tr></table>
 
 <script language="javascript" type="text/javascript">

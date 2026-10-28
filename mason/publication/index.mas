@@ -103,7 +103,7 @@ my $pub_title = $pub->get_title;
 <& /page/page_title.mas, title=> $pub_title  || 'New publication' &>
 
 
-<&| /page/info_section.mas, title=>"Publication details"  &>
+<&| /page/info_section.mas, title=>"Detalhes da publicação"  &>
 
 
 <& /page/form.mas,
@@ -114,7 +114,7 @@ my $pub_title = $pub->get_title;
     form_div_name        => 'pub_details',
     js_object_name       => 'pubForm',
     page_url             => "$this_page",
-    alternate_new_button => '<a class="btn btn-sm btn-default" href ="/publication/0/new">New</a>'
+    alternate_new_button => '<a class="btn btn-sm btn-default" href ="/publication/0/new">Novo</a>'
     &>
 
 
@@ -123,19 +123,19 @@ my $pub_title = $pub->get_title;
 
 % if ($pub_id) {
 
-<&| /page/info_section.mas, title=>"External resources", 
+<&| /page/info_section.mas, title=>"Recursos externos", 
   collapsible=>1, collapsed=>0 
   &>
   <% $dbxrefs_html %>
   
 </&>
 
-<&| /page/info_section.mas, title=>"Associated loci (" . $loci_count  . ")", collapsible=>1, collapsed=>1 &>
+<&| /page/info_section.mas, title=>"Loci associado (" . $loci_count  . ")", collapsible=>1, collapsed=>1 &>
   <% $loci_link %>
 
 </&>
 
-<&| /page/info_section.mas, title=>"Associated stocks (" .  $stocks_count  . ")", collapsible=>1, collapsed=>1 &>
+<&| /page/info_section.mas, title=>"Ações associadas (" .  $stocks_count  . ")", collapsible=>1, collapsed=>1 &>
   <% $stocks_link %>
 
 </&>

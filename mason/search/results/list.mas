@@ -82,7 +82,7 @@ my $last = $dp->last();
 
 
 <& /page/page_title.mas, title => $search_name &>
-<&| /page/info_section.mas, title => $search_name, subtitle=> "Total found: $total_result_count" &>
+<&| /page/info_section.mas, title => $search_name, subtitle=> "Total encontrado: $total_result_count" &>
   <& /page/columnar_table.mas, headings => $headers_arrayref, data => $results_arrayref &>
 </&>
 

@@ -235,7 +235,7 @@ function <% $div_name %>_addProp() {
     data: { 'stock_id' : <% $stock_id %>, 'prop' : prop, 'prop_type': prop_type },
     success: function(response) {
         jQuery('#working_modal').modal('hide');
-        if ("error" in response) { alert ('ERRO: '+response.error); }
+        if ("Erro" in response) { alert ('ERRO: '+response.error); }
         if ("message" in response) {
             alert('Propriedade adicionada com sucesso: ' + prop + '. ('+response.message+')');
         }
@@ -265,7 +265,7 @@ function <% $div_name %>_deleteProp(stockprop_value, stockprop_id) {
                 alert(response.message);
                 //location.reload();
             }
-            if ('error'   in response) {  alert(response.error);   }
+            if ("Erro"   in response) {  alert(response.error);   }
            },
            error: function(response) { alert('Ocorreu um erro. Tente novamente mais tarde.');
            },

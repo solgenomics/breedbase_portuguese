@@ -13,12 +13,12 @@ Isaak Y Tecle (iyt2@cornell.edu)
 </%doc>
 
 <&| /page/info_section.mas, 
-   title      => "Step 3: Phenotype dataset",
+   title      => "Passo 3: Conjunto de dados fenotipos",
   collapsible => 1,
   collapsed   => 1
 &>
 
-The phenotype dataset should be in a text file and in the following format. The traits names in the phenotype dataset must match exactly with the traits in the traits file, submitted in the previous step.
+O conjunto de dados do fenótipo deve estar em um arquivo de texto e no seguinte formato. Os nomes das características no conjunto de dados do fenótipo devem corresponder exatamente com as características no arquivo de características, submetidos na etapa anterior.
 
 <pre>
                 plant    fruit       fruit     fruit

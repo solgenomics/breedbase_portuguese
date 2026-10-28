@@ -3,32 +3,20 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title" id="usagePolicyDialog">Please Note: S.lycopersicoides Data Access Agreement</h4>
+        <h4 class="modal-title" id="usagePolicyDialog">Nota: Acordo de Acesso de Dados S.lycopersicoides</h4>
       </div>
       <div class="modal-body">
         <div class="container-fluid">
-	     <h4>Solanum lycopersicoides genome adheres to the <a href="https://www.nature.com/nature/journal/v461/n7261/full/461168a.html"> Toronto Agreement</a> on prepublication data release.</h4>
-The Boyce Thompson Institute and RWTH Aachen University are pleased to make the pre-publication 
- Solanum lycopersicoides LA2951 genome sequences publicly available as a resource for plant breeding and biology. 
-
- By accessing these data, I hereby agree to respect the rights of the consortium to analyze and 
- publish the first global analyses in a peer-reviewed publication according to the Toronto agreement. 
- This includes: 
- 1) whole chromosome or whole genome level analyses on genes, gene families, and repetitive sequences and 
- 2) comparative analyses with other organisms. 
- Studies that do not overlap with those planned by the consortium may be undertaken following an agreement. 
- Please contact  <a href="mailto:usadel@bio1.rwth-aachen.de">Dr. Bjorn Usadel</a> or  <a href="mailto:srs57@cornell.edu">Dr. Susan Strickler</a>  
- to discuss such possibilities. 
-
- The data may be freely downloaded and used by all who respect the restrictions described above.
- <b>Any use of the S. lycopersicoides genome data prior to its publication must follow the agreement 
- and must credit "The Solanum lycopersicoides Genome Consortium".</b>
+	     <h4>Solanum lycopersicoides genome adheres to the <a href="https://www.nature.com/nature/journal/v461/n7261/full/461168a.html"> Acordo de Toronto</a> na liberação de dados pré-publicação.</h4>
+O Instituto Boyce Thompson e a Universidade RWTH Aachen têm o prazer de tornar a pré-publicação Solanum lycopersicoides LA2951 sequências de genoma publicamente disponíveis como um recurso para o melhoramento de plantas e biologia. Ao acessar esses dados, eu concordo em respeitar os direitos do consórcio de analisar e publicar as primeiras análises globais em uma publicação revisada pelos pares de acordo com o acordo de Toronto. Isto inclui: 1) análises cromossômicas inteiras ou de genomas inteiros em genes, famílias de genes e sequências repetitivas e 2) análises comparativas com outros organismos. Estudos que não se sobreponham aos planejados pelo consórcio podem ser realizados após um acordo. Por favor, contate.  <a href="mailto:usadel@bio1.rwth-aachen.de">Dr. Bjorn Usadel</a> ou  <a href="mailto:srs57@cornell.edu">Dr. Susan Strickler</a>  
+ para discutir tais possibilidades. Os dados podem ser livremente baixados e usados por todos que respeitam as restrições descritas acima.
+ <b>Qualquer uso dos dados do genoma de S. lycopersicoides antes de sua publicação deve seguir o acordo e deve crédito "O Consórcio de Genoma de Solanum lycopersicoides".</b>
 
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" id="usage_policy_disagree_submit">Don't Agree</button>
-        <button type="button" class="btn btn-primary" id="usage_policy_agree_submit">Agree</button>
+        <button type="button" class="btn btn-default" id="usage_policy_disagree_submit">Não concorde</button>
+        <button type="button" class="btn btn-primary" id="usage_policy_agree_submit">Concordo</button>
       </div>
     </div>
   </div>
@@ -49,7 +37,7 @@ The Boyce Thompson Institute and RWTH Aachen University are pleased to make the 
 
 
   if (jQuery.cookie("data_usage_policy_approved") == 1) { 
-    document.write('<div class="well well-sm">You have already accepted the data usage policy. Thank you. For more information, you can access the <a href="https://www.nature.com/nature/journal/v461/n7261/full/461168a.html"> Toronto Agreement publication </div>');
+    document.write("<div class=\"well well-sm\">Você já aceitou a política de uso de dados. Obrigado. Para mais informações, acesse <a href=\"https://www.nature.com/nature/journal/v461/n7261/full/461168a.html\"> Publicação do Acordo de Toronto </div>");
   }
 
   window.onload=function() {

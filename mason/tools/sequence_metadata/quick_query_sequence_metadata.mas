@@ -27,7 +27,7 @@ my %params = (
 
 <%init>
     if (!defined $params ) {
-        print "<p class='args-error'><strong>ERROR: </strong>missing component arguments!</p>";
+        print "<p class='args-error'><strong>ERRO: </strong>Argumentos de componentes perdidos!</p>";
     }
 </%init>
 
@@ -38,11 +38,11 @@ my %params = (
     <div class="quick-query-table-container">
         <table class="table quick-query-table">
             <thead><tr>
-                <th>Reference Genome</th>
-                <th>Species</th>
-                <th>Feature</th>
-                <th>Start</th>
-                <th>End</th>
+                <th>Genoma de Referência</th>
+                <th>Espécie</th>
+                <th>Característica</th>
+                <th>Início</th>
+                <th>Fim</th>
                 <th></th>
             </tr></thead>
             <tr>
@@ -51,7 +51,7 @@ my %params = (
                 <td><% $params->{$id}->{'feature'} %></td>
                 <td><% $params->{$id}->{'start'} %></td>
                 <td><% $params->{$id}->{'end'} %></td>
-                <td><a href="/search/sequence_metadata?reference_genome=<% $params->{$id}->{'reference_genome'} %>&feature=<% $params->{$id}->{'feature'} %>&start=<% $params->{$id}->{'start'} %>&end=<% $params->{$id}->{'end'} %>">Modify&nbsp;Query</a></td>
+                <td><a href="/search/sequence_metadata?reference_genome=<% $params->{$id}->{'reference_genome'} %>&feature=<% $params->{$id}->{'feature'} %>&start=<% $params->{$id}->{'start'} %>&end=<% $params->{$id}->{'end'} %>">Modifique a Consulta</a></td>
             </tr>
         </table>
     </div>
@@ -95,7 +95,7 @@ function quick_query(id, species, reference, feature, start, end) {
             display_results(id, data);
         },
         error: function() {
-            console.log("ERROR: Could not query sequence metadata!");
+            console.log("ERRO: não foi possível consultar os metadados das sequências!");
         }
     });
 
@@ -110,14 +110,14 @@ function display_results(id, data) {
     let dt = jQuery('#' + id).DataTable();
     dt.clear();
     if ( data && data.error ) {
-        console.log("ERROR: Could not query sequence metadata")
+        console.log("ERRO: não foi possível consultar os metadados das sequências")
         console.log(data.error);
     }
     else if ( data && data.results && data.results.length > 0) {
         dt.rows.add(data.results);
     }
     else {
-        console.log("No sequence metadata results found");
+        console.log("Nenhum metadado de sequência encontrado");
     }
     dt.draw();
 }
@@ -191,12 +191,12 @@ function renderLinksColumn(data, type, row) {
                 autoWidth: false,
                 data: [],
                 columns: [
-                    { title: "Protocol", data: "nd_protocol_name" },
-                    { title: "Feature", data: "feature_name" },
-                    { title: "Start", data: "start" },
-                    { title: "End", data: "end" },
-                    { title: "Score", data: "score" },
-                    { title: "Attributes", data: "attributes", render: renderAttributesColumn },
+                    { title: "Protocolo", data: "nd_protocol_name" },
+                    { title: "Característica", data: "feature_name" },
+                    { title: "Início", data: "start" },
+                    { title: "Fim", data: "end" },
+                    { title: "Ponto", data: "score" },
+                    { title: "Atributos", data: "attributes", render: renderAttributesColumn },
                     { title: "Links", data: "links", render: renderLinksColumn }
                 ],
                 order: [[ 2, "asc" ]]

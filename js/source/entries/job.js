@@ -7,20 +7,20 @@
 */
 
 export function dismiss_job(job_id) {
-    if(confirm("Job dismissal removes record of this submission, but does not delete any resulting analyses or other data. Are you sure you want to proceed?")) {
+    if(confirm("Dispensar esta tarefa remove o registro do envio, mas não exclui as análises resultantes nem outros dados. Tem certeza de que deseja continuar?")) {
         $.ajax({
             url: '/ajax/job/delete/'+job_id,
             success: function(response) {
                 if (response.error) {
-                    alert("Error dismissing job.");
+                    alert("Erro ao dispensar a tarefa.");
                     window.location.reload();
                 } else {
-                    alert("Job record deleted.");
+                    alert("Registro da tarefa excluído.");
                     window.location.reload();
                 }
             },
             error: function(response) {
-                alert("Error dismissing job.");
+                alert("Erro ao dispensar a tarefa.");
                 window.location.reload();
             }
         });
@@ -28,21 +28,21 @@ export function dismiss_job(job_id) {
 }
 
 export function dismiss_finished_jobs(user_id) {
-    if (confirm("Dismiss all finished and canceled jobs?")){
+    if (confirm("Dispensar todas as tarefas concluídas e canceladas?")){
 
         $.ajax({
             url: '/ajax/job/delete_finished/'+user_id,
             success: function(response) {
                 if (response.error) {
-                    alert("Error dismissing jobs.");
+                    alert("Erro ao dispensar as tarefas.");
                     window.location.reload();
                 } else {
-                    alert("Jobs cleared.");
+                    alert("Tarefas removidas.");
                     window.location.reload();
                 }
             },
             error: function(response) {
-                alert("Error dismissing jobs.");
+                alert("Erro ao dispensar as tarefas.");
                 window.location.reload();
             }
         });
@@ -50,41 +50,41 @@ export function dismiss_finished_jobs(user_id) {
 }
 
 export function cancel_job(job_id) {
-    if(confirm("Are you sure you want to cancel?")) {
+    if(confirm("Tem certeza de que deseja cancelar?")) {
         $.ajax({
             url: '/ajax/job/cancel/'+job_id,
             success: function(response) {
                 if (response.error) {
-                    alert("Error canceling job.");
+                    alert("Erro ao cancelar a tarefa.");
                 } else {
-                    alert("Job canceled.");
+                    alert("Tarefa cancelada.");
                     window.location.reload();
                 }
             },
             error: function(response) {
-                alert("Error canceling job.");
+                alert("Erro ao cancelar a tarefa.");
             }
         });
     } 
 }
 
 export function keep_recent_jobs(user_id) {
-    if (confirm("Dismiss old jobs?")){
+    if (confirm("Dispensar tarefas antigas?")){
         var interval = jQuery('#keep_recent_jobs_select').val();
 
         $.ajax({
             url: '/ajax/job/delete_older_than/'+interval+'/'+user_id,
             success: function(response) {
                 if (response.error) {
-                    alert("Error dismissing jobs.");
+                    alert("Erro ao dispensar as tarefas.");
                     window.location.reload();
                 } else {
-                    alert("Jobs cleared.");
+                    alert("Tarefas removidas.");
                     window.location.reload();
                 }
             },
             error: function(response) {
-                alert("Error dismissing jobs.");
+                alert("Erro ao dispensar as tarefas.");
                 window.location.reload();
             }
         });
@@ -92,20 +92,20 @@ export function keep_recent_jobs(user_id) {
 }
 
 export function dismiss_dead_jobs(user_id) {
-    if (confirm("Dismiss failed and timed out jobs?")) {
+    if (confirm("Dispensar as tarefas que falharam ou excederam o tempo limite?")) {
         $.ajax({
             url: '/ajax/job/delete_dead_jobs/'+user_id,
             success: function(response) {
                 if (response.error) {
-                    alert("Error dismissing jobs.");
+                    alert("Erro ao dispensar as tarefas.");
                     window.location.reload();
                 } else {
-                    alert("Jobs cleared.");
+                    alert("Tarefas removidas.");
                     window.location.reload();
                 }
             },
             error: function(response) {
-                alert("Error dismissing jobs.");
+                alert("Erro ao dispensar as tarefas.");
                 window.location.reload();
             }
         });

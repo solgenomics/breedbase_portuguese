@@ -44,7 +44,7 @@ Lukas Mueller <lam87@cornell.edu>
 % #$root_nodes = 'GO PO SP'; #for testing
 
 <table title="formulário de navegação de ontologias" cellpadding="0" summary="" border="0"><tr><td><div id="ontology_browser_input" >&nbsp;&nbsp;&nbsp;</div></td></tr>
-<tr><td><div id="ontology_term_input" >carregando...</div></td></tr></table>
+<tr><td><div id="ontology_term_input" >Carregando...</div></td></tr></table>
 <input id="hide_link" type="button" value="Mostrar resultados" display="none" onClick="MochiKit.Visual.toggle('search_results', 'blind'); o.toggleSearchResultsVisible(); o.setSearchButtonText();  "><br />
 
 <div id="search_results" ></div>

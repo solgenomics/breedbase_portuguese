@@ -184,7 +184,7 @@ $parent2_stock_name => '(unknown)'
 
 % if ($abstract) { 
 
-<&| /page/info_section.mas, title=>"Abstract", collapsible=>1, collapsed=>0 &>
+<&| /page/info_section.mas, title=>"Abstrato", collapsible=>1, collapsed=>0 &>
 <% $abstract %>
 </&>
 
@@ -193,19 +193,19 @@ $parent2_stock_name => '(unknown)'
 % my ($stock1_link, $stock2_link) = ("", "");
 % $parent1_stock_id ?  $stock1_link='' : $stock1_link = "/stock/$parent1_stock_id/view";
 % $parent2_stock_id ?  $stock2_link='' : $stock2_link = "/stock/$parent2_stock_id/view";
-<&| /page/info_section.mas, collapsible => 1, title=>"Parents of Mapping Population" &>
-<p>Parent 1 <a href="<% $stock1_link %>"><% $parent1_stock_name %></a></p>
-<p>Parent 2 <a href="<% $stock2_link %>"><% $parent2_stock_name %></a></p>
+<&| /page/info_section.mas, collapsible => 1, title=>"Pais de Mapping Population" &>
+<p>Pai 1 <a href="<% $stock1_link %>"><% $parent1_stock_name %></a></p>
+<p>Pai 2 <a href="<% $stock2_link %>"><% $parent2_stock_name %></a></p>
 </&>
 
 
 % my $total = 0; 
-% my $html = '<table class="table table-hover table-condensed table-bordered"><thead><tr class="info"><th>Chromosome</th><th>Markers</th></tr></thead><tbody>';
+% my $html = '<table class="table table-hover table-condensed table-bordered"><thead><tr class="info"><th>Cromossoma</th><th>Marcadores</th></tr></thead><tbody>';
 % foreach (@$chromosome_stats) { $html .= "<tr><td>$_->[0]</td><td>$_->[1]</td></tr>"; $total += $_->[2];  }
 % $html .= '<tr><td><b>Total:</b></td><td>'.$total.'</td></tr></tbody>';
 % $html .= '</table>';
 <&| /page/info_section.mas, 
-  title => 'Map Statistics',
+  title => 'Estatísticas do Mapa',
   collapsible => 1,
   collapsed => 0,
  &>
@@ -216,7 +216,7 @@ $parent2_stock_name => '(unknown)'
   </div>
   <div class="col-sm-6 col-md-6 col-lg-6">
     <div class="panel panel-info">
-      <div class="panel-heading">Overview</div>
+      <div class="panel-heading">Visão geral</div>
       <div class="panel-body">
         <% $marker_stats %>
       </div>

@@ -27,7 +27,7 @@ $design_types => ()
 <h1>Características</h1><br/>
 <table class="table table-bordered">
 <thead>
-<tr><th>Adicionar</th><th>Gerenciar</th><th>Pesquisar</th></tr>
+<tr><th>Adicionar</th><th>Gerenciar</th><th>Pesquisador</th></tr>
 </thead>
 <tbody>
 <tr>
@@ -49,7 +49,7 @@ $design_types => ()
 <h1>Ensaios de campo</h1><br/>
 <table class="table table-bordered">
 <thead>
-<tr><th>Adicionar</th><th>Gerenciar</th><th>Pesquisar</th></tr>
+<tr><th>Adicionar</th><th>Gerenciar</th><th>Pesquisador</th></tr>
 </thead>
 <tbody>
 <tr>
@@ -74,7 +74,7 @@ $design_types => ()
 <h1>Placas de genotipagem</h1><br/>
 <table class="table table-bordered">
 <thead>
-<tr><th>Adicionar</th><th>Gerenciar</th><th>Pesquisar</th></tr>
+<tr><th>Adicionar</th><th>Gerenciar</th><th>Pesquisador</th></tr>
 </thead>
 <tbody>
 <tr>
@@ -97,7 +97,7 @@ $design_types => ()
 <h1>Locais</h1><br/>
 <table class="table table-bordered">
 <thead>
-<tr><th>Adicionar</th><th>Gerenciar</th><th>Pesquisar</th></tr>
+<tr><th>Adicionar</th><th>Gerenciar</th><th>Pesquisador</th></tr>
 </thead>
 <tbody>
 <tr>
@@ -120,7 +120,7 @@ $design_types => ()
 <h1>Acessos</h1><br/>
 <table class="table table-bordered">
 <thead>
-<tr><th>Adicionar</th><th>Gerenciar</th><th>Pesquisar</th></tr>
+<tr><th>Adicionar</th><th>Gerenciar</th><th>Pesquisador</th></tr>
 </thead>
 <tbody>
 <tr>
@@ -143,7 +143,7 @@ $design_types => ()
 <h1>Populações</h1><br/>
 <table class="table table-bordered">
 <thead>
-<tr><th>Adicionar</th><th>Gerenciar</th><th>Pesquisar</th></tr>
+<tr><th>Adicionar</th><th>Gerenciar</th><th>Pesquisador</th></tr>
 </thead>
 <tbody>
 <tr>
@@ -167,7 +167,7 @@ $design_types => ()
 <h1>Lotes de sementes</h1><br/>
 <table class="table table-bordered">
 <thead>
-<tr><th>Adicionar</th><th>Gerenciar</th><th>Pesquisar</th></tr>
+<tr><th>Adicionar</th><th>Gerenciar</th><th>Pesquisador</th></tr>
 </thead>
 <tbody>
 <tr>
@@ -192,7 +192,7 @@ $design_types => ()
 <h1>Pedigrees</h1><br/>
 <table class="table table-bordered">
 <thead>
-<tr><th>Adicionar</th><th>Gerenciar</th><th>Pesquisar</th></tr>
+<tr><th>Adicionar</th><th>Gerenciar</th><th>Pesquisador</th></tr>
 </thead>
 <tbody>
 <tr>
@@ -215,7 +215,7 @@ $design_types => ()
 <h1>Cruzamentos</h1><br/>
 <table class="table table-bordered">
 <thead>
-<tr><th>Planejar</th><th>Adicionar</th><th>Gerenciar</th><th>Pesquisar</th></tr>
+<tr><th>Planejar</th><th>Adicionar</th><th>Gerenciar</th><th>Pesquisador</th></tr>
 </thead>
 <tbody>
 <tr>
@@ -250,7 +250,7 @@ $design_types => ()
 <h1>Fenótipos</h1><br/>
 <table class="table table-bordered">
 <thead>
-<tr><th>Coleta</th><th>Adicionar</th><th>Gerenciar</th><th>Pesquisar</th></tr>
+<tr><th>Coleta</th><th>Adicionar</th><th>Gerenciar</th><th>Pesquisador</th></tr>
 </thead>
 <tbody>
 <tr>

@@ -31,7 +31,7 @@ solGS.trialsSelect = {
 
     getDatasetName: function () {
         var datasetName = jQuery("#dataset_name").val();
-        console.log("Dataset Name: ", datasetName);
+        console.log("Nome do conjunto de dados: ", datasetName);
         if (datasetName) {
             this.datasetName = datasetName;
         }
@@ -102,7 +102,7 @@ jQuery(document).ready(function () {
                 trialSelect.empty();
                 var datasetOption = jQuery("<option></option>")
                     .attr("value", datasetId)
-                    .text("Dataset: " + datasetName);
+                    .text("Conjunto de dados: " + datasetName);
                 trialSelect.append(datasetOption);
 
                 Object.keys(trials).forEach(function (key) {
@@ -128,7 +128,7 @@ jQuery(document).on("change", "#trial_select", function () {
     
     if (selectedTrial) {
         var popName = jQuery(this).find("option:selected").text()
-        console.log("Population Name: ", popName);
+        console.log("Nome da população: ", popName);
         jQuery("#analysis_pop_name").val(popName);
         if (!jQuery(this).find("option:selected").text().match(/Dataset:/)) {
             jQuery("#data_structure").val("trial");
@@ -140,8 +140,8 @@ jQuery(document).on("change", "#trial_select", function () {
             console.log("Data structure set to 'dataset'");
             console.log("Data structure set to 'dataset'");
         }
-        console.log("You have selected trial with ID: " + selectedTrial);
+        console.log("Você selecionou o ensaio com ID: " + selectedTrial);
     } else {
-        console.log("No trial selected.");
+        console.log("Nenhum ensaio selecionado.");
     }
 });

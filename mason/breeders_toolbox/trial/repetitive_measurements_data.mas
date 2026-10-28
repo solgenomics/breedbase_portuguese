@@ -370,7 +370,7 @@ jQuery(document).ready(function() {
             try {
                 $table.DataTable().clear().destroy();
             } catch (e) {
-                console.log(`Error clearing data table...${e}`)
+                console.log(`Erro ao limpar a tabela de dados...${e}`)
             }
                 
             $table.empty();

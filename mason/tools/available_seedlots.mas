@@ -3,16 +3,16 @@
   <table class="table table-hover table-bordered">
     <thead>
       <tr>
-        <th rowspan="2" style="text-align: center;">Accessions</th><th colspan="7" style="text-align: center;">Seedlots</th>
+        <th rowspan="2" style="text-align: center;">Acessos</th><th colspan="7" style="text-align: center;">Lotes de sementes</th>
       </tr>
       <tr>
-        <th style="text-align: center;"><button id="selectallaccessions" type="button" disabled>Select/Deselect All</button></th>
-        <th style="text-align: center;">Breeding Program</th>
-        <th style="text-align: center;">Seedlot Name</th>
-        <th style="text-align: center;">Contents</th>
-        <th style="text-align: center;">Seedlot Location</th>
-        <th style="text-align: center;">Count</th>
-        <th style="text-align: center;">Weight(g)</th>
+        <th style="text-align: center;"><button id="selectallaccessions" type="button" disabled>Selecionar/desmarcar tudo</button></th>
+        <th style="text-align: center;">Programa de melhoramento</th>
+        <th style="text-align: center;">Lote de sementes Name</th>
+        <th style="text-align: center;">Conteúdo</th>
+        <th style="text-align: center;">Localização do Lote de sementes</th>
+        <th style="text-align: center;">Contagem</th>
+        <th style="text-align: center;">Peso(g)</th>
       </tr>
     </thead>
   </table>
@@ -58,7 +58,7 @@
         error: function(response) {
           jQuery('#working_modal').modal('hide');
           console.log(response);
-          alert("Something went wrong in the available-seedlots AJAX call. See console for more information.")
+          alert("Ocorreu um problema ao consultar os lotes de sementes disponíveis. Consulte o console para mais informações.")
         }
       });
     };
@@ -110,7 +110,7 @@
       allOptionRows = newOptionRows.merge(optionRows);
       var optionRowCells = allOptionRows.selectAll("td").data(function(d){
           if (d==empty_placeholder){
-            return ['<input disabled type="checkbox">'," ","No Available Seedlots"," "," "," "," "]
+            return ['<input disabled type="checkbox">'," ","Nenhum lote de sementes disponível"," "," "," "," "]
           }
           var cells = [];
           cells.push('<input value="'+d.seedlot[0]+'" name="'+d.seedlot[0]+'" type="checkbox">');

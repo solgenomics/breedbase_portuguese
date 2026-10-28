@@ -20,7 +20,7 @@ $accuracy_report
 <&| /page/info_section.mas, 
   collapsible => 1, 
   collapsed   => 0, 
-  title       => "Model accuracy statistics -- K-fold cross-validation method" 
+  title       => "Modelo de estatísticas de precisão - método de validação cruzada K-fold" 
 &> 
 
 <& /page/columnar_table.mas,

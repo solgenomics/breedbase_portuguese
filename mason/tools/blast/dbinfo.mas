@@ -12,9 +12,9 @@
 
 </%perl>
 
-<& /page/page_title.mas, title=>"BLAST db details" &>
+<& /page/page_title.mas, title=>"BLAST DB detalhes" &>
 
-<div >This page provides details for each of the BLAST sequence sets available at SGN.</div>
+<div >Esta página fornece detalhes para cada sequência BLAST disponível na SGN.</div>
 
 % foreach my $g (@groups) { 
 
@@ -77,7 +77,7 @@
 ##  my $update_freq = $db->update_freq;
 
 #  return info_section_html( title => $db->title.'<a name="'.$db->file_base.'"></a>',
-#			    subtitle => "<b>Category:</b> $groupname",
+#			    subtitle => "<b>Categoria:</b> $groupname",
 #			    is_subsection => 0,
 #			    contents =>
 #			    info_table_html(
@@ -95,7 +95,7 @@
 #					    __border => 0,
 #					   )
 #			    .info_table_html(
-#					     'Description' => $db->description || '<span class="ghosted">Not available</span>',
+#					     'Description' => $db->description || '<span class="ghosted">Indisponível</span>',
 #					    __border => 0,
 #					   ),
 #

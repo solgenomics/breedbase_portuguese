@@ -1,6 +1,6 @@
 <%args>
     $feature
-    $title   => 'Feature'
+    $title   => 'Característica'
     $description_from => [ $feature ]
     $featurelocs
 </%args>

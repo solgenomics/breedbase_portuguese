@@ -53,7 +53,7 @@ jQuery(document).ready(function ($) {
                 if (response.error) {
                     alert(response.error);
                 } else {
-                    var html = 'The following vectors were added!<br/>';
+                    var html = "Os seguintes vetores foram adicionados!<br/>";
                     for (var i=0; i<response.added.length; i++){
                         html = html + '<a href="/stock/'+response.added[i][0]+'/view">'+response.added[i][1]+'</a><br/>';
                     }
@@ -62,7 +62,7 @@ jQuery(document).ready(function ($) {
                 }
             },
             error: function (response) {
-                alert('An error occurred in processing. sorry'+response.responseText);
+                alert("Ocorreu um erro durante o processamento."+response.responseText);
             }
         });
     }
@@ -73,7 +73,7 @@ jQuery(document).ready(function ($) {
             var vectorsToAdd = vectorList;
 
             if (!vectorsToAdd || vectorsToAdd.length == 0) {
-                alert("No vectors to add");
+                alert("Nenhum vetor para adicionar");
                 return;
 	        }
 
@@ -92,7 +92,7 @@ jQuery(document).ready(function ($) {
 	    var uploadFile = jQuery("#new_vectors_upload_file").val();
 	    jQuery('#upload_new_vectors_form').attr("action", "/ajax/vectors/verify_vectors_file");
 	    if (uploadFile === '') {
-                alert("Please select a file");
+                alert("Selecione um arquivo");
                 return;
 	    }
 	    jQuery("#upload_new_vectors_form").submit();
@@ -127,7 +127,7 @@ jQuery(document).ready(function ($) {
             }
             else {
                 fullParsedData = undefined;
-                alert("An unknown error occurred.  Please try again later or contact us for help.");
+                alert("Ocorreu um erro desconhecido. Tente novamente mais tarde ou entre em contato conosco.");
             }
         }
     });
@@ -190,8 +190,8 @@ function review_verification_results(doFuzzySearch, verifyResponse, vector_list_
     //console.log(vector_list_id);
 
     if (verifyResponse.found) {
-        jQuery('#count_of_found_vectors').html("Total number already in the database("+verifyResponse.found.length+")");
-        var found_html = '<table class="table table-bordered" id="found_vectors_table"><thead><tr><th>Search Name</th><th>Found in Database</th></tr></thead><tbody>';
+        jQuery('#count_of_found_vectors').html("Número total já existente no banco de dados ("+verifyResponse.found.length+")");
+        var found_html = "<table class=\"table table-bordered\" id=\"found_vectors_table\"><thead><tr><th>Nome pesquisado</th><th>Encontrado no banco de dados</th></tr></thead><tbody>";
         for( i=0; i < verifyResponse.found.length; i++){
             found_html = found_html
                 +'<tr><td>'+verifyResponse.found[i].matched_string
@@ -213,18 +213,18 @@ function review_verification_results(doFuzzySearch, verifyResponse, vector_list_
 
     if (verifyResponse.fuzzy.length > 0 && doFuzzySearch) {
         fuzzyResponse = verifyResponse.fuzzy;
-        var fuzzy_html = '<table id="add_vector_fuzzy_table" class="table"><thead><tr><th class="col-xs-4">Name in Your List</th><th class="col-xs-4">Existing Name(s) in Database</th><th class="col-xs-4">Options&nbsp;&nbsp;&nbsp&nbsp;<input type="checkbox" id="add_vector_fuzzy_option_all"/> Use Same Option for All</th></tr></thead><tbody>';
+        var fuzzy_html = "<table id=\"add_vector_fuzzy_table\" class=\"table\"><thead><tr><th class=\"col-xs-4\">Nome na sua lista</th><th class=\"col-xs-4\">Nome(s) existente(s) no banco de dados</th><th class=\"col-xs-4\">Opções<input type=\"checkbox\" id=\"add_vector_fuzzy_option_all\"/> Usar a mesma opção para todos</th></tr></thead><tbody>";
         for( i=0; i < verifyResponse.fuzzy.length; i++) {
             fuzzy_html = fuzzy_html + '<tr id="add_vector_fuzzy_option_form'+i+'"><td>'+ verifyResponse.fuzzy[i].name + '<input type="hidden" name="fuzzy_name" value="'+ verifyResponse.fuzzy[i].name + '" /></td>';
             fuzzy_html = fuzzy_html + '<td><select class="form-control" name ="fuzzy_select">';
             for(j=0; j < verifyResponse.fuzzy[i].matches.length; j++){
                 if (verifyResponse.fuzzy[i].matches[j].is_synonym){
-                    fuzzy_html = fuzzy_html + '<option value="' + verifyResponse.fuzzy[i].matches[j].synonym_of + '">' + verifyResponse.fuzzy[i].matches[j].name + ' (SYNONYM OF: '+verifyResponse.fuzzy[i].matches[j].synonym_of+')</option>';
+                    fuzzy_html = fuzzy_html + '<option value="' + verifyResponse.fuzzy[i].matches[j].synonym_of + '">' + verifyResponse.fuzzy[i].matches[j].name + " (SINÔNIMO DE: "+verifyResponse.fuzzy[i].matches[j].synonym_of+')</option>';
                 } else {
                     fuzzy_html = fuzzy_html + '<option value="' + verifyResponse.fuzzy[i].matches[j].name + '">' + verifyResponse.fuzzy[i].matches[j].name + '</option>';
                 }
             }
-            fuzzy_html = fuzzy_html + '</select></td><td><select class="form-control" name="fuzzy_option"><option value="keep">Continue saving name in your list</option><option value="replace">Replace name in your list with selected existing name</option><option value="remove">Remove name in your list and ignore</option><option value="synonymize">Add name in your list as a synonym to selected existing name</option></select></td></tr>';
+            fuzzy_html = fuzzy_html + "</select></td><td><select class=\"form-control\" name=\"fuzzy_option\"><option value=\"keep\">Continuar salvando o nome da sua lista</option><option value=\"replace\">Substituir o nome da sua lista pelo nome existente selecionado</option><option value=\"remove\">Remover o nome da sua lista e ignorá-lo</option><option value=\"synonymize\">Adicionar o nome da sua lista como sinônimo do nome existente selecionado</option></select></td></tr>";
         }
         fuzzy_html = fuzzy_html + '</tbody></table>';
         jQuery('#view_fuzzy_matches').html(fuzzy_html);
@@ -253,7 +253,7 @@ function review_verification_results(doFuzzySearch, verifyResponse, vector_list_
             if (verifyResponse.absent.length > 0 || infoToAdd.length>0){
                 populate_review_absent_dialog(verifyResponse.absent, infoToAdd);
             } else {
-                alert('All vectors in your list already exist in the database. (3)');
+                alert("Todos os vetores da sua lista já existem no banco de dados. (3)");
             }
         }
     });
@@ -268,7 +268,7 @@ function populate_review_absent_dialog(absent, infoToAdd){
     console.log(infoToAdd);
     console.log(absent);
 
-    jQuery('#count_of_absent_vectors').html("Total number to be added("+absent.length+")");
+    jQuery('#count_of_absent_vectors').html("Número total a adicionar ("+absent.length+")");
     var absent_html = '';
 
     for( i=0; i < absent.length; i++){
@@ -280,7 +280,7 @@ function populate_review_absent_dialog(absent, infoToAdd){
     jQuery('#view_infoToAdd').html('');
 
     if (infoToAdd.length>0){
-        var infoToAdd_html = '<div class="well"><b>The following new vectors will be added:</b><br/><br/><table id="infoToAdd_new_table" class="table table-bordered table-hover"><thead><tr><th>uniquename</th><th>properties</th></tr></thead><tbody>';
+        var infoToAdd_html = "<div class=\"well\"><b>Os seguintes novos vetores serão adicionados:</b><br/><br/><table id=\"infoToAdd_new_table\" class=\"table table-bordered table-hover\"><thead><tr><th>Nome único</th><th>Propriedades</th></tr></thead><tbody>";
         for( i=0; i < infoToAdd.length; i++){
             if (!('stock_id' in infoToAdd[i])){
                 infoToAdd_html = infoToAdd_html + '<tr><td>'+infoToAdd[i]['germplasmName']+'</td>';
@@ -299,7 +299,7 @@ function populate_review_absent_dialog(absent, infoToAdd){
             }
         }
         infoToAdd_html = infoToAdd_html + "</tbody></table></div>";
-        infoToAdd_html = infoToAdd_html + '<div class="well"><b>The following vectors will be updated:</b><br/><br/><table id="infoToAdd_updated_table" class="table table-bordered table-hover"><thead><tr><th>uniquename</th><th>properties</th></tr></thead><tbody>';
+        infoToAdd_html = infoToAdd_html + "<div class=\"well\"><b>Os seguintes vetores serão atualizados:</b><br/><br/><table id=\"infoToAdd_updated_table\" class=\"table table-bordered table-hover\"><thead><tr><th>Nome único</th><th>Propriedades</th></tr></thead><tbody>";
         for( i=0; i < infoToAdd.length; i++){
             if ('stock_id' in infoToAdd[i]){
                 infoToAdd_html = infoToAdd_html + '<tr><td>'+infoToAdd[i]['germplasmName']+'</td>';
@@ -373,11 +373,11 @@ function process_fuzzy_options(vector_list_id) {
                 populate_review_absent_dialog(vectorList, infoToAdd);
                 jQuery('#review_absent_dialog').modal('show');
             } else {
-                alert('All vectors in your list now exist in the database. 2');
+                alert("Todos os vetores da sua lista agora existem no banco de dados. 2");
             }
         },
         error: function () {
-            alert('An error occurred checking your fuzzy options! Do not try to add a synonym to a synonym! Also do not use any special characters!');
+            alert("Ocorreu um erro ao verificar as opções de correspondência aproximada! Não adicione sinônimos a outros sinônimos nem use caracteres especiais!");
         }
     });
 }

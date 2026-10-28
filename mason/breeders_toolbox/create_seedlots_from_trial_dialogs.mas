@@ -60,9 +60,9 @@ $default_seedlot_material_type => undef
                             <& /page/page_title.mas, title=>"Selecionar lotes de sementes" &>
 
                             <p>
-                                É possível gerar lotes de sementes para cada <strong>acesso</strong> ou <strong>parcela</strong>
-                                <span class='create_seedlots_trial_subplots_available'> ou <strong>subparcela</strong></span>
-                                <span class='create_seedlots_trial_plants_available'> ou <strong>planta</strong></span>
+                                É possível gerar lotes de sementes para cada <strong>acesso</strong> UO <strong>parcela</strong>
+                                <span class='create_seedlots_trial_subplots_available'> UO <strong>subparcela</strong></span>
+                                <span class='create_seedlots_trial_plants_available'> UO <strong>planta</strong></span>
                                 deste ensaio.
                             </p>
                             <ul>

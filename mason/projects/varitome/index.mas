@@ -2,29 +2,29 @@
 <%args>
 </%args>
 
-<& /page/page_title.mas, title=>"Varitome project: Exploitation of genetic and epigenetic variation in the regulation of tomato fruit quality traits" &>
+<& /page/page_title.mas, title=>"Projeto Varitome: Exploração da variação genética e epigenética na regulação de características de qualidade de frutos de tomate" &>
 
 <&| /page/info_section.mas, title => ''  &>
 <center><img src="/img/varitome/varitome_tomatoes.jpg" align="center"/></center>
 
 </&>
 
-<&| /page/info_section.mas, title => 'Major goals' &>
+<&| /page/info_section.mas, title => 'Grandes objetivos' &>
 
 
 <div>
-Future crop improvement relies on harnessing the broader genetic diversity present in the ancestors of our crops. Recently, our team has gained detailed knowledge of the transition from wild species to the earliest tomato landraces. Cultivated tomato (Solanum lycopersicum var lycopersicum) evolved from semi-domesticated and wild populations of S. lycopersicum var cerasiforme, which in turn evolved from a subpopulation of the red-fruited wild species, S. pimpinellifolium. This knowledge allows us to select and exploit underutilized germplasm for the identification of genes controlling fruit quality and beneficial alleles that may have been left behind during crop domestication. With this information, we seek to gain fundamental insights into the molecular and biochemical pathways that impact the traits. This would lead to an advanced understanding into the regulation of basic plant processes of economic importance. To efficiently identify genes and pathways that control complex fruit quality traits in tomato, we propose the following specific aims:
+A melhoria da cultura futura depende em aproveitar a diversidade genética mais ampla presente nos ancestrais de nossas culturas. Recentemente, nossa equipe ganhou conhecimento detalhado da transição de espécies selvagens para as primeiras raças de tomate. O tomate cultivado (Solanum lycopersicum var lycopersicum) evoluiu de populações semidomesticadas e selvagens de S. lycopersicum var cerasiforme, que por sua vez evoluiu de uma subpopulação da espécie selvagem de frutos vermelhos, S. pimplenellifolium. Este conhecimento nos permite selecionar e explorar germoplasma subutilizado para a identificação de genes que controlam a qualidade das frutas e alelos benéficos que podem ter sido deixados para trás durante a domesticação das culturas. Com esta informação, buscamos obter insights fundamentais sobre as vias moleculares e bioquímicas que afetam as características. Isso levaria a um entendimento avançado sobre a regulação de processos básicos de plantas de importância econômica. Para identificar eficientemente genes e vias que controlam características complexas de qualidade dos frutos no tomate, propomos os seguintes objetivos específicos:
 </div>
 <ol>
-<li>Assembly and phenotyping of a tomato population constituting the continuum of wild, semi-domesticated and ancestral landraces. This collection is named Varitome to distinguish it from other tomato sequencing projects.</li>
-<li>Identification of loci underlying fruit quality traits through genome-wide association studies (GWAS) and differentially expressed small RNAs. </li>
-<li>Genetic confirmation of trait association with candidate regions to genes. </li>
-<li>Functional analysis of developmental and biochemical pathways that control fruit quality. </li>
-<li>Database development and integration at Sol Genomics Network (SGN). </li>
+<li>Montagem e fenotipagem de uma população de tomate constituindo o contínuo de terras selvagens, semidomesticadas e ancestrais. Esta coleção é chamada Varitome para distingui-la de outros projetos de sequenciamento de tomate.</li>
+<li>Identificação de características de qualidade de frutos subjacentes através de estudos de associação (GWAS) e RNAs pequenos expressos diferencialmente. </li>
+<li>Confirmação genética de associação de características com regiões candidatas a genes. </li>
+<li>Análise funcional do desenvolvimento e vias bioquímicas que controlam a qualidade dos frutos. </li>
+<li>Desenvolvimento de banco de dados e integração na Sol Genomics Network (SGN). </li>
 </ol>
 </&>
 
-<&| /page/info_section.mas, title => 'The team' &>
+<&| /page/info_section.mas, title => 'A equipe' &>
 
 <center>
 <img src="/img/varitome/varitome_people.png"  border="0" usemap="#peoplemap" /> 
@@ -49,14 +49,14 @@ Future crop improvement relies on harnessing the broader genetic diversity prese
 
 </&>
 
-<&| /page/info_section.mas, title => 'The products' &>
+<&| /page/info_section.mas, title => 'Os produtos' &>
 
- <&| /page/info_section.mas, title => "NCBI submission" , collapsible=>1 &>
+ <&| /page/info_section.mas, title => "Apresentação de BCN" , collapsible=>1 &>
 
   <ul>
     <li>NCBI BioProject <a href="https://www.ncbi.nlm.nih.gov/bioproject/PRJNA454805">PRJNA454805</a></li>
-    <li>Tomato Genomic DNA sequences <a href="https://www.ncbi.nlm.nih.gov/sra/SRP150040">SRP150040</a></il>
-<li>Tomato sRNA and mRNA sequences<a href="https://www.ncbi.nlm.nih.gov/sra/SRP135718">SRP135718</a></i
+    <li>Sequências de DNA genômico de tomate <a href="https://www.ncbi.nlm.nih.gov/sra/SRP150040">SRP150040</a></il>
+<li>SRNA de tomate e sequências de mRNA<a href="https://www.ncbi.nlm.nih.gov/sra/SRP135718">SRP135718</a></i
   </ul>
 
  </&>
@@ -74,14 +74,14 @@ my $iframe_url = $jbrowse_url . "&tracklist=0&nav=1&overview=0" ;
 % if ( $jbrowse_path ) {
 <center>
   <iframe style="border: 1px solid rgb(80, 80, 80);" src="<% $iframe_url %>" height="350" width="1000"  name="jbrowse_iframe">
-  <p>Your browser does not support iframes.</p> </iframe>
+  <p>Seu navegador não suporta iframes.</p> </iframe>
 </center>
 % }
 
 </&>
 
 
-<&| /page/info_section.mas, id=>"program_accessions", title=>"Accessions", collapsible=>1, collapsed=>0, hide_if_empty=>1 &>
+<&| /page/info_section.mas, id=>"program_accessions", title=>"Acessos", collapsible=>1, collapsed=>0, hide_if_empty=>1 &>
   
   <& /breeders_toolbox/program/program_accessions.mas, program_id => 54 &>
     
@@ -89,7 +89,7 @@ my $iframe_url = $jbrowse_url . "&tracklist=0&nav=1&overview=0" ;
 
 
 
- <&| /page/info_section.mas, id=>"program_traits_assayed", title => "Traits assayed" , collapsible=>1, collapsed=>1, hide_ixsf_empty=>1 &>
+ <&| /page/info_section.mas, id=>"program_traits_assayed", title => "Características testados" , collapsible=>1, collapsed=>1, hide_ixsf_empty=>1 &>
 
   <& /breeders_toolbox/program/traits.mas, program_id => 54, collapse_phenotypes_section => 1  &>
 
@@ -97,7 +97,7 @@ my $iframe_url = $jbrowse_url . "&tracklist=0&nav=1&overview=0" ;
 
 
 
- <&| /page/info_section.mas, id=>"program_trials", title => "Trials" , collapsible=>1, collapsed=>0, hide_if_empty=>1 &>
+ <&| /page/info_section.mas, id=>"program_trials", title => "Ensaios" , collapsible=>1, collapsed=>0, hide_if_empty=>1 &>
     
     <& /breeders_toolbox/program/trials.mas, program_id => 54 &>
       
@@ -106,16 +106,16 @@ my $iframe_url = $jbrowse_url . "&tracklist=0&nav=1&overview=0" ;
 
 </&>
 
-<&| /page/info_section.mas, title => 'Resources' &>
+<&| /page/info_section.mas, title => 'Recursos' &>
  <ul>
-    <li>Download the current version of  <a href="ftp://ftp.solgenomics.net/programs/tomato_analyzer_4.0/">Tomato Analyzer</a></li>
+    <li>Baixe a versão atual de  <a href="ftp://ftp.solgenomics.net/programs/tomato_analyzer_4.0/">Tomato Analyzer</a></li>
   </ul>
 </&>
 
 
-<&| /page/info_section.mas, title => 'Funding' &>
+<&| /page/info_section.mas, title => 'Financiamento' &>
 
-Funding is provided by the NSF (<a href="https://www.nsf.gov/awardsearch/showAward?AWD_ID=1564366">IOS 1564366</a>).<br />
+O financiamento é fornecido pela NSF (<a href="https://www.nsf.gov/awardsearch/showAward?AWD_ID=1564366">IOS 1564366</a>).<br />
 <br />
 <img src="/static/img/nsf_logo2.png" />
 

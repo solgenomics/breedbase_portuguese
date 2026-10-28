@@ -29,7 +29,7 @@ var getPopIds =  function() {
                   eP  = existingPopIds.split(",");
                 }
         if (eP.length <= 1) {
-            jQuery("#select_done input").val('Select');
+            jQuery("#select_done input").val("Selecionar");
         }
 
         if (jQuery(this).attr('checked')) {
@@ -37,7 +37,7 @@ var getPopIds =  function() {
 
             if (eP.length == 0) {
 
-                jQuery("#select_done input").val('Select');
+                jQuery("#select_done input").val("Selecionar");
 
 
                 cookieArrayData.push(popId);
@@ -56,9 +56,9 @@ var getPopIds =  function() {
                     cookieArrayData =  cookieArrayData.unique();
 
                    if (cookieArrayData.length === 1) {
-                       jQuery("#select_done input").val('Select');
+                       jQuery("#select_done input").val("Selecionar");
                    } else if (cookieArrayData.length > 1 )  {
-                        jQuery("#select_done input").val('Combine');
+                        jQuery("#select_done input").val("Combinar");
                     }
 
                     jQuery.cookie(cookieName, cookieArrayData, {path: '/'});
@@ -102,7 +102,7 @@ var selectedPops = function () {
         var redirectUrl =  '/solgs/trait/' + trId + '/population/' + cookieData;
 
         jQuery.blockUI.defaults.applyPlatformOpacityRules = false;
-        jQuery.blockUI({message: 'Please wait..'});
+        jQuery.blockUI({message: "Aguarde..."});
 
         jQuery.ajax({
             type: 'POST',
@@ -145,8 +145,8 @@ var selectedPops = function () {
         });
     }
     else {
-        alert('No populations were selected.' +
-              'Please make your selections.'
+        alert("Nenhuma população foi selecionada." +
+              "Faça suas seleções."
              );
 
     }
@@ -165,7 +165,7 @@ var confirmSelections =  function() {
     var selectedPops = trId + "=" + selections + '&' + 'combine=combine';
 
     jQuery.blockUI.defaults.applyPlatformOpacityRules = false;
-    jQuery.blockUI({message: 'Please wait..'});
+    jQuery.blockUI({message: "Aguarde..."});
 
     jQuery.ajax({
             type: 'POST',
@@ -192,9 +192,9 @@ var confirmSelections =  function() {
                 } else {
 
                     if(res.not_matching_pops ){
-                        alert('populations ' + res.not_matching_pops +
-                              ' were genotyped using different marker sets. ' +
-                              'Please make new selections to combine.' );
+                        alert("Populações " + res.not_matching_pops +
+                              " foram genotipadas usando conjuntos de marcadores diferentes. " +
+                              "Faça novas seleções para combinar." );
                         window.location.href =  '/solgs/search/result/populations/' + trId;
                     }
 

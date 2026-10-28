@@ -1,9 +1,9 @@
 <%args>
 $STresults
 </%args>
-<& /page/page_title.mas, title => 'SecreTary: Computational prediction of secreted proteins' &>
+<& /page/page_title.mas, title => 'Previsão computacional de proteínas secretas' &>
 
-<&| /page/info_section.mas, title => 'SecreTary Signal Peptide (SP) Predictions' &>
+<&| /page/info_section.mas, title => 'Previsões do sinal secreto Peptide (SP)' &>
 
 <% # put in the highlighting, etc. %> 
 <%perl>
@@ -56,6 +56,6 @@ Identifier       SP    Score   Length     Sequence 10        20        30       
 <% $count_pass %> secreted sequences predicted out of <% scalar @$STresults %>.
 </pre>
 
-<a href="/secretom/secretary">Return to SecreTary input page</a>
+<a href="/secretom/secretary">Volte para a página de entrada do Secretário</a>
 
 </&>

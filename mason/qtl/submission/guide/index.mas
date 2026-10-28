@@ -14,18 +14,17 @@ Isaak Y Tecle (iyt2@cornell.edu)
 
 
 <& /page/page_title.mas, 
-   title => "QTL Data Submission Guidelines"
+   title => "Guias de submissão de dados QTL"
 &>
 
 <p>
-  This document guides QTL data submitters on the process of loading the data, 
-  setting statistical parameters and finally the QTL mapping.
+  Este documento guia o envio de dados QTL no processo de carregar os dados, definir parâmetros estatísticos e finalmente o mapeamento QTL.
 </p>
 
 <& /qtl/qtl_form/general_intro.mas, 
    guide => undef 
 &>
-<p> Detailed guide:</p>
+<p> Guia detalhado:</p>
 <& population_details.mas &>
 <& traits_list.mas &>
 <& phenotype_dataset.mas &>

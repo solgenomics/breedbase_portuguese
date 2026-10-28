@@ -68,7 +68,7 @@ function listGenCorPopulations ()  {
     var trainingPopIdName = JSON.stringify(modelData);
    
     var  popsList =  '<dl id="qc_selected_population" class="qc_dropdown">'
-        + '<dt> <a href="#"><span>Choose a population</span></a></dt>'
+        + "<dt> <a href=\"#\"><span>Escolha uma população</span></a></dt>"
         + '<dd>'
         + '<ul>'
         + '<li>'
@@ -181,14 +181,14 @@ function formatGenCorInputData (popId, type, indexFile) {
             } else {
                 jQuery(divPlace +" #qualityControl_message")
                     .css({"padding-left": '0px'})
-                    .html("This population has no valid traits to qclate.");
+                    .html("Esta população não possui características válidas para controle de qualidade.");
         
             }
         },
         error: function(response) {
             jQuery(divPlace +"#qualityControl_message")
                 .css({"padding-left": '0px'})
-                .html("Error 3 occured preparing the additive genetic data for qualityControl analysis.");
+                .html("Erro 3 ao preparar os dados genéticos aditivos para a análise de controle de qualidade.");
              
             jQuery.unblockUI();
         }         
@@ -216,7 +216,7 @@ function phenotypicqualityControl () {
  
     var population = getPopulationDetails();
     
-    jQuery("#qualityControl_message").html("Running qualityControl... please wait...");
+    jQuery("#qualityControl_message").html("Executando controle de qualidade... Aguarde...");
          
     jQuery.ajax({
             type: 'POST',
@@ -231,7 +231,7 @@ function phenotypicqualityControl () {
                 } else {
                     jQuery("#qualityControl_message")
                         .css({"padding-left": '0px'})
-                        .html("This population has no phenotype data.");
+                        .html("Esta população não possui dados fenotípicos.");
 
 		    jQuery("#run_pheno_qualityControl").show();
                 }
@@ -239,7 +239,7 @@ function phenotypicqualityControl () {
             error: function(response) {
                 jQuery("#qualityControl_message")
                     .css({"padding-left": '0px'})
-                    .html("Error 1 occured preparing the phenotype data for qualityControl analysis.");
+                    .html("Erro 1 ao preparar os dados fenotípicos para a análise de controle de qualidade.");
 
 		jQuery("#run_pheno_qualityControl").show();
             }
@@ -261,7 +261,7 @@ function runPhenoqualityControlAnalysis () {
 		                plotqualityControl(response.data);
 		        
 		        var qcDownload = "<a href=\"/download/phenotypic/qualityControl/population/" 
-		                            + popId + "\">Download QC comments</a>";
+		                            + popId + "\">Baixar comentários do controle de qualidade</a>";
 
 		        jQuery("#qualityControl_canvas").append("<br />[ " + qcDownload + " ]").show();
 		        jQuery("#qualityControl_message").empty();
@@ -269,7 +269,7 @@ function runPhenoqualityControlAnalysis () {
             } else {
                 jQuery("#qualityControl_message")
                     .css({"padding-left": '0px'})
-                    .html("There is no qualityControl output for this dataset."); 
+                    .html("Não há resultados de controle de qualidade para este conjunto de dados.");
         
 		jQuery("#run_pheno_qualityControl").show();
             }
@@ -277,7 +277,7 @@ function runPhenoqualityControlAnalysis () {
         error: function(response) {                          
             jQuery("#qualityControl_message")
                 .css({"padding-left": '0px'})
-                .html("Error 2 occured running the qualityControl analysis.");
+                .html("Erro 2 ao executar a análise de controle de qualidade.");
             
         jQuery("#run_pheno_qualityControl").show();
         }                
@@ -289,7 +289,7 @@ function createqualityControlTable (tableId) {
     
     var table = '<table id="' + tableId + '" class="table" style="width:100%;text-align:left">';
     table    += '<thead><tr>';
-    table    += '<th>Trait</th><th>QC - comments</t'; 
+    table    += "<th>Característica</th><th>QC - comentários</t";
     table    += '</tr></thead>';
     table    += '</table>';
 
@@ -315,7 +315,7 @@ function plotqualityControl (data, divPlace) {
                     "bInfo"        : false,
                     "paging"       : false,
                     'oLanguage'    : {
-                             "sSearch": "Filter traits: "
+                             "sSearch": "Filtrar características: "
                             },
             'data'         : data,
         });

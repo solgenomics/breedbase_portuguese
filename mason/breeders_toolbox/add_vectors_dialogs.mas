@@ -94,7 +94,7 @@ $editable_stock_props_definitions
                         <thead></thead>
                         <tbody>
                             <tr>
-                                <td>uniquename </td>
+                                <td>Nome único </td>
 %  foreach my $editable_stockprop (@$editable_vector_props) {
 %                               print "<td>$editable_stockprop</td>";
 % }

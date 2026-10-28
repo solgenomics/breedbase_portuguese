@@ -1,7 +1,7 @@
 <%args>
   $xrefs
   $exclude => []
-  $empty_message => 'none found'
+  $empty_message => 'Nenhum encontrado'
 </%args>
 
 % if( %by_sitefeature ) {

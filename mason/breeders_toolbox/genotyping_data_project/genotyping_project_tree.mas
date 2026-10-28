@@ -27,8 +27,8 @@ $facilities
     <tbody>
         <tr>
             <td>
-                <h4>Pesquisar</h4>
-                <input type="text" class="form-control input-sm" id="genotyping_project_tree_search" placeholder="Pesquisar" />
+                <h4>Pesquisador</h4>
+                <input type="text" class="form-control input-sm" id="genotyping_project_tree_search" placeholder="Pesquisador" />
                 <hr>
 
                 <h5><i>Clique duas vezes<br />no projeto de genotipagem (&nbsp;<span class="glyphicon glyphicon-align-left text-warning"></span>&nbsp;) ou na pasta (&nbsp;<span class="glyphicon glyphicon-folder-open text-danger"></span>&nbsp;)<br/>para ver a página de detalhes.</i></h5>
@@ -37,7 +37,7 @@ $facilities
                 <h4>Pastas</h4>
                 <button class="btn btn-sm btn-default" id="new_folder_dialog_link">Criar nova pasta</button><br/><br/>
                 <button class="btn btn-sm btn-default" id="open_folder_dialog_link">Mover projeto(s) de genotipagem para uma pasta</button><br/><br/>
-                <button class="btn btn-sm btn-default" id="move_folder_dialog_link">Mover pasta</button>
+                <button class="btn btn-sm btn-default" id="move_folder_dialog_link">Massa movedora</button>
 
                 <div id="folder_edit_options" style="display:none">
                     <hr>
@@ -46,11 +46,11 @@ $facilities
                     <br/>
                 </div>
 
-                <!--<button id="delete" disabled="disabled" >Delete</button -->
+                <!--<button id="delete" disabled="disabled" >Excluir</button -->
                 <br />
             </td>
             <td>
-                <div id="genotyping_project_list" >[carregando...]</div>
+                <div id="genotyping_project_list" >[Carregando...]</div>
             </td>
         </tr>
     </tbody>

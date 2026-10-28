@@ -45,7 +45,7 @@ solGS.acronyms = {
     showError: function() {
         jQuery('#trait_acronyms_table').hide();
         jQuery('#acronyms_message')
-            .html('Error occurred loading acronyms')
+            .html("Ocorreu um erro ao carregar as siglas")
             .show()
             .fadeOut(5000);
     },

@@ -25,7 +25,7 @@ $has_plate => undef
                             <label class="col-sm-3 control-label" for="edit_genotyping_project_name">Nome do projeto de genotipagem: </label>
                             <div class="col-sm-8">
                                 <div class="input-group">
-                                    <input class="form-control col-sm-8" id="edit_genotyping_project_name" title="name" type="text" value="<%$trial_name%>" aria-label="Nome" aria-describedby="edit_genotyping_project_name_status"/>
+                                    <input class="form-control col-sm-8" id="edit_genotyping_project_name" title="Nome" type="text" value="<%$trial_name%>" aria-label="Nome" aria-describedby="edit_genotyping_project_name_status"/>
                                 </div>
                             </div>
                         </div>
@@ -41,7 +41,7 @@ $has_plate => undef
                             <label class="col-sm-3 control-label" for="edit_genotyping_project_year">Ano: </label>
                             <div class="col-sm-8">
                                 <div class="input-group">
-                                    <select class="form-control" id="edit_genotyping_project_year" title="year" value="<%$year%>"></select>
+                                    <select class="form-control" id="edit_genotyping_project_year" title="ano" value="<%$year%>"></select>
                                 </div>
                             </div>
                         </div>
@@ -50,7 +50,7 @@ $has_plate => undef
                             <label class="col-sm-3 control-label" for="edit_genotyping_project_facility">Laboratório de genotipagem: </label>
                             <div class="col-sm-8">
                                 <div class="input-group">
-                                    <select class="form-control" id="edit_genotyping_project_facility" title="facility" type="text" value="<%$genotyping_facility%>"></select>
+                                    <select class="form-control" id="edit_genotyping_project_facility" title="Instalações" type="text" value="<%$genotyping_facility%>"></select>
                                 </div>
                             </div>
                         </div>
@@ -59,7 +59,7 @@ $has_plate => undef
                             <label class="col-sm-3 control-label" for="edit_genotyping_project_description">Descrição: </label>
                             <div class="col-sm-8">
                                 <div class="input-group">
-                                    <textarea class="form-control" id="edit_genotyping_project_description" title="description" rows="5"><% $trial_description %></textarea>
+                                    <textarea class="form-control" id="edit_genotyping_project_description" title="Descrição" rows="5"><% $trial_description %></textarea>
                                 </div>
                             </div>
                         </div>

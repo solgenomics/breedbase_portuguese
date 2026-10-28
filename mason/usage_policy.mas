@@ -1,68 +1,66 @@
-<div id="pagetitle"><h3>Data Usage Policy</h3></div>
+<div id="pagetitle"><h3>Política de Uso de Dados</h3></div>
 
 
-The data on this database is shared according to the Toronto agreement (see below). 
-
-Datasets that are currently released but have not yet been published include:<br /><br />
+Os dados deste banco de dados são compartilhados de acordo com o acordo de Toronto (ver abaixo). Datasets que estão atualmente liberados mas ainda não foram publicados incluem:<br /><br />
 <style type="text/css">
 table.myTable { border-collapse:collapse; }
 table.myTable td, table.myTable th { border:1px solid black;padding:5px; }
 </style>
 
 <table class="myTable">
-<tr><td>Institution</td><td>Researchers</td><td>Data</td></tr>
-<tr><td>IITA</td><td>Peter Kulakow, Ismail Rabbi</td><td>IITA cassava phenotypic data</td></tr>
-<tr><td>NRCRI</td><td>Chiedozie Egesi</td><td>NRCRI cassava phenotypic and genotypic data.</td></tr>
-<tr><td>NaCRRI</td><td>Robert Kawuki</td><td>NaCRRI cassava phenotypic and genotypic data.</td></tr>
+<tr><td>Instituição</td><td>Pesquisadores</td><td>Data</td></tr>
+<tr><td>IITA</td><td>Peter Kulakow, Rabino Ismail</td><td>Dados fenotípicos da mandioca IITA</td></tr>
+<tr><td>NRCRI</td><td>Chiedozie Egesi</td><td>Dados fenotípicos e genotípicos.</td></tr>
+<tr><td>NaCRRI</td><td>Robert Kawuki</td><td>Dados fenotípicos e genotípicos da mandioca da NaCRRI.</td></tr>
 </table>
 
 
-<h3>Toronto Agreement</h3>
+<h3>Acordo de Toronto</h3>
 
-<h4>Rapid prepublication data release should be encouraged for projects with the following attributes:</h4>
+<h4>A liberação rápida de dados de pré-publicação deve ser incentivada para projetos com os seguintes atributos:</h4>
 
 <ul>
-<li>Large scale (requiring significant resources over time)</li>
-<li>Broad utility</li>
-<li>Creating reference data sets</li>
+<li>Grande escala (recursos significativos ao longo do tempo)</li>
+<li>Grande utilidade</li>
+<li>Criando conjuntos de dados de referência</li>
 
-<li>Associated with community buy-in</li>
+<li>Associado ao buy-in comunitário</li>
 </ul>
 
-<h4>Funding agencies should facilitate the specification of data-release policies for relevant projects by:</h4>
+<h4>As agências de financiamento devem facilitar a especificação das políticas de liberação de dados para projetos relevantes:</h4>
 
 <ul>
-<li>Explicitly informing applicants of data-release requirements, especially mandatory prepublication data release</li>
-<li>Ensuring that evaluation of data release plans is part of the peer-review process</li>
-<li>Proactively establishing analysis plans and timelines for projects releasing data prepublication</li>
-<li>Fostering investigator-initiated prepublication data release</li>
-<li>Helping to develop appropriate consent, security, access and governance mechanisms that protect research participants while encouraging prepublication data release</li>
+<li>Informando explicitamente os candidatos dos requisitos de liberação de dados, especialmente a liberação obrigatória de dados antes da publicação</li>
+<li>Garantir que a avaliação dos planos de liberação de dados seja parte do processo de revisão por pares.</li>
+<li>Estabelecendo planos de análise e cronogramas proativos para projetos que liberam dados pré-publicação</li>
+<li>Promovendo a liberação de dados iniciados pelo investigador</li>
+<li>Ajudando a desenvolver o consentimento adequado, segurança, acesso e mecanismos de governança que protejam os participantes da pesquisa enquanto incentivam a divulgação de dados antes da publicação</li>
 
-<li>Providing long-term support of databases</li>
+<li>Fornecendo suporte a longo prazo de bases de dados</li>
 </ul>
 
-<h4>Data producers should state their intentions and enable analyses of their data by:</h4>
+<h4>Os produtores de dados devem declarar suas intenções e permitir análises de seus dados por:</h4>
 
 <ul>
-<li>Informing data users about the data being generated, data standards and quality, planned analyses, timelines, and relevant contact information, ideally through publication of a citable marker paper near the start of the project or by provision of a citable URL at the project or funding-agency website</li>
-<li>Providing relevant metadata (e.g., questionnaires, phenotypes, environmental conditions, and laboratory methods) that will assist other researchers in reproducing and/or independently analysing the data, while protecting interests of individuals enrolled in studies focusing on humans</li>
-<li>Ensuring that research participants are informed that their data will be shared with other scientists in the research community</li>
-<li>Publishing their initial global analyses, as stated in the marker paper or citable URL, in a timely fashion</li>
-<li>Creating databases designed to archive all data (including underlying raw data) in an easily retrievable form and facilitate usage of both pre-processed and processed data</li>
+<li>Informando usuários de dados sobre os dados que estão sendo gerados, padrões de dados e qualidade, análises planejadas, cronogramas, e informações de contato relevantes, idealmente através da publicação de um papel marcador citável perto do início do projeto ou por fornecimento de uma URL citável no site do projeto ou agência de financiamento</li>
+<li>Fornecendo metadados relevantes (por exemplo, questionários, fenótipos, condições ambientais e métodos laboratoriais) que ajudarão outros pesquisadores a reproduzir e/ou analisar independentemente os dados, enquanto protegem interesses de indivíduos inscritos em estudos com foco em humanos</li>
+<li>Garantir que os participantes da pesquisa sejam informados que seus dados serão compartilhados com outros cientistas da comunidade de pesquisa.</li>
+<li>Publicando suas análises globais iniciais, como indicado no papel marcador ou URL citável, em tempo hábil</li>
+<li>Criando bases de dados projetadas para arquivar todos os dados (incluindo dados brutos subjacentes) de uma forma facilmente recuperável e facilitar o uso de dados pré-processados e processados</li>
 
 </ul>
 
-<h4>Data analysts/users should freely analyse released prepublication data and act responsibly in publishing analyses of those data by:</h4>
+<h4>Analistas de dados/usuários devem analisar livremente dados divulgados e agir de forma responsável na publicação de análises desses dados por:</h4>
 
 <ul>
-<li>Respecting the scientific etiquette that allows data producers to publish the first global analyses of their data set</li>
-<li>Reading the citeable document associated with the project</li>
-<li>Accurately and completely citing the source of prepublication data, including the version of the data set (if appropriate)</li>
-<li>Being aware that released prepublication data may be associated with quality issues that will be later rectified by the data producers</li>
-<li>Contacting the data producers to discuss publication plans in the case of overlap between planned analyses</li>
-<li>Ensuring that use of data does not harm research participants and is in conformity with ethical approvals</li>
+<li>Respeitando a etiqueta científica que permite aos produtores de dados publicar as primeiras análises globais de seu conjunto de dados</li>
+<li>Lendo o documento citável associado ao projeto</li>
+<li>Exatamente e completamente citando a fonte de dados pré-publicação, incluindo a versão do conjunto de dados (se apropriado)</li>
+<li>Sabendo que os dados divulgados podem estar associados a problemas de qualidade que serão retificados pelos produtores de dados.</li>
+<li>Contactando os produtores de dados para discutir planos de publicação em caso de sobreposição entre análises planejadas</li>
+<li>Garantir que o uso de dados não prejudique os participantes da pesquisa e esteja em conformidade com as aprovações éticas</li>
 
-<li>Scientific journal editors should engage the research community about issues related to prepublication data release and provide guidance to authors and reviewers on the third-party use of prepublication data in manuscripts</li>
+<li>Editores de periódicos científicos devem envolver a comunidade de pesquisa sobre questões relacionadas à pré-publicação de dados e fornecer orientações para autores e revisores sobre o uso de dados de terceiros em manuscritos.</li>
 </ul>
 
 

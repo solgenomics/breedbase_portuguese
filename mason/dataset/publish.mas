@@ -116,7 +116,7 @@ $is_dataset_public => 0
                 <li class="dataset-archive-publish-connected">
                     <p>Você está conectado a esta conta em <span class="dataset-archive-publish-service-name"></span>:</p>
                     <p><strong>Nome:</strong> <span class="dataset-archive-publish-connected-name"></span></p>
-                    <p><strong>Email:</strong> <span class="dataset-archive-publish-connected-email"></span></p>
+                    <p><strong>E-mail:</strong> <span class="dataset-archive-publish-connected-email"></span></p>
                     <button class="dataset-archive-publish-disconnect-btn btn btn-danger btn-sm">
                         <span class="glyphicon glyphicon-resize-full"></span>&nbsp;&nbsp;Desconectar contas
                     </button>
@@ -201,7 +201,7 @@ $is_dataset_public => 0
             <div class="dataset-archive-publish-connected">
                 <p>Você está conectado a esta conta em <span class="dataset-archive-publish-service-name"></span>:</p>
                 <p><strong>Nome:</strong> <span class="dataset-archive-publish-connected-name"></span></p>
-                <p><strong>Email:</strong> <span class="dataset-archive-publish-connected-email"></span></p>
+                <p><strong>E-mail:</strong> <span class="dataset-archive-publish-connected-email"></span></p>
                 <button class="dataset-archive-publish-disconnect-btn btn btn-danger btn-sm">
                     <span class="glyphicon glyphicon-resize-full"></span>&nbsp;&nbsp;Desconectar contas
                 </button>
@@ -258,7 +258,7 @@ $is_dataset_public => 0
             <div class="dataset-archive-publish-connected">
                 <p>Você está conectado a esta conta em <span class="dataset-archive-publish-service-name"></span>:</p>
                 <p><strong>Nome:</strong> <span class="dataset-archive-publish-connected-name"></span></p>
-                <p><strong>Email:</strong> <span class="dataset-archive-publish-connected-email"></span></p>
+                <p><strong>E-mail:</strong> <span class="dataset-archive-publish-connected-email"></span></p>
                 <button class="dataset-archive-publish-disconnect-btn btn btn-danger btn-sm">
                     <span class="glyphicon glyphicon-resize-full"></span>&nbsp;&nbsp;Desconectar contas
                 </button>
@@ -567,7 +567,7 @@ function getArticleDetails(service, article_id) {
             url: `/ajax/dataset/publish/articles/${service}/${article_id}`,
             success: (resp) => {
                 if ( resp?.error ) {
-                    reject(`Could not get article details [${resp.error}]`);
+                    reject(`Não foi possível obter os detalhes do artigo [${resp.error}]`);
                 }
                 else if ( resp?.article ) {
                     resolve(resp.article);
@@ -789,14 +789,14 @@ function generateArchiveFile(key, type) {
             },
             success: (resp) => {
                 if ( resp?.error ) {
-                    reject(`Could not generate ${type} file [${resp.error}]`);
+                    reject(`Não foi possível gerar ${type} arquivo [${resp.error}]`);
                 }
                 else {
                     resolve(resp.file);
                 }
             },
             error: () => {
-                reject(`Could not generate ${type} file`);
+                reject(`Não foi possível gerar ${type} file`);
             }
         });
     })
@@ -898,7 +898,7 @@ function removeIssue(key) {
  * - Update the Issues when complete to reflect the changes
  */
 async function sendArchive() {
-    if ( confirm(`Deseja realmente enviar os arquivos para ${SELECTED_SERVICE.display_name} agora?`) ) {
+    if ( confirm(`Deseja realmente enviar os arquivos para ${SELECTED_SERVICE.display_name} Agora?`) ) {
         try {
             jQuery(".dataset-archive-publish-connected-btn").attr("disabled", true);
             let article_id = jQuery("#dataset-archive-publish-articles").val();
@@ -978,7 +978,7 @@ function createArticle() {
         const authors = jQuery("#dataset-archive-publish-article-authors").val();
 
         if ( !title || title === '' ) return reject('Informe um nome para o novo conjunto de dados');
-        if ( !description || description === '' ) return reject('Please provide a description for the new dataset');
+        if ( !description || description === '' ) return reject("Informe uma descrição para o novo conjunto de dados");
 
         jQuery.ajax({
             url: `/ajax/dataset/publish/articles/new`,

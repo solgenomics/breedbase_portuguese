@@ -7,49 +7,49 @@
     <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="tissueSampleHelpDialog">Tissue Sampling</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="tissueSampleHelpDialog">Amostragem de tecidos</h4>
             </div>
             <div class="modal-body">
 
                 <div class="container-fluid">
 
                     <&| /util/workflow.mas, id=> "tissue_sample_help_workflow" &>
-                        <&| /util/workflow.mas:step, title=> "Intro" &>
-                            <& /page/page_title.mas, title=>"This workflow will guide you through tissue sampling an experiment" &>
-                            <p>Tissue samples collected from the field are linked to a single plant, which is in turn linked to a single plot.</p>
-                            <p>Many tissue samples can be created for each plant.</p>
-                            <p>Each tissue sample has a globally unique name.</p>
+                        <&| /util/workflow.mas:step, title=> "Introdução" &>
+                            <& /page/page_title.mas, title=>"Este fluxo de trabalho irá guiá-lo através de amostras de tecido um experimento" &>
+                            <p>Amostras de tecido coletadas do campo estão ligadas a uma única planta, que por sua vez está ligada a uma única parcela.</p>
+                            <p>Muitas amostras de tecido podem ser criadas para cada planta.</p>
+                            <p>Cada amostra de tecido tem um nome global único.</p>
                             <br/>
-                            <p>A unique tissue sample is present in each well of a genotyping plate (96 or 384 well plates).</p>
-                            <p>The tissue sample in a 96 well plate can originate from another tissue sample name, plant name, plot name, or accession name.</p>
+                            <p>Uma única amostra de tecido está presente em cada poço de uma placa de genotipagem (96 ou 384 placas de poço).</p>
+                            <p>A amostra de tecido em uma placa de 96 poços pode se originar de outro nome de amostra de tecido, nome de planta, nome do enredo, ou nome de acesso.</p>
 
                             <br/><br/>
                             <center>
-                            <button class="btn btn-primary" onclick="Workflow.complete(this); return false;">Go to Next Step</button>
+                            <button class="btn btn-primary" onclick="Workflow.complete(this); return false;">Vá para o próximo passo</button>
                             </center>
                         </&>
 
-                        <&| /util/workflow.mas:step, title=> "Sampling Level" &>
-                            <& /page/page_title.mas, title=>"At which level do you plan to keep track of your sampling?" &>
+                        <&| /util/workflow.mas:step, title=> "Nível de amostragem" &>
+                            <& /page/page_title.mas, title=>"Em que nível planeja acompanhar sua amostra?" &>
 
-                            <input type="radio" name="tissue_sample_help_select_level" value="accession">&nbsp;&nbsp;&nbsp;Accession Level: The sample is not from a field trial entity and only the accession name is known.<br/>
-                            <input type="radio" name="tissue_sample_help_select_level" value="plot">&nbsp;&nbsp;&nbsp;Plot Level: Each plot in the field has a unique identifier, ideally with a barcode label.<br/>
-                            <input type="radio" name="tissue_sample_help_select_level" value="plant">&nbsp;&nbsp;&nbsp;Plant Level: Each plant in the field has a unique identifier, ideally with a barcode label.<br/>
-                            <input type="radio" name="tissue_sample_help_select_level" value="tissue_sample">&nbsp;&nbsp;&nbsp;Tissue Sample Level: Each tissue sample collected from the field has a unique identifier, ideally with a barcode label.
+                            <input type="radio" name="tissue_sample_help_select_level" value="accession">A amostra não é de uma entidade de ensaio de campo e só o nome de acesso é conhecido.<br/>
+                            <input type="radio" name="tissue_sample_help_select_level" value="plot">Cada parcela no campo tem um identificador único, idealmente com uma etiqueta de código de barras.<br/>
+                            <input type="radio" name="tissue_sample_help_select_level" value="plant">Cada planta no campo tem um identificador único, idealmente com uma etiqueta de código de barras.<br/>
+                            <input type="radio" name="tissue_sample_help_select_level" value="tissue_sample">Cada amostra de tecido coletada no campo tem um identificador único, idealmente com uma etiqueta de código de barras.
 
                             <br/><br/>
                             <center>
-                                <button class="btn btn-primary" id="tissue_sample_help_select_level_submit">Go to Next Step</button>
+                                <button class="btn btn-primary" id="tissue_sample_help_select_level_submit">Vá para o próximo passo</button>
                             </center>
                         </&>
-                        <&| /util/workflow.mas:step, title=> "Select a field trial" &>
-                            <& /page/page_title.mas, title=>"Select a field trial" &>
+                        <&| /util/workflow.mas:step, title=> "Selecione um ensaio de campo" &>
+                            <& /page/page_title.mas, title=>"Selecione um ensaio de campo" &>
 
                             <div id="tissue_sample_help_trial_select_not_relevant" style="display:none">
-                                <h4>Field trial is not relevant for the type of tissue sampling you selected. Go to next step.</h4>
+                                <h4>Ensaio de campo não é relevante para o tipo de amostra de tecido que você escolheu. Vá para o próximo passo.</h4>
                                 <center>
-                                <button class="btn btn-primary" onclick="Workflow.complete(this); return false;">Go to Next Step</button>
+                                <button class="btn btn-primary" onclick="Workflow.complete(this); return false;">Vá para o próximo passo</button>
                                 </center>
                             </div>
                             <div id="tissue_sample_help_trial_select_relevant" style="display:none">
@@ -59,18 +59,18 @@
                                             <table id="tissue_sample_help_field_search_results" class="table table-hover table-striped">
                                                 <thead>
                                                     <tr>
-                                                        <th>Select</th>
-                                                        <th>Trial name</th>
-                                                        <th>Description</th>
-                                                        <th>Breeding program</th>
-                                                        <th>Folder</th>
-                                                        <th>Year</th>
-                                                        <th>Location</th>
-                                                        <th>Trial type</th>
-                                                        <th>Design</th>
-                                                        <th>Planting Date</th>
-                                                        <th>Harvest Date</th>
-                                                        <th>Download</th>
+                                                        <th>Selecionar</th>
+                                                        <th>Nome do ensaio</th>
+                                                        <th>Descrição</th>
+                                                        <th>programa de melhoramento</th>
+                                                        <th>Pasta</th>
+                                                        <th>Ano</th>
+                                                        <th>Local</th>
+                                                        <th>Tipo de ensaio</th>
+                                                        <th>Desenho</th>
+                                                        <th>Data de implantação</th>
+                                                        <th>Data da colheita</th>
+                                                        <th>Baixar</th>
                                                     </tr>
                                                 </thead>
                                             </table>
@@ -80,67 +80,67 @@
 
                                 <br/><br/>
                                 <center>
-                                    <button class="btn btn-primary" id="tissue_sample_help_select_trial_submit">Go to Next Step</button>
+                                    <button class="btn btn-primary" id="tissue_sample_help_select_trial_submit">Vá para o próximo passo</button>
                                 </center>
                             </div>
 
                         </&>
-                        <&| /util/workflow.mas:step, title=> "Plant Entries" &>
-                            <& /page/page_title.mas, title=>"Plant entries in your field trial" &>
+                        <&| /util/workflow.mas:step, title=> "Plantar entradas" &>
+                            <& /page/page_title.mas, title=>"Plante entradas em seu ensaio de campo" &>
 
                             <div id="tissue_sample_help_plant_entries_not_relevant" style="display:none">
-                                <h4>Plant entries not relevant for the type of tissue sampling you selected. Go to next step.</h4>
+                                <h4>Entradas de plantas não relevantes para o tipo de amostra de tecido que você escolheu. Vá para o próximo passo.</h4>
                                 <center>
-                                <button class="btn btn-primary" onclick="Workflow.complete(this); return false;">Go to Next Step</button>
+                                <button class="btn btn-primary" onclick="Workflow.complete(this); return false;">Vá para o próximo passo</button>
                                 </center>
                             </div>
                             <div id="tissue_sample_help_plant_entries_exist_section" style="display:none">
-                                <h4>Plant entries exist for this trial. Go to next step.</h4>
+                                <h4>As entradas da planta existem para este ensaio. Vá para o próximo passo.</h4>
                                 <center>
-                                <button class="btn btn-primary" onclick="Workflow.complete(this); return false;">Go to Next Step</button>
+                                <button class="btn btn-primary" onclick="Workflow.complete(this); return false;">Vá para o próximo passo</button>
                                 </center>
                             </div>
                             <div id="tissue_sample_help_plant_entries_dont_exist_section" style="display:none">
-                                <h4>Please create plant entries for this trial.</h4>
+                                <h4>Por favor, crie entradas para este ensaio.</h4>
                                 <form class="form-horizontal">
                                     <div class="form-group">
-                                        <label class="col-sm-3 control-label">Number of plants per plot: </label>
+                                        <label class="col-sm-3 control-label">Número de plantas por parcela: </label>
                                         <div class="col-sm-9" >
                                             <input name="tissue_sample_help_plants_per_plot_num" id="tissue_sample_help_plants_per_plot_num" class="form-control" type="number" autofocus/>
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="col-sm-3 control-label">Inherits Treatment(s) From Plots: </label>
+                                        <label class="col-sm-3 control-label">Herda tratamento(s) de parcelas: </label>
                                         <div class="col-sm-9" >
                                             <input name="tissue_sample_help_plants_per_plot_inherit_treatments" id="tissue_sample_help_plants_per_plot_inherit_treatments" type="checkbox" checked disabled/>
                                         </div>
                                     </div>
                                 </form><br/>
                                 <center>
-                                    <button type="button" class="btn btn-primary" id="tissue_sample_help_plants_per_plot_submit">Submit</button>
+                                    <button type="button" class="btn btn-primary" id="tissue_sample_help_plants_per_plot_submit">Enviar</button>
                                 </center>
                             </div>
 
                         </&>
-                        <&| /util/workflow.mas:step, title=> "Create Tissue Sample Entries" &>
-                            <& /page/page_title.mas, title=>"Create tissue sample entries for this trial" &>
+                        <&| /util/workflow.mas:step, title=> "Criar entradas de amostras de tecido" &>
+                            <& /page/page_title.mas, title=>"Crie entradas de amostras de tecido para este ensaio" &>
 
                             <div id="tissue_sample_help_tissue_samples_not_relevant" style="display:none">
-                                <h4>Field trial tissue sample entries not relevant for the type of tissue sampling you selected. Go to next step.</h4>
+                                <h4>Amostras de tecido não relevantes para o tipo de amostra de tecido que você escolheu. Vá para o próximo passo.</h4>
                                 <center>
-                                <button class="btn btn-primary" onclick="Workflow.complete(this); return false;">Go to Next Step</button>
+                                <button class="btn btn-primary" onclick="Workflow.complete(this); return false;">Vá para o próximo passo</button>
                                 </center>
                             </div>
                             <div id="tissue_sample_help_tissue_samples_exist_section" style="display:none">
-                                <h4>Tissue sample entries exist for this trial. Go to next step.</h4>
+                                <h4>Amostras de tecido existem para este ensaio. Vá para o próximo passo.</h4>
                                 <center>
-                                <button class="btn btn-primary" onclick="Workflow.complete(this); return false;">Go to Next Step</button>
+                                <button class="btn btn-primary" onclick="Workflow.complete(this); return false;">Vá para o próximo passo</button>
                                 </center>
                             </div>
                             <div id="tissue_sample_help_tissue_samples_relevant" style="display:none">
                                 <form class="form-horizontal" >
                                     <div class="form-group">
-                                        <label class="col-sm-3 control-label"><span title="You can use the same tissue name, e.g. root and root, more than once below. The tissue name will still be unique because of a tissue index e.g. 1 and 2 added to the end." </span><span class="glyphicon glyphicon-info-sign"></span>&nbsp;&nbsp;Number of tissue samples per plant: </span></label>
+                                        <label class="col-sm-3 control-label"><span title="Você pode usar o mesmo nome de tecido, como raiz e raiz, mais de uma vez abaixo. O nome do tecido ainda será único por causa de um índice de tecido por exemplo 1 e 2 adicionado ao final." </span><span class="glyphicon glyphicon-info-sign"></span>Número de amostras de tecido por planta: </span></label>
                                         <div class="col-sm-9" >
                                             <input name="tissue_sample_help_tissue_samples_per_plant_num" id="tissue_sample_help_tissue_samples_per_plant_num" class="form-control" type="number" autofocus/>
                                         </div>
@@ -150,7 +150,7 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label class="col-sm-3 control-label">Inherits Treatment(s) From Plots: </label>
+                                        <label class="col-sm-3 control-label">Herda tratamento(s) de parcelas: </label>
                                         <div class="col-sm-9" >
                                             <input name="tissue_sample_help_per_plant_inherit_treatments" id="tissue_sample_help_per_plant_inherit_treatments" type="checkbox" checked disabled/>
                                         </div>
@@ -158,27 +158,27 @@
                                 </form><br/>
 
                                 <center>
-                                <button type="button" class="btn btn-primary" name="tissue_sample_help_per_plant_submit" id="tissue_sample_help_per_plant_submit">Submit</button>
+                                <button type="button" class="btn btn-primary" name="tissue_sample_help_per_plant_submit" id="tissue_sample_help_per_plant_submit">Enviar</button>
                                 </center>
                             </div>
                         </&>
-                        <&| /util/workflow.mas:complete, title=> "Complete" &>
-                            <& /page/page_title.mas, title=>"Complete! You have all the entities you need to conduct your sampling." &>
+                        <&| /util/workflow.mas:complete, title=> "Completo" &>
+                            <& /page/page_title.mas, title=>"Completo! Você tem todas as entidades que precisa para realizar sua amostragem." &>
                             <ul>
-                                <li>All of the entities that you want to sample are saved in the database and available to use!</li>
-                                <li>You can print barcodes for the entities you intend to sample on. These barcodes can be attached to your collection vials/containers to assist during sampling.</li>
+                                <li>Todas as entidades que você quer provar estão salvas no banco de dados e disponíveis para usar!</li>
+                                <li>Você pode imprimir códigos de barras para as entidades que pretende provar. Estes códigos de barras podem ser anexados aos frascos/contentores de sua coleção para ajudar durante a amostragem.</li>
                             </ul>
                             <center>
-                                <button class="btn btn-primary" onclick="final_download_layout_button_click()">Download Field Trial Layout!</button>
+                                <button class="btn btn-primary" onclick="final_download_layout_button_click()">Baixe o disposição espacial de ensaio de campo!</button>
                             </center>
                             <br/>
 
                             <ul>
-                                <li>After you have finished sampling, you can use these entities as source material for a genotyping plate (96 or 384 well plate). Click the button below to create a genotyping plate now, if you will create a 96 or 384 well plate.</li>
-                                <li>The Android Coordinate application can help you create 96 or 384 well plates. Alternatively you can create your plate layout in Excel and upload it.</li>
+                                <li>Depois de terminar a amostragem, você pode usar essas entidades como material de origem para uma placa de genotipagem (96 ou 384 bem placa). Clique no botão abaixo para criar uma placa de genotipagem agora, se você vai criar uma placa de 96 ou 384 bem.</li>
+                                <li>O aplicativo de coordenadas Android pode ajudá-lo a criar 96 ou 384 placas de poço. Alternativamente, você pode criar seu disposição espacial de placa no Excel e enviá-lo.</li>
                             </ul>
                             <center>
-                                <button class="btn btn-primary" name="create_genotyping_trial_link">Create Genotyping Plate Now!</button>
+                                <button class="btn btn-primary" name="create_genotyping_trial_link">Criar placa de genotipagem agora!</button>
                             </center>
                         </&>
                     </&>
@@ -186,7 +186,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
             </div>
         </div>
     </div>
@@ -216,7 +216,7 @@ jQuery(document).ready(function(){
     jQuery('#tissue_sample_help_select_level_submit').click(function(){
         selected_level = jQuery('input[name="tissue_sample_help_select_level"]:checked').val();
         if (selected_level == '' || !selected_level){
-            alert('Please select one');
+            alert("Selecione uma opção");
         } else {
             Workflow.complete('#tissue_sample_help_select_level_submit');
             if (selected_level == 'accession'){
@@ -252,7 +252,7 @@ jQuery(document).ready(function(){
         });
         selected_level = jQuery('input[name="tissue_sample_help_select_level"]:checked').val();
         if (selected.length !== 1){
-            alert('Only select one trial!');
+            alert("Selecione apenas um ensaio!");
         } else {
             Workflow.complete('#tissue_sample_help_select_trial_submit');
             if (selected_level == 'plot'){
@@ -309,7 +309,7 @@ jQuery(document).ready(function(){
                                     },
                                     error: function () {
                                         jQuery("#working_modal").modal("hide");
-                                        alert('An error occurred checking trial for tissue samples.');
+                                        alert("Ocorreu um erro ao verificar as amostras de tecido do ensaio.");
                                     }
                                 });
                             }
@@ -322,7 +322,7 @@ jQuery(document).ready(function(){
                     },
                     error: function () {
                         jQuery("#working_modal").modal("hide");
-                        alert('An error occurred checking trial for plants.');
+                        alert("Ocorreu um erro ao verificar as plantas do ensaio.");
                     }
                 });
             }
@@ -352,7 +352,7 @@ jQuery(document).ready(function(){
                     alert(response.error);
                 }
                 else {
-                    alert("Successfully created plant entries.");
+                    alert("Registros de plantas criados com sucesso.");
                     Workflow.complete('#tissue_sample_help_plants_per_plot_submit');
                     if (selected_level == 'plant'){
                         jQuery('#tissue_sample_help_tissue_samples_not_relevant').show();
@@ -384,7 +384,7 @@ jQuery(document).ready(function(){
                             },
                             error: function () {
                                 jQuery("#working_modal").modal("hide");
-                                alert('An error occurred checking trial for tissue samples.');
+                                alert("Ocorreu um erro ao verificar as amostras de tecido do ensaio.");
                             }
                         });
                     }
@@ -392,7 +392,7 @@ jQuery(document).ready(function(){
             },
             error: function(response) {
                 jQuery("#working_modal").modal("hide");
-                alert("An error occurred saving plant entries");
+                alert("Ocorreu um erro ao salvar os registros de plantas");
             },
         });
     });
@@ -401,7 +401,7 @@ jQuery(document).ready(function(){
         var num_tissues = jQuery(this).val();
         var html = '';
         for (var i=1; i<=num_tissues; i++){
-            html = html + '<div class="form-group"><label class="col-sm-3 control-label"><span title="The sample names will be a combination of the plant name, the tissue name you give here, and the tissue number."><span class="glyphicon glyphicon-info-sign"></span>&nbsp;&nbsp;Tissue Name '+i+': </span></label><div class="col-sm-9" ><input name="tissue_sample_help_tissue_name" id="tissue_samples_help_tissue_name_'+i+'" class="form-control" type="text" placeholder="examples: leaf, root, stem, seed, fruit or tuber" /></div></div>';
+            html = html + "<div class=\"form-group\"><label class=\"col-sm-3 control-label\"><span title=\"Os nomes das amostras combinarão o nome da planta, o nome do tecido informado aqui e o número do tecido.\"><span class=\"glyphicon glyphicon-info-sign\"></span>Nome do Tecido "+i+': </span></label><div class="col-sm-9" ><input name="tissue_sample_help_tissue_name" id="tissue_samples_help_tissue_name_'+i+"\" class=\"form-control\" type=\"text\" placeholder=\"exemplos: folha, raiz, caule, semente, fruto ou tubérculo\" /></div></div>";
         }
         jQuery('#tissue_sample_help_tissue_samples_names_div').html(html);
     });
@@ -434,14 +434,14 @@ jQuery(document).ready(function(){
                     alert(response.error);
                 }
                 else {
-                    alert("Successfully created tissue sample entries.");
+                    alert("Registros de amostras de tecido criados com sucesso.");
                     Workflow.complete('#tissue_sample_help_per_plant_submit');
                     Workflow.focus("#tissue_sample_help_workflow", -1); //go to success
                 }
             },
             error: function(response) {
                 jQuery("#working_modal").modal("hide");
-                alert("An error occurred creating tissue sample entries");
+                alert("Ocorreu um erro ao criar os registros de amostras de tecido");
             },
         });
     });
@@ -450,7 +450,7 @@ jQuery(document).ready(function(){
 
 function final_download_layout_button_click(){
     if (selected_level == 'accession'){
-        alert('You selected to sample on the accession level, meaning that you wil not sample from a field trial. In this case there is no field layout to download!');
+        alert("Você selecionou a amostragem no nível do acesso, sem coletar amostras de um ensaio de campo. Nesse caso, não há disposição de campo para baixar!");
     }
     if (selected_level == 'plot'){
         var selected_columns = {'plot_name':1,'plot_id':1,'block_number':1,'plot_number':1,'rep_number':1,'row_number':1,'col_number':1,'accession_name':1,'is_a_control':1};

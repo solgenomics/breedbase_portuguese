@@ -8,8 +8,8 @@
   <div class="modal-dialog modal-xl" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="addHighDimDataDialog">Upload Sequence Metadata</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="addHighDimDataDialog">Enviar metadados de sequência</h4>
       </div>
       <div class="modal-body">
         <div class="container-fluid">
@@ -17,44 +17,44 @@
           <&| /util/workflow.mas, id=> "upload_sequence_metadata_workflow" &>
             
             <!-- Step 1: Intro -->
-            <&| /util/workflow.mas:step, title=> "Intro" &>
-              <& /page/page_title.mas, title=>"Upload Sequence Metadata" &>
+            <&| /util/workflow.mas:step, title=> "Introdução" &>
+              <& /page/page_title.mas, title=>"Enviar metadados de sequência" &>
               <div class="well">
-                  <p>This workflow will guide you through the process of uploading sequence metadata to the database using a 
-                  <a href="https://m.ensembl.org/info/website/upload/gff3.html">gff3-formatted</a> file.</p>
-                  <p>The following gff3 columns are used by the sequence metadata uploader:</p>
+                  <p>Este fluxo de trabalho irá guiá-lo através do processo de upload de metadados de sequência para o banco de dados usando um 
+                  <a href="https://m.ensembl.org/info/website/upload/gff3.html">Gff3 formatado</a> Arquivo.</p>
+                  <p>As seguintes colunas Gff3 são usadas pelo upload de metadados de sequência:</p>
                   <ul>
                     <li>
-                      <strong>#1 / seqid:</strong> The name of the database feature (ie chromosome) the metadata is associated with<br />
-                      <em>The names in this column must match existing features in the database.</em>
+                      <strong>#1 / seqid:</strong> O nome da característica do banco de dados (isto é, cromossoma) os metadados estão associados com<br />
+                      <em>Os nomes desta coluna devem corresponder às características existentes no banco de dados.</em>
                     </li>
-                    <li><strong>#4 / start:</strong> The metadata's start position</li>
-                    <li><strong>#5 / end:</strong> The metadata's end position</li>
-                    <li><strong>#6 / score:</strong> The primary score attribute of the metadata</li>
+                    <li><strong>#4 / start:</strong> A posição inicial dos metadados</li>
+                    <li><strong>#5 / end:</strong> A posição final dos metadados</li>
+                    <li><strong>#6 / score:</strong> O atributo principal de pontuação dos metadados</li>
                     <li>
-                      <strong>#9 / attributes:</strong> Secondary key/value attributes to be saved with the score<br />
-                      <em>The attribute key cannot be either <strong>score</strong>, <strong>start</strong>, or <strong>end</strong>.</em>
+                      <strong>#9 / attributes:</strong> Atributos de chave/valor secundários a serem salvos com a pontuação<br />
+                      <em>A chave do atributo também não pode ser <strong>Pontuação</strong>, <strong>Comece</strong>, or <strong>Fim</strong>.</em>
                     </li>
                   </ul>
               </div>
 
               <div class="center">
-                <button class="btn btn-primary" id="sequence_metadata_intro_step">Go to Next Step</button>
+                <button class="btn btn-primary" id="sequence_metadata_intro_step">Vá para o próximo passo</button>
               </div>
             </&>
             <!-- End Intro -->
 
 
             <!-- Step 2: Data Type -->
-            <&| /util/workflow.mas:step, title=> "Data Type" &>
-              <& /page/page_title.mas, title=>"Select the type of sequence metadata" &>
+            <&| /util/workflow.mas:step, title=> "Tipo de Dados" &>
+              <& /page/page_title.mas, title=>"Selecione o tipo de metadados de sequência" &>
               <br /><br />
               <form class="form-horizontal">
                 <div class="form-group">
-                  <label class="col-sm-3 control-label">Data Type:&nbsp;</label>
+                  <label class="col-sm-3 control-label">Tipo de dados:</label>
                   <div class="col-sm-9">
                     <select class="form-control" id="sequence_metadata_upload_type_select" disabled>
-                      <option value="">Loading...</option>
+                      <option value="">Carregando...</option>
                     </select>
                     <br />
                     <div class="well">
@@ -63,24 +63,24 @@
                   </div>
                 </div>
               </form>
-              <p><span class="glyphicon glyphicon-question-sign"></span>&nbsp;If your data is not one of the above data types, please <a href="/contact/form">contact us</a> about adding a new data type.</p>
+              <p><span class="glyphicon glyphicon-question-sign"></span>Se seus dados não são um dos tipos de dados acima, por favor. <a href="/contact/form">Nos contate</a> sobre adicionar um novo tipo de dados.</p>
               
               <br /><br />
 
               <div class="center">
-                <button class="btn btn-primary" id="sequence_metadata_upload_type_step">Go to Next Step</button>
+                <button class="btn btn-primary" id="sequence_metadata_upload_type_step">Vá para o próximo passo</button>
               </div>
             </&>
             <!-- End Data Type -->
 
 
             <!-- Step 3: Protocol Info -->
-            <&| /util/workflow.mas:step, title=> "Protocol Info" &>
-              <& /page/page_title.mas, title=>"Select a protocol for how your data was generated or create a new protocol" &>
+            <&| /util/workflow.mas:step, title=> "Informação do Protocolo" &>
+              <& /page/page_title.mas, title=>"Selecione um protocolo para como seus dados foram gerados ou crie um novo protocolo." &>
 
               <ul class="nav nav-tabs">
-                <li class="active"><a data-toggle="tab" href="#sequence_metadata_upload_protocol_select">Select Existing Protocol</a></li>
-                <li><a data-toggle="tab" href="#sequence_metadata_upload_protocol_div">Create New Protocol</a></li>
+                <li class="active"><a data-toggle="tab" href="#sequence_metadata_upload_protocol_select">Selecione o protocolo existente</a></li>
+                <li><a data-toggle="tab" href="#sequence_metadata_upload_protocol_div">Criar Novo Protocolo</a></li>
               </ul>
 
               <div class="tab-content">
@@ -94,11 +94,11 @@
                 <div id="sequence_metadata_upload_protocol_div" class="tab-pane fade">
                   <form class="form-horizontal" id="sequence_metadata_upload_protocol_form" name="sequence_metadata_upload_file_form">
 
-                    <h3>Protocol Information</h3>
+                    <h3>Informação do Protocolo</h3>
                     
                     <!-- Protocol Name -->
                     <div class="form-group">
-                      <label class="col-sm-3 control-label">Protocol Name: </label>
+                      <label class="col-sm-3 control-label">Nome do protocolo: </label>
                       <div class="col-sm-9">
                         <input class="form-control" id="sequence_metadata_upload_protocol_name" type="text">
                       </div>
@@ -106,15 +106,15 @@
 
                     <!-- Protocol Description -->
                     <div class="form-group">
-                      <label class="col-sm-3 control-label">Protocol Description: </label>
+                      <label class="col-sm-3 control-label">Descrição do protocolo: </label>
                       <div class="col-sm-9">
-                        <textarea class="form-control" id="sequence_metadata_upload_protocol_description" rows="5" placeholder="Include a description of the methods used to generate the data"></textarea>
+                        <textarea class="form-control" id="sequence_metadata_upload_protocol_description" rows="5" placeholder="Incluir uma descrição dos métodos usados para gerar os dados"></textarea>
                       </div>
                     </div>
 
                     <!-- Sequence Metadata Type -->
                     <div class="form-group">
-                      <label class="col-sm-3 control-label">Sequence Metadata Type: </label>
+                      <label class="col-sm-3 control-label">Tipo de Metadados de Sequência: </label>
                       <div class="col-sm-9">
                         <input class="form-control" id="sequence_metadata_upload_protocol_sequence_metadata_type" type="text" disabled>
                       </div>
@@ -122,10 +122,10 @@
                     
                     <!-- Reference Genome -->
                     <div class="form-group">
-                      <label class="col-sm-3 control-label">Reference Genome: </label>
+                      <label class="col-sm-3 control-label">Genoma de referência: </label>
                       <div class="col-sm-9">
                         <select class="form-control" id="sequence_metadata_upload_protocol_reference_genome" disabled>
-                          <option value="">Loading...</option>
+                          <option value="">Carregando...</option>
                         </select>
                       </div>
                     </div>
@@ -133,43 +133,43 @@
                     <br /><br />
 
                     <!-- Attribute Descriptions -->
-                    <h3>Attribute Descriptions</h3>
+                    <h3>Descrições de atributos</h3>
 
                     <div class="form-group">
-                      <label class="col-sm-3 control-label">Score Description: </label>
+                      <label class="col-sm-3 control-label">Descrição da pontuação: </label>
                       <div class="col-sm-9">
-                        <input class="form-control" id="sequence_metadata_upload_score_description" type="text" placeholder="Include a description of the values in the 'score' column">
+                        <input class="form-control" id="sequence_metadata_upload_score_description" type="text" placeholder="Inclua uma descrição dos valores na coluna &#x27;Score&#x27;">
                       </div>
                     </div>
 
                     <br />
-                    <p><strong>Add a description for each of the key/value pairs included in the attributes column.</strong></p>
-                    <p><em>Specifying the attribute here in the protocol will allow the attribute to be used as a filter in a query.  Make sure the attribute key exactly matches the key used in the gff file.</em></p>
+                    <p><strong>Adicione uma descrição para cada um dos pares chave/valor incluídos na coluna de atributos.</strong></p>
+                    <p><em>Especificar o atributo aqui no protocolo permitirá que o atributo seja usado como filtro em uma consulta. Certifique-se que a chave do atributo corresponde exatamente à chave usada no arquivo Gff.</em></p>
 
                     <div class="form-group">
-                      <label class="col-sm-3 control-label">Attribute Key: </label>
+                      <label class="col-sm-3 control-label">Chave do atributo: </label>
                       <div class="col-sm-9">
-                        <input class="form-control" id="sequence_metadata_upload_new_attribute_key" type="text" placeholder="Enter attribute key">
+                        <input class="form-control" id="sequence_metadata_upload_new_attribute_key" type="text" placeholder="Digite a tecla do atributo">
                       </div>
                     </div>
 
                     <div class="form-group">
-                      <label class="col-sm-3 control-label">Attribute Description: </label>
+                      <label class="col-sm-3 control-label">Descrição do atributo: </label>
                       <div class="col-sm-9">
-                        <input class="form-control" id="sequence_metadata_upload_new_attribute_description" type="text" placeholder="Enter a description of this attribute">
+                        <input class="form-control" id="sequence_metadata_upload_new_attribute_description" type="text" placeholder="Digite uma descrição deste atributo">
                       </div>
                     </div>
 
                     <div class="form-group center">
-                      <button class="btn btn-info" id="sequence_metadata_upload_new_attribute_submit">Save Attribute</button>
+                      <button class="btn btn-info" id="sequence_metadata_upload_new_attribute_submit">Salvar atributo</button>
                     </div>
 
                     <div>
-                      <p><strong>Saved Attributes:</strong></p>
+                      <p><strong>Atributos salvos:</strong></p>
                       <table id="sequence_metadata_upload_new_attributes_table" class="table table-striped table-hover">
                         <tr>
-                          <th>Key</th>
-                          <th>Description</th>
+                          <th>Chave</th>
+                          <th>Descrição</th>
                           <th></th>
                         </tr>
                       </table>
@@ -178,37 +178,37 @@
                     <br /><br />
 
                     <!-- External Link Templates -->
-                    <h3>External Links</h3>
+                    <h3>Ligações Externas</h3>
 
-                    <p><strong>Add templates for generating external links displayed with the sequence metadata results.</strong></p>
-                    <p>External links are defined using templates that can include the feature/chrom name, start and/or end position, and/or any attribute value 
+                    <p><strong>Adicione modelos para gerar links externos exibidos com os resultados da sequência de metadados.</strong></p>
+                    <p>Links externos são definidos usando modelos que podem incluir o nome do recurso / cromo, start e / ou posição final, e / ou qualquer valor atributo 
                     as a variable in the URL.  The variable will be replaced with the value for each sequence metadata result and displayed in the query results table.  The variable in the URL takes the form of: <code>{{variable}}</code> where <code>variable</code> can be: <code>feature</code>, <code>start</code>,
                     <code>end</code> or the key of any attribute defined by the sequence metadata protocol.</p>
                     <p>Example: <code>https://wheat.pw.usda.gov/jb/?data=/ggds/whe-iwgsc2018&loc={{Locus}}&highlight={{feature}}:{{start}}..{{end}}</code></p>
 
                     <div class="form-group">
-                      <label class="col-sm-3 control-label">Link Title: </label>
+                      <label class="col-sm-3 control-label">Título da ligação: </label>
                       <div class="col-sm-9">
-                        <input class="form-control" id="sequence_metadata_upload_new_link_title" type="text" placeholder="Enter external link title">
+                        <input class="form-control" id="sequence_metadata_upload_new_link_title" type="text" placeholder="Digite o título do link externo">
                       </div>
                     </div>
 
                     <div class="form-group">
-                      <label class="col-sm-3 control-label">Link URL Template: </label>
+                      <label class="col-sm-3 control-label">Modelo de URL da ligação: </label>
                       <div class="col-sm-9">
-                        <input class="form-control" id="sequence_metadata_upload_new_link_url" type="text" placeholder="Enter external link URL template">
+                        <input class="form-control" id="sequence_metadata_upload_new_link_url" type="text" placeholder="Digite o modelo de URL do link externo">
                       </div>
                     </div>
 
                     <div class="form-group center">
-                      <button class="btn btn-info" id="sequence_metadata_upload_new_link_submit">Save Link</button>
+                      <button class="btn btn-info" id="sequence_metadata_upload_new_link_submit">Salvar Link</button>
                     </div>
 
                     <div>
-                      <p><strong>Saved Links:</strong></p>
+                      <p><strong>Links salvos:</strong></p>
                       <table id="sequence_metadata_upload_new_links_table" class="table table-striped table-hover">
                         <tr>
-                          <th>Title</th>
+                          <th>Título</th>
                           <th>URL</th>
                           <th></th>
                         </tr>
@@ -224,7 +224,7 @@
               <br /><br />
 
               <div class="center">
-                <button class="btn btn-primary" id="sequence_metadata_upload_protocol_step">Go to Next Step</button>
+                <button class="btn btn-primary" id="sequence_metadata_upload_protocol_step">Vá para o próximo passo</button>
               </div>
 
               <br /><br />
@@ -234,18 +234,17 @@
 
 
             <!-- Step 4: Upload -->
-            <&| /util/workflow.mas:step, title=> "Upload" &>
-              <& /page/page_title.mas, title=>"Upload your gff3 file" &>
+            <&| /util/workflow.mas:step, title=> "Enviar" &>
+              <& /page/page_title.mas, title=>"Envie seu arquivo gff3" &>
               <br /><br />
 
-              <p>Select your gff3 file to upload.  Then, click the <strong>Verify</strong> button to upload your file and check its format and contents.  If 
-              successfully verified, click the <strong>Store</strong> button to store the data in the database.</p>
+              <p>Selecione seu arquivo gff3 para carregar. Então, clique no <strong>Verificar</strong> botão para carregar seu arquivo e verificar seu formato e conteúdo. Se verificar com sucesso, clique no <strong>Loja</strong> botão para armazenar os dados no banco de dados.</p>
 
               <br /><br />
 
               <form id="sequence_metadata_upload_file_form" class="form-horizontal" enctype="multipart/form-data">
                 <div class="form-group">
-                  <label class="col-sm-3 control-label">Select GFF3 File: </label>
+                  <label class="col-sm-3 control-label">Selecione o arquivo GFF3: </label>
                   <div class="col-sm-9" >
                       <input type="file" id="sequence_metadata_upload_file_input" name="sequence_metadata_upload_file_input" encoding="multipart/form-data" />
                   </div>
@@ -255,8 +254,8 @@
               <br /><br />
 
               <div class="center">
-                <button id="sequence_metadata_upload_verify" class="btn btn-info">Verify</button>
-                <button id="sequence_metadata_upload_store" class="btn btn-primary" disabled>Store</button>
+                <button id="sequence_metadata_upload_verify" class="btn btn-info">Verificar</button>
+                <button id="sequence_metadata_upload_store" class="btn btn-primary" disabled>Loja</button>
               </div>
 
               <br /><br />
@@ -272,7 +271,7 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
       </div>
     </div>
   </div>
@@ -358,11 +357,11 @@ function complete_intro_step() {
         setDataTypeDefinition(data.types[0].type_id);
       }
       else {
-        alert("ERROR: Could not load data types!");
+        alert("ERRO: não foi possível carregar os tipos de dados!");
       }
     },
     error: function() {
-      alert("ERROR: Could not load data types!");
+      alert("ERRO: não foi possível carregar os tipos de dados!");
     }
   });
 
@@ -412,11 +411,11 @@ function complete_data_type_step() {
         jQuery('#sequence_metadata_upload_protocol_reference_genome').prop('disabled', false);
       }
       else {
-        alert("ERROR: Could not load reference genomes!");
+        alert("ERRO: não foi possível carregar os genomas de referência!");
       }
     },
     error: function() {
-      alert("ERROR: Could not load reference genomes");
+      alert("ERRO: não foi possível carregar os genomas de referência");
     }
   });
 
@@ -434,7 +433,7 @@ function complete_protocol_step() {
   use_existing_protocol = jQuery('#sequence_metadata_upload_protocol_select').is(':visible');
   if ( use_existing_protocol ) {
     if ( jQuery('input[name="sequence_metadata_upload_protocol_id"]:checked').length !== 1 ) {
-      alert('Please select one existing protocol!');
+      alert("Selecione um protocolo existente!");
       return false;
     }
   }
@@ -442,11 +441,11 @@ function complete_protocol_step() {
     new_protocol_name = jQuery('#sequence_metadata_upload_protocol_name').val();
     new_protocol_description = jQuery('#sequence_metadata_upload_protocol_description').val();
     if ( !new_protocol_name || new_protocol_name === "" ) {
-      alert('Please enter a name for the new protocol');
+      alert("Informe um nome para o novo protocolo");
       return false;
     }
     if ( !new_protocol_description || new_protocol_description === "" ) {
-      alert('Please enter a description for the new protocol');
+      alert("Informe uma descrição para o novo protocolo");
       return false;
     }
   }
@@ -473,12 +472,12 @@ function complete_protocol_step() {
 function upload_and_verify() {
   let file = jQuery('#sequence_metadata_upload_file_input').val();
   if ( !file || file === '' ) {
-    alert("Please select your gff file");
+    alert("Selecione seu arquivo GFF");
     return false;
   }
 
   // Setup working modal
-  jQuery('#working_msg').html("Uploading GFF File");
+  jQuery('#working_msg').html("Enviando arquivo GFF");
   jQuery('#working_modal_progress').css('width', 0).attr('aria-valuenow', 0);
   jQuery('#working_modal_progress_div').css('display', 'block');
   jQuery('#working_modal').modal("show");
@@ -487,13 +486,13 @@ function upload_and_verify() {
   
   // Build the FormData to pass as POST arguments
   let formData = new FormData();
-  formData.append('file', jQuery('#sequence_metadata_upload_file_input').prop('files')[0]);
+  formData.append("arquivo", jQuery('#sequence_metadata_upload_file_input').prop('files')[0]);
   formData.append('use_existing_protocol', use_existing_protocol);
   if ( use_existing_protocol ) {
     formData.append('existing_protocol_id', jQuery('input[name="sequence_metadata_upload_protocol_id"]:checked').val());
   }
   else {
-    formData.append('species', jQuery('#sequence_metadata_upload_protocol_reference_genome option:selected').attr('data-species'));
+    formData.append("Espécie", jQuery('#sequence_metadata_upload_protocol_reference_genome option:selected').attr('data-species'));
     formData.append('new_protocol_attribute_count', new_attribute_count);
     for ( let i = 0; i <= new_attribute_count; i++ ) {
       formData.append('new_protocol_attribute_key_' + i, jQuery('#sequence_metadata_upload_attribute_key_' + i).val());
@@ -516,7 +515,7 @@ function upload_and_verify() {
             let prog = (e.loaded / e.total)*100;
             jQuery('#working_modal_progress').css('width', prog + "%").attr('aria-valuenow', prog);
             if ( prog >= 100 ) {
-              jQuery('#working_msg').html("Verifying GFF File");
+              jQuery('#working_msg').html("Verificando arquivo GFF");
             }
           }
         }, false);
@@ -540,21 +539,21 @@ function upload_and_verify() {
       }
       else if ( response && response.results ) {
         if ( response.results.processed === 1 ) {
-          add_message("success", "File successfully uploaded and processed");
+          add_message("success", "Arquivo enviado e processado com sucesso");
         }
         else {
-          add_message("error", "ERROR: File not successfully uploaded and processed!");
+          add_message("error", "ERRO: o arquivo não foi enviado e processado com sucesso!");
         }
         
         if ( response.results.verified === 1 ) {
-          add_message("success", "File successfully verified");
+          add_message("success", "Arquivo verificado com sucesso");
         }
         else {
-          add_message("error", "ERROR: File not successfully verfied!");
+          add_message("error", "ERRO: o arquivo não foi verificado com sucesso!");
         }
 
         if ( response.results.missing_features && response.results.missing_features.length > 0 ) {
-          let msg = "ERROR: The following features do not exist in the database.  Contact us to have them added or change the feature names to match existing features.";
+          let msg = "As seguintes características não existem no banco de dados. Entre em contato conosco para incluí-los ou alterar os nomes dos recursos para combinar com os recursos existentes.";
           msg += "<ul>";
           for ( let i = 0; i < response.results.missing_features.length; i++ ) {
             msg += "<li>" + response.results.missing_features[i] + "</li>";
@@ -564,24 +563,24 @@ function upload_and_verify() {
         }
 
         if ( response.results.missing_attributes && response.results.missing_attributes.length > 0 ) {
-          let msg = "WARNING: The following attributes are defined in the protocol but are <em>not present in the gff file</em>.";
+          let msg = "AVISO: os seguintes atributos estão definidos no protocolo, mas <em>não estão presentes no arquivo GFF</em>.";
           msg += "<ul>";
           for ( let i = 0; i < response.results.missing_attributes.length; i++ ) {
             msg += "<li>" + response.results.missing_attributes[i] + "</li>";
           }
           msg += "</ul>";
-          msg += "You can either <a href='javascript:Workflow.focus(\"#upload_sequence_metadata_workflow\", 2);'>remove the attributes from the protocol info</a> or continue to store the file with the attributes defined in the protocol but missing from the file."; 
+          msg += "Você pode <a href='javascript:Workflow.focus(\"#upload_sequence_metadata_workflow\", 2);'>remover os atributos das informações do protocolo</a> ou continuar armazenando o arquivo com os atributos definidos no protocolo, mas ausentes no arquivo.";
           add_message("warning", msg);
         }
 
         if ( response.results.undefined_attributes && response.results.undefined_attributes.length > 0 ) {
-          let msg = "WARNING: The following attributes are present in the gff file but are <em>not defined in the protocol</em>.";
+          let msg = "AVISO: os seguintes atributos estão presentes no arquivo GFF, mas <em>não estão definidos no protocolo</em>.";
           msg += "<ul>";
           for ( let i = 0; i < response.results.undefined_attributes.length; i++ ) {
             msg += "<li>" + response.results.undefined_attributes[i] + "</li>";
           }
           msg += "</ul>";
-          msg += "You can either <a href='javascript:Workflow.focus(\"#upload_sequence_metadata_workflow\", 2);'>add the attributes to the protocol info</a> or continue to store the file with the attributes not defined in the protocol."; 
+          msg += "Você pode <a href='javascript:Workflow.focus(\"#upload_sequence_metadata_workflow\", 2);'>adicionar os atributos às informações do protocolo</a> ou continuar armazenando o arquivo com os atributos não definidos no protocolo.";
           add_message("warning", msg);
         }
       }
@@ -590,7 +589,7 @@ function upload_and_verify() {
       if ( response && response.results && response.results.processed && response.results.processed === 1 && response.results.verified && response.results.verified === 1 && response.results.processed_filepath ) {
         jQuery('#sequence_metadata_upload_verify').attr('disabled', true);
         jQuery('#sequence_metadata_upload_store').attr('disabled', false);
-        add_message("info", "Verification Complete.  Next, click the <strong>Store</strong> button to save the data to the database.");
+        add_message("info", "Verificação concluída. A seguir, clique no botão <strong>Loja</strong> para salvar os dados no banco de dados.");
         processed_filepath = response.results.processed_filepath;
       }
 
@@ -601,7 +600,7 @@ function upload_and_verify() {
       jQuery('#working_modal_progress_div').css('display', 'none');
       jQuery('#working_modal').modal("hide");
 
-      alert("ERROR: Could not upload and verify gff file due to server error!");
+      alert("ERRO: não foi possível enviar e verificar o arquivo GFF devido a um erro no servidor!");
     }
   });
 }
@@ -612,7 +611,7 @@ function upload_and_verify() {
 function store() {
 
   // Setup working modal
-  jQuery('#working_msg').html("Storing Sequence Metadata");
+  jQuery('#working_msg').html("Armazenando Metadados de Sequência");
   jQuery('#working_modal').modal("show");
   jQuery('#sequence_metadata_upload_messages_list').empty();
 
@@ -666,13 +665,13 @@ function store() {
       }
       else if ( response && response.results ) {
         if ( response.results.stored === 1 ) {
-          add_message("success", "File successfully stored");
+          add_message("success", "Arquivo armazenado com sucesso");
           if ( response.results.chunks ) {
-            add_message("info", response.results.chunks + " chunks written to the database.");
+            add_message("info", response.results.chunks + " blocos gravados no banco de dados.");
           }
         }
         else {
-          add_message("error", "ERROR: File not stored!");
+          add_message("error", "ERRO: o arquivo não foi armazenado!");
         }
       }
 
@@ -686,7 +685,7 @@ function store() {
     error: function() {
       jQuery('#working_msg').html("");
       jQuery('#working_modal').modal("hide");
-      alert("ERROR: Could not store sequence metadata due to server error!");
+      alert("ERRO: não foi possível armazenar os metadados das sequências devido a um erro no servidor!");
     }
   });
 
@@ -720,7 +719,7 @@ function save_attribute_description() {
   let key = jQuery('#sequence_metadata_upload_new_attribute_key').val();
   let description = jQuery('#sequence_metadata_upload_new_attribute_description').val();
   if ( !key || key === "" ) {
-    alert("An attribute key is required!");
+    alert("Informe uma chave de atributo!");
     return false;
   }
 
@@ -752,11 +751,11 @@ function save_link_definition() {
   let title = jQuery('#sequence_metadata_upload_new_link_title').val();
   let url = jQuery('#sequence_metadata_upload_new_link_url').val();
   if ( !title || title === "" ) {
-    alert("A link title is required!");
+    alert("Informe um título para o link!");
     return false;
   }
   if ( !url || url === "" ) {
-    alert("A link url is required!");
+    alert("Informe uma URL para o link!");
     return false;
   }
 

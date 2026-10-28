@@ -21,9 +21,9 @@ hashref of:
 
      <div id="popup" style="visibility:hidden; position:absolute; top:0; left:0;">
        <table id="xtratbl">
-       <tr><td id="org_title"><font color="#000000">Title Goes Here</font></td></tr>
+       <tr><td id="org_title"><font color="#000000">O Título Vai Aqui</font></td></tr>
        <tr><td id="org_content" bgcolor="#ffffff">
-           Organism content goes here
+           O conteúdo do organismo vem aqui
        </td></tr></table>
      </div>
 
@@ -34,7 +34,7 @@ hashref of:
 %    if( $organism_tree->{newick} ) {
        <form action="/tools/tree_browser/index.pl" method="post">
           <input type="hidden" name="tree_string" value="<% $organism_tree->{newick} |h %>" />
-          <input type="submit" value="show in tree browser" />
+          <input type="submit" value="Mostrar no navegador de árvores" />
        </form>
 %    }
 
@@ -42,7 +42,7 @@ hashref of:
        <% $organism_tree->{image_map} %>
 
 % } else {
-    <span class="ghosted">temporarily unavailable</span>
+    <span class="ghosted">temporariamente indisponível</span>
 % }
 
      </div>

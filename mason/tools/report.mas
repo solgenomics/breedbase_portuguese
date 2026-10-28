@@ -11,7 +11,7 @@
 <script src="https://cdn.jsdelivr.net/npm/vega-embed@3"></script>
 
 
-<& /page/page_title.mas, title => "Personalized Report Generator" &>
+<& /page/page_title.mas, title => "Gerador de Relatório Personalizado" &>
 
 <div id="mixedmodel_tool">
 </div>
@@ -92,7 +92,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Personalized Report Generator</title>
+  <title>Gerador de Relatório Personalizado</title>
   <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
@@ -100,44 +100,44 @@
 
 <body>
   <div>
-    <label style="font-size: 18px;">Welcome to the Personalized Report Generator</label>
+    <label style="font-size: 18px;">Bem-vindos ao Gerador de Relatórios Personalizados</label>
 
-    <p>This is a <b>CURATOR's</b> tool which allows you to create customized reports based on scripts tailored to the specific instructions of your Breedbase instance. These reports are designed to meet your unique needs and provide detailed insights into your data. If you require a new report type or have specific requirements, please reach out to the Breedbase team for assistance.</p>
+    <p>Isso é <b>CURATOR</b> ferramenta que permite criar relatórios personalizados baseados em scripts adaptados às instruções específicas de sua instância Breedbase. Esses relatórios são projetados para atender suas necessidades únicas e fornecer informações detalhadas sobre seus dados. Se você precisar de um novo tipo de relatório ou tiver requisitos específicos, por favor, contate a equipe Breedbase para ajuda.</p>
 
     <form>
       <hr>
 
-      <label style="font-weight: bold;">Available Report Scripts:</label>
+      <label style="font-weight: bold;">Relatórios disponíveis:</label>
       <div id="available-scripts" style="margin-bottom: 20px;"></div>
 
       <hr>
 
       <div style="display: flex; gap: 20px; align-items: center; margin-bottom: 20px;">
         <div>
-          <label for="start-date">Start Date:</label><br>
+          <label for="start-date">Data de início:</label><br>
           <input type="text" id="start-date" name="start-date" placeholder="dd/mm/yyyy">
         </div>
 
         <div>
-          <label for="end-date">End Date:</label><br>
+          <label for="end-date">Data final:</label><br>
           <input type="text" id="end-date" name="end-date" placeholder="dd/mm/yyyy">
         </div>
       </div>
 
       <hr>
 
-      <label for="email" style="font-weight: bold;">Send Report To (Emails):</label>
-      <textarea id="email-textarea" name="email" placeholder="Enter email addresses separated by new lines (one per line)" required></textarea>
+      <label for="email" style="font-weight: bold;">Envie relatório para:</label>
+      <textarea id="email-textarea" name="email" placeholder="Digite endereços de e-mail separados por novas linhas (uma por linha)" required></textarea>
 
-      <small>Please enter each email address on a new line (e.g., email1@example.com, email2@example.com).</small>
+      <small>Por favor, insira cada endereço de e-mail em uma nova linha (por exemplo, email1@example.com, email2@example.com).</small>
 
       <br><br>
 
-      <button type="submit">Generate Report & Send Report</button>
+      <button type="submit">Gerar relatório e enviar relatório</button>
     </form>
   </div>
   <div id="loading-message" style="display:none; color: blue; font-weight: bold; margin-top: 15px;">
-  Your report was submitted. You’ll receive an email when it’s ready. Feel free to navigate to other pages.
+  Seu relatório foi submetido. Você receberá um e-mail quando estiver pronto. Sinta-se livre para navegar para outras páginas.
 </div>
 
 <div id="final-message" style="display:none; color: green; font-weight: bold; margin-top: 15px;">
@@ -210,21 +210,21 @@
           if (response.success) {
             $("#final-message")
               .css("color", "green")
-              .text(response.message || "Your report was submitted. You’ll receive an email when it’s ready.")
+              .text(response.message || "Seu relatório foi enviado. Você receberá um e-mail quando estiver pronto.")
               .show();
           } else {
             $("#final-message")
               .css("color", "red")
-              .text("Error: " + (response.error || "Unknown error."))
+              .text("Erro: " + (response.error || "Erro desconhecido."))
               .show();
           }
         },
         error: function(xhr, status, error) {
-          console.error("AJAX Error:", error);
+          console.error("Erro AJAX:", error);
           $("#loading-message").hide();
           $("#final-message")
             .css("color", "red")
-            .text("Error sending report: " + error)
+            .text("Erro ao enviar o relatório: " + error)
             .show();
         }
       });

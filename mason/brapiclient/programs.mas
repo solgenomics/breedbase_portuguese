@@ -5,7 +5,7 @@
 
     <h4>Programas</h4>
     <input name="brapi_home_program_name" id="brapi_home_program_name" class="form-control" type="text" placeholder="Nome do programa, ex.: test" value="test"/>
-    <button class="btn btn-primary" name="brapi_home_program_submit" id="brapi_home_program_submit">Obter programas</button>
+    <button class="btn btn-primary" name="brapi_home_program_submit" id="brapi_home_program_submit">Programas obstétricos</button>
     <br/><br/>
     <div id="brapi_programs_result_div">
     </div>

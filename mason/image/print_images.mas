@@ -73,9 +73,9 @@ if ($images && !$image_objects) {
 
 if ($image_objects)  { # don't display anything for empty list of images
   if ($curator && $stock_image_flag == '1') { # Only include 'Set as Display Image' column for images of this stock, not for images of related stock table
-    $image_html .= qq|<table class="table table-bordered"><thead><tr><th><button class="btn btn-sm btn-default" id="print_images_multi_image_view">View Selected</button></th><th>Image</th><th>Description</th><th>Type</th><th>Set as Display Image</th></tr></thead><tbody>|;
+    $image_html .= qq|<table class="table table-bordered"><thead><tr><th><button class="btn btn-sm btn-default" id="print_images_multi_image_view">View Selected</button></th><th>Imagem</th><th>Descrição</th><th>Tipo</th><th>Set as Display Image</th></tr></thead><tbody>|;
   } else {
-    $image_html .= qq|<table class="table table-bordered"><thead><tr><th><button class="btn btn-sm btn-default" id="print_images_multi_image_view">View Selected</button></th><th>Image</th><th>Description</th><th>Type</th></tr></thead><tbody>|;
+    $image_html .= qq|<table class="table table-bordered"><thead><tr><th><button class="btn btn-sm btn-default" id="print_images_multi_image_view">View Selected</button></th><th>Imagem</th><th>Descrição</th><th>Tipo</th></tr></thead><tbody>|;
   }
   
   my $i = 0;
@@ -92,10 +92,10 @@ if ($image_objects)  { # don't display anything for empty list of images
     ##$image_html .=  qq { $(".stock_image_group").colorbox({rel:'stock_image_group'}); };
 
     my $colorbox =
-      qq|<a href="$image_img"  title="<a href=$image_page>Go to image page ($image_name)</a>" class="stock_image_group" rel="gallery-figures"><img src="$small_image" alt="$image_description" /></a> |;
-    my $multi_open_colorbox =  qq|<a href="$image_img"  title="<a href=$image_page>Go to image page ($image_name)</a>" class="stock_image_group" rel="gallery-figures"><img src="$original_img" alt="$image_description" /></a> |;
+      qq|<a href="$image_img"  title="<a href=$image_page>Ir para a página da imagem ($image_name)</a>" class="stock_image_group" rel="gallery-figures"><img src="$small_image" alt="$image_description" /></a> |;
+    my $multi_open_colorbox =  qq|<a href="$image_img"  title="<a href=$image_page>Ir para a página da imagem ($image_name)</a>" class="stock_image_group" rel="gallery-figures"><img src="$original_img" alt="$image_description" /></a> |;
     
-    my $set_button = "<button class='btn btn-sm btn-default' onclick='setDisplayImage($image_id, $stock_id)'>Set</button";
+    my $set_button = "<button class='btn btn-sm btn-default' onclick='setDisplayImage($image_id, $stock_id)'>Preparar</button";
     my $fhtml =
       qq|<tr><td><input type="checkbox" name="print_images_checkbox" data-image='$image_img' data-page='$image_page' data-name='$image_name' data-html-text='$multi_open_colorbox'></td><td>|
         . $colorbox
@@ -129,7 +129,7 @@ if ($image_objects)  { # don't display anything for empty list of images
             images.push({
                 href: jQuery(this).data('image'),
                 page: page,
-                title: '<a href=\"' + page + '\" target=\"_blank\">Go to image page (' + name + ')</a>',
+                title: '<a href=\"' + page + '\" target=\"_blank\">Ir para a página da imagem (' + name + ')</a>',
             });
         });
         if (!images.length) return;
@@ -158,9 +158,9 @@ if ($image_objects)  { # don't display anything for empty list of images
 
 }
 if ($curator && $stock_image_flag == '1') { # Only include 'Set as Display Image' column for images of this stock, not for images of related stock table
-    $m_image_html .= qq|<table class="table table-bordered"><thead><tr><th><button class="btn btn-sm btn-default" id="print_images_multi_image_view">View Selected</button></th><th>Image</th><th>Description</th><th>Type</th><th>Set as Display Image</th></tr></thead><tbody>|; #open table tag for the hidden figures #4 and on
+    $m_image_html .= qq|<table class="table table-bordered"><thead><tr><th><button class="btn btn-sm btn-default" id="print_images_multi_image_view">View Selected</button></th><th>Imagem</th><th>Descrição</th><th>Tipo</th><th>Set as Display Image</th></tr></thead><tbody>|; #open table tag for the hidden figures #4 and on
   } else {
-    $m_image_html .= qq|<table class="table table-bordered"><thead><tr><th><button class="btn btn-sm btn-default" id="print_images_multi_image_view">View Selected</button></th><th>Image</th><th>Description</th><th>Type</th></tr></thead><tbody>|;
+    $m_image_html .= qq|<table class="table table-bordered"><thead><tr><th><button class="btn btn-sm btn-default" id="print_images_multi_image_view">View Selected</button></th><th>Imagem</th><th>Descrição</th><th>Tipo</th></tr></thead><tbody>|;
   }
 my $more = scalar(@more_is);
 foreach (@more_is) { $m_image_html .= $_; }
@@ -170,7 +170,7 @@ $m_image_html .= "</tbody></table>";    #close tabletag for the hidden figures
 if (@more_is) {    #html_optional_show if there are more than 3 figures
   $image_html .= html_optional_show(
 				    $additional_image_button_id,
-				    "<b>See $more more images...</b>",
+				    "<b>Veja $more mais imagens...</b>",
 				    qq| $m_image_html |,
 				    0, #< do not show by default
 				    #'abstract_optional_show', #< don't use the default button-like style
@@ -183,19 +183,19 @@ if (@more_is) {    #html_optional_show if there are more than 3 figures
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="setDisplayMessageDialog">Success</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="setDisplayMessageDialog">Sucesso</h4>
             </div>
             <div class="modal-body">
                 <div class="container-fluid">
                     <p>
                         <span class="ui-icon ui-icon-circle-check" style="float: left; margin: 0 7px 50px 0;"></span>
-                        The display image was set successfully.
+                        A imagem foi definida com sucesso.
                     </p>
                 </div>
             </div>
             <div class="modal-footer">
-                <button id="dismiss_set_display_image_message_dialog" type="button" class="btn btn-default" data-dismiss="modal">Close & Reload</button>
+                <button id="dismiss_set_display_image_message_dialog" type="button" class="btn btn-default" data-dismiss="modal">Fechar e recarregar</button>
             </div>
         </div>
     </div>
@@ -225,7 +225,7 @@ if (@more_is) {    #html_optional_show if there are more than 3 figures
         },
         error: function() {
           jQuery('#working_modal').modal('hide');
-          alert('An error occured while setting the display image');
+          alert("Ocorreu um erro ao definir a imagem de exibição");
         }
       });
 

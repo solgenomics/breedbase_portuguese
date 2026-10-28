@@ -1,6 +1,6 @@
-<li class="dropdown"><a class="menu_click_dropdown dropdown-toggle" data-toggle="dropdown">Pesquisar</a>
+<li class="dropdown"><a class="menu_click_dropdown dropdown-toggle" data-toggle="dropdown">Pesquisador</a>
   <ul class="dropdown-menu">
-    <li><a href="/breeders/search">Assistente</a></li>
+    <li><a href="/breeders/search">Ajudante</a></li>
     <li><a href="/search/bulk">Pesquisa em massa</a></li>
     <li><a href="/search/stocks">Acessos e parcelas</a></li>
     <li><a href="/search/organisms">Organismos</a></li>

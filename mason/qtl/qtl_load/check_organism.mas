@@ -40,7 +40,7 @@ my $message = qq |<p> It appears that SGN currently does not support
 
 </%perl>
 
-<& /page/page_title.mas, title => 'Check parental accession(s)' &>
+<& /page/page_title.mas, title => 'Verifique a(s) acesso(s) dos pais' &>
 <&| /page/info_section.mas, title => '', subtitle => $guide &>
   <% $message %>  
 </&>

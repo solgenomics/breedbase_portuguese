@@ -327,7 +327,7 @@ export function init() {
                         );
                         last_coord = [last_coord[0] + 1, last_coord[1]];
                         this.plot_object[
-                            "Empty Space" + String(last_coord[0]) + String(last_coord[1])
+                            "Espaço vazio" + String(last_coord[0]) + String(last_coord[1])
                         ] = this.get_plot_format(
                             "empty_space",
                             last_coord[0] + 1,
@@ -343,7 +343,7 @@ export function init() {
                         );
                         last_coord = [this.meta_data.min_col, last_coord[1]];
                         this.plot_object[
-                            "Empty Space" + String(last_coord[0]) + String(last_coord[1])
+                            "Espaço vazio" + String(last_coord[0]) + String(last_coord[1])
                         ] = this.get_plot_format(
                             "empty_space",
                             this.meta_data.min_col,
@@ -711,7 +711,7 @@ export function init() {
                         success: function (response) {
                             jQuery("#working_modal").modal("hide");
                             if (response.error) {
-                                alert("Error retrieving plot contents " + response.error);
+                                alert("Erro ao recuperar o conteúdo da parcela " + response.error);
                             } else {
 
                                 function createCollapsibleList(obj) {
@@ -831,7 +831,7 @@ export function init() {
                                                     if (coord in coord_dictionary) {
                                                         table_elems.push("<td style=\"border:1px solid black;padding:2px;border-radius:10px;text-align:center;vertical-align:middle;width:3em;aspect-ratio:1;\">"+coord_dictionary["" + row + "," + col + ""]+"</td>");
                                                     } else {
-                                                        table_elems.push("<td style=\"border:1px solid black;padding:2px;border-radius:10px;text-align:center;vertical-align:middle;width:3em;aspect-ratio:1;\">empty space</td>");
+                                                        table_elems.push("<td style=\"border:1px solid black;padding:2px;border-radius:10px;text-align:center;vertical-align:middle;width:3em;aspect-ratio:1;\">espaço vazio</td>");
                                                     }
                                                 }
                                             }
@@ -891,7 +891,7 @@ export function init() {
                         },
                         error: function (error) {
                             jQuery("#working_modal").modal("hide");
-                            alert("Error retrieving plot contents: " + error);
+                            alert("Erro ao recuperar o conteúdo da parcela: " + error);
                         },
                     });
 
@@ -908,7 +908,7 @@ export function init() {
                             jQuery("#working_modal").modal("hide");
                             var images = response.image_html;
                             if (response.error) {
-                                alert("Error Retrieving Plot Images: " + response.error);
+                                alert("Erro ao recuperar as imagens da parcela: " + response.error);
                             } else {
                                 jQuery("#show_plot_image_ids").html(images);
 
@@ -917,7 +917,7 @@ export function init() {
                         },
                         error: function () {
                             jQuery("#working_modal").modal("hide");
-                            alert("An error occurred retrieving plot images");
+                            alert("Ocorreu um erro ao recuperar as imagens da parcela");
                         },
                     });
                 }
@@ -1066,29 +1066,29 @@ export function init() {
                 if (is_plot_overlapping(plot)) {
                     let k = `${plot.observationUnitPosition.positionCoordinateX}-${plot.observationUnitPosition.positionCoordinateY}`;
                     let plots = local_this.meta_data.overlapping_plots[k];
-                    html += `<strong>Overlapping Plots:</strong> ${plots.join(", ")}`;
+                    html += `<strong>Parcelas sobrepostas:</strong> ${plots.join(", ")}`;
                 } else {
                     html += jQuery("#include_linked_trials_checkmark").is(":checked")
-                        ? `<strong>Trial Name:</strong> <span style='padding: 1px 2px; border-radius: 4px; color: ${local_this.linked_trials[plot.studyName].fg
+                        ? `<strong>Nome do ensaio:</strong> <span style='padding: 1px 2px; border-radius: 4px; color: ${local_this.linked_trials[plot.studyName].fg
                         }; background-color: ${local_this.linked_trials[plot.studyName].bg
                         }'>${plot.studyName}</span><br />`
                         : "";
-                    html += `<strong>Plot Name:</strong> ${plot.observationUnitName}<br />`;
+                    html += `<strong>Nome da parcela:</strong> ${plot.observationUnitName}<br />`;
                     if (plot.type == "data") {
-                        html += `<strong>Plot Number:</strong> ${plot.observationUnitPosition.observationLevel.levelCode}<br />
-                            <strong>Block Number:</strong> ${plot.observationUnitPosition.observationLevelRelationships[1].levelCode}<br />
-                            <strong>Rep Number:</strong> ${plot.observationUnitPosition.observationLevelRelationships[0].levelCode}<br />`;
+                        html += `<strong>Número da parcela:</strong> ${plot.observationUnitPosition.observationLevel.levelCode}<br />
+                            <strong>Número do bloco:</strong> ${plot.observationUnitPosition.observationLevelRelationships[1].levelCode}<br />
+                            <strong>Número da repetição:</strong> ${plot.observationUnitPosition.observationLevelRelationships[0].levelCode}<br />`;
                         if (plot.germplasmName) {
-                            html += `<strong>Accession Name:</strong> ${plot.germplasmName}<br />`;
+                            html += `<strong>Nome do acesso:</strong> ${plot.germplasmName}<br />`;
                         } else if (plot.crossName) {
-                            html += `<strong>Cross Unique ID:</strong> ${plot.crossName}<br />`;
+                            html += `<strong>ID único do cruzamento:</strong> ${plot.crossName}<br />`;
                         } else if (plot.additionalInfo.familyName) {
-                            html += `<strong>Family Name:</strong> ${plot.additionalInfo.familyName}<br />`;
+                            html += `<strong>Nome da família:</strong> ${plot.additionalInfo.familyName}<br />`;
                         }
 
                         if ( plot.additionalInfo?.intercropGermplasm ) {
                             for ( let i = 0; i < plot.additionalInfo.intercropGermplasm.length; i++ ) {
-                                html += `<strong>Accession Name:</strong> ${plot.additionalInfo.intercropGermplasm[i].germplasmName}<br />`;
+                                html += `<strong>Nome do acesso:</strong> ${plot.additionalInfo.intercropGermplasm[i].germplasmName}<br />`;
                             }
                         }
 
@@ -1098,8 +1098,8 @@ export function init() {
                                 v = heatmap_object[trait_name][plot.observationUnitDbId].val;
                                 v = isNaN(v) ? v : Math.round((parseFloat(v) + Number.EPSILON) * 100) / 100;
                             }
-                            html += `<br /><strong>Trait Name:</strong> ${local_this.heatmap_selection}`;
-                            html += `<br /><strong>Trait Value:</strong> ${v}`;
+                            html += `<br /><strong>Nome da característica:</strong> ${local_this.heatmap_selection}`;
+                            html += `<br /><strong>Valor da característica:</strong> ${v}`;
                         }
                     }
                 }

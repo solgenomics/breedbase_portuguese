@@ -246,7 +246,7 @@ $identifier_prefix => ''
 <&|  /page/info_section.mas, title => "Progênie", collapsible => 1, collapsed => 0, subtitle => $add_progeny_link   &>
 
     <div id="progeny_information_div">
-        [carregando...]
+        [Carregando...]
     </div>
 
     <div id="add_more_progeny_dialog">

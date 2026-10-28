@@ -34,9 +34,9 @@ $_</td>\n|}
 }
 sub ul(@) { "<ul>\n".( join '', map {"<li>$_</li>\n"} @_ )."</ul>\n"; }
 
-print info_section_html( title => 'Lab members',
+print info_section_html( title => 'Membros do laboratório',
 			 contents =>
-			 info_section_html( title => 'Staff',
+			 info_section_html( title => 'Pessoal',
 					    is_subsection => 1,
 					    contents => person_set 
               ([
@@ -72,18 +72,18 @@ print info_section_html( title => 'Lab members',
 					    ),
 					  )
 			 
-  .info_section_html( title => 'Interns',
+  .info_section_html( title => 'Estagiários',
 					     is_subsection => 1,
 					     contents => 
 					     ul(
-                                                '<a href="/about/Summer_Internship_2008.pl">View summer 2008 intern photos &amp; projects</a>',
-                                                '<a href="/outreach/index.pl#interns">Get information about our bioinformatics summer internship program</a>',            
+                                                '<a href="/about/Summer_Internship_2008.pl">Ver verão 2008 fotos e projetos internos</a>',
+                                                '<a href="/outreach/index.pl#interns">Obter informações sobre o nosso programa de estágio de verão bioinformática</a>',            
                         ),
                                            )
 
 			 .qq|<a href="/sgn_photos/index.pl"><strong>View more staff &amp; intern photos</strong></a>|
 		       );
-print info_section_html( title => 'Emeritus Staff',
+print info_section_html( title => 'Pessoal Emérito',
 			 contents =>
 			 info_table_html( __multicol => 3, __border => 0,
 					 'Bioinformatics Analysts' =>

@@ -28,7 +28,7 @@ $training_pop_id => undef;
 <&| /page/info_section.mas,
     collapsible => 1,
     collapsed   => 1,
-    title       => "Acronyms legend",
+    title       => "Lenda dos acrônimos",
   &>
 
   
@@ -38,8 +38,8 @@ $training_pop_id => undef;
       <table class="table" id="trait_acronyms_table" style="text-align: left;">
         <thead>
           <tr>
-        	<th>Acronym</th>
-            <th>Trait</th>
+        	<th>Acrônimo</th>
+            <th>Característica</th>
           </tr>
         </thead>
       </table>

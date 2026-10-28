@@ -102,7 +102,7 @@ $trial_name
                                 <td>transformation_identifier</td>
                                 <td>accession_name</td>
                                 <td>vector_construct</td>
-                                <td>notes</td>
+                                <td>Notas</td>
                                 <td>is_a_control</td>
                             </tr>
                         </tbody>

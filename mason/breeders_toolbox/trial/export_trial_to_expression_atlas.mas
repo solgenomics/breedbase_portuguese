@@ -93,7 +93,7 @@ $main_production_site_url
         <div class="modal-content">
             <div class="modal-header" style="text-align: center">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="submitExpressionAtlasDialog">Expression Atlas</h4>
+                <h4 class="modal-title" id="submitExpressionAtlasDialog">Atlas de Expressão</h4>
             </div>
             <div class="modal-body">
                 <div class="container-fluid">

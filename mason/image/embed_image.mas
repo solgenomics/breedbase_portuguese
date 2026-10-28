@@ -13,7 +13,7 @@ $dbh
     $url = $image->get_image_url($size);
 };
 if ($@) { 
-    print "Sorry. Could not get image # $image_id\n"; 
+    print "Desculpe. Não foi possível obter a imagem # $image_id\n"; 
 }
 </%perl>
 

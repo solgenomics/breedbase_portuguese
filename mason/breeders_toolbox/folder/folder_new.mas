@@ -54,7 +54,7 @@ $breeding_program_name => undef
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-4 control-label">Pasta principal: </label>
+                            <label class="col-sm-4 control-label">Massa principal: </label>
                             <div class="col-sm-8" >
                                 <div id="new_folder_parent_folder_select_div">
 % if ($parent_folder_id) {
@@ -71,7 +71,7 @@ $breeding_program_name => undef
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
-                <button type="button" class="btn btn-primary" name="new_folder_submit" id="new_folder_submit" title="Salvar nova pasta">Salvar</button>
+                <button type="button" class="btn btn-primary" name="new_folder_submit" id="new_folder_submit" title="Salavar Nova Massa">Salvar</button>
             </div>
         </div>
     </div>

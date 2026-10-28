@@ -80,18 +80,18 @@ if($experiments and @{$experiments}) {
 	$fwd='<span class="sequence">'.$fwd.'</span>';
       }
       else {
-	$fwd='<span class="ghosted">Unknown</span>';
+	$fwd='<span class="ghosted">Desconhecido</span>';
       }
       if($rev) {
 	$rev='<span class="sequence">'.$rev.'</span>';
       }
       else {
-	$rev='<span class="ghosted">Unknown</span>';
+	$rev='<span class="ghosted">Desconhecido</span>';
       }  
       my $enz=$pcr->enzyme()||'unknown enzyme';                 
       my $additional_enzymes= $pcr->additional_enzymes;
-      $temp||='<span class="ghosted">Unknown</span>';
-      $mg||='<span class="ghosted">Unknown</span>';
+      $temp||='<span class="ghosted">Desconhecido</span>';
+      $mg||='<span class="ghosted">Desconhecido</span>';
       my $digest_title="Digested band sizes (using $enz)";
       unless($digest_bands_html) {
 	$digest_title='&nbsp;'; 
@@ -106,7 +106,7 @@ if($experiments and @{$experiments}) {
 	 $digest_title=>$digest_bands_html,
 	 'Enzymes'               => $additional_enzymes,
 	 'Approximate temperature'=>$temp,
-	 'Mg<sup>+2</sup> concentration'=>$mg,
+	 'Mg<sup>+2</sup> concentração'=>$mg,
 	 '__multicol'=>3,
 	 '__tableattrs'=>"width=\"100%\"",
 	);
@@ -115,7 +115,7 @@ if($experiments and @{$experiments}) {
   }
 }
 if($polymorphisms_html) {
- print  info_section_html(title=>'Other PCR data',contents=>'<table width="100%" cellspacing="0" cellpadding="0" border="0">'.$polymorphisms_html.'</table>');
+ print  info_section_html(title=>'Outros dados da PCR',contents=>'<table width="100%" cellspacing="0" cellpadding="0" border="0">'.$polymorphisms_html.'</table>');
 }
 else {
   return '';

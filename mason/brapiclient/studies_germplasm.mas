@@ -5,7 +5,7 @@
 
     <h4>Germoplasma do estudo</h4>
     <input name="brapi_home_studygermplasmdbid" id="brapi_home_studygermplasmdbid" class="form-control" type="text" placeholder="ID do estudo, ex.: 139" value="139"/>
-    <button class="btn btn-primary" name="brapi_home_studygermplasmdbid_submit" id="brapi_home_studygermplasmdbid_submit">Obter germoplasma</button>
+    <button class="btn btn-primary" name="brapi_home_studygermplasmdbid_submit" id="brapi_home_studygermplasmdbid_submit">Germoplasma Obter</button>
     <br/><br/>
     <div id="brapi_studygermplasm_detail_result_div">
     </div>

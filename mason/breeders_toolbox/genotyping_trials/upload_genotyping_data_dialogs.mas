@@ -416,7 +416,7 @@ $facilities
                                         <div class="col-sm-7">
                                             <select class="form-control" id="upload_genotype_add_new_accessions" name="upload_genotype_add_new_accessions">
                                                 <option value="">Não (desativado por segurança)</option>
-                                                <!--option value="1">Yes</option-->
+                                                <!--option value="1">Sim</option-->
                                             </select>
                                         </div>
                                     </div>
@@ -596,7 +596,7 @@ $facilities
                         <thead></thead>
                         <tbody>
                             <tr>
-                                <td>SampleName.LabID</td>
+                                <td>Nome da amostra</td>
                                 <td>Todos os nomes dos marcadores em colunas separadas (por exemplo, S12_7926132)</td>
                             </tr>
                         </tbody>
@@ -615,11 +615,11 @@ $facilities
                         <tbody>
                             <tr>
                                 <td>IntertekSNPID</td>
-                                <td>CustomerSNPID</td>
-                                <td>Reference</td>
-                                <td>Alternate</td>
-                                <td>Chromosome</td>
-                                <td>Position</td>
+                                <td>ClienteSNPID</td>
+                                <td>Referência</td>
+                                <td>Alternar</td>
+                                <td>Cromossoma</td>
+                                <td>Posição</td>
                                 <td><b>Opcional:</b> podem ser incluídas informações adicionais dos marcadores; veja abaixo.</td>
                             </tr>
                         </tbody>
@@ -629,11 +629,11 @@ $facilities
                     </b>
                     Você pode incluir informações adicionais usando um ou mais cabeçalhos da lista abaixo. Adicione as colunas selecionadas depois de <code>Position</code>.</li>
                     <ul>
-                        <li><b>Quality</b></li>
-                        <li><b>Filter</b></li>
-                        <li><b>Info</b></li>
-                        <li><b>Format</b></li>
-                        <li><b>Sequence</b></li>
+                        <li><b>Qualidade</b></li>
+                        <li><b>Filtrar</b></li>
+                        <li><b>Informação</b></li>
+                        <li><b>Formato</b></li>
+                        <li><b>Sequência</b></li>
                     </ul>
                 </div>
             </div>
@@ -798,8 +798,8 @@ $facilities
                             <div class="col-sm-7">
                                 <select class="form-control" id="upload_ssr_sample_type_select" name="upload_ssr_sample_type_select">
                                     <option value="">Select sample type</option>
-                                    <option value="accession">Accession</option>
-                                    <option value="tissue_sample">Tissue Sample</option>
+                                    <option value="accession">Acesso</option>
+                                    <option value="tissue_sample">Amostra de tecido</option>
                                 </select>
                             </div>
                         </div>
@@ -857,12 +857,12 @@ $facilities
                         <tbody>
                             <tr>
                                 <td>sample_name</td>
-                                <td>s01</td>
-                                <td>s01</td>
-                                <td>s01</td>
-                                <td>s02</td>
-                                <td>s02</td>
-                                <td>s02</td>
+                                <td>S01</td>
+                                <td>S01</td>
+                                <td>S01</td>
+                                <td>S02</td>
+                                <td>S02</td>
+                                <td>S02</td>
                             </tr>
                         </tbody>
                         <thead></thead>
@@ -955,11 +955,11 @@ $facilities
                         <thead></thead>
                         <tbody>
                             <tr>
-                                <td>MarkerName</td>
+                                <td>MarcadorName</td>
                                 <td>Xallele</td>
                                 <td>Yallele</td>
-                                <td>Chromosome</td>
-                                <td>Position</td>
+                                <td>Cromossoma</td>
+                                <td>Posição</td>
                                 <td><b>Opcional:</b> podem ser incluídas informações adicionais dos marcadores; veja abaixo.</td>
                             </tr>
                         </tbody>
@@ -969,11 +969,11 @@ $facilities
                     <b>Colunas opcionais:</b>
                     Você pode incluir informações adicionais usando um ou mais cabeçalhos da lista abaixo. Adicione as colunas selecionadas depois de <code>Position</code>.</li>
                     <ul>
-                        <li>Quality</li>
-                        <li>Filter</li>
-                        <li>Info</li>
-                        <li>Format</li>
-                        <li>Sequence</li>
+                        <li>Qualidade</li>
+                        <li>Filtrar</li>
+                        <li>Informação</li>
+                        <li>Formato</li>
+                        <li>Sequência</li>
                         <li><b><code>FacilityMarkerName</code>:</b> ao enviar dados com os nomes de marcadores usados pelo laboratório, inclua-os no arquivo de informações KASP com esse cabeçalho.</li>
                     </ul>
                     <hr class ="solid">
@@ -986,8 +986,8 @@ $facilities
                     <table class="table table-hover table-bordered table-condensed" >
                         <tbody>
                             <tr>
-                                <td>MarkerName</td>
-                                <td>SampleName</td>
+                                <td>MarcadorName</td>
+                                <td>AmostraName</td>
                                 <td>SNPcall</td>
                                 <td>Xvalue</td>
                                 <td>Yvalue</td>
@@ -1010,8 +1010,8 @@ $facilities
                         <thead></thead>
                         <tbody>
                             <tr>
-                                <td>FacilityMarkerName</td>
-                                <td>FacilitySampleName</td>
+                                <td>Marcador de instalaçõesName</td>
+                                <td>InstalaçõesAmplosName</td>
                                 <td>SNPcall</td>
                                 <td>Xvalue</td>
                                 <td>Yvalue</td>
@@ -1112,14 +1112,14 @@ $facilities
                             <table class="table table-bordered table-hover">
                             <tbody>
                             <tr>
-                                <td>Marker</td>
+                                <td>Marcador</td>
                                 <td>Alias</td>
-                                <td>Description</td>
-                                <td>Category</td>
+                                <td>Descrição</td>
+                                <td>Categoria</td>
                                 <td>...adicione outras colunas Category conforme necessário</td>
-                                <td>Allele</td>
+                                <td>Alele</td>
                                 <td>...adicione outras colunas Allele conforme necessário</td>
-                                <td>Reference</td>
+                                <td>Referência</td>
                                 <td>...adicione outras colunas Reference conforme necessário</td>
                             </tr>
                             </tbody>

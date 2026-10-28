@@ -1,79 +1,74 @@
 
-<& /page/page_title.mas, title=>"Gene Search Help" &>
+<& /page/page_title.mas, title=>"Gene, procure ajuda" &>
 
 <p>
-The <a href="/search/direct_search.pl?search=loci">gene search</a> is a tool for searching genes in SGN's database. 
-These genes originate from various sources, including GenBank, PubMed literature mining, historic collections of gene names, and SGN user-contributed data.
+O <a href="/search/direct_search.pl?search=loci">Pesquisa genética</a> É uma ferramenta para pesquisar genes no banco de dados da SGN. Estes genes se originam de várias fontes, incluindo GenBank, mineração de literatura PubMed, coleções históricas de nomes de genes, e dados do usuário da SGN.
 </p>
 
-<img src="/documents/help/screenshots/gene_search_help.png" alt="screenshot of gene search form" style="margin: auto; border: 1px solid black;" />
+<img src="/documents/help/screenshots/gene_search_help.png" alt="Imagem da forma de busca genética" style="margin: auto; border: 1px solid black;" />
 
-<h4>1. Simple search option: search by locus or allele name or symbol</h4>
+<h4>1. Opção de busca simples: busca por locus ou alelo nome ou símbolo</h4>
 <p>
-Use this option for searching the database for genes with a locus or allele name/symbol/synonym/description containing what you typed in. You can search these fields for an exact match, begin with or end with your input, by selecting the desired option from the drop-down menu. 
-The search is case-insensitive.
+Use esta opção para pesquisar o banco de dados de genes com um locus ou alelo nome/símbolo/sinônimo/descrição contendo o que você digitou. Você pode procurar nesses campos por uma combinação exata, começar ou terminar com sua entrada, selecionando a opção desejada no menu suspenso. A busca é insensível.
 
-
-</p>
-
-
-<p>
-<b>The following search options can be combined with the generic locus/allele search option. These are visible by clicking the \'Advanced search options\' button:</b>.
-</p>
-
-<h4>2. Organism</h4>
-<p>
-In this drop-down menu you will see a list of the common names of species that make up the collection of genes. You can use this optionfor limiting your search results to loci of only the organism you selected.
 
 </p>
 
 
-<h4>3. Chromosome</h4>
 <p>
-Choose a chromosome from this menu to limit results to loci mapped on that chromosome or linkage group.
+<b>As seguintes opções de busca podem ser combinadas com a opção de busca genérica locus/alele. Estes são visíveis clicando no botão \'Opções de busca avançadas\':</b>.
+</p>
+
+<h4>2. Organismo</h4>
+<p>
+Neste menu você verá uma lista dos nomes comuns das espécies que compõem a coleção de genes. Você pode usar esta opção para limitar seus resultados de busca para loci de apenas o organismo que você escolheu.
+
+</p>
+
+
+<h4>3. Cromossoma</h4>
+<p>
+Escolha um cromossomo deste menu para limitar os resultados aos loci mapeados nesse cromossomo ou grupo de ligação.
 
 
 </p>
 
-<h4>4. Locus editor</h4>
+<h4>4. Editor Locus</h4>
 <p>
-Each locus in the genes database has an owner (either an SGN curator or a submitter). the owner also has certain edit privileges. You can search for loci owned by a specific <a href= "../search/direct_search.pl?search=directory">SGN user</a> by typing a first or a last name.
-Anyone interested in obtaining an SGN user account may do so by <a href="../solpeople/new-account.pl">signing up for a new account</a>. After obtaining an SGN user account you may upload new loci to SGN\'s database.
-If you are interested in obtaining editor privileges to a specific locus, please follow the link in the locus details page.  
+Cada locus no banco de dados de genes tem um proprietário (um curador do SGN ou um submissor). Você pode procurar por loci de propriedade de um específico <a href= "../search/direct_search.pl?search=directory">Usuário do SGN</a> Datilografando um primeiro ou último nome. Qualquer um interessado em obter uma conta de usuário SGN pode fazê-lo por <a href="../solpeople/new-account.pl">se inscrevendo para uma nova conta</a>. Depois de obter uma conta de usuário do SGN você pode enviar novos loci para o banco de dados do SGN. Se você está interessado em obter privilégios de editor para um locus específico, por favor, siga o link na página de detalhes do locus.  
 
 
 </p>
 
-<h4>5. Annotation features</h4>
+<h4>5. Recursos de anotação</h4>
 <p>
-Use these checkboxes for narrowing your search to only genes with one or more of the following features:
+Use estas caixas de seleção para estreitar sua busca para apenas genes com uma ou mais das seguintes características:
 <ul>
-<li>Sequence: genes that have sequence annotation (GenBank ID and/or SGN unigene ID)</li>
-<li>Marker: genes that correspond to a specific marker from SGN\'s <a href="../search/direct_search.pl?search=markers">marker database</a></li>
-<li>GO/PO annotation: genes that are annotated to at least one  <a href="http://geneontology.org">Gene Ontology</a> or <a href="http://plantontology.org">Plant Ontology</a> term</li>
+<li>Sequência: genes que têm anotação de sequência (GenBank ID e/ou SGN unigene ID)</li>
+<li>Marcadores: genes que correspondem a um marcador específico do SGN <a href="../search/direct_search.pl?search=markers">banco de dados de marcadores</a></li>
+<li>Anotação GO/PO: genes que são anotados para pelo menos um  <a href="http://geneontology.org">Ontologia Gene</a> ou <a href="http://plantontology.org">Ontologia das Plantas</a> termo</li>
 
 </ul>
 
 </p>
 
-<h4>6. Phenotype</h4>
+<h4>6. Fenótipo</h4>
 <p>
-Some genes may have a phenotype description, either as an associated allele, or an associated phenotyped accession. This option  will narrow the search results for  only genes with a phenotype description containing the word or string you typed in. 
-For searching phenotypes of accessions not necessarily associated with a gene, you should use SGN\'s <a href="../search/direct_search.pl?search=phenotypes">phenotype search</a> page. 
+Alguns genes podem ter uma descrição fenotípica, seja como um alelo associado, ou um acesso fenotípica associada. Essa opção reduzirá os resultados de busca apenas por genes com uma descrição fenotípica contendo a palavra ou corda que você digitou. Para pesquisar fenótipos de acessos não necessariamente associados a um gene, você deve usar SGN <a href="../search/direct_search.pl?search=phenotypes">Pesquisa fenotípica</a> Page. 
 
 </p>
 
-<h4>7. Ontology term</h4>
+<h4>7. Termo Ontologia</h4>
 <p>
-Use this box for searching for genes that are annotated to specific <a href="http://geneontology.org">Gene Ontology</a> or <a href="http://plantontology.org">Plant Ontology</a> terms. You may search for ontology annotations by typing any part of the ontology term ID, term name, term synonym, or term definition.
+Use esta caixa para procurar genes anotados em específico. <a href="http://geneontology.org">Ontologia Gene</a> ou <a href="http://plantontology.org">Ontologia das Plantas</a> termos. Você pode procurar anotações ontológicas digitando qualquer parte do termo ontologia ID, nome, sinônimo de termo ou definição de termo.
 
 
 </p>
 
 
-<h4>8. GenBank ID</h4>
+<h4>8. ID do GenBank</h4>
 <p>
-Use this box for searching genes annotated to a specific GenBank ID. You may search using either a GI number or a GenBank accession.
+Use esta caixa para procurar genes anotados em uma identificação específica do GenBank. Você pode procurar usando um número GI ou um acesso do GenBank.
 
 
 </p>

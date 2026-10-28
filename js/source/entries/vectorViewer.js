@@ -77,22 +77,22 @@ export function init(vector_id) {
     });
     
     var columnDefs = [{
-	title: "Feature Name",
+	title: "Nome da característica",
 	type: "string-utf8",
     }, {
-	title: "Start Coord",
+	title: "Coordenada inicial",
 	type: "num",
     }, {
-	title: "End Coord",
+	title: "Coordenada final",
 	type: "num", 
     }, {
-	title: "Color",
+	title: "Cor",
 	type: "string-utf8",
     }, {
-	title: "Orientation",
+	title: "Orientação",
 	type: "string-utf8"
     }, {
-        title: "Actions",
+        title: "Ações",
         type: "string-utf8"
     }
 		     ];
@@ -179,7 +179,7 @@ export function init(vector_id) {
     //when someone clicks save the dialog is opened
     jQuery("#saveVector").click(function () {
 	//jQuery('#saveDialog').dialog('open');
-	var yes = confirm('Save current changes?');
+	var yes = confirm("Salvar as alterações atuais?");
 	if (yes) {
 	    var table_data = getFeatureDataFromDataTable();
 	    var re_sites_table = getREsitesDataFromDataTable();
@@ -210,8 +210,8 @@ export function init(vector_id) {
 		url: '/vectorviewer/' + vector_id + '/store?data='+string_data,
 		'method' : "POST"
 	    }).then(
-		function() {  alert('Sequence successfully saved!');},
-		function() { alert('An error occurred while trying to save the vector data.');
+		function() {  alert("Sequência salva com sucesso!");},
+		function() { alert("Ocorreu um erro ao salvar os dados do vetor.");
 			   }
 	    );   
 	}	
@@ -247,8 +247,8 @@ export function init(vector_id) {
 	    url: '/vectorviewer/' + vector_id + '/store?data='+string_data,
 	    'method' : "POST"
 	}).then(
-	    function() {  modified = false; alert('Sequence successfully saved!');},
-	    function() { alert('An error occurred while trying to save the vector data.');
+	    function() {  modified = false; alert("Sequência salva com sucesso!");},
+	    function() { alert("Ocorreu um erro ao salvar os dados do vetor.");
 		       }
 	);
 	
@@ -262,7 +262,7 @@ export function init(vector_id) {
 	jQuery('#feature_color_select').val("");
 	jQuery('#feature_orientation_select').val("");
 
-	jQuery('#manage_feature_dialog_title').html('Add feature');
+	jQuery('#manage_feature_dialog_title').html("Adicionar característica");
 
 
 	jQuery('#add_feature_dialog').modal('show');
@@ -294,7 +294,7 @@ export function init(vector_id) {
     }).then(function(r) {
 	//alert("RETRIEVED DATA: "+JSON.stringify(r));
 
-	if (r.error === 'The vector information you are trying to access does not exist.') {
+	if (r.error === "The vector information you are trying to access does not exist.") {
 	  //  alert('turning it off');
 	    jQuery('#vector_view_offswitch').click();
 	    return;
@@ -322,12 +322,12 @@ export function init(vector_id) {
 	updateVector(metadata, feature_table, re_sites_table);
 
 	
-	alert('LENGTHS: '+re_sites_table.length+' , '.feature_table.length);
+	alert("COMPRIMENTOS: "+re_sites_table.length+' , '.feature_table.length);
 
 	
     },
 	    function(r) {
-		alert('An error occurred! '+JSON.stringify(r));
+		alert("Ocorreu um erro! "+JSON.stringify(r));
 	    } );
     
     jQuery('#add_feature_data_submit_button').click( function() {
@@ -389,7 +389,7 @@ export function init(vector_id) {
 	jQuery('#feature_color_select').val(data[rowId][3]);
 	jQuery('#feature_orientation_select').val(data[rowId][4]);
 
-	jQuery('#manage_feature_dialog_title').html('Edit feature');
+	jQuery('#manage_feature_dialog_title').html("Editar característica");
 
 	jQuery('#add_feature_dialog').modal("show");
 
@@ -401,7 +401,7 @@ export function init(vector_id) {
 
 	var data = jQuery(this).data();
 //	alert('RETRIEVED: '+JSON.stringify(data));
-	var yes = confirm('Are you sure that you would like to delete this row with id ? ');
+	var yes = confirm("Tem certeza de que deseja excluir esta linha com ID? ");
 	if (yes) { 
 	    delete_re_table_row(jQuery(this).data('id'));
 	}
@@ -425,7 +425,7 @@ export function init(vector_id) {
 
 //	alert('beforeunload');
 	if (modified) {
-	    return 'You have unsaved changes in VectorViewer. Are you sure you would like to leave the page?';
+	    return "Há alterações não salvas no VectorViewer. Tem certeza de que deseja sair da página?";
 
 	}
     });
@@ -448,19 +448,19 @@ export function updateFeatureDataTable(table_data) {
 	data: formatted,
 	destroy: true,
 	columns: [
-	    { title: 'No.', data : 'no' },
-	    { title: 'Feature', data : 'feature' }, //data: table_data[0] },
-	    { title: 'Start', data: 'start' },
-	    { title: 'End', data: 'end' },
-	    { title: 'Color', data: 'color' },
-	    { title: 'Orientation', data: 'orientation' },
+	    { title: "Nº", data : 'no' },
+	    { title: "Característica", data : 'feature' }, //data: table_data[0] },
+	    { title: "Início", data: 'start' },
+	    { title: "Fim", data: 'end' },
+	    { title: "Cor", data: 'color' },
+	    { title: "Orientação", data: 'orientation' },
 	    { data: null,
 	      render: function(data, type, row) {
-		  var formatted = '<button class="edit_row_button" data-id="'+row.no+'">Edit</button>&nbsp;<button class="delete_row_button" data-id="'+row.no+'">Delete</button>';
+		  var formatted = '<button class="edit_row_button" data-id="'+row.no+"\">Editar</button>&nbsp;<button class=\"delete_row_button\" data-id=\""+row.no+"\">Excluir</button>";
 		  //alert('Formatted: '+formatted);
 		  return formatted;
 	      },
-	      title: "Actions",
+	      title: "Ações",
 	    }
 	]
     });
@@ -490,7 +490,7 @@ export function re_site_datatable_add_row(row){
     var row_id = jQuery('#re_site_table_row_id').val();
 
     if (row_id === undefined || row_id === '') { 
-	alert('RE Sites data now: '+JSON.stringify(data) +' adding row '+JSON.stringify(row));
+	alert("Dados atuais dos sítios de restrição: "+JSON.stringify(data) +" adicionando linha "+JSON.stringify(row));
 	data.push(row);
     }
     else {
@@ -502,7 +502,7 @@ export function re_site_datatable_add_row(row){
 
 export function delete_feature_table_row(row_no) {
     //alert('delete_feature_table_row!');
-    var yes = confirm('Delete row '+row_no+'?');
+    var yes = confirm("Excluir linha "+row_no+'?');
     if (yes) {
 //	alert('Deleting it.');
 	var data = getFeatureDataFromDataTable();
@@ -517,7 +517,7 @@ export function delete_feature_table_row(row_no) {
 }
 
 export function delete_re_table_row(row_no) {
-    var yes = confirm('Delete row '+row_no+'?');
+    var yes = confirm("Excluir linha "+row_no+'?');
     if (yes) { 
 	var data = getREsitesDataFromDataTable();
 	data.splice(row_no, 1);
@@ -584,7 +584,7 @@ export function getSequenceDataFromDataTable() {
 export function updateREsitesDataTable(re_sites) {
 //    alert('RESITES FOR TABLE: '+JSON.stringify(re_sites));
     for (var i=0; i < re_sites.length; i++) {
-	re_sites[i][2] = '<button class="edit_re_row_button" data-id="'+i+'">Edit</button>&nbsp;<button class="delete_re_row_button" data-id="'+i+'">Delete</button>';
+	re_sites[i][2] = '<button class="edit_re_row_button" data-id="'+i+"\">Editar</button>&nbsp;<button class=\"delete_re_row_button\" data-id=\""+i+"\">Excluir</button>";
 	//alert(JSON.stringify(re_sites[i]));
 	re_sites[i].unshift(i);
     }
@@ -828,13 +828,13 @@ export function draw_vector(vector_div, metadata, radius, re_sites_table, featur
 		.attr("stroke", "darkgray")
 		.attr("font-family", "arial")
 		.style("font-size", 0.60 * (geneOuterRadius - geneInnerRadius))
-		.append("textPath")
+		.append("TextoPath")
 		.attr("text-anchor", "middle")
 		.attr("startOffset", "50%")
 		.attr("xlink:href", "#labelClass_" + i)
 		.text(d.name ?? `unnamed_gene_${i + 1}`);
 	    
-	    console.log(`Label for gene ${i}:`, d.name);
+	    console.log(`Rótulo do gene ${i}:`, d.name);
 	    
 	});
 
@@ -1018,7 +1018,7 @@ export function draw_vector(vector_div, metadata, radius, re_sites_table, featur
             .attr("x", 0)
             .attr("dy", "0em")
             .attr("font-size", 0.1 * radius)
-            .text("Name: " + d[0]);
+            .text("Nome: " + d[0]);
 	
         d3.select(this)
             .append("tspan")
@@ -1026,7 +1026,7 @@ export function draw_vector(vector_div, metadata, radius, re_sites_table, featur
             .attr("x", 0)
             .attr("dy", "1.2em")
             .attr("font-size", 0.1 * radius)
-            .text("Length (bp): " + d[1]);
+            .text("Comprimento (pb): " + d[1]);
     });
     
     //// Paths for labeling RE sites
@@ -1218,7 +1218,7 @@ export function draw_vector(vector_div, metadata, radius, re_sites_table, featur
 
 	    const valueLength = Math.round((arcLengthDisplay / circumference) * (vectorLength - 1)) + 1;
 
-	    valueText.text("Location: "+valueLength);
+	    valueText.text("Local: "+valueLength);
 
 	    var halfPi = 1/2 * Math.PI;
 
@@ -1419,7 +1419,7 @@ export function draw_vector(vector_div, metadata, radius, re_sites_table, featur
 	    .attr("fill", "black")
 	    .attr("font-size", 20/200 * radius)
 	    .attr("class", "clickHighlightText")
-	    .text("Start: " + startBP + ", " + "End: " + endBP);
+	    .text("Início: " + startBP + ", " + "Fim: " + endBP);
 	
 	
 	var lengthHighlight = endBP - startBP;
@@ -1441,7 +1441,7 @@ export function draw_vector(vector_div, metadata, radius, re_sites_table, featur
 	    .attr("fill", "black")
 	    .attr("font-size", 20/200 * radius)
 	    .attr("class", "clickHighlightText")
-	    .text("Length: " + lengthHighlight);
+	    .text("Comprimento: " + lengthHighlight);
 	
 	
 	

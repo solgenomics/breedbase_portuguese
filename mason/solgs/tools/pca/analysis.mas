@@ -48,7 +48,7 @@ my $collapsed = 0;
 my $collapsible = 0;
 
 if ($url !~ /pca\/analysis/) {
-  $title = 'Principal component analysis (PCA)';
+  $title = 'Análise de componentes principais (APC)';
   $collapsible = 1;
   $collapsed = 1 if $url =~ /breeders\/trial/;
 }
@@ -60,7 +60,7 @@ if ($url !~ /pca\/analysis/) {
 % if ($url =~ /pca\/analysis/) {
 
 <& /page/page_title.mas,
-   title => 'Principal Component Analysis (PCA)'
+   title => 'Análise de Componentes Principais (APC)'
   &>
 
 %}

@@ -53,11 +53,11 @@ jQuery(window).load( function() {
   
         var phenoData = phenoDataRenderer();          
         if (phenoData == 'undefined') {
-            var message = 'There is no phenotype data to plot. Please report this problem';  
+            var message = "Não há dados fenotípicos para gerar o gráfico. Relate este problema";
             jQuery('#phenoHistogram').append(message).show();
         } else {        
             var graph = jQuery.jqplot('phenoHistogram', {
-                    title: "Phenotype data",
+                    title: "Dados fenotípicos",
                     dataRenderer: phenoDataRenderer,
                     seriesDefaults: {
                         showLine: false,
@@ -94,7 +94,7 @@ jQuery(window).load( function() {
                                 fontSize:5,
                             },
                             labelRenderer: jQuery.jqplot.CanvasAxisLabelRenderer,
-                            label: 'Genotypes',
+                            label: "Genótipos",
                         },
                         yaxis: {
                             tickRenderer: jQuery.jqplot.CanvasAxisTickRenderer,
@@ -102,7 +102,7 @@ jQuery(window).load( function() {
                                 fontSize: 10,
                             },                           
                             labelRenderer: jQuery.jqplot.CanvasAxisLabelRenderer,
-                            label: 'Trait values',
+                            label: "Valores da característica",
                         },
                     }
                 });

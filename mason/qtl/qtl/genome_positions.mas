@@ -18,7 +18,7 @@ $markers
 my $src_feature = 'SL2.50';
 </%perl>
 
-<&| /page/info_section.mas, collapsible=>1, collapsed=>1, title => "QTL markers' genomic matches" &>
+<&| /page/info_section.mas, collapsible=>1, collapsed=>1, title => "Os marcadores QTL são compatíveis" &>
 
 % if (ref($markers)) {
 %    foreach my $marker (@$markers) {

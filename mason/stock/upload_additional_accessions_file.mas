@@ -131,7 +131,7 @@ $stock_id
             jQuery.ajax ({
                 url : '/stock/'+<% $stock_id %>+'/get_uploaded_additional_file',
                 beforeSend : function(){
-                    jQuery('#stock_additional_uploaded_files_div').html("[CARREGANDO...]");
+                    jQuery('#stock_additional_uploaded_files_div').html("[CARREGANDO ...]");
                 },
                 success: function(response){
                     console.log("response" ,response);

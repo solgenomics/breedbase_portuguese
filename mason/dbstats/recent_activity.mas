@@ -8,55 +8,55 @@
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 
-<& /page/page_title.mas, title => 'Recent activity' &>
+<& /page/page_title.mas, title => 'Atividade recente' &>
 
-Start Date: <input type="text" id="dbstats_start_date" title="dbstats_start_date"  />
+Data de início: <input type="text" id="dbstats_start_date" title="dbstats_start_date"  />
 <td>&nbsp;</td></td><td>
 
-End Date: <input type="text" id="dbstats_end_date" title="dbstats_end_date"  />
+Data final: <input type="text" id="dbstats_end_date" title="dbstats_end_date"  />
 </td><td>
 &nbsp;
 </td><td>
-<input type="checkbox" id="include_dateless_items" checked="1" > include items without a date</input>
+<input type="checkbox" id="include_dateless_items" checked="1" > Inclui itens sem data</input>
 </td><td>
 &nbsp;
 </td><td>
-<button id="update_dbstats_by_date">Update</button>
+<button id="update_dbstats_by_date">Atualizar</button>
 <br /><br />
 <div id="dbstats_message"></div>
 
-<h3>Trials</h3>
+<h3>Ensaios</h3>
 <div id="recent_activity_trials_div">
   <table id="recent_activity_trials" width="600">
   <thead>
-    <tr><th width="200">Breeding Program</th><th width="200">Trials</th></tr>
+    <tr><th width="200">Programa de melhoramento</th><th width="200">Ensaios</th></tr>
     </thead>
   </table>
 </div>
 
-<h3>Phenotypes</h3>
+<h3>Fenótipos</h3>
 <div id="recent_activity_phenotypes_div">
   <table id="recent_activity_phenotypes" width="600">
   <thead>
-    <tr><th width="200">Breeding Program</th><th width="200">Phenotypes</th></tr>
+    <tr><th width="200">Programa de melhoramento</th><th width="200">Fenótipos</th></tr>
     </thead>
   </table>
 </div>
 
-<h3>Accessions</h3>
+<h3>Acessos</h3>
 <div id="recent_activity_accessions_div">
   <table id="recent_activity_accessions" width="600">
   <thead>
-    <tr><th width="200">Breeding Program</th><th width="200">Accessions</th></tr>
+    <tr><th width="200">Programa de melhoramento</th><th width="200">Acessos</th></tr>
     </thead>
   </table>
 </div>
 
-<h3>Plots</h3>
+<h3>Parcelas</h3>
 <div id="recent_activity_plots_div">
   <table id="recent_activity_plots" width="600">
   <thead>
-    <tr><th width="200">Breeding Program</th><th width="200">Plots</th></tr>
+    <tr><th width="200">Programa de melhoramento</th><th width="200">Parcelas</th></tr>
     </thead>
   </table>
 </div>
@@ -77,7 +77,7 @@ function update_dbstats_tables(start_date, end_date, include_dateless_items) {
     var end_date = jQuery('#dbstats_end_date').val();
     var include_dateless_items = jQuery('#include_dateless_items').prop('checked');
     
-    var html = "Showing database items generated from date: "+start_date+" to date: "+end_date;
+    var html = "Exibindo itens do banco de dados gerados a partir de: "+start_date+" até: "+end_date;
     if (include_dateless_items === true) { html += '. Including data items that do not have an associated date.'; }
     jQuery('#dbstats_message').html(html);
 

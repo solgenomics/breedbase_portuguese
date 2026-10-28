@@ -61,7 +61,7 @@
                 <thead>
                     <tr>
                         <th style="width: 50%">Lote de sementes</th>
-                        <th style="width: 50%">Registrar</th>
+                        <th style="width: 50%">Secretário</th>
                     </tr>
                 </thead>
                 <tbody id="overdue_events_results_overdue"></tbody>

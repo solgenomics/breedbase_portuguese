@@ -103,7 +103,7 @@ CXGN.Onto.Browser.prototype = {
 	    async: false,
 	    method: 'get',
 	    error: function() {
-		alert('An error occurred! The database may currently be unavailable. Please check back later.');
+		alert("Ocorreu um erro! O banco de dados pode estar indisponível no momento. Tente novamente mais tarde.");
 	    },
 	    success: function(response) {
 		if (response.error ) { alert(response.error) ; }
@@ -135,7 +135,7 @@ CXGN.Onto.Browser.prototype = {
 	    async: false,
 	    method: 'get',
 	    error: function() {
-		alert('An error occurred! The database may currently be unavailable. Please check back later.');
+		alert("Ocorreu um erro! O banco de dados pode estar indisponível no momento. Tente novamente mais tarde.");
 	    },
 	    success: function(response) {
 		var o = this.o;
@@ -156,7 +156,7 @@ CXGN.Onto.Browser.prototype = {
 	var s = '<form name="search_id_form" style="margin-bottom:0" onSubmit="javascript:o.showParentage(this.ontology_browser_input.value); return false;" >';
 	s += '<div id="search_by_id" style="width:100%; margin-bottom:0" >';
 	s += '<table summary="" cellpadding="5" cellspacing="0" width="100%" ><tr><td width="140px">';
-	s += 'Find exact ID</td><td width="160px"><input class="form-control" id="ontology_browser_input" name="ontology_browser_input_name" class="input" class="form-control" type="text"  size="12" style="margin-bottom:10px" /></td><td width="10px">&nbsp;</td><td><input id="ontology_browser_submit" value="Find" type="submit" class="btn btn-primary" style="margin-bottom:0" />';
+	s += "Buscar ID exato</td><td width=\"160px\"><input class=\"form-control\" id=\"ontology_browser_input\" name=\"ontology_browser_input_name\" class=\"input\" class=\"form-control\" type=\"text\"  size=\"12\" style=\"margin-bottom:10px\" /></td><td width=\"10px\">&nbsp;</td><td><input id=\"ontology_browser_submit\" value=\"Find\" type=\"submit\" class=\"btn btn-primary\" style=\"margin-bottom:0\" />";
 	s += '</td><td style="text-align: right; padding-left:10px"><input id="reset_hiliting" type="button" value="clear highlight" class="btn btn-secondary"  onClick="javascript:o.clearHiliting()" style="margin-bottom:0" /></td><td width="10px">&nbsp;</td><td><input id="reset_tree" class="btn btn-secondary" type="button" value="reset view" onClick="javascript:o.resetBrowser()" style="margin-bottom:0" /></td></tr></table>';
 	s +='</div></form>';
 	
@@ -175,7 +175,7 @@ CXGN.Onto.Browser.prototype = {
         }
         s += '<div id="search_by_name"  style="margin-bottom:0" >';
         s += '<table summary="" cellpadding="5" cellspacing="0"><tr><td width="140px">';
-	s += 'Search for text</td><td width="160px"> <input id="ontology_term_input" name="ontology_term_input_name" class="form-control" type="text" size="20"  /></td><td width="10px">&nbsp;</td><td>';
+	s += "Buscar texto</td><td width=\"160px\"> <input id=\"ontology_term_input\" name=\"ontology_term_input_name\" class=\"form-control\" type=\"text\" size=\"20\"  /></td><td width=\"10px\">&nbsp;</td><td>";
 	
         // print the select drop-down only if you not rendering a specific cv
 	
@@ -319,7 +319,7 @@ CXGN.Onto.Browser.prototype = {
     showParentage: function(accession) {
 	this.setSearchTerm(accession);
 	if (accession.length < 3) { 
-	    alert('The search text must be longer than 2 characters');
+	    alert("O texto da busca deve ter mais de 2 caracteres");
 	    return;
 	}
 	this.workingMessage(true);
@@ -422,7 +422,7 @@ CXGN.Onto.Browser.prototype = {
 	    async: false,
 	    method: 'get',
 	    error: function() { 
-		    alert('An error occurred! The database may currently be unavailable. Please check back later.');
+		    alert("Ocorreu um erro! O banco de dados pode estar indisponível no momento. Tente novamente mais tarde.");
 		},
 		    
 	    success: function(response) {
@@ -461,7 +461,7 @@ CXGN.Onto.Browser.prototype = {
 	this.workingMessage(true);
         this.setSelected(db_name);
 	if(search_string.length<3){
-	    alert('The search text must be longer than 2 characters');
+	    alert("O texto da busca deve ter mais de 2 caracteres");
 	}
         else{
 	    jQuery.ajax({
@@ -470,7 +470,7 @@ CXGN.Onto.Browser.prototype = {
 		async: false,
 		method: 'get',
 		error: function() {
-		    alert('An error occurred! The database may currently be unavailable. Please check back later.');
+		    alert("Ocorreu um erro! O banco de dados pode estar indisponível no momento. Tente novamente mais tarde.");
 		},
 		success: function(response) {
 		    var matchNodes = new Array();
@@ -485,8 +485,8 @@ CXGN.Onto.Browser.prototype = {
 			    }
 
 			
-			if (s === '') { s = '(no terms found) '; }
-			o.setSearchResults('<div class="topicbox">Search term: <b>'+search_string+'</b></div><div class="topicdescbox">'+s+'</div>');
+			if (s === '') { s = "(nenhum termo encontrado) "; }
+			o.setSearchResults("<div class=\"topicbox\">Termo de busca: <b>"+search_string+'</b></div><div class="topicdescbox">'+s+'</div>');
 			o.showSearchResults();
 			o.setSearchValue(search_string);
 			o.render();
@@ -853,7 +853,7 @@ Node.prototype = {
 	    async: false,
 	    method: 'get',
 	    error: function() { 
-		alert('An error occurred! The database may currently be unavailable. Please check back later.');
+		alert("Ocorreu um erro! O banco de dados pode estar indisponível no momento. Tente novamente mais tarde.");
 	    },
 	    success: function(response) {
 		if ( response.error ) { alert(response.error) ; }

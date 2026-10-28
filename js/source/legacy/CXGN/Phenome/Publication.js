@@ -16,7 +16,7 @@ var Publication = {
  
     //update status of pub_crator
     updatePubCuratorStat: function(stat, pub_id) {
-	if (stat == '' || !pub_id ) { MochiKit.Logging.log('Cannot update status! '); }
+	if (stat == '' || !pub_id ) { MochiKit.Logging.log("Não foi possível atualizar o status! "); }
 	else {
 	    var action = "change_stat";
 	    //alert ('About to update pub_curator status to -' +  stat + ' - (pub_id= ' + pub_id + ')') ;
@@ -25,7 +25,7 @@ var Publication = {
 		    onException: function(request) {
 			var json=request.responseText;
 			var x = eval("("+json+")");
-			MochiKit.Logging.log("Failed updating  pub_curator", x.error);
+			MochiKit.Logging.log("Falha ao atualizar o curador da publicação", x.error);
 		    },
 		    onSuccess: function(request) {
 			var json=request.responseText;
@@ -50,7 +50,7 @@ var Publication = {
 		    onFailure: function(response) {  //this does not work as expected! 
 			var json = response.responseText;
 			var x = eval("("+json+")"); 
-			alert ("Failed assigning a pub curator! "  + x.error) ; 
+            alert ("Falha ao atribuir um curador à publicação! "  + x.error) ;
 		    }
 	    });
 	}

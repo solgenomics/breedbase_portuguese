@@ -17,7 +17,7 @@ $trait_id
 
 
 <& /page/page_title.mas,
-    title => "Confirm" ,
+    title => "Confirmar" ,
 &>
 
 <& populations_list.mas,
@@ -26,6 +26,6 @@ $trait_id
 
 <div>
   <br />
-  <input class="button" type="button" id="confirm" name="confirm" value="Confirm" onclick="confirmSelections();"/>
+  <input class="button" type="button" id="confirm" name="confirm" value="Confirmar" onclick="confirmSelections();"/>
   <input type="hidden" id="trait_id" name="trait_id" value= "<% $trait_id %>" />
 </div>

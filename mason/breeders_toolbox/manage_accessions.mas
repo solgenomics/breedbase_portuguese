@@ -53,7 +53,7 @@ $show_grafting_interface => ''
         <tr>
           <th>Nome do acesso</th>
           <th>Genitor feminino</th>
-          <th>Genitor masculino</th>
+          <th>Genitor Masculino</th>
           <th>Tipo de cruzamento</th>
         </tr>
       </thead>

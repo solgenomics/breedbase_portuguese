@@ -1,5 +1,5 @@
 
-<& "/page/page_title.mas", title => "TOKN Clone Request" &>
+<& "/page/page_title.mas", title => "Pedido de Clonagem TOKN" &>
 
 % #The form
 <% $ENV{REMOTE_ADDR} %>
@@ -45,11 +45,11 @@ my $defaultVal = {
 % # Like the other inputs, it will display a red message above saying 
 % # "Message needed."
 <tr><td align="left" valign="top">
-<strong>Clone list and Notes*</strong>
+<strong>Lista de clones e notas</strong>
 </td>
 % unless ($filled{body}) {
 <td style = "color:red; font-size: 10px;" align = "left" valign = "top">
-Message is required
+Mensagem é necessária
 <br />
 % } else {
 <td align = "left" valign = "top">
@@ -58,15 +58,15 @@ Message is required
 </td></tr>
 
 
-<tr><td><strong>Are you human?*</strong><br />What is <% $contact_form_human_question %>?</td>
+<tr><td><strong>Você é humano?</strong><br />What is <% $contact_form_human_question %>?</td>
 
 <td>
 % if (!$contact_form_human_answer_correct) { 
 <font style = "color:red; font-size: 10px;" align = "left" valign = "top">     
 % if (!$contact_form_human_answer) { 
-Prove that you are a human being is required<br /></font>
+Prove que você é um ser humano é necessário<br /></font>
 % } else { 
-Either you are not human - or you are not very good at math! ;-)</font>
+Ou você não é humano ou não é muito bom em matemática!</font>
 <br />
 %    }
 % }
@@ -81,7 +81,7 @@ fields marked with <% '"*"' |h %> are required
 
 
 <tr><td colspan="2" align="center" valign="middle">
-<input type="submit" value="Submit" />
+<input type="submit" value="Enviar" />
 </td></tr>
 </table>
 </div>

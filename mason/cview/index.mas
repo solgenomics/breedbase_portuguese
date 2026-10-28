@@ -41,7 +41,7 @@ $default_map_id => 9
 
 </%args>
 
-<& /page/page_title.mas, title=>"Available Maps" &>
+<& /page/page_title.mas, title=>"Mapas Disponíveis" &>
 <div class="container-fluid">
 
 <%perl>
@@ -59,48 +59,46 @@ my $submit = qq | <b>[<a href="/cview/help/map_submission">Submit New Map</a>]</
 
 </%perl>
 
-<&| /page/info_section.mas, collapsible=>1, collapsed=>0, title=>"Interactive Maps", subtitle=>$submit &>
+<&| /page/info_section.mas, collapsible=>1, collapsed=>0, title=>"Mapas Interativos", subtitle=>$submit &>
 <br/>
 <% $d %>
 </&>
 
 <!-- Comparative maps -->
 
-<&| /page/info_section.mas, collapsible=>1, collapsed=>0, title=>"Comparative Maps" &>
+<&| /page/info_section.mas, collapsible=>1, collapsed=>0, title=>"Mapas Comparativos" &>
 
 <br />
-<a href="<% $chr_url %>"><b>Interactive comparative map viewer</b></a>:
-View two chromosomes from two different maps at the same time; it displays the relationships between the chromosomes and additional information such as associated physical map, inbred lines, and rulers.<br /><br />
-<b>Examples</b>:
+<a href="<% $chr_url %>"><b>Visualizador comparativo interativo de mapas</b></a>Veja dois cromossomos de dois mapas diferentes ao mesmo tempo, que exibem as relações entre os cromossomos e informações adicionais, tais como mapa físico associado, linhas e governantes.<br /><br />
+<b>Exemplos</b>:
 <ul>
 <li><a href="<% $chr_url %>?show_IL=1&amp;map_id=5&amp;chr_nr=1&amp;comp_map_id=3&amp;comp_chr=1">Tomato EXPEN 1992 vs Potato TXB 1992</a><br /></li>
-  <li><a href="<% $chr_url %>?map_id=<% $default_map_id %>&amp;chr_nr=1&amp;comp_map_id=6&amp;comp_chr=1&amp;show_ruler=1&amp;show_physical=1">Tomato EXPEN 2000 vs Eggplant-LXM 2002</a></li>
-<li><a href="<% $chr_url %>?map_id=3&amp;chr_nr=1&amp;comp_map_id=6&amp;comp_chr=1&amp;show_ruler=1">Potato TXB 1992 vs Eggplant-LXM 2002</a></li>
+  <li><a href="<% $chr_url %>?map_id=<% $default_map_id %>&amp;chr_nr=1&amp;comp_map_id=6&amp;comp_chr=1&amp;show_ruler=1&amp;show_physical=1">TOMATO EXPEN 2000 vs Berinjela-LXM 2002</a></li>
+<li><a href="<% $chr_url %>?map_id=3&amp;chr_nr=1&amp;comp_map_id=6&amp;comp_chr=1&amp;show_ruler=1">Batata TXB 1992 vs Berinjela-LXM 2002</a></li>
 </ul>
 
-<a href="<% $comp_maps_url %>?center_map=<% $default_map_id %>&amp;right_map=3"><b>Compare entire maps</b></a>:
-To get a better view how two (or three) maps relate to each other, take a zoomed out view of the entire map. A maximum of 3 maps can be shown together at one time. The maps to be displayed can be selected on the top of the display.  <br /><br />
-<b>Examples</b>:
+<a href="<% $comp_maps_url %>?center_map=<% $default_map_id %>&amp;right_map=3"><b>Compare mapas inteiros</b></a>Para ter uma visão melhor de como dois (ou três) mapas se relacionam, tire uma visão ampliada de todo o mapa. Um máximo de 3 mapas podem ser mostrados juntos ao mesmo tempo. Os mapas a serem exibidos podem ser selecionados no topo da tela.  <br /><br />
+<b>Exemplos</b>:
 <ul>
 <li><a href="/cview/view_maps.pl?center_map=5&amp;right_map=3">Tomato EXPEN 1992 vs Potato TXB 1992</a></li>
-<li><a href="/cview/view_maps.pl?left_map=5&amp;center_map=3&amp;right_map=6">Eggplant LXM 2002 vs Tomato EXPEN 1992 vs Potato TXB 1992 (three-way comparison)</a></li>
+<li><a href="/cview/view_maps.pl?left_map=5&amp;center_map=3&amp;right_map=6">Berinjela LXM 2002 vs Tomato EXPEN 1992 vs Batata TXB 1992 (comparação de três vias)</a></li>
 </ul>
 <br />
-For more on the comparative map viewer, read the <a href="/help/cview">help page</a>.
+Para mais sobre o visualizador de mapas comparativos, leia o <a href="/help/cview">Página de ajuda</a>.
 
 </&>
 
 <!--  Static maps -->
 
-<&| /page/info_section.mas, collapsible=>1, collapsed=>0, title=>'Static Maps' &>
+<&| /page/info_section.mas, collapsible=>1, collapsed=>0, title=>'Mapas Estáticos' &>
 <br/>
 <p>
 <b>Tomato maps</b><br />
-<i>L. esculentum x L. pennellii</i> maps:<br />
+<i>L. esculentum x L. pennellii</i> Mapas:<br />
 <a href='/maps/tomato_arabidopsis/index.pl'>Tomato - Arabidopsis synteny map</a><br />
-<a href='/maps/pepper_korea/index.pl'>Pepper SNU2 map</a><br />
-<a href='/maps/pennellii_il/index.pl'>Isogenic Line (IL) map</a><br />
-<a href="/maps/lpimp_ibl/index.pl">Lycopersicon pimpinellifolium Inbred Backcross Lines (IBLs)</a>
+<a href='/maps/pepper_korea/index.pl'>Mapa SNU2 de pimenta</a><br />
+<a href='/maps/pennellii_il/index.pl'>Mapa da Linha Isogênica (IL)</a><br />
+<a href="/maps/lpimp_ibl/index.pl">Lycopersicon cafeminellifolium Increted Backcross Lines (IBLs)</a>
 </p>
 </&>
 

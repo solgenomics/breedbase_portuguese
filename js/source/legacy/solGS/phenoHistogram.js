@@ -60,8 +60,8 @@ solGS.phenoHistogram =  {
 
         var phenoTypeHistoDivId = phenoTypeHistoDivId.replace(/#/, '');
         var histoDownloadBtn = "download_" + phenoTypeHistoDivId;
-        var histoPlotLink = "<a href='#'  onclick='event.preventDefault();' id='" + histoDownloadBtn + "'> Histogram</a>";
-        var downloadLinks = `Download:  ${histoPlotLink}`;
+        var histoPlotLink = "<a href='#'  onclick='event.preventDefault();' id='" + histoDownloadBtn + "'> Histograma</a>";
+        var downloadLinks = `Baixar:  ${histoPlotLink}`;
 
         return downloadLinks;
     
@@ -94,10 +94,10 @@ jQuery(document).ready(function () {
            var variation = solGS.histogram.checkDataVariation(traitData);
 
             if (variation.uniq_count == 1) {
-                var msg = '<p> All of the valid observations '
-                                  + '('+ variation.obs_count +') ' + 'in this dataset have '
-                                  + 'a value of ' + variation.uniqValue
-                                  + '. No frequency distribution plot.</p>';
+                var msg = "<p> Todas as observações válidas "
+                                  + '('+ variation.obs_count +') ' + "deste conjunto de dados possuem "
+                                  + "o valor " + variation.uniqValue
+                                  + ". Sem distribuição de frequência.</p>";
 
                 solGS.showMessage(histMsgId, msg);
 
@@ -115,14 +115,14 @@ jQuery(document).ready(function () {
 
             }
        } else {
-            var msg = "<p>This trait has no phenotype data to plot.</p>";
+            var msg = "<p>Esta característica não possui dados fenotípicos para gerar o gráfico.</p>";
             solGS.showMessage(histMsgId, msg);
        }
 
     });
 
     solGS.phenoHistogram.getTraitPhenoMeansData().fail(function(res) {
-        var msg = "<p>Error occured plotting histogram for this trait dataset.</p>";
+        var msg = "<p>Ocorreu um erro ao gerar o histograma deste conjunto de dados da característica.</p>";
         solGS.showMessage(histMsgId, msg);
     });
 
@@ -136,10 +136,10 @@ jQuery(document).ready(function () {
             var variationRaw = solGS.histogram.checkDataVariation(traitRawData);
 
              if (variationRaw.uniq_count == 1) {
-                 var msg = '<p> All of the valid observations '
-                                   + '('+ variationRaw.obs_count +') ' + 'in this dataset have '
-                                   + 'a value of ' + variationRaw.uniqValue
-                                   + '. No frequency distribution plot.</p>';
+                 var msg = "<p> Todas as observações válidas "
+                                   + '('+ variationRaw.obs_count +') ' + "deste conjunto de dados possuem "
+                                   + "o valor " + variationRaw.uniqValue
+                                   + ". Sem distribuição de frequência.</p>";
 
                  solGS.showMessage(histMsgIdRaw, msg);
 
@@ -157,14 +157,14 @@ jQuery(document).ready(function () {
 
              }
         } else {
-             var msg = "<p>This trait has no phenotype data to plot.</p>";
+             var msg = "<p>Esta característica não possui dados fenotípicos para gerar o gráfico.</p>";
              solGS.showMessage(histMsgIdRaw, msg);
         }
 
      });
 
      solGS.phenoHistogram.getTraitPhenoRawData().fail(function(res) {
-         var msg = "<p>Error occured plotting histogram for this trait dataset.</p>";
+         var msg = "<p>Ocorreu um erro ao gerar o histograma deste conjunto de dados da característica.</p>";
          solGS.showMessage(histMsgIdRaw, msg);
      });
 

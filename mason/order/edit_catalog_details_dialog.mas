@@ -72,7 +72,7 @@ $item_prop_id
                                     <select class="form-control" id="edit_item_category" value="<%$category%>">
                                         <option value="released variety">variedade lançada</option>
                                         <option value="pathogen assay ">ensaio de patógeno</option>
-                                        <option value="control">controle</option>
+                                        <option value="control">Controle</option>
                                         <option value="transgenic line">linhagem transgênica</option>
                                     </select>
                                 </div>

@@ -5,20 +5,16 @@
 
 <div class="page_introduction">
 
-   The potato genome has been sequenced by the <a
-   href="http://potatogenome.net">Potato Genome Sequence
-   Consortium</a> (PGSC), an international group of scientists from 14
-   countries. The sequence was published in <a
-   href="http://www.ncbi.nlm.nih.gov/pubmed/21743474">Nature</a> in
-   July 2011. Many potato lines are tetraploid; however, the sequenced
-   accession was a homozygous diploid line (double haploid) <i>Solanum
-   tuberosum phureja</i>. Below is a mirror of the files provided on
+   O genoma da batata foi sequenciado pelo <a
+   href="http://potatogenome.net">Consorcio de Sequência Genoma de Batata</a> (PGSC), um grupo internacional de cientistas de 14 países. A sequência foi publicada em <a
+   href="http://www.ncbi.nlm.nih.gov/pubmed/21743474">Nature</a> em julho de 2011. Muitas linhas de batata são tetraploides, no entanto, o acesso sequenciada foi uma linha homozigótica diplóide (haplóide duplo) <i>Solanum
+   tuberosum phureja</i>. Abaixo está um espelho dos arquivos fornecidos em
    <a href="http://potatogenome.net">http://potatogenome.net</a>.
 
 </div>
 
 <&| /page/info_section.mas,
-      title       => 'Sequence datasets',
+      title       => 'Datasets de sequência',
       collapsible => 1,
  &>
   <& /genomes/default/genome_builds.mas, %ARGS &>
@@ -26,7 +22,7 @@
 
 
 <&| /page/info_section.mas,
-      title       => 'Browsable annotations',
+      title       => 'Anotações de navegação',
       collapsible => 1,
       hide_if_empty => 1,
  &>
@@ -36,7 +32,7 @@
 </&>
 
 <&| /page/info_section.mas,
-      title       => 'Annotation datasets',
+      title       => 'Datasets de anotações',
       collapsible => 1,
       hide_if_empty => 1,
  &>

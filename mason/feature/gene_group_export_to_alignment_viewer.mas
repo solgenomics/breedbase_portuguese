@@ -7,10 +7,10 @@
   </style>
   <div id="gene_group_export">
        <button onclick="export_gene_group(<% $feature->feature_id %>)">
-            Export sequences to alignment viewer
+            Exportar sequências para o visualizador de alinhamento
        </button>
        <img width="16" height="16" id="gene_group_export_spinner" src="/img/spinner.gif" style="display: none" />
-       <span class="message">(may take a long time for large gene groups)</span>
+       <span class="message">(pode levar muito tempo para grandes grupos de genes)</span>
   </div>
 
   <script type="text/javascript">
@@ -23,12 +23,12 @@
         var button  = jQuery('#gene_group_export button');
         button.attr( 'disabled', true );
         spinner.show();
-        message.html( 'calculating and fetching sequences, please wait ... ');
+        message.html( "calculando e recuperando sequências, aguarde... ");
         jQuery.get( '/feature/'+feature_id+'/gene_group_protein_fasta', function(protein_fasta) {
                 myprotein = protein_fasta;
 
                 spinner.hide();
-                message.html('sending to alignment viewer...');
+                message.html("enviando ao visualizador de alinhamento...");
 
                 // make a hidden form to send sequences to the alignment viewer
                 var seqform = document.createElement('form');

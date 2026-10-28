@@ -12,7 +12,7 @@ Takes no arguments.
 use File::Spec;
 
 my $file;
-my $html = "(Potato genome information currently not available)";
+my $html = "(Informação do genoma de batata atualmente não disponível)";
 
 eval { $file = File::Spec->catfile($c->get_conf('homepage_files_dir'), 'potato_genome_info.txt');
 $html = $m->file($file);

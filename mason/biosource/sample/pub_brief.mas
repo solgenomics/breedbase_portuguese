@@ -20,7 +20,7 @@ arrayref of BCS publication rows to render
 </%args>
 
 <&| /page/info_section.mas,
-    title       => 'Publications',
+    title       => 'Publicações',
     collapsible => 1,
  &>
 % if( @pub_objects ) {

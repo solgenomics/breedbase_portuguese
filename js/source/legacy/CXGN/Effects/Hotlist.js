@@ -22,7 +22,7 @@ Effects.Hotlist = {
 		//This allows you to make several hotlist buttons for one particular AGI on a given page ,
 		//and all the buttons will be changed at once when you click just one of the buttons.
 	
-		var optionalText = "All AGIs on this Page ";
+		var optionalText = "Todos os AGIs nesta página ";
 		if(!content.match(/:/)) optionalText = "";
 		
 		var iter = 0;
@@ -34,7 +34,7 @@ Effects.Hotlist = {
 			if(switchToType == 'remove'){  
 				imgAdd.style.display = "none";
 				imgRemove.style.display = "inline";
-				button.firstChild.nodeValue = "Remove " + optionalText + "from Hotlist";
+				button.firstChild.nodeValue = "Remover " + optionalText + "da lista de favoritos";
 				if(deactivate){
 					button.setAttribute("onClick", "notify('Please Hold')");
 				}
@@ -45,7 +45,7 @@ Effects.Hotlist = {
 			else if (switchToType == 'add'){ 
 				imgAdd.style.display = "inline";
 				imgRemove.style.display = "none";
-				button.firstChild.nodeValue = "Add " + optionalText + "to Hotlist";
+				button.firstChild.nodeValue = "Adicionar " + optionalText + "à lista de favoritos";
 				if(deactivate){
 					button.setAttribute("onClick", "notify('Please Hold')");
 				}
@@ -53,7 +53,7 @@ Effects.Hotlist = {
 					button.setAttribute("onClick", "Hotlist.add('" + buttonId + "', '" + content + "'); return false;");
 				}
 			}
-			else { alert("You sent a bad switchTo variable to switchHotlistButton"); }
+			else { alert("A variável switchTo enviada a switchHotlistButton é inválida"); }
 		}
 	}
 }

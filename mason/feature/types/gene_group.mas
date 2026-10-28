@@ -27,7 +27,7 @@
 </&>
 
 <&| /page/info_section.mas,
-    title       => 'Tree and alignment',
+    title       => 'Árvore e alinhamento',
     collapsible => 1,
 &>
 
@@ -36,7 +36,7 @@
 </&>
 
 <&| /page/info_section.mas,
-   title => 'Related features',
+   title => 'Características relacionadas',
    collapsible => 1,
    hide_if_empty => 1,
 &>
@@ -49,8 +49,8 @@
 </&>
 
 <&| /page/info_section.mas,
-     title => 'Related views',
-     empty_message => 'None found',
+     title => 'Visão relacionada',
+     empty_message => 'Nenhum encontrado',
      collapsible => 1,
      is_empty => ! scalar @$xrefs,
  &>

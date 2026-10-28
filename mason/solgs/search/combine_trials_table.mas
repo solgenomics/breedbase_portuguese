@@ -29,16 +29,16 @@ Isaak Y Tecle (iyt2@cornell.edu)
 
 <div id="selected_trials" style="display:none;width:100%">
 
- <p class="message"> Selected trials </p>
+ <p class="message"> Ensaios selecionados </p>
 
 <table class ="table" id="selected_trials_table" style="text-align:left;width:100%">
 <tr>
   <th></th>
-  <th>Trial</th>
-  <th>Description</th>
-  <th>Location</th>
-  <th>Year</th>
-  <th>More details</th>
+  <th>Ensaio</th>
+  <th>Descrição</th>
+  <th>Local</th>
+  <th>Ano</th>
+  <th>Mais detalhes</th>
 </tr>
 <tr>
 </tr>
@@ -55,7 +55,7 @@ Isaak Y Tecle (iyt2@cornell.edu)
   </td>
   <td>
     <div id="search_again_div" style="display:none;text-align:right">
-    <input style class="button" type="button" id="search_again" value="Search again"/>
+    <input style class="button" type="button" id="search_again" value="Procure novamente"/>
   </div>
  </td>
 </tr>

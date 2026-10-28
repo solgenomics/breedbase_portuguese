@@ -11,7 +11,7 @@ my @xrefs = map {
 } $c->enabled_feature('gbrowse2');
 
 </%init>
-<&| /page/info_section.mas, title => 'Genomic locations ('.@xrefs.')',collapsible => 1, &>
+<&| /page/info_section.mas, title => 'Locais genômicos ('.@xrefs.')',collapsible => 1, &>
 % if( @xrefs ) {
   <& /sitefeatures/gbrowse2/xref_set/rich.mas, xrefs => \@xrefs &>
 % }

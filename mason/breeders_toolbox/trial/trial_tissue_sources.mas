@@ -24,10 +24,10 @@ jQuery(document).ready(function () {
                 // console.log(response);
                 jQuery("#working_modal").modal("hide");
 
-                html = '<table class="table borderless" alt="breeder search" border="0" ><tr><td><select multiple class="form-control" id="tissue_sources_data" name="1" size="10" style="min-width: 200px;overflow:auto;"></select></td></tr>'
+                html = "<table class=\"table borderless\" alt=\"Pesquisa de criadores\" border=\"0\" ><tr><td><select multiple class=\"form-control\" id=\"tissue_sources_data\" name=\"1\" size=\"10\" style=\"min-width: 200px;overflow:auto;\"></select></td></tr>"
 
                 html += '<tr><td><button class="btn btn-default btn-sm" id="tissue_sources_select_all" name="1">Selecionar todas</button><br><br>'
-                html += '<div class="well well-sm"><div id="tissue_sources_data_count" name="1">No Selection</div></div>'
+                html += "<div class=\"well well-sm\"><div id=\"tissue_sources_data_count\" name=\"1\">Nenhuma seleção</div></div>"
                 html += '<div id="tissue_sources_to_list_menu"></div><td><tr></table>'
 
                 jQuery('#trial_tissue_sources_html').html(html);

@@ -10,7 +10,7 @@ $stock_id
     <option value="Great-Grandparents">Bisavós</option>
   </select>
 
-  <span id="pedigree_string">[carregando...]</span>
+  <span id="pedigree_string">[Carregando...]</span>
 
   <br /><br />
 </&>
@@ -21,7 +21,7 @@ jQuery(document).ready(function($) {
 
   get_pedigree_string(<% $stock_id %>);
   jQuery('#pedigree_level_select').change( function() {
-    jQuery('#pedigree_string').html('[carregando...]');
+    jQuery('#pedigree_string').html("[Carregando...]");
     get_pedigree_string(<% $stock_id %>);
   });
 });

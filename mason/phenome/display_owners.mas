@@ -42,7 +42,7 @@ $object_type
 $owners_div => 'object_owners'
 </%args>
 
-<div id = "<% $owners_div %>" >&nbsp;Loading..</div>
+<div id = "<% $owners_div %>" >Carregando...</div>
 
 <script language="javascript">
 

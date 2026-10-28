@@ -25,7 +25,7 @@ sub clone_summary_html {
       || 'not yet estimated';
 
     my $badclonehtml = $this->bad_clone 
-		       ? '<span style="color:red">contaminated</span>'
+		       ? '<span style="color:red">contaminado</span>'
 		       : 'none';
 
 

@@ -13,17 +13,15 @@
     </div>
     <&| /page/info_table.mas, border => 1 &>
 
-    Assembly issues
+    Questões da Assembleia
 
     ----
 
-      <p>If in the course of your work you find errors or other issues with
-        these genome assemblies, please report them using one of the
-        following links:</p>
+      <p>Se no decorrer de seu trabalho você encontrar erros ou outros problemas com essas assembleias de genoma, por favor, relate-os usando um dos seguintes links:</p>
 
       <ul>
         <li>
-          <a href="mailto:<% $c->get_conf('feedback_email') %>?subject=<% $organism->species    %> genome assembly issue">email us</a>
+          <a href="mailto:<% $c->get_conf('feedback_email') %>?subject=<% $organism->species    %> genome assembly issue">Mande-nos um e-mail</a>
         </li>
 %       if( $bug_tracker_url ) {
         <li>

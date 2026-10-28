@@ -27,7 +27,7 @@ $error .= qq |<p>Please go <a href="javascript:history.go(-1)"><b>back</b></a> a
              |;
 </%perl>
 
-<& /page/page_title.mas, title => 'Traits file' &>
+<& /page/page_title.mas, title => 'Arquivo de Características' &>
 <&| /page/info_section.mas, title => '', subtitle => $guide &>
   <% $error %>  
 </&>

@@ -8,96 +8,51 @@
       <tr>
         <td>
           <center>
-            <h3>Conserved Ortholog Set (COS) markers</h3>
+            <h3>Marcas de Ortolog Conservado (COS)</h3>
           </center>
 
-          <p>We have used a computational method to screen the
-          tomato EST database against the arabidopsis genome
-          sequence in order to find a set of highly conserved,
-          single copy genes which can be used as markers for
-          comparative mapping between the tomato and arabidopsis
-          genomes. Currently we have identified approximately 1000
-          of these Conserved Ortholog Set (COS) markers.<br /></p>
+          <p>Usamos um método computacional para rastrear o banco de dados EST de tomate contra a sequência do genoma de arabidopsis para encontrar um conjunto de genes de cópia única altamente conservados que podem ser usados como marcadores para mapeamento comparativo entre os genomas de tomate e arabidopsis. Atualmente, identificamos aproximadamente 1000 desses marcadores conservados de Ortolog (COS).<br /></p>
 
-          <p>In this section of SGN, you will find sequence and
-          clone information for each of these COS markers as well
-          as their matching counterpart in the arabidopsis genome.
-          We have surveyed these COS markers and mapped some of
-          these COS markers on the tomato genome to provide a
-          tomato: arabidopsis comparative map. This mapping
-          information is available on SGN now.<br /></p>
+          <p>Nesta seção do SGN, você vai encontrar sequência e clonar informações para cada um desses marcadores COS, bem como sua contraparte correspondente no genoma de arabidopsis. Nós pesquisamos esses marcadores COS e mapeamos alguns desses marcadores COS no genoma do tomate para fornecer um mapa comparativo de tomate: arabidopsis. Esta informação de mapeamento está disponível na SGN agora.<br /></p>
 
-          <p>Because these COS markers are so highly conserved,
-          they may also be useful for comparative mapping in other
-          dicot species. The computational screen by how COS
-          markers were identified is described below:</p>
+          <p>Porque estes marcadores COS são tão altamente conservados, eles também podem ser úteis para mapeamento comparativo em outras espécies de dicot. A tela computacional de como os marcadores COS foram identificados está descrita abaixo:</p>
 
           <ul>
-            <li>TBLASTX tomato ESTs against the arabidopsis genome
-            (specifically, the BAC tiling path from TAIR)</li>
+            <li>TBLASTX tomato ESTs contra o genoma de arabidopsis (especificamente, o caminho BAC tiling de TAIR)</li>
 
-            <li>Identify single best matches (&lt; e -15) between a
-            single tomato EST (or associated contig) and a single
-            BAC in Arabidopsis. Each tomato EST must pass the
-            following criteria:
+            <li>Identificar as melhores combinações (&lt; e-15) entre um único tomate EST (ou contíguo associado) e um único BAC em Arabidopsis. Cada tomate EST deve passar pelos seguintes critérios:
 
               <ul>
-                <li>it hits an arabidopsis sequence at a
-                significance level of &lt; e -15</li>
+                <li>atinge uma sequência de arabidopsis em um nível de significância de &lt; e -15</li>
 
-                <li>it is determined to be NOT part of a domain
-                (where several solanaceous sequences hit the same
-                arabidopsis region)</li>
+                <li>é determinado ser NÃO parte de um domínio (onde várias sequências solanáceas atingem a mesma região de arabidopsis)</li>
 
-                <li>the next best Arabidopsis hit must be of lower
-                significance (delta e &gt; 10)</li>
+                <li>a próxima melhor correspondência em Arabidopsis deve ter menor significância (delta e &gt; 10)</li>
               </ul>
             </li>
 
-            <li>ESTs that pass all these criteria are classified as
-            conserved orthologs, all others are considered
-            potentially paralogous and eliminated.</li>
+            <li>ESTs que passam todos esses critérios são classificados como ortologs conservados, todos os outros são considerados potencialmente paralogosos e eliminados.</li>
           </ul><br />
 
-          <h4>Functional annotation of COS markers</h4>
+          <h4>Anotação funcional de marcadores COS</h4>
 
-          <p>COS-markers were functionally annotated using the MIPS
-          role categories as they were defined at the time of the
-          analysis. As the functional role descriptions are subject
-          to continued changes, a copy of the role categories and
-          the COS-marker annotations as used in the analysis can be
-          found below:<br /></p>
+          <p>Os marcadores COS foram anotados funcionalmente usando as categorias de papéis MIPS como foram definidos no momento da análise. Como as descrições de papéis funcionais estão sujeitas a mudanças contínuas, uma cópia das categorias de papéis e as anotações de marcadores COS usadas na análise pode ser encontrada abaixo:<br /></p>
 
-          <p><a href="/documents/markers/role_categories.txt">MIPS role categories at
-          time of COS marker annotation</a></p>
+          <p><a href="/documents/markers/role_categories.txt">Categorias de papéis MIPS no momento da anotação do marcador COS</a></p>
 
-          <h4>The list of COS markers is available in both online
-          and plain text format</h4>
+          <h4>A lista de marcadores COS está disponível em formato de texto online e simples.</h4>
 
-          <p><a href="/search/markers/cos_list.pl">COS list
-          online</a> - online format with links to sequences and
-          tiling path.<br />
-          <a href="/documents/markers/cos_list-old.txt">Old plain text download</a> - plain
-          text format for download. <br />
-          <a href="/documents/markers/cos_list.txt">Old plain text download 2</a> - plain
-          text format for download. 
+          <p><a href="/search/markers/cos_list.pl">Lista COS on-line</a> - formato on-line com links para sequências e tiling caminho.<br />
+          <a href="/documents/markers/cos_list-old.txt">Velho download de texto simples</a> - formato de texto para download. <br />
+          <a href="/documents/markers/cos_list.txt">Velho texto simples download 2</a> - formato de texto para download. 
           </p>
 
-          <p><strong>Note:</strong> for the tomato map position in
-          the table linked above:</p>
+          <p><strong>Observação:</strong> Para a posição do mapa de tomate na tabela ligada acima:</p>
 
           <ul>
-            <li>Copy No is how many copies the COS marker shows on
-            a southern blot survey- S(single) is 1-2 copy, L(low)
-            is 3-4 copy, M(multiple) means more than 4 copy.</li>
+            <li>A cópia não é quantas cópias o marcador COS mostra em uma pesquisa Southern Blot. S (single) é 1-2 cópia, L (low) é 3-4 cópia, M (multiple) significa mais de 4 cópia.</li>
 
-            <li>Map position is where the COS marker mapped on the
-            tomato: arabidopsis systeny map. For example, T1675 map
-            position is 01.005, meaning Chromosome 1, 5 cM down
-            from the top. Most of the COS markers have only one map
-            position, if the COS marker has a second or third map
-            position, then there were two or three alleles that
-            could be mapped.</li>
+            <li>Posição do mapa é onde o marcador COS mapeou no tomate: mapa de arabidopsis sisteny. Por exemplo, a posição do mapa T1675 é 01.005, significando Chromosome 1, 5 cM abaixo do topo. A maioria dos marcadores COS tem apenas uma posição do mapa, se o marcador COS tem uma segunda ou terceira posição do mapa, então havia dois ou três alelos que poderiam ser mapeados.</li>
           </ul><br />
           <br />
         </td>

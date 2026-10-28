@@ -2,7 +2,7 @@
 $location
 </%args>
 
-<p id="trial_weather_check">[carregando...]</p>
+<p id="trial_weather_check">[Carregando...]</p>
 
 <script type="text/javascript" defer="defer">
 jQuery(document).ready(function () {

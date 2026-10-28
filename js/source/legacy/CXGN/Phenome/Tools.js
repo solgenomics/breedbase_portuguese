@@ -90,7 +90,7 @@ var Tools = {
 		}
             },
 	    error: function(response) {                                                                                                                                                                           
-                alert("an error occurred");                                                                                                                                                   
+                alert("ocorreu um erro");
             }                                   
         });
     },
@@ -111,7 +111,7 @@ var Tools = {
 		    else {  window.location.reload() ; }
 		},
 		    onFailure: function(response) {
-		    alert("Failed obsoleting annotation for " + type) ;
+		    alert("Falha ao tornar obsoleta a anotação de " + type) ;
 		    var json = response.responseText;
 		    //var x = jQuery.parseJSON( json );
 		    var x = eval("("+json+")");
@@ -135,7 +135,7 @@ var Tools = {
 		    else {  window.location.reload() ; }
 		},
 		    onFailure: function(response) {
-		    alert("Failed unobsoleting annotation for " + type) ;
+		    alert("Falha ao reativar a anotação de " + type) ;
 		    var json = response.responseText;
 		    //var x = jQuery.parseJSON( json );
 		    var x = eval("("+json+")");

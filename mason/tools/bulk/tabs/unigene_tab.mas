@@ -43,14 +43,14 @@ sub unigene_search {
 <table summary="" cellpadding="10" width="100%"><tr><td valign="top" bgcolor="#EEEEEE" width="320">
 
 <br />
-Enter a list of identifiers or upload a file containing one identifer separated by whitespace (returns, spaces or tabs):<br />
+Digite uma lista de identificadores ou carregue um arquivo contendo uma identidade separada por espaço em branco (retornos, espaços ou abas):<br />
 
 
 <table summary="" width="100%" cellpadding="0"><tr><td>
 <textarea name="ids" rows="5" cols="20"></textarea>
 </td>
 <td>
-<i>Example:</i>
+<i>Exemplo:</i>
 <pre style="border: 1px solid gray; width: 10em; height: 5em">
 SGN-U268057
 SGN-U562661
@@ -60,47 +60,47 @@ SGN-U196026
 <br />
 <br />
 
-And/or upload list file: <br /><input type="file" name="file" />
+E/ou arquivo de lista de upload: <br /><input type="file" name="file" />
 <br />
 <br />
 
 </td><td valign="top" bgcolor="#EEEEEE" width="320">
 
- <input type="checkbox" name="convert_to_current" checked="checked" /><label for="convert_to_current"><a class="stealth" title="Check this box to convert each unigene in the list to its equivalent in the most current corresponding unigene build(s), if available"><img src="/documents/img/new.gif" />convert unigene list to current build</a></label>
+ <input type="checkbox" name="convert_to_current" checked="checked" /><label for="convert_to_current"><a class="stealth" title="Marque esta caixa para converter cada unigene na lista para o seu equivalente na mais atual compilação de unigenes, se disponível"><img src="/documents/img/new.gif" />Converta a lista unigene para a construção atual</a></label>
 
  <hr />
 
-<input type="radio" name="unigene_mode" value="unigene_info" checked="checked" /> <b>Download unigene information</b>:<br />
+<input type="radio" name="unigene_mode" value="unigene_info" checked="checked" /> <b>Baixe informações unigene</b>:<br />
 <!-- SGN_U for Unigene Info -->
 <div style="padding-left: 1em">
-    <input type="checkbox" name="SGN_U_U" checked="checked" /> unigene id (SGN-U)<br />
-    <input type="checkbox" name="automatic_annotation" checked="checked" /> automatic (BLAST) annotation<br />
-    <input type="checkbox" name="best_genbank_match" checked="checked" /> best genbank match<br />
-    <input type="checkbox" name="best_arabidopsis_match" checked="checked" /> best arabidopsis match<br />
-    <input type="checkbox" name="associated_loci" checked="checked" /> associated loci<br />
-    <input type="checkbox" name = "uni_seq" checked="checked" onclick="check_fasta_option()"/> sequence<br />
+    <input type="checkbox" name="SGN_U_U" checked="checked" /> Unigene id (SGN-U)<br />
+    <input type="checkbox" name="automatic_annotation" checked="checked" /> Anotação automática (BLAST)<br />
+    <input type="checkbox" name="best_genbank_match" checked="checked" /> Melhor jogo de banco<br />
+    <input type="checkbox" name="best_arabidopsis_match" checked="checked" /> Melhor combinação de arabidopsis<br />
+    <input type="checkbox" name="associated_loci" checked="checked" /> Loci associado<br />
+    <input type="checkbox" name = "uni_seq" checked="checked" onclick="check_fasta_option()"/> Sequência<br />
     <div style="padding-left: 1em">
-         <input type="radio" name="seq_mode" value="unigene_seq" checked="checked" /> unigene nucleotide sequence<br />
-         <input type="radio" name="seq_mode" value="estscan_seq" /> estscan predicted proteins<br />
-         <input type="radio" name="seq_mode" value="longest6frame_seq" /> longest ORF from 6-frame translation<br />
-         <input type="radio" name="seq_mode" value="preferred_protein_seq" /> preferred sequence<br />
+         <input type="radio" name="seq_mode" value="unigene_seq" checked="checked" /> Sequência de nucleotídeo unigene<br />
+         <input type="radio" name="seq_mode" value="estscan_seq" /> Estscan previu proteínas<br />
+         <input type="radio" name="seq_mode" value="longest6frame_seq" /> ORF mais longo da tradução de 6 quadros<br />
+         <input type="radio" name="seq_mode" value="preferred_protein_seq" /> Sequência preferida<br />
     </div>
 </div>
 
-<input type="radio" name="unigene_mode" value="member_info" /> <b>Download member information</b>:
+<input type="radio" name="unigene_mode" value="member_info" /> <b>Baixe informações dos membros</b>:
 <div style="padding-left: 1em">
-    <input type="checkbox" name="clone_name" checked="checked" /> clone name<br />
-    <input type="checkbox" name="SGN_C" checked="checked" /> clone id (SGN-C)<br />
-    <input type="checkbox" name="SGN_T" checked="checked" /> sequence read id (SGN-T)<br />
+    <input type="checkbox" name="clone_name" checked="checked" /> Nome do clone<br />
+    <input type="checkbox" name="SGN_C" checked="checked" /> Clone id (SGN-C)<br />
+    <input type="checkbox" name="SGN_T" checked="checked" /> sequência lida id (SGN-T)<br />
     <input type="checkbox" name="SGN_E" checked="checked" /> est id (SGN-E)<br />
-    <input type="checkbox" name="build_nr" checked="checked" /> unigene build number<br />
+    <input type="checkbox" name="build_nr" checked="checked" /> Número de construção unigene<br />
     <!-- SGN_U for Member Info -->
-    <input type="checkbox" name="SGN_U_M" checked="checked" /> unigene id (SGN-U)<br />
+    <input type="checkbox" name="SGN_U_M" checked="checked" /> Unigene id (SGN-U)<br />
     <input type="checkbox" name="chipname" checked="checked" /> chipname<br />
-    <input type="checkbox" name="SGN_S" checked="checked" /> microarray spot id (SGN-S)<br />
-    <input type="checkbox" name="TUS" checked="checked" /> TUS number<br />
-    <input type="checkbox" name="manual_annotation" /> manual annotation<br />
-    <input type="checkbox" name="est_seq" checked="checked" /> EST sequence<br />
+    <input type="checkbox" name="SGN_S" checked="checked" /> SGN-S<br />
+    <input type="checkbox" name="TUS" checked="checked" /> Número TUS<br />
+    <input type="checkbox" name="manual_annotation" /> Anotação manual<br />
+    <input type="checkbox" name="est_seq" checked="checked" /> Sequência EST<br />
 </div>
 </td></tr></table>
 
@@ -110,6 +110,6 @@ And/or upload list file: <br /><input type="file" name="file" />
 
 	<input type=hidden name="idType" value="unigene" />
 	<input type="reset" />&nbsp;&nbsp;
-<input type="submit" value="Submit" /><br />
+<input type="submit" value="Enviar" /><br />
 </form>
 

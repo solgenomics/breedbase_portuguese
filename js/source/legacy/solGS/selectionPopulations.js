@@ -128,21 +128,21 @@ jQuery(document).ready(function () {
 
         solGS.selectionPopulation.displaySelectionPopulations(res.data);
       } else {
-        var msg = "No cached trial for selection prediction found.";
+        var msg = "Nenhum ensaio em cache encontrado para predição de seleção.";
         solGS.selectionPopulation.feedbackOnFail(msg);
       }
 
       // jQuery(searchBtn).show();
     })
     .fail(function () {
-      var msg = "Errro occured querying for selection populations";
+      var msg = "Ocorreu um erro ao consultar as populações de seleção";
       solGS.selectionPopulation.feedbackOnFail(msg);
       // jQuery(searchBtn).show();
     });
 
   jQuery(searchAllSelPops).click(function () {
     var msg =
-      "<br/><br/>Searching for all selection populations relevant to this model...please wait...";
+      "<br/><br/>Buscando todas as populações de seleção relevantes para este modelo... Aguarde...";
     jQuery(msgDiv).html(msg).show();
 
     solGS.selectionPopulation
@@ -155,15 +155,15 @@ jQuery(document).ready(function () {
           jQuery(this.msgDiv).hide();
         } else {
           var msg =
-            "<p>There are no relevant selection populations in the database." +
-            "If you have or want to make your own set of selection candidates" +
-            "use the form below.</p>";
+            "<p>Não há populações de seleção relevantes no banco de dados." +
+            "Se você possui ou deseja criar seu próprio conjunto de candidatos à seleção," +
+            "use o formulário abaixo.</p>";
 
           jQuery(this.msgDiv).html(msg).show().fadeOut(8000);
         }
       })
       .fail(function () {
-        var msg = "Error occured searching for the selection populations.";
+        var msg = "Ocorreu um erro ao buscar as populações de seleção.";
         jQuery(this.msgDiv).html(msg).show().fadeOut(8000);
       });
   });
@@ -187,11 +187,11 @@ jQuery(document).ready(function () {
 
       if (selPopExists) {
         jQuery(searchBtn).show();
-        var msg = `${popName} is already in the search result table`;
+        var msg = `${popName} já está na tabela de resultados da busca`;
         solGS.selectionPopulation.feedbackOnFail(msg);
       } else {
         jQuery(msgDiv)
-          .html(`Checking if the model can be used on ${popName} ...please wait...`)
+          .html(`Verificando se o modelo pode ser usado em ${popName} ... Aguarde...`)
           .show();
         jQuery(`${selPopsDiv} .multi-spinner-container`).show();
 
@@ -209,18 +209,17 @@ jQuery(document).ready(function () {
                     solGS.selectionPopulation.displaySelectionPopulations(res.selection_pop_data);
                   }
                 } else {
-                  var msg = `${popName} is genotyped by a marker set different  
-                  from the one used for the training population. Therefore you can not predict its GEBVs using this model.`;
+                  var msg = `${popName} foi genotipada com um conjunto de marcadores diferente do usado na população de treinamento. Portanto, não é possível predizer seus GEBVs com este modelo.`;
 
                   solGS.selectionPopulation.feedbackOnFail(msg);
                 }
               } else {
-                var msg = `${popName} is the same population as the the training population. Please select a different selection population.`;
+                var msg = `${popName} é a mesma população usada no treinamento. Selecione outra população de seleção.`;
 
                 solGS.selectionPopulation.feedbackOnFail(msg);
               }
             } else {
-              var msg = `${popName} does not exist in the database.`;
+              var msg = `${popName} não existe no banco de dados.`;
               solGS.selectionPopulation.feedbackOnFail(msg);
             }
 
@@ -228,7 +227,7 @@ jQuery(document).ready(function () {
             jQuery(`${selPopsDiv} .multi-spinner-container`).hide();
           })
           .fail(function () {
-            var msg = "Error occured processing the query.";
+            var msg = "Ocorreu um erro ao processar a consulta.";
             solGS.selectionPopulation.feedbackOnFail(msg);
             jQuery(searchBtn).show();
             jQuery(`${selPopsDiv} .multi-spinner-container`).hide();
@@ -237,7 +236,7 @@ jQuery(document).ready(function () {
     } else {
       jQuery(searchBox).css("border", "solid #FF0000");
 
-      jQuery(searchFormFeedBack).text("Please enter trial name.");
+      jQuery(searchFormFeedBack).text("Informe o nome do ensaio.");
       jQuery(searchBtn).show();
     }
   });

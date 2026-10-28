@@ -38,8 +38,8 @@ $design_types => ()
   <tbody>
   <tr>
     <td>
-        <h4>Pesquisar</h4>
-        <input type="text" class="form-control input-sm" id="trial_tree_search" placeholder="Pesquisar" />
+        <h4>Pesquisador</h4>
+        <input type="text" class="form-control input-sm" id="trial_tree_search" placeholder="Pesquisador" />
         <hr>
       <h4>Baixar fenótipos dos ensaios</h4>
       <h5><i>Para selecionar vários ensaios, mantenha a tecla Ctrl pressionada.</i></h5>
@@ -53,7 +53,7 @@ $design_types => ()
       <h4>Pastas</h4>
       <button class="btn btn-sm btn-default" id="new_folder_dialog_link">Criar nova pasta</button><br/><br/>
       <button class="btn btn-sm btn-default" id="open_folder_dialog_link">Mover ensaio(s) para uma pasta</button><br/><br/>
-      <button class="btn btn-sm btn-default" id="move_folder_dialog_link">Mover pasta</button>
+      <button class="btn btn-sm btn-default" id="move_folder_dialog_link">Massa movedora</button>
 
       <div id="folder_edit_options" style="display:none">
           <hr>
@@ -62,11 +62,11 @@ $design_types => ()
           <br/>
       </div>
 
-      <!--<button id="delete" disabled="disabled" >Delete</button -->
+      <!--<button id="delete" disabled="disabled" >Excluir</button -->
       <br />
     </td>
     <td>
-        <div id="trial_list" >[carregando...]</div>
+        <div id="trial_list" >[Carregando...]</div>
     </td>
   </tr>
   </tbody>
@@ -166,7 +166,7 @@ $design_types => ()
           buildTrialTree(response.html || '');
         },
         error: function(xhr) {
-          console.log('Trial tree load failed:', xhr.status, xhr.responseText);
+          console.log("Falha ao carregar a árvore de ensaios:", xhr.status, xhr.responseText);
           alert("Ocorreu um erro ao carregar os dados dos ensaios.");
         }
       });

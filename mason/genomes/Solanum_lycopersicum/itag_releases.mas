@@ -3,7 +3,7 @@
 %   for my $release_name( sort { $b cmp $a } keys %release_datasources ) {
 
       <&| /page/info_section.mas,
-          title => "$release_name annotation release",
+          title => "$release_name anotação lançamento",
           is_subsection => 1,
           collapsible   => 1,
           collapsed     => $annot_index++ ? 1 : 0,
@@ -23,7 +23,7 @@
 %   }
 % } else {
 
-  <span class="ghosted">annotation data temporarily unavailable</span>
+  <span class="ghosted">dados de anotação temporariamente indisponível</span>
 
 % }
 
@@ -56,7 +56,7 @@ sub itag_release_ftp_link {
             or return $empty_link;
     }
 
-    return qq|<a style="$link_style" href="/itag/release/|.$r->release_number.'/list_files">Download bulk files</a>';
+    return qq|<a style="$link_style" href="/itag/release/|.$r->release_number.'/list_files">Baixe arquivos em massa</a>';
 }
 </%once>
 

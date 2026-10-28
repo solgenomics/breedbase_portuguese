@@ -11,16 +11,13 @@
 
 </%args>
 
-<& /page/page_title.mas, title => 'Quick search for '.encode_entities( '"'.$quick_search_term.'"' ) &>
+<& /page/page_title.mas, title => 'Procura rápida '.encode_entities( '"'.$quick_search_term.'"' ) &>
 
 <div class="page_introduction">
-  Note: The quick search does not perform exactly the same queries as
-  full searches for the various data types.  If your desired result
-  does not appear, you may want to try again with one of the advanced
-  search tools in the "search" menu.
+  Nota: a busca rápida não realiza exatamente as mesmas consultas que buscas completas para os vários tipos de dados. Se seu resultado desejado não aparecer, tente de novo com uma das ferramentas de busca avançadas no menu de busca.
 </div>
 
-<&| /page/info_section.mas, title => 'Exact matches' &>
+<&| /page/info_section.mas, title => 'Exatamente' &>
 
 <div class="well">
 
@@ -34,7 +31,7 @@
 
   <div>
     <dl>
-      <dt>Identifiers - Breeding Data</dt>
+      <dt>Identificadores, dados de melhoramento</dt>
       <dd>
 	<div style="float: left; width: 50%">
 	  <% $search{accessions} %>
@@ -49,7 +46,7 @@
 	</div>
 	<div style="clear: both;">&nbsp;</div>
       </dd>
-      <dt>Identifiers - Genomic Data</dt>
+      <dt>Identificadores - Dados Genômicos</dt>
       <dd >
 	<div style="float: left; width: 50%">
           <% $search{marker} %>
@@ -69,8 +66,8 @@
 </&>
 
 <&| /page/info_section.mas,
-    title => 'Fuzzy searches',
-    subtitle => 'click to view search results',
+    title => 'Buscas fuzzy',
+    subtitle => 'Clique para ver os resultados da pesquisa',
  &>
 
 <div class="well">
@@ -78,8 +75,8 @@
   <div>
     <dl>
     <dt>
-      <div style="float: left; width: 50%">Identifiers</div>
-      <div style="float: right; width: 50%">cDNA Libraries</div>
+      <div style="float: left; width: 50%">Identificadores</div>
+      <div style="float: right; width: 50%">Bibliotecas do DNA</div>
     </dt>
     <dd>
       <div style="float: left; width: 50%">
@@ -100,8 +97,8 @@
   <div>
     <dl>
     <dt>
-      <div style="float: left; width: 50%">People (searching by name)</div>
-      <div style="float: right; width: 50%">Annotations</div>
+      <div style="float: left; width: 50%">Pessoas (pesquisando pelo nome)</div>
+      <div style="float: right; width: 50%">Anotações</div>
     </dt>
     <dd>
       <div style="float: left; width: 50%">
@@ -121,8 +118,8 @@
   <div>
     <dl>
     <dt>
-      <div style="float: left; width: 50%">Images</div>
-      <div style="float: right; width: 50%">Web Pages</div>
+      <div style="float: left; width: 50%">Imagens</div>
+      <div style="float: right; width: 50%">Páginas Web</div>
     </dt>
     <dd>
       <div style="float: left; width: 50%">

@@ -56,7 +56,7 @@ function count_clones()
     }
     else
     {
-        count_el.innerHTML = 'No';
+        count_el.innerHTML = "Não";
     }
 }
 

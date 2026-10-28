@@ -11,9 +11,9 @@ solGS.analysisSelect = {
     implementedAnalyses: ['pearson_correlation'],
     compatibilityTools: [
         'Correlation', 
-        'Population Structure', 
+        "Population Structure",
         'Clustering', 
-        'Kinship & Inbreeding'
+        "Kinship & Inbreeding"
     ],
 
     
@@ -89,7 +89,7 @@ solGS.analysisSelect = {
             }
         }
 
-        console.log("Tools Compatibility Check: ", toolsCompatibilityCheck);
+        console.log("Verificação de compatibilidade das ferramentas: ", toolsCompatibilityCheck);
 
         return toolsCompatibilityCheck;
     },
@@ -109,25 +109,25 @@ jQuery(document).on("change", "#analysis_select", function () {
         solGS.analysisSelect.getAnalysisType();
         solGS.analysisSelect.getDataStructure();
 
-        console.log("Analysis Pop ID: ", solGS.analysisSelect.analysisPopId);
-        console.log("Analysis Pop Name: ", solGS.analysisSelect.analysisPopname);
-        console.log("Analysis Type: ", solGS.analysisSelect.analysisType);
-        console.log("Data Structure: ", solGS.analysisSelect.dataStructure);
+        console.log("ID da população da análise: ", solGS.analysisSelect.analysisPopId);
+        console.log("Nome da população da análise: ", solGS.analysisSelect.analysisPopname);
+        console.log("Tipo de análise: ", solGS.analysisSelect.analysisType);
+        console.log("Estrutura dos dados: ", solGS.analysisSelect.dataStructure);
 
         var datasetId = solGS.analysisSelect.getDatasetId();
-        console.log("Dataset ID: ", datasetId);
+        console.log("ID do conjunto de dados: ", datasetId);
 
         var implementedAnalyses = solGS.analysisSelect.implementedAnalyses;
         if (!implementedAnalyses.includes(selectedAnalysis)) {
             selectedAnalysis = selectedAnalysis.replace(/_/, ' ');
             jQuery("#dataset_trials_analysis_message").html(
-                `This analysis (${selectedAnalysis}) is yet to be implemented.`)
+                `Esta análise (${selectedAnalysis}) ainda não foi implementada.`)
                 .show();
             jQuery("#run_analysis").prop("disabled", true);
         }
 
         if (datasetId) {
-            console.log("Dataset ID: ", solGS.analysisSelect.getDatasetId());
+            console.log("ID do conjunto de dados: ", solGS.analysisSelect.getDatasetId());
             solGS.analysisSelect.getToolCompatibility(datasetId).done(function (toolCompatibility) {
                 var toolsCompatibilityCheck = solGS.analysisSelect.extractToolsCompatibility(toolCompatibility);
                 
@@ -138,19 +138,19 @@ jQuery(document).on("change", "#analysis_select", function () {
                     if (!correlationCompatible) {
                         population = solGS.analysisSelect.getDataStructure();
                         jQuery("#dataset_trials_analysis_message").html(`<p>
-                            This analysis is not compatible with the selected ${population}. <br>
-                            Perhaps run 'Check Tool Compatibility', found in the 'Tool Compatibility' <br/>
-                            section above, if it may help.</p>`).show();
+                            Esta análise não é compatível com a seleção de ${population}. <br>
+                            Se necessário, execute a opção Verificar compatibilidade das ferramentas, na seção Compatibilidade das ferramentas <br/>
+                            acima.</p>`).show();
                         jQuery("#run_analysis").prop("disabled", true);
                     }
                 }
                 
             }).fail(function () {
-                jQuery("#dataset_trials_analysis_message").html("Error retrieving tool compatibility.").show();
+                jQuery("#dataset_trials_analysis_message").html("Erro ao recuperar a compatibilidade das ferramentas.").show();
             });
         }
     } else {
-        console.log("No analysis selected.");
+        console.log("Nenhuma análise selecionada.");
     }
 });
 
@@ -164,12 +164,12 @@ jQuery(document).ready(function () {
         var analysisPopId = solGS.analysisSelect.getAnalysisPopId();
 
         if (!analysisType) {
-            jQuery("#dataset_trials_analysis_message").html("Please select an analysis type.").show();
+            jQuery("#dataset_trials_analysis_message").html("Selecione um tipo de análise.").show();
             return;
         }
 
         if (!analysisPopId) {   
-            jQuery("#dataset_trials_analysis_message").html("Please select an analysis population.").show();
+            jQuery("#dataset_trials_analysis_message").html("Selecione uma população para análise.").show();
             return;
         }
 
@@ -197,7 +197,7 @@ jQuery(document).ready(function () {
             var corrMsgDiv = solGS.correlation.corrMsgDiv;
 
             jQuery(`${canvas} .multi-spinner-container`).show();
-            jQuery(corrMsgDiv).html("Running correlation... please wait...").show();
+            jQuery(corrMsgDiv).html("Executando correlação... Aguarde...").show();
 
             solGS.correlation.runPhenoCorrelation(corrArgs).done(function (res) {
                 if (res.error) {
@@ -223,11 +223,11 @@ jQuery(document).ready(function () {
                     jQuery(corrMsgDiv).empty();
                 } else {
                     jQuery(`${canvas} .multi-spinner-container`).hide();
-                    jQuery(corrMsgDiv).html("There is no correlation output for this dataset.").fadeOut(8400);
+                    jQuery(corrMsgDiv).html("Não há resultados de correlação para este conjunto de dados.").fadeOut(8400);
                 }
             }).fail(function (res) {
                 jQuery(`${canvas} .multi-spinner-container`).hide();
-                jQuery(corrMsgDiv).html("Error occured running the correlation analysis.").fadeOut(8400);
+                jQuery(corrMsgDiv).html("Ocorreu um erro ao executar a análise de correlação.").fadeOut(8400);
             });
         }
     });

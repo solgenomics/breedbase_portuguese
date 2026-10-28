@@ -5,7 +5,7 @@ $location_id => 'not_provided'
 
 <& /util/import_javascript.mas, classes => [ 'jquery', 'jquery.dataTables' ] &>
 
-<& /page/page_title.mas, title => "Dataset Search -<a class='btn btn-link' href=/help/datasets>Help <span class='glyphicon glyphicon-question-sign'></a>" &>
+<& /page/page_title.mas, title => "Pesquisa de dados<a class='btn btn-link' href=/help/datasets>Socorro! <span class='glyphicon glyphicon-question-sign'></a>" &>
 
 <div class="well well-sm">
     <div class="panel panel-default">
@@ -13,11 +13,11 @@ $location_id => 'not_provided'
             <table id="dataset_search_results" width="100%" class="table table-hover table-striped">
               <thead>
                 <tr>
-                  <th>Dataset name</th>
-                  <th>Description</th>
-                  <th>Owner</th>
-                  <th>Public</th>
-                  <th>Published</th>
+                  <th>Nome do conjunto de dados</th>
+                  <th>Descrição</th>
+                  <th>Dono</th>
+                  <th>Público</th>
+                  <th>Publicado</th>
                 </tr>
               </thead>
             </table>
@@ -52,7 +52,7 @@ jQuery(document).ready(function () {
             "render": (data) => {
               let html = "";
               if ( data && data === 1 ) {
-                html = `&nbsp;<span class="label label-primary">Public</span>&nbsp;`;
+                html = `&nbsp;<span class="label label-primary">Público</span>&nbsp;`;
               }
               return html;
             }

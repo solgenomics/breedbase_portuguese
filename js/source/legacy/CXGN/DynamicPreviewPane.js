@@ -41,7 +41,7 @@ try //assume that each required module X.Y creates an object named X.Y
 }
 catch(x)
 {
-	throw "DynamicPreviewPane requires the following modules: MochiKit.DOM, MochiKit.Signal";
+	throw "DynamicPreviewPane requer os seguintes módulos: MochiKit.DOM, MochiKit.Signal";
 }
 
 
@@ -193,7 +193,7 @@ _getConversionFunctorForSourceType: function(sourceType)
 	var matchInfo = sourceType.match(this._DELIMITED_LIST_REGEXP);
 	//if the match was successful, matchInfo is an array with matched subexpressions starting at index 1
 	if(matchInfo != null) return function(sourceText) {return DynamicPreviewPane._convertDelimitedList(matchInfo[1], sourceText);}
-	alert("DynamicPreviewPane can't find conversion function for unknown source type '" + sourceType + "'");
+	alert("DynamicPreviewPane não encontrou uma função de conversão para o tipo de origem desconhecido '" + sourceType + "'");
 },
 
 /*

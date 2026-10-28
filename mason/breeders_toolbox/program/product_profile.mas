@@ -13,7 +13,7 @@ $program_id
             <th>Escopo</th>
             <th>Característica</th>
             <th>Responsável pelo envio</th>
-            <th>Data (A-M-D)</th>
+            <th>Dados</th>
         </tr>
     </thead>
 </table>

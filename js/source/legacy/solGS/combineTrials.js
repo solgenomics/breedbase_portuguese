@@ -30,7 +30,7 @@ solGS.combinedTrials = {
 	     .filter(':has(:checkbox:checked)')
              .bind('click',  function() {
 
-		 jQuery("#select_trials_btn").val('Done selecting');
+		 jQuery("#select_trials_btn").val("Seleção concluída");
 		 var td =  jQuery(this).html();
 
 		 var selectedTrial = '<tr>' + td + '</tr>';
@@ -70,7 +70,7 @@ solGS.combinedTrials = {
 		jQuery("#selected_trials").hide();
 		jQuery("#combine_trials_div").hide();
 		jQuery("#search_again_div").hide();
-		jQuery("#select_trials_btn").val('Select');
+		jQuery("#select_trials_btn").val("Selecionar");
 
 		//  searchAgain();
         }
@@ -95,7 +95,7 @@ solGS.combinedTrials = {
 	searchAllTrials(url);
 	jQuery("#trial_search_result_message").show();
 	jQuery("#trial_search_result_select").show();
-	jQuery("#select_trials_btn").val('Select');
+	jQuery("#select_trials_btn").val("Selecionar");
 
     },
 
@@ -110,7 +110,7 @@ solGS.combinedTrials = {
 	var selectedPops = trId + "=" + trialIds + '&' + 'combine=combine';
 
 	jQuery.blockUI.defaults.applyPlatformOpacityRules = false;
-	jQuery.blockUI({message: 'Please wait..'});
+	jQuery.blockUI({message: "Aguarde..."});
 
 	jQuery.ajax({
             type: 'POST',
@@ -140,9 +140,9 @@ solGS.combinedTrials = {
 		} else {
 
                     if (res.not_matching_pops){
-			alert('populations ' + res.not_matching_pops +
-                              ' were genotyped using different marker sets. ' +
-                              'Please make new selections to combine.' );
+			alert("Populações " + res.not_matching_pops +
+                              " foram genotipadas usando conjuntos de marcadores diferentes. " +
+                              "Faça novas seleções para combinar." );
 			window.location.href =  '/solgs/search/result/populations/' + trId;
                     }
 
@@ -201,7 +201,7 @@ solGS.combinedTrials = {
 
 		},
 		error: function(res) {
-    		    alert('Error occured getting combined trials unique id');
+                alert("Ocorreu um erro ao obter o identificador único dos ensaios combinados");
 		}
 
 	    });
@@ -264,7 +264,7 @@ solGS.combinedTrials = {
 	var action = "/solgs/retrieve/populations/data";
 
 	jQuery.blockUI.defaults.applyPlatformOpacityRules = false;
-	jQuery.blockUI({message: 'Please wait..'});
+	jQuery.blockUI({message: "Aguarde..."});
 
 	jQuery.ajax({
             type: 'POST',
@@ -295,16 +295,16 @@ solGS.combinedTrials = {
 		} else if(res.not_matching_pops )  {
 
                     jQuery.unblockUI();
-                    alert('populations ' + res.not_matching_pops +
-			  ' were genotyped using different marker sets. ' +
-			  'Please make new selections to combine.' );
+                    alert("Populações " + res.not_matching_pops +
+			  " foram genotipadas usando conjuntos de marcadores diferentes. " +
+			  "Faça novas seleções para combinar." );
 
 		}
             },
             error: function(res) {
 		jQuery.unblockUI();
-		alert('An error occured retrieving phenotype' +
-                      'and genotype data for trials..');
+		alert("Ocorreu um erro ao recuperar os dados fenotípicos" +
+                      "e genotípicos dos ensaios.");
             }
 	});
 
@@ -341,7 +341,7 @@ solGS.combinedTrials = {
     	if (comboPopsId) {
             window.location = page;
     	} else {
-	    alert('combined Trials id missing.')
+	    alert("O ID dos ensaios combinados está ausente.")
 	}
     },
 

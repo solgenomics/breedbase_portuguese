@@ -75,7 +75,7 @@ $drone_run_date => undef
                     <label class="col-sm-3 control-label" for="edit_drone_run_name">Nome do evento de imageamento: </label>
                     <div class="col-sm-8">
                       <div class="input-group">
-                        <input class="form-control col-sm-8" id="edit_drone_run_name" title="name" type="text" value="<%$trial_name%>"/>
+                        <input class="form-control col-sm-8" id="edit_drone_run_name" title="Nome" type="text" value="<%$trial_name%>"/>
                       </div>
                     </div>
                 </div>
@@ -83,7 +83,7 @@ $drone_run_date => undef
                     <label class="col-sm-3 control-label" for="edit_trial_description">Descrição: </label>
                     <div class="col-sm-8">
                       <div class="input-group">
-                        <textarea class="form-control" id="edit_drone_run_description" title="description" rows="5" maxlength="250"><% $trial_description %></textarea>
+                        <textarea class="form-control" id="edit_drone_run_description" title="Descrição" rows="5" maxlength="250"><% $trial_description %></textarea>
                       </div>
                     </div>
                 </div>

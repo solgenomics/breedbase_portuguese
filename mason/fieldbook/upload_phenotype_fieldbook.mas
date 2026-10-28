@@ -75,21 +75,21 @@
 
             <ul>
 
-                <li><strong>plot_id</strong>, <strong>plant_id</strong>, <strong>subplot_id</strong> ou <strong>tissue_sample_id</strong>: informe o ID de um material já cadastrado no banco de dados.</li>
-                <li><strong>trait</strong>: Uma característica existente no banco de dados.</li>
-                <li><strong>value</strong>: Valor correspondente à característica observada.</li>
-                <li><strong>observationTimeStamp</strong>: Data e hora da observação.</li>
-                <li><strong>collector</strong>: Nome da pessoa que coletou a observação.</li>
+                <li><strong>plot_id</strong>, <strong>plant_id</strong>, <strong>subplot_id</strong> UO <strong>tissue_sample_id</strong>: informe o ID de um material já cadastrado no banco de dados.</li>
+                <li><strong>Característica</strong>: Uma característica existente no banco de dados.</li>
+                <li><strong>valor</strong>: Valor correspondente à característica observada.</li>
+                <li><strong>observaçãoTimeStamp</strong>: Data e hora da observação.</li>
+                <li><strong>Colecionador</strong>: Nome da pessoa que coletou a observação.</li>
             </ul>
             <table class="table table-hover table-bordered table-condensed" >
                 <thead></thead>
                 <tbody>
                     <tr>
                         <td>plot_id</td>
-                        <td>trait</td>
-                        <td>value</td>
-                        <td>observationTimeStamp</td>
-                        <td>collector</td>
+                        <td>Característica</td>
+                        <td>valor</td>
+                        <td>observaçãoTimeStamp</td>
+                        <td>Colecionador</td>
                     </tr>
                 </tbody>
             </table>

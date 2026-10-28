@@ -19,7 +19,7 @@
                                 <h4>
                                     Alterar a situação para concluído/encerrado ou excluir:
                                 </h4>
-                                <p> Terminating a process/experiment is different from deleting a process/experiment.
+                                <p> Terminar um processo/experimento é diferente de excluir um processo/experimento.
                                 <li>Excluir um processo/experimento remove seu identificador do banco de dados. Marcar um processo/experimento como concluído/encerrado o desativa, mas mantém as informações relacionadas no banco de dados.</li>
                                 <li>Só é possível excluir um processo/experimento se não houver dados associados</li>
                                 <li>A página de detalhes continua acessível, mas é marcada como "CONCLUÍDO" ou "ENCERRADO". Não é mais possível adicionar informações a essa página.</li>

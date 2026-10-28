@@ -2,7 +2,7 @@
 $itag_releases
 </%args>
 
-<& /page/page_title.mas, title => 'ITAG Releases Available for Bulk Download' &>
+<& /page/page_title.mas, title => 'ITAG Releases disponíveis para download em massa' &>
 
 % if ( @$itag_releases ) {
 
@@ -16,6 +16,6 @@ $itag_releases
 
 % } else {
 
-<span class="ghosted">temporarily unavailable</span>
+<span class="ghosted">temporariamente indisponível</span>
 
 % }

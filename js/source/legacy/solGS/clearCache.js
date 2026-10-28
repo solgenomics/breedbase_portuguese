@@ -20,7 +20,7 @@ jQuery(document).ready(function() {
                 }            
             },
             error: function() {
-                alert('Error occurred while clearing cache');
+                alert("Ocorreu um erro ao limpar o cache");
             }
         });
     });

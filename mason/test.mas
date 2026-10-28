@@ -1,11 +1,11 @@
 
-<h1>This is a test</h1>
+<h1>Isto é um teste</h1>
 
 <%perl>
 
 use strict;
 
-my $message = "This is also a test ";
+my $message = "Isso também é um teste ";
 print "$message\n";
 
 </%perl>

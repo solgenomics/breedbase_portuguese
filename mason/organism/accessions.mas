@@ -4,7 +4,7 @@ $accessions
 
 </%args>
 
-<&| /page/info_section.mas, title=>'External Links' &>
+<&| /page/info_section.mas, title=>'Ligações Externas' &>
 <% $accessions %>
 </&>
 

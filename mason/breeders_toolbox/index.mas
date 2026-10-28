@@ -181,7 +181,7 @@ abrangente, fácil de usar e adequado aos melhoristas.</p>
 <&| /page/info_section.mas, title=>'Tutoriais' &>
 <ul>
   <li><a href="http://www.extension.org/pages/61208">Webinar</a> de Joyce Van Eck sobre as ferramentas de melhoramento da SGN</li>
-  <li>Melhoramento de plantas e genômica no site <a href="http://www.extension.org/plant_breeding_genomics">eXtension</a></li>
+  <li>Melhoramento de plantas e genômica no site <a href="http://www.extension.org/plant_breeding_genomics">eXtensão</a></li>
   <li><a href="http://www.extension.org/article/32485">Webinar</a> de Heather Merk sobre o navegador do genoma do tomate, apresentado no Workshop de Doenças do Tomate de 2010</li>
   <li>Desenvolvimento de um marcador CAPS a partir de um SNP com o <a href="http://www.extension.org/article/32361">SGN CAPS Designer</a>, por <a href="mailto:merk.9@osu.edu">Heather Merk</a></li>
  <li><a href="http://www.extension.org/pages/60317/sgn-marker-search-tool-tutorial-for-plant-breeders">Tutorial narrado em PowerPoint da ferramenta "Marcadores"</a>, por <a href="mailto:merk.9@osu.edu">Heather Merk</a></li>
@@ -190,10 +190,10 @@ abrangente, fácil de usar e adequado aos melhoristas.</p>
 
 <&| /page/info_section.mas, title=>'Ferramentas da SGN' &>
 <ul>
-  <li>Explore o <a href="/search/direct_search.pl?search=markers/">banco de dados de marcadores</a> da SGN</li>
-  <li>Explore os vocabulários controlados disponíveis com o <a href="/tools/onto/">navegador de ontologias</a> da SGN</li>
-  <li>Desenvolva marcadores CAPS com o <a href="/tools/caps_designer/caps_input.pl">CAPS Designer</a></li>
-  <li>Verifique a localização de íntrons em dados de transcritos com o <a href="/tools/intron_detection/find_introns.pl">Intron Finder</a></li>
+  <li>Explore o <a href="/search/direct_search.pl?search=markers/">banco de dados de marcadores</a> Da SGN</li>
+  <li>Explore os vocabulários controlados disponíveis com o <a href="/tools/onto/">navegador de ontologias</a> Da SGN</li>
+  <li>Desenvolva marcadores CAPS com o <a href="/tools/caps_designer/caps_input.pl">Designer de CAPS</a></li>
+  <li>Verifique a localização de íntrons em dados de transcritos com o <a href="/tools/intron_detection/find_introns.pl">Localizador de íntrons</a></li>
   <li><a href="/phenome/qtl_form.pl">Envio de dados de QTL</a> e análise imediata de QTL <a href="/search/direct_search.pl?search=qtl/">para características de Solanaceae</a></li>
   <li><a href="/phenome/">Guia de envio</a> de genes e fenótipos para a SGN</li>
 </ul>

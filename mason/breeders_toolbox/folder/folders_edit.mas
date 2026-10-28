@@ -87,7 +87,7 @@ function save_folders_categories() {
               'folder_for_genotyping_projects' : folder_for_genotyping_projects,
             },
             success: function(response) {
-                console.log('Success changing categories for folder');
+                console.log("Categorias da pasta alteradas com sucesso");
             },
             error: function(response) {
                 error = 1;

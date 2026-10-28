@@ -27,8 +27,8 @@ $user_id => undef
     <tbody>
         <tr>
             <td>
-                <h4>Pesquisar</h4>
-                <input type="text" class="form-control input-sm" id="transformation_tree_search" placeholder="Pesquisar" />
+                <h4>Pesquisador</h4>
+                <input type="text" class="form-control input-sm" id="transformation_tree_search" placeholder="Pesquisador" />
                 <hr>
 
                 <h5><i>Clique duas vezes<br />no projeto de transformação (&nbsp;<span class="glyphicon glyphicon-text-width text-success"></span>&nbsp;) ou na pasta (&nbsp;<span class="glyphicon glyphicon-folder-open text-danger"></span>&nbsp;)<br/>para visualizar a página de detalhes.</i></h5>
@@ -36,8 +36,8 @@ $user_id => undef
                 <hr>
                 <h4>Pastas</h4>
                 <button class="btn btn-sm btn-default" id="new_folder_dialog_link">Criar nova pasta</button><br/><br/>
-                <button class="btn btn-sm btn-default" id="open_folder_dialog_link">Move transformation project(s) to folder</button><br/><br/>
-                <button class="btn btn-sm btn-default" id="move_folder_dialog_link">Move folder</button>
+                <button class="btn btn-sm btn-default" id="open_folder_dialog_link">Mover projeto de transformação para pasta</button><br/><br/>
+                <button class="btn btn-sm btn-default" id="move_folder_dialog_link">Mover pasta</button>
                 <div id="folder_edit_options" style="display:none">
                     <hr>
                     <h5><i>Selecione várias pastas mantendo a tecla 'Ctrl' pressionada.</i></h5>
@@ -45,11 +45,11 @@ $user_id => undef
                     <br/>
                 </div>
 
-                <!--<button id="delete" disabled="disabled" >Delete</button -->
+                <!--<button id="delete" disabled="disabled" >Excluir</button -->
                 <br />
             </td>
             <td>
-                <div id="transformation_projects_list" >[carregando...]</div>
+                <div id="transformation_projects_list" >[Carregando...]</div>
             </td>
         </tr>
     </tbody>

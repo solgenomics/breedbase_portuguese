@@ -3,7 +3,7 @@
   <ul class="dropdown-menu">
     <li class="dropdown-header">Análise de sequências</li>
     <li><a href="/tools/blast/">BLAST</a></li>
-    <li><a href="http://vigs.solgenomics.net/">Ferramenta VIGS</a></li>
+    <li><a href="http://vigs.solgenomics.net/">Ferramenta VIGES</a></li>
     <li><a href="/tools/align_viewer/">Analisador de alinhamentos</a></li>
     <li><a href="/tools/tree_browser/">Navegador de árvores</a></li>
     <li><a href="/tools/motifs_finder/">Localizador de motivos</a></li>

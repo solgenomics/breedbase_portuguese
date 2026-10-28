@@ -64,7 +64,7 @@ $trial_name
             autoWidth: false,
             data: [],
             columns: [
-                { title: "Accession", data: "stock_name" },
+                { title: "Acesso", data: "stock_name" },
                 { title: "Número de entrada", data: "entry_number"}
             ],
             columnDefs: [

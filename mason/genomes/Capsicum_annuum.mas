@@ -5,35 +5,31 @@
 
 <!-- <div class="page_introduction"> -->
 <p>
-Linked-read sequencing technology was used to create a phased assembly that was scaffolded into chromosomes for an F1 of a wide cross (UCD-10X-F1) between a landrace, Criollos de Morelos 334 (CM334) and a nonpungent blocky pepper-breeding line. Please see <a href="https://www.nature.com/articles/s41438-017-0011-0">Hulse-Kemp et al. (2017)</a> for more details. This genome is available in <a href="/tools/blast?db_id=301">blast</a> and on the <a href="ftp://ftp.solgenomics.net/genomes/Capsicum_annuum/C.annuum_UCD10X/">FTP site</a>.  
+A tecnologia de sequenciamento de leitura ligada foi usada para criar uma montagem faseada que foi scaffolded em cromossomos para um F1 de uma cruz larga (UCD-10X-F1) entre um Landrace, Criollos de Morelos 334 (CM334) e uma linha não-pungent blocky pimente-breeding. Por favor, veja. <a href="https://www.nature.com/articles/s41438-017-0011-0">Hulse-Kemp et al. (2017)</a> para mais detalhes. Este genoma está disponível em <a href="/tools/blast?db_id=301">Explosão</a> e sobre o <a href="ftp://ftp.solgenomics.net/genomes/Capsicum_annuum/C.annuum_UCD10X/">Site FTP</a>.  
 </p>
 <p>
-The hot pepper genome (Mexican landrace of <i>Capsicum annuum</i> cv. CM334) has been sequenced by an international group of scientists from Korea, Israel and USA.
-The sequence was published in <a href="http://www.nature.com/ng/journal/v46/n3/full/ng.2877.html" target="_blank">Nature Genetics</a> in January 2014.
-The official page for this genome sequences is <a href="http://peppergenome.snu.ac.kr/" target="_blank">http://peppergenome.snu.ac.kr/</a>.
+O genoma da pimenta-quente <i>Capsicum annuum</i> Cv. CM334) foi sequenciado por um grupo internacional de cientistas da Coréia, Israel e EUA. A sequência foi publicada em <a href="http://www.nature.com/ng/journal/v46/n3/full/ng.2877.html" target="_blank">Genética da Natureza</a> em janeiro de 2014. A página oficial para esta sequência de genoma é <a href="http://peppergenome.snu.ac.kr/" target="_blank">http://peppergenome.snu.ac.kr/</a>.
 </p>
 <p>
-The genome sequence for hot pepper. <i>C. annuum</i> cv. CM334 (Criollo de Morelos 334), a diploid and a landrace collected from the Mexican state of Morelos, was sequenced to 186.6X coverage using Illumina technology. The genome assembly was annotated with the <a href="http://www.nature.com/ng/journal/v46/n3/extref/ng.2877-S1.pdf">PGA annotation pipeline</a>. CM334 genome assembly, pseudomolecules, annotations and C. chinense genome assembly are available through the links below.<br>
+A sequência do genoma da pimenta. <i>C. annuum</i> Cv. CM334 (Criollo de Morelos 334), um diplóide e uma raça vegetal coletada do estado mexicano de Morelos, foi sequenciado para 186,6X cobertura usando tecnologia Illumina. A montagem do genoma foi anotada com <a href="http://www.nature.com/ng/journal/v46/n3/extref/ng.2877-S1.pdf">Oleoduto de anotação PGA</a>. A montagem do genoma CM334, pseudomoléculas, anotações e montagem do genoma C. Chinense estão disponíveis através dos links abaixo.<br>
 </p>
 
 <p>
-The complete genomes of wild Mexican pepper accession “Chiltepin” and a Chinese inbred derivative “Zunla-1” was also sequenced and published on the same date by research groups from China and Mexico.
-The genome sequence for these pepper varieties was published in <a href="http://www.pnas.org/content/111/14/5135.abstract" target="_blank">PNAS</a> in January 2014.
-The official page for this genome sequences is <a href="http://peppersequence.genomics.cn/" target="_blank">http://peppersequence.genomics.cn/</a>.
+Os genomas completos de "Chiltepin" e um derivado chinês "Zunla-1" também foram sequenciados e publicados na mesma data por grupos de pesquisa da China e México. A sequência do genoma dessas variedades de pimenta foi publicada em <a href="http://www.pnas.org/content/111/14/5135.abstract" target="_blank">PNAS</a> em janeiro de 2014. A página oficial para esta sequência de genoma é <a href="http://peppersequence.genomics.cn/" target="_blank">http://peppersequence.genomics.cn/</a>.
 </p>
 
 <p>
-<i>C. annuum</i> genome, gene and protein sequences are accessible on the SGN BLAST tool and can be downloaded from the SGN ftp site. <i>C. annuum</i> cv. CM334 genome sequence is also available on SGN JBrowse.
+<i>C. annuum</i> Sequências de genoma, gene e proteína são acessíveis na ferramenta SGN BLAST e podem ser baixadas do site SGN ftp. <i>C. annuum</i> Cv. A sequência do genoma CM334 também está disponível na SGN JBrowse.
 </p>
 <!-- </div> -->
 
 <center>
     <a id="blue_button" href="/tools/blast/?db_id=217" target="_blank">BLAST</a>&nbsp;&nbsp;
-    <a id="blue_button" href="ftp://ftp.solgenomics.net/genomes/Capsicum_annuum/" target="_blank">FTP Site</a>&nbsp;&nbsp;
+    <a id="blue_button" href="ftp://ftp.solgenomics.net/genomes/Capsicum_annuum/" target="_blank">Site FTP</a>&nbsp;&nbsp;
     <a id="blue_button" href="http://solgenomics.net/jbrowse_solgenomics/?data=data%2Fjson%2FPepper.v.1.55&loc=Pepper1.55ch01" target="_blank" style="background-image:none;">JBrowse</a>&nbsp;&nbsp;
 </center>
 
-<!-- <&| /page/info_section.mas, title => 'CM334 genome' &> -->
+<!-- <&| /page/info_section.mas, title => 'Genoma CM334' &> -->
   <!-- The genome sequence for hot pepper. <i>C. annuum</i> cv. CM334 (Criollo de Morelos 334), a dipoloid and a landrace collected from the Mexican state of Morelos, was sequenced to 186.6X coverage using Illumina technology. The genome assembly was annotated with the <a href="http://www.nature.com/ng/journal/v46/n3/extref/ng.2877-S1.pdf">PGA annotation pipeline</a>.  CM334 genome assembly, pseudomolecules, annotations and C. chinense genome assembly are available through the links below.<br> -->
 
 
@@ -51,7 +47,7 @@ The official page for this genome sequences is <a href="http://peppersequence.ge
 
 
 <&| /page/info_section.mas,
-      title       => 'Sequence datasets',
+      title       => 'Datasets de sequência',
       collapsible => 1,
       hide_if_empty => 1
  &>
@@ -60,7 +56,7 @@ The official page for this genome sequences is <a href="http://peppersequence.ge
 
 
 <&| /page/info_section.mas,
-      title       => 'Browsable annotations',
+      title       => 'Anotações de navegação',
       collapsible => 1,
       hide_if_empty => 1,
  &>
@@ -70,7 +66,7 @@ The official page for this genome sequences is <a href="http://peppersequence.ge
 </&>
 
 <&| /page/info_section.mas,
-      title       => 'Annotation datasets',
+      title       => 'Datasets de anotações',
       collapsible => 1,
       hide_if_empty => 1,
  &>

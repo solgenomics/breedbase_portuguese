@@ -55,20 +55,20 @@ my ($ssr_id, $ssr_name, $est_trace, $start_primer, $end_primer, $pcr_length, $an
 #  my @repeat_motifs=();
 #  my @repeat_numbers=();
 
-   $html.="<br /><b>Annealing temperatures:</b> <b>Low:</b> " . $ann_low . " <b>High:</b> " . $ann_high;  
+   $html.="<br /><b>Temperaturas de nivelamento:</b> <b>Baixo:</b> " . $ann_low . " <b>Alto:</b> " . $ann_high;  
 
 my @motifs = $marker->ssr_motif_info($ssr_id);
 foreach my $m (@motifs) { 
   my ($motif, $r_nr)  = ($m->[0], $m->[1]);
   
-  $html.="<br /><b>Repeat motif:</b> <span class=\"sequence\">$motif</span>&nbsp;&nbsp;&nbsp;<b>Repeat number:</b> $r_nr";
+  $html.="<br /><b>Repita o motivo:</b> <span class=\"sequence\">$motif</span>&nbsp;&nbsp;&nbsp;<b>Repetindo número:</b> $r_nr";
 }
 $html.="<br /><b>Forward primer:</b> <span class=\"sequence\">$start_primer</span>";
 $html.="<br /><b>Reverse primer:</b> <span class=\"sequence\">$end_primer</span>";
-$html.="<br /><b>Predicted size:</b> $pcr_length";
+$html.="<br /><b>Tamanho previsto:</b> $pcr_length";
 
 if($html) {
-  $html =  CXGN::Page::FormattingHelpers::info_section_html(title=>'SSR info',contents=>$html)
+  $html =  CXGN::Page::FormattingHelpers::info_section_html(title=>'SSR Informações sobre RCE',contents=>$html)
 }
 else {
   $html = '';

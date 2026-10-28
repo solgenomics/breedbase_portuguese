@@ -13,30 +13,30 @@ $sample_tissue_types => ()
 <& /breeders_toolbox/sampling_trials/create_sampling_trials_dialogs.mas, sampling_facilities=>$sampling_facilities, sample_tissue_types=>$sample_tissue_types &>
 
 <div class="well">
-<&| /page/info_section.mas, title=>'Uploaded Transcriptomic Data', is_subsection=>1, collapsible=>1, collapsed=>1, subtitle=>'View and manage uploaded transcriptomic data files' &>
+<&| /page/info_section.mas, title=>'Dados transcritos', is_subsection=>1, collapsible=>1, collapsed=>1, subtitle=>'Veja e gerencie arquivos transcritos' &>
 
-    <&| /page/info_section.mas, title=>'Your Uploaded Transcriptomic Data', is_subsection=>1, collapsible=>1, collapsed=>1 &>
+    <&| /page/info_section.mas, title=>'Seus dados transcritos enviados', is_subsection=>1, collapsible=>1, collapsed=>1 &>
         <div class="panel panel-default">
             <div class="panel-body">
                 <& /breeders_toolbox/file_list.mas, files=>$transcriptomics_files, allow_delete=>0 &>
             </div>
         </div>
     </&>
-    <&| /page/info_section.mas, title=>'Your Obsoleted Transcriptomic Data', is_subsection=>1, collapsible=>1, collapsed=>1, subtitle=>'These are deleted transcriptomic files' &>
+    <&| /page/info_section.mas, title=>'Seus dados transcritos obsoletas', is_subsection=>1, collapsible=>1, collapsed=>1, subtitle=>'Estes são arquivos transcritos deletados' &>
         <div class="panel panel-default">
             <div class="panel-body">
                 <& /breeders_toolbox/file_list.mas, files=>$deleted_transcriptomics_files, allow_delete=>0 &>
             </div>
         </div>
     </&>
-    <&| /page/info_section.mas, title=>'All Uploaded Transcriptomic Data', is_subsection=>1, collapsible=>1, collapsed=>1 &>
+    <&| /page/info_section.mas, title=>'Todos os dados transcritos', is_subsection=>1, collapsible=>1, collapsed=>1 &>
         <div class="panel panel-default">
             <div class="panel-body">
                 <& /breeders_toolbox/file_list.mas, files=>$all_transcriptomics_files, allow_delete=>0 &>
             </div>
         </div>
     </&>
-    <&| /page/info_section.mas, title=>'All Obsoleted Transcriptomic Data', is_subsection=>1, collapsible=>1, collapsed=>1, subtitle=>'These are deleted transcriptomic files' &>
+    <&| /page/info_section.mas, title=>'Todos os dados transcritos obsoletas', is_subsection=>1, collapsible=>1, collapsed=>1, subtitle=>'Estes são arquivos transcritos deletados' &>
         <div class="panel panel-default">
             <div class="panel-body">
                 <& /breeders_toolbox/file_list.mas, files=>$all_deleted_transcriptomics_files, allow_delete=>0 &>
@@ -47,29 +47,29 @@ $sample_tissue_types => ()
 </div>
 
 <div class="well">
-<&| /page/info_section.mas, title=>'Transcriptomic Analyses', is_subsection=>1, collapsible=>1, collapsed=>1, subtitle=>'View and manage your transcriptomic analyses' &>
+<&| /page/info_section.mas, title=>'Análises Transcriptômicas', is_subsection=>1, collapsible=>1, collapsed=>1, subtitle=>'Veja e controle suas análises transcriptômicas' &>
     <div class="panel panel-default">
         <div class="panel-body">
             <table class="table table-bordered table-hover" id="analyses_by_user_table">
               <thead>
               <tr>
                 <th>
-                  Analysis Name
+                  Nome da Análise
                 </th>
                 <th>
-                  Description
+                  Descrição
                 </th>
                 <th>
-                  Model Type
+                  Tipo de Modelo
                 </th>
                 <th>
-                  Protocol
+                  Protocolo
                 </th>
                 <th>
-                  Application
+                  Aplicação
                 </th>
                 <th>
-                  Language
+                  Linguagem
                 </th>
               </tr>
               </thead>

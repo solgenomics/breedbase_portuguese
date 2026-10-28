@@ -152,22 +152,22 @@ export function initTrialAllocation() {
   }
 
   function plotTypeLabel(box){
-    if (box.dataset.fillerAccession) return 'Filler';
-    return box.dataset.isControl === '1' ? 'Check accession' : 'Test accession';
+    if (box.dataset.fillerAccession) return "Preenchimento";
+    return box.dataset.isControl === '1' ? "Acesso testemunha" : "Acesso de teste";
   }
 
   function plotTooltipHtml(box){
     const plotNumber = basePlotLabel(box);
-    const accession = box.dataset.fillerAccession || box.dataset.accessionName || 'Not available';
-    const rowNumber = Number.isNaN(Number(box.dataset.row)) ? 'Not available' : Number(box.dataset.row) + 1;
-    const colNumber = Number.isNaN(Number(box.dataset.col)) ? 'Not available' : Number(box.dataset.col) + 1;
+    const accession = box.dataset.fillerAccession || box.dataset.accessionName || "Indisponível";
+    const rowNumber = Number.isNaN(Number(box.dataset.row)) ? "Indisponível" : Number(box.dataset.row) + 1;
+    const colNumber = Number.isNaN(Number(box.dataset.col)) ? "Indisponível" : Number(box.dataset.col) + 1;
 
     return `
-      <div><span class="tooltip-label">Plot number:</span> ${plotNumber || 'Not available'}</div>
-      <div><span class="tooltip-label">Row:</span> ${rowNumber}</div>
-      <div><span class="tooltip-label">Column:</span> ${colNumber}</div>
-      <div><span class="tooltip-label">Accession:</span> ${accession}</div>
-      <div><span class="tooltip-label">Type:</span> ${plotTypeLabel(box)}</div>
+      <div><span class="tooltip-label">Número da parcela:</span> ${plotNumber || "Indisponível"}</div>
+      <div><span class="tooltip-label">Linha:</span> ${rowNumber}</div>
+      <div><span class="tooltip-label">Coluna:</span> ${colNumber}</div>
+      <div><span class="tooltip-label">Acesso:</span> ${accession}</div>
+      <div><span class="tooltip-label">Tipo:</span> ${plotTypeLabel(box)}</div>
     `;
   }
 
@@ -179,32 +179,32 @@ export function initTrialAllocation() {
     const filler = fillerPlots.get(k);
     const isBorder = manualBorders.has(k);
     const isUnused = cellIsUnused(r, c);
-    const rowNumber = Number.isNaN(r) ? 'Not available' : r + 1;
-    const colNumber = Number.isNaN(c) ? 'Not available' : c + 1;
+    const rowNumber = Number.isNaN(r) ? "Indisponível" : r + 1;
+    const colNumber = Number.isNaN(c) ? "Indisponível" : c + 1;
 
     if (isBorder) {
       return `
-        <div><span class="tooltip-label">Type:</span> Border</div>
-        <div><span class="tooltip-label">Row:</span> ${rowNumber}</div>
-        <div><span class="tooltip-label">Column:</span> ${colNumber}</div>
-        <div><span class="tooltip-label">Accession:</span> ${border?.accession || 'Blank border'}</div>
+        <div><span class="tooltip-label">Tipo:</span> Bordadura</div>
+        <div><span class="tooltip-label">Linha:</span> ${rowNumber}</div>
+        <div><span class="tooltip-label">Coluna:</span> ${colNumber}</div>
+        <div><span class="tooltip-label">Acesso:</span> ${border?.accession || "Bordadura vazia"}</div>
       `;
     }
 
     if (filler) {
       return `
-        <div><span class="tooltip-label">Type:</span> Filler</div>
-        <div><span class="tooltip-label">Row:</span> ${rowNumber}</div>
-        <div><span class="tooltip-label">Column:</span> ${colNumber}</div>
-        <div><span class="tooltip-label">Accession:</span> ${filler.accession || 'Not available'}</div>
+        <div><span class="tooltip-label">Tipo:</span> Preenchimento</div>
+        <div><span class="tooltip-label">Linha:</span> ${rowNumber}</div>
+        <div><span class="tooltip-label">Coluna:</span> ${colNumber}</div>
+        <div><span class="tooltip-label">Acesso:</span> ${filler.accession || "Indisponível"}</div>
       `;
     }
 
     if (isUnused) {
       return `
-        <div><span class="tooltip-label">Type:</span> Unutilized region</div>
-        <div><span class="tooltip-label">Row:</span> ${rowNumber}</div>
-        <div><span class="tooltip-label">Column:</span> ${colNumber}</div>
+        <div><span class="tooltip-label">Tipo:</span> Região não utilizada</div>
+        <div><span class="tooltip-label">Linha:</span> ${rowNumber}</div>
+        <div><span class="tooltip-label">Coluna:</span> ${colNumber}</div>
       `;
     }
 
@@ -243,24 +243,24 @@ export function initTrialAllocation() {
     const yearInput = qs('#layout-year');
     const year = String(yearInput?.value || '').trim();
     if (isValidLayoutYear(year)) return true;
-    alert('Year must be in YYYY format, greater than 1960 and smaller than 2100.');
+    alert("O ano deve estar no formato AAAA, ser maior que 1960 e menor que 2100.");
     yearInput?.focus();
     return false;
   }
 
   function designIsAugmentedRowColumn(value) {
-    return value === 'ARC' || value === 'Augmented Row-Column';
+    return value === 'ARC' || value === "Augmented Row-Column";
   }
 
   function designIsRowColumn(value) {
-    return value === 'RRC' || value === 'Row-Column Design';
+    return value === 'RRC' || value === "Row-Column Design";
   }
 
   function populateTrialMetadataSelects(scope = document) {
     Array.from(scope.querySelectorAll('select[id^="ttype"]')).forEach(select => {
       const trialIndex = +(select.id.replace('ttype', '') || 0);
       const selected = select.value || lockedTrialForms.get(trialIndex)?.type || '';
-      select.innerHTML = '<option value="">Select type</option>';
+      select.innerHTML = "<option value=\"\">Selecione o tipo</option>";
       availableTrialTypes.forEach(type => {
         select.appendChild(new Option(type.name, type.name));
       });
@@ -271,7 +271,7 @@ export function initTrialAllocation() {
     Array.from(scope.querySelectorAll('select[id^="tdesign"]')).forEach(select => {
       const trialIndex = +(select.id.replace('tdesign', '') || 0);
       const selected = select.value || lockedTrialForms.get(trialIndex)?.design || '';
-      select.innerHTML = '<option value="">Select design</option>';
+      select.innerHTML = "<option value=\"\">Selecione o delineamento</option>";
       availableTrialDesigns.forEach(design => {
         select.appendChild(new Option(design.name, design.value));
       });
@@ -400,8 +400,8 @@ export function initTrialAllocation() {
     const remove = document.createElement('button');
     remove.type = 'button';
     remove.className = 'px-2 py-1 bg-red-600 text-white rounded hover:bg-red-700 text-xs';
-    remove.textContent = 'Remove';
-    remove.title = 'Remove this existing trial from the layout list';
+    remove.textContent = "Remover";
+    remove.title = "Remover este ensaio existente da lista de disposição espacial";
     remove.disabled = false;
     remove.readOnly = false;
     remove.addEventListener('click', () => removeTrialFromList(+trialIndex));
@@ -908,7 +908,7 @@ export function initTrialAllocation() {
 
     if (tool === 'unused') {
       if (isCellOccupied(r, c) || manualBorders.has(k)) {
-        alert('This plot already contains a trial, filler, or border.');
+        alert("Esta parcela já contém um ensaio, preenchimento ou bordadura.");
         return;
       }
       if (cellIsUnused(r, c)) {
@@ -922,7 +922,7 @@ export function initTrialAllocation() {
 
     if (tool === 'border') {
       if (!manualBorders.has(k) && isCellOccupied(r, c)) {
-        alert('Borders cannot be placed on trial or filler plots.');
+        alert("Bordaduras não podem ser colocadas em parcelas de ensaio ou preenchimento.");
         return;
       }
       if (manualBorders.has(k)) {
@@ -935,7 +935,7 @@ export function initTrialAllocation() {
     }
 
     if (tool === 'filler') {
-      alert('Select a trial plot to place a filler inside the trial.');
+      alert("Selecione uma parcela do ensaio para inserir um preenchimento dentro do ensaio.");
       return;
     }
 
@@ -990,96 +990,96 @@ export function initTrialAllocation() {
     const generateDesignHtml = showGenerateDesign ?
       "<div class='mt-4 text-right' data-generate-design-container='" + i + "'>" +
         "<button onclick='generateDesign(" + i + ", 0, 0, this)' class='px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700'>" +
-          "Generate Design" +
+          "Gerar delineamento" +
         "</button>" +
       "</div>" : '';
     d.innerHTML = `
       <div class='flex items-center justify-between mb-2'>
-        <h4 class='font-semibold'>Trial ${i}</h4>
+        <h4 class='font-semibold'>Ensaio ${i}</h4>
         <span data-existing-trial-remove-container='${i}'></span>
       </div>
-      <label class='block mb-2'>Name
+      <label class='block mb-2'>Nome
         <input id='tname${i}' class='w-full border rounded px-2 py-1' />
       </label>
 
-      <label class='block mb-4'>Description
+      <label class='block mb-4'>Descrição
         <textarea id='tdesc${i}' class='w-full border rounded px-2 py-1' rows='2'></textarea>
       </label>
 
       <div class='grid grid-cols-2 gap-4 mb-4'>
-        <label>Trial Type
+        <label>Tipo de ensaio
           <select id='ttype${i}' class='w-full border rounded px-2 py-1'>
-            <option value="">Loading...</option>
+            <option value="">Carregando...</option>
           </select>
         </label>
-        <label>Trial Design
+        <label>Delineamento do ensaio
           <select id='tdesign${i}' class='w-full border rounded px-2 py-1'>
-            <option value="">Loading...</option>
+            <option value="">Carregando...</option>
           </select>
         </label>
       </div>
 
       <div class='mb-4'>
-        <label>Layout Type
+        <label>Tipo de disposição espacial
           <select id='tlayout${i}' class='w-full border rounded px-2 py-1'>
-            <option value="serpentine">Serpentine</option>
-            <option value="cartesian">Cartesian</option>
+            <option value="serpentine">Serpentina</option>
+            <option value="cartesian">Cartesiano</option>
           </select>
         </label>
       </div>
 
       <div class='grid grid-cols-2 gap-4 mb-4'>
-        <label>Start Plot Number
+        <label>Número inicial da parcela
           <select id='tstartplot${i}' class='w-full border rounded px-2 py-1'>
             <option value="1">1</option>
             <option value="101">101</option>
             <option value="1001">1001</option>
           </select>
         </label>
-        <label>Plot Numbering
+        <label>Numeração das parcelas
           <select id='tplotnumbering${i}' class='w-full border rounded px-2 py-1'>
-            <option value="continuous">Continuous across blocks</option>
-            <option value="block_prefix">Start with block number</option>
+            <option value="continuous">Contínua entre blocos</option>
+            <option value="block_prefix">Começar pelo número do bloco</option>
           </select>
         </label>
       </div>
 
       <div class='grid grid-cols-2 gap-4 mb-4'>
-        <label>Accessions List
+        <label>Lista de acessos
           <select id='ttreatments${i}' class='w-full border rounded px-2 py-1'>
-            <option value="">Loading...</option>
+            <option value="">Carregando...</option>
           </select>
         </label>
-        <label>Controls List
+        <label>Lista de testemunhas
           <select id='tcontrols${i}' class='w-full border rounded px-2 py-1'>
-            <option value="">-- Select a list --</option>
+            <option value="">-- Selecione uma lista --</option>
           </select>
         </label>
       </div>
 
       <div id='repsblocks-container${i}' class='grid grid-cols-2 gap-4 mb-4'>
-        <label>Reps
+        <label>Repetições
           <input id='treps${i}' type='number' min='1' class='w-full border rounded px-2 py-1' />
         </label>
-        <label>Blocks
+        <label>Blocos
           <input id='tblocks${i}' type='number' min='1' class='w-full border rounded px-2 py-1' />
         </label>
       </div>
 
       <div id='rowcol-container${i}' class='grid grid-cols-2 gap-4'>
-        <label>Rows
+        <label>Linhas
           <input id='trows${i}' type='number' value='1' min='1' class='w-full border rounded px-2 py-1' />
         </label>
-        <label>Cols
+        <label>Colunas
           <input id='tcols${i}' type='number' value='1' min='1' class='w-full border rounded px-2 py-1' />
         </label>
       </div>
 
       <div class='grid grid-cols-2 gap-4 mt-4'>
-        <label>Plot Width
+        <label>Largura da parcela
           <input id='tplotwidth${i}' type='number' min='0' step='0.01' class='w-full border rounded px-2 py-1' />
         </label>
-        <label>Plot Length
+        <label>Comprimento da parcela
           <input id='tplotlength${i}' type='number' min='0' step='0.01' class='w-full border rounded px-2 py-1' />
         </label>
       </div>
@@ -1104,7 +1104,7 @@ export function initTrialAllocation() {
       /* REPS / BLOCKS PANEL */
       if (isRCBD) {
         repsblocks.innerHTML = `
-          <label>Reps / Blocks
+          <label>Repetições / blocos
             <input id='trepsblocks${i}' type='number' min='1' value='1'
                    class='w-full border rounded px-2 py-1' />
           </label>
@@ -1115,11 +1115,11 @@ export function initTrialAllocation() {
       } else {
         // all other designs (Row-Column, DRRC, etc.)
         repsblocks.innerHTML = `
-          <label>Reps
+          <label>Repetições
             <input id='treps${i}' type='number' min='1'
                    class='w-full border rounded px-2 py-1' />
           </label>
-          <label>Blocks
+          <label>Blocos
             <input id='tblocks${i}' type='number' min='1'
                    class='w-full border rounded px-2 py-1' />
           </label>`;
@@ -1128,7 +1128,7 @@ export function initTrialAllocation() {
       /* ROW / COL PANEL */
       if (isRCBD) {
         rowcol.innerHTML = `
-          <label>Number of Rows per Block
+          <label>Número de linhas por bloco
             <input id='tblockrows${i}' type='number' min='1' value='1'
                    class='w-full border rounded px-2 py-1' />
           </label>
@@ -1136,30 +1136,30 @@ export function initTrialAllocation() {
       } else if (isAugRC) {
         // four inputs: super-rows, super-cols, rows, cols
         rowcol.innerHTML = `
-          <label>Rows per block  
+          <label>Linhas por bloco
             <input id='tblockrows${i}' type='number' min='1'
                    class='w-full border rounded px-2 py-1' />
           </label>
-          <label>Cols per block
+          <label>Colunas por bloco
             <input id='tblockcols${i}' type='number' min='1'
                    class='w-full border rounded px-2 py-1' />
           </label>
-          <label>Total rows in trial
+          <label>Total de linhas no ensaio
             <input id='tsuperrows${i}' type='number' min='1'
                    class='w-full border rounded px-2 py-1' />
           </label>
-          <label>Total cols in trial
+          <label>Total de colunas no ensaio
             <input id='tsupercols${i}' type='number' min='1'
                    class='w-full border rounded px-2 py-1' />
           </label>`;
       } else {
         // default two-input panel
         rowcol.innerHTML = `
-          <label>Rows
+          <label>Linhas
             <input id='trows${i}' type='number' min='1'
                    class='w-full border rounded px-2 py-1' />
           </label>
-          <label>Cols
+          <label>Colunas
             <input id='tcols${i}' type='number' min='1'
                    class='w-full border rounded px-2 py-1' />
           </label>`;
@@ -1178,7 +1178,7 @@ export function initTrialAllocation() {
     const $select = $('#farm_dropdown');
 
     // Show loading state
-    $select.html('<option value="">Loading...</option>');
+    $select.html("<option value=\"\">Carregando...</option>");
 
     $.ajax({
       url: '/ajax/trialallocation/farms',
@@ -1186,12 +1186,12 @@ export function initTrialAllocation() {
       dataType: 'json',
       success: function(data) {
         if (!data.success || !Array.isArray(data.farms)) {
-          $select.html('<option value="">Failed to load locations</option>');
+          $select.html("<option value=\"\">Falha ao carregar os locais</option>");
           return;
         }
 
         // Populate dropdown
-        $select.empty().append('<option value="">-- Select Location --</option>');
+        $select.empty().append("<option value=\"\">-- Selecione o local --</option>");
         data.farms.forEach(loc => {
           $select.append(`<option value="${loc.location_id}">${loc.name}</option>`);
         });
@@ -1202,7 +1202,7 @@ export function initTrialAllocation() {
 
         // Initialize Select2 *after* data is populated
         $select.select2({
-          placeholder: 'Select or type a location',
+          placeholder: "Selecione ou digite um local",
           allowClear: true,
           width: '100%',
           dropdownParent: $('#farm_dropdown').closest('div')
@@ -1212,7 +1212,7 @@ export function initTrialAllocation() {
       },
       error: function(xhr, status, error) {
         console.error('Failed to load global location list:', error);
-        $select.html('<option value="">Failed to load</option>');
+        $select.html("<option value=\"\">Falha ao carregar</option>");
       }
     });
   }
@@ -1221,7 +1221,7 @@ export function initTrialAllocation() {
     const $select = $('#breeding_program_dropdown');
     if ($select.length === 0) return;
 
-    $select.html('<option value="">Loading...</option>');
+    $select.html("<option value=\"\">Carregando...</option>");
 
     $.ajax({
       url: '/ajax/trialallocation/breeding_programs',
@@ -1229,17 +1229,17 @@ export function initTrialAllocation() {
       dataType: 'json',
       success: function(data) {
         if (!data.success || !Array.isArray(data.programs)) {
-          $select.html('<option value="">Failed to load programs</option>');
+          $select.html("<option value=\"\">Falha ao carregar os programas</option>");
           return;
         }
 
-        $select.empty().append('<option value="">-- Select Breeding Program --</option>');
+        $select.empty().append("<option value=\"\">-- Selecione o programa de melhoramento --</option>");
         data.programs.forEach(program => {
           $select.append(`<option value="${program.program_id}">${program.name}</option>`);
         });
 
         $select.select2({
-          placeholder: 'Select a breeding program',
+          placeholder: "Selecione um programa de melhoramento",
           allowClear: true,
           width: '100%',
           dropdownParent: $('#breeding_program_dropdown').closest('div')
@@ -1248,7 +1248,7 @@ export function initTrialAllocation() {
       },
       error: function(xhr, status, error) {
         console.error('Failed to load breeding programs:', error);
-        $select.html('<option value="">Failed to load</option>');
+        $select.html("<option value=\"\">Falha ao carregar</option>");
       }
     });
   }
@@ -1258,14 +1258,14 @@ export function initTrialAllocation() {
     if (!select) return;
 
     const selected = select.value;
-    select.innerHTML = '<option value="">Loading...</option>';
+    select.innerHTML = "<option value=\"\">Carregando...</option>";
 
     $.ajax({
       url: '/ajax/trialallocation/seasons',
       method: 'GET',
       dataType: 'json',
       success: function(data) {
-        select.innerHTML = '<option value="">Select Season</option>';
+        select.innerHTML = "<option value=\"\">Selecione a safra</option>";
         const seasons = data.success && Array.isArray(data.seasons) ? data.seasons : [];
         seasons.forEach(season => {
           select.appendChild(new Option(season, season));
@@ -1275,7 +1275,7 @@ export function initTrialAllocation() {
       },
       error: function(_, __, error) {
         console.error('Failed to load seasons:', error);
-        select.innerHTML = '<option value="">Select Season</option>';
+        select.innerHTML = "<option value=\"\">Selecione a safra</option>";
         ['summer', 'winter'].forEach(season => select.appendChild(new Option(season, season)));
         if (selected) select.value = selected;
         if (layoutContextLocked) lockControl('layout-season', true);
@@ -1323,28 +1323,28 @@ export function initTrialAllocation() {
 
     const { locationId, year } = currentLayoutContext();
     if (!locationId || !year) {
-      select.innerHTML = '<option value="">Select location and year first</option>';
+      select.innerHTML = "<option value=\"\">Selecione primeiro o local e o ano</option>";
       if (window.jQuery && $('#existing-trial-select').data('select2')) {
         $('#existing-trial-select').val('').trigger('change.select2');
       }
       return;
     }
     if (!isValidLayoutYear(year)) {
-      select.innerHTML = '<option value="">Enter a valid YYYY year</option>';
+      select.innerHTML = "<option value=\"\">Informe um ano válido no formato AAAA</option>";
       if (window.jQuery && $('#existing-trial-select').data('select2')) {
         $('#existing-trial-select').val('').trigger('change.select2');
       }
       return;
     }
 
-    select.innerHTML = '<option value="">Loading trials...</option>';
+    select.innerHTML = "<option value=\"\">Carregando ensaios...</option>";
     $.ajax({
       url: '/ajax/trialallocation/existing_trials',
       method: 'GET',
       dataType: 'json',
       data: { location_id: locationId, year },
       success: function(data) {
-        select.innerHTML = '<option value="">Select an existing trial</option>';
+        select.innerHTML = "<option value=\"\">Selecione um ensaio existente</option>";
         const trials = data.success && Array.isArray(data.trials) ? data.trials : [];
         const placedExistingProjects = placedExistingProjectIds();
         trials
@@ -1364,7 +1364,7 @@ export function initTrialAllocation() {
           const $select = $('#existing-trial-select');
           if ($select.data('select2')) $select.select2('destroy');
           $select.select2({
-            placeholder: 'Select an existing trial',
+            placeholder: "Selecione um ensaio existente",
             allowClear: true,
             width: '100%',
             dropdownParent: $select.closest('label')
@@ -1373,7 +1373,7 @@ export function initTrialAllocation() {
       },
       error: function(_, __, error) {
         console.error('Failed to load existing trials:', error);
-        select.innerHTML = '<option value="">Could not load existing trials</option>';
+        select.innerHTML = "<option value=\"\">Não foi possível carregar os ensaios existentes</option>";
       }
     });
   }
@@ -1407,11 +1407,11 @@ export function initTrialAllocation() {
     const select = qs('#existing-trial-select');
     const projectId = select?.value || '';
     if (!projectId) {
-      alert('Select an existing trial first.');
+      alert("Selecione primeiro um ensaio existente.");
       return;
     }
     if (selectedExistingTrialAlreadyAdded(projectId)) {
-      alert('This existing trial is already included in the layout.');
+      alert("Este ensaio existente já está incluído na disposição espacial.");
       return;
     }
 
@@ -1419,7 +1419,7 @@ export function initTrialAllocation() {
     const btn = qs('#add-existing-trial-btn');
     if (btn) {
       btn.disabled = true;
-      btn.textContent = 'Adding...';
+      btn.textContent = "Adicionando...";
     }
 
     $.ajax({
@@ -1429,7 +1429,7 @@ export function initTrialAllocation() {
       data: { trial_id: projectId },
       success: function(response) {
         if (!response.success || !response.trial) {
-          alert(response.error || 'Could not load the selected trial design.');
+          alert(response.error || "Não foi possível carregar o delineamento do ensaio selecionado.");
           return;
         }
 
@@ -1479,16 +1479,16 @@ export function initTrialAllocation() {
         restoreTrialFormValues(form);
         lockExistingProjectForm(index);
         enablePal(index);
-        alert(`Existing trial "${form.name}" was added to the trial list.`);
+        alert(`O ensaio existente "${form.name}" foi adicionado à lista de ensaios.`);
       },
       error: function(xhr, __, error) {
         console.error('Failed to add existing trial:', error, xhr?.responseText);
-        alert('Could not add the selected existing trial.');
+        alert("Não foi possível adicionar o ensaio existente selecionado.");
       },
       complete: function() {
         if (btn) {
           btn.disabled = false;
-          btn.textContent = 'Add Existing Trial';
+          btn.textContent = "Adicionar ensaio existente";
         }
       }
     });
@@ -1506,7 +1506,7 @@ export function initTrialAllocation() {
     const box = document.createElement('div');
     box.id = `palette${i}`;
     box.className = `trial-box ${colourFor(i)} bg-opacity-60 mb-2`;
-    box.textContent = `Trial ${i}`;
+    box.textContent = `Ensaio ${i}`;
     box.dataset.trial = i;
     box.draggable = true;
     box.ondragstart = startDrag;
@@ -1519,13 +1519,13 @@ export function initTrialAllocation() {
     remove.type = 'button';
     remove.className = 'h-5 w-5 flex items-center justify-center bg-red-600 text-white rounded hover:bg-red-700 text-xs leading-none';
     remove.textContent = 'x';
-    remove.title = 'Remove trial from layout list';
-    remove.setAttribute('aria-label', 'Remove trial ' + i);
+    remove.title = "Remover o ensaio da lista de disposição espacial";
+    remove.setAttribute('aria-label', "Remover ensaio " + i);
     remove.addEventListener('click', () => removeTrialFromList(i));
     if (lockedTrialForms.has(i) && !existingProjectTrials.has(i)) {
       remove.disabled = true;
       remove.classList.add('opacity-40', 'cursor-not-allowed');
-      remove.title = 'Saved layout trials cannot be removed from the list here';
+      remove.title = "Ensaios de uma disposição salva não podem ser removidos da lista aqui";
     }
     header.appendChild(remove);
 
@@ -1534,20 +1534,20 @@ export function initTrialAllocation() {
     controls.innerHTML = `
       <label>Horizontal
         <select id="grid-direction-horizontal${i}" class="w-full border rounded px-1 py-1">
-          <option value="ltr">Left to right</option>
-          <option value="rtl">Right to left</option>
+          <option value="ltr">Da esquerda para a direita</option>
+          <option value="rtl">Da direita para a esquerda</option>
         </select>
       </label>
       <label>Vertical
         <select id="grid-direction-vertical${i}" class="w-full border rounded px-1 py-1">
-          <option value="ttb">Top to bottom</option>
-          <option value="btt">Bottom to top</option>
+          <option value="ttb">De cima para baixo</option>
+          <option value="btt">De baixo para cima</option>
         </select>
       </label>
-      <button type="button" id="rotate-trial-cw${i}" class="h-8 px-2 bg-gray-700 text-white rounded hover:bg-gray-800 text-lg leading-none" title="Rotate clockwise" aria-label="Rotate clockwise">
+      <button type="button" id="rotate-trial-cw${i}" class="h-8 px-2 bg-gray-700 text-white rounded hover:bg-gray-800 text-lg leading-none" title="Girar no sentido horário" aria-label="Girar no sentido horário">
         &#8635;
       </button>
-      <button type="button" id="rotate-trial-ccw${i}" class="h-8 px-2 bg-gray-700 text-white rounded hover:bg-gray-800 text-lg leading-none" title="Rotate counter-clockwise" aria-label="Rotate counter-clockwise">
+      <button type="button" id="rotate-trial-ccw${i}" class="h-8 px-2 bg-gray-700 text-white rounded hover:bg-gray-800 text-lg leading-none" title="Girar no sentido anti-horário" aria-label="Girar no sentido anti-horário">
         &#8634;
       </button>
     `;
@@ -1569,13 +1569,13 @@ export function initTrialAllocation() {
   function rotateTrialFromPalette(i, direction = 'cw') {
     const roots = [...new Set(qsa(`.trial-group[data-trial="${i}"]`).map(group => group.dataset.root))];
     if (!roots.length) {
-      alert('Place this trial in the grid before rotating it.');
+      alert("Posicione este ensaio na grade antes de girá-lo.");
       return;
     }
 
     const root = roots[0];
     if (isLockedRoot(root)) {
-      alert('This trial is part of a saved layout and cannot be rotated.');
+      alert("Este ensaio faz parte de uma disposição salva e não pode ser girado.");
       return;
     }
 
@@ -1588,7 +1588,7 @@ export function initTrialAllocation() {
     if ($select.length === 0) return;
 
     const pendingValue = selectedListId || $select[0].dataset.pendingValue || lockedTrialForms.get(i)?.treatment_list_id || '';
-    $select.html(`<option value="">Loading...</option>`);
+    $select.html(`<option value="">Carregando...</option>`);
 
     $.ajax({
       url: '/ajax/trialallocation/accession_lists',
@@ -1596,16 +1596,16 @@ export function initTrialAllocation() {
       dataType: 'json',
       success: function(data) {
         if (!data.success) {
-          $select.html(`<option value="">Failed to load</option>`);
-          alert("Could not load Accessions List");
+          $select.html(`<option value="">Falha ao carregar</option>`);
+          alert("Não foi possível carregar a lista de acessos");
           return;
         }
 
-        $select.empty().append(`<option value="">-- Select a list --</option>`);
+        $select.empty().append(`<option value="">-- Selecione uma lista --</option>`);
 
         data.lists.forEach(function(list) {
           const selected = (pendingValue && String(list.list_id) === String(pendingValue)) ? 'selected' : '';
-          const label = `${list.name} (${list.is_public ? 'Public' : 'Private'})`;
+          const label = `${list.name} (${list.is_public ? "Público" : "Privado"})`;
           $select.append(`<option value="${list.list_id}" ${selected}>${label}</option>`);
         });
 
@@ -1619,7 +1619,7 @@ export function initTrialAllocation() {
 
         if ($select.data('select2')) $select.select2('destroy');
         $select.select2({
-          placeholder: 'Select an accessions list',
+          placeholder: "Selecione uma lista de acessos",
           allowClear: true,
           width: '100%',
           dropdownParent: $select.closest('label')
@@ -1638,8 +1638,8 @@ export function initTrialAllocation() {
       },
       error: function(xhr, status, error) {
         console.error("Error loading Accessions List:", status, error);
-        $select.html(`<option value="">Failed to load</option>`);
-        alert("Error loading Accessions List.");
+        $select.html(`<option value="">Falha ao carregar</option>`);
+        alert("Erro ao carregar a lista de acessos.");
       }
     });
   }
@@ -1649,7 +1649,7 @@ export function initTrialAllocation() {
     if ($select.length === 0) return;
 
     const pendingValue = $select[0].dataset.pendingValue || lockedTrialForms.get(i)?.control_list_id || '';
-    $select.html(`<option value="">Loading...</option>`);
+    $select.html(`<option value="">Carregando...</option>`);
 
     $.ajax({
       url: '/ajax/trialallocation/accession_lists',
@@ -1657,15 +1657,15 @@ export function initTrialAllocation() {
       dataType: 'json',
       success: function(data) {
         if (!data.success) {
-          $select.html(`<option value="">Failed to load</option>`);
-          alert("Could not load Controls List");
+          $select.html(`<option value="">Falha ao carregar</option>`);
+          alert("Não foi possível carregar a lista de testemunhas");
           return;
         }
 
-        $select.empty().append(`<option value="">-- Select a list --</option>`);
+        $select.empty().append(`<option value="">-- Selecione uma lista --</option>`);
 
         data.lists.forEach(function(list) {
-          const label = `${list.name} (${list.is_public ? 'Public' : 'Private'})`;
+          const label = `${list.name} (${list.is_public ? "Público" : "Privado"})`;
           $select.append(`<option value="${list.list_id}">${label}</option>`);
         });
 
@@ -1674,7 +1674,7 @@ export function initTrialAllocation() {
         }
         if ($select.data('select2')) $select.select2('destroy');
         $select.select2({
-          placeholder: 'Select a controls list',
+          placeholder: "Selecione uma lista de testemunhas",
           allowClear: true,
           width: '100%',
           dropdownParent: $select.closest('label')
@@ -1688,8 +1688,8 @@ export function initTrialAllocation() {
       },
       error: function(xhr, status, error) {
         console.error("Error loading Controls List:", status, error);
-        $select.html(`<option value="">Failed to load</option>`);
-        alert("Error loading Controls List.");
+        $select.html(`<option value="">Falha ao carregar</option>`);
+        alert("Erro ao carregar a lista de testemunhas.");
       }
     });
   }
@@ -1699,7 +1699,7 @@ export function initTrialAllocation() {
     const formEl = qs('#tname' + i)?.closest('.border.rounded');
     if (existingProjectTrials.has(+i) || lockedTrialForms.has(+i) || databaseSavedTrialIndexes.has(String(i)) || formEl?.dataset.existingProject === '1' || formEl?.dataset.locked === '1') {
       if (btn) btn.disabled = true;
-      alert('Generate Design is not available for existing saved trials.');
+      alert("A geração de delineamento não está disponível para ensaios já salvos.");
       return;
     }
     const design  = $(`#tdesign${i}`).val();
@@ -1747,7 +1747,7 @@ export function initTrialAllocation() {
     if (btn) {
       btn.classList.remove('bg-green-600', 'hover:bg-green-700', 'bg-red-600', 'hover:bg-red-700');
       btn.classList.add('bg-blue-600', 'hover:bg-blue-700');
-      btn.textContent = 'Generating...';
+      btn.textContent = "Gerando...";
     }
 
     return $.ajax({
@@ -1761,15 +1761,15 @@ export function initTrialAllocation() {
         if (btn) {
           btn.classList.remove('bg-blue-600', 'hover:bg-blue-700');
           btn.classList.add('bg-red-600', 'hover:bg-red-700');
-          btn.textContent = 'Error';
+          btn.textContent = "Erro";
         }
-        alert(response.error || 'Error generating design.');
+        alert(response.error || "Erro ao gerar o delineamento.");
         return;
       }
       if (btn) {
         btn.classList.remove('bg-blue-600', 'hover:bg-blue-700');
         btn.classList.add('bg-green-600', 'hover:bg-green-700');
-        btn.textContent = 'Design Ready/Re-Run?';
+        btn.textContent = "Delineamento pronto. Gerar novamente?";
         enablePal(i);
       }
       trialDesignCache[i] = {
@@ -1783,11 +1783,11 @@ export function initTrialAllocation() {
       if (btn) {
         btn.classList.remove('bg-blue-600', 'hover:bg-blue-700');
         btn.classList.add('bg-red-600', 'hover:bg-red-700');
-        btn.textContent = 'Error';
+        btn.textContent = "Erro";
       }
       console.error('Design generation failed:', err);
       const response = err?.responseJSON || {};
-      alert(response.error || 'Error generating design.');
+      alert(response.error || "Erro ao gerar o delineamento.");
     });
   };
 
@@ -1799,7 +1799,7 @@ export function initTrialAllocation() {
     const fromPal = el.id.startsWith('palette');
     if (!fromPal && isLockedRoot(el.dataset.root)) {
       e.preventDefault();
-      alert('This trial is part of a saved layout and cannot be moved.');
+      alert("Este ensaio faz parte de uma disposição salva e não pode ser movido.");
       return;
     }
     const rect = el.getBoundingClientRect();
@@ -1828,7 +1828,7 @@ export function initTrialAllocation() {
     e.preventDefault();
 
     if (!gridReady) {
-      alert('Grid is still loading. Please wait.');
+      alert("A grade ainda está carregando. Aguarde.");
       return;
     }
 
@@ -1845,7 +1845,7 @@ export function initTrialAllocation() {
 
     if (col < 0 || row < 0) return;
     if (src === 'grid' && isLockedRoot(root)) {
-      alert('This trial is part of a saved layout and cannot be moved.');
+      alert("Este ensaio faz parte de uma disposição salva e não pode ser movido.");
       return;
     }
 
@@ -1855,7 +1855,7 @@ export function initTrialAllocation() {
     /* request design from server */
     const cached = trialDesignCache[tn];
     if (!cached) {
-      alert("Please click 'Generate Design' before placing the trial.");
+      alert("Clique em Gerar delineamento antes de posicionar o ensaio.");
       return;
     }
 
@@ -1887,7 +1887,7 @@ export function initTrialAllocation() {
 
     const loading = qs('#grid-loader');
     if (loading) {
-      loading.querySelector('span').textContent = 'Placing trial...';
+      loading.querySelector('span').textContent = "Posicionando ensaio...";
       loading.classList.remove('hidden');
     }
 
@@ -1933,20 +1933,20 @@ export function initTrialAllocation() {
       success: function (saveResponse) {
         if (loading) loading.classList.add('hidden');
         if (saveResponse.success) {
-          console.log(`Coordinates for "${name}" saved successfully.`);
+          console.log(`Coordenadas de "${name}" salvas com sucesso.`);
           recolorTrialPlots(tn, cached.design_file, colour);
         } else {
-          console.warn('Save failed: ' + saveResponse.error);
+          console.warn("Falha ao salvar: " + saveResponse.error);
         }
       },
       error: function (xhr, status, error) {
         if (loading) loading.classList.add('hidden');
-        console.error('Error saving coordinates:', error);
+        console.error("Erro ao salvar as coordenadas:", error);
       }
     })
       .fail(function (xhr, status, error) {
         console.error('AJAX error:', error);
-        alert('Error generating design.');
+        alert("Erro ao gerar o delineamento.");
       });
   }
 
@@ -1984,7 +1984,7 @@ export function initTrialAllocation() {
     const box = e.currentTarget;
     const root = box.closest('.trial-group')?.dataset.root;
     if (isLockedRoot(root)) {
-      alert('This trial is part of a saved layout and cannot be changed.');
+      alert("Este ensaio faz parte de uma disposição salva e não pode ser alterado.");
       return;
     }
     const useStandard = qs('#standard-filler-toggle')?.checked;
@@ -2098,7 +2098,7 @@ export function initTrialAllocation() {
 
   function clearTrialCache(i) {
     delete trialDesignCache[i];
-    alert(`Trial ${i} design cache cleared.`);
+    alert(`Ensaio ${i} cache do delineamento limpo.`);
   }
 
   function getTrialCoordinates(trialName) {
@@ -2194,7 +2194,7 @@ export function initTrialAllocation() {
     }
 
     if (rowStart < 0 || colStart < 0 || rowStart >= totalRows || colStart >= totalCols) {
-      alert('Could not place trial: starting plot is outside the field.');
+      alert("Não foi possível posicionar o ensaio: a parcela inicial está fora do campo.");
       return;
     }
 
@@ -2234,12 +2234,12 @@ export function initTrialAllocation() {
     }
 
     if (blockingConflict) {
-      alert('Could not place trial: the selected path contains another trial, border, or filler plot.');
+      alert("Não foi possível posicionar o ensaio: o trajeto selecionado contém outro ensaio, bordadura ou parcela de preenchimento.");
       return;
     }
 
     if (coords.length < total) {
-      alert('Could not place trial: not enough available plots from this starting position.');
+      alert("Não foi possível posicionar o ensaio: não há parcelas disponíveis suficientes a partir desta posição inicial.");
       return;
     }
 
@@ -2341,7 +2341,7 @@ export function initTrialAllocation() {
         const tp = document.createElement('div');
         tp.className = 'transpose-btn';
         tp.textContent = 'R';
-        tp.title = 'Rotate trial clockwise';
+        tp.title = "Girar ensaio no sentido horário";
         tp.onclick = () => transposeTrial(root, 'cw');
         g.appendChild(tp);
       }
@@ -2374,7 +2374,7 @@ export function initTrialAllocation() {
               pI = idx('plots'), aI = idx('all_entries');
 
         if ([bI, rI, cI, ctlI].includes(-1)) {
-          console.error('Design file missing columns');  return;
+          console.error("Colunas ausentes no arquivo de delineamento");  return;
         }
 
         lines.forEach((l, designIndex) => {
@@ -2395,7 +2395,7 @@ export function initTrialAllocation() {
         });
       },
 
-      error: (_, __, err) => console.error('Recolor failed:', err)
+      error: (_, __, err) => console.error("Falha ao recolorir:", err)
     });
   }
 
@@ -2580,7 +2580,7 @@ export function initTrialAllocation() {
         const tp = document.createElement('div');
         tp.className = 'transpose-btn';
         tp.textContent = 'R';
-        tp.title = 'Rotate trial clockwise';
+        tp.title = "Girar ensaio no sentido horário";
         tp.onclick = () => transposeTrial(root, 'cw');
         g.appendChild(tp);
       }
@@ -2592,7 +2592,7 @@ export function initTrialAllocation() {
   /* Rotate 90 degrees in either direction around the current footprint. */
   function transposeTrial(root, direction = 'cw'){
     if (isLockedRoot(root)) {
-      alert('This trial is part of a saved layout and cannot be changed.');
+      alert("Este ensaio faz parte de uma disposição salva e não pode ser alterado.");
       return;
     }
     const parts = [...document.querySelectorAll(`.trial-group[data-root="${root}"]`)];
@@ -2600,7 +2600,7 @@ export function initTrialAllocation() {
 
     const rotation = rotatedTrialCells(root, direction === 'ccw' ? 'ccw' : 'cw');
     if (!rotation || rotationHasConflict(rotation.cells, root)) {
-      alert('Cannot rotate - no free space at current position.');
+      alert("Não é possível girar: não há espaço livre na posição atual.");
       return;
     }
 
@@ -2676,7 +2676,7 @@ export function initTrialAllocation() {
     const n = Math.max(+qs('#num-trials')?.value || 0, lockedMax, existingMax);
     setInputValue('num-trials', n);
     const countLabel = qs('#trial-count-label');
-    if (countLabel) countLabel.textContent = n ? `${n} trial${n === 1 ? '' : 's'} added.` : 'No trials added yet.';
+    if (countLabel) countLabel.textContent = n ? `${n} ensaio${n === 1 ? '' : "S"} adicionado${n === 1 ? '' : "S"}.` : "Nenhum ensaio adicionado ainda.";
     for(let i=1;i<=n;i++){
       addTrialForm(i);
       addPaletteBox(i);
@@ -2919,7 +2919,7 @@ export function initTrialAllocation() {
       ctx.fillStyle = '#6b7280';
       ctx.font = '16px sans-serif';
       ctx.textAlign = 'center';
-      ctx.fillText('No layout data to display', width / 2, height / 2);
+      ctx.fillText("Não há dados de disposição espacial para exibir", width / 2, height / 2);
       return;
     }
 
@@ -2992,13 +2992,13 @@ export function initTrialAllocation() {
     const usedCells = occupied.size + borders + unused;
     const emptyAvailable = Math.max(0, totalCells - usedCells);
     const usageRows = [
-      { label: 'Treatments', value: treatments, color: '#2563eb' },
-      { label: 'Checks', value: checks, color: '#dc2626' },
-      { label: 'Borders', value: borders, color: '#16a34a' },
-      { label: 'Unutilized plots', value: unused, color: '#9ca3af' },
-      { label: 'Available empty', value: emptyAvailable, color: '#e5e7eb' }
+      { label: "Tratamentos", value: treatments, color: '#2563eb' },
+      { label: "Testemunhas", value: checks, color: '#dc2626' },
+      { label: "Bordaduras", value: borders, color: '#16a34a' },
+      { label: "Parcelas não utilizadas", value: unused, color: '#9ca3af' },
+      { label: "Vazias disponíveis", value: emptyAvailable, color: '#e5e7eb' }
     ];
-    if (fillers) usageRows.splice(2, 0, { label: 'Fillers', value: fillers, color: '#f59e0b' });
+    if (fillers) usageRows.splice(2, 0, { label: "Preenchimentos", value: fillers, color: '#f59e0b' });
 
     panel.classList.remove('hidden');
     drawPieChart(qs('#trial-area-chart'), qs('#trial-area-legend'), trialRows);
@@ -3096,12 +3096,12 @@ export function initTrialAllocation() {
     if (!trialIndex) return;
 
     if (lockedTrialForms.has(trialIndex) && !existingProjectTrials.has(trialIndex)) {
-      alert('This trial is part of a saved layout. Remove it from the saved layout view on the grid instead.');
+      alert("Este ensaio faz parte de uma disposição salva. Remova-o da visualização salva na grade.");
       return;
     }
 
     const hasPlacedTrial = !!qs(`.trial-group[data-trial="${trialIndex}"]`);
-    if (hasPlacedTrial && !window.confirm('Remove this trial from the layout list and field grid? This does not delete an existing trial from the database.')) {
+    if (hasPlacedTrial && !window.confirm("Remover este ensaio da lista e da grade de campo? Isso não exclui um ensaio existente do banco de dados.")) {
       return;
     }
 
@@ -3187,7 +3187,7 @@ export function initTrialAllocation() {
 
     const loading = qs('#grid-loader');
     if (loading) {
-      loading.querySelector('span').textContent = 'Removing trial...';
+      loading.querySelector('span').textContent = "Removendo ensaio...";
       loading.classList.remove('hidden');
       setTimeout(() => {
         removeTrialRootFromView(root, trialIndex);
@@ -3203,23 +3203,23 @@ export function initTrialAllocation() {
     const rm = document.createElement('div');
     rm.className = 'remove-btn';
     rm.textContent = 'x';
-    rm.title = 'Remove trial from layout view';
+    rm.title = "Remover o ensaio da visualização da disposição espacial";
     rm.onclick = () => handleRemoveTrialRoot(root, trialIndex);
     group.appendChild(rm);
   }
 
   function deleteSavedTrialFromLayout(root, trialIndex) {
     if (!userIsCurator) {
-      alert('Only curators can remove saved trials from a layout.');
+      alert("Apenas curadores podem remover ensaios de uma disposição salva.");
       return;
     }
 
     const layout = collectLayoutJson();
     if (!layout.farm.location_id || !layout.year) {
-      alert('Select location and year before removing a saved trial.');
+      alert("Selecione o local e o ano antes de remover um ensaio salvo.");
       return;
     }
-    if (!window.confirm('Remove this trial from the saved layout view? This does not delete the trial from the database.')) {
+    if (!window.confirm("Remover este ensaio da visualização da disposição salva? Isso não exclui o ensaio do banco de dados.")) {
       return;
     }
 
@@ -3238,30 +3238,30 @@ export function initTrialAllocation() {
         if (response.success) {
           removeTrialRootFromView(root, trialIndex);
           loadExistingTrialsForContext();
-          alert('Trial removed from the saved layout view.');
+          alert("Ensaio removido da visualização da disposição salva.");
         } else {
-          alert(response.error || 'Could not remove trial from the saved layout view.');
+          alert(response.error || "Não foi possível remover o ensaio da visualização da disposição salva.");
         }
       },
       error: function(_, __, error) {
         console.error('Delete saved trial failed:', error);
-        alert('Could not remove trial from the saved layout view.');
+        alert("Não foi possível remover o ensaio da visualização da disposição salva.");
       }
     });
   }
 
   function deleteCurrentLayoutView() {
     if (!userIsCurator) {
-      alert('Only curators can delete a saved layout view.');
+      alert("Apenas curadores podem excluir uma visualização de disposição salva.");
       return;
     }
 
     const layout = collectLayoutJson();
     if (!layout.farm.location_id || !layout.year) {
-      alert('Select location and year before deleting the layout view.');
+      alert("Selecione o local e o ano antes de excluir a visualização da disposição espacial.");
       return;
     }
-    if (!window.confirm('Delete the whole saved layout view for this location, year, and season? This does not delete the trials from the database.')) {
+    if (!window.confirm("Excluir toda a visualização da disposição salva para este local, ano e safra? Isso não exclui os ensaios do banco de dados.")) {
       return;
     }
 
@@ -3285,14 +3285,14 @@ export function initTrialAllocation() {
           lockLayoutContext(false);
           makeTrials();
           loadExistingTrialsForContext();
-          alert('Saved layout view deleted.');
+          alert("Visualização da disposição salva excluída.");
         } else {
-          alert(response.error || 'Could not delete the saved layout view.');
+          alert(response.error || "Não foi possível excluir a visualização da disposição salva.");
         }
       },
       error: function(_, __, error) {
         console.error('Delete layout failed:', error);
-        alert('Could not delete the saved layout view.');
+        alert("Não foi possível excluir a visualização da disposição salva.");
       }
     });
   }
@@ -3465,7 +3465,7 @@ export function initTrialAllocation() {
   function saveCurrentLayout() {
     const layout = collectLayoutJson();
     if (!layout.farm.location_id || !layout.year) {
-      alert('Select location and year before saving the layout.');
+      alert("Selecione o local e o ano antes de salvar a disposição espacial.");
       return;
     }
     if (!requireValidLayoutYear()) return;
@@ -3473,15 +3473,15 @@ export function initTrialAllocation() {
     saveLayoutView(layout)
       .done(function(response) {
         if (!response.success) {
-          alert(response.error || 'Could not save layout.');
+          alert(response.error || "Não foi possível salvar a disposição espacial.");
           return;
         }
         markLayoutViewSaved(layout);
-        alert('Layout saved.');
+        alert("Disposição espacial salva.");
       })
       .fail(function(_, __, error) {
         console.error('Save layout failed:', error);
-        alert('Could not save layout.');
+        alert("Não foi possível salvar a disposição espacial.");
       });
   }
 
@@ -3508,7 +3508,7 @@ export function initTrialAllocation() {
   function restoreSaveTrialsButton(saveButton) {
     if (saveButton) {
       saveButton.disabled = false;
-      saveButton.textContent = 'Save Layout Trials in Database';
+      saveButton.textContent = "Salvar os ensaios da disposição espacial no banco de dados";
       saveButton.classList.remove('opacity-70', 'cursor-wait');
     }
   }
@@ -3516,10 +3516,14 @@ export function initTrialAllocation() {
   function trialSaveSuccessMessage(response) {
     const names = (response.trials || []).map(trial => `${trial.name} (${trial.trial_id})`).join('\n');
     const updated = response.existing_trials_updated || 0;
-    if (names && updated) return `Trials saved:\n${names}\n\nExisting trial coordinate updates: ${updated}`;
-    if (names) return `Trials saved:\n${names}`;
-    if (updated) return `Existing trial coordinate updates saved: ${updated}`;
-    return 'Trials saved in the database.';
+    if (names && updated) return `Ensaios salvos:
+${names}
+
+Atualizações das coordenadas dos ensaios existentes: ${updated}`;
+    if (names) return `Ensaios salvos:
+${names}`;
+    if (updated) return `Atualizações das coordenadas dos ensaios existentes salvas: ${updated}`;
+    return "Ensaios salvos no banco de dados.";
   }
 
   function finishTrialsDatabaseSave(layout, newTrialLayout, response, saveButton) {
@@ -3532,20 +3536,26 @@ export function initTrialAllocation() {
     lockPlacedTrials(true, savedRoots);
 
     const message = trialSaveSuccessMessage(response);
-    if (saveButton) saveButton.textContent = 'Saving Layout...';
+    if (saveButton) saveButton.textContent = "Salvando disposição espacial...";
 
     saveLayoutView(layout)
       .done(function(layoutResponse) {
         if (layoutResponse.success) {
           markLayoutViewSaved(layout);
-          alert(`${message}\n\nLayout view saved.`);
+          alert(`${message}
+
+Visualização da disposição espacial salva.`);
         } else {
-          alert(`${message}\n\nCould not save layout view: ${layoutResponse.error || 'Unknown error'}`);
+          alert(`${message}
+
+Não foi possível salvar a visualização da disposição espacial: ${layoutResponse.error || "Erro desconhecido"}`);
         }
       })
       .fail(function(xhr, __, error) {
         console.error('Save layout after trial database save failed:', error, xhr?.responseText);
-        alert(`${message}\n\nCould not save layout view.`);
+        alert(`${message}
+
+Não foi possível salvar a visualização da disposição espacial.`);
       })
       .always(function() {
         restoreSaveTrialsButton(saveButton);
@@ -3558,17 +3568,17 @@ export function initTrialAllocation() {
     const saveButton = qs('#save-trials-db-btn');
 
     if (!layout.farm.location_id || !layout.year) {
-      alert('Select location and year before saving the trials.');
+      alert("Selecione o local e o ano antes de salvar os ensaios.");
       return;
     }
     if (!requireValidLayoutYear()) return;
     const hasNewTrialToCreate = (newTrialLayout.placed_trials || []).some(trial => !trial.existing_project_id);
     if (hasNewTrialToCreate && !layout.breeding_program.program_id) {
-      alert('Select a breeding program before saving the trials.');
+      alert("Selecione um programa de melhoramento antes de salvar os ensaios.");
       return;
     }
     if (!newTrialLayout.placed_trials.length) {
-      alert('There are no new trials or existing-trial coordinate updates to save in the database.');
+      alert("Não há novos ensaios ou atualizações de coordenadas de ensaios existentes para salvar no banco de dados.");
       return;
     }
     const placedTrialIndexes = new Set(newTrialLayout.placed_trials.map(trial => String(trial.trial_index)));
@@ -3578,16 +3588,16 @@ export function initTrialAllocation() {
       .filter(form => !placedTrialIndexes.has(String(form.trial_index)));
     if (missingTrials.length) {
       const names = missingTrials.map(form => sanitizeTrialName(form.name) || `Trial ${form.trial_index}`).join(', ');
-      alert(`These trials are not placed in the grid yet: ${names}. Place all trials before saving them in the database.`);
+      alert(`Estes ensaios ainda não foram posicionados na grade: ${names}. Place all trials before saving them in the database.`);
       return;
     }
-    if (!window.confirm('Save new trial(s) and update coordinates for placed existing trial(s) in the database?')) {
+    if (!window.confirm("Salvar os novos ensaios e atualizar no banco de dados as coordenadas dos ensaios existentes posicionados?")) {
       return;
     }
 
     if (saveButton) {
       saveButton.disabled = true;
-      saveButton.textContent = 'Saving Trials...';
+      saveButton.textContent = "Salvando ensaios...";
       saveButton.classList.add('opacity-70', 'cursor-wait');
     }
 
@@ -3600,13 +3610,13 @@ export function initTrialAllocation() {
         if (response.success) {
           finishTrialsDatabaseSave(layout, newTrialLayout, response, saveButton);
         } else {
-          alert(response.error || 'Could not save trials in the database.');
+          alert(response.error || "Não foi possível salvar os ensaios no banco de dados.");
           restoreSaveTrialsButton(saveButton);
         }
       },
       error: function(xhr, __, error) {
         console.error('Save trials failed:', error, xhr?.responseText);
-        alert('Could not save trials in the database.');
+        alert("Não foi possível salvar os ensaios no banco de dados.");
         restoreSaveTrialsButton(saveButton);
       }
     });
@@ -3629,7 +3639,7 @@ export function initTrialAllocation() {
       data: { location_id: locationId, year, season },
       success: function(response) {
         if (!response.success) {
-          console.warn(response.error || 'Could not load saved layout.');
+          console.warn(response.error || "Não foi possível carregar a disposição salva.");
           return;
         }
         if (!response.found) {
@@ -3638,7 +3648,7 @@ export function initTrialAllocation() {
         }
 
         const hasCurrentLayout = qsa('.trial-group').length > 0;
-        if (hasCurrentLayout && !window.confirm('A layout is already saved for this location, year, and season. Load it and replace the current grid view?')) {
+        if (hasCurrentLayout && !window.confirm("Já existe uma disposição salva para este local, ano e safra. Deseja carregá-la e substituir a visualização atual da grade?")) {
           return;
         }
         applySavedLayout(response.layout);
@@ -3657,8 +3667,8 @@ export function initTrialAllocation() {
     loadTrialTypes();
     loadTrialDesigns();
     initDownloadTools();
-    initAccessionAutocomplete('#border-accession', 'Search border accession');
-    initAccessionAutocomplete('#filler-accession', 'Search filler accession');
+    initAccessionAutocomplete('#border-accession', "Buscar acesso de bordadura");
+    initAccessionAutocomplete('#filler-accession', "Buscar acesso de preenchimento");
     loadExistingTrialsForContext();
     makeTrials();
     drawGrid();
@@ -3699,7 +3709,7 @@ export function initTrialAllocation() {
       });
 
       if (conflict) {
-        alert("It is not possible to turn entire row or column unutilized because there is a trial or border already placed.");
+        alert("Não é possível marcar uma linha ou coluna inteira como não utilizada porque já existe um ensaio ou uma bordadura posicionado nela.");
         e.target.value = lastUnusedRows;
         return;
       }
@@ -3724,7 +3734,7 @@ export function initTrialAllocation() {
       });
 
       if (conflict) {
-        alert("It is not possible to turn entire row or column unutilized because there is a trial or border already placed.");
+        alert("Não é possível marcar uma linha ou coluna inteira como não utilizada porque já existe um ensaio ou uma bordadura posicionado nela.");
         e.target.value = lastUnusedCols;
         return;
       }

@@ -110,7 +110,7 @@ $trial_stock_type => undef
                 </div>
             </div>
             <div class="modal-footer">
-                <button id="close_substitute_plot_accession_dialog" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button id="close_substitute_plot_accession_dialog" type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
                 <button type="button" class="btn btn-primary" name="substitute_plot_stock_submit" id="substitute_plot_stock_submit"></button>
             </div>
         </div>
@@ -183,7 +183,7 @@ $trial_stock_type => undef
                 </h4>
                 <dl>
                   <dt>Substituir acesso da parcela</dt>
-                  <dd>O acesso de uma parcela pode ser substituído por outro acesso, presente ou não no ensaio. Para isso, <b>clique na parcela</b> e <b>informe o nome do novo acesso</b>, que já deve existir no banco de dados.</dd>
+                  <dd>O acesso de uma parcela pode ser substituído por outro acesso, presente ou não no ensaio. Para isso, <b>clique na parcela</b> E <b>informe o nome do novo acesso</b>, que já deve existir no banco de dados.</dd>
                   <dt>Substituir acesso do ensaio</dt>
                   <dd>Um acesso usado no ensaio pode ser substituído por um novo acesso ou por outro acesso do próprio ensaio. Essa opção substitui todas as ocorrências do acesso nas parcelas e plantas. Clique em <b>Editar mapa de campo</b>, depois em <b>Substituir acesso</b>, selecione o acesso atual, informe o novo acesso existente no banco de dados e conclua a operação.</dd>
                   <dt>Alterar dimensões</dt>
@@ -225,7 +225,7 @@ $trial_stock_type => undef
                 <h4>
                   Observações:
                 </h4>
-                <dd>- Para usar esta ferramenta, você deve ser <b>curador</b> ou <b>colaborador associado ao programa de melhoramento</b> do ensaio.</dd>
+                <dd>- Para usar esta ferramenta, você deve ser <b>curador</b> UO <b>colaborador associado ao programa de melhoramento</b> do ensaio.</dd>
                 <dd>- Os <b>campos de entrada</b> sugerem automaticamente nomes de acessos do banco de dados enquanto você digita.</dd>
                 <dd>- <b>A disposição física só pode ser alterada enquanto ainda não houver fenótipos enviados para o ensaio.</b></dd>
 
@@ -375,7 +375,7 @@ jQuery("#confirm_calculating_spatial_correction").click(async function() {
       
     }
   } catch (error) {
-    console.error('Error:', error);
+    console.error("Erro:", error);
     jQuery('#calculate_spatial_correction_status_message').text("Erro ao calcular a correção espacial.");
   }
 });

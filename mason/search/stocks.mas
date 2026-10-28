@@ -57,7 +57,7 @@ my $breeding_programs_select = simple_selectbox_html(
 
 </%perl>
 
-<&| /page/info_section.mas, title => 'Pesquisar', collapsible=>1, collapsed=>0 &>
+<&| /page/info_section.mas, title => 'Pesquisador', collapsible=>1, collapsed=>0 &>
 
   <div id="stock_search_form" class="well well-sm">
 
@@ -154,7 +154,7 @@ my $breeding_programs_select = simple_selectbox_html(
             <select class="form-control" id="obsolete_stock_search_term" name="obsolete_stock_search_term">
               <option value="false" selected>Não obsoleto</option>
               <option value="true">Obsoleto</option>
-              <option value="include_obsolete">Incluir obsoletos</option>
+              <option value="include_obsolete">Incluir obsoletas</option>
             </select>
           </div>
         </div>
@@ -244,7 +244,7 @@ my $breeding_programs_select = simple_selectbox_html(
     </&> <!-- closes advanced search -->
 
     <center>
-    <button class="btn btn-primary" id="submit_stock_search" />Pesquisar</button>
+    <button class="btn btn-primary" id="submit_stock_search" />Pesquisador</button>
     </center>
     <br/><br/>
   </div>
@@ -612,7 +612,7 @@ jQuery(document).ready(function () {
                 },
                 beforeSend: function() {
                     jQuery("#working_modal").modal("show");
-                    jQuery('#stock_search_graphical_filter_div').html("[CARREGANDO...]");
+                    jQuery('#stock_search_graphical_filter_div').html("[CARREGANDO ...]");
                 },
                 success: function(response){
                     //console.log(response);

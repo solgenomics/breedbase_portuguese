@@ -13,7 +13,7 @@ my $table;
 
 if (@$traits_list) {
   $table  = qq | <table id="traits_starting_with_index_table" class="table table-condensed table-striped"> |;
-  $table .= qq | <thead><tr><td>Trait</td><td>Definition</td></tr></thead><tbody> |;
+  $table .= qq | <thead><tr><td>Característica</td><td>Definition</td></tr></thead><tbody> |;
 	
   foreach my $trait (@$traits_list) {
     $table .= qq | <tr> |;
@@ -33,7 +33,7 @@ if (@$traits_list) {
 
 <div class="container">
   <& /page/page_title.mas, 
-     title=>'List of traits with GS data'
+     title=>'Lista de características com dados GS'
     &>
 
     <&| /page/info_section.mas, 

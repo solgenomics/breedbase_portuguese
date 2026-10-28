@@ -88,7 +88,7 @@ if (defined $ARGS{'unigene'}) {
 }
 
 my $p_count = scalar(@preceding_unigenes);
-my $preceding_html = info_section_html( title       => "Preceding Unigenes (" . $p_count .")", 
+my $preceding_html = info_section_html( title       => "Precedendo Unigenes (" . $p_count .")", 
 					contents    => $preceding_unigene_content, 
 					collapsible => 1, 
 					collapsed   => 1 );

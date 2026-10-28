@@ -245,14 +245,14 @@ $trial_stock_type => undef
                     <option value="planting">Ordem de plantio</option>
                     <option value="collection">Ordem de coleta</option>
                     <option value="harvest">Ordem de colheita</option>
-                    <option value="harvestmaster">HarvestMaster</option>
+                    <option value="harvestmaster">Mestre da Colheita</option>
                 </select>
             </div>
             <div>
                 <label>Ordem das parcelas:</label>
                 <select class="form-control" name="plot_download_order" id="plot_download_order" style="max-width: 300px">
                     <option value="">--Selecione a ordem das parcelas--</option>
-                    <option value="by_col_serpentine">Por coluna: serpentina</option>
+                    <option value="by_col_serpentine">Por coluna: Serpentina</option>
                     <option value="by_col_zigzag">Por coluna: zigue-zague</option>
                     <option value="by_row_serpentine">Por linha: serpentina</option>
                     <option value="by_row_zigzag">Por linha: zigue-zague</option>
@@ -262,7 +262,7 @@ $trial_stock_type => undef
                 <label>Parcela inicial:</label>
                 <select class="form-control" id="plot_download_start" name="plot_download_start" style="max-width: 300px">
                     <option value="bottom_left">Inferior esquerda</option>
-                    <option value="top_left">Superior esquerda</option>
+                    <option value="top_left">Superior Esquerda</option>
                     <option value="top_right">Superior direita</option>
                     <option value="bottom_right">Inferior direita</option>
                 </select>
@@ -294,7 +294,7 @@ $trial_stock_type => undef
             <p><strong>Opções do HarvestMaster:</strong></p>
             <div style="display: flex; flex-wrap: wrap; gap: 25px; justify-content: space-around; align-items: center">
                 <div>
-                    <label>HarvestMaster PLTID:</label>
+                    <label>Mestre da colheita PLTID:</label>
                     <select class="form-control" id="hm_pltid" name="hm_pltid" style="max-width: 400px">
                         <option value="plot_id" selected>ID da parcela no banco de dados</option>
                         <option value="plot_name">Nome da parcela</option>
@@ -302,7 +302,7 @@ $trial_stock_type => undef
                     </select>
                 </div>
                 <div>
-                    <label>HarvestMaster Range:</label>
+                    <label>Faixa Mestre da Colheita:</label>
                     <select class="form-control" id="hm_range" name="hm_range" style="max-width: 400px">
                         <option value="col_number">Coluna no Breedbase</option>
                         <option value="row_number" selected>Linha no Breedbase</option>
@@ -325,7 +325,7 @@ $trial_stock_type => undef
 % }
 
 
-<div id="trait_heatmap" >carregando...</div>
+<div id="trait_heatmap" >Carregando...</div>
 <div id="container_heatmap_geo" ></div>
 <div id="trial_no_phenoMSG" >Envie os fenótipos do ensaio para visualizar o mapa de calor das características avaliadas</div>
 <div class="container" id="trial_no_rowColMSG">
@@ -1785,7 +1785,7 @@ function _finish() {
     alert("Talvez seja necessário alterar as configurações de impressão, como tamanho da página, margens e escala, para que o mapa de campo seja exibido corretamente na visualização de impressão. Selecione \"Gráficos de plano de fundo\" para que a legenda inclua as cores.");
 
     let printWindow = window.open('', '', 'width=800,height=600');
-    printWindow.document.write('<html><head><title>Imprimir</title></head><body style="display: flex;justify-content: center;align-items: center;flex-direction: column;margin: 0;">')
+    printWindow.document.write("<html><head><title>Imprimer</title></head><body style=\"display: flex;justify-content: center;align-items: center;flex-direction: column;margin: 0;\">")
 
     var title = document.querySelector("#trait_list_dropdown option:checked").textContent;
 

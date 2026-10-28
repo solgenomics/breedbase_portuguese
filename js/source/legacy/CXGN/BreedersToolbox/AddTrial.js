@@ -89,51 +89,51 @@ jQuery(document).ready(function ($) {
             include_plant_coordinates = 1;
 
             if (num_rows == "" || num_cols == "" || num_rows * num_cols == 0) {
-                alert("You need to specify the number of rows and columns to give plant coordinates within plots.");
+                alert("Informe o número de linhas e colunas para atribuir coordenadas às plantas dentro das parcelas.");
                 return;
             }
             if (num_rows * num_cols < plants_per_plot) {
-                alert("Only one plant per (row, column) coordinate is allowed. You must specify fewer plants per plot, or add rows and columns.");
+                alert("É permitida apenas uma planta por coordenada (linha, coluna). Reduza o número de plantas por parcela ou adicione linhas e colunas.");
                 return;
             }
         }
         inherits_plot_treatments = $("trial_create_plants_per_plot_inherit_treatments").val();
 
         if (trial_name === '') {
-            alert("Please supply a trial name");
+            alert("Informe um nome para o ensaio");
         }
         else if (breeding_program === '') {
-            alert("Please select a breeding program");
+            alert("Selecione um programa de melhoramento");
         }
         else if (location === '') {
-            alert("Please select at least one location");
+            alert("Selecione pelo menos um local");
         }
         else if (trial_year === '') {
-            alert("Please select a trial year");
+            alert("Selecione o ano do ensaio");
         }
         else if (plot_width < 0 ){
-            alert("Please check the plot width");
+            alert("Verifique a largura da parcela");
         }
         else if (plot_width > 13){
-            alert("Please check the plot width is too high");
+            alert("Verifique a largura da parcela: o valor está muito alto");
         }
         else if (plot_length < 0){
-            alert("Please check the plot length");
+            alert("Verifique o comprimento da parcela");
         }
         else if (plot_length > 13){
-            alert("Please check the plot length is too high");
+            alert("Verifique o comprimento da parcela: o valor está muito alto");
         }
         else if (plants_per_plot > 500) {
-            alert("Please no more than 500 plants per plot.");
+            alert("Informe no máximo 500 plantas por parcela.");
         }
         else if (description === '') {
-            alert("Please supply a description!");
+            alert("Informe uma descrição!");
         }
         else if (design_type === '') {
-            alert("Please select a design type");
+            alert("Selecione um tipo de delineamento");
         }
         else if (stock_type === '') {
-            alert("Please select a stock type");
+            alert("Selecione um tipo de material");
         }
         else {
             verify_create_trial_name(trial_name);
@@ -158,7 +158,7 @@ jQuery(document).ready(function ($) {
             },
             error: function(response) {
                 jQuery("#working_modal").modal("hide");
-                alert('An error occurred checking trial name');
+                alert('Ocorreu um erro ao verificar o nome do ensaio');
             }
         });
     }
@@ -315,7 +315,7 @@ jQuery(document).ready(function ($) {
             if(stock_list && seedlot_list){
                 verify_seedlot_list(stock_list, seedlot_list, 'stock_list');
             } else {
-                alert('Please make sure to select an accession list above!');
+                alert('Selecione uma lista de acessos acima!');
             }
             if(check_stock_list && seedlot_list){
                 verify_seedlot_list(check_stock_list, seedlot_list, 'check_stock_list');
@@ -345,7 +345,7 @@ jQuery(document).ready(function ($) {
 
     $(document).on('click', 'button[name="convert_accessions_to_seedlots"]', function(){
         if (!stock_list_id){
-            alert('Please first select a list of accessions above!');
+            alert('Selecione primeiro uma lista de acessos acima!');
         } else {
             var list = new CXGN.List();
             list.seedlotSearch(stock_list_id);
@@ -378,7 +378,7 @@ jQuery(document).ready(function ($) {
             },
             error: function () {
                 jQuery('#working_modal').modal('hide');
-                alert('An error occurred. sorry');
+                alert('Ocorreu um erro.');
                 stock_list_verified = 0;
             }
         });
@@ -426,7 +426,7 @@ jQuery(document).ready(function ($) {
             },
             error: function () {
                 jQuery('#working_modal').modal('hide');
-                alert('An error occurred. sorry');
+                alert('Ocorreu um erro.');
                 seedlot_list_verified = 0;
             }
         });
@@ -458,7 +458,7 @@ jQuery(document).ready(function ($) {
             },
             error: function () {
                 jQuery('#working_modal').modal('hide');
-                alert('An error occurred. sorry');
+                alert('Ocorreu um erro.');
                 cross_list_verified = 0;
             }
         });
@@ -490,7 +490,7 @@ jQuery(document).ready(function ($) {
             },
             error: function () {
                 jQuery('#working_modal').modal('hide');
-                alert('An error occurred. sorry');
+                alert('Ocorreu um erro.');
                 family_name_list_verified = 0;
             }
         });
@@ -511,9 +511,9 @@ jQuery(document).ready(function ($) {
         var html = '';
         for (var i=0; i<new_count; i++){
             var display_count = i + 5;
-            html = html + '<div class="form-group form-group-sm" ><label class="col-sm-7 control-label">Treatment '+display_count+ ': </label><div class="col-sm-5" ><input class="form-control  treatment-name-input-box" id="create_trial_with_treatment_name_input'+display_count+'" name="create_trial_with_treatment_name_input'+display_count+'" type="text" placeholder="Optional Treatment '+display_count+'"/><input class="form-control treatment-value-input-box" id="create_trial_with_treatment_value_input'+display_count+'" name="create_trial_with_treatment_value_input'+display_count+'" type="text" placeholder="treatment value"/></div></div>';
+            html = html + '<div class="form-group form-group-sm" ><label class="col-sm-7 control-label">Tratamento '+display_count+ ': </label><div class="col-sm-5" ><input class="form-control  treatment-name-input-box" id="create_trial_with_treatment_name_input'+display_count+'" name="create_trial_with_treatment_name_input'+display_count+'" type="text" placeholder="Tratamento opcional '+display_count+'"/><input class="form-control treatment-value-input-box" id="create_trial_with_treatment_value_input'+display_count+'" name="create_trial_with_treatment_value_input'+display_count+'" type="text" placeholder="valor do tratamento"/></div></div>';
         }
-        html = html + '<input type="hidden" id="create_trial_with_treatment_additional_count" value='+return_count+'><div class="form-group form-group-sm" ><label class="col-sm-7 control-label">Add Another Treatment: </label><div class="col-sm-5" ><button class="btn btn-info btn-sm" id="create_trial_with_treatment_additional_treatment_buton">+ Treatment</button></div></div>';
+        html = html + '<input type="hidden" id="create_trial_with_treatment_additional_count" value='+return_count+'><div class="form-group form-group-sm" ><label class="col-sm-7 control-label">Adicionar outro tratamento: </label><div class="col-sm-5" ><button class="btn btn-info btn-sm" id="create_trial_with_treatment_additional_treatment_buton">+ Tratamento</button></div></div>';
         jQuery('#create_trial_with_treatment_additional_treatment').html(html);
         apply_treatment_autocomplete();
         return false;
@@ -633,7 +633,7 @@ jQuery(document).ready(function ($) {
         seedlot_hash_combined = extend_obj(seedlot_hash_combined, rep_list_seedlot_hash);
         if (!jQuery.isEmptyObject(seedlot_hash_combined)){
             if (num_seed_per_plot == ''){
-                alert('Number of seeds per plot is required if you have selected a seedlot list!');
+                alert('Informe o número de sementes por parcela ao selecionar uma lista de lotes de sementes!');
                 return;
             }
         }
@@ -678,7 +678,7 @@ jQuery(document).ready(function ($) {
             if (num_plants_per_treatment){
                 num_plants_per_plot = num_plants_per_treatment*num_subplots_per_plot;
             } else {
-                alert("You must supply the number of plants per treatment.");
+                alert("Informe o número de plantas por tratamento.");
                 return;
             }
         }
@@ -702,7 +702,7 @@ jQuery(document).ready(function ($) {
             num_rows_per_plot * num_cols_per_plot < Math.max(...greenhouse_num_plants.map(Number)) ||
             num_rows_per_plot * num_cols_per_plot < num_plants_per_treatment
         )) {
-            alert("You specified in-plot coordinates, but the number of plants per plot is greater than the number of positions available in each plot. Please decrease the number of plants per plot or increase the number of available positions. If this is a greenhouse trial, make sure no accession is specified to have more plants than the number of allowed spaces. If this is a splitplot design, please make sure that the number of plants per plot specified in section (2) matches the number of plants per treatment.");
+            alert("Você especificou coordenadas dentro das parcelas, mas o número de plantas por parcela excede o número de posições disponíveis. Reduza o número de plantas por parcela ou aumente o número de posições disponíveis. Em ensaios em casa de vegetação, verifique se nenhum acesso tem mais plantas do que posições disponíveis. Em delineamentos em parcelas subdivididas, verifique se o número de plantas por parcela informado na seção (2) corresponde ao número de plantas por tratamento.");
             return;
         }
 
@@ -797,7 +797,7 @@ jQuery(document).ready(function ($) {
                     Workflow.focus("#trial_design_workflow", 6); //Go to review page
 
                     if(response.warning_message){
-                        jQuery('#trial_design_warning_message').html("<center><div class='well'><h4 class='text-warning'>Warning: "+response.warning_message+"</h4></div></center>");
+                        jQuery('#trial_design_warning_message').html("<center><div class='well'><h4 class='text-warning'>Aviso: "+response.warning_message+"</h4></div></center>");
                     } else {
                         jQuery('#trial_design_warning_message').html('');
                     }
@@ -989,7 +989,7 @@ jQuery(document).ready(function ($) {
 
                       heatmapChart(datasets);
                       if (false_coord){
-                          alert("Row and column numbers were generated on the fly for displaying the physical layout or map. The plots are displayed in zigzag format. These row and column numbers will not be saved in the database. Click 'ok' to continue...");
+                          alert("Foram gerados números provisórios de linhas e colunas para exibir a disposição espacial ou o mapa. As parcelas são exibidas em zigue-zague. Esses números de linhas e colunas não serão salvos no banco de dados. Clique em OK para continuar...");
                       }
                   }else {
                       jQuery("#d3_legend").css("display", "none");
@@ -1001,7 +1001,7 @@ jQuery(document).ready(function ($) {
             },
             error: function () {
                 $('#working_modal').modal("hide");
-                alert('An error occurred. sorry.');
+                alert('Ocorreu um erro.');
             }
        });
     }
@@ -1015,15 +1015,15 @@ jQuery(document).ready(function ($) {
         var planting_date = $('#add_project_planting_date').val();
         var desc = $('textarea#add_project_description').val();
         if (name == '') {
-            alert('Trial name required');
+            alert('Informe o nome do ensaio');
             return;
         }
         if (year === '' || desc === '') {
-            alert('Year and description are required.');
+            alert('Informe o ano e a descrição.');
             return;
         }
         if(desc === '') {
-            alert('Description is required.');
+            alert('Informe a descrição.');
             return;
         }
         if (stock_list_verified == 1 && seedlot_list_verified == 1){
@@ -1033,7 +1033,7 @@ jQuery(document).ready(function ($) {
         } else if (family_name_list_verified == 1 && cross_list_verified == 0 && stock_list_verified == 0){
             generate_experimental_design();
         } else {
-            alert('Accession list, seedlot list, cross list or family name list is not valid!');
+            alert('A lista de acessos, lotes de sementes, cruzamentos ou nomes de famílias é inválida!');
             return;
         }
     });
@@ -1044,24 +1044,24 @@ jQuery(document).ready(function ($) {
 
         //add lists to the list select and list of checks select dropdowns based on stock type.
         if (stock_type == "accession"){
-            document.getElementById("select_list").innerHTML = list.listSelect("select_list", [ 'accessions' ], 'select a list', 'refresh', undefined);
-            document.getElementById("select_seedlot_list").innerHTML = list.listSelect("select_seedlot_list", [ 'seedlots' ], 'none', 'refresh', undefined);
-            document.getElementById("list_of_checks_section").innerHTML = list.listSelect("list_of_checks_section", [ 'accessions' ], 'select optional check list', 'refresh', undefined);
-            document.getElementById("crbd_list_of_checks_section").innerHTML = list.listSelect("crbd_list_of_checks_section", [ 'accessions' ], "select optional check list", 'refresh', undefined);
-            document.getElementById("list_of_unrep_accession").innerHTML = list.listSelect("list_of_unrep_accession", [ 'accessions' ], "Required: e.g. 200", 'refresh', undefined);
-            document.getElementById("list_of_rep_accession").innerHTML = list.listSelect("list_of_rep_accession", [ 'accessions' ], "Required: e.g. 119", 'refresh', undefined);
+            document.getElementById("select_list").innerHTML = list.listSelect("select_list", [ 'accessions' ], 'selecione uma lista', 'refresh', undefined);
+            document.getElementById("select_seedlot_list").innerHTML = list.listSelect("select_seedlot_list", [ 'seedlots' ], 'nenhuma', 'refresh', undefined);
+            document.getElementById("list_of_checks_section").innerHTML = list.listSelect("list_of_checks_section", [ 'accessions' ], 'selecione uma lista opcional de testemunhas', 'refresh', undefined);
+            document.getElementById("crbd_list_of_checks_section").innerHTML = list.listSelect("crbd_list_of_checks_section", [ 'accessions' ], "selecione uma lista opcional de testemunhas", 'refresh', undefined);
+            document.getElementById("list_of_unrep_accession").innerHTML = list.listSelect("list_of_unrep_accession", [ 'accessions' ], "Obrigatório: ex. 200", 'refresh', undefined);
+            document.getElementById("list_of_rep_accession").innerHTML = list.listSelect("list_of_rep_accession", [ 'accessions' ], "Obrigatório: ex. 119", 'refresh', undefined);
         } else if (stock_type == "cross") {
-            document.getElementById("select_cross_list").innerHTML = list.listSelect("select_cross_list", [ 'crosses' ], 'select a list', 'refresh', undefined);
-            document.getElementById("list_of_cross_checks_section").innerHTML = list.listSelect("list_of_cross_checks_section", [ 'accessions' ], 'select optional check list', 'refresh', undefined);
-            document.getElementById("crbd_list_of_cross_checks_section").innerHTML = list.listSelect("crbd_list_of_cross_checks_section", [ 'accessions' ], "select optional check list", 'refresh', undefined);
-            document.getElementById("list_of_unrep_cross").innerHTML = list.listSelect("list_of_unrep_cross", [ 'crosses' ], "Required: e.g. 200", 'refresh', undefined);
-            document.getElementById("list_of_rep_cross").innerHTML = list.listSelect("list_of_rep_cross", [ 'crosses' ], "Required: e.g. 119", 'refresh', undefined);
+            document.getElementById("select_cross_list").innerHTML = list.listSelect("select_cross_list", [ 'crosses' ], 'selecione uma lista', 'refresh', undefined);
+            document.getElementById("list_of_cross_checks_section").innerHTML = list.listSelect("list_of_cross_checks_section", [ 'accessions' ], 'selecione uma lista opcional de testemunhas', 'refresh', undefined);
+            document.getElementById("crbd_list_of_cross_checks_section").innerHTML = list.listSelect("crbd_list_of_cross_checks_section", [ 'accessions' ], "selecione uma lista opcional de testemunhas", 'refresh', undefined);
+            document.getElementById("list_of_unrep_cross").innerHTML = list.listSelect("list_of_unrep_cross", [ 'crosses' ], "Obrigatório: ex. 200", 'refresh', undefined);
+            document.getElementById("list_of_rep_cross").innerHTML = list.listSelect("list_of_rep_cross", [ 'crosses' ], "Obrigatório: ex. 119", 'refresh', undefined);
         } else if (stock_type == "family_name") {
-            document.getElementById("select_family_name_list").innerHTML = list.listSelect("select_family_name_list", [ 'family_names' ], 'select a list', 'refresh', undefined);
-            document.getElementById("list_of_family_name_checks_section").innerHTML = list.listSelect("list_of_family_name_checks_section", [ 'accessions' ], 'select optional check list', 'refresh', undefined);
-            document.getElementById("crbd_list_of_family_name_checks_section").innerHTML = list.listSelect("crbd_list_of_family_name_checks_section", [ 'accessions' ], "select optional check list", 'refresh', undefined);
-            document.getElementById("list_of_unrep_family_name").innerHTML = list.listSelect("list_of_unrep_family_name", [ 'family_names' ], "Required: e.g. 200", 'refresh', undefined);
-            document.getElementById("list_of_rep_family_name").innerHTML = list.listSelect("list_of_rep_family_name", [ 'family_names' ], "Required: e.g. 119", 'refresh', undefined);
+            document.getElementById("select_family_name_list").innerHTML = list.listSelect("select_family_name_list", [ 'family_names' ], 'selecione uma lista', 'refresh', undefined);
+            document.getElementById("list_of_family_name_checks_section").innerHTML = list.listSelect("list_of_family_name_checks_section", [ 'accessions' ], 'selecione uma lista opcional de testemunhas', 'refresh', undefined);
+            document.getElementById("crbd_list_of_family_name_checks_section").innerHTML = list.listSelect("crbd_list_of_family_name_checks_section", [ 'accessions' ], "selecione uma lista opcional de testemunhas", 'refresh', undefined);
+            document.getElementById("list_of_unrep_family_name").innerHTML = list.listSelect("list_of_unrep_family_name", [ 'family_names' ], "Obrigatório: ex. 200", 'refresh', undefined);
+            document.getElementById("list_of_rep_family_name").innerHTML = list.listSelect("list_of_rep_family_name", [ 'family_names' ], "Obrigatório: ex. 119", 'refresh', undefined);
         }
 
     });
@@ -1072,31 +1072,31 @@ jQuery(document).ready(function ($) {
         var stock_type = jQuery('#select_stock_type').val();
         console.log("The method is: ", design_method);
         if (design_method == "CRD"){
-            jQuery('#create_trial_design_description_div').html('<br/><div class="well"><p>Generates a Completely Randomized design (CRD) with equal or different repetition, using the methods of random number generation in R. Creates plot entities in the database.</p></div>');
+            jQuery('#create_trial_design_description_div').html('<br/><div class="well"><p>Gera um delineamento inteiramente casualizado (CRD), com número igual ou diferente de repetições, usando os métodos de geração de números aleatórios do R. Cria registros de parcelas no banco de dados.</p></div>');
         } else if (design_method == "RCBD") {
-            jQuery('#create_trial_design_description_div').html('<br/><div class="well"><p>Generates a Randomized Complete Block design (RCBD), using the methods of random number generation in R. Creates plot entities in the database.</p></div>');
+            jQuery('#create_trial_design_description_div').html('<br/><div class="well"><p>Gera um delineamento em blocos completos casualizados (RCBD), usando os métodos de geração de números aleatórios do R. Cria registros de parcelas no banco de dados.</p></div>');
         } else if (design_method == "RRC") {
-            jQuery('#create_trial_design_description_div').html('<br/><div class="well"><p>Generates a Resolvable Row-Column design (RRC), using the blocksdesign package in R. In addition to the one-way blocks it adds a constraint that no treatment may appear more than once in each row (latinization). Each row becomes an incomplete block.</p></div>');
+            jQuery('#create_trial_design_description_div').html('<br/><div class="well"><p>Gera um delineamento resolúvel em linhas e colunas (RRC), usando o pacote blocksdesign do R. Além dos blocos em uma direção, impõe a restrição de que nenhum tratamento apareça mais de uma vez em cada linha (latinização). Cada linha constitui um bloco incompleto.</p></div>');
         } else if (design_method == "DRRC") {
-            jQuery('#create_trial_design_description_div').html('<br/><div class="well"><p>Generates a Doubly-Resolvable Row-Column design (DRRC), using the blocksdesign package in R. It creates complete blocks in columns and rows. The number of accessions must be divisible by the number of columns and rows.</p></div>');
+            jQuery('#create_trial_design_description_div').html('<br/><div class="well"><p>Gera um delineamento duplamente resolúvel em linhas e colunas (DRRC), usando o pacote blocksdesign do R. Cria blocos completos nas colunas e nas linhas. O número de acessos deve ser divisível pelo número de colunas e pelo número de linhas.</p></div>');
         } else if (design_method == "URDD") {
-            jQuery('#create_trial_design_description_div').html('<br/><div class="well"><p>Generates an Un-Replicated Diagonal Design (URDD), using the FieldHub package in R. It is an Un-Replicateddesign with an option to create blocks. All checks are distributed in diagonals.</p></div>');
+            jQuery('#create_trial_design_description_div').html('<br/><div class="well"><p>Gera um delineamento diagonal sem repetição (URDD), usando o pacote FieldHub do R, com opção de criar blocos. Todas as testemunhas são distribuídas em diagonais.</p></div>');
         } else if (design_method == "Alpha") {
-            jQuery('#create_trial_design_description_div').html('<br/><div class="well"><p>Generates an Alpha design starting from design fixing under the 4 series formulated by Patterson and Williams. Creates plot entities in the database.</p></div>');
+            jQuery('#create_trial_design_description_div').html('<br/><div class="well"><p>Gera um delineamento alfa a partir das quatro séries formuladas por Patterson e Williams. Cria registros de parcelas no banco de dados.</p></div>');
         } else if (design_method == "Lattice") {
-            jQuery('#create_trial_design_description_div').html('<br/><div class="well"><p>Generates SIMPLE and TRIPLE lattice designs using the design.lattice function from the agricolae R package. Randomizes treatments in K x K lattice. Creates plot entities in the database.</p></div>');
+            jQuery('#create_trial_design_description_div').html('<br/><div class="well"><p>Gera delineamentos em látice simples e triplo usando a função design.lattice do pacote agricolae do R. Casualiza os tratamentos em um látice K x K. Cria registros de parcelas no banco de dados.</p></div>');
         } else if (design_method == "Augmented") {
-            jQuery('#create_trial_design_description_div').html('<br/><div class="well"><p>Generates an Augmented design. Some treatments (checks) are replicated r times and other treatments (new) are replicated once. Creates plot entities in the database.</p></div>');
+            jQuery('#create_trial_design_description_div').html('<br/><div class="well"><p>Gera um delineamento aumentado. Alguns tratamentos (testemunhas) são repetidos r vezes e os demais (novos) aparecem uma única vez. Cria registros de parcelas no banco de dados.</p></div>');
         } else if (design_method == "MAD") {
-            jQuery('#create_trial_design_description_div').html('<br/><div class="well"><p>Adjustments are calculated using data from all checks. Creates plot entities in the database.</p></div>');
+            jQuery('#create_trial_design_description_div').html('<br/><div class="well"><p>Os ajustes são calculados usando os dados de todas as testemunhas. Cria registros de parcelas no banco de dados.</p></div>');
         } else if (design_method == "greenhouse") {
-            jQuery('#create_trial_design_description_div').html('<br/><div class="well"><p>A greenhouse/nursery houses plants in no particular layout design. The plants can be of named accessions or in the case of seedling nurseries from crosses, the plants can be of named crosses. Creates plot entities with plant entities in the database.</p></div>');
+            jQuery('#create_trial_design_description_div').html('<br/><div class="well"><p>Uma casa de vegetação ou viveiro abriga plantas sem um delineamento espacial específico. As plantas podem pertencer a acessos identificados ou, no caso de viveiros de mudas oriundas de cruzamentos, a cruzamentos identificados. Cria registros de parcelas com suas plantas no banco de dados.</p></div>');
         } else if (design_method == "splitplot") {
-            jQuery('#create_trial_design_description_div').html('<br/><div class="well"><p>Split plot designs are useful for applying treatments to subplots of a plot. If you give two treatments with two levels each, there will be four subplots with the four treatment combinations distributed randomly among them. Creates plot entities with subplot entities with plant entities in the database.</p></div>');
+            jQuery('#create_trial_design_description_div').html('<br/><div class="well"><p>Delineamentos em parcelas subdivididas permitem aplicar tratamentos às subparcelas de uma parcela. Ao informar dois tratamentos com dois níveis cada, haverá quatro subparcelas, com as quatro combinações de tratamentos distribuídas aleatoriamente entre elas. Cria registros de parcelas, subparcelas e plantas no banco de dados.</p></div>');
         } else if (design_method == "p-rep") {
-            jQuery('#create_trial_design_description_div').html('<br/><div class="well"><p>Has some treatments that are unreplicated and relies on replicated treatments to make the trial analysable. It is recommended that at least 20% of the experimental units are occupied by replicated treatments. Creates plot entities in the database.</p></div>');
+            jQuery('#create_trial_design_description_div').html('<br/><div class="well"><p>Possui tratamentos sem repetição e utiliza os tratamentos repetidos para permitir a análise do ensaio. Recomenda-se que pelo menos 20% das unidades experimentais sejam ocupadas por tratamentos repetidos. Cria registros de parcelas no banco de dados.</p></div>');
         } else if (design_method == "Westcott") {
-            jQuery('#create_trial_design_description_div').html('<br/><div class="well"><p>Generates a fieldplan for an unreplicated design with genotypes randomly allocated within a field with checks following the method described by Westcott (1981).</p></div>');
+            jQuery('#create_trial_design_description_div').html('<br/><div class="well"><p>Gera um plano de campo para um delineamento sem repetição, com genótipos distribuídos aleatoriamente e testemunhas dispostas conforme o método descrito por Westcott (1981).</p></div>');
         } else {
             jQuery('#create_trial_design_description_div').html('');
         }
@@ -2184,7 +2184,7 @@ jQuery(document).ready(function ($) {
         }
 
         else {
-            alert("Unsupported design method");
+            alert("Método de delineamento não suportado");
         }
     });
 
@@ -2238,7 +2238,7 @@ jQuery(document).ready(function ($) {
         e.preventDefault();
         var breeding_program_id = jQuery('#select_breeding_program').val();
         if (!breeding_program_id) {
-            alert("Please select a breeding program first");
+            alert("Selecione primeiro um programa de melhoramento");
             return;
         }
         jQuery('#autogenerated_name_metadata_program').val(breeding_program_id);
@@ -2250,10 +2250,10 @@ jQuery(document).ready(function ($) {
     function load_plot_name_templates() {
         var breeding_program_id = jQuery('#select_breeding_program').val();
         if (!breeding_program_id) {
-            jQuery('#plot_template_radios').html('<p><em>Please select a breeding program first.</em></p>');
+            jQuery('#plot_template_radios').html('<p><em>Selecione primeiro um programa de melhoramento.</em></p>');
             return;
         }
-        jQuery('#plot_template_radios').html('<p><em>Loading available templates...</em></p>');
+        jQuery('#plot_template_radios').html('<p><em>Carregando os modelos disponíveis...</em></p>');
         var templates = {};
         jQuery.ajax({
             url: '/ajax/breeders/program/' + breeding_program_id + '/autogenerated_name_metadata',
@@ -2295,15 +2295,15 @@ jQuery(document).ready(function ($) {
                         $container.append($radio);
                     });
                     if (!has_plot_templates) {
-                        $container.html('<p><em>No plot name templates available for this breeding program.</em></p>');
+                        $container.html('<p><em>Não há modelos de nomes de parcelas disponíveis para este programa de melhoramento.</em></p>');
                     }
                 } else {
-                    $container.html('<p><em>No plot name templates available for this breeding program.</em></p>');
+                    $container.html('<p><em>Não há modelos de nomes de parcelas disponíveis para este programa de melhoramento.</em></p>');
                 }
                 jQuery('#plot_template_radios').data('templates', templates);
             },
             error: function() {
-                jQuery('#plot_template_radios').html('<p class="text-danger">Error loading templates.</p>');
+                jQuery('#plot_template_radios').html('<p class="text-danger">Erro ao carregar os modelos.</p>');
             }
         });
     }
@@ -2505,7 +2505,7 @@ jQuery(document).ready(function ($) {
             },
             error: function () {
                 jQuery('#working_modal').modal("hide");
-                alert('An error occurred saving the trial.');
+                alert('Ocorreu um erro ao salvar o ensaio.');
             }
         });
     }
@@ -2630,7 +2630,7 @@ jQuery(document).ready(function ($) {
         var html = "";
         var design_array = JSON.parse(design_json);
         for (var i=0; i<design_array.length; i++){
-            html += "<table class='table table-hover'><thead><tr><th>plot_name</th><th>accession</th><th>plot_number</th><th>block_number</th><th>rep_number</th><th>is_a_control</th><th>row_number</th><th>col_number</th><th class='table-success'>"+treatment_name+" [Select all <input type='checkbox' name='add_trial_treatment_select_all' />]</th></tr></thead><tbody>";
+            html += "<table class='table table-hover'><thead><tr><th>Nome da parcela</th><th>Acesso</th><th>Número da parcela</th><th>Número do bloco</th><th>Número da repetição</th><th>É testemunha</th><th>Número da linha</th><th>Número da coluna</th><th class='table-success'>"+treatment_name+" [Selecionar todas <input type='checkbox' name='add_trial_treatment_select_all' />]</th></tr></thead><tbody>";
             var design_hash = JSON.parse(design_array[i]);
             //console.log(design_hash);
             var keys = Object.keys(design_hash);
@@ -2744,7 +2744,7 @@ jQuery(document).ready(function ($) {
             var treatments = design_hash['treatments'];
             //html += "Trial "+i+"<br/>";
             for (var key in treatments){
-                html += "Treatment: <b>"+key+"</b> Plots: ";
+                html += "Tratamento: <b>"+key+"</b> Parcelas: ";
                 var plot_array = treatments[key]['new_treatment_stocks'];
                 html += plot_array.join(', ') + "<br/>";
             }

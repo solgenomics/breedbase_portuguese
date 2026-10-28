@@ -13,7 +13,7 @@
 		<!-- Modal content-->
 		   <div class="modal-content">
 		   <div class="modal-header">
-		   <h4 class="modal-title">Searching for Motifs</h4>
+		   <h4 class="modal-title">Procurando por Motifs</h4>
 		</div>
 
 			<div class="modal-body">
@@ -42,23 +42,23 @@
 	</script>
 
 <center>
- <h3 id="tool_title">Motifs Finder Tool</h3>
+ <h3 id="tool_title">Ferramenta de busca de motivos</h3>
  <form action="/test" method="POST" id="run_motifs">
    <label>
-   Sequence:<span id="example">(<a class="blue_text" onclick="example()" style="cursor:pointer">example sequence</a>)</span>
+   Sequência:<span id="example">(<a class="blue_text" onclick="example()" style="cursor:pointer">sequência de exemplo</a>)</span>
    </label>
    <textarea class="form-control" id="sequence" name="sequence" ></textarea><br>
 
    <div class="form-inline">
-   	<label><span style="cursor:default" title="lenght(s) of motif, seperated by comma without space(eg. 4,6)">Motif width(s)</span></label>
+   	<label><span style="cursor:default" title="Length(s) de motivo, separado por vírgula sem espaço (por exemplo, 4,6)">Motif largura(s)</span></label>
    	<input class="form-control" type="text" name="widths_of_motifs" style="width: 110px;" value="12,14">&nbsp;&nbsp;&nbsp;
-   	<label><span style="cursor:default" title="Number of sites expected in each sequence, seperated by comma without space(eg. 4,6)">Expected sites</span></label>
+   	<label><span style="cursor:default" title="Número de locais esperados em cada sequência, separados por vírgula sem espaço (por exemplo, 4,6)">Esperados sites</span></label>
    	<input class="form-control" type="text" name="numbers_of_sites" style="width: 110px;" value="3,5"> <br><br>
    </div>
 
 	<div class="container" id="well_width">
 	  <div class="well">
-	   <span style="cursor:default" title="Insert a sequence file in a tab-delimited format">Upload Sequence file:</span>
+	   <span style="cursor:default" title="Insira um arquivo de sequência em um formato delimitado por tabulação">Enviar arquivo de sequência:</span>
 	   <input type="file" class="btn btn-default" name="sequence_file" encoding="multipart/form-data"/>
 		</div>
 	</div>
@@ -66,9 +66,9 @@
     <div class="subsection_bar" >
 		<a class="collapser_link" href="javascript:folding_section('#ad-option','#tmp_img_hide1');">
 		<img id="tmp_img_hide1" class="sub_collapser_img" src="/static/documents/img/collapser_plus.png" width="20" height="20" />
-			Advanced Options
+			Opções Avançadas
 		</a>
-		<span class="pull-center" data-toggle="modal" data-target="#myModal">[<a id="help_dialog">Help</a>]</span>
+		<span class="pull-center" data-toggle="modal" data-target="#myModal">[<a id="help_dialog">Socorro!</a>]</span>
 	</div>
 
 	<div id="ad-option" class="collapse center_section"  >
@@ -76,19 +76,19 @@
 	<p>
 
 	<div class="form-inline" >
-	   <label style="cursor:default" title="This value is the number of time the sampler is restarted and can be changed to sample over a larger (or smaller) number of separate initial models.">Number of seeds</label>
+	   <label style="cursor:default" title="Este valor é o número de vezes que o amostrador é reiniciado e pode ser alterado para amostra em um maior (ou menor) número de modelos iniciais separados.">Número de sementes</label>
    	   <input class="form-control" type="text" name="number_of_seeds" value="20" size="2">&nbsp; &nbsp; &nbsp;
 
-       <label><input type="checkbox" name="fragmentation" value="-F" checked>&nbsp;Fragmentation</label>&nbsp; &nbsp; &nbsp;
-   	   <label><input type="checkbox" name="rev_complement" value="-r" unchecked>&nbsp;Reverse Complement</label>
+       <label><input type="checkbox" name="fragmentation" value="-F" checked>Fragmentação</label>&nbsp; &nbsp; &nbsp;
+   	   <label><input type="checkbox" name="rev_complement" value="-r" unchecked>Complemento Reverso</label>
 	   </p>
          </div>
     </div>
 
    <br>
 
-   <button type="reset" id="clear_form" value="clear" title="Clear form">Clear</button>&nbsp; &nbsp; &nbsp;
-   <button class="btn btn-primary"  id="button" value="Run_Motifs_Finder">Run Motifs Finder</button>
+   <button type="reset" id="clear_form" value="clear" title="Forma clara">Limpar</button>&nbsp; &nbsp; &nbsp;
+   <button class="btn btn-primary"  id="button" value="Run_Motifs_Finder">Correr Motifs Finder</button>
 
   </form>
 
@@ -113,7 +113,7 @@
 
 	<a class="collapser_link" href="javascript:folding_section('#usage_view','#tmp_img_usage');">
         <img id="tmp_img_usage" class="sub_collapser_img" src="/static/documents/img/collapser_plus.png" width="20" height="20" />
-			Usage Help
+			Ajuda de uso
 	<hr style="\&quot;color:" #006699;="" margin:="" 10px="" 20px;="" \"="">
 		</a>
     </div>
@@ -121,12 +121,12 @@
       <div id="usage_view" class="collapse center_section"  >
 
     	<p>
-	<b>Usage:</b><br />
-	1. Paste a <b>sequence</b> like in the example:<br />
-	<span style="background-color:#DCDCDC;">&nbsp;&nbsp;>gene_name<br />&nbsp;&nbsp;ATGGATCAGTCGGTGTTGGCGATCT&nbsp;&nbsp;<br />&nbsp;&nbsp;ACAGCTTGGCCAACTCCAGAAATTG&nbsp;&nbsp;</span><br />
-	&nbsp;&nbsp;Or Upload a <b>sequence file</b>. It must be in <b>FASTA format</b>.<br />
-	2. Enter <b>motif width(s)</b>, a width for each motif must be entered. For multiple motifs, the widths are separated by commas; (16,20,...)<br />
-	3. Enter <b>expected sites</b>, expected number of sites in each motif must be entered. For multiple motifs, the sites are separated by commas; (7,12,...)<br />
+	<b>Uso:</b><br />
+	1. Paste a <b>Sequência</b> como no exemplo:<br />
+	<span style="background-color:#DCDCDC;">&nbsp;&nbsp;>gene_name<br />ARGATCAGTCGGTGTTGGGCGATCT<br />ACAGCTTGCCCAACTACAGAAATTG</span><br />
+	Ou carregar um <b>Arquivo de sequência</b>. Deve estar dentro <b>Formato FASTA</b>.<br />
+	2. Entre <b>Largura(s) do motivo</b>, a width for each motif must be entered. For multiple motifs, the widths are separated by commas; (16,20,...)<br />
+	3. Entre <b>sites esperados</b>, expected number of sites in each motif must be entered. For multiple motifs, the sites are separated by commas; (7,12,...)<br />
 	</p>
 
 	<!--<hr style="\&quot;color:" #006699;="" margin:="" 10px="" 20px;="" \"="">  -->
@@ -144,18 +144,18 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Advance options help</h4>
+        <h4 class="modal-title">Opções avançadas, ajuda</h4>
       </div>
       <div class="modal-body">
 	<ul class="list-group">
-    	<li class="list-group-item"><b>Number of seeds:</b> the number of times that the sampler is restarted with separate initial models.</li>
-    	<li class="list-group-item"><b>Fragmentation:</b> normally the sampler allows itself to flexibly change the width of the motif and to introduce spacers. You can turn it on by unchecking the Fragmentation checkbox.</li>
-    	<li class="list-group-item"><b>Reverse complement:</b> the sampler normally samples in both forward and reverse complement. You can turn off reverse complement sampling by checking the Reverse complement checkbox.</li>
+    	<li class="list-group-item"><b>Número de sementes:</b> O número de vezes que o amostrador é reiniciado com modelos iniciais separados.</li>
+    	<li class="list-group-item"><b>Fragmentação:</b> normalmente o sampler permite-se mudar de forma flexível a largura do motivo e introduzir espaçadores. Você pode ligá-lo desmarcando a caixa de verificação Fragmentação.</li>
+    	<li class="list-group-item"><b>Complemento inverso:</b> o amostrador normalmente amostras em ambos os complementos dianteiro e reverso. Você pode desligar a amostragem do complemento reverso verificando a caixa de verificação do complemento reverso.</li>
   	</ul>
         <!--<p><b>Number of seeds:</b> </p> -->
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
       </div>
     </div>
 

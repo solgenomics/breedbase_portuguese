@@ -160,12 +160,12 @@ getSelectedPopCorrArgs: function (runCorrElemId) {
   createTable: function (tableId) {
     var table =
     `<table id="${tableId}" class="table table-striped"><thead><tr>` +
-      "<th>Name</th>" +
-      "<th>Data structure</th>" +
-      "<th>Compatibility</th>" + 
-      "<th>Ownership</th>" +
-      "<th>Data type</th>" +
-      "<th>Run correlation</th>" +
+      "<th>Nome</th>" +
+      "<th>Estrutura dos dados</th>" +
+      "<th>Compatibilidade</th>" +
+      "<th>Propriedade</th>" +
+      "<th>Tipo de dados</th>" +
+      "<th>Executar correlação</th>" +
       "</tr>" +
       "</thead></table>";
 
@@ -213,13 +213,13 @@ getSelectedPopCorrArgs: function (runCorrElemId) {
   
     var runCorrBtn =
       `<button type="button" id=${runCorrBtnId}` +
-      ` class="btn btn-success" data-selected-pop='${corrArgs}'>Run Correlation</button>`;
+      ` class="btn btn-success" data-selected-pop='${corrArgs}'>Executar correlação</button>`;
   
     var compatibility_message = '';
     if (dataStr.match(/dataset/)) {
       popName = `<a href="/dataset/${popId}">${popName}</a>`;
       if (tool_compatibility == null || tool_compatibility["Correlation"] == null || tool_compatibility == "(not calculated)"){
-        compatibility_message = "(not calculated)";
+        compatibility_message = "(não calculado)";
       } else {        
           if (tool_compatibility["Correlation"]['compatible'] == 0) {
           compatibility_message = '<b><span class="glyphicon glyphicon-remove" style="color:red"></span></b>'
@@ -285,8 +285,9 @@ getSelectedPopCorrArgs: function (runCorrElemId) {
     var corrDataTypeId = this.corrDataTypeSelectId(rowId);
     var dataTypeGroup = '<select class="form-control" id="' + corrDataTypeId + '">';
 
+    var dataTypeLabels = { Genotype: "Genótipo", Phenotype: "Fenótipo" };
     for (var i = 0; i < opts.length; i++) {
-      dataTypeGroup += '<option value="' + opts[i] + '">' + opts[i] + "</option>";
+      dataTypeGroup += '<option value="' + opts[i] + '">' + (dataTypeLabels[opts[i]] || opts[i]) + "</option>";
     }
     dataTypeGroup += "</select>";
 
@@ -395,14 +396,14 @@ getSelectedPopCorrArgs: function (runCorrElemId) {
     corrPlotDivId = corrDivs.corr_plot_div.replace("#", "");
     var corrDownloadBtn = "download_" + corrPlotDivId;
     var corrPlotLink =
-      "<a href='#'  onclick='event.preventDefault();' id='" + corrDownloadBtn + "'> plot</a>";
+      "<a href='#'  onclick='event.preventDefault();' id='" + corrDownloadBtn + "'> Lote</a>";
 
     var popName = corrArgs.corr_pop_name;
     if (!popName) {
       popName = this.getCorrPopName();
     }
 
-    var downloadLinks = `Download <b>${popName}</b> correlation: ` + corrCoefLink + " | " + corrPlotLink;
+    var downloadLinks = `Baixar <b>${popName}</b> Correlação: ` + corrCoefLink + " | " + corrPlotLink;
     return downloadLinks;
   },
 
@@ -481,7 +482,7 @@ jQuery(document).ready(function () {
         runCorrBtnId = `#${runCorrBtnId}`;
         jQuery(runCorrBtnId).hide();
         jQuery(`${canvas} .multi-spinner-container`).show();
-        jQuery(corrMsgDiv).html("Running correlation... please wait...").show();
+        jQuery(corrMsgDiv).html("Executando correlação... Aguarde...").show();
 
         solGS.correlation.runPhenoCorrelation(corrArgs).done(function (res) {
         if (res.data || (res.status && res.status.match(/success/))) {
@@ -499,7 +500,7 @@ jQuery(document).ready(function () {
 
             solGS.heatmap.plot(heatmapArgs);
         } else {
-            jQuery(corrMsgDiv).html((res.status || "Error.") + " There is no correlation output for this dataset.").fadeOut(8400);
+            jQuery(corrMsgDiv).html((res.status || "Erro.") + " Não há resultados de correlação para este conjunto de dados.").fadeOut(8400);
         }
 
         jQuery(`${canvas} .multi-spinner-container`).hide();
@@ -508,7 +509,7 @@ jQuery(document).ready(function () {
       })
       .fail(function (res) {
         jQuery(`${canvas} .multi-spinner-container`).hide();
-        jQuery(corrMsgDiv).html(res.status + " Error occured running correlation analysis.").fadeOut(8400);
+        jQuery(corrMsgDiv).html(res.status + " Ocorreu um erro ao executar a análise de correlação.").fadeOut(8400);
         jQuery(runCorrBtnId).show();
       });
     }
@@ -528,7 +529,7 @@ jQuery(document).ready(function () {
     var corrMsgDiv = args.corr_msg_div;
 
     jQuery(`${canvas} .multi-spinner-container`).show();
-    var msg = "Running genetic correlation analysis...please wait...";
+    var msg = "Executando análise de correlação genética... Aguarde...";
     jQuery(corrMsgDiv).html(msg).show();
 
     solGS.correlation
@@ -547,7 +548,7 @@ jQuery(document).ready(function () {
           };
           solGS.heatmap.plot(heatmapArgs);
         } else {        
-            jQuery(corrMsgDiv).html(res.status + " There is no correlation output for this dataset.").fadeOut(8400);
+            jQuery(corrMsgDiv).html(res.status + " Não há resultados de correlação para este conjunto de dados.").fadeOut(8400);
             
         }
 
@@ -557,7 +558,7 @@ jQuery(document).ready(function () {
       })
       .fail(function (res) {
         jQuery(`${canvas} .multi-spinner-container`).hide();
-        jQuery(corrMsgDiv).html(res.status + " Error occured running correlation analysis.").fadeOut(8400);
+        jQuery(corrMsgDiv).html(res.status + " Ocorreu um erro ao executar a análise de correlação.").fadeOut(8400);
         jQuery(runCorrBtnId).show();
         
       });

@@ -115,7 +115,7 @@ solGS.listTypeSelectionPopulation = {
 
     var runSolgsBtn =
       `<button type="button" id=${runSolgsBtnId}` +
-      ` class="btn btn-success" data-selected-pop='${selectionArgs}'>Predict</button>`;
+      ` class="btn btn-success" data-selected-pop='${selectionArgs}'>Predizer</button>`;
 
       return runSolgsBtn;
 
@@ -135,10 +135,10 @@ solGS.listTypeSelectionPopulation = {
 
     var selectionTable =
       `<table id="${tableId}" class="table table-striped"><thead><tr>` +
-      "<th>Population</th>" +
-      "<th>Data structure</th>" +
-      "<th>Ownership</th>" +
-      "<th>Run solGS</th>" +
+      "<th>População</th>" +
+      "<th>Estrutura dos dados</th>" +
+      "<th>Propriedade</th>" +
+      "<th>Executar solGS</th>" +
       "</tr></thead></table>";
 
     return selectionTable;
@@ -157,7 +157,7 @@ solGS.listTypeSelectionPopulation = {
         return a[4]
       },
       "oLanguage": {
-        "sSearch": "Filter"
+        "sSearch": "Filtrar"
       }
     });
 
@@ -367,7 +367,7 @@ jQuery(document).ready(function () {
                 }
               })
               .fail(function () {
-                alert("Error occured checking if the selection population has predicted output.");
+                alert("Ocorreu um erro ao verificar se a população de seleção possui resultados de predição.");
               });
           } else {
             //TO-DO
@@ -401,7 +401,7 @@ jQuery(document).ready(function () {
             }
           })
           .fail(function () {
-            alert("Error occured checking if the selection population has predicted output.");
+            alert("Ocorreu um erro ao verificar se a população de seleção possui resultados de predição.");
           });
         }
       }

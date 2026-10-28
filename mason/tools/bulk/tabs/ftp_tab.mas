@@ -37,7 +37,7 @@ HTML
         'manual_annotations' =>
           'Manual annotations for a number of SGN unigenes',
         'user_requests' =>
-'Custom-generated datasets for individual users (mail special requests to <a href="mailto:sgn-feedback@sgn.cornell.edu">sgn-feedback</a>)',
+'Conjuntos de dados personalizados para usuários individuais <a href="mailto:sgn-feedback@sgn.cornell.edu">Sgn-feedback</a>)',
         'genomes/Solanum_lycopersicum' =>
           'Tomato genomic data, including BAC end and full BAC sequences',
 	  'genomes/Solanum_tuberosum' => 
@@ -61,7 +61,7 @@ HTML
     </div>
 
 	<br />
-	<i>Note:</i> The SGN FTP site can also be accessed directly through <a href="ftp://ftp.solgenomics.net">ftp://ftp.solgenomics.net</a> using a browser or ftp program.
+	<i>Observação:</i> The SGN FTP site can also be accessed directly through <a href="ftp://ftp.solgenomics.net">ftp://ftp.solgenomics.net</a> using a browser or ftp program.
 HTML
 
 

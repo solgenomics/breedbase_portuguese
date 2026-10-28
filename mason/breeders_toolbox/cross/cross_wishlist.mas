@@ -211,7 +211,7 @@
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title" id="createCrossWishlistSelectDialog">Selecionar parcelas para a lista de desejos de cruzamentos</h4>
-                <h4>As parcelas femininas estão em <span class="bg-primary">azul</span><!-- e as parcelas masculinas estão em <span class="bg-success">verde</span>.--></h4>
+                <h4>As parcelas femininas estão em <span class="bg-primary">Azul</span><!-- e as parcelas masculinas estão em <span class="bg-success">verde</span>.--></h4>
             </div>
 
             <div class="modal-body">
@@ -316,7 +316,7 @@
                             <tr>
                                 <td>female_accession</td>
                                 <td>male_accession</td>
-                                <td>priority</td>
+                                <td>Prioridade</td>
                             </tr>
                         </tbody>
                     </table>
@@ -324,9 +324,9 @@
                         Colunas obrigatórias:
                     </b>
                     <ul>
-                        <li><b>female_accession</b> (os nomes dos acessos devem existir como <b>uniquenames</b> no banco de dados e pertencer ao ensaio feminino selecionado; a lista incluirá todas as parcelas femininas desse ensaio)</li>
-                        <li><b>male_accession</b> (os nomes dos acessos devem existir como <b>uniquenames</b> no banco de dados)</li>
-                        <li><b>priority</b> (1 é a prioridade mais alta)</li>
+                        <li><b>female_accession</b> (os nomes dos acessos devem existir como <b>Nomes únicos</b> no banco de dados e pertencer ao ensaio feminino selecionado; a lista incluirá todas as parcelas femininas desse ensaio)</li>
+                        <li><b>male_accession</b> (os nomes dos acessos devem existir como <b>Nomes únicos</b> no banco de dados)</li>
+                        <li><b>Prioridade</b> (1 é a prioridade mais alta)</li>
                     </ul>
                 </div>
             </div>
@@ -671,7 +671,7 @@ jQuery(document).ready(function($) {
         var female_accession_ids = jQuery('#cross_wishlist_female_accession_ids').val();
         var male_ids = jQuery(div_id).val();
         var female_id = jQuery(div_id).data('related');
-        var html = '<table class="table table-bordered" div="' + div_id +'_table"><thead><tr><th>Genitor masculino</th><th>Prioridade</th></tr></thead><tbody>';
+        var html = '<table class="table table-bordered" div="' + div_id +"_table\"><thead><tr><th>Genitor Masculino</th><th>Prioridade</th></tr></thead><tbody>";
         for (var i=0; i<male_ids.length; i++){
             html = html + '<tr><td>' + male_ids[i] + '</td><td><input class="form-control" male_id="' + male_ids[i] + '" female_id="' + female_id + '" name ="cross_wishlist_final_priority" id="cross_wishlist_male_priority_'+ i +'" value="1" placeholder="1"/></td></tr>';
         };

@@ -49,16 +49,16 @@ solGS.log = {
             url: '/solgs/delete/old/analyses/'+interval,
             success: function(response) {
                 if (response.error) {
-                    alert("Encountered an error on the server: "+response.error);
+                    alert("Ocorreu um erro no servidor: "+response.error);
                     console.log(response);
                 } else {
-                    alert("Jobs cleared from recent activity."); 
+                    alert("Tarefas removidas da atividade recente.");
                     window.location.reload();
                 }     
     	    },
             error: function(response) {
                 console.log(response);
-                alert("Error clearing old jobs, check console. " + response);
+                alert("Erro ao remover tarefas antigas; consulte o console. " + response);
                 window.location.reload();
             }
         });
@@ -71,16 +71,16 @@ solGS.log = {
             url: '/solgs/delete/dead/analyses',
             success: function(response) {
                 if (response.error) {
-                    alert("Encountered an error on the server: "+response.error);
+                    alert("Ocorreu um erro no servidor: "+response.error);
                     console.log(response);
                 } else {
-                    alert("Jobs cleared from recent activity."); 
+                    alert("Tarefas removidas da atividade recente.");
                     window.location.reload(); 
                 } 
     	    },
             error: function(response) {
                 console.log(response);
-                alert("Error clearing dead jobs, check console. " + response);
+                alert("Erro ao remover tarefas inativas; consulte o console. " + response);
                 window.location.reload();
             }
         });

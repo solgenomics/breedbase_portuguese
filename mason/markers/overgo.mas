@@ -115,13 +115,13 @@ if (%overgos) {
     $overgo_html .= qq|$marker_name was used as an overgo probe on <a href="$overgo_plate_page$thisprobe->{loc}{plate}&amp;highlightwell=$thisprobe->{loc}{coords}">plate $thisprobe->{loc}{plate}</a> [well $thisprobe->{loc}{coords}]<br />|;
     
     #output the plausible BACs
-    $overgo_html .= qq{<p><b><a href="$plausible_definition_page">Plausible</a> BAC Matches:</b>&nbsp;&nbsp;&nbsp;}
+    $overgo_html .= qq{<p><b><a href="$plausible_definition_page">Plausível</a> BAC Fósforos:</b>&nbsp;&nbsp;&nbsp;}
       .($thisprobe->{plausible} ? join(",&nbsp;&nbsp;\n", keys %{$thisprobe->{plausible}}) : 'None')
 	."</p>\n";
     
     #output the nonplausible BACs
     if ($thisprobe->{unplausible}) {
-      $overgo_html .= html_optional_show("np$probeid",'<i>Non-Plausible</i> BAC matches',
+      $overgo_html .= html_optional_show("np$probeid",'<i>Não-Plausível</i> BAC combina',
 					 join (",&nbsp;&nbsp;\n",
 					       keys %{$thisprobe->{unplausible}})
 					);
@@ -162,7 +162,7 @@ if (%overgos) {
 #############################################
 
 if ($phys_html) {
-  print  info_section_html(title=>'Overgo hybridization and physical mapping', contents=>$phys_html);
+  print  info_section_html(title=>'Hibridização excessiva e mapeamento físico', contents=>$phys_html);
 }
 
 </%perl>

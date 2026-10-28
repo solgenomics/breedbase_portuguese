@@ -4,9 +4,9 @@ $results
 $histogram
 </%args>
 
-<& /page/page_title.mas, title => "Simsearch Results" &>
+<& /page/page_title.mas, title => "Resultados da pesquisa de simulação" &>
 
-The following genotypes are exceedingly similar and are suspected duplicates:<br />
+Os seguintes genótipos são extremamente semelhantes e são suspeitos de duplicatas:<br />
 
 <% $results %>
 

@@ -5,56 +5,56 @@
 <& /util/import_javascript.mas, classes => [ 'jquery', 'jquery.dataTables', 'jquery.dataTables-select-min' ] &>
 <& /util/import_css.mas, paths => ['/documents/inc/datatables/jquery.dataTables.css', '/documents/inc/datatables/custom_datatable_select_styles.css'] &>
 
-<& /page/page_title.mas, title => "Trait Search" &>
+<& /page/page_title.mas, title => "Busca de Características" &>
 
-    <&| /page/info_section.mas, title => 'Search', collapsible=>1, collapsed=>0 &>
+    <&| /page/info_section.mas, title => 'Buscar', collapsible=>1, collapsed=>0 &>
         <div id="trait_search_form" class="form-horizontal well">
             <div class="form-group form-group-sm">
-                <label class="col-sm-3 control-label">Select Ontology Name(s): </label>
+                <label class="col-sm-3 control-label">Selecione Nome(s) da Ontologia: </label>
                 <div class="col-sm-9" >
                     <div id="trait_search_ontology_select"></div>
                 </div>
             </div>
             <div class="form-group form-group-sm">
-                <label class="col-sm-3 control-label">Search Trait Name: </label>
+                <label class="col-sm-3 control-label">Procurar o nome da trilha: </label>
                 <div class="col-sm-9" >
-                    <input type="text" class="form-control" id="trait_search_name" placeholder="Search any trait name or piece of name"/>
+                    <input type="text" class="form-control" id="trait_search_name" placeholder="Procure qualquer nome ou pedaço de nome"/>
                 </div>
             </div>
             <div class="form-group form-group-sm">
-                <label class="col-sm-3 control-label">Search Trait ID: </label>
+                <label class="col-sm-3 control-label">Identificador de Característica: </label>
                 <div class="col-sm-9" >
-                    <input type="text" class="form-control" id="trait_search_id" placeholder="Search any trait ID or part of an ID"/>
+                    <input type="text" class="form-control" id="trait_search_id" placeholder="Procure qualquer identificação ou parte de uma identidade"/>
                 </div>
             </div>
             <div class="form-group form-group-sm">
-                <label class="col-sm-3 control-label">Search Trait Synonym: </label>
+                <label class="col-sm-3 control-label">Sinónimos de busca: </label>
                 <div class="col-sm-9" >
-                    <input type="text" class="form-control" id="trait_search_synonym" placeholder="Search any trait synonym or part of a synonym"/>
+                    <input type="text" class="form-control" id="trait_search_synonym" placeholder="Procure qualquer sinônimo ou parte de um sinônimo"/>
                 </div>
             </div>
             <div class="form-group form-group-sm">
-                <label class="col-sm-3 control-label">Search Definition: </label>
+                <label class="col-sm-3 control-label">Definição de busca: </label>
                 <div class="col-sm-9" >
-                    <input type="text" class="form-control" id="trait_search_definition" placeholder="Search any word or piece of definition"/>
+                    <input type="text" class="form-control" id="trait_search_definition" placeholder="Procure qualquer palavra ou peça de definição"/>
                 </div>
             </div>
             <div class="form-group form-group-sm">
-                <label class="col-sm-3 control-label">Subset Traits: </label>
+                <label class="col-sm-3 control-label">Características Subset: </label>
                 <div class="col-sm-9" >
                     <div id="trait_search_list_select">
-                        [LOADING...]
+                        [Carregando ...]
                     </div>
                 </div>
             </div>
         </div>
 
         <center>
-            <button class="btn btn-primary" id="submit_trait_search" />Search</button>
+            <button class="btn btn-primary" id="submit_trait_search" />Buscar</button>
         </center>
     </&>
 
-    <&| /page/info_section.mas, title => 'Results', collapsible=>1, collapsed=>0 &>
+    <&| /page/info_section.mas, title => 'Resultados', collapsible=>1, collapsed=>0 &>
 
         <div class="well well-sm">
             <div class="panel panel-default">
@@ -63,19 +63,19 @@
                     <table id="trait_search_results" width="100%" class="table table-hover table-striped">
                     <thead>
                       <tr>
-                        <th>Select</th>
-                        <th>Copy Name|ID</th>
-                        <th>Trait ID</th>
-                        <th>Trait Name</th>
-                        <th>Synonym</th>
-                        <th>Definition</th>
-                        <th>Trait&nbsp;Usage</th>
+                        <th>Selecionar</th>
+                        <th>Copiando nome!</th>
+                        <th>ID do Trait</th>
+                        <th>Nome do Trait</th>
+                        <th>Sinónimo</th>
+                        <th>Definição</th>
+                        <th>Uso de Características</th>
                       </tr>
                     </thead>
                     </table>
 
-                    <button type="button" class="selectAll-dt">Select All</button>
-                    <button type="button" class="deselectAll-dt">Deselect All</button>
+                    <button type="button" class="selectAll-dt">Selecionar todos</button>
+                    <button type="button" class="deselectAll-dt">Deseleccionar tudo</button>
 
                 </div>
             </div>
@@ -83,9 +83,9 @@
             <div class="panel panel-default">
                 <div class="panel-body">
 
-                    <&| /page/info_section.mas, title => 'Copy Selected Results to a List', collapsible=>1, collapsed=>0, subtitle=>'<i>Copy the trait names currently selected in the search results table to a new or exisiting list</i>'&>
+                    <&| /page/info_section.mas, title => 'Copiar resultados selecionados para uma lista', collapsible=>1, collapsed=>0, subtitle=>'<i>Copie os nomes de características atualmente selecionados na tabela de resultados de busca para uma nova ou exisiting lista</i>'&>
                     <br>
-                    <p><em><span id="trait_result_count">0</span> trait(s) selected.</em></p>
+                    <p><em><span id="trait_result_count">0</span> Características selecionados.</em></p>
                     <div style="text-align:right" id="traits_to_list_menu"></div>
                     <div id="trait_result_names" style="display: none;"></div>
                     </&>
@@ -97,17 +97,17 @@
 
 <& /breeders_toolbox/add_new_trait_dialogs.mas &>
 
-    <&| /page/info_section.mas, title => 'Help', collapsible=>1, collapsed=>0 &>
+    <&| /page/info_section.mas, title => 'Socorro!', collapsible=>1, collapsed=>0 &>
         <div class="well well-sm">
             <div class="panel panel-default">
                 <div class="panel-body">
-                    <h2>Is the trait you are looking for not here?</h2>
+                    <h2>O característica que está procurando não está aqui?</h2>
 
 %  if ($c->config->{allow_observation_variable_submission_interface}) {
-                        <button class="btn btn-primary" name="add_new_observation_variable_button">Add A New Observation Variable To the Database</button>
+                        <button class="btn btn-primary" name="add_new_observation_variable_button">Adicionar uma nova variável de observação ao banco de dados</button>
 %  } else {
-                        <p>Please submit your new trait <a href="http://submit.rtbbase.org/">using the trait submission form</a>.</p>
-                        <p>To speed up addition of your trait into the database please contact us using the <a href="/contact/form">Contact Form</a>.</p>
+                        <p>Por favor, apresente seu novo característica <a href="http://submit.rtbbase.org/">usando o formulário de submissão de características</a>.</p>
+                        <p>Para acelerar a adição de seu característica no banco de dados entre em contato conosco usando o <a href="/contact/form">Formulário de contato</a>.</p>
 %  }
                 </div>
             </div>
@@ -125,7 +125,7 @@ jQuery(document).ready(function () {
     jQuery('[data-toggle="tooltip"]').tooltip();
 
     var lo = new CXGN.List();
-    jQuery('#trait_search_list_select').html(lo.listSelect('trait_search_list_select', [ 'traits' ], 'Leave blank to see all traits', undefined, undefined));
+    jQuery('#trait_search_list_select').html(lo.listSelect('trait_search_list_select', [ 'traits' ], "Deixe em branco para visualizar todas as características", undefined, undefined));
 
     jQuery(document).on('change', '#trait_search_list_select', function(){
         _draw_trait_search_result_table();

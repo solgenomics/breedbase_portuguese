@@ -2,35 +2,35 @@
 
 
 <& '/util/import_javascript.mas', classes => [ 'jquery', 'jqueryui', 'popup', 'd3.d3Min.js', 'tools.LabelDesigner', 'CXGN.BreederSearch', 'bootstrap-select_min'] &>
-<& /page/page_title.mas, title=>"Label Designer" &>
+<& /page/page_title.mas, title=>"Rotulagem" &>
 
-<div id="label_designer_warning" class="list-group-item-warning" style="padding:3px;"><center><span class="glyphicon glyphicon-warning-sign" style="color:orange;font-size:20px;"></span>&nbsp;&nbsp;<b>Note:</b> Do not print the labels directly from the browser as the browser adds headers and footers that will distort the alignment of the labels. Instead, download the pdf file and print it from a PDF reader app.</center></div>
+<div id="label_designer_warning" class="list-group-item-warning" style="padding:3px;"><center><span class="glyphicon glyphicon-warning-sign" style="color:orange;font-size:20px;"></span>&nbsp;&nbsp;<b>Observação:</b> Não imprima as etiquetas diretamente do navegador, pois o navegador adiciona cabeçalhos e rodapés que distorcem o alinhamento das etiquetas. Em vez disso, baixe o arquivo pdf e imprima-o de um aplicativo de leitura de PDF.</center></div>
 <br /><br />
 <&| /util/workflow.mas , id=> "label_designer_workflow"&>
 
-    <&| /util/workflow.mas:step, title=>"Intro and Data Source" &>
+    <&| /util/workflow.mas:step, title=>"Introdução e fonte de dados" &>
 
         <& /tools/label_designer/select_datasource.mas &>
         <br/><br/>
         <div class="col-md-12 text-center">
-            <button id="select_datasource_button" class="btn btn-primary" type="button" class="btn btn-default" onclick="Workflow.complete(this);" disabled>Next</button>
+            <button id="select_datasource_button" class="btn btn-primary" type="button" class="btn btn-default" onclick="Workflow.complete(this);" disabled>Próximo</button>
         </div>
 
 
     </&>
-    <&| /util/workflow.mas:step, title=>"Set Page and Label Size" &>
+    <&| /util/workflow.mas:step, title=>"Definir tamanho da página e da etiqueta" &>
         <& /tools/label_designer/select_layout.mas &>
         <div class="col-md-12 text-center">
-            <button id="select_layout_button" class="btn btn-primary" type="button" class="btn btn-default" onclick="Workflow.complete(this);" disabled>Next</button>
+            <button id="select_layout_button" class="btn btn-primary" type="button" class="btn btn-default" onclick="Workflow.complete(this);" disabled>Próximo</button>
         </div>
     </&>
-    <&| /util/workflow.mas:step, title=>"Design Your Label" &>
+    <&| /util/workflow.mas:step, title=>"Crie sua etiqueta" &>
         <& /tools/label_designer/design_label.mas &>
         <div class="col-md-12 text-center">
-            <button id="design_label_button" class="btn btn-primary" type="button" class="btn btn-default" onclick="Workflow.complete(this);" disabled>Next</button>
+            <button id="design_label_button" class="btn btn-primary" type="button" class="btn btn-default" onclick="Workflow.complete(this);" disabled>Próximo</button>
         </div>
     </&>
-    <&| /util/workflow.mas:step, title=>"More Options, Save, And Download" &>
+    <&| /util/workflow.mas:step, title=>"Mais opções, salvar e baixar" &>
         <& /tools/label_designer/save_and_download.mas &>
       </&>
 </&>

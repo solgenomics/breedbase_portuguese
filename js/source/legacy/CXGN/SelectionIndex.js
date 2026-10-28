@@ -26,7 +26,7 @@ jQuery(document).ready(function() {
                 return;
             };
 
-            jQuery('#trait_table_label').html('Traits and coefficients for <a href="/breeders_toolbox/trial/'+jQuery(this).val()+'">'+jQuery('option:selected', this).text()+'</a>:')
+            jQuery('#trait_table_label').html("Características e coeficientes para <a href=\"/breeders_toolbox/trial/"+jQuery(this).val()+'">'+jQuery('option:selected', this).text()+'</a>:')
 
             var trial_id = jQuery(this).val();
             var trial_name = jQuery("option:selected", this).text();
@@ -52,7 +52,7 @@ jQuery(document).ready(function() {
                 success: function(response) {
                     var list = response.list || 0;
                     if (!list) {
-                      trait_html = '<option id="select_message" value="" title="No trait measurements found.">No trait measurements found for '+trial_name+'.</option>\n';
+                      trait_html = "<option id=\"select_message\" value=\"\" title=\"Nenhuma medição de característica encontrada.\">Nenhuma medição da característica encontrada para "+trial_name+'.</option>\n';
                       jQuery('#trait_list').html(trait_html);
                       return;
                     }
@@ -72,7 +72,7 @@ jQuery(document).ready(function() {
                         success: function(response) {
                             synonyms = response.synonyms;
                             //console.log("synonyms = " + JSON.stringify(synonyms));
-                            trait_html = '<option id="select_message" value="" title="Select a trait">Select a trait</option>\n';
+                            trait_html = "<option id=\"select_message\" value=\"\" title=\"Selecione uma característica\">Selecione uma característica</option>\n";
                             for (i = 0; i < list.length; i++) {
                                 var trait_id = list[i][0];
                                 var trait_name = list[i][1];
@@ -88,12 +88,12 @@ jQuery(document).ready(function() {
 
                         },
                         error: function(response) {
-                            alert("An error occurred while retrieving synonyms for traits with ids " + trait_ids);
+                            alert("Ocorreu um erro ao recuperar os sinônimos das características com IDs " + trait_ids);
                         }
                     });
                 },
                 error: function(response) {
-                    alert("An error occurred while transforming the list " + list_id);
+                    alert("Ocorreu um erro ao transformar a lista " + list_id);
                 }
             });
 
@@ -122,9 +122,9 @@ jQuery(document).ready(function() {
                             var accessions = response.accessions;
                             var accession_html;
                             if (response.accessions[0].length == 0) {
-                                accession_html = '<option value="" title="Select a control">No controls found</a>\n';
+                                accession_html = "<option value=\"\" title=\"Selecione uma testemunha\">Nenhuma testemunha encontrada</a>\n";
                             } else {
-                                accession_html = '<option value="" title="Select a control">Select a control</a>\n';
+                                accession_html = "<option value=\"\" title=\"Selecione uma testemunha\">Selecione uma testemunha</a>\n";
                                 for (i = 0; i < response.accessions[0].length; i++) {
                                     accession_html += '<option value="' + accessions[0][i].stock_id + '" title="' + response.accessions[0][i].stock_id + '">' + response.accessions[0][i].accession_name + '</a>\n';
                                 }
@@ -133,12 +133,12 @@ jQuery(document).ready(function() {
                             jQuery('#trait_list').focus();
                         },
                         error: function(response) {
-                            jQuery('#control_list').html('<option value="" title="Select a control">Error retrieving trial controls</a>');
+                            jQuery('#control_list').html("<option value=\"\" title=\"Selecione uma testemunha\">Erro ao recuperar as testemunhas do ensaio</a>");
                         }
                     });
                 },
                 error: function(response) {
-                    jQuery('#control_list').html('<option value="" title="Select a control">Error retrieving trial design</a>');
+                    jQuery('#control_list').html("<option value=\"\" title=\"Selecione uma testemunha\">Erro ao recuperar o delineamento do ensaio</a>");
                 }
             });
         });
@@ -152,9 +152,9 @@ jQuery(document).ready(function() {
             var trait_synonym = jQuery('option:selected', this).data("synonym");
             var list_name = jQuery('option:selected', this).data("list_name");
             var control_html = jQuery('#control_list').html();
-            var trait_html = "<tr id='" + trait_id + "_row'><td><a href='/cvterm/" + trait_id + "/view' data-list_name='" + list_name + "' data-value='" + trait_id + "'>" + trait_name + "</a></td><td><p id='" + trait_id + "_synonym'>" + trait_synonym + "<p></td><td><input type='text' id='" + coefficient_id + "' class='form-control' placeholder='Default is 1'></input></td><td><select class='form-control' id='" + control_id + "'>" + control_html + "</select></td><td align='center'><a title='Remove' id='" + trait_id + "_remove' href='javascript:remove_trait(" + trait_id + ")'><span class='glyphicon glyphicon-remove'></span></a></td></tr>";
+            var trait_html = "<tr id='" + trait_id + "_Land'&gt;<td><a href='/cvterm/" + trait_id + "/view' data-list_name='" + list_name + "' data-value='" + trait_id + "'>" + trait_name + "</a></td><td><p id='" + trait_id + "_synonym'>" + trait_synonym + "<p></td><td><input type='text' id='" + coefficient_id + "' class='form-control' placeholder='O padrão é 1'></input></td><td><select class='form-control' id='" + control_id + "'>" + control_html + "</select></td><td align='center'><a title='Remover' id='" + trait_id + "_remove' href='javascript:remove_trait(" + trait_id + ")'><span class='glyphicon glyphicon-remove'></span></a></td></tr>";
             jQuery('#trait_table').append(trait_html);
-            jQuery('#select_message').text('Add another trait');
+            jQuery('#select_message').text("Adicionar outra característica");
             jQuery('#select_message').attr('selected', true);
             update_formula();
             jQuery('#' + coefficient_id).focus();
@@ -162,7 +162,7 @@ jQuery(document).ready(function() {
                 function() {
                   if (isNaN(jQuery(this).val())) {
                     jQuery(this).val('');
-                    document.getElementById('selection_index_error_message').innerHTML = "<center><li class='list-group-item list-group-item-danger'> Error.<br> Index coefficients must be a positive or negative number.</li></center>";
+                    document.getElementById('selection_index_error_message').innerHTML = "<center><li class='list-group-item list-group-item-danger'> Erro.<br> Os coeficientes do índice devem ser números positivos ou negativos.</li></center>";
                     jQuery('#selection_index_error_dialog').modal("show");
                   }
                   else {
@@ -179,7 +179,7 @@ jQuery(document).ready(function() {
 
     jQuery('#save_sin').click(function() {
       if (jQuery('#trait_table').children().length < 1) {
-        document.getElementById('selection_index_error_message').innerHTML = "<center><li class='list-group-item list-group-item-danger'> Formula not saved.<br> At least one trait must be selected before saving a SIN formula.</li></center>";
+        document.getElementById('selection_index_error_message').innerHTML = "<center><li class='list-group-item list-group-item-danger'> A fórmula não foi salva.<br> Selecione pelo menos uma característica antes de salvar uma fórmula SIN.</li></center>";
         jQuery('#selection_index_error_dialog').modal("show");
         return;
       }
@@ -216,7 +216,7 @@ jQuery(document).ready(function() {
             lo.setListType(list_id, 'dataset');
         }
         if (elementsAdded) {
-            alert("Saved SIN formula with name " + new_name);
+            alert("Fórmula SIN salva com o nome " + new_name);
         }
 
     });
@@ -233,7 +233,7 @@ jQuery(document).ready(function() {
     jQuery('#calculate_rankings').click(function() {
 
       if (jQuery('#trait_table').children().length < 1) {
-        document.getElementById('selection_index_error_message').innerHTML = "<center><li class='list-group-item list-group-item-danger'> Error.<br> A trial and at least one trait must be selected before calculating rankings.</li></center>";
+        document.getElementById('selection_index_error_message').innerHTML = "<center><li class='list-group-item list-group-item-danger'> Erro.<br> Selecione um ensaio e pelo menos uma característica antes de calcular a classificação.</li></center>";
         jQuery('#selection_index_error_dialog').modal("show");
         return;
       }
@@ -249,10 +249,10 @@ jQuery(document).ready(function() {
 
         var trial_name = jQuery('#select_trial_for_selection_index option:selected').text();
         column_names.push({
-            title: "Accession"
+            title: "Acesso"
         });
         weighted_column_names.push({
-            title: "Accession"
+            title: "Acesso"
         });
         jQuery(selected_trait_rows).each(function(index, selected_trait_rows) {
             var trait_id = jQuery('a', this).data("value");
@@ -269,7 +269,7 @@ jQuery(document).ready(function() {
             var control = jQuery('#' + trait_id + '_control option:selected').val() || '';
             controls.push(control);
             if (control) {
-                trait_term += " as a fraction of " + jQuery('#' + trait_id + '_control option:selected').text();
+                trait_term += " como uma fração de " + jQuery('#' + trait_id + '_control option:selected').text();
             }
             column_names.push({
                 title: trait_term
@@ -281,7 +281,7 @@ jQuery(document).ready(function() {
         weighted_column_names.push({
             title: "SIN"
         }, {
-            title: "SIN Rank"
+            title: "Classificação SIN"
         });
         var allow_missing = jQuery("#allow_missing").is(':checked');
 
@@ -308,7 +308,7 @@ jQuery(document).ready(function() {
                 build_table(weighted_values, weighted_column_names, trial_name, 'weighted_values_div');
             },
             error: function(response) {
-                alert("An error occurred while retrieving average phenotypes");
+                alert("Ocorreu um erro ao recuperar as médias fenotípicas");
             }
         });
 
@@ -319,14 +319,14 @@ function build_table(data, column_names, trial_name, target_div) {
 
     var table_id = target_div.replace("div", "table");
     var table_type = target_div.replace("_div", "");
-    var table_html = '<br><br><div class="table-responsive" style="margin-top: 10px;"><table id="' + table_id + '" class="table table-hover table-striped table-bordered" width="100%"><caption class="well well-sm" style="caption-side: bottom;margin-top: 10px;"><center> Table description: <i>' + table_type + ' for trial ' + trial_name + '.</i></center></caption></table></div>'
+    var table_html = '<br><br><div class="table-responsive" style="margin-top: 10px;"><table id="' + table_id + "\" class=\"table table-hover table-striped table-bordered\" width=\"100%\"><caption class=\"well well-sm\" style=\"caption-side: bottom;margin-top: 10px;\"><center> Descrição da tabela: <i>" + table_type + " para o ensaio " + trial_name + '.</i></center></caption></table></div>'
     if (table_type == 'weighted_values') {
-        table_html += '<div class="col-sm-12 col-md-12 col-lg-12"><hr><label>Save top ranked accessions to a list: </label><br><br><div class="col-sm-3 col-md-3 col-lg-3" style="display: inline-block"><label>By number:</label>&nbsp;<select class="form-control" id="top_number"></select></div><div class="col-sm-3 col-md-3 col-lg-3" style="display: inline-block"><label>Or percent:</label>&nbsp;<select class="form-control" id="top_percent"></select></div><div class="col-sm-6 col-md-6 col-lg-6"><div style="text-align:right" id="ranking_to_list_menu"></div><div id="top_ranked_names" style="display: none;"></div></div><br><br><br><br><br></div>';
+        table_html += "<div class=\"col-sm-12 col-md-12 col-lg-12\"><hr><label>Salvar os acessos mais bem classificados em uma lista: </label><br><br><div class=\"col-sm-3 col-md-3 col-lg-3\" style=\"display: inline-block\"><label>Por número:</label>&nbsp;<select class=\"form-control\" id=\"top_number\"></select></div><div class=\"col-sm-3 col-md-3 col-lg-3\" style=\"display: inline-block\"><label>Ou por porcentagem:</label>&nbsp;<select class=\"form-control\" id=\"top_percent\"></select></div><div class=\"col-sm-6 col-md-6 col-lg-6\"><div style=\"text-align:right\" id=\"ranking_to_list_menu\"></div><div id=\"top_ranked_names\" style=\"display: none;\"></div></div><br><br><br><br><br></div>";
     }
 
     jQuery('#' + target_div).html(table_html);
 
-    var export_message = 'Accession rankings calculated using a selection index at ' + window.location.href;
+    var export_message = "Classificação dos acessos calculada usando um índice de seleção em " + window.location.href;
     var penultimate_column = column_names.length - 2;
 
     jQuery('#' + table_id).DataTable({
@@ -358,7 +358,7 @@ function build_table(data, column_names, trial_name, target_div) {
         ],
         lengthMenu: [
             [10, 25, 50, -1],
-            [10, 25, 50, "All"]
+            [10, 25, 50, "Todos"]
         ],
         columns: column_names,
         order: [
@@ -370,8 +370,8 @@ function build_table(data, column_names, trial_name, target_div) {
 
         var table = $('#weighted_values_table').DataTable();
         var name_links = table.column(0).data();
-        jQuery("#top_number").append('<option value="">Select a number</option>');
-        jQuery("#top_percent").append('<option value="">Select a percent</option>');
+        jQuery("#top_number").append("<option value=\"\">Selecione um número</option>");
+        jQuery("#top_percent").append("<option value=\"\">Selecione uma porcentagem</option>");
 
         for (i = 1; i <= name_links.length; i++) {
             jQuery("#top_number").append('<option value=' + i + '>' + i + '</option>');
@@ -412,7 +412,7 @@ function build_table(data, column_names, trial_name, target_div) {
 function load_sin() { // update traits and selection index when a saved sin formula is picked
 
     if (!jQuery("#select_trial_for_selection_index option:selected").val()) {
-      document.getElementById('selection_index_error_message').innerHTML = "<center><li class='list-group-item list-group-item-danger'> Error.<br> A trial must be selected before loading a SIN formula.</li></center>";
+      document.getElementById('selection_index_error_message').innerHTML = "<center><li class='list-group-item list-group-item-danger'> Erro.<br> Selecione um ensaio antes de carregar uma fórmula SIN.</li></center>";
       jQuery('#selection_index_error_dialog').modal("show");
       return;
     }
@@ -488,7 +488,7 @@ function load_sin() { // update traits and selection index when a saved sin form
         var trait_synonym = jQuery('#trait_list option[value=' + trait_id + ']').data("synonym");
         var control_html = jQuery('#control_list').html();
         //console.log("control html"+control_html);
-        var trait_html = "<tr id='" + trait_id + "_row'><td><a href='/cvterm/" + trait_id + "/view' data-value='" + trait_id + "'>" + trait_name + "</a></td><td><p id='" + trait_id + "_synonym'>" + trait_synonym + "<p></td><td><input type='text' id='" + coefficient_input_id + "' class='form-control' placeholder='Default is 1'></input></td><td><select class='form-control' id='" + control_select_id + "'>" + control_html + "</select></td><td align='center'><a title='Remove' id='" + trait_id + "_remove' href='javascript:remove_trait(" + trait_id + ")'><span class='glyphicon glyphicon-remove'></span></a></td></tr>";
+        var trait_html = "<tr id='" + trait_id + "_Land'&gt;<td><a href='/cvterm/" + trait_id + "/view' data-value='" + trait_id + "'>" + trait_name + "</a></td><td><p id='" + trait_id + "_synonym'>" + trait_synonym + "<p></td><td><input type='text' id='" + coefficient_input_id + "' class='form-control' placeholder='O padrão é 1'></input></td><td><select class='form-control' id='" + control_select_id + "'>" + control_html + "</select></td><td align='center'><a title='Remover' id='" + trait_id + "_remove' href='javascript:remove_trait(" + trait_id + ")'><span class='glyphicon glyphicon-remove'></span></a></td></tr>";
 
         jQuery('#trait_table').append(trait_html);
         jQuery('#' + coefficient_input_id).val(coefficients[i]);
@@ -498,20 +498,20 @@ function load_sin() { // update traits and selection index when a saved sin form
             omitted_controls.push("<a href='/stock/" + control_id + "/view' data-value='" + control_id + "'>" + controls[i] + "</a>");
         }
     }
-    jQuery('#select_message').text('Add another trait');
+    jQuery('#select_message').text("Adicionar outra característica");
     jQuery('#select_message').attr('selected', true);
     update_formula();
 
     if (omitted_traits.length > 0 && omitted_controls.length > 0) {
-      document.getElementById('selection_index_error_message').innerHTML = "<center><li class='list-group-item list-group-item-danger'> The following parts of the saved SIN formula have been omitted because they were not found in this trial:</li></center><br><center><p>Traits: " + omitted_traits.join(", ") + "</p></center><br><center><p>Controls: " + omitted_controls.join(", ") + "</p></center>";
+      document.getElementById('selection_index_error_message').innerHTML = "<center><li class='list-group-item list-group-item-danger'> As seguintes partes da fórmula SIN salva foram omitidas porque não foram encontradas neste ensaio:</li></center><br><center><p>Características: " + omitted_traits.join(", ") + "</p></center><br><center><p>Testemunhas: " + omitted_controls.join(", ") + "</p></center>";
       jQuery('#selection_index_error_dialog').modal("show");
     }
     else if (omitted_traits.length > 0) {
-      document.getElementById('selection_index_error_message').innerHTML = "<center><li class='list-group-item list-group-item-danger'> The following parts of the saved SIN formula have been omitted because they were not found in this trial:</li></center><br><center><p>Traits: " + omitted_traits.join(", ") + "</p></center>";
+      document.getElementById('selection_index_error_message').innerHTML = "<center><li class='list-group-item list-group-item-danger'> As seguintes partes da fórmula SIN salva foram omitidas porque não foram encontradas neste ensaio:</li></center><br><center><p>Características: " + omitted_traits.join(", ") + "</p></center>";
       jQuery('#selection_index_error_dialog').modal("show");
     }
     else if (omitted_controls.length > 0) {
-      document.getElementById('selection_index_error_message').innerHTML = "<center><li class='list-group-item list-group-item-danger'> The following parts of the saved SIN formula have been omitted because they were not found in this trial:</li></center><br><center><p>Controls: " + omitted_controls.join(", ") + "</p></center>";
+      document.getElementById('selection_index_error_message').innerHTML = "<center><li class='list-group-item list-group-item-danger'> As seguintes partes da fórmula SIN salva foram omitidas porque não foram encontradas neste ensaio:</li></center><br><center><p>Testemunhas: " + omitted_controls.join(", ") + "</p></center>";
       jQuery('#selection_index_error_dialog').modal("show");
     }
 
@@ -526,7 +526,7 @@ function update_formula() {
     //console.log("updating formula....");
     var selected_trait_rows = jQuery('#trait_table').children();
     if (selected_trait_rows.length < 1) {
-        jQuery('#ranking_formula').html("<center><i>Select a trial, then pick traits and coefficients (or load a saved formula).</i></center>");
+        jQuery('#ranking_formula').html("<center><i>Selecione um ensaio e escolha características e coeficientes ou carregue uma fórmula salva.</i></center>");
         jQuery('#calculate_rankings').addClass('disabled');
         jQuery('#save_sin').addClass('disabled');
         return;
@@ -542,7 +542,7 @@ function update_formula() {
         var trait_term = trait; //= "mean "+trait;
         var coefficient = jQuery('#' + trait_id + '_coefficient').val() || 1; // default = 1
         if (jQuery('#' + trait_id + '_control option:selected').val()) { // if control selected for scaling
-            trait_term += " as a fraction of " + jQuery('#' + trait_id + '_control option:selected').text();
+            trait_term += " como uma fração de " + jQuery('#' + trait_id + '_control option:selected').text();
         }
 
         if (term_number == 0 || coefficient <= 0) {

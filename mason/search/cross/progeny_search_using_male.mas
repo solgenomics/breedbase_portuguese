@@ -1,34 +1,34 @@
 
-<& /page/page_title.mas, title=>'Search Progenies of Male Parents / Populations' &>
+<& /page/page_title.mas, title=>'Procure Progênies de pais/populações masculinos' &>
 <br>
-<&| /page/info_section.mas, title => 'Search', collapsible=>1, collapsed=>0&>
+<&| /page/info_section.mas, title => 'Buscar', collapsible=>1, collapsed=>0&>
     <div class="row" id="progeny_search_form_male_parent" >
         <div class="col-sm-12 well">
             <div class="row">
                 <div class="col-sm-10">
                     <div class="form-horizontal">
                         <div class="form-group form-group-sm">
-                            <label class="control-label col-sm-3">Male Parent / Population:</label>
+                            <label class="control-label col-sm-3">Pai/população masculino:</label>
                             <div class="col-sm-9">
                                 <div class="input-group">
-                                    <input type="text" class="form-control" id="male_parent" placeholder="Enter male parent">
+                                    <input type="text" class="form-control" id="male_parent" placeholder="Entre no pai do homem">
                                     <div class="input-group-btn">
-                                        <button class="btn btn-info" id="search_pedigree_female_parents"><i class="glyphicon glyphicon-search"></i> Female Parent </button>
-                                        <button class="btn btn-primary" id="search_all_progenies_using_male"><i class="glyphicon glyphicon-search"></i> All Progenies of this Male Parent </button>
+                                        <button class="btn btn-info" id="search_pedigree_female_parents"><i class="glyphicon glyphicon-search"></i> Parental feminino </button>
+                                        <button class="btn btn-primary" id="search_all_progenies_using_male"><i class="glyphicon glyphicon-search"></i> Todas as progênies deste pai masculino </button>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="form-group form-group-sm">
-                            <label class="control-label col-sm-3">Female Parent:</label>
+                            <label class="control-label col-sm-3">Parente feminina:</label>
                             <div class="col-sm-9" >
                                 <div class="input-group">
                                     <select class="form-control" id="female_parent">
-                                        <option value="">Choose male parent first</option>
+                                        <option value="">Escolha o pai masculino primeiro</option>
                                     </select>
                                     </select>
                                     <div class="input-group-btn">
-                                        <button class="btn btn-info" id="search_pedigree_male_female"><i class="glyphicon glyphicon-search"></i> Progenies of these Parents </button>
+                                        <button class="btn btn-info" id="search_pedigree_male_female"><i class="glyphicon glyphicon-search"></i> Progênies desses pais </button>
                                     </div>
                                 </div>
                             </div>
@@ -39,7 +39,7 @@
         </div>
     </div>
 </&>
-<&| /page/info_section.mas, title => 'Search Results', collapsible=>1, collapsed=>0&>
+<&| /page/info_section.mas, title => 'Resultados da Pesquisa', collapsible=>1, collapsed=>0&>
     <div class="well well-sm">
         <& /util/import_css.mas, paths => ['/documents/inc/datatables/jquery.dataTables.css'] &>
         <div class="panel panel-default">
@@ -47,10 +47,10 @@
                 <table id="pedigree_male_female_search_results" width="100%" class="table table-hover table-striped">
                     <thead>
                         <tr>
-                            <th>Female Parent</th>
-                            <th>Male Parent / Population</th>
-                            <th>Progeny</th>
-                            <th>Cross Type</th>
+                            <th>Parental feminino</th>
+                            <th>Pai/população masculino</th>
+                            <th>Progênie</th>
+                            <th>Tipo Cruzado</th>
                         </tr>
                     </thead>
                 </table>
@@ -58,7 +58,7 @@
         </div>
         <div class="panel panel-default">
             <div class="panel-body">
-                <&| /page/info_section.mas, title => 'Copy Progenies to a List', collapsible=>1, collapsed=>1, subtitle=>'<i>Copy the progeny names showing in table to a new or exisiting list</i>'&>
+                <&| /page/info_section.mas, title => 'Copia progênies para uma lista', collapsible=>1, collapsed=>1, subtitle=>'<i>Copie os nomes de progênie que aparecem na tabela para uma nova ou existante lista.</i>'&>
                     <br>
                     <div style="text-align:right" id="progenies_to_list_menu"></div>
                     <div id="progeny_names" style="display: none;"></div>
@@ -92,14 +92,14 @@ jQuery(document).ready(function (){
                 html = html + "</select>";
                 console.log(html);
                 if(i ==''){
-                    alert("No female parent");
+                    alert("Sem parental feminino");
                     return;
                 }
 
                 jQuery('#female_parent').html(html);
             },
             error:function(response){
-                alert("An error occurred");
+                alert("Ocorreu um erro");
             }
         });
     });

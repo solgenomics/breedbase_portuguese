@@ -87,7 +87,7 @@ function plotGebvScatter() {
     var plotData    = allData.bothAxisValues;
             
     if (plotData == 'undefined') {
-        var message = 'There is no GEBV data to plot. Please report this problem';  
+        var message = "Não há dados de GEBV para gerar o gráfico. Relate este problema";
         jQuery('#gebvPlot2').append(message).show();
     } else {
         var options = { 
@@ -149,7 +149,7 @@ function plotGebvScatter() {
                 xaxis: { 
                     ticks: [], 
                     mode: "categories", 
-                    label: 'Genotypes',
+                    label: "Genótipos",
                 },                  
                 selection: { 
                     mode: "xy", 
@@ -197,9 +197,9 @@ function plotGebvScatter() {
         var zoomHelp = function (lt, tp) {
             
             var help_txt = '<div style="width:140px;height:90px">' +
-                            'To zoom in, select an area ' + 
-                            'on the plot and release or double click at any ' +
-                            'point on the plot.' +
+                            "Para ampliar, selecione uma área " +
+                            "do gráfico e solte o botão ou clique duas vezes em qualquer " +
+                            "ponto do gráfico." +
                            '</div>'; 
      
             jQuery('<div id="tooltip_zoom">' + help_txt  + '</div>').css({ 
@@ -263,7 +263,7 @@ function plotGebvScatter() {
                      mode: 'categories',                 
                      ticks: '',
                      tickColor: '#ffffff',
-                     axisLabel: 'Genotypes',
+                     axisLabel: "Genótipos",
                      position: 'bottom',
                      axisLabelPadding: 20,
                      color: '#0066CC',
@@ -274,7 +274,7 @@ function plotGebvScatter() {
                  yaxis: {                                
                      min: null,
                      max: null, 
-                     axisLabel: 'Trait GEBVs',
+                     axisLabel: "GEBVs da característica",
                      position: 'left',
                      color: '#0066CC',                    
                  },

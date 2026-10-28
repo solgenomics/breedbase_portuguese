@@ -1,45 +1,28 @@
-<& /page/page_title.mas, title => 'Instructions for using the <span class="secretary">SecreTary</span> signal peptide predictor' &>
+<& /page/page_title.mas, title => 'Instruções para usar o <span class="secretary">Secretário</span> preditor de peptídeo de sinal' &>
 
 <& /secretom/secretary/nav.mas, curr_page => 'instructions' &>
 
 <div class="indented_content">
 
   <p>
-   <span class="secretary">SecreTary</span> is for prediction of signal peptides from the amino acid
-   sequence of a protein. Signal peptides generally possess a common
-   structural design, which is characterized by a short, positively
-   charged n-region followed by a hydrophobic region (h-region) and a
-   somewhat polar and uncharged cleavage site (c-region). It should be
-   more emphasized that the h-region is known to be important for the
-   translocation of the signal peptides to the ER. To improve the
-   performance of the signal peptide prediction, we have developed new
-   parameters such as the overall hydrophobicity and amino acid
-   composition in the h-region as input. <span class="secretary">SecreTary</span> is mainly trained
-   and tested on the plant secretome that has been identified through
-   functional screens including a yeast secretion trap.
+   <span class="secretary">Secretário</span> É para predição de peptídeos de sinal da sequência de aminoácidos de uma proteína. Os peptídeos de sinal geralmente possuem um projeto estrutural comum, que é caracterizado por uma região n curta e positivamente carregada seguida por uma região hidrofóbica (região H) e um local de clivagem um tanto polar e sem carga (região C). Deve ser enfatizado que a região H é conhecida por ser importante para a translocação dos peptídeos de sinal para o PS. Para melhorar o desempenho da predição do peptídeo de sinal, desenvolvemos novos parâmetros como a hidrofobicidade geral e composição de aminoácidos na região H como entrada. <span class="secretary">Secretário</span> é principalmente treinado e testado no secretoma da planta que foi identificado através de telas funcionais, incluindo uma armadilha de secreção de levedura.
   </p>
 
   <p>
-   Questions or suggestions about <span class="secretary">SecreTary</span> should be addressed to
-   Jocelyn K.C. Rose (<a href="mailto:jr286@cornell.edu">
+   Perguntas ou sugestões sobre <span class="secretary">Secretário</span> deve ser endereçado a Jocelyn K.C. Rose<a href="mailto:jr286@cornell.edu">
    jr286@cornell.edu</a>).
   </p>
 
 </div>
 
-<&| /page/info_section.mas, title => '1. Input Sequences' &>
+<&| /page/info_section.mas, title => '1. Sequências de Entrada' &>
 
   <p>
-  The amino acid sequences can be input by pasting one or more
-  protein sequences, in <b>FASTA format</b> into the <span class="secretary">SecreTary</span> input
-  page. <span class="secretary">SecreTary</span> analyses proteins at a rate of approximate
-  80/second. At present there is a limit of 10000 sequences. All the
-  input sequences must be in one-letter amino acid code, not case-sensitive.
-  All letters of the alphabet are accepted, but <b>B J O U </b> and <b>Z</b>
-  are replaced by <b>X</b> before analysis.
+  As sequências de aminoácidos podem ser introduzidas colando uma ou mais sequências de proteínas. <b>Formato FASTA</b> para o <span class="secretary">Secretário</span> Página de entrada. <span class="secretary">Secretário</span> analisa proteínas a uma taxa de aproximadamente 80 por segundo. Atualmente há um limite de 10000 sequências. Todas as sequências de entrada devem estar em código de aminoácidos de uma letra, não em caso sensível. Todas as letras do alfabeto são aceitas, mas <b>B J O U </b> e <b>Z</b>
+  são substituídos por <b>X</b> Antes da análise.
   </p>
 
-  <h3>An example:</h3>
+  <h3>Um exemplo:</h3>
   <& /sequence/with_markup.mas,
          seq => Bio::PrimarySeq->new(
                      -id => 'P05117_Tomato',
@@ -51,12 +34,12 @@
 
 </&>
 
-<&| /page/info_section.mas, title => '2. Submission' &>
+<&| /page/info_section.mas, title => '2. Submissão' &>
 
-  Paste the sequence(s) into the window, or click browse to select a 
-  fasta file on your disk for analysis. Then, click on the "Submit" 
-  button. Expect to wait about 10-15 seconds to see the results of
-  analyzing 1000 sequences.
+  Cole a sequência na janela, ou clique em procurar para selecionar um 
+  Fasta no seu disco para análise. Então, clique no "Enviar" 
+  Botão. Espere para esperar cerca de 10-15 segundos para ver os resultados de
+  Analisando 1000 sequências.
 
 </&>
 
@@ -65,24 +48,17 @@
 .blue { background: #aaf }
 
 </style>
-<&| /page/info_section.mas, title => '3. Output' &>
+<&| /page/info_section.mas, title => '3. Saída' &>
 
   <p>
-  For each sequence <span class="secretary">SecreTary</span> gives a score; sequences with scores
-  greater than or equal to 0.75 are predicted to have a signal peptide. 
-  For each predicted signal peptide the 
-  predicted length is shown, and the location of the hydrophobic
-  region (in 
-  <FONT style=BACKGROUND-COLOR: #AAAAFF">blue</FONT>
-  ) within the predicted signal peptide (in 
-  <FONT style=BACKGROUND-COLOR: #FFDD66">yellow</FONT>
-  ). On the input page you can choose
-  to sort the output by score, with the higher scores (strongest
-  candidates) at the top, and you can suppress output for sequences
-  with no predicted signal peptide.
+  Para cada sequência <span class="secretary">Secretário</span> Dá uma pontuação, sequências com pontuação maior ou igual a 0,75 são previstas para ter um peptídeo sinal. Para cada peptídeo de sinal previsto o comprimento previsto é mostrado, e a localização da região hidrofóbica (em 
+  <FONT style=BACKGROUND-COLOR: #AAAAFF">Azul</FONT>
+  ) dentro do peptídeo de sinal previsto (em 
+  <FONT style=BACKGROUND-COLOR: #FFDD66">Amarelo</FONT>
+  ). Na página de entrada você pode escolher classificar a saída por pontuação, com as pontuações mais altas (candidatos mais fortes) no topo, e você pode suprimir a saída para sequências sem sinal peptídeo previsto.
   </p>
 
-  <h3>An example:</h3>
+  <h3>Um exemplo:</h3>
   <pre>
 
 <pre class="secretary_results">
@@ -104,8 +80,8 @@ AT1G44090.1      NO     0         -       MCIYASRQTVCPYLTPFKVKRPKSREMNSSDVNFSLLQ
    </pre>
 </&>
 
-<&| /page/info_section.mas, title => '4. Getting help' &>
-  Please contact: <a href="mailto:sgn-feedback@sgn.cornell.edu">sgn-feedback@sgn.cornell.edu</a>.
+<&| /page/info_section.mas, title => '4. Conseguir ajuda' &>
+  Por favor, contate: <a href="mailto:sgn-feedback@sgn.cornell.edu">sgn-feedback@sgn.cornell.edu</a>.
 </&>
 
-<a href="/secretom/secretary">Return to <span class="secretary">SecreTary</span> input</a>
+<a href="/secretom/secretary">Voltar para <span class="secretary">Secretário</span> entrada</a>

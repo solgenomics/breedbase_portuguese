@@ -63,7 +63,7 @@ my $family_type_label = $family_type_labels{$family_type} || $family_type_string
                             <th>Genitor feminino</th>
                             <th>Tipo de material feminino</th>
                             <th>Ploidia feminina</th>
-                            <th>Genitor masculino</th>
+                            <th>Genitor Masculino</th>
                             <th>Tipo de material masculino</th>
                             <th>Ploidia masculina</th>
 % } elsif ($family_type eq 'reciprocal_parents') {

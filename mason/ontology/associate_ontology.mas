@@ -188,7 +188,7 @@ $trait_db_name => 'SP'
   </form>
 </div>
 
-<div id="ontology" >[carregando...] </div>
+<div id="ontology" >[Carregando...] </div>
 
 <script language="javascript">
   

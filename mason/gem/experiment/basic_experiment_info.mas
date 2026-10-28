@@ -54,7 +54,7 @@ use CXGN::Page::FormattingHelpers  qw/ info_section_html info_table_html columna
 my $basic_info_content;
 my $exp_accession;
 
-my $default_message = '<i><font color="gray">data not available</font></i>';
+my $default_message = '<i><font color="gray">Dados não disponíveis</font></i>';
 
 ## If there aren't any experiment_row that comes from experimental_design_detail.mas, it will return a message.
 
@@ -204,14 +204,14 @@ if (defined $experiment->get_experiment_id()) {
 	   <tr> <td width="25%"> <b>Experimental design:</b>       </td> <td> $expdesign_html </td></tr>
 	   <tr> <td width="25%"> <b>Targets:</b>                   </td> <td> $target_html_list </td></tr>
 	   <tr> <td width="25%"> <b>Ontologies:</b>                </td> <td> $onto_list </td></tr>
-	   <tr> <td width="25%"> <b>Contact info:</b>              </td> <td> <b>Name:</b> $complete_name </td></tr>
+	   <tr> <td width="25%"> <b>Contact info:</b>              </td> <td> <b>Nome:</b> $complete_name </td></tr>
            <tr> <td width="">                                      </td> <td> <b>E-mail:</b> $contact_email </td></tr>
    </table>
 
 HTML
 
 } else {
-   $basic_info_content = "<h1>No experiment data for the specified parameters.</h1>";
+   $basic_info_content = "<h1>Sem dados de experimentos para os parâmetros especificados.</h1>";
 }   
 
 my $basic_info_html;
@@ -219,7 +219,7 @@ if (defined $exp_accession) {
    $basic_info_html = "<center><big><b>Expression Experiment: $exp_accession</b></big></center><br>";
 }
 
-$basic_info_html .= info_section_html( title => "Experiment Basic Information", contents => $basic_info_content );
+$basic_info_html .= info_section_html( title => "Experiência Informações básicas", contents => $basic_info_content );
 
 </%perl>
 

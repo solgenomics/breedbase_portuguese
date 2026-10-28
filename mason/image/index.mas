@@ -49,7 +49,7 @@ $size => 'medium'
 use SGN::Image;
 
 if (!$object_id) { 
-   print "<br /><br />No image is available with these parameters."; 
+   print "<br /><br />Nenhuma imagem está disponível com esses parâmetros."; 
    return; 
  }
 
@@ -57,14 +57,14 @@ my $image = SGN::Image->new($dbh, $object_id);
 
 </%perl>
 
-<& /page/page_title.mas, title=>"SGN Image ".$image->get_name() &>
+<& /page/page_title.mas, title=>"Imagem da SGN ".$image->get_name() &>
 
-<&| /page/info_section.mas, title=>"Image data" &>
+<&| /page/info_section.mas, title=>"Dados da imagem" &>
 
     <& /page/form.mas, object_type=>'image', object_id=>"$object_id", form_name=> 'image_form', server_side_script => '/image/ajax/image_ajax_form.pl', form_div_name=>'image_info_div', js_object_name=> 'image_form', page_url => '/image/index.pl', alternate_new_button => '' &>
 
 </&>
 
-<&| /page/info_section.mas, title=>"Image" &>
+<&| /page/info_section.mas, title=>"Imagem" &>
     <& /image/display_image.mas, image=>$image, size=>$size &>
 </&>

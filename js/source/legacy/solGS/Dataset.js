@@ -159,11 +159,11 @@ solGS.dataset = {
             solGS.combinedTrials.downloadSingleTrialTrainingPopData(singleArgs);
           }
         } else {
-          Alert("No trials ids were found for this dataset");
+          Alert("Nenhum ID de ensaio encontrado para este conjunto de dados");
         }
       },
       error: function (res) {
-        Alert("Error Occurred fetching trials ids in the dataset. " + res.responseText);
+        Alert("Ocorreu um erro ao recuperar os IDs dos ensaios do conjunto de dados. " + res.responseText);
       },
     });
   },
@@ -249,10 +249,10 @@ solGS.dataset = {
 
     if (trainingPopGenoPro != selectionPopGenoPro) {
       var msg =
-        "This dataset of selection candidates has a " +
-        "different genotyping protocol from the training " +
-        "population. Please use a dataset with " +
-        "a matching genotyping protocol.";
+        "Este conjunto de dados de candidatos à seleção possui um " +
+        "protocolo de genotipagem diferente do da população de treinamento. " +
+        "Use um conjunto de dados com " +
+        "um protocolo de genotipagem correspondente.";
 
       solGS.alertMessage(msg);
     } else {

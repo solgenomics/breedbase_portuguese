@@ -12,14 +12,14 @@ $query
 </%args>
 
 <& /page/page_title.mas,
-    title => 'QTL search results',
+    title => 'Resultados da pesquisa QTL',
 &>
   
 % if ($data) 
 % { 
 
 <&| /page/info_section.mas,
-      title => 'Search Results',
+      title => 'Resultados da Pesquisa',
 &>
   <& /page/columnar_table.mas,
      headings    => [ 'Trait name', 'Definition', 'QTL' ],
@@ -37,21 +37,21 @@ $query
 %else
 %{
 <&| /page/info_section.mas,
-      title => 'Search Results',
+      title => 'Resultados da Pesquisa',
 &>
 %if ( $query )
 %{
-<br>No results found for <i><strong>'<% $query %>'.</strong></i><br />
+<br>Nenhum resultado encontrado para <i><strong>'<% $query %>'.</strong></i><br />
 %}
 %else
 %{
-<br>No results. Search again with with a trait name.<br />
+<br>Sem resultados. Procure novamente com um nome característico.<br />
 %}
 </&>
 %}
 
 <&| /page/info_section.mas,
-    title       => 'Search',
+    title       => 'Buscar',
     collapsible => '1',
     collapsed   => 1
  &>

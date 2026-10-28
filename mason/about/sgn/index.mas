@@ -1,14 +1,14 @@
-<& /page/page_title.mas, title=>'About Breedbase'  &>
+<& /page/page_title.mas, title=>'Sobre Breedbase'  &>
 
   
 <div class="col-sm-11 col-md-11 col-lg-11">
-The Breedbase system has evolved from the <a href="https://solgenomics.net">Sol Genomics Network (SGN)</a> and <a href="https://cassavabase.org/">Cassavabase</a> and related sites (see <a href="https://rtbbase.org">RTBbase.org</a>).
+O sistema Breedbase evoluiu a partir da <a href="https://solgenomics.net">Sol Genomics Network (SGN)</a> e <a href="https://cassavabase.org/">Cassavabase</a> e locais relacionados (ver <a href="https://rtbbase.org">RTBbase.org</a>).
 </div>
 <div class="col-sm-11 col-md-11 col-lg-11">
-  Breedbase is striving to be a complete breeding management system, including field management, data collection, crossing utilities, and advanced trial analysis.
+  O Breedbase busca ser um sistema completo de gestão do melhoramento, incluindo manejo de campo, coleta de dados, ferramentas de cruzamento e análise avançada de ensaios.
 </div>
 <div class="col-sm-11 col-md-11 col-lg-11">
-  Please refer to the Breedbase <a href="https://solgenomics.github.io/sgn/">manual</a> for detailed information about available features.
+  Consulte o <a href="https://solgenomics.github.io/sgn/">manual</a> para obter informações detalhadas sobre os recursos disponíveis.
   </div>
 <div class="col-sm-11 col-md-11 col-lg-11">
   <br />

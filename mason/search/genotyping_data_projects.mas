@@ -4,7 +4,7 @@
 
 <& /util/import_javascript.mas, classes => [ 'jquery', 'jquery.dataTables' ] &>
 
-<& /page/page_title.mas, title => "Genotyping Project Search" &>
+<& /page/page_title.mas, title => "Pesquisa do Projeto Genotipagem" &>
 
 <div class="well well-sm">
     <div class="panel panel-default">
@@ -12,16 +12,16 @@
             <table id="genotyping_data_project_search_results" width="100%" class="table table-hover table-striped">
                 <thead>
                     <tr>
-                        <th>Genotyping Project Name</th>
-                        <th>Data Type</th>
-                        <th>Description</th>
-                        <th>Breeding program</th>
-                        <th>Folder</th>
-                        <th>Year</th>
-                        <th>Location</th>
-                        <th>Genotyping Facility</th>
-                        <th>Number of Plates</th>
-                        <th>Total Number of Accessions</th>
+                        <th>Nome do Projeto de Genotipagem</th>
+                        <th>Tipo de Dados</th>
+                        <th>Descrição</th>
+                        <th>programa de melhoramento</th>
+                        <th>Pasta</th>
+                        <th>Ano</th>
+                        <th>Local</th>
+                        <th>Instalação de Genotipagem</th>
+                        <th>Número de placas</th>
+                        <th>Número Total de Adesãos</th>
                     </tr>
                 </thead>
             </table>
@@ -31,7 +31,7 @@
     <div class="panel panel-default">
         <div class="panel-body">
             <br><br>
-            <&| /page/info_section.mas, title => 'Copy Results to a List', collapsible=>1, collapsed=>0, subtitle=>'<i>Copy the genotyping project names currently showing in the search results table to a new or exisiting list</i>'&>
+            <&| /page/info_section.mas, title => 'Copiar resultados para uma lista', collapsible=>1, collapsed=>0, subtitle=>'<i>Copie os nomes do projeto de genotipagem que aparecem na tabela de resultados de busca para uma nova ou exisiting lista</i>'&>
                 <br>
                 <div style="text-align:right" id="genotyping_data_project_to_list_menu"></div>
                 <div id="genotyping_data_project_result_names" style="display: none;"></div>
@@ -42,7 +42,7 @@
 
 <br /><br />
 
-<&| /page/info_section.mas, id=>"protocol_search_accession_filter", title => 'Filter Projects by Accessions', collapsible=>1, collapsed=>0 &>
+<&| /page/info_section.mas, id=>"protocol_search_accession_filter", title => 'Filtrar Projetos por Acesso', collapsible=>1, collapsed=>0 &>
 
 <& /search/genotyping_projects_accession_filter.mas &>
 

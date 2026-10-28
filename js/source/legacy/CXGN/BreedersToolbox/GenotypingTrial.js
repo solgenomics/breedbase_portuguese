@@ -71,7 +71,7 @@ jQuery(document).ready(function ($) {
         plate_data.include_facility_identifiers = jQuery('#upload_genotype_plate_include_facility_identifiers').val();
 
         if (plate_data.name == '') {
-            alert("A name is required and it should be unique in the database. Please try again.");
+            alert("Informe um nome único no banco de dados. Tente novamente.");
             return;
         }
 
@@ -112,18 +112,18 @@ jQuery(document).ready(function ($) {
 
         var l = new CXGN.List();
         if (! l.legacy_validate(plate_data.list_id, 'accessions', true) && ! l.legacy_validate(plate_data.list_id, 'plots', true) && ! l.legacy_validate(plate_data.list_id, 'subplots', true)&& ! l.legacy_validate(plate_data.list_id, 'plants', true) && ! l.legacy_validate(plate_data.list_id, 'tissue_samples', true)) {
-            alert('The list contains elements that are not accessions or plots or subplots or plants or tissue_samples.');
+            alert("A lista contém elementos que não são acessos, parcelas, subparcelas, plantas ou amostras de tecido.");
             return;
         }
 
         var elements = l.getList(plate_data.list_id);
         if (typeof elements == 'undefined' ) {
-            alert("There are no elements in the list provided.");
+            alert("A lista informada não contém elementos.");
             return;
         }
 
         if (elements.length > plate_data.plate_format) {
-            alert("The list needs to have less than 96 or 384 elements depending on the plate format you selected");
+            alert("A lista deve conter menos de 96 ou 384 elementos, conforme o formato de placa selecionado");
             return;
         }
 
@@ -143,15 +143,15 @@ jQuery(document).ready(function ($) {
             },
             success: function(response) {
                 if (response.metadata.status[0].message) {
-                    alert('Login failed. '+JSON.stringify(response.metadata.status[0].message));
+                    alert("Falha ao entrar. "+JSON.stringify(response.metadata.status[0].message));
                 }
                 else {
-                    alert("Success!"+ JSON.stringify(response)+" which is "+response.result.access_token);
+                    alert("Sucesso!"+ JSON.stringify(response)+" que é "+response.result.access_token);
                     access_token = response.result.access_token;
                 }
             },
             error: function(response) {
-                alert("An error occurred trying to log into the sequencing facility server. Please try again later.");
+                alert("Ocorreu um erro ao entrar no servidor da unidade de sequenciamento. Tente novamente mais tarde.");
             }
         });
         return access_token;
@@ -163,7 +163,7 @@ jQuery(document).ready(function ($) {
         auth_data = get_genotyping_server_credentials();
 
         if (auth_data.error) {
-            alert("Genotyping server credentials are not available. Stop.");
+            alert("As credenciais do servidor de genotipagem não estão disponíveis. Operação interrompida.");
             return;
         }
 
@@ -177,7 +177,7 @@ jQuery(document).ready(function ($) {
         if (access_token) {
             auth_data.token = access_token;
 
-            alert("Sending genotyping experiment entry to genotyping facility...");
+            alert("Enviando o registro do experimento de genotipagem à unidade de genotipagem...");
 
             $.ajax( {
                 url: auth_data.host+'/brapi/v2/plate-register',
@@ -194,7 +194,7 @@ jQuery(document).ready(function ($) {
                         alert(response.metadata.status);
                     }
                     else {
-                        alert("Successfully submitted the plate to GDF.");
+                        alert("Placa enviada ao GDF com sucesso.");
                     }
                 }
             });
@@ -223,7 +223,7 @@ jQuery(document).ready(function ($) {
                 }
             },
             error: function(response) {
-                alert("An error occurred. Please try again later.");
+                alert("Ocorreu um erro. Tente novamente mais tarde.");
             }
         });
     }
@@ -250,7 +250,7 @@ jQuery(document).ready(function ($) {
                 }
             },
             error: function(response) {
-                alert('An error occurred trying the create the layout.');
+                alert("Ocorreu um erro ao criar a disposição espacial.");
                 jQuery("working_modal").modal('hide');
             }
         });
@@ -314,7 +314,7 @@ jQuery(document).ready(function ($) {
                 }
             },
             error: function(response) {
-                alert('An error occurred trying the create the layout.');
+                alert("Ocorreu um erro ao criar a disposição espacial.");
                 jQuery("#working_modal").modal('hide');
             }
         });
@@ -336,7 +336,7 @@ jQuery(document).ready(function ($) {
             },
             error: function(response) {
                 return {
-                    error : "An error occurred",
+                    error : "Ocorreu um erro",
                 };
             }
         });
@@ -352,7 +352,7 @@ jQuery(document).ready(function ($) {
                     console.log(response);
                 },
                 error: function(response) {
-                    alert("BrAPI vendor specifications call to IGD did not work.");
+                    alert("A chamada BrAPI de especificações do fornecedor ao IGD falhou.");
                 }
             });
         }
@@ -360,13 +360,13 @@ jQuery(document).ready(function ($) {
 
     $('#delete_layout_data_by_trial_id').click(function() {
         var trial_id = get_trial_id();
-        var yes = confirm("Are you sure you want to delete this experiment with id "+trial_id+" ? This action cannot be undone.");
+        var yes = confirm("Tem certeza de que deseja excluir o experimento com ID "+trial_id+" ? Esta ação não pode ser desfeita.");
         if (yes) {
             jQuery.ajax({
                 url: '/ajax/breeders/trial/'+trial_id+'/delete/layout',
                 beforeSend: function(){
                     jQuery('#working_modal').modal("show");
-                    jQuery('#working_msg').html("Deleting genotyping plate...<br />");
+                    jQuery('#working_msg').html("Excluindo a placa de genotipagem...<br />");
                 },
                 success: function(response) {
                     if (response.error) {
@@ -375,14 +375,14 @@ jQuery(document).ready(function ($) {
                     else {
                         jQuery('#working_modal').modal("hide");
                         jQuery('#working_msg').html('');
-                        alert('The genotyping plate has been deleted.'); // to do: give some idea how many items were deleted.
+                        alert("A placa de genotipagem foi excluída."); // to do: give some idea how many items were deleted.
                         window.location.href="/breeders/trial/"+trial_id;
                     }
                 },
                 error: function(response) {
                     jQuery('#working_modal').modal("hide");
                     jQuery('#working_msg').html('');
-                    alert("An error occurred.");
+                    alert("Ocorreu um erro.");
                 }
             });
         }
@@ -450,7 +450,7 @@ jQuery(document).ready(function ($) {
 
                 if (response.missing_stocks && response.missing_stocks.length > 0){
                     jQuery('#upload_genotypes_missing_stocks_div').show();
-                    var missing_stocks_html = "<div class='well well-sm'><h3>Add the missing stocks to a list as accessions</h3><div id='upload_genotypes_missing_stock_vals' style='display:none'></div><div id='upload_genotypes_add_missing_stocks'></div></div><br/>";
+                    var missing_stocks_html = "<div class='well well-sm'><h3>Adicionar os materiais ausentes a uma lista de acessos</h3><div id='upload_genotypes_missing_stock_vals' style='display:none'></div><div id='upload_genotypes_add_missing_stocks'></div></div><br/>";
                     jQuery("#upload_genotypes_add_missing_stocks_html").html(missing_stocks_html);
 
                     var missing_stocks_vals = '';
@@ -465,9 +465,9 @@ jQuery(document).ready(function ($) {
                 }
                 if (response.missing_markers && response.missing_markers.length > 0) {
                     jQuery('#upload_genotypes_missing_marker_div').show();
-                    var missing_markers_html = "<div class='well well-sm'><h3>Markers not in selected protocol</h3><div class='missing-markers-list'></div></div><br/>";
+                    var missing_markers_html = "<div class='well well-sm'><h3>Marcadores ausentes no protocolo selecionado</h3><div class='missing-markers-list'></div></div><br/>";
                     jQuery("#upload_genotypes_add_missing_marker_html").html(missing_markers_html);
-                    var missing_markers_html_text = "<div><strong>Missing markers:</strong><br/>" + response.missing_markers.join(', ') + "</div>";
+                    var missing_markers_html_text = "<div><strong>Marcadores ausentes:</strong><br/>" + response.missing_markers.join(', ') + "</div>";
                     //jQuery("#upload_genotypes_add_missing_marker_html .missing-markers-list").html(missing_markers_html_text);
                 } else {
                     jQuery('#upload_genotypes_missing_marker_div').hide();
@@ -483,7 +483,7 @@ jQuery(document).ready(function ($) {
                 return;
             }
             if (response.success) {
-                var success_string = "<h4>Go to your <a href='/breeders/trial/"+response.project_id+"'>genotyping project page</a></h4>";
+                var success_string = "<h4>Acesse sua <a href='/breeders/trial/"+response.project_id+"'>página do projeto de genotipagem</a></h4>";
                 console.log(success_string);
                 jQuery('#upload_genotype_submit_complete').html(success_string);
                 Workflow.complete('#upload_genotype_submit');
@@ -536,7 +536,7 @@ function edit_genotyping_trial_details(){
             if(jQuery('#'+id).is("select")){
                 new_value = changed_elements[i].options[changed_elements[i].selectedIndex].text
             }
-            success_message += "<li class='list-group-item list-group-item-success'> Changed "+type+" to: <b>"+new_value+"</b></li>";
+            success_message += "<li class='list-group-item list-group-item-success'> Mudou "+type+" para: <b>"+new_value+"</b></li>";
         }
 
         save_genotyping_trial_details(categories, new_details, success_message);
@@ -572,7 +572,7 @@ function save_genotyping_trial_details (categories, details, success_message) {
       }
     },
     error: function(response) {
-      document.getElementById('genotyping_trial_details_error_message').innerHTML = "<li class='list-group-item list-group-item-danger'> Trial detail update AJAX request failed. Update not completed.</li>";
+      document.getElementById('genotyping_trial_details_error_message').innerHTML = "<li class='list-group-item list-group-item-danger'> A solicitação de atualização dos detalhes do ensaio falhou. A atualização não foi concluída.</li>";
       jQuery('#genotyping_trial_details_error_dialog').modal("show");
     },
   });
@@ -587,7 +587,7 @@ function save_replace_well_accession () {
     var old_plot_id = jQuery('#plot_id').html();
     var old_plot_name = jQuery('#plot_name').html();
 
-    var yes = confirm("Are you sure you want to replace accession "+ old_accession +" with "+ new_accession +" in sample " + old_plot_name + " ?");
+    var yes = confirm("Tem certeza de que deseja substituir o acesso "+ old_accession +" Por quê? "+ new_accession +" na amostra " + old_plot_name + " ?");
     if (yes) {
         jQuery('#replace_plate_accessions_dialog').modal("hide");
         jQuery('#working_modal').modal("show");
@@ -607,7 +607,7 @@ function save_replace_well_accession () {
               jQuery('#working_modal').modal("hide");
 
               if (response.error) {
-                alert("Error Replacing Plot Accession: "+response.error);
+                alert("Erro ao substituir o acesso da parcela: "+response.error);
               }
               else {
                 jQuery('#replace_accessions_dialog_message').modal("show");
@@ -615,7 +615,7 @@ function save_replace_well_accession () {
             },
             error: function () {
               jQuery('#working_modal').modal("hide");
-              alert('An error occurred replacing plot accession');
+              alert("Ocorreu um erro ao substituir o acesso da parcela");
             }
         });
     }

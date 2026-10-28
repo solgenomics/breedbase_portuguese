@@ -2,7 +2,7 @@
     $locus_id
 </%args>
 
-<div id="solcyc" >[loading...]</div>
+<div id="solcyc" >[Carregando ...]</div>
 <script language="javascript" type="text/javascript">
 
   jQuery(document).ready( function() { 

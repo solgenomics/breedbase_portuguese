@@ -10,7 +10,7 @@ $traits_list
 </%args>
 
 <& /page/page_title.mas, 
-   title=>'List of traits with GS data'
+   title=>'Lista de características com dados GS'
 &>
 
 <&| /page/info_section.mas, 

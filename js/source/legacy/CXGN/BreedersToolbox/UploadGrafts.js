@@ -43,7 +43,7 @@ jQuery(document).ready(function ($) {
             $('#working_modal').modal("show");
             if (uploadedGraftsFile === '') {
                 $('#working_modal').modal("hide");
-                alert("No file selected");
+                alert("Nenhum arquivo selecionado");
             }
         },
         complete: function (r) {
@@ -56,7 +56,7 @@ jQuery(document).ready(function ($) {
             var html;
 
             if (response.error) {
-                html = '<h3>The Following Issues Were Identified</h3><p class="bg-warning">'+response.error+'</p>';
+                html = '<h3>Foram identificados os seguintes problemas</h3><p class="bg-warning">'+response.error+'</p>';
 		$('#upload_graft_store').prop("disabled", true);
             }
             else {
@@ -64,7 +64,7 @@ jQuery(document).ready(function ($) {
                 archived_filename = response.archived_filename_with_path;
 
 		$('#upload_graft_store').prop("disabled", false);
-                html = '<h3>There Were No Issues Identified</h3>Please click the "Store" button to save the grafts to the database.';
+                html = '<h3>Nenhum problema foi identificado</h3>Clique no botão "Armazenar" para salvar os enxertos no banco de dados.';
             }
             $("#upload_graft_validate_display tbody").html(html);
             $("#upload_graft_validate_display").modal('show');
@@ -75,7 +75,7 @@ jQuery(document).ready(function ($) {
         var uploadFile = $("#graft_uploaded_file").val();
         $('#upload_graft_form').attr("action", "/ajax/grafts/upload_verify");
         if (uploadFile === '') {
-            alert("Please select a file");
+            alert("Selecione um arquivo");
             return;
         }
         $("#upload_graft_form").submit();
@@ -98,7 +98,7 @@ jQuery(document).ready(function ($) {
             success: function(response) {
                 jQuery('#working_modal').modal('hide');
                 if (response.error) {
-                    alert('An Error Occured: No grafts were saved! Try Fixing Your File For The Issues Identified In the Validation. '+response.error);
+                    alert('Ocorreu um erro: nenhum enxerto foi salvo! Corrija no arquivo os problemas identificados na validação. '+response.error);
                 }
                 else {
 		    //alert("RESPONSE: "+JSON.stringify(response));
@@ -110,7 +110,7 @@ jQuery(document).ready(function ($) {
             error: function(response) {
                 jQuery('#working_modal').modal('hide');
 		jQuery('#list_of_grafts_with_problems').html(response.list_of_grafts_with_problems);
-                alert('An error occurred storing the grafts. None were uploaded.'+response.responseText);
+                alert('Ocorreu um erro ao armazenar os enxertos. Nenhum foi enviado. '+response.responseText);
             }
         });
     });

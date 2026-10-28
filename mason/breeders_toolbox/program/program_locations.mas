@@ -39,7 +39,7 @@ jQuery(document).ready(function (){
             // put working animation handling here
         },
         success: function(response){
-            var export_message = window.location.href + ' location data.';
+            var export_message = window.location.href + " dados de localização.";
             locationJSON = JSON.parse(response.data);
             //console.log("Data is "+JSON.stringify(locationJSON, null, 2));
 

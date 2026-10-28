@@ -53,7 +53,7 @@ my $corr_n = 0;
 
 ## Define the default message
 
-my $default_message = '<font color="gray"><i>No available</i></font>';
+my $default_message = '<font color="gray"><i>Não está disponível</i></font>';
 
 ## Define the internal links associated to the internal accessions
 ## This should be replace for other system
@@ -118,9 +118,9 @@ if (defined $template) {
   	   ## Construct the table for the data
 
   	   $corr_analysis_html .= '<table width="100%">';
-  	   $corr_analysis_html .= '<tr> <td width="30%"> <b>Correlation Analisis ID: </b> </td> <td>' . $corr_id     . '</td></tr>';
-  	   $corr_analysis_html .= '<tr> <td width="30%"> <b>Methodology:             </b> </td> <td>' . $methodology . '</td></tr>';
-  	   $corr_analysis_html .= '<tr> <td width="30%"> <b>Description:             </b> </td> <td>' . $description . '</td></tr>';
+  	   $corr_analysis_html .= '<tr> <td width="30%"> <b>Correlação Analisis ID: </b> </td> <td>' . $corr_id     . '</td></tr>';
+  	   $corr_analysis_html .= '<tr> <td width="30%"> <b>Metodologia:             </b> </td> <td>' . $methodology . '</td></tr>';
+  	   $corr_analysis_html .= '<tr> <td width="30%"> <b>Descrição:             </b> </td> <td>' . $description . '</td></tr>';
   	   $corr_analysis_html .= '</table><br>';
   	   $corr_n++;
 
@@ -203,7 +203,7 @@ if (defined $template) {
 
   		    my $temp_count = ' (' . scalar(@corr_member_ids) . ' templates correlated)'; 
   		    $corr_analysis_html .= '<table width="100%">';
-  		    $corr_analysis_html .= '<tr> <td width ="2%"></td><td width="28%"> <b>Correlation Type: </b> </td>';
+  		    $corr_analysis_html .= '<tr> <td width ="2%"></td><td width="28%"> <b>Tipo de Correlação: </b> </td>';
   		    $corr_analysis_html .= ' <td align="left">'.$corr_type . $temp_count .'</td></tr>';
   		    $corr_analysis_html .= '</table><br>';
   	       }
@@ -264,7 +264,7 @@ if (defined $template) {
        $corr_analysis_html = 'No correlation analysis was found associated to this template';
    }
    $corr_analysis_content = info_section_html( 
-                                               title       => "Correlation analysis (".$corr_n.")", 
+                                               title       => "Análise de correlação (".$corr_n.")", 
 					       contents    => $corr_analysis_html,
 					       collapsible => 1,
 					       collapsed   => 1, 

@@ -156,6 +156,6 @@ sub cosii_data_files {
 
 </%perl>
 
-<&| /page/info_section.mas, title=>"Orthologs in this COSII group" &>
+<&| /page/info_section.mas, title=>"Ortologistas neste grupo COSII" &>
   <& /page/columnar_table.mas, headings => $table_headings, data => $table_data, __align => 'llcccc' &>
 </&>

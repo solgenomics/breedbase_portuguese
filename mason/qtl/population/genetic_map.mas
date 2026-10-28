@@ -23,7 +23,7 @@ $genetic_map
 <&| /page/info_section.mas, 
       collapsible => 1, 
       collapsed   => 1, 
-      title       => "Genetic map" 
+      title       => "Mapa genético" 
 &> 
 
   <% $genetic_map %>

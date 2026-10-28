@@ -39,12 +39,12 @@ export function createDownloadTools({ qs, key, sanitizeTrialName, collectLayoutJ
   }
 
   function cleanSheetName(name) {
-    return String(name || 'Sheet').replace(/[\[\]:*?/\\]/g, '_').slice(0, 31);
+    return String(name || "Planilha").replace(/[\[\]:*?/\\]/g, '_').slice(0, 31);
   }
 
   function downloadExcelWorkbook(filename, sheets) {
     if (!window.JSZip) {
-      alert('The XLSX export library is not available on this page.');
+      alert("A biblioteca de exportação XLSX não está disponível nesta página.");
       return;
     }
 
@@ -235,7 +235,7 @@ ${worksheetEntries.map(sheet => `  <Relationship Id="rId${sheet.id}" Type="http:
     const rows = collectPlantingMapRows(layout, settings);
 
     if (!rows.length) {
-      alert('Place trials, borders, or fillers before downloading the planting map.');
+      alert("Posicione ensaios, bordaduras ou preenchimentos antes de baixar o mapa de plantio.");
       return;
     }
 
@@ -259,7 +259,7 @@ ${worksheetEntries.map(sheet => `  <Relationship Id="rId${sheet.id}" Type="http:
 
     downloadExcelWorkbook(filename, [
       { name: 'Planting_Map', headers: plotHeaders, rows },
-      { name: 'Settings', headers: ['setting', 'value'], rows: settingsRows }
+      { name: "Configurações", headers: ['setting', 'value'], rows: settingsRows }
     ]);
   }
 
@@ -297,7 +297,7 @@ ${worksheetEntries.map(sheet => `  <Relationship Id="rId${sheet.id}" Type="http:
     qs("#export-full-jpg-btn")?.addEventListener("click", function () {
       const exportGrid = createFullGridExportElement();
       if (!exportGrid) {
-        alert("Set the field rows and columns before exporting the full grid.");
+        alert("Defina as linhas e colunas do campo antes de exportar a grade completa.");
         return;
       }
 
@@ -316,7 +316,7 @@ ${worksheetEntries.map(sheet => `  <Relationship Id="rId${sheet.id}" Type="http:
         link.click();
       }).catch(error => {
         console.error("Full grid export failed:", error);
-        alert("Could not export the full field grid.");
+        alert("Não foi possível exportar a grade completa do campo.");
       }).finally(() => {
         exportGrid.remove();
       });

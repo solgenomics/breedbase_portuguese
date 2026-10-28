@@ -12,7 +12,7 @@ $table_only => undef
 
 % if (!$table_only){
 
-<h1>PLACA DE GENOTIPAGEM</h1>
+<h1>PLACA DE GENOTIPAGIA</h1>
 <h1>Programa de melhoramento: <% $breeding_program_name %></h1>
 <h2>Nome do ensaio: <a href='/breeders/trial/<% $trial_id %>'><% $trial_name %></a></h2>
 <br/>
@@ -21,7 +21,7 @@ $table_only => undef
 
 <div id="trial_plate_view_html">
 <div class="well">
-[CARREGANDO...]
+[CARREGANDO ...]
 </div>
 </div>
 

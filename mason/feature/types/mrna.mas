@@ -27,8 +27,8 @@
 %    for my $seqs ( mrna_cds_protein_sequence( $feature ) ) {
 %       if( $seqs->[0] ) {
         <&| /page/info_section.mas,
-                title         => 'mRNA sequence',
-                subtitle      => 'spliced mRNA sequence, including UTRs',
+                title         => 'Sequência de mRNA',
+                subtitle      => 'Sequência de MRNA dividida, incluindo UTRs',
                 collapsible   => 1,
                 collapsed     => 0,
         &>
@@ -50,8 +50,8 @@
 %    }
 
 <&| /page/info_section.mas,
-     title         => 'Genomic sequence(s)',
-     subtitle      => "unprocessed genomic sequence underlying each location of this mRNA",
+     title         => 'Sequência(s) genômica(s)',
+     subtitle      => "Sequência genômica não processada subjacente a cada local deste mRNA",
      collapsible   => 1,
      collapsed     => 1,
      hide_if_empty => 1,
@@ -63,7 +63,7 @@
 </&>
 
 <&| /page/info_section.mas,
-   title => 'Related features',
+   title => 'Características relacionadas',
    collapsible => 1,
    hide_if_empty => 1,
 &>
@@ -76,8 +76,8 @@
 </&>
 
 <&| /page/info_section.mas,
-     title => 'Related views',
-     empty_message => 'None found',
+     title => 'Visão relacionada',
+     empty_message => 'Nenhum encontrado',
      collapsible => 1,
      is_empty => ! scalar @$xrefs,
  &>

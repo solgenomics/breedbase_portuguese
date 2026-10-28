@@ -146,11 +146,11 @@ SGN.Search.Feature = {
                         '->',
                         { xtype: 'label',
                           id: 'feature_export_toolbar_disabled_label',
-                          text: 'Exporting limited to '+ Ext.util.Format.number( maximum_export_size, '0,000' )+' features.',
+                          text: "Exportação limitada a "+ Ext.util.Format.number( maximum_export_size, '0,000' )+' features.',
                           hidden: true
                         },{
                             xtype: 'button',
-                            text: 'Save as',
+                            text: "Salvar como",
                             icon: '/img/icons/oxygen/16x16/media-floppy.png',
                             menu: {
                                 items: [
@@ -167,18 +167,18 @@ SGN.Search.Feature = {
                             }
                         },{
                             xtype: 'button',
-                            text: 'Send to',
+                            text: "Enviar para",
                             icon: '/img/icons/oxygen/16x16/document-export.png',
                             menu: {
                                 items: [
                                     {
-                                        text: 'bulk feature download',
+                                        text: "baixar características em lote",
                                         icon: '/img/icons/oxygen/16x16/document-export-table.png',
                                         handler: function() {
                                             export_to_bulk( '/bulk/feature' );
                                         }
                                     },{
-                                        text: 'bulk gene download',
+                                        text: "baixar genes em lote",
                                         icon: '/img/icons/oxygen/16x16/document-export-table.png',
                                         handler: function() {
                                             export_to_bulk( '/bulk/gene' );
@@ -193,7 +193,7 @@ SGN.Search.Feature = {
                     store: feature_store,   // same store GridPanel is using
                     dock: 'bottom',
                     displayInfo: true,
-                    emptyMsg: 'No matching features'
+                    emptyMsg: "Nenhuma característica correspondente"
                    }
                 ],
 
@@ -204,19 +204,19 @@ SGN.Search.Feature = {
                 columns:[
                 {
                     id: 'organism',
-                    text: "Organism",
+                    text: "Organismo",
                     dataIndex: 'organism',
                     width: 150,
                     sortable: true,
                     flex: 1
                 },{
-                    text: "Type",
+                    text: "Tipo",
                     dataIndex: 'type',
                     width: 90,
                     hidden: false,
                     sortable: true
                 },{
-                    text: "Name",
+                    text: "Nome",
                     dataIndex: 'name',
                     align: 'center',
                     width: 150,
@@ -230,7 +230,7 @@ SGN.Search.Feature = {
                          );
                     }
                 },{
-                    text: "Description",
+                    text: "Descrição",
                     dataIndex: 'description',
                     align: 'left',
                     width: 200,
@@ -238,7 +238,7 @@ SGN.Search.Feature = {
                     flex: 1,
                     renderer: hyphen_if_empty
                 },{
-                    text: "Location(s)",
+                    text: "Local(is)",
                     dataIndex: 'locations',
                     align: 'left',
                     width: 200,
@@ -335,16 +335,16 @@ SGN.Search.Feature = {
                   renderTo: document.getElementById('search_form'),
                   items: [
                       {
-                          fieldLabel: 'Name contains',
+                          fieldLabel: "O nome contém",
                           name: 'name'
                       },
                       {
-                          fieldLabel: 'Organism contains',
+                          fieldLabel: "O organismo contém",
                           name: 'organism'
                       },
                       {
                           xtype: 'combobox',
-                          fieldLabel: 'Type is',
+                          fieldLabel: "O tipo é",
                           id: 'feature_type_select',
                           name: 'type_id',
                           store: feature_types_store,
@@ -356,12 +356,12 @@ SGN.Search.Feature = {
                           listeners: {} // don't override the combobox's enter key
                       },
                       {
-                          fieldLabel: 'Description contains',
+                          fieldLabel: "A descrição contém",
                           name: 'description'
                       },
                       {
                           xtype: 'fieldset',
-                          title: 'Overlaps range',
+                          title: "Sobrepõe o intervalo",
                           width: 425,
                           layout: 'hbox',
                           defaults: feature_search_field_defaults,
@@ -414,7 +414,7 @@ SGN.Search.Feature = {
                       },
                       {
                           xtype: 'fieldset',
-                          title: 'Has property',
+                          title: "Possui a propriedade",
                           width: 425,
                           layout: 'hbox',
                           defaultType: 'textfield',
@@ -433,7 +433,7 @@ SGN.Search.Feature = {
                               typeAhead: true,
                               listeners: {} // don't override the combobox's enter key
                             },{
-                              fieldLabel: 'containing',
+                              fieldLabel: "contendo",
                               labelWidth: 75,
                               labelAlign: 'right',
                               name: 'prop_value',
@@ -446,13 +446,13 @@ SGN.Search.Feature = {
                     defaults: feature_search_field_defaults,
                     buttons: [
                         {
-                            text: 'Clear',
+                            text: "Limpar",
                             handler: function() {
                                 var form = this.up('form').getForm();
                                 form.reset();
                             }
                         },{
-                            text: 'Apply',
+                            text: "Aplicar",
                             handler: function() {
                                 applyFeatureFilters( this.up('form').getForm() );
                             }

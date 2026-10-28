@@ -220,7 +220,7 @@
                                     <div class="col-sm-9">
                                         <select class="form-control" id="add_new_trait_scale_format" name="add_new_trait_scale_format" >
                                             <option value="">Selecione uma opção</option>
-                                            <option value="qualitative">qualitativa</option>
+                                            <option value="qualitative">Qualitativa</option>
                                             <option value="quantitative">quantitativa</option>
                                         </select>
                                     </div>
@@ -228,7 +228,7 @@
                                 <div class="form-group">
                                     <label class="col-sm-3 control-label">Mínimo da nova escala: </label>
                                     <div class="col-sm-9">
-                                        <input class="form-control" id="add_new_trait_scale_minimum" name="add_new_trait_scale_minimum" type="text" placeholder="ex.: 1"/>
+                                        <input class="form-control" id="add_new_trait_scale_minimum" name="add_new_trait_scale_minimum" type="text" placeholder="Ex.: 1"/>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -240,13 +240,13 @@
                                 <div class="form-group">
                                     <label class="col-sm-3 control-label">Categorias da nova escala (separadas por '/'): </label>
                                     <div class="col-sm-9">
-                                        <input class="form-control" id="add_new_trait_scale_categories" name="add_new_trait_scale_categories" type="text" placeholder="ex.: 1/3/5/7"/>
+                                        <input class="form-control" id="add_new_trait_scale_categories" name="add_new_trait_scale_categories" type="text" placeholder="Ex.: 1/3/5/7"/>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-sm-3 control-label">Valor padrão da nova escala: </label>
                                     <div class="col-sm-9">
-                                        <input class="form-control" id="add_new_trait_scale_default" name="add_new_trait_scale_default" type="text" placeholder="ex.: 5"/>
+                                        <input class="form-control" id="add_new_trait_scale_default" name="add_new_trait_scale_default" type="text" placeholder="ex: 5"/>
                                     </div>
                                 </div>
                             </form>

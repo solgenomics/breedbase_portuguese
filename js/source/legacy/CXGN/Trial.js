@@ -1,7 +1,7 @@
 // Depends on CXGN.BreedersToolbox.HTMLSelect
 
 function delete_phenotype_data_by_trial_id(trial_id) {
-    var yes = confirm("Are you sure you want to delete all phenotypic data associated with trial "+trial_id+" ? This action cannot be undone.");
+    var yes = confirm("Tem certeza de que deseja excluir todos os dados fenotípicos associados ao ensaio "+trial_id+" ? Esta ação não pode ser desfeita.");
     if (yes) {
 
 	jQuery.ajax( {
@@ -15,13 +15,13 @@ function delete_phenotype_data_by_trial_id(trial_id) {
            alert(response.error);
 		       }
 		    else {
-		       alert('The phenotypic data has been deleted.'); // to do: give some idea how many items were deleted.
+		       alert("Os dados fenotípicos foram excluídos."); // to do: give some idea how many items were deleted.
 		    window.location.href="/breeders/trial/"+trial_id;
 		}
             },
       error: function(response) {
 		    jQuery('#working_modal').modal('hide');
-		    alert("An error occurred.");
+		    alert("Ocorreu um erro.");
             }
 	});
  }
@@ -29,14 +29,14 @@ function delete_phenotype_data_by_trial_id(trial_id) {
 
 
 function delete_layout_data_by_trial_id(trial_id) {
-    var yes = confirm("Are you sure you want to delete the layout data associated with trial "+trial_id+" and the trial entry itself? This action cannot be undone.");
+    var yes = confirm("Tem certeza de que deseja excluir os dados de disposição espacial associados ao ensaio "+trial_id+" e o próprio registro do ensaio? Esta ação não pode ser desfeita.");
     if (yes) {
 
         jQuery.ajax( {
             url: '/ajax/breeders/trial/'+trial_id+'/delete/layout',
             beforeSend: function(){
                 jQuery('#working_modal').modal('show');
-                jQuery('#working_msg').html("Deleting trial layout...<br />");
+                jQuery('#working_msg').html("Excluindo a disposição espacial do ensaio...<br />");
             },
             success: function(response) {
                 if (response.error) {
@@ -45,14 +45,14 @@ function delete_layout_data_by_trial_id(trial_id) {
                 else {
                     jQuery('#working_modal').modal('hide');
                     jQuery('#working_msg').html('');
-                    alert('The field trial has been deleted.'); // to do: give some idea how many items were deleted.
+                    alert("O ensaio de campo foi excluído."); // to do: give some idea how many items were deleted.
                     window.location.href="/breeders/trial/"+trial_id;
                 }
             },
             error: function(response) {
                 jQuery('#working_modal').modal('hide');
                 jQuery('#working_msg').html('');
-                alert("An error occurred.");
+                alert("Ocorreu um erro.");
             }
         });
     }
@@ -67,7 +67,7 @@ function associate_breeding_program() {
 	url: '/breeders/program/associate/'+program+'/'+ trial_id,
 	async: false,
 	success: function(response) {
-            alert("Associated program with id "+program + " to trial with id "+ trial_id);
+            alert("Programa associado com ID "+program + " ao ensaio com ID "+ trial_id);
 
 	}
     });
@@ -78,7 +78,7 @@ function load_breeding_program_info(trial_id) {
 	url:'/breeders/programs_by_trial/'+trial_id,
 	success: function(response) {
             if (response.error) {
-		jQuery('#breeding_programs').html('[ An error occurred fetching the breeding program information ]');
+		jQuery('#breeding_programs').html("[ Ocorreu um erro ao recuperar as informações do programa de melhoramento ]");
             }
             else {
 		var programs = response.projects;
@@ -90,7 +90,7 @@ function load_breeding_program_info(trial_id) {
             }
 	},
 	error: function() {
-	    jQuery('#breeding_programs').html('[ An error occurred ]');
+	    jQuery('#breeding_programs').html("[ Ocorreu um erro ]");
 	}
     });
 }
@@ -131,8 +131,8 @@ function create_DataCollector() {
      jQuery('#working_modal').modal("hide");
 
      if (response.error) {
-       console.log("error: "+response.error);
-       alert("error: "+response.error);
+       console.log("erro: "+response.error);
+       alert("erro: "+response.error);
        jQuery('#open_create_DataCollector_dialog').dialog("close");
      } else {
        //alert("success: "+response.filename);
@@ -144,7 +144,7 @@ function create_DataCollector() {
 	 error: function () {
 	     //jQuery('#working').dialog("close");
 	     jQuery('#working_modal').modal("hide");
-             alert('An error occurred creating a DataCollector file.');
+             alert("Ocorreu um erro ao criar um arquivo do DataCollector.");
              jQuery('#open_download_DataCollector_dialog').dialog("close");
 	 }
      });
@@ -169,7 +169,7 @@ function compute_derived_trait() {
     var trait = jQuery('#derived_trait_select').val();
     var trialID = parseInt(jQuery('#trialIDDiv').text());
     if (trait === '') {
-		alert("No trait selected");
+		alert("Nenhuma característica selecionada");
 	    }
 
      new jQuery.ajax({
@@ -185,7 +185,7 @@ function compute_derived_trait() {
 	     jQuery('#working_modal').modal("hide");
 
              if (response.error) {
-		 alert("Computation stopped: "+response.error);
+		 alert("Cálculo interrompido: "+response.error);
 		 //alert("Computation for "+trait+" stopped: "+response.error);
 		 jQuery('#open_derived_trait_dialog').dialog("close");
 
@@ -193,13 +193,13 @@ function compute_derived_trait() {
 		 jQuery('#open_derived_trait_dialog').dialog("close");
 		 jQuery('#working_modal').modal("hide");
 		 jQuery('derived_trait_saved_dialog_message');
-		 alert("Successfully derived and uploaded phenotype");
+		 alert("Fenótipo derivado e enviado com sucesso");
 		// alert("Successfully derived and uploaded ' "+trait+" ' values for this trial");
              }
 	 },
 	 error: function () {
 	     jQuery('#working_modal').modal("hide");
-             alert('An error occurred creating trait.');
+             alert("Ocorreu um erro ao criar a característica.");
 	 }
      });
 }
@@ -221,15 +221,15 @@ function delete_field_map() {
 	     jQuery('#working_modal').modal("hide");
 
       if (response.error) {
-		      alert("Error deleting field map: "+response.error);
+		      alert("Erro ao excluir o mapa de campo: "+response.error);
       } else {
-              alert("Field map deletion successful.");
+              alert("Mapa de campo excluído com sucesso.");
 		      location.reload();
           }
 	 },
 	 error: function () {
 	     jQuery('#working_modal').modal("hide");
-             alert('An error occurred deleting field map.');
+             alert("Ocorreu um erro ao excluir o mapa de campo.");
 	 }
   });
 }
@@ -254,7 +254,7 @@ function replace_accessions() {
  	     jQuery('#working_modal').modal("hide");
 
        if (response.error) {
- 		      alert("Error replacing accessions: "+response.error);
+              alert("Erro ao substituir os acessos: "+response.error);
        } else {
            //alert("Field map deletion Successful...");
  		      jQuery('#replace_accessions_dialog_message').dialog("open");
@@ -262,7 +262,7 @@ function replace_accessions() {
  	 },
  	 error: function () {
  	     jQuery('#working_modal').modal("hide");
-              alert('An error occurred replacing accessions.');
+              alert("Ocorreu um erro ao substituir os acessos.");
  	 }
  });
 }
@@ -394,7 +394,7 @@ function edit_trial_details(){
             if(jQuery('#'+id).is("select")){
                 new_value = changed_elements[i].options[changed_elements[i].selectedIndex].text
             }
-            success_message += "<li class='list-group-item list-group-item-success'> Changed "+type+" to: <b>"+new_value+"</b></li>";
+            success_message += "<li class='list-group-item list-group-item-success'> Mudou "+type+" para: <b>"+new_value+"</b></li>";
         }
 
         save_trial_details(categories, new_details, success_message);
@@ -425,7 +425,7 @@ function trial_detail_page_setup_dialogs() {
 		jQuery( this ).dialog( "close" );
 		return;
 	    },
-	    Create: {text: "Create", id:"create_derived_trait_submit_button", click:function() {
+	    Create: {text: "Criar", id:"create_derived_trait_submit_button", click:function() {
 		compute_derived_trait();
 		jQuery( this ).dialog( "close" );
 		}
@@ -468,13 +468,13 @@ function trial_detail_page_setup_dialogs() {
 
 		    }
 		    else {
-			html = '<option active="false">No derived trait available</option>';
+			html = "<option active=\"false\">Nenhuma característica derivada disponível</option>";
 		    }
 		}
 		jQuery('#derived_trait_select').html(html);
 	    },
 	    error: function(response) {
-		alert("An error occurred trying to retrieve derived traits.");
+		alert("Ocorreu um erro ao recuperar as características derivadas.");
 	    }
 	});
 
@@ -487,7 +487,7 @@ autoResize:true,
     // width: 500,
     // position: ['top', 75],
 buttons: {
-        "Cancel": function () {
+        "Cancelar": function () {
             jQuery('#delete_field_map_dialog').dialog("close");
         },
   "Ok": {text: "Ok", id:"delete_field_coords_ok_button", click:function () {
@@ -500,7 +500,7 @@ delete_field_map();
 
 
 jQuery('#delete_field_map_hm_link').click(function () {
-    if (confirm("Are you sure you want to delete the spatial layout of this trial?")) {
+    if (confirm("Tem certeza de que deseja excluir a disposição espacial deste ensaio?")) {
         delete_field_map();
     } else {
         return;
@@ -608,7 +608,7 @@ function save_trial_details (categories, details, success_message) {
       }
     },
     error: function(response) {
-      document.getElementById('trial_details_error_message').innerHTML = "<li class='list-group-item list-group-item-danger'> Trial detail update AJAX request failed. Update not completed.</li>";
+      document.getElementById('trial_details_error_message').innerHTML = "<li class='list-group-item list-group-item-danger'> A solicitação de atualização dos detalhes do ensaio falhou. A atualização não foi concluída.</li>";
       jQuery('#trial_details_error_dialog').modal("show");
     },
   });
@@ -653,7 +653,7 @@ jQuery(document).ready(function ($) {
             $('#working_modal').modal("show");
             if (uploadedtrialcoordFile === '') {
                 $('#working_modal').modal("hide");
-                alert("No file selected");
+                alert("Nenhum arquivo selecionado");
             }
         },
         complete: function (response) {
@@ -661,7 +661,7 @@ jQuery(document).ready(function ($) {
 
             // Check if response exists and is valid
             if (!response || typeof response !== 'object') {
-                alert("Error: No response received from server. Please try again.");
+                alert("Erro: nenhuma resposta recebida do servidor. Tente novamente.");
                 return;
             }
 
@@ -682,7 +682,7 @@ jQuery(document).ready(function ($) {
 
             // Catch-all for unexpected responses
             console.error("Unexpected server response:", response);
-            alert("An unexpected error occurred. The server response was not in the expected format. Please check the console for details or contact support.");
+            alert("Ocorreu um erro inesperado. A resposta do servidor não estava no formato esperado. Consulte o console para obter detalhes ou entre em contato com o suporte.");
 
         }
     });
@@ -691,7 +691,7 @@ jQuery(document).ready(function ($) {
         var uploadFile = $("#trial_coordinates_uploaded_file").val();
         $('#upload_trial_coordinates_form').attr("action", "/ajax/breeders/trial/coordsupload");
         if (uploadFile === '') {
-	    alert("Please select a file");
+	    alert("Selecione um arquivo");
 	    return;
         }
         $("#upload_trial_coordinates_form").submit();

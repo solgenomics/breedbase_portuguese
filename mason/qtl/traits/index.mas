@@ -8,7 +8,7 @@ $traits_list
 </%args>
 
 <& /page/page_title.mas, 
-   title=>'List of traits with QTLs'
+   title=>'Lista de características com QTLs'
 &>
 
 <&| /page/info_section.mas, 

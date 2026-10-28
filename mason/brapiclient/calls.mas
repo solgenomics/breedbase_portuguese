@@ -22,13 +22,13 @@ jQuery("#brapi_home_show_calls").click(function() {
         for(var i = 0; i < response.result.data.length; i++) {
             html = html+'<li>'+response.result.data[i].call+'</li>';
             html = html+'<ul>';
-                html = html+'<li>Datatypes:';
+                html = html+"<li>Tipos de dados:";
                 html = html+'<ul>';
                 for(var j = 0; j < response.result.data[i].datatypes.length; j++){
                     html = html+'<li>'+response.result.data[i].datatypes[j]+'</li>';
                 }
                 html = html+'</ul>';
-                html = html+'<li>Methods:';
+                html = html+"<li>Métodos:";
                 html = html+'<ul>';
                 for(var j = 0; j < response.result.data[i].methods.length; j++){
                     html = html+'<li>'+response.result.data[i].methods[j]+'</li>';

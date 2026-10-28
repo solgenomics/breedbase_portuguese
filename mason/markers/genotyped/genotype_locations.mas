@@ -4,19 +4,19 @@
 
 <%init>
     if ( !$markers ) {
-        print "<p><strong>ERROR: </strong>Missing variant markers!</p>";
+        print "<p><strong>ERRO: </strong>Marcadores variantes desaparecidos!</p>";
     }
 </%init>
 
 <table class="table table-striped">
     <thead>
         <tr>
-            <th>Marker</th>
-            <th>Protocol</th>
-            <th>Species</th>
-            <th>Reference</th>
-            <th>Chromosome</th>
-            <th>Position</th>
+            <th>Marcador</th>
+            <th>Protocolo</th>
+            <th>Espécie</th>
+            <th>Referência</th>
+            <th>Cromossoma</th>
+            <th>Posição</th>
             <th>Ref</th>
             <th>Alt</th>
         </tr>

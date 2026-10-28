@@ -95,7 +95,7 @@ $locations
                                 <div class="form-group">
                                     <label class="col-sm-3 control-label">Combinação do cruzamento (opcional): </label>
                                     <div class="col-sm-9">
-                                        <input class="form-control" type="text" id="dialog_cross_combination" name="dialog_cross_combination" placeholder="ex.: nome_feminino/nome_masculino"/>
+                                        <input class="form-control" type="text" id="dialog_cross_combination" name="dialog_cross_combination" placeholder="nome_feminino/nome_masculino"/>
                                     </div>
                                 </div><br/><br/>
                                 <div class="form-group">
@@ -103,17 +103,17 @@ $locations
                                     <div class="col-sm-9">
                                         <select class="form-control" id="cross_type">
                                             <option value="">Selecione o tipo de cruzamento</option>
-                                            <option value="biparental">biparental</option>
-                                            <option value="self">self</option>
+                                            <option value="biparental">Biparental</option>
+                                            <option value="self">ego</option>
                                             <option value="open">polinização aberta</option>
                                             <option value="backcross">retrocruzamento</option>
-                                            <option value="sib">sib</option>
-                                            <option value="bulk">bulk</option>
+                                            <option value="sib">Sib</option>
+                                            <option value="bulk">massa</option>
                                             <option value="bulk_self">bulk autopolinizado</option>
                                             <option value="bulk_open">bulk com polinização aberta</option>
-                                            <option value="doubled_haploid">duplo-haploide</option>
+                                            <option value="doubled_haploid">Duplo-haploide</option>
                                             <option value="dihaploid_induction">indução di-haploide</option>
-                                            <option value="polycross">polycross</option>
+                                            <option value="polycross">Policross</option>
                                             <option value="reciprocal">recíproco</option>
                                             <option value="multicross">multicruzamento</option>
                                         </select>
@@ -134,7 +134,7 @@ $locations
                                     </div><br/><br/>
                                 </div>
                                 <div class="form-group" id="get_paternal_parent" style="display: none">
-                                    <label class="col-sm-2 control-label">Genitor masculino: </label>
+                                    <label class="col-sm-2 control-label">Genitor Masculino: </label>
                                     <div class="col-sm-10">
                                         <input class="form-control" id="paternal_parent" type="text" name="paternal" placeholder="Informe o nome do genitor masculino"  />
                                     </div><br/><br/>
@@ -164,7 +164,7 @@ $locations
                                     </div><br/><br/>
                                 </div>
                                 <div class="form-group" id="get_bulk_paternal_parent" style="display: none">
-                                    <label class="col-sm-2 control-label">Genitor masculino: </label>
+                                    <label class="col-sm-2 control-label">Genitor Masculino: </label>
                                     <div class="col-sm-10">
                                         <input class="form-control" id="bulk_paternal_parent" type="text" name="bulk paternal" placeholder="Informe o nome do genitor masculino" />
                                     </div><br/><br/>
@@ -408,7 +408,7 @@ $locations
                             <& /page/page_title.mas, title=>"Concluído! Seu cruzamento está no banco de dados" &>
                             <p>
                                 <span class="ui-icon ui-icon-circle-check" style="float: left; margin: 0 7px 50px 0;"></span>
-                                The cross was added successfully
+                                A cruz foi adicionada com sucesso
                             </p>
 
                             <ul>
@@ -438,28 +438,28 @@ $locations
             <div class="modal-body">
                 <div class="container-fluid">
                     <h2>
-                        Individual Crosses:
+                        Cruzamentos individuais:
                     </h2>
 
-                    <p><b>biparental:</b> uma planta individual polinizada por outra planta individual.</p>
-                    <p><b>self:</b> uma planta individual autopolinizada.</p>
-                    <p><b>open pollinated:</b> uma planta individual polinizada por um grupo ou por polinização aberta; o pólen pode vir de membros conhecidos ou desconhecidos.</p>
-                    <p><b>backcross:</b> uma planta individual polinizada por um de seus genitores.</p>
-                    <p><b>sib:</b> cruzamento entre indivíduos com pelo menos um genitor em comum, geralmente dentro da mesma parcela.</p>
-                    <p><b>bulk:</b> um grupo de plantas, geralmente uma família relacionada, polinizado por uma planta individual.</p>
-                    <p><b>bulk selfed:</b> um grupo em que cada planta é autopolinizada, sem combinação de pólen.</p>
-                    <p><b>bulk and open pollinated:</b> um grupo de plantas polinizado por outro grupo ou por polinização aberta.</p>
-                    <p><b>doubled haploid:</b> plantas obtidas pela duplicação dos cromossomos de tecido haploide.</p>
-                    <p><b>dihaploid induction:</b> plantas obtidas pela redução cromossômica de tetraploide para diploide.</p>
+                    <p><b>Biparental:</b> uma planta individual polinizada por outra planta individual.</p>
+                    <p><b>Self:</b> uma planta individual autopolinizada.</p>
+                    <p><b>Aberto polinizado:</b> uma planta individual polinizada por um grupo ou por polinização aberta; o pólen pode vir de membros conhecidos ou desconhecidos.</p>
+                    <p><b>Backcross:</b> uma planta individual polinizada por um de seus genitores.</p>
+                    <p><b>Sib:</b> cruzamento entre indivíduos com pelo menos um genitor em comum, geralmente dentro da mesma parcela.</p>
+                    <p><b>A granel:</b> um grupo de plantas, geralmente uma família relacionada, polinizado por uma planta individual.</p>
+                    <p><b>A granel</b> um grupo em que cada planta é autopolinizada, sem combinação de pólen.</p>
+                    <p><b>A granel e polinizados:</b> um grupo de plantas polinizado por outro grupo ou por polinização aberta.</p>
+                    <p><b>Haplóide duplo:</b> plantas obtidas pela duplicação dos cromossomos de tecido haploide.</p>
+                    <p><b>indução di-haplóide:</b> plantas obtidas pela redução cromossômica de tetraploide para diploide.</p>
                     <br>
 
                     <h2>
-                      Group of Crosses:
+                      Grupo de Cruzamentos:
                     </h2>
 
-                    <p><b>polycross:</b> cria um grupo de cruzamentos por polinização aberta. Cada acesso da lista selecionada torna-se o genitor feminino de um cruzamento, enquanto todos os membros agrupados formam o genitor masculino.<p>
-                    <p><b>reciprocal:</b> cria todas as combinações possíveis de cruzamentos biparentais entre os acessos da lista.<p>
-                    <p><b>multicross:</b> cria cruzamentos biparentais diretos, em ordem, entre uma lista de acessos maternos e outra de acessos paternos.<p>
+                    <p><b>Policross:</b> cria um grupo de cruzamentos por polinização aberta. Cada acesso da lista selecionada torna-se o genitor feminino de um cruzamento, enquanto todos os membros agrupados formam o genitor masculino.<p>
+                    <p><b>Reciproco:</b> cria todas as combinações possíveis de cruzamentos biparentais entre os acessos da lista.<p>
+                    <p><b>Multicross:</b> cria cruzamentos biparentais diretos, em ordem, entre uma lista de acessos maternos e outra de acessos paternos.<p>
                 </div>
             </div>
             <div class="modal-footer">
@@ -480,7 +480,7 @@ $locations
         <div class="container-fluid">
 	    <p>
     	  <span class="ui-icon ui-icon-circle-check" style="float: left; margin: 0 7px 50px 0;"></span>
-    	  The cross or crosses were saved successfully.
+    	  A cruz ou cruz foi salva com sucesso.
   	  </p>
         </div>
       </div>

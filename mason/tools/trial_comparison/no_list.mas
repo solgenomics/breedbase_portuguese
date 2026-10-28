@@ -23,17 +23,17 @@ if (@trial_names) {
 
 </%perl>
 
-<& '/page/page_title.mas', title => "Compare trials" &>
+<& '/page/page_title.mas', title => "Compare os ensaios" &>
 
 <& '/util/import_javascript.mas', classes => [ 'jquery', 'jqueryui', 'popup', 'CXGN.List', 'CXGN.Login' ] &>
 
-Comparison of trials <b><% join ",",@trial_names %></b>
+Comparação de ensaios <b><% join ",",@trial_names %></b>
 <br /><br />
-Total accession count: <span id="total_accession_count"></span><br />
-Common accession count: <span id="common_accession_count"></span><br />
-Common traits: <span id="common_trait_count"></span><br />
+Contagem total de acesso: <span id="total_accession_count"></span><br />
+Contagem comum de acesso: <span id="common_accession_count"></span><br />
+Características comuns: <span id="common_trait_count"></span><br />
 
-Trait: <select id="trait_select"><option disabled="1">select trials first</option></select>
+Característica: <select id="trait_select"><option disabled="1" value="select trials first" data-original-label="select trials first">Selecione os ensaios primeiro</option></select>
 
 <center>
 <div id="result_div">

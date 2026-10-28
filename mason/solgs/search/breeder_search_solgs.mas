@@ -3,11 +3,11 @@
   <& /breeders_toolbox/breeder_search_page.mas &>
 </div>
 
-<button type="button" class="btn btn-success" id="go_back">Back</button>
+<button type="button" class="btn btn-success" id="go_back">Para trás</button>
    
 <script>
 
-jQuery('#go_back').html(`Back to solGS`);
+jQuery('#go_back').html(`Voltar ao solGS`);
 jQuery('#go_back').click( function(){
   window.location.href=  document.referrer;
   });

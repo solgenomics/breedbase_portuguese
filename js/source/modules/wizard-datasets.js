@@ -54,7 +54,8 @@ export function WizardDatasets(main_id,wizard){
                 details+= `\n    ${contents.length} ${cat}`;
 	    }
         })
-        if ( confirm(`Dataset ${name} contains\: ${details}\nAre you sure you would like to delete it? Deletion cannot be undone.`)) {
+        if ( confirm(`Conjunto de dados ${name} contém: ${details}
+Tem certeza de que deseja excluí-lo? A exclusão não pode ser desfeita.`)) {
             datasets.deleteDataset(val);
             load_datasets();
         }
@@ -101,7 +102,7 @@ export function WizardDatasets(main_id,wizard){
         return !c.type || c.items.filter(d=>d.selected).length<1
       });
       if(first_irrelevant_col==0) {
-          alert(`Dataset creation failed. No data is selected.`);
+          alert(`Falha ao criar o conjunto de dados. Nenhum dado foi selecionado.`);
           d3.select(this).attr("disabled",null);
           return;
       }
@@ -120,12 +121,12 @@ export function WizardDatasets(main_id,wizard){
         credentials: 'include'
       }).then(response => {
         if (!response.ok){
-          alert("Network error!");
+          alert("Erro de rede!");
         }
         return response.json();
       }).then(data => {
           if (data.error) {
-            alert("Error storing dataset: "+data.error);
+            alert("Erro ao armazenar o conjunto de dados: "+data.error);
             return;
           }
           console.log("New dataset... got id:"+data.id);
@@ -134,16 +135,16 @@ export function WizardDatasets(main_id,wizard){
           cols.forEach(c=>{
             details+= `\n    ${c.items.filter(d=>d.selected).length} ${c.type}`;
           });
-        alert(`Dataset ${name} created with\: ${details}. \nCompatibility check will run in background.`);
+        alert(`Conjunto de dados ${name} criado com: ${details}. \nA verificação de compatibilidade será executada em segundo plano.`);
         $.ajax({
           url: '/ajax/dataset/calc_tool_compatibility/'+id,
           success: function(res) {
             if (res.error) {
-              alert("Error storing tool compatibility: "+res.error);
+              alert("Erro ao armazenar a compatibilidade das ferramentas: "+res.error);
             } 
           },
           error: function(res) {
-            alert("Error storing tool compatibility, check console.");
+            alert("Erro ao armazenar a compatibilidade das ferramentas; consulte o console.");
           }
         });
         load_datasets();
@@ -152,7 +153,7 @@ export function WizardDatasets(main_id,wizard){
           returnToSource();
         }
       }).catch(error => {
-        alert("Error storing dataset or checking tool compatibility: "+error);
+        alert("Erro ao armazenar o conjunto de dados ou verificar a compatibilidade das ferramentas: "+error);
         console.error(error);
       });
     }

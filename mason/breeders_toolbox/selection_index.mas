@@ -31,7 +31,7 @@ $trial_name => undef
               <th>Sinônimo da característica</th>
               <th data-toggle="tooltip" title="Deve ser um número positivo ou negativo.">Coeficiente do índice</th>
               <th data-toggle="tooltip" title="Selecione o nome do ensaio ou um controle para normalizar as médias desta característica pela média do ensaio ou do controle">Normalizar com um controle?</th>
-              <th>Remover?</th>
+              <th>Removedor?</th>
             </thead>
             <tbody id ="trait_table"></tbody>
             <tfoot><td colspan="5">
@@ -124,7 +124,7 @@ $trial_name => undef
         <h4>
           Resultados:
         </h4>
-          <p>O botão <b>Calcular classificações</b> gera uma pontuação SIN e uma classificação para cada acesso com base nos parâmetros selecionados e nas médias fenotípicas. As classificações e médias são exibidas nas abas <b>Classificações</b> e <b>Médias não ponderadas</b>, onde podem ser manipuladas, copiadas e baixadas. Abaixo da tabela de resultados, é possível <b>salvar em uma lista os acessos mais bem classificados</b>.</p>
+          <p>O botão <b>Calcular classificações</b> gera uma pontuação SIN e uma classificação para cada acesso com base nos parâmetros selecionados e nas médias fenotípicas. As classificações e médias são exibidas nas abas <b>Classificações</b> E <b>Médias não ponderadas</b>, onde podem ser manipuladas, copiadas e baixadas. Abaixo da tabela de resultados, é possível <b>salvar em uma lista os acessos mais bem classificados</b>.</p>
         </div>
       </div>
       <div class="modal-footer">

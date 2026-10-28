@@ -4,19 +4,18 @@
 
 <%init>
     if ( !$variant_name ) {
-        print "<p><strong>ERROR: </strong>Missing variant name!</p>";
+        print "<p><strong>ERRO: </strong>Nome da variante em falta!</p>";
     }
 </%init>
 
-<p><strong>Related Genotyped Markers:</strong> These genotyped markers share either the same <em>name</em> as one or more markers at this variant or 
-are located at the same <em>position</em> but have different allele values</p>
+<p><strong>Marcadores Genótipos Relacionados:</strong> Esses marcadores genotipados compartilham o mesmo <em>Nome</em> como um ou mais marcadores nesta variante ou estão localizados na mesma <em>posição</em> mas têm valores diferentes de alelo</p>
 <div id="related-variants">
-    <em>Loading...</em><br /><br />
+    <em>Carregando...</em><br /><br />
 </div>
 
-<p><strong>Related Mapped Markers:</strong> These mapped markers have the same name as a marker at this variant</p>
+<p><strong>Marcadores relacionados:</strong> Estes marcadores mapeados têm o mesmo nome que um marcador nesta variante.</p>
 <div id="related-mapped-markers">
-    <em>Loading...</em><br />
+    <em>Carregando...</em><br />
 </div>
 
 
@@ -38,7 +37,7 @@ function getRelatedVariants() {
             let html = "";
             if ( response && response.related_variants && !jQuery.isEmptyObject(response.related_variants) ) {
                 html += "<table class='table table-striped'>";
-                html += "<thead><tr><th>Marker</th><th>Protocol</th><th>Species</th><th>Reference</th><th>Chromosome</th><th>Position</th><th>Ref</th><th>Alt</th></tr></thead>";
+                html += "<thead><tr><th>Marcador</th><th>Protocolo</th><th>Espécie</th><th>Referência</th><th>Cromossoma</th><th>Posição</th><th>Ref</th><th>Alt</th></tr></thead>";
                 html += "<tbody>";
                 for ( let variant_name in response.related_variants ) {
                     if ( response.related_variants.hasOwnProperty(variant_name) ) {
@@ -57,12 +56,12 @@ function getRelatedVariants() {
                 html += "</table>";
             }
             else {
-                html += "<em>No related genotyed markers found</em><br /><br />";
+                html += "<em>Nenhum marcador genotipado relacionado encontrado</em><br /><br />";
             }
             jQuery("#related-variants").html(html);
         },
         error: function(response) {
-            console.log("Could not get related variants");
+            console.log("Não foi possível obter as variantes relacionadas");
         }
     });
 }
@@ -79,7 +78,7 @@ function getRelatedMappedMarkers() {
             let html = "";
             if ( response && response.related_mapped_markers && response.related_mapped_markers.length > 0 ) {
                 html += "<table class='table table-striped'>";
-                html += "<thead><tr><th>Marker</th><th>Protocol</th><th>Species</th><th>Map</th><th>Chromosome</th><th>Position</th></tr></thead>";
+                html += "<thead><tr><th>Marcador</th><th>Protocolo</th><th>Espécie</th><th>Mapa</th><th>Cromossoma</th><th>Posição</th></tr></thead>";
                 html += "<tbody>";
                 let ms = response.related_mapped_markers;
                 for ( let i = 0; i < ms.length; i++ ) {
@@ -91,12 +90,12 @@ function getRelatedMappedMarkers() {
                 }
             }
             else {
-                html += "<em>No related mapped markers found</em><br />";
+                html += "<em>Nenhum marcador mapeado relacionado encontrado</em><br />";
             }
             jQuery("#related-mapped-markers").html(html);
         },
         error: function(response) {
-            console.log("Could not get related mapped markers");
+            console.log("Não foi possível obter os marcadores mapeados relacionados");
         }
     });
 }

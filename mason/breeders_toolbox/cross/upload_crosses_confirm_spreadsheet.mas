@@ -20,7 +20,7 @@ $upload_data_ref => undef
 <div id="verify_uploaded_data_dialog"  class="ui-widget" >
 <%perl>
 print "<br><b>Número de cruzamentos adicionados:</b> $number_of_crosses_added<br>";
-print "<b>Número de genitores exclusivos nos cruzamentos adicionados</b>: $number_of_unique_parents<br><br>";
+print "<b>Número de genitores exclusivos nos cruzamentos adicionados</b>$number_of_unique_parents<br><br>";
 </%perl>
 <button id="view_uploaded_data_link" >Ver dados enviados</button>
 </div>
@@ -29,7 +29,7 @@ print "<b>Número de genitores exclusivos nos cruzamentos adicionados</b>: $numb
 <table border ="1">
 <%perl>
 my %upload_data = %{$upload_data_ref};
-print "<tr><th>ID exclusivo do cruzamento</th><th>genitor materno</th><th>genitor paterno</th><th>ensaio</th><th>local</th><th>número de progênies</th><th>prefixo</th><th>sufixo</th><th>número de flores</th><th>número de sementes</th></tr>";
+print "<tr><th>ID exclusivo do cruzamento</th><th>Genitor Materno</th><th>genitor paterno</th><th>ensaio</th><th>local</th><th>número de progênies</th><th>prefixoo</th><th>Sufixo</th><th>número de flores</th><th>número de sementes</th></tr>";
 foreach my $key (sort { $a <=> $b} keys %upload_data) {
   my %cross = %{$upload_data{$key}};
   print "<tr><td>".$cross{'cross_unique_id'}."</td><td>".$cross{'maternal_parent'}."</td><td>".$cross{'paternal_parent'}."</td><td>".$cross{'cross_trial'}."</td><td>".$cross{'cross_location'}."</td>";

@@ -23,9 +23,9 @@ $dataset_name
 
         <div class="input-group">
             <span class="input-group-addon">
-                <input type="radio" aria-label="mediana" id="median" value="median" name="dataset_metric" checked="true">
+                <input type="radio" aria-label="medianaa" id="median" value="median" name="dataset_metric" checked="true">
             </span>
-            <label for="median" class="form-control" aria-label="mediana">Mediana</label>
+            <label for="median" class="form-control" aria-label="medianaa">Mediana</label>
             <span class="input-group-addon">
                 <input type="radio" aria-label="média" id="mean" value="mean" name="dataset_metric" >
             </span>
@@ -33,7 +33,7 @@ $dataset_name
             <span class="input-group-addon">
                 <input type="radio" aria-label="IQR" id="iqr" value="iqr" name="dataset_metric" >
             </span>
-            <label for="iqr" class="form-control" aria-label="iqr">IQR</label>
+            <label for="iqr" class="form-control" aria-label="Iqr">IQR</label>
         </div>
     </div>
 </div>

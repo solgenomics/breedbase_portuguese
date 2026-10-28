@@ -31,7 +31,7 @@ $gs_traits_index => undef
 
 <div id="solgs_search_page" class="container">
     <& /page/page_title.mas,
-	  title => "solGS: Genomic Prediction Modeling"
+	  title => "Modelo de predição genômica"
 	 &>
 
 	<& /solgs/genotyping_protocol/index.mas &>

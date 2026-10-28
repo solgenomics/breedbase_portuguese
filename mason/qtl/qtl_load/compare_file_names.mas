@@ -35,7 +35,7 @@ my $message = qq | <p>You are trying to upload file(s) with the same name
 
 </%perl>
 
-<& /page/page_title.mas, title => 'Data files' &>
+<& /page/page_title.mas, title => 'Arquivos de dados' &>
 <&| /page/info_section.mas, title => '', subtitle => $guide &>
   <% $message %>  
 </&>

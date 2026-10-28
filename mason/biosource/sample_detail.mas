@@ -26,7 +26,7 @@ $pub_list
 $target_list
 </%args>
 
-<& /page/page_title.mas, title => 'Data source '.$sample->get_sample_name &>
+<& /page/page_title.mas, title => 'Fonte de dados '.$sample->get_sample_name &>
 
 <&
     '/biosource/sample/basic_sample_info.mas',
@@ -35,8 +35,8 @@ $target_list
 &>
 
 <&| /page/info_section.mas,
-    title => 'Files',
-    subtitle => 'files available for download',
+    title => 'Arquivos',
+    subtitle => 'Arquivos disponíveis para download',
     collapsible => 1,
     hide_if_empty => 1,
  &>
@@ -45,7 +45,7 @@ $target_list
 
 </&>
 
-<&| /page/info_section.mas, title => 'Related data sources', collapsible => 1, &>
+<&| /page/info_section.mas, title => 'Fontes de dados relacionadas', collapsible => 1, &>
   <&
       '/chado/relations.mas',
       principle         => $sample->get_bssample_row,

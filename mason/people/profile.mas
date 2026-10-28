@@ -26,40 +26,40 @@ $allow_treatment_edits => 0
 
 % if ($is_users_profile) {
 
-    <&| /page/info_section.mas, title=>'General Tools', collapsible=>0, collapsed=>0 &>
+    <&| /page/info_section.mas, title=>'Ferramentas Gerais', collapsible=>0, collapsed=>0 &>
         <div class="well">
-            <a href="/solpeople/personal-info.pl?action=edit&sp_person_id=<% $sp_person_id %>">View or update personal (contact and research) information</a><br />
-            <a href="/user/update">Update account information</a><br />
-            <a href="/forum/topics.pl">Post to SGN forum</a><br />
-	    <a href="/about/audit">View audit tables</a><br />
+            <a href="/solpeople/personal-info.pl?action=edit&sp_person_id=<% $sp_person_id %>">Veja ou atualize informações pessoais (contato e pesquisa)</a><br />
+            <a href="/user/update">Atualizar informações da conta</a><br />
+            <a href="/forum/topics.pl">Publicar no fórum da SGN</a><br />
+	    <a href="/about/audit">Ver tabelas de auditoria</a><br />
         </div>
     </&>
 
 %   if (exists($user_roles->{'curator'}) || exists($user_roles->{'sequencer'}) ) {
 
-    <&| /page/info_section.mas, title=>'Sequencer Tools', collapsible=>0, collapsed=>0, subtitle=>'For Curators and Sequencers' &>
+    <&| /page/info_section.mas, title=>'Ferramentas de sequenciamento', collapsible=>0, collapsed=>0, subtitle=>'Para curadores e responsáveis pelo sequenciamento' &>
         <div class="well">
-            <a href="/solpeople/attribute_bacs.pl">Attribute a BAC to your chromosome sequencing project</a><br />
-            <a href="/maps/physical/clone_il_view.pl">View/update BAC IL mapping information (list view)</a><br />
-            <a href="/maps/physical/clone_reg.pl">View/update all BAC registry info (list view)</a></br>
-            <a href="/sequencing/tpf.pl">View TPF Files</a><br />
-            <a href="/sequencing/agp.pl">View AGP Files</a><br />
+            <a href="/solpeople/attribute_bacs.pl">Atribua um BAC ao seu projeto de sequenciamento cromossômico</a><br />
+            <a href="/maps/physical/clone_il_view.pl">Visualizar ou atualizar informações do mapeamento BAC IL em lista</a><br />
+            <a href="/maps/physical/clone_reg.pl">Visualizar ou atualizar todas as informações do registro BAC em lista</a></br>
+            <a href="/sequencing/tpf.pl">Visualizar arquivos TPF</a><br />
+            <a href="/sequencing/agp.pl">Visualizar arquivos AGP</a><br />
         </div>
 
 %       if (exists($user_roles->{'curator'})) {
 
-            <&| /page/info_section.mas, title=>'AGP and TPF File Upload', collapsible=>1, collapsed=>1, subtitle=>'For Curators' &>
+            <&| /page/info_section.mas, title=>'Envio de arquivos AGP e TPF', collapsible=>1, collapsed=>1, subtitle=>'Para curadores' &>
 
                 <div class="well">
                     <div style="margin-top: 1em">
-                        <center><h4>Upload Accessioned Golden Path (AGP) File</h4></center>
+                        <center><h4>Enviar arquivo Accessioned Golden Path (AGP)</h4></center>
                         <hr>
 
                         <form class="form-horizontal" action="/sequencing/agp.pl" method="post" enctype="multipart/form-data">
                             <div class="row">
                                 <div class="col-sm-6">
                                     <div class="form-group form-group-sm">
-                                        <label class="col-sm-6 control-label">For Chromosome #: </label>
+                                        <label class="col-sm-6 control-label">Para Cromossomo #: </label>
                                         <div class="col-sm-6">
                                             <input class="form-control" id="chrnuminput_agp" name="chr" type="text" size="2" maxlength="2" />
                                         </div>
@@ -67,7 +67,7 @@ $allow_treatment_edits => 0
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="form-group form-group-sm">
-                                        <label class="col-sm-2 control-label">File: </label>
+                                        <label class="col-sm-2 control-label">Arquivo: </label>
                                         <div class="col-sm-10">
                                             <input type="hidden" name="filetype" value="agp" />
                                             <input id="agpinput" type="file" name="agp_file" value="Upload AGP file" />
@@ -77,14 +77,14 @@ $allow_treatment_edits => 0
                             </div>
                         </form>
 
-                        <center><h4>Upload Tiling Path Format (TPF) File</h4></center>
+                        <center><h4>Enviar arquivo Tiling Path Format (TPF)</h4></center>
                         <hr>
 
                         <form class="form-horizontal" action="/sequencing/tpf.pl" method="post" enctype="multipart/form-data">
                             <div class="row">
                                 <div class="col-sm-6">
                                     <div class="form-group form-group-sm">
-                                        <label class="col-sm-6 control-label">For Chromosome #: </label>
+                                        <label class="col-sm-6 control-label">Para Cromossomo #: </label>
                                         <div class="col-sm-6">
                                             <input class="form-control" id="chrnuminput_tpf" name="chr" type="text" size="2" maxlength="2" />
                                         </div>
@@ -92,7 +92,7 @@ $allow_treatment_edits => 0
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="form-group form-group-sm">
-                                        <label class="col-sm-2 control-label">File: </label>
+                                        <label class="col-sm-2 control-label">Arquivo: </label>
                                         <div class="col-sm-10">
                                             <input type="hidden" name="filetype" value="tpf" />
                                             <input id="tpfinput" type="file" name="tpfinput" value="Upload TPF file" />
@@ -114,19 +114,19 @@ $allow_treatment_edits => 0
 
 %   if (exists($user_roles->{'curator'}) || exists($user_roles->{'sequencer'}) || exists($user_roles->{'submitter'})) {
 
-    <&| /page/info_section.mas, title=>'QTL Data Submission', collapsible=>0, collapsed=>0, subtitle=>'For Submitters and up' &>
+    <&| /page/info_section.mas, title=>'Envio de dados de QTL', collapsible=>0, collapsed=>0, subtitle=>'Para usuários com permissão de envio ou superior' &>
         <div class="well">
-            <a href="/phenome/qtl_form.pl">Upload and analyse your QTL data</a><br/>
+            <a href="/phenome/qtl_form.pl">Enviar e analisar seus dados de QTL</a><br/>
         </div>
     </&>
 
-    <&| /page/info_section.mas, title=>'Populations', collapsible=>0, collapsed=>0, subtitle=>'For Submitters and up' &>
+    <&| /page/info_section.mas, title=>'Populações', collapsible=>0, collapsed=>0, subtitle=>'Para usuários com permissão de envio ou superior' &>
         <div class="well">
             <% $populations_list %>
         </div>
     </&>
 
-    <&| /page/info_section.mas, title=>'Job Submissions', collapsible=>0, collapsed=>0, subtitle=>'For Submitters and up' &>
+    <&| /page/info_section.mas, title=>'Envio de tarefas', collapsible=>0, collapsed=>0, subtitle=>'Para usuários com permissão de envio ou superior' &>
         <div class="well">
             <& /jobs/log.mas, sp_person_id => $sp_person_id &>
         </div>
@@ -138,28 +138,28 @@ $allow_treatment_edits => 0
 
     <div class="row">
         <div class="col-sm-6">
-            <&| /page/info_section.mas, title=>'Curator Tools', collapsible=>0, collapsed=>0, subtitle=>'For Curators' &>
+            <&| /page/info_section.mas, title=>'Ferramentas de curadoria', collapsible=>0, collapsed=>0, subtitle=>'Para curadores' &>
                 <div class="well">
-                    <a href="/solpeople/admin/crash_test.pl">Test website error handling</a><br />
-                    <a href="/solpeople/admin/stats.pl">View user stats</a><br />
-                    <a href="/user/admin/quick_create_account">Create new user account</a><br />
-                    <a href="/solpeople/admin/create_organization.pl">Create new organization</a><br>
+                    <a href="/solpeople/admin/crash_test.pl">Testar o tratamento de erros do site</a><br />
+                    <a href="/solpeople/admin/stats.pl">Visualizar estatísticas de usuários</a><br />
+                    <a href="/user/admin/quick_create_account">Criar nova conta de usuário</a><br />
+                    <a href="/solpeople/admin/create_organization.pl">Criar uma nova organização</a><br>
 %       if ($allow_trait_edits) {
-                    <a href="/traits/design">Design new traits</a><br>
+                    <a href="/traits/design">Criar novas características</a><br>
 %       }
 %       if ($allow_treatment_edits) {
-                    <a href="/treatments/design">Design new treatments</a>
+                    <a href="/treatments/design">Criar novos tratamentos</a>
 %       }
                 </div>
             </&>
         </div>
         <div class="col-sm-6">
-            <&| /page/info_section.mas, title=>'Literature Mining', collapsible=>0, collapsed=>0, subtitle=>'For Curators' &>
+            <&| /page/info_section.mas, title=>'Mineração de Literatura', collapsible=>0, collapsed=>0, subtitle=>'Para curadores' &>
                 <div class="well">
-                    <a href= "/search/pub_search.pl">Search the SGN publication database </a><br />
-                    <a href= "/search/pub_search.pl?w9b3_assigned_to=<% $sp_person_id %>">See your assigned publications</a><br />
-                    <a href= "/search/pub_search.pl?w9b3_status=pending">See publications pending curation</a><br />
-                    <a href= "/chado/fetch_pubmed.pl">Load new publications from PubMed</a><br />
+                    <a href= "/search/pub_search.pl">Procure no banco de dados de publicações do SGN </a><br />
+                    <a href= "/search/pub_search.pl?w9b3_assigned_to=<% $sp_person_id %>">Ver publicações atribuídas a você</a><br />
+                    <a href= "/search/pub_search.pl?w9b3_status=pending">Ver publicações pendentes de curadoria</a><br />
+                    <a href= "/chado/fetch_pubmed.pl">Carregue novas publicações do PubMed</a><br />
                 </div>
             </&>
         </div>
@@ -171,14 +171,14 @@ $allow_treatment_edits => 0
 
     <div class="row">
         <div class="col-sm-6">
-            <&| /page/info_section.mas, title=>'Loci Editor', collapsible=>0, collapsed=>0, subtitle=>'For Submitters and up' &>
+            <&| /page/info_section.mas, title=>'Editor de loci', collapsible=>0, collapsed=>0, subtitle=>'Para usuários com permissão de envio ou superior' &>
                 <div class="well">
                     <% $loci_editor_privileges %>
                 </div>
             </&>
         </div>
         <div class="col-sm-6">
-            <&| /page/info_section.mas, title=>'Annotated Loci', collapsible=>0, collapsed=>0, subtitle=>'For Submitters and up' &>
+            <&| /page/info_section.mas, title=>'Loci anotados', collapsible=>0, collapsed=>0, subtitle=>'Para usuários com permissão de envio ou superior' &>
                 <div class="well">
                     <% $loci_annotations %>
                 </div>
@@ -187,7 +187,7 @@ $allow_treatment_edits => 0
     </div>
 %   }
 
-<&| /page/info_section.mas, title=>'User Status', collapsible=>0, collapsed=>0 &>
+<&| /page/info_section.mas, title=>'Estado do Usuário', collapsible=>0, collapsed=>0 &>
     <div class="well">
         <% $user_status %>
     </div>

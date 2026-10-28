@@ -429,8 +429,8 @@
                                 <div class="col-sm-9" >
                                     <select class="form-control" id="drone_run_band_coordinate_system_one_1" name="drone_run_band_coordinate_system_1">
                                         <option value="Pixels">Pixels (imagem raster .PNG, .JPG, .TIFF)</option>
-                                        <option value="UTM">UTM (imagem GeoTIFF .tif)</option>
-                                        <option value="WGS84">WGS84 (imagem GeoTIFF .tif)</option>
+                                        <option value="UTM">UTM (imagem GeoTIFF.tif)</option>
+                                        <option value="WGS84">WGS84 (imagem GeoTIFF.tif)</option>
                                     </select>
                                 </div>
                             </div>
@@ -444,15 +444,15 @@
                                         <option value="Green (515-600nm)">Verde (515–600 nm)</option>
                                         <option value="Red (600-690nm)">Vermelho (600–690 nm)</option>
                                         <option value="Red Edge (690-750nm)">Borda vermelha (690–750 nm)</option>
-                                        <option value="NIR (780-3000nm)">NIR (780–3000 nm)</option>
-                                        <option value="MIR (3000-50000nm)">MIR (3.000–50.000 nm)</option>
-                                        <option value="FIR (50000-1000000nm)">FIR (50.000–1.000.000 nm)</option>
+                                        <option value="NIR (780-3000nm)">NIR (780-3000 nm)</option>
+                                        <option value="MIR (3000-50000nm)">MIR (3.000-50.000 nm)</option>
+                                        <option value="FIR (50000-1000000nm)">FIR (50.000-1.000.000 nm)</option>
                                         <option value="Thermal IR (9000-14000nm)">Infravermelho térmico (9.000–14.000 nm)</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">Imagem: (.jpeg, .png, .tif)</label>
+                                <label class="col-sm-3 control-label">Imagem:</label>
                                 <div class="col-sm-9" >
                                     <input type="file" id="drone_run_band_stitched_ortho_image_one_1" name="drone_run_band_stitched_ortho_image_1" encoding="multipart/form-data" />
                                 </div>
@@ -533,8 +533,8 @@
                                 <div class="col-sm-9" >
                                     <select class="form-control" id="drone_run_band_coordinate_system_two_1" name="drone_run_band_coordinate_system_1">
                                         <option value="Pixels">Pixels (imagem raster .PNG, .JPG, .TIFF)</option>
-                                        <option value="UTM">UTM (imagem GeoTIFF .tif)</option>
-                                        <option value="WGS84">WGS84 (imagem GeoTIFF .tif)</option>
+                                        <option value="UTM">UTM (imagem GeoTIFF.tif)</option>
+                                        <option value="WGS84">WGS84 (imagem GeoTIFF.tif)</option>
                                     </select>
                                 </div>
                             </div>
@@ -548,15 +548,15 @@
                                         <option value="Green (515-600nm)">Verde (515–600 nm)</option>
                                         <option value="Red (600-690nm)">Vermelho (600–690 nm)</option>
                                         <option value="Red Edge (690-750nm)">Borda vermelha (690–750 nm)</option>
-                                        <option value="NIR (780-3000nm)">NIR (780–3000 nm)</option>
-                                        <option value="MIR (3000-50000nm)">MIR (3.000–50.000 nm)</option>
-                                        <option value="FIR (50000-1000000nm)">FIR (50.000–1.000.000 nm)</option>
+                                        <option value="NIR (780-3000nm)">NIR (780-3000 nm)</option>
+                                        <option value="MIR (3000-50000nm)">MIR (3.000-50.000 nm)</option>
+                                        <option value="FIR (50000-1000000nm)">FIR (50.000-1.000.000 nm)</option>
                                         <option value="Thermal IR (9000-14000nm)">Infravermelho térmico (9.000–14.000 nm)</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">Imagem: (.jpeg, .png, .tif)</label>
+                                <label class="col-sm-3 control-label">Imagem:</label>
                                 <div class="col-sm-9" >
                                     <input type="file" id="drone_run_band_stitched_ortho_image_two_1" name="drone_run_band_stitched_ortho_image_1" encoding="multipart/form-data" />
                                 </div>
@@ -580,8 +580,8 @@
                                 <div class="col-sm-9" >
                                     <select class="form-control" id="drone_run_band_coordinate_system_two_2" name="drone_run_band_coordinate_system_2">
                                         <option value="Pixels">Pixels (imagem raster .PNG, .JPG, .TIFF)</option>
-                                        <option value="UTM">UTM (imagem GeoTIFF .tif)</option>
-                                        <option value="WGS84">WGS84 (imagem GeoTIFF .tif)</option>
+                                        <option value="UTM">UTM (imagem GeoTIFF.tif)</option>
+                                        <option value="WGS84">WGS84 (imagem GeoTIFF.tif)</option>
                                     </select>
                                 </div>
                             </div>
@@ -595,15 +595,15 @@
                                         <option value="Green (515-600nm)">Verde (515–600 nm)</option>
                                         <option value="Red (600-690nm)">Vermelho (600–690 nm)</option>
                                         <option value="Red Edge (690-750nm)">Borda vermelha (690–750 nm)</option>
-                                        <option value="NIR (780-3000nm)">NIR (780–3000 nm)</option>
-                                        <option value="MIR (3000-50000nm)">MIR (3.000–50.000 nm)</option>
-                                        <option value="FIR (50000-1000000nm)">FIR (50.000–1.000.000 nm)</option>
+                                        <option value="NIR (780-3000nm)">NIR (780-3000 nm)</option>
+                                        <option value="MIR (3000-50000nm)">MIR (3.000-50.000 nm)</option>
+                                        <option value="FIR (50000-1000000nm)">FIR (50.000-1.000.000 nm)</option>
                                         <option value="Thermal IR (9000-14000nm)">Infravermelho térmico (9.000–14.000 nm)</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">Imagem: (.jpeg, .png, .tif)</label>
+                                <label class="col-sm-3 control-label">Imagem:</label>
                                 <div class="col-sm-9" >
                                     <input type="file" id="drone_run_band_stitched_ortho_image_two_2" name="drone_run_band_stitched_ortho_image_2" encoding="multipart/form-data" />
                                 </div>
@@ -682,8 +682,8 @@
                                 <div class="col-sm-9" >
                                     <select class="form-control" id="drone_run_band_coordinate_system_three_1" name="drone_run_band_coordinate_system_1">
                                         <option value="Pixels">Pixels (imagem raster .PNG, .JPG, .TIFF)</option>
-                                        <option value="UTM">UTM (imagem GeoTIFF .tif)</option>
-                                        <option value="WGS84">WGS84 (imagem GeoTIFF .tif)</option>
+                                        <option value="UTM">UTM (imagem GeoTIFF.tif)</option>
+                                        <option value="WGS84">WGS84 (imagem GeoTIFF.tif)</option>
                                     </select>
                                 </div>
                             </div>
@@ -697,15 +697,15 @@
                                         <option value="Green (515-600nm)">Verde (515–600 nm)</option>
                                         <option value="Red (600-690nm)">Vermelho (600–690 nm)</option>
                                         <option value="Red Edge (690-750nm)">Borda vermelha (690–750 nm)</option>
-                                        <option value="NIR (780-3000nm)">NIR (780–3000 nm)</option>
-                                        <option value="MIR (3000-50000nm)">MIR (3.000–50.000 nm)</option>
-                                        <option value="FIR (50000-1000000nm)">FIR (50.000–1.000.000 nm)</option>
+                                        <option value="NIR (780-3000nm)">NIR (780-3000 nm)</option>
+                                        <option value="MIR (3000-50000nm)">MIR (3.000-50.000 nm)</option>
+                                        <option value="FIR (50000-1000000nm)">FIR (50.000-1.000.000 nm)</option>
                                         <option value="Thermal IR (9000-14000nm)">Infravermelho térmico (9.000–14.000 nm)</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">Imagem: (.jpeg, .png, .tif)</label>
+                                <label class="col-sm-3 control-label">Imagem:</label>
                                 <div class="col-sm-9" >
                                     <input type="file" id="drone_run_band_stitched_ortho_image_three_1" name="drone_run_band_stitched_ortho_image_1" encoding="multipart/form-data" />
                                 </div>
@@ -729,8 +729,8 @@
                                 <div class="col-sm-9" >
                                     <select class="form-control" id="drone_run_band_coordinate_system_three_2" name="drone_run_band_coordinate_system_2">
                                         <option value="Pixels">Pixels (imagem raster .PNG, .JPG, .TIFF)</option>
-                                        <option value="UTM">UTM (imagem GeoTIFF .tif)</option>
-                                        <option value="WGS84">WGS84 (imagem GeoTIFF .tif)</option>
+                                        <option value="UTM">UTM (imagem GeoTIFF.tif)</option>
+                                        <option value="WGS84">WGS84 (imagem GeoTIFF.tif)</option>
                                     </select>
                                 </div>
                             </div>
@@ -744,15 +744,15 @@
                                         <option value="Green (515-600nm)">Verde (515–600 nm)</option>
                                         <option value="Red (600-690nm)">Vermelho (600–690 nm)</option>
                                         <option value="Red Edge (690-750nm)">Borda vermelha (690–750 nm)</option>
-                                        <option value="NIR (780-3000nm)">NIR (780–3000 nm)</option>
-                                        <option value="MIR (3000-50000nm)">MIR (3.000–50.000 nm)</option>
-                                        <option value="FIR (50000-1000000nm)">FIR (50.000–1.000.000 nm)</option>
+                                        <option value="NIR (780-3000nm)">NIR (780-3000 nm)</option>
+                                        <option value="MIR (3000-50000nm)">MIR (3.000-50.000 nm)</option>
+                                        <option value="FIR (50000-1000000nm)">FIR (50.000-1.000.000 nm)</option>
                                         <option value="Thermal IR (9000-14000nm)">Infravermelho térmico (9.000–14.000 nm)</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">Imagem: (.jpeg, .png, .tif)</label>
+                                <label class="col-sm-3 control-label">Imagem:</label>
                                 <div class="col-sm-9" >
                                     <input type="file" id="drone_run_band_stitched_ortho_image_three_2" name="drone_run_band_stitched_ortho_image_2" encoding="multipart/form-data" />
                                 </div>
@@ -776,8 +776,8 @@
                                 <div class="col-sm-9" >
                                     <select class="form-control" id="drone_run_band_coordinate_system_three_3" name="drone_run_band_coordinate_system_3">
                                         <option value="Pixels">Pixels (imagem raster .PNG, .JPG, .TIFF)</option>
-                                        <option value="UTM">UTM (imagem GeoTIFF .tif)</option>
-                                        <option value="WGS84">WGS84 (imagem GeoTIFF .tif)</option>
+                                        <option value="UTM">UTM (imagem GeoTIFF.tif)</option>
+                                        <option value="WGS84">WGS84 (imagem GeoTIFF.tif)</option>
                                     </select>
                                 </div>
                             </div>
@@ -791,15 +791,15 @@
                                         <option value="Green (515-600nm)">Verde (515–600 nm)</option>
                                         <option value="Red (600-690nm)">Vermelho (600–690 nm)</option>
                                         <option value="Red Edge (690-750nm)">Borda vermelha (690–750 nm)</option>
-                                        <option value="NIR (780-3000nm)">NIR (780–3000 nm)</option>
-                                        <option value="MIR (3000-50000nm)">MIR (3.000–50.000 nm)</option>
-                                        <option value="FIR (50000-1000000nm)">FIR (50.000–1.000.000 nm)</option>
+                                        <option value="NIR (780-3000nm)">NIR (780-3000 nm)</option>
+                                        <option value="MIR (3000-50000nm)">MIR (3.000-50.000 nm)</option>
+                                        <option value="FIR (50000-1000000nm)">FIR (50.000-1.000.000 nm)</option>
                                         <option value="Thermal IR (9000-14000nm)">Infravermelho térmico (9.000–14.000 nm)</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">Imagem: (.jpeg, .png, .tif)</label>
+                                <label class="col-sm-3 control-label">Imagem:</label>
                                 <div class="col-sm-9" >
                                     <input type="file" id="drone_run_band_stitched_ortho_image_three_3" name="drone_run_band_stitched_ortho_image_3" encoding="multipart/form-data" />
                                 </div>
@@ -878,8 +878,8 @@
                                 <div class="col-sm-9" >
                                     <select class="form-control" id="drone_run_band_coordinate_system_four_1" name="drone_run_band_coordinate_system_1">
                                         <option value="Pixels">Pixels (imagem raster .PNG, .JPG, .TIFF)</option>
-                                        <option value="UTM">UTM (imagem GeoTIFF .tif)</option>
-                                        <option value="WGS84">WGS84 (imagem GeoTIFF .tif)</option>
+                                        <option value="UTM">UTM (imagem GeoTIFF.tif)</option>
+                                        <option value="WGS84">WGS84 (imagem GeoTIFF.tif)</option>
                                     </select>
                                 </div>
                             </div>
@@ -893,15 +893,15 @@
                                         <option value="Green (515-600nm)">Verde (515–600 nm)</option>
                                         <option value="Red (600-690nm)">Vermelho (600–690 nm)</option>
                                         <option value="Red Edge (690-750nm)">Borda vermelha (690–750 nm)</option>
-                                        <option value="NIR (780-3000nm)">NIR (780–3000 nm)</option>
-                                        <option value="MIR (3000-50000nm)">MIR (3.000–50.000 nm)</option>
-                                        <option value="FIR (50000-1000000nm)">FIR (50.000–1.000.000 nm)</option>
+                                        <option value="NIR (780-3000nm)">NIR (780-3000 nm)</option>
+                                        <option value="MIR (3000-50000nm)">MIR (3.000-50.000 nm)</option>
+                                        <option value="FIR (50000-1000000nm)">FIR (50.000-1.000.000 nm)</option>
                                         <option value="Thermal IR (9000-14000nm)">Infravermelho térmico (9.000–14.000 nm)</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">Imagem: (.jpeg, .png, .tif)</label>
+                                <label class="col-sm-3 control-label">Imagem:</label>
                                 <div class="col-sm-9" >
                                     <input type="file" id="drone_run_band_stitched_ortho_image_four_1" name="drone_run_band_stitched_ortho_image_1" encoding="multipart/form-data" />
                                 </div>
@@ -925,8 +925,8 @@
                                 <div class="col-sm-9" >
                                     <select class="form-control" id="drone_run_band_coordinate_system_four_2" name="drone_run_band_coordinate_system_2">
                                         <option value="Pixels">Pixels (imagem raster .PNG, .JPG, .TIFF)</option>
-                                        <option value="UTM">UTM (imagem GeoTIFF .tif)</option>
-                                        <option value="WGS84">WGS84 (imagem GeoTIFF .tif)</option>
+                                        <option value="UTM">UTM (imagem GeoTIFF.tif)</option>
+                                        <option value="WGS84">WGS84 (imagem GeoTIFF.tif)</option>
                                     </select>
                                 </div>
                             </div>
@@ -940,15 +940,15 @@
                                         <option value="Green (515-600nm)">Verde (515–600 nm)</option>
                                         <option value="Red (600-690nm)">Vermelho (600–690 nm)</option>
                                         <option value="Red Edge (690-750nm)">Borda vermelha (690–750 nm)</option>
-                                        <option value="NIR (780-3000nm)">NIR (780–3000 nm)</option>
-                                        <option value="MIR (3000-50000nm)">MIR (3.000–50.000 nm)</option>
-                                        <option value="FIR (50000-1000000nm)">FIR (50.000–1.000.000 nm)</option>
+                                        <option value="NIR (780-3000nm)">NIR (780-3000 nm)</option>
+                                        <option value="MIR (3000-50000nm)">MIR (3.000-50.000 nm)</option>
+                                        <option value="FIR (50000-1000000nm)">FIR (50.000-1.000.000 nm)</option>
                                         <option value="Thermal IR (9000-14000nm)">Infravermelho térmico (9.000–14.000 nm)</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">Imagem: (.jpeg, .png, .tif)</label>
+                                <label class="col-sm-3 control-label">Imagem:</label>
                                 <div class="col-sm-9" >
                                     <input type="file" id="drone_run_band_stitched_ortho_image_four_2" name="drone_run_band_stitched_ortho_image_2" encoding="multipart/form-data" />
                                 </div>
@@ -972,8 +972,8 @@
                                 <div class="col-sm-9" >
                                     <select class="form-control" id="drone_run_band_coordinate_system_four_3" name="drone_run_band_coordinate_system_3">
                                         <option value="Pixels">Pixels (imagem raster .PNG, .JPG, .TIFF)</option>
-                                        <option value="UTM">UTM (imagem GeoTIFF .tif)</option>
-                                        <option value="WGS84">WGS84 (imagem GeoTIFF .tif)</option>
+                                        <option value="UTM">UTM (imagem GeoTIFF.tif)</option>
+                                        <option value="WGS84">WGS84 (imagem GeoTIFF.tif)</option>
                                     </select>
                                 </div>
                             </div>
@@ -987,15 +987,15 @@
                                         <option value="Green (515-600nm)">Verde (515–600 nm)</option>
                                         <option value="Red (600-690nm)">Vermelho (600–690 nm)</option>
                                         <option value="Red Edge (690-750nm)">Borda vermelha (690–750 nm)</option>
-                                        <option value="NIR (780-3000nm)">NIR (780–3000 nm)</option>
-                                        <option value="MIR (3000-50000nm)">MIR (3.000–50.000 nm)</option>
-                                        <option value="FIR (50000-1000000nm)">FIR (50.000–1.000.000 nm)</option>
+                                        <option value="NIR (780-3000nm)">NIR (780-3000 nm)</option>
+                                        <option value="MIR (3000-50000nm)">MIR (3.000-50.000 nm)</option>
+                                        <option value="FIR (50000-1000000nm)">FIR (50.000-1.000.000 nm)</option>
                                         <option value="Thermal IR (9000-14000nm)">Infravermelho térmico (9.000–14.000 nm)</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">Imagem: (.jpeg, .png, .tif)</label>
+                                <label class="col-sm-3 control-label">Imagem:</label>
                                 <div class="col-sm-9" >
                                     <input type="file" id="drone_run_band_stitched_ortho_image_four_3" name="drone_run_band_stitched_ortho_image_3" encoding="multipart/form-data" />
                                 </div>
@@ -1019,8 +1019,8 @@
                                 <div class="col-sm-9" >
                                     <select class="form-control" id="drone_run_band_coordinate_system_four_4" name="drone_run_band_coordinate_system_4">
                                         <option value="Pixels">Pixels (imagem raster .PNG, .JPG, .TIFF)</option>
-                                        <option value="UTM">UTM (imagem GeoTIFF .tif)</option>
-                                        <option value="WGS84">WGS84 (imagem GeoTIFF .tif)</option>
+                                        <option value="UTM">UTM (imagem GeoTIFF.tif)</option>
+                                        <option value="WGS84">WGS84 (imagem GeoTIFF.tif)</option>
                                     </select>
                                 </div>
                             </div>
@@ -1034,15 +1034,15 @@
                                         <option value="Green (515-600nm)">Verde (515–600 nm)</option>
                                         <option value="Red (600-690nm)">Vermelho (600–690 nm)</option>
                                         <option value="Red Edge (690-750nm)">Borda vermelha (690–750 nm)</option>
-                                        <option value="NIR (780-3000nm)">NIR (780–3000 nm)</option>
-                                        <option value="MIR (3000-50000nm)">MIR (3.000–50.000 nm)</option>
-                                        <option value="FIR (50000-1000000nm)">FIR (50.000–1.000.000 nm)</option>
+                                        <option value="NIR (780-3000nm)">NIR (780-3000 nm)</option>
+                                        <option value="MIR (3000-50000nm)">MIR (3.000-50.000 nm)</option>
+                                        <option value="FIR (50000-1000000nm)">FIR (50.000-1.000.000 nm)</option>
                                         <option value="Thermal IR (9000-14000nm)">Infravermelho térmico (9.000–14.000 nm)</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">Imagem: (.jpeg, .png, .tif)</label>
+                                <label class="col-sm-3 control-label">Imagem:</label>
                                 <div class="col-sm-9" >
                                     <input type="file" id="drone_run_band_stitched_ortho_image_four_4" name="drone_run_band_stitched_ortho_image_4" encoding="multipart/form-data" />
                                 </div>
@@ -1121,8 +1121,8 @@
                                 <div class="col-sm-9" >
                                     <select class="form-control" id="drone_run_band_coordinate_system_five_1" name="drone_run_band_coordinate_system_1">
                                         <option value="Pixels">Pixels (imagem raster .PNG, .JPG, .TIFF)</option>
-                                        <option value="UTM">UTM (imagem GeoTIFF .tif)</option>
-                                        <option value="WGS84">WGS84 (imagem GeoTIFF .tif)</option>
+                                        <option value="UTM">UTM (imagem GeoTIFF.tif)</option>
+                                        <option value="WGS84">WGS84 (imagem GeoTIFF.tif)</option>
                                     </select>
                                 </div>
                             </div>
@@ -1136,15 +1136,15 @@
                                         <option value="Green (515-600nm)">Verde (515–600 nm)</option>
                                         <option value="Red (600-690nm)">Vermelho (600–690 nm)</option>
                                         <option value="Red Edge (690-750nm)">Borda vermelha (690–750 nm)</option>
-                                        <option value="NIR (780-3000nm)">NIR (780–3000 nm)</option>
-                                        <option value="MIR (3000-50000nm)">MIR (3.000–50.000 nm)</option>
-                                        <option value="FIR (50000-1000000nm)">FIR (50.000–1.000.000 nm)</option>
+                                        <option value="NIR (780-3000nm)">NIR (780-3000 nm)</option>
+                                        <option value="MIR (3000-50000nm)">MIR (3.000-50.000 nm)</option>
+                                        <option value="FIR (50000-1000000nm)">FIR (50.000-1.000.000 nm)</option>
                                         <option value="Thermal IR (9000-14000nm)">Infravermelho térmico (9.000–14.000 nm)</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">Imagem: (.jpeg, .png, .tif)</label>
+                                <label class="col-sm-3 control-label">Imagem:</label>
                                 <div class="col-sm-9" >
                                     <input type="file" id="drone_run_band_stitched_ortho_image_five_1" name="drone_run_band_stitched_ortho_image_1" encoding="multipart/form-data" />
                                 </div>
@@ -1168,8 +1168,8 @@
                                 <div class="col-sm-9" >
                                     <select class="form-control" id="drone_run_band_coordinate_system_five_2" name="drone_run_band_coordinate_system_2">
                                         <option value="Pixels">Pixels (imagem raster .PNG, .JPG, .TIFF)</option>
-                                        <option value="UTM">UTM (imagem GeoTIFF .tif)</option>
-                                        <option value="WGS84">WGS84 (imagem GeoTIFF .tif)</option>
+                                        <option value="UTM">UTM (imagem GeoTIFF.tif)</option>
+                                        <option value="WGS84">WGS84 (imagem GeoTIFF.tif)</option>
                                     </select>
                                 </div>
                             </div>
@@ -1183,15 +1183,15 @@
                                         <option value="Green (515-600nm)">Verde (515–600 nm)</option>
                                         <option value="Red (600-690nm)">Vermelho (600–690 nm)</option>
                                         <option value="Red Edge (690-750nm)">Borda vermelha (690–750 nm)</option>
-                                        <option value="NIR (780-3000nm)">NIR (780–3000 nm)</option>
-                                        <option value="MIR (3000-50000nm)">MIR (3.000–50.000 nm)</option>
-                                        <option value="FIR (50000-1000000nm)">FIR (50.000–1.000.000 nm)</option>
+                                        <option value="NIR (780-3000nm)">NIR (780-3000 nm)</option>
+                                        <option value="MIR (3000-50000nm)">MIR (3.000-50.000 nm)</option>
+                                        <option value="FIR (50000-1000000nm)">FIR (50.000-1.000.000 nm)</option>
                                         <option value="Thermal IR (9000-14000nm)">Infravermelho térmico (9.000–14.000 nm)</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">Imagem: (.jpeg, .png, .tif)</label>
+                                <label class="col-sm-3 control-label">Imagem:</label>
                                 <div class="col-sm-9" >
                                     <input type="file" id="drone_run_band_stitched_ortho_image_five_2" name="drone_run_band_stitched_ortho_image_2" encoding="multipart/form-data" />
                                 </div>
@@ -1215,8 +1215,8 @@
                                 <div class="col-sm-9" >
                                     <select class="form-control" id="drone_run_band_coordinate_system_five_3" name="drone_run_band_coordinate_system_3">
                                         <option value="Pixels">Pixels (imagem raster .PNG, .JPG, .TIFF)</option>
-                                        <option value="UTM">UTM (imagem GeoTIFF .tif)</option>
-                                        <option value="WGS84">WGS84 (imagem GeoTIFF .tif)</option>
+                                        <option value="UTM">UTM (imagem GeoTIFF.tif)</option>
+                                        <option value="WGS84">WGS84 (imagem GeoTIFF.tif)</option>
                                     </select>
                                 </div>
                             </div>
@@ -1230,15 +1230,15 @@
                                         <option value="Green (515-600nm)">Verde (515–600 nm)</option>
                                         <option value="Red (600-690nm)">Vermelho (600–690 nm)</option>
                                         <option value="Red Edge (690-750nm)">Borda vermelha (690–750 nm)</option>
-                                        <option value="NIR (780-3000nm)">NIR (780–3000 nm)</option>
-                                        <option value="MIR (3000-50000nm)">MIR (3.000–50.000 nm)</option>
-                                        <option value="FIR (50000-1000000nm)">FIR (50.000–1.000.000 nm)</option>
+                                        <option value="NIR (780-3000nm)">NIR (780-3000 nm)</option>
+                                        <option value="MIR (3000-50000nm)">MIR (3.000-50.000 nm)</option>
+                                        <option value="FIR (50000-1000000nm)">FIR (50.000-1.000.000 nm)</option>
                                         <option value="Thermal IR (9000-14000nm)">Infravermelho térmico (9.000–14.000 nm)</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">Imagem: (.jpeg, .png, .tif)</label>
+                                <label class="col-sm-3 control-label">Imagem:</label>
                                 <div class="col-sm-9" >
                                     <input type="file" id="drone_run_band_stitched_ortho_image_five_3" name="drone_run_band_stitched_ortho_image_3" encoding="multipart/form-data" />
                                 </div>
@@ -1262,8 +1262,8 @@
                                 <div class="col-sm-9" >
                                     <select class="form-control" id="drone_run_band_coordinate_system_five_4" name="drone_run_band_coordinate_system_4">
                                         <option value="Pixels">Pixels (imagem raster .PNG, .JPG, .TIFF)</option>
-                                        <option value="UTM">UTM (imagem GeoTIFF .tif)</option>
-                                        <option value="WGS84">WGS84 (imagem GeoTIFF .tif)</option>
+                                        <option value="UTM">UTM (imagem GeoTIFF.tif)</option>
+                                        <option value="WGS84">WGS84 (imagem GeoTIFF.tif)</option>
                                     </select>
                                 </div>
                             </div>
@@ -1277,15 +1277,15 @@
                                         <option value="Green (515-600nm)">Verde (515–600 nm)</option>
                                         <option value="Red (600-690nm)">Vermelho (600–690 nm)</option>
                                         <option value="Red Edge (690-750nm)">Borda vermelha (690–750 nm)</option>
-                                        <option value="NIR (780-3000nm)">NIR (780–3000 nm)</option>
-                                        <option value="MIR (3000-50000nm)">MIR (3.000–50.000 nm)</option>
-                                        <option value="FIR (50000-1000000nm)">FIR (50.000–1.000.000 nm)</option>
+                                        <option value="NIR (780-3000nm)">NIR (780-3000 nm)</option>
+                                        <option value="MIR (3000-50000nm)">MIR (3.000-50.000 nm)</option>
+                                        <option value="FIR (50000-1000000nm)">FIR (50.000-1.000.000 nm)</option>
                                         <option value="Thermal IR (9000-14000nm)">Infravermelho térmico (9.000–14.000 nm)</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">Imagem: (.jpeg, .png, .tif)</label>
+                                <label class="col-sm-3 control-label">Imagem:</label>
                                 <div class="col-sm-9" >
                                     <input type="file" id="drone_run_band_stitched_ortho_image_five_4" name="drone_run_band_stitched_ortho_image_4" encoding="multipart/form-data" />
                                 </div>
@@ -1309,8 +1309,8 @@
                                 <div class="col-sm-9" >
                                     <select class="form-control" id="drone_run_band_coordinate_system_five_5" name="drone_run_band_coordinate_system_5">
                                         <option value="Pixels">Pixels (imagem raster .PNG, .JPG, .TIFF)</option>
-                                        <option value="UTM">UTM (imagem GeoTIFF .tif)</option>
-                                        <option value="WGS84">WGS84 (imagem GeoTIFF .tif)</option>
+                                        <option value="UTM">UTM (imagem GeoTIFF.tif)</option>
+                                        <option value="WGS84">WGS84 (imagem GeoTIFF.tif)</option>
                                     </select>
                                 </div>
                             </div>
@@ -1324,15 +1324,15 @@
                                         <option value="Green (515-600nm)">Verde (515–600 nm)</option>
                                         <option value="Red (600-690nm)">Vermelho (600–690 nm)</option>
                                         <option value="Red Edge (690-750nm)">Borda vermelha (690–750 nm)</option>
-                                        <option value="NIR (780-3000nm)">NIR (780–3000 nm)</option>
-                                        <option value="MIR (3000-50000nm)">MIR (3.000–50.000 nm)</option>
-                                        <option value="FIR (50000-1000000nm)">FIR (50.000–1.000.000 nm)</option>
+                                        <option value="NIR (780-3000nm)">NIR (780-3000 nm)</option>
+                                        <option value="MIR (3000-50000nm)">MIR (3.000-50.000 nm)</option>
+                                        <option value="FIR (50000-1000000nm)">FIR (50.000-1.000.000 nm)</option>
                                         <option value="Thermal IR (9000-14000nm)">Infravermelho térmico (9.000–14.000 nm)</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">Imagem: (.jpeg, .png, .tif)</label>
+                                <label class="col-sm-3 control-label">Imagem:</label>
                                 <div class="col-sm-9" >
                                     <input type="file" id="drone_run_band_stitched_ortho_image_five_5" name="drone_run_band_stitched_ortho_image_5" encoding="multipart/form-data" />
                                 </div>
@@ -1411,8 +1411,8 @@
                                 <div class="col-sm-9" >
                                     <select class="form-control" id="drone_run_band_coordinate_system_six_1" name="drone_run_band_coordinate_system_1">
                                         <option value="Pixels">Pixels (imagem raster .PNG, .JPG, .TIFF)</option>
-                                        <option value="UTM">UTM (imagem GeoTIFF .tif)</option>
-                                        <option value="WGS84">WGS84 (imagem GeoTIFF .tif)</option>
+                                        <option value="UTM">UTM (imagem GeoTIFF.tif)</option>
+                                        <option value="WGS84">WGS84 (imagem GeoTIFF.tif)</option>
                                     </select>
                                 </div>
                             </div>
@@ -1426,15 +1426,15 @@
                                         <option value="Green (515-600nm)">Verde (515–600 nm)</option>
                                         <option value="Red (600-690nm)">Vermelho (600–690 nm)</option>
                                         <option value="Red Edge (690-750nm)">Borda vermelha (690–750 nm)</option>
-                                        <option value="NIR (780-3000nm)">NIR (780–3000 nm)</option>
-                                        <option value="MIR (3000-50000nm)">MIR (3.000–50.000 nm)</option>
-                                        <option value="FIR (50000-1000000nm)">FIR (50.000–1.000.000 nm)</option>
+                                        <option value="NIR (780-3000nm)">NIR (780-3000 nm)</option>
+                                        <option value="MIR (3000-50000nm)">MIR (3.000-50.000 nm)</option>
+                                        <option value="FIR (50000-1000000nm)">FIR (50.000-1.000.000 nm)</option>
                                         <option value="Thermal IR (9000-14000nm)">Infravermelho térmico (9.000–14.000 nm)</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">Imagem: (.jpeg, .png, .tif)</label>
+                                <label class="col-sm-3 control-label">Imagem:</label>
                                 <div class="col-sm-9" >
                                     <input type="file" id="drone_run_band_stitched_ortho_image_six_1" name="drone_run_band_stitched_ortho_image_1" encoding="multipart/form-data" />
                                 </div>
@@ -1458,8 +1458,8 @@
                                 <div class="col-sm-9" >
                                     <select class="form-control" id="drone_run_band_coordinate_system_six_2" name="drone_run_band_coordinate_system_2">
                                         <option value="Pixels">Pixels (imagem raster .PNG, .JPG, .TIFF)</option>
-                                        <option value="UTM">UTM (imagem GeoTIFF .tif)</option>
-                                        <option value="WGS84">WGS84 (imagem GeoTIFF .tif)</option>
+                                        <option value="UTM">UTM (imagem GeoTIFF.tif)</option>
+                                        <option value="WGS84">WGS84 (imagem GeoTIFF.tif)</option>
                                     </select>
                                 </div>
                             </div>
@@ -1473,15 +1473,15 @@
                                         <option value="Green (515-600nm)">Verde (515–600 nm)</option>
                                         <option value="Red (600-690nm)">Vermelho (600–690 nm)</option>
                                         <option value="Red Edge (690-750nm)">Borda vermelha (690–750 nm)</option>
-                                        <option value="NIR (780-3000nm)">NIR (780–3000 nm)</option>
-                                        <option value="MIR (3000-50000nm)">MIR (3.000–50.000 nm)</option>
-                                        <option value="FIR (50000-1000000nm)">FIR (50.000–1.000.000 nm)</option>
+                                        <option value="NIR (780-3000nm)">NIR (780-3000 nm)</option>
+                                        <option value="MIR (3000-50000nm)">MIR (3.000-50.000 nm)</option>
+                                        <option value="FIR (50000-1000000nm)">FIR (50.000-1.000.000 nm)</option>
                                         <option value="Thermal IR (9000-14000nm)">Infravermelho térmico (9.000–14.000 nm)</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">Imagem: (.jpeg, .png, .tif)</label>
+                                <label class="col-sm-3 control-label">Imagem:</label>
                                 <div class="col-sm-9" >
                                     <input type="file" id="drone_run_band_stitched_ortho_image_six_2" name="drone_run_band_stitched_ortho_image_2" encoding="multipart/form-data" />
                                 </div>
@@ -1505,8 +1505,8 @@
                                 <div class="col-sm-9" >
                                     <select class="form-control" id="drone_run_band_coordinate_system_six_3" name="drone_run_band_coordinate_system_3">
                                         <option value="Pixels">Pixels (imagem raster .PNG, .JPG, .TIFF)</option>
-                                        <option value="UTM">UTM (imagem GeoTIFF .tif)</option>
-                                        <option value="WGS84">WGS84 (imagem GeoTIFF .tif)</option>
+                                        <option value="UTM">UTM (imagem GeoTIFF.tif)</option>
+                                        <option value="WGS84">WGS84 (imagem GeoTIFF.tif)</option>
                                     </select>
                                 </div>
                             </div>
@@ -1520,15 +1520,15 @@
                                         <option value="Green (515-600nm)">Verde (515–600 nm)</option>
                                         <option value="Red (600-690nm)">Vermelho (600–690 nm)</option>
                                         <option value="Red Edge (690-750nm)">Borda vermelha (690–750 nm)</option>
-                                        <option value="NIR (780-3000nm)">NIR (780–3000 nm)</option>
-                                        <option value="MIR (3000-50000nm)">MIR (3.000–50.000 nm)</option>
-                                        <option value="FIR (50000-1000000nm)">FIR (50.000–1.000.000 nm)</option>
+                                        <option value="NIR (780-3000nm)">NIR (780-3000 nm)</option>
+                                        <option value="MIR (3000-50000nm)">MIR (3.000-50.000 nm)</option>
+                                        <option value="FIR (50000-1000000nm)">FIR (50.000-1.000.000 nm)</option>
                                         <option value="Thermal IR (9000-14000nm)">Infravermelho térmico (9.000–14.000 nm)</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">Imagem: (.jpeg, .png, .tif)</label>
+                                <label class="col-sm-3 control-label">Imagem:</label>
                                 <div class="col-sm-9" >
                                     <input type="file" id="drone_run_band_stitched_ortho_image_six_3" name="drone_run_band_stitched_ortho_image_3" encoding="multipart/form-data" />
                                 </div>
@@ -1552,8 +1552,8 @@
                                 <div class="col-sm-9" >
                                     <select class="form-control" id="drone_run_band_coordinate_system_six_4" name="drone_run_band_coordinate_system_4">
                                         <option value="Pixels">Pixels (imagem raster .PNG, .JPG, .TIFF)</option>
-                                        <option value="UTM">UTM (imagem GeoTIFF .tif)</option>
-                                        <option value="WGS84">WGS84 (imagem GeoTIFF .tif)</option>
+                                        <option value="UTM">UTM (imagem GeoTIFF.tif)</option>
+                                        <option value="WGS84">WGS84 (imagem GeoTIFF.tif)</option>
                                     </select>
                                 </div>
                             </div>
@@ -1567,15 +1567,15 @@
                                         <option value="Green (515-600nm)">Verde (515–600 nm)</option>
                                         <option value="Red (600-690nm)">Vermelho (600–690 nm)</option>
                                         <option value="Red Edge (690-750nm)">Borda vermelha (690–750 nm)</option>
-                                        <option value="NIR (780-3000nm)">NIR (780–3000 nm)</option>
-                                        <option value="MIR (3000-50000nm)">MIR (3.000–50.000 nm)</option>
-                                        <option value="FIR (50000-1000000nm)">FIR (50.000–1.000.000 nm)</option>
+                                        <option value="NIR (780-3000nm)">NIR (780-3000 nm)</option>
+                                        <option value="MIR (3000-50000nm)">MIR (3.000-50.000 nm)</option>
+                                        <option value="FIR (50000-1000000nm)">FIR (50.000-1.000.000 nm)</option>
                                         <option value="Thermal IR (9000-14000nm)">Infravermelho térmico (9.000–14.000 nm)</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">Imagem: (.jpeg, .png, .tif)</label>
+                                <label class="col-sm-3 control-label">Imagem:</label>
                                 <div class="col-sm-9" >
                                     <input type="file" id="drone_run_band_stitched_ortho_image_six_4" name="drone_run_band_stitched_ortho_image_4" encoding="multipart/form-data" />
                                 </div>
@@ -1599,8 +1599,8 @@
                                 <div class="col-sm-9" >
                                     <select class="form-control" id="drone_run_band_coordinate_system_six_5" name="drone_run_band_coordinate_system_5">
                                         <option value="Pixels">Pixels (imagem raster .PNG, .JPG, .TIFF)</option>
-                                        <option value="UTM">UTM (imagem GeoTIFF .tif)</option>
-                                        <option value="WGS84">WGS84 (imagem GeoTIFF .tif)</option>
+                                        <option value="UTM">UTM (imagem GeoTIFF.tif)</option>
+                                        <option value="WGS84">WGS84 (imagem GeoTIFF.tif)</option>
                                     </select>
                                 </div>
                             </div>
@@ -1614,15 +1614,15 @@
                                         <option value="Green (515-600nm)">Verde (515–600 nm)</option>
                                         <option value="Red (600-690nm)">Vermelho (600–690 nm)</option>
                                         <option value="Red Edge (690-750nm)">Borda vermelha (690–750 nm)</option>
-                                        <option value="NIR (780-3000nm)">NIR (780–3000 nm)</option>
-                                        <option value="MIR (3000-50000nm)">MIR (3.000–50.000 nm)</option>
-                                        <option value="FIR (50000-1000000nm)">FIR (50.000–1.000.000 nm)</option>
+                                        <option value="NIR (780-3000nm)">NIR (780-3000 nm)</option>
+                                        <option value="MIR (3000-50000nm)">MIR (3.000-50.000 nm)</option>
+                                        <option value="FIR (50000-1000000nm)">FIR (50.000-1.000.000 nm)</option>
                                         <option value="Thermal IR (9000-14000nm)">Infravermelho térmico (9.000–14.000 nm)</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">Imagem: (.jpeg, .png, .tif)</label>
+                                <label class="col-sm-3 control-label">Imagem:</label>
                                 <div class="col-sm-9" >
                                     <input type="file" id="drone_run_band_stitched_ortho_image_six_5" name="drone_run_band_stitched_ortho_image_5" encoding="multipart/form-data" />
                                 </div>
@@ -1646,8 +1646,8 @@
                                 <div class="col-sm-9" >
                                     <select class="form-control" id="drone_run_band_coordinate_system_six_6" name="drone_run_band_coordinate_system_6">
                                         <option value="Pixels">Pixels (imagem raster .PNG, .JPG, .TIFF)</option>
-                                        <option value="UTM">UTM (imagem GeoTIFF .tif)</option>
-                                        <option value="WGS84">WGS84 (imagem GeoTIFF .tif)</option>
+                                        <option value="UTM">UTM (imagem GeoTIFF.tif)</option>
+                                        <option value="WGS84">WGS84 (imagem GeoTIFF.tif)</option>
                                     </select>
                                 </div>
                             </div>
@@ -1661,15 +1661,15 @@
                                         <option value="Green (515-600nm)">Verde (515–600 nm)</option>
                                         <option value="Red (600-690nm)">Vermelho (600–690 nm)</option>
                                         <option value="Red Edge (690-750nm)">Borda vermelha (690–750 nm)</option>
-                                        <option value="NIR (780-3000nm)">NIR (780–3000 nm)</option>
-                                        <option value="MIR (3000-50000nm)">MIR (3.000–50.000 nm)</option>
-                                        <option value="FIR (50000-1000000nm)">FIR (50.000–1.000.000 nm)</option>
+                                        <option value="NIR (780-3000nm)">NIR (780-3000 nm)</option>
+                                        <option value="MIR (3000-50000nm)">MIR (3.000-50.000 nm)</option>
+                                        <option value="FIR (50000-1000000nm)">FIR (50.000-1.000.000 nm)</option>
                                         <option value="Thermal IR (9000-14000nm)">Infravermelho térmico (9.000–14.000 nm)</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">Imagem: (.jpeg, .png, .tif)</label>
+                                <label class="col-sm-3 control-label">Imagem:</label>
                                 <div class="col-sm-9" >
                                     <input type="file" id="drone_run_band_stitched_ortho_image_six_6" name="drone_run_band_stitched_ortho_image_6" encoding="multipart/form-data" />
                                 </div>
@@ -1748,8 +1748,8 @@
                                 <div class="col-sm-9" >
                                     <select class="form-control" id="drone_run_band_coordinate_system_seven_1" name="drone_run_band_coordinate_system_1">
                                         <option value="Pixels">Pixels (imagem raster .PNG, .JPG, .TIFF)</option>
-                                        <option value="UTM">UTM (imagem GeoTIFF .tif)</option>
-                                        <option value="WGS84">WGS84 (imagem GeoTIFF .tif)</option>
+                                        <option value="UTM">UTM (imagem GeoTIFF.tif)</option>
+                                        <option value="WGS84">WGS84 (imagem GeoTIFF.tif)</option>
                                     </select>
                                 </div>
                             </div>
@@ -1763,15 +1763,15 @@
                                         <option value="Green (515-600nm)">Verde (515–600 nm)</option>
                                         <option value="Red (600-690nm)">Vermelho (600–690 nm)</option>
                                         <option value="Red Edge (690-750nm)">Borda vermelha (690–750 nm)</option>
-                                        <option value="NIR (780-3000nm)">NIR (780–3000 nm)</option>
-                                        <option value="MIR (3000-50000nm)">MIR (3.000–50.000 nm)</option>
-                                        <option value="FIR (50000-1000000nm)">FIR (50.000–1.000.000 nm)</option>
+                                        <option value="NIR (780-3000nm)">NIR (780-3000 nm)</option>
+                                        <option value="MIR (3000-50000nm)">MIR (3.000-50.000 nm)</option>
+                                        <option value="FIR (50000-1000000nm)">FIR (50.000-1.000.000 nm)</option>
                                         <option value="Thermal IR (9000-14000nm)">Infravermelho térmico (9.000–14.000 nm)</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">Imagem: (.jpeg, .png, .tif)</label>
+                                <label class="col-sm-3 control-label">Imagem:</label>
                                 <div class="col-sm-9" >
                                     <input type="file" id="drone_run_band_stitched_ortho_image_seven_1" name="drone_run_band_stitched_ortho_image_1" encoding="multipart/form-data" />
                                 </div>
@@ -1795,8 +1795,8 @@
                                 <div class="col-sm-9" >
                                     <select class="form-control" id="drone_run_band_coordinate_system_seven_2" name="drone_run_band_coordinate_system_2">
                                         <option value="Pixels">Pixels (imagem raster .PNG, .JPG, .TIFF)</option>
-                                        <option value="UTM">UTM (imagem GeoTIFF .tif)</option>
-                                        <option value="WGS84">WGS84 (imagem GeoTIFF .tif)</option>
+                                        <option value="UTM">UTM (imagem GeoTIFF.tif)</option>
+                                        <option value="WGS84">WGS84 (imagem GeoTIFF.tif)</option>
                                     </select>
                                 </div>
                             </div>
@@ -1810,15 +1810,15 @@
                                         <option value="Green (515-600nm)">Verde (515–600 nm)</option>
                                         <option value="Red (600-690nm)">Vermelho (600–690 nm)</option>
                                         <option value="Red Edge (690-750nm)">Borda vermelha (690–750 nm)</option>
-                                        <option value="NIR (780-3000nm)">NIR (780–3000 nm)</option>
-                                        <option value="MIR (3000-50000nm)">MIR (3.000–50.000 nm)</option>
-                                        <option value="FIR (50000-1000000nm)">FIR (50.000–1.000.000 nm)</option>
+                                        <option value="NIR (780-3000nm)">NIR (780-3000 nm)</option>
+                                        <option value="MIR (3000-50000nm)">MIR (3.000-50.000 nm)</option>
+                                        <option value="FIR (50000-1000000nm)">FIR (50.000-1.000.000 nm)</option>
                                         <option value="Thermal IR (9000-14000nm)">Infravermelho térmico (9.000–14.000 nm)</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">Imagem: (.jpeg, .png, .tif)</label>
+                                <label class="col-sm-3 control-label">Imagem:</label>
                                 <div class="col-sm-9" >
                                     <input type="file" id="drone_run_band_stitched_ortho_image_seven_2" name="drone_run_band_stitched_ortho_image_2" encoding="multipart/form-data" />
                                 </div>
@@ -1842,8 +1842,8 @@
                                 <div class="col-sm-9" >
                                     <select class="form-control" id="drone_run_band_coordinate_system_seven_3" name="drone_run_band_coordinate_system_3">
                                         <option value="Pixels">Pixels (imagem raster .PNG, .JPG, .TIFF)</option>
-                                        <option value="UTM">UTM (imagem GeoTIFF .tif)</option>
-                                        <option value="WGS84">WGS84 (imagem GeoTIFF .tif)</option>
+                                        <option value="UTM">UTM (imagem GeoTIFF.tif)</option>
+                                        <option value="WGS84">WGS84 (imagem GeoTIFF.tif)</option>
                                     </select>
                                 </div>
                             </div>
@@ -1857,15 +1857,15 @@
                                         <option value="Green (515-600nm)">Verde (515–600 nm)</option>
                                         <option value="Red (600-690nm)">Vermelho (600–690 nm)</option>
                                         <option value="Red Edge (690-750nm)">Borda vermelha (690–750 nm)</option>
-                                        <option value="NIR (780-3000nm)">NIR (780–3000 nm)</option>
-                                        <option value="MIR (3000-50000nm)">MIR (3.000–50.000 nm)</option>
-                                        <option value="FIR (50000-1000000nm)">FIR (50.000–1.000.000 nm)</option>
+                                        <option value="NIR (780-3000nm)">NIR (780-3000 nm)</option>
+                                        <option value="MIR (3000-50000nm)">MIR (3.000-50.000 nm)</option>
+                                        <option value="FIR (50000-1000000nm)">FIR (50.000-1.000.000 nm)</option>
                                         <option value="Thermal IR (9000-14000nm)">Infravermelho térmico (9.000–14.000 nm)</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">Imagem: (.jpeg, .png, .tif)</label>
+                                <label class="col-sm-3 control-label">Imagem:</label>
                                 <div class="col-sm-9" >
                                     <input type="file" id="drone_run_band_stitched_ortho_image_seven_3" name="drone_run_band_stitched_ortho_image_3" encoding="multipart/form-data" />
                                 </div>
@@ -1889,8 +1889,8 @@
                                 <div class="col-sm-9" >
                                     <select class="form-control" id="drone_run_band_coordinate_system_seven_4" name="drone_run_band_coordinate_system_4">
                                         <option value="Pixels">Pixels (imagem raster .PNG, .JPG, .TIFF)</option>
-                                        <option value="UTM">UTM (imagem GeoTIFF .tif)</option>
-                                        <option value="WGS84">WGS84 (imagem GeoTIFF .tif)</option>
+                                        <option value="UTM">UTM (imagem GeoTIFF.tif)</option>
+                                        <option value="WGS84">WGS84 (imagem GeoTIFF.tif)</option>
                                     </select>
                                 </div>
                             </div>
@@ -1904,15 +1904,15 @@
                                         <option value="Green (515-600nm)">Verde (515–600 nm)</option>
                                         <option value="Red (600-690nm)">Vermelho (600–690 nm)</option>
                                         <option value="Red Edge (690-750nm)">Borda vermelha (690–750 nm)</option>
-                                        <option value="NIR (780-3000nm)">NIR (780–3000 nm)</option>
-                                        <option value="MIR (3000-50000nm)">MIR (3.000–50.000 nm)</option>
-                                        <option value="FIR (50000-1000000nm)">FIR (50.000–1.000.000 nm)</option>
+                                        <option value="NIR (780-3000nm)">NIR (780-3000 nm)</option>
+                                        <option value="MIR (3000-50000nm)">MIR (3.000-50.000 nm)</option>
+                                        <option value="FIR (50000-1000000nm)">FIR (50.000-1.000.000 nm)</option>
                                         <option value="Thermal IR (9000-14000nm)">Infravermelho térmico (9.000–14.000 nm)</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">Imagem: (.jpeg, .png, .tif)</label>
+                                <label class="col-sm-3 control-label">Imagem:</label>
                                 <div class="col-sm-9" >
                                     <input type="file" id="drone_run_band_stitched_ortho_image_seven_4" name="drone_run_band_stitched_ortho_image_4" encoding="multipart/form-data" />
                                 </div>
@@ -1936,8 +1936,8 @@
                                 <div class="col-sm-9" >
                                     <select class="form-control" id="drone_run_band_coordinate_system_seven_5" name="drone_run_band_coordinate_system_5">
                                         <option value="Pixels">Pixels (imagem raster .PNG, .JPG, .TIFF)</option>
-                                        <option value="UTM">UTM (imagem GeoTIFF .tif)</option>
-                                        <option value="WGS84">WGS84 (imagem GeoTIFF .tif)</option>
+                                        <option value="UTM">UTM (imagem GeoTIFF.tif)</option>
+                                        <option value="WGS84">WGS84 (imagem GeoTIFF.tif)</option>
                                     </select>
                                 </div>
                             </div>
@@ -1951,15 +1951,15 @@
                                         <option value="Green (515-600nm)">Verde (515–600 nm)</option>
                                         <option value="Red (600-690nm)">Vermelho (600–690 nm)</option>
                                         <option value="Red Edge (690-750nm)">Borda vermelha (690–750 nm)</option>
-                                        <option value="NIR (780-3000nm)">NIR (780–3000 nm)</option>
-                                        <option value="MIR (3000-50000nm)">MIR (3.000–50.000 nm)</option>
-                                        <option value="FIR (50000-1000000nm)">FIR (50.000–1.000.000 nm)</option>
+                                        <option value="NIR (780-3000nm)">NIR (780-3000 nm)</option>
+                                        <option value="MIR (3000-50000nm)">MIR (3.000-50.000 nm)</option>
+                                        <option value="FIR (50000-1000000nm)">FIR (50.000-1.000.000 nm)</option>
                                         <option value="Thermal IR (9000-14000nm)">Infravermelho térmico (9.000–14.000 nm)</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">Imagem: (.jpeg, .png, .tif)</label>
+                                <label class="col-sm-3 control-label">Imagem:</label>
                                 <div class="col-sm-9" >
                                     <input type="file" id="drone_run_band_stitched_ortho_image_seven_5" name="drone_run_band_stitched_ortho_image_5" encoding="multipart/form-data" />
                                 </div>
@@ -1983,8 +1983,8 @@
                                 <div class="col-sm-9" >
                                     <select class="form-control" id="drone_run_band_coordinate_system_seven_6" name="drone_run_band_coordinate_system_6">
                                         <option value="Pixels">Pixels (imagem raster .PNG, .JPG, .TIFF)</option>
-                                        <option value="UTM">UTM (imagem GeoTIFF .tif)</option>
-                                        <option value="WGS84">WGS84 (imagem GeoTIFF .tif)</option>
+                                        <option value="UTM">UTM (imagem GeoTIFF.tif)</option>
+                                        <option value="WGS84">WGS84 (imagem GeoTIFF.tif)</option>
                                     </select>
                                 </div>
                             </div>
@@ -1998,15 +1998,15 @@
                                         <option value="Green (515-600nm)">Verde (515–600 nm)</option>
                                         <option value="Red (600-690nm)">Vermelho (600–690 nm)</option>
                                         <option value="Red Edge (690-750nm)">Borda vermelha (690–750 nm)</option>
-                                        <option value="NIR (780-3000nm)">NIR (780–3000 nm)</option>
-                                        <option value="MIR (3000-50000nm)">MIR (3.000–50.000 nm)</option>
-                                        <option value="FIR (50000-1000000nm)">FIR (50.000–1.000.000 nm)</option>
+                                        <option value="NIR (780-3000nm)">NIR (780-3000 nm)</option>
+                                        <option value="MIR (3000-50000nm)">MIR (3.000-50.000 nm)</option>
+                                        <option value="FIR (50000-1000000nm)">FIR (50.000-1.000.000 nm)</option>
                                         <option value="Thermal IR (9000-14000nm)">Infravermelho térmico (9.000–14.000 nm)</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">Imagem: (.jpeg, .png, .tif)</label>
+                                <label class="col-sm-3 control-label">Imagem:</label>
                                 <div class="col-sm-9" >
                                     <input type="file" id="drone_run_band_stitched_ortho_image_seven_6" name="drone_run_band_stitched_ortho_image_6" encoding="multipart/form-data" />
                                 </div>
@@ -2030,8 +2030,8 @@
                                 <div class="col-sm-9" >
                                     <select class="form-control" id="drone_run_band_coordinate_system_seven_7" name="drone_run_band_coordinate_system_7">
                                         <option value="Pixels">Pixels (imagem raster .PNG, .JPG, .TIFF)</option>
-                                        <option value="UTM">UTM (imagem GeoTIFF .tif)</option>
-                                        <option value="WGS84">WGS84 (imagem GeoTIFF .tif)</option>
+                                        <option value="UTM">UTM (imagem GeoTIFF.tif)</option>
+                                        <option value="WGS84">WGS84 (imagem GeoTIFF.tif)</option>
                                     </select>
                                 </div>
                             </div>
@@ -2045,15 +2045,15 @@
                                         <option value="Green (515-600nm)">Verde (515–600 nm)</option>
                                         <option value="Red (600-690nm)">Vermelho (600–690 nm)</option>
                                         <option value="Red Edge (690-750nm)">Borda vermelha (690–750 nm)</option>
-                                        <option value="NIR (780-3000nm)">NIR (780–3000 nm)</option>
-                                        <option value="MIR (3000-50000nm)">MIR (3.000–50.000 nm)</option>
-                                        <option value="FIR (50000-1000000nm)">FIR (50.000–1.000.000 nm)</option>
+                                        <option value="NIR (780-3000nm)">NIR (780-3000 nm)</option>
+                                        <option value="MIR (3000-50000nm)">MIR (3.000-50.000 nm)</option>
+                                        <option value="FIR (50000-1000000nm)">FIR (50.000-1.000.000 nm)</option>
                                         <option value="Thermal IR (9000-14000nm)">Infravermelho térmico (9.000–14.000 nm)</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">Imagem: (.jpeg, .png, .tif)</label>
+                                <label class="col-sm-3 control-label">Imagem:</label>
                                 <div class="col-sm-9" >
                                     <input type="file" id="drone_run_band_stitched_ortho_image_seven_7" name="drone_run_band_stitched_ortho_image_7" encoding="multipart/form-data" />
                                 </div>
@@ -2132,8 +2132,8 @@
                                 <div class="col-sm-9" >
                                     <select class="form-control" id="drone_run_band_coordinate_system_eight_1" name="drone_run_band_coordinate_system_1">
                                         <option value="Pixels">Pixels (imagem raster .PNG, .JPG, .TIFF)</option>
-                                        <option value="UTM">UTM (imagem GeoTIFF .tif)</option>
-                                        <option value="WGS84">WGS84 (imagem GeoTIFF .tif)</option>
+                                        <option value="UTM">UTM (imagem GeoTIFF.tif)</option>
+                                        <option value="WGS84">WGS84 (imagem GeoTIFF.tif)</option>
                                     </select>
                                 </div>
                             </div>
@@ -2147,15 +2147,15 @@
                                         <option value="Green (515-600nm)">Verde (515–600 nm)</option>
                                         <option value="Red (600-690nm)">Vermelho (600–690 nm)</option>
                                         <option value="Red Edge (690-750nm)">Borda vermelha (690–750 nm)</option>
-                                        <option value="NIR (780-3000nm)">NIR (780–3000 nm)</option>
-                                        <option value="MIR (3000-50000nm)">MIR (3.000–50.000 nm)</option>
-                                        <option value="FIR (50000-1000000nm)">FIR (50.000–1.000.000 nm)</option>
+                                        <option value="NIR (780-3000nm)">NIR (780-3000 nm)</option>
+                                        <option value="MIR (3000-50000nm)">MIR (3.000-50.000 nm)</option>
+                                        <option value="FIR (50000-1000000nm)">FIR (50.000-1.000.000 nm)</option>
                                         <option value="Thermal IR (9000-14000nm)">Infravermelho térmico (9.000–14.000 nm)</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">Imagem: (.jpeg, .png, .tif)</label>
+                                <label class="col-sm-3 control-label">Imagem:</label>
                                 <div class="col-sm-9" >
                                     <input type="file" id="drone_run_band_stitched_ortho_image_eight_1" name="drone_run_band_stitched_ortho_image_1" encoding="multipart/form-data" />
                                 </div>
@@ -2179,8 +2179,8 @@
                                 <div class="col-sm-9" >
                                     <select class="form-control" id="drone_run_band_coordinate_system_eight_2" name="drone_run_band_coordinate_system_2">
                                         <option value="Pixels">Pixels (imagem raster .PNG, .JPG, .TIFF)</option>
-                                        <option value="UTM">UTM (imagem GeoTIFF .tif)</option>
-                                        <option value="WGS84">WGS84 (imagem GeoTIFF .tif)</option>
+                                        <option value="UTM">UTM (imagem GeoTIFF.tif)</option>
+                                        <option value="WGS84">WGS84 (imagem GeoTIFF.tif)</option>
                                     </select>
                                 </div>
                             </div>
@@ -2194,15 +2194,15 @@
                                         <option value="Green (515-600nm)">Verde (515–600 nm)</option>
                                         <option value="Red (600-690nm)">Vermelho (600–690 nm)</option>
                                         <option value="Red Edge (690-750nm)">Borda vermelha (690–750 nm)</option>
-                                        <option value="NIR (780-3000nm)">NIR (780–3000 nm)</option>
-                                        <option value="MIR (3000-50000nm)">MIR (3.000–50.000 nm)</option>
-                                        <option value="FIR (50000-1000000nm)">FIR (50.000–1.000.000 nm)</option>
+                                        <option value="NIR (780-3000nm)">NIR (780-3000 nm)</option>
+                                        <option value="MIR (3000-50000nm)">MIR (3.000-50.000 nm)</option>
+                                        <option value="FIR (50000-1000000nm)">FIR (50.000-1.000.000 nm)</option>
                                         <option value="Thermal IR (9000-14000nm)">Infravermelho térmico (9.000–14.000 nm)</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">Imagem: (.jpeg, .png, .tif)</label>
+                                <label class="col-sm-3 control-label">Imagem:</label>
                                 <div class="col-sm-9" >
                                     <input type="file" id="drone_run_band_stitched_ortho_image_eight_2" name="drone_run_band_stitched_ortho_image_2" encoding="multipart/form-data" />
                                 </div>
@@ -2226,8 +2226,8 @@
                                 <div class="col-sm-9" >
                                     <select class="form-control" id="drone_run_band_coordinate_system_eight_3" name="drone_run_band_coordinate_system_3">
                                         <option value="Pixels">Pixels (imagem raster .PNG, .JPG, .TIFF)</option>
-                                        <option value="UTM">UTM (imagem GeoTIFF .tif)</option>
-                                        <option value="WGS84">WGS84 (imagem GeoTIFF .tif)</option>
+                                        <option value="UTM">UTM (imagem GeoTIFF.tif)</option>
+                                        <option value="WGS84">WGS84 (imagem GeoTIFF.tif)</option>
                                     </select>
                                 </div>
                             </div>
@@ -2241,15 +2241,15 @@
                                         <option value="Green (515-600nm)">Verde (515–600 nm)</option>
                                         <option value="Red (600-690nm)">Vermelho (600–690 nm)</option>
                                         <option value="Red Edge (690-750nm)">Borda vermelha (690–750 nm)</option>
-                                        <option value="NIR (780-3000nm)">NIR (780–3000 nm)</option>
-                                        <option value="MIR (3000-50000nm)">MIR (3.000–50.000 nm)</option>
-                                        <option value="FIR (50000-1000000nm)">FIR (50.000–1.000.000 nm)</option>
+                                        <option value="NIR (780-3000nm)">NIR (780-3000 nm)</option>
+                                        <option value="MIR (3000-50000nm)">MIR (3.000-50.000 nm)</option>
+                                        <option value="FIR (50000-1000000nm)">FIR (50.000-1.000.000 nm)</option>
                                         <option value="Thermal IR (9000-14000nm)">Infravermelho térmico (9.000–14.000 nm)</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">Imagem: (.jpeg, .png, .tif)</label>
+                                <label class="col-sm-3 control-label">Imagem:</label>
                                 <div class="col-sm-9" >
                                     <input type="file" id="drone_run_band_stitched_ortho_image_eight_3" name="drone_run_band_stitched_ortho_image_3" encoding="multipart/form-data" />
                                 </div>
@@ -2273,8 +2273,8 @@
                                 <div class="col-sm-9" >
                                     <select class="form-control" id="drone_run_band_coordinate_system_eight_4" name="drone_run_band_coordinate_system_4">
                                         <option value="Pixels">Pixels (imagem raster .PNG, .JPG, .TIFF)</option>
-                                        <option value="UTM">UTM (imagem GeoTIFF .tif)</option>
-                                        <option value="WGS84">WGS84 (imagem GeoTIFF .tif)</option>
+                                        <option value="UTM">UTM (imagem GeoTIFF.tif)</option>
+                                        <option value="WGS84">WGS84 (imagem GeoTIFF.tif)</option>
                                     </select>
                                 </div>
                             </div>
@@ -2288,15 +2288,15 @@
                                         <option value="Green (515-600nm)">Verde (515–600 nm)</option>
                                         <option value="Red (600-690nm)">Vermelho (600–690 nm)</option>
                                         <option value="Red Edge (690-750nm)">Borda vermelha (690–750 nm)</option>
-                                        <option value="NIR (780-3000nm)">NIR (780–3000 nm)</option>
-                                        <option value="MIR (3000-50000nm)">MIR (3.000–50.000 nm)</option>
-                                        <option value="FIR (50000-1000000nm)">FIR (50.000–1.000.000 nm)</option>
+                                        <option value="NIR (780-3000nm)">NIR (780-3000 nm)</option>
+                                        <option value="MIR (3000-50000nm)">MIR (3.000-50.000 nm)</option>
+                                        <option value="FIR (50000-1000000nm)">FIR (50.000-1.000.000 nm)</option>
                                         <option value="Thermal IR (9000-14000nm)">Infravermelho térmico (9.000–14.000 nm)</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">Imagem: (.jpeg, .png, .tif)</label>
+                                <label class="col-sm-3 control-label">Imagem:</label>
                                 <div class="col-sm-9" >
                                     <input type="file" id="drone_run_band_stitched_ortho_image_eight_4" name="drone_run_band_stitched_ortho_image_4" encoding="multipart/form-data" />
                                 </div>
@@ -2320,8 +2320,8 @@
                                 <div class="col-sm-9" >
                                     <select class="form-control" id="drone_run_band_coordinate_system_eight_5" name="drone_run_band_coordinate_system_5">
                                         <option value="Pixels">Pixels (imagem raster .PNG, .JPG, .TIFF)</option>
-                                        <option value="UTM">UTM (imagem GeoTIFF .tif)</option>
-                                        <option value="WGS84">WGS84 (imagem GeoTIFF .tif)</option>
+                                        <option value="UTM">UTM (imagem GeoTIFF.tif)</option>
+                                        <option value="WGS84">WGS84 (imagem GeoTIFF.tif)</option>
                                     </select>
                                 </div>
                             </div>
@@ -2335,15 +2335,15 @@
                                         <option value="Green (515-600nm)">Verde (515–600 nm)</option>
                                         <option value="Red (600-690nm)">Vermelho (600–690 nm)</option>
                                         <option value="Red Edge (690-750nm)">Borda vermelha (690–750 nm)</option>
-                                        <option value="NIR (780-3000nm)">NIR (780–3000 nm)</option>
-                                        <option value="MIR (3000-50000nm)">MIR (3.000–50.000 nm)</option>
-                                        <option value="FIR (50000-1000000nm)">FIR (50.000–1.000.000 nm)</option>
+                                        <option value="NIR (780-3000nm)">NIR (780-3000 nm)</option>
+                                        <option value="MIR (3000-50000nm)">MIR (3.000-50.000 nm)</option>
+                                        <option value="FIR (50000-1000000nm)">FIR (50.000-1.000.000 nm)</option>
                                         <option value="Thermal IR (9000-14000nm)">Infravermelho térmico (9.000–14.000 nm)</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">Imagem: (.jpeg, .png, .tif)</label>
+                                <label class="col-sm-3 control-label">Imagem:</label>
                                 <div class="col-sm-9" >
                                     <input type="file" id="drone_run_band_stitched_ortho_image_eight_5" name="drone_run_band_stitched_ortho_image_5" encoding="multipart/form-data" />
                                 </div>
@@ -2367,8 +2367,8 @@
                                 <div class="col-sm-9" >
                                     <select class="form-control" id="drone_run_band_coordinate_system_eight_6" name="drone_run_band_coordinate_system_6">
                                         <option value="Pixels">Pixels (imagem raster .PNG, .JPG, .TIFF)</option>
-                                        <option value="UTM">UTM (imagem GeoTIFF .tif)</option>
-                                        <option value="WGS84">WGS84 (imagem GeoTIFF .tif)</option>
+                                        <option value="UTM">UTM (imagem GeoTIFF.tif)</option>
+                                        <option value="WGS84">WGS84 (imagem GeoTIFF.tif)</option>
                                     </select>
                                 </div>
                             </div>
@@ -2382,15 +2382,15 @@
                                         <option value="Green (515-600nm)">Verde (515–600 nm)</option>
                                         <option value="Red (600-690nm)">Vermelho (600–690 nm)</option>
                                         <option value="Red Edge (690-750nm)">Borda vermelha (690–750 nm)</option>
-                                        <option value="NIR (780-3000nm)">NIR (780–3000 nm)</option>
-                                        <option value="MIR (3000-50000nm)">MIR (3.000–50.000 nm)</option>
-                                        <option value="FIR (50000-1000000nm)">FIR (50.000–1.000.000 nm)</option>
+                                        <option value="NIR (780-3000nm)">NIR (780-3000 nm)</option>
+                                        <option value="MIR (3000-50000nm)">MIR (3.000-50.000 nm)</option>
+                                        <option value="FIR (50000-1000000nm)">FIR (50.000-1.000.000 nm)</option>
                                         <option value="Thermal IR (9000-14000nm)">Infravermelho térmico (9.000–14.000 nm)</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">Imagem: (.jpeg, .png, .tif)</label>
+                                <label class="col-sm-3 control-label">Imagem:</label>
                                 <div class="col-sm-9" >
                                     <input type="file" id="drone_run_band_stitched_ortho_image_eight_6" name="drone_run_band_stitched_ortho_image_6" encoding="multipart/form-data" />
                                 </div>
@@ -2414,8 +2414,8 @@
                                 <div class="col-sm-9" >
                                     <select class="form-control" id="drone_run_band_coordinate_system_eight_7" name="drone_run_band_coordinate_system_7">
                                         <option value="Pixels">Pixels (imagem raster .PNG, .JPG, .TIFF)</option>
-                                        <option value="UTM">UTM (imagem GeoTIFF .tif)</option>
-                                        <option value="WGS84">WGS84 (imagem GeoTIFF .tif)</option>
+                                        <option value="UTM">UTM (imagem GeoTIFF.tif)</option>
+                                        <option value="WGS84">WGS84 (imagem GeoTIFF.tif)</option>
                                     </select>
                                 </div>
                             </div>
@@ -2429,15 +2429,15 @@
                                         <option value="Green (515-600nm)">Verde (515–600 nm)</option>
                                         <option value="Red (600-690nm)">Vermelho (600–690 nm)</option>
                                         <option value="Red Edge (690-750nm)">Borda vermelha (690–750 nm)</option>
-                                        <option value="NIR (780-3000nm)">NIR (780–3000 nm)</option>
-                                        <option value="MIR (3000-50000nm)">MIR (3.000–50.000 nm)</option>
-                                        <option value="FIR (50000-1000000nm)">FIR (50.000–1.000.000 nm)</option>
+                                        <option value="NIR (780-3000nm)">NIR (780-3000 nm)</option>
+                                        <option value="MIR (3000-50000nm)">MIR (3.000-50.000 nm)</option>
+                                        <option value="FIR (50000-1000000nm)">FIR (50.000-1.000.000 nm)</option>
                                         <option value="Thermal IR (9000-14000nm)">Infravermelho térmico (9.000–14.000 nm)</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">Imagem: (.jpeg, .png, .tif)</label>
+                                <label class="col-sm-3 control-label">Imagem:</label>
                                 <div class="col-sm-9" >
                                     <input type="file" id="drone_run_band_stitched_ortho_image_eight_7" name="drone_run_band_stitched_ortho_image_7" encoding="multipart/form-data" />
                                 </div>
@@ -2461,8 +2461,8 @@
                                 <div class="col-sm-9" >
                                     <select class="form-control" id="drone_run_band_coordinate_system_eight_8" name="drone_run_band_coordinate_system_8">
                                         <option value="Pixels">Pixels (imagem raster .PNG, .JPG, .TIFF)</option>
-                                        <option value="UTM">UTM (imagem GeoTIFF .tif)</option>
-                                        <option value="WGS84">WGS84 (imagem GeoTIFF .tif)</option>
+                                        <option value="UTM">UTM (imagem GeoTIFF.tif)</option>
+                                        <option value="WGS84">WGS84 (imagem GeoTIFF.tif)</option>
                                     </select>
                                 </div>
                             </div>
@@ -2476,15 +2476,15 @@
                                         <option value="Green (515-600nm)">Verde (515–600 nm)</option>
                                         <option value="Red (600-690nm)">Vermelho (600–690 nm)</option>
                                         <option value="Red Edge (690-750nm)">Borda vermelha (690–750 nm)</option>
-                                        <option value="NIR (780-3000nm)">NIR (780–3000 nm)</option>
-                                        <option value="MIR (3000-50000nm)">MIR (3.000–50.000 nm)</option>
-                                        <option value="FIR (50000-1000000nm)">FIR (50.000–1.000.000 nm)</option>
+                                        <option value="NIR (780-3000nm)">NIR (780-3000 nm)</option>
+                                        <option value="MIR (3000-50000nm)">MIR (3.000-50.000 nm)</option>
+                                        <option value="FIR (50000-1000000nm)">FIR (50.000-1.000.000 nm)</option>
                                         <option value="Thermal IR (9000-14000nm)">Infravermelho térmico (9.000–14.000 nm)</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">Imagem: (.jpeg, .png, .tif)</label>
+                                <label class="col-sm-3 control-label">Imagem:</label>
                                 <div class="col-sm-9" >
                                     <input type="file" id="drone_run_band_stitched_ortho_image_eight_8" name="drone_run_band_stitched_ortho_image_8" encoding="multipart/form-data" />
                                 </div>
@@ -2844,7 +2844,7 @@
                 <div class="form-group">
                     <label class="col-sm-3 control-label">Nome do veículo de imageamento (deve ser único): </label>
                     <div class="col-sm-9" >
-                        <input class="form-control" id="drone_run_new_imaging_vehicle_name" name="drone_run_new_imaging_vehicle_name" type="text" placeholder="ex.: DroneDoMeuLaboratorio1" />
+                        <input class="form-control" id="drone_run_new_imaging_vehicle_name" name="drone_run_new_imaging_vehicle_name" type="text" placeholder="DroneDoMeuLaboratorio1" />
                     </div>
                 </div>
                 <div class="form-group">

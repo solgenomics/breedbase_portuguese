@@ -19,79 +19,79 @@ Lukas Mueller <lam87@cornell.edu>
 
 </%doc>
 
-<& /page/page_title.mas, title=>"SOL Outreach Activities and Materials" &>
+<& /page/page_title.mas, title=>"Atividades e materiais de divulgação do SOL" &>
 
-<&| /page/info_section.mas, title=>'Outreach overview' &>
+<&| /page/info_section.mas, title=>'Visão geral da extensão' &>
 
-The purpose of outreach is to establish a link between the science community and students at all levels of education in order to foster interest in the sciences and expose students to scientific career paths. A specific mandate from funding agencies such as the National Science Foundation is to increase the participation of underrepresented groups in science.
+O objetivo da divulgação é estabelecer uma ligação entre a comunidade científica e os estudantes em todos os níveis de educação, a fim de promover o interesse nas ciências e expor os estudantes a carreiras científicas. Um mandato específico de agências de financiamento como a Fundação Nacional de Ciência é aumentar a participação de grupos sub-representados na ciência.
 <br /><br />
-The US SOL outreach program focuses on Solanaceae biology and bioinformatics. The target audience is K-12 and college undergraduates, with a particular effort to engage underrepresented groups. Activies include presentations at elementary schools and associated after school programs, high schools, undergraduate classes, high school teacher curriculum workshops, and we provide hands-on laboratory activities. Bioinformatics training is taking place in the form of internships at SGN for undergraduate students.
+O programa US SOL foca na biologia e bioinformática Solanaceae. O público alvo é K-12 e estudantes universitários, com um esforço particular para envolver grupos sub-representados. As atividades incluem apresentações em escolas elementares e associadas a programas escolares, escolas secundárias, aulas de graduação, oficinas curriculares de professores do ensino médio, e nós fornecemos atividades práticas de laboratório. A formação em Bioinformática está ocorrendo na forma de estágios na SGN para estudantes de graduação.
 <br /><br />
-This page gives more information about the materials developed. Please contact us if you want to contribute materials. For more information, please contact the SOL outreach coordinator, <a href="mailto:jv27@cornell.edu">Joyce Van Eck</a>.
+Esta página dá mais informações sobre os materiais desenvolvidos. Por favor, entre em contato conosco se quiser contribuir com materiais. Para mais informações, por favor entre em contato com o coordenador SOL, <a href="mailto:jv27@cornell.edu">Joyce Van Eck</a>.
 </&>
 
-<&| /page/info_section.mas, title=>"Activities and Materials" &>
+<&| /page/info_section.mas, title=>"Atividades e Materiais" &>
 
-<dl><dt><b>Potato Plant Growth and Development Activity</b></dt>
+<dl><dt><b>Atividade de Crescimento e Desenvolvimento da Planta de Batata</b></dt>
 <dd>
 <ul>
-<li>Designed for high school biology curricula</li>
-<li>A laboratory exercise, "Tater Tots or Not?", based on in vitro potato microtuber production was developed for use in the biology curriculum at the high school level.  Joyce Van Eck and an Ithaca High School biology teacher, Linda Knewstub, designed a laboratory class that requires collaboration, critical thinking, and scientific inquiry.  The exercise covers the following aspects of curriculum content: traits of living organisms (life functions), requirements of photosynthesis and respiration (cell energy), scientific method and experimental design, and cell division (mitosis, asexual reproduction, vegetative propagation, stem cells).</li>
-<li>Resources: <a href="/static_content/outreach/Tater Tots or Not 06.doc">Student worksheet</a> [doc] | <a href="/static_content/outreach/Taters teacher version 06.doc">Teacher worksheet</a> [doc] | <a href="/static_content/outreach/Tissue culture procedures.ppt">Methods</a> [ppt]</li>
+<li>Destinado ao currículo de biologia do ensino médio</li>
+<li>Um exercício de laboratório, "Tater Tots or Not?", baseado na produção in vitro de microtuber batata foi desenvolvido para uso no currículo de biologia no ensino médio. Joyce Van Eck e uma professora de biologia da Escola Ithaca, Linda Knewstub, desenharam uma aula de laboratório que requer colaboração, pensamento crítico e investigação científica. O exercício abrange os seguintes aspectos do conteúdo curricular: características de organismos vivos (funções da vida), exigências de fotossíntese e respiração (energia celular), método científico e delineamento experimental, e divisão celular (mitose, reprodução assexuada, propagação vegetativa, células-tronco).</li>
+<li>Recursos: <a href="/static_content/outreach/Tater Tots or Not 06.doc">Folha de atividades do aluno</a> [doc] | <a href="/static_content/outreach/Taters teacher version 06.doc">Folha de atividades do professor</a> [doc] | <a href="/static_content/outreach/Tissue culture procedures.ppt">Métodos</a> [ppt]</li>
 </ul>
 </dd>
 
-<dt><b>The Solanaceae Family goes to school</b></dt>
+<dt><b>A família Solanaceae vai para a escola</b></dt>
 <dd>
 <ul>
-<li>Designed for K-5</li>
-<li>This educational outreach activity was designed for grades K-5 and has been done in elementary schools and after school programs.  The purpose of the activity is to teach children about members of the Solanaceae family, the concept of plant families, and diversity.  Various Solanaceae family members (tomatoes, potatoes, eggplants, peppers, and tomatillos) in all shapes, sizes, and colors are purchased at a local grocery store for the activity.  After cutting the vegetables open to look at the seeds or lack of seeds in the case of potatoes, the children taste the tomatoes, peppers, and tomatillos.  In addition to these vegetables, photographs of family members that are not found in local stores and flowers of the various Solanaceae are shown to the students.  After this activity, the children get to dress up the family members for a party.  At the end, a Word Find puzzle is given to the students to reinforce the terms that were discussed.</li>
-<li>Resources: <a href="/static_content/outreach/sol_family_activity_book.pdf">Activity Book</a> | <a href="/static_content/outreach/sol_family_activity_materials.pdf">List of materials needed</a> | <a href="/static_content/outreach/sol_family_images.pdf">Images of Sol family members</a> [pdf]</li>
+<li>Destinado à educação infantil e aos primeiros anos do ensino fundamental (K–5)</li>
+<li>Esta atividade educacional foi projetada para as notas K-5 e foi feita nas escolas primárias e depois dos programas escolares. O objetivo da atividade é ensinar as crianças sobre membros da família Solanaceae, o conceito de famílias de plantas e diversidade. Vários membros da família Solanaceae (tomates, batatas, berinjelas, pimentas e tomatillos) em todas as formas, tamanhos e cores são comprados em uma mercearia local para a atividade. Depois de cortar os vegetais abertos para olhar as sementes ou falta de sementes no caso das batatas, as crianças provam os tomates, pimentas e tomatillos. Além desses vegetais, fotografias de familiares que não são encontradas em lojas locais e flores das várias Solanaceae são mostradas aos alunos. Depois dessa atividade, as crianças podem vestir os membros da família para uma festa. No final, um quebra-cabeça é dado aos alunos para reforçar os termos que foram discutidos.</li>
+<li>Recursos: <a href="/static_content/outreach/sol_family_activity_book.pdf">Caderno de atividades</a> | <a href="/static_content/outreach/sol_family_activity_materials.pdf">Lista de materiais necessários</a> | <a href="/static_content/outreach/sol_family_images.pdf">Imagens da família Sol</a> [pdf]</li>
 </ul>
 </dd>
 
-<dt><b>User tutorial for SGN</b></dt>
+<dt><b>Tutorial do usuário para SGN</b></dt>
 <dd>
 <ul>
-<li>Designed for the high school and new user level.</li>
-<li>Introduction to using SGN for high school students and new users, with hands on exercises.</li>
-<li>Resources: <a href="/static_content/outreach/SGNHighSchoolTutuorial.doc">SGN tutorial</a></li>
-<li>Kindly provided by Theresa Fulton.</li>
+<li>Destinado a estudantes do ensino médio e novos usuários.</li>
+<li>Introdução ao uso da SGN para estudantes do ensino médio e novos usuários, com exercícios práticos.</li>
+<li>Recursos: <a href="/static_content/outreach/SGNHighSchoolTutuorial.doc">Tutorial da SGN</a></li>
+<li>Gentilmente fornecida por Theresa Fulton.</li>
 </ul>
 </dd>
 
-<dt><b>Sequencing puzzle</b></dt>
+<dt><b>Quebra-cabeça de sequenciamento</b></dt>
 <dd><ul>
-<li>The <a href="http://bti.cornell.edu/multimedia/puzzleComplete.html">Sequencing Puzzle</a> is an on-line interactive educational tool that explains genome sequencing using tomato as an example. It was developed by Dr. Joyce van Eck and Camilo Romero at <a href="http://bti.cornell.edu/">BTI</a>.</li>
+<li>O <a href="http://bti.cornell.edu/multimedia/puzzleComplete.html">Quebra-cabeça de sequenciamento</a> é uma ferramenta educacional interativa on-line que explica o sequenciamento do genoma usando tomate como exemplo. Foi desenvolvido por Dr. Joyce van Eck e Camilo Romero em <a href="http://bti.cornell.edu/">BTI</a>.</li>
 </ul>
 </dd>
 
-<dt><b><a name="interns">Bioinformatics Summer Internships</a></b></dt>
+<dt><b><a name="interns">Estágios de verão em bioinformática</a></b></dt>
 <dd>
   <ul>
-    <li>Available for college undergradutes</li>
-    <li>The bioinformatics summer internship accepts college undergraduates into the program. The internship is not available to graduate students. Students work at the Sol Genomics Network (SGN) for 8 - 10 weeks during the summer on their own bioinformatics-related projects. A staff member of SGN acts as project mentor for each student to help them learn the various programming skills necessary to develop their projects. As part of this internship, they also attend weekly seminars held at the Boyce Thompson Institute (BTI) that are given by plant scientists from BTI and Cornell.</li>
+    <li>Disponível para estudantes de graduação</li>
+    <li>O estágio de verão de bioinformática aceita estudantes universitários no programa. O estágio não está disponível para estudantes. Os alunos trabalham na Sol Geomics Network (SGN) por 8 a 10 semanas durante o verão em seus próprios projetos relacionados à bioinformática. Um membro da equipe da SGN atua como mentor de projeto para cada aluno para ajudá-los a aprender as várias habilidades de programação necessárias para desenvolver seus projetos. Como parte deste estágio, eles também participam de seminários semanais realizados no Instituto Boyce Thompson (BTI) que são dados por cientistas de plantas da BTI e Cornell.</li>
     <ul>
-      <li><a href="/about/Summer_Internship_2005.pl">2005 summer interns</a></li>
-      <li><a href="/about/Summer_Internship_2006.pl">2006 summer interns</a></li>
-      <li><a href="/about/Summer_Internship_2007.pl">2007 summer interns</a></li>
-      <li><a href="/about/Summer_Internship_2008.pl">2008 summer interns</a></li>
+      <li><a href="/about/Summer_Internship_2005.pl">Estagiários de verão de 2005</a></li>
+      <li><a href="/about/Summer_Internship_2006.pl">Estagiários de verão de 2006</a></li>
+      <li><a href="/about/Summer_Internship_2007.pl">Estagiários de verão de 2007</a></li>
+      <li><a href="/about/Summer_Internship_2008.pl">Estagiários de verão de 2008</a></li>
     </ul>
   </ul>
   <br />
   <div class="boxbgcolor2">
-    <h3>Application materials for the 2011 summer internships</h3>
+    <h3>Material de inscrição para os estágios de verão de 2011</h3>
     
           
-If you want to apply for the Summer 2011 internships, please use the forms below. The application deadline is March 7, 2010. Please send the filled-in materials or questions to Dr. Joyce van Eck <a href="mailto:jv27@cornell.edu">jv27@cornell.edu</a>.
+Se quiser se inscrever para os estágios de verão de 2011, por favor, use os formulários abaixo. O prazo de inscrição é 7 de março de 2010. Por favor, envie os materiais preenchidos ou perguntas para Dr. Joyce van Eck <a href="mailto:jv27@cornell.edu">jv27@cornell.edu</a>.
     <br /><br />
     <ul>
-      <li><a href="/static_content/outreach/internship_2011/internship_poster_2011.pdf">Flyer</a> (pdf)</li>
-      <li><a href="/static_content/outreach/internship_2011/recommendation_form_2011.pdf">Recommendation form</a> (pdf)</li>
-      <li><a href="/static_content/outreach/internship_2011/undergrad_app_internship_2011.pdf">Application form</a> (pdf)</li>
+      <li><a href="/static_content/outreach/internship_2011/internship_poster_2011.pdf">Folheto</a> (pdf)</li>
+      <li><a href="/static_content/outreach/internship_2011/recommendation_form_2011.pdf">Formulário de recomendação</a> (pdf)</li>
+      <li><a href="/static_content/outreach/internship_2011/undergrad_app_internship_2011.pdf">Formulário de inscrição</a> (pdf)</li>
     </ul>
     <br />
-    Note: you can type your information directly into the pdf file.
+    Nota: você pode digitar suas informações diretamente no arquivo PDF.
     <br />
     <br />
   </div>
@@ -107,9 +107,9 @@ If you want to apply for the Summer 2011 internships, please use the forms below
 <&| /page/info_section.mas, title=>"Links" &>
 
 <ul>
-<li><a href="http://www.plantgdb.org/PGROP/pgrop.php">Plant Genome Research Outreach Portal</a></li>
-<li><a href="http://bti.cornell.edu/pgrp/">BTI-Cornell Plant Genome Outreach</a></li>
-<li><a href="http://cibt.bio.cornell.edu">Cornell Institute for Biology Teachers</a></li> 
+<li><a href="http://www.plantgdb.org/PGROP/pgrop.php">Portal de Pesquisa do Genoma de Plantas</a></li>
+<li><a href="http://bti.cornell.edu/pgrp/">BTI-Cornell Planta Genoma Outreach</a></li>
+<li><a href="http://cibt.bio.cornell.edu">Instituto Cornell para Professores de Biologia</a></li> 
 </ul>
 
 </&>

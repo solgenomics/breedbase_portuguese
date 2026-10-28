@@ -5,11 +5,11 @@
 </%args>
 
 
-<& /page/page_title.mas, title => 'Reports' &>
+<& /page/page_title.mas, title => 'Relatórios' &>
 
 <ul>
-  <li><a href="/reports/overview/">Overview</a></li>
-  <li><a href="/reports/trials">Trials</a></li>
+  <li><a href="/reports/overview/">Visão geral</a></li>
+  <li><a href="/reports/trials">Ensaios</a></li>
 
 </ul>
 

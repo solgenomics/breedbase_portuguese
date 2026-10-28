@@ -1,7 +1,7 @@
 <%init>
 use Path::Class;
 </%init>
-% my $message = "You have successfully logged out. Thanks for using " . $c->config->{project_name} ."!";
+% my $message = "Você foi bem-sucedido. Obrigado por usar " . $c->config->{project_name} ."!";
 <!-- <div class="devbar"> -->
 <div class="devbar_tmp">
    <span style="color: #922; font-weight: bold"> </span>

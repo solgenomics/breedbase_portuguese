@@ -73,7 +73,7 @@ if (    $experiments
                         $protocol = 'RFLP';
                     }
                     else {
-                        $protocol = '<span class="ghosted">Unknown</span>';
+                        $protocol = '<span class="ghosted">Desconhecido</span>';
                     }
                 }
 
@@ -109,14 +109,14 @@ if (    $experiments
                 }
                 else {
                     $map_url =
-                      '<span class="ghosted">Map data not available</span>';
+                      '<span class="ghosted">Dados do mapa não disponíveis</span>';
                 }
                 my $multicol = 1;
                 my $width    = "300px";
                 if ( $subscript and $multicol > 1 ) { $multicol++; }
                 my @locations = (
                     '__title' =>
-"<b>Map:</b> $map_url&nbsp;&nbsp;&nbsp;",
+"<b>Mapa:</b> $map_url&nbsp;&nbsp;&nbsp;",
                     '__tableattrs' => "width=\"$width\"",
                     '__multicol'   => $multicol,
 		    'Map version'  => $map_version_id." (location: ".$loc->location_id().")",
@@ -208,14 +208,14 @@ qq|<img src="$image_url" usemap="#map$count" border="0" alt="" />|;
                     }
                     $locations_html .= '<td>';
                     my $fwd = $pcr->fwd_primer()
-                      || '<span class="ghosted">Unknown</span>';
+                      || '<span class="ghosted">Desconhecido</span>';
                     my $rev = $pcr->rev_primer()
-                      || '<span class="ghosted">Unknown</span>';
+                      || '<span class="ghosted">Desconhecido</span>';
                     my $enz = $pcr->enzyme()  || 'unknown enzyme' ;
 		    my $additional_enzymes = $pcr->additional_enzymes();
                     my $dcaps = $pcr->dcaps_primer();
-                    $temp ||= '<span class="ghosted">Unknown</span>';
-                    $mg   ||= '<span class="ghosted">Unknown</span>';
+                    $temp ||= '<span class="ghosted">Desconhecido</span>';
+                    $mg   ||= '<span class="ghosted">Desconhecido</span>';
                     my $digest_title = "Digested band sizes (using $enz)";
 
                     unless ($digest_bands_html) {
@@ -279,7 +279,7 @@ qq|<img src="$image_url" usemap="#map$count" border="0" alt="" />|;
                         $digest_title                   => $digest_bands_html,
 			'Enzymes'                       => $additional_enzymes,
                         'Approximate temperature'       => $temp,
-                        'Mg<sup>+2</sup> concentration' => $mg,
+                        'Mg<sup>+2</sup> concentração' => $mg,
                         '__multicol'                    => 3,
                         '__tableattrs'                  => "width=\"100%\"",
                       ) if ($protocol ne 'SNP');
@@ -320,6 +320,6 @@ qq|<img src="$image_url" usemap="#map$count" border="0" alt="" />|;
 
 </%perl>
 
-<&| /page/info_section.mas, title=>'Mapped locations', collapsible=>1, collapsed=>0 &>
+<&| /page/info_section.mas, title=>'Locais mapeados', collapsible=>1, collapsed=>0 &>
   <% $locations_html %>
 </&>

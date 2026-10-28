@@ -94,7 +94,7 @@
               </div>
 	    </div>
 	    <div class="form-group">
-      	      <label class="col-sm-2 control-label">Web URL: </label>
+      	      <label class="col-sm-2 control-label">URL da Web: </label>
       	      <div class="col-sm-10">
 	        <div class="input-group">
 		  <span class="input-group-addon" id="basic-addon2">http://www.</span>
@@ -231,7 +231,7 @@
               </div>
 	    </div>
 	    <div class="form-group">
-      	      <label class="col-sm-2 control-label">Web URL: </label>
+      	      <label class="col-sm-2 control-label">URL da Web: </label>
       	      <div class="col-sm-10">
 		<input type="hidden" id="edit_event_projectprop_id" name="edit_event_projectprop_id" />
   		<input type="text" name="edit_event_url" id="edit_event_url" class="form-control" placeholder="example.com">
@@ -619,7 +619,7 @@ jQuery(document).ready(function() {
     });
 
     jQuery('button#export_event_display').click( function() {
-        jQuery(this).popover({html:true, title:"Exportar evento", placement:'right', container:'body', content: "Google Agenda: <a href='http://www.google.com/calendar' target='_blank' >Exportar</a>"}).popover('toggle');
+        jQuery(this).popover({html:true, title:"Exportar evento", placement:'right', container:'body', content: "Agenda do Google: <a href='http://www.google.com/calendar' target='_blank' >Exportar</a>"}).popover('toggle');
     });
 
     jQuery('#event_dialog').on('hide.bs.modal', function (e) {

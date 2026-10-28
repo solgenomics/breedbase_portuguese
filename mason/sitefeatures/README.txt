@@ -1,2 +1,1 @@
-xrefs/ are views for a single xref
-xref_set/ are views for sets of xrefs
+xrefs / são vistas para um único xref xref_set / são vistas para conjuntos de xrefs

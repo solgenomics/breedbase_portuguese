@@ -112,9 +112,9 @@ if (defined $id) {
 	     $method_text .= qq| Show ESTScan Detail</a>]|;
 	 }
 	 if ($preferred eq 't') {
-	     $method_text .= " <br>(<i>preferred protein</i> for the protein prediction methods) ($preferred)";
+	     $method_text .= " <br>(<i>proteína preferida</i> ($preferred)";
 	 }
-         $protein_content .= "<b>Prediction based on $method_text</b>\n <br><br>\>$protein_id ($protein_length Aa)<br>";
+         $protein_content .= "<b>Previsão baseada em $method_text</b>\n <br><br>\>$protein_id ($protein_length Aa)<br>";
          my $i=0;
          my $protein_display = '';
 	 my ($nn_d, $nn_ypos, $nn_score) = $cds->get_signalp_info();    ## Get Signal-P info to link with the protein info
@@ -134,7 +134,7 @@ if (defined $id) {
 	 if($nn_d){
              $protein_content .= "<br />\n<div style='text-align:left'>";
 	     if($nn_d eq 'Y'){
-		 $protein_content .= "SignalP predicts <b>secretion</b> with a score of $nn_score";
+		 $protein_content .= "SignalP prevê <b>secreção</b> com uma pontuação de $nn_score";
 	     }
 	     elsif($nn_d eq 'N') {
 		 $protein_content .= "SignalP predicts non-secretion with a score of $nn_score";
@@ -142,7 +142,7 @@ if (defined $id) {
 	     $protein_content .= "</div>";         
 	 }
 	 if (!$nn_d) { 
-	     $protein_content .="<br /><span class=\"ghosted\">SignalP analysis not run for this sequence.</span>";
+	     $protein_content .="<br /><span class=\"ghosted\">A análise SignalP não funciona para esta sequência.</span>";
 	 }
      }
     
@@ -219,18 +219,18 @@ if (defined $id) {
 	    $ipr_content .= "<center><img src=\"$tmp_image\" alt=\"\" /></center>\n";
 	} 
 	else {
-	    $ipr_content = '<br /><span class="ghosted">No InterPro domain matches or not analyzed.</span><br /><br />';
+	    $ipr_content = '<br /><span class="ghosted">Nenhum domínio InterPro corresponde ou não é analisado.</span><br /><br />';
 	}
 
 	$protein_content .=$ipr_content;
     }
 
     if (!@cds) { 
-	$protein_content = '<span class="ghosted">No protein sequence available.</span>';
+	$protein_content = '<span class="ghosted">Nenhuma sequência proteica disponível.</span>';
     }
 
     my $proteins_n = scalar(@cds);
-    $protein_html_content = info_section_html( title        => "Protein prediction analysis (".$proteins_n.")", 
+    $protein_html_content = info_section_html( title        => "Análise de predição de proteínas".$proteins_n.")", 
 					       contents     => $protein_content,
 					       collapsible  => 1,
 					       collapsed    => 1, );

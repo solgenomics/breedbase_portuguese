@@ -163,7 +163,7 @@ if (@$accessions) {
 if ($more) {
   $html .= html_optional_show(
 			      "Accessions",
-			      "<b>See $more more accessions</b>",
+			      "<b>Veja $more mais acessos</b>",
 			      $more_html,
 			      0, #< do not show by default
 			      'abstract_optional_show', #< don't use the default button-like style

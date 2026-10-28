@@ -114,7 +114,7 @@ $stock_name => undef
             </div>
 
             <div class="row form-group">
-                <label class="col-sm-8 control-label">Incluir genitores: </label>
+                <label class="col-sm-8 control-label">Incluindo os genitores: </label>
                 <div class="col-sm-4" >
                     <select class="form-control" id="download_stock_phenotypes_pedigrees_option">
                         <option value="0">Não</option>

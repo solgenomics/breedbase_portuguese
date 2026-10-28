@@ -77,7 +77,7 @@ for my $additional_data_file(sort {$a cmp $b} @{$cosii_files}) {
     $description='Phylogenetic tree';
     $html3.="<a href=\"$additional_data_file\">$description</a><br />";
     my $file_url=URI::Escape::uri_escape($additional_data_file);
-    $html3.="<a href=\"$additional_data_file\">$description</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href=\"/tools/tree_browser/?shared_file=$file_url\">[View]</a><br />"; 
+    $html3.="<a href=\"$additional_data_file\">$description</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href=\"/tools/tree_browser/?shared_file=$file_url\">[Ver]</a><br />"; 
   }
   elsif($display_name=~/\.cds\.fasta$/) {
     $description = 'Amplicon sequence alignment, FASTA';
@@ -93,7 +93,7 @@ for my $additional_data_file(sort {$a cmp $b} @{$cosii_files}) {
   }
   elsif($display_name=~/\.ab1$/) {
     $description=&_cosii_additional_description($dbh, $display_name).", AB1 chromatogram";
-    $view_link=" - <a href=\"/tools/trace_view.pl?file=$real_location\">[View]</a>";
+    $view_link=" - <a href=\"/tools/trace_view.pl?file=$real_location\">[Ver]</a>";
     $html4.="<a href=\"$additional_data_file\">$description</a> $view_link<br />";
   }
   elsif($display_name=~/\.cds\.txt$/) {
@@ -172,11 +172,11 @@ sub get_information {
     
     my $ab1 = "$cosii_file/ab1/$marker-$ending$dashnumber.ab1";
     my $seq = "$cosii_file/seq/$marker-$ending$dashnumber.seq";
-    my $text = "Forward amplicon sequence for $organism$accession$plant$parennumber,";
+    my $text = "Sequência de amplicon para $organism$accession$plant$parennumber,";
 
-    $html .= "<a href=\"$ab1\">$text AB1 chromatogram</a> - "
-	. "<a href=\"/tools/trace_view.pl?file=$ab1\">[View]</a><br />"
-	. "<a href=\"$seq\">$text plain text</a><br />";
+    $html .= "<a href=\"$ab1\">$text Cromatograma AB1</a> - "
+	. "<a href=\"/tools/trace_view.pl?file=$ab1\">[Ver]</a><br />"
+	. "<a href=\"$seq\">$text texto simples</a><br />";
     $sth->finish;
     
     return $html;

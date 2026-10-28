@@ -25,7 +25,7 @@ $variance_components
 <&| /page/info_section.mas, 
     collapsible => 1, 
     collapsed   => 0, 
-    title       => "Variance components"
+    title       => "Componentes de variância"
 &>     
   <& /page/columnar_table.mas,
      headings   => ["Variance Components", "Estimates"], 

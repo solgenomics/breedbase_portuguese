@@ -32,7 +32,7 @@ my $submit_new = qq | <a href="/qtl/form">Submit QTL population</a> |;
 <&| /page/info_section.mas, 
   collapsible => 1, 
   collapsed   => 0, 
-  title       => "Population summary",
+  title       => "Resumo da população",
   subtitle    => $submit_new
   &>
  
@@ -48,7 +48,7 @@ my $submit_new = qq | <a href="/qtl/form">Submit QTL population</a> |;
   <&| /page/info_section.mas, 
     collapsible => 1, 
     collapsed   => 0, 
-    title       => "Set statistical parameters"
+    title       => "Defina parâmetros estatísticos"
   &>   
   <& stat_tools.mas, 
     pop_id     => $pop->get_population_id(), 
@@ -81,7 +81,7 @@ my $submit_new = qq | <a href="/qtl/form">Submit QTL population</a> |;
 <&| /page/info_section.mas, 
     collapsible => 1, 
     collapsed   => 1, 
-    title       => "Trait acronyms"
+    title       => "Acrônimos de trânsito"
   &>   
  
   <& /page/columnar_table.mas,

@@ -74,11 +74,11 @@ if (defined $organism_group_id) {
    foreach my $unigene_build_row (@unigene_build_rows) {
        my %unigene_data = $unigene_build_row->get_columns();
        my $build_name = $group_name . '#' . $unigene_data{'build_nr'};
-       my $status = '<font color="red"><i>Deprecated</i></font>';
+       my $status = '<font color="red"><i>Deprecado</i></font>';
        if ($unigene_data{'status'} eq 'C') {
 	   $status = '<font color="green"><b>CURRENT</b></font>';
        } elsif ($unigene_data{'status'} eq 'P') {
-	   $status = '<font color="orange"><i>Previous</i></font>';
+	   $status = '<font color="orange"><i>Anterior</i></font>';
        }
        
        my $build_link = '<a href=/search/unigene_build.pl?id=' . $unigene_data{'unigene_build_id'} . '>' . $build_name . '</a>';
@@ -99,7 +99,7 @@ if (defined $organism_group_id) {
 
 my $history_content;
 if (defined $unigene_build_id) {
-    $history_content = info_section_html( title         => "Unigene Build History", 
+    $history_content = info_section_html( title         => "Unigene Construir História", 
                                            contents     => $history_html,
    	        	                   collapsible  => 1,
                                            collapsed    => 0, );

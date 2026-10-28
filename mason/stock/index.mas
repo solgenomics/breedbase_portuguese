@@ -274,7 +274,7 @@ function jqueryStuff() {
                         form_div_name=>'stock_details',
                         js_object_name=> 'stockForm',
                         page_url => "/stock/$stock_id/view/" ,
-                        #alternate_new_button => '<a class="btn btn-sm btn-default" href ="/stock/0/new">New</a>'
+                        #alternate_new_button => '<a class="btn btn-sm btn-default" href ="/stock/0/new">Novo</a>'
                         alternate_new_button => '',,
                         alternate_ghosted_new_button => '',
                         alternate_delete_button => '',
@@ -392,7 +392,7 @@ function jqueryStuff() {
     <& /page/detail_page_2_col_section.mas, stock_id => $stock_id, type_name => $type_name, stockref => $stockref, buttons_html => $subtitle.$props_subtitle, info_section_title => "<h4 style='display:inline'>Informações complementares</h4>", info_section_subtitle => 'Visualize e edite as informações complementares, como sinônimos, editores e outras propriedades.', icon_class => "glyphicon glyphicon-info-sign", info_section_id => "stock_additional_info_section", stockprops => $stockprops, edit_privs => $edit_privs, editable_stock_props => \@editable_stock_props, editor_link => $editor_link_table, source_dbs => \%source_dbs, locus_add_uri => $locus_add_uri, new_locus_link => $new_locus_link, allele_div => $allele_div, is_owner => $is_owner, derived_accession_relationship => $derived_accession_relationship, related_stock_link => $related_stock_link, original_stock_link => $original_stock_link, info_section_collapsed => 0 &>
 % } else {
     <& /page/detail_page_2_col_section.mas, stock_id => $stock_id, type_name => $type_name, stockref => $stockref, buttons_html => $subtitle.$props_subtitle, info_section_title => "<h4 style='display:inline'>Informações complementares</h4>", info_section_subtitle => 'Visualize e edite as informações complementares, como sinônimos, editores e outras propriedades.', icon_class => "glyphicon glyphicon-info-sign", info_section_id => "stock_additional_info_section", stockprops => $stockprops, edit_privs => $edit_privs, editable_stock_props => \@editable_vector_props, editor_link => $editor_link_table, source_dbs => \%source_dbs, locus_add_uri => $locus_add_uri, new_locus_link => $new_locus_link, allele_div => $allele_div, is_owner => $is_owner, info_section_collapsed => 0 &>
-%#    <& /page/detail_page_2_col_section.mas, stock_id => $stock_id, type_name => $type_name, stockref=> $stockref, info_section_title => "<h4 style='display:inline' >Vector Viewer</h4>", info_section_subtitle => "", info_section_id => "vector_view", edit_privs => $edit_privs,  is_owner => $is_owner, info_section_collapsed => 0 &>
+%#    <& /page/detail_page_2_col_section.mas, stock_id => $stock_id, type_name => $type_name, stockref=> $stockref, info_section_title => "<h4 style='display:inline' >Visualizador de vetores</h4>", info_section_subtitle => "", info_section_id => "vector_view", edit_privs => $edit_privs,  is_owner => $is_owner, info_section_collapsed => 0 &>
     <& /page/detail_page_2_col_section.mas, vector_id => $stock_id, info_section_title => "<h4 style='display:inline'>Detalhes da linhagem transgênica</h4>", info_section_subtitle => 'Visualize o número de inserções do transgene e os dados de qPCR.',buttons_html => '<button class="btn btn-primary btn-sm" id="upload_qPCR_data_link_vector_page" name="upload_qPCR_data_link" style="margin:3px">Enviar dados de qPCR</button>', icon_class => "glyphicon glyphicon-list-alt", info_section_id => "transgenic_line_details_section", vector_name => $uniquename, type_name => $type_name, vector_related_genes => $vector_related_genes, vector_analyzed_tissue_types => $vector_analyzed_tissue_types &>
     <& /page/detail_page_2_col_section.mas, info_section_title => "<h4 style='display:inline'>Linhagens transgênicas obsoletas</h4>", info_section_subtitle => 'Visualize os acessos obsoletos (linhagens transgênicas) e seus metadados.', icon_class => "glyphicon glyphicon-remove", info_section_id => "obsoleted_accessions_section", vector_id => $stock_id &>
 % }
@@ -434,7 +434,7 @@ function jqueryStuff() {
         my $add_parent_link = '<button class="btn btn-primary btn-sm" style="margin:3px" id="add_parent_link" disabled>Adicionar genitor</button>';
         if ($person_id && ($submitter || $curator || $sequencer)) { $add_parent_link = qq | <button class="btn btn-primary btn-sm" style="margin:3px" id="add_parent_link" >Adicionar genitor</button> |; }
 
-        my $remove_parent_link = '<button class="btn btn-default btn-sm" style="margin:3px" id="remove_parent_link" disabled>Remover genitor</button>';
+        my $remove_parent_link = '<button class="btn btn-default btn-sm" style="margin:3px" id="remove_parent_link" disabled>Removedor de genitor</button>';
         if ($person_id && ($submitter || $curator || $sequencer)) { $remove_parent_link = qq | <button class="btn btn-default btn-sm" style="margin:3px" id="remove_parent_link">Remover genitor</button> |; }
 </%perl>
 

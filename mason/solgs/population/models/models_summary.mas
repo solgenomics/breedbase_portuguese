@@ -25,14 +25,14 @@ $model_data
 <&| /page/info_section.mas,
     collapsible => 1,
     collapsed   => 0,
-    title       => "Models summary"
+    title       => "Resumo dos modelos"
 &>
 
 <table id="model_summary" style="width:95%">
   <tr>
-    <th>Training population</th>
-    <th>Description</th>
-    <th>Models</th>
+    <th>População de treinamento</th>
+    <th>Descrição</th>
+    <th>Modelos</th>
   </tr>
 
 % foreach my $model (@$model_data)

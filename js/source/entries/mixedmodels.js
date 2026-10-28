@@ -138,7 +138,7 @@ export function init(main_div) {
                             $(this)
                                 //.addClass( "ui-state-highlight" )
                                 .find("p")
-                                .html("Dropped!");
+                                .html("Descartado!");
                             var droppable = $(this);
                             var draggable = ui.draggable;
                             // Move draggable into droppable
@@ -159,7 +159,7 @@ export function init(main_div) {
                             $(this)
                                 //.addClass( "ui-state-highlight" )
                                 .find("p")
-                                .html("Dropped!");
+                                .html("Descartado!");
                             var droppable = $(this);
                             var draggable = ui.draggable;
                             // Move draggable into droppable
@@ -177,7 +177,7 @@ export function init(main_div) {
 
                 },
                 error: function (r) {
-                    alert("ERROR!!!!!");
+                    alert("ERRO!");
                 }
             });
         }
@@ -186,11 +186,11 @@ export function init(main_div) {
 
     $('#add_interaction_factor_button').click(function (e) {
 
-        add_sub_div("interaction_factors_collection", "interaction", "Interaction");
+        add_sub_div("interaction_factors_collection", "interaction", "Interação");
     });
 
     $('#add_variable_slope_intersect_button').click(function (e) {
-        add_sub_div("variable_slope_intersect_collection", "variable_slope_intersect", "Variable slope/intersect");
+        add_sub_div("variable_slope_intersect_collection", "variable_slope_intersect", "Inclinação/intercepto variável");
     });
 
 
@@ -219,7 +219,7 @@ export function init(main_div) {
 
         var div_name = div_prefix + factor_count;
 
-        var div = '<div id="' + div_name + '_panel" class="panel panel-default" style="border-width:0px"><div id="' + div_name + '_header" class="panel-header"><span id="close_interaction_div_' + factor_count + '" class="remove">X</span> ' + collection_name + ' Term ' + factor_count + '</div><div id="' + div_name + '" class="panel-body factor_panel" ></div></div>';
+        var div = '<div id="' + div_name + '_panel" class="panel panel-default" style="border-width:0px"><div id="' + div_name + '_header" class="panel-header"><span id="close_interaction_div_' + factor_count + '" class="remove">X</span> ' + collection_name + " Termo " + factor_count + '</div><div id="' + div_name + '" class="panel-body factor_panel" ></div></div>';
 
         $('#' + collection_div).append(div);
 
@@ -270,7 +270,7 @@ export function init(main_div) {
         });
 
         if (trait_selected.length > 1 || trait_selected.length == 0) {
-            jQuery('#trait_histogram').html('Please select only one trait at a time to see the histogram!');
+            jQuery('#trait_histogram').html("Selecione apenas uma característica por vez para visualizar o histograma!");
         } else {
 
             var trait = trait_selected[0];
@@ -304,7 +304,7 @@ export function init(main_div) {
                 },
 
 
-                error: function (e) { alert('error!'); }
+                error: function (e) { alert("erro!"); }
             });
 
         }
@@ -382,7 +382,7 @@ export function init(main_div) {
 		    blups_data = JSON.stringify(r.blups_data);
 		    blues_data = JSON.stringify(r.blues_data);
 		    traits = JSON.stringify(r.traits);
-			console.log("Traits: "+traits);
+			console.log("Características: "+traits);
 		    input_file = r.input_file;
 		    result_summary = '{ "method" : "Breedbase mixed model analysis tool" }';
 
@@ -408,10 +408,10 @@ function get_dataset_id() {
         selected_datasets.push(jQuery(this).val());
     });
     if (selected_datasets.length < 1) {
-        alert('Please select at least one dataset!');
+        alert("Selecione pelo menos um conjunto de dados!");
         return false;
     } else if (selected_datasets.length > 1) {
-        alert('Please select only one dataset!');
+        alert("Selecione apenas um conjunto de dados!");
         return false;
     } else {
         var dataset_id = selected_datasets[0];
@@ -546,7 +546,7 @@ function get_model_string() {
 	method: 'POST',
 	data : params,
 	error: function(e) {
-	    alert("An error occurred"+e);
+	    alert("Ocorreu um erro"+e);
 	},
 	success: function(r) {
 	    if (r.error) {

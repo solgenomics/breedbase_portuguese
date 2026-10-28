@@ -277,7 +277,7 @@ function perform_save(to_save){
                 return false;
             }
             if(response.success){
-                var html = 'The following stocks were added!<br/>';
+                var html = "Os seguintes materiais foram adicionados!<br/>";
                 for (var i=0; i<response.added.length; i++){
                     html = html + '<a href="/stock/'+response.added[i][0]+'/view">'+response.added[i][1]+'</a><br/>';
                 }

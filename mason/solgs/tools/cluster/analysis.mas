@@ -44,7 +44,7 @@ if (!$data_structure) {
 }
 
 my $url = $c->req->path;
-my $title = 'Clustering Analysis';
+my $title = 'Análise de Aglomeração';
 my $section_title;
 my $collapsed = 0;
 my $collapsible = 0;
@@ -100,7 +100,7 @@ if ($url !~ /cluster\/analysis/) {
     analysis_type => 'cluster' 
     &>
 %} else {
-    <input id="run_cluster" class="button" type="button" value="Run Cluster" />
+    <input id="run_cluster" class="button" type="button" value="Corra Cluster" />
 %}
 
 <& plot.mas,

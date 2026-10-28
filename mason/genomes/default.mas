@@ -4,7 +4,7 @@
 <& /page/page_title.mas, title => '<i>'.$organism->species.'</i> Genome Data' &>
 
 <&| /page/info_section.mas,
-      title       => 'Sequence datasets',
+      title       => 'Datasets de sequência',
       collapsible => 1,
  &>
   <& /genomes/default/genome_builds.mas, %ARGS &>
@@ -12,7 +12,7 @@
 
 
 <&| /page/info_section.mas,
-      title       => 'Browsable annotations',
+      title       => 'Anotações de navegação',
       collapsible => 1,
       hide_if_empty => 1,
  &>
@@ -22,7 +22,7 @@
 </&>
 
 <&| /page/info_section.mas,
-      title       => 'Annotation datasets',
+      title       => 'Datasets de anotações',
       collapsible => 1,
       hide_if_empty => 1,
  &>

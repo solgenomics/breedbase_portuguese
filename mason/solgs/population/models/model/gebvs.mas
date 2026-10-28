@@ -21,7 +21,7 @@ Isaak Y Tecle (iyt2@cornell.edu)
 <&|  /page/info_section.mas,
   collapsible => 1,
   collapsed   => 0,
-  title     => "Genomic estimated breeding values (GEBVs) - GBLUP method"
+  title     => "Valores genéticos estimados (GEBVs) - método GBLUP"
 &>
 
 <div id="gebvs">

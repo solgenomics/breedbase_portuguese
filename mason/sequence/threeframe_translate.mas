@@ -79,8 +79,8 @@ my $markup_styles = {
 % }
 <tr><td colspan="2">
 <div style="width: 20em; margin: -0.2em 0 0 auto; font-size: 90%">
-  <span class="sequence"><span class="orf" style="border: 1px solid black">&nbsp;</span></span> open reading frame<br />
-  <span class="sequence"><span class="longest_orf" style="border: 1px solid black">&nbsp;</span></span> longest open reading frame
+  <span class="sequence"><span class="orf" style="border: 1px solid black">&nbsp;</span></span> Abra o quadro de leitura<br />
+  <span class="sequence"><span class="longest_orf" style="border: 1px solid black">&nbsp;</span></span> Longo quadro de leitura aberto
 </div>
 </td></tr>
 </table>

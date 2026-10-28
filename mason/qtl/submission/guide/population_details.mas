@@ -12,33 +12,33 @@ Isaak Y Tecle (iyt2@cornell.edu)
 
 </%doc>
 <&| /page/info_section.mas, 
-   title      => "Step 1:  Population details",
+   title      => "Passo 1: Detalhes da população",
   collapsible => 1,
   collapsed   => 1
 &>
 
 <ul>
   <li>
-    <strong> Select organism:</strong> fill in the common name of the species the population belongs to. Press the 'associate organism' button. Then proceed with the rest of the form.
+    <strong> Escolha o organismo:</strong> Preencha o nome comum da espécie a que a população pertence. Aperte o botão "organismo associado". Então prossiga com o resto do formulário.
   </li>
   <li>
-    <strong> Cross type:</strong> at this stage only inter cross (F2), backcross, RIL (from both sibling mating and selfing) diploid populations are supported.
+    <strong> Tipo cruz:</strong> nesta fase, apenas populações diplóides intercruzadas (F2), retrocruzadas, RIL (do acasalamento de irmãos e auto-acasalamento) são suportadas.
   </li>
   <li>
-    <strong> Population name:</strong> provide a concise and precise name for the population. This will also serve as the genetic map name of the population.
+    <strong> Nome da população:</strong> fornecer um nome conciso e preciso para a população. Isso também servirá como o mapa genético da população.
   </li>
    <li>
-     <strong> Population description:</strong> provide an abstract style characterization of the population including experimental design highlights.
+     <strong> Descrição da população:</strong> fornecer uma caracterização de estilo abstrato da população incluindo destaques de design experimental.
    </li>
    <li> 
-     <strong>Female and male parents:</strong> Include the species name and cultivar name. Eg. <i> Solanum lycopersicum</i> cv. moneymaker</it>.
+     <strong>Pais femininos e masculinos:</strong> Inclua o nome da espécie e o nome da cultivar. Eg. <i> Solanum lycopersicum</i> Cv. moneymaker</it>.
    </li>
   <li>
-    <strong> Recurrent and donor parents:</strong> In the same format as the female and male parents but required only in case of backcross population.
+    <strong> Recorrentes e pais doadores:</strong> No mesmo formato que os pais femininos e masculinos, mas necessário apenas em caso de retrocesso populacional.
   </li>
 
   <li>
-    <strong> Do you want to make the data public:</strong> Choose 'Yes' or 'No' depending on whether you want to share the QTL data with the community or not.
+    <strong> Você quer tornar os dados públicos:</strong> Escolha 'Sim' ou 'Não' dependendo se você quer compartilhar os dados do QTL com a comunidade ou não.
   </li> 
   
 </ul>  

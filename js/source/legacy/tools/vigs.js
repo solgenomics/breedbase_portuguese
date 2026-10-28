@@ -37,7 +37,7 @@ $(document).ready(function () {
 		},
 		complete: function (response) {
 			if (response.error) {
-				alert("The expression file could not be uploaded"+response.error);
+				alert("Não foi possível enviar o arquivo de expressão"+response.error);
 			}
 			if (response.success) {
 				expr_f = response.expr_file;
@@ -94,98 +94,85 @@ $(document).ready(function () {
 			minWidth:400,
 			maxHeight:400,
 			closeOnEscape:true,
-			title: "Gene Functional annotation",
+			title: "Anotação funcional do gene",
 		});
 	});
 
 	$('#params_dialog').click(function () {
 		
-		$('#params').html("&bull;&nbsp;<b>Fragment size: </b>"+$("#help_fsize").val()+"<br /> \
-		&bull;&nbsp;<b>n-mer: </b>"+$("#help_nmer").val()+"<br /> \
-		&bull;&nbsp;<b>Mismatches: </b>"+$("#help_mm").val()+"<br />\
-		&bull;&nbsp;<b>Database: </b>"+$("#db_name").val());
+		$('#params').html("&bull;&nbsp;<b>Tamanho do fragmento: </b>"+$("#help_fsize").val()+"<br /> \t\t&bull;&nbsp;<b>N-mer: </b>"+$("#help_nmer").val()+"<br /> \t\t&bull;&nbsp;<b>Incompatibilidades: </b>"+$("#help_mm").val()+"<br />\t\t&bull;&nbsp;<b>Banco de dados: </b>"+$("#db_name").val());
 
 		$('#params').dialog({
 			draggable:true,
 			resizable:false,
 			width:500,
 			closeOnEscape:true,
-			title: "Parameters used",
+			title: "Parâmetros utilizados",
 		});
 	});
 
 	$('#help_dialog_1').click(function () {
 		
-		$('#help_dialog_tmp').html("&bull;&nbsp;The best target region score value indicates how good the yellow highlighted region is, taking into account the number of target and off-target n-mers. \
-			The closer to 100 the better is the value. In the same way, the custom region score indicates the value of the custom region, represented by the transparent grey rectangle.<br/> \
-			&bull;&nbsp;Set Custom Region button will activate a draggable and resizable transparent grey rectangle to manually select a custom region.<br/> \
-			&bull;&nbsp;Change button will recalculate the results using the new parameters chosen. In case of changing the n-mer size, the algorithm will run Bowtie 2 again, so this process could take a while.");
+		$('#help_dialog_tmp').html("&bull;&nbsp;A pontuação da melhor região-alvo indica a qualidade da região destacada em amarelo, considerando o número de n-mers nos alvos e fora deles. Quanto mais próximo de 100, melhor. A pontuação da região personalizada indica a qualidade da região representada pelo retângulo cinza transparente.<br/>&bull;&nbsp;O botão Definir região personalizada ativa um retângulo cinza transparente que pode ser arrastado e redimensionado para selecionar a região manualmente.<br/>&bull;&nbsp;O botão Alterar recalcula os resultados com os novos parâmetros. Ao alterar o tamanho do n-mer, o algoritmo executa o Bowtie 2 novamente, o que pode demorar.");
 
 		$('#help_dialog_tmp').dialog({
 			draggable:true,
 			resizable:false,
 			width:500,
 			closeOnEscape:true,
-			title: "Modify parameters help",
+			title: "Ajuda para modificar os parâmetros",
 		});
 	});
 
 	$('#help_dialog_2').click(function () {
 		
-		$('#help_dialog_tmp').html("&bull;&nbsp;N-mers mapping to the target/s are shown in blue and to off-targets in red. The yellow area highlights the region with the highest score using the selected parameters<br/> \
-			&bull;&nbsp;The bottom graph represents in red the score values along the sequence. The score value = 0 is indicated with a green line. \
-			Below this line are represented the regions with more off-targets than targets, and the opposite when the score is above the green line.<br/> \
-			&bull;&nbsp;Expand graph button will display every n-mer fragment aligned over the query for each subject.<br /> \
-			&bull;&nbsp;Zoom button will zoom in/out the VIGS map representation.");
+		$('#help_dialog_tmp').html("&bull;&nbsp;Os n-mers mapeados nos alvos aparecem em azul; os mapeados fora dos alvos, em vermelho. A área amarela destaca a região com a maior pontuação para os parâmetros selecionados.<br/>&bull;&nbsp;O gráfico inferior mostra em vermelho as pontuações ao longo da sequência. A linha verde indica a pontuação zero. Abaixo dela, há mais correspondências fora dos alvos do que nos alvos; acima dela, ocorre o inverso.<br/>&bull;&nbsp;O botão Expandir gráfico exibe cada fragmento de n-mer alinhado à consulta para cada sequência de referência.<br />&bull;&nbsp;O botão Ampliar permite ampliar ou reduzir a representação do mapa VIGS.");
 
 		$('#help_dialog_tmp').dialog({
 			draggable:true,
 			resizable:false,
 			width:500,
 			closeOnEscape:true,
-			title: "Distribution of n-mers help",
+			title: "Ajuda sobre a distribuição de n-mers",
 		});
 	});
 
 	$('#help_dialog_3').click(function () {
 		
-		$('#help_dialog_tmp').html("&bull;&nbsp;This section shows the best or the custom region sequence in FASTA format.<br/> \
-			&bull;&nbsp;The custom region will update as the grey selection rectangle is moved.");
+		$('#help_dialog_tmp').html("&bull;&nbsp;Esta seção exibe a sequência da melhor região ou da região personalizada no formato FASTA.<br/>&bull;&nbsp;A região personalizada é atualizada conforme o retângulo cinza de seleção é movido.");
 
 		$('#help_dialog_tmp').dialog({
 			draggable:true,
 			resizable:false,
 			width:500,
 			closeOnEscape:true,
-			title: "Best region help",
+			title: "Ajuda sobre a melhor região",
 		});
 	});
 
 	$('#help_dialog_4').click(function () {
 		
-		$('#help_dialog_tmp').html("&bull;&nbsp;In this section is shown the query sequence, highlighting the best target region in yellow or the custom region in grey.<br/> \
-			&bull;&nbsp;The custom region will be updated as the grey selection rectangle is moved.");
+		$('#help_dialog_tmp').html("&bull;&nbsp;Esta seção exibe a sequência da consulta, destacando a melhor região-alvo em amarelo ou a região personalizada em cinza.<br/>&bull;&nbsp;A região personalizada é atualizada conforme o retângulo cinza de seleção é movido.");
 
 		$('#help_dialog_tmp').dialog({
 			draggable:true,
 			resizable:false,
 			width:500,
 			closeOnEscape:true,
-			title: "Sequence overview help",
+			title: "Ajuda sobre a visão geral da sequência",
 		});
 	});
 
 	$('#help_dialog_5').click(function () {
 		
-		$('#help_dialog_tmp').html("&bull;&nbsp;Number of n-mer matches and gene functional description are shown for each matched gene.<br/> \
-			&bull;&nbsp;The View link will open a draggable dialog with this information.");
+		$('#help_dialog_tmp').html("&bull;&nbsp;Para cada gene correspondente, são exibidos o número de correspondências de n-mers e a descrição funcional.<br/>&bull;&nbsp;O link Visualizar abre uma janela que pode ser arrastada com essas informações.");
 
 		$('#help_dialog_tmp').dialog({
 			draggable:true,
 			resizable:false,
 			width:500,
 			closeOnEscape:true,
-			title: "Description of genes mapped help",
+			title: "Ajuda sobre a descrição dos genes mapeados",
 		});
 	});
 
@@ -206,7 +193,7 @@ $(document).ready(function () {
 		draggable: false,
 		resizable: false,
 		open: function() { $(this).closest('.ui-dialog').find('.ui-dialog-titlebar-close').hide(); },
-		title: 'Working...'
+		title: "Processando..."
 	});
 	
 	// sent the data to the controller to run bowtie2 and parse the results
@@ -226,7 +213,7 @@ $(document).ready(function () {
 			},
 			success: function(response) {
 				if (response.error) { 
-					alert("ERROR: "+response.error);
+					alert("ERRO: "+response.error);
 					enable_ui();
 				} else {
 					db_name = response.db_name;
@@ -241,7 +228,7 @@ $(document).ready(function () {
 				}
 			},
 			error: function(response) {
-				alert("An error occurred. The service may not be available right now. Bowtie2 could not be executed");
+				alert("Ocorreu um erro. O serviço pode estar indisponível no momento. Não foi possível executar o Bowtie2");
 				//safari_alert();
 				enable_ui();
 			}
@@ -251,7 +238,7 @@ $(document).ready(function () {
 
 	function getResults(status, bt2_res, si_rna, f_length, mm, coverage, db, expr_file) {
 		
-		var t_info = "<tr><th>Gene</th><th>Matches</th><th>Functional Description</th></tr>";
+		var t_info = "<tr><th>Gene</th><th>Correspondências</th><th>Descrição funcional</th></tr>";
 		$("#no_results").html("");
 
 		$.ajax({
@@ -266,7 +253,7 @@ $(document).ready(function () {
 			},
 			success: function(response) { 
 				if (response.error) { 
-					alert("ERROR: "+response.error);
+					alert("ERRO: "+response.error);
 					enable_ui();
 				} else {
 					
@@ -283,11 +270,11 @@ $(document).ready(function () {
 					ids = response.ids;
 					m_aoa = response.matches_aoa;
 					
-					$("#score_p").html("<b>Best target region score:</b> "+best_score+" &nbsp;&nbsp;(-&infin;&mdash;100)<br />");
+					$("#score_p").html("<b>Pontuação da melhor região-alvo:</b> "+best_score+" &nbsp;&nbsp;(-&infin;&mdash;100)<br />");
 					$("#t_num").val(coverage);
 
 					if (+response.score < 0) {
-						$("#no_results").html("Note: The score value is very low!. Increasing the number of targets or the n-mer length, or decreasing the mismatches the score value will increase");
+						$("#no_results").html("Observação: a pontuação está muito baixa! Aumentar o número de alvos ou o comprimento do n-mer, ou reduzir o número de incompatibilidades, aumentará a pontuação");
 					}
 					
 					//show result sections
@@ -308,16 +295,16 @@ $(document).ready(function () {
 
 					//set collapse and zoom buttons
 					$("#collapse").val(1);
-					$("#collapse").html("Expand Graph");
+					$("#collapse").html("Expandir gráfico");
 					$("#zoom").val(0);
-					$("#zoom").html("Zoom In");
+					$("#zoom").html("Ampliar");
 
 					createMap(1,0,score_array,expr_msg,ids,m_aoa);
 
 					if (+best_seq.length > 10) {
-						$("#best_seq").html("<b>>best_target_region_("+best_start+"-"+best_end+")</b><br />"+best_seq);
+						$("#best_seq").html("<b>>best_target_region_ ("+best_start+"-"+best_end+")</b><br />"+best_seq);
 					} else {
-						$("#best_seq").html("<b>No results were found</b>");
+						$("#best_seq").html("<b>Nenhum resultado encontrado</b>");
 					}
 					$("#query").html(seq);
 					hilite_sequence(best_start,best_end,0);
@@ -349,7 +336,7 @@ $(document).ready(function () {
 				}
 			},
 			error: function(response) {
-				alert("An error occurred. The service may not be available right now.");
+				alert("Ocorreu um erro. O serviço pode estar indisponível no momento.");
 				//safari_alert();
 				enable_ui();
 			}
@@ -707,11 +694,11 @@ $(document).ready(function () {
 		var seq_length = $("#seq_length").val();
 
 		if (collapsed == 0) {
-			$("#collapse").html("Expand Graph");
+			$("#collapse").html("Expandir gráfico");
 			$("#collapse").val(1);
 			collapsed = 1;
 		} else {
-			$("#collapse").html("Collapse Graph");
+			$("#collapse").html("Recolher gráfico");
 			$("#collapse").val(0);
 			collapsed = 0;
 		}
@@ -725,11 +712,11 @@ $(document).ready(function () {
 		var seq_length = $("#seq_length").val();
 
 		if (zoom == 0) {
-			$("#zoom").html("Zoom Out");
+			$("#zoom").html("Reduzir");
 			$("#zoom").val(1);
 			zoom = 1;
 		} else {
-			$("#zoom").html("Zoom In");
+			$("#zoom").html("Ampliar");
 			$("#zoom").val(0);
 			zoom = 0;
 		}
@@ -785,7 +772,7 @@ $(document).ready(function () {
 		var best_start = +$("#best_start").val();
 		var best_end = +$("#best_end").val();
 
-		best_seq_el.innerHTML = "<b>>custom_region_("+cbr_start+"-"+cbr_end+")</b><br />";
+		best_seq_el.innerHTML = "<b>>custom_region_ ("+cbr_start+"-"+cbr_end+")</b><br />";
 
 		for (var i=cbr_start; i<cbr_end; i=i+60) {
 			if (cbr_end<i+61) {
@@ -794,7 +781,7 @@ $(document).ready(function () {
 				best_seq_el.innerHTML += seq.substring(i-1,i+59)+"<br />";
 			}
 		}
-		best_seq_el.innerHTML += "<br /><b>>best_target_region_("+best_start+"-"+best_end+")</b><br />";
+		best_seq_el.innerHTML += "<br /><b>>best_target_region_ ("+best_start+"-"+best_end+")</b><br />";
 		best_seq_el.innerHTML += best_seq+"<br />";
 	}
 
@@ -820,7 +807,7 @@ $(document).ready(function () {
 		if (coverage > 0 && fragment_length > 0) {
 			var final_score = ((custom_score*100/fragment_length)/coverage).toFixed(2); 
 			// var final_score = (custom_score*100/+si_rna/fragment_length/coverage).toFixed(2); //using coverage
-			$("#score_p").html("<b>Best target region score:</b> "+best_score+" &nbsp;&nbsp; <b> Custom region score: </b>"+final_score+" &nbsp;&nbsp; (-&infin;&mdash;100)");
+			$("#score_p").html("<b>Pontuação da melhor região-alvo:</b> "+best_score+" &nbsp;&nbsp; <b> Pontuação da região personalizada: </b>"+final_score+" &nbsp;&nbsp; (-&infin;&mdash;100)");
 		}
 	}
 
@@ -885,7 +872,7 @@ $(document).ready(function () {
 			}
 
 		} else {
-			$("#cbr_p").html("Values must be between 1 and "+seq_length+", getting a sequence not shorter than 100 bp!");
+			$("#cbr_p").html("Os valores devem estar entre 1 e "+seq_length+", obtendo uma sequência com pelo menos 100 pb!");
 		}
 	}
 
@@ -917,7 +904,7 @@ $(document).ready(function () {
 				disable_ui();
 				runBt2(n_mer, f_size, align_mm, db);
 			} else {
-				alert("n-mer value must be between 18-30");
+				alert("O comprimento do n-mer deve estar entre 18 e 30");
 			}
 		} else if (align_mm != mm) {
 			$("#f_length").val(f_size);
@@ -926,7 +913,7 @@ $(document).ready(function () {
 			
 			// if (!align_mm || +align_mm < 0 || +align_mm > 1) {
 			if (!align_mm || +align_mm < 0 || +align_mm > 2) {
-				alert("miss-match value ("+align_mm+") must be between 0-2");
+				alert("O número de incompatibilidades ("+align_mm+") deve estar entre 0 e 2");
 			} else {
 				disable_ui();
 				getResults(1, bt2_file, n_mer, f_size, align_mm, t_num, db, expr_f);
@@ -939,7 +926,7 @@ $(document).ready(function () {
 			
 			//check values before recalculate
 			if (!f_size || +f_size < 100 || +f_size > +seq_length) {
-				alert("Wrong fragment size ("+f_size+"), it must be 100 bp or higher, and lower than sequence length");
+				alert("Tamanho de fragmento incorreto ("+f_size+"), deve ser de pelo menos 100 pb e menor que o comprimento da sequência");
 			} else {
 				disable_ui();
 				getResults(0, bt2_file, n_mer, f_size, align_mm, t_num, db, expr_f);
@@ -947,7 +934,7 @@ $(document).ready(function () {
 				//getCustomRegion(score_array,best_seq,seq)
 			}
 		} else {
-			alert("there are no parameters to change");
+			alert("não há parâmetros para alterar");
 		}
 		return [score_array,seq,best_seq,expr_msg,ids,m_aoa]
 	}

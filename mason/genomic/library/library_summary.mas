@@ -29,7 +29,7 @@ sub library_summary_html {
     $vector &&= $this->cloning_vector_object->link_html;
 
     info_table_html(#table attributes
-		    __title          => 'Library',
+		    __title          => 'Biblioteca',
 		    __multicol       => 2,
 
 		    #fields that will always be there

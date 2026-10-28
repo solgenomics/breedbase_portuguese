@@ -23,6 +23,6 @@ else {
 </%perl>
 
 <div class="boxbgcolor1" style="margin:0px;">
-  <div class="boxheading">Phenotypes</div>
-  <div class="boxcontent">Browse Solanaceae phenotypes<br /><form style="margin-bottom:0px" name="population" action="/search/phenotype_search.pl"><% $population %></form></div>
+  <div class="boxheading">Fenótipos</div>
+  <div class="boxcontent">Procure fenótipos de Solanaceae<br /><form style="margin-bottom:0px" name="population" action="/search/phenotype_search.pl"><% $population %></form></div>
 </div>

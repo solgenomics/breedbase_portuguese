@@ -1,16 +1,14 @@
 
-<& /page/page_title.mas, title=>"FISH Data Submission Help" &>
+<& /page/page_title.mas, title=>"Ajuda na submissão de dados dos peixes" &>
 
-<p>This document describes what we at SGN are prepared to accept for FISH
-experiment data. Please <a href="/contact/form">contact us</a> if you have any questions about these guidelines.</p>
+<p>Este documento descreve o que nós da SGN estamos preparados para aceitar para os dados do experimento FISH. Por favor. <a href="/contact/form">Nos contate</a> Se tiver alguma dúvida sobre essas diretrizes.</p>
 
 
-<p>When submitting spreads, the preferred folder layout looks like this:</p>
+<p>Ao enviar spreads, o disposição espacial de pastas preferido é assim:</p>
 
 <pre>&lt;chromosome arm&gt;/&lt;BACS on arm&gt;/&lt;spreads for BAC&gt;/&lt;files for spread&gt;</pre>
 
-<p>For example, a single spread for a BAC on chromosome 11's long arm would
-be:</p>
+<p>Por exemplo, uma única propagação para um BAC no braço longo do cromossomo 11 seria:</p>
 
 <pre>
   Tomato_11Q/
@@ -21,28 +19,15 @@ be:</p>
   Tomato_11Q/BAC_323E19/Spread_127/127_fluorescence.jpg
 </pre>
 
-<p>Other spreads for BAC 323E19 would be beside Spread_127 in the
-BAC_323E19 folder, other BACs on Tomato's 11Q arm would be beside
-BAC_323E19 in the Tomato_11Q folder, and BACs on other chromosome arms
-would be in folders beside Tomato_11Q.</p>
+<p>Outros spreads para BAC 323E19 estariam ao lado de Spread_127 na pasta BAC_323E19, outros BACs no braço 11Q de Tomato estariam ao lado de BAC_323E19 na pasta Tomato_11Q, e BACs em outros braços cromossomos estariam em pastas ao lado de Tomato_11Q.</p>
 
-<p>The "Spread" IDs above are arbitrary, but it's best if the submitter
-uses different IDs for each spread, across their entire FISHing project
-(we assume that the lab already uses unique identifiers for their
-experiements, so we can just use those identifiers, for simplicity).</p>
+<p>Os IDs "Spread" acima são arbitrários, mas é melhor se o remetente usa diferentes IDs para cada spread, em todo seu projeto de pesca (supomos que o laboratório já usa identificadores únicos para seus experimentos, então podemos usar esses identificadores, para simplicidade).</p>
 
-<p>Each spread's folder must have at least the 3 image files.  We'll also
-store any additional per-spread datafiles beside the JPGs in the
-Spread_NNN folders.</p>
+<p>Cada pasta deve ter pelo menos os 3 arquivos de imagem. Também guardaremos arquivos de dados adicionais ao lado dos JPGs nas pastas Spread_NNN.</p>
 
-<p><em>Note</em> If possible, when multiple BACs occur in the same
-spread, make two distinct folders with a copy of each image in each
-folder (e.g., have two folders "Spread_15" and "Spread_16", rather
-than putting the images in a single folder called
-&quot;Spreads_15_and_16&quot; or something).</p>
+<p><em>Nota</em> Se possível, quando vários BACs ocorrem no mesmo spread, fazer duas pastas distintas com uma cópia de cada imagem em cada pasta (por exemplo, ter duas pastas "Spread_15" e "Spread_16", em vez de colocar as imagens em uma única pasta chamada "Spreads_15_and_16" ou algo assim).</p>
 
-<p>For each upload of several spreads, a single spreadsheet with at
-least the following columns (columns of other data will be ignored):</p>
+<p>Para cada upload de vários spreads, uma única planilha com pelo menos as seguintes colunas (colunas de outros dados serão ignoradas):</p>
 
 <pre>
   BAC ID      Spread   BAC % from kc

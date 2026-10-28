@@ -30,43 +30,33 @@ span.filesize:after {
 
 </style>
 
-<& /page/page_title.mas, title => 'Computational prediction of secreted proteins' &>
+<& /page/page_title.mas, title => 'Previsão computacional de proteínas secretadas' &>
 
 <& /secretom/secretary/nav.mas, curr_page => 'background' &>
 
 <div class="page_introduction">
   <p>
 
-  A number of <a class="tools_popup" href="#">computational tools</a> have been
-  developed to predict the presence of SPs. These programs have been
-  greatly refined in recent years and their accuracy has improved with
-  the adoption of machine learning algorithms. However, while this is a
-  valuable approach, as with all prediction-based tools, there is a
-  consistent error rate and both false positive and negative predictions
-  should be expected. One of our major goals is to identify the
-  incorrect predictions and generate a database of computationally and
-  functionally confirmed secreted plant proteins. It has been reported
-  that one of the most effective predictors of SPs is <a
-  href="http://www.cbs.dtu.dk/services/SignalP">SignalP 3.0</a>. 
-  We have used both SignalP and our recently developed predictor, 
-  <a href="/secretom/secretary">SecreTary</a>, 
+  Um número de <a class="tools_popup" href="#">Ferramentas computacionais</a> foram desenvolvidos para prever a presença de SPs. Esses programas têm sido muito refinados nos últimos anos e sua precisão melhorou com a adoção de algoritmos de aprendizado de máquina. No entanto, embora esta seja uma abordagem valiosa, como com todas as ferramentas baseadas em previsões, há uma taxa de erro consistente e previsões falsas positivas e negativas devem ser esperadas. Um de nossos principais objetivos é identificar as previsões incorretas e gerar um banco de dados de proteínas vegetais secretadas computacional e funcionalmente confirmadas. Foi relatado que um dos preditores mais eficazes de SPs é <a
+  href="http://www.cbs.dtu.dk/services/SignalP">SinalP 3.0</a>. Usamos SignalP e nosso preditor recentemente desenvolvido, 
+  <a href="/secretom/secretary">Secretário</a>, 
   to screen the predicted proteomes of several plant species
   to date. See below for these prediction results.
   </p>
 
 </div>
 
-<&| /page/info_section.mas, title => 'New predictor: Secretary' &>
+<&| /page/info_section.mas, title => 'Novo preditor: Secretário' &>
 
   <p>
-  We have developed a new predictor, <a href="/secretom/secretary">SecreTary</a>,
+  Desenvolvemos um novo preditor, <a href="/secretom/secretary">Secretário</a>,
   for more accurate computational prediction of plant proteins that
-  traffic through the classical secretory pathway.  <a href="/secretom/secretary">Try SecreTary</a>,
+  traffic through the classical secretory pathway.  <a href="/secretom/secretary">Tente o Secretário Tary</a>,
   </p>
 
 </&>
 
-<&| /page/info_section.mas, title => 'SecreTary, SignalP, TargetP results' &>
+<&| /page/info_section.mas, title => 'Secretary, SignalP, resultados do TargetP' &>
 
   <table class="species_predictions">
   <tr>
@@ -76,7 +66,7 @@ span.filesize:after {
           <& .result_file, file => 'data/secretom/SecreTarySPTP_predictions/Tair10.STsptp.fa', dir => $static_dir &>
     </td>
      <td>
-          <h3>Rice (Oryza sativa)</h3>
+          <h3>Arroz (Oryza sativa)</h3>
           <img src="/img/secretom/oryzasativa.png" />
           <& .result_file, file => 'data/secretom/SecreTarySPTP_predictions/TIGR6.1.STsptp.fa', dir => $static_dir &>
     </td>
@@ -86,7 +76,7 @@ span.filesize:after {
           <& .result_file, file => 'data/secretom/SecreTarySPTP_predictions/Brachy1.2.STsptp.fa', dir => $static_dir &>
     </td>
     <td>
-          <h3>Tomato </h3>
+          <h3>Tomate </h3>
           <img src="/img/secretom/solanumlycopersicum.png" />
           <& .result_file, file => 'data/secretom/SecreTarySPTP_predictions/ITAG2.STsptp.fa', dir => $static_dir &>
     </td>
@@ -101,23 +91,18 @@ span.filesize:after {
 </tr>
   </table>
 
-  <&| /page/info_section.mas, title => 'Search SecreTary, SignalP, TargetP results for secreted proteins', is_subsection => 1 &>
+  <&| /page/info_section.mas, title => 'Search Secretary, SignalP, resultados do TargetP para proteínas secretas', is_subsection => 1 &>
 
 
     <form method="GET" style="text-align: center; margin: 2em auto" action="<% $signalp_search_action %>">
-      <label for="query_input">Search</label>
+      <label for="query_input">Buscar</label>
       <input type="text" size="30" name="q" id="query_input" value="" />
       <input type="hidden" name="file" value="" />
-      <input type="submit" value="Search" size="20" />
+      <input type="submit" value="Buscar" size="20" />
     </form>
 
     <p>
-    Use text terms (e.g. "polygalacturonase", "glycosyl hydrolase
-    family", "gh9"), or locus names (e.g. "At1G65610.1"). This will
-    provide you with a list of predicted proteins, grouped by species,
-    with the annotation protein length, molecular weight, confidence
-    scores for the presence of a secretory signal peptide and predicted
-    localization.
+    Use termos de texto (por exemplo, "poligalacturonase", "família glicosil hidrolase", "gh9"), ou nomes de locus (por exemplo, "At1G65610.1"). Isso fornecerá uma lista de proteínas preditas, agrupadas por espécie, com o comprimento da proteína anotação, peso molecular, escores de confiança para a presença de um peptídeo de sinal secretor e localização prevista.
     </p>
     
   </&>
@@ -128,12 +113,12 @@ span.filesize:after {
   jQuery(".tools_popup").colorbox({width:"60%", inline:true, href:"#tools_popup"});
 </script>
 <div id="tools_popup">
-<&| /page/info_section.mas, title => 'Other computational tools for prediction of ER-targeting signal peptides' &>
+<&| /page/info_section.mas, title => 'Outras ferramentas computacionais para predição de peptídeos de sinal direcionadores de emergência' &>
   <ul>
-  <li><a href="http://www.cbs.dtu.dk/services/SignalP">SignalP</a></li>
+  <li><a href="http://www.cbs.dtu.dk/services/SignalP">SinalP</a></li>
   <li><a href="http://www.predisi.de">PrediSi</a></li>
-  <li><a href="http://rpsp.bioinfo.pl/">Rapid Prediction of Signal Peptides (RPSP)</a></li>
-  <li><a href="http://phobius.sbc.su.se/">Phobius</a></li>
+  <li><a href="http://rpsp.bioinfo.pl/">Previsão rápida de peptídeos de sinal (RPSP)</a></li>
+  <li><a href="http://phobius.sbc.su.se/">Fobius</a></li>
   <li><a href="http://urgi.versailles.inra.fr/predotar/predotar.html">Predotar</a></li>
   </ul>
 </&>

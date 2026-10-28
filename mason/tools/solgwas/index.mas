@@ -19,30 +19,30 @@
 <script src="https://cdn.jsdelivr.net/npm/vega-lite@2"></script>
 <script src="https://cdn.jsdelivr.net/npm/vega-embed@4"></script>
 
-<& /page/page_title.mas, title=>"SolGWAS" &>
+<& /page/page_title.mas, title=>"Solgwas" &>
 
-<&| /page/info_section.mas, id=>"input_dataset_section", title=>"Select Input Data", collapsible=>1, collapsed=>0, subtitle=>'<a class="btn btn-link pull-right" href="/help/solgwas" target="_blank">Help <span class="glyphicon glyphicon-question-sign"></span></a>' &>
+<&| /page/info_section.mas, id=>"input_dataset_section", title=>"Selecione Dados de Entrada", collapsible=>1, collapsed=>0, subtitle=>'<a class="btn btn-link pull-right" href="/help/solgwas" target="_blank">Socorro! <span class="glyphicon glyphicon-question-sign"></span></a>' &>
   <input type="hidden" name="outformat" value="0" />
 
 
   <div class="form-group form-inline">
-    <label for="dataset_select">Available Datasets: </label><div id="dataset_select"></div>
+    <label for="dataset_select">Datasets disponíveis: </label><div id="dataset_select"></div>
     <br>
 
-    <button class="btn btn-info" id="createDataset"><span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;Create Dataset</button>
-    <button class="btn btn-primary" id="selectDataset" type="submit" name="selectDataset" value="selectDataset">Select Dataset</button>
+    <button class="btn btn-info" id="createDataset"><span class="glyphicon glyphicon-plus"></span>Criar conjunto de dados</button>
+    <button class="btn btn-primary" id="selectDataset" type="submit" name="selectDataset" value="selectDataset">Selecionar conjunto de dados</button>
     <br>
     <br>
 
     </div>
       <div class="form-group form-inline">
-        <label class="blast_select_label" for="pheno_select">Available&nbspTraits:&nbsp; </label>        
+        <label class="blast_select_label" for="pheno_select">Características disponíveis: </label>        
         <& /page/html_select.mas, name=>'pheno_select', id=>'pheno_select', params=>"class\=\"form-control input-sm blast_select_box\"", choices=>"" &>                
-        <button class="btn btn-primary" id="preview_trait_histogram_btn" type="submit" name="preview_trait_histogram_btn" value="preview_trait_histogram_btn">View Trait Histogram</button>
-        <img id="loading-spinner" src="/img/wheel.gif" alt="loading" style="visibility: hidden;">
+        <button class="btn btn-primary" id="preview_trait_histogram_btn" type="submit" name="preview_trait_histogram_btn" value="preview_trait_histogram_btn">Veja Histograma de Característica</button>
+        <img id="loading-spinner" src="/img/wheel.gif" alt="Carregando" style="visibility: hidden;">
         <br>
         <input type="checkbox" id="dataset_trait_outliers" />
-        <label>Exclude dataset outliers &nbsp; </label>
+        <label>Excluir dados outliers </label>
         <br>
         <br>
         <center>
@@ -53,11 +53,11 @@
         <br>
         <div class="form-group form-inline">
           <input type="checkbox" id="kinshipmat" />
-          <label>Include kinship matrix in model &nbsp; </label>
+          <label>Inclua matriz de parentesco no modelo </label>
           <br>
           <input type="checkbox" id="princomp" />
-          <label>Include principal components in model &nbsp; </label>
-          <button class="btn btn-primary" id="preview_pca" type="submit" name="preview_pca" value="preview_pca">View PCA Plot</button>
+          <label>Incluir componentes principais no modelo </label>
+          <button class="btn btn-primary" id="preview_pca" type="submit" name="preview_pca" value="preview_pca">Veja o gráfico PCA</button>
         </div>
         <br>
         <br>
@@ -73,7 +73,7 @@
       </div>
 
       <div style="text-align: center">
-        <button class="btn btn-primary" id="runGWA" name="runGWA">Run SolGWAS</button>
+        <button class="btn btn-primary" id="runGWA" name="runGWA">Corra SolgWAS</button>
       </div>
       <br />
 
@@ -89,14 +89,14 @@
 
 
 
-<&| /page/info_section.mas, title=>"Output", collapsible=>1, collapsed=>0, subtitle=>'<a id="download_table" class="download_tag" target="_blank" href="javascript:download_table();" title="Download results in tabular format">Table&#8675;</a>&nbsp;&nbsp;<a id="download_basic" class="download_tag" target="_blank" href="javascript:download();" title="Download results in basic format">Basic&#8675;</a>' &>
+<&| /page/info_section.mas, title=>"Saída", collapsible=>1, collapsed=>0, subtitle=>'<a id="download_table" class="download_tag" target="_blank" href="javascript:download_table();" title="Download results in tabular format">Table&#8675;</a>&nbsp;&nbsp;<a id="download_basic" class="download_tag" target="_blank" href="javascript:download();" title="Download results in basic format">Basic&#8675;</a>' &>
 
 
 
   <center>
     <div id="sgn_blast_graph" style="display:none">
         <div id="myCanvas">
-          Your browser does not support the HTML5 canvas
+          Seu navegador não suporta a tela HTML5
         </div>
     </div>
   </center>
@@ -120,7 +120,7 @@ jQuery(document).ready(function() {
     get_select_box("datasets", "dataset_select", {"checkbox_name":"dataset_select_checkbox", "analysis_type":"GWAS", "show_compatibility":"yes"});
   }
   else {
-    alert('You must be logged in to use SolGWAS');
+    alert("Entre na sua conta para usar o SolGWAS");
   }
   $('#pheno_select').attr("disabled",true).html('');
 
@@ -170,7 +170,7 @@ jQuery(document).ready(function() {
 	      }
       },
       error: function(response) {
-        alert("An error occurred, the service may temporarily be unavailable");
+        alert("Ocorreu um erro. O serviço pode estar temporariamente indisponível");
         document.getElementById("preview_trait_histogram_btn").disabled = false;
         document.getElementById("loading-spinner").style.visibility = 'hidden'; 
       }
@@ -194,7 +194,7 @@ jQuery(document).ready(function() {
       success: function(response) {
         if (response.error) {
           $('#dataset_select').val('ERROR');
-          alert("An error occurred, the is some problem with data");
+          alert("Ocorreu um erro. Há um problema com os dados");
           document.getElementById("preview_trait_histogram_btn").disabled = false;          
           document.getElementById("loading-spinner").style.visibility = 'hidden'; 
         }        
@@ -205,7 +205,7 @@ jQuery(document).ready(function() {
 	      }
       },
       error: function(response) {
-        alert("An error occurred, the service may temporarily be unavailable");
+        alert("Ocorreu um erro. O serviço pode estar temporariamente indisponível");
         document.getElementById("preview_trait_histogram_btn").disabled = false;
         document.getElementById("loading-spinner").style.visibility = 'hidden'; 
       }
@@ -215,7 +215,7 @@ jQuery(document).ready(function() {
 
   jQuery('#preview_trait_histogram_btn').on('click', function() {
     if (!jQuery('#pheno_select').val()) {
-      alert("Please select a dataset and trait.")
+      alert("Selecione um conjunto de dados e uma característica.")
     } else {
       //alert("Inside trait preview");
       var tempfile = jQuery('#tempfile').html();
@@ -252,7 +252,7 @@ jQuery(document).ready(function() {
           },
 
 
-        error: function(e) { alert('error!'); }
+        error: function(e) { alert("erro!"); }
       });
     };
   });
@@ -260,7 +260,7 @@ jQuery(document).ready(function() {
 
   jQuery('#preview_pca').click( function () {
     if (!jQuery('#pheno_select').val()) {
-      alert("Please select a dataset and trait.")
+      alert("Selecione um conjunto de dados e uma característica.")
     } else {
       $('#pca_output').empty();
       if ($('#pheno_select').val() != ""){
@@ -287,7 +287,7 @@ jQuery(document).ready(function() {
   	      }
           },
           error: function(response) {
-            alert("An error occurred, the service may temporarily be unavailable");
+            alert("Ocorreu um erro. O serviço pode estar temporariamente indisponível");
           }
         });
       }
@@ -296,7 +296,7 @@ jQuery(document).ready(function() {
 
   jQuery('#runGWA').click( function () {
     if (!jQuery('#pheno_select').val()) {
-      alert("Please select a dataset and trait.")
+      alert("Selecione um conjunto de dados e uma característica.")
       $('#Solgwas_output').empty();
     } else {
       $('#Solgwas_output').empty();
@@ -359,10 +359,10 @@ jQuery(document).ready(function() {
           selected_datasets.push(jQuery(this).val());
       });
       if (selected_datasets.length < 1){
-          alert('Please select at least one dataset!');
+          alert("Selecione pelo menos um conjunto de dados!");
           return false;
       } else if (selected_datasets.length > 1){
-          alert('Please select only one dataset!');
+          alert("Selecione apenas um conjunto de dados!");
           return false;
       } else {
   	var dataset_id=selected_datasets[0];

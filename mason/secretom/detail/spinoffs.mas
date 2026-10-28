@@ -1,4 +1,4 @@
-<& /page/page_title.mas, title => 'Spin-off Projects and Collaborations' &>
+<& /page/page_title.mas, title => 'Projetos e Colaborações' &>
 <style>
   div.indented_content > div.indented_content {
     width: 580px;
@@ -8,7 +8,7 @@
 <div class="indented_content">
 
   <h1>
-    Interspecific Reproductive Barriers in Tomato 
+    Barreiras Reprodutivas Interespecíficas em Tomate 
 	<a href="http://www.irbtomato.org"> (IRBT) </a> 
   </h1>
 
@@ -24,19 +24,12 @@
     </div>
 
     <p>
-      This is an NSF Plant Genome program funded collaborative scientific
-      endeavor to identify and understand the biological processes
-      underlying species isolation within the Tomato family. We are using
-      proteomic tools to study the molecular barriers between tomato
-      species, with particular focus on secreted proteins as these are
-      believed to be critical in establishing such barriers. We have been
-      characterizing the proteomes of pollen, styles and pollinated styles
-      from both Solanum lycopersicum, S. habrochaites and S. pennellii.
+      Este é um programa NSF Plant Genoma financiado colaborativo para identificar e entender os processos biológicos subjacentes ao isolamento de espécies dentro da família Tomato. Estamos usando ferramentas proteômicas para estudar as barreiras moleculares entre espécies de tomate, com foco particular em proteínas secretadas, pois acredita-se que estas sejam críticas para estabelecer tais barreiras. Temos caracterizado os proteomas do pólen, estilos e estilos polinizados de Solanum lycopersicum, S. habrochaites e S. pennellii.
     </p>
   </div>
 
   <h1>
-    The Evolutionary Origins of the Plant Cell Wall and Associated Secretome
+    As Origens Evolucionárias da Muralha de Células da Planta e o Segredo Associado
   </h1>
 
   <div class="indented_content">
@@ -46,34 +39,13 @@
       <img src="/documents/img/secretom/p_margaritaceum_306.png" />
 
       <p>
-        Cells of Penium margaritaceum, a member of the Charophycean green
-        alga, following treatment with a microtubule inhibitor. Pectin
-        components of the wall are shown in green. Microscopic imaging and
-        cover design by David Domozych.
+        Células de Penium margaritaceum, um membro da alga verde Charophycean, após tratamento com um inibidor de microtúbulo. Os componentes de pectina da parede são mostrados em verde. Imagem microscópica e desenho da capa de David Domozych.
       </p>
 
     </div>
 
     <p>
-      One of the most important phases of plant evolution occurred
-      approximately 460-480 million years ago when photosynthetic
-      organisms developed the capacity to colonize land. This transition
-      to harsh terrestrial conditions would have required the ability to
-      resist new abiotic stresses, including desiccation and UV radiation,
-      as well as the development of mechanisms to promote progeny
-      dispersal. It is likely that polysaccharide and cuticular cell walls
-      were essential for the transition to a terrestrial environment and
-      yet the evolutionary origins of their biosynthesis are not well
-      understood. In collaboration with Dr. William Willats (University of
-      Copenhagen), Dr. David Domozych (Skidmore College). Dr. Jeffrey
-      Doyle and Dr. Iben S&oslash;rensen (Cornell University), we are addressing
-      the hypothesis that the origins of plant cell walls occurred during
-      divergence within the Charophycean green algae (CGA), which
-      represent the closest living relatives to land plants
-      (embryophytes). Characterization of the secretomes of divergent
-      members of the CGA will likely provide insights into the mechanisms
-      that are currently used by embryophytes for primary, secondary and
-      cuticular cell wall formation and restructuring.
+      Uma das fases mais importantes da evolução das plantas ocorreu aproximadamente 460-480 milhões de anos atrás quando organismos fotossintéticos desenvolveram a capacidade de colonizar a terra. Esta transição para condições terrestres severas teria exigido a capacidade de resistir a novos estresses abióticos, incluindo dessecação e radiação UV, bem como o desenvolvimento de mecanismos para promover a dispersão de progênies. É provável que as paredes celulares polissacarídicas e cuticulares fossem essenciais para a transição para um ambiente terrestre e ainda assim as origens evolutivas de sua biossíntese não são bem compreendidas. Em colaboração com Dr. William Willats (University of Copenhagen), Dr. David Domozych (Skidmore College). Dr. Jeffrey Doyle e Dr. Iben Sørensen (Universidade de Cornell), estamos abordando a hipótese de que as origens das paredes celulares das plantas ocorreram durante a divergência dentro das algas verdes Charophycean (CGA), que representam os parentes vivos mais próximos de plantas terrestres (embriófitas). A caracterização dos secretomas de membros divergentes da CGA provavelmente fornecerá informações sobre os mecanismos que são usados atualmente por embriófitos para formação primária, secundária e de parede celular cuticular e reestruturação.
     </p>
   </div>
 
@@ -81,19 +53,19 @@
 
 <&| /secretom/section_templates/publications.mas, entitize => 0 &>
 
-Lopez-Casado, G., Covey, P.A., Bedinger, P.A., Mueller, L.A., Zhang, S., Fei, Z., Giovannoni, J.J. and Rose, J.K.C. (2012) Enabling proteomic studies with RNA-Seq:  the proteome of tomato pollen as a test case. Proteomics 12: 761-774.
+Lopez-Casado, G., Covey, P.A., Bedinger, P.A., Mueller, L.A., Zhang, S., Fei, Z., Giovannoni, J.J. e Rose, J.K.C. (2012) Habilitando estudos proteômicos com RNA-Seq: o proteoma do pólen de tomate como um caso de teste. Proteômica 12: 761-774.
 
-Sorensen, I., Rose, J.K.C., Doyle, J.J., Domozych, D.S. and Willats, W.G.T. (2012) The charophycean green algae as model systems to study plant cell walls and other evolutionary adaptations that gave rise to land plants. Plant Signaling and Behavior 7: 1-3.
+Sorensen, I., Rose, J.K.C., Doyle, J.J., Domozych, D.S. e Willats, W.G.T. (2012) As algas verdes charofíceas como sistemas modelo para estudar paredes celulares de plantas e outras adaptações evolutivas que deram origem a plantas terrestres. Sinalização de Plantas e Comportamento 7: 1-3.
 
-Acuna, J.R., Padilla, B.E., Florez C.P., Rubio, J.D., Herrera, J.C., Benivades, P., Lee, S.-J., Yeats, T.H., Egan, A.N., Doyle, J.J. and Rose, J.K.C. (2012) Adaptive horizontal transfer of a bacterial gene to an invasive insect pest of coffee. Proceedings of the National Academy of Sciences USA 109: 4197-4202.
+Acuna, JR, Padilla, B.E., Florez C.P., Rubio, J.D., Herrera, J.C., Benivades, P., Lee, S.J., Yeats, T.H., Egan, A.N., Doyle, J.J. e Rose, J.K.C. (2012) Transferência horizontal adaptativa de um gene bacteriano para uma praga invasora de insetos de café. Procedimentos da Academia Nacional de Ciências EUA 109: 4197-4202.
 
-Sorensen, I., Pettolino, F. A., Bacic, A., Ralph, J., Lu, F., O'Neill, M., Fei, Z., Rose, J.K.C., Domozych, D. and Willats, W.G.T. (2011) The charophycean green algae provide insights into the early origins of plant cell walls. The Plant Journal 68: 201-211.
+Sorensen, I., Pettolino, F. A., Bacic, A., Ralph, J., Lu, F., O'Neill, M., Fei, Z., Rose, J.K.C., Domozych, D. e Willats, W.G.T. (2011) As algas verdes charofíceas fornecem informações sobre as origens iniciais das paredes celulares das plantas. The Plant Journal 68: 201-211.
 
-The International Brachypodium Initiative (2010) Genome sequence analysis of the model grass Brachypodium distachyon: insights into grass genome evolution. Nature 462: 763-768.
+A International Brachypodium Initiative (2010) Análise de sequência do genoma da grama modelo Brachypodium distachyon: insights sobre a evolução do genoma da grama. Natureza 462: 763-768.
 
-Urbanowicz, B.R. and Rose J.K.C. (2008) Sustainable biofuels: a daunting challenge for plant scientists. Chemistry Today 26: 23-25.
+Urbanowicz, B.R. e Rose J.K.C. (2008) Biocombustíveis sustentáveis: um desafio assustador para cientistas de plantas. Química hoje 26: 23-25.
 
-Lopez-Casado, G., Urbanowicz, B.R., Damasceno C.M.B. and Rose J.K.C. (2008) Plant glycosyl hydrolases and biofuels: a natural marriage. Current Opinion in Plant Biology 11: 329-337. 
+Lopez-Casado, G., Urbanowicz, B.R., Damasceno C.M.B. e Rose J.K.C. (2008) Plantar hidrolases de glicosil e biocombustíveis: um casamento natural. Opinião atual na biologia vegetal 11: 329-337. 
 
-Alos, E., Roca, M., Iglesias, D.J., Minguez-Mosquera, M.I., Damasceno, C.M.B., Thannhauser, T.W., Rose, J.K.C., Talon, M. and Cercos (2008) An evaluation of the basis and consequences of a stay-green mutation in the navel negra (nan) citrus mutant using transcriptomic and proteomic profiling and metabolite analysis. Plant Physiology 147: 1300-1315.
+Alos, E., Roca, M., Iglesias, D.J., Minguez-Mosquera, M.I., Damasceno, C.M.B., Thannauser, T.W., Rose, J.K.C., Talon, M. e Cercos (2008) Uma avaliação da base e das consequências de uma mutação verde no mutante umbigo negro (nan) citrinos usando perfil transcriptômico e proteômico e análise de metabólitos. Fisiologia de plantas 147: 1300-1315.
 </&>

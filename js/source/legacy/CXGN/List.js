@@ -638,7 +638,7 @@ CXGN.List.prototype = {
             navigator.clipboard.writeText(textToCopy).then(function () {
                 alert('Nomes dos itens copiados');
             }).catch(function (err) {
-                console.error('Copy failed', err);
+                console.error("Falha ao copiar", err);
             });
         });
 
@@ -725,7 +725,7 @@ CXGN.List.prototype = {
             var list_item_id = jQuery(this).data('listitemid');
             var list_item_name = jQuery(this).data('listitemname');
             var list_item_div = jQuery(this).data('listitemdiv');
-            var list_item_edit_html = '<div class="input-group"><input type="text" class="form-control" value="'+list_item_name+'" placeholder="'+list_item_name+'" id="list_item_edit_input_'+list_item_id+'" data-listitemid="'+list_item_id+'" /><span class="input-group-btn"><button class="btn btn-default" type="button" name="list_item_edit_submit" data-inputid="list_item_edit_input_'+list_item_id+'">Ok</button></span></div>';
+            var list_item_edit_html = '<div class="input-group"><input type="text" class="form-control" value="'+list_item_name+'" placeholder="'+list_item_name+'" id="list_item_edit_input_'+list_item_id+'" data-listitemid="'+list_item_id+'" /><span class="input-group-btn"><button class="btn btn-default" type="button" name="list_item_edit_submit" data-inputid="list_item_edit_input_'+list_item_id+"\">Certo</button></span></div>";
             jQuery("#"+list_item_div).empty().html(list_item_edit_html);
         });
 
@@ -909,7 +909,7 @@ CXGN.List.prototype = {
         if (empty_element) {
             html += '<option value="" >'+empty_element+'</option>\n';
         }
-        html += '<option disabled>--------SUAS LISTAS ABAIXO--------</option>';
+        html += "<option disabled>------suas escutas Abaixo-------</option>";
         for (var n=0; n<lists.length; n++) {
             html += '<option value='+lists[n][0]+'>'+lists[n][1]+'</option>';
         }
@@ -1036,7 +1036,7 @@ CXGN.List.prototype = {
                     }
 		}
 	    },
-        error: function(e) { alert('Ocorreu um erro ao validar a lista '+list_id+' (tipo='+type+')'); }
+        error: function(e) { alert('Ocorreu um erro ao validar a lista '+list_id+" (tipo=)"+type+')'); }
 	});
 	return valid;
     },
@@ -1071,7 +1071,7 @@ CXGN.List.prototype = {
                 var count = list.addBulk(newListID, names);
                 if (!count) throw "Nenhum item foi adicionado à lista ou houve uma falha na adição.";
                 jQuery('#working_modal').modal('hide');
-                alert("Lista \""+form["name"]+"\" criada com "+count+" itens.");
+                alert("Lista \""+form["Nome"]+"\" criada com "+count+" Itens.");
                 self.renderLists('list_dialog');
             }
             catch(err) {
@@ -1137,7 +1137,7 @@ CXGN.List.prototype = {
                             var count = list.addBulk(newListID,response.list);
                             if (!count) throw "Nenhum item foi adicionado à lista ou houve uma falha na adição.";
                             jQuery('#working_modal').modal('hide');
-                            alert("Lista \""+form["name"]+"\" criada com "+count+" itens.");
+                            alert("Lista \""+form["Nome"]+"\" criada com "+count+" Itens.");
                             self.renderLists('list_dialog');
                         }
                         catch(err) {
@@ -1174,25 +1174,25 @@ CXGN.List.prototype = {
                 var html = "";
                 var list_type_name = list_type.charAt(0).toUpperCase() + list_type.slice(1);
                 if (response.success) {
-                    html += "<h2>"+list_type_name+" that exactly match as uniquenames (not synonyms)</h2>";
+                    html += "<h2>"+list_type_name+" que correspondem exatamente aos identificadores únicos, sem considerar sinônimos</h2>";
                     html += "<table class='table table-hover table-bordered' ><thead><tr><th>Encontrado no banco de dados</th></tr></thead><tbody>";
                     for(var i=0; i<response.found.length; i++){
                         html += "<tr><td>"+response.found[i].unique_name+"</td></tr>";
                     }
                     html += "</tbody></table>";
-                    html += "<h2>"+list_type_name+" that are not found in the database, but fuzzy match (names are visibily similar)</h2>";
+                    html += "<h2>"+list_type_name+" que não foram encontrados no banco de dados, mas possuem nomes semelhantes</h2>";
                     html += "<table class='table table-hover table-bordered' ><thead><tr><th>Nome na sua lista</th><th>Encontrado no banco de dados</th><th>Pontuação de similaridade <span style='position: relative; top: 0: right: 0; cursor: help;' title='Quanto mais próxima de 1,0 a pontuação, maior a similaridade'>(?)</span></th></tr></thead><tbody>";
                     for(var i=0; i<response.fuzzy.length; i++){
                         for(j=0; j <response.fuzzy[i].matches.length; j++){
                             if (response.fuzzy[i].matches[j].is_synonym){
-                                html += "<tr><td>"+response.fuzzy[i].name+"</td><td>"+response.fuzzy[i].matches[j].name+" (SYNONYM OF: "+response.fuzzy[i].matches[j].synonym_of+") </td><td>"+response.fuzzy[i].matches[j].distance+"</td></tr>";
+                                html += "<tr><td>"+response.fuzzy[i].name+"</td><td>"+response.fuzzy[i].matches[j].name+" (SINÔNIMO DE: "+response.fuzzy[i].matches[j].synonym_of+") </td><td>"+response.fuzzy[i].matches[j].distance+"</td></tr>";
                             } else {
                                 html += "<tr><td>"+response.fuzzy[i].name+"</td><td>"+response.fuzzy[i].matches[j].name+"</td><td>"+response.fuzzy[i].matches[j].distance+"</td></tr>";
                             }
                         }
                     }
                     html += "</tbody></table>";
-                    html += "<h2>"+list_type_name+" that are not found in the database and have no match</h2>";
+                    html += "<h2>"+list_type_name+" que não foram encontrados no banco de dados e não possuem correspondência</h2>";
                     html += "<table class='table table-hover table-bordered' ><thead><tr><th>Not Encontrado no banco de dados</th></tr></thead><tbody>";
                     for(var i=0; i<response.absent.length; i++){
                         html += "<tr><td>"+response.absent[i]+"</td></tr>";
@@ -1413,7 +1413,7 @@ function addToListMenu(listMenuDiv, dataDiv, options) {
         }
     }
 
-    html = '<div class="row"><div class="col-sm-6" style="margin-right:0px; padding-right:0px;"><input class="form-control input-sm" type="text" id="'+dataDiv+'_new_list_name" placeholder="Nova lista..." value="'+list_name_value+'"/>';
+    html = '<div class="row"><div class="col-sm-6" style="margin-right:0px; padding-right:0px;"><input class="form-control input-sm" type="text" id="'+dataDiv+"_new_list_name\" placeholder=\"Nova Lista...\" value=\""+list_name_value+'"/>';
     html += '</div><div class="col-sm-6" style="margin-left:0px; padding-left:0px; margin-right:0px; padding-right:0px;"><input type="hidden" id="'+dataDiv+'_addition_type" value="'+addition_type+'" /><input type="hidden" id="'+dataDiv+'_list_type" value="'+type+'" />';
     html += '<input class="btn btn-primary btn-sm" id="'+dataDiv+'_add_to_new_list" type="button" value="Adicionar à nova lista" /></div></div><br />';
 
@@ -1735,7 +1735,7 @@ function addNewList(div_id) {
 
     var list_id = lo.existsList(name);
     if (list_id > 0) {
-        alert('A lista '+name+' já existe. Escolha outro nome.');
+        alert("Uma lista "+name+' já existe. Escolha outro nome.');
         return;
     }
     lo.newList(name);

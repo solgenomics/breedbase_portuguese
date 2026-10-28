@@ -126,7 +126,7 @@ $stock_type => undef
                         <thead>
                         <tr>
                             <th>Genitor feminino</th>
-                            <th>Genitor masculino</th>
+                            <th>Genitor Masculino</th>
                             <th>Tipo de cruzamento</th>
                         </tr>
                         </thead>
@@ -149,7 +149,7 @@ $stock_type => undef
                         <tr>
                             <th>Nome do acesso</th>
                             <th>Genitor feminino</th>
-                            <th>Genitor masculino</th>
+                            <th>Genitor Masculino</th>
                             <th>Tipo de cruzamento</th>
                         </tr>
                         </thead>

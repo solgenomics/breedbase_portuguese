@@ -88,7 +88,7 @@ solGS.listTypeTrainingPopulation = {
 
     var runSolgsBtn =
       `<button type="button" id=${runSolgsBtnId}` +
-      ` class="btn btn-success" data-selected-pop='${trainingArgs}'>Create Training Population</button>`;
+      ` class="btn btn-success" data-selected-pop='${trainingArgs}'>Criar população de treinamento</button>`;
 
       return runSolgsBtn;
 
@@ -134,10 +134,10 @@ solGS.listTypeTrainingPopulation = {
     tableId = tableId.replace('#', "");
     var trainingTable =
       `<table id="${tableId}" class="table table-striped"><thead><tr>` +
-      "<th>Population</th>" +
-      "<th>Data structure</th>" +
-      "<th>Ownership</th>" +
-      "<th>Run solGS</th>" +
+      "<th>População</th>" +
+      "<th>Estrutura dos dados</th>" +
+      "<th>Propriedade</th>" +
+      "<th>Executar solGS</th>" +
       "</tr></thead></table>";
 
     return trainingTable;
@@ -156,7 +156,7 @@ solGS.listTypeTrainingPopulation = {
         return a[4]
       },
       "oLanguage": {
-        "sSearch": "Filter"
+        "sSearch": "Filtrar"
       }
     });
 
@@ -257,7 +257,7 @@ jQuery(document).ready(function () {
               solGS.combinedTrials.getCombinedPopsId(res.trials_ids);
             })
             .fail(function (res) {
-              alert("Error occured querying for trials ids");
+              alert("Ocorreu um erro ao consultar os IDs dos ensaios");
             });
         }
       } else {

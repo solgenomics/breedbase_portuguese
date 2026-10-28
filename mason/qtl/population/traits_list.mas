@@ -19,7 +19,7 @@ $traits_list
 <&| /page/info_section.mas, 
   collapsible => 1, 
   collapsed   => 1, 
-  title       => "Analyze QTLs" 
+  title       => "Analise QTLs" 
 &> 
 
 <& /page/columnar_table.mas,

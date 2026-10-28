@@ -35,10 +35,10 @@ A hashref containing the variants and the markers related to one or more of the 
 
 <%init>
     if ( !$variant_name ) {
-        print "<p><strong>ERROR: </strong>Missing variant name!</p>";
+        print "<p><strong>ERRO: </strong>Nome da variante em falta!</p>";
     }
     if ( !$markers ) {
-        print "<p><strong>ERROR: </strong>Missing variant markers!</p>";
+        print "<p><strong>ERRO: </strong>Marcadores variantes desaparecidos!</p>";
     }
 
     # Set variant properties
@@ -49,7 +49,7 @@ A hashref containing the variants and the markers related to one or more of the 
 
     # Set title
     my $title = $species . " Markers";
-    my $subtitle = "Chromosome " . $chrom . " @ " . $pos;
+    my $subtitle = "Cromossoma " . $chrom . " @ " . $pos;
 
     # Set parameters for flanking sequence
     my $flanking_sequence_blast_db = undef;
@@ -88,7 +88,7 @@ A hashref containing the variants and the markers related to one or more of the 
 
 
 <!-- VARIANT DETAILS TABLE -->
-<&| /page/info_section.mas, title=>'Genotype locations', collapsible=>1, collapsed=>0 &>
+<&| /page/info_section.mas, title=>'Locais Genótipos', collapsible=>1, collapsed=>0 &>
     <& /markers/genotyped/genotype_locations.mas, markers => $markers &>
 </&>
 
@@ -96,7 +96,7 @@ A hashref containing the variants and the markers related to one or more of the 
 
 <!-- FLANKING SEQUENCE -->
 % if (defined $flanking_sequence_blast_db) {
-<&| /page/info_section.mas, title=>'Flanking Sequence', collapsible=>1, collapsed=>0 &>
+<&| /page/info_section.mas, title=>'Sequência Flanking', collapsible=>1, collapsed=>0 &>
     <& /markers/genotyped/flanking_sequence.mas, blast_db => $flanking_sequence_blast_db, chrom => $chrom, pos => $pos &>
 </&>
 % }
@@ -104,21 +104,21 @@ A hashref containing the variants and the markers related to one or more of the 
 
 
 <!-- RELATED VARIANTS LINKS -->
-<&| /page/info_section.mas, title=>'Related Markers', collapsible=>1, collapsed=>0 &>
+<&| /page/info_section.mas, title=>'Marcadores Relacionados', collapsible=>1, collapsed=>0 &>
     <& /markers/genotyped/related_markers.mas, variant_name => $variant_name &>
 </&>
 
 
 
 <!-- EXTERNAL LINKS -->
-<&| /page/info_section.mas, title=>'External Links', collapsible=>1, collapsed=>0 &>
+<&| /page/info_section.mas, title=>'Ligações Externas', collapsible=>1, collapsed=>0 &>
     <& /markers/genotyped/external_links.mas, markers => $markers &>
 </&>
 
 
 
 <!-- JBROWSE LINKS -->
-<&| /page/info_section.mas, title=>'Genome Browser', collapsible=>1 &>
+<&| /page/info_section.mas, title=>'Navegador Genoma', collapsible=>1 &>
     <& /feature/jbrowse_exact_match.mas, feature=> $jbrowse_location, src_feature=> $ref &>
 </&>
 
@@ -126,7 +126,7 @@ A hashref containing the variants and the markers related to one or more of the 
 
 
 <!-- SEQUENCE METADATA RESULTS -->
-<&| /page/info_section.mas, title=>'Sequence Metadata', collapsible=>1, collapsed=>0 &>
+<&| /page/info_section.mas, title=>'Metadados de sequência', collapsible=>1, collapsed=>0 &>
   <& /tools/sequence_metadata/quick_query_sequence_metadata.mas, params=>\%smd_params &>
 </&>
 

@@ -30,14 +30,14 @@ David Waring <djw64@cornell.edu>
 
 <%init>
     if ( !defined $marker_id ) {
-        print "<p><strong>ERROR:</strong> Marker id is not defined!</p>";
+        print "<p><strong>ERRO:</strong> A identificação não está definida!</p>";
     }
 </%init>
 
-<&| /page/info_section.mas, title=>'Related Markers', collapsible=>1, collapsed=>0 &>
-    <p><strong>Related Genotyped Markers:</strong> These markers have been genotyped and share a name with this marker</p>
+<&| /page/info_section.mas, title=>'Marcadores Relacionados', collapsible=>1, collapsed=>0 &>
+    <p><strong>Marcadores Genótipos Relacionados:</strong> Estes marcadores foram genotipados e compartilham um nome com este marcador.</p>
     <div id="related-genotyped-markers">
-        <em>Loading...</em>
+        <em>Carregando...</em>
     </div>
 </&>
 
@@ -60,7 +60,7 @@ function getRelatedGenotypeMarkers() {
             let html = "";
             if ( response && response.related_variants ) {
                 html += "<table class='table table-striped'>";
-                html += "<thead><tr><th>Marker</th><th>Protocol</th><th>Species</th><th>Reference</th><th>Chromosome</th><th>Position</th><th>Ref</th><th>Alt</th></tr></thead>";
+                html += "<thead><tr><th>Marcador</th><th>Protocolo</th><th>Espécie</th><th>Referência</th><th>Cromossoma</th><th>Posição</th><th>Ref</th><th>Alt</th></tr></thead>";
                 html += "<tbody>";
                 for ( let variant_name in response.related_variants ) {
                     if ( response.related_variants.hasOwnProperty(variant_name) ) {
@@ -79,12 +79,12 @@ function getRelatedGenotypeMarkers() {
                 html += "</table>";
             }
             else {
-                html += "<em>No related genotyped markers found</em>";
+                html += "<em>Nenhum marcador genotipado relacionado encontrado</em>";
             }
             jQuery("#related-genotyped-markers").html(html);
         },
         error: function(response) {
-            console.log("Could not get related genotyped markers");
+            console.log("Não foi possível obter os marcadores genotipados relacionados");
         }
     });
 }

@@ -1,21 +1,21 @@
 
-<& /page/page_title.mas, title=>"Bulk Converter" &>
+<& /page/page_title.mas, title=>"Conversor de massa" &>
 
-Paste the identifiers you would like to convert
+Cole os identificadores que gostaria de converter
 
 <textarea id="converter_input" >
 
 </textarea>
 <br />
 <br />
-Input is:<br />
+A entrada é:<br />
 
-Output<br />
+Saída<br />
 <select id="converter_output_select" name="converter_output_select" >
 <option value="unigenes"> Unigenes</option>
-<option value="gene_models"> Gene models (ITAG 2.3)</option>
-<option value="tom_microarray"> TOM Microarray Identifiers</option>
-<option value="affymetrix"> Affymetrix Chip Identifiers</option>
+<option value="gene_models"> Modelos de genes (ITAG 2.3)</option>
+<option value="tom_microarray"> Identificadores de Microarray TOM</option>
+<option value="affymetrix"> Affymetrix Chip Identificadores</option>
 </select>
 
 

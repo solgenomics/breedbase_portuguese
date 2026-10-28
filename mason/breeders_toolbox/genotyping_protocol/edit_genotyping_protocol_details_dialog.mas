@@ -23,7 +23,7 @@ $assay_type
                             <label class="col-sm-4 control-label" for="edit_protocol_name">Nome do protocolo de genotipagem: </label>
                             <div class="col-sm-7">
                                 <div class="input-group">
-                                    <input class="form-control col-sm-8" id="edit_protocol_name" title="name" type="text" value="<%$protocol_name%>" aria-describedby="edit_protocol_name_status"/>
+                                    <input class="form-control col-sm-8" id="edit_protocol_name" title="Nome" type="text" value="<%$protocol_name%>" aria-describedby="edit_protocol_name_status"/>
                                 </div>
                             </div>
                         </div>
@@ -57,7 +57,7 @@ $assay_type
                             <label class="col-sm-4 control-label" for="edit_protocol_description">Descrição: </label>
                             <div class="col-sm-7">
                                 <div class="input-group">
-                                    <textarea class="form-control" id="edit_protocol_description" title="description" rows="3"><% $protocol_description %></textarea>
+                                    <textarea class="form-control" id="edit_protocol_description" title="Descrição" rows="3"><% $protocol_description %></textarea>
                                 </div>
                             </div>
                         </div>

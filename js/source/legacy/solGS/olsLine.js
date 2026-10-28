@@ -18,7 +18,7 @@ solGS.olsLine = {
 
         if (xDataType.match(/date/i)) {
             xyDateValues = xyValues;
-            console.log("Processing date data for OLS regression...");
+            console.log("Processando dados de datas para regressão por mínimos quadrados...");
             allDates = xyValues.map(d => d.date);
             console.log("All dates:", allDates);
             uniqueDates = [...new Map(allDates.map(d => [d.toDateString(), d])).values()];
@@ -54,7 +54,7 @@ solGS.olsLine = {
             sign = ' - ';
         }
 
-        var equationLabel = `y = ${intercept} ${sign} ${slope}x`;
+        var equationLabel = `Y = ${intercept} ${sign} ${slope}x`;
         var rSquared = ss.r_squared(xyValues, regEquation);
         rSquared     = Math.round(rSquared*100) / 100;
         rSquared     = r2Label + " = " + rSquared;

@@ -13,12 +13,12 @@ Isaak Y Tecle (iyt2@cornell.edu)
 </%doc>
 
 <&| /page/info_section.mas, 
-   title      => "Step 2: Traits list",
+   title      => "Passo 2: Lista de Características",
   collapsible => 1,
   collapsed   => 1
 &>
 
-The traits list file needs to be in a text file and should look like the following format.<br/>
+O arquivo da lista de características precisa estar em um arquivo de texto e deve parecer com o seguinte formato.<br/>
 
 <pre>
   traits             definition                            unit
@@ -28,7 +28,7 @@ The traits list file needs to be in a text file and should look like the followi
 </pre>
 
 
-The definition and unit are optional but would make the phenotype data more informative to users of the database.<br/>
+A definição e a unidade são opcionais, mas tornariam os dados fenotípicos mais informativos aos usuários do banco de dados.<br/>
 
-Use of the Solanaceae Phenotype Ontology is highly encouraged to allow cross-study comparative analysis but not required. <br/>  
+O uso da Ontologia do Fenótipo Solanaceae é altamente encorajado para permitir uma análise comparativa entre estudos, mas não é necessário. <br/>  
 </&>

@@ -3,7 +3,7 @@ $basepath
 $documents_subdir
 </%args>
 
-<& /page/page_title.mas, title=>"Publications" &>
+<& /page/page_title.mas, title=>"Publicações" &>
 
 <%perl>
 

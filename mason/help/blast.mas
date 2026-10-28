@@ -1,27 +1,27 @@
 
-<& /page/page_title.mas, title => "BLAST Help" &>
+<& /page/page_title.mas, title => "Ajuda do BLAST" &>
 
-<p>BLAST on this site is based on NCBI BLAST and is accessible on <a href="/tools/blast">/tools/blast</a>. </p>
+<p>BLAST neste site é baseado no BCNI BLAST e é acessível em <a href="/tools/blast">/tools/blast</a>. </p>
 
-<p>To make finding the right BLAST database faster, the databases are organized into different categories, which can be selected using the "Categories" pull-down menu. Each category contains a number of BLAST databases which can be selected in the "Database" pull down menu.</p>
+<p>Para fazer encontrar o banco de dados BLAST certo mais rápido, os bancos de dados são organizados em diferentes categorias, que podem ser selecionados usando o menu "Categorias" pull-down. Cada categoria contém uma série de bases de dados BLAST que podem ser selecionadas no menu "Database".</p>
 
-<p>Select the category, then the database.</p>
+<p>Selecione a categoria, depois o banco de dados.</p>
 
-<p>Enter the sequence in the Query textarea and choose the appropriate format from the format selector (for example, nucleotide fasta). Choose the appropriate blast program (for example, blastn for running a nucleotide query against a nucleotide database). The default is autodetect, which should detect the format you entered and convert it to the correct sequence format to run blast automatically.</p>
+<p>Digite a sequência na área de texto Consulta e escolha o formato apropriado do seletor de formato (por exemplo, nucleotídeo rápido). Escolha o programa de explosão apropriado (por exemplo, blastn para executar uma consulta de nucleotídeos contra um banco de dados de nucleotídeos). O padrão é detectar automaticamente, que deve detectar o formato que você digitou e convertê-lo para o formato de sequência correto para executar a explosão automaticamente.</p>
 
-<p>If you would like to filter the query for low-complexity sequence, leave the Filter checkbox selected. This is the recommended setting.</p>
+<p>Se você gostaria de filtrar a consulta para sequência de baixa complexidade, deixe a caixa de seleção Filtro selecionada. Este é o cenário recomendado.</p>
 
-<p>Select an appropriate e-value threshold. The default of 1e-10 should work for most common applications.</p>
+<p>Selecione um limite de valor eletrônico apropriado. O padrão de 1e-10 deve funcionar para aplicações mais comuns.</p>
 
-<h4>Output options</h4>
+<h4>Opções de saída</h4>
 
-<p>You can choose different output options. The "Overview graph" option will show a graphic represenations of the hits in the database. The "Coverage graph" displays a graphical representation how the matches line up on the query sequence. The "Bioperl" parser displays a formatted version of the BLAST report with embedded links to other pages on the site. The "Basic" version shows the raw output of the BLAST report. Note that if the query contains several sequences (such as multi-fasta), the output will always default to the "Basic" parse option.</p>
+<p>Você pode escolher diferentes opções de saída. A opção "Overview graph" mostrará uma representação gráfica dos sucessos no banco de dados. O gráfico de "Coverage" mostra uma representação gráfica como as correspondências se alinham na sequência da consulta. O analisador "Bioperl" exibe uma versão formatada do relatório BLAST com links incorporados para outras páginas no site. A versão "Basic" mostra o resultado bruto do relatório BLAST. Note que se a consulta contém várias sequências (como multi-fasta), a saída sempre será padrão para a opção de análise "Basic".</p>
 
-<h4>Results</h4>
+<h4>Resultados</h4>
 
-<p>The Results section will show the ouput (depending on your chosen Output options) when a BLAST analysis has been run. When the analysis is finished, the Input parameters sections will be collapsed and the Results section opened. To re-run a query, simply click on the + sign in the Input parameter section header to view that section again and adjust the parameters.</p>
+<p>A seção Resultados mostrará o ouput (dependendo de suas opções de saída escolhidas) quando uma análise BLAST foi executada. Quando a análise terminar, as seções de parâmetros de entrada serão colapsadas e a seção de resultados será aberta. Para re-executar uma consulta, basta clicar no sinal + no cabeçalho da seção do parâmetro Input para ver essa seção novamente e ajustar os parâmetros.</p>
 
-<p>The raw BLAST report can be downloaded using the download link in the Results section header.</p>
+<p>O relatório BLAST pode ser baixado usando o link de download no cabeçalho da seção Resultados.</p>
 
-<h4>Extract sequences from BLAST databases</h4>
-You can extract sequences from the BLAST databases using identifiers or key words in the annotation of the sequences. Click on the "Extract sequences from BLAST databases" section and enter the search string. It will search in the database selected above.
+<h4>Extrair sequências de bancos de dados BLAST</h4>
+Você pode extrair sequências dos bancos de dados BLAST usando identificadores ou palavras-chave na anotação das sequências. Clique na seção "Extrair sequências de bancos de dados BLAST" e digite a string de busca. Procurará no banco de dados selecionado acima.

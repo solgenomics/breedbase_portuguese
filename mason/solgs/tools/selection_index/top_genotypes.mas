@@ -17,10 +17,10 @@ Isaak Y Tecle (iyt2@cornell.edu)
 <&| /page/info_section.mas, 
       collapsible => 1, 
       collapsed   => 0, 
-      title       => "Genotype ranking based on multiple traits performance (selection index)" 
+      title       => "Classificação de genótipos baseada no desempenho de múltiplos características (índice de seleção)" 
   &>
 <div id="si_top_genotypes" style="display:none">
-<i>Top 10 genotypes</i>:
+<i>Top 10 genótipos</i>:
 </div> 
 </&>
 

@@ -37,7 +37,7 @@ $design_types => ()
                         <&| /util/workflow.mas, id=> "trial_upload_workflow" &>
                             <&| /util/workflow.mas:step, title=> "Introdução" &>
                                 <& /page/page_title.mas, title=>"Este fluxo orientará você no envio de um ou mais ensaios novos ao banco de dados" &>
-                                <p>Um ensaio de campo representa parcelas nas quais cada parcela tem um <i>plot_name</i> globalmente exclusivo, um <i>plot_number</i> sequencial e exclusivo dentro do ensaio (por exemplo, 101, 102 e 103 para três parcelas distintas) e um <i>accession_name</i> que representa o genótipo avaliado. Quando um cruzamento ou uma família é avaliado (por exemplo, híbrido F1 ou retrocruzamento), pode-se usar <i>cross_unique_id</i> ou <i>family_name</i> no lugar de <i>accession_name</i>. Cada parcela pode pertencer a diferentes blocos (<i>block_number</i>) e repetições (<i>rep_number</i>), conforme o delineamento experimental utilizado. Cada parcela também pode ter <i>row_number</i> e <i>col_number</i>, que indicam sua posição relativa no campo.</p>
+                                <p>Um ensaio de campo representa parcelas nas quais cada parcela tem um <i>plot_name</i> globalmente exclusivo, um <i>plot_number</i> sequencial e exclusivo dentro do ensaio (por exemplo, 101, 102 e 103 para três parcelas distintas) e um <i>accession_name</i> que representa o genótipo avaliado. Quando um cruzamento ou uma família é avaliado (por exemplo, híbrido F1 ou retrocruzamento), pode-se usar <i>cross_unique_id</i> UO <i>family_name</i> no lugar de <i>accession_name</i>. Cada parcela pode pertencer a diferentes blocos (<i>block_number</i>) e repetições (<i>rep_number</i>), conforme o delineamento experimental utilizado. Cada parcela também pode ter <i>row_number</i> E <i>col_number</i>, que indicam sua posição relativa no campo.</p>
                                 <p>Se um acesso for controle ou testemunha, indique as parcelas em que ele foi plantado usando <i>is_a_control</i>.</p>
                                 <p>Você pode informar o <i>seedlot_name</i> plantado em cada parcela, o número de sementes (<i>num_seed_per_plot</i>) e/ou o peso em gramas (<i>weight_gram_seed_per_plot</i>) utilizado. Em parcelas cujo tipo de material é nome de família, podem ser usados lotes de sementes dos cruzamentos integrantes da família.</p>
                                 <p>Um ensaio pode representar uma avaliação de produtividade, uma avaliação fenotípica, um bloco de cruzamentos, uma casa de vegetação, um viveiro etc.</p>
@@ -796,11 +796,11 @@ $design_types => ()
                             <tr>
                                 <td>trial_name</td>
                                 <td>breeding_program</td>
-                                <td>location</td>
-                                <td>year</td>
+                                <td>Localização</td>
+                                <td>ano</td>
                                 <td>transplanting_date</td>
                                 <td>design_type</td>
-                                <td>description</td>
+                                <td>Descrição</td>
                                 <td>trial_type</td>
                                 <td>trial_stock_type</td>
                                 <td>plot_width</td>
@@ -835,7 +835,7 @@ $design_types => ()
                     <ul>
                     <li>trial_name (deve ser exclusivo em todo o banco de dados; geralmente combina ano, transplanting_date, finalidade, número exclusivo e local)</li>
                     <li>breeding_program (nome do programa de melhoramento responsável pelo ensaio; deve existir no banco de dados)</li>
-                    <li>location (<strong>nome</strong> ou <strong>abreviação</strong> do local onde o ensaio foi realizado; deve existir no banco de dados)</li>
+                    <li>Localização (<strong>nome</strong> UO <strong>abreviação</strong> do local onde o ensaio foi realizado; deve existir no banco de dados)</li>
                     <li>year (ano de realização do ensaio)</li>
 
                     <li>design_type (sigla do tipo de delineamento; deve existir no banco de dados. Valores possíveis: CRD, RCBD, RRC, DRRC, URDD, ARC, Alpha, Lattice, Augmented, MAD, greenhouse, splitplot, stripplot, p-rep e Westcott)</li>
@@ -958,14 +958,14 @@ $design_types => ()
                             <tr>
                                 <td>trial_name</td>
                                 <td>breeding_program</td>
-                                <td>folder</td>
-                                <td>location</td>
-                                <td>year</td>
+                                <td>pasta</td>
+                                <td>Localização</td>
+                                <td>ano</td>
                                 <td>transplanting_date</td>
                                 <td>planting_date</td>
                                 <td>harvest_date</td>
                                 <td>design_type</td>
-                                <td>description</td>
+                                <td>Descrição</td>
                                 <td>trial_type</td>
                                 <td>plot_width</td>
                                 <td>plot_length</td>
@@ -983,7 +983,7 @@ $design_types => ()
                         <li>new_trial_name (novo nome do ensaio; ainda não deve existir no banco de dados)</li>
                         <li>breeding_program (nome do programa de melhoramento responsável; deve existir no banco de dados)</li>
                         <li>folder (nome da pasta em que o ensaio será exibido em Gerenciar &gt; Ensaios de campo; se não existir, será criada no programa de melhoramento do ensaio)
-                        <li>location (<strong>nome</strong> ou <strong>abreviação</strong> do local do ensaio; deve existir no banco de dados)</li>
+                        <li>Localização (<strong>nome</strong> UO <strong>abreviação</strong> do local do ensaio; deve existir no banco de dados)</li>
                         <li>year (ano de realização do ensaio)</li>
                         <li>transplanting_date (data de transplantio no formato AAAA-MM-DD ou <code>remove</code> para remover a data)</li>
                         <li>planting_date (data de plantio no formato AAAA-MM-DD ou <code>remove</code> para remover a data)</li>

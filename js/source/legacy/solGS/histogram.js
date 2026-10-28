@@ -66,8 +66,8 @@ solGS.histogram = {
       '<table class="table bin_elements_table" style="text-align: left;display:none">' +
       "<thead>" +
       "<tr>" +
-      "<th>Bin elements</th>" +
-      "<th>Values</th>" +
+      "<th>Elementos do intervalo</th>" +
+      "<th>Valores</th>" +
       "</tr>" +
       "</thead>" +
       "</table>";
@@ -235,8 +235,8 @@ solGS.histogram = {
 
     var yAxis = d3.axisLeft(yAxisLabel);
 
-    var xLabel = histo.x_label || "Values";
-    var yLabel = histo.y_label || "Frequency";
+    var xLabel = histo.x_label || "Valores";
+    var yLabel = histo.y_label || "Frequência";
     var xAxisOrigin = 3 * margin.left;
     var yAxisOrigin = height + margin.top;
 

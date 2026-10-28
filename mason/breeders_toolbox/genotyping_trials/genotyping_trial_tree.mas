@@ -21,8 +21,8 @@
     <tbody>
         <tr>
             <td>
-                <h4>Pesquisar</h4>
-                <input type="text" class="form-control input-sm" id="genotyping_trial_tree_search" placeholder="Pesquisar" />
+                <h4>Pesquisador</h4>
+                <input type="text" class="form-control input-sm" id="genotyping_trial_tree_search" placeholder="Pesquisador" />
                 <hr>
 
                 <h5><i>Clique duas vezes<br />na placa de genotipagem (&nbsp;<span class="glyphicon glyphicon-th text-success"></span>&nbsp;) ou na pasta (&nbsp;<span class="glyphicon glyphicon-folder-open text-danger"></span>&nbsp;)<br/>para ver a página de detalhes.</i></h5>
@@ -43,11 +43,11 @@
                 </div>
 -->
 
-                <!--<button id="delete" disabled="disabled" >Delete</button -->
+                <!--<button id="delete" disabled="disabled" >Excluir</button -->
                 <br />
             </td>
             <td>
-                <div id="genotyping_trial_list" >[carregando...]</div>
+                <div id="genotyping_trial_list" >[Carregando...]</div>
             </td>
         </tr>
     </tbody>

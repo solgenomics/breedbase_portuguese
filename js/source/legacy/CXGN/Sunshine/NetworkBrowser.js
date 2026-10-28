@@ -161,7 +161,7 @@ CXGN.Sunshine.NetworkBrowser.prototype = {
 	    //MochiKit.Logging.log('Color: '+ this.relationships[n].color + ' gives ' +colorString);
 	    //MochiKit.Logging.log('renderLegend: '+ this.relationships[n].name);
 	}
-	document.getElementById('relationships_legend').innerHTML = "<br /><br /><b>Display relationship types:</b><br />" + s;
+	document.getElementById('relationships_legend').innerHTML = "<br /><br /><b>Exibir tipos de relação:</b><br />" + s;
     },
 
 	
@@ -174,7 +174,7 @@ CXGN.Sunshine.NetworkBrowser.prototype = {
     },
 
     renderLevels: function() { 
-	var s = '<b>Show levels:</b><br />\n';
+	var s = "<b>Mostrar níveis:</b><br />\n";
 	s += '<input type="button" onClick="javascript:nb.levelMinusOne()" value="<" />';
 	s += '<b>&nbsp;' + this.getLevel() + '&nbsp;</b>';
 	s += '<input type="button" onClick="javascript:nb.levelPlusOne()" value=">" />';
@@ -196,7 +196,7 @@ CXGN.Sunshine.NetworkBrowser.prototype = {
     },
 
     getImage: function(name, type, level, relationships, hilite) {	
-	if (!name && !type) { alert("No name or type supplied. How am I supposed to do anything????"); }
+	if (!name && !type) { alert("Informe um nome ou tipo para continuar."); }
 	//	var count = 0;
 	var x = MochiKit.DOM.getElement("network_browser");
 	this.setName(name);

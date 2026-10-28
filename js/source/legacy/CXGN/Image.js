@@ -43,7 +43,7 @@ CXGN.Image.prototype = {
 		    } 
 		},
 		onError: function() {
-		    alert('An error occurred! ');
+		    alert("Ocorreu um erro! ");
 		},
 	    });
     }

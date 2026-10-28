@@ -1,4 +1,4 @@
-<& /page/page_title.mas, title => 'The Secretome of Phytophthora / Tomato Interactions' &>
+<& /page/page_title.mas, title => 'O Secretoma de Fitofthora / Interações Tomate' &>
 
 <div class="indented_content">
 
@@ -7,108 +7,72 @@
     <img src="/documents/img/secretom/infestans_leaves_stages_full.jpg" />
 
     <p>
-      Infection of tomato leaves (upper panels) by P. infestans, showing
-      the early asymptomatic biotrophic phase (left) and the later
-      necrotrophic phase. The <span class="species_binomial">P. infestans
-      </span> developmental stages (trypan blue staining) are shown in
-      the lower panel.
+      Infecção de folhas de tomate (painéis superiores) por P. infestans, mostrando a fase biotrófica assintomática precoce (esquerda) e a fase necrotrófica posterior. O <span class="species_binomial">P. infestans
+      </span> Estágios de desenvolvimento são mostrados no painel inferior.
     </p>
 
   </div>
 
   <p>
-    Plant pathogens can be classified into three groups, based on their
-    mechanism of infection: biotrophs, necrotrophs or
-    hemibiotrophs. Biotrophic pathogens penetrate the plant wall,
-    parasitize host cells while evading or suppressing defense responses
-    and require viable host tissue for pathogen nutrition and
-    reproduction. In contrast, necrotrophs, overwhelm plants by
-    secreting mixtures of degradative enzymes that allow the pathogens
-    to subsist on necrotized host tissue. Hemibiotrophic pathogens, such
-    as the bacterium <span class="species_binomial">Pseudomonas
+    Os patógenos vegetais podem ser classificados em três grupos, baseados em seu mecanismo de infecção: biotróficos, necrotróficos ou hemibiotrópicos. Os patógenos biotróficos penetram na parede da planta, parasitam células hospedeiras enquanto evitam ou suprimem respostas de defesa e requerem tecido hospedeiro viável para nutrição e reprodução de patógenos. Em contraste, necrotróficos, sobrecarregam plantas secretando misturas de enzimas degradativas que permitem que os patógenos subsistam no tecido do hospedeiro necrotizado. Patógenos hemibiotróficos, como a bactéria <span class="species_binomial">Pseudomonas
     syringae</span>, the fungus <span class="species_binomial">
-    Colletotrichum lindemuthianum</span> and the oomycete <span
+    Colletotrichum lindemuthianum</span> e o oomycete <span
     class="species_binomial">Phytophthora infestans</span>, employ
     elements of both these strategies in a biphasic "stealth"
     infection mechanism.
   </p>
 
   <p>
-    This involves an initial biotrophic phase, when the pathogen
-    proliferates asymptomatically in the host and efficient mechanisms
-    must be employed to evade and suppress host defenses. Subsequently,
-    in the second stage, hemibiotrophs orchestrate a physiological
-    switch from asymptomatic infection to large-scale necrosis and
-    tissue dissolution, presumably resulting from the coordinated
-    secretion of factors such as lytic enzymes and necrosis elicitors.
+    Isso envolve uma fase biotrófica inicial, quando o patógeno prolifera assintomáticamente no hospedeiro e mecanismos eficientes devem ser empregados para evitar e suprimir as defesas do hospedeiro. Posteriormente, na segunda fase, hemibiotrofos orquestram uma mudança fisiológica de infecção assintomática para necrose em larga escala e dissolução tecidual, presumivelmente resultante da secreção coordenada de fatores como enzimas líticas e elicitores de necrose.
   </p>
 
   <p>
 
-    We are using a range of strategies to characterize the secretomes
-    of the host and pathogen during the various stages of
-    hemibiotrophy, including <a href="/secretom/detail/functional_screens">
-    Yeast Secretion Trap Screen</a>, <a href="/secretom/detail/proteomics">
-    comparative proteomic analysis</a> of extracted protein populations,
-    and deepsequencing of the transcriptomes of the infected tissues using
-    RNAseq.
+    Estamos usando uma série de estratégias para caracterizar os secretomas do hospedeiro e patógeno durante as várias fases da hemibiotrofia, incluindo <a href="/secretom/detail/functional_screens">
+    Tela da Armadilha da Secreção de Fermento</a>, <a href="/secretom/detail/proteomics">
+    Análise proteômica comparativa</a> de populações de proteínas extraídas, e sequenciamento profundo dos transcriptomas dos tecidos infectados usando RNAseq.
 
   </p>
 </div>
 
 <&| /secretom/section_templates/objectives.mas &>
 
-  Characterize multiple transcript populations from
-  <span class="species_binomial">P. infestans</span>-infected tomato
-  leaves over a time course spanning
-  biotrophic growth to advances necrotrophy.
-
-  Integrate the transcriptome data with the proteome analysis to
-  develop a developmental profile of the secretomes of the host and
-  pathogen during infection
-
-  Address the hypothesis that hemibiotrophic eukaryotes are able to
-  maintain a biotrophic interaction with their hosts and to trigger
-  the subsequent transition to necrotrophy by the coordinated and
-  temporally-regulated expression of distinct subsets of secreted
-  protein effectors
+  Caracterizar múltiplas populações transcritas de
+  <span class="species_binomial">P. infestans</span>- folhas de tomate infectadas ao longo de um curso de tempo abrangendo crescimento biotrófico para avançar necrotrofia. Integrar os dados do transcriptoma com a análise do proteoma para desenvolver um perfil de desenvolvimento dos secretomas do hospedeiro e patógeno durante a infecção Endereçar a hipótese de que eucariotos hemibiotróficos são capazes de manter uma interação biotrófica com seus hospedeiros e para desencadear a transição subsequente para necrotrofia pela expressão coordenada e temporalmente regulada de diferentes subconjuntos de efetores de proteínas secretados
 
 </&>
 
-<&| /page/info_section.mas, title => 'Data Sets' &>
+<&| /page/info_section.mas, title => 'Conjuntos de dados' &>
 
-<p>These samples correspond to a time course experiment of a compatible
-interaction between Phytophthora infestans (clonal lineage US11) and
-its host tomato (M82). Tissue was collected at three different stages
-of the interaction and a mock inoculated plant served as control.
+<p>Estas amostras correspondem a um experimento de curso temporal de uma interação compatível entre Phytophthora infestans (linha clonal US11) e seu tomate hospedeiro (M82). O tecido foi coletado em três fases diferentes da interação e uma planta simulada inoculada serviu como controle.
 </p>
 
   <&| /secretom/section_templates/data_items.mas,
       default_ref_base => '/download/data/secretom/Secretome_Phytophthora_tomato_interactions',
       is_subsection => 1,
-      title => 'Files',
+      title => 'Arquivos',
    &>
-  - text: Time 0, F95S1KP01.sff
-    ref: F95S1KP01.sff
-  - text: Time 1, GAVIB5H01.sff
-    ref: GAVIB5H01.sff
-  - text: Time 2, GAVIB5H02.sff
-    ref: GAVIB5H02.sff
-  - text: Time 3, F95S1KP02.sff
-    ref: F95S1KP02.sff
-  - text: Assembled sequences for Phytophtora infestans
-    ref: P.infestans_unigenes.fasta
-  - text: Assembled sequences for tomato
-    ref: Tomato_unigenes.fasta
+  Hora 0, F95S1KP01.sff
+    F95S1KP01.sff
+  - Tempo 1, GAVIB5H01.sff
+    REF: GAVIB5H01.sff
+  - Tempo 2, GAVIB5H02.sff
+    REF: GAVIB5H02.sff
+  - Tempo 3, F95S1KP02.sff
+    F95S1KP02.sff
+  Sequências reunidas para Phytophtora infestans
+    P.infestans_unigenes.fasta
+  Sequências reunidas para tomate
+    Tomato_unigenes.fasta
   </&>
 </&>
 
 <&| /secretom/section_templates/publications.mas, entitize => 0 &>
 
-Kelley, B.S., Lee, S.-J., Damasceno, C.M.B., Chakravarthy, S., Kim, B.-D., Martin, G.B. and Rose, J.K.C. (2010) A secreted effector protein (SNE1) from Phytophthora infestans is a broadly acting suppressor of programmed cell death. The Plant Journal 62: 357-366.
+Kelley, B.S., Lee, S.-J., Damasceno, C.M.B., Chakravarthy, S., Kim, B.-D., Martin, G.B. e Rose, J.K.C. (2010) Uma proteína efetora secretada (SNE1) de Phytophthora infestans é um supressor amplamente atuante de morte celular programada. The Plant Journal 62: 357-366.
 
-Lee, S.-J. and Rose, J.K.C. (2010) Mediation of the transition from biotrophy to necrotrophy in hemibiotrophic plant pathogens by secreted effector proteins. Plant Signaling and Behavior 5/6: 1559-2316.
+Lee, S.-J. e Rose, J.K.C. (2010) Mediação da transição da biotrofia para a necrotrofia em patógenos de plantas hemibiotróficas por proteínas efetoras secretadas. Sinalização de Planta e Comportamento 5/6: 1559-2316.
 
-Damasceno, C.M.B., Bishop, J.G., Ripoll, D.R., Win, J., Kamoun, S. and Rose, J.K.C. (2008) The structure of the glucanase inhibitor protein (GIP) family from Phytophthora species and co-evolution with plant endo-beta-1,3-glucanases. Molecular Plant-Microbe Interactions 21: 820-830.
+Damasceno, C.M.B., Bishop, J.G., Ripoll, D.R., Win, J., Kamoun, S. e Rose, J.K.C. (2008) A estrutura da família de proteínas inibidoras de glucanase (GIP) de espécies de Phytophthora e co-evolução com plantas de endo-beta-1,3-glucanases. Interações Moleculares Planta-Microbo 21: 820-830.
 
 </&>

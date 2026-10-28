@@ -4,7 +4,7 @@
 
     <div class="xref xref_rich xref_rich_gbrowse2">
 
-        <a href="<% $xref->url %>" title="click to view in genome browser">
+        <a href="<% $xref->url %>" title="Clique para ver no navegador do genoma">
            <img src="<% $xref->preview_image_url %>" />
         </a>
 
@@ -34,7 +34,7 @@
                  '..',
                  max( map $_->end,   @{$xref->seqfeatures} )
                 )
-         : '<span class="ghosted">not recorded</span>';
+         : '<span class="ghosted">Não gravado</span>';
 </%init>
 <%once>
     use CXGN::Page::FormattingHelpers 'info_table_html';

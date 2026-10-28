@@ -5,14 +5,14 @@ $files
 
 <& /util/import_javascript.mas, classes => [ 'jquery', 'jqueryui', 'jquery.iframe-post-form' ] &>
 
-<& /page/page_title.mas, title=>'Document Browser' &>
+<& /page/page_title.mas, title=>'Navegador de Documentos' &>
 
-<button class="btn btn-default" id="upload_document_browser_file_link">Upload TSV Document</button>
+<button class="btn btn-default" id="upload_document_browser_file_link">Enviar documento TSV</button>
 <hr>
 
 <table class="table table-bordered" alt="">
 <thead>
-  <tr><th>Select</th><th>Filename</th><th>Date Uploaded</th><th>Uploaded By</th><th>File Type</th><th>Options</th></tr>
+  <tr><th>Selecionar</th><th>Nome do arquivo</th><th>Data enviada</th><th>Enviado por</th><th>Tipo de Arquivo</th><th>Opções</th></tr>
 </thead>
 <tbody>
 % foreach my $f (@$files) {
@@ -22,16 +22,16 @@ $files
     <td><% $f->[1] %></td>
     <td><a href="/solpeople/profile/<% $f->[2] %>"><% $f->[3] %></a></td>
     <td><% $f->[6] %></td>
-    <td><a href="/breeders/phenotyping/download/<% $f->[0] %>">Download</a></td>
+    <td><a href="/breeders/phenotyping/download/<% $f->[0] %>">Baixar</a></td>
   </tr>
 % }
 </tbody>
 </table>
 
 <div class="input-group">
-  <input type="text" class="form-control" id="document_browser_search_input" placeholder="Type Search...">
+  <input type="text" class="form-control" id="document_browser_search_input" placeholder="Digite Pesquisar...">
    <div class="input-group-btn">
-    <button class="btn btn-info" id="document_browser_search_submit"><i class="glyphicon glyphicon-search"></i>Search</button>
+    <button class="btn btn-info" id="document_browser_search_submit"><i class="glyphicon glyphicon-search"></i>Buscar</button>
    </div>
  </div>
 
@@ -49,15 +49,15 @@ $files
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="uploadDocumentDialog">Upload New Document</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="uploadDocumentDialog">Enviar Novo Documento</h4>
       </div>
       <div class="modal-body">
         <div class="container-fluid">
 
             <form class="form-horizontal" role="form" method="post" enctype="multipart/form-data" encoding="multipart/form-data" id="upload_document_browser_file_form" name="upload_document_browser_file_form">
                 <div class="form-group">
-                    <label class="col-sm-3 control-label">Select TSV Document: </label>
+                    <label class="col-sm-3 control-label">Selecione o documento TSV: </label>
                     <div class="col-sm-9" >
                         <input type="file" id="upload_document_browser_file_input" name="upload_document_browser_file_input" encoding="multipart/form-data" />
                     </div>
@@ -68,8 +68,8 @@ $files
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary" name="upload_document_browser_file_submit" id="upload_document_browser_file_submit" title="Save new document">Save</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+            <button type="button" class="btn btn-primary" name="upload_document_browser_file_submit" id="upload_document_browser_file_submit" title="Salvar novo documento">Salve</button>
       </div>
     </div>
   </div>
@@ -79,8 +79,8 @@ $files
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="uploadDocumentStatusDialog">Status</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="uploadDocumentStatusDialog">Situação</h4>
       </div>
       <div class="modal-body">
         <div class="container-fluid">
@@ -90,7 +90,7 @@ $files
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
       </div>
     </div>
   </div>
@@ -117,7 +117,7 @@ jQuery(document).ready(function() {
             },
             success: function(response){
                 //console.log(response);
-                var html = "<div class='well'><table class='table table-hover table-bordered'><thead><tr><th>Select All<br/><input type='checkbox' id='document_browser_select_all_results' /></th><th>Search Result</th></tr></thead><tbody>";
+                var html = "<div class='well'><table class='table table-hover table-bordered'><thead><tr><th>Selecionar todos<br/><input type='checkbox' id='document_browser_select_all_results' /></th><th>Resultado da busca</th></tr></thead><tbody>";
                 for (var i=0; i<response.found_lines.length; i++){
                     html = html + "<tr><td><input type='checkbox' name='document_browser_search_result_select' value='"+response.list_elements[i]+"' /></td><td>"+response.found_lines[i]+"</td></tr>";
                 }
@@ -125,7 +125,7 @@ jQuery(document).ready(function() {
                 jQuery('#document_browser_search_results').html(html);
             },
             error: function(response){
-                alert("An error occurred "+response);
+                alert("Ocorreu um erro "+response);
             }
         });
 
@@ -187,9 +187,9 @@ function hideWorkingModal() {
 function initializeUpload() {
     var uploadFile = jQuery("#upload_document_browser_file_input").val();
     if (uploadFile === '') {
-        alert("Please select a file");
+        alert("Selecione um arquivo");
     } else {
-        showWorkingModal("Storing File");
+        showWorkingModal("Armazenando arquivo");
         jQuery("#upload_document_browser_file_form").attr("action", '/ajax/tools/documents/upload');
         jQuery("#upload_document_browser_file_form").submit();
     }

@@ -98,19 +98,19 @@ jQuery('input[title="dbstats_end_date"]').daterangepicker(
 
 </&>
 
-%# <&| /page/info_section.mas, title => "Activity - past 52 weeks" &>
+%# <&| /page/info_section.mas, title => "Atividade - últimas 52 semanas" &>
 
 %#    <svg class="bargraph" width="800" height="200"></svg>
     
 %#  </&>
 
-%# <&| /page/info_section.mas, title => "Breeding Program Summaries", collapsible=>1 &>
+%# <&| /page/info_section.mas, title => "programa de melhoramento Sumários", collapsible=>1 &>
 
 %# <div id="program_stats">[loading program stats...]</div>
 
 %# </&>
 
-%# <&| /page/info_section.mas, title => "Breeding Program Summaries", collapsible=>1 &>
+%# <&| /page/info_section.mas, title => "programa de melhoramento Sumários", collapsible=>1 &>
 
 %#  %  foreach (@$breeding_programs){
 
@@ -118,11 +118,11 @@ jQuery('input[title="dbstats_end_date"]').daterangepicker(
 
 %#        <h3>Breeding Program: <% $_->[1] %></h3>
 
-%#        <&| /page/info_section.mas, title => "Trials" , collapsible=>1 &>
+%#        <&| /page/info_section.mas, title => "Ensaios" , collapsible=>1 &>
 %#            <& /breeders_toolbox/program/trials.mas, program_id => $_->[0] &>
 %#        </&>
 
-%#        <&| /page/info_section.mas, title => "Traits" , collapsible=>1 &>
+%#        <&| /page/info_section.mas, title => "Características" , collapsible=>1 &>
 %#            <& /breeders_toolbox/program/traits.mas, program_id => $_->[0], collapse_phenotypes_section => 0  &>
 %#        </&>
 
@@ -303,7 +303,7 @@ html = `
   <br/>
 
 
-  <div id="pheno_summary_table_`+bp_id+`_div">
+  <div id="pheno_summary_table_`+bp_id+`_Div"&gt;
 
     <table id="phenotype_summary_data_`+bp_id+`" class="display">
       <thead>
@@ -325,7 +325,7 @@ html = `
 </div>
 <div class="well well-sm" id="raw_data_histogram_well_`+bp_id+`">
   <center><h4>Histograma dos dados brutos</h4></center><hr>
-  <div id="program_summary_hist_`+bp_id+`_div">
+  <div id="program_summary_hist_`+bp_id+`_Div"&gt;
     <div class="row">
       <div class="col-sm-8">
         <form class="form-horizontal">

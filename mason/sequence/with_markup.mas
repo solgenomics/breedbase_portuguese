@@ -77,7 +77,7 @@ to the given URL as `seq`
 % if( $seq->length > 50_000 ) {
     <span class="sequence">
       ><% $seq->id %> <% $seq->desc %>
-      <br /><span class="warning">Sequence too large to display.</span>
+      <br /><span class="warning">Sequência muito grande para ser exibida.</span>
     </span>
 % } else {
     <& .really_display, %ARGS &>

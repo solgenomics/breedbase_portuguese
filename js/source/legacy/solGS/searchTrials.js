@@ -16,7 +16,7 @@ solGS.searchTrials = {
 
   searchAllTrials: function (url, result) {
     jQuery(this.searchResultMsg)
-      .html("Searching for GS trials..")
+      .html("Buscando ensaios de seleção genômica...")
       .show();
 
     var traitTrials = jQuery.ajax({
@@ -47,7 +47,7 @@ solGS.searchTrials = {
 
       this.displayTrainingPopulations(tableDetails);
     } else {
-      jQuery(this.searchResultMsg).html("No trials were found.").show();
+      jQuery(this.searchResultMsg).html("Nenhum ensaio encontrado.").show();
     }
   },
 
@@ -71,9 +71,9 @@ solGS.searchTrials = {
   checkPopulationExists: function (name) {
     var msgDiv = this.msgDiv; // "#trial_search_progress_message";
     var msg =
-      "Checking if trial or training population " +
+      "Verificando se o ensaio ou a população de treinamento " +
       name +
-      " exists...please wait...";
+      " existe... Aguarde...";
     solGS.showMessage(msgDiv, msg);
 
     jQuery(this.searchResultMsg).empty();
@@ -96,7 +96,7 @@ solGS.searchTrials = {
       '" class="table" style="width:100%;text-align:left">';
     table += "<thead><tr>";
     table +=
-      "<th></th><th>Trial</th><th>Description</th><th>Location</th><th>Year</th><th>More details</th>";
+      "<th></th><th>Ensaio</th><th>Descrição</th><th>Local</th><th>Ano</th><th>Mais detalhes</th>";
     // table    += '<th id="color_tip" title="You can combine Trials with matching color."><span class="glyphicon glyphicon-question-sign"></span></th>';
     table += "</tr></thead>";
     table += "</table>";
@@ -131,7 +131,7 @@ solGS.searchTrials = {
           bInfo: false,
           paging: false,
           oLanguage: {
-            sSearch: "Filter result by: ",
+            sSearch: "Filtrar resultados por: ",
           },
           data: data,
         });
@@ -163,7 +163,7 @@ jQuery(document).ready(function () {
   jQuery(searchResultDiv).on("click", "div.paginate_nav a", function (e) {
     jQuery(searchResultDiv).empty();
     jQuery(searchResultMsg)
-      .html("Searching for more GS trials..")
+      .html("Buscando mais ensaios de seleção genômica...")
       .show();
 
     var page = jQuery(this).attr("href");
@@ -180,7 +180,7 @@ jQuery(document).ready(function () {
         },
         error: function () {
           jQuery(searchResultMsg)
-            .html("Error occured fetching the next set of GS trials.")
+            .html("Ocorreu um erro ao recuperar o próximo grupo de ensaios de seleção genômica.")
             .show();
         },
       });
@@ -214,13 +214,13 @@ jQuery(document).ready(function () {
           jQuery(searchResultDiv).append(pagination);
         } else {
           jQuery(searchResultMsg)
-            .html("No trials phenotyped for the trait were found.")
+            .html("Nenhum ensaio fenotipado para esta característica foi encontrado.")
             .show();
         }
       })
       .fail(function () {
         jQuery(searchResultMsg)
-          .html("Error occured fetching the first set of GS trials.")
+          .html("Ocorreu um erro ao recuperar o primeiro grupo de ensaios de seleção genômica.")
           .show();
       });
   }
@@ -254,10 +254,10 @@ jQuery(document).ready(function () {
 
         if (!protocolId) {
         var msg =
-          "No genotyping protocol found. There is no default genotyping " +
-          "protocol. If a genotyping protocol exists in the database, " +
-          "please select one to search for trials that can be used as a" +
-          "training population.";
+          "Nenhum protocolo de genotipagem encontrado. Não há um protocolo padrão de genotipagem " +
+          "protocolo. Se houver um protocolo de genotipagem no banco de dados, " +
+          "selecione um para buscar ensaios que possam ser usados como" +
+          "população de treinamento.";
 
         solGS.showMessage(msgDiv, msg);    
         return;
@@ -268,8 +268,8 @@ jQuery(document).ready(function () {
         .done(function (res) {
           if (res.trial_id) {
             msg =
-              "<p>Checking if the trial or population can be used <br />" +
-              "as a training population...please wait...</p>";
+              "<p>Verificando se o ensaio ou a população pode ser usado <br />" +
+              "como população de treinamento... Aguarde...</p>";
             solGS.showMessage(msgDiv, msg);
 
             solGS.searchTrials
@@ -300,31 +300,31 @@ jQuery(document).ready(function () {
                   solGS.searchTrials.displayTrainingPopulations(tableDetails);
                 } else {
                   var msg =
-                    "<p> Population " +
+                    "<p> População " +
                     popIds +
-                    " can not be used as a training population. It has no phenotype or/and genotype data.";
+                    " não pode ser usado como população de treinamento. Não possui dados fenotípicos e/ou genotípicos.";
                   solGS.showMessage(msgDiv, msg);
                   jQuery("#search_all_training_pops").show();
                 }
               })
               .fail(function () {
                 var msg =
-                  "Error occured checking for if trial can be used as training population.";
+                  "Ocorreu um erro ao verificar se o ensaio pode ser usado como população de treinamento.";
                 solGS.showMessage(msgDiv, msg);
               });
           } else {
-            msg = "<p>" + entry + " is not in the database.</p>";
+            msg = "<p>" + entry + " não está no banco de dados.</p>";
             solGS.showMessage(msgDiv, msg);
           }
         })
         .fail(function (res) {
-          msg = "Error occured checking if the training population exists.";
+          msg = "Ocorreu um erro ao verificar se a população de treinamento existe.";
           solGS.showMessage(msgDiv, msg);
         });
     } else {
       jQuery("#trial_search_box").css("border", "solid #FF0000");
 
-      jQuery("#form-feedback-search-trials").text("Please enter a trial name.");
+      jQuery("#form-feedback-search-trials").text("Informe o nome de um ensaio.");
     }
   });
 });

@@ -28,11 +28,11 @@ $wizard_link_txt = 'Create a new list or dataset' if !$wizard_link_txt;
 
 <div id="select_menu" style="padding-top: 20px;">
   <div class="select_menu_block" id="<% $analysis_type %>_pops_label">
-    <label for="<% $analysis_abbr %>_pops_label">Select a population</label>
+    <label for="<% $analysis_abbr %>_pops_label">Selecione uma população</label>
   </div>
   <div class="select_menu_block" id="<% $analysis_abbr %>_pops_select_div"></div>
   <div class="select_menu_block go_btn" id="<% $analysis_abbr %>_pop_go_btn">
-    <input type="button" value="View" />
+    <input type="button" value="Visualizar" />
   </div>
   <div class="select_menu_block" >
     <i class="glyphicon-plus"></i>

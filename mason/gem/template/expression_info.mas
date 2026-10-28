@@ -293,7 +293,7 @@ if (defined $template->get_template_id() ) {
        $experiments_html = 'No experiment was found associated to this template';
    }
 
-    $experiment_info_content = info_section_html( title       => "Table: Expression Data by Experiment (".$exp_number.")", 
+    $experiment_info_content = info_section_html( title       => "Tabela: dados de expressão por experiência (".$exp_number.")", 
                                                   contents    => $experiments_html, 
 	 					  collapsible => 1,
                                                   collapsed   => 1 );
@@ -392,7 +392,7 @@ if (defined $template->get_template_id() ) {
  					                    __align  => ['l', 'l', 'c', 'c', 'c'],
                                                            );
     }
-    $experiment_info_content .= info_section_html( title    => "Expression Data by Targets (experiment replicates) ($exprep_n)", 
+    $experiment_info_content .= info_section_html( title    => "Dados de Expressão por Alvos (replicação de experimentos) ($exprep_n)", 
                                                    contents => $experiments_by_targets_html,
 						   collapsible =>1,
                                                    collapsed =>1 );

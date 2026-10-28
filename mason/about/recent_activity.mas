@@ -3,42 +3,42 @@
 
 </%args>
 
-<& /page/page_title.mas, title => 'Recent activity' &>
+<& /page/page_title.mas, title => 'Atividade recente' &>
 
 <& /util/import_javascript.mas, classes => [ 'd3.d3v4Min.js', 'd3pie_min.js', 'moment_min',  'd3.graphers.stackedObservationPhenotypeHistogram' ] &>
 
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
   
-<&| /page/info_section.mas, title => "Date Range" &>
+<&| /page/info_section.mas, title => "Intervalo de datas" &>
 
-Filter by date of addition to database<br /><br />
+Filtrar pela data de adição ao banco de dados<br /><br />
 <table><tr><td>
 
-Start Date: <input type="text" id="dbstats_start_date" title="dbstats_start_date"  />
+Data de início: <input type="text" id="dbstats_start_date" title="dbstats_start_date"  />
 <td>&nbsp;</td></td><td>
 
-End Date: <input type="text" id="dbstats_end_date" title="dbstats_end_date"  />
+Data final: <input type="text" id="dbstats_end_date" title="dbstats_end_date"  />
 </td><td>
 &nbsp;
 </td><td>
-<input type="checkbox" id="include_dateless_items"> include items without a date</input>
+<input type="checkbox" id="include_dateless_items"> Inclui itens sem data</input>
 </td><td>
 &nbsp;
 </td><td>
-<button id="update_dbstats_by_date">Update</button>
+<button id="update_dbstats_by_date">Atualizar</button>
 
 </td>
 </tr></table>
 </&>
 
 
-<div id="recent_activity_trials">[loading recent trial activity]</div>
+<div id="recent_activity_trials">[carregando atividades recentes de ensaios]</div>
 
-<div id="recent_activity_phenotypes">[loading recent phentoyping activity]</div>
+<div id="recent_activity_phenotypes">[carregando atividades recentes de fenotipagem]</div>
 
-<div id="recent_activity_accessions">[loading recent accessions activity]</div>
+<div id="recent_activity_accessions">[carregando atividades recentes de acessos]</div>
 
-<div id="recent_activity_plots">[loading recent plots activity]</div>
+<div id="recent_activity_plots">[carregando atividades recentes de parcelas]</div>
 
 

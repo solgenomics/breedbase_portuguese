@@ -416,7 +416,7 @@ $is_dataset_public => 0
                                 </&>
 % } #End stock_literature_annotation_section
 % if ($info_section_id eq 'stock_jbrowse_section'){
-                                <p id="jbrowse_check">[carregando...]</p>
+                                <p id="jbrowse_check">[Carregando...]</p>
 % } #End stock_jbrowse_section
 % if ($info_section_id eq 'stock_comments_section'){
                                 <& /page/comments.mas, object_type=>'stock', object_id=>$stock_id, referer=>$referer &>

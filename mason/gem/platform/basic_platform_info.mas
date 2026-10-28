@@ -52,7 +52,7 @@ use CXGN::Page::FormattingHelpers  qw/ info_section_html info_table_html columna
 my $basic_info_content;
 my $platform_accession;
 
-my $default_message = '<i><font color="gray">data not available</font></i>';
+my $default_message = '<i><font color="gray">Dados não disponíveis</font></i>';
 
 ## If there aren't any experiment_row that comes from experimental_design_detail.mas, it will return a message.
 
@@ -149,7 +149,7 @@ if (defined $platform->get_platform_id()) {
 	   <tr> <td width="25%"> <b>Probe number:</b>             </td> <td> $probe_count </td></tr>
 	   <tr> <td width="25%"> <b>Design datasets:</b>          </td> <td> $design_links </td></tr>
 	   <tr> <td width="25%"> <b>Platform external links:</b>  </td> <td> $dbxref_html_list </td></tr>
-	   <tr> <td width="25%"> <b>Contact info:</b>             </td> <td> <b>Name:</b> $complete_name </td></tr>
+	   <tr> <td width="25%"> <b>Contact info:</b>             </td> <td> <b>Nome:</b> $complete_name </td></tr>
            <tr> <td width="">                                     </td> <td> <b>E-mail:</b> $contact_email </td></tr>
 
    </table>
@@ -157,15 +157,15 @@ if (defined $platform->get_platform_id()) {
 HTML
 
 } else {
-   $basic_info_content = "<big>There aren't any platform data for the specified parameters.</big>";
+   $basic_info_content = "<big>Não há dados da plataforma para os parâmetros especificados.</big>";
 }   
 
 my $basic_info_html;
 if (defined $platform_accession) {
-   $basic_info_html = "<center><big><b>Expression Platform: $platform_accession</b></big></center><br>";
+   $basic_info_html = "<center><big><b>$platform_accession</b></big></center><br>";
 }
 
-$basic_info_html .= info_section_html( title => "Platform Basic Information", contents => $basic_info_content );
+$basic_info_html .= info_section_html( title => "Plataforma Informações básicas", contents => $basic_info_content );
 
 </%perl>
 

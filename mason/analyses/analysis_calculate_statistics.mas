@@ -419,7 +419,7 @@ jQuery(document).ready(function() {
 
                     var html = '';
                     if (response.sum_square_residual) {
-                        html = html + '<h4>Sum square residual: '+response.sum_square_residual+'</h4><hr>';
+                        html = html + "<h4>Resíduo quadrado soma: "+response.sum_square_residual+'</h4><hr>';
                     }
                     if (response.genetic_effects_line_plot) {
                         html = html + '<img src="'+response.genetic_effects_line_plot+'"><hr>';
@@ -482,10 +482,10 @@ jQuery(document).ready(function() {
                         html = html + '</tbody></table>';
                     }
 
-                    html = html + '<hr><a href="'+response.stats_out_tempfile_string+'.log" target=_blank>Stats file or log</a>';
+                    html = html + '<hr><a href="'+response.stats_out_tempfile_string+".log\" target=_blank>Arquivo de estatísticas ou log</a>";
 
                     if (jQuery('#analysis_calculate_statistics_relationship_matrix_type_select_div').val() == 'htp_phenotypes') {
-                        html = html + '<hr><a href="'+response.stats_out_htp_rel_tempfile_out_string+'" target=_blank>HTP Relationship Matrix</a>';
+                        html = html + '<hr><a href="'+response.stats_out_htp_rel_tempfile_out_string+"\" target=_blank>Matriz de relacionamento HTP</a>";
                     }
 
                     jQuery('#analysis_calculate_statistics_result_div').html(html);
@@ -633,10 +633,10 @@ jQuery(document).ready(function() {
                 if (response.success) {
                     var html = '<center>';
                     if (response.model_id) {
-                        html = html + '<p>Ver itens salvos <a href="/analyses_model/'+response.model_id+'" target=_blank >model</a></p>';
+                        html = html + "<p>Ver itens salvas <a href=\"/analyses_model/"+response.model_id+"\" target=_blank >Modelo</a></p>";
                     }
                     if (response.analysis_id) {
-                        html = html + '<p>Ver itens salvos <a href="/analyses/'+response.analysis_id+'" target=_blank >GBLUP analysis</a></p>';
+                        html = html + "<p>Ver itens salvas <a href=\"/analyses/"+response.analysis_id+"\" target=_blank >Análise GBLUP</a></p>";
                     }
                     html = html + '</center>';
                     jQuery('#generic_save_analysis_template_response_div').html(html);
@@ -698,7 +698,7 @@ jQuery(document).ready(function() {
                                 html = html + '<center>';
                                 if (response.analysis_id) {
                                     if (analysis_calculate_statistics_select == 'sommer_grm_spatial_genetic_blups') {
-                                        html = html + '<p>Ver itens salvos <a href="/analyses/'+response.analysis_id+'" target=_blank >spatial BLUP analysis</a></p>';
+                                        html = html + "<p>Ver itens salvas <a href=\"/analyses/"+response.analysis_id+"\" target=_blank >Análise espacial BLUP</a></p>";
                                     }
                                 }
                                 html = html + '</center>';
@@ -757,7 +757,7 @@ jQuery(document).ready(function() {
                                             alert('Análise e/ou modelo salvos!');
                                             html = html + '<center>';
                                             if (response.analysis_id) {
-                                                html = html + '<p>Ver itens salvos <a href="/analyses/'+response.analysis_id+'" target=_blank >residuals analysis</a></p>';
+                                                html = html + "<p>Ver itens salvas <a href=\"/analyses/"+response.analysis_id+"\" target=_blank >Análise de resíduos</a></p>";
                                             }
                                             html = html + '</center>';
                                             jQuery('#generic_save_analysis_template_response_div').html(html);

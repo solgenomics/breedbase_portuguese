@@ -4,7 +4,7 @@
 $logins => {}
 </%args>
 
-<& /page/page_title.mas, title=>"Site Status" &>
+<& /page/page_title.mas, title=>"Status do site" &>
 
 <&| /page/info_section.mas, title=>"Logins" &>
 

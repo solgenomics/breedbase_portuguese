@@ -17,24 +17,24 @@ Isaak Y Tecle (iyt2@cornell.edu)
 
 
 <div id="analysis_log_div" style="display:none">
-  <button id="clear_dead_jobs_button" class='btn btn-sm btn-primary'>Dismiss failed and timed out jobs</button>
+  <button id="clear_dead_jobs_button" class='btn btn-sm btn-primary'>Dispensar falhou e cronometrar trabalhos</button>
   <br>
-  <button id="clear_jobs_cache_button" class='btn btn-sm btn-primary'>Dismiss all jobs older than</button> 
+  <button id="clear_jobs_cache_button" class='btn btn-sm btn-primary'>Descarte todos os trabalhos mais velhos que</button> 
   <select id="keep_recent_jobs_select">
-    <option value='one_week'>One week</option>
-    <option value='one_month'>One month</option>
-    <option value='six_months'>Six months</option>
-    <option value='one_year'>One year</option>
+    <option value='one_week'>Uma semana</option>
+    <option value='one_month'>Um mês</option>
+    <option value='six_months'>Seis meses</option>
+    <option value='one_year'>Um ano</option>
   </select>
   <br>
   <table class="table" id="analysis_list" style="text-align: left;">
     <thead>
       <tr>
-    	<th>Analysis name</th>
-        <th>Analysis type</th>
-        <th>Submitted on</th>
-    	<th>Status</th>
-    	<th>Result page</th>
+    	<th>Nome da análise</th>
+        <th>Tipo de análise</th>
+        <th>Enviado em</th>
+    	<th>Situação</th>
+    	<th>Página do resultado</th>
       </tr>
     </thead>
   </table>

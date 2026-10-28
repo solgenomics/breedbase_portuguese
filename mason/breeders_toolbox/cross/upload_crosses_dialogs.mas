@@ -26,13 +26,13 @@ $breeding_program_id => undef
                                     <ul class="a">
                                         <li>Descrição dos tipos de cruzamento:</li>
                                         <ul class="b">
-                                            <li><b>biparental:</b> uma planta individual polinizada por outra planta individual.</li>
-                                            <li><b>self:</b> uma planta individual autopolinizada.</li>
-                                            <li><b>open:</b> uma planta individual polinizada por um grupo de plantas ou por polinização aberta; o pólen pode vir de um grupo com membros conhecidos ou desconhecidos.</li>
-                                            <li><b>backcross:</b> uma planta individual polinizada por um de seus genitores. Um ID exclusivo de cruzamento pode ser usado como um dos genitores.</li>
-                                            <li><b>sib:</b> cruzamento entre indivíduos com pelo menos um genitor em comum, geralmente dentro da mesma parcela.</li>
-                                            <li><b>polycross:</b> cruzamento entre um genitor feminino individual de uma população e a população masculina correspondente.</li>
-                                            <li><b>bulk:</b> um grupo de plantas, geralmente uma família relacionada, polinizado por uma planta individual; entre uma população feminina e um acesso masculino.</li>
+                                            <li><b>Biparental:</b> uma planta individual polinizada por outra planta individual.</li>
+                                            <li><b>Self:</b> uma planta individual autopolinizada.</li>
+                                            <li><b>Abra</b> uma planta individual polinizada por um grupo de plantas ou por polinização aberta; o pólen pode vir de um grupo com membros conhecidos ou desconhecidos.</li>
+                                            <li><b>Backcross:</b> uma planta individual polinizada por um de seus genitores. Um ID exclusivo de cruzamento pode ser usado como um dos genitores.</li>
+                                            <li><b>Sib:</b> cruzamento entre indivíduos com pelo menos um genitor em comum, geralmente dentro da mesma parcela.</li>
+                                            <li><b>Policross:</b> cruzamento entre um genitor feminino individual de uma população e a população masculina correspondente.</li>
+                                            <li><b>A granel:</b> um grupo de plantas, geralmente uma família relacionada, polinizado por uma planta individual; entre uma população feminina e um acesso masculino.</li>
                                             <li><b>bulk_open:</b> um grupo de plantas, geralmente uma família relacionada, polinizado por outro grupo ou por polinização aberta; entre uma população feminina e uma população masculina ou genitor masculino desconhecido.</li>
                                             <li><b>bulk_self:</b> um grupo de plantas, geralmente uma família relacionada, em que cada indivíduo é autopolinizado, sem combinação de pólen.</li>
                                             <li><b>doubled_haploid:</b> plantas obtidas pela duplicação do número de cromossomos de tecido haploide.</li>
@@ -249,22 +249,22 @@ $breeding_program_id => undef
                     <ul>
                         <li><b>cross_unique_id</b> — NÃO pode existir no banco de dados.</li>
                         <li><b>cross_combination</b> — obrigatória no cabeçalho, mas seu valor, como acesso feminino/acesso masculino, pode ficar vazio.</li>
-                        <li><b>cross_type</b> — deve ser: biparental, self, open, sib, polycross, backcross, bulk, bulk_open, bulk_self, doubled_haploid ou dihaploid_induction.</li>
+                        <li><b>cross_type</b> - Deve ser: biparental, self, aberto, sib, policross, backcross, bulk, bulk_open, bulk_self, doubled_haploid ou dihaploid_induction.</li>
                         <ul class="a">
-                            <li><b>biparental:</b> uma planta individual polinizada por outra planta individual.</li>
-                            <li><b>self:</b> uma planta individual autopolinizada.</li>
-                            <li><b>open:</b> uma planta individual polinizada por um grupo ou por polinização aberta.</li>
-                            <li><b>backcross:</b> uma planta individual polinizada por um de seus genitores.</li>
-                            <li><b>sib:</b> cruzamento entre indivíduos com pelo menos um genitor em comum, geralmente dentro da mesma parcela.</li>
-                            <li><b>polycross:</b> cruzamento entre um genitor feminino individual de uma população e a população masculina correspondente.</li>
-                            <li><b>bulk:</b> um grupo de plantas polinizado por uma planta individual.</li>
+                            <li><b>Biparental:</b> uma planta individual polinizada por outra planta individual.</li>
+                            <li><b>Self:</b> uma planta individual autopolinizada.</li>
+                            <li><b>Abra</b> uma planta individual polinizada por um grupo ou por polinização aberta.</li>
+                            <li><b>Backcross:</b> uma planta individual polinizada por um de seus genitores.</li>
+                            <li><b>Sib:</b> cruzamento entre indivíduos com pelo menos um genitor em comum, geralmente dentro da mesma parcela.</li>
+                            <li><b>Policross:</b> cruzamento entre um genitor feminino individual de uma população e a população masculina correspondente.</li>
+                            <li><b>A granel:</b> um grupo de plantas polinizado por uma planta individual.</li>
                             <li><b>bulk_open:</b> um grupo de plantas polinizado por outro grupo ou por polinização aberta.</li>
                             <li><b>bulk_self:</b> um grupo em que cada planta é autopolinizada, sem combinação de pólen.</li>
                             <li><b>doubled_haploid:</b> plantas obtidas pela duplicação dos cromossomos de tecido haploide.</li>
                             <li><b>dihaploid_induction</b>: plantas obtidas pela redução do conjunto cromossômico de quatro para dois.</li>
                         </ul>
-                        <li><b>female_parent:</b> os nomes dos genitores femininos devem existir como <b>uniquenames</b> e podem ser acessos, parcelas, plantas ou populações.</li>
-                        <li><b>male_parent:</b> obrigatória no cabeçalho, mas pode ficar vazia para a maioria dos tipos. É obrigatória para biparental, sib, backcross, polycross e bulk. Os nomes informados devem existir como <b>uniquenames</b> e podem ser acessos, parcelas, plantas ou populações.</li>
+                        <li><b>female_parent:</b> os nomes dos genitores femininos devem existir como <b>Nomes únicos</b> e podem ser acessos, parcelas, plantas ou populações.</li>
+                        <li><b>male_parent:</b> obrigatória no cabeçalho, mas pode ficar vazia para a maioria dos tipos. É obrigatória para biparental, sib, backcross, polycross e bulk. Os nomes informados devem existir como <b>Nomes únicos</b> e podem ser acessos, parcelas, plantas ou populações.</li>
                     </ul>
                     <b>Colunas opcionais (informações adicionais dos genitores):</b> após a coluna male_plant, adicione informações usando um ou mais destes cabeçalhos.
                     <ul>

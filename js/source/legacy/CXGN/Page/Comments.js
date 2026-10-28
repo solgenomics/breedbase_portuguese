@@ -17,10 +17,10 @@ function addComments() {
 	var given_referer = document.getElementById("referer").innerHTML;
 	
 	var commentdiv = document.getElementById("commentsarea");
-	commentdiv.innerHTML = "Please wait, checking for comments about " + thingtype + " " + thingid;
+	commentdiv.innerHTML = "Aguarde, verificando comentários sobre " + thingtype + " " + thingid;
 	
  	if(!MochiKit.Async.doSimpleXMLHttpRequest) {
- 	    alert("cannot do simple request");
+        alert("não foi possível executar a solicitação simples");
  	    return true;
  	}
 	

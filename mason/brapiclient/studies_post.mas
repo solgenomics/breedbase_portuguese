@@ -22,7 +22,7 @@ jQuery.ajax({
 				studyYears: "2016",
 				programDbId: "134",
 				optionalInfo: JSON.stringify({
-					studyType: "Trial",
+					studyType: "Ensaio",
 					studyObjective: "Test POST Study",
 				}),
 			},

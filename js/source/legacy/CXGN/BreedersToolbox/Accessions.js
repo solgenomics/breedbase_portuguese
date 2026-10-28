@@ -47,13 +47,13 @@ jQuery(document).ready(function ($) {
 
         const population_name = jQuery('#create_population_name').val();
         if (!population_name) {
-            alert ("Population name is required");
+            alert ("Informe o nome da população");
             return;
         }
 
         const member_type = jQuery('#member_type').val();
         if (!member_type) {
-            alert ("Member type is required");
+            alert ("Informe o tipo dos membros");
             return;
         }
 
@@ -63,36 +63,36 @@ jQuery(document).ready(function ($) {
         if (member_type == 'accessions') {
             list_id =  jQuery('#create_population_accession_list_div_list_select').val();
             if (!list_id) {
-                alert ("A list of accessions is required");
+                alert ("Informe uma lista de acessos");
                 return;
             } else {
                 list_validation = lo.legacy_validate(list_id, 'accessions', true);
                 if (list_validation != 1) {
-                    alert("The accession list did not pass validation. Names in the list must be uniquenames with accession stock type in the database");
+                    alert("A lista de acessos não passou na validação. Os nomes devem ser identificadores únicos de materiais do tipo acesso no banco de dados");
                     return;
                 }
             }
         } else if (member_type == 'plots') {
             list_id =  jQuery('#create_population_plot_list_div_list_select').val();
             if (!list_id) {
-                alert ("A list of plots is required");
+                alert ("Informe uma lista de parcelas");
                 return;
             } else {
                 list_validation = lo.legacy_validate(list_id, 'plots', true);
                 if (list_validation != 1) {
-                    alert("The plot list did not pass validation. Names in the list must be uniquenames with plot stock type in the database");
+                    alert("A lista de parcelas não passou na validação. Os nomes devem ser identificadores únicos de materiais do tipo parcela no banco de dados");
                     return;
                 }
             }
         } else if (member_type == 'plants') {
             list_id =  jQuery('#create_population_plant_list_div_list_select').val();
             if (!list_id) {
-                alert ("A list of plants is required");
+                alert ("Informe uma lista de plantas");
                 return;
             } else {
                 list_validation = lo.legacy_validate(list_id, 'plants', true);
                 if (list_validation != 1) {
-                    alert("The plant list did not pass validation. Names in the list must be uniquenames with plant stock type in the database");
+                    alert("A lista de plantas não passou na validação. Os nomes devem ser identificadores únicos de materiais do tipo planta no banco de dados");
                     return;
                 }
             }
@@ -124,7 +124,7 @@ jQuery(document).ready(function ($) {
                 }
             },
             error: function (r) {
-                alert('An error occurred in adding population. sorry '+r.responseText);
+                alert("Ocorreu um erro ao adicionar a população. "+r.responseText);
             }
         });
     });
@@ -152,7 +152,7 @@ jQuery(document).ready(function ($) {
             var table_id = population_id+i+"_pop_table";
 
             var section_html = '<div class="row"><div class="panel panel-default"><div class="panel-heading" >';
-            section_html += '<div class="panel-title" name="populations_members_table_toggle" data-table_id="#'+table_id+'" data-population_id="'+population_id+'" data-population_name="'+name+'"><div class="row"><div class="col-sm-6" data-toggle="collapse" data-parent="#accordion" data-target="#collapse'+i+'"><a href="#'+table_id+'" class="accordion-toggle">'+name+'</a></div><div class="col-sm-3"><a href="/stock/'+population_id+'/view"><small>[Go To Population Page]</small></a></div><div class="col-sm-3"><a name="manage_populations_add_members" data-population_id="'+population_id+'" data-population_name="'+name+'" data-member_type="'+member_type+'"><small>[Add Members To Population]</small></a><br/><a name="manage_populations_delete_population" data-population_id="'+population_id+'" data-population_name="'+name+'"><small>[Delete Population]</small></a></div></div></div></div>';
+            section_html += '<div class="panel-title" name="populations_members_table_toggle" data-table_id="#'+table_id+'" data-population_id="'+population_id+'" data-population_name="'+name+'"><div class="row"><div class="col-sm-6" data-toggle="collapse" data-parent="#accordion" data-target="#collapse'+i+'"><a href="#'+table_id+'" class="accordion-toggle">'+name+'</a></div><div class="col-sm-3"><a href="/stock/'+population_id+"Vista<small>[Ir para a página da população]</small></a></div><div class=\"col-sm-3\"><a name=\"manage_populations_add_members\" data-population_id=\""+population_id+'" data-population_name="'+name+'" data-member_type="'+member_type+"\"><small>[Adicionar membros à população]</small></a><br/><a name=\"manage_populations_delete_population\" data-population_id=\""+population_id+'" data-population_name="'+name+"\"><small>[Excluir população]</small></a></div></div></div></div>";
             section_html += '<div id="collapse'+i+'" class="panel-collapse collapse">';
             section_html += '<div class="panel-body" style="overflow:hidden"><div class="table-responsive" style="margin-top: 10px;"><table id="'+table_id+'" class="table table-hover table-striped table-bordered" width="100%"></table><div id="populations_members_add_to_list_data_'+population_id+'" style="display:none"></div><br/><div id="populations_members_add_to_list_menu_'+population_id+'"></div></div>';
             section_html += '</div><br/></div></div></div><br/>';
@@ -163,7 +163,7 @@ jQuery(document).ready(function ($) {
         },
         error: function(response) {
           enable_ui();
-          alert('An error occured retrieving population data.');
+          alert("Ocorreu um erro ao recuperar os dados da população.");
         }
       });
     });
@@ -177,11 +177,11 @@ jQuery(document).ready(function ($) {
             ajax: '/ajax/manage_accessions/population_members/'+population_id,
             destroy: true,
             columns: [
-                { title: "Member Name", "data": null, "render": function ( data, type, row ) { return "<a href='/stock/"+row.stock_id+"/view'>"+row.name+"</a>"; } },
-                { title: "Member Type", "data": "stock_type" },
-                { title: "Description", "data": "description" },
-                { title: "Synonyms", "data": "synonyms[, ]" },
-                { title: "Remove From Population", "data": null, "render": function ( data, type, row ) { return "<a name='populations_member_remove' data-stock_relationship_id='"+row.stock_relationship_id+"'>X</a>"; } },
+                { title: "Nome do membro", "data": null, "render": function ( data, type, row ) { return "<a href='/stock/"+row.stock_id+"/view'>"+row.name+"</a>"; } },
+                { title: "Tipo do membro", "data": "stock_type" },
+                { title: "Descrição", "data": "description" },
+                { title: "Sinônimos", "data": "synonyms[, ]" },
+                { title: "Remover da população", "data": null, "render": function ( data, type, row ) { return "<a name='populations_member_remove' data-stock_relationship_id='"+row.stock_relationship_id+"'>X</a>"; } },
             ],
             "fnInitComplete": function(oSettings, json) {
                 //console.log(json);
@@ -210,11 +210,11 @@ jQuery(document).ready(function ($) {
         population_name = jQuery(this).data('population_name');
         member_type = jQuery(this).data('member_type');
         if (member_type == 'plots') {
-            jQuery("#add_member_to_population_list_div").html(list.listSelect("add_member_to_population_list_div", ['plots'], 'select a list of plots', undefined, undefined));
+            jQuery("#add_member_to_population_list_div").html(list.listSelect("add_member_to_population_list_div", ['plots'], "selecione uma lista de parcelas", undefined, undefined));
         } else if (member_type == 'plants') {
-            jQuery("#add_member_to_population_list_div").html(list.listSelect("add_member_to_population_list_div", ['plants'], 'select a list of plants', undefined, undefined));
+            jQuery("#add_member_to_population_list_div").html(list.listSelect("add_member_to_population_list_div", ['plants'], "selecione uma lista de plantas", undefined, undefined));
         } else {
-            jQuery("#add_member_to_population_list_div").html(list.listSelect("add_member_to_population_list_div", ['accessions'], 'select a list of accessions', undefined, undefined));
+            jQuery("#add_member_to_population_list_div").html(list.listSelect("add_member_to_population_list_div", ['accessions'], "selecione uma lista de acessos", undefined, undefined));
         }
         jQuery('#add_member_population_name').html(population_name);
         jQuery('#manage_populations_add_members_dialog').modal('show');
@@ -242,45 +242,45 @@ jQuery(document).ready(function ($) {
 
         if (member_type == 'accessions') {
             if (!member_list_id) {
-                alert ("A list of accessions is required");
+                alert ("Informe uma lista de acessos");
                 return;
             } else {
                 list_validation = lo.legacy_validate(member_list_id, 'accessions', true);
                 if (list_validation != 1) {
-                    alert("The accession list did not pass validation. Names in the list must be uniquenames with accession stock type in the database");
+                    alert("A lista de acessos não passou na validação. Os nomes devem ser identificadores únicos de materiais do tipo acesso no banco de dados");
                     return;
                 }
             }
         } else if (member_type == 'plots') {
             if (!member_list_id) {
-                alert ("A list of plots is required");
+                alert ("Informe uma lista de parcelas");
                 return;
             } else {
                 list_validation = lo.legacy_validate(member_list_id, 'plots', true);
                 if (list_validation != 1) {
-                    alert("The plot list did not pass validation. Names in the list must be uniquenames with plot stock type in the database");
+                    alert("A lista de parcelas não passou na validação. Os nomes devem ser identificadores únicos de materiais do tipo parcela no banco de dados");
                     return;
                 }
             }
         } else if (member_type == 'plants') {
             if (!member_list_id) {
-                alert ("A list of plants is required");
+                alert ("Informe uma lista de plantas");
                 return;
             } else {
                 list_validation = lo.legacy_validate(member_list_id, 'plants', true);
                 if (list_validation != 1) {
-                    alert("The plant list did not pass validation. Names in the list must be uniquenames with plant stock type in the database");
+                    alert("A lista de plantas não passou na validação. Os nomes devem ser identificadores únicos de materiais do tipo planta no banco de dados");
                     return;
                 }
             }
         } else {
             if (!member_list_id) {
-                alert ("A list of accessions is required");
+                alert ("Informe uma lista de acessos");
                 return;
             } else {
                 list_validation = lo.legacy_validate(member_list_id, 'accessions', true);
                 if (list_validation != 1) {
-                    alert("The accession list did not pass validation. Names in the list must be  in the database");
+                    alert("A lista de acessos não passou na validação. Os nomes devem existir no banco de dados");
                     return;
                 }
             }
@@ -307,7 +307,7 @@ jQuery(document).ready(function ($) {
                 }
             },
             error: function () {
-                alert('An error occurred in adding members to population. sorry');
+                alert("Ocorreu um erro ao adicionar membros à população.");
             }
         });
     });
@@ -336,14 +336,14 @@ jQuery(document).ready(function ($) {
                 }
             },
             error: function () {
-                alert('An error occurred in deleting population. sorry');
+                alert("Ocorreu um erro ao excluir a população.");
             }
         });
     });
 
     jQuery(document).on("click", "a[name='populations_member_remove']", function(){
         var stock_relationship_id= jQuery(this).data("stock_relationship_id");
-        if (confirm("Are you sure?")){
+        if (confirm("Tem certeza?")){
             jQuery.ajax({
                 url: '/ajax/population/remove_member?stock_relationship_id='+stock_relationship_id,
                 dataType: "json",
@@ -362,7 +362,7 @@ jQuery(document).ready(function ($) {
                     }
                 },
                 error: function () {
-                    alert('An error occurred in removing accession from population. sorry');
+                    alert("Ocorreu um erro ao remover o acesso da população.");
                 }
             });
         }
@@ -404,7 +404,7 @@ jQuery(document).ready(function ($) {
         console.log(full_info);
 
         if (email_option_enabled) {
-            var user_response = confirm('You will receive an email when the process is complete. Do you want to continue ?');
+            var user_response = confirm("Você receberá um e-mail quando o processamento for concluído. Deseja continuar?");
             if (!user_response) {
                 console.log("no accessions saved + no email sent");
                 return;
@@ -437,7 +437,7 @@ jQuery(document).ready(function ($) {
                     alert(response.error);
                 } else {
                     enable_ui();
-                    var html = 'The following stocks were added!<br/>';
+                    var html = "Os seguintes materiais foram adicionados!<br/>";
                     for (var i=0; i<response.added.length; i++){
                         html = html + '<a href="/stock/'+response.added[i][0]+'/view">'+response.added[i][1]+'</a><br/>';
                     }
@@ -452,7 +452,7 @@ jQuery(document).ready(function ($) {
             },
             error: function (response) {
                 console.log("email_option_enabled on error:", email_option_enabled);
-                alert('An error occurred in processing. sorry'+response.responseText);
+                alert("Ocorreu um erro durante o processamento."+response.responseText);
             },
             complete: function () {
                 upload_in_progress = false;
@@ -495,7 +495,7 @@ jQuery(document).ready(function ($) {
     }
 
     $('#species_name_input').focusout(function () {
-        verify_species_name().then( function(r) { if (r.error) { alert(r.error); } }, function(r) { alert('An error occurred. The site may not be available right now.'); });
+        verify_species_name().then( function(r) { if (r.error) { alert(r.error); } }, function(r) { alert("Ocorreu um erro. O site pode estar indisponível no momento."); });
     });
 
     $('#review_absent_accessions_submit').click(function () {
@@ -508,7 +508,7 @@ jQuery(document).ready(function ($) {
             var email_option_enabled = $("#email_option_to_recieve_accession_upload_status").prop('checked') ? 1 : 0;
 
             if (!speciesName) {
-                alert("Species name required");
+                alert("Informe o nome da espécie");
                 return;
             }
 
@@ -516,7 +516,7 @@ jQuery(document).ready(function ($) {
                 populationName = '';
             }
             if (!accessionsToAdd || accessionsToAdd.length == 0) {
-                alert("No accessions to add");
+                alert("Nenhum acesso para adicionar");
                 return;
 	        }
 
@@ -540,7 +540,7 @@ jQuery(document).ready(function ($) {
 
 		    },
 		    function(r) {
-		        alert('ERROR! Try again later.');
+		        alert("ERRO! Tente novamente mais tarde.");
 		    }
 	        );
 	    } else {
@@ -552,16 +552,16 @@ jQuery(document).ready(function ($) {
     });
 
     $('#new_accessions_submit').click(function () {
-        var selected_tab = jQuery('#add_new_accessions_tab_select .active').text()
-        if (selected_tab == 'Using Lists'){
+        var selected_tab = jQuery('#add_new_accessions_tab_select .active').attr('id');
+        if (selected_tab == "add_new_accessions_list_tab"){
             accession_list_id = $('#list_div_list_select').val();
             fullParsedData = undefined;
 	    verify_accession_list(accession_list_id);
-        } else if (selected_tab == 'Uploading a File'){
+        } else if (selected_tab == "add_new_accessions_file_tab"){
 	    var uploadFile = jQuery("#new_accessions_upload_file").val();
 	    jQuery('#upload_new_accessions_form').attr("action", "/ajax/accessions/verify_accessions_file");
 	    if (uploadFile === '') {
-                alert("Please select a file");
+                alert("Selecione um arquivo");
                 return;
 	    }
 
@@ -602,7 +602,7 @@ jQuery(document).ready(function ($) {
             }
             else {
                 fullParsedData = undefined;
-                alert("An unknown error occurred.  Please try again later or contact us for help.");
+                alert("Ocorreu um erro desconhecido. Tente novamente mais tarde ou entre em contato conosco.");
             }
         }
     });
@@ -688,7 +688,7 @@ function verify_accession_list(accession_list_id) {
             enable_ui();
 	    console.log(response.responseText);
 
-            alert('An error occurred in processing. sorry'+response.responseText);
+            alert("Ocorreu um erro durante o processamento."+response.responseText);
         }
     });
 }
@@ -704,8 +704,8 @@ function review_verification_results(doFuzzySearch, verifyResponse, accession_li
     //console.log(accession_list_id);
 
     if (verifyResponse.found) {
-        jQuery('#count_of_found_accessions').html("Total number already in the database("+verifyResponse.found.length+")");
-        var found_html = '<table class="table table-bordered" id="found_accessions_table"><thead><tr><th>Search Name</th><th>Found in Database</th></tr></thead><tbody>';
+        jQuery('#count_of_found_accessions').html("Número total já existente no banco de dados ("+verifyResponse.found.length+")");
+        var found_html = "<table class=\"table table-bordered\" id=\"found_accessions_table\"><thead><tr><th>Nome pesquisado</th><th>Encontrado no banco de dados</th></tr></thead><tbody>";
         for( i=0; i < verifyResponse.found.length; i++){
             found_html = found_html
                 +'<tr><td>'+verifyResponse.found[i].matched_string
@@ -728,18 +728,18 @@ function review_verification_results(doFuzzySearch, verifyResponse, accession_li
 
     if (verifyResponse.fuzzy.length > 0 && doFuzzySearch) {
         fuzzyResponse = verifyResponse.fuzzy;
-        var fuzzy_html = '<table id="add_accession_fuzzy_table" class="table"><thead><tr><th class="col-xs-4">Name in Your List</th><th class="col-xs-4">Existing Name(s) in Database</th><th class="col-xs-4">Options&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" id="add_accession_fuzzy_option_all"/> Use Same Option for All</th></tr></thead><tbody>';
+        var fuzzy_html = "<table id=\"add_accession_fuzzy_table\" class=\"table\"><thead><tr><th class=\"col-xs-4\">Nome na sua lista</th><th class=\"col-xs-4\">Nome(s) existente(s) no banco de dados</th><th class=\"col-xs-4\">Opções<input type=\"checkbox\" id=\"add_accession_fuzzy_option_all\"/> Usar a mesma opção para todos</th></tr></thead><tbody>";
         for( i=0; i < verifyResponse.fuzzy.length; i++) {
             fuzzy_html = fuzzy_html + '<tr id="add_accession_fuzzy_option_form'+i+'"><td>'+ verifyResponse.fuzzy[i].name + '<input type="hidden" name="fuzzy_name" value="'+ verifyResponse.fuzzy[i].name + '" /></td>';
             fuzzy_html = fuzzy_html + '<td><select class="form-control" name ="fuzzy_select">';
             for(j=0; j < verifyResponse.fuzzy[i].matches.length; j++){
                 if (verifyResponse.fuzzy[i].matches[j].is_synonym){
-                    fuzzy_html = fuzzy_html + '<option value="' + verifyResponse.fuzzy[i].matches[j].synonym_of + '">' + verifyResponse.fuzzy[i].matches[j].name + ' (SYNONYM OF: '+verifyResponse.fuzzy[i].matches[j].synonym_of+')</option>';
+                    fuzzy_html = fuzzy_html + '<option value="' + verifyResponse.fuzzy[i].matches[j].synonym_of + '">' + verifyResponse.fuzzy[i].matches[j].name + " (SINÔNIMO DE: "+verifyResponse.fuzzy[i].matches[j].synonym_of+')</option>';
                 } else {
                     fuzzy_html = fuzzy_html + '<option value="' + verifyResponse.fuzzy[i].matches[j].name + '">' + verifyResponse.fuzzy[i].matches[j].name + '</option>';
                 }
             }
-            fuzzy_html = fuzzy_html + '</select></td><td><select class="form-control" name="fuzzy_option"><option value="keep">Continue saving name in your list</option><option value="replace">Replace name in your list with selected existing name</option><option value="remove">Remove name in your list and ignore</option><option value="synonymize">Add name in your list as a synonym to selected existing name</option></select></td></tr>';
+            fuzzy_html = fuzzy_html + "</select></td><td><select class=\"form-control\" name=\"fuzzy_option\"><option value=\"keep\">Continuar salvando o nome da sua lista</option><option value=\"replace\">Substituir o nome da sua lista pelo nome existente selecionado</option><option value=\"remove\">Remover o nome da sua lista e ignorá-lo</option><option value=\"synonymize\">Adicionar o nome da sua lista como sinônimo do nome existente selecionado</option></select></td></tr>";
         }
         fuzzy_html = fuzzy_html + '</tbody></table>';
         jQuery('#view_fuzzy_matches').html(fuzzy_html);
@@ -769,7 +769,7 @@ function review_verification_results(doFuzzySearch, verifyResponse, accession_li
             if (verifyResponse.absent.length > 0 || infoToAdd.length>0){
                 populate_review_absent_dialog(verifyResponse.absent, infoToAdd);
             } else {
-                alert('All accessions in your list already exist in the database. (3)');
+                alert("Todos os acessos da sua lista já existem no banco de dados. (3)");
             }
         }
     });
@@ -784,7 +784,7 @@ function populate_review_absent_dialog(absent, infoToAdd){
     console.log(infoToAdd);
     console.log(absent);
 
-    jQuery('#count_of_absent_accessions').html("Total number to be added("+absent.length+")");
+    jQuery('#count_of_absent_accessions').html("Número total a adicionar ("+absent.length+")");
     var absent_html = '';
     jQuery("#species_name_input").autocomplete({
         source: '/organism/autocomplete'
@@ -799,7 +799,7 @@ function populate_review_absent_dialog(absent, infoToAdd){
     jQuery('#view_infoToAdd').html('');
 
     if (infoToAdd.length>0){
-        var infoToAdd_html = '<div class="well"><b>The following new accessions will be added:</b><br/><br/><table id="infoToAdd_new_table" class="table table-bordered table-hover"><thead><tr><th>uniquename</th><th>properties</th></tr></thead><tbody>';
+        var infoToAdd_html = "<div class=\"well\"><b>Os seguintes novos acessos serão adicionados:</b><br/><br/><table id=\"infoToAdd_new_table\" class=\"table table-bordered table-hover\"><thead><tr><th>Nome único</th><th>Propriedades</th></tr></thead><tbody>";
         for( i=0; i < infoToAdd.length; i++){
             if (!('stock_id' in infoToAdd[i])){
                 infoToAdd_html = infoToAdd_html + '<tr><td>'+infoToAdd[i]['germplasmName']+'</td>';
@@ -818,7 +818,7 @@ function populate_review_absent_dialog(absent, infoToAdd){
             }
         }
         infoToAdd_html = infoToAdd_html + "</tbody></table></div>";
-        infoToAdd_html = infoToAdd_html + '<div class="well"><b>The following accessions will be updated:</b><br/><br/><table id="infoToAdd_updated_table" class="table table-bordered table-hover"><thead><tr><th>uniquename</th><th>properties</th></tr></thead><tbody>';
+        infoToAdd_html = infoToAdd_html + "<div class=\"well\"><b>Os seguintes acessos serão atualizados:</b><br/><br/><table id=\"infoToAdd_updated_table\" class=\"table table-bordered table-hover\"><thead><tr><th>Nome único</th><th>Propriedades</th></tr></thead><tbody>";
         for( i=0; i < infoToAdd.length; i++){
             if ('stock_id' in infoToAdd[i]){
                 infoToAdd_html = infoToAdd_html + '<tr><td>'+infoToAdd[i]['germplasmName']+'</td>';
@@ -898,11 +898,11 @@ function process_fuzzy_options(accession_list_id) {
                 populate_review_absent_dialog(accessionList, infoToAdd);
                 jQuery('#review_absent_dialog').modal('show');
             } else {
-                alert('All accessions in your list now exist in the database. 2');
+                alert("Todos os acessos da sua lista agora existem no banco de dados. 2");
             }
         },
         error: function () {
-            alert('An error occurred checking your fuzzy options! Do not try to add a synonym to a synonym! Also do not use any special characters!');
+            alert("Ocorreu um erro ao verificar as opções de correspondência aproximada! Não adicione sinônimos a outros sinônimos nem use caracteres especiais!");
         }
     });
 }

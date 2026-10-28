@@ -43,7 +43,7 @@ $pop_id = $trial_id if $trial_id;
   <&| /page/info_section.mas, 
   collapsible => 1, 
   collapsed   => 0, 
-  title       => "GEBVs vs observed phenotypes" 
+  title       => "GEBVs vs fenótipos observados" 
     &>
     
 <div id="gebv_pheno_regression_canvas">

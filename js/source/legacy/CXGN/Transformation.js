@@ -1,6 +1,6 @@
 function deleteTransformationID(transformation_stock_id){
 
-    const confirmation = confirm('Are you sure you want to delete this transformation ID? The deletion cannot be undone.');
+    const confirmation = confirm("Tem certeza de que deseja excluir este ID de transformação? A exclusão não pode ser desfeita.");
 
     if (confirmation) {
         jQuery.ajax({
@@ -14,7 +14,7 @@ function deleteTransformationID(transformation_stock_id){
             success: function(response) {
                 jQuery('#working_modal').modal('hide');
                 if (response.success == 1) {
-                    alert('Deletion was successful');
+                    alert("Exclusão concluída com sucesso");
                     location.reload();
                 }
                 if (response.error) {
@@ -23,7 +23,7 @@ function deleteTransformationID(transformation_stock_id){
             },
             error: function(response) {
                 jQuery('#working_modal').modal('hide');
-                alert('An error occurred during deletion');
+                alert("Ocorreu um erro durante a exclusão");
             }
         });
     }
@@ -48,7 +48,7 @@ function setTransformationControl(transformation_id, control_stock_id, program_n
             if (response.success == 1) {
                 jQuery('#set_transformation_control_dialog').modal('hide');
                 jQuery("#set_transformation_control_saved_dialog_message tbody").html('');
-                jQuery("#set_transformation_control_saved_dialog_message tbody").append('The transformation control was stored successfully.');
+                jQuery("#set_transformation_control_saved_dialog_message tbody").append("A testemunha de transformação foi armazenada com sucesso.");
                 jQuery('#set_transformation_control_saved_dialog_message').modal("show");
                 return;
             }
@@ -58,7 +58,7 @@ function setTransformationControl(transformation_id, control_stock_id, program_n
         },
         error: function(response){
             jQuery('#working_modal').modal('hide');
-            alert('An error occurred setting transformation control');
+            alert("Ocorreu um erro ao definir a testemunha de transformação");
         }
     });
 
@@ -82,7 +82,7 @@ function setAsAControl(transformation_id, program_name){
             if (response.success == 1) {
                 jQuery('#set_as_a_control_dialog').modal('hide');
                 jQuery("#set_transformation_control_saved_dialog_message tbody").html('');
-                jQuery("#set_transformation_control_saved_dialog_message tbody").append('This transformation ID was set as a control successfully.');
+                jQuery("#set_transformation_control_saved_dialog_message tbody").append("Este ID de transformação foi definido como testemunha com sucesso.");
                 jQuery('#set_transformation_control_saved_dialog_message').modal("show");
                 return;
             }
@@ -92,7 +92,7 @@ function setAsAControl(transformation_id, program_name){
         },
         error: function(response){
             jQuery('#working_modal').modal('hide');
-            alert('An error occurred setting transformation control');
+            alert("Ocorreu um erro ao definir a testemunha de transformação");
         }
     });
 

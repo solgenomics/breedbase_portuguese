@@ -1,8 +1,8 @@
-<li class="dropdown"><a class="menu_click_dropdown dropdown-toggle" data-toggle="dropdown">Projetos</a>
+<li class="dropdown"><a class="menu_click_dropdown dropdown-toggle" data-toggle="dropdown">PROJETOS</a>
 <!-- <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Genomes<span class="caret"></span></a> -->
   <ul class="dropdown-menu">
     
-    <li class="dropdown-header">Projetos</li>
+    <li class="dropdown-header">PROJETOS</li>
     <li><a href="/projects/varitome">Projeto Varitome</a></li>
     <li><a href="http://bti.cornell.edu/research/projects/nicotiana-benthamiana">Site do BTI sobre <i>Nicotiana benthamiana</i></a></li>
     <li role="separator" class="divider"></li>

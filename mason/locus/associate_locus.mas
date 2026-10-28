@@ -84,7 +84,7 @@ $locus_autocomplete_uri => '/ajax/locus/autocomplete'
       </select>
       <input type="button"
 	     id="associate_locus_button"
-	     value="Associate locus"
+	     value="Locus associado"
 	     disabled="true"
 	     onclick="Locus.associateLocus('<% $locus_id %>');this.disabled=true;" />
     </form>

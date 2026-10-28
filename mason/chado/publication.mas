@@ -49,7 +49,7 @@ Naama Menda <nm249@cornell.edu>
   <span class="title"> <% $doi %> <% $pub->get_title |h%> </span>  <a href="/publication/<% $pub->get_pub_id |h%>/view">
     <% $pub->get_series_name |h%> (<% $pub->get_pyear |h%>) </a>
   <br />
-  <a class="toggle_abstract" href="#">Show / hide abstract</a>
+  <a class="toggle_abstract" href="#">Mostrar / esconder abstrato</a>
   <div class="detail">
     <div class="abstract">
        <% $pub->get_abstract |h%>

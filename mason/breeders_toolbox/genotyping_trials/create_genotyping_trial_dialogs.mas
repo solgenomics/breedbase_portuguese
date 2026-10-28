@@ -207,7 +207,7 @@ $facilities => ();
                                     <div class="form-group">
                                         <label class="col-sm-7 control-label">Lista de unidades de observação de origem: </label>
                                         <div class="col-sm-5">
-                                            <span id="accession_select_box_span">[carregando...]</span>
+                                            <span id="accession_select_box_span">[Carregando...]</span>
                                         </div>
                                     </div>
                                     <br/>
@@ -269,7 +269,7 @@ $facilities => ();
                                     </div>
                                     <br/>
                                     <div class="form-group form-group-sm">
-                                        <label class="col-sm-7 control-label"><i>Opcional</i> Data: <small>(se todos foram colocados na placa na mesma data; AAAA/MM/DD)</small> </label>
+                                        <label class="col-sm-7 control-label"><i>Opcional</i> Dados: <small>(se todos foram colocados na placa na mesma data; AAAA/MM/DD)</small> </label>
                                         <div class="col-sm-5">
                                             <input class="form-control" id="genotyping_well_date" name="genotyping_well_date" type="text" placeholder="AAAA/MM/DD"/>
                                         </div>
@@ -308,7 +308,7 @@ $facilities => ();
                                     <div class="col-sm-7">
                                         <select class="form-control" id="genotyping_trial_facility_submit_select" disabled>
                                             <option value="no">No</option>
-                                            <option value="yes">Yes</option>
+                                            <option value="yes">Sim</option>
                                         </select>
                                     </div>
                                 </div>
@@ -365,18 +365,18 @@ $facilities => ();
                         <thead></thead>
                         <tbody>
                             <tr>
-                                <td>date</td>
+                                <td>Data</td>
                                 <td>sample_id</td>
                                 <td>well_A01</td>
-                                <td>row</td>
-                                <td>column</td>
+                                <td>Reme</td>
+                                <td>coluna</td>
                                 <td>source_observation_unit_name</td>
                                 <td>ncbi_taxonomy_id</td>
                                 <td>dna_person</td>
-                                <td>notes</td>
+                                <td>Notas</td>
                                 <td>tissue_type</td>
-                                <td>extraction</td>
-                                <td>concentration</td>
+                                <td>extração</td>
+                                <td>concentração</td>
                                 <td>volume</td>
                                 <td>is_blank</td>
                             </tr>
@@ -439,7 +439,7 @@ $facilities => ();
                         <thead></thead>
                         <tbody>
                             <tr>
-                                <td>date</td>
+                                <td>Data</td>
                                 <td>plate_id</td>
                                 <td>plate_name</td>
                                 <td>sample_id</td>
@@ -447,9 +447,9 @@ $facilities => ();
                                 <td>well_01A</td>
                                 <td>tissue_id</td>
                                 <td>dna_person</td>
-                                <td>notes</td>
+                                <td>Notas</td>
                                 <td>tissue_type</td>
-                                <td>extraction</td>
+                                <td>extração</td>
                             </tr>
                         </tbody>
                     </table>
@@ -510,12 +510,12 @@ $facilities => ();
                         <thead></thead>
                         <tbody>
                             <tr>
-                                <td>Value</td>
-                                <td>Column</td>
-                                <td>Row</td>
-                                <td>Identification</td>
-                                <td>Person</td>
-                                <td>Date</td>
+                                <td>Valor</td>
+                                <td>Coluna</td>
+                                <td>Reme</td>
+                                <td>Identificação</td>
+                                <td>Pessoa</td>
+                                <td>Data</td>
                             </tr>
                         </tbody>
                     </table>

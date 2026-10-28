@@ -11,7 +11,7 @@ $program_id
         <tr>
             <th>ID exclusivo do cruzamento</th>
             <th>Genitor feminino</th>
-            <th>Genitor masculino</th>
+            <th>Genitor Masculino</th>
             <th>Tipo de cruzamento</th>
         </tr>
     </thead>

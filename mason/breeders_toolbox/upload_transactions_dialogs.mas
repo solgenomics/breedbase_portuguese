@@ -258,8 +258,8 @@
                             <tr>
                                 <td>from_seedlot_name</td>
                                 <td>to_seedlot_name</td>
-                                <td>amount</td>
-                                <td>weight(g)</td>
+                                <td>Quantidade</td>
+                                <td>peso(g)</td>
                                 <td>operator_name</td>
                                 <td>transaction_description</td>
                             </tr>
@@ -270,9 +270,9 @@
                         <li><b>from_seedlot_name:</b> Deve existir no banco de dados. As sementes foram retiradas deste lote.</li>
                         <li><b>to_seedlot_name:</b> Deve existir no banco de dados. As sementes foram adicionadas a este lote.</li>
                         <li>
-                            <b>amount:</b> Número de sementes transferidas. Pode ser informado junto com <code>weight(g)</code>. Informe <code>amount</code>, <code>weight(g)</code> ou ambos.
+                            <b>Quantidade:</b> Número de sementes transferidas. Pode ser informado junto com <code>weight(g)</code>. Informe <code>amount</code>, <code>weight(g)</code> ou ambos.
                             <br/><b>E/OU</b><br/>
-                            <b>weight(g):</b> Peso em gramas das sementes transferidas. Pode ser informado junto com <code>amount</code>. Informe <code>amount</code>, <code>weight(g)</code> ou ambos.
+                            <b>Peso (g):</b> Peso em gramas das sementes transferidas. Pode ser informado junto com <code>amount</code>. Informe <code>amount</code>, <code>weight(g)</code> ou ambos.
                         </li>
                         <li><b>operator_name:</b> Nome da pessoa responsável pela transação. Pode ser qualquer nome.</li>
                     </ul>
@@ -309,8 +309,8 @@
                         <tbody>
                             <tr>
                                 <td>from_seedlot_name</td>
-                                <td>amount</td>
-                                <td>weight(g)</td>
+                                <td>Quantidade</td>
+                                <td>peso(g)</td>
                                 <td>operator_name</td>
                                 <td>transaction_description</td>
                                 <td>to_new_seedlot_name</td>
@@ -324,9 +324,9 @@
                     <ul>
                         <li><b>from_seedlot_name:</b> Deve existir no banco de dados. As sementes foram retiradas deste lote.</li>
                         <li>
-                            <b>amount:</b> Número de sementes transferidas. Pode ser informado junto com <code>weight(g)</code>. Informe <code>amount</code>, <code>weight(g)</code> ou ambos.
+                            <b>Quantidade:</b> Número de sementes transferidas. Pode ser informado junto com <code>weight(g)</code>. Informe <code>amount</code>, <code>weight(g)</code> ou ambos.
                             <br/><b>E/OU</b><br/>
-                            <b>weight(g):</b> Peso em gramas das sementes transferidas. Pode ser informado junto com <code>amount</code>. Informe <code>amount</code>, <code>weight(g)</code> ou ambos.
+                            <b>Peso (g):</b> Peso em gramas das sementes transferidas. Pode ser informado junto com <code>amount</code>. Informe <code>amount</code>, <code>weight(g)</code> ou ambos.
                         </li>
                         <li><b>operator_name:</b> Nome da pessoa responsável pela transação. Pode ser qualquer nome.</li>
                         <li><b>to_new_seedlot_name:</b> NÃO deve existir no banco de dados. O novo lote será criado com a quantidade ou o peso das sementes retiradas do lote existente.</li>
@@ -369,8 +369,8 @@
                             <tr>
                                 <td>from_seedlot_name</td>
                                 <td>to_plot_name</td>
-                                <td>amount</td>
-                                <td>weight(g)</td>
+                                <td>Quantidade</td>
+                                <td>peso(g)</td>
                                 <td>operator_name</td>
                                 <td>transaction_description</td>
                             </tr>
@@ -381,9 +381,9 @@
                         <li><b>from_seedlot_name:</b> Deve existir no banco de dados. As sementes foram retiradas deste lote.</li>
                         <li><b>to_plot_name:</b> Deve existir no banco de dados. As sementes foram usadas nesta parcela. Também é possível registrar o lote usado em cada parcela ao enviar um ensaio existente na página Gerenciar ensaios.</li>
                         <li>
-                            <b>amount:</b> Número de sementes transferidas. Pode ser informado junto com <code>weight(g)</code>. Informe <code>amount</code>, <code>weight(g)</code> ou ambos.
+                            <b>Quantidade:</b> Número de sementes transferidas. Pode ser informado junto com <code>weight(g)</code>. Informe <code>amount</code>, <code>weight(g)</code> ou ambos.
                             <br/><b>E/OU</b><br/>
-                            <b>weight(g):</b> Peso em gramas das sementes transferidas. Pode ser informado junto com <code>amount</code>. Informe <code>amount</code>, <code>weight(g)</code> ou ambos.
+                            <b>Peso (g):</b> Peso em gramas das sementes transferidas. Pode ser informado junto com <code>amount</code>. Informe <code>amount</code>, <code>weight(g)</code> ou ambos.
                         </li>
                         <li><b>operator_name:</b> Nome da pessoa responsável pela transação. Pode ser qualquer nome.</li>
                     </ul>
@@ -420,8 +420,8 @@
                         <tbody>
                             <tr>
                                 <td>from_seedlot_name</td>
-                                <td>amount</td>
-                                <td>weight(g)</td>
+                                <td>Quantidade</td>
+                                <td>peso(g)</td>
                                 <td>operator_name</td>
                                 <td>transaction_description</td>
                             </tr>
@@ -431,9 +431,9 @@
                     <ul>
                         <li><b>from_seedlot_name:</b> Deve existir no banco de dados. As sementes foram retiradas deste lote.</li>
                         <li>
-                            <b>amount:</b> Número de sementes transferidas. Pode ser informado junto com <code>weight(g)</code>. Informe <code>amount</code>, <code>weight(g)</code> ou ambos.
+                            <b>Quantidade:</b> Número de sementes transferidas. Pode ser informado junto com <code>weight(g)</code>. Informe <code>amount</code>, <code>weight(g)</code> ou ambos.
                             <br/><b>E/OU</b><br/>
-                            <b>weight(g):</b> Peso em gramas das sementes transferidas. Pode ser informado junto com <code>amount</code>. Informe <code>amount</code>, <code>weight(g)</code> ou ambos.
+                            <b>Peso (g):</b> Peso em gramas das sementes transferidas. Pode ser informado junto com <code>amount</code>. Informe <code>amount</code>, <code>weight(g)</code> ou ambos.
                         </li>
                         <li><b>operator_name:</b> Nome da pessoa responsável pela transação. Pode ser qualquer nome.</li>
                         <li><b>transaction_description:</b> Motivo da realização desta transação.</li>

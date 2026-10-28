@@ -31,7 +31,7 @@ print STDERR "Line Count in the file: ".scalar(@file_lines)."\n";
 
 if ( @file_lines < 2 ) {
 	      $content .=
-	      "No data was retrieved. Please verify your input parameters. Thanks.<br /><br />\n";
+	      "Nenhum dado foi recuperado. Por favor, verifique seus parâmetros de entrada. Obrigado.<br /><br />\n";
 	      }
 	      else {
 	      
@@ -61,7 +61,7 @@ if ( @file_lines < 2 ) {
 
         # print table header
         $content .=
-            "<tr><td>line</td><td>"
+            "<tr><td>Linha</td><td>"
           . ( join "</td><td>", @output_fields )
           . "</td></tr>";
 

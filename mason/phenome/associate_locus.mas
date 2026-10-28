@@ -63,7 +63,7 @@ $allele_div
 
 <div class="well">
 
-<div id = "<% $allele_div %>" >&nbsp;Loading..</div>
+<div id = "<% $allele_div %>" >Carregando...</div>
 
 % if ($show_form) {
 <div id="associate_locus_form" class="container-fluid">
@@ -71,11 +71,11 @@ $allele_div
     <form name="loci_form" class="form-horizontal">
 
         <div class="form-group">
-            <label for="loci" class="col-sm-6 control-label">Associate another Locus:</label>
+            <label for="loci" class="col-sm-6 control-label">Associar outro Locus:</label>
             <div class="input-group col-sm-6">
-                <input class="form-control" placeholder="Allele_name (Allele_symbol) Allele: AA" type="text" id="loci" name="loci">
+                <input class="form-control" placeholder="Allele_name (Allele_symbol)" type="text" id="loci" name="loci">
                 <span class="input-group-btn">
-                    <button class="btn btn-primary" type="button" id="associate_allele_addon" name="associate_locus" onclick="javascript:submit_locus_form()">Associate locus</button>
+                    <button class="btn btn-primary" type="button" id="associate_allele_addon" name="associate_locus" onclick="javascript:submit_locus_form()">Locus associado</button>
                 </span>
             </div>
         </div>

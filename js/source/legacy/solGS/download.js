@@ -65,7 +65,7 @@ solGS.download = {
             var genoFileName = genoFile.split("/").pop();
             var popIdMatch = genoFileName.match(/genotype_data_(\d+)-GP-1/);
             var popId = popIdMatch ? popIdMatch[1] : '';
-            var genoLinkName = "Genotype data";
+            var genoLinkName = "Dados genotípicos";
 
             if (genoFiles.length > 1) { genoLinkName = genoLinkName + "-" + popId; }
             if (cnt > 1) { genoFileLink += ' | '; }
@@ -81,7 +81,7 @@ solGS.download = {
 
         phenoFiles.forEach(function (phenoFile) {
             var phenoFileName = phenoFile.split("/").pop();
-            var phenoLinkName = "Phenotype data";
+            var phenoLinkName = "Dados fenotípicos";
             var popIdMatch = phenoFileName.match(/phenotype_data_(\d+)/);
             var popId = popIdMatch ? popIdMatch[1] : '';
             if (phenoFiles.length > 1) { phenoLinkName = phenoLinkName + "-" + popId; }
@@ -96,7 +96,7 @@ solGS.download = {
         var traitsAcronymLink = this.createTraitsAcronymLinks(res);
 
         var downloadLinks =
-            " <strong>Download training population</strong>: " +
+            " <strong>Baixar população de treinamento</strong>: " +
             genoFileLink +
             " | " +
             phenoFileLink + " | " + traitsAcronymLink;
@@ -111,7 +111,7 @@ solGS.download = {
 
         var acronymFileName = acronymFile.split("/").pop();
         var acronymFileLink =
-            '<a href="' + acronymFile + '" download=' + acronymFileName + '">' + "Traits acronyms" + "</a>";
+            '<a href="' + acronymFile + '" download=' + acronymFileName + '">' + "Siglas das características" + "</a>";
 
         return acronymFileLink;
     },
@@ -122,14 +122,14 @@ solGS.download = {
 
         var genoFileName = genoFile.split("/").pop();
         var genoFileLink =
-            '<a href="' + genoFile + '" download=' + genoFileName + '">' + "Genotype data" + "</a>";
+            '<a href="' + genoFile + '" download=' + genoFileName + '">' + "Dados genotípicos" + "</a>";
 
         var reportFileName = reportFile.split("/").pop();
         var reportFileLink =
-            '<a href="' + reportFile + '" download=' + reportFileName + '">' + "Analysis log" + "</a>";
+            '<a href="' + reportFile + '" download=' + reportFileName + '">' + "Registro da análise" + "</a>";
 
         var downloadLinks =
-            " <strong>Download selection population</strong>: " +
+            " <strong>Baixar população de seleção</strong>: " +
             genoFileLink + ' | ' + reportFileLink;
 
         jQuery("#selection_pop_download").prepend(
@@ -164,18 +164,18 @@ solGS.download = {
 
         var genoFileName = genoFile.split("/").pop();
         var genoFileLink =
-            '<a href="' + genoFile + '" download=' + genoFileName + '">' + "Genotype data" + "</a>";
+            '<a href="' + genoFile + '" download=' + genoFileName + '">' + "Dados genotípicos" + "</a>";
 
         var phenoFileName = phenoFile.split("/").pop();
         var phenoFileLink =
-            '<a href="' + phenoFile + '" download=' + phenoFileName + '">' + "Phenotype data" + "</a>";
+            '<a href="' + phenoFile + '" download=' + phenoFileName + '">' + "Dados fenotípicos" + "</a>";
 
         var logFileName = logFile.split("/").pop();
         var logFileLink =
-            '<a href="' + logFile + '" download=' + logFileName + '">' + "Analysis log" + "</a>";
+            '<a href="' + logFile + '" download=' + logFileName + '">' + "Registro da análise" + "</a>";
 
         var downloadLinks =
-            " <strong>Download model</strong>: " + genoFileLink + " | " + phenoFileLink + " | " + logFileLink;
+            " <strong>Baixar modelo</strong>: " + genoFileLink + " | " + phenoFileLink + " | " + logFileLink;
 
         jQuery("#model_input_data_download").prepend(
             '<p style="margin-top: 20px">' + downloadLinks + "</p>"
@@ -206,7 +206,7 @@ solGS.download = {
             '" download=' +
             valFileName +
             '">' +
-            "Download model accuracy" +
+            "Baixar acurácia do modelo" +
             "</a>";
 
         jQuery("#validation_download").prepend('<p style="margin-top: 20px">' + valFileLink + "</p>");
@@ -236,7 +236,7 @@ solGS.download = {
             '" download=' +
             effectsFileName +
             '">' +
-            "Download marker effects" +
+            "Baixar efeitos dos marcadores" +
             "</a>";
 
         jQuery("#marker_effects_download").prepend(
@@ -255,12 +255,12 @@ jQuery(document).ready(function () {
             });
 
             solGS.download.getTrainingPopRawDataFiles().fail(function (res) {
-                var errorMsg = "Error occured getting training pop raw data files.";
+                var errorMsg = "Ocorreu um erro ao obter os arquivos de dados brutos da população de treinamento.";
                 solGS.showMessage(downloadMsgDiv, errorMsg)
             });
 
             solGS.download.getTrainingPopRawDataFiles().fail(function (res) {
-                var errorMsg = "Error occured getting training pop raw data files.";
+                var errorMsg = "Ocorreu um erro ao obter os arquivos de dados brutos da população de treinamento.";
                 solGS.showMessage(downloadMsgDiv, errorMsg)
             });
 
@@ -270,7 +270,7 @@ jQuery(document).ready(function () {
             });
 
             solGS.download.getModelInputDataFiles().fail(function (res) {
-                var errorMsg = "Error occured getting model input data files.";
+                var errorMsg = "Ocorreu um erro ao obter os arquivos de entrada do modelo.";
                 solGS.showMessage(downloadMsgDiv, errorMsg)
             });
 
@@ -279,7 +279,7 @@ jQuery(document).ready(function () {
             });
 
             solGS.download.getValidationFile().fail(function (res) {
-                var errorMsg = "Error occured getting model validation file.";
+                var errorMsg = "Ocorreu um erro ao obter o arquivo de validação do modelo.";
                 solGS.showMessage("#validation_download_message", errorMsg);
             });
 
@@ -288,7 +288,7 @@ jQuery(document).ready(function () {
             });
 
             solGS.download.getMarkerEffectsFile().fail(function (res) {
-                var errorMsg = "Error occured getting marker effects file.";
+                var errorMsg = "Ocorreu um erro ao obter o arquivo de efeitos dos marcadores.";
                 solGS.showMessage("#marker_effects_download_message", errorMsg);
 
             });
@@ -298,14 +298,14 @@ jQuery(document).ready(function () {
             });
 
             solGS.download.getSelectionPopRawDataFiles().fail(function (res) {
-                var errorMsg = "Error occured getting selection population genotype data files.";
+                var errorMsg = "Ocorreu um erro ao obter os arquivos de dados genotípicos da população de seleção.";
                 solGS.showMessage(downloadMsgDiv, errorMsg);
             });
         }
     });
 
     solGS.checkPageType().fail(function (res) {
-        var errorMsg = "Error occured checking for page type.";
+        var errorMsg = "Ocorreu um erro ao verificar o tipo de página.";
         solGS.showMessage(downloadMsgDiv, errorMsg)
     });
 });

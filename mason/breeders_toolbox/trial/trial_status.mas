@@ -59,7 +59,7 @@ $user_can_modify => undef
 %  if ($has_plant_entries) {
             <p class="text-success" title="Este ensaio tem registros de parcelas e plantas. Portanto, os fenótipos podem ser registrados no nível de parcela e de planta."><small>Tem parcelas<br/>e plantas&nbsp;&nbsp;</small><span class="glyphicon glyphicon-ok-sign"></span></p>
 %  } else {
-            <p class="text-info" title="Este ensaio tem parcelas, mas não tem registros de plantas. Esses registros são necessários para a fenotipagem no nível de planta. Crie-os em Delineamento > Registros de plantas."><small>Tem parcelas<br/>sem plantas&nbsp;&nbsp;</small><span class="glyphicon glyphicon-info-sign"></span></p>
+            <p class="text-info" title="Este ensaio tem parcelas, mas não tem registros de plantas. Esses registros são necessários para a fenotipagem no nível de planta. Crie-os em Delineamento > Registros de plantas."><small>Tem parcelas<br/>Sem plantas</small><span class="glyphicon glyphicon-info-sign"></span></p>
 %  }
 </&>
 

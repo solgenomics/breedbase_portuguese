@@ -7,42 +7,42 @@ $stock_id
   <div class="modal-dialog modal-xl" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="stockDetailPageCompareImagesDialog">Compare Images</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="stockDetailPageCompareImagesDialog">Compare as imagens</h4>
       </div>
       <div class="modal-body">
         <div class="container-fluid">
 
             <&| /util/workflow.mas, id=> "stock_detail_page_compare_images_workflow" &>
-                <&| /util/workflow.mas:step, title=> "Comparison" &>
-                    <& /page/page_title.mas, title=>"Select the comparison you are interested in" &>
+                <&| /util/workflow.mas:step, title=> "Comparação" &>
+                    <& /page/page_title.mas, title=>"Selecione a comparação que você está interessado" &>
                     <form class="form-horizontal">
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">Comparison: </label>
+                            <label class="col-sm-3 control-label">Comparação: </label>
                             <div class="col-sm-9" >
                                 <select id="stock_detail_page_compare_images_comparison_select" class="form-control">
-                                    <option value="compare_pixel_values_two_images">Compare pixel values for two different images</option>
+                                    <option value="compare_pixel_values_two_images">Compare valores de pixel para duas imagens diferentes</option>
                                 </select>
                             </div>
                         </div>
                     </form>
                     <center>
-                    <button class="btn btn-primary" id="stock_detail_page_compare_images_comparison_select_step">Go to Next Step</button>
+                    <button class="btn btn-primary" id="stock_detail_page_compare_images_comparison_select_step">Vá para o próximo passo</button>
                     </center>
                 </&>
-                <&| /util/workflow.mas:step, title=> "Image Selection" &>
-                    <& /page/page_title.mas, title=>"Select the images you are interested in comparing" &>
+                <&| /util/workflow.mas:step, title=> "Seleção da Imagem" &>
+                    <& /page/page_title.mas, title=>"Selecione as imagens que você está interessado em comparar" &>
 
                     <table class="table table-bordered table-hover" id="stock_detail_page_compare_images_images_type_table">
                         <thead>
                             <tr>
-                                <th>Select</th>
-                                <th>Image</th>
-                                <th>Field Trial</th>
-                                <th>Drone Run Name</th>
-                                <th>Drone Run Band Name</th>
-                                <th>Drone Run Band Type</th>
-                                <th>Plot Polygon Type</th>
+                                <th>Selecionar</th>
+                                <th>Imagem</th>
+                                <th>Ensaio de Campo</th>
+                                <th>Drone Run Nome</th>
+                                <th>Nome da banda Drone Run</th>
+                                <th>Tipo de banda do voo de drone</th>
+                                <th>Tipo Polígono de Traço</th>
                             </tr>
                         </thead>
                     </table>
@@ -50,11 +50,11 @@ $stock_id
                     <br/><br/>
 
                     <center>
-                    <button class="btn btn-primary" id="stock_detail_page_compare_images_images_select_step">Go to Next Step</button>
+                    <button class="btn btn-primary" id="stock_detail_page_compare_images_images_select_step">Vá para o próximo passo</button>
                     </center>
                 </&>
-                <&| /util/workflow.mas:step, title=> "Result" &>
-                    <& /page/page_title.mas, title=>"Image comparison results" &>
+                <&| /util/workflow.mas:step, title=> "Resultado" &>
+                    <& /page/page_title.mas, title=>"Resultados de comparação de imagens" &>
 
                     <div id="stock_detail_page_compare_images_result_div"></div>
                 </&>
@@ -64,7 +64,7 @@ $stock_id
 
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
       </div>
     </div>
   </div>
@@ -95,7 +95,7 @@ jQuery(document).ready(function() {
             compare_images_selected_image_ids.push(jQuery(this).val());
         });
         if (compare_images_selected_image_ids.length != 2){
-            alert('Please select two image types!');
+            alert("Selecione dois tipos de imagem!");
             return false;
         } else {
     
@@ -108,7 +108,7 @@ jQuery(document).ready(function() {
                     console.log(response);
                     jQuery("#working_modal").modal("hide");
 
-                    var html = '<a target=_blank href="'+response.result+'">File</a>';
+                    var html = '<a target=_blank href="'+response.result+"\">Arquivo</a>";
                     jQuery('#stock_detail_page_compare_images_result_div').html(html);
 
                     Workflow.complete("#stock_detail_page_compare_images_images_select_step");
@@ -116,7 +116,7 @@ jQuery(document).ready(function() {
                 },
                 error: function(response){
                     jQuery("#working_modal").modal("hide");
-                    alert('Error comparing images!')
+                    alert("Erro ao comparar as imagens!")
                 }
             });
         }

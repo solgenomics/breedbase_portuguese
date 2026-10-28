@@ -21,13 +21,13 @@ $management_factor_date
                     <div class="form-group">
                         <label class="col-sm-4 control-label" >Nome do tratamento: </label>
                         <div class="col-sm-8">
-                            <input class="form-control" id="edit_management_factor_name" title="name" type="text" value="<%$trial_name%>" placeholder="Fertilizante01_20N40P50K" />
+                            <input class="form-control" id="edit_management_factor_name" title="Nome" type="text" value="<%$trial_name%>" placeholder="Fertilizante01_20N40P50K" />
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-4 control-label" >Descrição do tratamento: </label>
                         <div class="col-sm-8">
-                            <input class="form-control" id="edit_management_factor_description" title="description" type="text" value="<%$trial_description%>" placeholder="Ex.: fertilizante da marca 40N20P30K" />
+                            <input class="form-control" id="edit_management_factor_description" title="Descrição" type="text" value="<%$trial_description%>" placeholder="Ex.: fertilizante da marca 40N20P30K" />
                         </div>
                     </div>
                     <div class="form-group">
@@ -43,7 +43,7 @@ $management_factor_date
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-4 control-label" >Data: </label>
+                        <label class="col-sm-4 control-label" >Dados: </label>
                         <div class="col-sm-8">
                             <input class="form-control" id="edit_management_factor_date" title="treatment_date" type="text" value="<%$management_factor_date%>" placeholder="MM/DD/YYYY" />
                         </div>

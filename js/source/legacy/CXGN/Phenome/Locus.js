@@ -74,11 +74,11 @@ var Locus = {
 	
 	if(registry_symbol == ""){
 	    $("add_registry_button").disabled=false;	    
-	    alert("You must enter a symbol for the new registry");
+	    alert("Informe um símbolo para o novo registro");
 	    return false;
 	}else if(registry_name == ""){
 	    $("add_registry_button").disabled=false;
-	    alert("You must enter a name for the new registry");
+	    alert("Informe um nome para o novo registro");
 	    return false;
 	}
 	new Ajax.Request("/phenome/add_registry.pl", { // move to controller
@@ -87,7 +87,7 @@ var Locus = {
 		onSuccess: function(response) {
 		    //create an alert if the ajax request for adding a registry finds that the registry already exists
 		    if (response.responseText == "already exists") {
-			alert('That registry already exists');
+			alert("Esse registro já existe");
 		    } else{
 			this.associateRegistry(locus_id, sp_person_id);
 		    }

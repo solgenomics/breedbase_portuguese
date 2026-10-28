@@ -11,9 +11,9 @@
 
 
 <&| /page/info_section.mas,
-        title       => 'Genomic sequence',
-        subtitle    => 'unprocessed genomic sequence region underlying this gene',
-        empty_message => 'Not available',
+        title       => 'Sequência genômica',
+        subtitle    => 'região de sequência genômica não processada subjacente a este gene',
+        empty_message => 'Indisponível',
         collapsible => 1,
         collapsed   => 1,
 &>
@@ -28,13 +28,13 @@
 % for my $mrna ( @mrnas ) {
 
   <&| /page/info_section.mas,
-          title       => 'mRNA '. $mrna->name,
+          title       => 'MRNA '. $mrna->name,
           collapsible => 1,
   &>
 
     <&| /page/info_section.mas,
-       title => 'Ontology terms',
-       subtitle => 'terms associated with this mRNA',
+       title => 'Termos de ontologia',
+       subtitle => 'termos associados a este mRNA',
        collapsible => 1,
        is_subsection => 1,
     &>
@@ -48,10 +48,10 @@
 %   my ( $mrna_sequence, $cds_sequence, $protein_sequence ) = @{(mrna_cds_protein_sequence( $mrna ))[0] || [] };
 
     <&| /page/info_section.mas,
-            title         => 'cDNA sequence',
+            title         => 'Sequência cDNA',
             is_subsection => 1,
-            subtitle      => 'spliced cDNA sequence, including UTRs',
-            empty_message => 'Not available',
+            subtitle      => 'Sequência cDNA dividida, incluindo UTRs',
+            empty_message => 'Indisponível',
             collapsible   => 1,
             collapsed     => 1,
     &>
@@ -76,10 +76,10 @@
     </&>
 
     <&| /page/info_section.mas,
-            title         => 'Protein sequence',
+            title         => 'Sequência de proteínas',
             is_subsection => 1,
-            subtitle      => 'translated polypeptide sequence',
-            empty_message => 'Not available',
+            subtitle      => 'Sequência de polipeptídeo traduzida',
+            empty_message => 'Indisponível',
             collapsible   => 1,
             collapsed     => 1,
     &>

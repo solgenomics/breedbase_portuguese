@@ -4,39 +4,38 @@
 </%doc>
 
 
-<& /page/page_title.mas, title=>"Genome: <i>Solanum pennellii</i>" &>
+<& /page/page_title.mas, title=>"Genoma: <i>Solanum pennellii</i>" &>
 
 <br>
 <p>
   <a href="/chado/organism.pl?organism_id=19"><i>Solanum
-pennellii</i></a> is a wild tomato that is relatively distant from the domesticated <a href="/chado/organism.pl?organism_id=1"><i>Solanum
-  lycopersicum</i></a>.  It was sequenced by a group of scientists at
-  MPI Golm and the Univeristy of Aachen and collaborators, under the direction of Alistair Fernie and Bj&ouml;rn Usadel.
+pennellii</i></a> é um tomate selvagem que está relativamente distante do domesticado <a href="/chado/organism.pl?organism_id=1"><i>Solanum
+  lycopersicum</i></a>. Foi sequenciado por um grupo de cientistas do MPI Golm e da Univeristia de Aachen e colaboradores, sob a direção de Alistair Fernie e Björn Usadel.
 <br>
-  It has been widely used for the construction of <a href="/cview/map.pl?map_id=9&show_offsets=1&show_ruler=1">mapping populations</a> and <a href="/cview/map.pl?map_id=il6&show_offsets=1&show_ruler=1">inbred lines</a>.
+  Tem sido amplamente utilizado para a construção de <a href="/cview/map.pl?map_id=9&show_offsets=1&show_ruler=1">Mapeando populações</a> e <a href="/cview/map.pl?map_id=il6&show_offsets=1&show_ruler=1">Linhas de sangue</a>.
 </p>
 
 <br>
 
 <p>
-  <strong>Please, cite <i>Solanum pennellii</i> genome as:</strong><br>
-  Bolger, A., Scossa, F., Bolger, M. E., Lanz, C., Maumus, F., Tohge, T., ... & Fernie A.R. (2014). <a href="http://www.nature.com/ng/journal/v46/n9/full/ng.3046.html">The genome of the stress-tolerant wild tomato species Solanum pennellii.</a> Nature Genetics 46, 1034–1038
+  <strong>Por favor, cite <i>Solanum pennellii</i> Genoma como:</strong><br>
+  Bolger, A., Scossa, F, Bolger, M. E., Lanz, C., Maumus, F., Tohge, T., ... &amp; Fernie A.R. (2014). <a href="http://www.nature.com/ng/journal/v46/n9/full/ng.3046.html">O genoma da espécie de tomate selvagem tolerante ao estresse Solanum pennellii.</a> Genética da Natureza 46, 1034-1038
 </p>
 
 <br>
-<p><strong>Abstract</strong><br><i>Solanum pennellii</i> is a wild tomato species endemic to Andean regions in South America, where it has evolved to thrive in arid habitats. Because of its extreme stress tolerance and unusual morphology, it is an important donor of germplasm for the cultivated tomato <i>Solanum lycopersicum</i>. Introgression lines (ILs) in which large genomic regions of <i>S. lycopersicum</i> are replaced with the corresponding segments from <i>S. pennellii</i> can show remarkably superior agronomic performance. Here we describe a high-quality genome assembly of the parents of the IL population. By anchoring the <i>S. pennellii</i> genome to the genetic map, we define candidate genes for stress tolerance and provide evidence that transposable elements had a role in the evolution of these traits. Our work paves a path toward further tomato improvement and for deciphering the mechanisms underlying the myriad other agronomic traits that can be improved with <i>S. pennellii</i> germplasm.</p>
+<p><strong>Abstrato</strong><br><i>Solanum pennellii</i> é uma espécie de tomate selvagem endêmica de regiões andinas na América do Sul, onde evoluiu para prosperar em habitats áridos. Devido à sua extrema tolerância ao estresse e morfologia incomum, é um importante doador de germoplasma para o tomate cultivado. <i>Solanum lycopersicum</i>. Linhas de introgressão em que grandes regiões genômicas <i>S. lycopersicum</i> são substituídos pelos segmentos correspondentes de <i>S. pennellii</i> Pode mostrar desempenho agronômico notavelmente superior. Aqui descrevemos uma montagem de genoma de alta qualidade dos pais da população de IL. Ao ancorar o <i>S. pennellii</i> genoma para o mapa genético, definimos genes candidatos para tolerância ao estresse e fornecemos evidências de que elementos transponíveis tiveram um papel na evolução dessas características. Nosso trabalho abre um caminho para a melhoria do tomate e para decifrar os mecanismos subjacentes à miríade de outras características agronômicas que podem ser melhoradas com <i>S. pennellii</i> germoplasma.</p>
 
 <br>
-<&| /page/info_section.mas, title => 'Available Data' &>
+<&| /page/info_section.mas, title => 'Dados Disponíveis' &>
    <% info_table_html(
          __border   => 0,
          __multicol => 2,
          'Bulk Datasets (via FTP)' =>
            '<a href="ftp://ftp.solgenomics.net/genomes/Solanum_pennellii">FTP</a>',
-         'BLAST WGS Assembly' => '<a href="/tools/blast/?db_id=226">Genomic scaffolds</a>',
-	 'BLAST protein sequences' => '<a href="/tools/blast/?db_id=260">Protein sequences</a>',
-	 'BLAST CDS sequences' => '<a href="/tools/blast/?db_id=261">CDS sequences</a>',
-	 'JBrowse view' => '<a href="/jbrowse_solgenomics/?data=data%2Fjson%2Fspenn&loc=Spenn-ch01%3A43733407..65600109&tracks=DNA&highlight=">Browse genome</a>',
+         'BLAST WGS Assembly' => '<a href="/tools/blast/?db_id=226">Andaimes genômicos</a>',
+	 'BLAST protein sequences' => '<a href="/tools/blast/?db_id=260">Sequências de proteínas</a>',
+	 'BLAST CDS sequences' => '<a href="/tools/blast/?db_id=261">Sequências CDS</a>',
+	 'JBrowse view' => '<a href="/jbrowse_solgenomics/?data=data%2Fjson%2Fspenn&loc=Spenn-ch01%3A43733407..65600109&tracks=DNA&highlight=">Navegue pelo genoma</a>',
 
      )
     %>

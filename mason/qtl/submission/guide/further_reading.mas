@@ -12,11 +12,11 @@ Isaak Y Tecle (iyt2@cornell.edu)
 
 </%doc>
 <&| /page/info_section.mas, 
-   title      => "Further reading",
+   title      => "Outra leitura",
   collapsible => 1,
   collapsed   => 1
 &>
 
-You can find detailed documentation of the tool here: <a href="http://www.biomedcentral.com/1471-2105/11/525/abstract">solQTL: a tool for QTL analysis, visualization and linking to genomes at SGN database</a>.
+Você pode encontrar documentação detalhada da ferramenta aqui: <a href="http://www.biomedcentral.com/1471-2105/11/525/abstract">solQTL: uma ferramenta para análise QTL, visualização e ligação a genomas no banco de dados SGN</a>.
 
 </&>

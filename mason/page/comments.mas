@@ -62,7 +62,7 @@ if ($object_id!~/^\d+$/) { return; }
         title=>"Comentários dos usuários",
         contents=>qq{<!-- check for comments only shows up when AJAX is not enabled
      (old browsers, buggy ajax) -->
-Aguarde enquanto verificamos os comentários. (Se eles não aparecerem, acesse-os <a href="/forum/return_comments.pl?type=$object_type&amp;id=$object_id">aqui</a>)}
+Aguarde enquanto verificamos os comentários. (Se eles não aparecerem, acesse-os <a href="/forum/return_comments.pl?type=$object_type&amp;id=$object_id">Aqui</a>)}
     );
 
 my $encoded_referer = $urlencode{ $referer || '' };

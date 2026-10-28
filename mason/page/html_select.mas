@@ -7,7 +7,7 @@ html_select - create a html select menu
 
 =head1 SYNOPSYS
 
-<& /page/html_select.mas, name=>$name, $choices=> [ [ 1, "France"], [ 2, "Spain" ] ], label=>"select country", $id=>"27", params => 'onchange="alert('foo')", multiple=>0  &>
+<& /page/html_select.mas, name=>$name, $choices=> [ [ 1, "France"], [ 2, "Spain" ] ], label=>"Seleccionar o país", $id=>"27", params => 'onchange="alert('foo')", multiple=>0  &>
 
 Based on code by Robert Buels in CXGN::Page::FormattingHelpers.
 

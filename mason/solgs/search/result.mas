@@ -12,14 +12,14 @@ $form
 </%args>
 
 <& /page/page_title.mas,
-    title => 'solGS search results',
+    title => 'Resultados de busca do SolGS',
 &>
   
 % if ($result) 
 % { 
 
 <&| /page/info_section.mas,
-      title => 'Search Results',
+      title => 'Resultados da Pesquisa',
 &>
 
 <& /page/columnar_table.mas,
@@ -35,17 +35,17 @@ $form
 %else
 %{
 <&| /page/info_section.mas,
-      title => 'No Search Results',
+      title => 'Nenhum resultado de busca',
 &>
 
-<br>No results. Search again with a different term.<br />
+<br>Sem resultados. Procure novamente com um termo diferente.<br />
 
 </&>
 
 %}
 
 <&| /page/info_section.mas,
-    title       => 'Search',
+    title       => 'Buscar',
     collapsible => '1',
     collapsed   =>  1
 &>

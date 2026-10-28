@@ -64,7 +64,7 @@ $management_factor_type => undef
 % if ($management_factor_date) {
 %   print "$management_factor_date";
 % } else {
-%   print "[Sem data]";
+%   print "[Dados do Sem]";
 % }
         </div>
     </td>

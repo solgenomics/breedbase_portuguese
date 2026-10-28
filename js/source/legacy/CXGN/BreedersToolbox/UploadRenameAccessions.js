@@ -43,7 +43,7 @@ jQuery(document).ready(function ($) {
             $('#working_modal').modal("show");
             if (uploadedRenameAccessionsFile === '') {
                 $('#working_modal').modal("hide");
-                alert("No file selected");
+                alert("Nenhum arquivo selecionado");
             }
         },
         complete: function (r) {
@@ -56,7 +56,7 @@ jQuery(document).ready(function ($) {
             var html;
 
             if (response.error) {
-                html = '<h3>The Following Issues Were Identified</h3><p class="bg-warning">'+response.error+'</p>';
+                html = '<h3>Foram identificados os seguintes problemas</h3><p class="bg-warning">'+response.error+'</p>';
 		$('#upload_rename_accessions_store').prop("disabled", true);
             }
             else {
@@ -64,7 +64,7 @@ jQuery(document).ready(function ($) {
                 archived_filename = response.archived_filename_with_path;
 
 		$('#upload_rename_accessions_store').prop("disabled", false);
-                html = '<h3>There Were No Issues Identified</h3>Please click the "Rename" button to renamee the accessions in the database.';
+                html = '<h3>Nenhum problema foi identificado</h3>Clique no botão "Renomear e armazenar" para renomear os acessos no banco de dados.';
             }
             $("#upload_rename_accessions_validate_display tbody").html(html);
             $("#upload_rename_accessions_validate_display").modal('show');
@@ -75,7 +75,7 @@ jQuery(document).ready(function ($) {
         var uploadFile = $("#rename_accessions_uploaded_file").val();
         $('#upload_rename_accessions_form').attr("action", "/ajax/rename_accessions/upload_verify");
         if (uploadFile === '') {
-            alert("Please select a file");
+            alert("Selecione um arquivo");
             return;
         }
         $("#upload_rename_accessions_form").submit();
@@ -100,7 +100,7 @@ jQuery(document).ready(function ($) {
             success: function(response) {
                 jQuery('#working_modal').modal('hide');
                 if (response.error) {
-                    alert('An Error Occured: No accessions were renamed! Try Fixing Your File For The Issues Identified In the Validation. '+response.error);
+                    alert('Ocorreu um erro: nenhum acesso foi renomeado! Corrija no arquivo os problemas identificados na validação. '+response.error);
                 }
                 else {
 		    //alert("RESPONSE: "+JSON.stringify(response));
@@ -112,7 +112,7 @@ jQuery(document).ready(function ($) {
             },
             error: function(response) {
                 jQuery('#working_modal').modal('hide');
-		alert('An error occurred storing the accession data. None were renamed.'+response.responseText);
+		alert('Ocorreu um erro ao armazenar os dados dos acessos. Nenhum foi renomeado. '+response.responseText);
             }
         });
     });

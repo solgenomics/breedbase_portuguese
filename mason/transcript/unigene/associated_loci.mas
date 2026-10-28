@@ -91,7 +91,7 @@ if (defined $id) {
    ## Use columnar table to give the html format. If don't exists any data, print message.
 
    my $loci_n = scalar(@locus_table);
-   $loci_content = info_section_html( title        => "Associated Loci (".$loci_n.")", 
+   $loci_content = info_section_html( title        => "Associado Loci (".$loci_n.")", 
                                       contents     => $loci_html,
                                       collapsible  => 1,
                                       collapsed    => 0, );

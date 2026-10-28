@@ -295,7 +295,7 @@ $(window).ready( function() {
         var re_open_status = jQuery('#re_open_status').val();
         var re_open_comments = jQuery('#re_open_comments').val();
         if (!re_open_comments) {
-            alert ("Please add comments for re-opening the order");
+            alert ("Adicione comentários para reabrir o pedido");
             return;
         }
 

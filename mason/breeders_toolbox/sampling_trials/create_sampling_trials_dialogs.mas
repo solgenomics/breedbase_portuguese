@@ -47,7 +47,7 @@ $sample_tissue_types => ();
                                 <div class="form-group">
                                     <label class="col-sm-5 control-label">Nome do ensaio de amostragem: </label>
                                     <div class="col-sm-7">
-                                        <input class="form-control" id="sampling_trial_name" name="sampling_trial_name" type="text" placeholder=" e.g. 18DNA00001"/>
+                                        <input class="form-control" id="sampling_trial_name" name="sampling_trial_name" type="text" placeholder=" Por exemplo, 18DNA00001"/>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -148,7 +148,7 @@ $sample_tissue_types => ();
                                     <div class="form-group">
                                         <label class="col-sm-7 control-label">Lista de unidades de observação de origem: </label>
                                         <div class="col-sm-5">
-                                            <span id="sampling_trial_accession_select_box_span">[carregando...]</span>
+                                            <span id="sampling_trial_accession_select_box_span">[Carregando...]</span>
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -198,7 +198,7 @@ $sample_tissue_types => ();
                                         </div>
                                     </div>
                                     <div class="form-group form-group-sm">
-                                        <label class="col-sm-7 control-label"><i>Opcional</i> Data: <small>(se todas as amostras foram coletadas na mesma data; AAAA/MM/DD)</small> </label>
+                                        <label class="col-sm-7 control-label"><i>Opcional</i> Dados: <small>(se todas as amostras foram coletadas na mesma data; AAAA/MM/DD)</small> </label>
                                         <div class="col-sm-5">
                                             <input class="form-control" id="sampling_trial_date" name="sampling_trial_date" type="text" placeholder="AAAA/MM/DD"/>
                                         </div>
@@ -276,17 +276,17 @@ $sample_tissue_types => ();
                         <thead></thead>
                         <tbody>
                             <tr>
-                                <td>date</td>
+                                <td>Data</td>
                                 <td>sample_name</td>
                                 <td>source_observation_unit_name</td>
                                 <td>sample_number</td>
-                                <td>replicate</td>
+                                <td>Replicar</td>
                                 <td>tissue_type</td>
                                 <td>ncbi_taxonomy_id</td>
-                                <td>person</td>
-                                <td>notes</td>
-                                <td>extraction</td>
-                                <td>concentration</td>
+                                <td>Pessoa</td>
+                                <td>Notas</td>
+                                <td>extração</td>
+                                <td>concentração</td>
                                 <td>volume</td>
                             </tr>
                         </tbody>

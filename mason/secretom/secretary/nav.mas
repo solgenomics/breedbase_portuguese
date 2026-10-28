@@ -2,7 +2,7 @@
   $curr_page
 </%args>
 <table id="secretary_nav"><tr>
-   <td> <a <% $curr_page eq 'background' ? 'class="active"' : '' %> href="/secretom/detail/prediction">About Prediction</a> </td>
-   <td> <a <% $curr_page eq 'tool' ? 'class="active"' : '' %> href="/secretom/secretary"><span class="secretary">SecreTary</span> Tool</a> </td>
-   <td> <a <% $curr_page eq 'instructions' ? 'class="active"' : '' %> href="/secretom/secretary/instructions"><span class="secretary">SecreTary</span> Instructions</a> </td>
+   <td> <a <% $curr_page eq 'background' ? 'class="active"' : '' %> href="/secretom/detail/prediction">Sobre a predição</a> </td>
+   <td> <a <% $curr_page eq 'tool' ? 'class="active"' : '' %> href="/secretom/secretary"><span class="secretary">Secretário</span> Ferramenta</a> </td>
+   <td> <a <% $curr_page eq 'instructions' ? 'class="active"' : '' %> href="/secretom/secretary/instructions"><span class="secretary">Secretário</span> Instruções</a> </td>
 </tr></table>

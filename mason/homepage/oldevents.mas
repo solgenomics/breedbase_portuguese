@@ -16,6 +16,6 @@ eval {
 
 </%perl>
 
-<& /page/page_title.mas, title=>'Past and Present Events' &>
+<& /page/page_title.mas, title=>'Eventos passados e presentes' &>
 
 <% $news %>

@@ -105,11 +105,11 @@ if (scalar(@target_list) > 0) {
 
 }
 else {
-    $hyb_composition_html = "No hybridization associated with this element <br>";
+    $hyb_composition_html = "Sem hibridação associada a este elemento <br>";
 }
 
 my $hyb_n = scalar(@data);
-    $hyb_comp_content = info_section_html( title        => "Hybridizations (".$hyb_n.")", 
+    $hyb_comp_content = info_section_html( title        => "Hibridações (".$hyb_n.")", 
                                            contents     => $hyb_composition_html,
 	   			           collapsible  => 1,
                                            collapsed    => 1, );

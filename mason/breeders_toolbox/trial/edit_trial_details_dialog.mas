@@ -48,7 +48,7 @@ $field_trial_is_planned_to_cross
                     <label class="col-sm-3 control-label" for="edit_trial_location">Local: </label>
                     <div class="col-sm-8">
                       <div class="input-group">
-                        <select class="form-control" id="edit_trial_location" title="location" value="<%$location%>"></select>
+                        <select class="form-control" id="edit_trial_location" title="Localização" value="<%$location%>"></select>
                       </div>
                     </div>
                 </div>
@@ -56,7 +56,7 @@ $field_trial_is_planned_to_cross
                     <label class="col-sm-3 control-label" for="edit_trial_year">Ano: </label>
                     <div class="col-sm-8">
                       <div class="input-group">
-                        <select class="form-control" id="edit_trial_year" title="year" value="<%$year%>"></select>
+                        <select class="form-control" id="edit_trial_year" title="ano" value="<%$year%>"></select>
                       </div>
                     </div>
                 </div>
@@ -64,7 +64,7 @@ $field_trial_is_planned_to_cross
                     <label class="col-sm-3 control-label" for="edit_trial_type">Tipo de ensaio: </label>
                     <div class="col-sm-8">
                       <div class="input-group">
-                        <select class="form-control" id="edit_trial_type" title="type" value="<%$trial_type_id%>"></select>
+                        <select class="form-control" id="edit_trial_type" title="tipo" value="<%$trial_type_id%>"></select>
                       </div>
                     </div>
                 </div>
@@ -101,7 +101,7 @@ $field_trial_is_planned_to_cross
                     <label class="col-sm-3 control-label" for="edit_trial_description">Descrição: </label>
                     <div class="col-sm-8">
                       <div class="input-group">
-                        <textarea class="form-control" id="edit_trial_description" title="description" rows="5"><% $trial_description %></textarea>
+                        <textarea class="form-control" id="edit_trial_description" title="Descrição" rows="5"><% $trial_description %></textarea>
                       </div>
                     </div>
                 </div>

@@ -28,7 +28,7 @@
 
 % if( $e->is_client_error || $e->is_server_error ) {
 
-    Se o problema persistir, entre em contato com a <a href="/contact/form">equipe de desenvolvimento</a> e
+    Se o problema persistir, entre em contato com a <a href="/contact/form">equipe de desenvolvimento</a> E
 %   if( $e->is_server_error ) {
       manteremos você informado sobre o andamento da resolução.
 %   } else {

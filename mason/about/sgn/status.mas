@@ -52,11 +52,11 @@
 
 
 
-<& /page/page_title.mas, title=>'Content Status' &>
+<& /page/page_title.mas, title=>'Status do conteúdo' &>
 
 <&| /page/info_section.mas, 
         id=>'content_accessions',
-        title=>'Accessions',
+        title=>'Acessos',
         collapsible=>1,
         collapsed=>0 &>
 
@@ -64,28 +64,28 @@
         <table class="content-status-table">
 
             <tr>
-                <td>Breeding Programs</td>
+                <td>Programas de melhoramento</td>
                 <td><% $breeding_program_count %></td>
-                <td><a href="/breeders/manage_programs" class="btn btn-primary" role="button">Manage</a></td>
+                <td><a href="/breeders/manage_programs" class="btn btn-primary" role="button">Gerenciar</a></td>
             </tr>
             
             <tr>
-                <td>Accessions</td>
+                <td>Acessos</td>
                 <td><% $accession_count %></td>
                 <td>
-                    <a href="/search/stocks" class="btn btn-primary" role="button">Search</a>
-                    <a href="/breeders/accessions" class="btn btn-primary" role="button">Manage</a>
+                    <a href="/search/stocks" class="btn btn-primary" role="button">Buscar</a>
+                    <a href="/breeders/accessions" class="btn btn-primary" role="button">Gerenciar</a>
                 </td>
             </tr>
 
             <tr>
-                <td>Accessions with Phenotype Data</td>
+                <td>Acessos com dados fenotípicos</td>
                 <td><% $accession_count_pheno %></td>
                 <td></td>
             </tr>
 
             <tr>
-                <td>Accessions with Genotype Data</td>
+                <td>Acessos com dados genotípicos</td>
                 <td><% $accession_count_geno %></td>
                 <td></td>
             </tr>
@@ -98,7 +98,7 @@
 
 <&| /page/info_section.mas, 
         id=>'content_phenotype',
-        title=>'Phenotype Data',
+        title=>'Dados fenotípicos',
         collapsible=>1,
         collapsed=>0 &>
 
@@ -106,31 +106,31 @@
         <table class="content-status-table">
 
             <tr>
-                <td>Observed Traits</td>
+                <td>Características observadas</td>
                 <td><% $trait_count %></td>
                 <td>
-                    <a href="/search/traits" class="btn btn-primary" role="button">Search</a>
-                    <a href="/tools/onto" class="btn btn-primary" role="button">Browse</a>
+                    <a href="/search/traits" class="btn btn-primary" role="button">Buscar</a>
+                    <a href="/tools/onto" class="btn btn-primary" role="button">Navegar</a>
                 </td>
             </tr>
 
             <tr>
-                <td>Phenotype Trials</td>
+                <td>Ensaios de fenotipagem</td>
                 <td><% $pheno_trial_count %></td>
                 <td>
-                    <a href="/search/trials" class="btn btn-primary" role="button">Search</a>
-                    <a href="/breeders/trials" class="btn btn-primary" role="button">Manage</a>
+                    <a href="/search/trials" class="btn btn-primary" role="button">Buscar</a>
+                    <a href="/breeders/trials" class="btn btn-primary" role="button">Gerenciar</a>
                 </td>
             </tr>
 
             <tr>
-                <td>Total Phenotype Observations</td>
+                <td>Total de observações fenotípicas</td>
                 <td><% $pheno_observations %></td>
                 <td></td>
             </tr>
 
             <tr>
-                <td>Last Addition</td>
+                <td>Última adição</td>
                 <td><% $pheno_last_addition %></td>
                 <td></td>
             </tr>
@@ -144,7 +144,7 @@
 
 <&| /page/info_section.mas, 
         id=>'content_genotype',
-        title=>'Genotype Data',
+        title=>'Dados genotípicos',
         collapsible=>1,
         collapsed=>0 &>
 
@@ -152,23 +152,23 @@
         <table class="content-status-table">
 
             <tr>
-                <td>Genotyping Protocols</td>
+                <td>Protocolos de genotipagem</td>
                 <td><% $geno_protocol_count %></td>
                 <td>
-                    <a href="/search/genotyping_protocols" class="btn btn-primary" role="button">Search</a>
+                    <a href="/search/genotyping_protocols" class="btn btn-primary" role="button">Buscar</a>
                 </td>
             </tr>
 
             <tr>
-                <td>Markers</td>
+                <td>Marcadores</td>
                 <td><% $marker_count %></td>
                 <td>
-                    <a href="/search/markers" class="btn btn-primary" role="button">Search</a>
+                    <a href="/search/markers" class="btn btn-primary" role="button">Buscar</a>
                 </td>
             </tr>
 
             <tr>
-                <td>Last Addition</td>
+                <td>Última adição</td>
                 <td><% $geno_last_addition %></td>
                 <td></td>
             </tr>

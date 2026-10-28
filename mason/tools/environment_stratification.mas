@@ -7,34 +7,34 @@
 <& /util/import_css.mas, paths => ['leaflet.css'] &>
 <& /util/import_javascript.mas, classes => ['jquery', 'CXGN.Login', 'CXGN.BreedersToolbox.HTMLSelect', 'jquery.dataTables', 'jszip-min'], entries => ['environments'] &>
 
-<& /page/page_title.mas, title=>"Environment Stratification" &>
+<& /page/page_title.mas, title=>"Estratificação ambiental" &>
 
-<&| /page/info_section.mas, id=>"environment_stratification_input_section", title=>"Select Input Data", collapsible=>1, collapsed=>0 &>
+<&| /page/info_section.mas, id=>"environment_stratification_input_section", title=>"Selecione Dados de Entrada", collapsible=>1, collapsed=>0 &>
   <div id="environment_stratification_tool">
     <div class="form-group form-inline">
-      <label for="environment_stratification_dataset_select">Available Datasets: </label>
+      <label for="environment_stratification_dataset_select">Datasets disponíveis: </label>
       <div id="environment_stratification_dataset_select"></div>
       <br>
-      <button class="btn btn-primary" id="environment_stratification_select_dataset" type="button">Select Dataset</button>
+      <button class="btn btn-primary" id="environment_stratification_select_dataset" type="button">Selecionar conjunto de dados</button>
     </div>
 
     <div class="form-group form-inline">
-      <label class="environment-stratification-select-label" for="environment_stratification_trait_select">Available Traits: </label>
+      <label class="environment-stratification-select-label" for="environment_stratification_trait_select">Características disponíveis: </label>
       <& /page/html_select.mas, name=>'environment_stratification_trait_select', id=>'environment_stratification_trait_select', params=>"class\=\"form-control input-sm environment-stratification-select-box\"", choices=>"" &>
     </div>
 
     <div class="form-group form-inline">
       <input type="checkbox" id="environment_stratification_dataset_trait_outliers" />
-      <label for="environment_stratification_dataset_trait_outliers">Exclude dataset outliers</label>
+      <label for="environment_stratification_dataset_trait_outliers">Excluir dados outliers</label>
     </div>
 
     <div class="form-group form-inline">
-      <label for="environment_stratification_alpha">Alpha: </label>
+      <label for="environment_stratification_alpha">Alfa: </label>
       <input class="form-control input-sm" id="environment_stratification_alpha" type="number" min="0.0001" max="0.5" step="0.001" value="0.05" />
     </div>
 
     <div class="form-group">
-      <button class="btn btn-primary" id="environment_stratification_run" type="button">Run Environment Stratification</button>
+      <button class="btn btn-primary" id="environment_stratification_run" type="button">Correr Estratificação Ambiental</button>
     </div>
 
     <div id="environment_stratification_tempfile" style="display:none"></div>
@@ -42,45 +42,45 @@
   </div>
 </&>
 
-<&| /page/info_section.mas, title=>"Instructions", collapsible=>1, collapsed=>1 &>
-  <h5><b>Preparing Dataset:</b></h5>
-  <h5>1. Dataset must include trials, locations, accessions, and at least one numeric trait.</h5>
-  <h5>2. The selected trait must be measured in at least two environments.</h5>
-  <h5>3. Accessions shared across environments are used to test genotype-by-environment compatibility.</h5>
-  <h5>4. Environments are stratified when their GxE test is not significant at the selected alpha.</h5>
+<&| /page/info_section.mas, title=>"Instruções", collapsible=>1, collapsed=>1 &>
+  <h5><b>Preparando Dataset:</b></h5>
+  <h5>1. Dataset deve incluir ensaios, locais, acessos, e pelo menos um característica numérico.</h5>
+  <h5>2. O característica selecionado deve ser medido em pelo menos dois ambientes.</h5>
+  <h5>3. Acessos compartilhadas em ambientes são usadas para testar a compatibilidade genótipo-a-ambiente.</h5>
+  <h5>4. Ambientes são estratificados quando seu teste GxE não é significativo no alfa selecionado.</h5>
 </&>
 
-<&| /page/info_section.mas, id=>"environment_stratification_output_section", title=>"Output", collapsible=>1, collapsed=>0 &>
+<&| /page/info_section.mas, id=>"environment_stratification_output_section", title=>"Saída", collapsible=>1, collapsed=>0 &>
   <div id="environment_stratification_message"></div>
 
   <ul class="nav nav-tabs" id="environment_stratification_result_tabs">
-    <li class="active"><a data-toggle="tab" href="#environment_stratification_groups_tab">Groups</a></li>
-    <li><a data-toggle="tab" href="#environment_stratification_pairwise_tab">Pairwise Tests</a></li>
+    <li class="active"><a data-toggle="tab" href="#environment_stratification_groups_tab">Grupos</a></li>
+    <li><a data-toggle="tab" href="#environment_stratification_pairwise_tab">Testes em par</a></li>
     <li><a data-toggle="tab" href="#environment_stratification_anova_tab">ANOVA</a></li>
-    <li><a data-toggle="tab" href="#environment_stratification_ungrouped_tab">Ungrouped</a></li>
+    <li><a data-toggle="tab" href="#environment_stratification_ungrouped_tab">Sem grupo</a></li>
   </ul>
 
   <div class="tab-content environment-stratification-results">
     <div id="environment_stratification_groups_tab" class="tab-pane fade in active">
-      <button class="btn btn-default environment-stratification-download" data-table="environment_stratification_groups_table" data-filename="environment_stratification_groups.xlsx" type="button">Download XLSX</button>
+      <button class="btn btn-default environment-stratification-download" data-table="environment_stratification_groups_table" data-filename="environment_stratification_groups.xlsx" type="button">Baixe XLSX</button>
       <div id="environment_stratification_groups"></div>
     </div>
     <div id="environment_stratification_pairwise_tab" class="tab-pane fade">
-      <button class="btn btn-default environment-stratification-download" data-table="environment_stratification_pairwise_table" data-filename="environment_stratification_pairwise.xlsx" type="button">Download XLSX</button>
+      <button class="btn btn-default environment-stratification-download" data-table="environment_stratification_pairwise_table" data-filename="environment_stratification_pairwise.xlsx" type="button">Baixe XLSX</button>
       <div id="environment_stratification_pairwise"></div>
     </div>
     <div id="environment_stratification_anova_tab" class="tab-pane fade">
-      <button class="btn btn-default environment-stratification-download" data-table="environment_stratification_anova_table" data-filename="environment_stratification_anova.xlsx" type="button">Download XLSX</button>
+      <button class="btn btn-default environment-stratification-download" data-table="environment_stratification_anova_table" data-filename="environment_stratification_anova.xlsx" type="button">Baixe XLSX</button>
       <div id="environment_stratification_anova"></div>
     </div>
     <div id="environment_stratification_ungrouped_tab" class="tab-pane fade">
-      <button class="btn btn-default environment-stratification-download" data-table="environment_stratification_ungrouped_table" data-filename="environment_stratification_ungrouped.xlsx" type="button">Download XLSX</button>
+      <button class="btn btn-default environment-stratification-download" data-table="environment_stratification_ungrouped_table" data-filename="environment_stratification_ungrouped.xlsx" type="button">Baixe XLSX</button>
       <div id="environment_stratification_ungrouped"></div>
     </div>
   </div>
 </&>
 
-<&| /page/info_section.mas, id=>"environment_stratification_map_section", title=>"Map", collapsible=>1, collapsed=>0 &>
+<&| /page/info_section.mas, id=>"environment_stratification_map_section", title=>"Mapa", collapsible=>1, collapsed=>0 &>
   <div id="environment_stratification_map_message"></div>
   <div id="environment_stratification_map"></div>
   <div id="environment_stratification_map_legend"></div>
@@ -93,7 +93,7 @@ var check_outliers = "<% $c->get_conf('exclude_phenotype_outliers') || 0 %>";
 if (require_login === '1') {
   var auth_token = "<% CXGN::Login->new($c->dbc->dbh)->get_login_cookie() %>";
   if (!auth_token) {
-    alert("Login required to use Environment Stratification");
+    alert("Entre na sua conta para usar a estratificação ambiental");
   }
 }
 

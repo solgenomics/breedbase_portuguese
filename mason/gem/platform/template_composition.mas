@@ -51,7 +51,7 @@ use CXGN::Page::FormattingHelpers  qw/ info_section_html info_table_html columna
 
 my $template_comp_content;
 
-my $default_message = '<span class="ghosted">data not available</span>';
+my $default_message = '<span class="ghosted">Dados não disponíveis</span>';
 
 ## If there aren't any experiment that comes from experimental design it will do nothing. 
 ## The error message will returned by basic information
@@ -83,7 +83,7 @@ if (scalar(@template_row_list) > 0) {
                                                        __align  => ['c'],
                                                     );
     my $templ_n = scalar(@data);
-    $template_comp_content = info_section_html( title        => "Templates (".$templ_n.")", 
+    $template_comp_content = info_section_html( title        => "Modelos (".$templ_n.")", 
                                                 contents     => $template_composition_html,
 	   		    	                collapsible  => 1,
                                                 collapsed    => 1, );

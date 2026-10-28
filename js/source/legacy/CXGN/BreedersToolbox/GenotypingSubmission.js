@@ -35,15 +35,15 @@ jQuery(document).ready(function ($) {
             },
             success: function(response) {
                 if (response.metadata.status[0].message) {
-                    alert('Login failed. '+JSON.stringify(response.metadata.status[0].message));
+                    alert("Falha ao entrar. "+JSON.stringify(response.metadata.status[0].message));
                 }
                 else {
-                    alert("Success!"+ JSON.stringify(response)+" which is "+response.result.access_token);
+                    alert("Sucesso!"+ JSON.stringify(response)+" que é "+response.result.access_token);
                     access_token = response.result.access_token;
                 }
             },
             error: function(response) {
-                alert("An error occurred trying to log into the sequencing facility server. Please try again later.");
+                alert("Ocorreu um erro ao entrar no servidor da unidade de sequenciamento. Tente novamente mais tarde.");
             }
         });
         return access_token;
@@ -63,11 +63,11 @@ jQuery(document).ready(function ($) {
                         token : response.token
                     };
                 } else {
-                        return auth_data = { error : "An error occurred", };
+                        return auth_data = { error : "Ocorreu um erro", };
                 }
             },
             error: function(response) {
-                return auth_data = { error : "An error occurred", };
+                return auth_data = { error : "Ocorreu um erro", };
             }
         });
         return auth_data;
@@ -104,7 +104,7 @@ jQuery(document).ready(function ($) {
                 }
             },
             error: function(response) {
-                alert('An error occurred trying to submit the order.');
+                alert("Ocorreu um erro ao enviar o pedido.");
                 jQuery("#working_modal").modal('hide');
             }
         });
@@ -117,7 +117,7 @@ jQuery(document).ready(function ($) {
         var order;
 
         if (auth_data.error) {
-            alert("Genotyping server credentials are not available. Stop.");
+            alert("As credenciais do servidor de genotipagem não estão disponíveis. Operação interrompida.");
             return;
         }
 
@@ -143,7 +143,7 @@ jQuery(document).ready(function ($) {
                     const orderId = ((response || {}).result || {}).orderId;
                     if ( orderId ) {
                         order = response.result;
-                        alert("Successfully!. Plate submitted to facility.");
+                        alert("Sucesso! Placa enviada à unidade.");
 
                         store_order(order,parseInt(plate_id));
 
@@ -158,7 +158,7 @@ jQuery(document).ready(function ($) {
                     }
                 },
                 error: function(response) {
-                    alert("An error occurred trying to submit your plate to the facility.");
+                    alert("Ocorreu um erro ao enviar sua placa à unidade.");
                     return;
                 }
             });
@@ -172,7 +172,7 @@ jQuery(document).ready(function ($) {
         var submission;
 
         if (auth_data.error) {
-            alert("Genotyping server credentials are not available. Stop.");
+            alert("As credenciais do servidor de genotipagem não estão disponíveis. Operação interrompida.");
             return;
         }
 
@@ -198,7 +198,7 @@ jQuery(document).ready(function ($) {
                         // submission =  response.result;
                         submission = (response || {}).result || {};
                         jQuery('#submission_lbl').html(submissionId);
-                        alert("Successfully!. Plate submitted to facility.");
+                        alert("Sucesso! Placa enviada à unidade.");
                         store_submission(submission,parseInt(plate_id));
                         Workflow.complete('#submit_plate_btn');
                         document.getElementById("facility_href").href = auth_data.host + "/order.pl"; 
@@ -210,7 +210,7 @@ jQuery(document).ready(function ($) {
                     }
                 },
                 error: function(response) {
-                    alert("An error occurred trying to submit your plate to the facility.");
+                    alert("Ocorreu um erro ao enviar sua placa à unidade.");
                     return;
                 }
             });
@@ -232,14 +232,14 @@ jQuery(document).ready(function ($) {
                     alert(response.error);
                 } else {
                     const orderId = response.order_id;
-                    alert('Order stored successfully.');
+                    alert("Pedido armazenado com sucesso.");
                      $('#order_lbl').text(orderId);
                     // Workflow.focus("#plates_to_facilities_workflow", -1); //Go to success page
                     // Workflow.check_complete("#plates_to_facilities_workflow");
                 }
             },
             error: function(response) {
-                alert('An error occurred trying to store the order.');
+                alert("Ocorreu um erro ao armazenar o pedido.");
                 jQuery("#working_modal").modal('hide');
             }
         });
@@ -252,7 +252,7 @@ jQuery(document).ready(function ($) {
         auth_data = get_genotyping_facility_credentials();
 
         if (auth_data.error) {
-            alert("Genotyping server credentials are not available. Stop.");
+            alert("As credenciais do servidor de genotipagem não estão disponíveis. Operação interrompida.");
             jQuery("#review_order_link").prop("disabled", true);
             return;
         }
@@ -328,7 +328,7 @@ jQuery(document).ready(function ($) {
             auth_data = get_genotyping_facility_credentials();
 
             if (auth_data.error) {
-                alert("Genotyping server credentials are not available. Stop.");
+                alert("As credenciais do servidor de genotipagem não estão disponíveis. Operação interrompida.");
                 return;
             }
 
@@ -356,7 +356,7 @@ jQuery(document).ready(function ($) {
                         }
                     },
                     error: function(response) {
-                        alert("An error occurred trying to get the order status.");
+                        alert("Ocorreu um erro ao consultar o status do pedido.");
                     }
                 });
 
@@ -377,11 +377,11 @@ jQuery(document).ready(function ($) {
                             store_facility_order(gdf_order,parseInt(plate_id));
                         }
                         else{
-                            alert("Something went wrong! Could not get order from submission.");
+                            alert("Ocorreu um problema! Não foi possível recuperar o pedido do envio.");
                         }
                     },
                     error: function(response) {
-                        alert('Something went wrong!. Complete your order clicking the link.');
+                        alert("Ocorreu um problema! Conclua seu pedido clicando no link.");
                     }
                 });
             }
@@ -401,9 +401,9 @@ jQuery(document).ready(function ($) {
                         var data = response.result.data;
                         var links = "";
                         data.forEach(function (item) { 
-                            links += "<b>File Name:</b> " + item.fileName + "<br>" + 
-                                    "<b>File url:</b> " + item.fileURL + "<br>" +
-                                    "<b>md5sum:</b> " + item.md5sum + "<br><br>";
+                            links += "<b>Nome do arquivo:</b> " + item.fileName + "<br>" +
+                                    "<b>URL do arquivo:</b> " + item.fileURL + "<br>" +
+                                    "<b>Md5sum:</b> " + item.md5sum + "<br><br>";
                         });
                         jQuery('#raw_data_tab').html(links);
                     },
@@ -481,7 +481,7 @@ jQuery(document).ready(function ($) {
         order_info.full_order = order_info.facility_id == 'DArT' ? false : true;
         
         if (order_info.plate_id == '' || order_info.client_id == '') {
-            alert("A plate id, client facility id and service are required. Please try again.");
+            alert("Informe o ID da placa, o ID do cliente na unidade e o serviço. Tente novamente.");
             return;
         }
 
@@ -519,11 +519,11 @@ jQuery(document).ready(function ($) {
         var order_id = document.getElementById('genotyping_vendor_order_id_tab').innerHTML;
         var submission_id = document.getElementById('genotyping_vendor_submission_id_tab').innerHTML;
         if(order_id || submission_id){
-            jQuery('#genotyping_facility_submitted_tab').html("yes");
+            jQuery('#genotyping_facility_submitted_tab').html("Sim");
             jQuery('#submit_plate_link').attr("disabled", true);
             get_facility_order_status();
         } else {
-            jQuery('#genotyping_facility_submitted_tab').html("no");
+            jQuery('#genotyping_facility_submitted_tab').html("Não");
             jQuery('#submit_plate_link').attr("disabled", false);
         }
         

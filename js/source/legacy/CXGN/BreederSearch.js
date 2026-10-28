@@ -3,7 +3,7 @@ window.onload = function initialize() {
     jQuery('#select1').change( // reset start from list if select1 changes
 	     function() {
 	        if (jQuery('#paste_list_list_select').val()) {
-            create_list_start('Start from a list');
+            create_list_start("Começar a partir de uma lista");
 	         }
 	  });
 
@@ -131,7 +131,7 @@ window.onload = function initialize() {
         if (selected_trials.length !== 0 || selected_locations.length !== 0 || selected_accessions.length !== 0 || selected_traits.length !== 0 || selected_trait_components.length !== 0 || selected_plots.length !== 0 || selected_plants.length !== 0 || selected_years.length !== 0) {
             window.open("/breeders/trials/phenotype/download?trial_list="+JSON.stringify(selected_trials)+"&format="+format+"&trait_list="+JSON.stringify(selected_traits)+"&trait_component_list="+JSON.stringify(selected_trait_components)+"&accession_list="+JSON.stringify(selected_accessions)+"&plot_list="+JSON.stringify(selected_plots)+"&plant_list="+JSON.stringify(selected_plants)+"&location_list="+JSON.stringify(selected_locations)+"&year_list="+JSON.stringify(selected_years)+"&dataLevel="+data_level+"&phenotype_min_value="+phenotype_min_value+"&phenotype_max_value="+phenotype_max_value+"&timestamp="+timestamp+"&trait_contains="+JSON.stringify(trait_contains_array)+"&include_row_and_column_numbers=1&exclude_phenotype_outlier="+exclude_phenotype_outlier);
         } else {
-            alert("No filters selected for download.");
+            alert("Nenhum filtro selecionado para baixar.");
         }
     });
 
@@ -143,7 +143,7 @@ window.onload = function initialize() {
         if (selected_trials.length !== 0 ) {
             window.open("/breeders/trials/phenotype/download?trial_list="+JSON.stringify(selected_trials)+"&format="+format+"&dataLevel="+data_level);
         } else {
-            alert("No filters selected for download.");
+            alert("Nenhum filtro selecionado para baixar.");
         }
     });
 
@@ -182,7 +182,7 @@ window.onload = function initialize() {
 	var params =  "accessions="+JSON.stringify(accessions)+"&trials="+JSON.stringify(trials)+"&plots="+JSON.stringify(plots)+"&years="+JSON.stringify(years)+"&locations="+JSON.stringify(locations)+"&traits="+JSON.stringify(traits)+"&breeding_programs="+JSON.stringify(breeding_programs)+"&genotyping_protocols="+JSON.stringify(genotyping_protocols)+"&trial_types="+JSON.stringify(trial_types)+"&trial_designs="+JSON.stringify(trial_designs)+"&plants="+JSON.stringify(plants)+"&name="+name+"&description="+description+"&category_order="+JSON.stringify(category_order);
 
 	if (name === '' || name === undefined) {
-	    alert('Please enter a name for the selection.');
+	    alert("Informe um nome para a seleção.");
 	    return;
 	}
 
@@ -194,7 +194,7 @@ window.onload = function initialize() {
 		    alert(response.error);
 		}
 		else {
-	            alert("Successfully stored the dataset!");
+	            alert("Conjunto de dados armazenado com sucesso!");
 		    jQuery('#save_wizard_dataset_dialog').modal("hide");
 		    get_select_box('datasets', 'dataset_manage_select');
         
@@ -202,7 +202,7 @@ window.onload = function initialize() {
 
 	    },
             'error': function(response) {
-	        alert("An error occurred.");
+	        alert("Ocorreu um erro.");
 		jQuery('#save_wizard_dataset_dialog').modal("hide");
 	    }
 	});
@@ -280,12 +280,12 @@ function retrieve_and_display_set(categories, data, this_section, selected, data
 	  error: function(request, status, err) {
 		if (status == "timeout") {
                     // report timeout
-		    var error_html = '<div class="well well-sm" id="response_error"><font color="red">Timeout error. Request could not be completed within 60 second time limit.</font></div>';
+		    var error_html = "<div class=\"well well-sm\" id=\"response_error\"><font color=\"red\">Tempo limite excedido. Não foi possível concluir a solicitação em 60 segundos.</font></div>";
 		    var selectall_id = "c"+this_section+"_select_all";
 		    jQuery('#'+selectall_id).before(error_html);
 		} else {
                     // report unspecified error occured
-		    var error_html = '<div class="well well-sm" id="response_error"><font color="red">Error. If this problem persists, please <a href="../../contact/form">contact developers</a></font></div>';
+		    var error_html = "<div class=\"well well-sm\" id=\"response_error\"><font color=\"red\">Erro. Se o problema persistir, por favor <a href=\"../../contact/form\">entre em contato com os desenvolvedores</a></font></div>";
 		    var selectall_id = "c"+this_section+"_select_all";
 		    jQuery('#'+selectall_id).before(error_html);
 		}
@@ -364,7 +364,7 @@ function get_selected_genotyping_protocols () {
 function update_select_categories(this_section, selected_categories) {
     //console.log("selected_categories="+selected_categories);
     if (selected_categories === undefined) var selected_categories = get_selected_categories(this_section);
-    var categories = { '': 'please select', accessions : 'accessions', breeding_programs: 'breeding_programs', genotyping_protocols : 'genotyping_protocols', locations : 'locations', plants : 'plants', plots : 'plots', seedlots: 'seedlots', trait_components : 'trait_components', traits : 'traits', trials : 'trials', trial_designs : 'trial_designs', trial_types : 'trial_types', years : 'years'};
+    var categories = { '': "selecione", accessions : 'accessions', breeding_programs: 'breeding_programs', genotyping_protocols : 'genotyping_protocols', locations : 'locations', plants : 'plants', plots : 'plots', seedlots: 'seedlots', trait_components : 'trait_components', traits : 'traits', trials : 'trials', trial_designs : 'trial_designs', trial_types : 'trial_types', years : 'years'};
     var all_categories = copy_hash(categories);
 
     for (i=0; i < this_section; i++) {
@@ -384,9 +384,9 @@ function update_download_options(this_section, categories) {
     var selected_accessions= 0;
     var selected_genotyping_protocols = 0;
     if (isLoggedIn()) {
-        jQuery('#wizard_download_phenotypes_button').prop( 'title', 'Click to Download Trial Phenotypes');
+        jQuery('#wizard_download_phenotypes_button').prop( 'title', "Clique para baixar os fenótipos do ensaio");
         jQuery('#wizard_download_phenotypes_button').removeAttr('disabled');
-        jQuery('#wizard_download_metadata_button').prop( 'title', 'Click to Download Trial Metadata');
+        jQuery('#wizard_download_metadata_button').prop( 'title', "Clique para baixar os metadados do ensaio");
         jQuery('#wizard_download_metadata_button').removeAttr('disabled');
     }
 
@@ -395,41 +395,41 @@ function update_download_options(this_section, categories) {
 	//if (data !== undefined) {console.log("data ="+data[i]);}
       if (categories[i] === 'trials' && data[i]) {
         selected_trials = 1;
-        var trial_html = '<font color="green">'+data[i].length+' trials selected</font></div>';
+        var trial_html = '<font color="green">'+data[i].length+" ensaios selecionados</font></div>";
         jQuery('#selected_trials').html(trial_html);
         jQuery('#selected_trials_metadata').html(trial_html);
       }
       if (categories[i] === 'accessions' && data[i]) {
         selected_accessions = 1;
-        var accession_html = '<font color="green">'+data[i].length+' accessions selected</font></div>';
+        var accession_html = '<font color="green">'+data[i].length+" acessos selecionados</font></div>";
         jQuery('#selected_accessions').html(accession_html);
       }
       if (categories[i] === 'genotyping_protocols' && data[i]) {
         selected_genotyping_protocols = 1;
         if (data[i].length > 1) {
-          var genotyping_protocols_html = '<font color="red">'+data[i].length+' genotyping protocols selected</font></div>';
+          var genotyping_protocols_html = '<font color="red">'+data[i].length+" protocolos de genotipagem selecionados</font></div>";
         }
         else {
-          var genotyping_protocols_html = '<font color="green">'+data[i].length+' genotyping protocols selected</font></div>';
+          var genotyping_protocols_html = '<font color="green">'+data[i].length+" protocolos de genotipagem selecionados</font></div>";
         }
         jQuery('#selected_genotyping_protocols').html(genotyping_protocols_html);
       }
     }
     if ( (selected_trials == 1 || selected_accessions == 1) && isLoggedIn()) {
-      jQuery('#download_button_genotypes').prop( 'title', 'Click to Download Accession Genotypes');
+      jQuery('#download_button_genotypes').prop( 'title', "Clique para baixar os genótipos dos acessos");
 	    jQuery('#download_button_genotypes').removeAttr('disabled');
     }
     //console.log("trials-selected="+trials_selected);
     //console.log("accessions-selected="+accessions_selected);
     if (selected_trials !== 1) {
-      jQuery('#selected_trials').html('No trials selected');
-      jQuery('#selected_trials_metadata').html('No trials selected');
+      jQuery('#selected_trials').html("Nenhum ensaio selecionado");
+      jQuery('#selected_trials_metadata').html("Nenhum ensaio selecionado");
     }
     if (selected_accessions !== 1) {
-      jQuery('#selected_accessions').html('No accessions selected');
+      jQuery('#selected_accessions').html("Nenhum acesso selecionado");
     }
     if (selected_genotyping_protocols !== 1) {
-      jQuery('#selected_genotyping_protocols').html('No genotyping protocols selected. Default will be used.');
+      jQuery('#selected_genotyping_protocols').html("Nenhum protocolo de genotipagem selecionado. Será usado o padrão.");
     }
 }
 
@@ -444,7 +444,7 @@ function reset_downstream_sections(this_section) {  // clear downstream selects,
   var replacement = '<div id="'+list_menu_id+'"></div>';
 	jQuery('#'+select_id).html('');
 	jQuery('#'+data_id).html('');
-	jQuery('#'+count_id).html('No Selection');
+	jQuery('#'+count_id).html("Nenhuma seleção");
 	jQuery('#'+querytype_id).bootstrapToggle('off');
   jQuery('#'+list_menu_id).replaceWith(replacement);
     }
@@ -497,12 +497,12 @@ function pasteList() {
     //if (window.console) console.log("list_data="+JSON.stringify(data));
 
     if (data === undefined) {
-      report_list_start_error("Unable to retrieve data from this list.");
+      report_list_start_error("Não foi possível recuperar os dados desta lista.");
       return;
     }
 
     if (data.type_name === '') {
-      report_list_start_error("Unable to start from a list of type null.");
+      report_list_start_error("Não foi possível começar a partir de uma lista sem tipo definido.");
       return;
     }
     if (data.type_name === 'years') {
@@ -514,7 +514,7 @@ function pasteList() {
       var ids = lo.transform2Ids(list_id, data);
       //if (window.console) console.log("list_ids="+JSON.stringify(ids));
       if (ids === undefined) {
-        report_list_start_error("Unable to retrieve ids from this list. Has this list been validated using the list manager?");
+        report_list_start_error("Não foi possível recuperar os IDs desta lista. A lista foi validada no gerenciador de listas?");
         return;
       }
       for (var n=0; n<elements.length; n++) { // format ids and names of list elements to display
@@ -595,9 +595,9 @@ function enable_ui() {
 }
 
 function show_list_counts(count_div, total_count, selected) {
-    var html = 'Items: '+total_count+'<br />';
+    var html = "Itens: "+total_count+'<br />';
     if (selected) {
-	html += 'Selected: '+selected;
+	html += "Selecionados: "+selected;
     }
     jQuery('#'+count_div).html(html);
 }
@@ -619,7 +619,7 @@ function clearAllOptions(obj) {
 function check_missing_criteria(categories, data, this_section) {
     var test = data.length + 1;
     if (categories.length > test) {
-	var error_html = '<div class="well well-sm" id="response_error"><font color="red">Error: Select at least one option from each preceding panel</font></div>';
+	var error_html = "<div class=\"well well-sm\" id=\"response_error\"><font color=\"red\">Erro: selecione pelo menos uma opção em cada painel anterior</font></div>";
 	var selectall_id = "c"+this_section+"_select_all";
 	jQuery('#'+selectall_id).before(error_html);
 	return 1;
@@ -647,7 +647,7 @@ function get_querytypes(this_section) {
 }
 
 function initialize_first_select() {
-  var starting_categories = { '': 'Select a starting category', accessions: 'accessions', breeding_programs: 'breeding_programs', genotyping_protocols : 'genotyping_protocols', locations : 'locations', seedlots: 'seedlots', trait_components : 'trait_components', traits : 'traits', trials : 'trials', trial_designs : 'trial_designs', trial_types : 'trial_types', years : 'years'};
+  var starting_categories = { '': "Selecione uma categoria inicial", accessions: 'accessions', breeding_programs: 'breeding_programs', genotyping_protocols : 'genotyping_protocols', locations : 'locations', seedlots: 'seedlots', trait_components : 'trait_components', traits : 'traits', trials : 'trials', trial_designs : 'trial_designs', trial_types : 'trial_types', years : 'years'};
   var start = format_options(starting_categories);
   jQuery('#select1').html(start);
 }
@@ -656,7 +656,7 @@ function add_data_refresh() {
     var roles = getUserRoles();
     //console.log("userroles="+roles);
     if (jQuery.inArray(roles, ['submitter', 'curator', 'sequencer']) >= 0) {
-	jQuery('#wizard_refresh').append('<p align="center" style="margin: 0px 0"><i>Don\'t see your data?</i></p><input class="btn btn-link center-block" id="open_update_dialog" type="button" value="Update wizard">');
+	jQuery('#wizard_refresh').append("<p align=\"center\" style=\"margin: 0px 0\"><i>Não encontrou seus dados?</i></p><input class=\"btn btn-link center-block\" id=\"open_update_dialog\" type=\"button\" value=\"Update wizard\">");
     }
 }
 
@@ -684,11 +684,11 @@ function refresh_matviews(matview_select) {
 	error: function(request, status, err) {
 		if (status == "timeout") {
                     // report timeout
-		    var error_html = '<div class="well well-sm" id="update_wizard_error"><font color="red">Timeout error. Request could not be completed within 60 second time limit.</font></div>';
+		    var error_html = "<div class=\"well well-sm\" id=\"update_wizard_error\"><font color=\"red\">Tempo limite excedido. Não foi possível concluir a solicitação em 60 segundos.</font></div>";
 		    jQuery('#update_wizard_error').replaceWith(error_html);
 		} else {
                     // report unspecified error occured
-		    var error_html = '<div class="well well-sm" id="update_wizard_error"><font color="red">Unspecified error. If this problem persists, please <a href="../../contact/form">contact developers</a></font></div>';
+		    var error_html = "<div class=\"well well-sm\" id=\"update_wizard_error\"><font color=\"red\">Erro não especificado. Se o problema persistir, por favor <a href=\"../../contact/form\">entre em contato com os desenvolvedores</a></font></div>";
 		    jQuery('#update_wizard_error').replaceWith(error_html);
 		}
             }
@@ -705,24 +705,24 @@ function matviews_update_options() {
 		    // if already refreshing, display status in modal and create disabled button
 	            var update_status = response.refreshing;
 		    jQuery('#wizard_status').replaceWith(update_status);
-		    var button_html = '<button type="button" class="btn btn-primary wiz-update" name="update_wizard" data-loading-text="Working..." id="update_wizard" title="A search wizard update is already in progress..." disabled>Update search wizard</button>';
+		    var button_html = "<button type=\"button\" class=\"btn btn-primary wiz-update\" name=\"update_wizard\" data-loading-text=\"Working...\" id=\"update_wizard\" title=\"Uma atualização do assistente de busca já está em andamento...\" disabled>Atualizar assistente de busca</button>";
 		    jQuery('#update_wizard').replaceWith(button_html);
 		} else if (response.timestamp) {
 		    // if exists display timestamp in modal and create button
 		    var update_status = response.timestamp;
 		    jQuery('#wizard_status').replaceWith(update_status);
-		    var button_html = '<button type="button" class="btn btn-primary wiz-update" name="update_wizard" data-loading-text="Working..." id="update_wizard" title="Refresh the search wizard to include newly uploaded data">Update search wizard</button>';
+		    var button_html = "<button type=\"button\" class=\"btn btn-primary wiz-update\" name=\"update_wizard\" data-loading-text=\"Working...\" id=\"update_wizard\" title=\"Atualize o assistente de busca para incluir os dados recém-enviados\">Atualizar assistente de busca</button>";
 		    jQuery('#update_wizard').replaceWith(button_html);
 		}
 	    },
 	error: function(request, status, err) {
 		if (status == "timeout") {
                     // report timeout
-		    var error_html = '<div class="well well-sm" id="wizard_status"><font color="red">Timeout error. Request could not be completed within 60 second time limit.</font></div>';
+		    var error_html = "<div class=\"well well-sm\" id=\"wizard_status\"><font color=\"red\">Tempo limite excedido. Não foi possível concluir a solicitação em 60 segundos.</font></div>";
 		    jQuery('#wizard_status').replaceWith(error_html);
 		} else {
                     // report unspecified error occured
-		    var error_html = '<div class="well well-sm" id="wizard_status"><font color="red">Unspecified error. If this problem persists, please <a href="../../contact/form">contact developers</a></font></div>';
+		    var error_html = "<div class=\"well well-sm\" id=\"wizard_status\"><font color=\"red\">Erro não especificado. Se o problema persistir, por favor <a href=\"../../contact/form\">entre em contato com os desenvolvedores</a></font></div>";
 		    jQuery('#wizard_status').replaceWith(error_html);
 		}
             }

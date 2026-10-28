@@ -27,7 +27,7 @@ my ( $messages, $count );
 if ( @{$missing_data} ) 
 {
        
-$messages .= "Data for the following field(s) is missing: <br /><br />";
+$messages .= "Faltam dados para os seguintes campos: <br /><br />";
 my $count = 1;
 foreach my $e (@{$missing_data}) {
 
@@ -41,7 +41,7 @@ $messages .= qq | <p><a href="javascript:history.go(-1)">
 
 </%perl>
 
-<& /page/page_title.mas, title => "Missing Data:" &>
+<& /page/page_title.mas, title => "Dados desaparecidos:" &>
 <&| /page/info_section.mas, title => ' ', 
   subtitle => $guide &>
  <% $messages %>  

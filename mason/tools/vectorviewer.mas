@@ -31,10 +31,10 @@ $edit_privs
 <!-- <center> -->
 <div style="text-align: center;">
     <!DOCTYPE html>
-<h1>Vector Viewer</h1>
+<h1>Visualizador de vetores</h1>
 
 <!-- Add a bit of text -->
-<p>Go wild!</p>
+<p>Vá à loucura!</p>
 
 <!-- Add a svg shape. Note that the 'target' class is attributed to the circle -->
 <!-- svg> 
@@ -76,8 +76,8 @@ $edit_privs
 <br />
 <!-- <button id="saveButton" style="btn"> Save Vector </button> -->
 <!-- <button id="loadButton" style="btn"> Load Vector </button> -->
-<button id="saveVector" style="btn"> Save Vector </button>
-<button id="loadVector" style="btn"> Load Vector </button>
+<button id="saveVector" style="btn"> Salve Vector </button>
+<button id="loadVector" style="btn"> Carregar vetor </button>
 <button id="update_vector" style="btn">Update/Reset</button>
 <button id="zoomIn" style="btn"> + </button>
 <button id="zoomOut" style="btn"> - </button>
@@ -88,7 +88,7 @@ $edit_privs
 <br />
 
 <table id="vector_table" width="80%" class="display table table-hover table-striped">
-<thead><td>Name</td><td>Start Coord</td><td>End Coord</td><td>Color</td><td>Orientation</td></thead></table>
+<thead><td>Nome</td><td>Coordenada inicial</td><td>Coordenada final</td><td>Cor</td><td>Orientação</td></thead></table>
 <br />
 <br />
 <br />
@@ -96,7 +96,7 @@ $edit_privs
 <!-- Add a svg area, empty -->
 
 <table id="vector_table2" width="20%" class="display table table-hover table-striped">
-<thead><td>RE Site</td><td>Cut Coord</td></thead></table>
+<thead><td>Sítio de restrição</td><td>Coordenada de corte</td></thead></table>
 
 <br />
 <br />
@@ -256,19 +256,19 @@ $(document).ready(function () {
 
 
    var columnDefs = [{
-      title: "Feature Name",
+      title: "Nome da característica",
       type: "text"
     }, {
-      title: "Start Coord",
+      title: "Coordenada inicial",
       type: "text"
     }, {
-      title: "End Coord"
+      title: "Coordenada final"
       //no type = text
     }, {
-      title: "Color",
+      title: "Cor",
       type: "text"
     }, {
-      title: "Orientation",
+      title: "Orientação",
       type: "text"
     }];
 
@@ -305,10 +305,10 @@ $(document).ready(function () {
 
     //RE sites table
     var columnDefs2 = [{
-      title: "Restriction Enzyme Site",
+      title: "Local da Enzima de Restrição",
       type: "text"
     }, {
-      title: "Cut Coord",
+      title: "Coordenada de corte",
       type: "text"
     }];
  
@@ -422,18 +422,18 @@ jQuery("#loadVector").click(function () {
 
 </div>
 
-<div id="saveDialog" title="Save Vector">
+<div id="saveDialog" title="Salve Vector">
 
 <input id="saveInput" ></input>
 
-<button id="dialogSaveButton"> Save </button>
+<button id="dialogSaveButton"> Salve </button>
 
 </div>
 
-<div id="loadDialog" title="Load Vector">
+<div id="loadDialog" title="Carregar vetor">
 
 <input id="loadInput" ></input>
 
-<button id="dialogLoadButton"> Load </button>
+<button id="dialogLoadButton"> Carregar </button>
 
 </div>

@@ -13,11 +13,11 @@ Isaak Y Tecle (iyt2@cornell.edu)
 </%doc>
 
 <&| /page/info_section.mas, 
-   title      => "Contact us",
+   title      => "Contate-nos",
   collapsible => 1,
   collapsed   => 1
 &>
 
-If you have any questions or feedback, please contact the <a href="/contact/form">development team</a>.
+Se você tiver alguma dúvida ou feedback, por favor, entre em contato com <a href="/contact/form">Equipe de desenvolvimento</a>.
 
 </&>

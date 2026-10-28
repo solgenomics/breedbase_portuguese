@@ -36,9 +36,9 @@ jQuery(document).ready(function() {
                     return;
                 }
                 if (response.progeny) {
-                    var html = '<table class="table borderless" alt="breeder search" border="0" ><tr><td><select multiple class="form-control" id="progeny_data" name="1" size="10" style="min-width: 200px;overflow:auto;"></select></td></tr>'
-                    html += '<tr><td><button class="btn btn-default btn-sm" id="progeny_select_all" name="1">Select All</button><br><br>'
-                    html += '<div class="well well-sm"><div id="progeny_data_count" name="1">No Selection</div></div>'
+                    var html = "<table class=\"table borderless\" alt=\"Pesquisa de criadores\" border=\"0\" ><tr><td><select multiple class=\"form-control\" id=\"progeny_data\" name=\"1\" size=\"10\" style=\"min-width: 200px;overflow:auto;\"></select></td></tr>"
+                    html += "<tr><td><button class=\"btn btn-default btn-sm\" id=\"progeny_select_all\" name=\"1\">Selecionar todos</button><br><br>"
+                    html += "<div class=\"well well-sm\"><div id=\"progeny_data_count\" name=\"1\">Nenhuma seleção</div></div>"
                     html += '<div id="progeny_to_list_menu"></div><td><tr></table>'
 
                     jQuery('#progeny_information_div').html(html);
@@ -84,7 +84,7 @@ jQuery(document).ready(function() {
                 } // close if (response.progeny)
             },
             error: function(response, a, b) {
-                jQuery('#progeny_information_div').html('An error occurred. '+a +' '+ b);
+                jQuery('#progeny_information_div').html("Ocorreu um erro. "+a +' '+ b);
             }
 	    });
     }
@@ -125,14 +125,14 @@ jQuery(document).ready(function() {
                 },
                 text: "OK"
             } ,
-            'Cancel': {
+            "Cancelar": {
                 id: 'add_more_progeny_dialog_cancel_button',
                 click:  function() { jQuery('#add_more_progeny_dialog').dialog("close") },
-                text: "Cancel"
+                text: "Cancelar"
             }
         },
         autoOpen: false,
-        title: 'Add more progeny'
+        title: "Adicionar mais progênies"
     });
 
     function add_more_progeny(cross_id, cross_name, basename, start_number, progeny_count) {
@@ -144,13 +144,13 @@ jQuery(document).ready(function() {
                 if (response.error) {
                     alert(response.error);
                 }
-                else { alert('Added '+progeny_count+' new progeny');
+                else { alert("Adicionadas "+progeny_count+" novas progênies");
                     jQuery('#working').dialog("close");
                     display_progeny(get_cross_id());
                     jQuery('#add_more_progeny_dialog').dialog("close");
                 }
             },
-            error: function(response, code, error) { alert('error: '+error); }
+            error: function(response, code, error) { alert("erro: "+error); }
         });
     }
 
@@ -158,14 +158,14 @@ jQuery(document).ready(function() {
         height: 250,
         width: 500,
         buttons: {
-	        'Done': {
+	        "Concluído": {
                 id: 'edit_properties_dialog_done_button',
                 click:  function() { jQuery('#edit_properties_dialog').dialog("close") },
-                text: "Done",
+                text: "Concluído",
             }
         },
         autoOpen: false,
-        title: 'Edit Field Crossing Data'
+        title: "Editar dados de cruzamentos de campo"
     });
 
     jQuery('#edit_properties_link').click( function() {
@@ -225,13 +225,13 @@ jQuery(document).ready(function() {
             if (response.error) { alert(response.error); }
             var yes;
             if (response.message) {
-                yes = confirm(response.message + " Continue? ");
+                yes = confirm(response.message + " Continuar? ");
                 if (yes) {
-                    alert("Saving it.");
+                    alert("Salvando.");
                     save_property(cross_id, type, value);
                 }
                 else {
-                    alert("Not saving.");
+                    alert("Não será salvo.");
                 }
             }
             if (response.success) {
@@ -239,7 +239,7 @@ jQuery(document).ready(function() {
                 property_table.ajax.relaod();
             }
         }).fail( function() {
-            alert("The request for checking the parameters failed. Please try again.");
+            alert("A solicitação de verificação dos parâmetros falhou. Tente novamente.");
         });
     }
 
@@ -251,7 +251,7 @@ jQuery(document).ready(function() {
             get_properties(get_cross_id());
             save_confirm(response);
         }).fail( function(response, x, y) {
-            alert("An error occurred saving the property. "+y);
+            alert("Ocorreu um erro ao salvar a propriedade. "+y);
         });
     }
 
@@ -261,7 +261,7 @@ jQuery(document).ready(function() {
             return;
         }
         else {
-            alert("The property was successfully saved.");
+            alert("A propriedade foi salva com sucesso.");
         }
     }
 
@@ -300,14 +300,14 @@ jQuery(document).ready(function() {
         height: 150,
         width: 500,
         buttons: {
-	        'Done': {
+	        "Concluído": {
                 id: 'edit_additional_info_dialog_done_button',
                 click:  function() { jQuery('#edit_additional_info_dialog').dialog("close") },
-                text: "Done",
+                text: "Concluído",
             }
         },
         autoOpen: false,
-        title: 'Edit Additional Parent Info'
+        title: "Editar informações adicionais dos parentais"
     });
 
     jQuery('#edit_additional_info_link').click( function() {
@@ -344,7 +344,7 @@ jQuery(document).ready(function() {
             display_cross_additional_info(get_cross_id());
             save_confirm(response);
         }).fail( function(response, x, y) {
-            alert("An error occurred saving the property. "+y);
+            alert("Ocorreu um erro ao salvar a propriedade. "+y);
         });
     }
 

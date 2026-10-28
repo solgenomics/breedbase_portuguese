@@ -19,9 +19,9 @@ $form
 </%args>
 
 
-<& /page/page_title.mas, title => "solGS: Search Traits" &>
+<& /page/page_title.mas, title => "Procure Características" &>
 <&| /page/info_section.mas,
-  title => "Search ",
+  title => "Buscar ",
 &>
 
 <% $form %>

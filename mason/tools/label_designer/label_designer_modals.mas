@@ -7,7 +7,7 @@
                     <div class="col-md-3"></div>
                     <div class="col-md-6">
                         <center>
-                            <input type="text" class="form-control" id="d3-custom-input" placeholder="Type here" autofocus>
+                            <input type="text" class="form-control" id="d3-custom-input" placeholder="Digite aqui" autofocus>
                         </center>
                     </div>
                     <div class="col-md-3"></div>
@@ -16,22 +16,22 @@
                 <div class="row">
                     <div class="col-md-6">
                         <center>
-                            <label>Add Variable:</label><br>
+                            <label>Adicionar variável:</label><br>
                             <select id="d3-custom-add-field-input" class="form-control"></select>
                         </center>
                     </div>
                     <div class="col-md-6">
                         <center>
-                            <label>Add Custom Number:</label><br>
-                            <input type="number" class="form-control" id="start_number" placeholder="Start Number">
-                            <input type="number" class="form-control" id="increment_number" placeholder="Increment Number">
-                            <button class="btn btn-primary" id="d3-add-number">Add</button>
+                            <label>Adicionar número personalizado:</label><br>
+                            <input type="number" class="form-control" id="start_number" placeholder="Número de início">
+                            <input type="number" class="form-control" id="increment_number" placeholder="Número de Incremento">
+                            <button class="btn btn-primary" id="d3-add-number">Adicionar</button>
                         </center>
                     </div>
                 </div>
                 <br>
                 <div class="row">
-                    <center><button class="btn btn-primary" id="d3-custom-preview">See Preview</button></center><br><br>
+                    <center><button class="btn btn-primary" id="d3-custom-preview">Veja a visualização</button></center><br><br>
                     <div class="col-md-3"></div>
                     <div class="col-md-6">
                         <center><p id="d3-custom-content"></p></center>
@@ -40,8 +40,8 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button id="d3-custom-field-save" type="button" class="btn btn-primary" data-dismiss="modal">Ok</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                <button id="d3-custom-field-save" type="button" class="btn btn-primary" data-dismiss="modal">Certo</button>
             </div>
         </div>
     </div>
@@ -57,29 +57,29 @@
                     <div class="col-md-1"></div>
                     <div class="col-md-10">
                         <center>
-                            <label>Additional Settings:</label>
+                            <label>Configurações adicionais:</label>
                         <br>
-                        <img src="/static/img/print_setting_options.png" class="img-responsive" alt="printer settings" height="196" width="480" style="border: 1px solid black;">
+                        <img src="/static/img/print_setting_options.png" class="img-responsive" alt="Configurações da impressora" height="196" width="480" style="border: 1px solid black;">
                     </center>
                     </div>
                     <div class="col-md-1"></div>
                 </div>
                 <div class="col-md-12" id="">
                     <center>
-                        <label class='radio'><input type="radio" name="dimoptradio2" id="dim_inches2" class="radio-select-imperial" value="inch">Imperial (inches)</label>
-                        <label class='radio'><input type="radio" name="dimoptradio2" id="dim_cm2" class="radio-select-metric" value="cm" checked>Metric (cm)</label>
+                        <label class='radio'><input type="radio" name="dimoptradio2" id="dim_inches2" class="radio-select-imperial" value="inch">Imperial</label>
+                        <label class='radio'><input type="radio" name="dimoptradio2" id="dim_cm2" class="radio-select-metric" value="cm" checked>Sistema métrico (cm)</label>
                     </center>
                     <div class="col-md-1">
                     </div>
                     <div class="col-md-5">
                         <center>
-                            <br><label>Top Margin:</label><br>
+                            <br><label>Margem superior:</label><br>
                             <input class="form-control"  type="number" id="top_margin" style="max-width: 100%;">
                         </center>
                     </div>
                     <div class="col-md-5">
                         <center>
-                            <br><label>Left Margin:</label><br>
+                            <br><label>Margem esquerda:</label><br>
                             <input class="form-control"  type="number" id="left_margin" style="max-width: 100%;">
                         </center>
                     </div>
@@ -89,13 +89,13 @@
                     <div class="col-md-1"></div>
                     <div class="col-md-5">
                         <center>
-                            <br><label>Horizontal Gap:</label><br>
+                            <br><label>Gap horizontal:</label><br>
                             <input class="form-control"  type="number" id="horizontal_gap" style="max-width: 100%;">
                         </center>
                     </div>
                     <div class="col-md-5">
                         <center>
-                            <br><label>Vertical Gap:</label><br>
+                            <br><label>Gap vertical:</label><br>
                             <input class="form-control" type="number" id="vertical_gap" style="max-width: 100%;">
                         </center>
                     </div>
@@ -105,14 +105,14 @@
                     <div class="col-md-1"></div>
                     <div class="col-md-5">
                         <center>
-                            <br><label>Number of Columns:</label>
-                            <input class="form-control" placeholder="Num labels across" type="number" id="number_of_columns" style="max-width: 100%;">
+                            <br><label>Número de colunas:</label>
+                            <input class="form-control" placeholder="Nom rótulos através" type="number" id="number_of_columns" style="max-width: 100%;">
                         </center>
                     </div>
                     <div class="col-md-5">
                         <center>
-                            <br><label>Number of Rows:</label>
-                            <input class="form-control" placeholder="Num labels down" type="number" id="number_of_rows" style="max-width: 100%;">
+                            <br><label>Número de linhas:</label>
+                            <input class="form-control" placeholder="Etiquetas para baixo" type="number" id="number_of_rows" style="max-width: 100%;">
                         </center>
                     </div>
                     <div class="col-md-1"></div>
@@ -121,14 +121,14 @@
                     <div class="col-md-1"></div>
                     <div class="col-md-5">
                         <center>
-                        <br><label>Limit by Rep:</label>
+                        <br><label>Limite por Rep:</label>
                             <select class="form-control" id="plot_filter" name="plot_filter" style="max-width: 100%">
                             </select>
                         </center>
                     </div>
                     <div class="col-md-5">
                         <center>
-                            <br><label>Copies per label:</label>
+                            <br><label>Cópias por rótulo:</label>
                             <input class="form-control" id="copies_per_plot" name="copies_per_plot" type="number" value="1" style="max-width: 100%;">
                         </center>
                     </div>
@@ -149,8 +149,8 @@
                     <div class="col-md-1"></div>
                     <div class="col-md-10">
                         <br /><br />
-                        <p><strong>Position of First Label:</strong><br />
-                        Set the column and row number of where to print the first label, if using a sheet that has already been partially used</p>
+                        <p><strong>Posição da Primeira Marca:</strong><br />
+                        Defina a coluna e o número da linha de onde imprimir o primeiro rótulo, se usar uma folha que já foi parcialmente usada.</p>
                     </div>
                     <div class="col-md-1"></div>
                 </div>
@@ -158,13 +158,13 @@
                     <div class="col-md-1"></div>
                     <div class="col-md-5">
                         <center>
-                            <br><label>Start Column:</label>
+                            <br><label>Coluna inicial:</label>
                             <input class="form-control" id="start_col" name="start_col" type="number" value="1" style="max-width: 100%;">
                         </center>
                     </div>
                     <div class="col-md-5">
                         <center>
-                            <br><label>Start Row:</label>
+                            <br><label>Linha de início:</label>
                             <input class="form-control" id="start_row" name="start_row" type="number" value="1" style="max-width: 100%;">
                         </center>
                     </div>
@@ -172,8 +172,8 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button id="d3-edit-additional-settings" type="button" class="btn btn-primary" data-dismiss="modal">Save</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                <button id="d3-edit-additional-settings" type="button" class="btn btn-primary" data-dismiss="modal">Salve</button>
             </div>
         </div>
     </div>
@@ -187,7 +187,7 @@
                     <div class="col-md-1"></div>
                     <div class="col-md-10">
                         <center>
-                            <label>Batch Download:</label>
+                            <label>Lote Download:</label>
                         <br>
                         <p id="batch_download_message"></p>
                     </center>
@@ -198,13 +198,13 @@
                     <div class="col-md-1"></div>
                     <div class="col-md-5">
                         <center>
-                            <br><label>Start Number:</label><br>
+                            <br><label>Número de início:</label><br>
                             <input class="form-control" placeholder="0" type="number" id="label_designer_start_number" style="max-width: 100%;">
                         </center>
                     </div>
                     <div class="col-md-5">
                         <center>
-                            <br><label>End Number:</label><br>
+                            <br><label>Número final:</label><br>
                             <input class="form-control" placeholder="1000" type="number" id="label_designer_end_number" style="max-width: 100%;">
                         </center>
                     </div>
@@ -212,8 +212,8 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button id="d3-batch-download-submit" type="button" class="btn btn-primary" data-dismiss="modal">Download</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                <button id="d3-batch-download-submit" type="button" class="btn btn-primary" data-dismiss="modal">Baixar</button>
             </div>
         </div>
     </div>

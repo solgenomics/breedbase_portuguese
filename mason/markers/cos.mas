@@ -58,7 +58,7 @@ $marker
     $trace_name="<a href=\"$est_read_page$trace_name\">$trace_name</a>"
   }
   else {
-    $trace_name="<span class=\"ghosted\">None</span>";
+    $trace_name="<span class=\"ghosted\">Nenhum</span>";
   }
 
   my $orth = <<EOT;
@@ -88,7 +88,7 @@ EOT
 </%perl>
 
 
-<&| /page/info_section.mas, title=>'COS information' &> <% $basic.$orth.$genbank %> </&>
+<&| /page/info_section.mas, title=>'Informação COS' &> <% $basic.$orth.$genbank %> </&>
 
 
 

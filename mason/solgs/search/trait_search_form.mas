@@ -22,7 +22,7 @@ $gs_traits_index => undef
 <&| /page/info_section.mas,
   collapsible => 1, 
   collapsed   => 1,
-  title => "Or search for a trait ",
+  title => "Ou procurar um característica ",
 &>
 
 <!-- <div id="gs_traits_index" class="row" style="margin: 20px 2px 60px;"> -->
@@ -31,7 +31,7 @@ $gs_traits_index => undef
 
 <div id="search_trait_form" class="row">
   <div style="padding-top: 40px;" align="center" class="form-inline">
-    <input type="text" id="search_trait_entry" class="form-control" size="35px" placeholder="enter trait name"/>
+    <input type="text" id="search_trait_entry" class="form-control" size="35px" placeholder="Digite o nome da característica"/>
   
     <button id="search_trait" type="submit" class="btn btn-success"> 
       <span class="glyphicon glyphicon-search"></span>

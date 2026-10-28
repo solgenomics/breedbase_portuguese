@@ -5,56 +5,56 @@
 <& /util/import_javascript.mas, classes => [ 'jquery', 'jquery.dataTables', 'jquery.dataTables-select-min' ] &>
 <& /util/import_css.mas, paths => ['/documents/inc/datatables/jquery.dataTables.css', '/documents/inc/datatables/custom_datatable_select_styles.css'] &>
 
-<& /page/page_title.mas, title => "Treatment Search" &>
+<& /page/page_title.mas, title => "Busca de Tratamentos" &>
 
-    <&| /page/info_section.mas, title => 'Search', collapsible=>1, collapsed=>0 &>
+    <&| /page/info_section.mas, title => 'Buscar', collapsible=>1, collapsed=>0 &>
         <div id="treatment_search_form" class="form-horizontal well">
             <div class="form-group form-group-sm">
-                <label class="col-sm-3 control-label">Select Ontology Name(s): </label>
+                <label class="col-sm-3 control-label">Selecione Nome(s) da Ontologia: </label>
                 <div class="col-sm-9" >
                     <div id="treatment_search_ontology_select"></div>
                 </div>
             </div>
             <div class="form-group form-group-sm">
-                <label class="col-sm-3 control-label">Search Treatment Name: </label>
+                <label class="col-sm-3 control-label">Nome do tratamento de busca: </label>
                 <div class="col-sm-9" >
-                    <input type="text" class="form-control" id="treatment_search_name" placeholder="Search any treatment name or piece of name"/>
+                    <input type="text" class="form-control" id="treatment_search_name" placeholder="Procure qualquer nome de tratamento ou pedaço de nome"/>
                 </div>
             </div>
             <div class="form-group form-group-sm">
-                <label class="col-sm-3 control-label">Search Treatment ID: </label>
+                <label class="col-sm-3 control-label">Identificação do tratamento de busca: </label>
                 <div class="col-sm-9" >
-                    <input type="text" class="form-control" id="treatment_search_id" placeholder="Search any trait ID or part of an ID"/>
+                    <input type="text" class="form-control" id="treatment_search_id" placeholder="Procure qualquer identificação ou parte de uma identidade"/>
                 </div>
             </div>
             <div class="form-group form-group-sm">
-                <label class="col-sm-3 control-label">Search Treatment Synonym: </label>
+                <label class="col-sm-3 control-label">Sinónimo: </label>
                 <div class="col-sm-9" >
-                    <input type="text" class="form-control" id="treatment_search_synonym" placeholder="Search any trait synonym or part of a synonym"/>
+                    <input type="text" class="form-control" id="treatment_search_synonym" placeholder="Procure qualquer sinônimo ou parte de um sinônimo"/>
                 </div>
             </div>
             <div class="form-group form-group-sm">
-                <label class="col-sm-3 control-label">Search Definition: </label>
+                <label class="col-sm-3 control-label">Definição de busca: </label>
                 <div class="col-sm-9" >
-                    <input type="text" class="form-control" id="treatment_search_definition" placeholder="Search any word or piece of definition"/>
+                    <input type="text" class="form-control" id="treatment_search_definition" placeholder="Procure qualquer palavra ou peça de definição"/>
                 </div>
             </div>
             <div class="form-group form-group-sm">
-                <label class="col-sm-3 control-label">Subset Treatments: </label>
+                <label class="col-sm-3 control-label">Tratamentos Subset: </label>
                 <div class="col-sm-9" >
                     <div id="treatment_search_list_select">
-                        [LOADING...]
+                        [Carregando ...]
                     </div>
                 </div>
             </div>
         </div>
 
         <center>
-            <button class="btn btn-primary" id="submit_treatment_search" />Search</button>
+            <button class="btn btn-primary" id="submit_treatment_search" />Buscar</button>
         </center>
     </&>
 
-    <&| /page/info_section.mas, title => 'Results', collapsible=>1, collapsed=>0 &>
+    <&| /page/info_section.mas, title => 'Resultados', collapsible=>1, collapsed=>0 &>
 
         <div class="well well-sm">
             <div class="panel panel-default">
@@ -63,18 +63,18 @@
                     <table id="treatment_search_results" width="100%" class="table table-hover table-striped">
                     <thead>
                       <tr>
-                        <th>Select</th>
-                        <th>Copy Name|ID</th>
-                        <th>Treatment ID</th>
-                        <th>Treatment Name</th>
-                        <th>Definition</th>
-                        <th>Treatment&nbsp;Usage</th>
+                        <th>Selecionar</th>
+                        <th>Copiando nome!</th>
+                        <th>ID do tratamento</th>
+                        <th>Nome do Tratamento</th>
+                        <th>Definição</th>
+                        <th>Uso do Tratamento</th>
                       </tr>
                     </thead>
                     </table>
 
-                    <button type="button" class="selectAll-dt">Select All</button>
-                    <button type="button" class="deselectAll-dt">Deselect All</button>
+                    <button type="button" class="selectAll-dt">Selecionar todos</button>
+                    <button type="button" class="deselectAll-dt">Deseleccionar tudo</button>
 
                 </div>
             </div>
@@ -82,9 +82,9 @@
             <div class="panel panel-default">
                 <div class="panel-body">
 
-                    <&| /page/info_section.mas, title => 'Copy Selected Results to a List', collapsible=>1, collapsed=>0, subtitle=>'<i>Copy the treatment names currently selected in the search results table to a new or exisiting list</i>'&>
+                    <&| /page/info_section.mas, title => 'Copiar resultados selecionados para uma lista', collapsible=>1, collapsed=>0, subtitle=>'<i>Copie os nomes de tratamento atualmente selecionados na tabela de resultados de busca para uma nova ou exisiting lista</i>'&>
                     <br>
-                    <p><em><span id="treatment_result_count">0</span> treatment(s) selected.</em></p>
+                    <p><em><span id="treatment_result_count">0</span> Tratamento(s) selecionado(s).</em></p>
                     <div style="text-align:right" id="treatments_to_list_menu"></div>
                     <div id="treatment_result_names" style="display: none;"></div>
                     </&>
@@ -105,7 +105,7 @@ jQuery(document).ready(function () {
     jQuery('[data-toggle="tooltip"]').tooltip();
 
     var lo = new CXGN.List();
-    jQuery('#treatment_search_list_select').html(lo.listSelect('treatment_search_list_select', [ 'traits' ], 'Leave blank to see all treatments', undefined, undefined));
+    jQuery('#treatment_search_list_select').html(lo.listSelect('treatment_search_list_select', [ 'traits' ], "Deixe em branco para visualizar todos os tratamentos", undefined, undefined));
 
     jQuery(document).on('change', '#treatment_search_list_select', function(){
         _draw_treatment_search_result_table();

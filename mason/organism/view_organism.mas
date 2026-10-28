@@ -33,22 +33,22 @@ $images => []
 my $this_page = "/organism/$organism_id/view/";
 my $image_subtitle =
 !$privileged_user ?
-"<span class= \"ghosted\">[Add new image]</span> "
-: " <a href=\"/image/add?type_id=$organism_id&type=organism&action=new&refering_page=$this_page\">[ Add new image]</a>" ;
+"<span class= \"ghosted\">[Adicionar nova imagem]</span> "
+: " <a href=\"/image/add?type_id=$organism_id&type=organism&action=new&refering_page=$this_page\">[ Adicionar nova imagem]</a>" ;
 </%perl>
 
 <& /util/import_javascript.mas, classes => ["jquery", "thickbox", "CXGN.Page.FormattingHelpers"] &>
 
 
-<& /page/page_title.mas, title=>"Details for $taxon <i>$organism_name</i>" &>
+<& /page/page_title.mas, title=>"Detalhes para $taxon <i>$organism_name</i>" &>
 
-<&| /page/info_section.mas, title=>'Basic information' &>
+<&| /page/info_section.mas, title=>'Informações básicas' &>
 <& /organism/basic_info.mas, name=>$organism_name, common_name=>$common_name, description=>$description, comment=>$comment, synonyms=> \@synonyms &>
 </&>
 
 <& /organism/taxonomy.mas, taxonomy=>$taxonomy &>
 
-<&| /page/info_section.mas, title=>"Images" , subtitle=>$image_subtitle &>
+<&| /page/info_section.mas, title=>"Imagens" , subtitle=>$image_subtitle &>
 <& /image/print_images.mas, images => $images &>
 </&>
 
@@ -57,17 +57,17 @@ my $image_subtitle =
 
 % if ($taxon ne 'species' && $taxon ne 'subspecies') { return; }
 
-<&| /page/info_section.mas, title=>'Metabolic details' &>
+<&| /page/info_section.mas, title=>'Detalhes metabólicos' &>
 <% $solcyc_link %>
 </&>
 
-<&| /page/info_section.mas, title=>'Genome data', collapsible=>1 &>
+<&| /page/info_section.mas, title=>'Dados do genoma', collapsible=>1 &>
 <& /organism/genomic_details.mas, ploidy => $ploidy, genome_size=>$genome_size, chromosome_number => $chromosome_number, loci=>$loci, maps=>$maps &>
 
 
 </&>
 
-<&| /page/info_section.mas, title=>'Transcript Information', collapsible => 1 &>
+<&| /page/info_section.mas, title=>'Tradução:', collapsible => 1 &>
 
 % my @links = map { qq|<a href="/content/library_info.pl?library=$_">$_</a>| } @libraries;
 
@@ -79,7 +79,7 @@ my $image_subtitle =
 </&>
 
 
-<&| /page/info_section.mas, title=>'Phenomic Details', collapsible=>1 &>
+<&| /page/info_section.mas, title=>'Detalhes Fenômicos', collapsible=>1 &>
 
 Number of phenotyped lines : <% $phenotypes %>
 <br />
@@ -89,7 +89,7 @@ Number of ontology annotations : <% $onto_count %>
 <br /><br />
 
 
-<&| /page/info_section.mas, title=>'QTL data', is_subsection=>1 &>
+<&| /page/info_section.mas, title=>'Dados QTL', is_subsection=>1 &>
 
 % if ($qtl_data) {
   <& /page/columnar_table.mas,

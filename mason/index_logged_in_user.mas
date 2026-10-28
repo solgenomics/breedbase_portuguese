@@ -52,8 +52,8 @@ Seu perfil atual é "<% $display_role %>".
 Intervalo:&nbsp;
 
 <select id="interval">
-    <option value="day">dia</option>
-    <option value="week">semana</option>
+    <option value="day">Dia</option>
+    <option value="week">Semana</option>
     <option value="month">mês</option>
     <option value="year">ano</option>
 </select>

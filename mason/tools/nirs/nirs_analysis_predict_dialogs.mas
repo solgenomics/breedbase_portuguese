@@ -5,57 +5,57 @@
   <div class="modal-dialog modal-xl" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="nirsAnalysisPredictionDialog">Predict Phenotypes From Spectral Model</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="nirsAnalysisPredictionDialog">Fenótipos preditos do Modelo Espectral</h4>
       </div>
       <div class="modal-body">
         <div class="container-fluid">
 
             <&| /util/workflow.mas, id=> "nirs_analysis_prediction_workflow" &>
-                <&| /util/workflow.mas:step, title=> "Intro" &>
-                    <& /page/page_title.mas, title=>"This workflow will guide you through predicting phenotypes from trained spectral models in the database." &>
+                <&| /util/workflow.mas:step, title=> "Introdução" &>
+                    <& /page/page_title.mas, title=>"Este fluxo de trabalho irá guiá-lo através da previsão de fenótipos de modelos espectrais treinados no banco de dados." &>
                     <br/><br/>
                     <center>
-                    <button class="btn btn-primary" onclick="Workflow.complete(this); return false;">Go to Next Step</button>
+                    <button class="btn btn-primary" onclick="Workflow.complete(this); return false;">Vá para o próximo passo</button>
                     </center>
                 </&>
-                <&| /util/workflow.mas:step, title=> "Test Dataset" &>
-                    <& /page/page_title.mas, title=>"Select the dataset you are interested in predicting phenotypes for (the accessions or plots or tissues samples in the dataset need to have spectra uploaded):" &>
+                <&| /util/workflow.mas:step, title=> "Dataset de teste" &>
+                    <& /page/page_title.mas, title=>"Selecione o conjunto de dados que você está interessado em prever fenótipos para (os acessos ou parcelas ou amostras de tecidos no conjunto de dados precisam ter espectros carregados):" &>
                     <br/><br/>
                     <form class="form-horizontal">
                         <div class="form-group">
-                            <label class="col-sm-1 control-label">Dataset: </label>
+                            <label class="col-sm-1 control-label">Conjunto de dados: </label>
                             <div class="col-sm-11" >
                                 <div id="nirs_analysis_prediction_dataset_select_div"></div>
                             </div>
                         </div>
                     </form>
                     <center>
-                    <button class="btn btn-primary" id="nirs_analysis_prediction_dataset_select_step">Go to Next Step</button>
+                    <button class="btn btn-primary" id="nirs_analysis_prediction_dataset_select_step">Vá para o próximo passo</button>
                     </center>
                 </&>
-                <&| /util/workflow.mas:step, title=> "Spectral Model" &>
-                    <& /page/page_title.mas, title=>"Select the spectral model to use in predictions" &>
+                <&| /util/workflow.mas:step, title=> "Modelo Espectral" &>
+                    <& /page/page_title.mas, title=>"Selecione o modelo espectral para usar em previsões" &>
 
                     <center>
-                    <button class="btn btn-info" id="nirs_analysis_prediction_dataset_info">More Info</button>
+                    <button class="btn btn-info" id="nirs_analysis_prediction_dataset_info">Mais informações</button>
                     </center>
                     <hr>
 
                     <div id="nirs_analysis_prediction_model_select_div"></div>
 
                     <center>
-                    <button class="btn btn-primary" id="nir_analysis_prediction_model_step">Predict</button>
+                    <button class="btn btn-primary" id="nir_analysis_prediction_model_step">Predizer</button>
                     </center>
                 </&>
-                <&| /util/workflow.mas:step, title=> "Summary" &>
-                    <& /page/page_title.mas, title=>"Summary of the predictions" &>
+                <&| /util/workflow.mas:step, title=> "Resumo" &>
+                    <& /page/page_title.mas, title=>"Resumo das previsões" &>
 
                     <div class="form-horizontal">
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">Do you want to save the prediction results?: </label>
+                            <label class="col-sm-3 control-label">Quer salvar os resultados da previsão? </label>
                             <div class="col-sm-9" >
-                                <button class="btn btn-primary" id="nir_analysis_prediction_analysis_save_step">Save the Results</button>
+                                <button class="btn btn-primary" id="nir_analysis_prediction_analysis_save_step">Salve os resultados</button>
                             </div>
                         </div>
                     </div>
@@ -69,7 +69,7 @@
 
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
       </div>
     </div>
   </div>
@@ -79,18 +79,18 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="nirsAnalysisPredictionInfoDialog">Predict Phenotypes from Spectral Model</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="nirsAnalysisPredictionInfoDialog">Fenótipos preditos do Modelo Espectral</h4>
       </div>
       <div class="modal-body">
         <div class="container-fluid">
 
-            <h1>More </h1>
+            <h1>Mais </h1>
 
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
       </div>
     </div>
   </div>
@@ -117,7 +117,7 @@ jQuery(document).ready(function(){
         });
 
         if(selected.length > 1 || selected.length == 0) {
-            alert('Please select one dataset!');
+            alert("Selecione um conjunto de dados!");
             return false;
         }
         else {
@@ -139,7 +139,7 @@ jQuery(document).ready(function(){
         });
 
         if(selected.length > 1 || selected.length == 0) {
-            alert('Please select one model!');
+            alert("Selecione um modelo!");
             return false;
         }
         else {
@@ -164,7 +164,7 @@ jQuery(document).ready(function(){
                         return false;
                     }
 
-                    var html = "<table class='table table-bordered table-hover'><thead><tr><th>Stock</th><th>Prediction</th></tr></thead><tbody>";
+                    var html = "<table class='table table-bordered table-hover'><thead><tr><th>Material</th><th>Predição</th></tr></thead><tbody>";
                     for (var i=0; i<response.unique_plots.length; i++) {
                         html = html + '<tr><td>'+response.unique_plots[i]+'</td><td>'+response.result_predictions[response.unique_plots[i]][response.unique_traits[0]][0]+'</td></tr>';
                     }
@@ -196,7 +196,7 @@ jQuery(document).ready(function(){
                     window.scrollTo(0,0);
                 },
                 error: function(response){
-                    alert('Error predicting phenotypes from NIRS!');
+                    alert("Erro ao predizer fenótipos a partir de NIRS!");
                     jQuery('#working_modal').modal('hide');
                 }
             });

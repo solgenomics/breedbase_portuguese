@@ -52,8 +52,8 @@ CXGN.Page.FormattingHelpers.update_numerical_range_input = function(id,unitstr) 
   var end    = id+'_e';
   document.getElementById(value2).style.visibility= ( (document.getElementById(range).value=='bet') ? 'visible' : 'hidden' );
   document.getElementById(end).style.visibility= ( (document.getElementById(range).value=='bet') ? 'visible' : 'hidden' );
-  document.getElementById(middle).innerHTML = ( (document.getElementById(range).value=='bet') ? 'and' : unitstr );
-  document.getElementById(end).innerHTML = ( (document.getElementById(range).value=='bet') ? unitstr : 'and' );
+  document.getElementById(middle).innerHTML = ( (document.getElementById(range).value=="Aposto") ? "e" : unitstr );
+  document.getElementById(end).innerHTML = ( (document.getElementById(range).value=="Aposto") ? unitstr : "e" );
 };
 
 

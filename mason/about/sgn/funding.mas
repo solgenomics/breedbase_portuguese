@@ -2,7 +2,7 @@
 
 use CXGN::Page::FormattingHelpers qw/info_section_html info_table_html/;
 
-print info_section_html( title => 'Funding', contents => <<EOHTML);
+print info_section_html( title => 'Financiamento', contents => <<EOHTML);
 
 SGN gratefully acknowledges funding from the following funding sources:
 <br /><br />
@@ -42,7 +42,7 @@ SGN gratefully acknowledges funding from the following funding sources:
 
 EOHTML
 
- print info_section_html( title=>"Acknowledgments", contents=><<EOHTML );
+ print info_section_html( title=>"Agradecimentos", contents=><<EOHTML );
 <p>Special thanks to the <a href="http://cbsu.tc.cornell.edu">Cornell Biological Services Unit</a> for making their compute clusters available for some of our analyses.</p>
 <p>Some data on SGN was obtained from EU-SOL projects. Special thanks to our colleagues at EU-SOL. <br />
 <center>

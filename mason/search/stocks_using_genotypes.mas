@@ -5,10 +5,10 @@
 
 <& /util/import_javascript.mas, classes => [ 'jquery', 'jquery.dataTables' ] &>
 
-<& /page/page_title.mas, title=>'Search Accessions Containing Specific Genotypes' &>
+<& /page/page_title.mas, title=>'Acessos de busca contendo genótipos específicos' &>
 
 <!--
-<&| /page/info_section.mas, title=>'Step 1: Select a set of accessiions (dataset)'&>
+<&| /page/info_section.mas, title=>'Passo 1: Selecione um conjunto de acessos'&>
     <div class="row" id="search_form_1" >
         <div class="col-sm-1">
         </div>
@@ -19,7 +19,7 @@
 </&>
 -->
 
-<&| /page/info_section.mas, title=>'Step 1:'&>
+<&| /page/info_section.mas, title=>'Passo 1:'&>
     <div class="row" id="search_form_1" >
         <div class="col-sm-1">
         </div>
@@ -28,11 +28,11 @@
                 <div class="col-sm-11">
                     <div class="form-horizontal">
                         <div class="form-group">
-                            <label class="control-label col-sm-4">Select a list of accessions:</label>
+                            <label class="control-label col-sm-4">Selecione uma lista de acessos:</label>
                             <div class="col-sm-8" >
                                 <div class="input-group">
                                     <select class="form-control" id="stock_list_select">
-                                        <option value="">Select a list of accessions</option>
+                                        <option value="">Selecione uma lista de acessos</option>
                                     </select>
                                 </div>
                             </div>
@@ -45,7 +45,7 @@
 </&>
 
 <br>
-<&| /page/info_section.mas, title=>'Step 2:'&>
+<&| /page/info_section.mas, title=>'Passo 2:'&>
     <div class="row" id="search_form_2" >
         <div class="col-sm-1">
         </div>
@@ -54,11 +54,11 @@
                 <div class="col-sm-11">
                     <div class="form-horizontal">
                         <div class="form-group">
-                            <label class="control-label col-sm-4">Select a list of marker alleles:</label>
+                            <label class="control-label col-sm-4">Selecione uma lista de alelos marcadores:</label>
                             <div class="col-sm-8" >
                                 <div class="input-group">
                                     <select class="form-control" id="markerset_select">
-                                        <option value="">Select a list of marker alleles</option>
+                                        <option value="">Selecione uma lista de alelos de marcadores</option>
                                     </select>
                                 </div>
                             </div>
@@ -66,7 +66,7 @@
                         <div class="form-group">
                             <label class="control-label col-sm-4"></label>
                             <div class="col-sm-8" >
-                                <a href="/breeders/markers"><p>Need to create a list of marker alleles.</p></a>
+                                <a href="/breeders/markers"><p>Preciso criar uma lista de alelos marcadores.</p></a>
                             </div>
                         </div>
                     </div>
@@ -76,7 +76,7 @@
     </div>
 </&>
 <br>
-<&| /page/info_section.mas, title=>'Step 3:'&>
+<&| /page/info_section.mas, title=>'Passo 3:'&>
     <div class="row" id="search_form_3" >
         <div class="col-sm-1">
         </div>
@@ -87,7 +87,7 @@
                         <div class="form-group">
                             <label class="control-label col-sm-4"></label>
                             <div class="col-sm-8" >
-                                <button class="btn btn-primary" id="search_accessions_using_markerset"><i class="glyphicon glyphicon-search"></i> Search Accessions</button>
+                                <button class="btn btn-primary" id="search_accessions_using_markerset"><i class="glyphicon glyphicon-search"></i> Buscar Acesso</button>
                             </div>
                         </div>
                     </div>
@@ -98,7 +98,7 @@
  </&>
 
 
-<&| /page/info_section.mas, title => 'Search Results' , collapsible=>1, collapsed=>0 &>
+<&| /page/info_section.mas, title => 'Resultados da Pesquisa' , collapsible=>1, collapsed=>0 &>
 
     <link rel="stylesheet" type="text/css" href="/documents/inc/datatables/jquery.dataTables.css">
 
@@ -115,9 +115,9 @@ jQuery(document).ready(function (){
     var lo = new CXGN.List();
 
 //    get_select_box('datasets', 'dataset_accessions', {"checkbox_name":"dataset_accessions_checkbox"});
-    jQuery('#stock_list_select').html(lo.listSelect('stock_list_select', ['accessions'], 'Select a list of accessions', undefined, undefined));
+    jQuery('#stock_list_select').html(lo.listSelect('stock_list_select', ['accessions'], "Selecione uma lista de acessos", undefined, undefined));
 
-    jQuery('#markerset_select').html(lo.listSelect('markerset_select', ['markers'], 'Select a list of marker alleles', undefined, undefined));
+    jQuery('#markerset_select').html(lo.listSelect('markerset_select', ['markers'], "Selecione uma lista de alelos de marcadores", undefined, undefined));
 
     jQuery("#search_accessions_using_markerset").click(function(){
 
@@ -140,14 +140,14 @@ jQuery(document).ready(function (){
         var stock_list_id = jQuery('#stock_list_select').val();
 
         if (!stock_list_id) {
-            alert("Please choose a list of accessions");
+            alert("Escolha uma lista de acessos");
             return;
         }
 
         var markerset_id = jQuery('#markerset_select').val();
 
         if (!markerset_id) {
-            alert("Please choose a list of marker alleles");
+            alert("Escolha uma lista de alelos de marcadores");
             return;
         }
 
@@ -161,21 +161,21 @@ jQuery(document).ready(function (){
             },
             columns: [
                 {
-                    title: "Accession Name",
+                    title: "Nome do acesso",
                     data: null,
                     render: function(data, type, row){return "<a href='/stock/"+row.stock_id+"/view'>"+row.stock_name+"</a>";}
                 },
                 {
-                    title: "Sample Name",
+                    title: "Nome da amostra",
                     data: null,
                     render: function(data, type, row){return "<a href='/stock/"+row.sample_id+"/view'>"+row.sample_name+"</a>";}
                 },
                 {
-                    title: "Sample Type",
+                    title: "Tipo de amostra",
                     data: "sample_type",
                 },
                 {
-                    title: "Genotypes",
+                    title: "Genótipos",
                     data: "genotypes",
                     render: function(data, type,row){
                         var parsed = JSON.parse(data);

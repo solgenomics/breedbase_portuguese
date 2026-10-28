@@ -61,10 +61,10 @@ $vector_name
                         <tr><td><b>Formato dos nomes dos transformantes</b></td><td><%$name_format%></td></tr>
 %if ($updated_status_type) {
                         <tr><td><b>Estado</b></td><td><%$status_display%></td></tr>
-                        <tr><td><b>Updated Status Info</b></td><td><%$updated_status_string%></td></tr>
+                        <tr><td><b>Informação atualizada do status</b></td><td><%$updated_status_string%></td></tr>
 %}
 %if ($identifier_link) {
-                        <tr><td><b>Tracking Identifier</b></td><td><%$identifier_link%></td></tr>
+                        <tr><td><b>Identificador de rastreamento</b></td><td><%$identifier_link%></td></tr>
 %}
                     </table>
                 </div>

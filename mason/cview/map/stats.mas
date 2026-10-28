@@ -20,16 +20,16 @@ $force => 0
   
   <table summary="map stats" align="center" border="0">
   <tr>
-  <td valign="middle"><b>Click to view a given chromosome<br /><br /></b></td>
+  <td valign="middle"><b>Clique para ver um determinado cromossomo<br /><br /></b></td>
   <td width="70">&nbsp;</td>
-  <td><b>Marker collections:</b><br /><br /></td>
+  <td><b>Coleções de marcadores:</b><br /><br /></td>
   </tr>
   
   
   <tr><td>
   
   <table summary="marker stats table" >
-  <tr><td>&nbsp;</td><td>\# markers</td></tr>
+  <tr><td>&nbsp;</td><td>Marcadores \#</td></tr>
   
 
 <%perl>

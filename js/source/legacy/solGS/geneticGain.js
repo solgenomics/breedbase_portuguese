@@ -30,13 +30,13 @@ solGS.geneticGain = {
     }
 
     if (!gebvParams.trait_id) {
-      missing += ", trait id";
+      missing += ", ID da característica";
     }
 
     var ggMsgDiv = this.ggMsgDiv;
     if (missing) {
       jQuery(ggMsgDiv)
-        .html("Can not compare GEBVs. I am missing " + missing + ".")
+        .html("Não foi possível comparar os GEBVs. Estão ausentes " + missing + ".")
         .show();
     } else {
       this.plotGeneticGainBoxplot(gebvParams);
@@ -79,7 +79,7 @@ solGS.geneticGain = {
 	ggArgs = JSON.stringify(ggArgs)
     jQuery(` ${canvas} .multi-spinner-container`).show();
     jQuery("#check_genetic_gain").hide();
-    jQuery(ggMsgDiv).html("Please wait... plotting genetic gain").show();
+    jQuery(ggMsgDiv).html("Aguarde... Gerando o gráfico de ganho genético").show();
 
     jQuery.ajax({
       type: "POST",
@@ -107,16 +107,16 @@ solGS.geneticGain = {
 
           if (boxplot) {
             var fileNameBoxplot = boxplot.split("/").pop();
-            boxplotFile = '<a href="' + boxplot + '" download=' + fileNameBoxplot + ">boxplot</a>";
+            boxplotFile = '<a href="' + boxplot + '" download=' + fileNameBoxplot + ">diagrama de caixa</a>";
 
             var fileNameData = boxplotData.split("/").pop();
-            var dataFile = '<a href="' + boxplotData + '" download=' + fileNameData + ">Data</a>";
+            var dataFile = '<a href="' + boxplotData + '" download=' + fileNameData + ">Dados</a>";
             jQuery("#gg_plot")
               .prepend(
                 '<div style="margin-top: 20px">' +
                   plot +
                   "</div>" +
-                  "<br /> <strong>Download:</strong> " +
+                  "<br /> <strong>Baixar:</strong> " +
                   boxplotFile +
                   " | " +
                   dataFile
@@ -135,14 +135,14 @@ solGS.geneticGain = {
             }
           } else {
             jQuery(`${canvas} .multi-spinner-container`).hide();
-            showMessage("There is no genetic gain plot for this dataset.");
+            showMessage("Não há gráfico de ganho genético para este conjunto de dados.");
             jQuery("#check_genetic_gain").show();
           }
         }
       },
       error: function (res) {
         jQuery(`${canvas} .multi-spinner-container`).hide();
-        solGS.showMessage(ggMsgDiv, "Error occured plotting the genetic gain.");
+        solGS.showMessage(ggMsgDiv, "Ocorreu um erro ao gerar o gráfico de ganho genético.");
         jQuery("#check_genetic_gain").show();
       },
     });
@@ -166,12 +166,12 @@ solGS.geneticGain = {
             solGS.geneticGain.getSelectionPopulationGEBVs(gebvParams);
           }
         } else {
-          jQuery(ggMsgDiv).html("There is no GEBV data for the training population.").show();
+          jQuery(ggMsgDiv).html("Não há dados de GEBV para a população de treinamento.").show();
         }
       },
       error: function () {
         jQuery(ggMsgDiv)
-          .html("Error occured checking for GEBV data for the training population.")
+          .html("Ocorreu um erro ao verificar os dados de GEBVs da população de treinamento.")
           .show();
       },
     });
@@ -193,7 +193,7 @@ solGS.geneticGain = {
           selectionGEBVs = res.gebv_arrayref;
 
           if (selectionGEBVs && trainingGEBVs) {
-            jQuery(ggMsgDiv).html("Please wait... plotting gebvs").show();
+            jQuery(ggMsgDiv).html("Aguarde... Gerando o gráfico de GEBVs").show();
 
             solGS.geneticGain.plotGEBVs(trainingGEBVs, selectionGEBVs);
 
@@ -201,12 +201,12 @@ solGS.geneticGain = {
             jQuery("#check_genetic_gain").hide();
           }
         } else {
-          jQuery(ggMsgDiv).html("There is no GEBV data for the selection population.").show();
+          jQuery(ggMsgDiv).html("Não há dados de GEBV para a população de seleção.").show();
         }
       },
       error: function () {
         jQuery(ggMsgDiv)
-          .html("Error occured checking for GEBV data for the selection population.")
+          .html("Ocorreu um erro ao verificar os dados de GEBVs da população de seleção.")
           .show();
       },
     });
@@ -255,13 +255,13 @@ solGS.geneticGain = {
           jQuery(`${canvas} #selection_traits_ids`).val(res.selection_traits);
           solGS.geneticGain.plotGeneticGainBoxplot(ggArgs);
         } else {
-          jQuery(ggMsgDiv).html("This selection population has no predicted traits.").show();
+          jQuery(ggMsgDiv).html("Esta população de seleção não possui características preditas.").show();
         }
       },
       error: function () {
         jQuery(ggMsgDiv)
           .html(
-            "Error occured checking for predicted traits for the selection population " +
+            "Ocorreu um erro ao verificar as características preditas da população de seleção " +
               selectionPopId
           )
           .show();
@@ -316,11 +316,11 @@ solGS.geneticGain = {
     var trColor = "#02bcff";
     var slColor = "#ff1302";
     var axLabelColor = "#ff8d02";
-    var yLabel = "Probability";
+    var yLabel = "Probabilidade";
     var xLabel = "GEBVs";
 
     var title =
-      "Normal distribution curves of GEBVs " + "for the training and selection populations.";
+      "Curvas de distribuição normal dos GEBVs " + "das populações de treinamento e seleção.";
 
     var allData = {
       div_id: svgId,
@@ -331,12 +331,12 @@ solGS.geneticGain = {
       lines: [
         {
           data: xYT,
-          legend: "Training population",
+          legend: "População de treinamento",
           color: trColor,
         },
         {
           data: xYS,
-          legend: "Selection population",
+          legend: "População de seleção",
           color: slColor,
         },
       ],
@@ -429,7 +429,7 @@ jQuery(document).ready(function () {
 
       jQuery("#gg_message")
         .css({ "padding-left": "0px" })
-        .html("checking predicted traits for selection population " + selectedPopName);
+        .html("verificando as características preditas da população de seleção " + selectedPopName);
 
       var ggArgs = solGS.geneticGain.getGeneticGainArgs();
       solGS.geneticGain.getSelPopPredictedTraits(ggArgs);

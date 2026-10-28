@@ -37,7 +37,7 @@ $guide
 
 </%perl>
 
-<& /page/page_title.mas, title => 'QTL population' &>
+<& /page/page_title.mas, title => 'População QTL' &>
 <&| /page/info_section.mas, title => '', subtitle => $guide &>
   <% $message %>  
 </&>

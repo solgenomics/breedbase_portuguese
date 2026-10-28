@@ -23,7 +23,7 @@ $stock_type => undef
         <br>
         <&| /page/info_section.mas, title => 'Copiar lotes de sementes para uma lista', collapsible=>1, collapsed=>1, subtitle=>'<i>Copie os nomes dos lotes exibidos na tabela para uma lista nova ou existente</i>'&>
             <br/>
-            <div style="text-align:right" id="accession_seedlots_to_list_menu">[CARREGANDO...]</div>
+            <div style="text-align:right" id="accession_seedlots_to_list_menu">[CARREGANDO ...]</div>
             <div id="accession_seedlot_names" style="display: none;"></div>
         </&>
     </div>

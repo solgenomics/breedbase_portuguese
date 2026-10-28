@@ -100,7 +100,7 @@ CXGN.Page.Form.JSFormPage.prototype = {
 		else { form.printForm("view"); }
 	    },
 	    error: function(response) {
-		alert("Action '" + action +"'  failed for storing this " + this.getObjectName() + "!!" ) ;
+		alert("A ação '" + action +"' falhou ao armazenar " + this.getObjectName() + "!!" ) ;
 		
 	    }
 	});
@@ -122,7 +122,7 @@ CXGN.Page.Form.JSFormPage.prototype = {
 	if (!action) action = 'view';
         if ( this.getObjectId() == 0 ) action = 'new';
 	if (!action || !this.getObjectName() || !this.getAjaxScript() )  {
-	    alert("Cannot print from without a objectName, action, and ajaxScript name ! ");
+	    alert("Não é possível imprimir sem objectName, action e o nome do ajaxScript! ");
 	} else if  (action == 'delete') { 
 	    this.printDeleteDialog();
 	}
@@ -145,7 +145,7 @@ CXGN.Page.Form.JSFormPage.prototype = {
 			window.location =  '/user/login' ;
 			x.error = undef;
 		    }
-		    if (x.error) { alert("error: " + x.error); }
+		    if (x.error) { alert("erro: " + x.error); }
 		    else if (response.reload) {  
 			window.location.reload(); } 
 		    else {
@@ -161,7 +161,7 @@ CXGN.Page.Form.JSFormPage.prototype = {
 		    }
 		},
 		error: function(response) {
-		    alert("Action '" + action +"'  failed for storing this " + this.getObjectName() + "!!" ) ;
+		    alert("A ação '" + action +"' falhou ao armazenar " + this.getObjectName() + "!!" ) ;
 		},
 	    });
 	}
@@ -174,7 +174,7 @@ CXGN.Page.Form.JSFormPage.prototype = {
      */
     printDeleteDialog: function() {
 	var deleteDialog =  
-	'<br/><b>Delete this ' + this.getObjectName() + ' ' +this.getObjectId()  + '?</b> ';
+	"<br/><b>Excluir este " + this.getObjectName() + ' ' +this.getObjectId()  + '?</b> ';
 	deleteDialog += '<input id=\"'+this.getJsObjectName()+'_delete_button\" class=\"btn btn-primary btn-sm\" type =\"button\" onClick=\"javascript:' + this.getJsObjectName() + '.printForm(\'confirm_delete\')\" value=\"Confirm delete\"/><br><br>';
 	this.printEditLinks('delete');
 	document.getElementById(this.getFormId() ).innerHTML = deleteDialog;
@@ -188,21 +188,21 @@ CXGN.Page.Form.JSFormPage.prototype = {
        and ghosted New, Edit, Delete buttons (should be used if the logged in user does not have the related privileges. Should be defined in the backend)
      */
     defineButtons: function() { 
-	this.setNewButton('<a class=\"btn btn-sm btn-default\" href= \"javascript:onClick=' +  this.getJsObjectName() + '.reloadNewPage()  \">New</a> ');
+	this.setNewButton('<a class=\"btn btn-sm btn-default\" href= \"javascript:onClick=' +  this.getJsObjectName() + ".reloadNewPage()  \">Novo</a> ");
 
-	this.setGhostedNewButton(' <span class="btn btn-sm btn-default ghosted">New</span> ');
+	this.setGhostedNewButton(" <span class=\"btn btn-sm btn-default ghosted\">Novo</span> ");
 
-	this.setEditButton(' <a class=\"btn btn-sm btn-default\" href=\"javascript:onClick=' + this.getJsObjectName() + '.printForm(\'edit\')\">Edit</a> ');
+	this.setEditButton(' <a class=\"btn btn-sm btn-default\" href=\"javascript:onClick=' + this.getJsObjectName() + ".printForm('edit')\">Editar</a> ");
 
-	this.setGhostedEditButton(' <span class=\"btn btn-sm btn-default ghosted\">Edit</span> ');
+	this.setGhostedEditButton(" <span class=\"btn btn-sm btn-default ghosted\">Editar</span> ");
 
-	this.setCancelEditButton(' <a class=\"btn btn-sm btn-default\" href= \"javascript:onClick='+this.getJsObjectName()+'.render() \">Cancel</a> ');
+	this.setCancelEditButton(' <a class=\"btn btn-sm btn-default\" href= \"javascript:onClick='+this.getJsObjectName()+"\"Cancelar\"</a> ");
 
-	this.setDeleteButton(' <a class=\"btn btn-sm btn-default\" href=\"javascript:onClick=' + this.getJsObjectName() + '.printForm(\'delete\')\">Delete</a> ');
+	this.setDeleteButton(' <a class=\"btn btn-sm btn-default\" href=\"javascript:onClick=' + this.getJsObjectName() + ".printForm('delete')\">Excluir</a> ");
 
-	this.setCancelDeleteButton(' <a class=\"btn btn-sm btn-default\" href=\"javascript:onClick=' + this.getJsObjectName() + '.render()\">Cancel Delete</a> ');
+	this.setCancelDeleteButton(' <a class=\"btn btn-sm btn-default\" href=\"javascript:onClick=' + this.getJsObjectName() + '.render()\">Cancelar exclusão</a> ');
 
-	this.setGhostedDeleteButton(' <span class=\"btn btn-sm btn-default ghosted\">Delete</span> ');
+	this.setGhostedDeleteButton(" <span class=\"btn btn-sm btn-default ghosted\">Excluir</span> ");
     },
 
 
@@ -266,13 +266,13 @@ CXGN.Page.Form.JSFormPage.prototype = {
 	//new link
 	var action = this.getAction();
 
-	var newLink = '<a class=\"btn btn-sm btn-default\" href= \"javascript:onClick=' +  this.getJsObjectName() + '.reloadNewPage()  \">New</a>';
+	var newLink = '<a class=\"btn btn-sm btn-default\" href= \"javascript:onClick=' +  this.getJsObjectName() + ".reloadNewPage()  \">Novo</a>";
 
 	if (action == "edit" || action == "delete") { 
- 	    newLink = ' <span class="btn btn-sm btn-default ghosted">New</span> ';
+        newLink = " <span class=\"btn btn-sm btn-default ghosted\">Novo</span> ";
  	}
  	if (action == "new"   && (( this.getUserType() == "curator") || this.getIsOwner() ==1 )) { 
-	    newLink = '<a class=\"btn btn-sm btn-default\" href= \"javascript:history.back(1) \">Cancel</a> ';
+	    newLink = "<a class=\"btn btn-sm btn-default\" href= \"javascript:history.back(1) \">Cancelar</a> ";
  	}
 	this.setNewButton(newLink);
 
@@ -283,18 +283,18 @@ CXGN.Page.Form.JSFormPage.prototype = {
 	var action = this.getAction();
  	var editLink;
 	if ((this.getUserType() == "curator") || this.getIsOwner() ==1 ) {
-	    editLink = ' <a class=\"btn btn-sm btn-default\" href=\"javascript:onClick=' + this.getJsObjectName() + '.printForm(\'edit\')\">Edit</a>' ;
+	    editLink = ' <a class=\"btn btn-sm btn-default\" href=\"javascript:onClick=' + this.getJsObjectName() + ".printForm('edit')\">Editar</a>" ;
 
 	}else {
-	    editLink = ' <span class=\"btn btn-sm btn-default ghosted\">Edit</span> ';
+	    editLink = " <span class=\"btn btn-sm btn-default ghosted\">Editar</span> ";
 	}
 
 	if (action == "edit") { 
-	    editLink = ' <a class=\"btn btn-sm btn-default\" href=\"javascript:onClick=' + this.getJsObjectName() + '.printForm( \'view\')\">Cancel edit</a> ';
+	    editLink = ' <a class=\"btn btn-sm btn-default\" href=\"javascript:onClick=' + this.getJsObjectName() + '.printForm( \'view\')\">Cancelar edição</a> ';
 	}
 
 	if (action ==  "new" || action == "delete") { 
-	    editLink = ' <span class=\"btn btn-sm btn-default ghosted\">Edit</span> ';
+	    editLink = " <span class=\"btn btn-sm btn-default ghosted\">Editar</span> ";
 	}
 	this.setEditButton(editLink);
 
@@ -306,17 +306,17 @@ CXGN.Page.Form.JSFormPage.prototype = {
  	var deleteLink;
 	// if ((this.getUserType() ==  "curator") || this.getIsOwner() ) {
 	if ((this.getUserType() == "curator") || this.getIsOwner() ==1 ) {
-	    deleteLink = ' <a class=\"btn btn-sm btn-default\" href=\"javascript:onClick=' + this.getJsObjectName() + '.printForm(\'delete\')\">Delete</a>' ;
+	    deleteLink = ' <a class=\"btn btn-sm btn-default\" href=\"javascript:onClick=' + this.getJsObjectName() + ".printForm('delete')\">Excluir</a>" ;
 
 	}else {
-	    deleteLink = ' <span class=\"btn btn-sm btn-default ghosted\">Delete</span> ';
+	    deleteLink = " <span class=\"btn btn-sm btn-default ghosted\">Excluir</span> ";
 	}
 
 	if (action ==  "edit" || action == "new" ) { 
-	    deleteLink = ' <span class=\"btn btn-sm btn-default ghosted\">Delete</span> ';
+	    deleteLink = " <span class=\"btn btn-sm btn-default ghosted\">Excluir</span> ";
 	}
 	if (action == "delete" )
-	    deleteLink = ' <a class=\"btn btn-sm btn-default\" href=\"javascript:onClick=' + this.getJsObjectName() + '.render()\">Cancel Delete</a>';
+	    deleteLink = ' <a class=\"btn btn-sm btn-default\" href=\"javascript:onClick=' + this.getJsObjectName() + '.render()\">Cancelar exclusão</a>';
 	// 	////////////////////
 	this.setDeleteButton(deleteLink);
 

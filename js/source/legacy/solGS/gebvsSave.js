@@ -5,7 +5,7 @@ jQuery(document).ready(function () {
   solGS.analysisSave.checkStoredAnalysis(analysisArgs).done(function (res) {
     if (res.analysis_id) {
       jQuery("#save_gebvs").hide();
-      var link = ' | <a href="/analyses/' + res.analysis_id + '">View stored GEBVs</a> |';
+      var link = ' | <a href="/analyses/' + res.analysis_id + "\">Visualizar GEBVs armazenados</a> |";
       jQuery("#gebvs_output").append(link);
     }
   });
@@ -15,7 +15,7 @@ jQuery(document).ready(function () {
     console.log(`analysisArgs: ${JSON.stringify(analysisArgs)}`)
     jQuery("#gebvs_output .multi-spinner-container").show();
     jQuery("#gebvs_save_message")
-      .html("Please wait...saving the GEBVs may take a few minutes.")
+      .html("Aguarde... Salvar os GEBVs pode levar alguns minutos.")
       .show();
     jQuery("#save_gebvs").hide();
 
@@ -27,7 +27,7 @@ jQuery(document).ready(function () {
     });
   
     solGS.analysisSave.checkUserStatus().fail(function () {
-      solGS.alertMessage("Error occured checking for user status");
+      solGS.alertMessage("Ocorreu um erro ao verificar o status do usuário");
     });
   
       solGS.analysisSave.getGebvsResultDetails(analysisArgs).done(function (res) {
@@ -52,7 +52,7 @@ jQuery(document).ready(function () {
             } else {
               jQuery("#gebvs_save_message").hide();
   
-              var link = ' | <a href="/analyses/' + res.analysis_id + '">View stored GEBVs</a> |';
+              var link = ' | <a href="/analyses/' + res.analysis_id + "\">Visualizar GEBVs armazenados</a> |";
               jQuery("#gebvs_output").append(link);
             }
           });
@@ -75,7 +75,7 @@ jQuery(document).ready(function () {
       solGS.analysisSave.checkStoredAnalysis(analysisArgs).done(function (res) {
       if (res.analysis_id) {
         jQuery("#save_genetic_values").hide();
-        var link = ' | <a href="/analyses/' + res.analysis_id + '">View stored genetic values</a> |';
+        var link = ' | <a href="/analyses/' + res.analysis_id + "\">Visualizar valores genéticos armazenados</a> |";
         jQuery("#gebvs_output").append(link);
         }
     });
@@ -85,7 +85,7 @@ jQuery(document).ready(function () {
 
       jQuery("#gebvs_output .multi-spinner-container").show();
       jQuery("#gebvs_save_message")
-        .html("Please wait...saving the genetic values (adjusted means) may take a few minutes.")
+        .html("Aguarde... Salvar os valores genéticos (médias ajustadas) pode levar alguns minutos.")
         .show();
       jQuery("#save_genetic_values").hide();
   
@@ -97,7 +97,7 @@ jQuery(document).ready(function () {
       });
   
       solGS.analysisSave.checkUserStatus().fail(function () {
-        solGS.alertMessage("Error occured checking for user status");
+        solGS.alertMessage("Ocorreu um erro ao verificar o status do usuário");
       });
   
       solGS.analysisSave.getGebvsResultDetails(analysisArgs).done(function (res) {
@@ -122,7 +122,7 @@ jQuery(document).ready(function () {
             } else {
               jQuery("#gebvs_save_message").hide();
   
-              var link = '| <a href="/analyses/' + res.analysis_id + '">View stored genetic values</a> |';
+              var link = '| <a href="/analyses/' + res.analysis_id + "\">Visualizar valores genéticos armazenados</a> |";
               jQuery("#gebvs_output").append(link);
             }
           });

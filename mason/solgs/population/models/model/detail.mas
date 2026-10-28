@@ -38,13 +38,13 @@ $analysis_type => ''
 
 
 <& /page/page_title.mas,
-   title => "Model $trait_name ($trait_abbr)"
+   title => "Modelo $trait_name ($trait_abbr)"
 &>
 
 <&| /page/info_section.mas,
   collapsible => 1,
   collapsed   => 0,
-  title       => "Training population summary",
+  title       => "Resumo da população de treinamento",
   &>
 
  <& /solgs/population/summary.mas,
@@ -75,7 +75,7 @@ $analysis_type => ''
 <&| /page/info_section.mas,
     collapsible => 1,
     collapsed   => 0,
-  title       => "Trait phenotype data"
+  title       => "Dados do fenótipo de trânsito"
 &>
 
 <& phenotype/trait_phenotype_data.mas,
@@ -136,8 +136,8 @@ $analysis_type => ''
 <&| /page/info_section.mas,
   collapsible => 1,
   collapsed   => 0,
-  title       => "Data Accessibility",
+  title       => "Acessibilidade de Dados",
   &>
-<p>This is private data.</p>
+<p>São dados privados.</p>
 </&>
 %}

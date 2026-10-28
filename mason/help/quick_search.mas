@@ -1,6 +1,6 @@
 
 
-<& /page/page_title.mas, title=>"Quick Search Help" &>
+<& /page/page_title.mas, title=>"Ajuda de busca rápida" &>
 
   <center>
     
@@ -13,72 +13,39 @@
           cellspacing="0" border="0">
             <tr>
               <td>
-                <p>The quick search
-                functionality is part of the <a href=
-                "toolbar.pl">toolbar</a> on top of almost every
-                SGN web page. To use it, simply enter a search term
-                in the text input box and click on the quick search
-                button. The search can take a while depending on
-                the actual word you search. Specifically, words
-                that appear in many of the blast annotations, such
-                'Arabidopsis', will increase search time.</p>
+                <p>A funcionalidade de busca rápida é parte do <a href=
+                "toolbar.pl">barra de ferramentas</a> Em cima de quase todas as páginas da SGN. Para usá-lo, basta inserir um termo de busca na caixa de entrada de texto e clicar no botão de busca rápida. A busca pode levar um tempo dependendo da palavra que você procurar. Especificamente, palavras que aparecem em muitas das anotações da explosão, tais "Arabidopsis", aumentarão o tempo de busca.</p>
 
-                <p>Quick search performs a series of searches in
-                the database and displays a summary page of the
-                matches. For each of the searches, a line is
-                displayed with information how many entities were
-                matched in the database.</p>
+                <p>Busca rápida realiza uma série de buscas no banco de dados e exibe uma página sumária das partidas. Para cada uma das buscas, uma linha é exibida com informações de quantas entidades foram comparadas no banco de dados.</p>
 
-                <p>If entities were found in the database, a link
-                is provided to complete the actual search. Click on
-                that link to see the search results.</p>
+                <p>Se entidades foram encontradas no banco de dados, um link é fornecido para completar a busca real. Clique nesse link para ver os resultados da pesquisa.</p>
 
-                <p>The individual quick searches do the
-                following:</p>
+                <p>As buscas rápidas individuais fazem o seguinte:</p>
 
                 <dl>
-                  <dt><strong>Identifier searches</strong></dt>
+                  <dt><strong>Buscas de identificadores</strong></dt>
 
-                  <dd>Identifier searches perform exact match
-                  searches on clone, est, unigene and marker
-                  identifiers in the database</dd>
+                  <dd>Buscas de identificação realizam buscas exatas em clones, est, unigenes e identificadores de marcadores no banco de dados.</dd>
 
-                  <dt><br /><strong>Annotation searches</strong></dt>
+                  <dt><br /><strong>Buscas de anotações</strong></dt>
 
-                  <dd>The annotation searches search the manual and
-                  automatic annotation that are available for
-                  unigenes. They report the number of annotations
-                  and the number of corresponding unigenes that
-                  were found. If there are more than 5000
-                  annotation matches, the number of unigenes is not
-                  reported to save on querying time.</dd>
+                  <dd>A anotação busca o manual e anotação automática que estão disponíveis para unigenes. Relatam o número de anotações e o número de unigenes correspondentes que foram encontrados. Se houver mais de 5000 correspondências de anotação, o número de unigenes não é relatado para economizar no tempo de consulta.</dd>
 
-                  <dt><br /><strong>People search</strong></dt>
+                  <dt><br /><strong>As pessoas procuram</strong></dt>
 
-                  <dd>Searches the last name as a sub-string match
-                  in the SGN People Directory.</dd>
+                  <dd>Procura o sobrenome como uma combinação de subcordas no diretório de pessoas da SGN.</dd>
 
-                  <dt><br /><strong>Library search</strong></dt>
+                  <dt><br /><strong>Busca na biblioteca</strong></dt>
 
-                  <dd>Searches the libraries on name, tissue,
-                  development stage, authors, and other fields as a
-                  substring search.</dd>
+                  <dd>Procura nas bibliotecas em nome, tecido, estágio de desenvolvimento, autores, e outros campos como uma busca de subcordas.</dd>
 
-                  <dt><br /><strong>SGN Pages search</strong></dt>
+                  <dt><br /><strong>SGN Páginas de busca</strong></dt>
 
-                  <dd>Performs a Google search on the
-                  sgn.cornell.edu domain. Please note that when we
-                  re-arrange pages on the SGN site, it may take
-                  Google a number of days to re-index the site, so
-                  sometimes the pages you find with this search
-                  will not be valid. However, we will try to keep
-                  site rearrangements to a minimum.</dd>
+                  <dd>Realiza uma busca no Google no domínio sgn.cornell.edu. Por favor, note que quando reorganizarmos páginas no site da SGN, pode levar alguns dias para o Google re-indexar o site, então às vezes as páginas que você encontrar com esta pesquisa não serão válidas. No entanto, tentaremos manter os rearranjos no mínimo.</dd>
 
-                  <dt><br /><strong>Pages on the entire web</strong></dt>
+                  <dt><br /><strong>Páginas em toda a web</strong></dt>
 
-                  <dd>Performs a Google search without the
-                  sgn.cornell.edu domain constraint. Searches the
-                  entire web.</dd>
+                  <dd>Realiza uma busca no Google sem a restrição do domínio sgn.cornell.edu. Procura em toda a web.</dd>
                 </dl>
               </td>
             </tr>

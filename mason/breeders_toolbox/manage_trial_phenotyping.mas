@@ -401,11 +401,11 @@ var trial_info_object = [];
     var manage_phenotyping_label = '';
 
     if (trial_stock_type == 'family_name') {
-        manage_phenotyping_label = 'Family Name :';
+        manage_phenotyping_label = "Nome da família:";
     } else if (trial_stock_type == 'cross') {
-        manage_phenotyping_label = 'Cross Unique ID :';
+        manage_phenotyping_label = "ID único do cruzamento:";
     } else {
-        manage_phenotyping_label = 'Accession Name :';
+        manage_phenotyping_label = "Nome do acesso:";
     }
 
     jQuery('#manage_phenotyping_stock_type').text(manage_phenotyping_label);

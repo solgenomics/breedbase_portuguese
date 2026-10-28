@@ -125,7 +125,7 @@ $trial_id => undef
                                             var lefts_margin = 10;
                                             var bottoms_margin = 12;
                                             var rights_margin = 10;
-                                            var text = 'year,location';
+                                            var text = "Ano, localização";
                                         }
                                         else if (format == "20A4") {
                                             var labels_row = 10;
@@ -190,8 +190,8 @@ $trial_id => undef
                                             <option value="32A4">Papel adesivo com 32 etiquetas</option>
                                             <option value="32_unique">Papel adesivo com 32 etiquetas únicas</option>
                                             <option value="20A4">Papel adesivo com 20 etiquetas</option>
-                                            <option value="IITA-3">IITA-3-barcode</option>
-                                            <option value="IITA-2">IITA-2-barcode</option>
+                                            <option value="IITA-3">Código de barras IITA-3</option>
+                                            <option value="IITA-2">Código de barras IITA-2-</option>
                                         </select>
                                     </div>
                                 </div>
@@ -281,7 +281,7 @@ jQuery(document).ready(function () {
 
     jQuery('#generate_barcodes_project_page').click(function() {
         jQuery('#generate_identifier_barcode_dialog').modal("show");
-        jQuery('#barcode_dialog_subtitle2').text('Generate barcodes for active tracking identifiers');
+        jQuery('#barcode_dialog_subtitle2').text("Gerar códigos de barras para os identificadores de rastreamento ativos");
 
         jQuery.ajax({
             url:'/ajax/tracking_activity/project_active_identifier_names/'+project_id,

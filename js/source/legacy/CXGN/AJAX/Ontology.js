@@ -42,7 +42,7 @@ var Ontology = {
                 if (error) { alert(error) ; }
             },
 	    error: function () {
-                alert('Error submitting ontology term');
+                alert("Erro ao enviar o termo da ontologia");
             }
 
 	} );
@@ -98,7 +98,7 @@ var Ontology = {
                     }
                     ////
                     var options = '';
-                    if (!dummy_option) dummy_option = '--Please select one--';
+                    if (!dummy_option) dummy_option = "--Selecione uma opção--";
                     options += '<option value="">' + dummy_option + '</option>';
                     for ( var j in outputarray) {
                         if ( !(isNaN(outputarray[j])) ) {

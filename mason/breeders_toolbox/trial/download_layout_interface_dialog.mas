@@ -141,7 +141,7 @@ my $download_type_label = $download_type_labels{$download_type} || $download_typ
                                 <label>Ordem&nbsp;das&nbsp;parcelas:</label>
                                 <select class="form-control" name="create_fieldbook_plot_order_<% $download_type %>" id="create_fieldbook_plot_order_<% $download_type %>">
                                     <option value="">--Selecione a ordem das parcelas--</option>
-                                    <option value="by_col_serpentine">Por coluna: serpentina</option>
+                                    <option value="by_col_serpentine">Por coluna: Serpentina</option>
                                     <option value="by_col_zigzag">Por coluna: zigue-zague</option>
                                     <option value="by_row_serpentine">Por linha: serpentina</option>
                                     <option value="by_row_zigzag">Por linha: zigue-zague</option>
@@ -152,7 +152,7 @@ my $download_type_label = $download_type_labels{$download_type} || $download_typ
                                 <select class="form-control" id="create_fieldbook_plot_start_<% $download_type %>" name="create_fieldbook_plot_start_<% $download_type %>">
                                     <option value="">--Selecione a parcela inicial--</option>
                                     <option value="bottom_left">Inferior esquerda</option>
-                                    <option value="top_left">Superior esquerda</option>
+                                    <option value="top_left">Superior Esquerda</option>
                                     <option value="top_right">Superior direita</option>
                                     <option value="bottom_right">Inferior direita</option>
                                 </select>
@@ -228,7 +228,7 @@ jQuery(document).ready(function() {
     jQuery("#trial_download_layout_button").click( function () {
         show_available_columns_TrialLayout('plots');
         var lo = new CXGN.List();
-        jQuery('#create_fieldbook_with_trait_list_TrialLayout').html(lo.listSelect('create_fieldbook_with_trait_list_select_TrialLayout', [ 'traits' ], 'select', undefined, undefined));
+        jQuery('#create_fieldbook_with_trait_list_TrialLayout').html(lo.listSelect('create_fieldbook_with_trait_list_select_TrialLayout', [ "características" ], 'select', undefined, undefined));
         jQuery('#accession_average_performance').css("display", "inline-block");
         jQuery('#selected_columns_well').css("display", "inline-block");
         jQuery('#include_treatments_select_div').css("display", "inline-block");
@@ -253,7 +253,7 @@ jQuery(document).ready(function() {
     jQuery("[name='create_fieldbook_link']").click( function () {
         show_available_columns_Fieldbook('plots');
         var lo = new CXGN.List();
-        jQuery('#create_fieldbook_with_trait_list_Fieldbook').html(lo.listSelect('create_fieldbook_with_trait_list_select_Fieldbook', [ 'traits' ], 'select', undefined, undefined));
+        jQuery('#create_fieldbook_with_trait_list_Fieldbook').html(lo.listSelect('create_fieldbook_with_trait_list_select_Fieldbook', [ "características" ], 'select', undefined, undefined));
         jQuery('#create_fieldbook_dialog_Fieldbook').modal('show');
         show_fieldbook_treatments_Fieldbook();
     });
@@ -563,7 +563,7 @@ function display_not_selected_columns_<% $download_type %>(){
     var html_<% $download_type %> = '';
     for (var name in not_selected_columns_<% $download_type %>) {
         if (not_selected_columns_<% $download_type %>.hasOwnProperty(name)) {
-            html_<% $download_type %> += '<h2><span class="label label-info">'+name+'&nbsp;<a onClick="include_column_<% $download_type %>(\''+name+'\')"><span title="Include" class="glyphicon glyphicon-ok-circle" style="color:green"></span></a></span></h2>';
+            html_<% $download_type %> += '<h2><span class="label label-info">'+name+'&nbsp;<a onClick="include_column_<% $download_type %>(\''+name+"')\"><span title=\"Inclua\" class=\"glyphicon glyphicon-ok-circle\" style=\"color:green\"></span></a></span></h2>";
         }
     }
     html_<% $download_type %> = html_<% $download_type %>.replace(/title="[^"]*"/g, 'title=""');

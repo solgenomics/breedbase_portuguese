@@ -54,7 +54,7 @@ solGS.gebvs = {
       canvas: this.histoCanvasId,
       plot_id: this.histoPlotId,
       x_label: "GEBVs",
-      y_label: "Counts",
+      y_label: "Contagens",
       named_values: gebvsData,
       download_links: downloadLinks,
 
@@ -99,9 +99,9 @@ solGS.gebvs = {
 
       var gebvsHistoPlotDivId = this.histoPlotId.replace(/#/, '');
       var histoDownloadBtn = "download_" + gebvsHistoPlotDivId;
-      var histoPlotLink = "<a href='#'  onclick='event.preventDefault();' id='" + histoDownloadBtn + "'> Histogram (GEBVs)</a>";
+      var histoPlotLink = "<a href='#'  onclick='event.preventDefault();' id='" + histoDownloadBtn + "'> Histograma (GEBVs)</a>";
     
-      var downloadLinks = `Download:  ${gebvsFileLink} | ${histoPlotLink}`;
+      var downloadLinks = `Baixar:  ${gebvsFileLink} | ${histoPlotLink}`;
       return downloadLinks;
 
   },
@@ -114,7 +114,7 @@ solGS.gebvs = {
       '" download=' +
       geneticValuesFileName +
       '">' +
-      "Genetic values" +
+      "Valores genéticos" +
       "</a>";
     
       return geneticValuesFileLink;
@@ -141,7 +141,7 @@ jQuery(document).ready(function () {
             });
 
             solGS.gebvs.getGebvsFiles().fail(function (res) {
-                var errorMsg = "Error occured getting training gebvs files.";
+                var errorMsg = "Ocorreu um erro ao obter os arquivos de GEBVs de treinamento.";
                 jQuery("#gebvs_output_message").html(errorMsg);
             });
         }

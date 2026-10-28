@@ -56,7 +56,7 @@
   </div>
   <div class="row well well-sm">
     <div id="<% $item_list_div %>"></div>
-    Add items to a list:<br/><br/>
+    Adicione itens a uma lista:<br/><br/>
     <div id="<% $item_list_menu_div %>"></div>
   </div>
 
@@ -95,7 +95,7 @@
 	addToListMenu(item_list_menu, item_list, 'div');
       }
       else {
-      	jQuery(item_list_menu_div).html('Log in to use lists.');
+        jQuery(item_list_menu_div).html("Entre na sua conta para usar as listas.");
       }
     }
 

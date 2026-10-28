@@ -28,12 +28,12 @@ $output_list
 <% $ug_select %>
 <br /><br />
 	<br />
-Enter a list of identifiers or upload a file containing one identifier:<br />
+Digite uma lista de identificadores ou carregue um arquivo contendo um identificador:<br />
 <table summary="" width="100%"><tr><td>
 <textarea name="ids" rows="5" cols="20"></textarea>
 </td>
 <td>
-<i>Example:</i>
+<i>Exemplo:</i>
 <pre style="border: 1px solid gray; width: 10em; height: 5em">
 1-1-1.2.3.4
 1-1-1.2.4.5
@@ -42,7 +42,7 @@ Enter a list of identifiers or upload a file containing one identifier:<br />
 </td></tr></table>
 <br />
 <br />
-And/or upload list file: <br /><input type="file" name="file" />
+E/ou arquivo de lista de upload: <br /><input type="file" name="file" />
 <br />
 <br />
 
@@ -58,6 +58,6 @@ And/or upload list file: <br /><input type="file" name="file" />
 
 <input type="hidden" name="idType" value="microarray" />
 	<input type="reset" />&nbsp;&nbsp;
-<input type="submit" value="Submit" /><br />
+<input type="submit" value="Enviar" /><br />
 </form>
 

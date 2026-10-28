@@ -81,7 +81,7 @@ if (scalar(@target_list) > 0 ) {
 	$exp_composition_html = 'None experiment was found associated to this sample';
     }
 
-    $exp_content = info_section_html( title        => "Expression Experiments (".$exp_n.")", 
+    $exp_content = info_section_html( title        => "Experimentos de Expressão (".$exp_n.")", 
                                       contents     => $exp_composition_html,
 		    	   	      collapsible  => 1,
                                       collapsed    => 0, );

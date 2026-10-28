@@ -1,38 +1,38 @@
 
-<& /page/page_title.mas, title=>"Submitting maps to SGN" &>
+<& /page/page_title.mas, title=>"Enviando mapas para a SGN" &>
 
-Maps can be submitted to SGN for inclusion in the comparative viewer and related tools. File formats are defined for these types of data: 
+Mapas podem ser enviados à SGN para inclusão no visualizador comparativo e ferramentas relacionadas. Formatos de arquivos são definidos para esses tipos de dados: 
 <ol>
-<li> A <b>mapping file</b> which contains the information about the markers positions each linkage group.</li>
-<li> One or more <b>marker data files</b> describing the markers used. The file format describing each type of marker is different, so that for one map, many marker description files may be required.</li>
-<li> Marker <b>polymorphism survey data</b> can also be submitted, even if the markers are not mapped.</li>
-<li> <b>Accession information</b> is needed for accessions that are not already in the SGN database. </li>
+<li> A <b>Arquivo de mapeamento</b> que contém as informações sobre os marcadores posicionam cada grupo de ligação.</li>
+<li> Um ou mais <b>marker data files</b> descrevendo os marcadores usados. O formato do arquivo que descreve cada tipo de marcador é diferente, de modo que para um mapa, muitos arquivos de descrição de marcador podem ser necessários.</li>
+<li> Marcador <b>Dados da pesquisa de polimorfismos</b> também pode ser submetido, mesmo que os marcadores não sejam mapeados.</li>
+<li> <b>Informações sobre o acesso</b> é necessário para acessos que ainda não estão no banco de dados do SGN. </li>
 </ol> 
 
-<p>These files should be tab-delimited text files (In Excel, choose type "Text (tab delimited)" in the Save As dialog). To submit the files send them as email attachments to <a href="mailto:sgn-feedback\@sgn.cornell.edu">sgn-feedback\@sgn.cornell.edu</a>.
-<i>Please make sure to include the column headings</i>.</p>
+<p>Esses arquivos devem ser arquivos de texto delimitados por tabulação (no Excel, escolha "Texto (tab delimitado)" no diálogo Salvar Como). Enviar os arquivos envia-los como anexos de e-mail para <a href="mailto:sgn-feedback\@sgn.cornell.edu">sgn-feedback\@sgn.cornell.edu</a>.
+<i>Por favor, não deixe de incluir os cabeçalhos da coluna</i>.</p>
 
 
-<h3>The mapping file</h3>
+<h3>O arquivo de mapeamento</h3>
 <p>
-This file gives the location of the markers on the map. When submitting a map, be sure to also provide a marker data file and accession information. These are the columns defined for the mapping file:
+Este arquivo dá a localização dos marcadores no mapa. Quando enviar um mapa, certifique-se de fornecer um arquivo de dados marcador e informações de acesso. Estas são as colunas definidas para o arquivo de mapeamento:
 </p>
 
 <ul>
-<li><b>marker name</b>: Should be identical to the SGN marker name if already available on SGN.</li>
-<li><b>marker id</b>: (optional) If the marker is already in SGN, providing its marker id (SGN-M number) will allow us to process your map more quickly.</li>
-<li><b>linkage group</b>: The name or number of the chromosome or linkage group.</li>
-<li><b>position</b>: The position in cM on the linkage group.</li>
-<li><b>confidence</b>: Mapmaker's confidence for this marker - one of I, I(LOD2), F(LOD3), CF(LOD3). If your mapping software doesn't calculate a confidence, just omit this column.</li>
-<li><b>protocol</b>: The type of experiment used to map the marker. Currently we support CAPS, SSR, RFLP, SNP, and AFLP. We can accept most PCR-based markers; <a href="/contact/">contact SGN</a> if you would like to submit marker types that are not listed here.</li>
+<li><b>nome do marcador</b>Deve ser idêntico ao nome do marcador da SGN se já estiver disponível na SGN.</li>
+<li><b>ID do marcador</b>Se o marcador já estiver na SGN, fornecendo seu marcador de identificação (número SGN-M) nos permitirá processar seu mapa mais rapidamente.</li>
+<li><b>Grupo de ligação</b>O nome ou número do cromossomo ou grupo de ligação.</li>
+<li><b>posição</b>A posição na CM no grupo de ligação.</li>
+<li><b>Confiança</b>: grau de confiança do Mapmaker para este marcador: I, I(LOD2), F(LOD3) ou CF(LOD3). Se o software de mapeamento não calcular esse grau, omita a coluna.</li>
+<li><b>Protocolo</b>O tipo de experiência usada para mapear o marcador. Atualmente, apoiamos CAPS, RSS, RFLP, SNP e AFLP. Podemos aceitar a maioria dos marcadores baseados em PCR; <a href="/contact/">Contate a SGN</a> Se você gostaria de enviar tipos de marcadores que não estão listados aqui.</li>
 </ul>
 
-<h3>The marker data file</h3>
-<p>This file has a different format for each marker type. Please provide these columns:</p>
+<h3>O arquivo de dados do marcador</h3>
+<p>Este arquivo tem um formato diferente para cada tipo de marcador. Por favor, forneça estas colunas:</p>
 
 
 <p>
-CAPS markers (<b>Note: revised 10/2008</b>):
+Marcadores de CAPS (<b>Nota: revista 10/2008</b>):
 </p>
 <pre>
   marker_name. The marker name.
@@ -46,7 +46,7 @@ CAPS markers (<b>Note: revised 10/2008</b>):
   other enzymes. A list of other enzymes predicted to be useful for this marker
 </pre>
 <p>
-SSR markers:
+Marcadores SSR:
 </p>
 <pre>
   marker_name. The marker name.
@@ -59,7 +59,7 @@ SSR markers:
   repeat motif. The repeat motif (for example AAT).
 </pre>
 <p>
-RFLP markers:
+Marcadores RFLP:
 </p>
 <pre>
   marker_name. The marker name.
@@ -71,12 +71,12 @@ RFLP markers:
 </pre>
 
 <p>
-For other types of markers, <a href="/contact/form">contact SGN</a>.
+Para outros tipos de marcadores, <a href="/contact/form">Contate a SGN</a>.
 </p>
 
-<h3>Polymorphism data</h3>
+<h3>Dados de polimorfismo</h3>
 <p>
-The polymorphism data file should have the following columns:
+O arquivo de dados do polimorfismo deve ter as seguintes colunas:
 </p>
 <pre>
   marker name.
@@ -88,22 +88,22 @@ The polymorphism data file should have the following columns:
   band sizes accession n.
 </pre>
 
-<h3>Accession information</h3>
+<h3>Informações sobre o acesso</h3>
 <p>
-We need the following information for each accession used in the mapping or polymorphism data files. (Some accessions are already in our database; <a href="/contact/form">Contact us</a> if you're not sure). This information can be sent in an email or text file.
+Precisamos das seguintes informações para cada acesso usadas nos arquivos de dados de mapeamento ou polimorfismo. <a href="/contact/form">Contate-nos</a> Se não tem certeza. Essa informação pode ser enviada em um e-mail ou arquivo de texto.
 </p>
 <ul>
-<li>The accession's <b>identifier</b>, for example "TA210"</li>
-<li>The accession's <b>name</b> (optional), for example "Sunpear" </li>
-<li>The accession's <b>species</b> and (optional) <b>common name</b></li>
+<li>O acesso <b>identificador</b>, for example "TA210"</li>
+<li>O acesso <b>Nome</b> (opcional), por exemplo, "Sunpear" </li>
+<li>O acesso <b>Espécie</b> e (opcional) <b>Nome comum</b></li>
 </ul>
 
-<p>If you have identified the accessions in the files as "parent 1", "parent 2", etc, remember to state which accession is which.</p>
+<p>Se você identificou os acessos nos arquivos como "pai 1", "pai 2", etc, lembre-se de qual acesso é qual.</p>
 
-<h4>Notes and examples</h4>
+<h4>Notas e exemplos</h4>
 
 <ol>
-<li>Marker names should either correspond to SGN marker names, if the markers are identical, or have a new name that is not yet in the SGN database, as the marker correspondences will be established on a name matching basis.</li>
-<li>The band sizes should be given separated by + symbols, if more than one band is detected, such as: 420+230. The original band size, prior to digestion, can be given in a separate column.</li>
-<li>For RFLP markers, if possible, provide sequence data for the clone, as chromatogram files (.ab1 or .scf). Usually, a forward and reverse read is taken. The file names can be indicated in the RFLP marker file.</li>
+<li>Nomes de marcadores devem corresponder a nomes de marcadores SGN, se os marcadores são idênticos, ou têm um novo nome que ainda não está no banco de dados SGN, já que as correspondências de marcadores serão estabelecidas com base em nomes correspondentes.</li>
+<li>Os tamanhos das bandas devem ser separados por + símbolos, se mais de uma banda for detectada, como: 420+230. O tamanho original da banda, antes da digestão, pode ser dado em uma coluna separada.</li>
+<li>Para marcadores RFLP, se possível, fornecer dados de sequência para o clone, como arquivos de cromatograma (.ab1 ou .scf). Normalmente, uma leitura para frente e para trás é feita. Os nomes dos arquivos podem ser indicados no arquivo RFLP.</li>
 </ol>

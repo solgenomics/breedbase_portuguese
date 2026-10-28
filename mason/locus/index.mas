@@ -90,7 +90,7 @@ my $owner_objects= $locus->get_owners(1);
 my $locus_name = $locus->get_locus_name();
 
 my $registry = $locus->get_associated_registry();
-my $registry_subtitle =  $is_owner && $locus_id ?   '<a href="javascript:Tools.toggleContent(\'associateRegistryForm\', \'locus_registry\')">[Associate a registry name with this locus]</a> '
+my $registry_subtitle =  $is_owner && $locus_id ?   '<a href="javascript:Tools.toggleContent(\'associateRegistryForm\', \'locus_registry\')">[Associe um nome de registro com este locus]</a> '
   : qq|<span class = "ghosted"> [Associate registry name]</span>| ;
 
 my @synonyms = $locus->get_locus_aliases('f','f');
@@ -98,31 +98,31 @@ my @figures = $locus->get_figure_ids();
 
 my $figure_subtitle =
   $curator || $submitter || $sequencer ?
-  " <a href=\"/image/add?type_id=$locus_id&type=locus&action=new&refering_page=$this_page\">[ Add notes, figures or images]</a>" : "<span class= \"ghosted\">[Add notes, figures or images]</span> " ;
+  " <a href=\"/image/add?type_id=$locus_id&type=locus&action=new&refering_page=$this_page\">[ Adicione notas, figuras ou imagens]</a>" : "<span class= \"ghosted\">[Adicionar notas, figuras ou imagens]</span> " ;
 
 my $stock_subtitle =   $curator || $submitter || $sequencer ?
-  '<a href="javascript:Tools.toggleContent(\'associateStockForm\', \'locus_accessions\')">[Associate accession]</a> ' :   '<span class= "ghosted">[Associate accession]</span> ';
+  '<a href="javascript:Tools.toggleContent(\'associateStockForm\', \'locus_accessions\')">[Associar acesso]</a> ' :   '<span class= "ghosted">[Associar acesso]</span> ';
 
 my $accessions = $locus->get_stock_ids;
 
 my @alleles = $locus->get_alleles(); #array of allele objects
 
 my $allele_subtitle = $curator || $submitter || $sequencer  ?
-  "<a href=\"/phenome/allele.pl?locus_id=$locus_id&amp;action=new\">[Add new allele]</a>" :
-  '<span class="ghosted">[Add new Allele]</span>' ;
+  "<a href=\"/phenome/allele.pl?locus_id=$locus_id&amp;action=new\">[Adicionar novo alelo]</a>" :
+  '<span class="ghosted">[Adicionar novo Allele]</span>' ;
 
 my $al_subtitle = $curator || $submitter || $sequencer  ?
-  '<a href="javascript:Tools.toggleContent(\'associateLocusForm\', \'locus_network\');Tools.getOrganisms()">[Associate new locus]</a> ' :
-  '<span class="ghosted">[Associate new locus]</span>' ;
+  '<a href="javascript:Tools.toggleContent(\'associateLocusForm\', \'locus_network\');Tools.getOrganisms()">[Associar novo locus]</a> ' :
+  '<span class="ghosted">[Associar novo locus]</span>' ;
 
 my $collapsed = $locus->count_associated_loci() ? 1 : 0 ;
 
 my $network_sub = $collapsed ?
-  "View <b>$locus_name</b> relationships in the stand-alone <a href=\"/tools/networkbrowser/?type=locus&name=$locus_id\">network browser</a>" : '';
+  "Visualizar <b>$locus_name</b> Relacionamentos autônomos <a href=\"/tools/networkbrowser/?type=locus&name=$locus_id\">navegador de rede</a>" : '';
 
 my $new_unigene_link =  $curator || $submitter || $sequencer  ?
-  '<a href="javascript:Tools.toggleContent(\'associateUnigeneForm\', \'locus_unigenes\' )">[Associate new unigene]</a>' :
-    '<span class= "ghosted">[Associate new unigene]</span> ';
+  '<a href="javascript:Tools.toggleContent(\'associateUnigeneForm\', \'locus_unigenes\' )">[Associar novo unigene]</a>' :
+    '<span class= "ghosted">[Associar novo unigene]</span> ';
 my $new_genbank_link = qq | <a href="/chado/add_feature.pl?type=locus;type_id=$locus_id;refering_page=$this_page;action=new">[Associate new genbank sequence]</a> | ;
 my %dbxrefs = $locus->get_all_dbxrefs();
 
@@ -234,7 +234,7 @@ my $ontology_subtitle = $curator || $submitter || $sequencer  ?
     form_div_name        => 'locus_details',
     js_object_name       => 'locusForm',
     page_url             => "/locus/$locus_id/view/",
-    alternate_new_button => '<a class="btn btn-sm btn-default" href ="/locus/0/new">New</a>'
+    alternate_new_button => '<a class="btn btn-sm btn-default" href ="/locus/0/new">Novo</a>'
     &>
 <table><tr><td>
       <table>
@@ -259,9 +259,9 @@ my $ontology_subtitle = $curator || $submitter || $sequencer  ?
 </td></tr>
 <tr><td>
 % if ($locus_id && $person_id) {
-  <a href="/phenome/claim_locus_ownership.pl?locus_id=<% $locus_id %>&amp;action=confirm"> [Request editor privileges]</a><br /><br />
+  <a href="/phenome/claim_locus_ownership.pl?locus_id=<% $locus_id %>&amp;action=confirm"> [Solicitar privilégios do editor]</a><br /><br />
 % } elsif ( $locus_id ) {
-  <span class="ghosted">[log-in to request editor privileges]</span><br />
+  <span class="ghosted">[log-in para solicitar privilégios do editor]</span><br />
 %}
 <& /locus/edits_info.mas, locus=>$locus  &>
         </td></tr>
@@ -279,7 +279,7 @@ my $ontology_subtitle = $curator || $submitter || $sequencer  ?
 
 
 <&| /page/info_section.mas,
-    title     => "Links to external databases",
+    title     => "Links para bases de dados externas",
     subtitle  => "",
     id        => "locus_dbxrefs",
     collapsible => 1,
@@ -294,7 +294,7 @@ my $ontology_subtitle = $curator || $submitter || $sequencer  ?
 </&>
 
 <&| /page/info_section.mas,
-    title       => "Registry name: $registry",
+    title       => "Nome do registro: $registry",
     subtitle    => $registry_subtitle,
     id          => "locus_registry",
     collapsible => 1,
@@ -304,36 +304,36 @@ my $ontology_subtitle = $curator || $submitter || $sequencer  ?
 </&>
 
 % if($is_owner) {
-<&| /page/info_section.mas, title=>"Locus history", collapsible=>1, collapsed=>1 &>
+<&| /page/info_section.mas, title=>"História do Locus", collapsible=>1, collapsed=>1 &>
        <& /locus/history.mas, locus=>$locus  &>
 </&>
 
 % }
 % if ( $locus_name && $curator ) {
-  <&| /page/info_section.mas, title=>"Curator tools",  collapsible=>1, collapsed=>1 &>
+  <&| /page/info_section.mas, title=>"Ferramentas de curador",  collapsible=>1, collapsed=>1 &>
        <& /locus/merge_locus.mas , locus_id=>"$locus_id" , common_name=>"$common_name" &>
 
   </&>
 % }
 
- <&| /page/info_section.mas, title=>"Notes and figures (" .  scalar(@figures)  . ")", subtitle => "$figure_subtitle", collapsible=>1, collapsed=>1 &>
+ <&| /page/info_section.mas, title=>"Notas e números (" .  scalar(@figures)  . ")", subtitle => "$figure_subtitle", collapsible=>1, collapsed=>1 &>
    <& /image/print_images.mas , images=>\@figures , dbh=>$dbh &>
 
 </&>
 
-%#<&| /page/info_section.mas, title=>"eFP Browser links" &>
+%#<&| /page/info_section.mas, title=>"Links do navegador eFP" &>
 %#
 %#   <& /locus/efp_browser_links.mas, locus => $locus &>
 
 %#</&>
 
- <&| /page/info_section.mas, title=>"Accessions and images (" .  scalar(@$accessions)  . ")", subtitle => "$stock_subtitle", id=>"locus_accessions", collapsible=>1, collapsed=>1 &>
+ <&| /page/info_section.mas, title=>"Acessos e imagens (" .  scalar(@$accessions)  . ")", subtitle => "$stock_subtitle", id=>"locus_accessions", collapsible=>1, collapsed=>1 &>
     <& /phenome/associate_accession_form.mas , locus_id=>$locus_id, person_id=>$person_id &>
       <& /phenome/associated_accessions.mas , accessions=>$accessions, dbh=>$dbh &>
 
  </&>
 
-<&| /page/info_section.mas, title=>"Alleles (" .  scalar(@alleles)  . ")", subtitle => "$allele_subtitle", collapsible=>1, collapsed=>1 &>
+<&| /page/info_section.mas, title=>"Alelos (" .  scalar(@alleles)  . ")", subtitle => "$allele_subtitle", collapsible=>1, collapsed=>1 &>
 
    <& /phenome/allele.mas, alleles=>\@alleles, user_id=>$person_id, curator=>$curator &>
 
@@ -341,7 +341,7 @@ my $ontology_subtitle = $curator || $submitter || $sequencer  ?
 
 
 <&| /page/info_section.mas,
-  title       => "Associated loci (" .  $locus->count_associated_loci() . ")",
+  title       => "Loci associado (" .  $locus->count_associated_loci() . ")",
   subtitle    => "$al_subtitle",
   id          =>"locus_network",
   collapsible =>1,
@@ -353,7 +353,7 @@ my $ontology_subtitle = $curator || $submitter || $sequencer  ?
 </&>
 
 <&| /page/info_section.mas,
-   title       => "Associated loci - graphical view",
+   title       => "Loci associado - visão gráfica",
    subtitle    => $network_sub,
    collapsible => 1,
    collapsed   => $collapsed,
@@ -365,18 +365,18 @@ my $ontology_subtitle = $curator || $submitter || $sequencer  ?
 
 
 <&| /page/info_section.mas,
-  title       => "SolCyc links",
+  title       => "Links SolCyc",
   id          => "solcyc_links",
   collapsible => 1,
   collapsed   => 1,
   &>
 % ## solcyc links are generated from the unigenes function in the ajax/locus controller ##
-   <div id="solcyc" >[loading...]</div>
+   <div id="solcyc" >[Carregando ...]</div>
 </&>
 
 
-<&| /page/info_section.mas, title=>"Sequence annotations" , collapsible=>1, collapsed=>0 &>
-   <&| /page/info_section.mas, title => "Genome features",
+<&| /page/info_section.mas, title=>"Anotações de sequência" , collapsible=>1, collapsed=>0 &>
+   <&| /page/info_section.mas, title => "Características do genoma",
         collapsible   => 1,
         collapsed     => 0,
         is_subsection => 1,
@@ -389,7 +389,7 @@ my $ontology_subtitle = $curator || $submitter || $sequencer  ?
 %}
    </&>
 
-    <&| /page/info_section.mas, title => "Gene model matches",
+    <&| /page/info_section.mas, title => "O modelo Gene bate",
         collapsible   => 1,
         collapsed     => 0,
         is_subsection => 1,
@@ -412,7 +412,7 @@ my $ontology_subtitle = $curator || $submitter || $sequencer  ?
       <& /locus/locus_unigenes.mas, locus_id  => $locus_id  &>
   </&>
 
-  <&| /page/info_section.mas, title => "GenBank accessions",
+  <&| /page/info_section.mas, title => "Acessos do GenBank",
               subtitle => $new_genbank_link,
               collapsible => 1,
               collapsed =>  1 ,
@@ -422,7 +422,7 @@ my $ontology_subtitle = $curator || $submitter || $sequencer  ?
  </&>
 
    <&| /page/info_section.mas,
-       title         => "Other genome matches",
+       title         => "Outro genoma combina",
        collapsible   => 1,
        collapsed     => 1,
        is_subsection => 1,
@@ -434,7 +434,7 @@ my $ontology_subtitle = $curator || $submitter || $sequencer  ?
 
 </&>
 
-<&| /page/info_section.mas, title=>"Literature annotations [" . scalar(@$pubs) ."]" , subtitle=>$pub_subtitle, id=>"publications" , collapsible=>1, collapsed=>1 &>
+<&| /page/info_section.mas, title=>"Anotações literárias" . scalar(@$pubs) ."]" , subtitle=>$pub_subtitle, id=>"publications" , collapsible=>1, collapsed=>1 &>
 
 % foreach my $pub ( @$pubs ) {
   <& /chado/publication.mas, pub=>$pub &>
@@ -445,7 +445,7 @@ my $ontology_subtitle = $curator || $submitter || $sequencer  ?
 
 
 <&| /page/info_section.mas,
-  title       =>"Ontology annotations ($ont_count)",
+  title       =>"Anotações ontológicas ($ont_count)",
   id          => "locus_ontology",
   collapsible => 1,
   collapsed   => 1,
@@ -462,7 +462,7 @@ my $ontology_subtitle = $curator || $submitter || $sequencer  ?
 </&>
 
 <&| /page/info_section.mas,
-     title       => 'Related views',
+     title       => 'Visão relacionada',
      collapsible => 1,
 &>
 

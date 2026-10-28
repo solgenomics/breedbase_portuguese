@@ -2,38 +2,38 @@
 <& /util/import_javascript.mas, classes => ["Prototype", "jquery", "thickbox"] &>
 
 <br />
-<& /page/page_title.mas, title=>"Afri-SOL: A new network of researchers working on African solanaceous plants" &>
+<& /page/page_title.mas, title=>"Uma nova rede de pesquisadores trabalhando em plantas solanáceas africanas" &>
 <div class="indentedcontent">
-African nightshades are increasingly playing an important role in meeting the nutritional and health needs of many households in Africa and elsewhere. Breeders also continue to look for novel traits from wild plants of the Solanaceae family that are native to the African continent. To enhance utilization of the African solanaceous plants, a network of scientists, Afri-SOL, has been created. While other regional Solanaceae networks have been formed elsewhere, no similar network exists within Africa with the result that most African solanaceous crops are poorly known and generally, underutilized.  <br />
+Sombras noturnas africanas estão cada vez mais desempenhando um papel importante no atendimento às necessidades nutricionais e de saúde de muitos lares na África e em outros lugares. Os criadores também continuam procurando novas características de plantas silvestres da família Solanaceae que são nativas do continente africano. Para aumentar a utilização das plantas solanáceas africanas, uma rede de cientistas, Afri-Sol, foi criada. Enquanto outras redes regionais Solanaceae foram formadas em outro lugar, nenhuma rede similar existe na África com o resultado de que a maioria das culturas solanáceas africanas são pouco conhecidas e geralmente, subutilizadas.  <br />
 <br />
-Afri-SOL network therefore aims to do the following:
+A rede Afri-Sol, portanto, visa fazer o seguinte:
 <ul>
-<li>Promote the benefits of solanaceous crops grown in Africa</li>
-<li>Develop research tools for the improvement of beneficial African solanaceous crops</li>
-<li>Facilitate technology dissemination for the improvement of solanaceous crops in Africa</li>
-<li>Seek joint funding from various institutions geared towards the improvement of solanaceous crops in Africa</li>
-<li>Collate information on geographic distribution of solanaceous species within Africa and their uses</li>
-<li>Utilize information available from various solanaceous networks to enhance improvement of underutilized solanaceous crops</li>
-<li>Enhance sharing of information and germplasm among researchers</li>
+<li>Promover os benefícios das culturas solanáceas cultivadas na África</li>
+<li>Desenvolva ferramentas de pesquisa para a melhoria de culturas benéficas afro-solanáceas</li>
+<li>Facilitar a disseminação tecnológica para o melhoramento das culturas solanáceas na África</li>
+<li>Procure financiamento conjunto de várias instituições voltadas para a melhoria das culturas solanáceas na África.</li>
+<li>Colete informações sobre a distribuição geográfica de espécies solanáceas na África e seus usos.</li>
+<li>Use informações disponíveis de várias redes solanáceas para melhorar a melhoria das culturas solanáceas subutilizadas.</li>
+<li>Melhorar o compartilhamento de informações e germoplasma entre pesquisadores</li>
 </ul>
-The network is open to all researchers based in Africa and working on solanaceous plants, or scientists based elsewhere with an interest in African solanaceous plants. Afri-SOL will strive to enhance better exchange of ideas, enhance access to information and publications, and find potential collaboration partners.
+A rede está aberta a todos os pesquisadores baseados na África e trabalhando em plantas solanáceas, ou cientistas baseados em outros lugares com interesse em plantas solanáceas africanas. Afri-Sol se esforçará para melhorar a troca de ideias, melhorar o acesso a informações e publicações, e encontrar potenciais parceiros de colaboração.
 <br /><br />
-Afri-SOL members welcome any suggestions from other Sol communities. 
+Membros da Afri-Sol recebem sugestões de outras comunidades Sol. 
 </div>
 
-<&| /page/info_section.mas, title=>"Contact Information" &>
-For more information, contact:<br /><br />
+<&| /page/info_section.mas, title=>"Informações de contato" &>
+Para mais informações, contate:<br /><br />
 Damaris Achieng Odeny (PhD),<br />
 Agricultural Research Council, <br />
 Biotechnology Platform,<br />
 Private Bag X5,<br />
 Onderstepoort<br />
-0110 South Africa<br />
+0110 África do Sul<br />
 Tel: +27 125299227<br />
 Fax: +27 125654667<br />
 dodeny@arc.agric.za<br />
 </&>
 
-<&| /page/info_section.mas, title=>"Images of <a href=\"/organism/23894/view/\">Solanum retroflexum</a>, an African Solanaceae species" &>
+<&| /page/info_section.mas, title=>"Imagens de <a href=\"/organism/23894/view/\">Solanum retroflexum</a>, an African Solanaceae species" &>
 <& /image/print_images.mas, images=>[ [29059, 'organism'] ,[29060, 'organism'], [29061, 'organism'] ] &>
 </&>

@@ -276,7 +276,7 @@
                                     <div class="col-sm-9" >
                                         <select class="form-control" id="drone_image_analytics_use_area_under_curve_select">
                                             <option value="no">No</option>
-                                            <option value="yes">Yes</option>
+                                            <option value="yes">Sim</option>
                                         </select>
                                     </div>
                                 </div>

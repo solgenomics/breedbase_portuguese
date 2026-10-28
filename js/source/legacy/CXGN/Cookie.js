@@ -77,15 +77,15 @@ Cookie = {
 
 var test = Cookie.test();
 if(test){
-	MochiKit.Logging.logDebug("Javascript Cookie Setting: Works!");
+	MochiKit.Logging.logDebug("Cookie definido pelo JavaScript com sucesso!");
 }
 else {
-	MochiKit.Logging.logError("Javascript Cookie Setting: Failed."); 
+    MochiKit.Logging.logError("Falha ao definir o cookie pelo JavaScript.");
 	var hn = window.location.hostname;
 	if(!/\./.test(hn)){
 		MochiKit.Logging.log(
-			"Cookie failure: You appear to be using a one-word hostname (" + hn + ") without a domain, " +
-			"which won't work with cookies.  Try using something like " +
+			"Falha no cookie: o nome do servidor parece conter uma única palavra (" + hn + ") sem um domínio, " +
+			"o que não funciona com cookies. Tente usar algo como " +
 			"localhost.localdomain, and set /etc/hosts accordingly");
 	}
 }

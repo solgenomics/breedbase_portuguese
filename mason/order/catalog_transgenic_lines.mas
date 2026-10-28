@@ -344,7 +344,7 @@ function itemForm (selected_items, item_info) {
             } else {
                 html +=  '<td><input class="form-control" item_name="' + selected_items[i] + '" name ="quantity" id="quantity_'+ i +'" value="" placeholder=""/></td>';
             }
-            html += '<td><span data-selected-item-name="'+selected_items[i]+'" class="selected_item_remove btn btn-danger btn-xs"><span class="glyphicon glyphicon-trash"></span>&nbsp;&nbsp;Remove</span></td>'
+            html += '<td><span data-selected-item-name="'+selected_items[i]+"\" class=\"selected_item_remove btn btn-danger btn-xs\"><span class=\"glyphicon glyphicon-trash\"></span>Remover</span></td>"
             html += '</tr>';
         };
         html = html + '</tbody></table></div>';

@@ -56,7 +56,7 @@ SGNLoggingPane = {
 			            try {
 			              debugPane.loggingPane = null;
 			            } 
-						catch(e) { logFatal("Bookmarklet was closed incorrectly."); }
+						catch(e) { logFatal("O bookmarklet foi fechado incorretamente."); }
 			            if (inline) {
 			                debugPane.parentNode.removeChild(debugPane);
 

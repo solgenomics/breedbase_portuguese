@@ -36,7 +36,7 @@ solGS.anova = {
 
     jQuery("#anova_msg").dialog({
       modal: true,
-      title: "Alert",
+      title: "Aviso",
       buttons: {
         OK: {
           click: function () {
@@ -110,7 +110,7 @@ solGS.anova = {
     var selectId = this.anovaTraitsSelectMenuId;
     var menuDivId = this.anovaTraitsDiv;
 
-    var optionsLabel = "Select a trait";
+    var optionsLabel = "Selecione uma característica";
     var menuClass = "form-control";
     var menu = new SelectMenu(menuDivId, selectId, menuClass, optionsLabel);
     menu.populateMenu(traits)
@@ -153,18 +153,18 @@ jQuery(document).ready(function () {
                 solGS.anova.populateAnovaMenu(traits);
                 jQuery(runDiv).show();
               } else {
-                solGS.anova.showMessage("This trial has no phenotyped traits.");
+                solGS.anova.showMessage("Este ensaio não possui características fenotipadas.");
                 jQuery(runDiv).hide();
               }
             })
             .fail(function () {
-              solGS.anova.showMessage("Error occured listing anova traits.");
+              solGS.anova.showMessage("Ocorreu um erro ao listar as características para ANOVA.");
               jQuery(runDiv).hide();
             });
         }
       })
       .fail(function () {
-        solGS.anova.showMessage("Error occured running the ANOVA.");
+        solGS.anova.showMessage("Ocorreu um erro ao executar a ANOVA.");
         jQuery(runDiv).show();
       });
   }
@@ -178,7 +178,7 @@ jQuery(document).ready(function () {
     var traitId = jQuery("#anova_selected_trait_id").val();
     if (traitId) {
       jQuery(runDiv).hide();
-      solGS.anova.showMessage("Please wait...querying the database for the trait data...");
+      solGS.anova.showMessage("Aguarde... Consultando os dados da característica no banco de dados...");
       jQuery(`${canvas} .multi-spinner-container`).show();
 
       solGS.anova.queryPhenoData(traitId).done(function (queryRes) {
@@ -189,7 +189,7 @@ jQuery(document).ready(function () {
         } else {
           var traitsAbbrs = queryRes.traits_abbrs;
           traitsAbbrs = JSON.parse(traitsAbbrs);
-          solGS.anova.showMessage("Validated trait data...now running ANOVA...please wait...");
+          solGS.anova.showMessage("Dados da característica validados... Executando ANOVA... Aguarde...");
 
           solGS.anova
             .runAnovaAnalysis(traitsAbbrs)
@@ -218,25 +218,25 @@ jQuery(document).ready(function () {
                   var AdjMeansFileName = AdjMeansFile.split("/").pop();
                   var fileNameDiagnostics = diagnosticsFile.split("/").pop();
                   anovaTxtFile =
-                    '<a href="' + anovaTxtFile + '" download=' + AnovaTxtFileName + ">Anova table</a>";
+                    '<a href="' + anovaTxtFile + '" download=' + AnovaTxtFileName + ">Tabela de ANOVA</a>";
                   modelSummaryFile =
-                    '<a href="' + modelSummaryFile + '" download=' + modelSummaryFileName + ">Model summary</a>";
+                    '<a href="' + modelSummaryFile + '" download=' + modelSummaryFileName + ">Resumo do modelo</a>";
                   AdjMeansFile =
-                    '<a href="' + AdjMeansFile + '" download=' + AdjMeansFileName + ">Adjusted means</a>";
+                    '<a href="' + AdjMeansFile + '" download=' + AdjMeansFileName + ">Médias ajustadas</a>";
 
                   diagnosticsFile =
                     '<a href="' +
                     diagnosticsFile +
                     '" download=' +
                     fileNameDiagnostics +
-                    ">Model diagnostics</a>";
+                    ">Diagnóstico do modelo</a>";
 
                   jQuery(solGS.anova.anovaTableDiv)
                     .prepend(
                       '<div style="margin-top: 20px">' +
                         anovaHtmlTable +
                         "</div>" +
-                        "<br /> <strong>Download:</strong> " +
+                        "<br /> <strong>Baixar:</strong> " +
                         anovaTxtFile +
                         " | " +
                         modelSummaryFile +
@@ -249,14 +249,14 @@ jQuery(document).ready(function () {
                     jQuery(solGS.anova.clearCacheAnova).removeClass('hidden').show();
                 } else {
                   jQuery(`${canvas} .multi-spinner-container`).hide();
-                  solGS.anova.showMessage("There is no anova output for this dataset.");
+                  solGS.anova.showMessage("Não há resultados de ANOVA para este conjunto de dados.");
                   jQuery(runDiv).show();
                 }
               }
             })
             .fail(function () {
               jQuery(`${canvas} .multi-spinner-container`).hide();
-              solGS.anova.showMessage("Error occured running the anova analysis.");
+              solGS.anova.showMessage("Ocorreu um erro ao executar a análise de variância.");
               jQuery(runDiv).show();
             });
         }
@@ -264,7 +264,7 @@ jQuery(document).ready(function () {
         solGS.anova.clearTraitSelection();
       });
     } else {
-      var msg = "Please select a trait.";
+      var msg = "Selecione uma característica.";
       solGS.anova.anovaAlert(msg);
     }
   });

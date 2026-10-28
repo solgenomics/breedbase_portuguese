@@ -79,7 +79,7 @@ solGS.submitJob = {
         }
       },
       error: function () {
-        alert("Error occured checking for cached output.");
+        alert("Ocorreu um erro ao verificar os resultados em cache.");
       },
     });
   },
@@ -97,9 +97,9 @@ solGS.submitJob = {
           solGS.submitJob.askUser(page, args);
         } else {
           var msg =
-            "The training population size (" +
+            "O tamanho da população de treinamento (" +
             trainingPopSize +
-            ") is too small. Minimum required is 20.";
+            ") é muito pequeno. O mínimo necessário é 20.";
 
           solGS.alertMessage(msg);
         }
@@ -109,8 +109,8 @@ solGS.submitJob = {
 
   askUser: function (page, args) {
     var title =
-      "<p>Since the job takes long time, you can only submit and wait for an email with a link to the results. " +
-      "Do you want to submit it and get an email when it completes?</p>";
+      "<p>Como a tarefa demora, você deve enviá-la e aguardar um e-mail com o link dos resultados. " +
+      "Deseja enviar a tarefa e receber um e-mail quando ela for concluída?</p>";
 
     var jobSubmit = '<div id= "job_submission">' + title + "</div>";
 
@@ -120,10 +120,10 @@ solGS.submitJob = {
       height: 200,
       width: 600,
       modal: true,
-      title: "Job submission",
+      title: "Envio da tarefa",
       buttons: {
         OK: {
-          text: "Yes",
+          text: "Sim",
           class: "btn btn-success",
           id: "queue_job",
           click: function () {
@@ -180,12 +180,12 @@ solGS.submitJob = {
 
   loginAlert: function () {
     jQuery("<div />")
-      .html("To use this feature, you need to log in and start over the process.")
+      .html("Para usar este recurso, entre na sua conta e reinicie o processo.")
       .dialog({
         height: 200,
         width: 250,
         modal: true,
-        title: "Login",
+        title: "Entrar",
         buttons: {
           OK: {
             click: function () {
@@ -201,7 +201,7 @@ solGS.submitJob = {
               jQuery(this).dialog("close");
             },
             class: "btn btn-primary",
-            text: "Cancel",
+            text: "Cancelar",
           },
         },
       });
@@ -232,14 +232,14 @@ solGS.submitJob = {
         //}
       },
       error: function (res, st, error) {
-        alert("error: " + error);
+        alert("erro: " + error);
       },
     });
   },
 
   goToPage: function (page, args) {
     jQuery.blockUI.defaults.applyPlatformOpacityRules = false;
-    jQuery.blockUI({ message: "Please wait.." });
+    jQuery.blockUI({ message: "Aguarde..." });
 
     var matchItems =
       "solgs/submission/feedback" +
@@ -331,7 +331,7 @@ solGS.submitJob = {
         height: 400,
         width: 400,
         modal: true,
-        title: "Info about the analysis",
+        title: "Informações sobre a análise",
         buttons: {
           Submit: {
             click: function (e) {
@@ -340,7 +340,7 @@ solGS.submitJob = {
             },
             id: "submit_job",
             class: "btn btn-success",
-            text: "Submit",
+            text: "Enviar",
           },
 
           Cancel: {
@@ -348,7 +348,7 @@ solGS.submitJob = {
               jQuery(this).dialog("close");
             },
             class: "btn btn-primary",
-            text: "Cancel",
+            text: "Cancelar",
           },
         },
       });
@@ -386,7 +386,7 @@ solGS.submitJob = {
     var analysisName = jQuery("#analysis_name").val();
 
     if (!analysisName) {
-      jQuery("#form-feedback-analysis-name").text("Analysis name is blank. Please give a name.");
+      jQuery("#form-feedback-analysis-name").text("O nome da análise está vazio. Informe um nome.");
     } else {
       var checkName = solGS.submitJob.checkAnalysisName(analysisName);
 
@@ -395,7 +395,7 @@ solGS.submitJob = {
           jQuery("#analysis_name").css("border", "solid #FF0000");
 
           jQuery("#form-feedback-analysis-name").text(
-            "The same name exists for another analysis. Please give a new name."
+            "Já existe outra análise com esse nome. Informe um novo nome."
           );
         } else {
           var email = jQuery("#user_email").val();
@@ -411,8 +411,8 @@ solGS.submitJob = {
 
     checkName.fail(function (res) {
       var message =
-        "Error occured submitting the job. Please contact the developers." +
-        "\n\nHint: " +
+        "Ocorreu um erro ao enviar a tarefa. Entre em contato com os desenvolvedores." +
+        "\n\nDica: " +
         response.result;
       solGS.alertMessage(message);
     });
@@ -424,7 +424,7 @@ solGS.submitJob = {
     if (!email.match(emailRegex)) {
       jQuery("#user_email").css("border", "solid #FF0000");
 
-      jQuery("#form-feedback-user-email").text("Please provide a proper email address.");
+      jQuery("#form-feedback-user-email").text("Informe um endereço de e-mail válido.");
 
       emailPass = 0;
     } else {
@@ -564,18 +564,18 @@ solGS.submitJob = {
 
     var emailForm =
       '<form><div class="form-group">' +
-      '<label for="first_name">Name:</label>' +
+      "<label for=\"first_name\">Nome:</label>" +
       '<input type="text" class="form-control" id="first_name"  value="' +
       firstName +
       '"/>' +
       "</div>" +
       '<div class="form-group">' +
-      '<label for="analysis_name">Analysis name:</label>' +
+      "<label for=\"analysis_name\">Nome da análise:</label>" +
       '<input type="text" class="form-control" id="analysis_name">' +
       '<div style="color:red" id="form-feedback-analysis-name"> </div>' +
       "</div>" +
       '<div class="form-group">' +
-      '<label for="user_email">Email:</label>' +
+      "<label for=\"user_email\">E-mail:</label>" +
       '<input type="email" class="form-control" id="user_email" value="' +
       email +
       '"/>' +
@@ -596,12 +596,12 @@ solGS.submitJob = {
         if (response.result) {
           solGS.submitJob.runAnalysis(profile);
         } else {
-          var message = "Failed saving your analysis profile.";
+          var message = "Falha ao salvar o perfil da análise.";
           solGS.alertMessage(message);
         }
       },
       error: function () {
-        var message = "Error occured calling the function to save your analysis profile.";
+        var message = "Ocorreu um erro ao chamar a função para salvar o perfil da análise.";
         solGS.alertMessage(message);
       },
     });
@@ -618,16 +618,16 @@ solGS.submitJob = {
           solGS.submitJob.submissionFeedback(res.arguments);
         } else {
           var message =
-            "Error occured submitting the job. Please contact the developers." +
-            "\n\nHint: " +
+            "Ocorreu um erro ao enviar a tarefa. Entre em contato com os desenvolvedores." +
+            "\n\nDica: " +
             res.result;
           solGS.alertMessage(message);
         }
       },
       error: function (response) {
         var message =
-          "Error occured submitting the job. Please contact the developers." +
-          "\n\nHint: " +
+          "Ocorreu um erro ao enviar a tarefa. Entre em contato com os desenvolvedores." +
+          "\n\nDica: " +
           res.result;
         solGS.alertMessage(message);
       },
@@ -645,7 +645,7 @@ solGS.submitJob = {
   selectTraitMessage: function () {
     var message =
       '<p style="text-align:justify;">' +
-      "Please select one or more traits to build prediction models.</p>";
+      "Selecione uma ou mais características para construir modelos de predição.</p>";
 
     jQuery("<div />")
       .html(message)
@@ -653,7 +653,7 @@ solGS.submitJob = {
         height: 200,
         width: 400,
         modal: true,
-        title: "Prediction Modeling Message",
+        title: "Mensagem da modelagem de predição",
         buttons: {
           Yes: {
             text: "OK",
@@ -733,7 +733,7 @@ jQuery(document).ready(function () {
 
 solGS.alertMessage = function (msg, msgTitle, divId) {
   if (!msgTitle) {
-    msgTitle = "Message";
+    msgTitle = "Mensagem";
   }
 
   if (!divId) {

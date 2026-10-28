@@ -587,7 +587,7 @@ my $buttons_html = "<button class='btn btn-primary' style='margin:3px' id='uploa
                 </div>
             </form>
             <button class="btn btn-primary btn-sm" id="drone_imagery_standard_process_raw_images_retrain_mask_rcnn_predict_button" onclick="return false;">Predizer máscara</button>
-            <button class="btn btn-primary btn-sm" id="drone_imagery_standard_process_raw_images_retrain_mask_rcnn_modal_button" onclick="return false;">Retreinar Mask R-CNN</button>
+            <button class="btn btn-primary btn-sm" id="drone_imagery_standard_process_raw_images_retrain_mask_rcnn_modal_button" onclick="return false;">Mascara Retreinar R-CNN</button>
             <hr>
 
             <hr>
@@ -1002,7 +1002,7 @@ my $buttons_html = "<button class='btn btn-primary' style='margin:3px' id='uploa
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="droneImageryAssignPlotDialog">Atribuir parcela</h4>
+        <h4 class="modal-title" id="droneImageryAssignPlotDialog">Atribuir pacote</h4>
       </div>
       <div class="modal-body">
         <div class="container-fluid">
@@ -1018,7 +1018,7 @@ my $buttons_html = "<button class='btn btn-primary' style='margin:3px' id='uploa
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
-        <button type="button" class="btn btn-primary" id="drone_imagery_plot_polygon_assign_add">Atribuir parcela</button>
+        <button type="button" class="btn btn-primary" id="drone_imagery_plot_polygon_assign_add">Atribuir pacote</button>
       </div>
     </div>
   </div>
@@ -1037,7 +1037,7 @@ my $buttons_html = "<button class='btn btn-primary' style='margin:3px' id='uploa
                 <div class="form-group">
                     <label class="col-sm-5 control-label">Identificador do polígono:</label>
                     <div class="col-sm-7">
-                        <input class="form-control" id="drone_imagery_plot_polygon_remove_polygon_number" name="drone_imagery_plot_polygon_remove_polygon_number" type="number" placeholder="ex.: 3" />
+                        <input class="form-control" id="drone_imagery_plot_polygon_remove_polygon_number" name="drone_imagery_plot_polygon_remove_polygon_number" type="number" placeholder="Ex.: 3" />
                     </div>
                 </div>
             </form>
@@ -1418,7 +1418,7 @@ my $buttons_html = "<button class='btn btn-primary' style='margin:3px' id='uploa
                     <table class="table table-bordered table-hover" id="drone_image_train_keras_plot_polygon_image_type_table">
                         <thead>
                             <tr>
-                                <!--th>Select <br/><input type="checkbox" id="drone_image_train_keras_plot_polygon_image_type_table_select_all" checked>Selecionar todos</th-->
+                                <!--th>Selecionar <br/><input type="checkbox" id="drone_image_train_keras_plot_polygon_image_type_table_select_all" checked>Selecionar todos</th-->
                                 <th>Selecionar</th>
                                 <th>Ensaio de campo</th>
                                 <th>Nome do evento de imageamento</th>
@@ -1608,7 +1608,7 @@ my $buttons_html = "<button class='btn btn-primary' style='margin:3px' id='uploa
                     <table class="table table-bordered table-hover" id="drone_image_predict_keras_plot_polygon_image_type_table">
                         <thead>
                             <tr>
-                                <!--th>Select <br/><input type="checkbox" id="drone_image_predict_keras_plot_polygon_image_type_table_select_all" checked>Selecionar todos</th-->
+                                <!--th>Selecionar <br/><input type="checkbox" id="drone_image_predict_keras_plot_polygon_image_type_table_select_all" checked>Selecionar todos</th-->
                                 <th>Selecionar</th>
                                 <th>Ensaio de campo</th>
                                 <th>Nome do evento de imageamento</th>
@@ -1641,7 +1641,7 @@ my $buttons_html = "<button class='btn btn-primary' style='margin:3px' id='uploa
                     </form>
 
                     <div id="drone_imagery_keras_model_prediction_cnn_prediction_mixed_model_div" style="display:none">
-                        $$y_t = \beta_{CNN,pred} + rep + 1|\mbox{GermplasmName}$$
+                        $y_t = \beta_{CNN,pred} + rep + 1\mbox{GermplasmName}$$
                     </div>
                     <br/><br/>
 
@@ -1728,7 +1728,7 @@ my $buttons_html = "<button class='btn btn-primary' style='margin:3px' id='uploa
                     <table class="table table-bordered table-hover" id="drone_image_autoencoder_keras_vi_plot_polygon_image_type_training_table">
                         <thead>
                             <tr>
-                                <!--th>Select <br/><input type="checkbox" id="drone_image_autoencoder_keras_vi_plot_polygon_image_type_training_table_select_all" checked>Selecionar todos</th-->
+                                <!--th>Selecionar <br/><input type="checkbox" id="drone_image_autoencoder_keras_vi_plot_polygon_image_type_training_table_select_all" checked>Selecionar todos</th-->
                                 <th>Selecionar</th>
                                 <th>Ensaio de campo</th>
                                 <th>Nome do evento de imageamento</th>
@@ -1791,7 +1791,7 @@ my $buttons_html = "<button class='btn btn-primary' style='margin:3px' id='uploa
                     <table class="table table-bordered table-hover" id="drone_image_autoencoder_keras_vi_plot_polygon_image_type_table">
                         <thead>
                             <tr>
-                                <!--th>Select <br/><input type="checkbox" id="drone_image_autoencoder_keras_vi_plot_polygon_image_type_table_select_all" checked>Selecionar todos</th-->
+                                <!--th>Selecionar <br/><input type="checkbox" id="drone_image_autoencoder_keras_vi_plot_polygon_image_type_table_select_all" checked>Selecionar todos</th-->
                                 <th>Selecionar</th>
                                 <th>Ensaio de campo</th>
                                 <th>Nome do evento de imageamento</th>
@@ -2182,7 +2182,7 @@ my $buttons_html = "<button class='btn btn-primary' style='margin:3px' id='uploa
                     <label class="col-sm-3 control-label">Tipo de modelo:</label>
                     <div class="col-sm-9" >
                         <select class="form-control" id="drone_imagery_standard_process_raw_images_retrain_mask_rcnn_model_type">
-                            <option value="Mask R-CNN">Mask R-CNN</option>
+                            <option value="Mask R-CNN">Mascara R-CNN</option>
                         </select>
                     </div>
                 </div>
@@ -5059,7 +5059,7 @@ jQuery(document).ready(function() {
                     .attr("y_pos", y_pos)
                     .attr("transform", d => "translate("+x_pos+","+y_pos+")");
 
-                var imageElem = imageGroup.append("image")
+                var imageElem = imageGroup.append("imagem")
                     .attr("xlink:href", response.image_url)
                     .attr("height", manage_drone_imagery_standard_process_image_height)
                     .attr("width", manage_drone_imagery_standard_process_image_width);
@@ -5602,7 +5602,7 @@ jQuery(document).ready(function() {
                 background_image_width = response.image_width;
                 background_image_height = response.image_height;
 
-                var top_section_html = '<h4>Largura total da imagem: '+response.image_width+' px. Altura total da imagem: '+response.image_height+' px.</h4>';
+                var top_section_html = '<h4>Largura total da imagem: '+response.image_width+' px. Altura total da imagem: '+response.image_height+" PX.</h4>";
 
                 jQuery('#'+info_div_id).html(top_section_html);
 
@@ -6784,7 +6784,7 @@ jQuery(document).ready(function() {
     function droneImageryRectangleLayoutTable(generated_polygons, plot_polygons_layout_assignment_info, plot_polygons_generate_assignment_button, plot_polygon_assignment_submit_button) {
         var html = '<hr><div class="well well-sm"><h2>Ou atribua automaticamente os polígonos às parcelas do ensaio de campo</h2>';
         html = html + '<div class="panel panel-default"><div class="panel-body"><div class="form form-horizontal">';
-        html = html + '<div class="row"><div class="col-sm-6"><div class="form-group form-group-sm"><label class="col-sm-6 control-label">Localização da primeira parcela (por exemplo, parcela número 1): </label><div class="col-sm-6"><select class="form-control" id="drone_imagery_plot_polygons_first_plot_start" name="drone_imagery_plot_polygons_first_plot_start"><option value="top_left">Superior esquerdo</option><option value="top_right">Superior direito</option><option value="bottom_left" disabled>Inferior esquerdo</option><option value="bottom_right" disabled>Inferior direito</option></select></div></div></div><div class="col-sm-6"><div class="form-group form-group-sm"><label class="col-sm-6 control-label">Direção da segunda parcela a partir da primeira: </label><div class="col-sm-6"><select class="form-control" id="drone_imagery_plot_polygons_second_plot_follows" name="drone_imagery_plot_polygons_second_plot_follows"><option value="right">Direita</option><option value="up">Acima</option><option value="down">Abaixo</option><option value="left">Esquerda</option></select></div></div></div></div>';
+        html = html + "<div class=\"row\"><div class=\"col-sm-6\"><div class=\"form-group form-group-sm\"><label class=\"col-sm-6 control-label\">Localização da primeira parcela (por exemplo, parcela número 1): </label><div class=\"col-sm-6\"><select class=\"form-control\" id=\"drone_imagery_plot_polygons_first_plot_start\" name=\"drone_imagery_plot_polygons_first_plot_start\"><option value=\"top_left\">Superior Esquerdo</option><option value=\"top_right\">Superior direito</option><option value=\"bottom_left\" disabled>Inferior esquerdo</option><option value=\"bottom_right\" disabled>Inferior direito</option></select></div></div></div><div class=\"col-sm-6\"><div class=\"form-group form-group-sm\"><label class=\"col-sm-6 control-label\">Direção da segunda parcela a partir da primeira: </label><div class=\"col-sm-6\"><select class=\"form-control\" id=\"drone_imagery_plot_polygons_second_plot_follows\" name=\"drone_imagery_plot_polygons_second_plot_follows\"><option value=\"right\">Direita</option><option value=\"up\">Acima</option><option value=\"down\">Abaixo</option><option value=\"left\">Esquerda</option></select></div></div></div></div>";
         html = html + '<div class="row"><div class="col-sm-6"><div class="form-group form-group-sm"><label class="col-sm-6 control-label">Orientação da numeração das parcelas: </label><div class="col-sm-6"><select class="form-control" id="drone_imagery_plot_polygons_plot_orientation" name="drone_imagery_plot_polygons_plot_orientation"><option value="serpentine">Serpentina</option><option value="zigzag">Zigue-zague (não serpentina)</option></select></div></div></div></div>';
         html = html + '<button class="btn btn-primary" id="'+plot_polygons_generate_assignment_button+'">Gerar atribuições (não salva)</button>&nbsp;&nbsp;&nbsp;<button class="btn btn-primary" name="'+plot_polygon_assignment_submit_button+'">Concluir e salvar os polígonos nas parcelas</button></div>';
         html = html + '</div></div></div></div>';

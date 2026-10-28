@@ -24,27 +24,27 @@ const initialtypes = [
 ];
 
 const types = {
-  "accessions": "Accessions",
-  "accessions_ids": "Accessions Ids",
-  "organisms": "Organisms",
-  "breeding_programs": "Breeding Programs",
-  "genotyping_protocols": "Genotyping Protocols",
-  "genotyping_projects": "Genotyping Projects",
-  "locations": "Locations",
-  "protocols": "HDP Protocols",
-  "instances": "HDP Upload Ids",
-  "plots": "Plots",
-  "subplots": "Subplots",
-  "plants": "Plants",
-  "tissue_sample": "Tissue Samples",
-  "populations": "Populations",
-  "seedlots": "Seedlots",
-  "trait_components": "Trait Components",
-  "traits": "Traits",
-  "trials": "Trials",
-  "trial_designs": "Trial Designs",
-  "trial_types": "Trial Types",
-  "years": "Years",
+  "accessions": "Acessos",
+  "accessions_ids": "IDs dos acessos",
+  "organisms": "Organismos",
+  "breeding_programs": "Programas de melhoramento",
+  "genotyping_protocols": "Protocolos de genotipagem",
+  "genotyping_projects": "Projetos de genotipagem",
+  "locations": "Locais",
+  "protocols": "Protocolos HDP",
+  "instances": "IDs de envio HDP",
+  "plots": "Parcelas",
+  "subplots": "Subparcelas",
+  "plants": "Plantas",
+  "tissue_sample": "Amostras de tecido",
+  "populations": "Populações",
+  "seedlots": "Lotes de sementes",
+  "trait_components": "Componentes das características",
+  "traits": "Características",
+  "trials": "Ensaios",
+  "trial_designs": "Delineamentos dos ensaios",
+  "trial_types": "Tipos de ensaio",
+  "years": "Anos",
 };
 
 // Helper: UI/validation uses canonical plural
@@ -103,7 +103,7 @@ export function WizardSetup(main_id) {
     // Column 1 loader
     .load_initial((target) => {
       var formData = new FormData();
-      formData.append('categories[]', target); // server should receive canonical (plural) here
+      formData.append("Categorias", target); // server should receive canonical (plural) here
       formData.append('data', '');
       return fetch(window.location.origin + "/ajax/breeder/search", {
         method: "POST",
@@ -124,13 +124,13 @@ export function WizardSetup(main_id) {
       }
       var formData = new FormData();
       categories.forEach((c, i) => {
-        formData.append('categories[]', c);
-        formData.append('querytypes[]', operations[c]);
+        formData.append("Categorias", c);
+        formData.append("Tipos de pesquisa", operations[c]);
         (selections[c] || []).forEach(s => {
-          formData.append(`data[${i}][]`, s.id);
+          formData.append(`Dados[${i}][]`, s.id);
         });
       });
-      formData.append('categories[]', target);
+      formData.append("Categorias", target);
       return fetch(window.location.origin + "/ajax/breeder/search", {
         method: "POST",
         credentials: 'include',
@@ -155,7 +155,7 @@ export function WizardSetup(main_id) {
         const loadType     = toLoadType(validateType);
 
         if (!fetchTypes.includes(validateType)) {
-          setTimeout(() => alert("List is not of an appropriate type."), 1);
+          setTimeout(() => alert("A lista não é de um tipo apropriado."), 1);
         }
 
 
@@ -204,7 +204,7 @@ export function WizardSetup(main_id) {
 
   wiz.add_to_list((listID, items) => {
     var count = list.addBulk(listID, items.map(i => i.name));
-    if (count) alert(`${count} items added to list.`);
+    if (count) alert(`${count} itens adicionados à lista.`);
     load_lists();
   })
   .create_list((listName, colType, items) => {
@@ -212,7 +212,7 @@ export function WizardSetup(main_id) {
     if (newID) {
       list.setListType(newID, colType);
       var count = list.addBulk(newID, items.map(i => i.name));
-      if (count) alert(`${count} items added to list ${listName}.`);
+      if (count) alert(`${count} itens adicionados à lista ${listName}.`);
     }
     load_lists();
   });
@@ -222,7 +222,7 @@ export function WizardSetup(main_id) {
 
   var lo = new CXGN.List();
   jQuery('#wizard-download-genotypes-marker-set-list-id')
-    .html(lo.listSelect('wizard-download-genotypes-marker-set-list-id', ['markers'], 'Select a list', 'refresh', undefined));
+    .html(lo.listSelect('wizard-download-genotypes-marker-set-list-id', ['markers'], "Selecione uma lista", 'refresh', undefined));
 
   return {
     wizard: wiz,
@@ -247,7 +247,7 @@ export function updateStatus(element) {
     return !!json.refreshing;
   })
   .catch(err => {
-    d3.select(element).html(`<font color="red">${err.message} - If this problem persists, please <a href="../../contact/form">contact developers</a></font>`);
+    d3.select(element).html(`<font color="red">${err.message} - Se o problema persistir, por favor <a href="../../contact/form">entre em contato com os desenvolvedores</a></font>`);
     return false;
   });
 }

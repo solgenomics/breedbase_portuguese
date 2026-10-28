@@ -24,7 +24,7 @@ export function init(main_div) {
     }
 
     if (typeof isLoggedIn === 'function' && !isLoggedIn()) {
-        alert('You must be logged in to use Environment Stratification');
+        alert("Entre na sua conta para usar a estratificação ambiental");
         return;
     }
 
@@ -80,7 +80,7 @@ export function init(main_div) {
                 $('#environment_stratification_tempfile').html(response.tempfile);
             },
             error: function() {
-                alert("An error occurred while preparing the dataset.");
+                alert("Ocorreu um erro ao preparar o conjunto de dados.");
             }
         });
     });
@@ -105,7 +105,7 @@ export function init(main_div) {
                 renderTraitSummary(response.data || [], trait);
             })
             .fail(function() {
-                alert("An error occurred while reading the phenotype file.");
+                alert("Ocorreu um erro ao ler o arquivo de fenótipos.");
             });
     });
 
@@ -118,11 +118,11 @@ export function init(main_div) {
             return;
         }
         if (!trait) {
-            alert("Please select a trait.");
+            alert("Selecione uma característica.");
             return;
         }
         if (isNaN(alpha) || alpha <= 0 || alpha >= 1) {
-            alert("Alpha must be a number between 0 and 1.");
+            alert("Alfa deve ser um número entre 0 e 1.");
             return;
         }
 
@@ -136,7 +136,7 @@ export function init(main_div) {
             },
             beforeSend: function() {
                 clearResults();
-                $('#environment_stratification_message').html('<div class="alert alert-info">Running environment stratification...</div>');
+                $('#environment_stratification_message').html("<div class=\"alert alert-info\">Executando estratificação ambiental...</div>");
                 if ($('#working_modal').length) {
                     $('#working_modal').modal("show");
                 }
@@ -151,7 +151,7 @@ export function init(main_div) {
                     return;
                 }
 
-                $('#environment_stratification_message').html('<div class="alert alert-success">' + htmlEscape(response.message || 'Analysis finished.') + '</div>');
+                $('#environment_stratification_message').html('<div class="alert alert-success">' + htmlEscape(response.message || "Análise concluída.") + '</div>');
                 renderResults(response);
                 renderMap(response.map_locations || []);
             },
@@ -159,7 +159,7 @@ export function init(main_div) {
                 if ($('#working_modal').length) {
                     $('#working_modal').modal("hide");
                 }
-                $('#environment_stratification_message').html('<div class="alert alert-danger">An error occurred while running environment stratification.</div>');
+                $('#environment_stratification_message').html("<div class=\"alert alert-danger\">Ocorreu um erro ao executar a estratificação ambiental.</div>");
             }
         });
     });
@@ -176,11 +176,11 @@ function getDatasetId() {
     });
 
     if (selected_datasets.length < 1) {
-        alert('Please select one dataset.');
+        alert("Selecione um conjunto de dados.");
         return false;
     }
     if (selected_datasets.length > 1) {
-        alert('Please select only one dataset.');
+        alert("Selecione apenas um conjunto de dados.");
         return false;
     }
     return selected_datasets[0];
@@ -206,8 +206,8 @@ function renderTraitSummary(data, trait) {
         Mean: formatNumber(mean),
         Minimum: formatNumber(Math.min.apply(null, values)),
         Maximum: formatNumber(Math.max.apply(null, values)),
-        "Std Dev": formatNumber(Math.sqrt(variance)),
-        "Percent Missing": formatNumber((missing / data.length) * 100)
+        "Desvio padrão": formatNumber(Math.sqrt(variance)),
+        "Porcentagem de dados ausentes": formatNumber((missing / data.length) * 100)
     }];
 
     renderTable('#environment_stratification_trait_summary', 'environment_stratification_trait_summary_table', summary);
@@ -229,10 +229,10 @@ function renderResults(response) {
             Environments: firstPresent(row.environments, groupsById[row.group_id] ? groupsById[row.group_id].join(', ') : ''),
             Locations: firstPresent(row.locations, row.location),
             Trials: firstPresent(row.trials, row.trial),
-            "N Environments": row.n_env,
-            "N Genotypes": row.n_genotypes,
-            "F Value": formatNumber(row.f_value),
-            "P Value": formatNumber(row.p_value),
+            "Nº de ambientes": row.n_env,
+            "Nº de genótipos": row.n_genotypes,
+            "Valor F": formatNumber(row.f_value),
+            "Valor P": formatNumber(row.p_value),
             Compatible: row.compatible,
             Message: row.message
         };
@@ -240,16 +240,16 @@ function renderResults(response) {
 
     var pairwise = (response.pairwise || []).map(function(row) {
         return {
-            "Environment 1 Location": firstPresent(row.env1_location, row.env1),
-            "Environment 1 Trial": row.env1_trial,
-            "Environment 2 Location": firstPresent(row.env2_location, row.env2),
-            "Environment 2 Trial": row.env2_trial,
-            "N Genotypes": row.n_genotypes,
+            "Local do ambiente 1": firstPresent(row.env1_location, row.env1),
+            "Ensaio do ambiente 1": row.env1_trial,
+            "Local do ambiente 2": firstPresent(row.env2_location, row.env2),
+            "Ensaio do ambiente 2": row.env2_trial,
+            "Nº de genótipos": row.n_genotypes,
             "SS": formatNumber(row.ss_ge),
             "MS GxE": formatNumber(row.ms_ge),
             "MSE": formatNumber(row.mse_error),
-            "F Value": formatNumber(row.f_value),
-            "P Value": formatNumber(row.p_value),
+            "Valor F": formatNumber(row.f_value),
+            "Valor P": formatNumber(row.p_value),
             Compatible: row.compatible,
             Message: row.message
         };
@@ -260,10 +260,10 @@ function renderResults(response) {
             Design: row.design || '',
             Term: row.term,
             DF: formatNumber(row.df),
-            "Sum Sq": formatNumber(row.sum_sq),
-            "Mean Sq": formatNumber(row.mean_sq),
-            "F Value": formatNumber(row.f_value),
-            "P Value": formatNumber(row.p_value),
+            "Soma de quadrados": formatNumber(row.sum_sq),
+            "Quadrado médio": formatNumber(row.mean_sq),
+            "Valor F": formatNumber(row.f_value),
+            "Valor P": formatNumber(row.p_value),
             Message: row.message || ''
         };
     });
@@ -284,7 +284,7 @@ function renderResults(response) {
 
 function renderMap(mapLocations) {
     if (typeof L === 'undefined') {
-        $('#environment_stratification_map_message').html('<div class="alert alert-warning">Map library is not available.</div>');
+        $('#environment_stratification_map_message').html("<div class=\"alert alert-warning\">A biblioteca de mapas não está disponível.</div>");
         return;
     }
 
@@ -302,7 +302,7 @@ function renderMap(mapLocations) {
 
     if (locationsWithCoordinates.length === 0) {
         if ((mapLocations || []).length > 0) {
-            $('#environment_stratification_map_message').html('<div class="alert alert-warning">No mapped locations have latitude and longitude coordinates.</div>');
+            $('#environment_stratification_map_message').html("<div class=\"alert alert-warning\">Nenhum local mapeado possui coordenadas de latitude e longitude.</div>");
         }
         environmentStratificationMap.setView([0, 0], 2);
         return;
@@ -331,7 +331,7 @@ function renderMap(mapLocations) {
 
         marker.bindTooltip(
             '<b>' + htmlEscape(row.location) + '</b><br>' +
-            'Trial: ' + htmlEscape(row.trial || ''),
+            "Ensaio: " + htmlEscape(row.trial || ''),
             {
                 direction: 'top',
                 sticky: true,
@@ -341,9 +341,9 @@ function renderMap(mapLocations) {
 
         marker.bindPopup(
             '<b>' + htmlEscape(row.location) + '</b><br>' +
-            'Group: ' + htmlEscape(row.group_label || row.group_id) + '<br>' +
-            'Environment: ' + htmlEscape(row.environment) + '<br>' +
-            'Trial: ' + htmlEscape(row.trial || '')
+            "Grupo: " + htmlEscape(row.group_label || row.group_id) + '<br>' +
+            "Ambiente: " + htmlEscape(row.environment) + '<br>' +
+            "Ensaio: " + htmlEscape(row.trial || '')
         );
         marker.addTo(environmentStratificationMapMarkers);
         bounds.push([lat, lng]);
@@ -364,7 +364,7 @@ function renderMap(mapLocations) {
         var missingNames = missingCoordinates.map(function(row) { return row.location; }).filter(function(value, index, arr) {
             return value && arr.indexOf(value) === index;
         });
-        $('#environment_stratification_map_message').html('<div class="alert alert-warning">Locations without coordinates are not shown: ' + htmlEscape(missingNames.join(', ')) + '</div>');
+        $('#environment_stratification_map_message').html("<div class=\"alert alert-warning\">Locais sem coordenadas não são exibidos: " + htmlEscape(missingNames.join(', ')) + '</div>');
     }
 }
 
@@ -388,7 +388,7 @@ function renderMapLegend(colorByGroup) {
 
     var html = '';
     groups.forEach(function(groupId) {
-        var label = groupId === 'Ungrouped' ? 'Ungrouped or statistically distinct' : groupId + ' - not statistically different';
+        var label = groupId === "Sem grupo" ? "Sem grupo ou estatisticamente distinto" : groupId + " - sem diferença estatística";
         html += '<span class="environment-stratification-map-legend-item">' +
             '<span class="environment-stratification-map-swatch" style="background-color:' + htmlEscape(colorByGroup[groupId]) + '"></span>' +
             htmlEscape(label) +
@@ -403,7 +403,7 @@ function renderTable(container, tableId, rows) {
     }
 
     if (!rows || rows.length === 0) {
-        $(container).html('<p>No rows to display.</p>');
+        $(container).html("<p>Nenhuma linha para exibir.</p>");
         return;
     }
 
@@ -478,13 +478,13 @@ function htmlEscape(value) {
 function downloadTableXlsx(tableId, filename) {
     var table = document.getElementById(tableId);
     if (!table) {
-        alert('No results are available to download.');
+        alert("Não há resultados disponíveis para baixar.");
         return;
     }
 
     var JSZipConstructor = getJSZipConstructor();
     if (!JSZipConstructor) {
-        alert('XLSX export library is not available.');
+        alert("A biblioteca de exportação XLSX não está disponível.");
         return;
     }
 
@@ -498,7 +498,7 @@ function downloadTableXlsx(tableId, filename) {
     });
 
     if (rows.length === 0) {
-        alert('No results are available to download.');
+        alert("Não há resultados disponíveis para baixar.");
         return;
     }
 
@@ -531,7 +531,7 @@ function generateXlsxBlob(workbook, callback) {
     };
 
     if (typeof workbook.generate !== 'function') {
-        alert('XLSX export library is not compatible with this page.');
+        alert("A biblioteca de exportação XLSX não é compatível com esta página.");
         return;
     }
 

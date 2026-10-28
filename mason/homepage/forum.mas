@@ -1,13 +1,13 @@
 <div class="boxbgcolor1" style="margin:0px;" >
-<div class="boxheading">Forum topics</div>
+<div class="boxheading">Tópicos do fórum</div>
 <div class="boxcontent">
 <div class="subheading">
-<a href="/forum/posts.pl?topic_id=2">Job Listings</a>
+<a href="/forum/posts.pl?topic_id=2">Listas de trabalho</a>
 </div>
 <div class="boxsubcontent">
-Browse or advertise jobs here.
+Procurar ou anunciar trabalhos aqui.
 </div>
-<a href="/forum/topics.pl">View all topics...</a><br /><br />
+<a href="/forum/topics.pl">Veja todos os tópicos...</a><br /><br />
 </div>
 </div>
 

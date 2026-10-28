@@ -23,7 +23,7 @@ $combo_pops_id => ''
 
 <div id="phenoPlot"></div>
       
-<button class="button" id="phenozoom-reset">Reset zoom</button>
+<button class="button" id="phenozoom-reset">Reiniciar zoom</button>
 <br/>
 <br/>
 <!-- <h3 style="text-align:center">Overview</h3> -->

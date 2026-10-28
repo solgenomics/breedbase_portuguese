@@ -54,7 +54,7 @@ $selection_traits_ids = join(',', @$selection_pop_analyzed_traits_ids);
 "solGS.genotypingProtocol", "save-svg-as-png.saveSvgAsPng", "solGS.selectMenu"] &>
 
 <& /page/page_title.mas,
-   title => "Prediction models from $training_pop_name"
+   title => "Modelos de previsão de $training_pop_name"
 &>
 
 

@@ -135,7 +135,7 @@ my $date = join "/", ($dt->year, $dt->month, $dt->day);
           var left_margin = 10;
           var bottom_margin = 12;
           var right_margin = 10;
-          var text = 'year,location';
+          var text = "Ano, localização";
           }
           else if (format == "20A4") {
           var label_row = 10;
@@ -221,8 +221,8 @@ my $date = join "/", ($dt->year, $dt->month, $dt->day);
           <option value="32_unique">Papel adesivo para 32 etiquetas únicas</option>
           <option value="CASS">Formato de impressão CASS</option>
           <option value="crossing">CRUZAMENTO</option>
-          <option value="IITA-2">IITA-2-barcode</option>
-          <option value="IITA-3">IITA-3-barcode</option>
+          <option value="IITA-2">Código de barras IITA-2-</option>
+          <option value="IITA-3">Código de barras IITA-3</option>
           <option value="MUSA">Formato de impressão MUSA</option>
           <option value="NCSU">Formato de impressão NCSU</option>
         </select>
@@ -392,7 +392,7 @@ my $date = join "/", ($dt->year, $dt->month, $dt->day);
 
 </&>
 
-%#<&| /page/info_section.mas, title=>'Generate unique barcodes', collapsible=>1, collapsed=>0 &>
+%#<&| /page/info_section.mas, title=>'Gere códigos de barras únicos', collapsible=>1, collapsed=>0 &>
 
 %#<form action="/barcode/unique" >
 

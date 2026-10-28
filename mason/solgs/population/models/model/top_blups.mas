@@ -19,7 +19,7 @@ $top_blups
 
 
 
-<i>Top 10 genotypes</i>:
+<i>Top 10 genótipos</i>:
 
 <& /page/columnar_table.mas,
   headings     => ["Genotypes", "GEBVs"],

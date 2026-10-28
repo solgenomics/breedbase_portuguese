@@ -14,24 +14,24 @@ $organism
 
 
 <&| /page/info_section.mas,
-    title  => 'Data release policy',
+    title  => 'Política de liberação de dados',
 &>
-All data is openly and freely available on <a href="/">SGN</a>, <a href="http://mips.helmholtz-muenchen.de/plant/tomato/index.jsp" target="_new">MIPS</a>, and Genbank.
+Todos os dados estão abertos e livremente disponíveis em <a href="/">SGN</a>, <a href="http://mips.helmholtz-muenchen.de/plant/tomato/index.jsp" target="_new">MIPS</a>, and Genbank.
 </&>
 
-<&| /page/info_section.mas, title=>'Download' &>
+<&| /page/info_section.mas, title=>'Baixar' &>
 
-<a href="ftp://ftp.solgenomics.net/tomato_genome">FTP site</a> | <a href="/jbrowse_solgenomics/?data=data%2Fjson%2FSL2.50&loc=SL2.50ch00%3A8722915..13084079&tracks=DNA&highlight=">Genome Browser</a> | <a href="/tools/blast/">BLAST</a>
+<a href="ftp://ftp.solgenomics.net/tomato_genome">Site FTP</a> | <a href="/jbrowse_solgenomics/?data=data%2Fjson%2FSL2.50&loc=SL2.50ch00%3A8722915..13084079&tracks=DNA&highlight=">Navegador Genoma</a> | <a href="/tools/blast/">BLAST</a>
 </&>
 
 
-<&| /page/info_section.mas, title=>'Project' &>
+<&| /page/info_section.mas, title=>'Projeto' &>
   <p> <& /genomes/Solanum_lycopersicum/project_background.mas &> </p>
   </&>
 
 <&| /page/info_section.mas,
-      title       => 'Official annotation',
-      subtitle    => 'browse genome contigs and official annotations',
+      title       => 'Anotação oficial',
+      subtitle    => 'Navegue em contíguos do genoma e anotações oficiais',
       collapsible => 1,
       collapsed   => 0,
  &>
@@ -39,12 +39,9 @@ All data is openly and freely available on <a href="/">SGN</a>, <a href="http://
   <table class="indentedcontent" style="margin: 0 10px 10px 10px">
       <tr>
 
-        <td>The official annotation for the tomato genome is provided
-
-            by the <a href="http://www.ab.wur.nl/TomatoWiki">International
-            Tomato Annotation Group (ITAG)</a>, a multinational
+        <td>A anotação oficial para o genoma de tomate é fornecida pelo <a href="http://www.ab.wur.nl/TomatoWiki">Grupo Internacional de Anotação de Tomate (ITAG)</a>, a multinational
             consortium, funded in part by the
-            <a href="http://www.eu-sol.net">EU-SOL project</a>.
+            <a href="http://www.eu-sol.net">Projeto EU-Sol</a>.
         </td>
         <td><a class="footer" href="http://www.eu-sol.net"><img src="/img/eusol_logo_small.jpg" border="0" /></a></td>
       </tr>
@@ -54,39 +51,39 @@ All data is openly and freely available on <a href="/">SGN</a>, <a href="http://
 
 </&>
 
-<&| /page/info_section.mas, title => 'Tomato genome sequence builds', collapsible => 1, collapsed=>1 &>
+<&| /page/info_section.mas, title => 'A sequência do genoma do tomate se constrói', collapsible => 1, collapsed=>1 &>
   <& /genomes/Solanum_lycopersicum/wgs_builds_table.mas &>
 </&>
 
-<&| /page/info_section.mas, title => 'Clone sequences', collapsible => 1, collapsed=>1 &>
+<&| /page/info_section.mas, title => 'Sequências de clones', collapsible => 1, collapsed=>1 &>
   <ul>
-  <li><a href="/organism/Solanum_lycopersicum/clone_sequencing">Clone sequencing home</a></li>
-  <li><a href="/search/direct_search.pl?search=bacs">Search BACS</a></li>
+  <li><a href="/organism/Solanum_lycopersicum/clone_sequencing">Clone seqüenciando para casa</a></li>
+  <li><a href="/search/direct_search.pl?search=bacs">Busque BACS</a></li>
   </ul>
 </&>
 
-<&| /page/info_section.mas, title => 'Other tomato genome pages on SGN', collapsible => 1 &>
+<&| /page/info_section.mas, title => 'Outras páginas de genoma de tomate na SGN', collapsible => 1 &>
   <ul>
-  <li><a href="/about/tomato_project_overview.pl">Tomato Project Details</a></li>
-  <li><a href="ftp://ftp.sgn.cornell.edu/genomes/Solanum_lycopersicum/">Tomato genome FTP</a></li>
+  <li><a href="/about/tomato_project_overview.pl">Detalhes do Projeto Tomate</a></li>
+  <li><a href="ftp://ftp.sgn.cornell.edu/genomes/Solanum_lycopersicum/">Genoma de tomate FTP</a></li>
     </ul>
 </&>
 
 <&| /page/info_section.mas, title => 'Links', collapsible => 1 &>
   <ul>
-  <li><a href="http://tgrc.ucdavis.edu/Data/Acc/AccDetail.aspx?AccessionNum=LA4345">Heinz 1706 order link at TGRC</a> (the variety used in tomato genome sequencing project)</li>
-  <li><a href="http://www.genome.arizona.edu/fpc/tomato/">Tomato FPC pages</a> at University of Arizona, USA.</li>
-  <li>Sanger FTP site with <a href="ftp://ftp.sanger.ac.uk/pub/tomato/map/">MboI BAC library FPC build</a></li>
-  <li><a href="http://www.sanger.ac.uk/Software/">Software links at Sanger</a></li>
-  <li>The <a href="http://biosrv.cab.unina.it">Tomato Genome Annotation pages</a> at the <a href="http://cab.unina.it">computational biology group</a> of the <a href="http://www.unina.it">University of Naples</a>, Italy.</li>
-  <li><a href="http://www.ncbi.nlm.nih.gov/assembly/GCA_000325825.1/">Tomato mitochondrial genome (Genbank)</a> (the site <a href="http://www.mitochondrialgenome.org">mitochondrialgenome.org</a> seems defunct as of Dec 2013)</li>
-  <li><a href="http://www.ncbi.nlm.nih.gov/entrez/viewer.fcgi?db=nuccore&id=149384932">Tomato chloroplast sequence (Genbank)</a></li>
+  <li><a href="http://tgrc.ucdavis.edu/Data/Acc/AccDetail.aspx?AccessionNum=LA4345">Heinz 1706 ligação de ordem no TGRC</a> (a variedade usada no projeto de sequenciamento do genoma do tomate)</li>
+  <li><a href="http://www.genome.arizona.edu/fpc/tomato/">Tomato FPC pages</a> na Universidade do Arizona, EUA.</li>
+  <li>Sanger FTP site com <a href="ftp://ftp.sanger.ac.uk/pub/tomato/map/">MboI BAC biblioteca FPC construir</a></li>
+  <li><a href="http://www.sanger.ac.uk/Software/">Links de software em Sanger</a></li>
+  <li>O <a href="http://biosrv.cab.unina.it">Tomato Genome Annotation pages</a> Na <a href="http://cab.unina.it">Grupo de biologia computacional</a> da <a href="http://www.unina.it">Universidade de Nápoles</a>, Italy.</li>
+  <li><a href="http://www.ncbi.nlm.nih.gov/assembly/GCA_000325825.1/">Genoma mitocondrial de tomate (Genbank)</a> (o site <a href="http://www.mitochondrialgenome.org">mitochondrialgenome.org</a> Parece defunto desde dezembro de 2013)</li>
+  <li><a href="http://www.ncbi.nlm.nih.gov/entrez/viewer.fcgi?db=nuccore&id=149384932">Sequência de cloroplasto de tomate (Genbank)</a></li>
 
   </ul>
 </&>
 
-<&| /page/info_section.mas, title => 'Publications' &>
-  <ul><li><a href="/genomes/Solanum_lycopersicum/publications.pl">List of tomato genome publications</a></li></ul>
+<&| /page/info_section.mas, title => 'Publicações' &>
+  <ul><li><a href="/genomes/Solanum_lycopersicum/publications.pl">Lista de publicações sobre genoma de tomate</a></li></ul>
 </&>
 
 <%once>

@@ -6,8 +6,8 @@ solGS.scatterPlot = {
 
         var xData = regData.x_data;
         var yData = regData.y_data;
-        var yLabel = regData.y_label || 'Y values';
-        var xLabel = regData.x_label || 'X values';
+        var yLabel = regData.y_label || "Valores de Y";
+        var xLabel = regData.x_label || "Valores de X";
         var regPlotDivId = regData.plot_div_id;
         var corrValues = regData.corr_values || null;
         var axisMode = regData.axis_mode || regData.quadrants || "auto";
@@ -127,7 +127,7 @@ solGS.scatterPlot = {
         var dataPointColor = "#9A2EFE";
 
         regPlot.append("g")
-            .attr("class", "x axis")
+            .attr("class", "eixo x")
             .attr("transform", "translate(" + pad.left + "," + xAxisMid + ")")
             .call(xAxis)
             .selectAll("text")
@@ -139,7 +139,7 @@ solGS.scatterPlot = {
             .style({ "text-anchor": "start", "fill": regLineColor });
 
         regPlot.append("g")
-            .attr("class", "y axis")
+            .attr("class", "eixo y")
             .attr("transform", "translate(" + yAxisMid + "," + pad.top + ")")
             .call(yAxis)
             .selectAll("text")

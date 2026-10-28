@@ -24,11 +24,7 @@ $owner_page
   title       => "Data access" 
 &>   
   <p>
-    The QTL data for this population is not public yet. If you are the 
-    data owner or SGN curator, login to access the data. 
-    Others who would like to know more about the data 
-    can contact the owner of the data: <b><% $owner_page %></b> or 
-    SGN: <a href=mailto:sgn-feedback@sgn.cornell.edu>
+    Os dados do QTL para esta população ainda não são públicos. Se você é o dono dos dados ou curador do SGN, faça login para acessar os dados. Outros que gostariam de saber mais sobre os dados podem contatar o proprietário dos dados: <b><% $owner_page %></b> Ou SGN: <a href=mailto:sgn-feedback@sgn.cornell.edu>
     sgn-feedback@sgn.cornell.edu</a>.
   </p>
 </&>

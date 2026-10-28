@@ -31,7 +31,7 @@ $facilities
                     <ul>
                         <li>1) Defina as unidades de “origem” de cada poço: amostra de tecido, planta, parcela ou acesso. Esses nomes devem existir no banco de dados. De preferência, tenha em mãos os códigos de barras coletados em campo.</li>
                         <li>2) Use o aplicativo Android “Coordinate” para ler os códigos de barras da “origem” e registrar a posição da amostra na placa de 96 ou 384 poços. Se preferir, crie e envie seu próprio arquivo XLS. Outra opção é deixar o banco de dados gerar o layout da placa e depois montá-la conforme esse layout.</li>
-                        <li><b>Para saber mais sobre o aplicativo Android “Coordinate”, acesse <a href="https://play.google.com/store/apps/details?id=org.wheatgenetics.coordinate">Coordinate</a>.</b></li>
+                        <li><b>Para saber mais sobre o aplicativo Android “Coordinate”, acesse <a href="https://play.google.com/store/apps/details?id=org.wheatgenetics.coordinate">Coordenadas</a>.</b></li>
                         <li>3) Clique em “Adicionar placa de genotipagem” e preencha todo o formulário.</li>
                         <li>4) Depois que os dados estiverem no banco, podemos gerar os modelos exigidos para facilitar o envio de materiais ao laboratório.</li>
                     </ul>

@@ -17,28 +17,28 @@ David Waring <djw64@cornell.edu>
 
 </%doc>
 
-<& /page/page_title.mas, title=>"Marker Search" &>
+<& /page/page_title.mas, title=>"Busca de marcadores" &>
 
 
 
 
 <!-- FILTER BY NAME -->
-<&| /page/info_section.mas, title=>'Filter By Name', collapsible=>1, collapsed=>0 &>
+<&| /page/info_section.mas, title=>'Filtrar pelo Nome', collapsible=>1, collapsed=>0 &>
     <div class="well">
 
         <!-- Marker Name -->
         <div class="form-group">
-            <label class="col-sm-3 control-label">Marker Name: </label>
+            <label class="col-sm-3 control-label">Nome do marcador: </label>
             <div class="col-sm-4">
                 <select id="marker-name-match" class="form-control">
-                    <option value="exactly">Exactly</option>
-                    <option value="contains">Contains</option>
-                    <option value="starts_with">Starts With</option>
-                    <option value="ends_with">Ends With</option>
+                    <option value="exactly">Exatamente</option>
+                    <option value="contains">Contém</option>
+                    <option value="starts_with">Começa com</option>
+                    <option value="ends_with">Termina com</option>
                 </select>
             </div>
             <div class="col-sm-5">
-                <input id="marker-name" class="form-control" type="text" placeholder="Any Name" />
+                <input id="marker-name" class="form-control" type="text" placeholder="Qualquer nome" />
             </div>
         </div>
 
@@ -50,15 +50,15 @@ David Waring <djw64@cornell.edu>
 
 
 <!-- FILTER BY POSITION -->
-<&| /page/info_section.mas, title=>'Filter By Position', collapsible=>1, collapsed=>0 &>
+<&| /page/info_section.mas, title=>'Filtrar por posição', collapsible=>1, collapsed=>0 &>
     <div class="well">
 
         <!-- Reference Genome / Map -->
         <div class="form-group">
-            <label class="col-sm-3 control-label">Reference Genome / Map: </label>
+            <label class="col-sm-3 control-label">Genoma de referência / Mapa: </label>
             <div class="col-sm-9">
                 <select id="marker-refmap" class="form-control" disabled>
-                    <option>Loading...</option>
+                    <option value="Loading..." data-original-label="Loading...">Carregando...</option>
                 </select>
             </div>
         </div>
@@ -67,10 +67,10 @@ David Waring <djw64@cornell.edu>
 
         <!-- Chromosome -->
         <div class="form-group">
-            <label class="col-sm-3 control-label">Chromosome: </label>
+            <label class="col-sm-3 control-label">Cromossomo: </label>
             <div class="col-sm-9">
                 <select id="marker-chromosome" class="form-control" disabled>
-                    <option>Loading...</option>
+                    <option value="Loading..." data-original-label="Loading...">Carregando...</option>
                 </select>
             </div>
         </div>
@@ -79,14 +79,14 @@ David Waring <djw64@cornell.edu>
 
         <!-- Start / End Position -->
         <div class="form-group">
-            <label class="col-sm-3 control-label">Start: </label>
+            <label class="col-sm-3 control-label">Início: </label>
             <div class="col-sm-4">
                 <div class="input-group">
                     <input id="marker-position-start" class="form-control" type="text" disabled />
                     <span class="input-group-addon marker-position-units"></span>
                 </div>
             </div>
-            <label class="col-sm-1 control-label">End: </label>
+            <label class="col-sm-1 control-label">Fim: </label>
             <div class="col-sm-4">
                 <div class="input-group">
                     <input id="marker-position-end" class="form-control" type="text" disabled />
@@ -103,15 +103,15 @@ David Waring <djw64@cornell.edu>
 
 
 <!-- ADDITIONAL FILTERS -->
-<&| /page/info_section.mas, title=>'Additional Filters', collapsible=>1, collapsed=>0 &>
+<&| /page/info_section.mas, title=>'Filtros adicionais', collapsible=>1, collapsed=>0 &>
     <div class="well">
 
         <!-- Species -->
         <div class="form-group">
-            <label class="col-sm-3 control-label">Species: </label>
+            <label class="col-sm-3 control-label">Espécie: </label>
             <div class="col-sm-9">
                 <select id="marker-species" class="form-control" disabled>
-                    <option value=''>Loading...</option>
+                    <option value=''>Carregando...</option>
                 </select>
             </div>
         </div>
@@ -120,10 +120,10 @@ David Waring <djw64@cornell.edu>
 
         <!-- Protocol -->
         <div class="form-group">
-            <label class="col-sm-3 control-label">Protocol: </label>
+            <label class="col-sm-3 control-label">Protocolo: </label>
             <div class="col-sm-9">
                 <select id="marker-protocol" class="form-control" disabled>
-                    <option value=''>Loading...</option>
+                    <option value=''>Carregando...</option>
                 </select>
             </div>
         </div>
@@ -134,7 +134,7 @@ David Waring <djw64@cornell.edu>
 </&>
 
 
-<button class="btn btn-primary btn-block marker-search-button">Search</button>
+<button class="btn btn-primary btn-block marker-search-button">Buscar</button>
 
 
 
@@ -244,7 +244,7 @@ function getReferences(callback) {
             return callback(data && data.reference_genomes ? data.reference_genomes : []);
         },
         error: function() {
-            alert("ERROR: Could not get reference genomes");
+            alert("ERRO: não foi possível obter os genomas de referência");
         }
     });
 }
@@ -262,7 +262,7 @@ function getMaps(callback) {
             return callback(data && data.maps ? data.maps : []);
         },
         error: function() {
-            alert("ERROR: Could not get maps");
+            alert("ERRO: não foi possível obter os mapas");
         }
     });
 }
@@ -313,7 +313,7 @@ function getGenotypedChromosomes(callback) {
             return callback(data && data.chromosomes ? data.chromosomes : []);
         },
         error: function() {
-            alert("ERROR: Could not get genotyped chromosomes");
+            alert("ERRO: não foi possível obter os cromossomos genotipados");
         }
     });
 }
@@ -332,7 +332,7 @@ function getMappedChromosomes(callback) {
             return callback(data && data.chromosomes ? data.chromosomes : []);
         },
         error: function() {
-            alert("ERROR: Could not get mapped chromosomes");
+            alert("ERRO: não foi possível obter os cromossomos mapeados");
         }
     });
 }
@@ -383,7 +383,7 @@ function getGenotypedProtocols(callback) {
             return callback(data && data.protocols ? data.protocols : []);
         },
         error: function() {
-            alert("ERROR: Could not get genotyped protocols");
+            alert("ERRO: não foi possível obter os protocolos de genotipagem");
         }
     });
 }
@@ -402,7 +402,7 @@ function getMappedProtocols(callback) {
             return callback(data && data.protocols ? data.protocols : []);
         },
         error: function() {
-            alert("ERROR: Could not get mapped protocols");
+            alert("ERRO: não foi possível obter os protocolos de mapeamento");
         }
     });
 }
@@ -430,12 +430,12 @@ function updateRefMaps() {
     SPECIES = [];
 
     let ad = protocol_refmap && !Array.isArray(protocol_refmap) || (Array.isArray(protocol_refmap) && protocol_refmap.length === 1) ? 'disabled' : '';
-    let html = "<option value='' " + ad + ">Any Reference Genome / Map</option>";
+    let html = "<option value='' " + ad + ">Qualquer Genoma de Referência / Mapa</option>";
 
     // Add Genotype Reference Genomes
     html += "<optgroup label='Reference Genomes of Genotyped Markers'>";
     let gd = (protocol_type && protocol_type !== 'genotyped') || protocol_refmap ? 'disabled' : '';
-    html += "<option value='' data-type='genotyped' " + gd + ">Any Reference Genome</option>";
+    html += "<option value='' data-type='genotyped' " + gd + ">Qualquer Genoma de Referência</option>";
     for ( let i = 0; i < references.length; i++ ) {
         let d = (protocol_refmap && protocol_refmap !== references[i].reference_genome_name) 
             || (protocol_type && protocol_type !== 'genotyped') 
@@ -456,7 +456,7 @@ function updateRefMaps() {
     // Add Maps
     html += "<optgroup label='Maps of Mapped Markers'>";
     let md = (protocol_type && protocol_type !== 'mapped') || protocol_refmap ? 'disabled' : '';
-    html += "<option value='' data-type='mapped' " + md + ">Any Map</option>";
+    html += "<option value='' data-type='mapped' " + md + ">Qualquer mapa</option>";
     for ( let i = 0; i < maps.length; i++ ) {
         let d = (protocol_type === 'mapped' && protocol_refmap && !protocol_refmap.includes(maps[i].map_id+'')) 
             || (protocol_type && protocol_type !== 'mapped') 
@@ -508,7 +508,7 @@ function updateChromosomes() {
                 chroms = CHROMOSOMES.mapped[map];
             }
         }
-        html += "<option value=''>Any Chromosome</option>";
+        html += "<option value=''>Qualquer Cromossomo</option>";
         for ( let i = 0; i < chroms.length; i++ ) {
             let s = chrom && chroms[i] === chrom ? 'selected' : '';
             html += "<option value='" + chroms[i] + "' " + s + ">" + chroms[i] + "</option>";
@@ -561,7 +561,7 @@ function updateSpecies() {
             || (protocol_species && !Array.isArray(protocol_species)) 
             || (protocol_species && Array.isArray(protocol_species) && protocol_species.length === 1) 
             ? 'disabled' : '';
-        let html = "<option value='' " + ad + ">Any Species</option>";
+        let html = "<option value='' " + ad + ">Qualquer espécie</option>";
         for ( let i = 0; i < SPECIES.length; i++ ) {
             let d = (refmap_species && refmap_species !== SPECIES[i]) 
                 || (protocol_species && !Array.isArray(protocol_species) && protocol_species !== SPECIES[i])
@@ -596,7 +596,7 @@ function updateProtocols() {
 
     if ( PROTOCOLS ) {
         let html = "";
-        html += "<option value=''>Any Protocol</option>";        
+        html += "<option value=''>Qualquer protocolo</option>";
         
         html += "<optgroup label='Protocols of Genotyped Markers'>";
         for ( let i = 0; i < PROTOCOLS.genotyped.length; i++ ) {
@@ -673,7 +673,7 @@ function search() {
 
     // Check for required params
     if ( (start && !end) || (end && !start) ) {
-        alert("Both the start and end position are required when filtering by position");
+        alert("Informe as posições inicial e final ao filtrar por posição");
         return;
     }
 

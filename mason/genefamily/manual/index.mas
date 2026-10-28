@@ -49,8 +49,8 @@ my $sequencer = $hashref->{sequencer};
 
 #############
 my $add_locus_link = $curator || $submitter || $sequencer  ?
-  '<a href="javascript:Tools.toggleContent(\'associateLocusForm\', \'locus_network\');Tools.getOrganisms()">[Associate new locus]</a> ' :
-  '<span class="ghosted">[Associate new locus]</span>' ;
+  '<a href="javascript:Tools.toggleContent(\'associateLocusForm\', \'locus_network\');Tools.getOrganisms()">[Associar novo locus]</a> ' :
+  '<span class="ghosted">[Associar novo locus]</span>' ;
 ############
 
 
@@ -64,9 +64,9 @@ my $add_locus_link = $curator || $submitter || $sequencer  ?
 </script>
 
 
-<& /page/page_title.mas, title=> "Gene family ". $genefamily->get_locusgroup_name &>
+<& /page/page_title.mas, title=> "Família Gene ". $genefamily->get_locusgroup_name &>
 
-<&| /page/info_section.mas, title=>"Gene family details"  &>
+<&| /page/info_section.mas, title=>"Detalhes da família Gene"  &>
 
 
   <& /page/form.mas,
@@ -83,7 +83,7 @@ my $add_locus_link = $curator || $submitter || $sequencer  ?
 </&>
 
 <&| /page/info_section.mas,
-    title       => "Gene family members",
+    title       => "Família Gene",
     subtitle    => "$add_locus_link",
     id          => "locus_network",
     collapsible => 1,

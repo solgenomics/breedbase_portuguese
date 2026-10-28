@@ -13,10 +13,10 @@ jQuery( document ).ready( function() {
 
         let file = jQuery(fileSelector).val();
         if ( !file || file === '' ) {
-            return alert("Please select a file");
+            return alert("Selecione um arquivo");
         }
 
-        showPhenotypeUploadWorkingModal("Verifying file and data");
+        showPhenotypeUploadWorkingModal("Verificando arquivo e dados");
         jQuery.ajax({
             url: url,
             type: 'POST',
@@ -30,7 +30,7 @@ jQuery( document ).ready( function() {
             },
             error: function(response) {
                 hidePhenotypeUploadWorkingModal();
-                alert("An error occurred while trying to verify this file. Please check the formatting and try again");
+                alert("Ocorreu um erro ao verificar este arquivo. Confira a formatação e tente novamente");
             }
         });
     }
@@ -38,10 +38,10 @@ jQuery( document ).ready( function() {
     function storeData(formSelector, fileSelector, url, upload_type, div_type) {
         let file = jQuery(fileSelector).val();
         if ( !file || file === '' ) {
-            return alert("Please select a file");
+            return alert("Selecione um arquivo");
         }
 
-        showPhenotypeUploadWorkingModal("Storing file and data");
+        showPhenotypeUploadWorkingModal("Armazenando arquivo e dados");
         jQuery.ajax({
             url: url,
             type: 'POST',
@@ -55,7 +55,7 @@ jQuery( document ).ready( function() {
             },
             error: function(response) {
                 hidePhenotypeUploadWorkingModal();
-                alert("An error occurred while trying to store this file. Please check the formatting and try again");
+                alert("Ocorreu um erro ao armazenar este arquivo. Confira a formatação e tente novamente");
             }
         });
     }
@@ -161,7 +161,7 @@ jQuery( document ).ready( function() {
     });
 
     jQuery('#delete_pheno_file_link').click(function() {
-        alert('Deleted successfully.');
+        alert('Excluído com sucesso.');
     });
 
     jQuery('#phenotype_reset_dialog').click( function() {
@@ -232,12 +232,12 @@ function displayPhenotypeUploadVerifyResponse(response, upload_type, div_type) {
         if (warningarrayLength > 0) {
             message_text += "<li class='list-group-item list-group-item-warning'>";
             message_text += "<span class='badge'><span class='glyphicon glyphicon-asterisk'></span></span>";
-            message_text += "Warnings are shown in yellow. Either fix the file and try again or continue with storing the data.";
-            message_text += `<hr>To overwrite previously stored values instead: <input type='checkbox' id='${div_type}_upload_overwrite_values' name='phenotype_upload_overwrite_values' />`;
-            message_text += `<div id='${div_type}_upload_remove_values_div' style='display: none'>To remove previously stored values if left blank in your file: <input type='checkbox' id='${div_type}_upload_remove_values' name='${div_type}_upload_remove_values' /></div>`;
-            message_text += `<hr><div id='${div_type}_upload_details_default'>New values will be uploaded. Any previously stored values will be skipped.</div>`;
-            message_text += `<div id='${div_type}_upload_details_overwrite' style='display: none'>New values will be uploaded. Any previously stored values will be replaced by non-blank values.  Blank values in the upload file will be skipped.</div>`;
-            message_text += `<div id='${div_type}_upload_details_remove' style='display: none'>New values will be uploaded. Any previously stored values will be replaced by non-blank values.  Blank values in the upload file will remove any previously stored values.</div>`;
+            message_text += "Os avisos aparecem em amarelo. Corrija o arquivo e tente novamente ou prossiga com o armazenamento dos dados.";
+            message_text += `<hr>Para sobrescrever os valores armazenados anteriormente: <input type='checkbox' id='${div_type}_upload_overwrite_values' name='phenotype_upload_overwrite_values' />`;
+            message_text += `<div id='${div_type}_upload_remove_values_div' style='display: none'>Para remover os valores armazenados anteriormente quando as células correspondentes estiverem em branco no arquivo: <input type='checkbox' id='${div_type}_upload_remove_values' name='${div_type}_upload_remove_values' /></div>`;
+            message_text += `<hr><div id='${div_type}_upload_details_default'>Os novos valores serão enviados. Os valores armazenados anteriormente serão mantidos.</div>`;
+            message_text += `<div id='${div_type}_upload_details_overwrite' style='display: none'>Os novos valores serão enviados. Os valores armazenados anteriormente serão substituídos pelos valores não vazios. As células em branco no arquivo enviado serão ignoradas.</div>`;
+            message_text += `<div id='${div_type}_upload_details_remove' style='display: none'>Os novos valores serão enviados. Os valores armazenados anteriormente serão substituídos pelos valores não vazios. As células em branco no arquivo enviado removerão os valores armazenados anteriormente.</div>`;
             message_text += "<br>";
             message_text += "</li>";
             for (var i = 0; i < warningarrayLength; i++) {
@@ -300,10 +300,10 @@ function displayPhenotypeUploadStoreResponse(response, upload_type, div_type) {
             message_text += "</li>";
         }
         if (errorarrayLength == 0) {
-            message_text += "<li class='list-group-item list-group-item-success'><hr><h3>Upload Successful!</h3></li>";
+            message_text += "<li class='list-group-item list-group-item-success'><hr><h3>Envio concluído com sucesso!</h3></li>";
         }
     } else {
-        message_text += "<li class='list-group-item list-group-item-success'><hr><h3>Upload Successful!</h3></li>";
+        message_text += "<li class='list-group-item list-group-item-success'><hr><h3>Envio concluído com sucesso!</h3></li>";
     }
     message_text += "</ul>";
     jQuery(upload_phenotype_status).html(message_text);

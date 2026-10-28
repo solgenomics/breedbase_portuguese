@@ -5,17 +5,17 @@
   $csv_download
 </%args>
 
-<& /page/page_title.mas, title => 'SecreTary SignalP TargetP Result Search' &>
+<& /page/page_title.mas, title => 'Sinal secretoP TargetP Pesquisa de resultados' &>
 
 <h3 style="text-align: center">Searched for "<% $query |h%>".</h3>
 
-<&| /page/info_section.mas, title => 'Results', subtitle => @$data." results &mdash; ".qq|<a href="$csv_download">[Download spreadsheet]</a>| &>
+<&| /page/info_section.mas, title => 'Resultados', subtitle => @$data." results &mdash; ".qq|<a href="$csv_download">[Download spreadsheet]</a>| &>
 
 %  if( @$data ) {
 %    foreach my $row ( @$data ) {
 %       $row->[0] = link_identifier( $row->[0] ) || $row->[0];
 %       $row->[1] =~ s/^\s*\|\s*//;
-   <&| /page/info_section.mas, title => 'Hit: '.$row->[0], is_subsection => 1 &>
+   <&| /page/info_section.mas, title => 'Correspondência: '.$row->[0], is_subsection => 1 &>
      <% $table->( $row, [ 0,2,3 ] ) %> 
      <% $table->( $row, [ 1 ] ) %> 
      <% $table->( $row, [ 4,5,6 ] ) %>

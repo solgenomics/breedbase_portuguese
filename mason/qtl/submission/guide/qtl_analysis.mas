@@ -13,11 +13,11 @@ Isaak Y Tecle (iyt2@cornell.edu)
 </%doc>
 
 <&| /page/info_section.mas, 
-   title      => "Step 6: QTL analysis",
+   title      => "Passo 6: Análise QTL",
   collapsible => 1,
   collapsed   => 1
 &>
 
-Now that the QTL data is uploaded to the database, you can proceed to perform the on-the-fly QTL analysis for one trait at a time. On the population page, click the graph icon under the 'QTL(s)' column and in a couple of minutes you will be taken to a page with the genome wide QTL mapping output. Further help can be found <a href="http://solgenomics.net/qtl/search/help">here</a>.
+Agora que os dados QTL são enviados para o banco de dados, você pode prosseguir para realizar a análise de QTL on-the-fly para uma característica de cada vez. Na página populacional, clique no ícone do gráfico sob a coluna 'QTL(s)' e em alguns minutos você será levado para uma página com o genoma largo QTL saída de mapeamento. Mais ajuda pode ser encontrada. <a href="http://solgenomics.net/qtl/search/help">Aqui</a>.
 
 </&>

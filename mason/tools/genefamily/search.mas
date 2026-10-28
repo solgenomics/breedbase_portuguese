@@ -10,10 +10,10 @@ $member_id => undef
 $action => undef
 </%args>
 
-<& /page/page_title.mas, title=>'Gene family search' &>
+<& /page/page_title.mas, title=>'Busca da família Gene' &>
 
 
-<h4>Browse Genefamilies</h4>
+<h4>Navegue pelas Genefamílias</h4>
 
 <%perl>
 
@@ -43,7 +43,7 @@ print $select."<br /><br />";
 
 <table id="genefamily_datatable">
 <thead>
-  <th>Genefamily ID</th><th>Sequences</th><th>Alignments</th><th>Trees</th><th>Member Count</th><th>Members</th></thead>
+  <th>ID da Genefamily</th><th>Sequências</th><th>Alinhamentos</th><th>Árvores</th><th>Contagem de membros</th><th>Membros</th></thead>
   </thead>
   <tbody>
   </tbody>

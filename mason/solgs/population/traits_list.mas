@@ -66,7 +66,7 @@ ROW
          <input class   = "button"
                 type    = "submit"
 		        id      = "runGS"
-                value   = "Build model"
+                value   = "Construir modelo"
                 name    = "runGS"
                 >
        </td>
@@ -77,7 +77,7 @@ ROW
 %} else {
 
 <div id="traits_list_message"  class="message">
-<p>There are no phenotyped traits for this population.</p>
+<p>Não há características fenotípicas para esta população.</p>
 </div>
 
 %}

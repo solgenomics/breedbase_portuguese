@@ -47,7 +47,7 @@ solGS.selectMenu = {
             }).prependTo(divListSelectId);
 
         } else {
-            jQuery(divListId).append("<select><option>no lists found - Log in</option></select>");
+            jQuery(divListId).append("<select><option>nenhuma lista encontrada — entre na sua conta</option></select>");
         }
     },
 

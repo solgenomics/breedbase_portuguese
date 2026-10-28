@@ -17,12 +17,12 @@
 
 
 
-<& /page/page_title.mas, title=>"Validated Trials" &>
+<& /page/page_title.mas, title=>"Ensaios Validados" &>
 
-<p>This table presents all trials that have been thoroughly filtered and validated through the Quality Control Tool.</p>
+<p>Esta tabela apresenta todos os ensaios que foram completamente filtrados e validados através da ferramenta de controle de qualidade.</p>
 <br>
 <div>
-    <input type="text" id="searchBox" placeholder="Search tool..." onkeyup="filterTable()">
+    <input type="text" id="searchBox" placeholder="Ferramenta de busca..." onkeyup="filterTable()">
     <br>
 </div>
 <div id="validated_trials_tool">
@@ -31,11 +31,11 @@
     <table id="projectDataTable" class="table table-bordered table-striped">
         <thead>
             <tr>
-                <th>Select</th> 
-                <th>Project Name</th>
-                <th>Project Location</th>
-                <th>Trait Name</th>
-                <th>Validated By</th>
+                <th>Selecionar</th>
+                <th>Nome do Projeto</th>
+                <th>Localização do Projeto</th>
+                <th>Nome do Trait</th>
+                <th>Validado por</th>
             </tr>
         </thead>
         <tbody>
@@ -44,14 +44,14 @@
     </table>
 </div>
 <div id="paginationControls">
-    <button id="prevPageBtn" onclick="changePage(-1)">Previous</button>
-    <span id="currentPageLabel">Page 1</span>
-    <button id="nextPageBtn" onclick="changePage(1)">Next</button>
+    <button id="prevPageBtn" onclick="changePage(-1)">Anterior</button>
+    <span id="currentPageLabel">Página 1</span>
+    <button id="nextPageBtn" onclick="changePage(1)">Próximo</button>
 </div>
 
 <!-- Items per page control -->
 <div>
-    <label for="itemsPerPage">Items per page:</label>
+    <label for="itemsPerPage">Itens por página:</label>
     <select id="itemsPerPage" onchange="setItemsPerPage()">
         <option value="5">5</option>
         <option value="10" selected>10</option>
@@ -68,23 +68,23 @@
 <br>
 <br>
 
-<&| /page/info_section.mas, title=>"Statistcs", collapsible=>1, collapsed=>1 &>
+<&| /page/info_section.mas, title=>"Statiscs", collapsible=>1, collapsed=>1 &>
 
-    <button id="calculate_statistics">Calculate Statistics</button>
+    <button id="calculate_statistics">Calcular estatísticas</button>
     <br>
     <div>
         <br>
         <table id="statTable" class="table table-bordered table-striped">
             <thead>
                 <tr>
-                    <th>Accession</th>
-                    <th>Trials</th>
-                    <th>Observations</th> 
-                    <th>Trait</th>
-                    <th>Average</th>
+                    <th>Acesso</th>
+                    <th>Ensaios</th>
+                    <th>Observações</th> 
+                    <th>Característica</th>
+                    <th>Média</th>
                     <th>SD</th>
-                    <th>Min</th>
-                    <th>Max</th>
+                    <th>Mínimo</th>
+                    <th>Máximo</th>
                 </tr>
             </thead>
             <tbody>
@@ -92,31 +92,31 @@
             </tbody>
         </table>
     </div>
-    <button id="downloadCsvButton">Download CSV</button>
+    <button id="downloadCsvButton">Baixar CSV</button>
 
 
 </&>
 
-<&| /page/info_section.mas, title=>"Graphics", collapsible=>1, collapsed=>1 &>
+<&| /page/info_section.mas, title=>"Gráficos", collapsible=>1, collapsed=>1 &>
 
-    <label for="traitSelection">Select Trait:</label>
+    <label for="traitSelection">Selecione Trait:</label>
     <select id="traitSelection" class="form-control">
-        <option value="" disabled selected>Select a trait</option>
+        <option value="" disabled selected>Selecione uma característica</option>
         <!-- Options will be dynamically populated -->
     </select>
 
     <div id="filterOptions" style="margin-bottom: 20px;">
-      <label><input type="radio" name="filter" value="5"> Show top 5%</label>
-      <label><input type="radio" name="filter" value="10" checked > Show top 10%</label>
-      <label><input type="radio" name="filter" value="25"> Show top 25%</label>
-      <label><input type="radio" name="filter" value="50"> Show top 50%</label>
-      <label><input type="radio" name="filter" value="100"> Show 100%</label>
+      <label><input type="radio" name="filter" value="5"> Mostre os 5% melhores</label>
+      <label><input type="radio" name="filter" value="10" checked > Mostre os 10% melhores</label>
+      <label><input type="radio" name="filter" value="25"> Mostre os 25% melhores</label>
+      <label><input type="radio" name="filter" value="50"> Mostre os melhores 50%</label>
+      <label><input type="radio" name="filter" value="100"> Mostre 100%</label>
       <br>
       <!-- Bottom filters -->
-      <label><input type="radio" name="filter" value="bottom-5"> Show bottom 5%</label>
-      <label><input type="radio" name="filter" value="bottom-25"> Show bottom 25%</label>
-      <label><input type="radio" name="filter" value="bottom-50"> Show bottom 50%</label>
-      <label><input type="radio" name="filter" value="bottom-75"> Show bottom 75%</label>
+      <label><input type="radio" name="filter" value="bottom-5"> Mostre os 5% mais baixos</label>
+      <label><input type="radio" name="filter" value="bottom-25"> Mostre 25% de baixo</label>
+      <label><input type="radio" name="filter" value="bottom-50"> Mostre 50% de baixo</label>
+      <label><input type="radio" name="filter" value="bottom-75"> Mostre abaixo 75%</label>
     </div>
 
     <br>
@@ -177,7 +177,7 @@ function drawD3Barplot(statsByTrait, selectedTrait) {
   const traitStats = statsByTrait[selectedTrait];
 
   if (!traitStats) {
-    alert('No data available for the selected trait!');
+    alert("Não há dados disponíveis para a característica selecionada!");
     return;
   }
 
@@ -326,7 +326,7 @@ $('#traitSelection, input[name="filter"]').on('change', function () {
 function drawGroupedBoxplot(data, selectedTrait) {
     const container = document.getElementById('boxplotContainer');
     if (!container || !container.clientWidth) {
-        console.error('Error: boxplotContainer is missing or not rendered.');
+        console.error("Erro: o contêiner do diagrama de caixa está ausente ou não foi renderizado.");
         return;
     }
 
@@ -466,7 +466,7 @@ function populateTraitSelection(stats) {
   traitSelection.empty();
 
   // Add a default option
-  traitSelection.append('<option value="" disabled selected>Select a trait</option>');
+  traitSelection.append('<option value="" disabled selected>Selecione uma característica</option>');
 
   // Get the traits from the stats object and populate the dropdown
   const traits = Object.keys(stats); // Traits are the top-level keys in the stats object
@@ -597,8 +597,8 @@ $(document).ready(function () {
 
       },
       error: function (xhr, status, error) {
-        console.error('Error:', error);
-        alert('An error occurred while calculating statistics.');
+        console.error("Erro:", error);
+        alert("Ocorreu um erro ao calcular as estatísticas.");
       },
       complete: function () {
         $('#loading_spinner').hide();
@@ -744,17 +744,17 @@ function fetchLatLonForProjects(selectedLocations) {
                 const coordinates = typeof response === 'string' ? JSON.parse(response) : response;
                 // Check the structure of the parsed data
                 if (!Array.isArray(coordinates)) {
-                    console.error('Expected an array but got:', coordinates);
+                    console.error("Era esperado um vetor, mas foi recebido:", coordinates);
                     return;
                 }
                 // Pass the data to the map update function
                 updateMapWithSelectedProjects(coordinates);
             } catch (error) {
-                console.error('Error processing server response:', error);
+                console.error("Erro ao processar a resposta do servidor:", error);
             }
         },
         error: function(xhr, status, error) {
-            console.error('AJAX Error:', {
+            console.error("Erro AJAX:", {
                 status: status,
                 error: error,
                 responseText: xhr.responseText
@@ -777,7 +777,7 @@ setTimeout(function () {
 
     const container = document.getElementById('boxplotContainer');
     if (!container || !container.clientWidth) {
-      console.error('Error: boxplotContainer is missing or not rendered.');
+      console.error("Erro: o contêiner do diagrama de caixa está ausente ou não foi renderizado.");
       return;
     }
 
@@ -804,7 +804,7 @@ function updateMapWithSelectedProjects(coordinates) {
                 .bindPopup(`<span>${coord.name}</span>`) // Display only the name in the popup
                 .openPopup();
         } else {
-            console.error('Skipping invalid coordinate:', coord);
+            console.error("Ignorando coordenada inválida:", coord);
         }
     });
 }
@@ -842,7 +842,7 @@ function updatePaginationControls(data) {
     document.getElementById("prevPageBtn").disabled = currentPage === 1;
     document.getElementById("nextPageBtn").disabled = currentPage === totalPages;
     
-    document.getElementById("currentPageLabel").textContent = `Page ${currentPage} of ${totalPages}`;
+    document.getElementById("currentPageLabel").textContent = `Página ${currentPage} de ${totalPages}`;
 }
 
 
@@ -865,11 +865,11 @@ function fetchProjectData() {
                 displayData(allData); 
                 updatePaginationControls(allData);
             } else {
-                alert("No valid data found or data format issue");
+                alert("Nenhum dado válido encontrado ou problema no formato dos dados");
             }
         },
         error: function() {
-            alert("An error occurred while fetching project data.");
+            alert("Ocorreu um erro ao recuperar os dados do projeto.");
         }
     });
 }

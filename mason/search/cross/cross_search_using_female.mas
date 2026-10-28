@@ -1,33 +1,33 @@
-<& /page/page_title.mas, title=>'Search Cross Details Using Female Parents' &>
+<& /page/page_title.mas, title=>'Procure em detalhes usando pais femininos' &>
 <br>
-<&| /page/info_section.mas, title => 'Search', collapsible=>1, collapsed=>0&>
+<&| /page/info_section.mas, title => 'Buscar', collapsible=>1, collapsed=>0&>
     <div class="row" id="cross_search_form" >
         <div class="col-sm-12 well">
             <div class="row">
                 <div class="col-sm-10">
                     <div class="form-horizontal">
                         <div class="form-group form-group-sm">
-                            <label class="control-label col-sm-3">Female Parent:</label>
+                            <label class="control-label col-sm-3">Parente feminina:</label>
                             <div class="col-sm-9">
                                 <div class="input-group">
-                                    <input type="text" class="form-control" id="cross_female_parent" placeholder="Enter female parent">
+                                    <input type="text" class="form-control" id="cross_female_parent" placeholder="Entre, mãe">
                                     <div class="input-group-btn">
-                                        <button class="btn btn-info" id="search_cross_male_parents"><i class="glyphicon glyphicon-search"></i> Male Parent / Population</button>
-                                        <button class="btn btn-primary" id="search_all_crosses_using_female"><i class="glyphicon glyphicon-search"></i> All Crosses </button>
+                                        <button class="btn btn-info" id="search_cross_male_parents"><i class="glyphicon glyphicon-search"></i> Pai/população masculino</button>
+                                        <button class="btn btn-primary" id="search_all_crosses_using_female"><i class="glyphicon glyphicon-search"></i> Todas as Cruzamentos </button>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="form-group form-group-sm">
-                            <label class="control-label col-sm-3">Male Parent / Population:</label>
+                            <label class="control-label col-sm-3">Pai/população masculino:</label>
                             <div class="col-sm-9" >
                                 <div class="input-group">
                                     <select class="form-control" id="cross_male_parent">
-                                        <option value="">Choose female parent first</option>
+                                        <option value="">Escolha a mãe feminina primeiro</option>
                                     </select>
                                     </select>
                                     <div class="input-group-btn">
-                                        <button class="btn btn-info" id="search_crosses_female_male"><i class="glyphicon glyphicon-search"></i> Cross Info </button>
+                                        <button class="btn btn-info" id="search_crosses_female_male"><i class="glyphicon glyphicon-search"></i> Informações Cruzadas </button>
                                     </div>
                                 </div>
                             </div>
@@ -38,7 +38,7 @@
         </div>
     </div>
 </&>
-<&| /page/info_section.mas, title => 'Search Results', collapsible=>1, collapsed=>0&>
+<&| /page/info_section.mas, title => 'Resultados da Pesquisa', collapsible=>1, collapsed=>0&>
     <div class="well well-sm">
         <& /util/import_css.mas, paths => ['/documents/inc/datatables/jquery.dataTables.css'] &>
         <div class="panel panel-default">
@@ -46,12 +46,12 @@
                 <table id="cross_female_male_search_results" width="100%" class="table table-hover table-striped">
                     <thead>
                         <tr>
-                            <th>Female Parent</th>
-                            <th>Male Parent / Population</th>
+                            <th>Parental feminino</th>
+                            <th>Pai/população masculino</th>
                             <th>Cross Unique ID</th>
-                            <th>Cross Type</th>
-                            <th>Family Name</th>
-                            <th>Crossing Experiment</th>
+                            <th>Tipo Cruzado</th>
+                            <th>Nome da família</th>
+                            <th>Experiência de Cruzamento</th>
                         </tr>
                     </thead>
                 </table>
@@ -59,7 +59,7 @@
         </div>
         <div class="panel panel-default">
             <div class="panel-body">
-                <&| /page/info_section.mas, title => 'Copy crosses to a List', collapsible=>1, collapsed=>1, subtitle=>'<i>Copy the cross unique ids showing in table to a new or exisiting list</i>'&>
+                <&| /page/info_section.mas, title => 'Copiar cruzamentos para uma lista', collapsible=>1, collapsed=>1, subtitle=>'<i>Copie as identidades únicas que aparecem na tabela para uma nova lista.</i>'&>
                     <div style="text-align:right" id="crosses_to_list_menu"></div>
                     <div id="cross_names" style="display: none;"></div>
                 </&>
@@ -94,14 +94,14 @@ jQuery(document).ready(function (){
                 console.log(html);
 
                 if(i ==''){
-                    alert("No male parent");
+                    alert("Sem parental masculino");
                     return;
                 }
 
                 jQuery('#cross_male_parent').html(html);
             },
             error:function(response){
-                alert("An error occurred");
+                alert("Ocorreu um erro");
             }
         });
     });

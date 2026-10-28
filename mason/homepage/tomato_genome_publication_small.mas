@@ -22,7 +22,7 @@ use strict;
 use File::Spec;
 use CXGN::Tools::File;
 
-my $publication = "The tomato genome publication information is currently unavailable.<br /><br />";
+my $publication = "A informação da publicação do genoma de tomate está indisponível.<br /><br />";
 
 eval {
 
@@ -30,7 +30,7 @@ eval {
 
 };
 
-if ($@) { print "ERROR $@\n"; }
+if ($@) { print "ERRO $@\n"; }
 
 </%perl>
 

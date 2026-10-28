@@ -37,14 +37,14 @@ $training_pop_name
 <&| /page/info_section.mas,
   collapsible => 1,
   collapsed  => 0,
-  title      => "Selection index calculator"
+  title      => "Calculadora de índice de seleção"
   &>
 
   <div id="si_canvas">
 
     <div class="row">
       <div class="form-group col-sm-3" id="si_select_pops_div" style="margin-right:35px"></div>
-      <div id="si_help"><p> And assign relative weights to traits.<i style="color:#5cb85c;" class="fa fa-question-circle" id="si_tooltip" title="<% $si_tooltip %>"> </i></p></div>
+      <div id="si_help"><p> E atribuir pesos relativos a características.<i style="color:#5cb85c;" class="fa fa-question-circle" id="si_tooltip" title="<% $si_tooltip %>"> </i></p></div>
     </div>
 
    

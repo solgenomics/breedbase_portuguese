@@ -79,7 +79,7 @@ $odk_phenotyping_data_service_url => undef
                                 <option value="twicedaily">Twice daily at midnight and noon</option>
                                 <option value="everyhour">Once per hour</option>
                                 <option value="everyminute">Once per minute</option>
-                                <option value="none">None</option>
+                                <option value="none">Nenhum</option>
                             </select>
                         </div>
                         <div class="col-sm-2" >
@@ -111,7 +111,7 @@ $odk_phenotyping_data_service_url => undef
     <div class="panel-body">
         <h3>Resumo dos estados de plantas recebidos</h3>
         <div id="odk_cross_plant_status_progress_summary_div">
-        [CARREGANDO...]
+        [CARREGANDO ...]
         </div>
     </div>
 </div>
@@ -161,7 +161,7 @@ $odk_phenotyping_data_service_url => undef
 SMAP ODK NOT IMPLEMENTED
 <div class="well">
 
-<&| /page/info_section.mas, title=>'Phenotype Data: SMAP ODK Application', collapsible=>1, collapsed=>0, is_subsection=>1, subtitle=>'[<a id="upload_fieldbook_phenotypes_link" >Upload Fieldbook Database File</a>]' &>
+<&| /page/info_section.mas, title=>'Dados de Fenótipo: Aplicação ODK SMAP', collapsible=>1, collapsed=>0, is_subsection=>1, subtitle=>'[<a id="upload_fieldbook_phenotypes_link" >Enviar arquivo de banco de dados do Fieldbook</a>]' &>
 
 <button class="btn btn-primary btn-sm" id="import_odk_phenotype_data" >Import Phenotype Data from SMAP</button>
 
@@ -313,7 +313,7 @@ jQuery(document).ready(function () {
                                         "order": [[ 0, "desc" ]]
                                     });
 
-                                    var plant_status_html = '<table id="odk_cross_plant_status_table" class="table table-hover table-bordered"><thead><tr><th>Nome da parcela</th><th>Data</th><th>Estado</th></tr></thead><tbody>';
+                                    var plant_status_html = "<table id=\"odk_cross_plant_status_table\" class=\"table table-hover table-bordered\"><thead><tr><th>Nome da parcela</th><th>Data</th><th>Estado</th></tr></thead><tbody>";
                                     var plant_status_summary = response.plant_status_summary;
                                     console.log(plant_status_summary);
                                     for (var plot_name in plant_status_summary){

@@ -1,74 +1,73 @@
 
 
 <p>
-The <a href="/search/markers/markersearch.pl">marker search</a> is a
-tool for locating markers in SGN's database. 
+O <a href="/search/markers/markersearch.pl">Marcador de busca</a> É uma ferramenta para localizar marcadores no banco de dados da SGN. 
 </p>
 
-<img src="/documents/help/screenshots/marker_search_form.png" alt="screenshot of marker search form" style="margin: auto; border: 1px solid black;" />
+<img src="/documents/help/screenshots/marker_search_form.png" alt="Imagem do formulário de busca de marcadores" style="margin: auto; border: 1px solid black;" />
 
-<h4>1. Marker name</h4>
+<h4>1. Nome do marcador</h4>
 <p>
-If you know the name of your marker, type it in. By default, the database will be searched for all markers with a name that <i>starts with</i> what you type in.For example, if you type in "TG1", your results might include TG1, TG10, TG11, TG150, etc.
+Se sabe o nome do marcador, digite. Por padrão, o banco de dados será procurado por todos os marcadores com um nome que <i>Começa com</i> Por exemplo, se você digitar "TG1", seus resultados podem incluir TG1, TG10, TG11, TG150, etc.
 </p><p>
- To search for an exact name, choose "exactly" from the menu. Or choose "contains" if you don't know the beginning of the marker's name. For example, a "contains" search on "T16" will include CT16, T1600, T1601, etc.
+ Para procurar um nome exato, escolha "exatamente" no menu. Ou escolha "contém" se não souber o início do nome do marcador. Por exemplo, uma busca "contém" em "T16" incluirá CT16, T1600, T1601, etc.
 </p>
 <p>
-The search is not case-sensitive; "Tm2" and "TM2" are equivalent searches, though those two names could refer to two different markers in our database.
+A busca não é sensível ao caso, "Tm2" e "TM2" são pesquisas equivalentes, embora esses dois nomes possam se referir a dois marcadores diferentes em nosso banco de dados.
 </p>
 
-<h4>2. BAC associations</h4>
+<h4>2. Associações BAC</h4>
 <p>
-Some markers have been associated with BACS from the <a href="/about/tomato_sequencing.pl">tomato sequencing project</a>. Most of these associations come from the <a href="http://siren/maps/physical/overgo_process_explained.pl">overgo plating process</a> in which markers were hybridized to BAC DNA. Other associations are computational, meaning they were made by BLAST comparisons. Still others are "manual" associations, meaning they were associated in some other way and then entered into our database. 
-</p>
-
-
-<h4>3. Species</h4>
-<p>
-In this multiple-select box you will see a list of the common names of species (or groups of species, such as "tomato") that make up the mapping populations in our collection of maps. Selecting a species here limits your search results to markers that have been mapped in that species. 
+Alguns marcadores foram associados com BACS da <a href="/about/tomato_sequencing.pl">tomato sequencing project</a>. A maioria dessas associações vem do <a href="http://siren/maps/physical/overgo_process_explained.pl">overgo plating process</a> em que marcadores foram hibridizados para o DNA BAC. Outras associações são computacionais, o que significa que foram feitas por comparações BLAST. Outros ainda são associações "manuais", o que significa que estavam associadas de outra forma e entraram em nosso banco de dados. 
 </p>
 
 
-<h4>4. Mapped by</h4>
+<h4>3. Espécie</h4>
 <p>
-This multiple-select box shows a list of experimental protocols. Selecting one or more of these protocols, for example CAPS, will limit the search results to markers that have been mapped with this protocol.
+Nesta caixa de seleção múltipla você verá uma lista dos nomes comuns de espécies (ou grupos de espécies, como "tomate") que compõem as populações de mapeamento em nossa coleção de mapas. Selecionar uma espécie aqui limita seus resultados de busca a marcadores que foram mapeados nessa espécie. 
 </p>
 
 
-<h4>5. Group</h4>
+<h4>4. Mapeado por</h4>
 <p>
-Some of our markers have been grouped into collections for organizational purposes, or because all markers in that group are part of a particular project. Here are the meanings of the markers in our collections:
+Esta caixa de seleção múltipla mostra uma lista de protocolos experimentais. Selecionar um ou mais desses protocolos, por exemplo, CAPS, limitará os resultados de busca a marcadores que foram mapeados com este protocolo.
+</p>
+
+
+<h4>5. Grupo</h4>
+<p>
+Alguns de nossos marcadores foram agrupados em coleções para fins organizacionais, ou porque todos os marcadores nesse grupo são parte de um projeto particular. Aqui estão os significados dos marcadores em nossas coleções:
 </p>
 <ul>
-<li><b>COS</b> - Conserved Ortholog Set, markers that have been mapped in both tomato and <i>Arabidopsis</i>. </li>
-<li><b>COSII</b> - Conserved Ortholog Set, part II - markers that have been mapped in several asterid species, including several solanaceous species. <a href="http://www.sgn.cornell.edu/markers/cosii_markers.pl">Learn more about COSII markers here</a></li>
-<li><b>KFG</b> - Known Function Genes - markers that correspond to known genes in tomato</li>
-<li><b>P</b> - a subset of our EST collection</li>
-<li><b>TM</b> - also EST-derived markers</li>
+<li><b>COS</b> - Ortologista Conservado, marcadores que foram mapeados em tomate e <i>Arabidopsis</i>. </li>
+<li><b>COSII</b> - Set Ortolog conservado, parte II - marcadores que foram mapeados em várias espécies de asterídeos, incluindo várias espécies solanáceas. <a href="http://www.sgn.cornell.edu/markers/cosii_markers.pl">Saiba mais sobre marcadores COSII aqui</a></li>
+<li><b>KFG</b> - Conhecidos Genes de função - marcadores que correspondem a genes conhecidos em tomate</li>
+<li><b>P</b> - um subconjunto de nossa coleção EST</li>
+<li><b>TM</b> - também marcadores EST-derived</li>
 </ul>
 
 
-<h4>6. Chromosomes</h4>
+<h4>6. Cromossomos</h4>
 <p>
-Choose a chromosome from this box to limit results to markers mapped on that chromosome or linkage group.
+Escolha um cromossomo desta caixa para limitar os resultados a marcadores mapeados nesse cromossomo ou grupo de ligação.
 </p>
 
 
-<h4>7. Position</h4>
+<h4>7. Posição</h4>
 <p>
-If you are interested in a particular region of the chromosome, enter the bounds of that region here. 
+Se você está interessado em uma determinada região do cromossomo, entre nos limites dessa região aqui. 
 </p>
 
 
-<h4>8. Confidence</h4>
+<h4>8. Confiança</h4>
 <p>
-Some of our markers have a confidence assigned by the mapping program MapMaker. To view only markers with a certain level of confidence or greater, select that confidence from this list. Markers not mapped by MapMaker will have a confidence listed as "uncalculated". Leaving this setting on "uncalculated", the default, will not exclude any markers.
+Alguns de nossos marcadores têm uma confiança atribuída pelo programa MapMaker. Para ver apenas marcadores com um certo nível de confiança ou maior, selecione essa confiança desta lista. Marcadores não mapeados pelo MapMaker terão uma confiança listada como "não calculado". Deixar esta configuração em "não calculado", o padrão, não excluirá nenhum marcador.
 </p>
 
 
-<h4>9. Maps</h4>
+<h4>9. Mapas</h4>
 <p>
-This multiple-select box shows a list of our available maps. For more information on these maps, see the <a href="/cview/">map overview page</a>.
+Esta caixa de seleção múltipla mostra uma lista dos mapas disponíveis. Para mais informações sobre estes mapas, veja o <a href="/cview/">Página de visão geral do mapa</a>.
 </p>
 
 

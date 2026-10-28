@@ -110,21 +110,21 @@ if (defined $id) {
    foreach my $cosii_marker (@cosii_data) { 
        my ($marker_id, $marker_name)= @{$cosii_marker};
        my $cosii_link = '<a href=/search/markers/markerinfo.pl?marker_id=' . $marker_id . '>' . $marker_name . '</a>';
-       $cosii_data_html .= "COSII marker $cosii_link was created with this unigene.<br />\n";
+       $cosii_data_html .= "O marcador COSII $cosii_link foi criado com este unigene.<br />\n";
        $markers_count++;
    }
    unless (defined $cosii_data[0]) {
        $cosii_data_html .= qq|<span class="ghosted">None cosii markers associated to this unigene.</span>|;
    }
  
-   my $cosii_info_link = '<a href="/markers/cosii_markers.pl">COSII Markers</a>';
+   my $cosii_info_link = '<a href="/markers/cosii_markers.pl">Marcadores COSII</a>';
    my $cosii_content = info_table_html( "$cosii_info_link Information" => $cosii_data_html,
 					__border                       => 0,
                                       );
    
    $map_content .= $cosii_content;
   
-   $markers_content = info_section_html( title        => "Markers Information (".$markers_count.")", 
+   $markers_content = info_section_html( title        => "Informação dos marcadores (".$markers_count.")", 
                                          contents     => $map_content,
 					 collapsible  => 1,
                                          collapsed    => 1 

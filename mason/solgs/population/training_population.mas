@@ -43,7 +43,7 @@ $training_pop_id = $pop_id;
 <&| /page/info_section.mas,
     collapsible => 1,
     collapsed   => 0,
-    title       => "Training population summary",
+    title       => "Resumo da população de treinamento",
   &>
 
  <& /solgs/population/summary.mas,
@@ -68,7 +68,7 @@ $training_pop_id = $pop_id;
 <&| /page/info_section.mas,
       collapsible => 1,
       collapsed   => 0,
-      title       => "Model training"
+      title       => "Modelo de treinamento"
 &>
 
 <& /solgs/population/traits_list.mas,
@@ -107,11 +107,11 @@ $training_pop_id = $pop_id;
 <&| /page/info_section.mas,
       collapsible => 1,
       collapsed   => 0,
-      title       => "Genotype Data"
+      title       => "Dados genotípicos"
 &>
 
   <div id="traits_list_message"  class="message">
-    <p>There is no genotype data for this population.</p>
+    <p>Não há dados de genótipo para esta população.</p>
   </div>
 
 </&>
@@ -121,10 +121,10 @@ $training_pop_id = $pop_id;
 <&| /page/info_section.mas,
     collapsible => 1,
     collapsed   => 0,
-    title       => "Data Accessibility",
+    title       => "Acessibilidade de Dados",
   &>
 
-<p>This is private data.</p>
+<p>São dados privados.</p>
 
 </&>
 %}

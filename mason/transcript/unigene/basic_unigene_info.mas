@@ -104,18 +104,18 @@ if (defined $ARGS{'unigene'}) {
 	   }
        }
    }
-   my $organism_html_list = join('<br>', @organism_html_list) || '<font color="gray"><i>none</i></font>';
+   my $organism_html_list = join('<br>', @organism_html_list) || '<font color="gray"><i>Nenhum</i></font>';
 
 
-   my $unigene_alternate_id = $unigene->get_alternate_identifier() || '<font color=gray><i>none</i></font>';
+   my $unigene_alternate_id = $unigene->get_alternate_identifier() || '<font color=gray><i>Nenhum</i></font>';
    my $seq = $unigene->get_sequence();
    my $seq_length = length($seq);
    my $seq_html = uc(html_break_string($seq, 90));
 
    ## It will create some tools links
 
-   my $blast_html = "<a href='/tools/blast/?preload_id=SGN-U". $id . "&preload_type=unigene+identifiers'>Blast</a>";
-   my $transl_orf_html = "<a href='/tools/sixframe_translate.pl?unigene_id=" . $id . "'>AA Translation</a>";
+   my $blast_html = "<a href='/tools/blast/?preload_id=SGN-U". $id . "&preload_type=unigene+identifiers'>Droga</a>";
+   my $transl_orf_html = "<a href='/tools/sixframe_translate.pl?unigene_id=" . $id . "'>Tradução AA</a>";
 
    ## Create the HTML table
 
@@ -140,7 +140,7 @@ if (defined $ARGS{'unigene'}) {
 HTML
 
 } else {
-   $basic_info_content = "<big>There aren't any unigene data for the specified parameters.</big>";
+   $basic_info_content = "<big>Não há dados unigenes para os parâmetros especificados.</big>";
 }   
 
 my $basic_info_html;
@@ -148,7 +148,7 @@ my $basic_info_html;
 if (defined $accession) {
    $basic_info_html = "<center><big><b>Unigene $accession</b></big></center><br>";
 }
-$basic_info_html .= info_section_html( title    => "Unigene Basic Information", 
+$basic_info_html .= info_section_html( title    => "Informação Básica Unigene", 
 				       contents => $basic_info_content 
                                      );
 

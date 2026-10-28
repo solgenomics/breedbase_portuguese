@@ -40,14 +40,14 @@ function searchTraits (name) {
 		    window.location = '/solgs/search/result/traits/' + name + '/gp/' + protocolId;
 		} else {		    
 		    jQuery("#search_trait_message")
-			.html('There are no entries for trait: ' + name)
+			.html("Não há registros para a característica: " + name)
 			.show()
 			.fadeOut(5000);
 		}
 	    },	    
 	    error: function () {
 		jQuery("#search_trait_message")
-	    	    .html('Error occured searching for trait ' + name)
+                .html("Ocorreu um erro ao buscar a característica " + name)
 	    	    .show()
 		    .fadeOut(5000);
 		

@@ -3,7 +3,7 @@
 var datasets = new CXGN.Dataset();
 
 function datasetDelete(val) {
-    if ( confirm(`Dataset. Are you sure you would like to delete it? Deletion cannot be undone.`)) {
+    if ( confirm(`Conjunto de dados. Tem certeza de que deseja excluí-lo? A exclusão não pode ser desfeita.`)) {
         datasets.deleteDataset(val, () => {
             window.location.reload();
         });

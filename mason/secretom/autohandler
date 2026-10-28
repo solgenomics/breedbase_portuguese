@@ -170,10 +170,10 @@ div.examples {
 </style>
 
 <div id="secretom_container">
-  <div class="goback"><a class="goback" href="/secretom">secretom main page</a></div>
+  <div class="goback"><a class="goback" href="/secretom">Página principal do Secretom</a></div>
 
   <a href="/secretom">
-    <img style="display: block; margin: 1em auto" src="/documents/img/secretom/secretom_logo_smaller.jpg" alt="secretom logo" />
+    <img style="display: block; margin: 1em auto" src="/documents/img/secretom/secretom_logo_smaller.jpg" alt="logotipo secreto" />
   </a>
 
 

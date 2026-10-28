@@ -22,10 +22,10 @@ $top_marker_effects
 <&| /page/info_section.mas, 
   collapsible => 1, 
   collapsed   => 1, 
-  title       => "Marker effects" 
+  title       => "Efeito marcador" 
 &>
  
-<i>Top 10 markers</i>:
+<i>Top 10 marcadores</i>:
 
 <& /page/columnar_table.mas,
   headings     => ["Marker", "Effects"], 

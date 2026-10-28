@@ -23,12 +23,12 @@ var Effects = {
 		var imgAdd = document.getElementById(buttonId + ":imgAdd");
 		var imgRemove = document.getElementById(buttonId + ":imgRemove");
 	
-		var optionalText = "All AGIs on this Page ";
+		var optionalText = "Todos os AGIs nesta página ";
 		if(!content.match(/:/)) {optionalText = "";}
 		if(switchTo == 'remove'){  
 			imgAdd.style.display = "none";
 			imgRemove.style.display = "inline";
-			button.firstChild.nodeValue = "Remove " + optionalText + "from Hotlist";
+			button.firstChild.nodeValue = "Remover " + optionalText + "da lista de favoritos";
 			if(clearOnClick){
 				button.setAttribute("onClick", "alert('some')");
 			}
@@ -39,7 +39,7 @@ var Effects = {
 		else if (switchTo == 'add'){ 
 			imgAdd.style.display = "inline";
 			imgRemove.style.display = "none";
-			button.firstChild.nodeValue = "Add " + optionalText + "to Hotlist";
+			button.firstChild.nodeValue = "Adicionar " + optionalText + "à lista de favoritos";
 			if(clearOnClick){
 				button.setAttribute("onClick", "alert('some')");
 			}
@@ -47,7 +47,7 @@ var Effects = {
 				button.setAttribute("onClick", "Hotlist.add('" + buttonId + "', '" + content + "'); return false;");
 			}
 		}
-		else { alert("You sent a bad switchTo variable to switchHotlistButton"); }
+		else { alert("A variável switchTo enviada a switchHotlistButton é inválida"); }
 	},
 	//These, on the other hand, are generic and belong in CXGN.Effects:
 	showElement: function(elementId, displayMethod) {

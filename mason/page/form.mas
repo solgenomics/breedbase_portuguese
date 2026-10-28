@@ -82,7 +82,7 @@ $alternate_edit_button => undef
 
 <table><tr><td><div id="<% $form_div_name %>_buttons" >[carregando links de edição...]</div>
 </td></tr></table>
-<div id="<% $form_div_name %>" >[carregando...]</div>
+<div id="<% $form_div_name %>" >[Carregando...]</div>
 
 <script language="javascript" type="text/javascript">
 

@@ -30,14 +30,14 @@ $roles
                 <input type="text" class="form-control input-sm" id="activity_tree_search" placeholder="Buscar" />
                 <hr>
 
-                <h5><i>Clique duas vezes<br />no projeto (&nbsp;<span class="glyphicon glyphicon-list-alt text-success"></span>&nbsp;) ou na pasta (&nbsp;<span class="glyphicon glyphicon-folder-open text-danger"></span>&nbsp;)<br/>para visualizar a página de detalhes.</i></h5>
+                <h5><i>Clique duas vezes<br />Nenhum projeto<span class="glyphicon glyphicon-list-alt text-success"></span>&nbsp;) ou na pasta (&nbsp;<span class="glyphicon glyphicon-folder-open text-danger"></span>&nbsp;)<br/>para visualizar a página de detalhes.</i></h5>
                 <h5><i>Programas de melhoramento (&nbsp;<span class="glyphicon glyphicon-briefcase text-info"></span>&nbsp;)</i></h5>
                 <hr>
 
                 <h4>Pastas</h4>
                 <button class="btn btn-sm btn-default" id="new_folder_dialog_link">Criar pasta</button><br/><br/>
                 <button class="btn btn-sm btn-default" id="open_folder_dialog_link">Mover projetos de rastreamento para uma pasta</button><br/><br/>
-                <button class="btn btn-sm btn-default" id="move_folder_dialog_link">Mover pasta</button>
+                <button class="btn btn-sm btn-default" id="move_folder_dialog_link">Massa movedora</button>
 
                 <div id="folder_edit_options" style="display:none">
                     <hr>
@@ -46,11 +46,11 @@ $roles
                     <br/>
                 </div>
 
-                <!--<button id="delete" disabled="disabled" >Delete</button -->
+                <!--<button id="delete" disabled="disabled" >Excluir</button -->
                 <br />
             </td>
             <td>
-                <div id="activities_list" >[carregando...]</div>
+                <div id="activities_list" >[Carregando...]</div>
             </td>
         </tr>
     </tbody>

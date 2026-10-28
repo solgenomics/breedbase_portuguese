@@ -84,7 +84,7 @@ if (defined $template->get_template_id() ) {
 	$experiment_html = "No expression data was found for template: $template_name";
     }
     
-    $experiment_info_content = info_section_html( title       => "Graph: Expression Data by Experiment", 
+    $experiment_info_content = info_section_html( title       => "Dados de Expressão por Experiência", 
                                                   contents    => $experiment_html, 
 	 					  collapsible => 1,
                                                   collapsed   => 0 );

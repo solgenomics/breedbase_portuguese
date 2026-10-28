@@ -3,7 +3,7 @@
 $summary_data => {}
 </%args>
 
-    <& /page/page_title.mas, title=>"Bulk download summary" &>
+    <& /page/page_title.mas, title=>"Resumo do download em massa" &>
 
     The query you submitted contained <% $summary_data->{numlines} %> lines.<br />
     Your query resulted in <% $summary_data->{total} %> lines being retrieved in
@@ -12,33 +12,33 @@ $summary_data => {}
 
 %    if ( $summary_data->{total} == 0 ) {
 
-     Please verify that you used the correct search and that you chose the right
-     unigene or bac assembly to download from. Also make sure that the submitted
-     identifiers are appropriately formatted.<br />
+     Por favor, verifique que você usou a busca correta e que você escolheu o certo
+     Unigene ou conjunto de bac para baixar. Também certifique-se que o submetido
+     Identificadores são formatados apropriadamente.<br />
      
-     Please try your search again.<br /><br />
+     Por favor, tente de novo.<br /><br />
 %   }
 %   else {
  
     The file size is <% $summary_data->{filesize} %> kBytes.
     <br /><br />
-    <a href="/tools/bulk/display?outputType=HTML&amp;line_count=$line_count&amp;dumpfile=<% $summary_data->{file} %>&amp;page=1&amp;idType=<% $summary_data->{idType} %>">Browse</a>
-    the results.
+    <a href="/tools/bulk/display?outputType=HTML&amp;line_count=$line_count&amp;dumpfile=<% $summary_data->{file} %>&amp;page=1&amp;idType=<% $summary_data->{idType} %>">Navegar</a>
+    Os resultados.
     <br />
     <br />
 
-    <table border="0" cellpadding="0"><tr><td width="120"><b>View</b></td><td width="120">
-    <b>Download to disk</b></td></tr>
+    <table border="0" cellpadding="0"><tr><td width="120"><b>Visualizar</b></td><td width="120">
+    <b>Baixe para o disco</b></td></tr>
     <tr><td>
 
-    as <a href="/tools/bulk/display?outputType=text&amp;dumpfile=<% $summary_data->{file} %>&amp;idType=<% $summary_data->{idType} %>">Text</a>
+    Como <a href="/tools/bulk/display?outputType=text&amp;dumpfile=<% $summary_data->{file} %>&amp;idType=<% $summary_data->{idType} %>">Texto</a>
     <br />
     as <% $summary_data->{fastalink} %><br />
 
     </td><td>
 
-    as <a href="/tools/bulk/display?outputType=text&amp;dumpfile=<% $summary_data->{file} %>&amp;idType=<% $summary_data->{idType} %>&amp;download=1">
-    Text</a><br />
+    Como <a href="/tools/bulk/display?outputType=text&amp;dumpfile=<% $summary_data->{file} %>&amp;idType=<% $summary_data->{idType} %>&amp;download=1">
+    Texto</a><br />
     as <% $summary_data->{fastadownload} %><br />
 
     </td></tr></table>

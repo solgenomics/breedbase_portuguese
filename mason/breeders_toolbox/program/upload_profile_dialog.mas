@@ -149,7 +149,7 @@ $program_name
                                 <td>Target Value (valor-alvo)</td>
                                 <td>Benchmark Variety (cultivar de referência)</td>
                                 <td>Performance (desempenho: equal, smaller, larger)</td>
-                                <td>Weight (peso)</td>
+                                <td>Peso (peso)</td>
                                 <td>Trait Type (tipo de característica)</td>
                             </tr>
                         </tbody>
@@ -158,16 +158,16 @@ $program_name
                         Colunas obrigatórias:
                     </b>
                     <ul>
-                        <li><b>Trait Name:</b> o modelo já contém os nomes das características com base na sua lista.</li>
-                        <li><b>Target Value ou Benchmark Variety:</b> informe <b>um</b> valor-alvo <b>ou</b> uma cultivar de referência para cada característica-alvo. A cultivar de referência deve existir no banco de dados.</li>
-                        <li><b>Performance:</b> informe o desempenho de cada característica-alvo (<code>equal</code>, <code>smaller</code> ou <code>larger</code>) em comparação ao valor-alvo ou à cultivar de referência.</li>
+                        <li><b>Nome da característica:</b> o modelo já contém os nomes das características com base na sua lista.</li>
+                        <li><b>Target Value ou Benchmark Variety:</b> Informar <b>Um</b> valor-alvo <b>UO</b> uma cultivar de referência para cada característica-alvo. A cultivar de referência deve existir no banco de dados.</li>
+                        <li><b>Desempenho:</b> informe o desempenho de cada característica-alvo (<code>equal</code>, <code>smaller</code> ou <code>larger</code>) em comparação ao valor-alvo ou à cultivar de referência.</li>
                     </ul>
                     <b>
                         Colunas opcionais:
                     </b>
                     <ul>
-                        <li><b>Weight:</b> o valor padrão é 1.</li>
-                        <li><b>Trait Type:</b> por exemplo, característica básica ou característica de valor agregado.</li>
+                        <li><b>Peso:</b> o valor padrão é 1.</li>
+                        <li><b>Tipo de Trait:</b> por exemplo, característica básica ou característica de valor agregado.</li>
                     </ul>
                 </div>
             </div>

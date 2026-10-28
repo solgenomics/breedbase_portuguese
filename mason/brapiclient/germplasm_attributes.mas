@@ -4,7 +4,7 @@
 <div id="brapi_home_germplasm_attributes_div">
 
     <h4>Lista de atributos de germoplasma</h4>
-    <button class="btn btn-primary" name="brapi_home_germplasm_attributes_submit" id="brapi_home_germplasm_attributes_submit">Obter atributos</button>
+    <button class="btn btn-primary" name="brapi_home_germplasm_attributes_submit" id="brapi_home_germplasm_attributes_submit">Atributos opostos</button>
     <br/><br/>
     <div id="brapi_germplasm_attributes_result_div">
     </div>

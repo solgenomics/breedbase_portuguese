@@ -16,13 +16,13 @@ function display_matching_traits () {
         trait_html = format_options_list(matching_traits);
     }
     else {
-        trait_html = 'No matching traits.';
+        trait_html = "Nenhuma característica correspondente.";
     }
     if (new_traits.length > 0) {
         new_trait_html = format_options_list(new_traits);
     }
     else {
-        new_trait_html = 'No new traits.';
+        new_trait_html = "Nenhuma característica nova.";
     }
     jQuery('#existing_traits').html(trait_html);
     jQuery('#new_traits').html(new_trait_html);
@@ -89,7 +89,7 @@ jQuery.ajax( {
     //console.log("traits="+traits+"\n newtraits="+new_traits);
   },
   error: function(request, status, err) {
-    console.log("Error retrieving matches");
+    console.log("Erro ao recuperar as correspondências");
   }
 });
   return [traits, new_traits];

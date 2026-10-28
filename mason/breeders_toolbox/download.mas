@@ -89,7 +89,7 @@ Escolha uma lista para cada parâmetro e clique em "Baixar".
         <option value="1">Sim</option>
     </select>
     <br/>
-    <b>Incluir genitores:</b><br/>
+    <b>Incluindo os genitores:</b><br/>
     <select class="form-control" id="pedigrees" name="pedigrees">
         <option value="0">Não</option>
         <option value="1">Sim</option>
@@ -411,7 +411,7 @@ $(document).ready(function() {
     <td>
       <select class="form-control" id="pedigree_file_format" name="file_format">
         <option value=".txt">Texto simples</option>
-        <option value=".helium">Formato Helium</option>
+        <option value=".helium">Formato Hélio</option>
       </select>
     </td>
     <td>

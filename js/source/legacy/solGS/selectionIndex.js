@@ -145,15 +145,15 @@ solGS.sIndex = {
 
   validateRelativeWts: function (nm, val) {
     if (isNaN(val) && nm != "all") {
-      alert(`the relative weight of trait  ${nm} must be a number.
-                    Only numbers and multiplication symbols ('*' or 'x') are allowed.`);
+      alert(`o peso relativo da característica  ${nm} deve ser um número.
+                    Apenas números e símbolos de multiplicação (* ou x) são permitidos.`);
       return;
     } else if (!val && nm != "all") {
       alert(
-        "You need to assign a relative weight to trait " +
+        "Atribua um peso relativo à característica " +
           nm +
           "." +
-          " If you want to exclude the trait assign 0 to it."
+          " Para excluir a característica, atribua peso 0 a ela."
       );
       return;
       // }// else if (val < 0 && nm != 'all') {
@@ -162,7 +162,7 @@ solGS.sIndex = {
       //         );
       //    return;
     } else if (nm == "all" && val == 0) {
-      alert("At least two traits must be assigned relative weight.");
+      alert("Atribua pesos relativos a pelo menos duas características.");
       return;
     } else {
       return true;
@@ -206,7 +206,7 @@ solGS.sIndex = {
     var validate;
     var allValues = [];
 
-    var trRelWts = "<b>Relative weights</b>:";
+    var trRelWts = "<b>Pesos relativos</b>:";
 
     for (var i = 0; i < all.length; i++) {
       var nm = all[i].name;
@@ -248,7 +248,7 @@ solGS.sIndex = {
     }
     var legend;
     if (siPopName) {
-      var popName = "<strong>Population name:</strong> " + siPopName;
+      var popName = "<strong>Nome da população:</strong> " + siPopName;
 
       var divId = siPopName.replace(/\s/g, "");
       var relWtsId = trRelWts.replace(/[:\s+relative<>b/weigths]/gi, "");
@@ -294,7 +294,7 @@ jQuery(document).ready(function () {
           if (traits.length > 1) {
             table = solGS.sIndex.selectionIndexForm(traits);
           } else {
-            var msg = "There is only one trait with valid GEBV predictions.";
+            var msg = "Há apenas uma característica com predições válidas de GEBV.";
             jQuery(siPopsDiv).empty();
             jQuery(siMsgDiv).empty().append(msg);
           }
@@ -303,7 +303,7 @@ jQuery(document).ready(function () {
         }
       })
       .fail(function () {
-        var msg = "Error occured creating the selection index form.";
+        var msg = "Ocorreu um erro ao criar o formulário do índice de seleção.";
         jQuery(siMsgDiv).empty().append(msg);
       });
   }, 5000);
@@ -328,7 +328,7 @@ jQuery(document).on("click", "#calculate_si", function () {
   var siMsgDiv = solGS.sIndex.siMsgDiv;
 
   jQuery(`${canvas} .multi-spinner-container`).show();
-  var msg = "Calculating selection index...please wait...";
+  var msg = "Calculando índice de seleção... Aguarde...";
   jQuery(siMsgDiv).html(msg).show();
 
   var modelId = jQuery("#training_pop_id").val();
@@ -351,12 +351,12 @@ jQuery(document).on("click", "#calculate_si", function () {
 
           var fileNameSindex = sindexFile.split("/").pop();
           var fileNameGebvsSindex = gebvsSindexFile.split("/").pop();
-          var sindexLink = `<a href="${sindexFile}" download="${fileNameSindex}">Indices</a>`;
-          var gebvsSindexLink = `<a href="${gebvsSindexFile}" download="${fileNameGebvsSindex}">Weighted GEBVs+indices</a>`;
+          var sindexLink = `<a href="${sindexFile}" download="${fileNameSindex}">Índices</a>`;
+          var gebvsSindexLink = `<a href="${gebvsSindexFile}" download="${fileNameGebvsSindex}">GEBVs ponderados e índices</a>`;
 
           var sIndexName = res.sindex_name;
 
-          let caption = `<br/><strong>Index Name:</strong> ${sIndexName} <strong>Download:</strong> ${sindexLink} |  ${gebvsSindexLink} ${legend}`;
+          let caption = `<br/><strong>Nome do índice:</strong> ${sIndexName} <strong>Baixar:</strong> ${sindexLink} |  ${gebvsSindexLink} ${legend}`;
           let histo = {
             canvas: canvas,
             plot_id: `#${sIndexName}`,
@@ -379,7 +379,7 @@ jQuery(document).on("click", "#calculate_si", function () {
           var corrPlotDivId = genArgs.corr_plot_div;
          
           jQuery(`${canvas} .multi-spinner-container`).show();
-          jQuery(siMsgDiv).html("Running correlation... please wait...").show();
+          jQuery(siMsgDiv).html("Executando correlação... Aguarde...").show();
 
           solGS.correlation
             .runGeneticCorrelation(genArgs)
@@ -414,7 +414,7 @@ jQuery(document).on("click", "#calculate_si", function () {
               }
             })
             .fail(function (res) {
-              jQuery(siMsgDiv).html("Error occured running correlation analysis.").fadeOut(8400);
+              jQuery(siMsgDiv).html("Ocorreu um erro ao executar a análise de correlação.").fadeOut(8400);
             });
 
           jQuery("#si_canvas #selected_pop").val("");
@@ -432,7 +432,7 @@ jQuery(document).on("click", "#calculate_si", function () {
         }
       })
       .fail(function () {
-        var msg = "error occured calculating selection index.";
+        var msg = "ocorreu um erro ao calcular o índice de seleção.";
         jQuery(siMsgDiv).html(msg).show();
       });
   }

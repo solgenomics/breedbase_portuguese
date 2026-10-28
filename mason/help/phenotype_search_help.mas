@@ -1,43 +1,37 @@
-<& /page/page_title.mas, title=>"Phenotype Search Help" &>
+<& /page/page_title.mas, title=>"Ajuda de pesquisa fenotípica" &>
 
 <p>
-The <a href="/search/direct_search.pl?search=phenotypes">phenotype search</a> is a
-tool for searching SGN's database for accessions from phenotyped populations. 
+O <a href="/search/direct_search.pl?search=phenotypes">Pesquisa fenotípica</a> é uma ferramenta para pesquisar o banco de dados da SGN para acessos de populações fenotípicas. 
 </p>
 
-<img src="/documents/help/screenshots/pheno_search_help.png" alt="screenshot of phenotype search form" style="margin: auto; border: 1px solid black;" />
+<img src="/documents/help/screenshots/pheno_search_help.png" alt="Imagem da forma de busca do fenótipo" style="margin: auto; border: 1px solid black;" />
 
-<h4>1. Keyword</h4>
+<h4>1. Palavra-chave</h4>
 <p>
-Here a word or a string can be typed. Searches the database for individuals with the word/string in their 'phenotype description' field.
+Aqui uma palavra ou uma corda pode ser digitada. Procura no banco de dados por indivíduos com a palavra/cadeia em seu campo 'descrição fenotípica'.
 </p><p>
 
 </p>
 
-<h4>2. Population</h4>
+<h4>2. População</h4>
 <p>
-Each individual accession in the database is associated to a population.
-The phenotype search can be limited to only accessions from a specific population. 
-
-Currently the following phenotyped populations are included in the searchable database:
+Cada acesso individual no banco de dados está associada a uma população. A busca fenotípica pode ser limitada a acessos de uma população específica. Atualmente, as seguintes populações fenotípicas estão incluídas no banco de dados:
 <ul>
-<li>M82 EMS mutant population</li>
-<li>Fast-neutron M82 mutant population</li>
-<li>TGRC monogenic mutant population</li>
-<li>Eggplant EMS mutant population</li>
-<li>TGRC monogenic mutant population</li
-<li>F2 2000 mapping population</li>
-<li>M82 x L.pennellii IL population</li>
+<li>M82 População mutante do EMS</li>
+<li>População mutante M82 de rápido nêutron</li>
+<li>TGRC, população mutante monogênica</li>
+<li>População mutante de berinjela</li>
+<li>TGRC, população mutante monogênica</li
+<li>F2 2000 mapeando população</li>
+<li>M82 x L.pennellii população IL</li>
 </ul>
 
 </p>
 
 
-<h4>3. Accession</h4>
+<h4>3. Acesso</h4>
 <p>
-If you know the accession name of your individual, type it in. By default, the database will be searched for all individuals with an accession name that starts with what you type in.For example, if you type in "e000", your results might include e0001m1, e0001m2, e0002m1, etc.
-
-The search is case-insensitive.
+Se você sabe o nome do seu indivíduo, digite. Por padrão, o banco de dados será procurado por todos os indivíduos com um nome de acesso que começa com o que você digita.Por exemplo, se você digitar "e000", seus resultados podem incluir e0001m1, e0001m2, e0002m1, etc. A busca é insensível.
 </p>
 
 

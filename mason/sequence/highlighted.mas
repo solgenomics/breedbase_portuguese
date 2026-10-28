@@ -77,7 +77,7 @@ $collapsed => 0
 			
                         )
     %>
-    <% info_table_html( 'Description' => $seq->desc || '<span class="ghosted">none</span>',
+    <% info_table_html( 'Descrição' => $seq->desc || '<span class="ghosted">nenhum</span>',
                         highlighted_regions( $highlight_coords, $highlight_description ),
                         __border => 0,
                         )
@@ -90,13 +90,13 @@ $collapsed => 0
 %       my $highlight_count = sum map $_->end - $_->start +1, @{$r->{abs_ranges}};
 
         <&| /page/info_section.mas,
-              title => "Residues ".commify_number( $w->start ).' - '.commify_number( $w->end ),
+              title => "Resíduos ".commify_number( $w->start ).' - '.commify_number( $w->end ),
               is_subsection => 1,
-              subtitle => commify_number( $w->end - $w->start + 1 ).' residues shown, '.commify_number( $highlight_count || 0 ).' highlighted',
+              subtitle => commify_number( $w->end - $w->start + 1 ).' resíduos exibidos, '.commify_number( $highlight_count || 0 ).' destacados',
          &>
 %            my $wseq = $w->start == 1 && $w->end == $seq->length ? $seq : $seq->trunc( $w->start, $w->end );
 %            if( $wseq->length > 200_000 ) {
-                 <span class="ghosted">Region too large to display.</span>
+                 <span class="ghosted">Região muito grande para exibir.</span>
 %            } else {
                  <& /sequence/with_markup.mas,
                      width   => $width,

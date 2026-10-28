@@ -51,5 +51,5 @@ chop $html;
 
 </%perl>
 
-<p>Locus editors: 
+<p>Editores Locus: 
 <% $html %></p>

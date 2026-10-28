@@ -22,7 +22,7 @@ use strict;
 use File::Spec;
 use CXGN::Tools::File;
 
-my $publication = "The tomato genome release information is currently unavailable.<br /><br />";
+my $publication = "O genoma de tomate não está disponível.<br /><br />";
 
 eval {
 
@@ -30,12 +30,12 @@ eval {
 
 };
 
-if ($@) { print "ERROR $@\n"; }
+if ($@) { print "ERRO $@\n"; }
 
 </%perl>
 
 <div class="boxbgcolor1" style="margin:0px;">
-<div class="boxheading">Current Tomato Genome version SL3.0 and Annotation ITAG3.10 <font color="red">       [ New ]</font>  </div>
+<div class="boxheading">Versão atual do genoma de tomate SL3.0 e anotação ITAG3.10 <font color="red">       [Novo ]</font>  </div>
 
 <div class="boxcontent"><% $publication %>
 

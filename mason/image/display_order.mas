@@ -7,13 +7,13 @@ $display_order
 </%args>
 
 <center>
-<h4>Change display order for image</h4>
+<h4>Mude a ordem de exibição da imagem</h4>
 
 
-Display order: <input id="display_order" value="<% $display_order %>" >
+Ordem de exibição: <input id="display_order" value="<% $display_order %>" >
 
 <br />
-<button id="submit_display_order">change</button>
+<button id="submit_display_order">Mudança</button>
 
 <script>
   jQuery(window).ready( function() {
@@ -23,10 +23,10 @@ Display order: <input id="display_order" value="<% $display_order %>" >
         var display_order = jQuery('#display_order').val();
         jQuery.ajax( { 
            url: '/ajax/image/<% $image_id %>/<% $type %>/<% $id %>/display_order/'+display_order,
-           error: function(e) { alert('an error occurred'); },
+           error: function(e) { alert("ocorreu um erro"); },
            success: function(r) {
              if (r.error) { alert(r.error); return; }
-             alert('Successfully changed display_order');
+             alert("Com sucesso mudou display_order");
            }
         });
      });

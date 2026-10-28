@@ -45,11 +45,11 @@ $synonyms=>undef
   my $count = scalar(@$synonyms);
 </%perl>
 
-<br /><br /><b>Locus synonyms</b> <b><% $count %>: </b>
+<br /><br /><b>Sinónimos de locus</b> <b><% $count %>: </b>
 
 % print join(' ' ,  map( $_->get_locus_alias(), @$synonyms )) ;
 
 % if ($locus_id) {
-<a href="/phenome/locus_synonym.pl?locus_id=<% $locus_id %>&amp;action=new"> [Add/Remove]</a><br />
+<a href="/phenome/locus_synonym.pl?locus_id=<% $locus_id %>&amp;action=new"> [Adicionar/remover]</a><br />
 
 % }

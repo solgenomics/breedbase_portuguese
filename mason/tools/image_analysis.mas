@@ -41,75 +41,75 @@ tr.shown td.details-control {
 
 <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
 
-<& /page/page_title.mas, title=>"Image Analysis" &>
+<& /page/page_title.mas, title=>"Análise de imagem" &>
 <hr>
 
 <div class="well well-sm">
     <center>
-    <button class="btn btn-primary" id="upload_images_link">Upload New Images</button>
+    <button class="btn btn-primary" id="upload_images_link">Enviar Novas Imagens</button>
     </center>
 </div>
 <& /breeders_toolbox/upload_images.mas &>
 <& /breeders_toolbox/trial/create_spreadsheet_dialog.mas &>
 
-<&| /page/info_section.mas, title=>"Image Search Criteria",  collapsible => 1, collapsed=>0, subtitle => "All images may not have names, descriptions, or tags associated with them."&>
+<&| /page/info_section.mas, title=>"Critérios de busca de imagens",  collapsible => 1, collapsed=>0, subtitle => "Todas as imagens podem não ter nomes, descrições ou etiquetas associadas a elas."&>
 
     <div id="image_search_form" class="well well-sm">
         <div class="form-horizontal" >
             <div class="form-group">
-                <label class="col-sm-3 control-label">Select a Field Trial: </label>
+                <label class="col-sm-3 control-label">Selecione um ensaio de campo: </label>
                 <div class="col-sm-9" >
                     <div id ="image_analysis_trial_select">
                     </div>
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-sm-6 control-label">Image descriptors (name, description, or filename): </label>
+                <label class="col-sm-6 control-label">Descrevedores de imagens (nome, descrição ou nome do arquivo): </label>
                 <div class="col-sm-6" >
-                    <input class="form-control" type="text" id="image_description_filename_composite" name="image_description_filename_composite" placeholder="e.g. MyImageName" />
+                    <input class="form-control" type="text" id="image_description_filename_composite" name="image_description_filename_composite" placeholder="Por exemplo. MyImageName" />
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-sm-6 control-label">Submitter: </label>
+                <label class="col-sm-6 control-label">Submeter: </label>
                 <div class="col-sm-6" >
-                    <input class="form-control" type="text" id="image_submitter" name="image_submitter" placeholder="e.g. JaneDoe" />
+                    <input class="form-control" type="text" id="image_submitter" name="image_submitter" placeholder="Por exemplo. JaneDoe" />
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-sm-6 control-label">Image tag: </label>
+                <label class="col-sm-6 control-label">Marca de imagem: </label>
                 <div class="col-sm-6" >
-                    <input class="form-control" type="text" id="image_tag" name="image_tag" placeholder="e.g. ImageTagName" />
+                    <input class="form-control" type="text" id="image_tag" name="image_tag" placeholder="Por exemplo. ImageTagName" />
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-sm-6 control-label">Associated stock: </label>
+                <label class="col-sm-6 control-label">Ações associadas: </label>
                 <div class="col-sm-6" >
-                    <input class="form-control" type="text" id="image_stock_uniquename" name="image_stock_uniquename" placeholder="e.g. FieldPlot100" />
+                    <input class="form-control" type="text" id="image_stock_uniquename" name="image_stock_uniquename" placeholder="Por exemplo. FieldPlot100" />
                 </div>
             </div>
         </div>
 
         <center>
-        <button class="btn btn-primary" id="image_search_submit" >Search</button>
+        <button class="btn btn-primary" id="image_search_submit" >Buscar</button>
         </center>
     </div>
 </&>
 
-<&| /page/info_section.mas, title=>"Image Search Results",  collapsible => 1, collapsed=>0 &>
+<&| /page/info_section.mas, title=>"Resultados da Pesquisa de Imagens",  collapsible => 1, collapsed=>0 &>
     <div class="well well-sm">
         <div class="panel panel-default">
             <div class="panel-body">
                 <table id="image_analysis_image_search_results" class="table table-hover table-striped">
                 <thead>
                   <tr>
-                    <th>Select</th>
-                    <th>Image Thumbnail</th>
-                    <th>Filename</th>
-                    <th>Description</th>
-                    <th>Submitter</th>
-                    <th>Associations</th>
-                    <th>Observations</th>
-                    <th>Tags</th>
+                    <th>Selecionar</th>
+                    <th>Miniatura da Imagem</th>
+                    <th>Nome do arquivo</th>
+                    <th>Descrição</th>
+                    <th>Submisso</th>
+                    <th>Associações</th>
+                    <th>Observações</th>
+                    <th>Etiquetas</th>
                 </tr>
                 </thead>
                 </table>
@@ -118,15 +118,15 @@ tr.shown td.details-control {
     </div>
 </&>
 
-<&| /page/info_section.mas, title=>"Image Analysis", collapsible => 1, collapsed=>0 &>
+<&| /page/info_section.mas, title=>"Análise de imagem", collapsible => 1, collapsed=>0 &>
     <div class="well well-sm">
         <div class="panel panel-default">
             <div class="panel-body">
                 <div class="form-group">
-                    <label class="col-sm-6 control-label">Image Analysis Service: </label>
+                    <label class="col-sm-6 control-label">Serviço de Análise de Imagens: </label>
                     <div class="col-sm-6" >
                         <select class="form-control" id="image_analysis_service_select" name="image_analysis_service_select">
-                            <option value="">Select An Analysis Service:</option>
+                            <option value="">Selecione um serviço de análise:</option>
 
 % foreach my $s (keys %services) {
  		            <option value="<% $s %>"><% $services{$s}->{description} %></option>
@@ -142,7 +142,7 @@ tr.shown td.details-control {
                 </div>
                 <br/>
                 <div class="form-group" id="image_analysis_trait_group" style="display: none;">
-                    <label class="col-sm-6 control-label">Trait to be Analyzed: </label>
+                    <label class="col-sm-6 control-label">Característica a ser analisado: </label>
                     <div class="col-sm-6" >
                         <select class="form-control" id="image_analysis_trait_select" name="image_analysis_service_select"></select>
                     </div>
@@ -151,7 +151,7 @@ tr.shown td.details-control {
 
                 <hr>
                 <center>
-                <button class="btn btn-primary" id="image_analysis_submit" disabled>Submit for Analysis</button>
+                <button class="btn btn-primary" id="image_analysis_submit" disabled>Submeta-se para análise</button>
                 </center>
                 <hr>
 
@@ -167,18 +167,18 @@ tr.shown td.details-control {
                         <thead>
                            <tr>
                                <th></th>
-                               <th>Stock</th>
-                               <th>Trait</th>
+                               <th>Material</th>
+                               <th>Característica</th>
                                <th id="analyzed_header"></th>
-                               <th>Mean Value</th>
+                               <th>Valor Médio</th>
                            </tr>
                        </thead>
                        <caption class="well well-sm" style="caption-side: bottom;margin-top: 10px;">
-                        <center> Analysis Service Details: <a id="model_metrics_link"  style="cursor: pointer;">Model Metrics</a> </center>
+                        <center> Detalhes do Serviço de Análise: <a id="model_metrics_link"  style="cursor: pointer;">Modelo Métrico</a> </center>
                        </caption>
                     </table>
                     <hr>
-                    <center><button class="btn btn-primary" id="image_analysis_save_results">Save Results</button></center>
+                    <center><button class="btn btn-primary" id="image_analysis_save_results">Salvar resultados</button></center>
                 </div>
             </div>
         </div>
@@ -190,15 +190,15 @@ tr.shown td.details-control {
             <div class="panel-body">
                 <div class="form-group">
                     <div class="col-sm-9">
-                    <label class="col-sm-6 control-label">Image Analysis Usage </label>
+                    <label class="col-sm-6 control-label">Uso da Análise de Imagens </label>
                     </div>
                     <div class="col-sm-3" >
-                        <label class="control-label">Date Range: </label>
+                        <label class="control-label">Data: </label>
                         <select class="form-control" id="usage_range_select" name="usage_range_select">
-                            <option value="all">All Dates</option>
-                            <option value="year">Latest Year</option>
-                            <option value="month">Latest Month</option>
-                            <option value="week">Latest Week</option>
+                            <option value="all">Todas as datas</option>
+                            <option value="year">Último Ano</option>
+                            <option value="month">Mês passado</option>
+                            <option value="week">Semana passada</option>
                         </select>
                     </div>
                 </div>
@@ -213,8 +213,8 @@ tr.shown td.details-control {
       <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="modelMetricsDialogTitle">Model Metrics</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <h5 class="modal-title" id="modelMetricsDialogTitle">Modelo Métrico</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
@@ -223,7 +223,7 @@ tr.shown td.details-control {
               </table>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
           </div>
         </div>
       </div>
@@ -233,15 +233,15 @@ tr.shown td.details-control {
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="saveResultModalTitle">Image Analysis Save Status</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <h5 class="modal-title" id="saveResultModalTitle">Análise de imagem Salvar status</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
           <div class="modal-body" id="saveResultModalBody">
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
           </div>
         </div>
       </div>
@@ -256,12 +256,12 @@ tr.shown td.details-control {
         </div>
 
         <div class="modal-body">
-            <p>The image you submitted for analysis is associated with a plot. If you save these results a new plant will be created for this plot.</p>
+            <p>A imagem que você enviou para análise está associada a um enredo. Se você guardar esses resultados, uma nova planta será criada para esta trama.</p>
         </div>
 
         <div class="modal-footer">
-            <button class="btn btn-default" data-dismiss="modal">Cancel</button>
-            <button class="btn btn-primary" id="save_results_continue">Continue</button>
+            <button class="btn btn-default" data-dismiss="modal">Cancelar</button>
+            <button class="btn btn-primary" id="save_results_continue">Continuar</button>
         </div>
 
         </div>
@@ -296,7 +296,7 @@ jQuery(document).ready(function(){
 
     jQuery('#image_search_submit').click(function(){
         if (jQuery('#html_image_analysis_trial_select').val() == '') {
-            alert("Please select a Field Trial first!");
+            alert("Selecione primeiro um ensaio de campo!");
             return false;
         }
         _load_image_search_results();
@@ -320,7 +320,7 @@ jQuery(document).ready(function(){
     jQuery('#image_analysis_service_select').change(function() {
         var service = jQuery('#image_analysis_service_select').val();
 	    var service_defs = JSON.parse('<% JSON::encode_json(\%services) %>');
-        jQuery('#image_analysis_trait_select').html('<option value="">Select A Trait</option>');
+        jQuery('#image_analysis_trait_select').html("<option value=\"\">Selecione uma característica</option>");
         jQuery('#image_analysis_trait_select').html('<option value=""></option>');
         console.log("service:", service);
         if (service && service !== "multi-trait") {
@@ -352,7 +352,7 @@ jQuery(document).ready(function(){
                     jQuery('#working_modal').modal('hide');
                 },
                 error: function(response) {
-                    console.log("error retrieving crop names: "+response);
+                    console.log("erro ao recuperar os nomes das culturas: "+response);
                     // just add all traits regardless of crop
                     trait_names.forEach(function(name) {
                         // console.log("Id is "+id);
@@ -398,7 +398,7 @@ jQuery(document).ready(function(){
         });
 
         if (selected_image_ids.length < 1) {
-            alert('Please select at least one image first!');
+            alert("Selecione pelo menos uma imagem primeiro!");
             return false;
         }
 
@@ -409,10 +409,10 @@ jQuery(document).ready(function(){
         var images_finished = 0;
         var current_progress = 0;
         progress_modal.modal('show');
-        jQuery('#progress_msg').text('Submitting images for analysis');
+        jQuery('#progress_msg').text("Enviando imagens para análise");
 
         var deferred_calls = selected_image_ids.map(function(image_id, index) {
-            jQuery('#progress_msg').text('Submitting image '+index+' out of '+image_total+' images');
+            jQuery('#progress_msg').text("Enviando imagem "+index+" de um total de "+image_total+" imagens");
             current_progress += (1 / image_total) * 10;
             progress_bar.css("width", current_progress + "%")
             .attr("aria-valuenow", current_progress)
@@ -430,7 +430,7 @@ jQuery(document).ready(function(){
                 success: function(response) {
                     images_finished++;
                     // console.log(response);
-                    jQuery('#progress_msg').text('Responses received for '+images_finished+' out of '+image_total+' images');
+                    jQuery('#progress_msg').text("Respostas recebidas para "+images_finished+" de um total de "+image_total+" imagens");
                     current_progress += (1 / image_total) * 90;
                     progress_bar.css("width", current_progress + "%")
                     .attr("aria-valuenow", current_progress)
@@ -438,7 +438,7 @@ jQuery(document).ready(function(){
                     response.results.map(function(item) {
                         if (item.result.error) {
                             progress_modal.find('.modal-footer').append(
-                                '<ul class="list-group"><li class="list-group-item list-group-item-danger"><span class="badge"><span class="glyphicon glyphicon-remove"></span></span>Error analyzing image number '+index+': '+item.result.error+'</li></ul>'
+                                "<ul class=\"list-group\"><li class=\"list-group-item list-group-item-danger\"><span class=\"badge\"><span class=\"glyphicon glyphicon-remove\"></span></span>Erro ao analisar a imagem número "+index+': '+item.result.error+'</li></ul>'
                             );
                         }
                         else {
@@ -449,20 +449,20 @@ jQuery(document).ready(function(){
                 error: function(response) {
                     images_finished++;
                     // console.log(response);
-                    jQuery('#progress_msg').text('Finished analyzing '+images_finished+' out of '+image_total+' images');
+                    jQuery('#progress_msg').text("Acabei de analisar "+images_finished+" de um total de "+image_total+" imagens");
                     current_progress += (1 / image_total) * 90
                     progress_modal.find('.modal-footer').append(
-                        '<ul class="list-group"><li class="list-group-item list-group-item-danger"><span class="badge"><span class="glyphicon glyphicon-remove"></span></span>Error analyzing image number '+index+': '+response+'</li></ul>'
+                        "<ul class=\"list-group\"><li class=\"list-group-item list-group-item-danger\"><span class=\"badge\"><span class=\"glyphicon glyphicon-remove\"></span></span>Erro ao analisar a imagem número "+index+': '+response+'</li></ul>'
                     );
                 }
             });
             return call;
         });
 
-        jQuery('#progress_msg').text('All '+image_total+' images submitted, waiting for responses.');
+        jQuery('#progress_msg').text("Todos "+image_total+" imagens enviadas; aguardando respostas.");
 
         jQuery.when.apply(jQuery, deferred_calls).then(function() {
-            console.log("Results are:");
+            console.log("Os resultados são:");
             console.log(results);
             var first = results[0];
             submit_results = first;
@@ -502,7 +502,7 @@ jQuery(document).ready(function(){
                         progress_bar.css("width", current_progress + "%")
                         .attr("aria-valuenow", current_progress)
                         .text(Math.round(current_progress) + "%");
-                        jQuery('#progress_msg').text('Building results table.');
+                        jQuery('#progress_msg').text("Montando a tabela de resultados.");
 
                         is_multi_trait = response.results.multi_trait_analysis;
                         if (response.results.analyzed_image_overlay) {
@@ -569,22 +569,22 @@ jQuery(document).ready(function(){
                     error: function(response) {
                         // jQuery('#working_modal').modal('hide');
                         progress_modal.modal('hide');
-                        console.log('Error: '+response);
+                        console.log("Erro: "+response);
                         // jQuery('#'+image_id).text('Error analyzing image number '+index+'. '+response);
-                        alert("An error occurred while displaying image analysis results.");
+                        alert("Ocorreu um erro ao exibir os resultados da análise de imagens.");
                     }
                 });
             }
             else {
                 progress_modal.find('.modal-footer').html('');
                 progress_modal.modal('hide');
-                alert("No usable results returned from the service, aborting analysis.");                 // alert("No usable results returned from the service, aborting analysis.");
+                alert("O serviço não retornou resultados utilizáveis. Análise interrompida.");                 // alert("No usable results returned from the service, aborting analysis.");
             }
         });
     });
 
     jQuery('#image_analysis_save_results').click(function(){
-        console.log("submit results", submit_results);
+        console.log("enviar resultados", submit_results);
         if (submit_results.stock_type_name === "plot") {
             jQuery('#plantCreationWarning').modal('show');
         }
@@ -656,7 +656,7 @@ jQuery(document).ready(function(){
                                 },
                                 error: function(response) {
                                     jQuery('#working_modal').modal('hide');
-                                    jQuery('#saveResultModalBody').html('<ul class="list-group"><li class="list-group-item list-group-item-danger"><span class="badge"><span class="glyphicon glyphicon-remove"></span></span>Error while creating a new plant. Deets: '+response.responseText+'</li></ul>');
+                                    jQuery('#saveResultModalBody').html("<ul class=\"list-group\"><li class=\"list-group-item list-group-item-danger\"><span class=\"badge\"><span class=\"glyphicon glyphicon-remove\"></span></span>Erro ao criar uma nova planta. Detalhes: "+response.responseText+'</li></ul>');
                                     jQuery('#saveResultModal').modal('show');
                                 }
                             });
@@ -664,7 +664,7 @@ jQuery(document).ready(function(){
                     },
                     error: function(response) {
                         jQuery('#working_modal').modal('hide');
-                        jQuery('#saveResultModalBody').html('<ul class="list-group"><li class="list-group-item list-group-item-danger"><span class="badge"><span class="glyphicon glyphicon-remove"></span></span>Error while trying to save the analysis results. Deets: '+response.responseText+'</li></ul>');
+                        jQuery('#saveResultModalBody').html("<ul class=\"list-group\"><li class=\"list-group-item list-group-item-danger\"><span class=\"badge\"><span class=\"glyphicon glyphicon-remove\"></span></span>Erro ao salvar os resultados da análise. Detalhes: "+response.responseText+'</li></ul>');
                         jQuery('#saveResultModal').modal('show');
                     }
                 })
@@ -713,7 +713,7 @@ jQuery(document).ready(function(){
                     console.log("test multi image");
                     fetch(proxyUrl)
                     .then(response => {
-                        if (!response.ok) throw new Error("Failed to fetch " + proxyUrl);
+                        if (!response.ok) throw new Error("Falha ao recuperar " + proxyUrl);
                         return response.blob();
                     })
                     .then(blob => {
@@ -802,11 +802,11 @@ jQuery(document).ready(function(){
                         data: JSON.stringify(observationData),
                         success: function (obsResponse) {
                             jQuery('#working_modal').modal('hide');
-                            jQuery('#saveResultModalBody').html('<ul class="list-group"><li class="list-group-item list-group-item-success"><span class="badge"><span class="glyphicon glyphicon-ok"></span></span>Analysis results saved successfully in the database.</li></ul>');
+                            jQuery('#saveResultModalBody').html("<ul class=\"list-group\"><li class=\"list-group-item list-group-item-success\"><span class=\"badge\"><span class=\"glyphicon glyphicon-ok\"></span></span>Resultados da análise salvos no banco de dados com sucesso.</li></ul>");
                             jQuery('#saveResultModal').modal('show');
                         },
                         error: function (err) {
-                            console.error("Error saving observations", err.responseText);
+                            console.error("Erro ao salvar as observações", err.responseText);
                         }
                     });
                 });
@@ -858,23 +858,23 @@ jQuery(document).ready(function(){
                             success: function(obsResponse) {
                                 let promise = (imageFiles && imageFiles.length) ? loadAllImages(imageFiles, imageData) : Promise.resolve();
                                 promise.then(function(uploadStatus) {
-                                    console.log("Upload completed!");
+                                    console.log("Envio concluído!");
                                     jQuery('#working_modal').modal('hide');
-                                    jQuery('#saveResultModalBody').html('<ul class="list-group"><li class="list-group-item list-group-item-success"><span class="badge"><span class="glyphicon glyphicon-ok"></span></span>Analysis results saved successfully in the database.</li></ul>');
+                                    jQuery('#saveResultModalBody').html("<ul class=\"list-group\"><li class=\"list-group-item list-group-item-success\"><span class=\"badge\"><span class=\"glyphicon glyphicon-ok\"></span></span>Resultados da análise salvos no banco de dados com sucesso.</li></ul>");
                                     jQuery('#saveResultModal').modal('show');
                                 });
                                 
                             },
                             error: function(response) {
                                 jQuery('#working_modal').modal('hide');
-                                jQuery('#saveResultModalBody').html('<ul class="list-group"><li class="list-group-item list-group-item-danger"><span class="badge"><span class="glyphicon glyphicon-remove"></span></span>Error while trying to save the analysis results. Deets: '+response.responseText+'</li></ul>');
+                                jQuery('#saveResultModalBody').html("<ul class=\"list-group\"><li class=\"list-group-item list-group-item-danger\"><span class=\"badge\"><span class=\"glyphicon glyphicon-remove\"></span></span>Erro ao salvar os resultados da análise. Detalhes: "+response.responseText+'</li></ul>');
                                 jQuery('#saveResultModal').modal('show');
                             }
                         })
                     },
                     error: function(response) {
                         jQuery('#working_modal').modal('hide');
-                        jQuery('#saveResultModalBody').html('<ul class="list-group"><li class="list-group-item list-group-item-danger"><span class="badge"><span class="glyphicon glyphicon-remove"></span></span>Error while trying to save the analysis results. Deets: '+response.responseText+'</li></ul>');
+                        jQuery('#saveResultModalBody').html("<ul class=\"list-group\"><li class=\"list-group-item list-group-item-danger\"><span class=\"badge\"><span class=\"glyphicon glyphicon-remove\"></span></span>Erro ao salvar os resultados da análise. Detalhes: "+response.responseText+'</li></ul>');
                         jQuery('#saveResultModal').modal('show');
                     }
                 });
@@ -893,13 +893,13 @@ jQuery(document).ready(function(){
             success: function(response) {
                 // console.log(response);
                 jQuery('#working_modal').modal('hide');
-                jQuery('#saveResultModalBody').html('<ul class="list-group"><li class="list-group-item list-group-item-success"><span class="badge"><span class="glyphicon glyphicon-ok"></span></span>Analysis results saved successfully in the database.</li></ul>');
+                jQuery('#saveResultModalBody').html("<ul class=\"list-group\"><li class=\"list-group-item list-group-item-success\"><span class=\"badge\"><span class=\"glyphicon glyphicon-ok\"></span></span>Resultados da análise salvos no banco de dados com sucesso.</li></ul>");
                 jQuery('#saveResultModal').modal('show');
             },
             error: function(response) {
                 // console.log(response);
                 jQuery('#working_modal').modal('hide');
-                jQuery('#saveResultModalBody').html('<ul class="list-group"><li class="list-group-item list-group-item-danger"><span class="badge"><span class="glyphicon glyphicon-remove"></span></span>Error while trying to save the analysis results. Deets: '+response.responseText+'</li></ul>');
+                jQuery('#saveResultModalBody').html("<ul class=\"list-group\"><li class=\"list-group-item list-group-item-danger\"><span class=\"badge\"><span class=\"glyphicon glyphicon-remove\"></span></span>Erro ao salvar os resultados da análise. Detalhes: "+response.responseText+'</li></ul>');
                 jQuery('#saveResultModal').modal('show');
             }
         });
@@ -1067,9 +1067,9 @@ function _load_analysis_activity_graph(date_range) {
                 .attr("x",0 - (height / 2))
                 .attr("dy", "1em")
                 .style("text-anchor", "middle")
-                .text("Number of Images Analyzed");
+                .text("Número de imagens analisadas");
         } else {
-            document.getElementById('image_analysis_usage').innerHTML += '<center>No image analysis usage data found.</center>';
+            document.getElementById('image_analysis_usage').innerHTML += "<center>Nenhum dado de uso da análise de imagens encontrado.</center>";
         }
 
     });
@@ -1080,15 +1080,15 @@ function format ( d ) {
     d.details.forEach(function (image, index) {
         var result = image.analyzed_link;
         var text;
-        if (result.startsWith("Error: ")) {
+        if (result.startsWith("Erro: ")) {
             text = result;
         } else if (Object.hasOwn(image, 'object_name')) {
             text = '';
-            name_header = "Object Name";
+            name_header = "Nome do objeto";
             name = image.object_name;
         } else {
             text = '<img src="'+result+'" width="100">';
-            name_header = "Image Name";
+            name_header = "Nome da imagem";
             name = image.image_name;
         }
         detail_rows +=
@@ -1103,8 +1103,8 @@ function format ( d ) {
                 <thead>
                     <tr>
                     <th scope="col">` + name_header + `</th>
-                    <th scope="col">Analyzed Image</th>
-                    <th scope="col">Value</th>
+                    <th scope="col">Imagem analisada</th>
+                    <th scope="col">Valor</th>
                     </tr>
                 </thead>
                 <tbody>` + detail_rows + `</tbody>

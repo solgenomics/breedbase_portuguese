@@ -3,12 +3,12 @@
 
 </%args>
 <br />
-<& /page/page_title.mas, title=>"Genomic Selection" &>
+<& /page/page_title.mas, title=>"Seleção Genômica" &>
 
-Note: This tool is not yet available.
+Nota: esta ferramenta ainda não está disponível.
 <ul>
-<li><h4>Generate Model</h4></li>
-<li><h4>Predict Breeding Values</h4></li>
+<li><h4>Gerar Modelo</h4></li>
+<li><h4>Predizer valores genéticos</h4></li>
 
 </ul>
 

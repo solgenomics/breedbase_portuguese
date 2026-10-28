@@ -65,7 +65,7 @@ $breeding_program_name
                             <& /page/page_title.mas, title=>"Concluído! Os identificadores de rastreamento foram armazenados" &>
                             <p>
                                 <span class="ui-icon ui-icon-circle-check" style="float: left; margin: 0 7px 50px 0;"></span>
-                                New tracking identifiers were generated successfully
+                                Novos identificadores de rastreamento foram gerados com sucesso
                             </p>
                             <br/>
                         </&>

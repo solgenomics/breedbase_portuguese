@@ -75,7 +75,7 @@ atribua, em cada experimento, identificadores exclusivos a cada unidade experime
     Se houver várias repetições, o sistema incrementará automaticamente o número da repetição a cada linha de dados da mesma parcela ou acesso. Se você informar o número da repetição (ou do fruto, planta, folha etc.), esse valor será usado.
   </li>
   <li><strong>Características</strong><br />
-    As colunas seguintes devem conter os valores avaliados das características. Os cabeçalhos devem ser identificadores de ontologia. Esses termos <b>devem</b> estar previamente cadastrados no banco de dados (por exemplo, na <a href="http://solgenomics.net/search/phenotypes/traits">Ontologia de Fenótipos de Solanaceae</a>). Se a ontologia não existir no banco de dados ou se for necessário adicionar termos a uma ontologia existente, <a href="mailto:sgn-feedback@solgenomics.net">entre em contato conosco</a> antes.<br />
+    As colunas seguintes devem conter os valores avaliados das características. Os cabeçalhos devem ser identificadores de ontologia. Esses termos <b>Devem</b> estar previamente cadastrados no banco de dados (por exemplo, na <a href="http://solgenomics.net/search/phenotypes/traits">Ontologia de Fenótipos de Solanaceae</a>). Se a ontologia não existir no banco de dados ou se for necessário adicionar termos a uma ontologia existente, <a href="mailto:sgn-feedback@solgenomics.net">entre em contato conosco</a> antes.<br />
     As unidades também podem ser associadas aos identificadores de ontologia usando uma barra vertical ("|") seguida de "unit:unit_name" (por exemplo, SP:0000123|unit:cm). Não há limite para o número de colunas de dados.
 
     <pre>

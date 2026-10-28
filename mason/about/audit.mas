@@ -33,7 +33,7 @@ results and returns the appropriate URL for going to that page of results
 </%args>
 
 
-<& /page/page_title.mas, title=>"Database Audit Tables" &>
+<& /page/page_title.mas, title=>"Tabelas de auditoria do banco de dados" &>
 
 <div class="container-fluid">
 
@@ -56,13 +56,13 @@ results and returns the appropriate URL for going to that page of results
                 <div class="col-sm-11">
                    <div class="form-horizontal">
                         <div class="form-group">
-                            <label class="control-label col-sm-4">Select a database table to see audits:</label>
+                            <label class="control-label col-sm-4">Selecione uma tabela do banco de dados para consultar as auditorias:</label>
                             <div class="col-sm-8" >
                                 <div class="input-group">
                                     <select class="form-control" id="db_table_list_select">
                                     </select>
                                     <div class="input-group-btn">
-                                        <button class="btn btn-info" id="search_audit_button"><i class="glyphicon glyphicon-search"></i> View audits </button>
+                                        <button class="btn btn-info" id="search_audit_button"><i class="glyphicon glyphicon-search"></i> Visualizar auditorias </button>
                                     </div>
                                 </div>
                             </div>
@@ -74,7 +74,7 @@ results and returns the appropriate URL for going to that page of results
     </div>
     <div class="panel panel-default">
         <div class="panel-body">
-            <&| /page/info_section.mas, title=>"Audit table", is_subsection => 1, collapsible=>1, collapsed=>0 &>
+            <&| /page/info_section.mas, title=>"Tabela de auditoria", is_subsection => 1, collapsible=>1, collapsed=>0 &>
                 <table class="table table-hover table-bordered" id="audit_results">
                 </table>
             </&>
@@ -122,15 +122,15 @@ jQuery(document).ready(function(){
             jQuery('#audit_results').DataTable({
                 data: json_object,
                 columns: [
-                    { title: 'Timestamp' },
-                    { title: 'Operation' },
-                    { title: 'Username' },
-                    { title: 'Logged in User' },
-                    { title: 'Before' },
-                    { title: 'After' },
-                    { title: 'Transaction Code'},
-                    { title: 'Primary Key'},
-                    { title: 'Is Undo'},
+                    { title: "Timetamp" },
+                    { title: "Operação" },
+                    { title: "Nome de usuário" },
+                    { title: "Usuário conectado" },
+                    { title: "Antes" },
+                    { title: "Depois" },
+                    { title: "Código de Transação"},
+                    { title: "Chave Primária"},
+                    { title: "É uma operação de desfazer"},
                 ],
                 "rowCallback" : function (row, data, index){
                     if(data[1] == "INSERT"){

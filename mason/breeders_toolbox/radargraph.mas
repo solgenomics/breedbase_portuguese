@@ -37,7 +37,7 @@
 
 <& /util/import_javascript.mas, classes => [ 'CXGN.BreedersToolbox.HTMLSelect' ] &>
 
-<div id="dataset_select_div">[carregando...]</div>
+<div id="dataset_select_div">[Carregando...]</div>
 
 
 <div class="text-center">

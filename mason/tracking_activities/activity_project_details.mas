@@ -69,7 +69,7 @@ $activity_type
                 <td>
                     <div id="trial_location">
 % if ($location_name && ($location_name ne '[Computation]')) {
-%  print "$location_name ( $country_name )";
+%  print "$location_name ($country_name)";
 % } else {
 %  print "<span class='text-danger'>[Local não informado]</span>";
 % }
@@ -101,11 +101,11 @@ $activity_type
             </tr>
 
             <tr>
-                <td><b>Pasta</b></td>
+                <td><b>Massa</b></td>
                 <td>
                     <span id="trial_folder_div"><a href="/folder/<% $folder_id %>"><% $folder_name %></a></span>
                     <br/><br/>
-                    <button class="btn btn-sm btn-default" style="margin:3px" id="new_folder_dialog_link">Nova pasta</button> <button class="btn btn-sm btn-default" style="margin:3px" id="open_folder_dialog_link">Alterar pasta</button>
+                    <button class="btn btn-sm btn-default" style="margin:3px" id="new_folder_dialog_link">Massa Nova</button> <button class="btn btn-sm btn-default" style="margin:3px" id="open_folder_dialog_link">Alterar pasta</button>
                 </td>
             </tr>
 
