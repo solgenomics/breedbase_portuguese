@@ -1,5 +1,6 @@
 
 package CXGN::Trial::TrialDesignStore::PhenotypingTrial;
+use utf8;
 
 use Moose;
 use Try::Tiny;
@@ -56,7 +57,7 @@ sub validate_design {
 
     if (defined $design_type){
         if ($design_type ne 'CRD' && $design_type ne 'Alpha' && $design_type ne 'MAD' && $design_type ne 'Lattice' && $design_type ne 'Augmented' && $design_type ne 'RCBD' && $design_type ne 'RRC' && $design_type ne 'DRRC' && $design_type ne 'URDD'&& $design_type ne 'ARC' && $design_type ne 'p-rep' && $design_type ne 'splitplot' && $design_type ne 'stripplot' && $design_type ne 'greenhouse' && $design_type ne 'Westcott' && $design_type ne 'Analysis' && $design_type ne 'Meeting'){
-            $error .= "Design $design_type type must be either: CRD, Alpha, Augmented, Lattice, RCBD, RRC, DRRC, URDD, ARC, MAD, p-rep, greenhouse, Westcott, splitplot or stripplot";
+            $error .= "O tipo de delineamento $design_type deve ser um dos seguintes: CRD, Alpha, Augmented, Lattice, RCBD, RRC, DRRC, URDD, ARC, MAD, p-rep, greenhouse, Westcott, splitplot ou stripplot";
             return $error;
         }
     }
@@ -75,12 +76,12 @@ sub validate_design {
             next;
         }
         if (!exists($design{$stock}->{plot_number})) {
-            $error .= "Property: plot_number is required for stock " . $stock;
+            $error .= "Propriedade: plot_number é obrigatória para o material " . $stock;
         }
 
         foreach my $property (keys %{$design{$stock}}){
             if (!exists($allowed_properties{$property})) {
-                $error .= "Property: $property not allowed! ";
+                $error .= "Propriedade: $property não permitida! ";
             }
             if ($property eq 'stock_name') {
                 my $stock_name = $design{$stock}->{$property};
@@ -137,13 +138,13 @@ sub validate_design {
     my @source_names = keys %seen_source_names;
     my @accession_names = keys %seen_accession_names;
     if(scalar(@stock_names)<1){
-        $error .= "You cannot create a trial with less than one plot.";
+        $error .= "Não é possível criar um ensaio com menos de uma parcela.";
     }
     #if(scalar(@source_names)<1){
     #	$error .= "You cannot create a trial with less than one seedlot.";
     #}
     if(scalar(@accession_names)<1){
-        $error .= "You cannot create a trial with less than one accession.";
+        $error .= "Não é possível criar um ensaio com menos de um acesso.";
     }
     my $subplot_type_id = $self->get_subplot_cvterm_id();      #SGN::Model::Cvterm->get_cvterm_row($chado_schema, 'subplot', 'stock_type')->cvterm_id();
     my $plot_type_id = $self->get_plot_cvterm_id();            #SGN::Model::Cvterm->get_cvterm_row($chado_schema, 'plot', 'stock_type')->cvterm_id();
@@ -154,13 +155,13 @@ sub validate_design {
         uniquename=>{-in=>\@stock_names}
     });
     while (my $s = $stocks->next()) {
-        $error .= sprintf("Name %s already exists in the database.", $s->uniquename);
+        $error .= sprintf("O nome %s já existe no banco de dados.", $s->uniquename);
     }
 
     my $seedlot_validator = CXGN::List::Validate->new();
     my @seedlots_missing = @{$seedlot_validator->validate($chado_schema,'seedlots',\@source_names)->{'missing'}};
     if (scalar(@seedlots_missing) > 0) {
-        $error .=  "The following seedlots are not in the database as uniquenames or synonyms or are marked as discarded: ".join(',',@seedlots_missing);
+        $error .=  "Os seguintes lotes de sementes não estão no banco de dados como uniquenames ou sinônimos, ou estão marcados como descartados: ".join(',',@seedlots_missing);
     }
 
     my @source_stock_types = @{$self->get_source_stock_types()};
@@ -191,7 +192,7 @@ sub validate_design {
     # Report any missing names
     foreach my $name (@accession_names) {
         if (!$found_data{$name}) {
-            $error .= "The following name is not in the database: $name.\n";
+            $error .= "O seguinte nome não está no banco de dados: $name.\n";
         }
     }
 
@@ -206,7 +207,7 @@ sub validate_design {
         my $trial_layout_json = decode_json($trial_layout_json);
         foreach my $key (keys %{$trial_layout_json}) {
             if (defined $seen_plot_numbers{$key}) {
-                $error .= "Plot number '$key' already exists in the database for that study. Plot number must be unique.";
+                $error .= "O número de parcela '$key' já existe no banco de dados para esse estudo. O número de parcela deve ser único.";
             }
         }
     }

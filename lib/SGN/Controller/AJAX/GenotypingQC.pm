@@ -13,6 +13,7 @@ Running Genotype QC from an allele matrix file (Intertek format)
 =cut
 
 package SGN::Controller::AJAX::GenotypingQC;
+use utf8;
 
 use Moose;
 use Try::Tiny;
@@ -60,7 +61,7 @@ sub upload_genotype_qc_verify_POST : Args(0) {
         my $dbh = $c->dbc->dbh;
         my @user_info = CXGN::Login->new($dbh)->query_from_cookie($session_id);
         if (!$user_info[0]){
-            $c->stash->{rest} = {error=>'You must be logged in to upload this seedlot info!'};
+            $c->stash->{rest} = {error=>'Você precisa estar conectado para enviar estas informações de lotes de sementes!'};
             $c->detach();
         }
         $user_id = $user_info[0];
@@ -69,7 +70,7 @@ sub upload_genotype_qc_verify_POST : Args(0) {
         $user_name = $p->get_username;
     } else{
         if (!$c->user){
-            $c->stash->{rest} = {error=>'You must be logged in to upload this seedlot info!'};
+            $c->stash->{rest} = {error=>'Você precisa estar conectado para enviar estas informações de lotes de sementes!'};
             $c->detach();
         }
         $user_id = $c->user()->get_object()->get_sp_person_id();
@@ -78,7 +79,7 @@ sub upload_genotype_qc_verify_POST : Args(0) {
     }
 
     if ($user_role ne 'submitter' && $user_role ne 'curator') {
-        $c->stash->{rest} = { error => 'Must have correct permissions to upload VCF genotypes! Please contact us.' };
+        $c->stash->{rest} = { error => 'É necessário ter as permissões adequadas para enviar genótipos VCF! Entre em contato conosco.' };
         $c->detach();
     }
 
@@ -87,7 +88,7 @@ sub upload_genotype_qc_verify_POST : Args(0) {
     my $protocol_id = $c->req->param('genotype_qc_protocol_id');
 
     if (!defined($upload_file)) {
-        $c->stash->{rest} = { error => 'Please provide a genotype qc file.' };
+        $c->stash->{rest} = { error => 'Informe um arquivo de controle de qualidade de genótipos.' };
         $c->detach();
     }
 
@@ -112,10 +113,10 @@ sub upload_genotype_qc_verify_POST : Args(0) {
     my $archived_filename_with_path = $uploader->archive();
     my $md5 = $uploader->get_md5($archived_filename_with_path);
     if (!$archived_filename_with_path) {
-        push @error_status, "Could not save file $upload_original_name in archive.";
+        push @error_status, "Não foi possível salvar o arquivo $upload_original_name no arquivo permanente.";
         return (\@success_status, \@error_status);
     } else {
-        push @success_status, "File $upload_original_name saved in archive.";
+        push @success_status, "Arquivo $upload_original_name salvo no arquivo permanente.";
     }
     unlink $upload_tempfile;
 
@@ -131,7 +132,7 @@ sub upload_genotype_qc_verify_POST : Args(0) {
     if (!$parsed_data) {
         my $return_error = '';
         if (!$parser->has_parse_errors() ){
-            $return_error = "Could not get parsing errors";
+            $return_error = "Não foi possível obter os erros de análise do arquivo";
             $c->stash->{rest} = {error_string => $return_error,};
         } else {
             $parse_errors = $parser->get_parse_errors();

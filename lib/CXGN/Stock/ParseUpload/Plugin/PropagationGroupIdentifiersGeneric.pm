@@ -1,5 +1,6 @@
 package CXGN::Stock::ParseUpload::Plugin::PropagationGroupIdentifiersGeneric;
 
+use utf8;
 use Moose::Role;
 use CXGN::File::Parse;
 use CXGN::Stock::StockLookup;
@@ -47,7 +48,7 @@ sub _validate_with_plugin {
 
     if ( $additional_columns && scalar(@$additional_columns) > 0 ) {
         $errors{'error_messages'} = [
-            "The following columns are not recognized: " . join(', ', @$additional_columns) . ". Please check the spreadsheet format for the allowed columns."
+            "As seguintes colunas não são reconhecidas: " . join(', ', @$additional_columns) . ". Verifique no formato da planilha quais colunas são permitidas."
         ];
         $self->_set_parse_errors(\%errors);
         return;
@@ -86,14 +87,14 @@ sub _validate_with_plugin {
     my $accession_validator = CXGN::List::Validate->new();
     my @accessions_missing = @{$accession_validator->validate($schema,'accessions', $seen_accession_names)->{'missing'}};
     if (scalar(@accessions_missing) > 0) {
-        push @error_messages, "The following accessions are not in the database, or are not in the database as uniquenames: ".join(',',@accessions_missing);
+        push @error_messages, "Os seguintes acessos não estão no banco de dados, ou não estão no banco de dados como uniquenames: ".join(',',@accessions_missing);
     }
 
     if ($seen_source_names) {
         my $source_name_validator = CXGN::List::Validate->new();
         my @source_names_missing = @{$source_name_validator->validate($schema,'plots_or_subplots_or_plants_or_seedlots', $seen_source_names)->{'missing'}};
         if (scalar(@source_names_missing) > 0) {
-            push @error_messages, "The following source names are not in the database, or are not in the database as uniquenames: ".join(',',@source_names_missing);
+            push @error_messages, "Os seguintes nomes de origem não estão no banco de dados, ou não estão no banco de dados como uniquenames: ".join(',',@source_names_missing);
         }
     }
 
@@ -101,7 +102,7 @@ sub _validate_with_plugin {
         'uniquename' => { -in => $seen_propagation_group_identifiers }
     });
     while (my $r=$rs->next){
-        push @error_messages, "Propagation Group Identifier already exists in database: ".$r->uniquename;
+        push @error_messages, "O identificador de grupo de propagação já existe no banco de dados: ".$r->uniquename;
     }
 
     my %duplicated_propagation_group_identifiers;
@@ -110,7 +111,7 @@ sub _validate_with_plugin {
         my $propagation_group_identifier = $row->{'propagation_group_identifier'};
 
         if ($duplicated_propagation_group_identifiers{$propagation_group_identifier}) {
-            push @error_messages, "Cell A$row_num: duplicate propagation group identifier: $propagation_group_identifier. Propagation Group Identifier must be unique.";
+            push @error_messages, "Célula A$row_num: identificador de grupo de propagação duplicado: $propagation_group_identifier. O identificador de grupo de propagação deve ser único.";
         } else {
             $duplicated_propagation_group_identifiers{$propagation_group_identifier}++;
         }
@@ -118,20 +119,20 @@ sub _validate_with_plugin {
 
     foreach my $type (@$seen_material_types) {
         if (!exists $supported_material_types{$type}) {
-            push @error_messages, "Material type not supported: $type. Material type should be budwood, stem, shoot, root, corm, plant or seed";
+            push @error_messages, "Tipo de material não suportado: $type. O tipo de material deve ser budwood, stem, shoot, root, corm, plant ou seed";
         }
     }
 
     foreach my $date (@$seen_dates) {
         if (! ($date =~ m/(\d{4})\-(\d{2})\-(\d{2})/)) {
-            push @error_messages, "Invalid date format: $date. Dates need to be YYYY-MM-DD format";
+            push @error_messages, "Formato de data inválido: $date. As datas devem estar no formato YYYY-MM-DD";
         }
     }
 
     if ($seen_source_types) {
         foreach my $source_type (@$seen_source_types) {
             if (!exists $supported_source_types{$source_type}) {
-                push @error_messages, "Source type not supported: $source_type. Source type should be plot, subplot, plant, seedlot or new ";
+                push @error_messages, "Tipo de origem não suportado: $source_type. O tipo de origem deve ser plot, subplot, plant, seedlot ou new ";
             }
         }
     }
@@ -139,7 +140,7 @@ sub _validate_with_plugin {
     if ($seen_purposes) {
         foreach my $purpose (@$seen_purposes) {
             if (!exists $supported_purposes{$purpose}) {
-                push @error_messages, "Purpose input not supported: $purpose. Purpose field should be replicate, replacement or backup";
+                push @error_messages, "Finalidade não suportada: $purpose. O campo de finalidade deve ser replicate, replacement ou backup";
             }
         }
     }

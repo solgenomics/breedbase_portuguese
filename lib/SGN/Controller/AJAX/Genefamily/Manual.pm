@@ -15,6 +15,7 @@ Naama Menda <nm249@cornell.edu>
 =cut
 
 package SGN::Controller::AJAX::Genefamily::Manual;
+use utf8;
 
 use Moose;
 
@@ -65,7 +66,7 @@ sub add_member:Path('/ajax/genefamily/manual/add') :ActionClass('REST') {}
 
 sub add_member_GET :Args(0) {
     my ($self, $c) = @_;
-    $c->stash->{rest} = { error => "Nothing here, it's a GET.." } ;
+    $c->stash->{rest} = { error => "Nada aqui, é um GET.." } ;
 }
 
 sub add_member_POST :Args(0) {
@@ -76,7 +77,7 @@ sub add_member_POST :Args(0) {
     my $reference_id  = $c->req->param('reference_id') ||
         CXGN::Chado::Publication::get_curator_ref($c->dbc->dbh);
     if (!$locus_input) {
-        $self->status_bad_request($c, message => 'need locus input param' );
+        $self->status_bad_request($c, message => 'é necessário o parâmetro de entrada locus' );
         return;
     }
     my ($locus_name, $locus_symbol, $locus_id) = split (/\|/ ,$locus_input);
@@ -86,12 +87,12 @@ sub add_member_POST :Args(0) {
         ->resultset('Locus')
         ->find({ locus_id => $locus_id, {} } );
     if (!$locus) {
-        $c->stash->{rest} = { error => "no locus found for id '$locus_id' " };
+        $c->stash->{rest} = { error => "nenhum locus encontrado para o ID '$locus_id' " };
         return;
     }
     my $locusgroup = $phenome_schema->resultset("Locusgroup")->find({locusgroup_id => $locusgroup_id } ) ;
     if (!$c->user) {
-        $c->stash->{rest} = { error => 'Must be logged in for associating loci! ' };
+        $c->stash->{rest} = { error => 'Você precisa estar conectado para associar loci! ' };
         return;
     }
     if ( any { $_ eq 'curator' || $_ eq 'submitter' || $_ eq 'sequencer' } $c->user->roles() ) {
@@ -110,14 +111,14 @@ sub add_member_POST :Args(0) {
                 # need to update the loci div!!
                 return;
             } catch {
-                $c->stash->{rest} = { error => "Failed: $_" };
+                $c->stash->{rest} = { error => "Falha: $_" };
                 return;
             };
         } else {
-            $c->stash->{rest} = { error => 'need both valid locusgroup_id and locus_id for adding the locusgroup member! ' };
+            $c->stash->{rest} = { error => 'são necessários locusgroup_id e locus_id válidos para adicionar o membro ao locusgroup! ' };
         }
     } else {
-        $c->stash->{rest} = { error => 'No privileges for adding new locus to the locusgroup. You must have an sgn submitter account. Please contact sgn-feedback@solgenomics.net for upgrading your user account. ' };
+        $c->stash->{rest} = { error => 'Sem privilégios para adicionar um novo locus ao locusgroup. Você precisa ter uma conta de submissor no SGN. Entre em contato com sgn-feedback@solgenomics.net para atualizar sua conta de usuário. ' };
     }
 }
 

@@ -595,7 +595,7 @@ for my $extension ("xls", "xlsx") {
     my $cross_in_trial_id = $schema->resultset("Stock::Stock")->find({ name => 'cross_for_trial2' })->stock_id;
     $mech->post_ok('http://localhost:3010/ajax/cross/delete', [ 'cross_id' => $cross_in_trial_id ]);
     $response = decode_json $mech->content;
-    is_deeply($response, { 'error' => 'An error occurred attempting to delete a cross. (Cross has associated trial: cross_to_trial1. Cannot delete.
+    is_deeply($response, { 'error' => 'Ocorreu um erro ao tentar excluir um cruzamento. (Cross has associated trial: cross_to_trial1. Cannot delete.
 )' });
     $fix->clean_up_db();
 }

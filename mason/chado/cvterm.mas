@@ -615,7 +615,7 @@ LOAD...
         collapsible => 1,
    &>
      <& /page/columnar_table.mas,
-        headings     => ["Analyze QTL in population", "Population description"],
+        headings     => ["Analisar QTL na população", "Descrição da população"],
         data         => \@qtl_data,
         __alt_freq   => 2,
         __align      =>'l',

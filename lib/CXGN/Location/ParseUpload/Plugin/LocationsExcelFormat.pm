@@ -1,5 +1,6 @@
 package CXGN::Location::ParseUpload::Plugin::LocationsExcelFormat;
 
+use utf8;
 use Moose;
 use CXGN::Location;
 use Spreadsheet::ParseExcel;
@@ -49,7 +50,7 @@ sub parse {
     my ( $col_min, $col_max ) = $worksheet->col_range();
     if (($col_max - $col_min)  < 1 || ($row_max - $row_min) < 1 ) { #must have header with at least plot_name and one trait, as well as one row of phenotypes
         print STDERR "Location file is missing header and/or location data";
-        push @errors, "Location file is missing header and/or location data";
+        push @errors, "O arquivo de locais não tem cabeçalho e/ou dados de locais";
         $parse_result{'error'} = \@errors;
         return \%parse_result;
     }
@@ -64,10 +65,10 @@ sub parse {
           $name =~ s/^\s+|\s+$//g;
         }
         if (!$name) {
-            push @errors, "Row $row_num, column A: Name is undefined.\n";
+            push @errors, "Linha $row_num, coluna A: o nome não foi informado.\n";
         }
         elsif (!$check->_is_valid_name($name)) {
-            push @errors, "Row $row_num, column A: Name $name already exists in the database.\n";
+            push @errors, "Linha $row_num, coluna A: o nome $name já existe no banco de dados.\n";
         }
 
         # check that abbreviation is defined and isn't already in database
@@ -76,10 +77,10 @@ sub parse {
           $abbreviation =~ s/^\s+|\s+$//g;
         }
         if (!$abbreviation) {
-            push @errors, "Row $row_num, column B: Abbreviation is undefined.\n";
+            push @errors, "Linha $row_num, coluna B: a abreviação não foi informada.\n";
         }
         elsif (!$check->_is_valid_abbreviation($abbreviation)) {
-            push @errors, "Row $row_num, column B: Abbreviation $abbreviation already exists in the database.\n";
+            push @errors, "Linha $row_num, coluna B: a abreviação $abbreviation já existe no banco de dados.\n";
         }
 
         # check is defined, is all uppercase letters, and is 3 chars long
@@ -87,10 +88,10 @@ sub parse {
           $country_code = $worksheet->get_cell($row,2)->value();
         }
         if (!$country_code) {
-            push @errors, "Row $row_num, column C: Country code is undefined.\n";
+            push @errors, "Linha $row_num, coluna C: o código de país não foi informado.\n";
         }
         elsif (($country_code !~ m/^[^a-z]*$/) || (length($country_code) != 3 )) {
-            push @errors, "Row $row_num, column C: Country code $country_code is not a valid ISO Alpha-3 code.\n";
+            push @errors, "Linha $row_num, coluna C: o código de país $country_code não é um código ISO Alfa-3 válido.\n";
         }
 
         # check is defined and is not numeric
@@ -98,10 +99,10 @@ sub parse {
           $country_name = $worksheet->get_cell($row,3)->value();
         }
         if (!$country_name) {
-            push @errors, "Row $row_num, column D: Country name is undefined.\n";
+            push @errors, "Linha $row_num, coluna D: o nome de país não foi informado.\n";
         }
         elsif ($country_name =~ m/[0-9]/) {
-            push @errors, "Row $row_num, column D: Country name $country_name is not a valid ISO standard country name.\n";
+            push @errors, "Linha $row_num, coluna D: o nome de país $country_name não é válido conforme o padrão ISO.\n";
         }
 
         # check is defined, is in database
@@ -109,7 +110,7 @@ sub parse {
           $program = $worksheet->get_cell($row,4)->value();
         }
         if (!$program) {
-            push @errors, "Row $row_num, column E: Program is undefined.\n";
+            push @errors, "Linha $row_num, coluna E: o programa não foi informado.\n";
         }
 
         #split on comma and test each individual program
@@ -117,7 +118,7 @@ sub parse {
         foreach my $bp (@programs) {
             $bp =~ s/^\s+|\s+$//g; #trim whitespace
             if (!$check->_is_valid_program($bp)) {
-                push @errors, "Row $row_num, column E: Program $bp does not exist in the database.\n";
+                push @errors, "Linha $row_num, coluna E: o programa $bp não existe no banco de dados.\n";
             }
         }
 
@@ -127,10 +128,10 @@ sub parse {
           $type =~ s/^\s+|\s+$//g;
         }
         if (!$type) {
-            push @errors, "Row $row_num, column F: Type is undefined.\n";
+            push @errors, "Linha $row_num, coluna F: o tipo não foi informado.\n";
         }
         elsif(!$check->_is_valid_type($type)) {
-            push @errors, "Row $row_num, column F: Type $type is is not a valid location type.\n";
+            push @errors, "Linha $row_num, coluna F: $type não é um tipo de local válido.\n";
         }
 
         # check has length, is number between 90 and -90
@@ -138,10 +139,10 @@ sub parse {
           $latitude = $worksheet->get_cell($row,6)->value();
         }
         if (! length $latitude) { # check is defined, is number between 90 and -90
-            push @errors, "Row $row_num, column G: Latitude is undefined.\n";
+            push @errors, "Linha $row_num, coluna G: a latitude não foi informada.\n";
         }
         elsif( ($latitude !~ /^-?[0-9.]+$/) || ($latitude < -90) || ($latitude > 90) ) {
-            push @errors, "Row $row_num, column G: Latitude $latitude is not a number between 90 and -90.\n";
+            push @errors, "Linha $row_num, coluna G: a latitude $latitude não é um número entre 90 e -90.\n";
         }
 
         # check has length, is number between 180 and -180
@@ -149,10 +150,10 @@ sub parse {
           $longitude = $worksheet->get_cell($row,7)->value();
         }
         if (! length $longitude) {
-            push @errors, "Row $row_num, column H: Longitude is undefined.\n";
+            push @errors, "Linha $row_num, coluna H: a longitude não foi informada.\n";
         }
         elsif( ($longitude !~ /^-?[0-9.]+$/) || ($longitude < -180) || ($longitude > 180) ) {
-            push @errors, "Row $row_num, column H: Latitude $latitude is not a number between 180 and -180.\n";
+            push @errors, "Linha $row_num, coluna H: a latitude $latitude não é um número entre 180 e -180.\n";
         }
 
         # check has length, is number between -418 and 8,848
@@ -160,10 +161,10 @@ sub parse {
           $altitude = $worksheet->get_cell($row,8)->value();
         }
         if (! length $altitude) {
-            push @errors, "Row $row_num, column I: Altitude is undefined.\n";
+            push @errors, "Linha $row_num, coluna I: a altitude não foi informada.\n";
         }
         elsif( ($altitude !~ /^-?[0-9.]+$/) || ($altitude < -418) || ($altitude > 8848) ) {
-            push @errors, "Row $row_num, column I: Altitude $altitude is not a number between -418 (Dead Sea) and 8,848 (Mt. Everest).\n";
+            push @errors, "Linha $row_num, coluna I: a altitude $altitude não é um número entre -418 (Mar Morto) e 8.848 (Monte Everest).\n";
         }
 
         if ($worksheet->get_cell($row,9)) {

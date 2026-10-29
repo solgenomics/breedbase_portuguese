@@ -21,13 +21,13 @@ Lukas Mueller <lam87@cornell.edu>
 
 <& /page/page_title.mas, title=>"Atividades e materiais de divulgação do SOL" &>
 
-<&| /page/info_section.mas, title=>'Visão geral da extensão' &>
+<&| /page/info_section.mas, title=>'Visão geral da divulgação' &>
 
-O objetivo da divulgação é estabelecer uma ligação entre a comunidade científica e os estudantes em todos os níveis de educação, a fim de promover o interesse nas ciências e expor os estudantes a carreiras científicas. Um mandato específico de agências de financiamento como a Fundação Nacional de Ciência é aumentar a participação de grupos sub-representados na ciência.
+O objetivo da divulgação é estabelecer uma ligação entre a comunidade científica e os estudantes em todos os níveis de educação, a fim de promover o interesse nas ciências e expor os estudantes a carreiras científicas. Um mandato específico de agências de financiamento como a National Science Foundation é aumentar a participação de grupos sub-representados na ciência.
 <br /><br />
-O programa US SOL foca na biologia e bioinformática Solanaceae. O público alvo é K-12 e estudantes universitários, com um esforço particular para envolver grupos sub-representados. As atividades incluem apresentações em escolas elementares e associadas a programas escolares, escolas secundárias, aulas de graduação, oficinas curriculares de professores do ensino médio, e nós fornecemos atividades práticas de laboratório. A formação em Bioinformática está ocorrendo na forma de estágios na SGN para estudantes de graduação.
+O programa de divulgação do US SOL foca na biologia e na bioinformática de Solanaceae. O público-alvo vai da educação infantil ao ensino médio (K-12) e estudantes de graduação, com um esforço particular para envolver grupos sub-representados. As atividades incluem apresentações em escolas de ensino fundamental e programas extracurriculares associados, escolas de ensino médio, aulas de graduação e oficinas curriculares para professores do ensino médio, e oferecemos atividades práticas de laboratório. A formação em bioinformática ocorre na forma de estágios na SGN para estudantes de graduação.
 <br /><br />
-Esta página dá mais informações sobre os materiais desenvolvidos. Por favor, entre em contato conosco se quiser contribuir com materiais. Para mais informações, por favor entre em contato com o coordenador SOL, <a href="mailto:jv27@cornell.edu">Joyce Van Eck</a>.
+Esta página traz mais informações sobre os materiais desenvolvidos. Entre em contato conosco se quiser contribuir com materiais. Para mais informações, entre em contato com a coordenadora de divulgação do SOL, <a href="mailto:jv27@cornell.edu">Joyce Van Eck</a>.
 </&>
 
 <&| /page/info_section.mas, title=>"Atividades e Materiais" &>
@@ -36,7 +36,7 @@ Esta página dá mais informações sobre os materiais desenvolvidos. Por favor,
 <dd>
 <ul>
 <li>Destinado ao currículo de biologia do ensino médio</li>
-<li>Um exercício de laboratório, "Tater Tots or Not?", baseado na produção in vitro de microtuber batata foi desenvolvido para uso no currículo de biologia no ensino médio. Joyce Van Eck e uma professora de biologia da Escola Ithaca, Linda Knewstub, desenharam uma aula de laboratório que requer colaboração, pensamento crítico e investigação científica. O exercício abrange os seguintes aspectos do conteúdo curricular: características de organismos vivos (funções da vida), exigências de fotossíntese e respiração (energia celular), método científico e delineamento experimental, e divisão celular (mitose, reprodução assexuada, propagação vegetativa, células-tronco).</li>
+<li>Um exercício de laboratório, "Tater Tots or Not?", baseado na produção in vitro de microtubérculos de batata, foi desenvolvido para uso no currículo de biologia no ensino médio. Joyce Van Eck e uma professora de biologia da Ithaca High School, Linda Knewstub, elaboraram uma aula de laboratório que requer colaboração, pensamento crítico e investigação científica. O exercício abrange os seguintes aspectos do conteúdo curricular: características de organismos vivos (funções da vida), exigências de fotossíntese e respiração (energia celular), método científico e delineamento experimental, e divisão celular (mitose, reprodução assexuada, propagação vegetativa, células-tronco).</li>
 <li>Recursos: <a href="/static_content/outreach/Tater Tots or Not 06.doc">Folha de atividades do aluno</a> [doc] | <a href="/static_content/outreach/Taters teacher version 06.doc">Folha de atividades do professor</a> [doc] | <a href="/static_content/outreach/Tissue culture procedures.ppt">Métodos</a> [ppt]</li>
 </ul>
 </dd>
@@ -45,24 +45,24 @@ Esta página dá mais informações sobre os materiais desenvolvidos. Por favor,
 <dd>
 <ul>
 <li>Destinado à educação infantil e aos primeiros anos do ensino fundamental (K–5)</li>
-<li>Esta atividade educacional foi projetada para as notas K-5 e foi feita nas escolas primárias e depois dos programas escolares. O objetivo da atividade é ensinar as crianças sobre membros da família Solanaceae, o conceito de famílias de plantas e diversidade. Vários membros da família Solanaceae (tomates, batatas, berinjelas, pimentas e tomatillos) em todas as formas, tamanhos e cores são comprados em uma mercearia local para a atividade. Depois de cortar os vegetais abertos para olhar as sementes ou falta de sementes no caso das batatas, as crianças provam os tomates, pimentas e tomatillos. Além desses vegetais, fotografias de familiares que não são encontradas em lojas locais e flores das várias Solanaceae são mostradas aos alunos. Depois dessa atividade, as crianças podem vestir os membros da família para uma festa. No final, um quebra-cabeça é dado aos alunos para reforçar os termos que foram discutidos.</li>
-<li>Recursos: <a href="/static_content/outreach/sol_family_activity_book.pdf">Caderno de atividades</a> | <a href="/static_content/outreach/sol_family_activity_materials.pdf">Lista de materiais necessários</a> | <a href="/static_content/outreach/sol_family_images.pdf">Imagens da família Sol</a> [pdf]</li>
+<li>Esta atividade educativa de divulgação foi elaborada para as séries K-5 e já foi realizada em escolas de ensino fundamental e em programas extracurriculares. O objetivo da atividade é ensinar as crianças sobre membros da família Solanaceae, o conceito de famílias de plantas e diversidade. Vários membros da família Solanaceae (tomates, batatas, berinjelas, pimentas e tomatillos) em todas as formas, tamanhos e cores são comprados em um mercado local para a atividade. Depois de cortar os vegetais para observar as sementes (ou a falta delas, no caso das batatas), as crianças provam os tomates, pimentas e tomatillos. Além desses vegetais, fotografias de membros da família que não são encontrados em lojas locais e flores das várias Solanaceae são mostradas aos alunos. Depois dessa atividade, as crianças fantasiam os membros da família para uma festa. No final, um caça-palavras é entregue aos alunos para reforçar os termos que foram discutidos.</li>
+<li>Recursos: <a href="/static_content/outreach/sol_family_activity_book.pdf">Caderno de atividades</a> | <a href="/static_content/outreach/sol_family_activity_materials.pdf">Lista de materiais necessários</a> | <a href="/static_content/outreach/sol_family_images.pdf">Imagens dos membros da família Sol</a> [pdf]</li>
 </ul>
 </dd>
 
-<dt><b>Tutorial do usuário para SGN</b></dt>
+<dt><b>Tutorial do usuário da SGN</b></dt>
 <dd>
 <ul>
 <li>Destinado a estudantes do ensino médio e novos usuários.</li>
 <li>Introdução ao uso da SGN para estudantes do ensino médio e novos usuários, com exercícios práticos.</li>
 <li>Recursos: <a href="/static_content/outreach/SGNHighSchoolTutuorial.doc">Tutorial da SGN</a></li>
-<li>Gentilmente fornecida por Theresa Fulton.</li>
+<li>Gentilmente fornecido por Theresa Fulton.</li>
 </ul>
 </dd>
 
 <dt><b>Quebra-cabeça de sequenciamento</b></dt>
 <dd><ul>
-<li>O <a href="http://bti.cornell.edu/multimedia/puzzleComplete.html">Quebra-cabeça de sequenciamento</a> é uma ferramenta educacional interativa on-line que explica o sequenciamento do genoma usando tomate como exemplo. Foi desenvolvido por Dr. Joyce van Eck e Camilo Romero em <a href="http://bti.cornell.edu/">BTI</a>.</li>
+<li>O <a href="http://bti.cornell.edu/multimedia/puzzleComplete.html">Quebra-cabeça de sequenciamento</a> é uma ferramenta educacional interativa on-line que explica o sequenciamento do genoma usando o tomate como exemplo. Foi desenvolvido pela Dra. Joyce van Eck e por Camilo Romero no <a href="http://bti.cornell.edu/">BTI</a>.</li>
 </ul>
 </dd>
 
@@ -70,7 +70,7 @@ Esta página dá mais informações sobre os materiais desenvolvidos. Por favor,
 <dd>
   <ul>
     <li>Disponível para estudantes de graduação</li>
-    <li>O estágio de verão de bioinformática aceita estudantes universitários no programa. O estágio não está disponível para estudantes. Os alunos trabalham na Sol Geomics Network (SGN) por 8 a 10 semanas durante o verão em seus próprios projetos relacionados à bioinformática. Um membro da equipe da SGN atua como mentor de projeto para cada aluno para ajudá-los a aprender as várias habilidades de programação necessárias para desenvolver seus projetos. Como parte deste estágio, eles também participam de seminários semanais realizados no Instituto Boyce Thompson (BTI) que são dados por cientistas de plantas da BTI e Cornell.</li>
+    <li>O estágio de verão em bioinformática aceita estudantes de graduação no programa. O estágio não está disponível para estudantes de pós-graduação. Os alunos trabalham na Sol Genomics Network (SGN) por 8 a 10 semanas durante o verão em seus próprios projetos relacionados à bioinformática. Um membro da equipe da SGN atua como mentor de projeto para cada aluno para ajudá-los a aprender as várias habilidades de programação necessárias para desenvolver seus projetos. Como parte deste estágio, eles também participam de seminários semanais realizados no Boyce Thompson Institute (BTI), ministrados por cientistas de plantas do BTI e de Cornell.</li>
     <ul>
       <li><a href="/about/Summer_Internship_2005.pl">Estagiários de verão de 2005</a></li>
       <li><a href="/about/Summer_Internship_2006.pl">Estagiários de verão de 2006</a></li>
@@ -83,7 +83,7 @@ Esta página dá mais informações sobre os materiais desenvolvidos. Por favor,
     <h3>Material de inscrição para os estágios de verão de 2011</h3>
     
           
-Se quiser se inscrever para os estágios de verão de 2011, por favor, use os formulários abaixo. O prazo de inscrição é 7 de março de 2010. Por favor, envie os materiais preenchidos ou perguntas para Dr. Joyce van Eck <a href="mailto:jv27@cornell.edu">jv27@cornell.edu</a>.
+Se quiser se inscrever para os estágios de verão de 2011, use os formulários abaixo. O prazo de inscrição é 7 de março de 2010. Envie os materiais preenchidos ou suas perguntas para a Dra. Joyce van Eck <a href="mailto:jv27@cornell.edu">jv27@cornell.edu</a>.
     <br /><br />
     <ul>
       <li><a href="/static_content/outreach/internship_2011/internship_poster_2011.pdf">Folheto</a> (pdf)</li>
@@ -107,9 +107,9 @@ Se quiser se inscrever para os estágios de verão de 2011, por favor, use os fo
 <&| /page/info_section.mas, title=>"Links" &>
 
 <ul>
-<li><a href="http://www.plantgdb.org/PGROP/pgrop.php">Portal de Pesquisa do Genoma de Plantas</a></li>
-<li><a href="http://bti.cornell.edu/pgrp/">BTI-Cornell Planta Genoma Outreach</a></li>
-<li><a href="http://cibt.bio.cornell.edu">Instituto Cornell para Professores de Biologia</a></li> 
+<li><a href="http://www.plantgdb.org/PGROP/pgrop.php">Plant Genome Research Outreach Portal</a></li>
+<li><a href="http://bti.cornell.edu/pgrp/">BTI-Cornell Plant Genome Outreach</a></li>
+<li><a href="http://cibt.bio.cornell.edu">Cornell Institute for Biology Teachers</a></li> 
 </ul>
 
 </&>

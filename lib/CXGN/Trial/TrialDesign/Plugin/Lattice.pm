@@ -1,5 +1,6 @@
 
 package CXGN::Trial::TrialDesign::Plugin::Lattice;
+use utf8;
 
 use Moose::Role;
 use List::Util qw| max |;
@@ -29,14 +30,14 @@ sub create_design {
     if ($self->has_stock_list()) {
 	@stock_list = @{$self->get_stock_list()};
     } else {
-	die "No stock list specified\n";
+	die "Nenhuma lista de materiais especificada\n";
     }
     
     my $block_number_calculated = sqrt(scalar(@stock_list));
     if ($block_number_calculated =~ /^\d+$/ ){
 	$number_of_blocks = $block_number_calculated;
     } else {
-	die "Square root of Number of stocks (".scalar(@stock_list).") for lattice design should give a whole number.\n";
+	die "A raiz quadrada do número de materiais (".scalar(@stock_list).") do delineamento lattice deve ser um número inteiro.\n";
     }
     
     if ($self->has_control_list_crbd()) {
@@ -49,10 +50,10 @@ sub create_design {
 	$number_of_reps = $self->get_number_of_reps();
 	if ($number_of_reps == 2 || $number_of_reps == 3){
 	} else {
-	    die "Number of reps should be 2 for SIMPLE and 3 for TRIPLE lattice design.\n";
+	    die "O número de repetições deve ser 2 para o delineamento lattice SIMPLE e 3 para o TRIPLE.\n";
 	}
     } else {
-	die "Number of reps not specified\n";
+	die "Número de repetições não especificado\n";
     }
     
     if ($self->has_fieldmap_col_number()) {

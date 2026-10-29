@@ -1,5 +1,6 @@
 
 package SGN::Controller::Seedlot;
+use utf8;
 
 use Moose;
 
@@ -120,9 +121,9 @@ sub seedlot_detail :Path('/breeders/seedlot') Args(1) {
         my $person_id = $discard_info->[0];
         my $person= CXGN::People::Person->new($dbh, $person_id);
         my $person_name=$person->get_first_name()." ".$person->get_last_name();
-        my $operator_info = "Discarded by". ":"."".$person_name;
-        my $date_info = "Discarded Date". ":"."".$discard_info->[1];
-        my $reason_info = "Reason". ":"."".$discard_info->[2];
+        my $operator_info = "Descartado por". ":"."".$person_name;
+        my $date_info = "Data do descarte". ":"."".$discard_info->[1];
+        my $reason_info = "Motivo". ":"."".$discard_info->[2];
         my @all_info = ($operator_info, $date_info, $reason_info);
         my $all_info_string = join("<br>", @all_info);
         $page_discard_info = '<span style="color:red">'.$all_info_string.'</span>';
@@ -162,7 +163,7 @@ sub seedlot_maintenance : Path('/breeders/seedlot/maintenance') {
     # Make sure the seedlot maintenance event ontology is set
     if ( !defined $c->config->{seedlot_maintenance_event_ontology_root} || $c->config->{seedlot_maintenance_event_ontology_root} eq '' ) {
         $c->stash->{template} = '/generic_message.mas';
-        $c->stash->{message} = 'Seedlot Maintenance Events are not enabled on this server!';
+        $c->stash->{message} = 'Os eventos de manutenção de lotes de sementes não estão habilitados neste servidor!';
         return;
     }
 
@@ -188,14 +189,14 @@ sub seedlot_maintenance_record : Path('/breeders/seedlot/maintenance/record') {
     # Make sure the user has submitter or curator privileges
     if (!($c->user()->check_roles('curator') || $c->user()->check_roles('submitter'))) {
         $c->stash->{template} = '/generic_message.mas';
-        $c->stash->{message} = 'Your account must have either submitter or curator privileges to add seedlot maintenance events.';
+        $c->stash->{message} = 'Sua conta precisa ter permissão de submissor ou curador para adicionar eventos de manutenção de lotes de sementes.';
         return;
     }
 
     # Make sure the seedlot maintenance event ontology is set
     if ( !defined $c->config->{seedlot_maintenance_event_ontology_root} || $c->config->{seedlot_maintenance_event_ontology_root} eq '' ) {
         $c->stash->{template} = '/generic_message.mas';
-        $c->stash->{message} = 'Seedlot Maintenance Events are not enabled on this server!';
+        $c->stash->{message} = 'Os eventos de manutenção de lotes de sementes não estão habilitados neste servidor!';
         return;
     }
 

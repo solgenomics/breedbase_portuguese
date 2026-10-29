@@ -62,7 +62,7 @@ my %form = (
     $mech->content_contains("PCR Report");
     $mech->content_contains("BLAST OUTPUT");
 
-    unless ( $mech->content() =~ /No PCR Product Found/ ) {
+    unless ( $mech->content() =~ /Nenhum produto de PCR encontrado/ ) {
         $mech->content_contains("Agarose");
         $mech->content_contains("SGN-U510886");
     }

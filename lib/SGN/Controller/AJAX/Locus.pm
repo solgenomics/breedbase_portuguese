@@ -16,6 +16,7 @@ Naama Menda <nm249@cornell.edu>
 =cut
 
 package SGN::Controller::AJAX::Locus;
+use utf8;
 
 use Moose;
 
@@ -259,7 +260,7 @@ sub display_ontologies_GET  {
             $obsoleted .= qq |$term  <br />\n |;
         }
         $print_obsoleted = html_alternate_show(
-            'obsoleted_terms', 'Show obsolete',
+            'obsoleted_terms', 'Mostrar obsoletos',
             '',                qq|<div class="minorbox">$obsoleted</div> |,
             );
     }
@@ -272,7 +273,7 @@ sub associate_ontology:Path('/ajax/locus/associate_ontology') :ActionClass('REST
 
 sub associate_ontology_GET :Args(0) {
     my ($self, $c) = @_;
-    $c->stash->{rest} = { error => "Nothing here, it's a GET.." } ;
+    $c->stash->{rest} = { error => "Nada aqui, esta é uma requisição GET.." } ;
 }
 #########################change this to the locus object !! 
 sub associate_ontology_POST :Args(0) {
@@ -312,14 +313,14 @@ sub associate_ontology_POST :Args(0) {
         ->search({ 'me.name' => $db_name, } )->search_related('dbxrefs' , { accession => $accession } )
         ->search_related('cvterm')->first; # should be only 1 cvterm per dbxref
     if (!$cvterm) {
-        $c->stash->{rest} = { error => "no ontology term found for term $db_name : $accession" };
+        $c->stash->{rest} = { error => "Nenhum termo de ontologia encontrado para o termo $db_name : $accession" };
         return;
     }
     my $locus = CXGN::Phenome::Locus->new($dbh, $locus_id);
     my $cvterm_id = $cvterm->cvterm_id;
     my $dbxref_id  = $cvterm->dbxref_id;
     if (!$c->user) {
-        $c->stash->{rest} = { error => 'Must be logged in for associating ontology terms! ' };
+        $c->stash->{rest} = { error => 'Você precisa estar conectado para associar termos de ontologia!' };
         return;
     }
     if ( any { $_ eq 'curator' || $_ eq 'submitter' || $_ eq 'sequencer' } $c->user->roles() ) {
@@ -359,7 +360,7 @@ sub associate_ontology_POST :Args(0) {
                 my $locus_dbxref_evidence_id = $locus_dbxref_evidence->store ;
 ##########################################
             } catch {
-                $c->stash->{rest} = { error => "Failed: $_" };
+                $c->stash->{rest} = { error => "Falha: $_" };
                 # send an email to sgn bugs
                 $c->stash->{email} = {
                     to      => 'sgn-bugs@sgn.cornell.edu',
@@ -380,10 +381,10 @@ sub associate_ontology_POST :Args(0) {
             };
             $c->forward( $c->view('Email') );
         } else {
-	    $c->stash->{rest} = { error => 'need both valid locus_id and cvterm_id for adding an ontology term to this locus! ' };
+	    $c->stash->{rest} = { error => 'São necessários locus_id e cvterm_id válidos para adicionar um termo de ontologia a este locus!' };
         }
     } else {
-        $c->stash->{rest} = { error => 'No privileges for adding new ontology terms. You must have an sgn submitter account. Please contact sgn-feedback@solgenomics.net for upgrading your user account. ' };
+        $c->stash->{rest} = { error => 'Sem permissão para adicionar novos termos de ontologia. Você precisa ter uma conta de submissor na SGN. Entre em contato com sgn-feedback@solgenomics.net para atualizar sua conta de usuário.' };
     }
     return;
 }
@@ -447,9 +448,9 @@ sub toggle_obsolete_annotation_POST :Args(0) {
         if ($locus_dbxref_evidence) {
             $locus_dbxref_evidence->update( { obsolete => $obsolete } );
             $response->{response} = "success";
-        }else { $response->{error} = "No locus evidence found for locus_dbxref_evidence_id $locus_dbxref_evidence_id! "; }
+        }else { $response->{error} = "Nenhuma evidência de locus encontrada para locus_dbxref_evidence_id $locus_dbxref_evidence_id!"; }
         #set locus_dbxref_evidence to obsolete
-    } else { $response->{error} = "locus_dbxref_evidence $locus_dbxref_evidence_id does not exists! ";  }
+    } else { $response->{error} = "locus_dbxref_evidence $locus_dbxref_evidence_id não existe!";  }
     $c->stash->{rest} = $response;
 }
 
@@ -536,7 +537,7 @@ sub associate_locus:Path('/ajax/locus/associate_locus') :ActionClass('REST') {}
 
 sub associate_locus_GET :Args(0) {
     my ($self, $c) = @_;
-    $c->stash->{rest} = { error => "Nothing here, it's a GET.." } ;
+    $c->stash->{rest} = { error => "Nada aqui, esta é uma requisição GET.." } ;
 }
 sub associate_locus_POST :Args(0) {
     my ($self, $c) = @_;
@@ -557,7 +558,7 @@ sub associate_locus_POST :Args(0) {
     my ($locus_name,$locus_symbol,$a_locus_id) = split (/\|/ ,$locus_info);
     if (!$locus_info || !$a_locus_id) {
         #$self->status_bad_request($c, message => 'need loci param' );
-        $response->{error} .= "bad request. Invalid locus";
+        $response->{error} .= "Requisição inválida. Locus inválido";
     }
     my $reference_id = $params{'locus_reference_id'};
     $reference_id = $reference_id ? $reference_id :
@@ -600,7 +601,7 @@ sub associate_locus_POST :Args(0) {
             $response->{response} = 'success';
             return;
         } catch {
-            $response->{error} .= "Failed: $_" ;
+            $response->{error} .= "Falha: $_" ;
             # send an email to sgn bugs
             $c->stash->{email} = {
                 to      => 'sgn-bugs@sgn.cornell.edu',
@@ -620,7 +621,7 @@ sub associate_locus_POST :Args(0) {
         };
         $c->forward( $c->view('Email') );
     } else {
-        $response->{ error} = 'No privileges for associating loci. You must have an sgn submitter account. Please contact sgn-feedback@solgenomics.net for upgrading your user account. ' ;
+        $response->{ error} = 'Sem permissão para associar loci. Você precisa ter uma conta de submissor na SGN. Entre em contato com sgn-feedback@solgenomics.net para atualizar sua conta de usuário.' ;
     }
     $c->stash->{rest} = $response;
 }
@@ -641,7 +642,7 @@ sub obsolete_locusgroup_member_POST :Args(0) {
             try {
                 $lgm->obsolete_lgm();
             } catch {
-                $c->stash->{rest} = { error => "Failed: $_" };
+                $c->stash->{rest} = { error => "Falha: $_" };
                 $c->stash->{email} = {
                     to      => 'sgn-bugs@sgn.cornell.edu',
                     from    => 'sgn-bugs@sgn.cornell.edu',
@@ -659,8 +660,8 @@ sub obsolete_locusgroup_member_POST :Args(0) {
                 body    => "User " . $c->user->get_object->get_first_name . " " . $c->user->get_object->get_last_name .  " has obsoleted locus group member $lgm_id \n ( /solgenomics.net/locus/$locus_id/view )",
             };
             $c->forward( $c->view('Email') );
-        }else { $response->{error} = "No locus group member  for locus group member_id $lgm_id! "; }
-    } else { $response->{error} = "locus group member  $lgm_id does not exists! ";  }
+        }else { $response->{error} = "Nenhum membro de grupo de locus para o member_id de grupo de locus $lgm_id!"; }
+    } else { $response->{error} = "O membro de grupo de locus $lgm_id não existe!";  }
     $c->stash->{rest} = $response;
 }
 
@@ -734,7 +735,7 @@ sub locus_unigenes_GET :Args(0) {
         $response->{solcyc}   = $solcyc_links;
 
     } catch {
-        $response->{error} = "Failed: $_" ;
+        $response->{error} = "Falha: $_" ;
         # send an email to sgn bugs
         $c->stash->{email} = {
             to      => 'sgn-bugs@sgn.cornell.edu',
@@ -763,7 +764,7 @@ sub obsolete_locus_unigene_POST :Args(0) {
         my $u_sth=$dbh->prepare($u_query);
         $u_sth->execute($locus_unigene_id);
     } catch {
-        $c->stash->{rest} = { error => "Failed: $_" };
+        $c->stash->{rest} = { error => "Falha: $_" };
         $c->stash->{email} = {
             to      => 'sgn-bugs@sgn.cornell.edu',
             from    => 'sgn-bugs@sgn.cornell.edu',
@@ -796,7 +797,7 @@ sub associate_unigene_POST :Args(0) {
     # "SGN-U$unigene_id--build $build_id--$nr_members members";
     $unigene_id =~ s/sgn-u//i ;
     if ( !(looks_like_number($unigene_id)) ) {
-        $response->{ error} = "This does not look like a valid unigene id ($unigene_id). Check your input! \n " ;
+        $response->{ error} = "Este não parece ser um ID de unigene válido ($unigene_id). Verifique sua entrada! \n" ;
         $c->stash->{rest} = $response;
         return;
     }
@@ -812,7 +813,7 @@ sub associate_unigene_POST :Args(0) {
             my $id = $locus->add_unigene($unigene_id, $logged_person_id);
             print STDERR "**DONE id = $id \n\n\n";
         } catch {
-            $response->{error} = "Failed: $_" ;
+            $response->{error} = "Falha: $_" ;
             # send an email to sgn bugs
             $c->stash->{email} = {
                 to      => 'sgn-bugs@sgn.cornell.edu',
@@ -835,7 +836,7 @@ sub associate_unigene_POST :Args(0) {
         $c->forward( $c->view('Email') );
         $response->{response} = "success";
     } else {
-        $response->{ error} = 'No privileges for associating unigenes. You must have an sgn submitter account. Please contact sgn-feedback@solgenomics.net for upgrading your user account. ' ;
+        $response->{ error} = 'Sem permissão para associar unigenes. Você precisa ter uma conta de submissor na SGN. Entre em contato com sgn-feedback@solgenomics.net para atualizar sua conta de usuário.' ;
     }
     $c->stash->{rest} = $response;
 }
@@ -856,7 +857,7 @@ sub display_owners_GET  {
         my $last_name  = $person->get_last_name();
         my $id = $person->get_sp_person_id();
         if ($person->get_user_type() eq 'curator' && scalar(@$owners) == 1  ) {
-            $owners_html .= '<b>No editor assigned</b>';
+            $owners_html .= '<b>Nenhum editor atribuído</b>';
         } else {
             $owners_html .=
                 qq |<a href="/solpeople/personal-info.pl?sp_person_id=$id">$first_name $last_name</a>;|;
@@ -864,7 +865,7 @@ sub display_owners_GET  {
     }
     chop $owners_html;
 
-    $hashref->{html} = "<p>Locus editors: $owners_html </p> ";
+    $hashref->{html} = "<p>Editores do locus: $owners_html </p>";
     $c->stash->{rest} = $hashref;
 }
 
@@ -872,7 +873,7 @@ sub assign_owner:Path('/ajax/locus/assign_owner') :ActionClass('REST') {}
 
 sub assign_owner_GET :Args(0) {
     my ($self, $c) = @_;
-    $c->stash->{rest} = { error => "Nothing here, it's a GET.." } ;
+    $c->stash->{rest} = { error => "Nada aqui, esta é uma requisição GET.." } ;
 }
 sub assign_owner_POST :Args(0) {
     my ($self, $c) = @_;
@@ -916,7 +917,7 @@ sub assign_owner_POST :Args(0) {
             $remove_curator_sth->execute($locus_id);
         }
         catch {
-            $response->{error} = "Failed: $_" ;
+            $response->{error} = "Falha: $_" ;
             # send an email to sgn bugs
             $c->stash->{email} = {
                 to      => 'sgn-bugs@sgn.cornell.edu',
@@ -939,7 +940,7 @@ sub assign_owner_POST :Args(0) {
         };
         $c->forward( $c->view('Email') );
     } else {
-        $response->{error} = 'No privileges for assigning new owner. You must be an SGN curator' ;
+        $response->{error} = 'Sem permissão para atribuir novo proprietário. Você precisa ser curador da SGN' ;
     }
     $c->stash->{rest} = $response;
 }

@@ -302,7 +302,7 @@ $(document).ready(function () {
 					createMap(1,0,score_array,expr_msg,ids,m_aoa);
 
 					if (+best_seq.length > 10) {
-						$("#best_seq").html("<b>>best_target_region_ ("+best_start+"-"+best_end+")</b><br />"+best_seq);
+						$("#best_seq").html("<b>>best_target_region_("+best_start+"-"+best_end+")</b><br />"+best_seq);
 					} else {
 						$("#best_seq").html("<b>Nenhum resultado encontrado</b>");
 					}
@@ -772,7 +772,7 @@ $(document).ready(function () {
 		var best_start = +$("#best_start").val();
 		var best_end = +$("#best_end").val();
 
-		best_seq_el.innerHTML = "<b>>custom_region_ ("+cbr_start+"-"+cbr_end+")</b><br />";
+		best_seq_el.innerHTML = "<b>>custom_region_("+cbr_start+"-"+cbr_end+")</b><br />";
 
 		for (var i=cbr_start; i<cbr_end; i=i+60) {
 			if (cbr_end<i+61) {
@@ -781,7 +781,7 @@ $(document).ready(function () {
 				best_seq_el.innerHTML += seq.substring(i-1,i+59)+"<br />";
 			}
 		}
-		best_seq_el.innerHTML += "<br /><b>>best_target_region_ ("+best_start+"-"+best_end+")</b><br />";
+		best_seq_el.innerHTML += "<br /><b>>best_target_region_("+best_start+"-"+best_end+")</b><br />";
 		best_seq_el.innerHTML += best_seq+"<br />";
 	}
 

@@ -1,25 +1,25 @@
 <%args>
   $organism
 </%args>
-<& /page/page_title.mas, title => '<i>'.$organism->species.'</i> Genome Data' &>
+<& /page/page_title.mas, title => 'Dados do genoma de <i>'.$organism->species.'</i>' &>
 
 <!-- <div class="page_introduction"> -->
 <p>
-A tecnologia de sequenciamento de leitura ligada foi usada para criar uma montagem faseada que foi scaffolded em cromossomos para um F1 de uma cruz larga (UCD-10X-F1) entre um Landrace, Criollos de Morelos 334 (CM334) e uma linha não-pungent blocky pimente-breeding. Por favor, veja. <a href="https://www.nature.com/articles/s41438-017-0011-0">Hulse-Kemp et al. (2017)</a> para mais detalhes. Este genoma está disponível em <a href="/tools/blast?db_id=301">Explosão</a> e sobre o <a href="ftp://ftp.solgenomics.net/genomes/Capsicum_annuum/C.annuum_UCD10X/">Site FTP</a>.  
+A tecnologia de sequenciamento de leituras ligadas (linked-read) foi usada para criar uma montagem faseada, organizada em scaffolds até o nível de cromossomos, para um F1 de um cruzamento amplo (UCD-10X-F1) entre uma variedade crioula, Criollos de Morelos 334 (CM334), e uma linhagem de melhoramento de pimentão tipo blocky não pungente. Consulte <a href="https://www.nature.com/articles/s41438-017-0011-0">Hulse-Kemp et al. (2017)</a> para mais detalhes. Este genoma está disponível em <a href="/tools/blast?db_id=301">BLAST</a> e no <a href="ftp://ftp.solgenomics.net/genomes/Capsicum_annuum/C.annuum_UCD10X/">Site FTP</a>.  
 </p>
 <p>
-O genoma da pimenta-quente <i>Capsicum annuum</i> Cv. CM334) foi sequenciado por um grupo internacional de cientistas da Coréia, Israel e EUA. A sequência foi publicada em <a href="http://www.nature.com/ng/journal/v46/n3/full/ng.2877.html" target="_blank">Genética da Natureza</a> em janeiro de 2014. A página oficial para esta sequência de genoma é <a href="http://peppergenome.snu.ac.kr/" target="_blank">http://peppergenome.snu.ac.kr/</a>.
+O genoma da pimenta picante (variedade crioula mexicana de <i>Capsicum annuum</i> cv. CM334) foi sequenciado por um grupo internacional de cientistas da Coreia, de Israel e dos EUA. A sequência foi publicada na <a href="http://www.nature.com/ng/journal/v46/n3/full/ng.2877.html" target="_blank">Nature Genetics</a> em janeiro de 2014. A página oficial desta sequência de genoma é <a href="http://peppergenome.snu.ac.kr/" target="_blank">http://peppergenome.snu.ac.kr/</a>.
 </p>
 <p>
-A sequência do genoma da pimenta. <i>C. annuum</i> Cv. CM334 (Criollo de Morelos 334), um diplóide e uma raça vegetal coletada do estado mexicano de Morelos, foi sequenciado para 186,6X cobertura usando tecnologia Illumina. A montagem do genoma foi anotada com <a href="http://www.nature.com/ng/journal/v46/n3/extref/ng.2877-S1.pdf">Oleoduto de anotação PGA</a>. A montagem do genoma CM334, pseudomoléculas, anotações e montagem do genoma C. Chinense estão disponíveis através dos links abaixo.<br>
-</p>
-
-<p>
-Os genomas completos de "Chiltepin" e um derivado chinês "Zunla-1" também foram sequenciados e publicados na mesma data por grupos de pesquisa da China e México. A sequência do genoma dessas variedades de pimenta foi publicada em <a href="http://www.pnas.org/content/111/14/5135.abstract" target="_blank">PNAS</a> em janeiro de 2014. A página oficial para esta sequência de genoma é <a href="http://peppersequence.genomics.cn/" target="_blank">http://peppersequence.genomics.cn/</a>.
+A sequência do genoma da pimenta picante: <i>C. annuum</i> cv. CM334 (Criollo de Morelos 334), um diploide e variedade crioula coletada no estado mexicano de Morelos, foi sequenciada com cobertura de 186,6X usando a tecnologia Illumina. A montagem do genoma foi anotada com o <a href="http://www.nature.com/ng/journal/v46/n3/extref/ng.2877-S1.pdf">pipeline de anotação PGA</a>. A montagem do genoma CM334, as pseudomoléculas, as anotações e a montagem do genoma de C. chinense estão disponíveis nos links abaixo.<br>
 </p>
 
 <p>
-<i>C. annuum</i> Sequências de genoma, gene e proteína são acessíveis na ferramenta SGN BLAST e podem ser baixadas do site SGN ftp. <i>C. annuum</i> Cv. A sequência do genoma CM334 também está disponível na SGN JBrowse.
+Os genomas completos do acesso selvagem mexicano de pimenta “Chiltepin” e de um derivado endogâmico chinês, “Zunla-1”, também foram sequenciados e publicados na mesma data por grupos de pesquisa da China e do México. A sequência do genoma dessas variedades de pimenta foi publicada em <a href="http://www.pnas.org/content/111/14/5135.abstract" target="_blank">PNAS</a> em janeiro de 2014. A página oficial desta sequência de genoma é <a href="http://peppersequence.genomics.cn/" target="_blank">http://peppersequence.genomics.cn/</a>.
+</p>
+
+<p>
+As sequências de genoma, genes e proteínas de <i>C. annuum</i> estão acessíveis na ferramenta BLAST da SGN e podem ser baixadas do site FTP da SGN. A sequência do genoma de <i>C. annuum</i> cv. CM334 também está disponível no JBrowse da SGN.
 </p>
 <!-- </div> -->
 
@@ -36,10 +36,10 @@ Os genomas completos de "Chiltepin" e um derivado chinês "Zunla-1" também fora
   <!-- <% info_table_html(
                      __border   => 0,
                      __multicol => 2,
-                     'Bulk Datasets (via FTP)' =>
+                     'Conjuntos de dados completos (via FTP)' =>
                      '<a href="ftp://ftp.solgenomics.net/genomes/Capsicum_annuum/">Genome sequence and Annotation</a>',
                      BLAST => '<a href="/tools/blast/?db_id=219">Genomic sequence</a>',
-                     'Genome browser' => '<a href="/jbrowse/JBrowse-1.11.4/?data=data/json/Pepper1.55/">Jbrowse</a>'
+                     'Navegador de genoma' => '<a href="/jbrowse/JBrowse-1.11.4/?data=data/json/Pepper1.55/">Jbrowse</a>'
                     )
   %> -->
 <!-- </&> -->
@@ -47,7 +47,7 @@ Os genomas completos de "Chiltepin" e um derivado chinês "Zunla-1" também fora
 
 
 <&| /page/info_section.mas,
-      title       => 'Datasets de sequência',
+      title       => 'Conjuntos de dados de sequência',
       collapsible => 1,
       hide_if_empty => 1
  &>
@@ -56,7 +56,7 @@ Os genomas completos de "Chiltepin" e um derivado chinês "Zunla-1" também fora
 
 
 <&| /page/info_section.mas,
-      title       => 'Anotações de navegação',
+      title       => 'Anotações navegáveis',
       collapsible => 1,
       hide_if_empty => 1,
  &>
@@ -66,7 +66,7 @@ Os genomas completos de "Chiltepin" e um derivado chinês "Zunla-1" também fora
 </&>
 
 <&| /page/info_section.mas,
-      title       => 'Datasets de anotações',
+      title       => 'Conjuntos de dados de anotação',
       collapsible => 1,
       hide_if_empty => 1,
  &>

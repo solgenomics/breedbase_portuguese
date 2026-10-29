@@ -20,7 +20,7 @@
                         <th>Genoma de Referência</th>
                         <th>Nome da espécie</th>
                         <th>Tipo de amostra</th>
-                        <th>Criar data</th>
+                        <th>Data de criação</th>
                     </tr>
                 </thead>
             </table>

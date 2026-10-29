@@ -1,5 +1,6 @@
 package CXGN::Stock::ParseUpload::Plugin::AccessionsXLS;
 
+use utf8;
 use Moose::Role;
 use Spreadsheet::ParseExcel;
 use Spreadsheet::ParseXLSX;
@@ -47,7 +48,7 @@ sub _validate_with_plugin {
 
     my $worksheet = ( $excel_obj->worksheets() )[0]; #support only one worksheet
     if (!$worksheet) {
-        push @error_messages, "Spreadsheet must be on 1st tab in Excel (.xls) file";
+        push @error_messages, "A planilha deve estar na 1ª aba do arquivo Excel (.xls)";
         $errors{'error_messages'} = \@error_messages;
         $self->_set_parse_errors(\%errors);
         return;
@@ -55,7 +56,7 @@ sub _validate_with_plugin {
     my ( $row_min, $row_max ) = $worksheet->row_range();
     my ( $col_min, $col_max ) = $worksheet->col_range();
     if (($col_max - $col_min)  < 1 || ($row_max - $row_min) < 1 ) { #must have header and at least one row of plot data
-        push @error_messages, "Spreadsheet is missing header or contains no rows";
+        push @error_messages, "A planilha não tem cabeçalho ou não contém linhas";
         $errors{'error_messages'} = \@error_messages;
         $self->_set_parse_errors(\%errors);
         return;
@@ -97,24 +98,24 @@ sub _validate_with_plugin {
             $stockprops_head  = $worksheet->get_cell(0,$i)->value();
         }
         if ($stockprops_head && !exists($allowed_stockprops_head{$stockprops_head})){
-            push @error_messages, "$stockprops_head is not a valid property to have in the header! Please check the spreadsheet format help.";
+            push @error_messages, "$stockprops_head não é uma propriedade válida para o cabeçalho! Consulte a ajuda sobre o formato da planilha.";
         }
     }
 
     if (!$accession_name_head || $accession_name_head ne 'accession_name' ) {
-        push @error_messages, "Cell A1: accession_name is missing from the header";
+        push @error_messages, "Célula A1: accession_name está ausente do cabeçalho";
     }
     if (!$species_name_head || $species_name_head ne 'species_name') {
-        push @error_messages, "Cell B1: species_name is missing from the header";
+        push @error_messages, "Célula B1: species_name está ausente do cabeçalho";
     }
     if (!$population_name_head || $population_name_head ne 'population_name') {
-        push @error_messages, "Cell C1: population_name is missing from the header";
+        push @error_messages, "Célula C1: population_name está ausente do cabeçalho";
     }
     if (!$organization_name_head || ($organization_name_head ne 'organization_name(s)' && $organization_name_head ne 'organization_name') ) {
-        push @error_messages, "Cell D1: organization_name is missing from the header";
+        push @error_messages, "Célula D1: organization_name está ausente do cabeçalho";
     }
     if (!$synonyms_head || ($synonyms_head ne 'synonym(s)' && $synonyms_head ne 'synonym') ) {
-        push @error_messages, "Cell E1: synonym is missing from the header";
+        push @error_messages, "Célula E1: synonym está ausente do cabeçalho";
     }
 
     my %seen_accession_names;
@@ -134,7 +135,7 @@ sub _validate_with_plugin {
         }
 
         if (!$accession_name || $accession_name eq '' ) {
-            push @error_messages, "Cell A$row_name: accession_name missing.";
+            push @error_messages, "Célula A$row_name: accession_name ausente.";
         }
         #elsif ($accession_name =~ /\s/ || $accession_name =~ /\// || $accession_name =~ /\\/ ) {
         #    push @error_messages, "Cell A$row_name: accession_name must not contain spaces or slashes.";
@@ -146,7 +147,7 @@ sub _validate_with_plugin {
         }
 
         if (!$species_name || $species_name eq '' ) {
-            push @error_messages, "Cell B$row_name: species_name missing.";
+            push @error_messages, "Célula B$row_name: species_name ausente.";
         }
         else {
             $species_name =~ s/^\s+|\s+$//g;
@@ -159,13 +160,13 @@ sub _validate_with_plugin {
     my @species_missing = @{$species_validator->validate($schema,'species',\@species)->{'missing'}};
 
     if (scalar(@species_missing) > 0) {
-        push @error_messages, "The following species are not in the database as species in the organism table: ".join(',',@species_missing);
+        push @error_messages, "As seguintes espécies não estão no banco de dados como espécies na tabela de organismos: ".join(',',@species_missing);
         $errors{'missing_species'} = \@species_missing;
     }
 
     foreach my $k (keys %accession_name_counts) {
 	if ($accession_name_counts{$k} > 1) {
-	    push @error_messages, "Accession $k occures $accession_name_counts{$k} times in the file. Accession names must be unique. Please remove duplicated accession names.";
+	    push @error_messages, "O acesso $k aparece $accession_name_counts{$k} vezes no arquivo. Os nomes de acesso devem ser únicos. Remova os nomes de acesso duplicados.";
 	}
     }
 

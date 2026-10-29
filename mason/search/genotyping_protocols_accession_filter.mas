@@ -199,7 +199,7 @@ function showAccessionsList() {
     acc_names.sort();
 
     // Show Dialog of Accessions List
-    jQuery("#genotypingProtocolAccessionsListDialog").html(list_type === "Combinando" ? `Acessos encontrados no protocolo ${gen_name}` : `Acessos ausentes no protocolo ${gen_name}`);
+    jQuery("#genotypingProtocolAccessionsListDialog").html(list_type === "matching" ? `Acessos encontrados no protocolo ${gen_name}` : `Acessos ausentes no protocolo ${gen_name}`);
     jQuery("#genotyping_protocol_accessions_list_results").html(acc_names.join("\n"));
     jQuery("#genotyping_protocol_accessions_list").modal("show");
 

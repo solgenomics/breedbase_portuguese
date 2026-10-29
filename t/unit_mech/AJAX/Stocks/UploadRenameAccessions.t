@@ -1,5 +1,6 @@
 
 use strict;
+use utf8;
 use warnings;
 
 use lib 't/lib';
@@ -83,8 +84,8 @@ my $message = verify_rename_accessions($sgn_session_id, $file);
 
 is_deeply($message->{success}, 0, "check verify success of bad file");
 
-like($message->{error}, qr/do not exist/, "check the error message for the missing accession");
-like($message->{error}, qr/target of renames/, "check the error message for the present ones that should not exist");
+like($message->{error}, qr/não existe\(m\)/, "check the error message for the missing accession");
+like($message->{error}, qr/destino da renomeação/, "check the error message for the present ones that should not exist");
 
 
 

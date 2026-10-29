@@ -1,5 +1,5 @@
 <div class="text-center">
-    <p>Agora, defina seu disposição espacial. Você pode recuperar essas configurações de um design salvo, ou você pode começar um novo projeto selecionando uma página e formato de etiqueta.<p>
+    <p>Agora, defina seu layout. Você pode recuperar essas configurações de um design salvo, ou você pode começar um novo design selecionando uma página e formato de etiqueta.<p>
 </div>
 </br></br>
 <div class="col-md-12" style="margin-bottom:20px;">
@@ -35,13 +35,13 @@
        <div class="col-md-12">
            <div class="col-md-5">
                <center>
-                   <label>Largura da Página:</label><br>
+                   <label>Largura da página:</label><br>
                    <input class="form-control"   type="number" id="page_width" style="max-width: 100%;">
                </center>
            </div>
            <div class="col-md-5">
                <center>
-                   <label>Altura da Página:</label><br>
+                   <label>Altura da página:</label><br>
                    <input class="form-control"  type="number" id="page_height" style="max-width: 100%;">
                </center>
            </div>
@@ -63,7 +63,7 @@
                </center>
            </div>
            <div class="col-md-2">
-                <label class='radio'><input type="radio" name="dimoptradio" id="dim_inches" class="radio-select-imperial" value="inch">Imperial</label>
+                <label class='radio'><input type="radio" name="dimoptradio" id="dim_inches" class="radio-select-imperial" value="inch">Imperial (polegadas)</label>
                 <label class='radio'><input type="radio" name="dimoptradio" id="dim_cm" class="radio-select-metric" value="cm" checked>Sistema métrico (cm)</label>
            </div>
            <div class="col-md-2">

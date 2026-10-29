@@ -15,6 +15,7 @@ Naama Menda <nm249@cornell.edu>
 =cut
 
 package SGN::Controller::AJAX::Cvterm;
+use utf8;
 
 use Moose;
 
@@ -379,7 +380,7 @@ sub add_cvtermprop_POST {
     my $response;
     my $schema = $c->dbic_schema('Bio::Chado::Schema', 'sgn_chado');
     if (!$c->user()) {
-	$c->stash->{rest} = { error => "Log in required for adding stock properties." }; return;
+	$c->stash->{rest} = { error => "É necessário entrar em sua conta para adicionar propriedades de material." }; return;
     }
 
     if (  any { $_ eq 'curator' || $_ eq 'submitter' || $_ eq 'sequencer' } $c->user->roles() ) {
@@ -398,16 +399,16 @@ sub add_cvtermprop_POST {
             $cvterm->create_cvtermprops( { $prop_type => $prop }, { cv_name => $cv_name , autocreate => 1 } );
 	    
             my $dbh = $c->dbc->dbh();
-	    $c->stash->{rest} = { message => "cvterm_id $cvterm_id and type_id $prop_type have been associated with value $prop. " };
+	    $c->stash->{rest} = { message => "cvterm_id $cvterm_id e type_id $prop_type foram associados ao valor $prop. " };
 	
 	} catch {
-            $c->stash->{rest} = { error => "Failed: $_" }
+            $c->stash->{rest} = { error => "Falha: $_" }
         };
     } else {
-	$c->stash->{rest} = { error => "Cannot associate prop $prop_type: $prop with cvterm $cvterm_id " };
+	$c->stash->{rest} = { error => "Não foi possível associar a propriedade $prop_type: $prop ao cvterm $cvterm_id " };
 	}
     } else {
-	$c->stash->{rest} = { error => 'user does not have a curator/sequencer/submitter account' };
+	$c->stash->{rest} = { error => 'o usuário não tem uma conta de curator/sequencer/submitter' };
     }
 }
 
@@ -418,23 +419,23 @@ sub delete_cvtermprop_GET {
     my $c = shift;
     my $cvtermprop_id = $c->req->param("cvtermprop_id");
     if (! any { $_ eq 'curator' || $_ eq 'submitter' || $_ eq 'sequencer' } $c->user->roles() ) {
-	$c->stash->{rest} = { error => 'Log in required for deletion of stock properties.' };
+	$c->stash->{rest} = { error => 'É necessário entrar em sua conta para excluir propriedades de material.' };
 	return;
     }
     my $schema = $c->dbic_schema('Bio::Chado::Schema', 'sgn_chado');
     my $cvtermprop = $schema->resultset("Cv::Cvtermprop")->find( { cvtermprop_id => $cvtermprop_id });
     if (! $cvtermprop) {
-	$c->stash->{rest} = { error => 'The specified prop does not exist' };
+	$c->stash->{rest} = { error => 'A propriedade especificada não existe' };
 	return;
     }
     eval {
 	$cvtermprop->delete();
     };
     if ($@) {
-	$c->stash->{rest} = { error => "An error occurred during deletion: $@" };
+	$c->stash->{rest} = { error => "Ocorreu um erro durante a exclusão: $@" };
 	    return;
     }
-    $c->stash->{rest} = { message => "The cvterm prop was removed from the database." };
+    $c->stash->{rest} = { message => "A propriedade do cvterm foi removida do banco de dados." };
 }
 
 sub add_synonym : Path('/ajax/cvterm/add_synonym') : ActionClass('REST') { }
@@ -443,11 +444,11 @@ sub add_synonym_POST {
     my ($self, $c) = @_;
 
     if (!$c->user()) {
-        $c->stash->{rest} = { error => "You must be logged in to add synonyms." };
+        $c->stash->{rest} = { error => "Você precisa estar conectado para adicionar sinônimos." };
         return;
     }
     if (!$c->user()->check_roles('curator')) {
-        $c->stash->{rest} = { error => "You must have curator privileges to add synonyms." };
+        $c->stash->{rest} = { error => "Você precisa ter privilégios de curador para adicionar sinônimos." };
         return;
     }
 
@@ -459,7 +460,7 @@ sub add_synonym_POST {
     $synonym =~ s/^\s+|\s+$//g;
 
     if (!$synonym) {
-        $c->stash->{rest} = { error => "Synonym cannot be empty." };
+        $c->stash->{rest} = { error => "O sinônimo não pode estar vazio." };
         return;
     }
 
@@ -469,7 +470,7 @@ sub add_synonym_POST {
     $check_sth->execute($synonym);
     my ($existing_id) = $check_sth->fetchrow_array();
     if ($existing_id) {
-        $c->stash->{rest} = { error => "The synonym '$synonym' already exists in the database." };
+        $c->stash->{rest} = { error => "O sinônimo '$synonym' já existe no banco de dados." };
         return;
     }
 
@@ -478,11 +479,11 @@ sub add_synonym_POST {
         $cvterm->add_synonym($synonym);
     };
     if ($@) {
-        $c->stash->{rest} = { error => "Error adding synonym: $@" };
+        $c->stash->{rest} = { error => "Erro ao adicionar o sinônimo: $@" };
         return;
     }
 
-    $c->stash->{rest} = { message => "Synonym '$synonym' added successfully." };
+    $c->stash->{rest} = { message => "Sinônimo '$synonym' adicionado com sucesso." };
 }
 
 
@@ -492,11 +493,11 @@ sub delete_synonym_POST {
     my ($self, $c) = @_;
 
     if (!$c->user()) {
-        $c->stash->{rest} = { error => "You must be logged in to delete synonyms." };
+        $c->stash->{rest} = { error => "Você precisa estar conectado para excluir sinônimos." };
         return;
     }
     if (!$c->user()->check_roles('curator')) {
-        $c->stash->{rest} = { error => "You must have curator privileges to delete synonyms." };
+        $c->stash->{rest} = { error => "Você precisa ter privilégios de curador para excluir sinônimos." };
         return;
     }
 
@@ -504,7 +505,7 @@ sub delete_synonym_POST {
     my $synonym   = $c->req->param('synonym');
 
     if (!$synonym) {
-        $c->stash->{rest} = { error => "Synonym cannot be empty." };
+        $c->stash->{rest} = { error => "O sinônimo não pode estar vazio." };
         return;
     }
 
@@ -515,11 +516,11 @@ sub delete_synonym_POST {
         $cvterm->delete_synonym($synonym);
     };
     if ($@) {
-        $c->stash->{rest} = { error => "Error deleting synonym: $@" };
+        $c->stash->{rest} = { error => "Erro ao excluir o sinônimo: $@" };
         return;
     }
 
-    $c->stash->{rest} = { message => "Synonym '$synonym' deleted successfully." };
+    $c->stash->{rest} = { message => "Sinônimo '$synonym' excluído com sucesso." };
 }
 
 sub cvterm_relationships : Path('/ajax/cvterm/cvterm_relationships') : ActionClass('REST') { }
@@ -529,7 +530,7 @@ sub cvterm_relationships_GET {
 
     my $cvterm_id = $c->req->param('cvterm_id');
     if (!$cvterm_id) {
-        $c->stash->{rest} = { error => "cvterm_id is required." };
+        $c->stash->{rest} = { error => "cvterm_id é obrigatório." };
         return;
     }
 
@@ -555,7 +556,7 @@ sub cvterm_relationships_GET {
         }
     };
     if ($@) {
-        $c->stash->{rest} = { error => "Error retrieving relationships: $@" };
+        $c->stash->{rest} = { error => "Erro ao recuperar as relações: $@" };
         return;
     }
 
@@ -568,11 +569,11 @@ sub add_parent_terms_POST {
     my ($self, $c) = @_;
 
     if (!$c->user()) {
-        $c->stash->{rest} = { error => "You must be logged in to add parent terms." };
+        $c->stash->{rest} = { error => "Você precisa estar conectado para adicionar termos pais." };
         return;
     }
     if (!$c->user()->check_roles('curator')) {
-        $c->stash->{rest} = { error => "You must have curator privileges to add parent terms." };
+        $c->stash->{rest} = { error => "Você precisa ter privilégios de curador para adicionar termos pais." };
         return;
     }
 
@@ -582,7 +583,7 @@ sub add_parent_terms_POST {
     my $parent_terms;
     eval { $parent_terms = decode_json($parent_terms_json); };
     if ($@ || ref($parent_terms) ne 'ARRAY') {
-        $c->stash->{rest} = { error => "Invalid parent_terms parameter." };
+        $c->stash->{rest} = { error => "Parâmetro parent_terms inválido." };
         return;
     }
 
@@ -592,12 +593,12 @@ sub add_parent_terms_POST {
     for my $term_str (@$parent_terms) {
         my ($name, $accession_str) = split(/\|/, $term_str, 2);
         unless (defined $accession_str) {
-            $c->stash->{rest} = { error => "Could not parse parent term '$term_str'. Expected format: name|DB:accession." };
+            $c->stash->{rest} = { error => "Não foi possível interpretar o termo pai '$term_str'. Formato esperado: name|DB:accession." };
             return;
         }
         my ($db_name_part, $accession) = split(/:/, $accession_str, 2);
         unless (defined $db_name_part && defined $accession) {
-            $c->stash->{rest} = { error => "Could not parse accession from '$accession_str'." };
+            $c->stash->{rest} = { error => "Não foi possível extrair o accession de '$accession_str'." };
             return;
         }
 
@@ -609,7 +610,7 @@ sub add_parent_terms_POST {
             { join => 'db' }
         );
         unless ($dbxref && $dbxref->cvterm) {
-            $c->stash->{rest} = { error => "Parent term '$term_str' not found in the database." };
+            $c->stash->{rest} = { error => "Termo pai '$term_str' não encontrado no banco de dados." };
             return;
         }
 
@@ -625,7 +626,7 @@ sub add_parent_terms_POST {
     }
 
     if (!@parent_ids) {
-        $c->stash->{rest} = { error => "All specified parent terms are already parents of this cvterm." };
+        $c->stash->{rest} = { error => "Todos os termos pais especificados já são pais deste cvterm." };
         return;
     }
 
@@ -634,11 +635,11 @@ sub add_parent_terms_POST {
         $cvterm_obj->add_parent_terms(\@parent_ids);
     };
     if ($@) {
-        $c->stash->{rest} = { error => "Error adding parent terms: $@" };
+        $c->stash->{rest} = { error => "Erro ao adicionar termos pais: $@" };
         return;
     }
 
-    $c->stash->{rest} = { message => scalar(@parent_ids) . " parent term(s) added successfully." };
+    $c->stash->{rest} = { message => scalar(@parent_ids) . " termo(s) pai(s) adicionado(s) com sucesso." };
 }
 
 ####

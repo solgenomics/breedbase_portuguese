@@ -1,4 +1,5 @@
 package CXGN::Phenotypes::StorePhenotypes;
+use utf8;
 
 =head1 NAME
 
@@ -453,24 +454,24 @@ sub verify {
         # print STDERR "Plots or traits not valid\n";
         # print STDERR "Invalid plots: ".join(", ", map { "'$_'" } @plots_missing)."\n" if (@plots_missing);
         # print STDERR "Invalid traits: ".join(", ", map { "'$_'" } @traits_missing)."\n" if (@traits_missing);
-        $error_message .= "Invalid plots: <br/>".join(", <br/>", map { "'$_'" } @plots_missing) if (@plots_missing);
-        $error_message .= "Invalid traits: <br/>".join(", <br/>", map { "'$_'" } @traits_missing) if (@traits_missing);
+        $error_message .= "Parcelas inválidas: <br/>".join(", <br/>", map { "'$_'" } @plots_missing) if (@plots_missing);
+        $error_message .= "Características inválidas: <br/>".join(", <br/>", map { "'$_'" } @traits_missing) if (@traits_missing);
 
         # Display matches of traits with the wrong id
         if ( scalar(@traits_wrong_ids) > 0 ) {
-            $error_message .= "<br /><br /><strong>Possible Trait Matches:</strong>";
-            $error_message .= "<br /><br />The following traits have names and ontology identifiers that do not match in this database.  The following suggestions have the correct ontology identifier for the name used in your data.";
+            $error_message .= "<br /><br /><strong>Possíveis correspondências de características:</strong>";
+            $error_message .= "<br /><br />As seguintes características têm nomes e identificadores de ontologia que não correspondem neste banco de dados.  As sugestões a seguir têm o identificador de ontologia correto para o nome usado nos seus dados.";
             foreach my $m (@traits_wrong_ids) {
-                $error_message .= "<br /><br />" . $m->{'original_term'} . "<br />should be<br />" . $m->{'matching_term'};
+                $error_message .= "<br /><br />" . $m->{'original_term'} . "<br />deveria ser<br />" . $m->{'matching_term'};
             }
         }
 
         # Display traits that are not variables
         if ( scalar(@traits_not_variables) > 0 ) {
-            $error_message .= "<br /><br /><strong>Traits That Are Not Ontology Variables:</strong>";
-            $error_message .= "<br /><br />The following traits are not ontology variables (they do not have associated method and scale information).  Use the Search &gt; Traits page to find the proper Trait Name and Trait ID to use.  The following suggestions include related ontology variables to the terms used in your data.";
+            $error_message .= "<br /><br /><strong>Características que não são variáveis de ontologia:</strong>";
+            $error_message .= "<br /><br />As seguintes características não são variáveis de ontologia (não têm informações de método e escala associadas).  Use a página Pesquisar &gt; Características para encontrar o nome e o ID corretos da característica.  As sugestões a seguir incluem variáveis de ontologia relacionadas aos termos usados nos seus dados.";
             foreach my $m (@traits_not_variables) {
-                $error_message .= "<br /><br />" . $m->{'original_term'} . "<br />could be<br />" . $m->{'matching_term'};
+                $error_message .= "<br /><br />" . $m->{'original_term'} . "<br />poderia ser<br />" . $m->{'matching_term'};
             }
         }
 
@@ -498,7 +499,7 @@ sub verify {
         my $archived_zip = CXGN::ZipFile->new(archived_zipfile_path=>$archived_image_zipfile_with_path);
         my @archived_zipfile_return = $archived_zip->file_names();
         if (!@archived_zipfile_return){
-            $error_message .= "<small>Image zipfile could not be read. Is it .zip format?</small><hr>";
+            $error_message .= "<small>Não foi possível ler o arquivo zip de imagens. Ele está no formato .zip?</small><hr>";
         } else {
             my $file_names_stripped = $archived_zipfile_return[0];
             my $file_names_full = $archived_zipfile_return[1];
@@ -512,7 +513,7 @@ sub verify {
             foreach my $img_name (@$file_names_stripped) {
                 $img_name = substr($img_name, 0, -20);
                 if ($img_name && !exists($plot_name_check{$img_name})) {
-                    $warning_message = $error_message."<small>Image ".$img_name." in images zip file does not reference a plot or plant_name (e.g. the image filename does not have a plot or plant name in it)!</small><hr>";
+                    $warning_message = $error_message."<small>A imagem ".$img_name." do arquivo zip de imagens não faz referência a uma parcela ou plant_name (ou seja, o nome do arquivo da imagem não contém um nome de parcela ou planta)!</small><hr>";
                 }
             }
         }
@@ -563,7 +564,7 @@ sub verify {
         }
     }
     if ( defined($self->same_value_count()) && ($self->same_value_count > 0) ) {
-        $warning_message .= "There are ".$self->same_value_count()." values in your file that are the same as values already stored in the database.";
+        $warning_message .= "Há ".$self->same_value_count()." valores no seu arquivo iguais a valores já armazenados no banco de dados.";
     }
     return ($warning_message, $error_message);
 }
@@ -647,7 +648,7 @@ sub check_measurement {
             if ( (!$timestamp && !$trait_value) || ($timestamp && !$trait_value) || ($timestamp && $trait_value) ) {
                 if ($timestamp) {
                     if( !$timestamp =~ m/(\d{4})-(\d{2})-(\d{2}) (\d{2}):(\d{2}):(\d{2})(\S)(\d{4})/) {
-                        $error_message .= "<small>Bad timestamp for value for Plot Name: ".$plot_name."<br/>Trait Name: ".$trait_name."<br/>Should be YYYY-MM-DD HH:MM:SS-0000 or YYYY-MM-DD HH:MM:SS+0000</small><hr>";
+                        $error_message .= "<small>Timestamp inválido no valor. Nome da parcela: ".$plot_name."<br/>Nome da característica: ".$trait_name."<br/>Deve ser YYYY-MM-DD HH:MM:SS-0000 ou YYYY-MM-DD HH:MM:SS+0000</small><hr>";
                     }
                     # remove timezone from timestamp since it is not stored in the database
                     $timestamp =~ s/[\-\+][0-9]{4}$//;
@@ -661,7 +662,7 @@ sub check_measurement {
             if ($self->check_trait_format()->{$trait_cvterm_id} =~ m/numeric|counter|percent|boolean/i ) {
                 my $trait_format_checked = looks_like_number($trait_value);
                 if (!$trait_format_checked && $trait_value ne '') {
-                    $error_message .= "<small>This trait value should be numeric: <br/>Plot Name: ".$plot_name."<br/>Trait Name: ".$trait_name."<br/>Value: ".$trait_value."</small><hr>";
+                    $error_message .= "<small>Este valor de característica deve ser numérico: <br/>Nome da parcela: ".$plot_name."<br/>Nome da característica: ".$trait_name."<br/>Valor: ".$trait_value."</small><hr>";
                 }
 
                 my $trait_min = defined $self->check_trait_min_value->{$trait_cvterm_id} ? $self->check_trait_min_value->{$trait_cvterm_id} : undef;
@@ -671,13 +672,13 @@ sub check_measurement {
                 # print STDERR "the trait maximum: Trait Maximum for trait $trait_name: ", (defined $trait_max ? $trait_max : undef), "\n";
 
                 if (defined $trait_min && $trait_value ne '' && $trait_value < $trait_min) {
-                    $error_message .= "<small>For trait '$trait_name' the trait value $trait_value should not be smaller than the defined trait_minimum, $trait_min.</small><hr>";
+                    $error_message .= "<small>Para a característica '$trait_name', o valor $trait_value não deve ser menor que o trait_minimum definido, $trait_min.</small><hr>";
                 } else {
                     # print STDERR "the trait min and trait value : No minimum value defined for trait '$trait_name' (cvterm_id: $trait_cvterm_id).\n";
                 }
 
                 if (defined $trait_max && $trait_value > $trait_max) {
-                    $error_message .= "<small>For the trait '$trait_name' the trait value $trait_value should not be larger than the defined trait_maximum, $trait_max.</small><hr>";
+                    $error_message .= "<small>Para a característica '$trait_name', o valor $trait_value não deve ser maior que o trait_maximum definido, $trait_max.</small><hr>";
                 } else {
                     # print STDERR "the trait max and trait value: No maximum value defined for trait '$trait_name' (cvterm_id: $trait_cvterm_id). \n";
                 }
@@ -687,7 +688,7 @@ sub check_measurement {
             if ($self->check_trait_format->{$trait_cvterm_id} eq 'image') {
                 $trait_value =~ s/^.*photos\///;
                 if (!exists($self->image_plot_full_names->{$trait_value})) {
-                    $error_message .= "<small>For Plot Name: $plot_name there should be a corresponding image named in the zipfile called $trait_value. </small><hr>";
+                    $error_message .= "<small>Para a parcela $plot_name, deve haver no arquivo zip uma imagem correspondente chamada $trait_value. </small><hr>";
                 }
             }
 
@@ -739,7 +740,7 @@ sub check_measurement {
                 foreach my $value (@check_values) {
                     if ($value ne '' && !exists($trait_categories_hash{$value})) {
                         my $valid_values = join("/", sort keys %trait_categories_hash);  # Sort values for consistent order
-                        $error_message = "<small> This trait value should be one of $valid_values: $valid_values<br/>Plot Name: $plot_name <br/>Trait Name: $trait_name <br/>Value: $trait_value</small><hr>";
+                        $error_message = "<small> Este valor de característica deve ser um destes $valid_values: $valid_values<br/>Nome da parcela: $plot_name <br/>Nome da característica: $trait_name <br/>Valor: $trait_value</small><hr>";
                         # print STDERR "The error in the value $error_message \n";
                     }
                     else {
@@ -765,7 +766,7 @@ sub check_measurement {
             # print STDERR "Trait repeat type: $repeat_type\n";
             if (!$timestamp) {
                 # print STDERR "trait name : $trait_name is multiple without timestamp \n";
-                $error_message .= "For trait $trait_name that is defined as a 'multiple' or 'time_series' repeat type trait, a timestamp is required.\n";
+                $error_message .= "Para a característica $trait_name, definida com tipo de repetição 'multiple' ou 'time_series', é necessário um timestamp.\n";
             }
 
             if (exists($self->unique_value_trait_stock_timestamp->{$trait_value, $trait_cvterm_id, $stock_id, $timestamp})) {
@@ -779,7 +780,7 @@ sub check_measurement {
             elsif (exists($self->unique_trait_stock_timestamp->{$trait_cvterm_id, $stock_id, $timestamp})) {
                 my $prev = $self->unique_trait_stock_timestamp->{$trait_cvterm_id, $stock_id, $timestamp};
                 if ( defined($prev) ) {
-                    $warning_message .= "<small>$plot_name already has a <strong>different value</strong> stored in the database ($prev) than in your file (" . ($trait_value ? $trait_value : "<em>blank</em>") . ") for the trait $trait_name on $timestamp.</small><hr>";
+                    $warning_message .= "<small>$plot_name já tem no banco de dados um <strong>valor diferente</strong> ($prev) do informado no seu arquivo (" . ($trait_value ? $trait_value : "<em>em branco</em>") . ") para a característica $trait_name em $timestamp.</small><hr>";
                 }
             }
         }
@@ -788,7 +789,7 @@ sub check_measurement {
         #check if the plot_name, trait_name combination already exists in database.
         elsif ($repeat_type eq "single") {
 	    if ($file_contains_multiple_values  && (defined($trait_value) && $trait_value ne '')) {
-		$warning_message .= "Multiple values present in file for single repeat_type term $trait_name\n";
+		$warning_message .= "Há vários valores no arquivo para o termo $trait_name, cujo repeat_type é single\n";
 	    }
 
             print STDERR "Processing this trait with value $trait_value as a single repeat type trait with overwrite_values set to ".$self->overwrite_values()."...\n";
@@ -803,35 +804,35 @@ sub check_measurement {
             elsif (exists($self->unique_trait_stock_timestamp->{$trait_cvterm_id, $stock_id, $timestamp})) {
                 my $prev = $self->unique_trait_stock_timestamp->{$trait_cvterm_id, $stock_id, $timestamp};
                 if ( defined($prev) ) {
-                    $warning_message .= "<small>$plot_name already has a <strong>different value</strong> stored in the database ($prev) than in your file (" . ($trait_value ? $trait_value : "<em>blank</em>") . ") for the trait $trait_name.</small><hr>";
+                    $warning_message .= "<small>$plot_name já tem no banco de dados um <strong>valor diferente</strong> ($prev) do informado no seu arquivo (" . ($trait_value ? $trait_value : "<em>em branco</em>") . ") para a característica $trait_name.</small><hr>";
                 }
             }
             elsif (exists($self->unique_trait_stock->{$trait_cvterm_id, $stock_id})) {
                 my $prev = $self->unique_trait_stock->{$trait_cvterm_id, $stock_id};
                 if ( defined($prev) ) {
-                    $warning_message .= "<small>$plot_name already has a <strong>different value</strong> stored in the database ($prev) than in your file (" . ($trait_value ? $trait_value : "<em>blank</em>") . ") for the trait $trait_name.</small><hr>";
+                    $warning_message .= "<small>$plot_name já tem no banco de dados um <strong>valor diferente</strong> ($prev) do informado no seu arquivo (" . ($trait_value ? $trait_value : "<em>em branco</em>") . ") para a característica $trait_name.</small><hr>";
                 }
             }
         }
 
         #check if the plot_name, trait_name, timestamp combination already exists in same file.
         if (exists($self->check_file_stock_trait_duplicates->{$trait_cvterm_id, $stock_id, $timestamp})) {
-            $warning_message .= "<small>$plot_name has a duplicate value for trait $trait_name in your file</small><hr>";
+            $warning_message .= "<small>$plot_name tem um valor duplicado para a característica $trait_name no seu arquivo</small><hr>";
         }
         $self->check_file_stock_trait_duplicates()->{$trait_cvterm_id, $stock_id, $timestamp} = 1;
     }
 
     ## Verify metadata
     if ($self->metadata_hash->{'archived_file'} && (!$self->metadata_hash->{'archived_file_type'} || $self->metadata_hash->{'archived_file_type'} eq "")) {
-        $error_message = "No file type provided for archived file.";
+        $error_message = "Nenhum tipo de arquivo informado para o arquivo arquivado.";
         return ($warning_message, $error_message);
     }
     if (!$self->metadata_hash->{'operator'} || $self->metadata_hash->{'operator'} eq "") {
-        $warning_message = "No operator provided in file upload metadata.";
+        $warning_message = "Nenhum operador informado nos metadados de envio do arquivo.";
         return ($warning_message, $error_message);
     }
     if (!$self->metadata_hash->{'date'} || $self->metadata_hash->{'date'} eq "") {
-        $error_message = "No date provided in file upload metadata.";
+        $error_message = "Nenhuma data informada nos metadados de envio do arquivo.";
         return ($warning_message, $error_message);
     }
 
@@ -993,7 +994,7 @@ sub store {
                         # Do we need to check the measurement again?  Verification would not have passed if there were errors...
                         my ($warnings, $errors) = $self->check_measurement($plot_name, $trait_name, $value_array);
 
-                        if ($errors) { die "Trying to store phenotypes with the following errors: $errors"; }
+                        if ($errors) { die "Tentativa de armazenar fenótipos com os seguintes erros: $errors"; }
 
                         my $phenotype_object = CXGN::Phenotype->new( { schema => $schema });
 
@@ -1271,17 +1272,17 @@ sub store {
             push @overwritten_values, $self->delete_previous_phenotypes(\%trait_and_stock_to_overwrite, \@saved_nd_experiment_ids);
         }
 
-        $success_message = 'All values in your file have been successfully processed!<br><br>';
-        $success_message .= "$new_count new values stored<br>";
-        $success_message .= "$skip_count previously stored values skipped<br>";
+        $success_message = 'Todos os valores do seu arquivo foram processados com sucesso!<br><br>';
+        $success_message .= "$new_count novos valores armazenados<br>";
+        $success_message .= "$skip_count valores armazenados anteriormente ignorados<br>";
 ###	$success_message .= "of which $previously_stored_skip_count were skipped because a value had previously been stored.";
-        $success_message .= "$overwrite_count previously stored values overwritten<br>";
+        $success_message .= "$overwrite_count valores armazenados anteriormente sobrescritos<br>";
 
-        $success_message .= "$remove_count previously stored values removed<br><br>";
+        $success_message .= "$remove_count valores armazenados anteriormente removidos<br><br>";
         my %files_with_overwritten_values = map {$_->[0] => 1} @overwritten_values;
         my $obsoleted_files = $self->check_overwritten_files_status(keys %files_with_overwritten_values);
         if (scalar(@$obsoleted_files) > 0){
-            $success_message .= ' The following previously uploaded files are now obsolete because all values from them were overwritten by your upload: ';
+            $success_message .= ' Os seguintes arquivos enviados anteriormente agora estão obsoletos porque todos os seus valores foram sobrescritos pelo seu envio: ';
             foreach (@$obsoleted_files){
                 $success_message .= " ".$_->[1];
             }

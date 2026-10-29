@@ -66,7 +66,7 @@ function plot_histogram(values, div_id) {
 
       svg.append("g")
       .attr("id", "g_id")
-      .attr("class", "eixo x")
+      .attr("class", "x axis")
       .attr("transform", "translate(0," + height + ")")
       .call(xAxis);
 

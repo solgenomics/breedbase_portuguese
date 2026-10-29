@@ -20,17 +20,15 @@ $guide
 </%args>
 
 <%perl>
- my $message = qq | <p> It appears that a population <b>$name</></b> already 
-                   exists in the database. To continue loading QTL data
-                   for a new population, try with a different population 
-                   name.</p>
-                         
-                  <p>If you are trying to load more or change data to an 
-                  exising population contact us.</p>
-
-                 <p>Please go <a href="javascript:history.go(-1)">back</a> 
-                  and try to use a different name or if you keep having 
-                  problem with it contact us.</p>
+ my $message = qq | <p> Parece que a população <b>$name</></b> já 
+                   existe no banco de dados. Para continuar carregando dados de QTL
+                   de uma nova população, use outro nome 
+                   de população.</p>
+                  <p>Se você está tentando carregar mais dados ou alterar dados de uma 
+                  população existente, entre em contato conosco.</p>
+                 <p><a href="javascript:history.go(-1)">Volte</a> 
+                  e tente usar outro nome ou, se o problema 
+                  persistir, entre em contato conosco.</p>
                  |;
 
 

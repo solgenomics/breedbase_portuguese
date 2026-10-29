@@ -1,86 +1,86 @@
 
 <& /page/page_title.mas, title=>"Enviando mapas para a SGN" &>
 
-Mapas podem ser enviados à SGN para inclusão no visualizador comparativo e ferramentas relacionadas. Formatos de arquivos são definidos para esses tipos de dados: 
+Mapas podem ser enviados à SGN para inclusão no visualizador comparativo de mapas e em ferramentas relacionadas. Os seguintes formatos de arquivo estão definidos para esses tipos de dados:
 <ol>
-<li> A <b>Arquivo de mapeamento</b> que contém as informações sobre os marcadores posicionam cada grupo de ligação.</li>
-<li> Um ou mais <b>marker data files</b> descrevendo os marcadores usados. O formato do arquivo que descreve cada tipo de marcador é diferente, de modo que para um mapa, muitos arquivos de descrição de marcador podem ser necessários.</li>
-<li> Marcador <b>Dados da pesquisa de polimorfismos</b> também pode ser submetido, mesmo que os marcadores não sejam mapeados.</li>
-<li> <b>Informações sobre o acesso</b> é necessário para acessos que ainda não estão no banco de dados do SGN. </li>
-</ol> 
+<li> Um <b>arquivo de mapeamento</b>, que contém as informações sobre as posições dos marcadores em cada grupo de ligação.</li>
+<li> Um ou mais <b>arquivos de dados de marcadores</b>, descrevendo os marcadores usados. O formato do arquivo que descreve cada tipo de marcador é diferente; portanto, para um mesmo mapa, podem ser necessários vários arquivos de descrição de marcadores.</li>
+<li> <b>Dados de levantamento de polimorfismos</b> dos marcadores também podem ser enviados, mesmo que os marcadores não estejam mapeados.</li>
+<li> <b>Informações sobre os acessos</b> são necessárias para os acessos que ainda não estão no banco de dados da SGN. </li>
+</ol>
 
-<p>Esses arquivos devem ser arquivos de texto delimitados por tabulação (no Excel, escolha "Texto (tab delimitado)" no diálogo Salvar Como). Enviar os arquivos envia-los como anexos de e-mail para <a href="mailto:sgn-feedback\@sgn.cornell.edu">sgn-feedback\@sgn.cornell.edu</a>.
-<i>Por favor, não deixe de incluir os cabeçalhos da coluna</i>.</p>
+<p>Esses arquivos devem ser arquivos de texto delimitados por tabulação (no Excel, escolha "Texto (separado por tabulações)" na caixa de diálogo Salvar como). Envie os arquivos como anexos de e-mail para <a href="mailto:sgn-feedback\@sgn.cornell.edu">sgn-feedback\@sgn.cornell.edu</a>.
+<i>Não deixe de incluir os cabeçalhos das colunas</i>.</p>
 
 
 <h3>O arquivo de mapeamento</h3>
 <p>
-Este arquivo dá a localização dos marcadores no mapa. Quando enviar um mapa, certifique-se de fornecer um arquivo de dados marcador e informações de acesso. Estas são as colunas definidas para o arquivo de mapeamento:
+Este arquivo informa a localização dos marcadores no mapa. Ao enviar um mapa, certifique-se de fornecer também um arquivo de dados de marcadores e as informações dos acessos. Estas são as colunas definidas para o arquivo de mapeamento:
 </p>
 
 <ul>
-<li><b>nome do marcador</b>Deve ser idêntico ao nome do marcador da SGN se já estiver disponível na SGN.</li>
-<li><b>ID do marcador</b>Se o marcador já estiver na SGN, fornecendo seu marcador de identificação (número SGN-M) nos permitirá processar seu mapa mais rapidamente.</li>
-<li><b>Grupo de ligação</b>O nome ou número do cromossomo ou grupo de ligação.</li>
-<li><b>posição</b>A posição na CM no grupo de ligação.</li>
-<li><b>Confiança</b>: grau de confiança do Mapmaker para este marcador: I, I(LOD2), F(LOD3) ou CF(LOD3). Se o software de mapeamento não calcular esse grau, omita a coluna.</li>
-<li><b>Protocolo</b>O tipo de experiência usada para mapear o marcador. Atualmente, apoiamos CAPS, RSS, RFLP, SNP e AFLP. Podemos aceitar a maioria dos marcadores baseados em PCR; <a href="/contact/">Contate a SGN</a> Se você gostaria de enviar tipos de marcadores que não estão listados aqui.</li>
+<li><b>marker name</b>: deve ser idêntico ao nome do marcador na SGN, se ele já estiver disponível na SGN.</li>
+<li><b>marker id</b>: (opcional) se o marcador já estiver na SGN, informar seu ID (número SGN-M) nos permitirá processar seu mapa mais rapidamente.</li>
+<li><b>linkage group</b>: o nome ou número do cromossomo ou grupo de ligação.</li>
+<li><b>position</b>: a posição em cM no grupo de ligação.</li>
+<li><b>confidence</b>: grau de confiança do Mapmaker para este marcador: I, I(LOD2), F(LOD3) ou CF(LOD3). Se o software de mapeamento não calcular esse grau, omita a coluna.</li>
+<li><b>protocol</b>: o tipo de experimento usado para mapear o marcador. Atualmente aceitamos CAPS, SSR, RFLP, SNP e AFLP. Podemos aceitar a maioria dos marcadores baseados em PCR; <a href="/contact/">entre em contato com a SGN</a> se quiser enviar tipos de marcadores que não estão listados aqui.</li>
 </ul>
 
-<h3>O arquivo de dados do marcador</h3>
-<p>Este arquivo tem um formato diferente para cada tipo de marcador. Por favor, forneça estas colunas:</p>
+<h3>O arquivo de dados de marcadores</h3>
+<p>Este arquivo tem um formato diferente para cada tipo de marcador. Forneça estas colunas:</p>
 
 
 <p>
-Marcadores de CAPS (<b>Nota: revista 10/2008</b>):
+Marcadores CAPS (<b>Nota: revisado em 10/2008</b>):
 </p>
 <pre>
-  marker_name. The marker name.
-  fwd primer. The sequence of the forward primer.
-  rev primer. The sequence of the reverse primer.
-  temperature. The annealing temperature used in the PCR.
-  Mg concentration. The Mg++ concentration used in the PCR.
-  enzyme. The enzyme used for digestion, if applicable.
-  band sizes of the undigested pcr products for the different parents, separated by a slash (see below)
-  digested band sizes for the different parents, using enzyme in column 6.
-  other enzymes. A list of other enzymes predicted to be useful for this marker
+  marker_name. O nome do marcador.
+  fwd primer. A sequência do primer direto.
+  rev primer. A sequência do primer reverso.
+  temperature. A temperatura de anelamento usada na PCR.
+  Mg concentration. A concentração de Mg++ usada na PCR.
+  enzyme. A enzima usada na digestão, se aplicável.
+  tamanhos das bandas dos produtos de PCR não digeridos para os diferentes genitores, separados por barra (veja abaixo)
+  tamanhos das bandas digeridas para os diferentes genitores, usando a enzima da coluna 6.
+  other enzymes. Uma lista de outras enzimas previstas como úteis para este marcador
 </pre>
 <p>
 Marcadores SSR:
 </p>
 <pre>
-  marker_name. The marker name.
-  fwd primer. The sequence of the forward primer.
-  rev primer. The sequence of the reverse primer.
-  temperature. The annealing temperature used in the PCR.
-  Mg concentration. The Mg++ concentration used in the PCR.
-  bands for parent 1. The band sizes for parent1 (see examples below).
-  bands for parent 2. The band sizes for parent2 (see examples below).
-  repeat motif. The repeat motif (for example AAT).
+  marker_name. O nome do marcador.
+  fwd primer. A sequência do primer direto.
+  rev primer. A sequência do primer reverso.
+  temperature. A temperatura de anelamento usada na PCR.
+  Mg concentration. A concentração de Mg++ usada na PCR.
+  bands for parent 1. Os tamanhos das bandas do genitor 1 (veja os exemplos abaixo).
+  bands for parent 2. Os tamanhos das bandas do genitor 2 (veja os exemplos abaixo).
+  repeat motif. O motivo de repetição (por exemplo, AAT).
 </pre>
 <p>
 Marcadores RFLP:
 </p>
 <pre>
-  marker_name. The marker name.
-  clone name. The clone used as a probe.
-  fwd sequence read name. The forward sequence read name. 
-  rev sequence read name. The reverse sequence read name.
-  bands for parent 1. The band sizes for parent1.
-  bands for parent 2. The band sizes for parent2.
+  marker_name. O nome do marcador.
+  clone name. O clone usado como sonda.
+  fwd sequence read name. O nome da leitura de sequência direta.
+  rev sequence read name. O nome da leitura de sequência reversa.
+  bands for parent 1. Os tamanhos das bandas do genitor 1.
+  bands for parent 2. Os tamanhos das bandas do genitor 2.
 </pre>
 
 <p>
-Para outros tipos de marcadores, <a href="/contact/form">Contate a SGN</a>.
+Para outros tipos de marcadores, <a href="/contact/form">entre em contato com a SGN</a>.
 </p>
 
 <h3>Dados de polimorfismo</h3>
 <p>
-O arquivo de dados do polimorfismo deve ter as seguintes colunas:
+O arquivo de dados de polimorfismo deve ter as seguintes colunas:
 </p>
 <pre>
   marker name.
-  band sizes accession 1. (see example below).
+  band sizes accession 1. (veja o exemplo abaixo).
   band sizes accession 2.
   band sizes accession 3.
   band sizes accession 4.
@@ -88,22 +88,22 @@ O arquivo de dados do polimorfismo deve ter as seguintes colunas:
   band sizes accession n.
 </pre>
 
-<h3>Informações sobre o acesso</h3>
+<h3>Informações sobre os acessos</h3>
 <p>
-Precisamos das seguintes informações para cada acesso usadas nos arquivos de dados de mapeamento ou polimorfismo. <a href="/contact/form">Contate-nos</a> Se não tem certeza. Essa informação pode ser enviada em um e-mail ou arquivo de texto.
+Precisamos das seguintes informações para cada acesso usado nos arquivos de dados de mapeamento ou de polimorfismo. <a href="/contact/form">Entre em contato conosco</a> se tiver dúvidas. Essas informações podem ser enviadas em um e-mail ou em um arquivo de texto.
 </p>
 <ul>
-<li>O acesso <b>identificador</b>, for example "TA210"</li>
-<li>O acesso <b>Nome</b> (opcional), por exemplo, "Sunpear" </li>
-<li>O acesso <b>Espécie</b> e (opcional) <b>Nome comum</b></li>
+<li>O <b>identificador</b> do acesso, por exemplo, "TA210"</li>
+<li>O <b>nome</b> do acesso (opcional), por exemplo, "Sunpear" </li>
+<li>A <b>espécie</b> do acesso e (opcionalmente) o <b>nome comum</b></li>
 </ul>
 
-<p>Se você identificou os acessos nos arquivos como "pai 1", "pai 2", etc, lembre-se de qual acesso é qual.</p>
+<p>Se você identificou os acessos nos arquivos como "genitor 1", "genitor 2" etc., lembre-se de informar qual acesso é qual.</p>
 
 <h4>Notas e exemplos</h4>
 
 <ol>
-<li>Nomes de marcadores devem corresponder a nomes de marcadores SGN, se os marcadores são idênticos, ou têm um novo nome que ainda não está no banco de dados SGN, já que as correspondências de marcadores serão estabelecidas com base em nomes correspondentes.</li>
-<li>Os tamanhos das bandas devem ser separados por + símbolos, se mais de uma banda for detectada, como: 420+230. O tamanho original da banda, antes da digestão, pode ser dado em uma coluna separada.</li>
-<li>Para marcadores RFLP, se possível, fornecer dados de sequência para o clone, como arquivos de cromatograma (.ab1 ou .scf). Normalmente, uma leitura para frente e para trás é feita. Os nomes dos arquivos podem ser indicados no arquivo RFLP.</li>
+<li>Os nomes dos marcadores devem corresponder aos nomes de marcadores da SGN, se os marcadores forem idênticos, ou ter um nome novo que ainda não esteja no banco de dados da SGN, pois as correspondências entre marcadores serão estabelecidas com base na coincidência de nomes.</li>
+<li>Se mais de uma banda for detectada, os tamanhos das bandas devem ser separados pelo símbolo +, por exemplo: 420+230. O tamanho original da banda, antes da digestão, pode ser informado em uma coluna separada.</li>
+<li>Para marcadores RFLP, se possível, forneça dados de sequência do clone, como arquivos de cromatograma (.ab1 ou .scf). Normalmente são feitas uma leitura direta e uma reversa. Os nomes dos arquivos podem ser indicados no arquivo de marcadores RFLP.</li>
 </ol>

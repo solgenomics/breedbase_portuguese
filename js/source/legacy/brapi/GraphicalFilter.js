@@ -47,7 +47,7 @@ function GraphicalFilter(brapi_node,trait_accessor,table_col_accessor,table_col_
   });
   
   if (group_key_accessor!=undefined){
-    tableCols.push({title:"Count",data:"count"});
+    tableCols.push({title:"Contagem",data:"count"});
     const reduce_func = function(a,d){ return a.concat(d)};
     data_node = data_node.reduce(reduce_func).fork(function(all){
       var key_map = {};
@@ -339,7 +339,7 @@ function GraphicalFilter(brapi_node,trait_accessor,table_col_accessor,table_col_
       .classed("dropdown-menu",true)
       .attr("aria-labelledby",dropID);
 
-    newFilterMenuContents.append("li").append("a").text("New Range")
+    newFilterMenuContents.append("li").append("a").text("Novo intervalo")
       .attr("href","")
       .classed("dropdown-item",true)
       .on("click",function(d){
@@ -350,7 +350,7 @@ function GraphicalFilter(brapi_node,trait_accessor,table_col_accessor,table_col_
         gfilter.redraw();
         return false;
       });
-    newFilterMenuContents.append("li").append("a").text("New Group")
+    newFilterMenuContents.append("li").append("a").text("Novo grupo")
       .attr("href","")
       .classed("dropdown-item",true)
       .on("click",function(d){
@@ -459,7 +459,7 @@ function GraphicalFilter(brapi_node,trait_accessor,table_col_accessor,table_col_
   };
   FilterRange.prototype.refreshSelect = function(){
     var select = d3.select(this.select);
-    this.selectableTraits = ["Select a Trait..."].concat(gfilter.rangeTraits);
+    this.selectableTraits = ["Selecione uma característica..."].concat(gfilter.rangeTraits);
     var ops = select.selectAll("option").data(this.selectableTraits);
     ops.exit().remove();
     var opsE = ops.enter().append("option");
@@ -708,7 +708,7 @@ function GraphicalFilter(brapi_node,trait_accessor,table_col_accessor,table_col_
       // console.log(brushExtent);
       this.brush.move(transition,brushExtent);
     } else {
-      status.text("Nothing");
+      status.text("Nada");
     }
 
     var d = this.x.domain();

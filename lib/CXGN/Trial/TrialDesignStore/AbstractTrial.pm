@@ -6,6 +6,7 @@ CXGN::Trial::TrialDesignStore::AbstractTrial - a class to provide function in co
 =cut
 
 package CXGN::Trial::TrialDesignStore::AbstractTrial;
+use utf8;
 
 use Moose;
 use MooseX::FollowPBP;
@@ -663,7 +664,7 @@ sub store {
                 }
 
                 if (!$parent_stock) {
-                    die ("Error while saving trial layout: no accession or cross or family name found matching $stock_name");
+                    die ("Erro ao salvar o layout do ensaio: nenhum acesso, cruzamento ou nome de família corresponde a $stock_name");
                 }
 
                 $stock_id_checked = $parent_stock->stock_id();
@@ -772,7 +773,7 @@ sub store {
                     }
 
                     if ($parent_plot_rs->count > 1){
-                        die "Plot $stock_id_checked is linked to more than one accession/cross/family name!\n"
+                        die "A parcela $stock_id_checked está vinculada a mais de um acesso/cruzamento/nome de família!\n"
                     }
 
                     if ($parent_plot_rs->count == 1){
@@ -809,7 +810,7 @@ sub store {
                     }
 
                     if ($parent_subplot_rs->count > 1){
-                        die "Subplot $stock_id_checked is linked to more than one accession/cross/family name!\n"
+                        die "A subparcela $stock_id_checked está vinculada a mais de um acesso/cruzamento/nome de família!\n"
                     }
 
                     if ($parent_subplot_rs->count == 1){
@@ -846,7 +847,7 @@ sub store {
                     }
 
                     if ($parent_plant_rs->count > 1){
-                        die "Plant $stock_id_checked is linked to more than one accession/cross/family name!\n"
+                        die "A planta $stock_id_checked está vinculada a mais de um acesso/cruzamento/nome de família!\n"
                     }
                     if ($parent_plant_rs->count == 1){
                         push @plot_subjects, { type_id => $stock_rel_type_id, object_id => $parent_plant_rs->first->object_id };
@@ -857,7 +858,7 @@ sub store {
                         'object.type_id'=>$self->get_plot_cvterm_id
                     }, {join => "object"});
                     if ($parent_plot_of_plant_rs->count > 1){
-                        die "Plant $stock_id_checked is linked to more than one plot!\n"
+                        die "A planta $stock_id_checked está vinculada a mais de uma parcela!\n"
                     }
                     if ($parent_plot_of_plant_rs->count == 1){
                         push @plot_subjects, { type_id => $stock_rel_type_id, object_id => $parent_plot_of_plant_rs->first->object_id };
@@ -893,7 +894,7 @@ sub store {
                     }
 
                     if ($parent_tissue_sample_rs->count > 1){
-                        die "Tissue_sample $stock_id_checked is linked to more than one accession/cross/family name!\n"
+                        die "A amostra de tecido $stock_id_checked está vinculada a mais de um acesso/cruzamento/nome de família!\n"
                     }
                     if ($parent_tissue_sample_rs->count == 1){
                         push @plot_subjects, { type_id => $stock_rel_type_id, object_id => $parent_tissue_sample_rs->first->object_id };
@@ -904,7 +905,7 @@ sub store {
                         'object.type_id'=>$self->get_plot_cvterm_id
                     }, {join => "object"});
                     if ($parent_plot_of_tissue_sample_rs->count > 1){
-                        die "Tissue_sample $stock_id_checked is linked to more than one plot!\n"
+                        die "A amostra de tecido $stock_id_checked está vinculada a mais de uma parcela!\n"
                     }
                     if ($parent_plot_of_tissue_sample_rs->count == 1){
                         push @plot_subjects, { type_id => $stock_rel_type_id, object_id => $parent_plot_of_tissue_sample_rs->first->object_id };
@@ -915,7 +916,7 @@ sub store {
                         'object.type_id'=>$self->get_plant_cvterm_id
                     }, {join => "object"});
                     if ($parent_plant_of_tissue_sample_rs->count > 1){
-                        die "Tissue_sample $stock_id_checked is linked to more than one plant!\n"
+                        die "A amostra de tecido $stock_id_checked está vinculada a mais de uma planta!\n"
                     }
                     if ($parent_plant_of_tissue_sample_rs->count == 1){
                         push @plot_subjects, { type_id => $stock_rel_type_id, object_id => $parent_plant_of_tissue_sample_rs->first->object_id };
@@ -1088,7 +1089,7 @@ sub store {
                     }, {join => "subject"});
 
                     if ($parent_plot_of_plant_rs->count > 1){
-                        die "Plant $parent_plant_id is linked to more than one plot!\n"
+                        die "A planta $parent_plant_id está vinculada a mais de uma parcela!\n"
                     }
 
                     if ($parent_plot_of_plant_rs->count == 1){

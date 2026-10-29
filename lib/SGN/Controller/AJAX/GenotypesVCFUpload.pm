@@ -13,6 +13,7 @@ Uploading Genotype VCF
 =cut
 
 package SGN::Controller::AJAX::GenotypesVCFUpload;
+use utf8;
 
 use Moose;
 use Try::Tiny;
@@ -62,7 +63,7 @@ sub upload_genotype_verify_POST : Args(0) {
         my $dbh = $c->dbc->dbh;
         my @user_info = CXGN::Login->new($dbh)->query_from_cookie($session_id);
         if (!$user_info[0]){
-            $c->stash->{rest} = {error=>'You must be logged in to upload this VCF genotype info!'};
+            $c->stash->{rest} = {error=>'Você precisa estar conectado para enviar estas informações de genótipos VCF!'};
             $c->detach();
         }
         $user_id = $user_info[0];
@@ -71,7 +72,7 @@ sub upload_genotype_verify_POST : Args(0) {
         $user_name = $p->get_username;
     } else{
         if (!$c->user){
-            $c->stash->{rest} = {error=>'You must be logged in to upload this VCF genotype info!'};
+            $c->stash->{rest} = {error=>'Você precisa estar conectado para enviar estas informações de genótipos VCF!'};
             $c->detach();
         }
         $user_id = $c->user()->get_object()->get_sp_person_id();
@@ -80,7 +81,7 @@ sub upload_genotype_verify_POST : Args(0) {
     }
 
     if ($user_role ne 'submitter' && $user_role ne 'curator') {
-        $c->stash->{rest} = { error => 'Must have correct permissions to upload VCF genotypes! Please contact us.' };
+        $c->stash->{rest} = { error => 'É necessário ter as permissões adequadas para enviar genótipos VCF! Entre em contato conosco.' };
         $c->detach();
     }
 
@@ -132,12 +133,12 @@ sub upload_genotype_verify_POST : Args(0) {
         my $associated_protocol  = $protocol_info->get_associated_protocol();
         my @info;
         if ((defined $associated_protocol) && (scalar(@$associated_protocol)>1)) {
-            $c->stash->{rest} = { error => "Each genotyping project should be associated with only one protocol" };
+            $c->stash->{rest} = { error => "Cada projeto de genotipagem deve estar associado a apenas um protocolo" };
             $c->detach();
         } elsif (defined $associated_protocol && scalar(@$associated_protocol) == 1) {
             my $stored_protocol_id = $associated_protocol->[0]->[0];
             if ($stored_protocol_id != $protocol_id) {
-                $c->stash->{rest} = { error => "The selected genotyping project is already associated with different protocol. Each project should be associated with only one protocol" };
+                $c->stash->{rest} = { error => "O projeto de genotipagem selecionado já está associado a um protocolo diferente. Cada projeto deve estar associado a apenas um protocolo" };
                 $c->detach();
             }
         }
@@ -148,7 +149,7 @@ sub upload_genotype_verify_POST : Args(0) {
         });
         my $associated_protocol  = $protocol_info->get_associated_protocol();
         if ((defined $associated_protocol) && (scalar(@$associated_protocol) > 0)) {
-            $c->stash->{rest} = { error => "The selected genotyping project is already associated with a protocol. Each project should be associated with only one protocol" };
+            $c->stash->{rest} = { error => "O projeto de genotipagem selecionado já está associado a um protocolo. Cada projeto deve estar associado a apenas um protocolo" };
             $c->detach();
         }
     }
@@ -169,19 +170,19 @@ sub upload_genotype_verify_POST : Args(0) {
     }
 
     if (defined($upload_vcf) && defined($upload_intertek_genotypes)) {
-        $c->stash->{rest} = { error => 'Do not try to upload both VCF and Intertek at the same time!' };
+        $c->stash->{rest} = { error => 'Não tente enviar VCF e Intertek ao mesmo tempo!' };
         $c->detach();
     }
     if (defined($upload_vcf) && defined($upload_tassel_hdf5)) {
-        $c->stash->{rest} = { error => 'Do not try to upload both VCF and Tassel HDF5 at the same time!' };
+        $c->stash->{rest} = { error => 'Não tente enviar VCF e Tassel HDF5 ao mesmo tempo!' };
         $c->detach();
     }
     if (defined($upload_intertek_genotypes) && defined($upload_tassel_hdf5)) {
-        $c->stash->{rest} = { error => 'Do not try to upload both Intertek and Tassel HDF5 at the same time!' };
+        $c->stash->{rest} = { error => 'Não tente enviar Intertek e Tassel HDF5 ao mesmo tempo!' };
         $c->detach();
     }
     if ((defined($upload_intertek_genotypes) && !defined($upload_inteterk_marker_info)) || (!defined($upload_intertek_genotypes) && defined($upload_inteterk_marker_info))) {
-        $c->stash->{rest} = { error => 'To upload Intertek genotype data please provide both the Grid Genotypes File and the Marker Info File.' };
+        $c->stash->{rest} = { error => 'Para enviar dados de genótipos Intertek, informe o arquivo de genótipos em grade (Grid Genotypes File) e o arquivo de informações de marcadores (Marker Info File).' };
         $c->detach();
     }
 
@@ -215,7 +216,7 @@ sub upload_genotype_verify_POST : Args(0) {
             });
             my $archived_original_vcf = $original_uploader->archive();
             if (!$archived_original_vcf) {
-                $c->stash->{rest} = { error => "Could not save file $upload_original_name in archive." };
+                $c->stash->{rest} = { error => "Não foi possível salvar o arquivo $upload_original_name no arquivo permanente." };
                 $c->detach();
             }
 
@@ -282,7 +283,7 @@ sub upload_genotype_verify_POST : Args(0) {
         my $archived_tassel_hdf5_file = $uploader->archive();
         my $md5 = $uploader->get_md5($archived_tassel_hdf5_file);
         if (!$archived_tassel_hdf5_file) {
-            $c->stash->{rest} = { error => "Could not save file $upload_original_name in archive." };
+            $c->stash->{rest} = { error => "Não foi possível salvar o arquivo $upload_original_name no arquivo permanente." };
             $c->detach();
         }
         unlink $upload_tempfile;
@@ -357,10 +358,10 @@ sub upload_genotype_verify_POST : Args(0) {
         $archived_marker_info_file = $uploader->archive();
         my $md5 = $uploader->get_md5($archived_marker_info_file);
         if (!$archived_marker_info_file) {
-            push @error_status, "Could not save file $upload_inteterk_marker_info_original_name in archive.";
+            push @error_status, "Não foi possível salvar o arquivo $upload_inteterk_marker_info_original_name no arquivo permanente.";
             return (\@success_status, \@error_status);
         } else {
-            push @success_status, "File $upload_inteterk_marker_info_original_name saved in archive.";
+            push @success_status, "Arquivo $upload_inteterk_marker_info_original_name salvo no arquivo permanente.";
         }
         unlink $upload_inteterk_marker_info_tempfile;
     }
@@ -393,10 +394,10 @@ sub upload_genotype_verify_POST : Args(0) {
         $archived_marker_info_file = $uploader->archive();
         my $md5 = $uploader->get_md5($archived_marker_info_file);
         if (!$archived_marker_info_file) {
-            push @error_status, "Could not save file $upload_kasp_marker_info_original_name in archive.";
+            push @error_status, "Não foi possível salvar o arquivo $upload_kasp_marker_info_original_name no arquivo permanente.";
             return (\@success_status, \@error_status);
         } else {
-            push @success_status, "File $upload_kasp_marker_info_original_name saved in archive.";
+            push @success_status, "Arquivo $upload_kasp_marker_info_original_name salvo no arquivo permanente.";
         }
         unlink $upload_kasp_marker_info_tempfile;
     }
@@ -415,10 +416,10 @@ sub upload_genotype_verify_POST : Args(0) {
       $archived_filename_with_path = $uploader->archive();
       my $md5 = $uploader->get_md5($archived_filename_with_path);
       if (!$archived_filename_with_path) {
-        push @error_status, "Could not save file $upload_original_name in archive.";
+        push @error_status, "Não foi possível salvar o arquivo $upload_original_name no arquivo permanente.";
         return (\@success_status, \@error_status);
       } else {
-        push @success_status, "File $upload_original_name saved in archive.";
+        push @success_status, "Arquivo $upload_original_name salvo no arquivo permanente.";
       }
     }
     unlink $upload_tempfile;
@@ -446,11 +447,11 @@ sub upload_genotype_verify_POST : Args(0) {
             push @found_organisms, $organism_id;
         }
         if (scalar(@found_organisms) == 0){
-            $c->stash->{rest} = { error => 'The organism species you provided is not in the database! Please contact us.' };
+            $c->stash->{rest} = { error => 'A espécie de organismo informada não está no banco de dados! Entre em contato conosco.' };
             $c->detach();
         }
         if (scalar(@found_organisms) > 1){
-            $c->stash->{rest} = { error => 'The organism species you provided is not unique in the database! Please contact us.' };
+            $c->stash->{rest} = { error => 'A espécie de organismo informada não é única no banco de dados! Entre em contato conosco.' };
             $c->detach();
         }
         $organism_id = $found_organisms[0];
@@ -560,7 +561,7 @@ sub upload_genotype_verify_POST : Args(0) {
                 foreach my $error (@{$verified_errors->{error_messages}}) {
                     $error_string .= $error."<br>";
                 }
-                $c->stash->{rest} = { error => "There exist errors in your file. $error_string", missing_stocks => $verified_errors->{missing_stocks}, missing_markers => $verified_errors->{missing_markers} };
+                $c->stash->{rest} = { error => "Existem erros no seu arquivo. $error_string", missing_stocks => $verified_errors->{missing_stocks}, missing_markers => $verified_errors->{missing_markers} };
                 $c->detach();
             }
 
@@ -592,7 +593,7 @@ sub upload_genotype_verify_POST : Args(0) {
                             for my $key (qw(chrom pos name ref alt)) {
                                 my $value = $new_marker_details->{$key};
                                 if ($value ne ($stored_markers->{$marker_name}->{$key})) {
-                                    push @protocol_match_errors, "Marker $marker_name in your file has $value for $key, but in the previously stored protocol shows ".$stored_markers->{$marker_name}->{$key};
+                                    push @protocol_match_errors, "O marcador $marker_name no seu arquivo tem $value para $key, mas o protocolo armazenado anteriormente mostra ".$stored_markers->{$marker_name}->{$key};
                                 }
                             }
                         } else {
@@ -608,7 +609,7 @@ sub upload_genotype_verify_POST : Args(0) {
 			    print STDERR "Adding new markers\n";
 			    $store_genotypes->store_new_markers_in_protocolprop(\@mismatch_markers);
 			} else {
-			    $c->stash->{rest} = { error => "Too many new markers"};
+			    $c->stash->{rest} = { error => "Há muitos marcadores novos"};
                             $c->detach();
 		        }
 		    } else {
@@ -616,7 +617,7 @@ sub upload_genotype_verify_POST : Args(0) {
                         foreach my $error ( sort @mismatch_marker_names) {
                             $marker_name_error .= $error."<br>";
                         }
-			$c->stash->{rest} = { error => "These marker names in your file are not in the selected protocol. $marker_name_error", missing_markers => \@mismatch_marker_names };
+			$c->stash->{rest} = { error => "Estes nomes de marcadores no seu arquivo não estão no protocolo selecionado. $marker_name_error", missing_markers => \@mismatch_marker_names };
                         $c->detach();
                     }
                 }
@@ -660,7 +661,7 @@ sub upload_genotype_verify_POST : Args(0) {
         if (!$parsed_data) {
             my $return_error = '';
             if (!$parser->has_parse_errors() ){
-                $return_error = "Could not get parsing errors";
+                $return_error = "Não foi possível obter os erros de análise do arquivo";
                 $c->stash->{rest} = {error_string => $return_error,};
             } else {
                 $parse_errors = $parser->get_parse_errors();
@@ -694,7 +695,7 @@ sub upload_genotype_verify_POST : Args(0) {
             foreach my $error (@{$verified_errors->{error_messages}}) {
                 $error_string .= $error."<br>";
             }
-            $c->stash->{rest} = { error => "There exist errors in your file. $error_string", missing_stocks => $verified_errors->{missing_stocks}, missing_markers => $verified_errors->{missing_markers} };
+            $c->stash->{rest} = { error => "Existem erros no seu arquivo. $error_string", missing_stocks => $verified_errors->{missing_stocks}, missing_markers => $verified_errors->{missing_markers} };
             $c->detach();
         }
 
@@ -725,7 +726,7 @@ sub upload_genotype_verify_POST : Args(0) {
                         for my $key (qw(chrom pos name ref alt)) {
                             my $value = $new_marker_details->{$key};
                             if ($value ne ($stored_markers->{$marker_name}->{$key})) {
-                                push @protocol_match_errors, "Marker $marker_name in your file has $value for $key, but in the previously stored protocol shows ".$stored_markers->{$marker_name}->{$key};
+                                push @protocol_match_errors, "O marcador $marker_name no seu arquivo tem $value para $key, mas o protocolo armazenado anteriormente mostra ".$stored_markers->{$marker_name}->{$key};
                             }
                         }
                     } else {
@@ -742,7 +743,7 @@ sub upload_genotype_verify_POST : Args(0) {
                         $store_genotypes->store_new_markers_in_protocolprop(\@mismatch_markers);
                     } else {
 			print STDERR "Too many new markers, should be less than 20\n";
-		        $c->stash->{rest} = { error => "Too many new markers, should be less than 20"};
+		        $c->stash->{rest} = { error => "Há muitos marcadores novos; devem ser menos de 20"};
                         $c->detach();
                     }
 		} else {
@@ -750,7 +751,7 @@ sub upload_genotype_verify_POST : Args(0) {
                     foreach my $error ( sort @mismatch_marker_names) {
                         $marker_name_error .= $error."<br>";
                     }
-		    $c->stash->{rest} = { error => "These marker names in your file are not in the selected protocol. $marker_name_error"};
+		    $c->stash->{rest} = { error => "Estes nomes de marcadores no seu arquivo não estão no protocolo selecionado. $marker_name_error"};
                     $c->detach();
                 }
             }
@@ -775,7 +776,7 @@ sub upload_genotype_verify_POST : Args(0) {
         if (!$parsed_data) {
             my $return_error = '';
             if (!$parser->has_parse_errors() ){
-                $return_error = "Could not get parsing errors";
+                $return_error = "Não foi possível obter os erros de análise do arquivo";
                 $c->stash->{rest} = {error_string => $return_error,};
             } else {
                 $parse_errors = $parser->get_parse_errors();
@@ -820,7 +821,7 @@ sub upload_genotype_verify_POST : Args(0) {
             foreach my $error (@{$verified_errors->{error_messages}}) {
                 $error_string .= $error."<br>";
             }
-            $c->stash->{rest} = { error => "There exist errors in your file. $error_string", missing_stocks => $verified_errors->{missing_stocks}, missing_markers => $verified_errors->{missing_markers} };
+            $c->stash->{rest} = { error => "Existem erros no seu arquivo. $error_string", missing_stocks => $verified_errors->{missing_stocks}, missing_markers => $verified_errors->{missing_markers} };
             $c->detach();
         }
 

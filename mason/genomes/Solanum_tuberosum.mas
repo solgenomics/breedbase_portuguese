@@ -1,20 +1,20 @@
 <%args>
   $organism
 </%args>
-<& /page/page_title.mas, title => '<i>'.$organism->species.'</i> Genome Data' &>
+<& /page/page_title.mas, title => 'Dados do genoma de <i>'.$organism->species.'</i>' &>
 
 <div class="page_introduction">
 
    O genoma da batata foi sequenciado pelo <a
-   href="http://potatogenome.net">Consorcio de Sequência Genoma de Batata</a> (PGSC), um grupo internacional de cientistas de 14 países. A sequência foi publicada em <a
-   href="http://www.ncbi.nlm.nih.gov/pubmed/21743474">Nature</a> em julho de 2011. Muitas linhas de batata são tetraploides, no entanto, o acesso sequenciada foi uma linha homozigótica diplóide (haplóide duplo) <i>Solanum
+   href="http://potatogenome.net">Potato Genome Sequencing Consortium</a> (PGSC), um grupo internacional de cientistas de 14 países. A sequência foi publicada na <a
+   href="http://www.ncbi.nlm.nih.gov/pubmed/21743474">Nature</a> em julho de 2011. Muitas linhagens de batata são tetraploides; no entanto, o acesso sequenciado foi uma linhagem diploide homozigota (duplo-haploide) de <i>Solanum
    tuberosum phureja</i>. Abaixo está um espelho dos arquivos fornecidos em
    <a href="http://potatogenome.net">http://potatogenome.net</a>.
 
 </div>
 
 <&| /page/info_section.mas,
-      title       => 'Datasets de sequência',
+      title       => 'Conjuntos de dados de sequência',
       collapsible => 1,
  &>
   <& /genomes/default/genome_builds.mas, %ARGS &>
@@ -22,7 +22,7 @@
 
 
 <&| /page/info_section.mas,
-      title       => 'Anotações de navegação',
+      title       => 'Anotações navegáveis',
       collapsible => 1,
       hide_if_empty => 1,
  &>
@@ -32,7 +32,7 @@
 </&>
 
 <&| /page/info_section.mas,
-      title       => 'Datasets de anotações',
+      title       => 'Conjuntos de dados de anotação',
       collapsible => 1,
       hide_if_empty => 1,
  &>

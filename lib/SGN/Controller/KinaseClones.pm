@@ -62,7 +62,7 @@ END_HEREDOC
 
        $c->forward('View::Email');
 
-       $c->stash->{message} = "Thank you. Your message has been sent.";
+       $c->stash->{message} = "Obrigado. Sua mensagem foi enviada.";
        $c->stash->{template} = "/generic_message.mas";
     } else {
 

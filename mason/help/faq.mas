@@ -9,18 +9,18 @@
           cellspacing="0" border="0">
             <tr>
               <td>
-                Esta página contém perguntas que os usuários da SGN fazem e são úteis para a maior comunidade de usuários da SGN. Por favor.
-                <a href="/contact/form">Nos avise</a> Se você tem uma pergunta que você acha que deve ser adicionada.
+                Esta página reúne perguntas feitas por usuários da SGN que podem ser úteis para toda a comunidade de usuários.
+                <a href="/contact/form">Avise-nos</a> se você tiver uma pergunta que acha que deveria ser adicionada.
 
                 <p><strong>Pergunta:</strong> Onde posso pedir clones?<br />
-                <strong>Resposta:</strong> Isso depende da espécie e da biblioteca específica. Para clones de tomate, você pode usar a instalação de encomenda de clones na <a href=
+                <strong>Resposta:</strong> Isso depende da espécie e da biblioteca específica. Para clones de tomate, você pode usar o serviço de pedido de clones do <a href=
                 "http://ted.bti.cornell.edu/order/">Boyce Thompson
-                Institute</a>. Para clones de batata que foram sequenciados como parte do projeto do genoma de batata dos EUA, a ordem é manuseada pelo <a href=
-                "http://genome.arizona.edu/orders/">Instituto Arizona Genoma</a>. Para todas as outras bibliotecas, por favor entre em contato com os remetentes da biblioteca dadas nas páginas de detalhes da biblioteca (use o <a href=
-                "/search/direct_search.pl?search=ESTs">Busca na Biblioteca</a> Página para encontrar a biblioteca em questão).</p>
+                Institute</a>. Para clones de batata que foram sequenciados como parte do projeto do genoma de batata dos EUA, o pedido é feito pelo <a href=
+                "http://genome.arizona.edu/orders/">Arizona Genomics Institute</a>. Para todas as outras bibliotecas, entre em contato com os responsáveis indicados nas páginas de detalhes de cada biblioteca (use a página de <a href=
+                "/search/direct_search.pl?search=ESTs">busca de bibliotecas</a> para encontrar a biblioteca em questão).</p>
 
                 <p><strong>Pergunta:</strong> As páginas do SGN parecem muito confusas no meu navegador.<br />
-                <strong>Resposta:</strong> Você está trabalhando com um navegador antigo que não suporta folhas de estilo, como os navegadores da série 4.x da Netscape. Páginas da SGN exigem folhas de estilo e javascript para ser ligado.</p>
+                <strong>Resposta:</strong> Você está trabalhando com um navegador antigo que não suporta folhas de estilo, como os navegadores da série 4.x da Netscape. As páginas da SGN exigem que folhas de estilo e JavaScript estejam habilitados.</p>
 
                 <p><strong>Pergunta:</strong> Posso enviar meus dados para a SGN?<br />
                 <strong>Resposta:</strong> Por favor, envie uma mensagem usando o <a href=
@@ -28,39 +28,39 @@
                 com uma descrição dos dados que gostaria de enviar. Trabalharemos com você para integrar seus dados no banco de dados e/ou adicioná-los ao servidor FTP.<br />
                 </p>
                 <p><strong>Pergunta:</strong> O genoma do tomate tem 12 cromossomos. No entanto, algumas sequências são mapeadas para "ch00". O que é 'ch00'? <br />
-                <strong>Resposta:</strong> ch00 é um suporte para sequências de tomate que não poderiam ser mapeadas para nenhum dos 12 cromossomos de tomate.
+                <strong>Resposta:</strong> ch00 é um agrupamento para as sequências de tomate que não puderam ser mapeadas para nenhum dos 12 cromossomos de tomate.
                 <br />
-                <p><strong>Pergunta:</strong> O que significa o gradiente de cor nas faixas Gbrowse? <br />
-                <strong>Resposta:</strong> A intensidade da cor significa o grau de correspondência entre a característica e a sequência do genoma, a cor branca significa a menor correspondência, enquanto a cor mais escura significa a mais forte. Você pode encontrar uma explicação mais detalhada seguindo o botão '?' no caminho de seu interesse.
+                <p><strong>Pergunta:</strong> O que significa o gradiente de cor nas trilhas do GBrowse? <br />
+                <strong>Resposta:</strong> A intensidade da cor indica o grau de correspondência entre a feição e a sequência do genoma: o branco indica a menor correspondência e a cor mais escura, a mais forte. Você encontra uma explicação mais detalhada clicando no botão '?' da trilha de seu interesse.
 
 		<p>
 		  <strong>Pergunta:</strong> O que os identificadores do formato Solyc01g001010.1.1 significam?<br />
-		  <strong>Resposta:</strong> "Solyc" é a abreviação de 5 letras de <i>Solanum lycopersicum</i>, the 2 digit number following the 'Solyc' denotes the chromosome, 'g' denotes that the sequence is a gene, and the 6 digit number following the 'g' identifies the gene on the chromosome, starting at the top and counting in 10 increments. The first '.1' denotes the annotation version number of the locus (and if only the first number is given, denotes the locus), whereas the second '.1' denotes the transcript (a locus can give rise to many transcripts, splice variants), and also the proteins derived from these transcripts.
+		  <strong>Resposta:</strong> "Solyc" é a abreviação de 5 letras de <i>Solanum lycopersicum</i>; o número de 2 dígitos após 'Solyc' indica o cromossomo; 'g' indica que a sequência é um gene; e o número de 6 dígitos após 'g' identifica o gene no cromossomo, começando pelo topo e contando em incrementos de 10. O primeiro '.1' indica o número da versão de anotação do locus (se apenas o primeiro número for informado, ele indica o locus), enquanto o segundo '.1' indica o transcrito (um locus pode originar vários transcritos, as variantes de splicing) e também as proteínas derivadas desses transcritos.
                 <br />
                 </p>
                 <p>
-		  <strong>Pergunta:</strong>Como posso usar a ferramenta de Intron Finder da SGN para um lote de sequências?<br />
-		  <strong>Resposta:</strong> (1) Você pode inserir várias sequências para o <a href="/tools/intron_detection/find_introns.pl">Forma</a>. (2) Se você estiver executando o BLAST localmente, tente usar o código abaixo:<br/> <a href="https://github.com/solgenomics/sgn/blob/master/cgi-bin/tools/intron_detection/intron_finder_homology.pl"> Código 1</a>, <a href="https://github.com/solgenomics/sgn/blob/master/lib/SGN/IntronFinder/Homology.pm">Código 2</a>. 
+		  <strong>Pergunta:</strong> Como posso usar a ferramenta Intron Finder da SGN para um lote de sequências?<br />
+		  <strong>Resposta:</strong> (1) Você pode inserir várias sequências no <a href="/tools/intron_detection/find_introns.pl">formulário</a>. (2) Se você estiver executando o BLAST localmente, tente usar o código abaixo:<br/> <a href="https://github.com/solgenomics/sgn/blob/master/cgi-bin/tools/intron_detection/intron_finder_homology.pl"> Código 1</a>, <a href="https://github.com/solgenomics/sgn/blob/master/lib/SGN/IntronFinder/Homology.pm">Código 2</a>. 
                 <br />
                 </p>
                 <p>
-		  <strong>Pergunta:</strong>Que cultivar foi usada para o projeto internacional de sequenciamento do genoma de tomate?<br />
+		  <strong>Pergunta:</strong> Que cultivar foi usada para o projeto internacional de sequenciamento do genoma de tomate?<br />
 		  <strong>Resposta:</strong> <a href="/stock/676/view">Heinz 1706</a>.
                 <br />
                 </p>
                  <p>
-		  <strong>Pergunta:</strong> Como posso baixar as características da anotação no genoma do tomate?<br />
-		  <strong>Resposta:</strong> As an alternative to Gbrowse's download function, you can use this <a href="/search/features">ferramenta</a> para selecionar sua região de interesse e baixar os recursos usando as opções de download na parte superior direita da página. 
+		  <strong>Pergunta:</strong> Como posso baixar as feições (features) de anotação do genoma do tomate?<br />
+		  <strong>Resposta:</strong> Como alternativa à função de download do GBrowse, você pode usar esta <a href="/search/features">ferramenta</a> para selecionar sua região de interesse e baixar as feições usando as opções de download no canto superior direito da página. 
                 <br />
                 </p>
                 <p>
-		  <strong>Pergunta:</strong> Como posso converter unigenes de tomate entre construções?<br />
-		  <strong>Resposta: </strong>Use isso <a href="ftp://ftp.solgenomics.net/unigene_builds/combined_species_assemblies/tomato_species/tomato_species_unigenes.v1.global_versionmapping.tab">arquivo</a>, and read this <a href="ftp://ftp.solgenomics.net/unigene_builds/combined_species_assemblies/tomato_species/README_about_global_version_mapping.txt">Chave</a>. <b>Ressalva</b>Um unigene pode ser dividido ou fundido com outros unigenes em diferentes construções. Para unigenes de espécies não-tomates, procure por arquivos com nomes semelhantes mais altos no diretório ftp.
+		  <strong>Pergunta:</strong> Como posso converter unigenes de tomate entre diferentes montagens (builds)?<br />
+		  <strong>Resposta: </strong>Use este <a href="ftp://ftp.solgenomics.net/unigene_builds/combined_species_assemblies/tomato_species/tomato_species_unigenes.v1.global_versionmapping.tab">arquivo</a> e leia esta <a href="ftp://ftp.solgenomics.net/unigene_builds/combined_species_assemblies/tomato_species/README_about_global_version_mapping.txt">explicação</a>. <b>Ressalva:</b> um unigene pode ser dividido ou fundido com outros unigenes em diferentes montagens. Para unigenes de outras espécies que não o tomate, procure arquivos com nomes semelhantes em níveis superiores do diretório FTP.
                 <br />
                 </p>
  <p>
-		  <strong>Pergunta:</strong> Como posso mapear genes de tomate ids (ITAG_2.3 anotação) para seus correspondentes ids unigene SGN (construção única #2)?<br />
-		  <strong>Resposta: </strong>Use isso <a href="ftp://ftp.solgenomics.net/unigene_builds/combined_species_assemblies/tomato_species/unigene_annotations/tomato_species_unigenes.v2.Solyc_ITAG2.3.genemodels.map.txt">arquivo</a>, and read this <a href="ftp://ftp.solgenomics.net/unigene_builds/combined_species_assemblies/tomato_species/README_about_global_version_mapping.txt">nota</a>.
+		  <strong>Pergunta:</strong> Como posso mapear IDs de genes de tomate (anotação ITAG_2.3) para os IDs de unigenes SGN correspondentes (montagem de unigenes #2)?<br />
+		  <strong>Resposta: </strong>Use este <a href="ftp://ftp.solgenomics.net/unigene_builds/combined_species_assemblies/tomato_species/unigene_annotations/tomato_species_unigenes.v2.Solyc_ITAG2.3.genemodels.map.txt">arquivo</a> e leia esta <a href="ftp://ftp.solgenomics.net/unigene_builds/combined_species_assemblies/tomato_species/README_about_global_version_mapping.txt">nota</a>.
                 <br />
                 </p>
               </td>

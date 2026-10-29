@@ -13,7 +13,7 @@
 		<!-- Modal content-->
 		   <div class="modal-content">
 		   <div class="modal-header">
-		   <h4 class="modal-title">Procurando por Motifs</h4>
+		   <h4 class="modal-title">Procurando motivos</h4>
 		</div>
 
 			<div class="modal-body">
@@ -50,9 +50,9 @@
    <textarea class="form-control" id="sequence" name="sequence" ></textarea><br>
 
    <div class="form-inline">
-   	<label><span style="cursor:default" title="Length(s) de motivo, separado por vírgula sem espaço (por exemplo, 4,6)">Motif largura(s)</span></label>
+   	<label><span style="cursor:default" title="Comprimento(s) do motivo, separados por vírgula sem espaço (ex.: 4,6)">Largura(s) do motivo</span></label>
    	<input class="form-control" type="text" name="widths_of_motifs" style="width: 110px;" value="12,14">&nbsp;&nbsp;&nbsp;
-   	<label><span style="cursor:default" title="Número de locais esperados em cada sequência, separados por vírgula sem espaço (por exemplo, 4,6)">Esperados sites</span></label>
+   	<label><span style="cursor:default" title="Número de locais esperados em cada sequência, separados por vírgula sem espaço (ex.: 4,6)">Sítios esperados</span></label>
    	<input class="form-control" type="text" name="numbers_of_sites" style="width: 110px;" value="3,5"> <br><br>
    </div>
 
@@ -66,9 +66,9 @@
     <div class="subsection_bar" >
 		<a class="collapser_link" href="javascript:folding_section('#ad-option','#tmp_img_hide1');">
 		<img id="tmp_img_hide1" class="sub_collapser_img" src="/static/documents/img/collapser_plus.png" width="20" height="20" />
-			Opções Avançadas
+			Opções avançadas
 		</a>
-		<span class="pull-center" data-toggle="modal" data-target="#myModal">[<a id="help_dialog">Socorro!</a>]</span>
+		<span class="pull-center" data-toggle="modal" data-target="#myModal">[<a id="help_dialog">Ajuda</a>]</span>
 	</div>
 
 	<div id="ad-option" class="collapse center_section"  >
@@ -76,19 +76,19 @@
 	<p>
 
 	<div class="form-inline" >
-	   <label style="cursor:default" title="Este valor é o número de vezes que o amostrador é reiniciado e pode ser alterado para amostra em um maior (ou menor) número de modelos iniciais separados.">Número de sementes</label>
+	   <label style="cursor:default" title="Este valor é o número de vezes que o amostrador é reiniciado e pode ser alterado para amostrar um número maior (ou menor) de modelos iniciais separados.">Número de sementes</label>
    	   <input class="form-control" type="text" name="number_of_seeds" value="20" size="2">&nbsp; &nbsp; &nbsp;
 
-       <label><input type="checkbox" name="fragmentation" value="-F" checked>Fragmentação</label>&nbsp; &nbsp; &nbsp;
-   	   <label><input type="checkbox" name="rev_complement" value="-r" unchecked>Complemento Reverso</label>
+       <label><input type="checkbox" name="fragmentation" value="-F" checked>&nbsp;Fragmentação</label>&nbsp; &nbsp; &nbsp;
+   	   <label><input type="checkbox" name="rev_complement" value="-r" unchecked>&nbsp;Complemento reverso</label>
 	   </p>
          </div>
     </div>
 
    <br>
 
-   <button type="reset" id="clear_form" value="clear" title="Forma clara">Limpar</button>&nbsp; &nbsp; &nbsp;
-   <button class="btn btn-primary"  id="button" value="Run_Motifs_Finder">Correr Motifs Finder</button>
+   <button type="reset" id="clear_form" value="clear" title="Limpar formulário">Limpar</button>&nbsp; &nbsp; &nbsp;
+   <button class="btn btn-primary"  id="button" value="Run_Motifs_Finder">Executar Motifs Finder</button>
 
   </form>
 
@@ -122,11 +122,11 @@
 
     	<p>
 	<b>Uso:</b><br />
-	1. Paste a <b>Sequência</b> como no exemplo:<br />
-	<span style="background-color:#DCDCDC;">&nbsp;&nbsp;>gene_name<br />ARGATCAGTCGGTGTTGGGCGATCT<br />ACAGCTTGCCCAACTACAGAAATTG</span><br />
-	Ou carregar um <b>Arquivo de sequência</b>. Deve estar dentro <b>Formato FASTA</b>.<br />
-	2. Entre <b>Largura(s) do motivo</b>, a width for each motif must be entered. For multiple motifs, the widths are separated by commas; (16,20,...)<br />
-	3. Entre <b>sites esperados</b>, expected number of sites in each motif must be entered. For multiple motifs, the sites are separated by commas; (7,12,...)<br />
+	1. Cole uma <b>sequência</b> como no exemplo:<br />
+	<span style="background-color:#DCDCDC;">&nbsp;&nbsp;>gene_name<br />&nbsp;&nbsp;ATGGATCAGTCGGTGTTGGCGATCT&nbsp;&nbsp;<br />&nbsp;&nbsp;ACAGCTTGGCCAACTCCAGAAATTG&nbsp;&nbsp;</span><br />
+	&nbsp;&nbsp;Ou envie um <b>arquivo de sequência</b>. Ele deve estar no <b>formato FASTA</b>.<br />
+	2. Informe a(s) <b>largura(s) do motivo</b>; deve ser informada uma largura para cada motivo. Para vários motivos, as larguras são separadas por vírgulas; (16,20,...)<br />
+	3. Informe os <b>sítios esperados</b>; deve ser informado o número esperado de sítios de cada motivo. Para vários motivos, os sítios são separados por vírgulas; (7,12,...)<br />
 	</p>
 
 	<!--<hr style="\&quot;color:" #006699;="" margin:="" 10px="" 20px;="" \"="">  -->
@@ -144,13 +144,13 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Opções avançadas, ajuda</h4>
+        <h4 class="modal-title">Ajuda das opções avançadas</h4>
       </div>
       <div class="modal-body">
 	<ul class="list-group">
-    	<li class="list-group-item"><b>Número de sementes:</b> O número de vezes que o amostrador é reiniciado com modelos iniciais separados.</li>
-    	<li class="list-group-item"><b>Fragmentação:</b> normalmente o sampler permite-se mudar de forma flexível a largura do motivo e introduzir espaçadores. Você pode ligá-lo desmarcando a caixa de verificação Fragmentação.</li>
-    	<li class="list-group-item"><b>Complemento inverso:</b> o amostrador normalmente amostras em ambos os complementos dianteiro e reverso. Você pode desligar a amostragem do complemento reverso verificando a caixa de verificação do complemento reverso.</li>
+    	<li class="list-group-item"><b>Número de sementes:</b> o número de vezes que o amostrador é reiniciado com modelos iniciais separados.</li>
+    	<li class="list-group-item"><b>Fragmentação:</b> normalmente o amostrador pode alterar de forma flexível a largura do motivo e introduzir espaçadores. Você pode desativar isso desmarcando a caixa de verificação Fragmentação.</li>
+    	<li class="list-group-item"><b>Complemento reverso:</b> o amostrador normalmente amostra tanto a fita direta quanto o complemento reverso. Você pode desligar a amostragem do complemento reverso marcando a caixa de seleção Complemento reverso.</li>
   	</ul>
         <!--<p><b>Number of seeds:</b> </p> -->
       </div>

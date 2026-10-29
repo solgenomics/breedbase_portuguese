@@ -2,6 +2,7 @@ use strict;
 use warnings;
 
 package SGN::Controller::AJAX::Solgwas;
+use utf8;
 
 use Moose;
 use Data::Dumper;
@@ -106,7 +107,7 @@ sub extract_trait_data :Path('/ajax/solgwas/getdata') Args(0) {
 
     my $F;
     if (! open($F, "<", $temppath)) {
-	$c->stash->{rest} = { error => "Can't find data." };
+	$c->stash->{rest} = { error => "Não foi possível encontrar os dados." };
 	return;
     }
 

@@ -11,30 +11,30 @@ $high_dimensional_phenotype_type => undef #either NIRS, Transcriptomics, Metabol
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="downloadHighDimRelationshipMatrixDataDialog">Baixar Matriz de Relacionamento Fenótipo de Alta Dimensional</h4>
+        <h4 class="modal-title" id="downloadHighDimRelationshipMatrixDataDialog">Baixar matriz de relações de fenótipos de alta dimensão</h4>
       </div>
       <div class="modal-body">
         <div class="container-fluid">
 
             <&| /util/workflow.mas, id=> "high_dim_data_download_relationship_matrix_workflow" &>
                 <&| /util/workflow.mas:step, title=> "Introdução" &>
-                    <& /page/page_title.mas, title=>"Este fluxo de trabalho irá guiá-lo através do download de uma matriz de relacionamento de dados de alta dimensão do banco de dados." &>
+                    <& /page/page_title.mas, title=>"Este fluxo de trabalho irá guiá-lo no download de uma matriz de relações a partir de dados de alta dimensão do banco de dados." &>
 
                     <center>
                         <div class="well">
                             <h4>Dados de fenótipo de alta dimensão incluem:</h4>
                             <p>NIRS</p>
-                            <p>Transcrição</p>
+                            <p>Transcriptômica</p>
                             <p>Metabolômica</p>
                         </div>
                     </center>
 
                     <center>
-                    <button class="btn btn-primary" onclick="Workflow.complete(this); return false;">Vá para o próximo passo</button>
+                    <button class="btn btn-primary" onclick="Workflow.complete(this); return false;">Ir para o próximo passo</button>
                     </center>
                 </&>
-                <&| /util/workflow.mas:step, title=> "Tipo de Dados" &>
-                    <& /page/page_title.mas, title=>"Selecione o tipo de dados de alta dimensão para baixar" &>
+                <&| /util/workflow.mas:step, title=> "Tipo de dados" &>
+                    <& /page/page_title.mas, title=>"Selecione o tipo de dados de alta dimensão a ser baixado" &>
                     <br/><br/>
                     <form class="form-horizontal">
                         <div class="form-group">
@@ -43,19 +43,19 @@ $high_dimensional_phenotype_type => undef #either NIRS, Transcriptomics, Metabol
                                 <select class="form-control" id="high_dim_data_relationship_matrix_download_type_select"> 
 %  if ($high_dimensional_phenotype_type eq 'NIRS') {
                                     <option value="NIRS">NIRS</option>
-                                    <option disabled value="Transcriptomics">Transcrição</option>
+                                    <option disabled value="Transcriptomics">Transcriptômica</option>
                                     <option disabled value="Metabolomics">Metabolômica</option>
 %  } elsif ($high_dimensional_phenotype_type eq 'Transcriptomics') {
-                                    <option value="Transcriptomics">Transcrição</option>
+                                    <option value="Transcriptomics">Transcriptômica</option>
                                     <option disabled value="NIRS">NIRS</option>
                                     <option disabled value="Metabolomics">Metabolômica</option>
 %  } elsif ($high_dimensional_phenotype_type eq 'Metabolomics') {
                                     <option value="Metabolomics">Metabolômica</option>
-                                    <option disabled value="Transcriptomics">Transcrição</option>
+                                    <option disabled value="Transcriptomics">Transcriptômica</option>
                                     <option disabled value="NIRS">NIRS</option>
 %  } else {
                                     <option value="NIRS">NIRS</option>
-                                    <option value="Transcriptomics">Transcrição</option>
+                                    <option value="Transcriptomics">Transcriptômica</option>
                                     <option value="Metabolomics">Metabolômica</option>
 %  }
                                 </select>
@@ -63,29 +63,29 @@ $high_dimensional_phenotype_type => undef #either NIRS, Transcriptomics, Metabol
                         </div>
                     </form>
                     <center>
-                    <button class="btn btn-primary" id="high_dim_data_download_data_relationship_matrix_type_step">Vá para o próximo passo</button>
+                    <button class="btn btn-primary" id="high_dim_data_download_data_relationship_matrix_type_step">Ir para o próximo passo</button>
                     </center>
                 </&>
-                <&| /util/workflow.mas:step, title=> "Informação do Protocolo" &>
-                    <& /page/page_title.mas, title=>"Selecione um protocolo para os dados serem baixados" &>
+                <&| /util/workflow.mas:step, title=> "Informações do protocolo" &>
+                    <& /page/page_title.mas, title=>"Selecione um protocolo dos dados a serem baixados" &>
 
                     <div id="high_dim_data_download_relationship_matrix_protocol_select">
                     </div>
 
                     <hr>
                     <center>
-                    <button class="btn btn-primary" id="high_dim_data_download_relationship_matrix_protocol_step">Vá para o próximo passo</button>
+                    <button class="btn btn-primary" id="high_dim_data_download_relationship_matrix_protocol_step">Ir para o próximo passo</button>
                     </center>
                 </&>
                 <&| /util/workflow.mas:step, title=> "Conjunto de dados" &>
-                    <& /page/page_title.mas, title=>"Selecione um conjunto de dados para os dados serem baixados" &>
+                    <& /page/page_title.mas, title=>"Selecione um conjunto de dados dos dados a serem baixados" &>
 
                     <div id="high_dim_data_download_relationship_matrix_dataset_select">
                     </div>
 
                     <hr>
                     <center>
-                    <button class="btn btn-primary" id="high_dim_data_download_relationship_matrix_dataset_step">Vá para o próximo passo</button>
+                    <button class="btn btn-primary" id="high_dim_data_download_relationship_matrix_dataset_step">Ir para o próximo passo</button>
                     </center>
                 </&>
                 <&| /util/workflow.mas:step, title=> "Baixar" &>
@@ -93,7 +93,7 @@ $high_dimensional_phenotype_type => undef #either NIRS, Transcriptomics, Metabol
 
                     <div class="form-horizontal" >
                         <div class="form-group">
-                            <label class="col-sm-6 control-label">Consulta Associada às ações (por exemplo: Seu conjunto de dados contém acessos, no entanto, os fenótipos de alto dim são salvos para amostras de tecido do acesso: </label>
+                            <label class="col-sm-6 control-label">Consultar materiais associados (ex.: seu conjunto de dados contém acessos, mas os fenótipos de alta dimensão estão salvos para amostras de tecido desses acessos): </label>
                             <div class="col-sm-6" >
                                 <select class="form-control" id="high_dim_data_download_relationship_matrix_associated_stocks" name="high_dim_data_download_relationship_matrix_associated_stocks">
                                     <option value="yes">Sim</option>

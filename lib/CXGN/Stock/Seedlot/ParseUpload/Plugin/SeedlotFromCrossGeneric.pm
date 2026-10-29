@@ -1,5 +1,6 @@
 package CXGN::Stock::Seedlot::ParseUpload::Plugin::SeedlotFromCrossGeneric;
 
+use utf8;
 use Moose::Role;
 use CXGN::File::Parse;
 use CXGN::Stock::StockLookup;
@@ -46,7 +47,7 @@ sub _validate_with_plugin {
 
     if ( $additional_columns && scalar(@$additional_columns) > 0 ) {
         $errors{'error_messages'} = [
-            "The following columns are not recognized: " . join(', ', @$additional_columns) . ". Please check the spreadsheet format for the allowed columns."
+            "As seguintes colunas não são reconhecidas: " . join(', ', @$additional_columns) . ". Verifique no formato da planilha quais colunas são permitidas."
         ];
         $self->_set_parse_errors(\%errors);
         return;
@@ -59,7 +60,7 @@ sub _validate_with_plugin {
         my $weight = $row->{'weight_gram'};
 
         if ($seedlot_name =~ /\s/ || $seedlot_name =~ /\// || $seedlot_name =~ /\\/ ) {
-            push @error_messages, "Cell A$row_num: seedlot_name must not contain spaces or slashes.";
+            push @error_messages, "Célula A$row_num: seedlot_name não deve conter espaços nem barras.";
         }
 
         if (!$amount || $amount eq '') {
@@ -69,7 +70,7 @@ sub _validate_with_plugin {
         }
 
         if ($amount eq 'NA' && $weight eq 'NA') {
-            push @error_messages, "On row:$row_num you must provide either a weight in grams or a seed count amount.";
+            push @error_messages, "Na linha $row_num, você deve informar um peso em gramas ou uma quantidade de sementes.";
         }
 
     }
@@ -81,7 +82,7 @@ sub _validate_with_plugin {
     my @crosses_missing = @{$cross_validator->validate($schema,'crosses',$seen_cross_names)->{'missing'}};
 
     if (scalar(@crosses_missing) > 0) {
-        push @error_messages, "The following cross unique ids are not in the database as uniquenames: ".join(',',@crosses_missing);
+        push @error_messages, "Os seguintes identificadores únicos de cruzamento não estão no banco de dados como uniquenames: ".join(',',@crosses_missing);
     }
 
     my $rs = $schema->resultset("Stock::Stock")->search({
@@ -90,7 +91,7 @@ sub _validate_with_plugin {
 
     while (my $r = $rs->next) {
         if ( $r->type->name ne 'seedlot' ) {
-            push @error_messages, "Seedlot name already exists in database: ".$r->uniquename.".  The seedlot name must be unique.";
+            push @error_messages, "O nome do lote de sementes já existe no banco de dados: ".$r->uniquename.".  O nome do lote de sementes deve ser único.";
         }
     }
 

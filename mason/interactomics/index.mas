@@ -13,7 +13,7 @@ Este é um aplicativo Java Web Start da CytoScape projetado para pré-carregar c
 
 <center><form method="get" action="/tools/interactomics/coffee.jnlp" >
 <input type="hidden" name="Network" value = "http://andrew.sgn.cornell.edu:3000/CytoScape/coffee.cys" />
-<input type="submit" value="Lançar CytoScape" align = "center" /> 
+<input type="submit" value="Abrir CytoScape" align = "center" /> 
 </form></center>
 
 

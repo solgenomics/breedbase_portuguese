@@ -506,9 +506,9 @@ $default_seedlot_material_type => undef
             { title: "Editar transação", "data": "null", "render" : function ( data, type, row ) {
                 if (status == 'discarded') {
                     return "";
-                } else {return "<a onclick='editSeedlotTransaction("+row.transaction_id+"[Editador]</a>";}
+                } else {return "<a onclick='editSeedlotTransaction("+row.transaction_id+")' >[Editar]</a>";}
             }},
-            { title: "Excluir transação", "data": "null", "render" : function ( data, type, row ) { return "<a onclick='deleteSeedlotTransaction("+row.transaction_id+"\"X\"</a>"; } },
+            { title: "Excluir transação", "data": "null", "render" : function ( data, type, row ) { return "<a onclick='deleteSeedlotTransaction("+row.transaction_id+")' >X</a>"; } },
         ],
     });
 

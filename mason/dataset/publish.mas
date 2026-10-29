@@ -92,7 +92,7 @@ $is_dataset_public => 0
             <div class="warning-alert">
                 <span class="warning-alert-icon glyphicon glyphicon-exclamation-sign"></span>
                 <div>
-                    <p><strong>IMPORTANTE!</strong> Ao continuar o envio destes arquivos, você declara que estes dados podem ser compartilhados no <span class="dataset-archive-publish-service-name">o serviço externo</span> e disponibilizados publicamente (assim que o conjunto de dados no <span class="dataset-archive-publish-service-name">o serviço externo</span> for publicado).</p>
+                    <p><strong>IMPORTANTE!</strong> Ao continuar o envio destes arquivos, você declara que estes dados podem ser compartilhados em <span class="dataset-archive-publish-service-name">serviço externo</span> e disponibilizados publicamente (assim que o conjunto de dados em <span class="dataset-archive-publish-service-name">serviço externo</span> for publicado).</p>
                 </div>
             </div>
 
@@ -333,7 +333,7 @@ function updateServices() {
 }
 
 /**
- * Display o serviço externos as options in the select menu
+ * Display the external services as options in the select menu
  */
 function displayServices(services = {}) {
     SERVICES = services;
@@ -557,8 +557,8 @@ async function onArticleChanged() {
 }
 
 /**
- * Get the details of the specified article from o serviço externo
- * @param service = key of o serviço externo where the article is hosted
+ * Get the details of the specified article from the external service
+ * @param service = key of the external service where the article is hosted
  * @param article_id = id of the specific article
  */
 function getArticleDetails(service, article_id) {
@@ -700,7 +700,7 @@ async function displayIssues(issues = {}) {
 }
 
 /**
- * Gerar arquivos para arquivamento that are stored on breedbase
+ * Generate the archived files that are stored on breedbase
  * - Initialize a new issue for this dataset, which calculates which files need to be generated
  * - After initialization, display the generate dialog and start to generate each file
  */
@@ -812,7 +812,7 @@ function uploadIssue(key) {
 }
 
 /**
- * Open the Article edit page on o serviço externo
+ * Open the Article edit page on the external service
  */
 function editIssue(key, service) {
     SELECTED_ISSUE = ISSUES[key];
@@ -890,7 +890,7 @@ function removeIssue(key) {
 }
 
 /**
- * Submit the archived files to a new or existing dataset on o serviço externo
+ * Submit the archived files to a new or existing dataset on the external service
  * - This will call createArticle() to create a new article on the service, if needed
  * - Submit each of the dataset's archived files, using submitFile() to the specified article
  * - Upload each of the chunks for each file
@@ -1138,7 +1138,7 @@ function makePublic() {
 }
 
 /**
- * Reservar um DOI for the specified dataset on the specified service
+ * Reserve a DOI for the specified dataset on the specified service
  */
 function getDOI(key, service) {
     if ( !SELECTED_ISSUE.article || !SELECTED_ISSUE.article.id ) {

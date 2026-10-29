@@ -258,8 +258,8 @@
                             <tr>
                                 <td>from_seedlot_name</td>
                                 <td>to_seedlot_name</td>
-                                <td>Quantidade</td>
-                                <td>peso(g)</td>
+                                <td>amount</td>
+                                <td>weight(g)</td>
                                 <td>operator_name</td>
                                 <td>transaction_description</td>
                             </tr>
@@ -309,8 +309,8 @@
                         <tbody>
                             <tr>
                                 <td>from_seedlot_name</td>
-                                <td>Quantidade</td>
-                                <td>peso(g)</td>
+                                <td>amount</td>
+                                <td>weight(g)</td>
                                 <td>operator_name</td>
                                 <td>transaction_description</td>
                                 <td>to_new_seedlot_name</td>
@@ -369,8 +369,8 @@
                             <tr>
                                 <td>from_seedlot_name</td>
                                 <td>to_plot_name</td>
-                                <td>Quantidade</td>
-                                <td>peso(g)</td>
+                                <td>amount</td>
+                                <td>weight(g)</td>
                                 <td>operator_name</td>
                                 <td>transaction_description</td>
                             </tr>
@@ -420,8 +420,8 @@
                         <tbody>
                             <tr>
                                 <td>from_seedlot_name</td>
-                                <td>Quantidade</td>
-                                <td>peso(g)</td>
+                                <td>amount</td>
+                                <td>weight(g)</td>
                                 <td>operator_name</td>
                                 <td>transaction_description</td>
                             </tr>

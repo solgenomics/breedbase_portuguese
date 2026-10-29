@@ -2117,7 +2117,7 @@
 	  };
 	}
 
-	const NO_POLYGON_ERROR = "Please select the area that contain the plots";
+	const NO_POLYGON_ERROR = "Selecione a área que contém as parcelas";
 
 	const DEFAULT_OPTS = {
 	  brapi_auth: null,
@@ -2187,7 +2187,7 @@
 	            self.polygon = self.map.editTools.startPolygon();
 	            return self.polygon;
 	          },
-	          title: 'Creates a new polygon',
+	          title: 'Cria um novo polígono',
 	          html: String.fromCodePoint(0x25B1)
 	        }
 	      });
@@ -2198,7 +2198,7 @@
 	            self.polygon = self.map.editTools.startRectangle();
 	            return self.polygon;
 	          },
-	          title: 'Creates a new rectangle',
+	          title: 'Cria um novo retângulo',
 	          html: String.fromCodePoint(0x25AD)
 	        }
 	      });
@@ -2208,7 +2208,7 @@
 	          callback: function () {
 	            self.map.editTools.featuresLayer.clearLayers();
 	          },
-	          title: 'Clears all polygons',
+	          title: 'Remove todos os polígonos',
 	          html: String.fromCodePoint(0x1F6AB)
 	        }
 	      });
@@ -2265,7 +2265,7 @@
 	      .style("width", "100%")
 	      .style("background", "#FFC107")
 	      .style("display", "none")
-	      .html("<p style='margin: 10px; text-align: center; font-weight: bold'>Loading Plots...</p>");
+	      .html("<p style='margin: 10px; text-align: center; font-weight: bold'>Carregando parcelas...</p>");
 
 	    this.onLoading = (loading) => {
 	      this.loading.style("display", loading ? 'block' : 'none');
@@ -2325,11 +2325,11 @@
 	          if(levels.levelName == 'replicate'){ ou.replicate = levels.levelCode;}
 	        else if(levels.levelName == 'block'){ ou.blockNumber = levels.levelCode;}
 	        else if(levels.levelName == 'plot'){ ou.plotNumber = levels.levelCode;}});
-	      this.info.html(`<div style="padding: 5px"><div>Germplasm: ${ou.germplasmName}</div>
-       <div>Replicate: ${ou.replicate}</div>
-       <div>    Block: ${ou.blockNumber}</div>
-       <div>  Row,Col: ${ou._row},${ou._col}</div>
-       <div>   Plot #: ${ou.plotNumber}</div></div>`);
+	      this.info.html(`<div style="padding: 5px"><div>Germoplasma: ${ou.germplasmName}</div>
+       <div>Repetição: ${ou.replicate}</div>
+       <div>    Bloco: ${ou.blockNumber}</div>
+       <div>  Linha,Coluna: ${ou._row},${ou._col}</div>
+       <div>   Parcela nº: ${ou.plotNumber}</div></div>`);
 	    }).on('mouseout', ()=>{
 	      this.info.html("");
 	    }).addTo(this.map);
@@ -2572,11 +2572,11 @@
 		// Notify on missing
 		if (this.opts.viewOnly) {
 		  if (plots_polygons.length + plots_points.length === 0) {
-			let html = "This trial does not have any plots with geo coordinates assigned.";
+			let html = "Este ensaio não possui parcelas com coordenadas geográficas atribuídas.";
 			this.missing_plots.style("display", "block").html(html);
 			throw NO_POLYGON_ERROR;
 		  } else if (plots_missing.length > 0) {
-			let html = "Plots with no geo coordinates:";
+			let html = "Parcelas sem coordenadas geográficas:";
 			html += "<ul style='padding-left: 25px; margin-bottom: 0'>";
 			plots_missing.forEach(p => html += `<li>${p.observationUnitName}</li>`);
 			html += "</ul>";
@@ -2826,7 +2826,7 @@
 
 	  update() {
 	    if (!this.plots) {
-	      return Promise.reject('There are no plots loaded');
+	      return Promise.reject('Não há parcelas carregadas');
 	    }
 	    let brapi = BrAPI(this.brapi_endpoint, "2.0", this.opts.brapi_auth);
 
@@ -2845,10 +2845,10 @@
 						'params': { pageSize: Object.keys(params).length+1, ...params },
 						'behavior': 'map'
 					}).all(() => {
-						return resolve("Plots updated!");
+						return resolve("Parcelas atualizadas!");
 					});
 				} else {
-					return reject('There are no plots loaded');
+					return reject('Não há parcelas carregadas');
 				}
 			});
 	  }

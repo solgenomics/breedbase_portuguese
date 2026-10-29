@@ -1,4 +1,4 @@
-<& /page/page_title.mas, title => 'A fruta de tomate Glicoproteoma' &>
+<& /page/page_title.mas, title => 'O Glicoproteoma do Fruto de Tomate' &>
 
 <div class="indented_content">
     <div style="width: 400px; float: right; margin: 0 0 10px 20px" class="captioned_image">
@@ -6,39 +6,39 @@
       <img src="/documents/img/secretom/SDS_PAGE_x400.png" />
 
       <p>
-      SDS PAGE imagem gel mostrando proteínas de tomate fruta isolado por lectina afinidade, manchado com azul de Coomassie (preto) ou mancha de glicoproteína (rosa).
+      Imagem de gel SDS-PAGE mostrando proteínas de fruto de tomate isoladas por afinidade a lectina, coradas com azul de Coomassie (preto) ou com corante para glicoproteínas (rosa).
       </p>
 
     </div>
 
 
   <p>
-  Como todos os eucariotos, a N-glicossilação em células vegetais é uma modificação pós-traducional comum para proteínas que viajam pelo caminho secretor, muitas das quais estão destinadas à parede celular. O isolamento em larga escala e análise de glicoproteínas por cromatografia de afinidade com lectina, juntamente com espectrometria de massa (MS), tornou-se uma poderosa ferramenta para avaliar o glicoproteoma de células de mamíferos, no entanto, raramente tem sido usado com glicoproteínas de plantas.
+  Como em todos os eucariotos, a N-glicosilação em células vegetais é uma modificação pós-traducional comum de proteínas que trafegam pela via secretória, muitas das quais estão destinadas à parede celular. O isolamento em larga escala e análise de glicoproteínas por cromatografia de afinidade com lectina, juntamente com espectrometria de massa (MS), tornou-se uma poderosa ferramenta para avaliar o glicoproteoma de células de mamíferos, no entanto, raramente tem sido usado com glicoproteínas de plantas.
   </p>
 
 
   <p>
-  Estamos usando a seleção de afinidade de glicoproteínas usando a lectina Concanavalina A, juntamente com cromatografia líquida bidimensional (2-D LC) e matriz assistida por laser dessorção/ionização espectrometria de massa (2DLC-MALDI MS/MS) e análise de ionização por eletrospray MS (ESI-MS), para identificar proteínas da via extracelular e secretora, com foco nas expressas em frutos maduros de tomate.
+  Estamos usando a seleção por afinidade de glicoproteínas com a lectina concanavalina A, juntamente com cromatografia líquida bidimensional (2-D LC) e espectrometria de massa por ionização/dessorção a laser assistida por matriz (2DLC-MALDI MS/MS) e análise por espectrometria de massa com ionização por eletrospray (ESI-MS), para identificar proteínas extracelulares e da via secretória, com foco nas expressas em frutos maduros de tomate.
   </p>
 
   <p>
-  Tomato tem servido como sistema modelo para o desenvolvimento de frutos carnudos e maturação é um excelente sistema para estudar proteínas da parede celular, pois está associado a mudanças dramáticas na biologia da parede, incluindo dramática degradação de polissacarídeos da parede celular mediada por enzimas, metabolismo do açúcar apoplástico e defesas extracelulares contra patógenos microbianos. Apesar disso, há poucas análises proteômicas publicadas de frutos de tomate maduros e a maioria deles são baseados na extração de proteínas totais seguidas de separação 2-DE, já que o proteoma de parede não era o principal alvo. Consequentemente, o passo de extração de proteínas não foi otimizado para proteínas secretadas.
+  O tomate, que tem servido como sistema modelo para o desenvolvimento e amadurecimento de frutos carnosos, é um excelente sistema para estudar proteínas da parede celular, pois está associado a mudanças dramáticas na biologia da parede, incluindo intensa degradação de polissacarídeos da parede celular mediada por enzimas, metabolismo do açúcar apoplástico e defesas extracelulares contra patógenos microbianos. Apesar disso, há poucas análises proteômicas publicadas de frutos de tomate maduros e a maioria delas é baseada na extração de proteínas totais seguidas de separação 2-DE, já que o proteoma de parede não era o principal alvo. Consequentemente, o passo de extração de proteínas não foi otimizado para proteínas secretadas.
   </p>
 
 </div>
 
 <&| /secretom/section_templates/objectives.mas &>
      Desenvolver protocolos de cromatografia de afinidade com lectina para otimizar
-     extração de glicoproteínas vegetais.
+     a extração de glicoproteínas vegetais.
 
-     Avaliar várias estratégias de EM para identificação eficaz de
+     Avaliar várias estratégias de MS para a identificação eficaz de
      glicoproteínas, incluindo estratégias associadas a MALDI e ESI.
 
-     Gerar um catálogo de glicoproteínas anotadas de tomate, com foco em
-     desenvolvimento de frutas, incluindo identificação de locais de glicosilação.
+     Gerar um catálogo de glicoproteínas anotadas de tomate, com foco no
+     desenvolvimento do fruto, incluindo a identificação de sítios de glicosilação.
 
-     Confirme localização usando expressão transiente como fluorescente
-     proteínas de fusão em células epidérmicas de cebola.
+     Confirmar a localização usando expressão transiente como proteínas de
+     fusão fluorescentes em células epidérmicas de cebola.
 
 </&>
 
@@ -47,7 +47,7 @@
   <div style="width: 420px; float: left; margin: 0 20px 10px 0" class="captioned_image">
 
     <p>
-    Previsão computacional da localização subcelular das glicoproteínas N isoladas de tomate verde maduro com Concanavalina A.
+    Predição computacional da localização subcelular das N-glicoproteínas isoladas de frutos de tomate verde-maduros com concanavalina A.
     </p>
 
     <hr style="margin: 0 10px" />
@@ -58,34 +58,34 @@
   </div>
 
   <p>
-  Esta estratégia de enriquecimento tem sido altamente eficaz, com uma alta proporção das proteínas identificadas mostrando localização prevista, quer no caminho secretor. Estamos investigando o alvo de proteínas do caminho secretor para outras organelas intracelulares.
+  Esta estratégia de enriquecimento tem sido altamente eficaz, com uma alta proporção das proteínas identificadas mostrando localização predita na via secretória. Atualmente estamos investigando o endereçamento de proteínas da via secretória para outras organelas intracelulares.
   </p>
 
 </div>
 
 <&| /secretom/section_templates/data_items.mas, default_ref_base => '/download/data/secretom/Tomato_fruit_glycoproteome' &>
-- texto: "Tomato (cv. Ailsa Craig) fruta madura: glicoproteínas anotadas, MALDI"
-  Tomato_fruit_glycoproteins_MALDI.docx
-- texto: "Tomato (cv. Ailsa Craig) fruto maduro: glicoproteínas MALDI, peptídeos"
-  Tomato_fruit_glycoproteins_MALDI_peptides.XLSX
-- texto: "Tomato (cv. Ailsa Craig) fruto verde maduro: glicoproteínas, ESI"
-  Tomato_fruit_glycoproteins_ESI.XLSX
-- texto: "Fracções de glicoproteína de tomate verde maduro identificado usando Concanavalin A"
-  Con_A.XLS
-- texto: "Fracções de glicoproteína de tomate verde maduro identificado usando lectina Snowdrop"
-  GNA.xls
-- texto: "Fracções glicoproteicas de tomate verde maduro identificado usando lectina Lentil"
-  LCH.xls
-- texto: "Mais arquivos em FTP"
-  REF: FTP://ftp.solgenomics.net/secretom/Tomato_fruit_glycoproteome
+- text: "Fruto maduro de tomate (cv. Ailsa Craig): glicoproteínas anotadas, MALDI"
+  ref: Tomato_fruit_glycoproteins_MALDI.docx
+- text: "Fruto maduro de tomate (cv. Ailsa Craig): glicoproteínas MALDI, peptídeos"
+  ref: Tomato_fruit_glycoproteins_MALDI_peptides.xlsx
+- text: "Fruto verde-maduro de tomate (cv. Ailsa Craig): glicoproteínas, ESI"
+  ref: Tomato_fruit_glycoproteins_ESI.xlsx
+- text: "Frações de glicoproteínas de fruto de tomate verde-maduro identificadas usando concanavalina A"
+  ref: Con_A.xls
+- text: "Frações de glicoproteínas de fruto de tomate verde-maduro identificadas usando lectina de galanto (Snowdrop)"
+  ref: GNA.xls
+- text: "Frações de glicoproteínas de fruto de tomate verde-maduro identificadas usando lectina de lentilha"
+  ref: LCH.xls
+- text: "Mais arquivos no FTP"
+  ref: ftp://ftp.solgenomics.net/secretom/Tomato_fruit_glycoproteome
 </&>
 
 <&| /secretom/section_templates/publications.mas &>
-Ruiz-May, E., Thanhauser, T.W., Zhang, S. e Rose, J.K.C. (2012) Tecnologias analíticas para identificação e caracterização da planta N-glicoproteoma. Na imprensa, Fronteiras em Fisiologia Vegetal.
+Ruiz-May, E., Thannhauser, T.W., Zhang, S. and Rose, J.K.C. (2012) Analytical technologies for identification and characterization of the plant N-glycoproteome. In press, Frontiers in Plant Physiology.
 
-Zhang, S., Sherwood, R.W., Yang, Y., Tara Fish, T., Chen, W., McCardle, J. A., Jones, R.M., Yusibov, V., Ruiz-May, E., Rose, J.K.C. e Thannauser, T.W. (2012) Caracterização comparativa dos perfis de glicosilação de uma gripe hemaglutinina produzida em hospedeiros de plantas e insetos. Proteômica 12: 1269-88.
+Zhang, S., Sherwood, R.W., Yang, Y., Tara Fish, T., Chen, W., McCardle, J. A., Jones, R.M., Yusibov, V., Ruiz-May, E., Rose, J.K.C. and Thannhauser, T.W. (2012) Comparative characterization of the glycosylation profiles of an influenza hemagglutinin produced in plant and insect hosts. Proteomics 12: 1269-88.
 
-Ruiz-May, E., Kim, S.J., Brandizzi, F. e Rose, J.K.C. (2012) A planta secreta N-glicoproteoma e vias secretas associadas. Fronteiras em Fisiologia de Plantas 3: 117.
+Ruiz-May, E., Kim, S.J., Brandizzi, F. and Rose, J.K.C. (2012) The secreted plant N-glycoproteome and associated secretory pathways. Frontiers in Plant Physiology 3: 117.
 
-Catala, C., Howe, K.J., Hucko, S., Rose, J.K.C. e Thannauser, T.W. (2011) Para a caracterização do glicoproteoma de tomate (Solanum lycopersicum) fruto usando a cromatografia de afinidade com lectina Concanavalin e a análise LC-MALDI-MS/MS. Proteômica 11: 1530-1544.
+Catala, C., Howe, K.J., Hucko, S., Rose, J.K.C. and Thannhauser, T.W. (2011) Towards characterization of the glycoproteome of tomato (Solanum lycopersicum) fruit using Concanavalin A lectin affinity chromatography and LC-MALDI-MS/MS analysis. Proteomics 11: 1530-1544.
 </&>

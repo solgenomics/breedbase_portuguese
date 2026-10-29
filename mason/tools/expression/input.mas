@@ -22,11 +22,11 @@
 
 <& /util/import_javascript.mas, classes => ['Text.Markup', 'sprintf', 'jquery', 'jqueryui', 'CXGN.List'] &>
 
-<& /page/page_title.mas, title=>"Ferramenta de Expressão" &>
+<& /page/page_title.mas, title=>"Ferramenta de expressão" &>
 
 
 
-<&| /page/info_section.mas, id=>"expr_input" , title=>"Ferramenta de Expressão de Execução", collapsible => 1, collapsed => 0  &>
+<&| /page/info_section.mas, id=>"expr_input" , title=>"Executar ferramenta de expressão", collapsible => 1, collapsed => 0  &>
 <center>
 
 <div id="status_wheel" style="display:none"><img src="/static/documents/img/wheel.gif" /></div>
@@ -46,7 +46,7 @@
 <&| /page/info_section.mas, id=>"expression_usage" , title=>"Uso", collapsible => 1, collapsed => 0, is_subsection=>"1"  &>
   <div id="usage_view">
     <p>
-        1. Selecione a <b>Nome do gene</b> um clique no botão 'Get Expression' para ver sua expressão nos diferentes tecidos da planta.<br />
+        1. Selecione um <b>nome de gene</b> e clique no botão 'Obter expressão' para ver sua expressão nos diferentes tecidos da planta.<br />
      </p>
   </div>
 </&>
@@ -63,22 +63,22 @@
 
 <div id="hide_results" style="display:none;">
 
-<&| /page/info_section.mas, title=>"Informação de Experiência", collapsible => 1, collapsed => 0, is_subsection=>"1" &>
+<&| /page/info_section.mas, title=>"Informações do experimento", collapsible => 1, collapsed => 0, is_subsection=>"1" &>
     <p id="exp_title"></p>
     <p id="exp_dbxref"></p>
     <p id="exp_pub"></p>
 </&>
 
 
-<&| /page/info_section.mas, title=>"Mapa da Experiência", collapsible => 1, collapsed => 0, is_subsection=>"1" &>
+<&| /page/info_section.mas, title=>"Mapa do experimento", collapsible => 1, collapsed => 0, is_subsection=>"1" &>
 <div id="my_stage"></div>
 </&>
 
 <&| /page/info_section.mas, title=>"Painel de controle interativo", collapsible => 1, collapsed => 0, is_subsection=>"1" &>
-    Choose a experiment:&nbsp; &nbsp; 
+    Escolha um experimento:&nbsp; &nbsp; 
 	<select id="exp_list">
 		<option>BTI Slyc RNA-Seq</option>
-		<option value="Other experiment" data-original-label="Other experiment">Outra experiência</option>
+		<option value="Other experiment" data-original-label="Other experiment">Outro experimento</option>
 	</select>
     <br/>
 </&>
@@ -97,7 +97,7 @@
     <table id="exp_table" cellpadding="2" cellspacing="2" width="100%"></table>
 </&>
 
-<&| /page/info_section.mas, title=>"Informação de Amostra de Experimentos", collapsible => 1, collapsed => 0, is_subsection=>"1" &>
+<&| /page/info_section.mas, title=>"Informações das amostras do experimento", collapsible => 1, collapsed => 0, is_subsection=>"1" &>
 	<table id="exp_info_table" cellpadding="2" cellspacing="2" width="100%"></table>
 	<br/>
 </&>
@@ -210,8 +210,8 @@ jQuery(document).ready(function () {
 		    var expression_table_info = "";
 		    var experiment_info = "";
 		    //alert("data: "+data_array.length);
-	        expression_table_info += "<tr style='text-align:center;'><th>Experiência</th><th>Replicados</th><th>FPKM</th><th>FPKM_lo</th><th>FPKM_hi</th></tr>";
-	        experiment_info += "<tr style='text-align:center;'><th>Amostra</th><th>Descrição</th><th>Link Externo</th></tr>";
+	        expression_table_info += "<tr style='text-align:center;'><th>Experimento</th><th>Réplicas</th><th>FPKM</th><th>FPKM_lo</th><th>FPKM_hi</th></tr>";
+	        experiment_info += "<tr style='text-align:center;'><th>Amostra</th><th>Descrição</th><th>Link externo</th></tr>";
 
 		    for (var i=0; i<data_array.length; i=i+1) {
 		        experiment_info += "<tr><td><a href='/gem/experiment.pl?id="+data_array[i]["id"]+"' target='_blank'>"+data_array[i]["name"]+"</a></td>";
@@ -359,7 +359,7 @@ jQuery(document).ready(function () {
 				tooltipAxes: 'y',
 				
 				
-				formatString:"<div id=\"bar_tooltip\" class=\"jqplot-highlighter\"><table>\t\t\t\t<tr><td>Expressão val:</td><td>%s</td></tr> \t\t\t\t\t\t\t\t  </table></div>"
+				formatString:"<div id=\"bar_tooltip\" class=\"jqplot-highlighter\"><table>\t\t\t\t<tr><td>Valor de expressão:</td><td>%s</td></tr> \t\t\t\t\t\t\t\t  </table></div>"
 		    }
 	    });
 		

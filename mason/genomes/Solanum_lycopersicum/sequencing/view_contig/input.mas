@@ -1,8 +1,8 @@
-<& /page/page_title.mas, title => 'Input Tomate BAC Nome Contig' &>
+<& /page/page_title.mas, title => 'Informe o nome do contig BAC de tomate' &>
 
 <div style="width: 50%; margin: auto">
   <form method="GET">
-    <label for="contig">Nome contig:</label><input name="contig" value="C00.9_contig59" onfocus="this.select()" />
+    <label for="contig">Nome do contig:</label><input name="contig" value="C00.9_contig59" onfocus="this.select()" />
     <input type="submit" />
   </form>
 </div>

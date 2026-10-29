@@ -116,7 +116,7 @@ if (@$accessions) {
 	  my $medium_image = $image->get_image_url("medium");
 	  my $image_page   = "/image/index.pl?image_id=$image_id";
 	  my $thickbox =
-	    qq|<a href="$medium_image" title="<a href=$image_page>Go to image page </a>" class="thickbox" rel="gallery-images"><img src="$small_image" alt="" /></a> |;
+	    qq|<a href="$medium_image" title="<a href=$image_page>Ir para a página da imagem </a>" class="thickbox" rel="gallery-images"><img src="$small_image" alt="" /></a> |;
 	  if ( $ind_count < 4 ) { $html .= qq|<td>$thickbox</td>|; }
 	  else                  { $more_html .= qq|<td>$thickbox</td>|; }
 	  $image_count--;

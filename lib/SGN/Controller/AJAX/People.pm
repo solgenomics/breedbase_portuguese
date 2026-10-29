@@ -16,6 +16,7 @@ Naama Menda <nm249@cornell.edu>
 =cut
 
 package SGN::Controller::AJAX::People;
+use utf8;
 
 use Moose;
 
@@ -91,11 +92,11 @@ sub add_person_role_GET : Args(0) {
     my $c = shift;
     my $user = $c->user();
     if (!$user){
-        $c->stash->{rest} = {error=>'You must be logged in first!'};
+        $c->stash->{rest} = {error=>'Você precisa estar conectado primeiro!'};
         $c->detach;
     }
     if (!$user->check_roles("curator")) {
-        $c->stash->{rest} = {error=>'You must be logged in with the correct role!'};
+        $c->stash->{rest} = {error=>'Você precisa estar conectado com a função correta!'};
         $c->detach;
     }
     my $sp_person_id = $c->req->param('sp_person_id');
@@ -122,7 +123,7 @@ sub list_roles :Chained('roles') PathPart('list') Args(0) {
 
     print STDERR "roles list\n";
     if (! $c->user()) {
-	$c->stash->{rest} = { error => "You must be logged in to use this function." };
+	$c->stash->{rest} = { error => "Você precisa estar conectado para usar esta função." };
 	return;
     }
     
@@ -147,7 +148,7 @@ sub list_roles_for_user :Chained('roles') PathPart('list') Args(1) {
 
     print STDERR "roles list\n";
     if (! $c->user()) {
-	$c->stash->{rest} = { error => "You must be logged in to use this function." };
+	$c->stash->{rest} = { error => "Você precisa estar conectado para usar esta função." };
 	return;
     }
 
@@ -255,12 +256,12 @@ sub delete :Chained('roles') PathPart('delete/association') Args(1) {
     my $sp_person_role_id = shift;
 
     if (! $c->user()) {
-	$c->stash->{rest} = { error => "You must be logged in to use this function." };
+	$c->stash->{rest} = { error => "Você precisa estar conectado para usar esta função." };
 	return;
     }
 
     if (! $c->user()->has_role("curator")) {
-	$c->stash->{rest} = { error => "You don't have the necessary privileges for maintaining user roles." };
+	$c->stash->{rest} = { error => "Você não tem os privilégios necessários para gerenciar funções de usuários." };
 	return;
     }
 
@@ -269,12 +270,12 @@ sub delete :Chained('roles') PathPart('delete/association') Args(1) {
     my $row = $schema->resultset("SpPersonRole")->find( { sp_person_role_id => $sp_person_role_id } );
 
     if (!$row) {
-	$c->stash->{rest} = { error => 'The relationship does not exist.' };
+	$c->stash->{rest} = { error => 'A relação não existe.' };
 	return;
     }
     $row->delete();
 
-    $c->stash->{rest} = { message => "Role associated with user deleted." };
+    $c->stash->{rest} = { message => "Função associada ao usuário excluída." };
 }
 
 

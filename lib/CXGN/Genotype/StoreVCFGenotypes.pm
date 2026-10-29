@@ -1,4 +1,5 @@
 package CXGN::Genotype::StoreVCFGenotypes;
+use utf8;
 
 =head1 NAME
 
@@ -549,13 +550,13 @@ sub validate {
 
     #to disntiguish genotyprop between old dosage only format and more info vcf format
     if ($self->archived_file_type && $self->archived_file_type ne 'genotype_vcf' && $self->archived_file_type ne 'genotype_dosage') {
-        push @error_messages, 'Archived filetype must be either genotype_vcf or genotype_dosage';
+        push @error_messages, 'O tipo do arquivo arquivado deve ser genotype_vcf ou genotype_dosage';
         return {error_messages => \@error_messages};
     }
 
     #check if sample names are in the database.
     if (scalar(@$observation_unit_uniquenames) == 0){
-        push @error_messages, "No observtaion_unit_names in file";
+        push @error_messages, "Nenhum nome de unidade de observação no arquivo";
     }
 
     my $vcf_genotyping_cvterm_id = SGN::Model::Cvterm->get_cvterm_row($schema, $vcf_genotyping_type, 'genotype_property')->cvterm_id();
@@ -639,7 +640,7 @@ sub validate {
             }
         }
     } else {
-        push @error_messages, "You can only upload genotype data for a tissue_sample OR accession (including synonyms) OR stocks!"
+        push @error_messages, "Você só pode enviar dados de genotipagem para tissue_sample OU accession (incluindo sinônimos) OU materiais (stocks)!"
     }
 
     my %unique_stocks;
@@ -649,7 +650,7 @@ sub validate {
 
     @missing_stocks = sort keys %unique_stocks;
     if (scalar(@missing_stocks)>0){
-        push @error_messages, "The following stocks are not in the database: ".join(',',@missing_stocks);
+        push @error_messages, "Os seguintes materiais (stocks) não estão no banco de dados: ".join(',',@missing_stocks);
     }
 
     #check if protocol_info is correct
@@ -657,36 +658,36 @@ sub validate {
         while (my ($chromosome, $protocol_info_chrom) = each %{$protocol_info->{markers}}) {
             while (my ($marker_name, $marker_info) = each %{$protocol_info_chrom}) {
                 if (!$marker_name || !$marker_info){
-                    push @error_messages, "No genotype info provided";
+                    push @error_messages, "Nenhuma informação de genótipo informada";
                 }
                 foreach (keys %$marker_info){
                     if ($_ ne 'name' && $_ ne 'chrom' && $_ ne 'pos' && $_ ne 'ref' && $_ ne 'alt' && $_ ne 'qual' && $_ ne 'filter' && $_ ne 'info' && $_ ne 'format' && $_ ne 'intertek_name' && $_ ne 'sequence' && $_ ne 'facility_name'){
-                        push @error_messages, "protocol_info key not recognized: $_";
+                        push @error_messages, "Chave de protocol_info não reconhecida: $_";
                     }
                 }
                 if(!exists($marker_info->{'name'})){
-                    push @error_messages, "protocol_info missing name key";
+                    push @error_messages, "protocol_info sem a chave name";
                 }
                 if(!exists($marker_info->{'chrom'})){
-                    push @error_messages, "protocol_info missing chrom key";
+                    push @error_messages, "protocol_info sem a chave chrom";
                 }
                 if(!exists($marker_info->{'pos'})){
-                    push @error_messages, "protocol_info missing pos key";
+                    push @error_messages, "protocol_info sem a chave pos";
                 }
                 if(!exists($marker_info->{'ref'})){
-                    push @error_messages, "protocol_info missing ref key";
+                    push @error_messages, "protocol_info sem a chave ref";
                 }
                 if(!exists($marker_info->{'alt'})){
-                    push @error_messages, "protocol_info missing alt key";
+                    push @error_messages, "protocol_info sem a chave alt";
                 }
             }
         }
         if (scalar(@{$protocol_info->{marker_names}}) == 0){
-            push @error_messages, "No marker info in file";
+            push @error_messages, "Nenhuma informação de marcador no arquivo";
         }
         while (my ($chromosome, $protocol_info_chrom) = each %{$protocol_info->{markers_array}}) {
             if (scalar(@{$protocol_info_chrom}) == 0){
-                push @error_messages, "No marker info in markers_array file";
+                push @error_messages, "Nenhuma informação de marcador no arquivo markers_array";
             }
         }
     }
@@ -703,7 +704,7 @@ sub validate {
 
         if (scalar(@not_stored_markers) > 0) {
             my $missing_markers = join(",", @not_stored_markers);
-            push @error_messages, "Error: some markers in SSR genotyping data are not in the selected protocol. Missing markers: $missing_markers";
+            push @error_messages, "Erro: alguns marcadores nos dados de genotipagem SSR não estão no protocolo selecionado. Marcadores ausentes: $missing_markers";
             @missing_markers = @not_stored_markers;
         }
     }
@@ -713,7 +714,7 @@ sub validate {
 
     while (my ($observation_unit_name, $marker_result) = each %$genotype_info){
         if (!$observation_unit_name || !$marker_result){
-            push @error_messages, "No geno info in genotype_info";
+            push @error_messages, "Nenhuma informação de genótipo em genotype_info";
         }
     }
 
@@ -747,7 +748,7 @@ sub validate {
         my $uniquename = $r->uniquename;
         my $protocol_name = $r->get_column('protocol_name');
         my $project_name = $r->get_column('project_name');
-        push @warning_messages, "$uniquename in your file has already has genotype stored using the protocol $protocol_name in the project $project_name.";
+        push @warning_messages, "$uniquename do seu arquivo já tem genótipo armazenado com o protocolo $protocol_name no projeto $project_name.";
         $previous_genotypes_exist = 1;
     }
 

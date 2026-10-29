@@ -1,4 +1,5 @@
 package SGN::Image;
+use utf8;
 
 =head1 NAME
 
@@ -327,7 +328,7 @@ sub upload_fieldbook_zipfile {
     my $archived_zip = CXGN::ZipFile->new(archived_zipfile_path=>$image_zip);
     my $file_members = $archived_zip->file_members();
     if (!$file_members){
-        $error_status = 'Could not read your zipfile. Is is .zip format?</br></br>';
+        $error_status = 'Não foi possível ler o seu arquivo zip. Ele está no formato .zip?</br></br>';
         return $error_status;
     }
     my $plot_cvterm_id = SGN::Model::Cvterm->get_cvterm_row($schema, 'plot', 'stock_type')->cvterm_id();
@@ -350,12 +351,12 @@ sub upload_fieldbook_zipfile {
         #print STDERR "Count: $md_image\n";
         if ($md_image > 0) {
             print STDERR Dumper "Image $temp_file has already been added to the database and will not be added again.";
-            $error_status .= "Image $temp_file has already been added to the database and will not be added again.<br/><br/>";
+            $error_status .= "A imagem $temp_file já foi adicionada ao banco de dados e não será adicionada novamente.<br/><br/>";
         } else {
             $image->set_sp_person_id($user_id);
             my $ret = $image->process_image($temp_file, 'stock', $stock_id);
             if (!$ret ) {
-                $error_status .= "Image processing for $temp_file did not work. Image not associated to stock_id $stock_id.<br/><br/>";
+                $error_status .= "O processamento da imagem $temp_file não funcionou. Imagem não associada ao stock_id $stock_id.<br/><br/>";
             }
         }
     }
@@ -376,7 +377,7 @@ sub upload_phenotypes_associated_images_zipfile {
     my $archived_zip = CXGN::ZipFile->new(archived_zipfile_path=>$image_zip);
     my $file_members = $archived_zip->file_members();
     if (!$file_members){
-        return {error => 'Could not read your zipfile. Is is .zip format?</br></br>'};
+        return {error => 'Não foi possível ler o seu arquivo zip. Ele está no formato .zip?</br></br>'};
     }
 
     my $linking_table_type_id = SGN::Model::Cvterm->get_cvterm_row($schema, $image_type_name, 'project_md_image')->cvterm_id();
@@ -425,7 +426,7 @@ sub upload_phenotypes_associated_images_zipfile {
                 $image->set_sp_person_id($user_id);
                 my $ret = $image->process_image($temp_file, 'project', $project_id, $linking_table_type_id);
                 if (!$ret ) {
-                    return {error => "Image processing for $temp_file did not work. Image not associated to stock_id $stock_id.<br/><br/>"};
+                    return {error => "O processamento da imagem $temp_file não funcionou. Imagem não associada ao stock_id $stock_id.<br/><br/>"};
                 }
                 print STDERR "Saved $temp_file\n";
                 my $stock_associate = $image->associate_stock($stock_id);
@@ -454,7 +455,7 @@ sub upload_drone_imagery_zipfile {
     my $archived_zip = CXGN::ZipFile->new(archived_zipfile_path=>$image_zip);
     my $file_members = $archived_zip->file_members();
     if (!$file_members){
-        return {error => 'Could not read your zipfile. Is it .zip format?</br></br>'};
+        return {error => 'Não foi possível ler seu arquivo zip. Ele está no formato .zip?</br></br>'};
     }
 
     my $linking_table_type_id = SGN::Model::Cvterm->get_cvterm_row($schema, 'raw_drone_imagery', 'project_md_image')->cvterm_id();

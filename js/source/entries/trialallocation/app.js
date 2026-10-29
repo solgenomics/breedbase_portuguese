@@ -1439,7 +1439,7 @@ export function initTrialAllocation() {
           trial_index: index,
           project_id: String(projectId),
           existing_project_id: String(projectId),
-          name: trial.name || option?.dataset.name || `Trial ${index}`,
+          name: trial.name || option?.dataset.name || `Ensaio ${index}`,
           description: trial.description || option?.dataset.description || '',
           type: option?.dataset.type || '',
           design: option?.dataset.design || '',
@@ -1849,7 +1849,7 @@ export function initTrialAllocation() {
       return;
     }
 
-    const name   = qs(`#tname${tn}`)?.value || `Trial ${tn}`;
+    const name   = qs(`#tname${tn}`)?.value || `Ensaio ${tn}`;
     const colour = colourFor(tn);
 
     /* request design from server */
@@ -2044,7 +2044,7 @@ export function initTrialAllocation() {
 
     const first = parts[0];
     const tn = first.dataset.trial;
-    const name = qs(`#tname${tn}`)?.value || `Trial ${tn}`;
+    const name = qs(`#tname${tn}`)?.value || `Ensaio ${tn}`;
     const startRow = +(first.dataset.anchorRow || Math.min(...parts.map(g => +g.dataset.row))) + dRow;
     const startCol = +(first.dataset.anchorCol || Math.min(...parts.map(g => +g.dataset.col))) + dCol;
     const boxes = parts
@@ -2098,7 +2098,7 @@ export function initTrialAllocation() {
 
   function clearTrialCache(i) {
     delete trialDesignCache[i];
-    alert(`Ensaio ${i} cache do delineamento limpo.`);
+    alert(`Cache do delineamento do ensaio ${i} limpo.`);
   }
 
   function getTrialCoordinates(trialName) {
@@ -2676,7 +2676,7 @@ export function initTrialAllocation() {
     const n = Math.max(+qs('#num-trials')?.value || 0, lockedMax, existingMax);
     setInputValue('num-trials', n);
     const countLabel = qs('#trial-count-label');
-    if (countLabel) countLabel.textContent = n ? `${n} ensaio${n === 1 ? '' : "S"} adicionado${n === 1 ? '' : "S"}.` : "Nenhum ensaio adicionado ainda.";
+    if (countLabel) countLabel.textContent = n ? `${n} ensaio${n === 1 ? '' : 's'} adicionado${n === 1 ? '' : 's'}.` : "Nenhum ensaio adicionado ainda.";
     for(let i=1;i<=n;i++){
       addTrialForm(i);
       addPaletteBox(i);
@@ -3587,8 +3587,8 @@ Não foi possível salvar a visualização da disposição espacial.`);
       .filter(form => !isDatabaseSavedTrialIndex(form.trial_index))
       .filter(form => !placedTrialIndexes.has(String(form.trial_index)));
     if (missingTrials.length) {
-      const names = missingTrials.map(form => sanitizeTrialName(form.name) || `Trial ${form.trial_index}`).join(', ');
-      alert(`Estes ensaios ainda não foram posicionados na grade: ${names}. Place all trials before saving them in the database.`);
+      const names = missingTrials.map(form => sanitizeTrialName(form.name) || `Ensaio ${form.trial_index}`).join(', ');
+      alert(`Estes ensaios ainda não foram posicionados na grade: ${names}. Posicione todos os ensaios antes de salvá-los no banco de dados.`);
       return;
     }
     if (!window.confirm("Salvar os novos ensaios e atualizar no banco de dados as coordenadas dos ensaios existentes posicionados?")) {

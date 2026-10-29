@@ -1,4 +1,5 @@
 package SGN::Controller::solGS::clearCache;
+use utf8;
 
 use Moose;
 use namespace::autoclean;
@@ -34,11 +35,11 @@ sub solgs_cache_clear : Path('/solgs/cache/clear') Args(0) {
 
     if ($cache_cleared) {
         $c->stash->{rest}{'success'} = 1;
-        $c->stash->{rest}{'message'} = "Cache cleared for analysis type.";
+        $c->stash->{rest}{'message'} = "Cache limpo para o tipo de análise.";
 
     } else {
         $c->stash->{rest}{'success'} = 0;
-        $c->stash->{rest}{'message'} = "Failed to clear cache for analysis type.";
+        $c->stash->{rest}{'message'} = "Falha ao limpar o cache para o tipo de análise.";
     }
 
 }

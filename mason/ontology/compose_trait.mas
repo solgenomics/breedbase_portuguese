@@ -432,7 +432,7 @@ function create_multi_selects(allowed_names) {
                 get_select_box('ontology_children', 'meta_select_div', { 'selectbox_id' : 'meta_select', 'selectbox_name': 'meta_select', 'multiple': 'true', 'parent_node_cvterm': '<% $composable_meta_root_cvterm %>', 'rel_cvterm': 'is_a', 'rel_cv': 'relationship' });
                 break;
             default:
-                if (window.console) console.log("Não foi reconhecido "+name+" category");
+                if (window.console) console.log("Did not recognize "+name+" category");
         }
     }
 }

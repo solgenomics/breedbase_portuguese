@@ -1,4 +1,5 @@
 package SGN::Controller::Catalog;
+use utf8;
 
 use Moose;
 use URI::FromHash 'uri';
@@ -75,7 +76,7 @@ sub catalog_item_details : Path('/catalog/item_details') Args(1) {
     my $item_prop_id;
     if (!$stock_catalog_info){
         $c->stash->{template} = '/generic_message.mas';
-        $c->stash->{message} = 'The requested catalog item does not exist.';
+        $c->stash->{message} = 'O item de catálogo solicitado não existe.';
         return;
     } else {
         $item_prop_id = $stock_catalog_info->stockprop_id();

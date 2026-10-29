@@ -15,6 +15,7 @@ Jeremy Edwards <jde22@cornell.edu>
 =cut
 
 package SGN::Controller::AJAX::PhenotypesDownload;
+use utf8;
 
 use Moose;
 use Try::Tiny;
@@ -53,7 +54,7 @@ sub create_phenotype_spreadsheet_POST : Args(0) {
     print STDERR "phenotype download controller\n";
     my ($self, $c) = @_;
     if (!$c->user()) {
-        $c->stash->{rest} = {error => "You need to be logged in to download a phenotype spreadsheet." };
+        $c->stash->{rest} = {error => "Você precisa estar conectado para baixar uma planilha de fenótipos." };
         return;
     }
 
@@ -80,19 +81,19 @@ sub create_phenotype_spreadsheet_POST : Args(0) {
 
         if ($data_level eq 'plants') {
             if (!$trial->has_plant_entries()) {
-                $c->stash->{rest} = { error => "The requested trial (".$trial->get_name().") does not have plant entries. Please create the plant entries first." };
+                $c->stash->{rest} = { error => "O ensaio solicitado (".$trial->get_name().") não possui registros de plantas. Crie os registros de plantas primeiro." };
                 return;
             }
         }
         if ($data_level eq 'subplots' || $data_level eq 'plants_subplots') {
             if (!$trial->has_subplot_entries()) {
-                $c->stash->{rest} = { error => "The requested trial (".$trial->get_name().") does not have subplot entries." };
+                $c->stash->{rest} = { error => "O ensaio solicitado (".$trial->get_name().") não possui registros de subparcelas." };
                 return;
             }
         }
         if ($data_level eq 'tissue_samples') {
             if (!$trial->has_tissue_sample_entries()) {
-                $c->stash->{rest} = { error => "The requested trial (".$trial->get_name().") does not have tissue sample entries. Please create the tissue sample entries first." };
+                $c->stash->{rest} = { error => "O ensaio solicitado (".$trial->get_name().") não possui registros de amostras de tecido. Crie os registros de amostras de tecido primeiro." };
                 return;
             }
         }

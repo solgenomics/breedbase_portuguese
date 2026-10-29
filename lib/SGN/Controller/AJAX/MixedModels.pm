@@ -1,5 +1,6 @@
 
 package SGN::Controller::AJAX::MixedModels;
+use utf8;
 
 use Moose;
 
@@ -96,7 +97,7 @@ sub prepare: Path('/ajax/mixedmodels/prepare') Args(0) {
     my $exclude_outliers = $c->req->param('dataset_trait_outliers');
 
     if (! $c->user()) {
-        $c->stash->{rest} = {error=>'You must be logged in first!'};
+        $c->stash->{rest} = {error=>'Você precisa estar conectado primeiro!'};
         $c->detach;
     }
 
@@ -156,7 +157,7 @@ sub prepare: Path('/ajax/mixedmodels/prepare') Args(0) {
      };
 
     if (!@factor_select) {
-	$c->stash->{rest}->{error} = "There are no factors with multiple levels in this dataset.";
+	$c->stash->{rest}->{error} = "Não há fatores com múltiplos níveis neste conjunto de dados.";
     }
 }
 
@@ -257,7 +258,7 @@ sub run: Path('/ajax/mixedmodels/run') Args(0) {
     }
     else {
 	if (! $error) { 
-	    $error = "The analysis could not be completed. The factors may not have sufficient numbers of levels to complete the analysis. Please choose other parameters.";
+	    $error = "Não foi possível concluir a análise. Os fatores podem não ter um número suficiente de níveis para concluir a análise. Escolha outros parâmetros.";
 	}
 	$c->stash->{rest} = { error => $error };
 	return;
@@ -280,7 +281,7 @@ sub run: Path('/ajax/mixedmodels/run') Args(0) {
     }
 
     else {
-	$error = "The analysis could not be completed. The factors may not have sufficient numbers of levels to complete the analysis. Please choose other parameters.";
+	$error = "Não foi possível concluir a análise. Os fatores podem não ter um número suficiente de níveis para concluir a análise. Escolha outros parâmetros.";
         $c->stash->{rest} = { error => $error };
         return;
     }
@@ -373,7 +374,7 @@ sub extract_trait_data :Path('/ajax/mixedmodels/grabdata') Args(0) {
 
     my $F;
     if (! open($F, "<", $temppath)) {
-	$c->stash->{rest} = { error => "Can't find data." };
+	$c->stash->{rest} = { error => "Não foi possível encontrar os dados." };
 	return;
     }
 

@@ -6,6 +6,7 @@ CXGN::Transformation::AddTransformationProject - a module for adding transformat
 
 
 package CXGN::Transformation::AddTransformationProject;
+use utf8;
 
 use Moose;
 use MooseX::FollowPBP;
@@ -74,11 +75,11 @@ sub save_transformation_project {
     my $schema = $self->get_chado_schema();
 
     if ($self->existing_transformation_project()){
-        return {error => "Transformation project not saved: Project name already exists"};
+        return {error => "Projeto de transformação não salvo: o nome do projeto já existe"};
     }
 
     if (!$self->get_breeding_program_id()){
-        return {error => "Transformation project not saved: Breeding program does not exist"};
+        return {error => "Projeto de transformação não salvo: o programa de melhoramento não existe"};
     }
 
     my $project_year_cvterm = SGN::Model::Cvterm->get_cvterm_row($schema,'project year', 'project_property');

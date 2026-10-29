@@ -91,16 +91,16 @@ if (defined $template->get_template_id() ) {
  	    push @probe_list, [ $probe_name, $probe_type, $start_coord, $end_coord, $spots_n];
        }
 
-       $probe_composition_html = columnar_table_html( headings => [ 'Probe name', 
- 								   'Probe type', 
- 								   'Template start coord', 
- 								   'Template end coord',
+       $probe_composition_html = columnar_table_html( headings => [ 'Nome da sonda', 
+ 								   'Tipo de sonda', 
+ 								   'Coord. inicial no modelo', 
+ 								   'Coord. final no modelo',
  								   'Spots' ],
                                                        data     => \@probe_list,
 						       __align  => ['l', 'c', 'c', 'c', 'c'],
 	                                            );
     } else {
-      $probe_composition_html = 'None probe was found associated to this template';
+      $probe_composition_html = 'Nenhuma sonda associada a este modelo foi encontrada';
    }
    $probe_comp_content = info_section_html( title       => "Composição da sonda (". $probe_n .")", 
                                             contents    => $probe_composition_html,

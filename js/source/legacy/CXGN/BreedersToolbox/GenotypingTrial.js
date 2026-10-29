@@ -587,7 +587,7 @@ function save_replace_well_accession () {
     var old_plot_id = jQuery('#plot_id').html();
     var old_plot_name = jQuery('#plot_name').html();
 
-    var yes = confirm("Tem certeza de que deseja substituir o acesso "+ old_accession +" Por quê? "+ new_accession +" na amostra " + old_plot_name + " ?");
+    var yes = confirm("Tem certeza de que deseja substituir o acesso "+ old_accession +" por "+ new_accession +" na amostra " + old_plot_name + " ?");
     if (yes) {
         jQuery('#replace_plate_accessions_dialog').modal("hide");
         jQuery('#working_modal').modal("show");

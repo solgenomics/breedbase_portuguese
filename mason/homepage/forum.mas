@@ -2,12 +2,12 @@
 <div class="boxheading">Tópicos do fórum</div>
 <div class="boxcontent">
 <div class="subheading">
-<a href="/forum/posts.pl?topic_id=2">Listas de trabalho</a>
+<a href="/forum/posts.pl?topic_id=2">Vagas de emprego</a>
 </div>
 <div class="boxsubcontent">
-Procurar ou anunciar trabalhos aqui.
+Procure ou anuncie vagas aqui.
 </div>
-<a href="/forum/topics.pl">Veja todos os tópicos...</a><br /><br />
+<a href="/forum/topics.pl">Ver todos os tópicos...</a><br /><br />
 </div>
 </div>
 

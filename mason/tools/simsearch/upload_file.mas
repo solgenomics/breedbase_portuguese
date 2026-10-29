@@ -27,7 +27,7 @@ $format => ""
 
    <table id="simsearch_results_table">
       <thead>
-         <tr><th>Grupo #</th><th>Contagem de membros</th><th>Pontuação máxima</th><th>Pontuação média</th><th>Membros do grupo</th></tr>
+         <tr><th>Grupo nº</th><th>Contagem de membros</th><th>Pontuação máxima</th><th>Pontuação média</th><th>Membros do grupo</th></tr>
    </table>
 
    <div id="simsearch_results_histogram">[HISTOGRAMA]</div>

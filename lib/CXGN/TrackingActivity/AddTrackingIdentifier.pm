@@ -1,4 +1,5 @@
 package CXGN::TrackingActivity::AddTrackingIdentifier;
+use utf8;
 
 =head1 NAME
 
@@ -80,7 +81,7 @@ sub store {
         uniquename => $tracking_identifier,
     });
     if ($check_id_rs->count() > 0){
-        return { error => "$tracking_identifier already used in the database! " };
+        return { error => "$tracking_identifier já está sendo usado no banco de dados! " };
     }
 
     my $coderef = sub {
@@ -122,7 +123,7 @@ sub store {
     };
 
     if ($error) {
-        return { error => "Error creating a tracking identifier: $error\n" };
+        return { error => "Erro ao criar um identificador de rastreamento: $error\n" };
     }
 
     $phenome_schema->resultset("StockOwner")->find_or_create({

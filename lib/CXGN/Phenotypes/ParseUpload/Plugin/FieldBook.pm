@@ -1,6 +1,7 @@
 
 package CXGN::Phenotypes::ParseUpload::Plugin::FieldBook;
 
+use utf8;
 # Validate Returns %validate_result = (
 #   error => 'error message'
 #)
@@ -82,13 +83,13 @@ sub validate {
     }
 
     if (!@file_lines) {
-        $parse_result{'error'} = "Could not read file.";
+        $parse_result{'error'} = "Não foi possível ler o arquivo.";
         print STDERR "Could not read file.\n";
         return \%parse_result;
     }
     ## Check that the file has at least 2 lines;
     if (scalar(@file_lines < 2)) {
-        $parse_result{'error'} = "File has less than 2 lines.";
+        $parse_result{'error'} = "O arquivo tem menos de 2 linhas.";
         print STDERR "File has less than 2 lines.\n";
         return \%parse_result;
     }
@@ -98,7 +99,7 @@ sub validate {
     my @header_row = $csv->fields();
 
     if (!$header_row[1]) {
-        $parse_result{'error'} = "File has no header row.";
+        $parse_result{'error'} = "O arquivo não tem linha de cabeçalho.";
         print STDERR "File has no header row.\n";
         return \%parse_result;
     }
@@ -139,7 +140,7 @@ sub validate {
     }
 
     if (!defined($header_column_info{'trait'}) || !defined($header_column_info{'value'})) {
-        $parse_result{'error'} = "trait or value column not found. Make sure to use the database Fieldbook format.";
+        $parse_result{'error'} = "Coluna trait ou value não encontrada. Certifique-se de usar o formato Fieldbook do banco de dados.";
         print STDERR "trait or value column not found. Make sure to use the database Fieldbook format.";
         return \%parse_result;
     }
@@ -250,7 +251,7 @@ sub parse {
     }
     
     if (!defined($header_column_info{'trait'}) || !defined($header_column_info{'value'})) {
-        $parse_result{'error'} = "trait or value column not found. Make sure to use the database Fieldbook format.";
+        $parse_result{'error'} = "Coluna trait ou value não encontrada. Certifique-se de usar o formato Fieldbook do banco de dados.";
         return \%parse_result;
     }
 
@@ -269,11 +270,11 @@ sub parse {
         my $collector = defined $header_column_info{'person'} ? $row[$header_column_info{'person'}] : '';
 
         if (!defined($unit_value) || !defined($trait) || !defined($value) || !defined($timestamp)) {
-            $parse_result{'error'} = "Error parsing line $line_number: unit, trait, or value is undefined.";
+            $parse_result{'error'} = "Erro ao analisar a linha $line_number: unit, trait ou value não está definido.";
             return \%parse_result;
         }
         if (!$timestamp =~ m/(\d{4})-(\d{2})-(\d{2}) (\d{2}):(\d{2}):(\d{2})(\S)(\d{4})/) {
-            $parse_result{'error'} = "Error parsing line $line_number: timestamp needs to be of form YYYY-MM-DD HH:MM:SS-0000 or YYYY-MM-DD HH:MM:SS+0000";
+            $parse_result{'error'} = "Erro ao analisar a linha $line_number: a data e hora deve estar no formato YYYY-MM-DD HH:MM:SS-0000 ou YYYY-MM-DD HH:MM:SS+0000";
             print STDERR "line $line_number has timestamp: $timestamp\n";
             return \%parse_result;
         }
@@ -284,7 +285,7 @@ sub parse {
             if ($row) {
                 $unit_value = $row->uniquename();
             } else {
-                $parse_result{'error'} = "Error: stock id $unit_value does not exist in the database."
+                $parse_result{'error'} = "Erro: o ID de material (stock id) $unit_value não existe no banco de dados."
             }
         }
 

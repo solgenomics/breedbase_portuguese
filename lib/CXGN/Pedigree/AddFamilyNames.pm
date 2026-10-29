@@ -1,4 +1,5 @@
 package CXGN::Pedigree::AddFamilyNames;
+use utf8;
 
 =head1 NAME
 
@@ -80,7 +81,7 @@ sub add_family_name {
        #Get stock of type cross matching cross name
         $cross_stock = $self->_get_cross($cross_name);
         if (!$cross_stock) {
-			push @{$return{error}},"Cross: $cross_name are not in database";
+			push @{$return{error}},"Cruzamento: $cross_name não está no banco de dados";
 			return \%return;
         }
 
@@ -116,7 +117,7 @@ sub add_family_name {
             my $stored_family_type = $chado_schema->resultset("Stock::Stockprop")->find({ stock_id => $family_name_rs->stock_id(), type_id => $family_type_cvterm->cvterm_id() })->value();
 
             if ($stored_family_type ne $family_type) {
-                push @{$return{error}},"The previously stored family type of family: $family_name is not the same as the selected family type";
+                push @{$return{error}},"O tipo de família armazenado anteriormente para a família: $family_name não é o mesmo que o tipo de família selecionado";
                 return \%return;
             }
 
@@ -138,15 +139,15 @@ sub add_family_name {
 
             if ($family_type eq 'same_parents') {
                 if (($cross_female_id != $family_female_id) || ($cross_male_id != $family_male_id)) {
-                    push @{$return{error}},"Parents of cross: $cross_name are not the same as parents of family: $family_name";
+                    push @{$return{error}},"Os genitores do cruzamento: $cross_name não são os mesmos que os genitores da família: $family_name";
                     return \%return;
                 }
             } elsif ($family_type eq 'reciprocal_parents') {
                 if (($cross_female_id != $family_female_id) && ($cross_female_id != $family_male_id)) {
-                    push @{$return{error}},"Female parent of cross: $cross_name is neither female parent nor male parent of family: $family_name";
+                    push @{$return{error}},"O genitor feminino do cruzamento: $cross_name não é nem genitor feminino nem genitor masculino da família: $family_name";
                     return \%return;
                 } elsif (($cross_male_id != $family_female_id) && ($cross_male_id != $family_male_id)) {
-                    push @{$return{error}},"Male parent of cross: $cross_name is neither female parent nor male parent of family: $family_name";
+                    push @{$return{error}},"O genitor masculino do cruzamento: $cross_name não é nem genitor feminino nem genitor masculino da família: $family_name";
                     return \%return;
                 }
             }
@@ -211,7 +212,7 @@ sub add_family_name {
     };
 
     if ($transaction_error) {
-		$return{error} = "Error creating family $family_name: $transaction_error";
+		$return{error} = "Erro ao criar a família $family_name: $transaction_error";
 		return \%return;
     }
 

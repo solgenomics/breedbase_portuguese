@@ -130,7 +130,7 @@ print <<EOHTML;
   <td colspan="12" align="center">$overview_image_html</td>
   <td>&nbsp;</td>
 </tr>
-<tr><td colspan="12"><table><tr><td width="100">&nbsp;</td><td width="15"><span style="background:#cccccc">&nbsp;&nbsp;</span></td><td>in progress</td><td width="10">&nbsp;</td><td width="15"><span style="background:#446644">&nbsp;&nbsp;</span></td><td bgcolor="ffffff">complete</td><td width="10">&nbsp;</td><td width="15"><span style="background:#aaffaa">&nbsp;&nbsp;</span></td><td>available</td><td width="10">&nbsp;</td><td width="15"><span style="background:#00ff00">&nbsp;&nbsp;</span></td><td>available HTGS3</td></tr></table><br /><br /></td></tr>
+<tr><td colspan="12"><table><tr><td width="100">&nbsp;</td><td width="15"><span style="background:#cccccc">&nbsp;&nbsp;</span></td><td>em andamento</td><td width="10">&nbsp;</td><td width="15"><span style="background:#446644">&nbsp;&nbsp;</span></td><td bgcolor="ffffff">concluído</td><td width="10">&nbsp;</td><td width="15"><span style="background:#aaffaa">&nbsp;&nbsp;</span></td><td>disponível</td><td width="10">&nbsp;</td><td width="15"><span style="background:#00ff00">&nbsp;&nbsp;</span></td><td>disponível HTGS3</td></tr></table><br /><br /></td></tr>
 <tr><th>BACs</th><td colspan="12"></td><th>Total</th></tr>
 EOHTML
 
@@ -154,12 +154,12 @@ sub summed_row_html(@) {
     );
 }
 
-print summed_row_html 'Chr Total' => @to_be_sequenced;
+print summed_row_html 'Total por cromossomo' => @to_be_sequenced;
 
 my $search = CXGN::Genomic::Search::Clone->new;
 my @in_progress = ( undef, map $progress_data->{$_}{in_progress}, @chr_nums );
 
-print summed_row_html 'In&nbsp;progress' =>
+print summed_row_html 'Em&nbsp;andamento' =>
   map {
     my $q = $search->new_query;
     $q->seq_project_name(qq/ilike '%Tomato%Chromosome ' || ? || ' %'/,$_);
@@ -171,7 +171,7 @@ print summed_row_html 'In&nbsp;progress' =>
   } @chr_nums;
 
 my @complete = ( undef, map $progress_data->{$_}{complete}, @chr_nums );
-print summed_row_html Complete =>
+print summed_row_html 'Concluídos' =>
   map {
     my $q = $search->new_query;
     $q->seq_project_name(qq/ilike '%Tomato%Chromosome ' || ? || ' %'/,$_);
@@ -184,7 +184,7 @@ print summed_row_html Complete =>
   } @chr_nums;
 
 my @num_uploaded = ( undef, map $progress_data->{$_}{available}, @chr_nums );
-print summed_row_html Available =>
+print summed_row_html 'Disponíveis' =>
   map {
     my $total = $num_uploaded[$_];
     [$total,qq|<a href="/organism/Solanum_lycopersicum/clone_sequencing?chr=$_#clones">$total</a>|]
@@ -203,7 +203,7 @@ foreach my $phase (1..3) {
 my $overall_percent = $progress_data->{overall}{pct_done};
 my @finished = map $progress_data->{$_}{pct_done}, @chr_nums;
 print '<tr>', 
-    qq|<td align="left" class="tinytype">% Done</td>|,
+    qq|<td align="left" class="tinytype">% Concluído</td>|,
     ( map qq|<td style="text-align: right; padding-right: 0.65em">$_%</td>|, @finished ),
     '<td>&nbsp;</td>',
     "</tr>\n";
@@ -214,11 +214,11 @@ print <<EOHTML;
 <tr>
 <td colspan="13" style="padding-top: 1em">
 <center>
-  <b>Overall Stats</b>
+  <b>Estatísticas gerais</b>
   <table>
-    <tr><td align="right">$progress_data->{overall}{pct_done}%</td><td>of BAC sequencing is complete</td></tr>
-    <tr><td align="right">$progress_data->{overall}{pct_reported_finished}%</td><td>of BACs are reported finished</td></tr>
-    <tr><td align="right">$progress_data->{overall}{pct_available}%</td><td>of BACs have downloadable sequence</td></tr>
+    <tr><td align="right">$progress_data->{overall}{pct_done}%</td><td>do sequenciamento de BACs está concluído</td></tr>
+    <tr><td align="right">$progress_data->{overall}{pct_reported_finished}%</td><td>dos BACs foram relatados como finalizados</td></tr>
+    <tr><td align="right">$progress_data->{overall}{pct_available}%</td><td>dos BACs têm sequência disponível para download</td></tr>
     </table>
     </center>
     </td>
@@ -231,23 +231,23 @@ EOHTML
 
 print info_table_html( __border => 0, __multicol => 3,
 
-		      'Tomato Mitochondrial Genome' =>
+		      'Genoma mitocondrial do tomate' =>
 		       '<center>'.flag_html('Argentina',
 					    'Flag_of_Argentina',
 					    'http://www.mitochondrialgenome.org')
 		       .'</center>',
 
-		      'Tomato Chloroplast Genome' =>
+		      'Genoma do cloroplasto do tomate' =>
 		       '<center>'.flag_html('EU Plastomics Project',
 					    'Flag_of_European_Union',
 					    'https://genesilico.pl/Plastomics/')
 		       .'</center>',
 
-		      'BAC End Sequences' => <<EOHTML,
+		      'Sequências de extremidades de BAC' => <<EOHTML,
 <table summary="">
-  <tr><td align="right">188,130</td><td>Tomato HindIII BAC Library</td></tr>
-  <tr><td align="right">112,507</td><td>Tomato MboI BAC Library</td></tr>
-  <tr><td align="right">101,375</td><td>Tomato EcoRI BAC Library</td></tr>
+  <tr><td align="right">188,130</td><td>Biblioteca BAC HindIII de tomate</td></tr>
+  <tr><td align="right">112,507</td><td>Biblioteca BAC MboI de tomate</td></tr>
+  <tr><td align="right">101,375</td><td>Biblioteca BAC EcoRI de tomate</td></tr>
   <tr><td align="right">402,012</td><th>Total</th></tr>
 </table>
 EOHTML

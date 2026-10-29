@@ -1,20 +1,20 @@
 
-<& /page/page_title.mas, title=>"SSR Marker Help" &>    
+<& /page/page_title.mas, title=>"Ajuda sobre marcadores SSR" &>    
 
-    <p>Enquanto microssatélites ou sequência simples repetem (RSS) normalmente ocorrem em regiões não codificadoras do genoma, eles também podem ocorrer em 3' ou 5' UTRs de ESTs ou mesmo em regiões codificadoras (geralmente trigêmeos repetições). Por esta razão, as sequências EST de tomate e batata contidas na SGN foram triadas para microssatélite em maio de 2001 usando ferramentas analíticas desenvolvidas pela Genomics Edge Technologies, Inc.; St. Louis, Missouri. O propósito era identificar RCEs que poderiam ser úteis a marcadores moleculares polimórficos estudos genéticos e de melhoramento em tomate. Os parâmetros de busca eram para todos os motivos possíveis de repetição 2 a 6 bp com blocos repetidos &gt; 20 bp. Os algoritmos de busca permitiram repetições imperfeitas e repetições complexas.</p>
+    <p>Embora os microssatélites, ou repetições de sequência simples (SSRs), ocorram normalmente em regiões não codificadoras do genoma, eles também podem ocorrer nas UTRs 3' ou 5' de ESTs ou mesmo em regiões codificadoras (geralmente repetições de trinucleotídeos). Por esse motivo, as sequências EST de tomate e batata da SGN foram triadas quanto a microssatélites em maio de 2001, usando ferramentas analíticas desenvolvidas pela Genomics Edge Technologies, Inc.; St. Louis, Missouri. O objetivo era identificar SSRs que pudessem ser úteis como marcadores moleculares polimórficos em estudos genéticos e de melhoramento do tomate. Os parâmetros de busca abrangeram todos os motivos de repetição possíveis de 2 a 6 pb, com blocos repetidos &gt; 20 pb. Os algoritmos de busca admitiram repetições imperfeitas e repetições complexas.</p>
 
-    <p>Para aqueles que desejam testar RCE para estudos de mapeamento/polimorfismo, é recomendado (baseado em testes empíricos) para começar com:<br /></p>
+    <p>Para quem deseja testar SSRs em estudos de mapeamento/polimorfismo, recomenda-se (com base em testes empíricos) começar com:<br /></p>
 
     <ul>
       <li>Dinucleotídeos &gt; 12 repetições</li>
 
-      <li>Trinucleotídeo &gt; 8 repetições</li>
+      <li>Trinucleotídeos &gt; 8 repetições</li>
 
-      <li>Tetra para hexonuclotidas &gt; 6 repetições</li>
+      <li>Tetra a hexanucleotídeos &gt; 6 repetições</li>
     </ul>
     <p>
-    <a href="/search/markers/markersearch.pl?searchtype=startswith&amp;name=&amp;submit=search&amp;mapped=on&amp;confidence=0&amp;offsetstart=&amp;offsetend=&amp;chromosomes=all&amp;species=all&amp;maps=all&amp;types=SSR&amp;techniques=all">Veja todos os marcadores de RCE em resultados de busca de marcadores</a><br />
-    <a href="/documents/markers/microsat_list.txt">Versão antiga da RCE</a>
+    <a href="/search/markers/markersearch.pl?searchtype=startswith&amp;name=&amp;submit=search&amp;mapped=on&amp;confidence=0&amp;offsetstart=&amp;offsetend=&amp;chromosomes=all&amp;species=all&amp;maps=all&amp;types=SSR&amp;techniques=all">Ver todos os marcadores SSR nos resultados da busca de marcadores</a><br />
+    <a href="/documents/markers/microsat_list.txt">Lista antiga de SSRs</a>
     </p>
     
   </center>

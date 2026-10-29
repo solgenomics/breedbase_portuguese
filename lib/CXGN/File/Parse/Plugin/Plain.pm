@@ -1,5 +1,6 @@
 package CXGN::File::Parse::Plugin::Plain;
 
+use utf8;
 use strict;
 
 use Data::Dumper;
@@ -41,7 +42,7 @@ sub parse {
     $sep = ';';
   }
   else {
-    push @{$rtn{errors}}, "Invalid type $type for plain parse plugin";
+    push @{$rtn{errors}}, "Tipo $type inválido para o plugin de leitura de texto simples";
     return \%rtn;
   }
 
@@ -58,7 +59,7 @@ sub parse {
     allow_whitespace => 1,
     auto_diag => 2
   });
-  open my $fh, "<:encoding(utf8)", $file or die "Could not read file: $!";
+  open my $fh, "<:encoding(utf8)", $file or die "Não foi possível ler o arquivo: $!";
   while ( my $row = $csv->getline($fh) ) {
     push @rows, $row;
   }
@@ -80,7 +81,7 @@ sub parse {
     if ( $v && $v ne '' ) {
       # check for duplicated column header
       if ( exists $seen_column_headers{$v} && !exists $column_arrays->{$v} ) {
-        push @{$rtn{errors}}, "The column header $v was duplicated in column " . ($col+1) . " of your file and should only be included once.";
+        push @{$rtn{errors}}, "O cabeçalho de coluna $v está duplicado na coluna " . ($col+1) . " do seu arquivo e deve ser incluído apenas uma vez.";
       }
       $seen_column_headers{$v}++;
 

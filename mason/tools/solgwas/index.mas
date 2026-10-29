@@ -19,17 +19,17 @@
 <script src="https://cdn.jsdelivr.net/npm/vega-lite@2"></script>
 <script src="https://cdn.jsdelivr.net/npm/vega-embed@4"></script>
 
-<& /page/page_title.mas, title=>"Solgwas" &>
+<& /page/page_title.mas, title=>"SolGWAS" &>
 
-<&| /page/info_section.mas, id=>"input_dataset_section", title=>"Selecione Dados de Entrada", collapsible=>1, collapsed=>0, subtitle=>'<a class="btn btn-link pull-right" href="/help/solgwas" target="_blank">Socorro! <span class="glyphicon glyphicon-question-sign"></span></a>' &>
+<&| /page/info_section.mas, id=>"input_dataset_section", title=>"Selecionar dados de entrada", collapsible=>1, collapsed=>0, subtitle=>'<a class="btn btn-link pull-right" href="/help/solgwas" target="_blank">Ajuda <span class="glyphicon glyphicon-question-sign"></span></a>' &>
   <input type="hidden" name="outformat" value="0" />
 
 
   <div class="form-group form-inline">
-    <label for="dataset_select">Datasets disponíveis: </label><div id="dataset_select"></div>
+    <label for="dataset_select">Conjuntos de dados disponíveis: </label><div id="dataset_select"></div>
     <br>
 
-    <button class="btn btn-info" id="createDataset"><span class="glyphicon glyphicon-plus"></span>Criar conjunto de dados</button>
+    <button class="btn btn-info" id="createDataset"><span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;Criar conjunto de dados</button>
     <button class="btn btn-primary" id="selectDataset" type="submit" name="selectDataset" value="selectDataset">Selecionar conjunto de dados</button>
     <br>
     <br>
@@ -38,11 +38,11 @@
       <div class="form-group form-inline">
         <label class="blast_select_label" for="pheno_select">Características disponíveis: </label>        
         <& /page/html_select.mas, name=>'pheno_select', id=>'pheno_select', params=>"class\=\"form-control input-sm blast_select_box\"", choices=>"" &>                
-        <button class="btn btn-primary" id="preview_trait_histogram_btn" type="submit" name="preview_trait_histogram_btn" value="preview_trait_histogram_btn">Veja Histograma de Característica</button>
+        <button class="btn btn-primary" id="preview_trait_histogram_btn" type="submit" name="preview_trait_histogram_btn" value="preview_trait_histogram_btn">Ver histograma da característica</button>
         <img id="loading-spinner" src="/img/wheel.gif" alt="Carregando" style="visibility: hidden;">
         <br>
         <input type="checkbox" id="dataset_trait_outliers" />
-        <label>Excluir dados outliers </label>
+        <label>Excluir outliers do conjunto de dados </label>
         <br>
         <br>
         <center>
@@ -53,11 +53,11 @@
         <br>
         <div class="form-group form-inline">
           <input type="checkbox" id="kinshipmat" />
-          <label>Inclua matriz de parentesco no modelo </label>
+          <label>Incluir matriz de parentesco no modelo </label>
           <br>
           <input type="checkbox" id="princomp" />
           <label>Incluir componentes principais no modelo </label>
-          <button class="btn btn-primary" id="preview_pca" type="submit" name="preview_pca" value="preview_pca">Veja o gráfico PCA</button>
+          <button class="btn btn-primary" id="preview_pca" type="submit" name="preview_pca" value="preview_pca">Ver gráfico de PCA</button>
         </div>
         <br>
         <br>
@@ -73,7 +73,7 @@
       </div>
 
       <div style="text-align: center">
-        <button class="btn btn-primary" id="runGWA" name="runGWA">Corra SolgWAS</button>
+        <button class="btn btn-primary" id="runGWA" name="runGWA">Executar SolGWAS</button>
       </div>
       <br />
 
@@ -89,14 +89,14 @@
 
 
 
-<&| /page/info_section.mas, title=>"Saída", collapsible=>1, collapsed=>0, subtitle=>'<a id="download_table" class="download_tag" target="_blank" href="javascript:download_table();" title="Download results in tabular format">Table&#8675;</a>&nbsp;&nbsp;<a id="download_basic" class="download_tag" target="_blank" href="javascript:download();" title="Download results in basic format">Basic&#8675;</a>' &>
+<&| /page/info_section.mas, title=>"Saída", collapsible=>1, collapsed=>0, subtitle=>'<a id="download_table" class="download_tag" target="_blank" href="javascript:download_table();" title="Baixar resultados em formato tabular">Tabela&#8675;</a>&nbsp;&nbsp;<a id="download_basic" class="download_tag" target="_blank" href="javascript:download();" title="Baixar resultados em formato básico">Básico&#8675;</a>' &>
 
 
 
   <center>
     <div id="sgn_blast_graph" style="display:none">
         <div id="myCanvas">
-          Seu navegador não suporta a tela HTML5
+          Seu navegador não suporta o canvas do HTML5
         </div>
     </div>
   </center>

@@ -19,7 +19,7 @@ $align_link_disabled => undef
   <tr><td colspan="2">Observação: <% $errors %></td></tr>
 </table>
 
-<h2>Família Gene</h2>
+<h2>Membros da família gênica</h2>
 Member count: <% $member_count %><br />
 <div id="family_members">
   <% $members %>
@@ -49,7 +49,7 @@ Member count: <% $member_count %><br />
 </table>
 <hr>
 <table><tr><td>
-Sequências em rápido:</td><td>
+Sequências em FASTA:</td><td>
 <form name="tree_browser_unaligned" method="post" action="/tools/align_viewer/index.pl">
   <input type="hidden" name="seq_data" value="<% $fasta_data %>" />
   <input type="hidden" name="format" value="fasta_unaligned" />

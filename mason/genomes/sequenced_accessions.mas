@@ -9,7 +9,7 @@
 &>
 
 
-<& /page/page_title.mas, title=> "Acessos Sequenciadas" &>
+<& /page/page_title.mas, title=> "Acessos Sequenciados" &>
 
 <div>
 <table class="table table-condensed" cellspacing="20px" id="sequenced_stocks_table" >
@@ -33,20 +33,20 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><div aria-hidden="true">&times;</div></button>
-                    <h5 class="modal-title">Digite informações sequenciais para o acesso:</h5>
+                    <h5 class="modal-title">Informe os dados de sequenciamento do acesso:</h5>
                 </div> <!-- modal-header -->
                 <form id="sequencing_info_form" class="form-horizontal">
                     <div class="modal-body">
                         <div class="row">
                             <label class="col-sm-3 control-label">Organização: </label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" alt="Organização" placeholder="Sequencing organization" name="organization" id="organization" size="30" /><br />
+                                <input type="text" class="form-control" alt="Organização" placeholder="Organização responsável pelo sequenciamento" name="organization" id="organization" size="30" /><br />
                             </div>
                         </div>
                         <div class="row">
                             <label class="col-sm-3 control-label">Ano: </label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" placeholder="Ano de sequência" name="sequencing_year" id="sequencing_year" size="6" /><br />
+                                <input type="text" class="form-control" placeholder="Ano do sequenciamento" name="sequencing_year" id="sequencing_year" size="6" /><br />
                             </div>
                         </div>
                         <div class="row">
@@ -66,9 +66,9 @@
                             </div>
                         </div>
                         <div class="row">
-                            <label class="col-sm-3 control-label">Acesso ao Banco Gen: </label>
+                            <label class="col-sm-3 control-label">Acesso no GenBank: </label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" placeholder="Acesso ao Banco Gen" name="genbank_accession"  id="genbank_accession" size="10" /><br />
+                                <input type="text" class="form-control" placeholder="Acesso no GenBank" name="genbank_accession"  id="genbank_accession" size="10" /><br />
                             </div>
                         </div>
                         <div class="row">
@@ -78,33 +78,33 @@
                             </div>
                         </div>
                         <div class="row">
-                            <label class="col-sm-3 control-label">Projeto ID da agência de financiamento: </label>
+                            <label class="col-sm-3 control-label">ID do projeto na agência de financiamento: </label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" placeholder="Identificação do projeto de organização de financiamento"  name="funder_project_id" id="funder_project_id" size="10" /><br />
+                                <input type="text" class="form-control" placeholder="ID do projeto na organização financiadora"  name="funder_project_id" id="funder_project_id" size="10" /><br />
                             </div>
                         </div>
                         <div class="row">
                             <label class="col-sm-3 control-label">Link do JBrowse: </label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" placeholder="Ligação Jbrowse" name="jbrowse_link" id="jbrowse_link" size="20" /><br />
+                                <input type="text" class="form-control" placeholder="Link do JBrowse" name="jbrowse_link" id="jbrowse_link" size="20" /><br />
                             </div>
                         </div>
                         <div class="row">
-                            <label class="col-sm-3 control-label">BLAST Link</label>
+                            <label class="col-sm-3 control-label">Link do BLAST</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" placeholder="BLAST Link" name="blast_link" id="blast_link" size="20" /><br />
+                                <input type="text" class="form-control" placeholder="Link do BLAST" name="blast_link" id="blast_link" size="20" /><br />
                             </div>
                         </div>
                         <div class="row">
-                            <label class="col-sm-3 control-label">Ligação FTP</label>
+                            <label class="col-sm-3 control-label">Link FTP</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" placeholder="Ligação FTP" name="ftp_link" id="ftp_link" size="20" /><br />
+                                <input type="text" class="form-control" placeholder="Link FTP" name="ftp_link" id="ftp_link" size="20" /><br />
                             </div>
                         </div>
                         <div class="row">
-                            <label class="col-sm-3 control-label">Ligação NCBI</label>
+                            <label class="col-sm-3 control-label">Link do NCBI</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" placeholder="Ligação NCBI" name="ncbi_link" id="ncbi_link" size="20" /><br />
+                                <input type="text" class="form-control" placeholder="Link do NCBI" name="ncbi_link" id="ncbi_link" size="20" /><br />
                             </div>
                         </div>
                         <div>
@@ -113,7 +113,7 @@
                         </div>
                     </div> <!-- modal-body -->
                     <div class="modal-footer">
-                        <button id="save_sequencing_info_button" type="submit" class="btn btn-primary">Salvar mudanças</button>
+                        <button id="save_sequencing_info_button" type="submit" class="btn btn-primary">Salvar alterações</button>
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
                     </div> <!-- modal-footer -->
                 </form> <!-- sequencing_info form -->

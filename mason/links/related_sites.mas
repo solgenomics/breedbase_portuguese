@@ -6,36 +6,36 @@
     border="0">
       <tr>
         <td>
-          <h4>Recursos Solanaceae na Web</h4>
+          <h4>Recursos de Solanaceae na Web</h4>
 
           <table summary="">
             <tr>
               <td width="20">&nbsp;</td>
 
               <td>
-                <strong>Solanaceae Systematics, Descrições, Imagens, Germoplasmas</strong>
+                <strong>Solanaceae: sistemática, descrições, imagens, germoplasma</strong>
 
 		<dl>
-		  <dt><br /><a href="http://www.ru.nl/bgard/">Jardim Experimental e Genebank da Universidade Radboud de Nijmegen</a></dl>
-		<dd>O Jardim Experimental e Genebank da Universidade Radboud de Nijmegen presta especial atenção à família de Solanaceae e mantém a mais extensa coleção de plantas ex situ de espécies não tuberosas de Solanaceae no mundo.  </dd>
+		  <dt><br /><a href="http://www.ru.nl/bgard/">Experimental Garden and Genebank of the Radboud University of Nijmegen</a></dl>
+		<dd>O Experimental Garden and Genebank da Radboud University de Nijmegen dá atenção especial à família Solanaceae e mantém a mais extensa coleção de plantas ex situ de espécies não tuberosas de Solanaceae no mundo.  </dd>
 
 		<dl>
-		  <dt><br /><a href="http://www.ecpgr.cgiar.org/">Programa Cooperativo Europeu de Recursos Vegetais</a></dl>
+		  <dt><br /><a href="http://www.ecpgr.cgiar.org/">European Cooperative Programme for Plant Genetic Resources</a></dl>
 
-		<dd>O Programa Cooperativo Europeu de Recursos Fitosgenéticos (ECPGR) é um programa colaborativo entre a maioria dos países europeus destinado a garantir a conservação a longo prazo e facilitar o aumento da utilização de recursos fitogenéticos na Europa (<a href="http://www.ecpgr.cgiar.org/networks/vegetables/solanaceae.html">Solanaceae</a>, <a href="http://www.ecpgr.cgiar.org/networks/sugar_starch_fibre_crops/potato.html">Batata</a>)</dd>
+		<dd>O European Cooperative Programme for Plant Genetic Resources (ECPGR) é um programa colaborativo entre a maioria dos países europeus destinado a garantir a conservação a longo prazo e facilitar o aumento da utilização de recursos fitogenéticos na Europa (<a href="http://www.ecpgr.cgiar.org/networks/vegetables/solanaceae.html">Solanaceae</a>, <a href="http://www.ecpgr.cgiar.org/networks/sugar_starch_fibre_crops/potato.html">Batata</a>)</dd>
 
                 <dl>
 
                   <dt><br /><a href="http://solcap.msu.edu" target="_new" >SolCAP</a></dt>
-                  <dd>O site oficial do USDA patrocinou o Projeto Agrícola Coordenado Solanaceae (SolCAP), que será fenótipo e genótipo de grandes painéis de tomate e acessos de batata. Os resultados também serão disponibilizados na SGN.</dd>
+                  <dd>O site oficial do Solanaceae Coordinated Agricultural Project (SolCAP), patrocinado pelo USDA, que fará a fenotipagem e a genotipagem de grandes painéis de acessos de tomate e batata. Os resultados também serão disponibilizados na SGN.</dd>
                   <dt><a href=
-                  "http://www.nhm.ac.uk/research-curation/projects/solanaceaesource/" target="_new">Fonte Solanum</a></dt>
+                  "http://www.nhm.ac.uk/research-curation/projects/solanaceaesource/" target="_new">Solanum Source</a></dt>
 
                   <dd>O site oficial do projeto Solanum PBI, contendo descrições de espécies, dados de espécimes de herbários, dados de nomenclatura sobre nomes e seus locais de publicação, e uma bibliografia de artigos científicos sobre membros da família.</dd>
 
 
                   <dt><br /><a href=
-                  "http://www.bgard.science.ru.nl/" target="_new">Nijmegen Jardim Experimental e Genebank</a> na Holanda</dt>
+                  "http://www.bgard.science.ru.nl/" target="_new">Nijmegen Experimental Garden and Genebank</a> na Holanda</dt>
 
                   <dd>Um jardim botânico com uma das principais coleções de plantas Solanaceae.</dd>
     
@@ -49,80 +49,80 @@
                 <dl>
                   <dt><a href="http://tomatoma.nbrp.jp/index.jsp" target="_new"> Banco de dados TOMATOMA</a> 
     </dt>
-    <dd>Um banco de dados de mutantes EMS e Neutron no fundo da MicroTom no Japão.</dd>
+    <dd>Um banco de dados de mutantes obtidos por EMS e por nêutrons no background MicroTom, no Japão.</dd>
 
     <dt><a href="http://www.agrobios.it/tilling" target="_new"> LycoTILL</a></dt>
-<dd>  LycoTILL é um banco de dados interativo e em evolução que permite pesquisar on-line imagens e dados fenótipos da coleção mutante de tomate (cv / Red Setter /) gerada com experimentos de mutagênese EMS. A população mutante Red Setter foi desenvolvida para aplicações TILLING, mas também pode ser usada para estudos genéticos avançados.</dd>
+<dd>  LycoTILL é um banco de dados interativo e em evolução que permite pesquisar on-line imagens e dados fenotípicos da coleção de mutantes de tomate (cv /Red Setter/) gerada em experimentos de mutagênese com EMS. A população mutante Red Setter foi desenvolvida para aplicações de TILLING, mas também pode ser usada em estudos de genética direta (forward genetics).</dd>
 
                   <dt><a href="http://phn.huji.ac.il/RTQ/" target="_new" >Phenom Networks</a></dt>
-                  <dd>O motor da rede Phenom de Dani Zamir e Yaniv Semel representa o conhecimento de características complexos e tem características de tomate ILs, cevada e rosa com mais organismos sendo adicionados em breve.</dd>
+                  <dd>O mecanismo Phenom Networks, de Dani Zamir e Yaniv Semel, representa o conhecimento sobre características complexas e contém características de ILs de tomate, cevada e rosa, com mais organismos a serem adicionados em breve.</dd>
 
-                  <dt><a href="http://www-plb.ucdavis.edu/labs/maloof/tomatosnp/" target="_new" >Tomato SNP database</a></dt>
-                  <dd>Um site SNP de tomate de Jose Jimenez e Julin Maloof na UC Davis</dd>
+                  <dt><a href="http://www-plb.ucdavis.edu/labs/maloof/tomatosnp/" target="_new" >Banco de dados de SNPs de tomate</a></dt>
+                  <dd>Um site de SNPs de tomate de Jose Jimenez e Julin Maloof, na UC Davis</dd>
 
                   <dt><br /><a href=
-                  "http://www.kazusa.or.jp/jsol/microtom/index.html" target="_new">MiBASE</a>, the Kazusa
-                  Microtom Site</dt>
+                  "http://www.kazusa.or.jp/jsol/microtom/index.html" target="_new">MiBASE</a>, o site Microtom
+                  do Kazusa</dt>
 
-                  <dd>EST e unigene dataset de Microtom, incluindo anotações GO e Pathway Viewer.</dd>
+                  <dd>Conjunto de dados de ESTs e unigenes de Microtom, incluindo anotações GO e o Pathway Viewer.</dd>
 
                   <dt><br /><a href="http://www.pgb.kazusa.or.jp/kaftom/" target="_new" >KaFTom</a></dt>
-                  <dd>O site completo da Kazusa Micro-Tom</dd>
+                  <dd>O site de cDNAs completos (full-length) de Micro-Tom do Kazusa</dd>
 
-                  <dt><br /><a href="http://tgc.ifas.ufl.edu" target="_new">A Cooperativa de Genética de Tomate</a></dt>
+                  <dt><br /><a href="http://tgc.ifas.ufl.edu" target="_new">Tomato Genetics Cooperative</a></dt>
 
-                  <dd>Página inicial da cooperativa de genética de tomate com acesso a publicações on-line.</dd>
+                  <dd>Página inicial da Tomato Genetics Cooperative, com acesso a publicações on-line.</dd>
 
-                  <dt><br /><a href="http://tgrc.ucdavis.edu" target="_new" >Centro de Recursos Genéticos de Tomate (TGRC)</a></dt>
+                  <dt><br /><a href="http://tgrc.ucdavis.edu" target="_new" >Tomato Genetic Resource Center (TGRC)</a></dt>
 
                   <dd>Grande coleção de germoplasmas de Solanaceae, com foco especial no tomate.</dd>
 
                   
-                  <dt><br /><a href="http://ted.bti.cornell.edu/" target="_new" >Banco de dados de expressões de tomate (TED)</a></dt>
+                  <dt><br /><a href="http://ted.bti.cornell.edu/" target="_new" >Tomato Expression Database (TED)</a></dt>
 
                   <dd>Site dedicado a microarrays de tomate.</dd>
 
                   <dt><br /><a href=
-                  "http://www.tomato.org/" target="_new">Comissão de Tomate da Califórnia</a></dt>
+                  "http://www.tomato.org/" target="_new">California Tomato Commission</a></dt>
 
-                  <dd>O site da Associação de Produtores de Tomate da Califórnia. Contém informação nutricional e receitas.</dd>
+                  <dd>O site da California Tomato Grower\'s Association. Contém informação nutricional e receitas.</dd>
 
 
-                  <dt><br /><a href="http://www.ars.usda.gov/Main/site_main.htm?modecode=19-10-05-00" target="_new" >USDA ARS Bioinformática Página inicial</a></dt>
+                  <dt><br /><a href="http://www.ars.usda.gov/Main/site_main.htm?modecode=19-10-05-00" target="_new" >Página inicial de bioinformática do USDA ARS</a></dt>
 
-                  <dd>O site da unidade de bioinformática USDA em Genebra, NY</dd>
+                  <dd>O site da unidade de bioinformática do USDA em Geneva, NY</dd>
 
                   <dt><br /><a href=
                   "http://solcap.msu.edu/" target="_new" >
                   Projeto SolCAP</a></dt>
-                  <dd>O Projeto de Agricultura Coordenada Solanaceae</dd>
+                  <dd>O Solanaceae Coordinated Agricultural Project</dd>
 
                   <dt><br /><a href=
-                  "https://www.eu-sol.wur.nl" target="_new" >Banco de dados de fenotipos da coleção EU-SOL Tomato Core</a></dt>
-                  <dd>O banco de dados de fenotipos da coleção Tomato Core <a href="http://www.eu-sol.net">EU-SOL</a> Projeto financiado pelo 6o programa-quadro da União Europeia.</dd>
+                  "https://www.eu-sol.wur.nl" target="_new" >EU-SOL Tomato Core Collection Phenotype Database</a></dt>
+                  <dd>O Tomato Core Collection Phenotype Database, do projeto <a href="http://www.eu-sol.net">EU-SOL</a>, financiado pelo 6º Programa-Quadro da União Europeia.</dd>
 
                   <dt><br /><a href=
-                  "http://tomato.nbrp.jp/indexEn.html" target="_new" >Projeto Nacional de BioRecursos do Tomato</a></dt>
-                  <dd>O Projeto Nacional de BioRecursos é um projeto nacional que visa coletar, preservar e fornecer biorrecursos para pesquisas em ciências da vida.</dd>
+                  "http://tomato.nbrp.jp/indexEn.html" target="_new" >Tomato National BioResource Project</a></dt>
+                  <dd>O National BioResource Project (NBRP) é um projeto nacional que visa coletar, preservar e fornecer biorrecursos para pesquisas em ciências da vida.</dd>
 
                 </dl>
-                <strong>Tomates - jardinagem e variedades de herança</strong>
+                <strong>Tomates - jardinagem e variedades tradicionais (heirloom)</strong>
                 <dl>
                 <dt><a href="http://www.tomatogardeningguru.com/" target="_new" >www.tomatogardeningguru.com</a></dt>
-                <dd>Um site sobre cultivo de tomates organicamente</dd>
+                <dd>Um site sobre o cultivo orgânico de tomates</dd>
                 <dt><a href="http://www.tomatofest.com" target="_new" >TomatoFest.com</a></dt>
                 <dd>Heirloom tomato fest</dd>
                 </dl>
-                <strong>Tomates - o lado mais leve</strong>
+                <strong>Tomates - o lado divertido</strong>
                 <dl>
                 <dt><a href="http://tomatoesareevil.com" target="_new">TomatoesAreEvil.com</a></dt>
-                <dd>Um site de odiadores de tomate (que definitivamente não somos nós!)</dd>
+                <dd>Um site de pessoas que odeiam tomate (definitivamente não é o nosso caso!)</dd>
                 <dt><br /><a href="http://killertomatoes.com" target="_new" >Killertomatoes.com</a></dt>
                 
                 <strong>Potato Resources</strong>
 
 		<dl>
-		  <dt><a href="http://www.public.iastate.edu/~djh/">Projeto de Biologia de Floema de Batata</a>
+		  <dt><a href="http://www.public.iastate.edu/~djh/">Potato Phloem Biology Project</a>
 		 </dt>
 		  <dd>Um projeto financiado pela NSF para estudar redes de sinalização que estão envolvidas na indução da formação de tubérculos.</dd>
 </dl>
@@ -131,51 +131,51 @@
                 <dl>
 
                   <dt><a href="http://www.potatodiseases.org/" target="_new" >PotatoDiseases.org</a></dt>
-                  <dd>Um site descrevendo doenças de batata da Universidade de Michigan.</dd>
+                  <dd>Um site da University of Michigan que descreve doenças da batata.</dd>
 
                   <dt><a href="http://www.cpgp.ca" target="_new" >Canadian Potato Genome Project</a></dt>
-                  <dd>O Projeto Genoma Canadense de Batata (CPGP) foi lançado em 2002 para desenvolver recursos na descoberta de genes em batatas, para uso de pesquisadores canadenses e seus parceiros.</dd>
+                  <dd>O Canadian Potato Genome Project (CPGP) foi lançado em 2002 para desenvolver recursos para a descoberta de genes em batata, para uso de pesquisadores canadenses e seus parceiros.</dd>
     
-                  <dt><a href="https://gabi.rzpd.de/PoMaMo.html" target="_new" >Banco de Dados PoMaMo</a></dt>
+                  <dt><a href="https://gabi.rzpd.de/PoMaMo.html" target="_new" >Banco de dados PoMaMo</a></dt>
 
-                  <dd>Dados do genoma de batata do Instituto Max-Planck de Pesquisa de Criação de Plantas, Colônia, Alemanha, que inclui dados SNP, mapas, sequências de marcadores, referências e muito mais.</dd>
+                  <dd>Dados do genoma da batata do Max-Planck Institute for Plant Breeding Research, Colônia, Alemanha, que inclui dados SNP, mapas, sequências de marcadores, referências e muito mais.</dd>
 
                   <dt><br /><a href="http://www.cipotato.org" target="_new" >Centro
-                  Internacional de la Papa</a> (Centro Internacional de Batata, Peru)</dt>
+                  Internacional de la Papa</a> (International Potato Center, Peru)</dt>
 
-                  <dd>O Centro Internacional de Batata em Lima, Peru, com bases de dados específicas de batata e recursos, como o <a href=
-                  "http://grcc.cip.cgiar.org/genebank/" target="_new">Banco de germoplasma de batata do CIP</a> e o <a href=
-                  "http://wpa.riu.cip.cgiar.org/index.php" target="_new" >Atlas Mundial de Batata</a></dd>
+                  <dd>O International Potato Center, em Lima, Peru, com bancos de dados e recursos específicos de batata, como o <a href=
+                  "http://grcc.cip.cgiar.org/genebank/" target="_new">CIP Potato Genebank</a> e o <a href=
+                  "http://wpa.riu.cip.cgiar.org/index.php" target="_new" >World Potato Atlas</a></dd>
 
-                  <dd>Um local para problemas de batata e biotecnologia.</dd>
+                  <dd>Um site sobre questões de batata e biotecnologia.</dd>
 
-                  <dt><br /><a href="http://gilb.cip.cgiar.org/" target="_new" >Iniciativa Global contra a Requeima (GILB)</a></dt>
+                  <dt><br /><a href="http://gilb.cip.cgiar.org/" target="_new" >Global Initiative for Late Blight (GILB)</a></dt>
 
                   <dd>Uma colaboração para a pesquisa sobre requeima.</dd>
 
                   <dt><br /><a href=
-                  "http://www.potgenebank.org/" target="_new" >Intergenebank para Batata</a></dt>
+                  "http://www.potgenebank.org/" target="_new" >Intergenebank for Potato</a></dt>
 
-                  <dd>Um banco de dados contendo dados de acesso de diferentes bancos de genes ao redor do mundo, incluindo um banco de dados de RCE.</dd>
+                  <dd>Um banco de dados com dados de acessos de diferentes bancos de germoplasma ao redor do mundo, incluindo um banco de dados de SSR.</dd>
 
                   <!-- dt><br /><a href=
                   "http://www.potatogenome.org/nsf4/" target="_new" >PotatoGenome.org</a></dt  DEFUNCT?? -->
 
                   <dt><br /><a href=
-                  "http://www.europotato.org/" target="_new" >Banco de dados europeu de batata cultivada</a></dt>
+                  "http://www.europotato.org/" target="_new" >European Cultivated Potato Database</a></dt>
 
                    
 
-                  <dd>O site oficial do projeto de genoma de batata NSF.</dd>
+                  <dd>O site oficial do projeto do genoma da batata da NSF.</dd>
                 </dl>
 
-                <strong>Recursos de Pimenta</strong>
+                <strong>Recursos de pimenta</strong>
 
                 <dl>
                   <dt><a href=
-                  "http://plant.pdrc.re.kr/ks200201/pepper.html" target="_new" >Recursos de pimenta KRIBB</a></dt>
+                  "http://plant.pdrc.re.kr/ks200201/pepper.html" target="_new" >KRIBB Pepper Resources</a></dt>
 
-                  <dd>Um banco de dados EST de pimenta no KRIBB</dd>
+                  <dd>Um banco de dados de ESTs de pimenta no KRIBB</dd>
 
                   <dt><br /><a href=
                   "http://www.cnph.embrapa.br/capsicum/" target="_new" >Embrapa
@@ -184,47 +184,47 @@
                   <dd>Um site dedicado a pimentas e pimentões no Brasil</dd>
                 </dl>
 
-                <strong>Recursos Petunia</strong>
+                <strong>Recursos de petúnia</strong>
 
                 <dl>
                   <dt><a href=
                   "http://www.petuniaplatform.net" target="_new" >Petuniaplatform.net</a></dt>
 
-                  <dd>Um site dedicado à Petunia, com contatos, técnicas, bibliografia e outras informações.</dd>
+                  <dd>Um site dedicado à petúnia, com contatos, técnicas, bibliografia e outras informações.</dd>
                 </dl>
 
                 <strong>Recursos de berinjela</strong>
 
                 <dl>
                   <dt><a href=
-                  "http://www.bgard.science.ru.nl/WWW-IPGRI/eggplant.htm" target="_new" >Base de dados de berinjela</a>
+                  "http://www.bgard.science.ru.nl/WWW-IPGRI/eggplant.htm" target="_new" >Banco de dados de berinjela</a>
                    </dt>
 </dl>
 
 <br />
-		<strong><i>Solanum dulcamara</i> Recursos</strong>
+		<strong>Recursos de <i>Solanum dulcamara</i></strong>
 
-		<dl><dt><a href="http://www.ru.nl/bsweet/">O site B’sweet</a></dt>
-		  <dd><i>Solanum dulcamara</i> é um novo modelo de pesquisa para adaptação e ecologia. Veja também <a href="http://www.ru.nl/ecogen/">O site de Nicole Van Ham</a></dd> 
+		<dl><dt><a href="http://www.ru.nl/bsweet/">O site B'sweet</a></dt>
+		  <dd><i>Solanum dulcamara</i> é um novo modelo de pesquisa para adaptação e ecologia. Veja também <a href="http://www.ru.nl/ecogen/">o site de Nicole van Ham</a></dd> 
 
 		  </dl>
 
                 <strong>Recursos de café</strong>
 
                 <dl>
-                  <dt><a href="http://www.coffeedna.net/" target="_new" >CaféDNA - Um site para a Genômica do Café na Itália</a></dt>
+                  <dt><a href="http://www.coffeedna.net/" target="_new" >CoffeeDNA - um site de genômica do café na Itália</a></dt>
 
-                  <dd>Um site sobre genômica de café e café. Login necessário para certas funções.</dd>
+                  <dd>Um site sobre café e genômica do café. É necessário login para certas funções.</dd>
                 </dl>
 
-                <strong>Recursos de Germoplasma</strong>
+                <strong>Recursos de germoplasma</strong>
 
                 <dl>
-                  <dt><a href="http://tgrc.ucdavis.edu" target="_new" >Centro de Recursos Genéticos de Tomate (TGRC)</a></dt>
+                  <dt><a href="http://tgrc.ucdavis.edu" target="_new" >Tomato Genetic Resource Center (TGRC)</a></dt>
 
                   <dd>Grande coleção de germoplasmas de Solanaceae, com foco especial no tomate.</dd>
 
-                  <dt><br /><a href="http://www.ars-grin.gov/npgs/" target="_new" >GRIN, Sistema Nacional de Germoplasma</a></dt>
+                  <dt><br /><a href="http://www.ars-grin.gov/npgs/" target="_new" >GRIN, The National Germplasm System</a></dt>
 
                   <dd>Grande banco de dados de germoplasma, integrando muitos centros de germoplasma nos Estados Unidos.</dd>
                 </dl>
@@ -239,13 +239,13 @@
                 <strong>Outros recursos de sequência</strong>
 
                 <dl>
-                  <dt><a href="http://www.genome.arizona.edu/" target="_new" >Iniciativa Genoma do Arizona (AGI)</a></dt>
+                  <dt><a href="http://www.genome.arizona.edu/" target="_new" >Arizona Genome Initiative (AGI)</a></dt>
 
                   <dd>O AGI é o lugar para <a href=
                   "http://www.genome.arizona.edu/orders/" target="_new" >solicitar</a>
-                  muitos dos clones EST e BAC para muitas espécies de Solanaceae, como batata. Por favor, note que BAC e EST <a href=
-                  "http://ted.bti.cornell.edu/order/" target="_new" >solicitações</a>
-                  para tomate são manuseados pelo <a href=
+                  muitos dos clones de EST e BAC de muitas espécies de Solanaceae, como a batata. Observe que os <a href=
+                  "http://ted.bti.cornell.edu/order/" target="_new" >pedidos</a>
+                  de BACs e ESTs de tomate são atendidos pelo <a href=
                   "http://bti.cornell.edu/" target="_new" >Boyce Thompson
                   Institute</a>.</dd>
 
@@ -269,40 +269,40 @@
           <h4><a name="related" id="related"></a>Links para sites relacionados</h4>
 
           <ul>
-            <li><a href="http://seedplants.org" target="_new" >Seedplants.org</a>, a site about seed plant descriptions and taxonomy.</li>
+            <li><a href="http://seedplants.org" target="_new" >Seedplants.org</a>, um site sobre descrições e taxonomia de plantas com sementes.</li>
             <li><a href=
-            "http://internt.nhm.ac.uk/jdsml/nature-online/seeds-of-trade/" target="_new" >Sementes do Comércio</a> Um livro virtual de Henry Hobhouse e Sandra Knapp sobre a história do cultivo de plantas.</li>
+            "http://internt.nhm.ac.uk/jdsml/nature-online/seeds-of-trade/" target="_new" >Seeds of Trade</a> - um livro virtual de Henry Hobhouse e Sandra Knapp sobre a história do cultivo de plantas.</li>
 
-            <li><a href="http://www.arabidopsis.org" target="_new" >TAIR</a> - O recurso de informação Arabidopsis</li>
+            <li><a href="http://www.arabidopsis.org" target="_new" >TAIR</a> - The Arabidopsis Information Resource</li>
 
             <li><a href="http://www.medicago.org" target="_new" >Medicago truncatula</a>
             - um modelo para pesquisa de leguminosas</li>
 
             <li><a href="http://www.gramene.org" target="_new" >Gramene</a> - um recurso de mapeamento comparativo para as gramíneas</li>
 
-            <li><a href="http://cggc.agtec.uga.edu" target="_new" >Centro de genômica comparativa de gramíneas</a> - um recurso comparativo para gramíneas, com foco em <em>Sorgo</em>.</li>
+            <li><a href="http://cggc.agtec.uga.edu" target="_new" >Comparative Grass Genomics Center</a> - um recurso comparativo para gramíneas, com foco em <em>Sorghum</em>.</li>
 
             <li><a href=
             "http://www.shigen.nig.ac.jp/rice/oryzabase/top/top.jsp" target="_new" >OryzaBase</a>
             - Banco de Dados Integrado de Ciência do Arroz</li>
 
             <li><a href="http://www.maizeGDB.org" target="_new" >MaizeGDB</a>
-            - Base de dados Genética e Genética do Milho</li>
+            - Banco de dados de genética e genômica do milho</li>
 
-            <li><a href="http://www.plantGDB.org" target="_new" >PlantGDB</a> - Base de dados do genoma da planta</li>
+            <li><a href="http://www.plantGDB.org" target="_new" >PlantGDB</a> - Plant Genome DataBase</li>
 
-            <li><a href="http://www.ncbi.nlm.nih.gov/" target="_new" >NCBI</a> - Centro Nacional de Informação de Biotecnologia</li>
+            <li><a href="http://www.ncbi.nlm.nih.gov/" target="_new" >NCBI</a> - National Center for Biotechnology Information</li>
 
             <li><a href="http://www.biocyc.org" target="_new" >BioCyc</a>,
             <a href="http://www.metacyc.org" target="_new" >MetaCyc</a> e
             <a href=
-            "http://www.arabidopsis.org/biocyc/index.jsp" target="_new" >AraCyc</a> - Coleções de vias bioquímicas.</li>
+            "http://www.arabidopsis.org/biocyc/index.jsp" target="_new" >AraCyc</a> - Coleções de vias bioquímicas curadas.</li>
 
-            <li><a href="http://www.genome.ad.jp/kegg/" target="_new" >KEGG</a> - Kyoto Enciclopédia de Genes e Genomas.</li>
+            <li><a href="http://www.genome.ad.jp/kegg/" target="_new" >KEGG</a> - Kyoto Encyclopedia of Genes and Genomes.</li>
 
-            <li><a href="http://www.biomoby.org" target="_new" >O Projeto BioMoby</a> - o projeto de interoperabilidade do banco de dados</li>
+            <li><a href="http://www.biomoby.org" target="_new" >O projeto BioMoby</a> - o projeto de interoperabilidade de bancos de dados</li>
 
-            <li><a href="http://www.genomics.cornell.edu" target="_new" >Iniciativa Genômica Cornell</a></li>
+            <li><a href="http://www.genomics.cornell.edu" target="_new" >Cornell Genomics Initiative</a></li>
 
             <li><a href="http://biocurator.org" target="_new" >Biocurator.org</a> - o site oficial de biocuradoria.</li>
           </ul><br />

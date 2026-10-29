@@ -1,4 +1,5 @@
 package SGN::Controller::Propagation;
+use utf8;
 
 use Moose;
 use URI::FromHash 'uri';
@@ -36,7 +37,7 @@ sub propagation_group_page : Path('/propagation_group') Args(1) {
     my $propagation_group_name;
 	if (!$propagation_group) {
     	$c->stash->{template} = '/generic_message.mas';
-    	$c->stash->{message} = 'The requested propagation group ID does not exist.';
+    	$c->stash->{message} = 'O ID de grupo de propagação solicitado não existe.';
     	return;
     } else {
         $propagation_group_id = $propagation_group->stock_id();

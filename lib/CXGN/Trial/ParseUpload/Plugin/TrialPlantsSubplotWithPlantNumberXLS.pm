@@ -1,5 +1,6 @@
 package CXGN::Trial::ParseUpload::Plugin::TrialPlantsSubplotWithPlantNumberXLS;
 
+use utf8;
 use Moose::Role;
 use Spreadsheet::ParseExcel;
 use Spreadsheet::ParseXLSX;
@@ -40,7 +41,7 @@ sub _validate_with_plugin {
 
     my $worksheet = ( $excel_obj->worksheets() )[0]; #support only one worksheet
     if (!$worksheet) {
-        push @error_messages, "Spreadsheet must be on 1st tab in Excel (.xls) file";
+        push @error_messages, "A planilha deve estar na 1ª aba do arquivo Excel (.xls)";
         $errors{'error_messages'} = \@error_messages;
         $self->_set_parse_errors(\%errors);
         return;
@@ -48,7 +49,7 @@ sub _validate_with_plugin {
     my ( $row_min, $row_max ) = $worksheet->row_range();
     my ( $col_min, $col_max ) = $worksheet->col_range();
     if (($col_max - $col_min)  < 1 || ($row_max - $row_min) < 1 ) { #must have header and at least one row of plot data
-        push @error_messages, "Spreadsheet is missing header or contains no rows";
+        push @error_messages, "A planilha não tem cabeçalho ou não contém linhas";
         $errors{'error_messages'} = \@error_messages;
         $self->_set_parse_errors(\%errors);
         return;
@@ -69,10 +70,10 @@ sub _validate_with_plugin {
         $plant_index_number_head =~ s/^\s+|\s+$//g;
     }
     if (!$subplot_name_head || $subplot_name_head ne 'subplot_name' ) {
-        push @error_messages, "Cell A1: subplot_name is missing from the header";
+        push @error_messages, "Célula A1: subplot_name está ausente do cabeçalho";
     }
     if (!$plant_index_number_head || $plant_index_number_head ne 'plant_index_number') {
-        push @error_messages, "Cell B1: plant_index_number is missing from the header";
+        push @error_messages, "Célula B1: plant_index_number está ausente do cabeçalho";
     }
     if ($worksheet->get_cell(0,2)) {
         $row_num_head  = $worksheet->get_cell(0,2)->value();
@@ -83,7 +84,7 @@ sub _validate_with_plugin {
         $col_num_head =~ s/^\s+|\s+$//g;
     }
     if (($row_num_head && $row_num_head ne "num_rows")||($col_num_head && $col_num_head ne "num_cols")) {
-        push @error_messages, "If including row and column data, cells C1 and D1 must be num_rows and num_cols respectively.";
+        push @error_messages, "Se incluir dados de linha e coluna, as células C1 e D1 devem ser num_rows e num_cols, respectivamente.";
     }
 
     my %seen_subplot_names;
@@ -114,35 +115,35 @@ sub _validate_with_plugin {
             $coords_given = 1;
             $coord_pair = join(',', ($row_num, $col_num));
             if (exists($seen_plant_coords{$subplot_name}{$coord_pair})) {
-                push @error_messages, "Multiple plants were assigned to the same coordinates ($coord_pair) in the same subplot ($subplot_name).";
+                push @error_messages, "Várias plantas foram atribuídas às mesmas coordenadas ($coord_pair) na mesma subparcela ($subplot_name).";
             } 
             $seen_plant_coords{$plot_name}{$coord_pair} = 1;
         } elsif ($coords_given) {
-            push @error_messages, "Coordinates were given for some plant entries, but not for $plant_name in $subplot_name.";
+            push @error_messages, "Foram informadas coordenadas para algumas plantas, mas não para $plant_name em $subplot_name.";
         }
 
         if (!$subplot_name || $subplot_name eq '' ) {
-            push @error_messages, "Cell A$row_name: plot_name missing.";
+            push @error_messages, "Célula A$row_name: plot_name ausente.";
         }
         elsif ($subplot_name =~ /\s/ || $subplot_name =~ /\// || $subplot_name =~ /\\/ ) {
-            push @error_messages, "Cell A$row_name: subplot_name must not contain spaces or slashes.";
+            push @error_messages, "Célula A$row_name: subplot_name não deve conter espaços ou barras.";
         }
         else {
             $seen_subplot_names{$subplot_name}=$row_name;
         }
 
         if (!$plant_index_number || $plant_index_number eq '') {
-            push @error_messages, "Cell B$row_name: plant_index_number missing";
+            push @error_messages, "Célula B$row_name: plant_index_number ausente";
         } if (!($plant_index_number =~ /^\d+?$/)) {
-            push @error_messages, "Cell B$row_name: plant_indeX_number must be a number";
+            push @error_messages, "Célula B$row_name: plant_indeX_number deve ser um número";
         } else {
             #file must not contain duplicate subplot names
             my $plant_name = $subplot_name."_plant_".$plant_index_number;
             if ($seen_plant_names{$plant_name}) {
-                push @error_messages, "Cell B$row_name: duplicate plant_name at cell A".$seen_plant_names{$plant_name}.": $plant_name";
+                push @error_messages, "Célula B$row_name: plant_name duplicado na célula A".$seen_plant_names{$plant_name}.": $plant_name";
             }
             if (!$plant_name){
-                push @error_messages, "CellB$row_name: No plant name could be made!";
+                push @error_messages, "Célula B$row_name: não foi possível gerar o nome da planta!";
             }
             $seen_plant_names{$plant_name}++;
         }
@@ -154,14 +155,14 @@ sub _validate_with_plugin {
     my @subplots_missing = @{$subplots_validator->validate($schema,'subplots',\@subplots)->{'missing'}};
 
     if (scalar(@subplots_missing) > 0) {
-        push @error_messages, "The following subplot_name are not in the database: ".join(',',@subplots_missing);
+        push @error_messages, "Os seguintes subplot_name não estão no banco de dados: ".join(',',@subplots_missing);
         $errors{'missing_subplots'} = \@subplots_missing;
     }
 
     my @plants = keys %seen_plant_names;
     my $plant_rs = $schema->resultset('Stock::Stock')->search({ 'uniquename' => {-in => \@plants} });
     while (my $r = $plant_rs->next){
-        push @error_messages, "The following plant_name is already in the database and is not unique ".$r->uniquename;
+        push @error_messages, "O seguinte plant_name já está no banco de dados e não é único ".$r->uniquename;
     }
 
     #store any errors found in the parsed file to parse_errors accessor

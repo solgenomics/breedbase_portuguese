@@ -119,13 +119,13 @@ $trial_id
                     <table class="table table-bordered table-hover">
                         <tbody>
                             <tr>
-                                <td>MulherDld</td>
-                                <td>"México"</td>
-                                <td>MulherName</td>
-                                <td>HomemName</td>
-                                <td>Tipo de Desejo</td>
-                                <td>DesejoMin</td>
-                                <td>DesejoMax</td>
+                                <td>femaleDbId</td>
+                                <td>maleDbId</td>
+                                <td>femaleName</td>
+                                <td>maleName</td>
+                                <td>wishType</td>
+                                <td>wishMin</td>
+                                <td>wishMax</td>
                             </tr>
                         </tbody>
                     </table>

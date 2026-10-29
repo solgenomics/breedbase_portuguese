@@ -21,6 +21,7 @@ Adds an array of pedigrees. The stock names used in the pedigree must already ex
 =cut
 
 package CXGN::Pedigree::AddPedigrees;
+use utf8;
 
 use Moose;
 use MooseX::FollowPBP;
@@ -164,7 +165,7 @@ sub add_pedigrees {
     };
 
     if ($transaction_error) {
-        $return{error} = "Transaction error creating pedigrees: $transaction_error";
+        $return{error} = "Erro de transação ao criar pedigrees: $transaction_error";
         print STDERR "Transaction error creating pedigrees: $transaction_error\n";
         return \%return;
     }
@@ -178,7 +179,7 @@ sub validate_pedigrees {
     my %return;
 
     if (!$self->has_pedigrees()){
-        $return{error} = "No pedigrees to add";
+        $return{error} = "Nenhum pedigree para adicionar";
         return \%return;
     }
 
@@ -198,41 +199,41 @@ sub validate_pedigrees {
         my $cross_type = $pedigree->get_cross_type();
         my $progeny = $accessions_crosses_hash{$progeny_name};
         if (!$progeny){
-            push @{$return{error}}, "Progeny name $progeny_name missing or not found as an accession in database.";
+            push @{$return{error}}, "Nome da progênie $progeny_name ausente ou não encontrado como acesso no banco de dados.";
         } else {
             push @progeny_stock_ids, $progeny->[0];
             $progeny_stock_ids_hash{$progeny->[0]} = $progeny_name;
         }
 
         if (!$pedigree->get_female_parent()){
-            push @{$return{error}}, "Pedigree not structured correctly";
+            push @{$return{error}}, "Pedigree não estruturado corretamente";
         }
 
         my $female_parent_name = $pedigree->get_female_parent()->get_name();
         if (!$female_parent_name) {
-            push @{$return{error}}, "Female parent not provided for $progeny_name.";
+            push @{$return{error}}, "Genitor feminino não informado para $progeny_name.";
         }
         my $female_parent = $accessions_crosses_hash{$female_parent_name};
         if (!$female_parent) {
-            push @{$return{error}}, "Female parent not found for $progeny_name.";
+            push @{$return{error}}, "Genitor feminino não encontrado para $progeny_name.";
         }
 
         if ( ($cross_type ne 'biparental') && ($cross_type ne 'self') && ($cross_type ne 'open') && ($cross_type ne 'sib') && ($cross_type ne 'polycross') && ($cross_type ne 'backcross') && ($cross_type ne 'reselected') && ($cross_type ne 'doubled_haploid') && ($cross_type ne 'dihaploid_induction') ){
-            push @{$return{error}}, "cross_type must be either biparental, self, open, backcross, sib, reselected, dihaploid_induction, doubled_haploid or polycross for progeny $progeny_name.";
+            push @{$return{error}}, "cross_type deve ser biparental, self, open, backcross, sib, reselected, dihaploid_induction, doubled_haploid ou polycross para a progênie $progeny_name.";
         }
         if ($cross_type eq 'biparental' || $cross_type eq 'self' || $cross_type eq 'sib' || $cross_type eq 'polycross' || $cross_type eq 'backcross' || $cross_type eq 'reselected' || $cross_type eq 'dihaploid_induction' || $cross_type eq 'doubled_haploid' ) {
             if (!$pedigree->get_male_parent){
-                push @{$return{error}}, "Male parent not provided for $progeny_name and cross type is $cross_type.";
+                push @{$return{error}}, "Genitor masculino não informado para $progeny_name e o tipo de cruzamento é $cross_type.";
             }
             else {
                 my $male_parent_name = $pedigree->get_male_parent()->get_name();
                 if (!$male_parent_name) {
-                    push @{$return{error}}, "Male parent not provided for $progeny_name and cross type is $cross_type.";
+                    push @{$return{error}}, "Genitor masculino não informado para $progeny_name e o tipo de cruzamento é $cross_type.";
                 }
                 else {
                     my $male_parent = $accessions_crosses_populations_hash{$male_parent_name};
                     if (!$male_parent) {
-                        push @{$return{error}}, "Male parent not found for $progeny_name.";
+                        push @{$return{error}}, "Genitor masculino não encontrado para $progeny_name.";
                     }
                 }
             }
@@ -243,7 +244,7 @@ sub validate_pedigrees {
                     my $male_parent_name = $pedigree->get_male_parent()->get_name();
                     my $male_parent = $accessions_crosses_populations_hash{$male_parent_name};
                     if (!$male_parent) {
-                        push @{$return{error}}, "Male parent not found for $progeny_name.";
+                        push @{$return{error}}, "Genitor masculino não encontrado para $progeny_name.";
                     }
                 }
             }
@@ -268,10 +269,10 @@ sub validate_pedigrees {
     }
     foreach (@progeny_stock_ids){
         if (exists($progeny_with_female_parent_already{$_})){
-            push @{$return{error}}, $progeny_stock_ids_hash{$_}." already has female parent stockID ".$progeny_with_female_parent_already{$_}->[0]." saved with cross type ".$progeny_with_female_parent_already{$_}->[1];
+            push @{$return{error}}, $progeny_stock_ids_hash{$_}." já possui o genitor feminino com stockID ".$progeny_with_female_parent_already{$_}->[0]." salvo com o tipo de cruzamento ".$progeny_with_female_parent_already{$_}->[1];
         }
         if (exists($progeny_with_male_parent_already{$_})){
-            push @{$return{error}}, $progeny_stock_ids_hash{$_}." already has male parent stockID ".$progeny_with_male_parent_already{$_};
+            push @{$return{error}}, $progeny_stock_ids_hash{$_}." já possui o genitor masculino com stockID ".$progeny_with_male_parent_already{$_};
         }
     }
 

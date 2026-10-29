@@ -1,17 +1,17 @@
-<div id="pagetitle"><h3>Política de Uso de Dados</h3></div>
+<div id="pagetitle"><h3>Política de uso de dados</h3></div>
 
 
-Os dados deste banco de dados são compartilhados de acordo com o acordo de Toronto (ver abaixo). Datasets que estão atualmente liberados mas ainda não foram publicados incluem:<br /><br />
+Os dados deste banco de dados são compartilhados de acordo com o acordo de Toronto (ver abaixo). Os conjuntos de dados atualmente liberados, mas ainda não publicados, incluem:<br /><br />
 <style type="text/css">
 table.myTable { border-collapse:collapse; }
 table.myTable td, table.myTable th { border:1px solid black;padding:5px; }
 </style>
 
 <table class="myTable">
-<tr><td>Instituição</td><td>Pesquisadores</td><td>Data</td></tr>
-<tr><td>IITA</td><td>Peter Kulakow, Rabino Ismail</td><td>Dados fenotípicos da mandioca IITA</td></tr>
-<tr><td>NRCRI</td><td>Chiedozie Egesi</td><td>Dados fenotípicos e genotípicos.</td></tr>
-<tr><td>NaCRRI</td><td>Robert Kawuki</td><td>Dados fenotípicos e genotípicos da mandioca da NaCRRI.</td></tr>
+<tr><td>Instituição</td><td>Pesquisadores</td><td>Dados</td></tr>
+<tr><td>IITA</td><td>Peter Kulakow, Ismail Rabbi</td><td>Dados fenotípicos de mandioca do IITA</td></tr>
+<tr><td>NRCRI</td><td>Chiedozie Egesi</td><td>Dados fenotípicos e genotípicos de mandioca do NRCRI.</td></tr>
+<tr><td>NaCRRI</td><td>Robert Kawuki</td><td>Dados fenotípicos e genotípicos de mandioca do NaCRRI.</td></tr>
 </table>
 
 
@@ -21,46 +21,46 @@ table.myTable td, table.myTable th { border:1px solid black;padding:5px; }
 
 <ul>
 <li>Grande escala (recursos significativos ao longo do tempo)</li>
-<li>Grande utilidade</li>
-<li>Criando conjuntos de dados de referência</li>
+<li>Ampla utilidade</li>
+<li>Criação de conjuntos de dados de referência</li>
 
-<li>Associado ao buy-in comunitário</li>
+<li>Adesão da comunidade</li>
 </ul>
 
 <h4>As agências de financiamento devem facilitar a especificação das políticas de liberação de dados para projetos relevantes:</h4>
 
 <ul>
-<li>Informando explicitamente os candidatos dos requisitos de liberação de dados, especialmente a liberação obrigatória de dados antes da publicação</li>
+<li>Informando explicitamente os proponentes sobre os requisitos de liberação de dados, especialmente a liberação obrigatória de dados antes da publicação</li>
 <li>Garantir que a avaliação dos planos de liberação de dados seja parte do processo de revisão por pares.</li>
 <li>Estabelecendo planos de análise e cronogramas proativos para projetos que liberam dados pré-publicação</li>
-<li>Promovendo a liberação de dados iniciados pelo investigador</li>
-<li>Ajudando a desenvolver o consentimento adequado, segurança, acesso e mecanismos de governança que protejam os participantes da pesquisa enquanto incentivam a divulgação de dados antes da publicação</li>
+<li>Promovendo a liberação de dados pré-publicação por iniciativa dos pesquisadores</li>
+<li>Ajudando a desenvolver mecanismos adequados de consentimento, segurança, acesso e governança que protejam os participantes da pesquisa enquanto incentivam a divulgação de dados antes da publicação</li>
 
-<li>Fornecendo suporte a longo prazo de bases de dados</li>
+<li>Oferecendo suporte de longo prazo a bancos de dados</li>
 </ul>
 
-<h4>Os produtores de dados devem declarar suas intenções e permitir análises de seus dados por:</h4>
+<h4>Os produtores de dados devem declarar suas intenções e permitir análises de seus dados:</h4>
 
 <ul>
-<li>Informando usuários de dados sobre os dados que estão sendo gerados, padrões de dados e qualidade, análises planejadas, cronogramas, e informações de contato relevantes, idealmente através da publicação de um papel marcador citável perto do início do projeto ou por fornecimento de uma URL citável no site do projeto ou agência de financiamento</li>
+<li>Informando usuários de dados sobre os dados que estão sendo gerados, padrões de dados e qualidade, análises planejadas, cronogramas, e informações de contato relevantes, idealmente por meio da publicação de um artigo de referência (marker paper) citável perto do início do projeto ou por fornecimento de uma URL citável no site do projeto ou agência de financiamento</li>
 <li>Fornecendo metadados relevantes (por exemplo, questionários, fenótipos, condições ambientais e métodos laboratoriais) que ajudarão outros pesquisadores a reproduzir e/ou analisar independentemente os dados, enquanto protegem interesses de indivíduos inscritos em estudos com foco em humanos</li>
 <li>Garantir que os participantes da pesquisa sejam informados que seus dados serão compartilhados com outros cientistas da comunidade de pesquisa.</li>
-<li>Publicando suas análises globais iniciais, como indicado no papel marcador ou URL citável, em tempo hábil</li>
-<li>Criando bases de dados projetadas para arquivar todos os dados (incluindo dados brutos subjacentes) de uma forma facilmente recuperável e facilitar o uso de dados pré-processados e processados</li>
+<li>Publicando suas análises globais iniciais, conforme indicado no artigo de referência ou na URL citável, em tempo hábil</li>
+<li>Criando bancos de dados projetados para arquivar todos os dados (incluindo dados brutos subjacentes) de uma forma facilmente recuperável e facilitar o uso de dados pré-processados e processados</li>
 
 </ul>
 
-<h4>Analistas de dados/usuários devem analisar livremente dados divulgados e agir de forma responsável na publicação de análises desses dados por:</h4>
+<h4>Analistas/usuários de dados devem analisar livremente os dados pré-publicação liberados e agir com responsabilidade ao publicar análises desses dados:</h4>
 
 <ul>
 <li>Respeitando a etiqueta científica que permite aos produtores de dados publicar as primeiras análises globais de seu conjunto de dados</li>
 <li>Lendo o documento citável associado ao projeto</li>
-<li>Exatamente e completamente citando a fonte de dados pré-publicação, incluindo a versão do conjunto de dados (se apropriado)</li>
-<li>Sabendo que os dados divulgados podem estar associados a problemas de qualidade que serão retificados pelos produtores de dados.</li>
-<li>Contactando os produtores de dados para discutir planos de publicação em caso de sobreposição entre análises planejadas</li>
+<li>Citando de forma exata e completa a fonte de dados pré-publicação, incluindo a versão do conjunto de dados (se apropriado)</li>
+<li>Estando cientes de que os dados pré-publicação liberados podem estar associados a problemas de qualidade que serão retificados pelos produtores de dados.</li>
+<li>Contatando os produtores de dados para discutir planos de publicação em caso de sobreposição entre análises planejadas</li>
 <li>Garantir que o uso de dados não prejudique os participantes da pesquisa e esteja em conformidade com as aprovações éticas</li>
 
-<li>Editores de periódicos científicos devem envolver a comunidade de pesquisa sobre questões relacionadas à pré-publicação de dados e fornecer orientações para autores e revisores sobre o uso de dados de terceiros em manuscritos.</li>
+<li>Editores de periódicos científicos devem envolver a comunidade de pesquisa sobre questões relacionadas à liberação de dados pré-publicação e fornecer orientações a autores e revisores sobre o uso, por terceiros, de dados pré-publicação em manuscritos.</li>
 </ul>
 
 

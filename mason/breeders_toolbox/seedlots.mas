@@ -277,7 +277,7 @@ jQuery(document).ready(function(){
                 { title: "Organização", "data": "organization" },
                 { title: "Caixa", "data": "box" },
                 { title: "Qualidade", "data": "seedlot_quality" },
-                { title: "Excluir", "data": "null", "render": function ( data, type, row ) { return "<a onclick='removeSeedlot("+row.seedlot_stock_id+"\"X\"</a>"; } },
+                { title: "Excluir", "data": "null", "render": function ( data, type, row ) { return "<a onclick='removeSeedlot("+row.seedlot_stock_id+")' >X</a>"; } },
                 { title: "", "data": "seedlot_stock_uniquename"}
             ],
             'ajax': { 'url': '/ajax/breeders/seedlots',

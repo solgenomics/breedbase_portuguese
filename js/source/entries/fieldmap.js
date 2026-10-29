@@ -327,7 +327,7 @@ export function init() {
                         );
                         last_coord = [last_coord[0] + 1, last_coord[1]];
                         this.plot_object[
-                            "Espaço vazio" + String(last_coord[0]) + String(last_coord[1])
+                            "Empty Space" + String(last_coord[0]) + String(last_coord[1])
                         ] = this.get_plot_format(
                             "empty_space",
                             last_coord[0] + 1,
@@ -343,7 +343,7 @@ export function init() {
                         );
                         last_coord = [this.meta_data.min_col, last_coord[1]];
                         this.plot_object[
-                            "Espaço vazio" + String(last_coord[0]) + String(last_coord[1])
+                            "Empty Space" + String(last_coord[0]) + String(last_coord[1])
                         ] = this.get_plot_format(
                             "empty_space",
                             this.meta_data.min_col,

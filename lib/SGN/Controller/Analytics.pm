@@ -1,5 +1,6 @@
 
 package SGN::Controller::Analytics;
+use utf8;
 
 use Moose;
 use URI::FromHash 'uri';
@@ -57,7 +58,7 @@ sub analytics_protocol_detail :Path('/analytics_protocols') Args(1) {
 
     if (! $name) {
         $c->stash->{template} = '/generic_message.mas';
-        $c->stash->{message} = 'The requested analytics protocol ID does not exist in the database.';
+        $c->stash->{message} = 'O ID do protocolo de análise solicitado não existe no banco de dados.';
         return;
     }
 

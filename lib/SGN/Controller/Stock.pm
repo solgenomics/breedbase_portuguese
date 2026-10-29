@@ -1,4 +1,5 @@
 package SGN::Controller::Stock;
+use utf8;
 
 =head1 NAME
 
@@ -185,7 +186,7 @@ sub view_stock : Chained('get_stock') PathPart('view') Args(0) {
 	my $stock_id = $stock ? $stock->get_stock_id : undef ;
 
     if (!$stock_id) {
-        $c->stash->{message} = "The requested stock does not exist or has been deleted.";
+        $c->stash->{message} = "O material solicitado não existe ou foi excluído.";
         $c->stash->{template} = 'generic_message.mas';
         return;
     }
@@ -195,10 +196,10 @@ sub view_stock : Chained('get_stock') PathPart('view') Args(0) {
     $type = 1 if $stock_type && !$stock_type=~ m/population/;
     # print message if stock_id is not valid
     unless ( ( $stock_id =~ m /^\d+$/ ) || ($action eq 'new' && !$stock_id) ) {
-        $c->throw_404( "No stock/accession exists for that identifier." );
+        $c->throw_404( "Não existe material/acesso para esse identificador." );
     }
     unless ( $stock->get_object_row || !$stock_id && $action && $action eq 'new' ) {
-        $c->throw_404( "No stock/accession exists for that identifier." );
+        $c->throw_404( "Não existe material/acesso para esse identificador." );
     }
 
 	print STDERR "Checkpoint 2: Elapsed ".(time() - $time)."\n";
@@ -223,7 +224,7 @@ sub view_stock : Chained('get_stock') PathPart('view') Args(0) {
 	    #     );
 
 	    $c->stash->{template} = "generic_message.mas";
-	    $c->stash->{message}  = "You do not have sufficient privileges to view the page of stock with database id $stock_id. You may need to log in to view this page.";
+	    $c->stash->{message}  = "Você não tem permissão para visualizar a página do material com ID $stock_id no banco de dados. Talvez seja necessário entrar em sua conta para visualizar esta página.";
 	    return;
 	}
 
@@ -240,12 +241,12 @@ sub view_stock : Chained('get_stock') PathPart('view') Args(0) {
 	    #    );
 
 	    $c->stash->{template} = "generic_message.mas";
-	    $c->stash->{message}  = "The stock with database id $stock_id has been deleted. It can no longer be viewed.";
+	    $c->stash->{message}  = "O material com ID $stock_id no banco de dados foi excluído. Ele não pode mais ser visualizado.";
 	    return;
 	}
 	# print message if stock_id does not exist
 	if ( !$stock && $action ne 'new' && $action ne 'store' ) {
-	    $c->throw_404('No stock exists for this identifier');
+	    $c->throw_404('Não existe material para este identificador');
 	}
 
 	####################
@@ -325,11 +326,11 @@ sub view_stock : Chained('get_stock') PathPart('view') Args(0) {
                 my $original_stock_name = $original_stock_info->{'original_stock_name'};
                 my $original_stock_type = $original_stock_info->{'original_stock_type'};
                 if ($original_stock_type eq 'cross') {
-                    $original_stock_link = qq{<a href = "/cross/$original_stock_id">$original_stock_name</a>}."(cross)";
+                    $original_stock_link = qq{<a href = "/cross/$original_stock_id">$original_stock_name</a>}."(cruzamento)";
                 } elsif ($original_stock_type eq 'family_name') {
-                    $original_stock_link = qq{<a href = "/family/$original_stock_id/">$original_stock_name</a>}."(family name)";
+                    $original_stock_link = qq{<a href = "/family/$original_stock_id/">$original_stock_name</a>}."(nome de família)";
                 } else {
-                    $original_stock_link = qq{<a href="/stock/$original_stock_id/view">$original_stock_name</a>}."(accession)";
+                    $original_stock_link = qq{<a href="/stock/$original_stock_id/view">$original_stock_name</a>}."(acesso)";
                 }
             }
             my $type = "(".$derived_from_stock_type.")";
@@ -502,8 +503,8 @@ sub download_genotypes : Chained('get_stock') PathPart('genotypes') Args(0) {
     if (!$genotype_id) {
 
 	my $referer = $c->req->referer;
-	my $message = "<p>Genotype data download for the stock is missing an associated genotype id. <br/>"
-	    .  "<a href=\"$referer\">[ Go back ]</a></p>";
+	my $message = "<p>Falta um ID de genótipo associado para baixar os dados de genótipo do material. <br/>"
+	    .  "<a href=\"$referer\">[ Voltar ]</a></p>";
 
 	$c->stash->{message} = $message;
 	$c->stash->{template} = "/generic_message.mas";
@@ -646,7 +647,7 @@ sub search_stock : Private {
     # NO MATCH FOUND
     if ( $count == 0 ) {
         $c->stash->{template} = "generic_message.mas";
-        $c->stash->{message} = "<strong>No Matching Stock Found</strong> ($stock_query $organism_query)<br />You can view and search for stocks from the <a href='/search/stocks'>Stock Search Page</a>";
+        $c->stash->{message} = "<strong>Nenhum material correspondente encontrado</strong> ($stock_query $organism_query)<br />Você pode visualizar e pesquisar materiais na <a href='/search/stocks'>página de busca de materiais</a>";
     }
 
     # MULTIPLE MATCHES FOUND
@@ -661,7 +662,7 @@ sub search_stock : Private {
         }
         $list.="</ul>";
         $c->stash->{template} = "generic_message.mas";
-        $c->stash->{message} = "<strong>Multiple Stocks Found</strong><br />" . $list;
+        $c->stash->{message} = "<strong>Vários materiais encontrados</strong><br />" . $list;
     }
 
     # 1 MATCH FOUND - FORWARD TO VIEW STOCK
@@ -1181,7 +1182,7 @@ sub _stock_has_descendants {
 
 sub _validate_pair {
     my ($self,$c,$key,$value) = @_;
-    $c->throw( is_client_error => 1, public_message => "$value is not a valid value for $key" )
+    $c->throw( is_client_error => 1, public_message => "$value não é um valor válido para $key" )
         if ($key =~ m/_id$/ and $value !~ m/\d+/);
 }
 

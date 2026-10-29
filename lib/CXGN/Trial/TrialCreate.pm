@@ -1,4 +1,5 @@
 package CXGN::Trial::TrialCreate;
+use utf8;
 
 =head1 NAME
 
@@ -251,17 +252,17 @@ sub save_trial {
 
 	if (!$trial_name) {
 		print STDERR "Trial not saved: Can't create trial without a trial name\n";
-		return { error => "Trial not saved: Can't create trial without a trial name" };
+		return { error => "Ensaio não salvo: não é possível criar um ensaio sem nome" };
 	}
 
     if ($self->trial_name_already_exists()) {
 		print STDERR "Can't create trial: Trial name already exists\n";
-		return { error => "Trial not saved: Trial name already exists" };
+		return { error => "Ensaio não salvo: o nome do ensaio já existe" };
 	}
 
 	if (!$self->get_breeding_program_id()) {
 		print STDERR "Can't create trial: Breeding program does not exist\n";
-		return { error => "Trial not saved: breeding program does not exist" };
+		return { error => "Ensaio não salvo: o programa de melhoramento não existe" };
 	}
 
 	#lookup user by name
@@ -280,7 +281,7 @@ sub save_trial {
 	$geolocation = $geolocation_lookup->get_geolocation();
 	if (!$geolocation) {
 		print STDERR "Can't create trial: Location not found: ".$self->get_trial_location()."\n";
-		return { error => "Trial not saved: location not found" };
+		return { error => "Ensaio não salvo: local não encontrado" };
 	}
 
     my $project_year_cvterm = SGN::Model::Cvterm->get_cvterm_row($chado_schema, 'project year', 'project_property');
@@ -489,7 +490,7 @@ sub save_trial {
     my $validate_design_error = $trial_design_store->validate_design();
     if ($validate_design_error) {
         print STDERR "ERROR: $validate_design_error\n";
-        return { error => "Error validating trial design: $validate_design_error." };
+        return { error => "Erro ao validar o delineamento do ensaio: $validate_design_error." };
     } else {
 	try {
 	    $error = $trial_design_store->store();

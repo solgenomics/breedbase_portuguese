@@ -5,6 +5,7 @@
 ## Lukas Mueller, Jan 2011
 
 use Modern::Perl;
+use utf8;
 
 use lib 't/lib';
 use Test::More;
@@ -24,7 +25,7 @@ my $stock_id = $stock->stock_id;
 $mech->get('/ajax/stock/associate_locus');
 is $mech->status, 400, 'got an error';
 $mech->content_contains('error');
-$mech->content_contains('need loci param');
+$mech->content_contains('O parâmetro loci é necessário');
 
 #try to add a locus while not logged in
 my $schema = $mech->context->dbic_schema('CXGN::Phenome::Schema');
@@ -42,14 +43,14 @@ my $allele = $locus->find_or_create_related('alleles', {} );
 my $locus_details = $locus->locus_name . " (".  $locus->locus_symbol . ")" ;
 $mech->get_ok("/ajax/stock/associate_locus?object_id=$stock_id&loci=$locus_details");
 $mech->content_contains('error');
-$mech->content_contains('Must be logged');
+$mech->content_contains('Você precisa estar conectado');
 
 # log in as a user. Still can't asociated locus
 
 $mech->while_logged_in( { user_type=>'user' }, sub {
     $mech->get_ok("/ajax/stock/associate_locus?object_id=$stock_id&loci=$locus_details");
     $mech->content_contains('error');
-    $mech->content_contains('No privileges');
+    $mech->content_contains('Sem permissão');
 
                         } );
 # log in as submitter

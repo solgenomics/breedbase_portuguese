@@ -1,5 +1,6 @@
 package CXGN::Phenotypes::ParseUpload::Plugin::MetabolomicsSpreadsheetCSV;
 
+use utf8;
 # Validate Returns %validate_result = (
 #   error => 'error message'
 #)
@@ -56,7 +57,7 @@ sub validate {
     open(my $fh, '<', $filename) or die "Could not open file '$filename' $!";
 
     if (!$fh) {
-        $parse_result{'error'} = "Could not read file.";
+        $parse_result{'error'} = "Não foi possível ler o arquivo.";
         print STDERR "Could not read file.\n";
         return \%parse_result;
     }
@@ -73,7 +74,7 @@ sub validate {
             @columns = $csv->column_names;
         }
         else {
-            $parse_result{'error'} = "Could not parse header row.";
+            $parse_result{'error'} = "Não foi possível analisar a linha de cabeçalho.";
             print STDERR "Could not parse header.\n";
             return \%parse_result;
         }
@@ -82,7 +83,7 @@ sub validate {
     my $header_col_1 = shift @columns;
     $header_col_1 =~ s/^\s+|\s+$//g;
     if ( $header_col_1 ne "sample_name" ) {
-      $parse_result{'error'} = "First cell must be 'sample_name'. Please, check your file.";
+      $parse_result{'error'} = "A primeira célula deve ser 'sample_name'. Por favor, verifique seu arquivo.";
       print STDERR "First cell must be 'sample_name'\n";
       return \%parse_result;
     }
@@ -90,7 +91,7 @@ sub validate {
     my $header_col_2 = shift @columns;
     $header_col_2 =~ s/^\s+|\s+$//g;
     if ($header_col_2 ne "device_id") {
-        $parse_result{'error'} = "Second cell must be 'device_id'. Please, check your file.";
+        $parse_result{'error'} = "A segunda célula deve ser 'device_id'. Por favor, verifique seu arquivo.";
         print STDERR "Second cell must be 'device_id'\n";
         return \%parse_result;
     }
@@ -98,7 +99,7 @@ sub validate {
     my $header_col_3 = shift @columns;
     $header_col_3 =~ s/^\s+|\s+$//g;
     if ($header_col_3 ne "comments") {
-        $parse_result{'error'} = "Third cell must be 'comments'. Please, check your file.";
+        $parse_result{'error'} = "A terceira célula deve ser 'comments'. Por favor, verifique seu arquivo.";
         print STDERR "Third cell must be 'comments'\n";
         return \%parse_result;
     }
@@ -119,7 +120,7 @@ sub validate {
 
         foreach (@fields) {
             if (not $_=~/^[-+]?\d+\.?\d*$/ && $_ ne 'NA'){
-                $parse_result{'error'}= "It is not a real value for metabolite. Must be numeric: '$_'";
+                $parse_result{'error'}= "Não é um valor real para metabólito. Deve ser numérico: '$_'";
                 return \%parse_result;
             }
         }
@@ -130,7 +131,7 @@ sub validate {
         or die "Could not open file '$nd_protocol_filename' $!";
 
     if (!$fh) {
-        $parse_result{'error'} = "Could not read file.";
+        $parse_result{'error'} = "Não foi possível ler o arquivo.";
         print STDERR "Could not read file.\n";
         return \%parse_result;
     }
@@ -140,7 +141,7 @@ sub validate {
     if ($csv->parse($header_row)) {
         @columns = $csv->fields();
     } else {
-        $parse_result{'error'} = "Could not parse header row.";
+        $parse_result{'error'} = "Não foi possível analisar a linha de cabeçalho.";
         print STDERR "Could not parse header.\n";
         return \%parse_result;
     }
@@ -166,7 +167,7 @@ sub validate {
         $columns[18] ne "met_search_engine" ||
         $columns[19] ne "met_search_engine_score" ||
         $columns[20] ne "compound_name") {
-      $parse_result{'error'} = "Header row must be 'metabolite_name', 'inchi_key', 'compound_name'. Please, check your file.";
+      $parse_result{'error'} = "A linha de cabeçalho deve ser 'metabolite_name', 'inchi_key', 'compound_name'. Por favor, verifique seu arquivo.";
       return \%parse_result;
     }
     while (my $line = <$fh>) {
@@ -197,43 +198,43 @@ sub validate {
         my $compound_name = $fields[20];
 
         if (!$metabolite_name){
-            $parse_result{'error'}= "Metabolite name is required!";
+            $parse_result{'error'}= "O nome do metabólito é obrigatório!";
             return \%parse_result;
         }
         if (!$chemical_formula){
-            $parse_result{'error'}= "Chemical formula is required!";
+            $parse_result{'error'}= "A fórmula química é obrigatória!";
             return \%parse_result;
         }
         if (!$putative_metabolite_identification){
-            $parse_result{'error'}= "Putative metabolite identification is required!";
+            $parse_result{'error'}= "A identificação putativa do metabólito é obrigatória!";
             return \%parse_result;
         }
         if (!$mass_to_charge){
-            $parse_result{'error'}= "Mass to charge is required!";
+            $parse_result{'error'}= "A relação massa/carga é obrigatória!";
             return \%parse_result;
         }
         if (!$retention_time){
-            $parse_result{'error'}= "Retention time is required!";
+            $parse_result{'error'}= "O tempo de retenção é obrigatório!";
             return \%parse_result;
         }
         if (!$met_database){
-            $parse_result{'error'}= "Met database is required!";
+            $parse_result{'error'}= "O Met database é obrigatório!";
             return \%parse_result;
         }
         if (!$met_database_version){
-            $parse_result{'error'}= "Met database version is required!";
+            $parse_result{'error'}= "A versão do Met database é obrigatória!";
             return \%parse_result;
         }
         if (!$met_reliability){
-            $parse_result{'error'}= "Met reliability is required!";
+            $parse_result{'error'}= "O Met reliability é obrigatório!";
             return \%parse_result;
         }
         if (!$met_search_engine){
-            $parse_result{'error'}= "Met search engine is required!";
+            $parse_result{'error'}= "O Met search engine é obrigatório!";
             return \%parse_result;
         }
         if (!$met_search_engine_score){
-            $parse_result{'error'}= "Met search engine score is required!";
+            $parse_result{'error'}= "O Met search engine score é obrigatório!";
             return \%parse_result;
         }
     }
@@ -243,7 +244,7 @@ sub validate {
     my @samples_missing = @{$samples_validator->validate($schema, $data_level, \@samples)->{'missing'}};
     if (scalar(@samples_missing) > 0) {
         my $samples_string = join ', ', @samples_missing;
-        $parse_result{'error'}= "The following samples in your file are not valid in the database (".$samples_string."). Please add them in a sampling trial first!";
+        $parse_result{'error'}= "As seguintes amostras do seu arquivo não são válidas no banco de dados (".$samples_string."). Adicione-as primeiro em um ensaio de amostragem!";
         return \%parse_result;
     }
 
@@ -269,7 +270,7 @@ sub validate {
 
         #If there are markers in the uploaded file that are not saved in the protocol, they will be returned along in the error message
         if (scalar(@metabolites_not_in_protocol)>0){
-            $parse_result{'error'} = "The following metabolites are not in the database for the selected protocol: ".join(',',@metabolites_not_in_protocol);
+            $parse_result{'error'} = "Os seguintes metabólitos não estão no banco de dados para o protocolo selecionado: ".join(',',@metabolites_not_in_protocol);
             return \%parse_result;
         }
     }
@@ -304,7 +305,7 @@ sub parse {
         or die "Could not open file '$filename' $!";
 
     if (!$fh) {
-        $parse_result{'error'} = "Could not read file.";
+        $parse_result{'error'} = "Não foi possível ler o arquivo.";
         print STDERR "Could not read file.\n";
         return \%parse_result;
     }
@@ -320,7 +321,7 @@ sub parse {
             @header = $csv->column_names;
         }
         else {
-            $parse_result{'error'} = "Could not parse header row.";
+            $parse_result{'error'} = "Não foi possível analisar a linha de cabeçalho.";
             print STDERR "Could not parse header.\n";
             return \%parse_result;
         }
@@ -359,7 +360,7 @@ sub parse {
         or die "Could not open file '$nd_protocol_filename' $!";
 
     if (!$fh) {
-        $parse_result{'error'} = "Could not read file.";
+        $parse_result{'error'} = "Não foi possível ler o arquivo.";
         print STDERR "Could not read file.\n";
         return \%parse_result;
     }
@@ -376,7 +377,7 @@ sub parse {
             @columns = $csv->column_names;
         }
         else {
-            $parse_result{'error'} = "Could not parse header row of nd_protocol_file.";
+            $parse_result{'error'} = "Não foi possível analisar a linha de cabeçalho do nd_protocol_file.";
             print STDERR "Could not parse header of nd_protocol_file.\n";
             return \%parse_result;
         }

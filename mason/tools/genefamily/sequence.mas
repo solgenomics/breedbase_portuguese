@@ -15,7 +15,7 @@ $seq => undef
 
 <% $seq_id %></h1>
 
-<h2>Visualizando Construir</h2>
+<h2>Build visualizado</h2>
 
 <% $build %>
 

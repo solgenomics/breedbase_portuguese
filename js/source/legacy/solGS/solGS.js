@@ -143,7 +143,7 @@ solGS.submitJob = {
         //     },
         // },
         Cancel: {
-          text: "No",
+          text: "Não",
           class: "btn btn-info",
           id: "cancel_queue_info",
           click: function () {

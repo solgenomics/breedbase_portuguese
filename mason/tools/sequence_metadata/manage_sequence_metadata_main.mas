@@ -3,10 +3,10 @@
 </%args>
 
 
-<&| /page/info_section.mas, title=>'Protocolos de Metadados de Sequência', is_subsection=>1, collapsible=>1, collapsed=>0, subtitle=>'Veja e consulte os metadados de sequência existentes' &>
+<&| /page/info_section.mas, title=>'Protocolos de metadados de sequência', is_subsection=>1, collapsible=>1, collapsed=>0, subtitle=>'Visualize e consulte os metadados de sequência existentes' &>
     <& /tools/sequence_metadata/protocols_sequence_metadata.mas &>
 </&>
 
-<&| /page/info_section.mas, title=>'API de Metadados de Sequência', is_subsection=>1, collapsible=>1, collapsed=>1, subtitle=>'Sequência de busca de metadados através de uma API' &>
+<&| /page/info_section.mas, title=>'API de metadados de sequência', is_subsection=>1, collapsible=>1, collapsed=>1, subtitle=>'Consulte metadados de sequência por meio de uma API' &>
     <& /tools/sequence_metadata/api_sequence_metadata.mas &>
 </&>

@@ -25,6 +25,7 @@ Lukas Mueller <lam87@cornell.edu>
 =cut
 
 package SGN::Controller::AJAX::Onto;
+use utf8;
 
 use Moose;
 use SGN::Model::Cvterm;
@@ -103,7 +104,7 @@ sub download_obo: Path('/ajax/onto/download_obo') Args(1) {
     };
 
     if ($@) {
-        $c->stash->rest = {error => "An error occurred starting the download: $@"};
+        $c->stash->rest = {error => "Ocorreu um erro ao iniciar o download: $@"};
         return;
     }
 
@@ -141,13 +142,13 @@ sub compose_trait: Path('/ajax/onto/store_composed_term') Args(0) {
       $new_terms = $onto->store_composed_term($new_trait_names, $term_type);
   };
   if ($@) {
-      $c->stash->{rest} = { error => "An error occurred saving the new trait details: $@" };
+      $c->stash->{rest} = { error => "Ocorreu um erro ao salvar os detalhes da nova característica: $@" };
   }
   else {
       my $message = '';
       my @names;
       foreach (@$new_terms){
-          $message .= 'Saved new trait <a href="/cvterm/'.$_->[0].'/view">'.$_->[1].'</a><br>';
+          $message .= 'Nova característica salva <a href="/cvterm/'.$_->[0].'/view">'.$_->[1].'</a><br>';
           push @names, $_->[1];
       }
       $c->stash->{rest} = { success => $message,
@@ -176,7 +177,7 @@ sub store_ontology_identifier: Path('/ajax/onto/store_ontology_identifier') Args
         my $dbh = $c->dbc->dbh;
         my @user_info = CXGN::Login->new($dbh)->query_from_cookie($session_id);
         if (!$user_info[0]){
-            $c->stash->{rest} = {error=>'You must be logged in to create ontology!'};
+            $c->stash->{rest} = {error=>'Você precisa estar conectado para criar uma ontologia!'};
             $c->detach();
         }
         $user_id = $user_info[0];
@@ -185,7 +186,7 @@ sub store_ontology_identifier: Path('/ajax/onto/store_ontology_identifier') Args
         $user_name = $p->get_username;
     } else{
         if (!$c->user){
-            $c->stash->{rest} = {error=>'You must be logged in to create ontology!'};
+            $c->stash->{rest} = {error=>'Você precisa estar conectado para criar uma ontologia!'};
             $c->detach();
         }
         $user_id = $c->user()->get_object()->get_sp_person_id();
@@ -194,7 +195,7 @@ sub store_ontology_identifier: Path('/ajax/onto/store_ontology_identifier') Args
     }
 
     if ($user_role ne 'curator') {
-        $c->stash->{rest} = {error =>  "You have insufficient privileges to add ontology." };
+        $c->stash->{rest} = {error =>  "Você não tem privilégios suficientes para adicionar uma ontologia." };
         $c->detach();
     }
 
@@ -215,12 +216,12 @@ sub store_ontology_identifier: Path('/ajax/onto/store_ontology_identifier') Args
         if ($return->{error}) {
             $finish{error} = $return->{error};
         } elsif ($return->{success}) {
-            $finish{success} = 'Saved new ontology <a href="/cvterm/'.$return->{new_term}->[0].'/view">'.$return->{new_term}->[1].'</a><br>';
+            $finish{success} = 'Nova ontologia salva <a href="/cvterm/'.$return->{new_term}->[0].'/view">'.$return->{new_term}->[1].'</a><br>';
         } else {
-            $finish{error} = 'Something went wrong!';
+            $finish{error} = 'Algo deu errado!';
         }
     } else {
-        $finish{error} = 'On this database it is not allowed for users to add their own ontology! Please contact us!';
+        $finish{error} = 'Neste banco de dados, os usuários não podem adicionar sua própria ontologia! Entre em contato conosco!';
     }
     $c->stash->{rest} = \%finish;
 }
@@ -245,7 +246,7 @@ sub store_trait_method_scale_observation_variable: Path('/ajax/onto/store_trait_
         my $dbh = $c->dbc->dbh;
         my @user_info = CXGN::Login->new($dbh)->query_from_cookie($session_id);
         if (!$user_info[0]){
-            $c->stash->{rest} = {error=>'You must be logged in to create observation variables!'};
+            $c->stash->{rest} = {error=>'Você precisa estar conectado para criar variáveis de observação!'};
             $c->detach();
         }
         $user_id = $user_info[0];
@@ -254,7 +255,7 @@ sub store_trait_method_scale_observation_variable: Path('/ajax/onto/store_trait_
         $user_name = $p->get_username;
     } else{
         if (!$c->user){
-            $c->stash->{rest} = {error=>'You must be logged in to create observation variables!'};
+            $c->stash->{rest} = {error=>'Você precisa estar conectado para criar variáveis de observação!'};
             $c->detach();
         }
         $user_id = $c->user()->get_object()->get_sp_person_id();
@@ -263,7 +264,7 @@ sub store_trait_method_scale_observation_variable: Path('/ajax/onto/store_trait_
     }
 
     if ($user_role ne 'curator') {
-        $c->stash->{rest} = {error =>  "You have insufficient privileges to add observation variables." };
+        $c->stash->{rest} = {error =>  "Você não tem privilégios suficientes para adicionar variáveis de observação." };
         $c->detach();
     }
 
@@ -316,12 +317,12 @@ sub store_trait_method_scale_observation_variable: Path('/ajax/onto/store_trait_
         if ($return->{error}) {
             $finish{error} = $return->{error};
         } elsif ($return->{success}) {
-            $finish{success} = 'Saved new observation variable <a href="/cvterm/'.$return->{new_term}->[0].'/view">'.$return->{new_term}->[1].'</a><br>';
+            $finish{success} = 'Nova variável de observação salva <a href="/cvterm/'.$return->{new_term}->[0].'/view">'.$return->{new_term}->[1].'</a><br>';
         } else {
-            $finish{error} = 'Something went wrong!';
+            $finish{error} = 'Algo deu errado!';
         }
     } else {
-        $finish{error} = 'On this database it is not allowed for users to add their own observation variables! Please contact us!';
+        $finish{error} = 'Neste banco de dados, os usuários não podem adicionar suas próprias variáveis de observação! Entre em contato conosco!';
     }
     $c->stash->{rest} = \%finish;
 }
@@ -341,7 +342,7 @@ sub get_trait_from_exact_components: Path('/ajax/onto/get_trait_from_exact_compo
 
   my $trait_id = SGN::Model::Cvterm->get_trait_from_exact_components($schema, \@component_ids);
   if (!$trait_id) {
-    $c->stash->{rest} = { error => "No exact matches found."};
+    $c->stash->{rest} = { error => "Nenhuma correspondência exata encontrada."};
   }
   else {
     $c->stash->{rest} = { trait_id => $trait_id };
@@ -391,7 +392,7 @@ sub get_traits_from_component_categories: Path('/ajax/onto/get_traits_from_compo
   });
 
   if (!$traits) {
-    $c->stash->{rest} = { error => "No matches found."};
+    $c->stash->{rest} = { error => "Nenhuma correspondência encontrada."};
   }
   else {
     $c->stash->{rest} = {
@@ -480,17 +481,17 @@ sub parents_GET  {
     my $db_id;
 
     if ($db->count() == 0) {
-        $c->stash->{rest} = { error => "The term $db_name:$accession does not exist." };
+        $c->stash->{rest} = { error => "O termo $db_name:$accession não existe." };
         $c->detach();
     }
     
     if (!$db || !$accession) {
 	#not sure we need here to send an error key, since cache is usually called after parents (? )
-	$response{error} = "Did not pass a legal ontology term ID! ( $db_name : $accession)";
+	$response{error} = "Não foi informado um ID de termo de ontologia válido! ( $db_name : $accession)";
 	$c->stash->{rest} = \%response;
 	return;
     } elsif ( $db->count > 1 ) {
-	$response{error} = "Found more than one db row for  db.name $db_name : check your database";
+	$response{error} = "Foi encontrada mais de uma linha db para  db.name $db_name : verifique seu banco de dados";
 	$c->stash->{rest} = \%response;
 	return;
     }
@@ -507,7 +508,7 @@ sub parents_GET  {
 
     if ($dbxref_rs->count >1 ) {
 	while (my $d = $dbxref_rs->next() ) { print STDERR "DBXREF = " . $d->dbxref_id . " CVTERM = " . $d->cvterm->cvterm_id . "NAME = " . $d->cvterm->name . " \n\n" ; }
-	$response{error} = "Found more than one dbxref row for  accession  $accession : check your database";
+	$response{error} = "Foi encontrada mais de uma linha dbxref para  accession  $accession : verifique seu banco de dados";
 	$c->stash->{rest} = \%response;
 	return;
     } else {
@@ -515,7 +516,7 @@ sub parents_GET  {
     }
     #print STDERR "***Onto.pm:   My db_name  = $db_name , accession = $accession, db = " . $db_name . "db id = " . $db_id . " cvterm = " . $dbxref->cvterm->cvterm_id . "\n\n";
     if (!$dbxref) {
-        $response{error} = "Could not find term $db_name : $accession in the database! Check your input and try again";
+        $response{error} = "Não foi possível encontrar o termo $db_name : $accession no banco de dados! Verifique sua entrada e tente novamente";
         $c->stash->{rest} = \%response;
         return;
     }
@@ -533,7 +534,7 @@ sub parents_GET  {
             push @response_list, $responsehash;
         }
     } else {
-        $response{error} = "Could not find term $db_name : $accession in the database! Check your input and try again. THIS MAY BE AN INTERNAL DATABASE PROBLEM! Please contact sgn-feedback\@sgn.cornell.edu for help.";
+        $response{error} = "Não foi possível encontrar o termo $db_name : $accession no banco de dados! Verifique sua entrada e tente novamente. ISTO PODE SER UM PROBLEMA INTERNO DO BANCO DE DADOS! Entre em contato com sgn-feedback\@sgn.cornell.edu para obter ajuda.";
         $c->stash->{rest} = \%response;
         return;
     }
@@ -711,7 +712,7 @@ sub cache_GET {
     my %response;
     my ($db_name, $accession) = split ":", $c->request->param('node');
     if (!$db_name || !$accession) {
-        $response{error} = "Looks like you passed an illegal ontology term ID ! ($db_name : $accession) Please try again.";
+        $response{error} = "Parece que você informou um ID de termo de ontologia inválido! ($db_name : $accession) Tente novamente.";
         $c->stash->{rest} = \%response;
         return;
     }
@@ -739,27 +740,27 @@ sub cache_GET {
 
     if ($dbxref_rs->count >1 ) {
 	while (my $d = $dbxref_rs->next() ) { print STDERR "DBXREF = " . $d->dbxref_id . " CVTERM = " . $d->cvterm->cvterm_id . "NAME = " . $d->cvterm->name . " \n\n" ; }
-	$response{error} = "Found more than one dbxref row for  accession  $accession : check your database";
+	$response{error} = "Foi encontrada mais de uma linha dbxref para  accession  $accession : verifique seu banco de dados";
 	$c->stash->{rest} = \%response;
 	return;
     } else {
 	$dbxref = $dbxref_rs->next();
     }
     if (!$dbxref) {
-	$response{error} = "Did not find ontology term $db_name : $accession in the database. Please try again. If you think this term should exist please contact sgn-feedback\@sgn.cornell.edu";
+	$response{error} = "O termo de ontologia $db_name : $accession não foi encontrado no banco de dados. Tente novamente. Se você acha que este termo deveria existir, entre em contato com sgn-feedback\@sgn.cornell.edu";
 	$c->stash->{rest} = \%response;
 	return;
     }
     ######################
     my $cvterm = $dbxref->cvterm;
     if (!$cvterm) {
-        $response{error} = "Did not find ontology term $db_name : $accession in the database. This may be an internal database issue. Please contact sgn-feedback\@sgn.cornell.edu and we will fix this error ASAP";
+        $response{error} = "O termo de ontologia $db_name : $accession não foi encontrado no banco de dados. Isto pode ser um problema interno do banco de dados. Entre em contato com sgn-feedback\@sgn.cornell.edu e corrigiremos este erro o mais rápido possível";
         $c->stash->{rest} = \%response;
         return;
     }
     my $parents_rs = $cvterm->recursive_parents(); # returns a result set
     if (!$parents_rs->next) {
-        $response{error} = "did not find recursive parents for cvterm " . $cvterm->name;
+        $response{error} = "não foram encontrados pais recursivos para o cvterm " . $cvterm->name;
         $c->stash->{rest} = \%response;
         return;
     }

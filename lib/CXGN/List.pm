@@ -30,6 +30,7 @@ Class function (without instantiation):
 
 
 package CXGN::List;
+use utf8;
 
 use Moose;
 use Data::Dumper;
@@ -211,7 +212,7 @@ sub delete_list {
 	$h->execute($list_id);
     };
     if ($@) {
-	return "An error occurred while deleting list with id $list_id: $@";
+	return "Ocorreu um erro ao excluir a lista com id $list_id: $@";
     }
     return 0;
 }
@@ -272,7 +273,7 @@ after 'name' => sub {
     $h->execute($name, $self->owner());
     my ($old_list) = $h->fetchrow_array();
     if ($old_list) {
-	return "The list name $name already exists. Please choose another name.";
+	return "O nome de lista $name já existe. Escolha outro nome.";
     }
 
     $q = "UPDATE sgn_people.list SET name=? WHERE list_id=?"; #removed "my"
@@ -282,7 +283,7 @@ after 'name' => sub {
 	$h->execute($name, $self->list_id());
     };
     if ($@) {
-	return "An error occurred updating the list name ($@)";
+	return "Ocorreu um erro ao atualizar o nome da lista ($@)";
     }
     return 0;
 };
@@ -298,7 +299,7 @@ after 'type' => sub {
     $h1->execute($type);
     my ($cvterm_id) =$h1->fetchrow_array();
     if (!$cvterm_id) {
-	return "The specified type does not exist";
+	return "O tipo especificado não existe";
     }
 
     my $q = "SELECT owner FROM sgn_people.list WHERE list_id=?";
@@ -311,7 +312,7 @@ after 'type' => sub {
 			$h->execute($cvterm_id, $self->list_id);
     };
     if ($@) {
-			return "An error occurred while updating the type of list ".self->list_id." to $type. $@";
+			return "Ocorreu um erro ao atualizar o tipo da lista ".self->list_id." para $type. $@";
     }
     return 0;
 };
@@ -332,7 +333,7 @@ after 'description' => sub {
 	$h->execute($description, $self->list_id());
     };
     if ($@) {
-	return "An error occurred updating the list description ($@)";
+	return "Ocorreu um erro ao atualizar a descrição da lista ($@)";
     }
     return 0;
 };
@@ -344,10 +345,10 @@ sub add_element {
     #remove trailing spaces
     $element =~ s/^\s+|\s+$//g;
     if (!$element) {
-			return "Empty list elements are not allowed";
+			return "Elementos de lista vazios não são permitidos";
     }
     if ($self->exists_element($element)) {
-			return "The element $element already exists";
+			return "O elemento $element já existe";
     }
 
     my $iq = "INSERT INTO sgn_people.list_item (list_id, content) VALUES (?, ?)";
@@ -357,7 +358,7 @@ sub add_element {
     };
     if ($@) {
         print STDERR Dumper $@;
-				return "An error occurred storing the element $element ($@)";
+				return "Ocorreu um erro ao armazenar o elemento $element ($@)";
     }
 
 		eval {
@@ -384,7 +385,7 @@ sub remove_element {
     };
     if ($@) {
 
-	return "An error occurred while attempting to delete item $element";
+	return "Ocorreu um erro ao tentar excluir o item $element";
     }
 
     eval {
@@ -420,7 +421,7 @@ sub remove_element_by_id {
 	$h->execute($self->list_id(), $element_id);
     };
     if ($@) {
-	return "An error occurred while attempting to delete item $element_id";
+	return "Ocorreu um erro ao tentar excluir o item $element_id";
     }
     my ($element) = $h->fetchrow_array();
 
@@ -441,7 +442,7 @@ sub update_element_by_id {
 		$h->execute($content, $self->list_id(), $element_id);
 	};
 	if ($@) {
-		return "An error occurred while attempting to update item $element_id";
+		return "Ocorreu um erro ao tentar atualizar o item $element_id";
 	}
 
 	eval {
@@ -463,7 +464,7 @@ sub replace_by_name {
 		$h->execute($new_name, $self->list_id(), $item_name);
 	};
 	if ($@) {
-		return "An error occurred while attempting to update item $item_name";
+		return "Ocorreu um erro ao tentar atualizar o item $item_name";
 	}
 
 	eval {
@@ -484,7 +485,7 @@ sub remove_by_name {
 		$h->execute($self->list_id(), $item_name);
 	};
 	if ($@) {
-		return "An error occurred while attempting to remove item $item_name";
+		return "Ocorreu um erro ao tentar remover o item $item_name";
 	}
 
 	eval {
@@ -683,7 +684,7 @@ sub add_bulk {
 	};
 	if ($@) {
 		$self->dbh()->rollback;
-		return {error => "An error occurred in bulk addition to list. ($@)"};
+		return {error => "Ocorreu um erro na adição em lote à lista. ($@)"};
 	}
 
 	eval {

@@ -1,5 +1,6 @@
 
 use strict;
+use utf8;
 use lib 't/lib';
 
 use Test::More;
@@ -29,7 +30,7 @@ for my $extension ("xls", "xlsx", "csv") {
     $results = $p->parse();
     $errors = $p->get_parse_errors();
 
-    ok($errors->{'error_messages'}->[0] eq "No blank well found in spreadsheet", "detect missing blank entry");
+    ok($errors->{'error_messages'}->[0] eq "Nenhum poço em branco encontrado na planilha", "detect missing blank entry");
 
     $p = CXGN::Trial::ParseUpload->new({ filename => "t/data/genotype_trial_upload/CASSAVA_GS_74Template_messed_up_trial_name.csv", chado_schema => $f->bcs_schema() });
     $p->load_plugin("ParseIGDFile");
@@ -37,7 +38,7 @@ for my $extension ("xls", "xlsx", "csv") {
     $results = $p->parse();
     $errors = $p->get_parse_errors();
 
-    ok($errors->{'error_messages'}->[0] eq "All trial names in the trial column must be identical", "detect messed up trial name");
+    ok($errors->{'error_messages'}->[0] eq "Todos os nomes de ensaio na coluna de ensaio devem ser idênticos", "detect messed up trial name");
 
     $p = CXGN::Trial::ParseUpload->new({ filename => "t/data/trial/trial_layout_bad_accessions.$extension", chado_schema => $f->bcs_schema() });
     $p->load_plugin("TrialGeneric");
@@ -45,7 +46,7 @@ for my $extension ("xls", "xlsx", "csv") {
     $results = $p->parse();
     $errors = $p->get_parse_errors();
     #print STDERR Dumper $errors;
-    ok($errors->{'error_messages'}->[0] =~ /The following entry names are not in the database as uniquenames or synonyms/, 'check that accessions not in db');
+    ok($errors->{'error_messages'}->[0] =~ /Os seguintes nomes de entrada não estão no banco de dados como nomes únicos ou sinônimos/, 'check that accessions not in db');
     ok(scalar(@{$errors->{'error_messages'}}) == 1, 'check that accessions not in db');
     ok(scalar(@{$errors->{'missing_stocks'}}) == 8, 'check that accessions not in db');
 
@@ -56,9 +57,9 @@ for my $extension ("xls", "xlsx", "csv") {
     $errors = $p->get_parse_errors();
     my $expected = {
         'error_messages' => [
-            'Required column stock_name is missing',
-            'Required column plot_number is missing',
-            'Required column block_number is missing'
+            'A coluna obrigatória stock_name está ausente',
+            'A coluna obrigatória plot_number está ausente',
+            'A coluna obrigatória block_number está ausente'
         ]
     };
     is_deeply($errors, $expected, 'check file format errors');

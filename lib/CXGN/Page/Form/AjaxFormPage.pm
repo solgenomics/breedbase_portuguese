@@ -1,4 +1,5 @@
 package CXGN::Page::Form::AjaxFormPage;
+use utf8;
 
 
 =head1 NAME
@@ -123,12 +124,12 @@ sub new {
         $self->set_action("new");
     }
     if (!$self->get_object_id() && $self->get_action()!~/new|store|confirm_store/) {
-	$json_hash{error}='No identifier provided to display data of this page for action view.';
+	$json_hash{error}='Nenhum identificador fornecido para exibir os dados desta página na ação view.';
 
     }
     else {
 	if ($self->get_action()!~/new|view|edit|store|delete|confirm_delete|confirm_store/) {
-	    $json_hash{error}='No identifier provided';
+	    $json_hash{error}='Nenhum identificador fornecido';
 	}
     }
 
@@ -195,7 +196,7 @@ sub check_modify_privileges {
     if (!$person_id) { $json_hash{login} = 1 ;  }
     if ($user_type !~ /submitter|sequencer|curator/) {
         if (!$json_hash{error} ) {
-	    $json_hash{error} = "You must have an account of type submitter to be able to submit data. Please contact SGN to change your account type."; }
+	    $json_hash{error} = "Você precisa ter uma conta do tipo submitter para poder enviar dados. Entre em contato com o SGN para alterar o tipo da sua conta."; }
 	$self->set_json_hash(%json_hash);
 	return 0;
     }
@@ -204,7 +205,7 @@ sub check_modify_privileges {
     if ((@owners) && (!(grep { $_ =~ /^$person_id$/ } @owners) )) {
 	# check the owner only if the action is not new
 	#
-	$json_hash{error} = "You do not have rights to modify this database entry because you do not own it. [$person_id, @owners]";
+	$json_hash{error} = "Você não tem permissão para modificar este registro do banco de dados porque não é o proprietário dele. [$person_id, @owners]";
 
     } else {  $self->set_is_owner(1); }
 
@@ -243,7 +244,7 @@ sub define_object {
     $self->set_owners();
 
     if ( $self->get_object()->get_obsolete() eq 't' ) {
-	$json_hash{error} = "Object is obsolete!";
+	$json_hash{error} = "O objeto está obsoleto!";
 	$self->set_json_hash(%json_hash);
 	$self->print_json();
     }
@@ -395,7 +396,7 @@ sub get_user {
 
 sub generate_form {
     my $self = shift;
-    my $error=  "Please subclass 'generate_form' function!\n";
+    my $error=  "Crie uma subclasse com a função 'generate_form'!\n";
     warn $error;
     my %json_hash=$self->get_json_hash();
     $json_hash{error} = $error;
@@ -421,7 +422,7 @@ sub delete {
     my $self = shift;
     warn "Override 'delete' function in derived class\n";
 
-    my $error="Deleting is not implemented for this object. Override 'delete' function in derived class.";
+    my $error="A exclusão não está implementada para este objeto. Sobrescreva a função 'delete' na classe derivada.";
     my %json_hash=$self->get_json_hash();
     $json_hash{error} = $error;
     $self->set_json_hash(%json_hash);

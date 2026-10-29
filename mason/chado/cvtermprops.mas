@@ -235,8 +235,8 @@ function <% $div_name %>_addProp() {
     data: { 'cvterm_id' : <% $cvterm_id %>, 'prop' : prop, 'prop_type': prop_type, 'cv_name' : "<% $cv_name %>" },
     success: function(response) {
         jQuery('#working_modal').modal('hide');
-        if ("Erro" in response) { alert ("ERRO "+response.error); }
-        if ("Mensagem" in response) { alert("Propriedade adicionada com sucesso: " + prop + '. ('+response.message+')'); }
+        if ("error" in response) { alert ("ERRO "+response.error); }
+        if ("message" in response) { alert("Propriedade adicionada com sucesso: " + prop + '. ('+response.message+')'); }
 	  <% $div_name %>_getProps();
 	jQuery('#<% $div_name %>_add_dialog').modal('hide');
     },
@@ -258,8 +258,8 @@ function <% $div_name %>_deleteProp(cvtermprop_value, cvtermprop_id) {
       url: '/cvterm/prop/delete',
       data: { 'cvtermprop_id' : cvtermprop_id },
       success: function(response) {
-        if ("Mensagem" in response) {  alert(response.message); }
-          if ("Erro"   in response) {  alert(response.error);   }
+        if ("message" in response) {  alert(response.message); }
+          if ("error"   in response) {  alert(response.error);   }
 	    <% $div_name %>_getProps();
 
       },

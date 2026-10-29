@@ -1,4 +1,5 @@
 package SGN::Controller::AJAX::Analytics;
+use utf8;
 
 use Moose;
 
@@ -74,7 +75,7 @@ sub list_analytics_protocols_result_files :Path('/ajax/analytics_protocols/resul
     my $analytics_protocol_id = $c->req->param('analytics_protocol_id');
 
     if (!$analytics_protocol_id) {
-        $c->stash->{rest} = { error => "No ID given!" };
+        $c->stash->{rest} = { error => "Nenhum ID informado!" };
         $c->detach();
     }
 
@@ -119,7 +120,7 @@ sub _check_user_login {
         my $dbh = $c->dbc->dbh;
         my @user_info = CXGN::Login->new($dbh)->query_from_cookie($session_id);
         if (!$user_info[0]){
-            $c->stash->{rest} = {error=>'You must be logged in to do this!'};
+            $c->stash->{rest} = {error=>'Você precisa estar conectado para fazer isso!'};
             $c->detach();
         }
         $user_id = $user_info[0];
@@ -128,7 +129,7 @@ sub _check_user_login {
         $user_name = $p->get_username;
     } else{
         if (!$c->user){
-            $c->stash->{rest} = {error=>'You must be logged in to do this!'};
+            $c->stash->{rest} = {error=>'Você precisa estar conectado para fazer isso!'};
             $c->detach();
         }
         $user_id = $c->user()->get_object()->get_sp_person_id();
@@ -136,7 +137,7 @@ sub _check_user_login {
         $user_role = $c->user->get_object->get_user_type();
     }
     if ($role_check && $user_role ne $role_check) {
-        $c->stash->{rest} = {error=>'You must have permission to do this! Please contact us!'};
+        $c->stash->{rest} = {error=>'Você precisa ter permissão para fazer isso! Entre em contato conosco!'};
         $c->detach();
     }
     return ($user_id, $user_name, $user_role);

@@ -1,5 +1,6 @@
 
 package SGN::Controller::AJAX::BreedersToolbox::Population;
+use utf8;
 
 use Moose;
 use CXGN::Pedigree::AddPopulations;
@@ -34,14 +35,14 @@ sub create_population :Path('/ajax/population/new') Args(0) {
         my $dbh = $c->dbc->dbh;
         my @user_info = CXGN::Login->new($dbh)->query_from_cookie($session_id);
         if (!$user_info[0]){
-            $c->stash->{rest} = {error=>'You must be logged in to create a population!'};
+            $c->stash->{rest} = {error=>'Você precisa estar conectado para criar uma população!'};
             $c->detach();
         }
         $user_id = $user_info[0];
         $user_role = $user_info[1];
     } else {
         if (!$c->user){
-            $c->stash->{rest} = {error=>'You must be logged in to create a population!'};
+            $c->stash->{rest} = {error=>'Você precisa estar conectado para criar uma população!'};
             $c->detach();
         }
         $user_id = $c->user()->get_object()->get_sp_person_id();
@@ -49,7 +50,7 @@ sub create_population :Path('/ajax/population/new') Args(0) {
     }
 
     if (($user_role ne 'curator') && ($user_role ne 'submitter')) {
-        $c->stash->{rest} = {error=>'Only a submitter or a curator can create a population'};
+        $c->stash->{rest} = {error=>'Apenas um submissor ou um curador pode criar uma população'};
         $c->detach();
     }
 
@@ -86,14 +87,14 @@ sub add_members_to_population :Path('/ajax/population/add_members') Args(0) {
         my $dbh = $c->dbc->dbh;
         my @user_info = CXGN::Login->new($dbh)->query_from_cookie($session_id);
         if (!$user_info[0]){
-            $c->stash->{rest} = {error=>'You must be logged in to add population members!'};
+            $c->stash->{rest} = {error=>'Você precisa estar conectado para adicionar membros à população!'};
             $c->detach();
         }
         $user_id = $user_info[0];
         $user_role = $user_info[1];
     } else {
         if (!$c->user){
-            $c->stash->{rest} = {error=>'You must be logged in to add population members!'};
+            $c->stash->{rest} = {error=>'Você precisa estar conectado para adicionar membros à população!'};
             $c->detach();
         }
         $user_id = $c->user()->get_object()->get_sp_person_id();
@@ -101,7 +102,7 @@ sub add_members_to_population :Path('/ajax/population/add_members') Args(0) {
     }
 
     if (($user_role ne 'curator') && ($user_role ne 'submitter')) {
-        $c->stash->{rest} = {error=>'Only a submitter or a curator can add population members'};
+        $c->stash->{rest} = {error=>'Apenas um submissor ou um curador pode adicionar membros à população'};
         $c->detach();
     }
 
@@ -132,14 +133,14 @@ sub delete_population :Path('/ajax/population/delete') Args(0) {
         my $dbh = $c->dbc->dbh;
         my @user_info = CXGN::Login->new($dbh)->query_from_cookie($session_id);
         if (!$user_info[0]){
-            $c->stash->{rest} = {error=>'You must be logged in to delete a population!'};
+            $c->stash->{rest} = {error=>'Você precisa estar conectado para excluir uma população!'};
             $c->detach();
         }
         $user_id = $user_info[0];
         $user_role = $user_info[1];
     } else {
         if (!$c->user){
-            $c->stash->{rest} = {error=>'You must be logged in to delete a population!'};
+            $c->stash->{rest} = {error=>'Você precisa estar conectado para excluir uma população!'};
             $c->detach();
         }
         $user_id = $c->user()->get_object()->get_sp_person_id();
@@ -147,7 +148,7 @@ sub delete_population :Path('/ajax/population/delete') Args(0) {
     }
 
     if ($user_role ne 'curator') {
-        $c->stash->{rest} = {error=>'Only a curator can delete a population'};
+        $c->stash->{rest} = {error=>'Apenas um curador pode excluir uma população'};
         $c->detach();
     }
 
@@ -160,7 +161,7 @@ sub delete_population :Path('/ajax/population/delete') Args(0) {
     my $population = CXGN::Population->new( { schema => $schema, , population_stock_id => $population_id });
 
     if (!$population->population_stock_id()) {
-        $c->stash->{rest} = { error => "No such population exists. Cannot delete." };
+        $c->stash->{rest} = { error => "Essa população não existe. Não é possível excluí-la." };
         return;
     }
 
@@ -169,10 +170,10 @@ sub delete_population :Path('/ajax/population/delete') Args(0) {
     my $return;
     if ($error) {
         print STDERR "Error deleting population $population_name: $error\n";
-        $return = { error => "Error deleting population $population_name: $error" };
+        $return = { error => "Erro ao excluir a população $population_name: $error" };
     } else {
         print STDERR "population $population_name deleted successfully\n";
-        $return = { success => "Population $population_name deleted successfully!" };
+        $return = { success => "População $population_name excluída com sucesso!" };
     }
 
     $c->stash->{rest} = $return;
@@ -189,14 +190,14 @@ sub remove_population_member :Path('/ajax/population/remove_member') Args(0) {
         my $dbh = $c->dbc->dbh;
         my @user_info = CXGN::Login->new($dbh)->query_from_cookie($session_id);
         if (!$user_info[0]){
-            $c->stash->{rest} = {error=>'You must be logged in to remove an accession from population!'};
+            $c->stash->{rest} = {error=>'Você precisa estar conectado para remover um acesso da população!'};
             $c->detach();
         }
         $user_id = $user_info[0];
         $user_role = $user_info[1];
     } else {
         if (!$c->user){
-            $c->stash->{rest} = {error=>'You must be logged in to remove an accession from population!'};
+            $c->stash->{rest} = {error=>'Você precisa estar conectado para remover um acesso da população!'};
             $c->detach();
         }
         $user_id = $c->user()->get_object()->get_sp_person_id();
@@ -204,7 +205,7 @@ sub remove_population_member :Path('/ajax/population/remove_member') Args(0) {
     }
 
     if ($user_role ne 'curator') {
-        $c->stash->{rest} = {error=>'Only a curator can remove an accession from population'};
+        $c->stash->{rest} = {error=>'Apenas um curador pode remover um acesso da população'};
         $c->detach();
     }
 
@@ -218,10 +219,10 @@ sub remove_population_member :Path('/ajax/population/remove_member') Args(0) {
     my $return;
     if ($error) {
         print STDERR "Error removing member from population: $error\n";
-        $return = { error => "Error removing member from population: $error" };
+        $return = { error => "Erro ao remover o membro da população: $error" };
     } else {
         print STDERR "Member removed successfully\n";
-        $return = { success => "Removed successfully!" };
+        $return = { success => "Removido com sucesso!" };
     }
 
     $c->stash->{rest} = $return;

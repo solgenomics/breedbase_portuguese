@@ -1,5 +1,6 @@
 package CXGN::Trial::ParseUpload::Plugin::TrialChangePlotAccessions;
 
+use utf8;
 use Moose::Role;
 use CXGN::Stock::StockLookup;
 use CXGN::File::Parse;
@@ -59,14 +60,14 @@ sub _validate_with_plugin {
     my %trial_plots = map {$_->[1] => 1} @{$trial->get_observation_units_direct('plot')};
     foreach my $old_plot_name (@old_plot_names) {
         if (!exists($trial_plots{$old_plot_name})) {
-            push @error_messages, "Plot $old_plot_name does not exist in this trial.";
+            push @error_messages, "A parcela $old_plot_name não existe neste ensaio.";
         }
     }
 
     my $transform = CXGN::List::Transform->new();
     my $validate_plots = $transform->transform($schema, 'plots_2_plot_ids', \@old_plot_names);
     if (scalar(@{$validate_plots->{'missing'}}) > 0) {
-        push @error_messages, "The following plots were not found in the database: ".join(";",@{$validate_plots->{'missing'}});
+        push @error_messages, "As seguintes parcelas não foram encontradas no banco de dados: ".join(";",@{$validate_plots->{'missing'}});
     }
 
     my @plot_ids = @{$validate_plots->{'transform'}};
@@ -75,14 +76,14 @@ sub _validate_with_plugin {
         my $seedlots = $related_seedlots->get_plots_related_seedlots();
         if (scalar @$seedlots > 0) {
             foreach my $seedlot (@$seedlots) {
-                push @error_messages, "Plot: $seedlot->[4] is associated with seedlot: $seedlot->[2]. Please delete seedlot transaction linked to the plot first.";
+                push @error_messages, "Parcela: $seedlot->[4] está associada ao lote de sementes: $seedlot->[2]. Exclua primeiro a transação do lote de sementes vinculada à parcela.";
             }
         }
     }
 
     my $validate_stocks = $transform->transform($schema, 'stocks_2_stock_ids', \@accessions);
     if (scalar(@{$validate_stocks->{'missing'}}) > 0) {
-        push @error_messages, "The following accessions were not found in the database: ".$validate_stocks->{'missing'};
+        push @error_messages, "Os seguintes acessos não foram encontrados no banco de dados: ".$validate_stocks->{'missing'};
     } else {
         foreach my $accession_id (@{$validate_stocks->{'transform'}}) {
             my $accession_name = shift(@accessions);
@@ -93,7 +94,7 @@ sub _validate_with_plugin {
     if (scalar(@new_plot_names) > 0) {
         my $validate_new_stocks = $validator->validate($schema, 'new_stocks', \@new_plot_names);
         foreach my $new_name (@{$validate_new_stocks->{invalid}}) { #new name is invalid if any stock, obsolete or not, is found in the db
-            push @error_messages, "New plot name $new_name already exists as a stock in the database. ";
+            push @error_messages, "O novo nome de parcela $new_name já existe como material no banco de dados. ";
         }
     }
 

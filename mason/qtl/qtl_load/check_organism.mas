@@ -22,25 +22,22 @@ $guide
 
 <%perl>
 
-my $message = qq |<p> It appears that SGN currently does not support 
-                  this species (<b><i>$species</i>$cultivar</b>).<br/> 
-                  As a first step, please make sure you have spelled 
-                  the species correctly.</p>
-                        
-                  <p> Read also the guidline for the nomenclature format 
-                  you have to use to submit the parental lines.</p>
-
-                  <p> Please go <a href="javascript:history.go(-1)">back</a> 
-                  and check.</p>
-                        
-                  <p> if you keep having the same problem with it
-                  <a href=mailto:sgn-feedback\@sgn.cornell.edu> contact us.</a></p> 
+my $message = qq |<p> Parece que a SGN não oferece suporte, no momento, a 
+                  esta espécie (<b><i>$species</i>$cultivar</b>).<br/> 
+                  Como primeiro passo, verifique se o nome da espécie 
+                  está escrito corretamente.</p>
+                  <p> Leia também as diretrizes sobre o formato de nomenclatura 
+                  que deve ser usado para enviar as linhagens parentais.</p>
+                  <p> <a href="javascript:history.go(-1)">Volte</a> 
+                  e verifique.</p>
+                  <p> Se o problema persistir,
+                  <a href=mailto:sgn-feedback\@sgn.cornell.edu> entre em contato conosco.</a></p> 
                  |;
 
 
 </%perl>
 
-<& /page/page_title.mas, title => 'Verifique a(s) acesso(s) dos pais' &>
+<& /page/page_title.mas, title => 'Verifique o(s) acesso(s) parental(is)' &>
 <&| /page/info_section.mas, title => '', subtitle => $guide &>
   <% $message %>  
 </&>

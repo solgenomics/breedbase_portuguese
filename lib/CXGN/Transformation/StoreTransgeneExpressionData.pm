@@ -1,4 +1,5 @@
 package CXGN::Transformation::StoreTransgeneExpressionData;
+use utf8;
 
 =head1 NAME
 
@@ -140,7 +141,7 @@ sub store_qPCR_data {
 		    type_id => $accession_cvterm->cvterm_id(),
 	    });
         if (!$transformant_stock) {
-            $return{error} = "Transgenic line cound not be found in the database: $transformant_name!";
+            $return{error} = "A linha transgênica não foi encontrada no banco de dados: $transformant_name!";
             return \%return;
         } else {
             $transformant_stock_id = $transformant_stock->stock_id();
@@ -151,7 +152,7 @@ sub store_qPCR_data {
 		    type_id => $vector_construct_cvterm->cvterm_id(),
 	    });
         if (!$vector_construct_stock) {
-            $return{error} = "Vector construct cound not be found in the database: $vector_construct_name!";
+            $return{error} = "A construção vetorial não foi encontrada no banco de dados: $vector_construct_name!";
             return \%return;
         } else {
 			$vector_construct_stock_id = $vector_construct_stock->stock_id();
@@ -188,7 +189,7 @@ sub store_qPCR_data {
             $updated_expression_data_json = encode_json $expression_data_hash;
             $previous_expression_data_stockprop_rs->first->update({value=>$updated_expression_data_json});
         } elsif ($previous_expression_data_stockprop_rs->count > 1) {
-            $return{error} = "More than one expression data stockprop found for: $transformant_name!";
+            $return{error} = "Mais de um stockprop de dados de expressão encontrado para: $transformant_name!";
             return \%return;
         } else {
             if ($CT_expression_data) {
@@ -222,7 +223,7 @@ sub store_qPCR_data {
             $previous_assay_metadata_json = encode_json $previous_assay_metadata_hash;
             $previous_assay_metadata_stockprop_rs->first->update({value=>$previous_assay_metadata_json});
         } elsif ($previous_assay_metadata_stockprop_rs->count > 1) {
-            $return{error} = "More than one assay metadata stockprop found for vector construct: $vector_construct_name!";
+            $return{error} = "Mais de um stockprop de metadados de ensaio encontrado para a construção vetorial: $vector_construct_name!";
             return \%return;
         } else {
             my $assay_metadata = {};
@@ -240,7 +241,7 @@ sub store_qPCR_data {
     };
 
     if ($transaction_error) {
-        $return{error} = "Transaction error storing qPCR data for $transformant_name: $transaction_error\n";
+        $return{error} = "Erro de transação ao armazenar os dados de qPCR para $transformant_name: $transaction_error\n";
         return \%return;
     } else {
         $return{success} = 1;

@@ -1,5 +1,6 @@
 
 package SGN::Controller::AJAX::BreederSearch;
+use utf8;
 
 use Moose;
 
@@ -37,7 +38,7 @@ sub get_data : Path('/ajax/breeder/search') Args(0) {
   foreach my $select (@criteria_list) { #ensure criteria list arguments are one of the possible categories
     chomp($select);
     if (! any { $select eq $_ } ('accessions', 'accessions_ids','organisms','breeding_programs', 'genotyping_protocols', 'genotyping_projects', 'locations', 'plants', 'plots', 'subplots','tissue_sample','seedlots', 'populations', 'trait_components', 'traits', 'trials', 'trial_designs', 'trial_types', 'years', 'protocols', 'instances', undef)) {
-      $error = "Valid keys are accessions, organisms, breeding_programs, genotyping_protocols, genotyping_projects, locations, plants, plots, subplots,tissue_sample, seedlots, trait_components, traits, trials, trial_designs, trial_types and years or undef";
+      $error = "As chaves válidas são accessions, organisms, breeding_programs, genotyping_protocols, genotyping_projects, locations, plants, plots, subplots,tissue_sample, seedlots, trait_components, traits, trials, trial_designs, trial_types e years ou undef";
       $c->stash->{rest} = { error => $error };
       return;
     }
@@ -47,7 +48,7 @@ sub get_data : Path('/ajax/breeder/search') Args(0) {
   foreach my $binary_number (@querytypes) {# ensure querytype arguments are 0 or 1
     chomp($binary_number);
     if ( $binary_number < 0 || $binary_number > 1 ) {
-      $error = "Valid querytypes are '1' for intersect or '0' for union or between 0 and 1 for percent match";
+      $error = "Os valores válidos de querytype são '1' para interseção, '0' para união ou entre 0 e 1 para porcentagem de correspondência";
       $c->stash->{rest} = { error => $error };
       return;
     }
@@ -63,7 +64,7 @@ sub get_data : Path('/ajax/breeder/search') Args(0) {
       print STDERR "Validating dataref ids\n";
       for (my $i=0; $i<@data; $i++) { # ensure dataref arguements (ids) are numeric
         if (m/\D/) {
-          $error = "Valid values for dataref are numeric ids";
+          $error = "Os valores válidos para dataref são IDs numéricos";
           $c->stash->{rest} = { error => $error };
           return;
         }
@@ -93,11 +94,11 @@ sub get_data : Path('/ajax/breeder/search') Args(0) {
 ##    return;
 ##  }
   if (@results >= 10_000) {
-    $c->stash->{rest} = { list => \@results, message => 'Over 10,000 matches. Speeds may be affected, consider narrowing your search' };
+    $c->stash->{rest} = { list => \@results, message => 'Mais de 10.000 correspondências. O desempenho pode ser afetado; considere refinar sua pesquisa' };
     return;
   }
   elsif (@results < 1) {
-    $c->stash->{rest} = { list => \@results, message => scalar(@results).' matches. Nothing to display' };
+    $c->stash->{rest} = { list => \@results, message => scalar(@results).' correspondências. Nada a exibir' };
     return;
   }
   else {

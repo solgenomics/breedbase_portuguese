@@ -1,4 +1,5 @@
 package SGN::Controller::solGS::pca;
+use utf8;
 
 use Moose;
 use namespace::autoclean;
@@ -214,10 +215,10 @@ sub error_message {
 
     if ( !@data_exists ) {
         my $data_type = $c->stash->{data_type};
-        $error_message = "There is no $data_type for this dataset.";
+        $error_message = "Não há $data_type para este conjunto de dados.";
     }
     elsif ( @data_exists && !-s $pca_scores_file ) {
-        $error_message = 'The PCA R Script failed.';
+        $error_message = 'O script R de PCA falhou.';
     }
 
     return $error_message;

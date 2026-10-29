@@ -627,7 +627,7 @@ solGS.cluster = {
 
     if (clusterPlotFileName.match(/k-means/i)) {
       plotType = "K-means plot";
-      outFileType = "Clusters";
+      outFileType = "Grupos";
       clustersFile = res.kmeans_clusters;
       elbowPlotFile = res.elbow_plot;
       kclusterVariancesFile = res.kcluster_variances;
@@ -977,7 +977,7 @@ solGS.cluster = {
 
     clusterPlot
       .append("g")
-      .attr("class", "Eixo PC1")
+      .attr("class", "PC1 axis")
       .attr("transform", "translate(" + pad.left + "," + yAxisHeight + ")")
       .call(pc1Axis)
       .selectAll("text")
@@ -990,7 +990,7 @@ solGS.cluster = {
 
     clusterPlot
       .append("g")
-      .attr("class", "Eixo PC2")
+      .attr("class", "PC2 axis")
       .attr("transform", "translate(" + pad.left + "," + pad.top + ")")
       .call(pc2Axis)
       .selectAll("text")

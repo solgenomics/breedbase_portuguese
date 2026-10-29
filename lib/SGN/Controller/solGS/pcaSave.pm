@@ -1,4 +1,5 @@
 package SGN::Controller::solGS::pcaSave;
+use utf8;
 
 use Moose;
 use namespace::autoclean;
@@ -42,7 +43,7 @@ sub pca_result_details :Path('/solgs/pca/result/details') Args() {
 
 		if ($@) {
 			print STDERR "\n$@\n";
-			$c->stash->{rest}{error} = 'Something went wrong structuring pca analysis result for storage.';
+			$c->stash->{rest}{error} = 'Algo deu errado ao estruturar o resultado da análise de PCA para armazenamento.';
 		} else {
 			$c->stash->{rest}{analysis_details} = $analysis_details;
 		}

@@ -60,7 +60,7 @@ function getRelatedGenotypeMarkers() {
             let html = "";
             if ( response && response.related_variants ) {
                 html += "<table class='table table-striped'>";
-                html += "<thead><tr><th>Marcador</th><th>Protocolo</th><th>Espécie</th><th>Referência</th><th>Cromossoma</th><th>Posição</th><th>Ref</th><th>Alt</th></tr></thead>";
+                html += "<thead><tr><th>Marcador</th><th>Protocolo</th><th>Espécie</th><th>Referência</th><th>Cromossomo</th><th>Posição</th><th>Ref</th><th>Alt</th></tr></thead>";
                 html += "<tbody>";
                 for ( let variant_name in response.related_variants ) {
                     if ( response.related_variants.hasOwnProperty(variant_name) ) {
@@ -84,7 +84,7 @@ function getRelatedGenotypeMarkers() {
             jQuery("#related-genotyped-markers").html(html);
         },
         error: function(response) {
-            console.log("Não foi possível obter os marcadores genotipados relacionados");
+            console.log("Could not get related genotyped markers");
         }
     });
 }

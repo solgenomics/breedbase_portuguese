@@ -1,5 +1,6 @@
 package CXGN::Stock::ParseUpload::Plugin::PropagationIdentifiersGeneric;
 
+use utf8;
 use Moose::Role;
 use CXGN::File::Parse;
 use CXGN::Stock::StockLookup;
@@ -47,7 +48,7 @@ sub _validate_with_plugin {
 
     if ( $additional_columns && scalar(@$additional_columns) > 0 ) {
         $errors{'error_messages'} = [
-            "The following columns are not recognized: " . join(', ', @$additional_columns) . ". Please check the spreadsheet format for the allowed columns."
+            "As seguintes colunas não são reconhecidas: " . join(', ', @$additional_columns) . ". Verifique no formato da planilha quais colunas são permitidas."
         ];
         $self->_set_parse_errors(\%errors);
         return;
@@ -71,14 +72,14 @@ sub _validate_with_plugin {
     my $propagation_group_id_validator = CXGN::List::Validate->new();
     my @propagation_group_ids_missing = @{$propagation_group_id_validator->validate($schema,'propagation_groups', $seen_propagation_group_identifiers)->{'missing'}};
     if (scalar(@propagation_group_ids_missing) > 0) {
-        push @error_messages, "The following propagation group identifiers are not in the database: ".join(',',@propagation_group_ids_missing);
+        push @error_messages, "Os seguintes identificadores de grupo de propagação não estão no banco de dados: ".join(',',@propagation_group_ids_missing);
     }
 
     if (scalar(@$seen_rootstocks) > 0) {
         my $accession_validator = CXGN::List::Validate->new();
         my @accessions_missing = @{$accession_validator->validate($schema,'accessions', $seen_rootstocks)->{'missing'}};
         if (scalar(@accessions_missing) > 0) {
-            push @error_messages, "The following rootstocks are not in the database, or are not in the database as uniquenames: ".join(',',@accessions_missing);
+            push @error_messages, "Os seguintes porta-enxertos não estão no banco de dados, ou não estão no banco de dados como uniquenames: ".join(',',@accessions_missing);
         }
     }
 
@@ -86,7 +87,7 @@ sub _validate_with_plugin {
         'uniquename' => { -in => $seen_propagation_identifiers }
     });
     while (my $r=$rs->next){
-        push @error_messages, "Propagation Identifier already exists in database: ".$r->uniquename;
+        push @error_messages, "O identificador de propagação já existe no banco de dados: ".$r->uniquename;
     }
 
     my %duplicated_propagation_identifiers;
@@ -95,7 +96,7 @@ sub _validate_with_plugin {
         my $propagation_identifier = $row->{'propagation_identifier'};
 
         if ($duplicated_propagation_identifiers{$propagation_identifier}) {
-            push @error_messages, "Cell A$row_num: duplicate propagation identifier: $propagation_identifier. Propagation Identifier must be unique.";
+            push @error_messages, "Célula A$row_num: identificador de propagação duplicado: $propagation_identifier. O identificador de propagação deve ser único.";
         } else {
             $duplicated_propagation_identifiers{$propagation_identifier}++;
         }
@@ -105,7 +106,7 @@ sub _validate_with_plugin {
         if (scalar(@$seen_status_types) > 0) {
             foreach my $type (@$seen_status_types) {
                 if (!exists $supported_status_types{$type}) {
-                    push @error_messages, "Status type not supported: $type. Status type must be 'in progress', 'inventoried', 'distributed', 'in trial', 'dead', 'disposed'";
+                    push @error_messages, "Tipo de status não suportado: $type. O tipo de status deve ser 'in progress', 'inventoried', 'distributed', 'in trial', 'dead' ou 'disposed'";
                 }
             }
         }
@@ -114,7 +115,7 @@ sub _validate_with_plugin {
     if ($seen_status_dates) {
         foreach my $status_date (@$seen_status_dates)  {
             if (!($status_date =~ m/(\d{4})\-(\d{2})\-(\d{2})/)) {
-                push @error_messages, "$status_date is not a valid date. Dates must be YYYY-MM-DD";
+                push @error_messages, "$status_date não é uma data válida. As datas devem estar no formato YYYY-MM-DD";
             }
         }
     }
@@ -125,7 +126,7 @@ sub _validate_with_plugin {
                 'uniquename' => { -in => $seen_inventory_identifiers }
             });
             while (my $r=$inventory_rs->next){
-                push @error_messages, "Inventory Identifier already exists in database: ".$r->uniquename;
+                push @error_messages, "O identificador de inventário já existe no banco de dados: ".$r->uniquename;
             }
         }
     }

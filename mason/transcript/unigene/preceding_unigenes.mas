@@ -79,7 +79,7 @@ if (defined $ARGS{'unigene'}) {
 	   }
        }
        
-       $preceding_unigene_content = columnar_table_html(headings => ['Unigene', 'Build'], data=> \@preceding_unigenes); 
+       $preceding_unigene_content = columnar_table_html(headings => ['Unigene', 'Montagem'], data=> \@preceding_unigenes); 
 
 } else {
     $preceding_unigene_content = "";   

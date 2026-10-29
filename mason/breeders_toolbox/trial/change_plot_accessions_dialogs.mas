@@ -42,7 +42,7 @@ $trial_stock_type
                                   <tr>
                                     <td>plot_name</td>
                                     <td>accession_name</td>
-                                    <td>new_plot_name (opcional)</td>
+                                    <td>new_plot_name (optional)</td>
                                   </tr>
                                   </tbody>
                                 </table>

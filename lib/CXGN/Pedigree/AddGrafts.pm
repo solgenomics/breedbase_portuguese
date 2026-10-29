@@ -21,6 +21,7 @@ Adds an array of pedigrees. The stock names used in the pedigree must already ex
 =cut
 
 package CXGN::Pedigree::AddGrafts;
+use utf8;
 
 use Moose;
 
@@ -78,7 +79,7 @@ sub add_grafts {
 	    my $graft_row = $schema->resultset('Stock::Stock')->find( { uniquename => $graft });
 
 	    if ($graft_row) {
-		push @errors, "The name for the graft $graft already exists in the database, not storing.\n";
+		push @errors, "O nome do enxerto $graft já existe no banco de dados; não será armazenado.\n";
 	    }
 	    else {
 	        $graft_row = $self->schema->resultset('Stock::Stock')->create(
@@ -125,7 +126,7 @@ sub add_grafts {
     };
 
     if ($transaction_error) {
-        $return_errors{error} = "Transaction error creating pedigrees: $transaction_error";
+        $return_errors{error} = "Erro de transação ao criar pedigrees: $transaction_error";
         print STDERR "Transaction error creating pedigrees: $transaction_error\n";
         return { errors => \%return_errors };
     }
@@ -147,14 +148,14 @@ sub validate_grafts {
 
     if (!$scion_row) {
 	push @missing_accessions, $self->scion();
-	push @errors, "Parental accession ".$self->scion(), " does not exist in the database\n";
+	push @errors, "Acesso parental ".$self->scion(), " não existe no banco de dados\n";
     }
     
     my $rootstock_row = $schema->resultset('Stock::Stock')->find( { uniquename => $self->rootstock() });
 
     if (!$rootstock_row) {
 	push @missing_accessions, $self->rootstock();
-	push @errors, "Parental accession ".$self->rootstock(), " does not exist in the database\n";
+	push @errors, "Acesso parental ".$self->rootstock(), " não existe no banco de dados\n";
     }
     
     my @messages;
@@ -166,7 +167,7 @@ sub validate_grafts {
 	
 	if ($graft_row) {
 	    push @grafts_already_present, $graft_row->uniquename();
-	    push @messages, "The name for the graft $graft already exists in the database, not storing.\n";
+	    push @messages, "O nome do enxerto $graft já existe no banco de dados; não será armazenado.\n";
 	}
 
 	return { errors => \@errors, messages => \@messages, missing_accessions => \@missing_accessions, grafts_already_present => \@grafts_already_present  };

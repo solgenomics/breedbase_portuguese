@@ -344,7 +344,7 @@ function showMarkersetDetail (markerset_id){
                                 let index = meta.row;
                                 let html = '';
                                 if ( index > 0 ) {
-                                    html = `<a href="#" onclick="removeMarkerSetListItem(${markerset_id}, ${data}"Lemover</a>`;
+                                    html = `<a href="#" onclick="removeMarkerSetListItem(${markerset_id}, ${data})">Remover</a>`;
                                 }
                                 return html;
                             }

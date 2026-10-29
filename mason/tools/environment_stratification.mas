@@ -9,10 +9,10 @@
 
 <& /page/page_title.mas, title=>"Estratificação ambiental" &>
 
-<&| /page/info_section.mas, id=>"environment_stratification_input_section", title=>"Selecione Dados de Entrada", collapsible=>1, collapsed=>0 &>
+<&| /page/info_section.mas, id=>"environment_stratification_input_section", title=>"Selecionar dados de entrada", collapsible=>1, collapsed=>0 &>
   <div id="environment_stratification_tool">
     <div class="form-group form-inline">
-      <label for="environment_stratification_dataset_select">Datasets disponíveis: </label>
+      <label for="environment_stratification_dataset_select">Conjuntos de dados disponíveis: </label>
       <div id="environment_stratification_dataset_select"></div>
       <br>
       <button class="btn btn-primary" id="environment_stratification_select_dataset" type="button">Selecionar conjunto de dados</button>
@@ -25,7 +25,7 @@
 
     <div class="form-group form-inline">
       <input type="checkbox" id="environment_stratification_dataset_trait_outliers" />
-      <label for="environment_stratification_dataset_trait_outliers">Excluir dados outliers</label>
+      <label for="environment_stratification_dataset_trait_outliers">Excluir outliers do conjunto de dados</label>
     </div>
 
     <div class="form-group form-inline">
@@ -34,7 +34,7 @@
     </div>
 
     <div class="form-group">
-      <button class="btn btn-primary" id="environment_stratification_run" type="button">Correr Estratificação Ambiental</button>
+      <button class="btn btn-primary" id="environment_stratification_run" type="button">Executar estratificação ambiental</button>
     </div>
 
     <div id="environment_stratification_tempfile" style="display:none"></div>
@@ -43,10 +43,10 @@
 </&>
 
 <&| /page/info_section.mas, title=>"Instruções", collapsible=>1, collapsed=>1 &>
-  <h5><b>Preparando Dataset:</b></h5>
-  <h5>1. Dataset deve incluir ensaios, locais, acessos, e pelo menos um característica numérico.</h5>
-  <h5>2. O característica selecionado deve ser medido em pelo menos dois ambientes.</h5>
-  <h5>3. Acessos compartilhadas em ambientes são usadas para testar a compatibilidade genótipo-a-ambiente.</h5>
+  <h5><b>Preparando o conjunto de dados:</b></h5>
+  <h5>1. O conjunto de dados deve incluir ensaios, locais, acessos e pelo menos uma característica numérica.</h5>
+  <h5>2. A característica selecionada deve ser medida em pelo menos dois ambientes.</h5>
+  <h5>3. Acessos compartilhados entre ambientes são usados para testar a compatibilidade genótipo por ambiente.</h5>
   <h5>4. Ambientes são estratificados quando seu teste GxE não é significativo no alfa selecionado.</h5>
 </&>
 
@@ -55,26 +55,26 @@
 
   <ul class="nav nav-tabs" id="environment_stratification_result_tabs">
     <li class="active"><a data-toggle="tab" href="#environment_stratification_groups_tab">Grupos</a></li>
-    <li><a data-toggle="tab" href="#environment_stratification_pairwise_tab">Testes em par</a></li>
+    <li><a data-toggle="tab" href="#environment_stratification_pairwise_tab">Testes pareados</a></li>
     <li><a data-toggle="tab" href="#environment_stratification_anova_tab">ANOVA</a></li>
     <li><a data-toggle="tab" href="#environment_stratification_ungrouped_tab">Sem grupo</a></li>
   </ul>
 
   <div class="tab-content environment-stratification-results">
     <div id="environment_stratification_groups_tab" class="tab-pane fade in active">
-      <button class="btn btn-default environment-stratification-download" data-table="environment_stratification_groups_table" data-filename="environment_stratification_groups.xlsx" type="button">Baixe XLSX</button>
+      <button class="btn btn-default environment-stratification-download" data-table="environment_stratification_groups_table" data-filename="environment_stratification_groups.xlsx" type="button">Baixar XLSX</button>
       <div id="environment_stratification_groups"></div>
     </div>
     <div id="environment_stratification_pairwise_tab" class="tab-pane fade">
-      <button class="btn btn-default environment-stratification-download" data-table="environment_stratification_pairwise_table" data-filename="environment_stratification_pairwise.xlsx" type="button">Baixe XLSX</button>
+      <button class="btn btn-default environment-stratification-download" data-table="environment_stratification_pairwise_table" data-filename="environment_stratification_pairwise.xlsx" type="button">Baixar XLSX</button>
       <div id="environment_stratification_pairwise"></div>
     </div>
     <div id="environment_stratification_anova_tab" class="tab-pane fade">
-      <button class="btn btn-default environment-stratification-download" data-table="environment_stratification_anova_table" data-filename="environment_stratification_anova.xlsx" type="button">Baixe XLSX</button>
+      <button class="btn btn-default environment-stratification-download" data-table="environment_stratification_anova_table" data-filename="environment_stratification_anova.xlsx" type="button">Baixar XLSX</button>
       <div id="environment_stratification_anova"></div>
     </div>
     <div id="environment_stratification_ungrouped_tab" class="tab-pane fade">
-      <button class="btn btn-default environment-stratification-download" data-table="environment_stratification_ungrouped_table" data-filename="environment_stratification_ungrouped.xlsx" type="button">Baixe XLSX</button>
+      <button class="btn btn-default environment-stratification-download" data-table="environment_stratification_ungrouped_table" data-filename="environment_stratification_ungrouped.xlsx" type="button">Baixar XLSX</button>
       <div id="environment_stratification_ungrouped"></div>
     </div>
   </div>

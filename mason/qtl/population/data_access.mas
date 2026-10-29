@@ -21,7 +21,7 @@ $owner_page
 <&| /page/info_section.mas, 
   collapsible => 1, 
   collapsed   => 0, 
-  title       => "Data access" 
+  title       => "Acesso aos dados" 
 &>   
   <p>
     Os dados do QTL para esta população ainda não são públicos. Se você é o dono dos dados ou curador do SGN, faça login para acessar os dados. Outros que gostariam de saber mais sobre os dados podem contatar o proprietário dos dados: <b><% $owner_page %></b> Ou SGN: <a href=mailto:sgn-feedback@sgn.cornell.edu>

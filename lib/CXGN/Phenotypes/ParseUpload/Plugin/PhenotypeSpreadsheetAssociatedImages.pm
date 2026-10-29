@@ -1,5 +1,6 @@
 package CXGN::Phenotypes::ParseUpload::Plugin::PhenotypeSpreadsheetAssociatedImages;
 
+use utf8;
 # Validate Returns %validate_result = (
 #   error => 'error message'
 #)
@@ -70,13 +71,13 @@ sub validate {
     my ( $row_min, $row_max ) = $worksheet->row_range();
     my ( $col_min, $col_max ) = $worksheet->col_range();
     if (($col_max - $col_min)  < 1 || ($row_max - $row_min) < 1 ) { #must have header with at least observationunit_name and one trait, as well as one row of phenotypes
-        $parse_result{'error'} = "Spreadsheet is less than 2 columns or 2 rows.";
+        $parse_result{'error'} = "A planilha tem menos de 2 colunas ou 2 linhas.";
         print STDERR "Spreadsheet is missing header\n";
         return \%parse_result;
     }
 
     if ($worksheet->get_cell(0,0)->value() ne 'observationunit_name' && $worksheet->get_cell(0,1)->value() ne 'observationvariable_name' && $worksheet->get_cell(0,2)->value() ne 'phenotype_value' && $worksheet->get_cell(0,3)->value() ne 'phenotype_timestamp' && $worksheet->get_cell(0,4)->value() ne 'image_name' && $worksheet->get_cell(0,5)->value() ne 'username') {
-        $parse_result{'error'} = "Header row must be 'observationunit_name, observationvariable_name, phenotype_value, phenotype_timestamp, image_name, username'. It may help to recreate your spreadsheet from the website.";
+        $parse_result{'error'} = "A linha de cabeçalho deve ser 'observationunit_name, observationvariable_name, phenotype_value, phenotype_timestamp, image_name, username'. Pode ajudar recriar sua planilha a partir do site.";
         print STDERR "Header not correct\n";
         return \%parse_result;
     }
@@ -84,7 +85,7 @@ sub validate {
     my $archived_zip = CXGN::ZipFile->new(archived_zipfile_path=>$image_zipfile);
     my $file_members = $archived_zip->file_members();
     if (!$file_members){
-        $parse_result{error} = 'Could not read your zipfile. Is it .zip format?';
+        $parse_result{error} = 'Não foi possível ler seu arquivo zip. Ele está no formato .zip?';
     }
     my %image_zip_contents;
     foreach my $file_member (@$file_members) {
@@ -101,7 +102,7 @@ sub validate {
             $observationunit_name = $worksheet->get_cell($row,0)->value();
         }
         else {
-            $parse_result{'error'} = "No observation unit name on row $row!";
+            $parse_result{'error'} = "Nenhum nome de unidade de observação na linha $row!";
             return \%parse_result;
         }
         my $observationvariable_name;
@@ -109,7 +110,7 @@ sub validate {
             $observationvariable_name = $worksheet->get_cell($row,1)->value();
         }
         else {
-            $parse_result{'error'} = "No observation variable name (trait) on row $row!";
+            $parse_result{'error'} = "Nenhum nome de variável de observação (característica) na linha $row!";
             return \%parse_result;
         }
         my $phenotype_value;
@@ -117,7 +118,7 @@ sub validate {
             $phenotype_value = $worksheet->get_cell($row,2)->value();
         }
         else {
-            $parse_result{'error'} = "No phenotype value on row $row!";
+            $parse_result{'error'} = "Nenhum valor de fenótipo na linha $row!";
             return \%parse_result;
         }
         my $phenotype_timestamp = $worksheet->get_cell($row,3) ? $worksheet->get_cell($row,3)->value() : '';
@@ -126,7 +127,7 @@ sub validate {
             $image_name = $worksheet->get_cell($row,4)->value();
         }
         else {
-            $parse_result{'error'} = "No image name on row $row!";
+            $parse_result{'error'} = "Nenhum nome de imagem na linha $row!";
             return \%parse_result;
         }
         my $username = $worksheet->get_cell($row,5) ? $worksheet->get_cell($row,5)->value() : '';
@@ -134,12 +135,12 @@ sub validate {
         $observationunits_seen{$observationunit_name}++;
 
         if (!$image_zip_contents{$image_name}) {
-            $parse_result{'error'} = "The image $image_name does not exist in the provided zipfile!";
+            $parse_result{'error'} = "A imagem $image_name não existe no arquivo zip fornecido!";
             return \%parse_result;
         }
 
         if ($phenotype_timestamp && !$phenotype_timestamp =~ m/(\d{4})-(\d{2})-(\d{2}) (\d{2}):(\d{2}):(\d{2})(\S)(\d{4})/) {
-            $parse_result{'error'} = "Timestamp needs to be of form YYYY-MM-DD HH:MM:SS-0000 or YYYY-MM-DD HH:MM:SS+0000";
+            $parse_result{'error'} = "A data e hora deve estar no formato YYYY-MM-DD HH:MM:SS-0000 ou YYYY-MM-DD HH:MM:SS+0000";
             return \%parse_result;
         }
     }
@@ -149,7 +150,7 @@ sub validate {
     my @missing_observation_units = @{$observationunit_validator->validate($schema,'plots_or_subplots_or_plants_or_tissue_samples',\@observation_units)->{'missing'}};
     if (scalar(@missing_observation_units) > 0) {
         my $missing_observationunit_string = join '<br>', @missing_observation_units;
-        $parse_result{'error'} = "The following observation unit names are not in the database: ".$missing_observationunit_string;
+        $parse_result{'error'} = "Os seguintes nomes de unidades de observação não estão no banco de dados: ".$missing_observationunit_string;
         return \%parse_result;
     }
 

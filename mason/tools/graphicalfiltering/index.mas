@@ -17,7 +17,7 @@
 
 <div id="select_div" class="row" hidden="true">
     <!-- form for selecting a list -->
-    <p>Choose a list of <!--plant, plots, or -->trials to filter.</p>
+    <p>Escolha uma lista de <!--plant, plots, or -->ensaios para filtrar.</p>
     <form class="tc-form">
         <div class="form-group">
             <!-- list select -->
@@ -28,14 +28,14 @@
             </div>
             <div id="type_list_select_container" class="select_container col-md-2">
                 <select disabled class="form-control input-sm" id="type_list_select">
-                    <option selected disabled value="">Selecionar Tipo</option>
+                    <option selected disabled value="">Selecionar tipo</option>
                     <option value="plot">Parcelas</option>
                     <option value="plant">Plantas</option>
                 </select>
             </div>
             <div class="checkbox col-md-2">
                 <label>
-                    <input type="checkbox" id="accession_group"> Grupo por Acesso
+                    <input type="checkbox" id="accession_group"> Agrupar por acesso
                 </label>
             </div>
             <div class="select_container col-md-2">
@@ -55,10 +55,10 @@
 <div id="filter_div" class="row"></div>
 <!-- div with table of filtered results and an option to save the output as a list -->
 <div id="filtered_results_wrap" hidden="true" class="row dataTables_wrapper">
-<&| /page/info_section.mas, title => 'Resultados Filtrados', collapsible=>0, collapsed=>0 &>
+<&| /page/info_section.mas, title => 'Resultados filtrados', collapsible=>0, collapsed=>0 &>
     <table id="filtered_results" width="100%" class="table table-hover table-striped dataTable no-footer" role="grid" style="width: 100%;"></table>
 </&>
-<&| /page/info_section.mas, title => 'Salvar resultados de Acesso como Lista', collapsible=>1, collapsed=>1 &>
+<&| /page/info_section.mas, title => 'Salvar acessos resultantes como lista', collapsible=>1, collapsed=>1 &>
     <div style="text-align:right" id="graphical_filter_results_to_list_menu"></div>
     <div id="graphical_filter_result_names" style="display: none;"></div>
 
@@ -237,7 +237,7 @@
     });
 
     if (accessionColumnIndex === -1) {
-        console.error("Coluna de acessos não encontrada.");
+        console.error("Accession column not found.");
         return;
     }
 

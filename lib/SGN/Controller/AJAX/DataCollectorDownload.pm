@@ -15,6 +15,7 @@ Jeremy Edwards <jde22@cornell.edu>
 =cut
 
 package SGN::Controller::AJAX::DataCollectorDownload;
+use utf8;
 
 use Moose;
 use Try::Tiny;
@@ -60,7 +61,7 @@ sub create_DataCollector_spreadsheet_POST : Args(0) {
   if ($data_level eq 'plants') {
       my $trial = CXGN::Trial->new( { bcs_schema => $c->dbic_schema("Bio::Chado::Schema"), trial_id => $trial_id });
       if (!$trial->has_plant_entries()) {
-          $c->stash->{rest} = { error => "The requested trial (".$trial->get_name().") does not have plant entries. Please create the plant entries first." };
+          $c->stash->{rest} = { error => "O ensaio solicitado (".$trial->get_name().") não tem entradas de plantas. Crie primeiro as entradas de plantas." };
           return;
       }
   }

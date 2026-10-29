@@ -1,4 +1,5 @@
 use strict;
+use utf8;
 
 use lib 't/lib';
 
@@ -388,7 +389,7 @@ $t->while_logged_in_as("submitter", sub {
         'xpath',
         'find a button "add to list" and click')->click();
     sleep(1);
-    ok($t->driver->get_alert_text() =~ m/The following items are already in the list and were not added: UG120001/i, 'UG120001 already exists in list');
+    ok($t->driver->get_alert_text() =~ m/Os seguintes itens já estão na lista e não foram adicionados: UG120001/i, 'UG120001 already exists in list');
     $t->driver()->accept_alert();
     sleep(1);
     ok($t->driver->get_alert_text() =~ m/2 items added to list/i, '2 items added to list');
@@ -449,11 +450,11 @@ $t->while_logged_in_as("submitter", sub {
         'xpath',
         'find a "delete" dataset button for selected dataset and click')->click();
     sleep(1);
-    ok($t->driver->get_alert_text() =~ m/Are you sure you would like to delete it/i, 'Confirm dataset deletion');
+    ok($t->driver->get_alert_text() =~ m/Tem certeza de que deseja excluí-lo/i, 'Confirm dataset deletion');
     sleep(1);
     $t->driver()->accept_alert();
     sleep(1);
-    ok($t->driver->get_alert_text() =~ m/The dataset has been deleted/i, 'Dataset deleted');
+    ok($t->driver->get_alert_text() =~ m/O conjunto de dados foi excluído/i, 'Dataset deleted');
     sleep(1);
     $t->driver()->accept_alert();
 

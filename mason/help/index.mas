@@ -1,14 +1,14 @@
 <& /page/page_title.mas, title=>"Ajuda do Breedbase" &>
 
-<div>Breedbase é um software abrangente de gerenciamento e análise de melhoramento. Pode ser usado para projetar layouts de campo, coletar <a href="https://phenoapps.org">fenotípica e outras informações usando o software Phenoapps</a>, support the collection of genotyping samples in a field, store large amounts of high density genotypic information, and provide Genomic Selection related analyses and predictions. Breedbase supports the <a href="https://brapi.org">Padrão BRAPI</a>.
+<div>Breedbase é um software abrangente de gerenciamento e análise de dados de melhoramento. Pode ser usado para planejar layouts de campo, coletar <a href="https://phenoapps.org">dados fenotípicos e outras informações usando o software Phenoapps</a>, apoiar a coleta de amostras para genotipagem no campo, armazenar grandes volumes de informações genotípicas de alta densidade e fornecer análises e predições de seleção genômica. O Breedbase é compatível com o <a href="https://brapi.org">padrão BrAPI</a>.
 </div>
 <br />
 <div class="panel panel-default">
 <div class="panel-body">
 <ul>
-<li>A completa ajuda da Breedbase está disponível no <a href="https://solgenomics.github.io/sgn/" target="_new">Base Breed e manual SGN</a>.</li>
-<li>Video Tutoriais estão disponíveis em <a href="https://www.youtube.com/channel/UC3jrvvzGKKEHzOriDBgnj0A" target="_new">YouTube</a>.</li> 
-<li>A guide for <a href="https://github.com/solgenomics/sgn/wiki/" target="_new">Os desenvolvedores também estão disponíveis</a>.</li>
+<li>A ajuda completa do Breedbase está disponível no <a href="https://solgenomics.github.io/sgn/" target="_new">manual do Breedbase e da SGN</a>.</li>
+<li>Tutoriais em vídeo estão disponíveis no <a href="https://www.youtube.com/channel/UC3jrvvzGKKEHzOriDBgnj0A" target="_new">YouTube</a>.</li> 
+<li>Um <a href="https://github.com/solgenomics/sgn/wiki/" target="_new">guia para desenvolvedores</a> também está disponível.</li>
 </ul>
 </div>
 </div>

@@ -25,7 +25,7 @@ $genotyping_protocol_id => ''
       title => 'Resultados da Pesquisa',
 &>
   <& /page/columnar_table.mas,
-     headings    => ['Name', 'Definition'],
+     headings    => ['Nome', 'Definição'],
     data         => $result,
     __alt_freq   => 2,
     __alt_width  => 1,

@@ -1,5 +1,6 @@
 package CXGN::Phenotypes::ParseUpload::Plugin::PhenotypeSpreadsheetSimpleGeneric;
 
+use utf8;
 # Validate Returns %validate_result = (
 #   error => 'error message'
 #)
@@ -119,7 +120,7 @@ sub validate {
 
     # File has no traits
     if ( scalar(@$trait_columns) < 1 ) {
-        $parse_result{'error'} = "Spreadsheet must have at least one trait in the header.";
+        $parse_result{'error'} = "A planilha deve ter pelo menos uma característica no cabeçalho.";
         return \%parse_result;
     }
 
@@ -133,7 +134,7 @@ sub validate {
                     my ($value, $timestamp) = @$measurement;
                     next if !$timestamp;
                     if ($timestamp !~ m/^\d{4}-\d{2}-\d{2} \d{2}:\d{2}(:\d{2})?(?:[+-]\d{4})?$/) {
-                        $parse_result{'error'} = "Timestamp needs to be of form YYYY-MM-DD HH:MM:SS-0000 or YYYY-MM-DD HH:MM:SS+0000 or YYYY-MM-DD HH:MM format";
+                        $parse_result{'error'} = "A data e hora deve estar no formato YYYY-MM-DD HH:MM:SS-0000, YYYY-MM-DD HH:MM:SS+0000 ou YYYY-MM-DD HH:MM";
                         return \%parse_result;
                     }
                 }
@@ -183,7 +184,7 @@ sub parse {
         # If name-based also fails, return the errors
         if ( $parsed->{errors} && scalar( @{ $parsed->{errors} } ) > 0 ) {
             return _error_result(
-                "File must have a plot name or observationUnitDbId column. Errors: "
+                "O arquivo deve ter uma coluna de nome de parcela ou observationUnitDbId. Erros: "
                   . join( ", ", @{ $parsed->{errors} } )
             );
         }
@@ -194,17 +195,17 @@ sub parse {
     my $columns = $parsed->{columns};
 
     if ( !grep { $_ eq 'observationunit_id' || $_ eq 'observationunit_name' } @$columns ) {
-        return _error_result("File must have a plot name or observationUnitDbId column.");
+        return _error_result("O arquivo deve ter uma coluna de nome de parcela ou observationUnitDbId.");
     }
 
     if ( scalar(@$trait_columns) < 1 ) {
-        return _error_result("Spreadsheet must have at least one trait in the header.");
+        return _error_result("A planilha deve ter pelo menos uma característica no cabeçalho.");
     }
 
     # If IDs used, convert to uniquenames
     my %id_to_name;
     if ( $observationunit_type eq 'id' ) {
-        return _error_result("A database schema is required to parse observationUnitDbId values.")
+        return _error_result("É necessário um esquema de banco de dados para analisar os valores de observationUnitDbId.")
           if !$schema;
 
         # Collect all stock ids from the parsed data
@@ -218,7 +219,7 @@ sub parse {
         }
 
         if ( !@stock_ids ) {
-            return _error_result("No valid observationUnitDbId values found in the file.");
+            return _error_result("Nenhum valor válido de observationUnitDbId encontrado no arquivo.");
         }
 
         my $transform_plugin = CXGN::List::Transform->new();
@@ -226,7 +227,7 @@ sub parse {
 
         if ( $transform_result->{missing} && @{ $transform_result->{missing} } ) {
             return _error_result(
-                "The following observationUnitDbId values could not be found in the database: "
+                "Os seguintes valores de observationUnitDbId não foram encontrados no banco de dados: "
                   . join( ", ", @{ $transform_result->{missing} } )
             );
         }

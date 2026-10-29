@@ -38,7 +38,7 @@ jQuery(document).ready(function () {
                     if (res.error) {
                         jQuery("#download_pca_output .multi-spinner-container").hide();
                         jQuery(pcaSaveMsgDiv)
-                        .html(res.error + ". There may not be logged info for this analysis.")
+                        .html(res.error + ". Pode não haver informações registradas para esta análise.")
                         .show()
                         .fadeOut(50000);
                         jQuery(`#${elemId}`).show();

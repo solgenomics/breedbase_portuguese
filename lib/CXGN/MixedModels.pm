@@ -21,6 +21,7 @@ Lukas Mueller <lam87@cornell.edu>
 =cut
 
 package CXGN::MixedModels;
+use utf8;
 
 use Moose;
 use Data::Dumper;
@@ -166,7 +167,7 @@ sub generate_model {
 	    push @addends, $terms;
 	}
 	else {
-	    $error = "Interaction terms are not correctly defined.";
+	    $error = "Os termos de interação não estão definidos corretamente.";
 	}
     }
 
@@ -229,7 +230,7 @@ sub generate_model_sommer {
     my $mmer_fixed_factors_interaction = "";
     my $mmer_variable_slope_intersects ="";
     
-    if (scalar(@$dependent_variables) > 1) { return ("", "For Sommer, only one trait can be analyzed at one time. Please go back and select only one trait or select lme4.") }
+    if (scalar(@$dependent_variables) > 1) { return ("", "No Sommer, apenas uma característica pode ser analisada por vez. Volte e selecione apenas uma característica ou selecione lme4.") }
     
     if (scalar(@$dependent_variables) > 0) {
 	print STDERR "preparing fixed factors...\n";
@@ -259,7 +260,7 @@ sub generate_model_sommer {
 	    foreach my $interaction(@$fixed_factors_interaction){
 		
 		
-		if (scalar(@$interaction) != 2) { $error = "interaction needs to be pairs :-(";}
+		if (scalar(@$interaction) != 2) { $error = "a interação precisa ser em pares :-(";}
 
 		
 		else { $mmer_fixed_factors_interaction .= " + ". join(":", @$interaction);}
@@ -294,7 +295,7 @@ sub generate_model_sommer {
 	    foreach my $intersects(@$variable_slope_intersects){
 		
 		
-		if (scalar(@$intersects) != 2) { $error = "intersects needs to be pairs :-(";}
+		if (scalar(@$intersects) != 2) { $error = "os interceptos precisam ser em pares :-(";}
 		#if (scalar(@$random_factors_interaction)== 1) { $error .= "Works only with one interaction for now! :-(";}
 		
 		else { $mmer_variable_slope_intersects .= " + vsr(". join(",", @$intersects) . ")";} # vsr(Days, Subject)
@@ -358,7 +359,7 @@ sub generate_model_spl2D {
     my $mmer_fixed_factors_interaction = "";
     my $mmer_variable_slope_intersects ="";
     
-    if (scalar(@$dependent_variables) > 1) { return ("", "For Sommer, only one trait can be analyzed at one time. Please go back and select only one trait or select lme4.") }
+    if (scalar(@$dependent_variables) > 1) { return ("", "No Sommer, apenas uma característica pode ser analisada por vez. Volte e selecione apenas uma característica ou selecione lme4.") }
     
     if (scalar(@$dependent_variables) > 0) {
 	print STDERR "preparing fixed factors...\n";
@@ -389,7 +390,7 @@ sub generate_model_spl2D {
 	    
 	    foreach my $interaction(@$fixed_factors_interaction){
 			
-		if (scalar(@$interaction) != 2) { $error = "interaction needs to be pairs :-(";}
+		if (scalar(@$interaction) != 2) { $error = "a interação precisa ser em pares :-(";}
 
 		else { $mmer_fixed_factors_interaction .= " + ". join(":", @$interaction);}
 	    }
@@ -400,7 +401,7 @@ sub generate_model_spl2D {
 	}else {
 	    foreach my $intersects(@$variable_slope_intersects){
 			if (scalar(@$intersects) != 2) { 
-				$error = "intersects needs to be pairs :-(";
+				$error = "os interceptos precisam ser em pares :-(";
 			}else { 
 				$mmer_variable_slope_intersects .= " + vsr(". join(",", @$intersects) . ")";
 			} # vsr(Days, Subject)

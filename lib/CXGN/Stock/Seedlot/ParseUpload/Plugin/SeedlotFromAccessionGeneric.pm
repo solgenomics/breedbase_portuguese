@@ -1,5 +1,6 @@
 package CXGN::Stock::Seedlot::ParseUpload::Plugin::SeedlotFromAccessionGeneric;
 
+use utf8;
 use Moose::Role;
 use CXGN::File::Parse;
 use CXGN::Stock::StockLookup;
@@ -46,7 +47,7 @@ sub _validate_with_plugin {
 
     if ( $additional_columns && scalar(@$additional_columns) > 0 ) {
         $errors{'error_messages'} = [
-            "The following columns are not recognized: " . join(', ', @$additional_columns) . ". Please check the spreadsheet format for the allowed columns."
+            "As seguintes colunas não são reconhecidas: " . join(', ', @$additional_columns) . ". Verifique no formato da planilha quais colunas são permitidas."
         ];
         $self->_set_parse_errors(\%errors);
         return;
@@ -62,7 +63,7 @@ sub _validate_with_plugin {
         my $seedlot_source = $row->{'source'};
 
         if ($seedlot_name =~ /\s/ || $seedlot_name =~ /\// || $seedlot_name =~ /\\/ ) {
-            push @error_messages, "Cell A$row_num: seedlot_name must not contain spaces or slashes.";
+            push @error_messages, "Célula A$row_num: seedlot_name não deve conter espaços nem barras.";
         }
 
         if (!$amount || $amount eq '') {
@@ -72,7 +73,7 @@ sub _validate_with_plugin {
         }
 
         if ($amount eq 'NA' && $weight eq 'NA') {
-            push @error_messages, "On row:$row_num you must provide either a weight in grams or a seed count amount.";
+            push @error_messages, "Na linha $row_num, você deve informar um peso em gramas ou uma quantidade de sementes.";
         }
 
         if ($seedlot_source) {
@@ -88,7 +89,7 @@ sub _validate_with_plugin {
     my @accessions_missing = @{$accession_validator->validate($schema,'accessions',$seen_accession_names)->{'missing'}};
 
     if (scalar(@accessions_missing) > 0) {
-        push @error_messages, "The following accessions are not in the database as uniquenames: ".join(',',@accessions_missing);
+        push @error_messages, "Os seguintes acessos não estão no banco de dados como uniquenames: ".join(',',@accessions_missing);
     }
 
     if ($seen_source_names) {
@@ -96,7 +97,7 @@ sub _validate_with_plugin {
         my @source_missing = @{$source_validator->validate($schema,'plots_or_subplots_or_plants',$seen_source_names)->{'missing'}};
 
         if (scalar(@source_missing) > 0) {
-            push @error_messages, "The following source names are not in the database as plot, subplot or plant: ".join(',',@source_missing);
+            push @error_messages, "Os seguintes nomes de origem não estão no banco de dados como parcela, subparcela ou planta: ".join(',',@source_missing);
         }
     }
 
@@ -106,7 +107,7 @@ sub _validate_with_plugin {
 
     while (my $r = $rs->next) {
         if ( $r->type->name ne 'seedlot' ) {
-            push @error_messages, "Seedlot name already exists in database: ".$r->uniquename.".  The seedlot name must be unique.";
+            push @error_messages, "O nome do lote de sementes já existe no banco de dados: ".$r->uniquename.".  O nome do lote de sementes deve ser único.";
         }
     }
 

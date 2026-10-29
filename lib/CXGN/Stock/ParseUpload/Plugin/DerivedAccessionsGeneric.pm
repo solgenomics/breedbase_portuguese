@@ -1,5 +1,6 @@
 package CXGN::Stock::ParseUpload::Plugin::DerivedAccessionsGeneric;
 
+use utf8;
 use Moose::Role;
 use CXGN::File::Parse;
 use SGN::Model::Cvterm;
@@ -40,7 +41,7 @@ sub _validate_with_plugin {
 
     if ( $additional_columns && scalar(@$additional_columns) > 0 ) {
         $errors{'error_messages'} = [
-            "The following columns are not recognized: " . join(', ', @$additional_columns) . ". Please check the spreadsheet format for the allowed columns."
+            "As seguintes colunas não são reconhecidas: " . join(', ', @$additional_columns) . ". Verifique no formato da planilha quais colunas são permitidas."
         ];
         $self->_set_parse_errors(\%errors);
         return;
@@ -53,7 +54,7 @@ sub _validate_with_plugin {
     my @source_names_missing = @{$source_names_validator->validate($schema,'accessions_or_plants_or_tissue_samples',$seen_source_names)->{'missing'}};
 
     if (scalar(@source_names_missing) > 0) {
-        push @error_messages, "The following accessions or plants or tissue samples are not in the database: ".join(',',@source_names_missing);
+        push @error_messages, "Os seguintes acessos, plantas ou amostras de tecido não estão no banco de dados: ".join(',',@source_names_missing);
     }
 
     my $rs = $schema->resultset("Stock::Stock")->search({
@@ -61,7 +62,7 @@ sub _validate_with_plugin {
     });
 
     while (my $r=$rs->next){
-        push @error_messages, "Derived accession name already exists in database: ".$r->uniquename;
+        push @error_messages, "O nome de acesso derivado já existe no banco de dados: ".$r->uniquename;
     }
 
     if (scalar(@error_messages) >= 1) {

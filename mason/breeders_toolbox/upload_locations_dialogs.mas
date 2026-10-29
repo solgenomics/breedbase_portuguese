@@ -18,16 +18,16 @@
                 <table class="table table-bordered table-hover">
                   <tbody>
                   <tr>
-                    <td>Nome</td>
-                    <td>Abreviação</td>
-                    <td>Código do país</td>
-                    <td>Nome do país</td>
-                    <td>Programa</td>
-                    <td>Tipo</td>
+                    <td>Name</td>
+                    <td>Abbreviation</td>
+                    <td>Country Code</td>
+                    <td>Country Name</td>
+                    <td>Program</td>
+                    <td>Type</td>
                     <td>Latitude</td>
                     <td>Longitude</td>
-                    <td>Elevação</td>
-                    <td>ID da estação NOAA</td>
+                    <td>Elevation</td>
+                    <td>NOAA Station ID</td>
                   </tr>
                   </tbody>
                 </table>

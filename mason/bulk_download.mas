@@ -9,11 +9,11 @@
 <h1>Tradução:</h1>
 
 % if($bulk_download_success) {
-    Sua pergunta foi bem sucedida.<br>
+    Sua consulta foi bem-sucedida.<br>
 <div id="bulk_download_stats">
 <% $bulk_download_stats %>
 </div>
 Baixar como <a href="/bulk/feature/download/<% $sha1 %>.fasta">Fasta</a>
 % } else {
-    Your query did not contain any valid identifiers. Please try again.
+    Sua consulta não continha nenhum identificador válido. Tente novamente.
 % }

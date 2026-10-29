@@ -20,7 +20,7 @@ $stockref => undef
         <th>Imagem</th>
         <th>Nome/Detalhes do Arquivo</th>
         <th>Descrição</th>
-        <th>Submisso</th>
+        <th>Enviado por</th>
         <th>Associações</th>
         <th>Nome do acesso</th>
     </tr>
@@ -131,7 +131,7 @@ function _load_stock_image_results() {
               'data': 0, },
             { 'title': "Nome/Detalhes do Arquivo", 'data': 1 },
             { 'title': "Descrição", 'data': 2 },
-            { 'title': "Submisso", 'data': 3 },
+            { 'title': "Enviado por", 'data': 3 },
             { 'title': "Associações", 'data': 4 },
             { 'title': "Nome do acesso", 'data': 5 },
         ],

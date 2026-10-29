@@ -1,5 +1,6 @@
 
 package SGN::Controller::solGS::Feedback;
+use utf8;
 
 use Moose;
 use namespace::autoclean;
@@ -28,16 +29,16 @@ sub message_content {
     $job_type = lc($job_type);
 
     my $user_id  = $c->user()->get_object()->get_sp_person_id();
-    my $profile_link = "<a href=\"/solpeople/profile/$user_id\">your profile page</a>";
+    my $profile_link = "<a href=\"/solpeople/profile/$user_id\">sua página de perfil</a>";
 
     my $referer  = $c->req->referer;
-    my $back_link = "<a href=\"$referer\">[ Go back ]</a>";
+    my $back_link = "<a href=\"$referer\">[ Voltar ]</a>";
     
-    my $msg = "<p>Your $job_type job is submitted.</p>"
-      . "<p>You will receive an email when it is completed,  " 
-      . "which may take up to a few hours. If the email is not in your inbox, "
-      . "please check also your spam folder.</p>"
-      . "<p>Alternatively, you can also check the status of the job in $profile_link."
+    my $msg = "<p>Sua tarefa de $job_type foi enviada.</p>"
+      . "<p>Você receberá um e-mail quando ela for concluída,  " 
+      . "o que pode levar algumas horas. Se o e-mail não estiver na sua caixa de entrada, "
+      . "verifique também sua pasta de spam.</p>"
+      . "<p>Como alternativa, você também pode verificar o status da tarefa em $profile_link."
       . "<p>$back_link</p>";
 
     return $msg;

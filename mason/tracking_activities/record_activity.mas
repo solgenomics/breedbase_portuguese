@@ -201,7 +201,7 @@ $(window).ready( function() {
         let input_type = jQuery('#record_page_type_select').val();
         if (input_type.indexOf('date') != -1) {
             flatpickr('#record_page_info_input', {
-                allowValor: true,
+                allowInput: true,
                 dateFormat: "Y-m-d",
                 defaultDate: "today"
             });

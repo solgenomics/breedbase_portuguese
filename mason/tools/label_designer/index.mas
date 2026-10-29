@@ -2,7 +2,7 @@
 
 
 <& '/util/import_javascript.mas', classes => [ 'jquery', 'jqueryui', 'popup', 'd3.d3Min.js', 'tools.LabelDesigner', 'CXGN.BreederSearch', 'bootstrap-select_min'] &>
-<& /page/page_title.mas, title=>"Rotulagem" &>
+<& /page/page_title.mas, title=>"Designer de etiquetas" &>
 
 <div id="label_designer_warning" class="list-group-item-warning" style="padding:3px;"><center><span class="glyphicon glyphicon-warning-sign" style="color:orange;font-size:20px;"></span>&nbsp;&nbsp;<b>Observação:</b> Não imprima as etiquetas diretamente do navegador, pois o navegador adiciona cabeçalhos e rodapés que distorcem o alinhamento das etiquetas. Em vez disso, baixe o arquivo pdf e imprima-o de um aplicativo de leitura de PDF.</center></div>
 <br /><br />
@@ -24,7 +24,7 @@
             <button id="select_layout_button" class="btn btn-primary" type="button" class="btn btn-default" onclick="Workflow.complete(this);" disabled>Próximo</button>
         </div>
     </&>
-    <&| /util/workflow.mas:step, title=>"Crie sua etiqueta" &>
+    <&| /util/workflow.mas:step, title=>"Crie o design da sua etiqueta" &>
         <& /tools/label_designer/design_label.mas &>
         <div class="col-md-12 text-center">
             <button id="design_label_button" class="btn btn-primary" type="button" class="btn btn-default" onclick="Workflow.complete(this);" disabled>Próximo</button>

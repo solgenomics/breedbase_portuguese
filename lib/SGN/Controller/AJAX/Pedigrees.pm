@@ -40,7 +40,7 @@ sub upload_pedigrees_verify : Path('/ajax/pedigrees/upload_verify') Args(0)  {
         my $dbh = $c->dbc->dbh;
         my @user_info = CXGN::Login->new($dbh)->query_from_cookie($session_id);
         if (!$user_info[0]){
-            $c->stash->{rest} = {error=>'You must be logged in to upload pedigrees!'};
+            $c->stash->{rest} = {error=>'Você precisa estar conectado para enviar pedigrees!'};
             $c->detach();
         }
         $user_id = $user_info[0];
@@ -49,7 +49,7 @@ sub upload_pedigrees_verify : Path('/ajax/pedigrees/upload_verify') Args(0)  {
         $user_name = $p->get_username;
     } else {
         if (!$c->user()){
-            $c->stash->{rest} = {error=>'You must be logged in to upload pedigrees!'};
+            $c->stash->{rest} = {error=>'Você precisa estar conectado para enviar pedigrees!'};
             $c->detach();
         }
         $user_id = $c->user()->get_object()->get_sp_person_id();
@@ -58,7 +58,7 @@ sub upload_pedigrees_verify : Path('/ajax/pedigrees/upload_verify') Args(0)  {
     }
 
     if (($user_role ne 'curator') && ($user_role ne 'submitter')) {
-        $c->stash->{rest} = {error=>'Only a submitter or a curator can upload pedigrees'};
+        $c->stash->{rest} = {error=>'Apenas um submissor ou um curador pode enviar pedigrees'};
         $c->detach();
     }
 
@@ -88,7 +88,7 @@ sub upload_pedigrees_verify : Path('/ajax/pedigrees/upload_verify') Args(0)  {
     my $archived_filename_with_path = $uploader->archive();
 
     if (!$archived_filename_with_path) {
-	$c->stash->{rest} = {error => "Could not save file $upload_original_name in archive",};
+	$c->stash->{rest} = {error => "Não foi possível salvar o arquivo $upload_original_name no arquivo permanente",};
 	return;
     }
 
@@ -103,7 +103,7 @@ sub upload_pedigrees_verify : Path('/ajax/pedigrees/upload_verify') Args(0)  {
         my $return_error = '';
         my $parse_errors;
         if (!$parser->has_parse_errors() ){
-            $c->stash->{rest} = {error_string => "Could not get parsing errors"};
+            $c->stash->{rest} = {error_string => "Não foi possível obter os erros de análise do arquivo"};
             $c->detach();
         } else {
             $parse_errors = $parser->get_parse_errors();
@@ -156,7 +156,7 @@ sub upload_pedigrees_store : Path('/ajax/pedigrees/upload_store') Args(0)  {
     my $return = $add->add_pedigrees($overwrite_pedigrees);
 
     if (!$return){
-        $error = "The pedigrees were not stored";
+        $error = "Os pedigrees não foram armazenados";
     }
     if ($return->{error}){
         $error = $return->{error};

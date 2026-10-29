@@ -6,6 +6,7 @@ CXGN::Propagation::AddInventoryIdentifier - a module for adding propagation Inve
 
 
 package CXGN::Propagation::AddInventoryIdentifier;
+use utf8;
 
 use Moose;
 use MooseX::FollowPBP;
@@ -77,7 +78,7 @@ sub add {
     my $inventory_stock_id;
 
     if ($self->existing_inventory_identifier()){
-        return {error => "Error: inventory identifier already exists, please use another inventory identifier!"};
+        return {error => "Erro: o identificador de inventário já existe, use outro identificador de inventário!"};
     }
 
     my $coderef = sub {

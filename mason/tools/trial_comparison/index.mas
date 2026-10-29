@@ -8,7 +8,7 @@
 
 </%args>
 
-<& '/page/page_title.mas', title => "Compare os ensaios" &>
+<& '/page/page_title.mas', title => "Comparar ensaios" &>
 
 <& /util/import_css.mas, paths => ['tools/trial_comparison.css'] &>
 
@@ -37,14 +37,14 @@
         <img hidden id="trials-loading-spinner" src="/img/wheel.gif" alt="Carregando">
       </div>
       <div class="form-group">
-        <label>Escolha o Nível de Observação</label>
+        <label>Escolha o nível de observação</label>
         <select class="form-control input-sm" id="unit_select">
           <option selected value="plot">Parcela</option>
           <option value="plant">Planta</option>
         </select>
       </div>
       <div class="form-group">
-        <label>Escolha um característica para comparar:</label>
+        <label>Escolha uma característica para comparar:</label>
         <select disabled class="form-control input-sm" id="trait_select">
           <option selected="selected" value=""> </option>
         </select>
@@ -103,7 +103,7 @@
       var require_login = "<%  $c->get_conf('brapi_require_login') %>";
       if (require_login === '1'){
           auth_token = "<%  CXGN::Login->new($c->dbc->dbh)->get_login_cookie() %>";
-          if (!auth_token){ alert("Entre na sua conta para exibir os filtros gráficos"); }
+          if (!auth_token){ alert("Entre na sua conta para comparar ensaios"); }
       } 
       BrAPI("/brapi/v2",'v2.0',auth_token)
         .search_observationunits({

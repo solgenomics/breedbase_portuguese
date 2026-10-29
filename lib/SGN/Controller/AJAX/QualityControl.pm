@@ -1,5 +1,6 @@
 
 package SGN::Controller::AJAX::QualityControl;
+use utf8;
 
 use Moose;
 
@@ -33,7 +34,7 @@ sub prepare: Path('/ajax/qualitycontrol/prepare') Args(0) {
     my $dataset_id = $c->req->param('dataset_id');
 
     if (! $c->user()) {
-        $c->stash->{rest} = {error=>'You must be logged in first!'};
+        $c->stash->{rest} = {error=>'Você precisa estar conectado primeiro!'};
         $c->detach;
     }
 
@@ -77,7 +78,7 @@ sub prepare: Path('/ajax/qualitycontrol/prepare') Args(0) {
 
     } else {
         $c->stash->{rest} = {
-            error => "No traits found in the dataset. Please select a dataset with trial(s) and trait(s).",
+            error => "Nenhuma característica encontrada no conjunto de dados. Selecione um conjunto de dados com ensaio(s) e característica(s).",
         };
     }
 }
@@ -96,7 +97,7 @@ sub extract_trait_data :Path('/ajax/qualitycontrol/grabdata') Args(0) {
     my $temppath = File::Spec->catfile($c->config->{basepath}, "static/documents/tempfiles/qualitycontrol/".$file);
     my $F;
     if (! open($F, "<", $temppath)) {
-    $c->stash->{rest} = { error => "Can't find data." };
+    $c->stash->{rest} = { error => "Não foi possível encontrar os dados." };
     return;
     }
 
@@ -162,7 +163,7 @@ sub extract_trait_data :Path('/ajax/qualitycontrol/grabdata') Args(0) {
 
         if (scalar(@validated_projects) > 0) {
             my $project_names_str = join(", ", @validated_projects);
-            my $message = "Trait $trait is already validated data for trials: $list_projects";
+            my $message = "A característica $trait já tem dados validados para os ensaios: $list_projects";
             $c->stash->{rest} = { message => $message };
         } else {
             $c->stash->{rest} = { data => \@data, trait => $trait};
@@ -170,7 +171,7 @@ sub extract_trait_data :Path('/ajax/qualitycontrol/grabdata') Args(0) {
     };
 
     if ($@) {
-        $c->response->body("Failed to search data: $@");
+        $c->response->body("Falha ao pesquisar os dados: $@");
             return;
     }
 }
@@ -190,7 +191,7 @@ sub data_restore :Path('/ajax/qualitycontrol/datarestore') Args(0) {
 
     my $F;
     if (! open($F, "<", $temppath)) {
-    $c->stash->{rest} = { error => "Can't find data." };
+    $c->stash->{rest} = { error => "Não foi possível encontrar os dados." };
     return;
     }
 
@@ -279,7 +280,7 @@ sub store_outliers : Path('/ajax/qualitycontrol/storeoutliers') Args(0) {
 
     # Convert unique study names to a comma-separated list in SQL format
     my @unique_study_names = keys %study_names;
-    return $c->response->body('No unique study names found.') unless @unique_study_names;
+    return $c->response->body('Nenhum nome de estudo único encontrado.') unless @unique_study_names;
 
     my $study_names_sql = join(", ", map { $schema->storage->dbh->quote($_) } @unique_study_names);  # Quote each name
 
@@ -438,7 +439,7 @@ sub restore_outliers : Path('/ajax/qualitycontrol/restoreoutliers') Args(0) {
         };
 
         if ($@) {
-            $c->response->body("Failed to store data: $@");
+            $c->response->body("Falha ao armazenar os dados: $@");
             return;
         } else {
             $c->stash->{rest} = $response_data;

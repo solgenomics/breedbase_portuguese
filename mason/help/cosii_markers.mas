@@ -17,7 +17,7 @@
           <p>Porque estes marcadores COS são tão altamente conservados, eles também podem ser úteis para mapeamento comparativo em outras espécies de dicot. A tela computacional de como os marcadores COS foram identificados está descrita abaixo:</p>
 
           <ul>
-            <li>TBLASTX tomato ESTs contra o genoma de arabidopsis (especificamente, o caminho BAC tiling de TAIR)</li>
+            <li>TBLASTX tomato ESTs contra o genoma de arabidopsis (especificamente, o tiling path de BACs do TAIR)</li>
 
             <li>Identificar as melhores combinações (&lt; e-15) entre um único tomate EST (ou contíguo associado) e um único BAC em Arabidopsis. Cada tomate EST deve passar pelos seguintes critérios:
 
@@ -41,9 +41,9 @@
 
           <h4>A lista de marcadores COS está disponível em formato de texto online e simples.</h4>
 
-          <p><a href="/search/markers/cos_list.pl">Lista COS on-line</a> - formato on-line com links para sequências e tiling caminho.<br />
-          <a href="/documents/markers/cos_list-old.txt">Velho download de texto simples</a> - formato de texto para download. <br />
-          <a href="/documents/markers/cos_list.txt">Velho texto simples download 2</a> - formato de texto para download. 
+          <p><a href="/search/markers/cos_list.pl">Lista COS on-line</a> - formato on-line com links para as sequências e o tiling path.<br />
+          <a href="/documents/markers/cos_list-old.txt">Download antigo em texto simples</a> - formato de texto para download. <br />
+          <a href="/documents/markers/cos_list.txt">Download antigo em texto simples 2</a> - formato de texto para download. 
           </p>
 
           <p><strong>Observação:</strong> Para a posição do mapa de tomate na tabela ligada acima:</p>

@@ -13,7 +13,7 @@ my $table;
 
 if (@$traits_list) {
   $table  = qq | <table id="traits_starting_with_index_table" class="table table-condensed table-striped"> |;
-  $table .= qq | <thead><tr><td>Característica</td><td>Definition</td></tr></thead><tbody> |;
+  $table .= qq | <thead><tr><td>Característica</td><td>Definição</td></tr></thead><tbody> |;
 	
   foreach my $trait (@$traits_list) {
     $table .= qq | <tr> |;
@@ -26,7 +26,7 @@ if (@$traits_list) {
   $table .= qq | </table> |;
 
 } else {
-  $table = qq | <p>There are no traits starting with $index </p> |; 
+  $table = qq | <p>Não há características começando com $index </p> |; 
 }
 
 </%perl>
@@ -37,7 +37,7 @@ if (@$traits_list) {
     &>
 
     <&| /page/info_section.mas, 
-	title => qq |Traits beginning with "$index" |
+	title => qq |Características que começam com "$index" |
       &>
 
       <div id="traits_starting_with_index_div">

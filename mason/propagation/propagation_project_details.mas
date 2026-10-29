@@ -96,7 +96,7 @@ $date
             </tr>
 
             <tr>
-                <td><b>Massa</b></td>
+                <td><b>Pasta</b></td>
                 <td>
                     <span id="trial_folder_div"><a href="/folder/<% $folder_id %>"><% $folder_name %></a></span>
                     <br/><br/>

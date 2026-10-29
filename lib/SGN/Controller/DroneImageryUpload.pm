@@ -8,6 +8,7 @@
 =cut
 
 package SGN::Controller::DroneImagery::DroneImageryUpload;
+use utf8;
 
 use Moose;
 use Data::Dumper;
@@ -44,7 +45,7 @@ sub upload_drone_imagery : Path("/drone_imagery/upload_drone_imagery") :Args(0) 
 
     my $selected_trial_id = $c->req->param('drone_run_field_trial_id');
     if (!$selected_trial_id) {
-        $c->stash->{message} = "Please select a field trial!";
+        $c->stash->{message} = "Selecione um ensaio de campo!";
         $c->stash->{template} = 'generic_message.mas';
         return;
     }
@@ -61,39 +62,39 @@ sub upload_drone_imagery : Path("/drone_imagery/upload_drone_imagery") :Args(0) 
     my $dir = $c->tempfiles_subdir('/upload_drone_imagery_bulk_previous');
 
     if (!$new_drone_run_vehicle_id) {
-        $c->stash->{message} = "Please give an imaging event vehicle id!";
+        $c->stash->{message} = "Informe o ID do veículo do evento de imageamento!";
         $c->stash->{template} = 'generic_message.mas';
         return;
     }
 
     if (!$selected_drone_run_id && !$new_drone_run_name) {
-        $c->stash->{message} = "Please select an imaging event or create a new imaging event!";
+        $c->stash->{message} = "Selecione um evento de imageamento ou crie um novo evento de imageamento!";
         $c->stash->{template} = 'generic_message.mas';
         return;
     }
     if ($new_drone_run_name && !$new_drone_run_type){
-        $c->stash->{message} = "Please give a new imaging event type!";
+        $c->stash->{message} = "Informe o tipo do novo evento de imageamento!";
         $c->stash->{template} = 'generic_message.mas';
         return;
     }
     if ($new_drone_run_name && !$new_drone_run_date){
-        $c->stash->{message} = "Please give a new imaging event date!";
+        $c->stash->{message} = "Informe a data do novo evento de imageamento!";
         $c->stash->{template} = 'generic_message.mas';
         return;
     }
     if ($new_drone_run_name && $new_drone_run_date !~ /^\d{4}\/\d{2}\/\d{2}\s\d\d:\d\d:\d\d$/){
-        $c->stash->{message} = "Please give a new imaging event date in the format YYYY/MM/DD HH:mm:ss!";
+        $c->stash->{message} = "Informe a data do novo evento de imageamento no formato YYYY/MM/DD HH:mm:ss!";
         $c->stash->{template} = 'generic_message.mas';
         return;
     }
     if ($new_drone_run_name && $new_drone_base_date && $new_drone_base_date !~ /^\d{4}\/\d{2}\/\d{2}\s\d\d:\d\d:\d\d$/){
-        $c->stash->{message} = "Please give a new imaging event base date in the format YYYY/MM/DD HH:mm:ss!";
+        $c->stash->{message} = "Informe a data-base do novo evento de imageamento no formato YYYY/MM/DD HH:mm:ss!";
         $c->stash->{template} = 'generic_message.mas';
         return;
     }
 
     if ($new_drone_run_name && !$new_drone_run_desc){
-        $c->stash->{message} = "Please give a new imaging event description!";
+        $c->stash->{message} = "Informe a descrição do novo evento de imageamento!";
         $c->stash->{template} = 'generic_message.mas';
         return;
     }
@@ -106,18 +107,18 @@ sub upload_drone_imagery : Path("/drone_imagery/upload_drone_imagery") :Args(0) 
     my $new_drone_run_band_stitching_odm_radiocalibration = $c->req->param('drone_image_upload_drone_run_band_stitching_odm_radiocalibration') eq "Yes" ? 1 : 0;
 
     if (!$new_drone_run_camera_info) {
-        $c->stash->{message} = "Please indicate the type of camera!";
+        $c->stash->{message} = "Indique o tipo de câmera!";
         $c->stash->{template} = 'generic_message.mas';
         return;
     }
 
     if ($new_drone_run_band_stitching eq 'no' && !$new_drone_run_band_numbers) {
-        $c->stash->{message} = "Please give the number of new imaging event bands!";
+        $c->stash->{message} = "Informe o número de bandas do novo evento de imageamento!";
         $c->stash->{template} = 'generic_message.mas';
         return;
     }
     if (!$new_drone_run_band_stitching) {
-        $c->stash->{message} = "Please indicate if the images are stitched!";
+        $c->stash->{message} = "Indique se as imagens já estão unidas em ortofotomosaico!";
         $c->stash->{template} = 'generic_message.mas';
         return;
     }
@@ -127,12 +128,12 @@ sub upload_drone_imagery : Path("/drone_imagery/upload_drone_imagery") :Args(0) 
         my $upload_file = $c->req->upload('upload_drone_images_zipfile');
         my $upload_panel_file = $c->req->upload('upload_drone_images_panel_zipfile');
         if (!$upload_file) {
-            $c->stash->{message} = "Please provide a zipfile of raw images!";
+            $c->stash->{message} = "Forneça um arquivo ZIP com as imagens brutas!";
             $c->stash->{template} = 'generic_message.mas';
             return;
         }
         if (!$upload_panel_file && $new_drone_run_camera_info eq 'micasense_5') {
-            $c->stash->{message} = "Please provide a zipfile of images of the Micasense radiometric calibration panels!";
+            $c->stash->{message} = "Forneça um arquivo ZIP com as imagens dos painéis de calibração radiométrica Micasense!";
             $c->stash->{template} = 'generic_message.mas';
             return;
         }
@@ -142,7 +143,7 @@ sub upload_drone_imagery : Path("/drone_imagery/upload_drone_imagery") :Args(0) 
         $h->execute();
         my ($odm_running_count) = $h->fetchrow_array();
         if ($odm_running_count >= $c->config->{opendronemap_max_processes}) {
-            $c->stash->{message} = "There are already the maximum number of OpenDroneMap processes running on this machine! Please check back later when those processes are complete.";
+            $c->stash->{message} = "Já existe o número máximo de processos do OpenDroneMap em execução nesta máquina! Volte mais tarde, quando esses processos tiverem terminado.";
             $c->stash->{template} = 'generic_message.mas';
             return;
         }
@@ -187,7 +188,7 @@ sub upload_drone_imagery : Path("/drone_imagery/upload_drone_imagery") :Args(0) 
         }
         my $drone_run_date_obj = Time::Piece->strptime($new_drone_run_date, "%Y/%m/%d %H:%M:%S");
         if (exists($seen_field_trial_drone_run_dates{$drone_run_date_obj->epoch})) {
-            $c->stash->{rest} = { error => "An imaging event has already occured on this field trial at the same date and time! Please give a unique date/time for each imaging event!" };
+            $c->stash->{rest} = { error => "Já existe um evento de imageamento neste ensaio de campo na mesma data e hora! Informe uma data/hora única para cada evento de imageamento!" };
             $c->detach();
         }
 
@@ -334,27 +335,27 @@ sub upload_drone_imagery : Path("/drone_imagery/upload_drone_imagery") :Args(0) 
             my $new_drone_run_band_type = $c->req->param('drone_run_band_type_1');
             my $new_drone_run_band_coordinate_system = $c->req->param('drone_run_band_coordinate_system_1') || 'Pixels';
             if (!$new_drone_run_band_name) {
-                $c->stash->{message} = "Please give a new imaging event band name!";
+                $c->stash->{message} = "Informe o nome da banda do novo evento de imageamento!";
                 $c->stash->{template} = 'generic_message.mas';
                 return;
             }
             if (!$new_drone_run_band_desc){
-                $c->stash->{message} = "Please give a new imaging event band description!";
+                $c->stash->{message} = "Informe a descrição da banda do novo evento de imageamento!";
                 $c->stash->{template} = 'generic_message.mas';
                 return;
             }
             if (!$new_drone_run_band_type){
-                $c->stash->{message} = "Please give a new imaging event band type!";
+                $c->stash->{message} = "Informe o tipo da banda do novo evento de imageamento!";
                 $c->stash->{template} = 'generic_message.mas';
                 return;
             }
             if (!exists($image_types_allowed->{$new_drone_run_band_type})) {
-                $c->stash->{message} = "Imaging event band type not supported: $new_drone_run_band_type!";
+                $c->stash->{message} = "Tipo de banda do evento de imageamento não suportado: $new_drone_run_band_type!";
                 $c->stash->{template} = 'generic_message.mas';
                 return;
             }
             if (exists($seen_image_types_upload{$new_drone_run_band_type})) {
-                $c->stash->{message} = "Imaging event band type is repeated: $new_drone_run_band_type! Each imaging event band in an imaging event should have a unique type!";
+                $c->stash->{message} = "Tipo de banda do evento de imageamento repetido: $new_drone_run_band_type! Cada banda de um evento de imageamento deve ter um tipo único!";
                 $c->stash->{template} = 'generic_message.mas';
                 return;
             }
@@ -362,7 +363,7 @@ sub upload_drone_imagery : Path("/drone_imagery/upload_drone_imagery") :Args(0) 
 
             my $upload_file = $c->req->upload('drone_run_band_stitched_ortho_image_1');
             if (!$upload_file) {
-                $c->stash->{message} = "Please provide a zipfile OR a stitched ortho image!";
+                $c->stash->{message} = "Forneça um arquivo ZIP OU um ortofotomosaico já unido!";
                 $c->stash->{template} = 'generic_message.mas';
                 return;
             }
@@ -381,27 +382,27 @@ sub upload_drone_imagery : Path("/drone_imagery/upload_drone_imagery") :Args(0) 
                 my $new_drone_run_band_type = $c->req->param('drone_run_band_type_'.$_);
                 my $new_drone_run_band_coordinate_system = $c->req->param('drone_run_band_coordinate_system_'.$_) || 'Pixels';
                 if (!$new_drone_run_band_name) {
-                    $c->stash->{message} = "Please give a new imaging event band name!".$_;
+                    $c->stash->{message} = "Informe o nome da banda do novo evento de imageamento!".$_;
                     $c->stash->{template} = 'generic_message.mas';
                     return;
                 }
                 if (!$new_drone_run_band_desc){
-                    $c->stash->{message} = "Please give a new imaging event band description!";
+                    $c->stash->{message} = "Informe a descrição da banda do novo evento de imageamento!";
                     $c->stash->{template} = 'generic_message.mas';
                     return;
                 }
                 if (!$new_drone_run_band_type){
-                    $c->stash->{message} = "Please give a new imaging event band type!";
+                    $c->stash->{message} = "Informe o tipo da banda do novo evento de imageamento!";
                     $c->stash->{template} = 'generic_message.mas';
                     return;
                 }
                 if (!exists($image_types_allowed->{$new_drone_run_band_type})) {
-                    $c->stash->{message} = "Imaging event band type not supported: $new_drone_run_band_type!";
+                    $c->stash->{message} = "Tipo de banda do evento de imageamento não suportado: $new_drone_run_band_type!";
                     $c->stash->{template} = 'generic_message.mas';
                     return;
                 }
                 if (exists($seen_image_types_upload{$new_drone_run_band_type})) {
-                    $c->stash->{message} = "Imaging event band type is repeated: $new_drone_run_band_type! Each imaging event band in an imaging event should have a unique type!";
+                    $c->stash->{message} = "Tipo de banda do evento de imageamento repetido: $new_drone_run_band_type! Cada banda de um evento de imageamento deve ter um tipo único!";
                     $c->stash->{template} = 'generic_message.mas';
                     return;
                 }
@@ -409,7 +410,7 @@ sub upload_drone_imagery : Path("/drone_imagery/upload_drone_imagery") :Args(0) 
 
                 my $upload_file = $c->req->upload('drone_run_band_stitched_ortho_image_'.$_);
                 if (!$upload_file) {
-                    $c->stash->{message} = "Please provide a zipfile OR a stitched ortho image!";
+                    $c->stash->{message} = "Forneça um arquivo ZIP OU um ortofotomosaico já unido!";
                     $c->stash->{template} = 'generic_message.mas';
                     return;
                 }
@@ -507,7 +508,7 @@ sub upload_drone_imagery : Path("/drone_imagery/upload_drone_imagery") :Args(0) 
             my $archived_filename_with_path = $uploader->archive();
             my $md5 = $uploader->get_md5($archived_filename_with_path);
             if (!$archived_filename_with_path) {
-                $c->stash->{message} = "Could not save file $upload_original_name in archive.";
+                $c->stash->{message} = "Não foi possível salvar o arquivo $upload_original_name no arquivo permanente.";
                 $c->stash->{template} = 'generic_message.mas';
                 return;
             }
@@ -558,7 +559,7 @@ sub upload_drone_imagery : Path("/drone_imagery/upload_drone_imagery") :Args(0) 
         my $archived_filename_with_path = $uploader->archive();
         my $md5 = $uploader->get_md5($archived_filename_with_path);
         if (!$archived_filename_with_path) {
-            $c->stash->{message} = "Could not save file $upload_original_name in archive.";
+            $c->stash->{message} = "Não foi possível salvar o arquivo $upload_original_name no arquivo permanente.";
             $c->stash->{template} = 'generic_message.mas';
             return;
         }
@@ -569,7 +570,7 @@ sub upload_drone_imagery : Path("/drone_imagery/upload_drone_imagery") :Args(0) 
         my $zipfile_return = $image->upload_drone_imagery_zipfile($archived_filename_with_path, $user_id, $selected_drone_run_id);
         # print STDERR Dumper $zipfile_return;
         if ($zipfile_return->{error}) {
-            $c->stash->{message} = "Problem saving images!".$zipfile_return->{error};
+            $c->stash->{message} = "Problema ao salvar as imagens!".$zipfile_return->{error};
             $c->stash->{template} = 'generic_message.mas';
             return;
         }
@@ -592,7 +593,7 @@ sub upload_drone_imagery : Path("/drone_imagery/upload_drone_imagery") :Args(0) 
             my $archived_filename_with_path_odm_img = $uploader_odm_dir->archive();
             my $md5 = $uploader_odm_dir->get_md5($archived_filename_with_path_odm_img);
             if (!$archived_filename_with_path_odm_img) {
-                $c->stash->{message} = "Could not save file $i in archive.";
+                $c->stash->{message} = "Não foi possível salvar o arquivo $i no arquivo permanente.";
                 $c->stash->{template} = 'generic_message.mas';
                 return;
             }
@@ -602,7 +603,7 @@ sub upload_drone_imagery : Path("/drone_imagery/upload_drone_imagery") :Args(0) 
 
         my $current_odm_image_count = $new_drone_run_band_stitching_odm_current_image_count+scalar(@$image_paths);
         if ($current_odm_image_count < 25) {
-            $c->stash->{message} = "Upload more than $current_odm_image_count images! Atleast 25 are required for OpenDroneMap to stitch.";
+            $c->stash->{message} = "Envie mais de $current_odm_image_count imagens! São necessárias pelo menos 25 para que o OpenDroneMap possa uni-las.";
             $c->stash->{template} = 'generic_message.mas';
             return;
         }
@@ -647,7 +648,7 @@ sub upload_drone_imagery : Path("/drone_imagery/upload_drone_imagery") :Args(0) 
                 my $archived_filename_panel_with_path = $uploader_panel->archive();
                 my $md5_panel = $uploader_panel->get_md5($archived_filename_panel_with_path);
                 if (!$archived_filename_panel_with_path) {
-                    $c->stash->{message} = "Could not save file $archived_filename_panel_with_path in archive.";
+                    $c->stash->{message} = "Não foi possível salvar o arquivo $archived_filename_panel_with_path no arquivo permanente.";
                     $c->stash->{template} = 'generic_message.mas';
                     return;
                 }
@@ -744,7 +745,7 @@ sub upload_drone_imagery : Path("/drone_imagery/upload_drone_imagery") :Args(0) 
                 my $archived_filename_with_path = $uploader->archive();
                 my $md5 = $uploader->get_md5($archived_filename_with_path);
                 if (!$archived_filename_with_path) {
-                    $c->stash->{message} = "Could not save file $upload_original_name in archive.";
+                    $c->stash->{message} = "Não foi possível salvar o arquivo $upload_original_name no arquivo permanente.";
                     $c->stash->{template} = 'generic_message.mas';
                     return;
                 }
@@ -765,7 +766,7 @@ sub upload_drone_imagery : Path("/drone_imagery/upload_drone_imagery") :Args(0) 
         $odm_check_prop->update();
     }
 
-    $c->stash->{message} = "Successfully uploaded! Go to <a href='/breeders/drone_imagery'>Drone Imagery</a>";
+    $c->stash->{message} = "Enviado com sucesso! Acesse <a href='/breeders/drone_imagery'>Imagens de drone</a>";
     $c->stash->{template} = 'generic_message.mas';
     return;
 }
@@ -821,7 +822,7 @@ sub upload_drone_imagery_bulk : Path("/drone_imagery/upload_drone_imagery_bulk")
     my $archived_filename_with_path = $uploader->archive();
     my $md5 = $uploader->get_md5($archived_filename_with_path);
     if (!$archived_filename_with_path) {
-        $c->stash->{message} = "Could not save file $upload_original_name in archive.";
+        $c->stash->{message} = "Não foi possível salvar o arquivo $upload_original_name no arquivo permanente.";
         $c->stash->{template} = 'generic_message.mas';
         return;
     }
@@ -831,7 +832,7 @@ sub upload_drone_imagery_bulk : Path("/drone_imagery/upload_drone_imagery_bulk")
     my $archived_zip = CXGN::ZipFile->new(archived_zipfile_path=>$archived_filename_with_path);
     my $file_members = $archived_zip->file_members();
     if (!$file_members){
-        $c->stash->{message} = 'Could not read your orthophoto bulk zipfile. Is it .zip format?';
+        $c->stash->{message} = 'Não foi possível ler o arquivo ZIP de ortofotos em lote. Ele está no formato .zip?';
         $c->stash->{template} = 'generic_message.mas';
         return;
     }
@@ -876,7 +877,7 @@ sub upload_drone_imagery_bulk : Path("/drone_imagery/upload_drone_imagery_bulk")
         my $band = $image_spectra[1];
 
         if (!exists($spectral_lookup{$band})) {
-            $c->stash->{message} = "The spectral band $band is not allowed in the provided orthophoto $filename_only. Make sure the orthophotos are saved as a concatenation of the imaging event name and the spectral band, with a double-underscore (__) as the separator (e.g. Ortho1_01012020__blue.tiff) and the allowed spectral bands are blue,green,red,rededge,nir,mir,fir,thir,rgb,bw.";
+            $c->stash->{message} = "A banda espectral $band não é permitida na ortofoto informada $filename_only. Certifique-se de que as ortofotos sejam salvas como a concatenação do nome do evento de imageamento e da banda espectral, com dois sublinhados (__) como separador (ex.: Ortho1_01012020__blue.tiff); as bandas espectrais permitidas são blue,green,red,rededge,nir,mir,fir,thir,rgb,bw.";
             $c->stash->{template} = 'generic_message.mas';
             return;
         }
@@ -888,7 +889,7 @@ sub upload_drone_imagery_bulk : Path("/drone_imagery/upload_drone_imagery_bulk")
             band_short => $band
         };
         if (exists($filename_imaging_event_band_check{$imaging_event_name}->{$spectral_band})) {
-            $c->stash->{message} = "Do not upload duplicate spectral types for the same imaging event. There is already a $band image for $imaging_event_name in the zipfile! Make sure the orthophotos are saved as a concatenation of the imaging event name and the spectral band, with a double-underscore (__) as the separator (e.g. Ortho1_01012020__blue.tiff)";
+            $c->stash->{message} = "Não envie tipos espectrais duplicados para o mesmo evento de imageamento. Já existe uma imagem $band para $imaging_event_name no arquivo ZIP! Certifique-se de que as ortofotos sejam salvas como a concatenação do nome do evento de imageamento e da banda espectral, com dois sublinhados (__) como separador (ex.: Ortho1_01012020__blue.tiff)";
             $c->stash->{template} = 'generic_message.mas';
             return;
         } else {
@@ -905,21 +906,21 @@ sub upload_drone_imagery_bulk : Path("/drone_imagery/upload_drone_imagery_bulk")
     my $parser = Spreadsheet::ParseExcel->new();
     my $excel_obj = $parser->parse($upload_imaging_events_file);
     if (!$excel_obj) {
-        $c->stash->{message} = 'The Excel (.xls) file could not be opened:'.$parser->error();
+        $c->stash->{message} = 'Não foi possível abrir o arquivo Excel (.xls):'.$parser->error();
         $c->stash->{template} = 'generic_message.mas';
         return;
     }
 
     my $worksheet = ( $excel_obj->worksheets() )[0]; #support only one worksheet
     if (!$worksheet) {
-        $c->stash->{message} = 'Spreadsheet must be on 1st tab in Excel (.xls) file.';
+        $c->stash->{message} = 'A planilha deve estar na 1ª aba do arquivo Excel (.xls).';
         $c->stash->{template} = 'generic_message.mas';
         return;
     }
     my ( $row_min, $row_max ) = $worksheet->row_range();
     my ( $col_min, $col_max ) = $worksheet->col_range();
     if (($col_max - $col_min)  < 1 || ($row_max - $row_min) < 1 ) { #must have header and at least one row of plot data
-        $c->stash->{message} = 'Spreadsheet (.xls) is missing header or contains no rows.';
+        $c->stash->{message} = 'A planilha (.xls) não tem cabeçalho ou não contém nenhuma linha.';
         $c->stash->{template} = 'generic_message.mas';
         return;
     }
@@ -936,7 +937,7 @@ sub upload_drone_imagery_bulk : Path("/drone_imagery/upload_drone_imagery_bulk")
         $worksheet->get_cell(0,9)->value() ne 'Coordinate System' ||
         $worksheet->get_cell(0,10)->value() ne 'Base Date' ||
         $worksheet->get_cell(0,11)->value() ne 'Camera Rig') {
-            $c->stash->{message} = "The header row in the CSV spreadsheet must be 'Imaging Event Name,Type,Description,Date,Vehicle Name,Vehicle Battery Set,Sensor,Field Trial Name,GeoJSON Filename,Image Filenames,Coordinate System,Base Date,Camera Rig'.";
+            $c->stash->{message} = "A linha de cabeçalho da planilha CSV deve ser 'Imaging Event Name,Type,Description,Date,Vehicle Name,Vehicle Battery Set,Sensor,Field Trial Name,GeoJSON Filename,Image Filenames,Coordinate System,Base Date,Camera Rig'.";
             $c->stash->{template} = 'generic_message.mas';
             return;
     }
@@ -993,39 +994,39 @@ sub upload_drone_imagery_bulk : Path("/drone_imagery/upload_drone_imagery_bulk")
         }
 
         if (!$imaging_event_name){
-            push @parse_csv_errors, "Please give a new imaging event name!";
+            push @parse_csv_errors, "Informe o nome do novo evento de imageamento!";
         }
         if (!$imaging_event_type){
-            push @parse_csv_errors, "Please give an imaging event type!";
+            push @parse_csv_errors, "Informe o tipo do evento de imageamento!";
         }
         if (!$imaging_event_desc){
-            push @parse_csv_errors, "Please give an imaging event description!";
+            push @parse_csv_errors, "Informe a descrição do evento de imageamento!";
         }
         if (!$imaging_event_date){
-            push @parse_csv_errors, "Please give an imaging event date!";
+            push @parse_csv_errors, "Informe a data do evento de imageamento!";
         }
         if (!$vehicle_name){
-            push @parse_csv_errors, "Please give a vehicle name!";
+            push @parse_csv_errors, "Informe o nome do veículo!";
         }
         if (!$sensor){
-            push @parse_csv_errors, "Please give a sensor name!";
+            push @parse_csv_errors, "Informe o nome do sensor!";
         }
         if (!$field_trial_name){
-            push @parse_csv_errors, "Please give a field trial name!";
+            push @parse_csv_errors, "Informe o nome do ensaio de campo!";
         }
 
         if ($coordinate_system ne 'UTM' && $coordinate_system ne 'WGS84' && $coordinate_system ne 'Pixels') {
-            push @parse_csv_errors, "The given coordinate system $coordinate_system is not one of: UTM, WGS84, or Pixels!";
+            push @parse_csv_errors, "O sistema de coordenadas informado $coordinate_system não é um destes: UTM, WGS84 ou Pixels!";
         }
         if ($coordinate_system ne 'Pixels') {
-            $c->stash->{message} = "Only the Pixels coordinate system is currently supported for this upload. In the future GeoTIFFs will be supported, but for now please only upload simple raster images (.png, .tiff, .jpg).";
+            $c->stash->{message} = "No momento, apenas o sistema de coordenadas Pixels é suportado neste envio. No futuro, GeoTIFFs serão suportados, mas por enquanto envie apenas imagens raster simples (.png, .tiff, .jpg).";
             $c->stash->{template} = 'generic_message.mas';
             return;
         }
 
         my $field_trial_rs = $schema->resultset("Project::Project")->search({name=>$field_trial_name});
         if ($field_trial_rs->count != 1) {
-            $c->stash->{message} = "The field trial $field_trial_name does not exist in the database already! Please add it first.";
+            $c->stash->{message} = "O ensaio de campo $field_trial_name ainda não existe no banco de dados! Adicione-o primeiro.";
             $c->stash->{template} = 'generic_message.mas';
             return;
         }
@@ -1034,28 +1035,28 @@ sub upload_drone_imagery_bulk : Path("/drone_imagery/upload_drone_imagery_bulk")
         $field_trial_name_lookup{$field_trial_name} = $field_trial_id;
 
         if ($imaging_event_date !~ /^\d{4}\/\d{2}\/\d{2}\s\d\d:\d\d:\d\d$/){
-            $c->stash->{message} = "Please give a new imaging event date in the format YYYY/MM/DD HH:mm:ss! The provided $imaging_event_date is not correct!";
+            $c->stash->{message} = "Informe a data do novo evento de imageamento no formato YYYY/MM/DD HH:mm:ss! A data informada $imaging_event_date não está correta!";
             $c->stash->{template} = 'generic_message.mas';
             return;
         }
         if ($imaging_event_type ne 'Aerial Medium to High Res' && $imaging_event_type ne 'Aerial Low Res'){
-            $c->stash->{message} = "The imaging event type $imaging_event_type is not one of 'Aerial Low Res' or 'Aerial Medium to High Res'!";
+            $c->stash->{message} = "O tipo de evento de imageamento $imaging_event_type não é 'Aerial Low Res' nem 'Aerial Medium to High Res'!";
             $c->stash->{template} = 'generic_message.mas';
             return;
         }
         if (!exists($sensor_map{$sensor})){
-            $c->stash->{message} = "The sensor $sensor is not one of 'MicaSense 5 Channel Camera' or 'CCD Color Camera' or 'CMOS Color Camera'!";
+            $c->stash->{message} = "O sensor $sensor não é 'MicaSense 5 Channel Camera', 'CCD Color Camera' nem 'CMOS Color Camera'!";
             $c->stash->{template} = 'generic_message.mas';
             return;
         }
 
         my $project_rs = $schema->resultset("Project::Project")->search({name=>$imaging_event_name});
         if ($project_rs->count > 0) {
-            push @parse_csv_errors, "Please use a globally unique imaging event name! The name you specified $imaging_event_name has already been used.";
+            push @parse_csv_errors, "Use um nome de evento de imageamento único em todo o sistema! O nome informado $imaging_event_name já foi usado.";
         }
         my $vehicle_prop = $schema->resultset("Stock::Stock")->search({uniquename => $vehicle_name, type_id=>$imaging_vehicle_cvterm_id});
         if ($vehicle_prop->count != 1) {
-            push @parse_csv_errors, "Imaging event vehicle $vehicle_name is not already in the database! Please add it first!";
+            push @parse_csv_errors, "O veículo de imageamento $vehicle_name ainda não está no banco de dados! Adicione-o primeiro!";
         }
         else {
             $vehicle_name_lookup{$vehicle_name} = $vehicle_prop->first->stock_id;
@@ -1064,7 +1065,7 @@ sub upload_drone_imagery_bulk : Path("/drone_imagery/upload_drone_imagery_bulk")
         my $trial = CXGN::Trial->new({ bcs_schema => $schema, trial_id => $field_trial_id });
         my $planting_date = $trial->get_planting_date();
         if (!$planting_date) {
-            $c->stash->{message} = "The field trial $field_trial_name does not have a planting date set! Please set this first!";
+            $c->stash->{message} = "O ensaio de campo $field_trial_name não tem data de plantio definida! Defina-a primeiro!";
             $c->stash->{template} = 'generic_message.mas';
             return;
         }
@@ -1080,25 +1081,25 @@ sub upload_drone_imagery_bulk : Path("/drone_imagery/upload_drone_imagery_bulk")
         $seen_field_trial_drone_run_dates{$imaging_event_date_time_object->epoch}++;
 
         if ($imaging_event_date_time_object->epoch - $planting_date_time_object->epoch <= 0) {
-            push @parse_csv_errors, "The date of the imaging event $imaging_event_date is not after the field trial planting date $planting_date!";
+            push @parse_csv_errors, "A data do evento de imageamento $imaging_event_date não é posterior à data de plantio do ensaio de campo $planting_date!";
         }
         if ($base_date) {
             if ($base_date !~ /^\d{4}\/\d{2}\/\d{2}\s\d\d:\d\d:\d\d$/){
-                $c->stash->{message} = "Please give a new imaging event base date in the format YYYY/MM/DD HH:mm:ss! The provided $base_date is not correct! Leave empty if not relevant!";
+                $c->stash->{message} = "Informe a data-base do novo evento de imageamento no formato YYYY/MM/DD HH:mm:ss! A data informada $base_date não está correta! Deixe em branco se não for relevante!";
                 $c->stash->{template} = 'generic_message.mas';
                 return;
             }
             my $imaging_event_base_time_object = Time::Piece->strptime($base_date, "%Y/%m/%d %H:%M:%S");
 
             if ($imaging_event_date_time_object->epoch - $imaging_event_base_time_object->epoch < 0) {
-                push @parse_csv_errors, "The date of the imaging event $imaging_event_date is not after the base date $base_date!";
+                push @parse_csv_errors, "A data do evento de imageamento $imaging_event_date não é posterior à data-base $base_date!";
             }
         }
 
         my @orthoimage_names = split ',', $image_filenames;
         foreach (@orthoimage_names) {
             if (!exists($filename_imaging_event_lookup{$_})) {
-                push @parse_csv_errors, "The orthophoto filename $_ does not exist in the uploaded orthophoto zipfile. Make sure the orthophotos are saved as a concatenation of the ortho filename defined in the spreadsheet and the spectral band, with a double-underscore (__) as the separator (e.g. Ortho1_01012020__blue.tiff)";
+                push @parse_csv_errors, "O nome de arquivo de ortofoto $_ não existe no arquivo ZIP de ortofotos enviado. Certifique-se de que as ortofotos sejam salvas como a concatenação do nome de arquivo de ortofoto definido na planilha e da banda espectral, com dois sublinhados (__) como separador (ex.: Ortho1_01012020__blue.tiff)";
             }
         }
     }
@@ -1297,7 +1298,7 @@ sub upload_drone_imagery_bulk : Path("/drone_imagery/upload_drone_imagery_bulk")
             my $archived_filename_with_path = $uploader->archive();
             my $md5 = $uploader->get_md5($archived_filename_with_path);
             if (!$archived_filename_with_path) {
-                $c->stash->{rest} = { error => "Could not save file $upload_original_name in archive." };
+                $c->stash->{rest} = { error => "Não foi possível salvar o arquivo $upload_original_name no arquivo permanente." };
                 $c->detach();
             }
             unlink $upload_tempfile;
@@ -1315,7 +1316,7 @@ sub upload_drone_imagery_bulk : Path("/drone_imagery/upload_drone_imagery_bulk")
         }
     }
 
-    $c->stash->{message} = "Successfully uploaded! Go to <a href='/breeders/drone_imagery'>Drone Imagery</a>";
+    $c->stash->{message} = "Enviado com sucesso! Acesse <a href='/breeders/drone_imagery'>Imagens de drone</a>";
     $c->stash->{template} = 'generic_message.mas';
     return;
 }
@@ -1417,7 +1418,7 @@ sub upload_drone_imagery_bulk_previous : Path("/drone_imagery/upload_drone_image
     my $archived_filename_with_path = $uploader->archive();
     my $md5 = $uploader->get_md5($archived_filename_with_path);
     if (!$archived_filename_with_path) {
-        $c->stash->{rest} = { error => "Could not save file $upload_original_name in archive." };
+        $c->stash->{rest} = { error => "Não foi possível salvar o arquivo $upload_original_name no arquivo permanente." };
         $c->detach();
     }
     unlink $upload_tempfile;
@@ -1426,7 +1427,7 @@ sub upload_drone_imagery_bulk_previous : Path("/drone_imagery/upload_drone_image
     my $archived_zip = CXGN::ZipFile->new(archived_zipfile_path=>$archived_filename_with_path);
     my $file_members = $archived_zip->file_members();
     if (!$file_members){
-        $c->stash->{message} = 'Could not read your orthophoto bulk zipfile. Is it .zip format';
+        $c->stash->{message} = 'Não foi possível ler o arquivo ZIP de ortofotos em lote. Ele está no formato .zip';
         $c->stash->{template} = 'generic_message.mas';
         return;
     }
@@ -1452,7 +1453,7 @@ sub upload_drone_imagery_bulk_previous : Path("/drone_imagery/upload_drone_image
         my $band = $image_spectra[1];
 
         if (!exists($spectral_lookup{$band})) {
-            $c->stash->{message} = "The spectral band $band is not allowed in the provided orthophoto $filename. Make sure the orthophotos are saved as a concatenation with the spectral band, with a double-underscore (__) as the separator (e.g. Ortho1_01012020__blue.tiff) and the allowed spectral bands are blue,green,red,rededge,nir,mir,fir,thir,rgb,bw.";
+            $c->stash->{message} = "A banda espectral $band não é permitida na ortofoto informada $filename. Certifique-se de que as ortofotos sejam salvas como uma concatenação com a banda espectral, com dois sublinhados (__) como separador (ex.: Ortho1_01012020__blue.tiff); as bandas espectrais permitidas são blue,green,red,rededge,nir,mir,fir,thir,rgb,bw.";
             $c->stash->{template} = 'generic_message.mas';
             return;
         }
@@ -1464,7 +1465,7 @@ sub upload_drone_imagery_bulk_previous : Path("/drone_imagery/upload_drone_image
             band_short => $band
         };
         if (exists($filename_imaging_event_band_check{$imaging_event_name}->{$spectral_band})) {
-            $c->stash->{message} = "Do not upload duplicate spectral types for the same imaging event. There is already a $band image for $imaging_event_name in the zipfile! Make sure the orthophotos are saved as a concatenation of the imaging event name and the spectral band, with a double-underscore (__) as the separator (e.g. Ortho1_01012020__blue.tiff)";
+            $c->stash->{message} = "Não envie tipos espectrais duplicados para o mesmo evento de imageamento. Já existe uma imagem $band para $imaging_event_name no arquivo ZIP! Certifique-se de que as ortofotos sejam salvas como a concatenação do nome do evento de imageamento e da banda espectral, com dois sublinhados (__) como separador (ex.: Ortho1_01012020__blue.tiff)";
             $c->stash->{template} = 'generic_message.mas';
             return;
         } else {
@@ -1484,7 +1485,7 @@ sub upload_drone_imagery_bulk_previous : Path("/drone_imagery/upload_drone_image
     my $geojson_archived_filename_with_path = $uploader_geojson->archive();
     my $md5_geojson = $uploader_geojson->get_md5($geojson_archived_filename_with_path);
     if (!$geojson_archived_filename_with_path) {
-        $c->stash->{message} = "Could not save file $upload_geojson_original_name in archive.";
+        $c->stash->{message} = "Não foi possível salvar o arquivo $upload_geojson_original_name no arquivo permanente.";
         $c->stash->{template} = 'generic_message.mas';
         return;
     }
@@ -1494,7 +1495,7 @@ sub upload_drone_imagery_bulk_previous : Path("/drone_imagery/upload_drone_image
     my $archived_zip_geojson = CXGN::ZipFile->new(archived_zipfile_path=>$geojson_archived_filename_with_path);
     my $file_members_geojson = $archived_zip_geojson->file_members();
     if (!$file_members_geojson){
-        $c->stash->{message} = 'Could not read your geojson bulk zipfile. Is it .zip format?';
+        $c->stash->{message} = 'Não foi possível ler o arquivo ZIP de GeoJSON em lote. Ele está no formato .zip?';
         $c->stash->{template} = 'generic_message.mas';
         return;
     }
@@ -1522,33 +1523,33 @@ sub upload_drone_imagery_bulk_previous : Path("/drone_imagery/upload_drone_image
             my $geojson_value_check = decode_json <$fh_geojson_check>;
             # print STDERR Dumper $geojson_value_check;
             if (!$geojson_value_check->{features}) {
-                $c->stash->{message} = 'The GeoJSON file '.$filename.' does not have a \'features\' key in it. Make sure the GeoJSON is formatted correctly.';
+                $c->stash->{message} = 'O arquivo GeoJSON '.$filename.' não tem a chave \'features\'. Verifique se o GeoJSON está formatado corretamente.';
                 $c->stash->{template} = 'generic_message.mas';
                 return;
             }
             foreach (@{$geojson_value_check->{features}}) {
                 if (!$_->{properties}) {
-                    $c->stash->{message} = 'The GeoJSON file '.$filename.' does not have a \'properties\' key in it. Make sure the GeoJSON is formatted correctly.';
+                    $c->stash->{message} = 'O arquivo GeoJSON '.$filename.' não tem a chave \'properties\'. Verifique se o GeoJSON está formatado corretamente.';
                     $c->stash->{template} = 'generic_message.mas';
                     return;
                 }
                 if (!$_->{properties}->{ID}) {
-                    $c->stash->{message} = 'The GeoJSON file '.$filename.' does not have an \'ID\' key in the \'properties\' object. Make sure the GeoJSON is formatted correctly.';
+                    $c->stash->{message} = 'O arquivo GeoJSON '.$filename.' não tem a chave \'ID\' no objeto \'properties\'. Verifique se o GeoJSON está formatado corretamente.';
                     $c->stash->{template} = 'generic_message.mas';
                     return;
                 }
                 if (!$_->{geometry}) {
-                    $c->stash->{message} = 'The GeoJSON file '.$filename.' does not have a \'geometry\' key in it. Make sure the GeoJSON is formatted correctly.';
+                    $c->stash->{message} = 'O arquivo GeoJSON '.$filename.' não tem a chave \'geometry\'. Verifique se o GeoJSON está formatado corretamente.';
                     $c->stash->{template} = 'generic_message.mas';
                     return;
                 }
                 if (!$_->{geometry}->{coordinates}) {
-                    $c->stash->{message} = 'The GeoJSON file '.$filename.' does not have a \'coordinates\' key in the \'geometry\' object. Make sure the GeoJSON is formatted correctly.';
+                    $c->stash->{message} = 'O arquivo GeoJSON '.$filename.' não tem a chave \'coordinates\' no objeto \'geometry\'. Verifique se o GeoJSON está formatado corretamente.';
                     $c->stash->{template} = 'generic_message.mas';
                     return;
                 }
                 if (scalar(@{$_->{geometry}->{coordinates}->[0]}) != 5) {
-                    $c->stash->{message} = 'The GeoJSON file '.$filename.' \'coordinates\' first object does not have 5 objects in it. The polygons must be rectangular Make sure the GeoJSON is formatted correctly.';
+                    $c->stash->{message} = 'O arquivo GeoJSON '.$filename.': o primeiro objeto de \'coordinates\' não tem 5 objetos. Os polígonos devem ser retangulares. Verifique se o GeoJSON está formatado corretamente.';
                     $c->stash->{template} = 'generic_message.mas';
                     return;
                 }
@@ -1564,21 +1565,21 @@ sub upload_drone_imagery_bulk_previous : Path("/drone_imagery/upload_drone_image
     my $parser = Spreadsheet::ParseExcel->new();
     my $excel_obj = $parser->parse($upload_imaging_events_file);
     if (!$excel_obj) {
-        $c->stash->{message} = 'The Excel (.xls) file could not be opened:'.$parser->error();
+        $c->stash->{message} = 'Não foi possível abrir o arquivo Excel (.xls):'.$parser->error();
         $c->stash->{template} = 'generic_message.mas';
         return;
     }
 
     my $worksheet = ( $excel_obj->worksheets() )[0]; #support only one worksheet
     if (!$worksheet) {
-        $c->stash->{message} = 'Spreadsheet must be on 1st tab in Excel (.xls) file.';
+        $c->stash->{message} = 'A planilha deve estar na 1ª aba do arquivo Excel (.xls).';
         $c->stash->{template} = 'generic_message.mas';
         return;
     }
     my ( $row_min, $row_max ) = $worksheet->row_range();
     my ( $col_min, $col_max ) = $worksheet->col_range();
     if (($col_max - $col_min)  < 1 || ($row_max - $row_min) < 1 ) { #must have header and at least one row of plot data
-        $c->stash->{message} = 'Spreadsheet (.xls) is missing header or contains no rows.';
+        $c->stash->{message} = 'A planilha (.xls) não tem cabeçalho ou não contém nenhuma linha.';
         $c->stash->{template} = 'generic_message.mas';
         return;
     }
@@ -1597,7 +1598,7 @@ sub upload_drone_imagery_bulk_previous : Path("/drone_imagery/upload_drone_image
         $worksheet->get_cell(0,11)->value() ne 'Rotation Angle' ||
         $worksheet->get_cell(0,12)->value() ne 'Base Date' ||
         $worksheet->get_cell(0,13)->value() ne 'Camera Rig') {
-            $c->stash->{message} = "The header row in the CSV spreadsheet must be 'Imaging Event Name,Type,Description,Date,Vehicle Name,Vehicle Battery Set,Sensor,Field Trial Name,GeoJSON Filename,Image Filenames,Coordinate System,Rotation Angle,Base Date,Camera Rig'.";
+            $c->stash->{message} = "A linha de cabeçalho da planilha CSV deve ser 'Imaging Event Name,Type,Description,Date,Vehicle Name,Vehicle Battery Set,Sensor,Field Trial Name,GeoJSON Filename,Image Filenames,Coordinate System,Rotation Angle,Base Date,Camera Rig'.";
             $c->stash->{template} = 'generic_message.mas';
             return;
     }
@@ -1662,32 +1663,32 @@ sub upload_drone_imagery_bulk_previous : Path("/drone_imagery/upload_drone_image
         }
 
         if (!$imaging_event_name){
-            push @parse_csv_errors, "Please give a new imaging event name!";
+            push @parse_csv_errors, "Informe o nome do novo evento de imageamento!";
         }
         if (!$imaging_event_type){
-            push @parse_csv_errors, "Please give an imaging event type!";
+            push @parse_csv_errors, "Informe o tipo do evento de imageamento!";
         }
         if (!$imaging_event_desc){
-            push @parse_csv_errors, "Please give an imaging event description!";
+            push @parse_csv_errors, "Informe a descrição do evento de imageamento!";
         }
         if (!$imaging_event_date){
-            push @parse_csv_errors, "Please give an imaging event date!";
+            push @parse_csv_errors, "Informe a data do evento de imageamento!";
         }
         if (!$vehicle_name){
-            push @parse_csv_errors, "Please give a vehicle name!";
+            push @parse_csv_errors, "Informe o nome do veículo!";
         }
         if (!$sensor){
-            push @parse_csv_errors, "Please give a sensor name!";
+            push @parse_csv_errors, "Informe o nome do sensor!";
         }
         if (!$field_trial_name){
-            push @parse_csv_errors, "Please give a field trial name!";
+            push @parse_csv_errors, "Informe o nome do ensaio de campo!";
         }
         if (defined($rotation_angle) && ($rotation_angle < 0 || $rotation_angle > 360) ) {
-            push @parse_csv_errors, "Rotation angle $rotation_angle not valid! Must be clock-wise between 0 and 360!";
+            push @parse_csv_errors, "Ângulo de rotação $rotation_angle inválido! Deve estar entre 0 e 360, no sentido horário!";
         }
 
         if ($coordinate_system ne 'UTM' && $coordinate_system ne 'WGS84' && $coordinate_system ne 'Pixels') {
-            push @parse_csv_errors, "The given coordinate system $coordinate_system is not one of: UTM, WGS84, or Pixels!";
+            push @parse_csv_errors, "O sistema de coordenadas informado $coordinate_system não é um destes: UTM, WGS84 ou Pixels!";
         }
         # if ($coordinate_system ne 'Pixels') {
         #     $c->stash->{rest} = {error => "Only the Pixels coordinate system is currently supported. In the future GeoTIFFs will be supported, but for now please only upload simple raster images (.png, .tiff, .jpg)." };
@@ -1696,7 +1697,7 @@ sub upload_drone_imagery_bulk_previous : Path("/drone_imagery/upload_drone_image
 
         my $field_trial_rs = $schema->resultset("Project::Project")->search({name=>$field_trial_name});
         if ($field_trial_rs->count != 1) {
-            $c->stash->{message} = "The field trial $field_trial_name does not exist in the database already! Please add it first.";
+            $c->stash->{message} = "O ensaio de campo $field_trial_name ainda não existe no banco de dados! Adicione-o primeiro.";
             $c->stash->{template} = 'generic_message.mas';
             return;
         }
@@ -1704,28 +1705,28 @@ sub upload_drone_imagery_bulk_previous : Path("/drone_imagery/upload_drone_image
         $field_trial_name_lookup{$field_trial_name} = $field_trial_id;
 
         if ($imaging_event_date !~ /^\d{4}\/\d{2}\/\d{2}\s\d\d:\d\d:\d\d$/){
-            $c->stash->{message} = "Please give a new imaging event date in the format YYYY/MM/DD HH:mm:ss! The provided $imaging_event_date is not correct!";
+            $c->stash->{message} = "Informe a data do novo evento de imageamento no formato YYYY/MM/DD HH:mm:ss! A data informada $imaging_event_date não está correta!";
             $c->stash->{template} = 'generic_message.mas';
             return;
         }
         if ($imaging_event_type ne 'Aerial Medium to High Res' && $imaging_event_type ne 'Aerial Low Res'){
-            $c->stash->{message} = "The imaging event type $imaging_event_type is not one of 'Aerial Low Res' or 'Aerial Medium to High Res'!";
+            $c->stash->{message} = "O tipo de evento de imageamento $imaging_event_type não é 'Aerial Low Res' nem 'Aerial Medium to High Res'!";
             $c->stash->{template} = 'generic_message.mas';
             return;
         }
         if (!exists($sensor_map{$sensor})){
-            $c->stash->{message} = "The sensor $sensor is not one of 'MicaSense 5 Channel Camera' or 'CCD Color Camera' or 'CMOS Color Camera'!";
+            $c->stash->{message} = "O sensor $sensor não é 'MicaSense 5 Channel Camera', 'CCD Color Camera' nem 'CMOS Color Camera'!";
             $c->stash->{template} = 'generic_message.mas';
             return;
         }
 
         my $project_rs = $schema->resultset("Project::Project")->search({name=>$imaging_event_name});
         if ($project_rs->count > 0) {
-            push @parse_csv_errors, "Please use a globally unique imaging event name! The name you specified $imaging_event_name has already been used.";
+            push @parse_csv_errors, "Use um nome de evento de imageamento único em todo o sistema! O nome informado $imaging_event_name já foi usado.";
         }
         my $vehicle_prop = $schema->resultset("Stock::Stock")->search({uniquename => $vehicle_name, type_id=>$imaging_vehicle_cvterm_id});
         if ($vehicle_prop->count != 1) {
-            push @parse_csv_errors, "Imaging event vehicle $vehicle_name is not already in the database! Please add it first!";
+            push @parse_csv_errors, "O veículo de imageamento $vehicle_name ainda não está no banco de dados! Adicione-o primeiro!";
         }
         else {
             $vehicle_name_lookup{$vehicle_name} = $vehicle_prop->first->stock_id;
@@ -1737,7 +1738,7 @@ sub upload_drone_imagery_bulk_previous : Path("/drone_imagery/upload_drone_image
 
         my $planting_date = $trial->get_planting_date();
         if (!$planting_date) {
-            $c->stash->{message} = "The field trial $field_trial_name does not have a planting date set! Please set this first!";
+            $c->stash->{message} = "O ensaio de campo $field_trial_name não tem data de plantio definida! Defina-a primeiro!";
             $c->stash->{template} = 'generic_message.mas';
             return;
         }
@@ -1745,36 +1746,36 @@ sub upload_drone_imagery_bulk_previous : Path("/drone_imagery/upload_drone_image
         my $imaging_event_date_time_object = Time::Piece->strptime($imaging_event_date, "%Y/%m/%d %H:%M:%S");
 
         if (exists($seen_field_trial_drone_run_dates{$imaging_event_date_time_object->epoch})) {
-            $c->stash->{message} = "An imaging event has already occured on this field trial at the same date and time ($imaging_event_date)! Please give a unique date/time for each imaging event!";
+            $c->stash->{message} = "Já existe um evento de imageamento neste ensaio de campo na mesma data e hora ($imaging_event_date)! Informe uma data/hora única para cada evento de imageamento!";
             $c->stash->{template} = 'generic_message.mas';
             return;
         }
         $seen_field_trial_drone_run_dates{$imaging_event_date_time_object->epoch}++;
 
         if ($imaging_event_date_time_object->epoch - $planting_date_time_object->epoch <= 0) {
-            push @parse_csv_errors, "The date of the imaging event $imaging_event_date is not after the field trial planting date $planting_date!";
+            push @parse_csv_errors, "A data do evento de imageamento $imaging_event_date não é posterior à data de plantio do ensaio de campo $planting_date!";
         }
         if ($base_date) {
             if ($base_date !~ /^\d{4}\/\d{2}\/\d{2}\s\d\d:\d\d:\d\d$/){
-                $c->stash->{message} = "Please give a new imaging event base date in the format YYYY/MM/DD HH:mm:ss! The provided $base_date is not correct! Leave empty if not relevant!";
+                $c->stash->{message} = "Informe a data-base do novo evento de imageamento no formato YYYY/MM/DD HH:mm:ss! A data informada $base_date não está correta! Deixe em branco se não for relevante!";
                 $c->stash->{template} = 'generic_message.mas';
                 return;
             }
             my $imaging_event_base_time_object = Time::Piece->strptime($base_date, "%Y/%m/%d %H:%M:%S");
 
             if ($imaging_event_date_time_object->epoch - $imaging_event_base_time_object->epoch < 0) {
-                push @parse_csv_errors, "The date of the imaging event $imaging_event_date is not after the base date $base_date!";
+                push @parse_csv_errors, "A data do evento de imageamento $imaging_event_date não é posterior à data-base $base_date!";
             }
         }
 
         my @orthoimage_names = split ',', $image_filenames;
         foreach (@orthoimage_names) {
             if (!exists($filename_imaging_event_lookup{$_})) {
-                push @parse_csv_errors, "The orthophoto filename $_ does not exist in the uploaded orthophoto zipfile. Make sure the orthophotos are saved as a concatenation of the ortho filename defined in the spreadsheet and the spectral band, with a double-underscore (__) as the separator (e.g. Ortho1_01012020__blue.tiff)";
+                push @parse_csv_errors, "O nome de arquivo de ortofoto $_ não existe no arquivo ZIP de ortofotos enviado. Certifique-se de que as ortofotos sejam salvas como a concatenação do nome de arquivo de ortofoto definido na planilha e da banda espectral, com dois sublinhados (__) como separador (ex.: Ortho1_01012020__blue.tiff)";
             }
         }
         if (!exists($filename_imaging_event_geojson_lookup{$geojson_filename})) {
-            push @parse_csv_errors, "The GeoJSON filename $geojson_filename does not exist in the uploaded GeoJSON zipfile!";
+            push @parse_csv_errors, "O arquivo GeoJSON $geojson_filename não existe no arquivo ZIP de GeoJSON enviado!";
         }
         open(my $fh_geojson_check, '<', $filename_imaging_event_geojson_lookup{$geojson_filename}) or die "Could not open file '".$filename_imaging_event_geojson_lookup{$geojson_filename}."' $!";
             print STDERR "Opened ".$filename_imaging_event_geojson_lookup{$geojson_filename}."\n";
@@ -1782,7 +1783,7 @@ sub upload_drone_imagery_bulk_previous : Path("/drone_imagery/upload_drone_image
             foreach (@{$geojson_value_check->{features}}) {
                 my $plot_number = $_->{properties}->{ID};
                 if (!exists($trial_layout->{$plot_number})) {
-                    push @parse_csv_errors, "The ID $plot_number in the GeoJSON file $geojson_filename does not exist in the field trial $field_trial_name!";
+                    push @parse_csv_errors, "O ID $plot_number no arquivo GeoJSON $geojson_filename não existe no ensaio de campo $field_trial_name!";
                 }
             }
         close($fh_geojson_check);
@@ -2009,7 +2010,7 @@ sub upload_drone_imagery_bulk_previous : Path("/drone_imagery/upload_drone_image
             my $archived_filename_with_path = $uploader->archive();
             my $md5 = $uploader->get_md5($archived_filename_with_path);
             if (!$archived_filename_with_path) {
-                $c->stash->{rest} = { error => "Could not save file $upload_original_name in archive." };
+                $c->stash->{rest} = { error => "Não foi possível salvar o arquivo $upload_original_name no arquivo permanente." };
                 $c->detach();
             }
             unlink $upload_tempfile;
@@ -2278,7 +2279,7 @@ sub upload_drone_imagery_bulk_previous : Path("/drone_imagery/upload_drone_image
         my $return = SGN::Controller::AJAX::DroneImagery::DroneImagery::_perform_phenotype_automated($c, $schema, $metadata_schema, $phenome_schema, $drone_run_project_id_in, $time_cvterm_id, $phenotype_methods, $standard_process_type, 1, undef, $user_id, $user_name, $user_role);
     }
 
-    $c->stash->{message} = "Successfully uploaded! Go to <a href='/breeders/drone_imagery'>Drone Imagery</a>";
+    $c->stash->{message} = "Enviado com sucesso! Acesse <a href='/breeders/drone_imagery'>Imagens de drone</a>";
     $c->stash->{template} = 'generic_message.mas';
     return;
 }
@@ -2294,7 +2295,7 @@ sub _check_user_login {
         my $dbh = $c->dbc->dbh;
         my @user_info = CXGN::Login->new($dbh)->query_from_cookie($session_id);
         if (!$user_info[0]){
-            $c->stash->{message} = 'You must be logged in to do this!';
+            $c->stash->{message} = 'Você precisa estar conectado para fazer isso!';
             $c->stash->{template} = 'generic_message.mas';
             return;
         }
@@ -2304,7 +2305,7 @@ sub _check_user_login {
         $user_name = $p->get_username;
     } else{
         if (!$c->user){
-            $c->stash->{message} = 'You must be logged in to do this!';
+            $c->stash->{message} = 'Você precisa estar conectado para fazer isso!';
             $c->stash->{template} = 'generic_message.mas';
             return;
         }

@@ -233,7 +233,7 @@
 jQuery(document).ready(function() {
 
     //
-    // Calcular estatísticas
+    // Calculate statistics
     //
 
     var analysis_calculate_statistics_field_trial_id_array = undefined;

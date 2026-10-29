@@ -21,14 +21,13 @@ $guide
 </%args>
 
 <%perl>
-my $message = qq | <p>You are trying to upload file(s) with the same name 
-                     <b>($file1 and $file2)</b> for this step and one of the 
-                     steps before it.
+my $message = qq | <p>Você está tentando enviar arquivo(s) com o mesmo nome 
+                     <b>($file1 e $file2)</b> neste passo e em um dos 
+                     passos anteriores.
                    </p>
-
-                   <p>Please go <a href="javascript:history.go(-1)"><b>back</b></a> 
-                     and check the file you are trying to upload or if you keep 
-                     having problem with it contact us.
+                   <p><a href="javascript:history.go(-1)"><b>Volte</b></a> 
+                     e verifique o arquivo que você está tentando enviar ou, se o 
+                     problema persistir, entre em contato conosco.
                    </p>
                 | ;
 

@@ -13,30 +13,30 @@
 
             <&| /util/workflow.mas, id=> "nirs_analysis_plot_spectra_workflow" &>
                 <&| /util/workflow.mas:step, title=> "Introdução" &>
-                    <& /page/page_title.mas, title=>"Este fluxo de trabalho irá guiá-lo através da consulta e plotagem de dados espectrais no banco de dados." &>
+                    <& /page/page_title.mas, title=>"Este fluxo de trabalho irá guiá-lo na consulta e na geração de gráficos de dados espectrais do banco de dados." &>
                     <br/><br/>
                     <center>
-                    <button class="btn btn-primary" onclick="Workflow.complete(this); return false;">Vá para o próximo passo</button>
+                    <button class="btn btn-primary" onclick="Workflow.complete(this); return false;">Ir para o próximo passo</button>
                     </center>
                 </&>
                 <&| /util/workflow.mas:step, title=> "Protocolo" &>
-                    <& /page/page_title.mas, title=>"Selecione o protocolo que você está interessado em planejar espectros:" &>
+                    <& /page/page_title.mas, title=>"Selecione o protocolo para o qual deseja gerar gráficos de espectros:" &>
 
                     <div id="nirs_analysis_plot_spectra_protocol_select">
                     </div>
 
                     <center>
-                    <button class="btn btn-primary" id="nirs_analysis_plot_spectra_protocol_select_step">Vá para o próximo passo</button>
+                    <button class="btn btn-primary" id="nirs_analysis_plot_spectra_protocol_select_step">Ir para o próximo passo</button>
                     </center>
                 </&>
                 <&| /util/workflow.mas:step, title=> "Conjunto de dados" &>
-                    <& /page/page_title.mas, title=>"Selecione o conjunto de dados que você está interessado em plotar espectros para (os acessos ou parcelas ou amostras de tecidos no conjunto de dados precisam ter espectros carregados):" &>
+                    <& /page/page_title.mas, title=>"Selecione o conjunto de dados para o qual deseja gerar gráficos de espectros (os acessos, parcelas ou amostras de tecido do conjunto de dados precisam ter espectros enviados):" &>
 
                     <div id="nirs_analysis_plot_spectra_dataset_select_div">
                     </div>
 
                     <center>
-                    <button class="btn btn-primary" id="nirs_analysis_plot_spectra_dataset_select_step">Vá para o próximo passo</button>
+                    <button class="btn btn-primary" id="nirs_analysis_plot_spectra_dataset_select_step">Ir para o próximo passo</button>
                     </center>
                 </&>
                 <&| /util/workflow.mas:step, title=> "Buscar" &>
@@ -44,7 +44,7 @@
                     <br/><br/>
                     <form class="form-horizontal">
                         <div class="form-group">
-                            <label class="col-sm-5 control-label">Se você tiver acessos no conjunto de dados, a consulta procurará por espectros em parcelas associadas, plantas, etc. e vice-versa: </label>
+                            <label class="col-sm-5 control-label">Consultar materiais relacionados (ex.: se houver acessos no conjunto de dados, a consulta procurará espectros nas parcelas, plantas etc. associadas e vice-versa): </label>
                             <div class="col-sm-7" >
                                 <select class="form-control" id="nirs_analysis_plot_spectra_associated_stock_select_id" name="nirs_analysis_plot_spectra_associated_stock_select_id">
                                     <option value="yes">Sim</option>
@@ -54,11 +54,11 @@
                         </div>
                     </form>
                     <center>
-                    <button class="btn btn-primary" id="nirs_analysis_plot_spectra_search_step">Vá para o próximo passo</button>
+                    <button class="btn btn-primary" id="nirs_analysis_plot_spectra_search_step">Ir para o próximo passo</button>
                     </center>
                 </&>
                 <&| /util/workflow.mas:step, title=> "Resultados" &>
-                    <& /page/page_title.mas, title=>"Plots Espectrais" &>
+                    <& /page/page_title.mas, title=>"Gráficos espectrais" &>
 
                     <div id="nir_analysis_plot_spectra_result"></div>
 

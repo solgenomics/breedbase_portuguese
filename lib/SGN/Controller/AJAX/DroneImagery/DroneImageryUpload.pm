@@ -12,6 +12,7 @@ controlled by SGN::Controller::AJAX::DroneImagery
 =cut
 
 package SGN::Controller::AJAX::DroneImagery::DroneImageryUpload;
+use utf8;
 
 use Moose;
 use Data::Dumper;
@@ -54,7 +55,7 @@ sub upload_drone_imagery_check_drone_name_GET : Args(0) {
     my ($user_id, $user_name, $user_role) = _check_user_login($c);
     my $project_rs = $schema->resultset("Project::Project")->search({name=>$drone_name});
     if ($project_rs->count > 0) {
-        $c->stash->{rest} = { error => "Please use a globally unique drone run name! The name you specified has already ben used." };
+        $c->stash->{rest} = { error => "Use um nome de voo de drone único em todo o sistema! O nome informado já foi usado." };
         $c->detach();
     }
     else {
@@ -78,7 +79,7 @@ sub upload_drone_imagery_POST : Args(0) {
 
     my $selected_trial_id = $c->req->param('drone_run_field_trial_id');
     if (!$selected_trial_id) {
-        $c->stash->{rest} = { error => "Please select a field trial!" };
+        $c->stash->{rest} = { error => "Selecione um ensaio de campo!" };
         $c->detach();
     }
     my $selected_drone_run_id = $c->req->param('drone_run_id');
@@ -92,12 +93,12 @@ sub upload_drone_imagery_POST : Args(0) {
     my $new_drone_run_battery_name = $c->req->param('drone_run_imaging_vehicle_battery_name');
 
     if (!$new_drone_run_vehicle_id) {
-        $c->stash->{rest} = { error => "Please give an imaging event vehicle id!" };
+        $c->stash->{rest} = { error => "Informe o ID do veículo do evento de imageamento!" };
         $c->detach();
     }
 
     if (!$selected_drone_run_id && !$new_drone_run_name) {
-        $c->stash->{rest} = { error => "Please select an imaging event or create a new imaging event!" };
+        $c->stash->{rest} = { error => "Selecione um evento de imageamento ou crie um novo evento de imageamento!" };
         $c->detach();
     }
     # if ($selected_drone_run_id && $new_drone_run_name){
@@ -105,24 +106,24 @@ sub upload_drone_imagery_POST : Args(0) {
     #     $c->detach();
     # }
     if ($new_drone_run_name && !$new_drone_run_type){
-        $c->stash->{rest} = { error => "Please give a new imaging event type!" };
+        $c->stash->{rest} = { error => "Informe o tipo do novo evento de imageamento!" };
         $c->detach();
     }
     if ($new_drone_run_name && !$new_drone_run_date){
-        $c->stash->{rest} = { error => "Please give a new imaging event date!" };
+        $c->stash->{rest} = { error => "Informe a data do novo evento de imageamento!" };
         $c->detach();
     }
     if ($new_drone_run_name && $new_drone_run_date !~ /^\d{4}\/\d{2}\/\d{2}\s\d\d:\d\d:\d\d$/){
-        $c->stash->{rest} = { error => "Please give a new imaging event date in the format YYYY/MM/DD HH:mm:ss!" };
+        $c->stash->{rest} = { error => "Informe a data do novo evento de imageamento no formato YYYY/MM/DD HH:mm:ss!" };
         $c->detach();
     }
     if ($new_drone_run_name && $new_drone_base_date && $new_drone_run_date !~ /^\d{4}\/\d{2}\/\d{2}\s\d\d:\d\d:\d\d$/){
-        $c->stash->{rest} = { error => "Please give a new imaging event base date in the format YYYY/MM/DD HH:mm:ss!" };
+        $c->stash->{rest} = { error => "Informe a data-base do novo evento de imageamento no formato YYYY/MM/DD HH:mm:ss!" };
         $c->detach();
     }
 
     if ($new_drone_run_name && !$new_drone_run_desc){
-        $c->stash->{rest} = { error => "Please give a new imaging event description!" };
+        $c->stash->{rest} = { error => "Informe a descrição do novo evento de imageamento!" };
         $c->detach();
     }
 
@@ -134,16 +135,16 @@ sub upload_drone_imagery_POST : Args(0) {
     my $new_drone_run_band_stitching_odm_radiocalibration = $c->req->param('drone_image_upload_drone_run_band_stitching_odm_radiocalibration') eq "Yes" ? 1 : 0;
 
     if (!$new_drone_run_camera_info) {
-        $c->stash->{rest} = { error => "Please indicate the type of camera!" };
+        $c->stash->{rest} = { error => "Indique o tipo de câmera!" };
         $c->detach();
     }
 
     if ($new_drone_run_band_stitching eq 'no' && !$new_drone_run_band_numbers) {
-        $c->stash->{rest} = { error => "Please give the number of new imaging event bands!" };
+        $c->stash->{rest} = { error => "Informe o número de bandas do novo evento de imageamento!" };
         $c->detach();
     }
     if (!$new_drone_run_band_stitching) {
-        $c->stash->{rest} = { error => "Please indicate if the images are stitched!" };
+        $c->stash->{rest} = { error => "Indique se as imagens já estão unidas em ortofotomosaico!" };
         $c->detach();
     }
 
@@ -152,11 +153,11 @@ sub upload_drone_imagery_POST : Args(0) {
         my $upload_file = $c->req->upload('upload_drone_images_zipfile');
         my $upload_panel_file = $c->req->upload('upload_drone_images_panel_zipfile');
         if (!$upload_file) {
-            $c->stash->{rest} = { error => "Please provide a zipfile of raw images!" };
+            $c->stash->{rest} = { error => "Forneça um arquivo ZIP com as imagens brutas!" };
             $c->detach();
         }
         if (!$upload_panel_file && $new_drone_run_camera_info eq 'micasense_5') {
-            $c->stash->{rest} = { error => "Please provide a zipfile of images of the Micasense radiometric calibration panels!" };
+            $c->stash->{rest} = { error => "Forneça um arquivo ZIP com as imagens dos painéis de calibração radiométrica Micasense!" };
             $c->detach();
         }
 
@@ -165,7 +166,7 @@ sub upload_drone_imagery_POST : Args(0) {
         $h->execute();
         my ($odm_running_count) = $h->fetchrow_array();
         if ($odm_running_count >= $c->config->{opendronemap_max_processes}) {
-            $c->stash->{rest} = { error => "There are already the maximum number of OpenDroneMap processes running on this machine! Please check back later when those processes are complete." };
+            $c->stash->{rest} = { error => "Já existe o número máximo de processos do OpenDroneMap em execução nesta máquina! Volte mais tarde, quando esses processos tiverem terminado." };
             $c->detach();
         }
     }
@@ -209,7 +210,7 @@ sub upload_drone_imagery_POST : Args(0) {
         }
         my $drone_run_date_obj = Time::Piece->strptime($new_drone_run_date, "%Y/%m/%d %H:%M:%S");
         if (exists($seen_field_trial_drone_run_dates{$drone_run_date_obj->epoch})) {
-            $c->stash->{rest} = { error => "An imaging event has already occured on this field trial at the same date and time! Please give a unique date/time for each imaging event!" };
+            $c->stash->{rest} = { error => "Já existe um evento de imageamento neste ensaio de campo na mesma data e hora! Informe uma data/hora única para cada evento de imageamento!" };
             $c->detach();
         }
 
@@ -353,30 +354,30 @@ sub upload_drone_imagery_POST : Args(0) {
             my $new_drone_run_band_desc = $c->req->param('drone_run_band_description_1');
             my $new_drone_run_band_type = $c->req->param('drone_run_band_type_1');
             if (!$new_drone_run_band_name) {
-                $c->stash->{rest} = { error => "Please give a new imaging event band name!" };
+                $c->stash->{rest} = { error => "Informe o nome da banda do novo evento de imageamento!" };
                 $c->detach();
             }
             if (!$new_drone_run_band_desc){
-                $c->stash->{rest} = { error => "Please give a new imaging event band description!" };
+                $c->stash->{rest} = { error => "Informe a descrição da banda do novo evento de imageamento!" };
                 $c->detach();
             }
             if (!$new_drone_run_band_type){
-                $c->stash->{rest} = { error => "Please give a new imaging event band type!" };
+                $c->stash->{rest} = { error => "Informe o tipo da banda do novo evento de imageamento!" };
                 $c->detach();
             }
             if (!exists($image_types_allowed->{$new_drone_run_band_type})) {
-                $c->stash->{rest} = { error => "Imaging event band type not supported: $new_drone_run_band_type!" };
+                $c->stash->{rest} = { error => "Tipo de banda do evento de imageamento não suportado: $new_drone_run_band_type!" };
                 $c->detach();
             }
             if (exists($seen_image_types_upload{$new_drone_run_band_type})) {
-                $c->stash->{rest} = { error => "Imaging event band type is repeated: $new_drone_run_band_type! Each imaging event band in an imaging event should have a unique type!" };
+                $c->stash->{rest} = { error => "Tipo de banda do evento de imageamento repetido: $new_drone_run_band_type! Cada banda de um evento de imageamento deve ter um tipo único!" };
                 $c->detach();
             }
             $seen_image_types_upload{$new_drone_run_band_type}++;
 
             my $upload_file = $c->req->upload('drone_run_band_stitched_ortho_image_1');
             if (!$upload_file) {
-                $c->stash->{rest} = { error => "Please provide a zipfile OR a stitched ortho image!" };
+                $c->stash->{rest} = { error => "Forneça um arquivo ZIP OU um ortofotomosaico já unido!" };
                 $c->detach();
             }
 
@@ -392,30 +393,30 @@ sub upload_drone_imagery_POST : Args(0) {
                 my $new_drone_run_band_desc = $c->req->param('drone_run_band_description_'.$_);
                 my $new_drone_run_band_type = $c->req->param('drone_run_band_type_'.$_);
                 if (!$new_drone_run_band_name) {
-                    $c->stash->{rest} = { error => "Please give a new imaging event band name!".$_ };
+                    $c->stash->{rest} = { error => "Informe o nome da banda do novo evento de imageamento!".$_ };
                     $c->detach();
                 }
                 if (!$new_drone_run_band_desc){
-                    $c->stash->{rest} = { error => "Please give a new imaging event band description!" };
+                    $c->stash->{rest} = { error => "Informe a descrição da banda do novo evento de imageamento!" };
                     $c->detach();
                 }
                 if (!$new_drone_run_band_type){
-                    $c->stash->{rest} = { error => "Please give a new imaging event band type!" };
+                    $c->stash->{rest} = { error => "Informe o tipo da banda do novo evento de imageamento!" };
                     $c->detach();
                 }
                 if (!exists($image_types_allowed->{$new_drone_run_band_type})) {
-                    $c->stash->{rest} = { error => "Imaging event band type not supported: $new_drone_run_band_type!" };
+                    $c->stash->{rest} = { error => "Tipo de banda do evento de imageamento não suportado: $new_drone_run_band_type!" };
                     $c->detach();
                 }
                 if (exists($seen_image_types_upload{$new_drone_run_band_type})) {
-                    $c->stash->{rest} = { error => "Imaging event band type is repeated: $new_drone_run_band_type! Each imaging event band in an imaging event should have a unique type!" };
+                    $c->stash->{rest} = { error => "Tipo de banda do evento de imageamento repetido: $new_drone_run_band_type! Cada banda de um evento de imageamento deve ter um tipo único!" };
                     $c->detach();
                 }
                 $seen_image_types_upload{$new_drone_run_band_type}++;
 
                 my $upload_file = $c->req->upload('drone_run_band_stitched_ortho_image_'.$_);
                 if (!$upload_file) {
-                    $c->stash->{rest} = { error => "Please provide a zipfile OR a stitched ortho image!" };
+                    $c->stash->{rest} = { error => "Forneça um arquivo ZIP OU um ortofotomosaico já unido!" };
                     $c->detach();
                 }
 
@@ -454,7 +455,7 @@ sub upload_drone_imagery_POST : Args(0) {
             my $archived_filename_with_path = $uploader->archive();
             my $md5 = $uploader->get_md5($archived_filename_with_path);
             if (!$archived_filename_with_path) {
-                $c->stash->{rest} = { error => "Could not save file $upload_original_name in archive." };
+                $c->stash->{rest} = { error => "Não foi possível salvar o arquivo $upload_original_name no arquivo permanente." };
                 $c->detach();
             }
             unlink $upload_tempfile;
@@ -487,11 +488,11 @@ sub upload_drone_imagery_POST : Args(0) {
         my $stitching_work_pix = $c->req->param('upload_drone_images_stitching_work_pix');
 
         if (!$upload_file) {
-            $c->stash->{rest} = { error => "Please provide a drone image zipfile of raw images to stitch!" };
+            $c->stash->{rest} = { error => "Forneça um arquivo ZIP com as imagens brutas do drone para unir!" };
             $c->detach();
         }
         if (!$upload_panel_file && $new_drone_run_camera_info eq 'micasense_5') {
-            $c->stash->{rest} = { error => "Please provide a zipfile of images of the Micasense radiometric calibration panels!" };
+            $c->stash->{rest} = { error => "Forneça um arquivo ZIP com as imagens dos painéis de calibração radiométrica Micasense!" };
             $c->detach();
         }
 
@@ -512,7 +513,7 @@ sub upload_drone_imagery_POST : Args(0) {
         my $archived_filename_with_path = $uploader->archive();
         my $md5 = $uploader->get_md5($archived_filename_with_path);
         if (!$archived_filename_with_path) {
-            $c->stash->{rest} = { error => "Could not save file $upload_original_name in archive." };
+            $c->stash->{rest} = { error => "Não foi possível salvar o arquivo $upload_original_name no arquivo permanente." };
             $c->detach();
         }
         unlink $upload_tempfile;
@@ -522,7 +523,7 @@ sub upload_drone_imagery_POST : Args(0) {
         my $zipfile_return = $image->upload_drone_imagery_zipfile($archived_filename_with_path, $user_id, $selected_drone_run_id);
         print STDERR Dumper $zipfile_return;
         if ($zipfile_return->{error}) {
-            $c->stash->{rest} = { error => "Problem saving images!".$zipfile_return->{error} };
+            $c->stash->{rest} = { error => "Problema ao salvar as imagens!".$zipfile_return->{error} };
             $c->detach();
         }
         my $image_paths = $zipfile_return->{image_files};
@@ -566,7 +567,7 @@ sub upload_drone_imagery_POST : Args(0) {
             my $archived_filename_with_path_panel = $uploader_panel->archive();
             my $md5_panel = $uploader->get_md5($archived_filename_with_path_panel);
             if (!$archived_filename_with_path_panel) {
-                $c->stash->{rest} = { error => "Could not save file $upload_original_name_panel in archive." };
+                $c->stash->{rest} = { error => "Não foi possível salvar o arquivo $upload_original_name_panel no arquivo permanente." };
                 $c->detach();
             }
             unlink $upload_tempfile_panel;
@@ -576,7 +577,7 @@ sub upload_drone_imagery_POST : Args(0) {
             my $zipfile_return_panel = $image->upload_drone_imagery_zipfile($archived_filename_with_path_panel, $user_id, $selected_drone_run_id);
             print STDERR Dumper $zipfile_return_panel;
             if ($zipfile_return_panel->{error}) {
-                $c->stash->{rest} = { error => "Problem saving panel images!".$zipfile_return_panel->{error} };
+                $c->stash->{rest} = { error => "Problema ao salvar as imagens dos painéis!".$zipfile_return_panel->{error} };
                 $c->detach();
             }
             my $image_paths_panel = $zipfile_return_panel->{image_files};
@@ -639,7 +640,7 @@ sub upload_drone_imagery_POST : Args(0) {
             my $archived_filename_with_path = $uploader->archive();
             my $md5 = $uploader->get_md5($archived_filename_with_path);
             if (!$archived_filename_with_path) {
-                $c->stash->{rest} = { error => "Could not save file $upload_original_name in archive." };
+                $c->stash->{rest} = { error => "Não foi possível salvar o arquivo $upload_original_name no arquivo permanente." };
                 $c->detach();
             }
             unlink $upload_tempfile;
@@ -678,11 +679,11 @@ sub upload_drone_imagery_POST : Args(0) {
         my $drone_run_raw_image_boundaries_column_alley_width = $c->req->param('drone_run_raw_image_boundaries_column_alley_width');
 
         if (!$upload_file) {
-            $c->stash->{rest} = { error => "Please provide a drone image zipfile of raw images to stitch!" };
+            $c->stash->{rest} = { error => "Forneça um arquivo ZIP com as imagens brutas do drone para unir!" };
             $c->detach();
         }
         if (!$upload_panel_file && $new_drone_run_camera_info eq 'micasense_5') {
-            $c->stash->{rest} = { error => "Please provide a zipfile of images of the Micasense radiometric calibration panels!" };
+            $c->stash->{rest} = { error => "Forneça um arquivo ZIP com as imagens dos painéis de calibração radiométrica Micasense!" };
             $c->detach();
         }
 
@@ -703,7 +704,7 @@ sub upload_drone_imagery_POST : Args(0) {
         my $archived_filename_with_path = $uploader->archive();
         my $md5 = $uploader->get_md5($archived_filename_with_path);
         if (!$archived_filename_with_path) {
-            $c->stash->{rest} = { error => "Could not save file $upload_original_name in archive." };
+            $c->stash->{rest} = { error => "Não foi possível salvar o arquivo $upload_original_name no arquivo permanente." };
             $c->detach();
         }
         unlink $upload_tempfile;
@@ -713,7 +714,7 @@ sub upload_drone_imagery_POST : Args(0) {
         my $zipfile_return = $image->upload_drone_imagery_zipfile($archived_filename_with_path, $user_id, $selected_drone_run_id);
         print STDERR Dumper $zipfile_return;
         if ($zipfile_return->{error}) {
-            $c->stash->{rest} = { error => "Problem saving images!".$zipfile_return->{error} };
+            $c->stash->{rest} = { error => "Problema ao salvar as imagens!".$zipfile_return->{error} };
             $c->detach();
         }
         my $image_paths = $zipfile_return->{image_files};
@@ -752,7 +753,7 @@ sub upload_drone_imagery_POST : Args(0) {
             my $archived_filename_with_path_panel = $uploader_panel->archive();
             my $md5_panel = $uploader->get_md5($archived_filename_with_path_panel);
             if (!$archived_filename_with_path_panel) {
-                $c->stash->{rest} = { error => "Could not save file $upload_original_name_panel in archive." };
+                $c->stash->{rest} = { error => "Não foi possível salvar o arquivo $upload_original_name_panel no arquivo permanente." };
                 $c->detach();
             }
             unlink $upload_tempfile_panel;
@@ -762,7 +763,7 @@ sub upload_drone_imagery_POST : Args(0) {
             my $zipfile_return_panel = $image->upload_drone_imagery_zipfile($archived_filename_with_path_panel, $user_id, $selected_drone_run_id);
             print STDERR Dumper $zipfile_return_panel;
             if ($zipfile_return_panel->{error}) {
-                $c->stash->{rest} = { error => "Problem saving panel images!".$zipfile_return_panel->{error} };
+                $c->stash->{rest} = { error => "Problema ao salvar as imagens dos painéis!".$zipfile_return_panel->{error} };
                 $c->detach();
             }
             my $image_paths_panel = $zipfile_return_panel->{image_files};
@@ -872,7 +873,7 @@ sub upload_drone_imagery_POST : Args(0) {
             my $archived_filename_with_path = $uploader->archive();
             my $md5 = $uploader->get_md5($archived_filename_with_path);
             if (!$archived_filename_with_path) {
-                $c->stash->{rest} = { error => "Could not save file $upload_original_name in archive." };
+                $c->stash->{rest} = { error => "Não foi possível salvar o arquivo $upload_original_name no arquivo permanente." };
                 $c->detach();
             }
             unlink $upload_tempfile;
@@ -892,11 +893,11 @@ sub upload_drone_imagery_POST : Args(0) {
         my $upload_panel_file = $c->req->upload('upload_drone_images_panel_zipfile');
 
         if (!$upload_file) {
-            $c->stash->{rest} = { error => "Please provide a drone image zipfile of raw images!" };
+            $c->stash->{rest} = { error => "Forneça um arquivo ZIP com as imagens brutas do drone!" };
             $c->detach();
         }
         if (!$upload_panel_file && $new_drone_run_camera_info eq 'micasense_5') {
-            $c->stash->{rest} = { error => "Please provide a zipfile of images of the Micasense radiometric calibration panels!" };
+            $c->stash->{rest} = { error => "Forneça um arquivo ZIP com as imagens dos painéis de calibração radiométrica Micasense!" };
             $c->detach();
         }
 
@@ -917,7 +918,7 @@ sub upload_drone_imagery_POST : Args(0) {
         my $archived_filename_with_path = $uploader->archive();
         my $md5 = $uploader->get_md5($archived_filename_with_path);
         if (!$archived_filename_with_path) {
-            $c->stash->{rest} = { error => "Could not save file $upload_original_name in archive." };
+            $c->stash->{rest} = { error => "Não foi possível salvar o arquivo $upload_original_name no arquivo permanente." };
             $c->detach();
         }
         unlink $upload_tempfile;
@@ -927,7 +928,7 @@ sub upload_drone_imagery_POST : Args(0) {
         my $zipfile_return = $image->upload_drone_imagery_zipfile($archived_filename_with_path, $user_id, $selected_drone_run_id);
         print STDERR Dumper $zipfile_return;
         if ($zipfile_return->{error}) {
-            $c->stash->{rest} = { error => "Problem saving images!".$zipfile_return->{error} };
+            $c->stash->{rest} = { error => "Problema ao salvar as imagens!".$zipfile_return->{error} };
             $c->detach();
         }
         my $image_paths = $zipfile_return->{image_files};
@@ -968,7 +969,7 @@ sub upload_drone_imagery_POST : Args(0) {
             my $archived_filename_with_path_panel = $uploader_panel->archive();
             my $md5_panel = $uploader->get_md5($archived_filename_with_path_panel);
             if (!$archived_filename_with_path_panel) {
-                $c->stash->{rest} = { error => "Could not save file $upload_original_name_panel in archive." };
+                $c->stash->{rest} = { error => "Não foi possível salvar o arquivo $upload_original_name_panel no arquivo permanente." };
                 $c->detach();
             }
             unlink $upload_tempfile_panel;
@@ -978,7 +979,7 @@ sub upload_drone_imagery_POST : Args(0) {
             my $zipfile_return_panel = $image->upload_drone_imagery_zipfile($archived_filename_with_path_panel, $user_id, $selected_drone_run_id);
             print STDERR Dumper $zipfile_return_panel;
             if ($zipfile_return_panel->{error}) {
-                $c->stash->{rest} = { error => "Problem saving panel images!".$zipfile_return_panel->{error} };
+                $c->stash->{rest} = { error => "Problema ao salvar as imagens dos painéis!".$zipfile_return_panel->{error} };
                 $c->detach();
             }
             my $image_paths_panel = $zipfile_return_panel->{image_files};
@@ -1031,7 +1032,7 @@ sub upload_drone_imagery_POST : Args(0) {
         my $alignment_archived_filename_with_path = $uploader_alignment->archive();
         my $alignment_md5 = $uploader_alignment->get_md5($archived_filename_with_path);
         if (!$alignment_archived_filename_with_path) {
-            return { error => "Could not save file $alignment_output_path_name in archive." };
+            return { error => "Não foi possível salvar o arquivo $alignment_output_path_name no arquivo permanente." };
         }
         print STDERR "Archived Alignment Matrices File: $alignment_archived_filename_with_path\n";
 
@@ -1147,7 +1148,7 @@ sub upload_drone_imagery_POST : Args(0) {
         my $archived_filename_with_path = $uploader->archive();
         my $md5 = $uploader->get_md5($archived_filename_with_path);
         if (!$archived_filename_with_path) {
-            $c->stash->{rest} = { error => "Could not save file $upload_original_name in archive." };
+            $c->stash->{rest} = { error => "Não foi possível salvar o arquivo $upload_original_name no arquivo permanente." };
             $c->detach();
         }
         unlink $upload_tempfile;
@@ -1157,7 +1158,7 @@ sub upload_drone_imagery_POST : Args(0) {
         my $zipfile_return = $image->upload_drone_imagery_zipfile($archived_filename_with_path, $user_id, $selected_drone_run_id);
         # print STDERR Dumper $zipfile_return;
         if ($zipfile_return->{error}) {
-            $c->stash->{rest} = { error => "Problem saving images!".$zipfile_return->{error} };
+            $c->stash->{rest} = { error => "Problema ao salvar as imagens!".$zipfile_return->{error} };
             $c->detach();
         }
         my $image_paths = $zipfile_return->{image_files};
@@ -1179,7 +1180,7 @@ sub upload_drone_imagery_POST : Args(0) {
             my $archived_filename_with_path_odm_img = $uploader_odm_dir->archive();
             my $md5 = $uploader_odm_dir->get_md5($archived_filename_with_path_odm_img);
             if (!$archived_filename_with_path_odm_img) {
-                $c->stash->{rest} = { error => "Could not save file $i in archive." };
+                $c->stash->{rest} = { error => "Não foi possível salvar o arquivo $i no arquivo permanente." };
                 $c->detach();
             }
             print STDERR "Archived Drone Image ODM IMG File: $archived_filename_with_path_odm_img\n";
@@ -1193,7 +1194,7 @@ sub upload_drone_imagery_POST : Args(0) {
         }
 
         if ($current_odm_image_count < 25) {
-            $c->stash->{rest} = { error => "Upload more than $current_odm_image_count images! Atleast 25 are required for OpenDroneMap to stitch. Upload now and try again!", drone_run_project_id => $selected_drone_run_id, current_image_count => $current_odm_image_count };
+            $c->stash->{rest} = { error => "Envie mais de $current_odm_image_count imagens! São necessárias pelo menos 25 para que o OpenDroneMap possa uni-las. Envie agora e tente novamente!", drone_run_project_id => $selected_drone_run_id, current_image_count => $current_odm_image_count };
             $c->detach();
         }
 
@@ -1237,7 +1238,7 @@ sub upload_drone_imagery_POST : Args(0) {
                 my $archived_filename_panel_with_path = $uploader_panel->archive();
                 my $md5_panel = $uploader_panel->get_md5($archived_filename_panel_with_path);
                 if (!$archived_filename_panel_with_path) {
-                    $c->stash->{rest} = { error => "Could not save file $archived_filename_panel_with_path in archive." };
+                    $c->stash->{rest} = { error => "Não foi possível salvar o arquivo $archived_filename_panel_with_path no arquivo permanente." };
                     $c->detach();
                 }
                 unlink $upload_panel_tempfile;
@@ -1331,7 +1332,7 @@ sub upload_drone_imagery_POST : Args(0) {
                 my $archived_filename_with_path = $uploader->archive();
                 my $md5 = $uploader->get_md5($archived_filename_with_path);
                 if (!$archived_filename_with_path) {
-                    $c->stash->{rest} = { error => "Could not save file $upload_original_name in archive." };
+                    $c->stash->{rest} = { error => "Não foi possível salvar o arquivo $upload_original_name no arquivo permanente." };
                     $c->detach();
                 }
                 unlink $upload_tempfile;
@@ -1373,7 +1374,7 @@ sub upload_drone_imagery_new_vehicle_GET : Args(0) {
 
     my $v_check = $schema->resultset("Stock::Stock")->find({uniquename => $vehicle_name});
     if ($v_check) {
-        $c->stash->{rest} = {error => "Vehicle name $vehicle_name is already in use!"};
+        $c->stash->{rest} = {error => "O nome de veículo $vehicle_name já está em uso!"};
         $c->detach();
     }
 
@@ -1408,7 +1409,7 @@ sub _check_user_login {
         my $dbh = $c->dbc->dbh;
         my @user_info = CXGN::Login->new($dbh)->query_from_cookie($session_id);
         if (!$user_info[0]){
-            $c->stash->{rest} = {error=>'You must be logged in to do this!'};
+            $c->stash->{rest} = {error=>'Você precisa estar conectado para fazer isso!'};
             $c->detach();
         }
         $user_id = $user_info[0];
@@ -1417,7 +1418,7 @@ sub _check_user_login {
         $user_name = $p->get_username;
     } else{
         if (!$c->user){
-            $c->stash->{rest} = {error=>'You must be logged in to do this!'};
+            $c->stash->{rest} = {error=>'Você precisa estar conectado para fazer isso!'};
             $c->detach();
         }
         $user_id = $c->user()->get_object()->get_sp_person_id();

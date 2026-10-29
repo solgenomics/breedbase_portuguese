@@ -39,18 +39,18 @@ function getSel() {
 }
 
 function selectedblastp(selection){
-      HTML = "<a class='external' href='http://www.ncbi.nlm.nih.gov/blast/Blast.cgi?CMD=Put&QUERY=" + selection + "&DATABASE=nr&PROGRAM=blastp&FILTER=L&HITLIST_SZE=500'>Perform BLASTP on Selection (" + selection.length + " aa)</a>";
+      HTML = "<a class='external' href='http://www.ncbi.nlm.nih.gov/blast/Blast.cgi?CMD=Put&QUERY=" + selection + "&DATABASE=nr&PROGRAM=blastp&FILTER=L&HITLIST_SZE=500'>Executar BLASTP na seleção (" + selection.length + " aa)</a>";
       document.getElementById('selectedblastp').innerHTML = HTML;
 
 }
 
 function selectedblastnfull(selection){
-      HTML = "<a class='external' href='http://www.ncbi.nlm.nih.gov/blast/Blast.cgi?CMD=Put&QUERY=" + selection + "&DATABASE=nr&PROGRAM=blastn&FILTER=L&HITLIST_SZE=500'>Perform BLASTN on Selection (" + selection.length + " Bp)</a>";
+      HTML = "<a class='external' href='http://www.ncbi.nlm.nih.gov/blast/Blast.cgi?CMD=Put&QUERY=" + selection + "&DATABASE=nr&PROGRAM=blastn&FILTER=L&HITLIST_SZE=500'>Executar BLASTN na seleção (" + selection.length + " pb)</a>";
       document.getElementById('selectedblastnfull').innerHTML = HTML;
 }
 
 function selectedblastncds(selection){
-      HTML = "<a class='external' href='http://www.ncbi.nlm.nih.gov/blast/Blast.cgi?CMD=Put&QUERY=" + selection + "&DATABASE=nr&PROGRAM=blastn&FILTER=L&HITLIST_SZE=500'>Perform BLASTN on Selection (" + selection.length + " Bp)</a>";
+      HTML = "<a class='external' href='http://www.ncbi.nlm.nih.gov/blast/Blast.cgi?CMD=Put&QUERY=" + selection + "&DATABASE=nr&PROGRAM=blastn&FILTER=L&HITLIST_SZE=500'>Executar BLASTN na seleção (" + selection.length + " pb)</a>";
       document.getElementById('selectedblastncds').innerHTML = HTML;
 }
 
@@ -239,13 +239,13 @@ function switchParen(id){
 
 	if(formparen.value=='0'){
 		formparen.value=1;
-		parencontent.innerHTML = "<span style='color:#442277'>(Juntos)</span>";
+		parencontent.innerHTML = "<span style='color:#442277'>(Agrupados)</span>";
 		jointop.innerHTML="";
 		joinbottom.innerHTML="";
 	}
 	else{
 		formparen.value=0;
-		parencontent.innerHTML = "(Junte-se)";
+		parencontent.innerHTML = "(Agrupar)";
 		jointop.innerHTML="<br>";
 		joinbottom.innerHTML="<br>";
 	}

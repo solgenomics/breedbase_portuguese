@@ -1,4 +1,5 @@
 package CXGN::Genotype::StorePCRMarkerInfo;
+use utf8;
 
 =head1 NAME
 
@@ -92,7 +93,7 @@ sub store_pcr_marker_info {
         name => $protocol_name,
     });
     if ($protocol_rs) {
-        return { error => "The protocol name: $protocol_name has already been used! Please use a new name." };
+        return { error => "O nome do protocolo $protocol_name já foi usado! Use um novo nome." };
     }
     else {
         $protocol_rs = $schema->resultset("NaturalDiversity::NdProtocol")->create({

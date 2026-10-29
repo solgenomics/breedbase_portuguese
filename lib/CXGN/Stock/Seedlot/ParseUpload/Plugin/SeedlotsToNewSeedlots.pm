@@ -1,5 +1,6 @@
 package CXGN::Stock::Seedlot::ParseUpload::Plugin::SeedlotsToNewSeedlots;
 
+use utf8;
 use Moose::Role;
 use Spreadsheet::ParseExcel;
 use Spreadsheet::ParseXLSX;
@@ -40,7 +41,7 @@ sub _validate_with_plugin {
 
     my $worksheet = ( $excel_obj->worksheets() )[0]; #support only one worksheet
     if (!$worksheet) {
-        push @error_messages, "Spreadsheet must be on 1st tab in Excel (.xls) file";
+        push @error_messages, "A planilha deve estar na 1ª aba do arquivo Excel (.xls)";
         $errors{'error_messages'} = \@error_messages;
         $self->_set_parse_errors(\%errors);
         return;
@@ -48,7 +49,7 @@ sub _validate_with_plugin {
     my ( $row_min, $row_max ) = $worksheet->row_range();
     my ( $col_min, $col_max ) = $worksheet->col_range();
     if (($col_max - $col_min)  < 2 || ($row_max - $row_min) < 1 ) { #must have header and at least one row of transaction data
-        push @error_messages, "Spreadsheet is missing header or contains no rows";
+        push @error_messages, "A planilha não tem cabeçalho ou não contém linhas";
         $errors{'error_messages'} = \@error_messages;
         $self->_set_parse_errors(\%errors);
         return;
@@ -104,31 +105,31 @@ sub _validate_with_plugin {
 
 
     if (!$from_seedlot_name_head || $from_seedlot_name_head ne 'from_seedlot_name' ) {
-        push @error_messages, "Cell A1: from_seedlot_name is missing from the header";
+        push @error_messages, "Célula A1: from_seedlot_name está ausente do cabeçalho";
     }
     if (!$amount_head || $amount_head ne 'amount') {
-        push @error_messages, "Cell B1: amount is missing from the header";
+        push @error_messages, "Célula B1: amount está ausente do cabeçalho";
     }
     if (!$weight_head || $weight_head ne 'weight(g)') {
-        push @error_messages, "Cell C1: weight(g) is missing from the header";
+        push @error_messages, "Célula C1: weight(g) está ausente do cabeçalho";
     }
     if (!$operator_name_head || $operator_name_head ne 'operator_name') {
-        push @error_messages, "Cell D1: operator_name is missing from the header";
+        push @error_messages, "Célula D1: operator_name está ausente do cabeçalho";
     }
     if (!$transaction_description_head || $transaction_description_head ne 'transaction_description') {
-        push @error_messages, "Cell E1: transaction_description is missing from the header";
+        push @error_messages, "Célula E1: transaction_description está ausente do cabeçalho";
     }
     if (!$to_new_seedlot_name_head || $to_new_seedlot_name_head ne 'to_new_seedlot_name') {
-        push @error_messages, "Cell F1: to_new_seedlot_name is missing from the header";
+        push @error_messages, "Célula F1: to_new_seedlot_name está ausente do cabeçalho";
     }
     if (!$new_seedlot_box_name_head || $new_seedlot_box_name_head ne 'new_seedlot_box_name') {
-        push @error_messages, "Cell G1: new_seedlot_box_name is missing from the header";
+        push @error_messages, "Célula G1: new_seedlot_box_name está ausente do cabeçalho";
     }
     if (!$new_seedlot_description_head || $new_seedlot_description_head ne 'new_seedlot_description') {
-        push @error_messages, "Cell H1: new_seedlot_description is missing from the header";
+        push @error_messages, "Célula H1: new_seedlot_description está ausente do cabeçalho";
     }
     if (!$new_seedlot_quality_head || $new_seedlot_quality_head ne 'new_seedlot_quality') {
-        push @error_messages, "Cell I1: new_seedlot_quality is missing from the header";
+        push @error_messages, "Célula I1: new_seedlot_quality está ausente do cabeçalho";
     }
 
     my %seen_seedlot_names;
@@ -169,36 +170,36 @@ sub _validate_with_plugin {
         }
 
         if (!$from_seedlot_name || $from_seedlot_name eq '' ) {
-            push @error_messages, "Cell A$row_name: from_seedlot_name missing.";
+            push @error_messages, "Célula A$row_name: from_seedlot_name ausente.";
         } else {
             $from_seedlot_name =~ s/^\s+|\s+$//g;
             $seen_seedlot_names{$from_seedlot_name}++;
         }
 
         if (!defined($amount) || $amount eq '') {
-            push @error_messages, "Cell B$row_name: amount missing";
+            push @error_messages, "Célula B$row_name: amount ausente";
         }
 
         if (!defined($weight) || $weight eq '') {
-            push @error_messages, "Cell C$row_name: weight(g) missing";
+            push @error_messages, "Célula C$row_name: weight(g) ausente";
         }
         if ($amount eq 'NA' && $weight eq 'NA') {
-            push @error_messages, "On row:$row_name you must provide either a weight in grams or a seed count amount.";
+            push @error_messages, "Na linha $row_name, você deve informar um peso em gramas ou uma quantidade de sementes.";
         }
 
         if (!defined($operator_name) || $operator_name eq '') {
-            push @error_messages, "Cell D$row_name: operator_name missing";
+            push @error_messages, "Célula D$row_name: operator_name ausente";
         }
 
         if (!$to_new_seedlot_name || $to_new_seedlot_name eq '') {
-            push @error_messages, "Cell F:$row_name: to_new_seedlot_name missing.";
+            push @error_messages, "Célula F:$row_name: to_new_seedlot_name ausente.";
         } else {
             $to_new_seedlot_name =~ s/^\s+|\s+$//g;
             $seen_new_seedlot_names{$to_new_seedlot_name}++;
         }
 
         if (!defined($new_seedlot_box_name) || $new_seedlot_box_name eq '') {
-            push @error_messages, "Cell G$row_name: new_seedlot_box_name missing";
+            push @error_messages, "Célula G$row_name: new_seedlot_box_name ausente";
         }
 
         if (defined $from_seedlot_name && defined $to_new_seedlot_name) {
@@ -221,11 +222,11 @@ sub _validate_with_plugin {
     }
 
     if (scalar(@seedlots_missing) > 0) {
-        push @error_messages, "The following seedlots are not in the database: ".join(',',@seedlots_missing);
+        push @error_messages, "Os seguintes lotes de sementes não estão no banco de dados: ".join(',',@seedlots_missing);
     }
 
     if (scalar(@seedlots_discarded) > 0) {
-        push @error_messages, "The following seedlots are marked as DISCARDED: ".join(',',@seedlots_discarded);
+        push @error_messages, "Os seguintes lotes de sementes estão marcados como DESCARTADOS: ".join(',',@seedlots_discarded);
     }
 
     my @new_seedlots = keys %seen_new_seedlot_names;
@@ -235,7 +236,7 @@ sub _validate_with_plugin {
     });
 
     while (my $seedlot_r=$seedlot_rs->next){
-        push @error_messages, "New seedlot name already exists in database: ".$seedlot_r->uniquename;
+        push @error_messages, "O nome do novo lote de sementes já existe no banco de dados: ".$seedlot_r->uniquename;
     }
 
     foreach my $new_sl (keys %check_new_seedlot_content){

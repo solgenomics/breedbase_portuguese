@@ -1,13 +1,13 @@
 <br />
-<& /page/page_title.mas, title=>"<i>Petunia axillaris</i> Rascunho da sequência do genoma v1.6.2" &>
+<& /page/page_title.mas, title=>"Sequência preliminar do genoma de <i>Petunia axillaris</i> v1.6.2" &>
 
 <p>
-  Uma sequência de rascunho do <i>Petunia axillaris</i> O genoma, um dos ancestrais da Petunia Hybrida, está disponível publicamente (Bombarely et al, 2016). A sequência do genoma de P. axilaris N, foi realizada usando um conjunto híbrido de novo com uma combinação de leitura curta (Illumina; cobertura 137X) e tecnologias de leitura longa (PacBio; cobertura 22X)<br>
+  Uma sequência preliminar do genoma de <i>Petunia axillaris</i>, um dos ancestrais de Petunia hybrida, está disponível publicamente (Bombarely et al, 2016). A sequência do genoma de P. axillaris N foi obtida por meio de uma montagem híbrida de novo, combinando tecnologias de leituras curtas (Illumina; cobertura de 137X) e de leituras longas (PacBio; cobertura de 22X)<br>
 </p>
 
 
 <p>
-  O <i>Petunia axillaris</i> Dados do genoma são acessíveis na SGN através do BLAST, JBrowse e da ferramenta SGN VIGS, e eles podem ser baixados do site SGN ftp.
+  Os dados do genoma de <i>Petunia axillaris</i> estão acessíveis na SGN por meio do BLAST, do JBrowse e da ferramenta SGN VIGS, e podem ser baixados do site FTP da SGN.
 </p>
 
 <br>
@@ -24,9 +24,9 @@
 <h4>Referências</h4>
 <ul style="list-style-type:disc">
   <li>
-    Bombarely, A., Moser, M, ... Sims, T.L. e Kuhlemeier, C. (2016)<br>
-    Visão sobre a evolução das Solanaceae dos genomas parentais de Petunia Hybrida<br>
-   <a href="https://www.nature.com/articles/nplants201674">Plantas Naturais 2, Artigo número: 16074 (2016)</a><br>
+    Bombarely, A., Moser, M, ... Sims, T.L. and Kuhlemeier, C. (2016)<br>
+    Insight into the evolution of the Solanaceae from the parental genomes of Petunia hybrida<br>
+   <a href="https://www.nature.com/articles/nplants201674">Nature Plants 2, Article number: 16074 (2016)</a><br>
   </li>
 </ul>
 <br>

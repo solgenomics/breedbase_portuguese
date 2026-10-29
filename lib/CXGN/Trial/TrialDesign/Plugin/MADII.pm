@@ -1,5 +1,6 @@
 
 package CXGN::Trial::TrialDesign::Plugin::MADII;
+use utf8;
 
 use Moose::Role;
 
@@ -37,7 +38,7 @@ sub create_design {
     if ($self->has_stock_list()) {
 	@stock_list = @{$self->get_stock_list()};
     } else {
-	die "No stock list specified\n";
+	die "Nenhuma lista de materiais especificada\n";
     }
     
     if ($self->has_control_list()) {
@@ -45,7 +46,7 @@ sub create_design {
 	%control_names_lookup = map { $_ => 1 } @control_list;
 	$self->_check_controls_and_accessions_lists;
     } else {
-	die "No list of control stocks specified.  Required for augmented design.\n";
+	die "Nenhuma lista de materiais de controle especificada. Obrigatória para o delineamento aumentado.\n";
   }
     
     #    if ($self->has_number_of_blocks()) {
@@ -57,7 +58,7 @@ sub create_design {
     if ($self->has_number_of_rows()) {
 	$number_of_rows = $self->get_number_of_rows();
     } else {
-	die "Number of rows not specified\n";
+	die "Número de linhas não especificado\n";
     }
     
     #system("R --slave --args $tempfile $tempfile_out < R/MADII_layout_function.R");

@@ -22,7 +22,7 @@ $top_blups
 <i>Top 10 genótipos</i>:
 
 <& /page/columnar_table.mas,
-  headings     => ["Genotypes", "GEBVs"],
+  headings     => ["Genótipos", "GEBVs"],
   data         => $top_blups,
   __alt_freq   => 2,
   __alt_width  => 1,

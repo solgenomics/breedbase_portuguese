@@ -1,4 +1,5 @@
 package SGN::Controller::AJAX::TrialAllocation;
+use utf8;
 
 use Moose;
 
@@ -120,7 +121,7 @@ sub generate_design :Path('/ajax/trialallocation/generate_design') :Args(0) {
     my $json_string = $c->req->param('trial');
 
     unless ($json_string) {
-        $c->stash->{rest} = { success => 0, error => "Missing 'trial' parameter" };
+        $c->stash->{rest} = { success => 0, error => "Parâmetro 'trial' ausente" };
         return;
     }
 
@@ -129,7 +130,7 @@ sub generate_design :Path('/ajax/trialallocation/generate_design') :Args(0) {
         $trial = decode_json($json_string);
     };
     if ($@ || !$trial) {
-        $c->stash->{rest} = { success => 0, error => "Invalid JSON in 'trial'" };
+        $c->stash->{rest} = { success => 0, error => "JSON inválido em 'trial'" };
         return;
     }
 
@@ -243,7 +244,7 @@ sub generate_design :Path('/ajax/trialallocation/generate_design') :Args(0) {
             my $r_output = -e $outfile ? read_file($outfile) : '';
             $c->stash->{rest} = {
                 success => 0,
-                error => 'Augmented Row-Column design generation failed. ' . ($r_output || 'No R output was produced.')
+                error => 'Falha ao gerar o delineamento Augmented Row-Column. ' . ($r_output || 'Nenhuma saída do R foi produzida.')
             };
             return;
         }
@@ -290,7 +291,7 @@ sub generate_design :Path('/ajax/trialallocation/generate_design') :Args(0) {
     # Return filenames
     $c->stash->{rest} = {
         success     => 1,
-        message     => "Files created and R script triggered.",
+        message     => "Arquivos criados e script R iniciado.",
         n_row   => $trial->{n_row},
         n_col   => $trial->{n_col},
         design  => $json_desing,
@@ -506,14 +507,14 @@ sub existing_trial_design :Path('/ajax/trialallocation/existing_trial_design') A
 
     my $trial_id = $c->req->param('trial_id');
     if (!$trial_id || $trial_id eq 'null') {
-        $c->stash->{rest} = { success => 0, error => 'Missing trial id.' };
+        $c->stash->{rest} = { success => 0, error => 'ID do ensaio ausente.' };
         return;
     }
 
     my $schema = $c->dbic_schema('Bio::Chado::Schema');
     my $trial = $schema->resultset('Project::Project')->find({ project_id => $trial_id });
     if (!$trial) {
-        $c->stash->{rest} = { success => 0, error => 'Trial not found.' };
+        $c->stash->{rest} = { success => 0, error => 'Ensaio não encontrado.' };
         return;
     }
 
@@ -550,7 +551,7 @@ sub existing_trial_design :Path('/ajax/trialallocation/existing_trial_design') A
 
     my @plots = ref($plots) eq 'HASH' ? @{$plots->{plots} || []} : @$plots;
     if (!@plots) {
-        $c->stash->{rest} = { success => 0, error => 'No plots found for selected trial.' };
+        $c->stash->{rest} = { success => 0, error => 'Nenhuma parcela encontrada para o ensaio selecionado.' };
         return;
     }
 
@@ -852,7 +853,7 @@ sub save_layout :Path('/ajax/trialallocation/save_layout') Args(0) {
     if (!$layout) {
         $c->stash->{rest} = {
             success => 0,
-            error   => "Invalid JSON in 'layout' param: $@"
+            error   => "JSON inválido no parâmetro 'layout': $@"
         };
         return;
     }
@@ -866,7 +867,7 @@ sub save_layout :Path('/ajax/trialallocation/save_layout') Args(0) {
     if (!$location_id || $location_id !~ /^\d+$/ || !$year) {
         $c->stash->{rest} = {
             success => 0,
-            error   => 'A valid location and year are required to save layout.'
+            error   => 'Um local e um ano válidos são necessários para salvar o layout.'
         };
         return;
     }
@@ -884,7 +885,7 @@ sub save_layout :Path('/ajax/trialallocation/save_layout') Args(0) {
     if (!$location) {
         $c->stash->{rest} = {
             success => 0,
-            error   => "Location $location_id was not found."
+            error   => "O local $location_id não foi encontrado."
         };
         return;
     }
@@ -927,14 +928,14 @@ sub save_layout :Path('/ajax/trialallocation/save_layout') Args(0) {
     if (!$saved) {
         $c->stash->{rest} = {
             success => 0,
-            error => "Could not save layout: $@"
+            error => "Não foi possível salvar o layout: $@"
         };
         return;
     }
 
     $c->stash->{rest} = {
         success => 1,
-        message => 'Layout saved.',
+        message => 'Layout salvo.',
         layout_count => scalar @remaining,
         existing_trials_updated => $existing_trials_updated
     };
@@ -954,7 +955,7 @@ sub _update_existing_trial_layouts_from_multi_layout {
         next unless $project_id && $project_id =~ /^\d+$/;
 
         my $project = $schema->resultset('Project::Project')->find({ project_id => $project_id });
-        die "Existing trial $project_id was not found.\n" unless $project;
+        die "O ensaio existente $project_id não foi encontrado.\n" unless $project;
 
         my $layout_prop = $project->projectprops->find({ type_id => $trial_layout_json_type_id });
         my $design = {};
@@ -971,7 +972,7 @@ sub _update_existing_trial_layouts_from_multi_layout {
             my $plot_name = _clean_optional_value($plot->{plot_name});
             my $plot_number = _clean_optional_value($plot->{plot_number}) || _clean_optional_value($plot->{original_plot_number});
 
-            die "Existing trial $project_id has a placed plot without row or column.\n" unless $row ne '' && $col ne '';
+            die "O ensaio existente $project_id tem uma parcela posicionada sem linha ou coluna.\n" unless $row ne '' && $col ne '';
 
             my $entry_key = _find_trial_layout_entry_key($design, $plot_id, $plot_name, $plot_number);
             $entry_key ||= $plot_number || $plot_id || _clean_optional_value($plot->{design_index});
@@ -1046,7 +1047,7 @@ sub get_layout :Path('/ajax/trialallocation/get_layout') Args(0) {
     if (!$location_id || $location_id !~ /^\d+$/ || !$year) {
         $c->stash->{rest} = {
             success => 0,
-            error => 'A valid location and year are required to load layout.'
+            error => 'Um local e um ano válidos são necessários para carregar o layout.'
         };
         return;
     }
@@ -1072,7 +1073,7 @@ sub get_layout :Path('/ajax/trialallocation/get_layout') Args(0) {
     if (!$stored || ref($stored) ne 'HASH') {
         $c->stash->{rest} = {
             success => 0,
-            error => 'Stored layout JSON could not be decoded.'
+            error => 'Não foi possível decodificar o JSON do layout armazenado.'
         };
         return;
     }
@@ -1090,7 +1091,7 @@ sub delete_layout :Path('/ajax/trialallocation/delete_layout') Args(0) {
     my ($self, $c) = @_;
 
     if (!$c->user || !$c->user->check_roles('curator')) {
-        $c->stash->{rest} = { success => 0, error => 'Only curators can delete a saved layout view.' };
+        $c->stash->{rest} = { success => 0, error => 'Somente curadores podem excluir uma visualização de layout salva.' };
         return;
     }
 
@@ -1100,7 +1101,7 @@ sub delete_layout :Path('/ajax/trialallocation/delete_layout') Args(0) {
     $season = '' unless defined $season;
 
     if (!$location_id || $location_id !~ /^\d+$/ || !$year) {
-        $c->stash->{rest} = { success => 0, error => 'A valid location and year are required to delete layout.' };
+        $c->stash->{rest} = { success => 0, error => 'Um local e um ano válidos são necessários para excluir o layout.' };
         return;
     }
 
@@ -1117,19 +1118,19 @@ sub delete_layout :Path('/ajax/trialallocation/delete_layout') Args(0) {
     });
 
     if (!$prop || !$prop->value) {
-        $c->stash->{rest} = { success => 0, error => 'No saved layout view was found.' };
+        $c->stash->{rest} = { success => 0, error => 'Nenhuma visualização de layout salva foi encontrada.' };
         return;
     }
 
     my $stored = eval { decode_json($prop->value) };
     if (!$stored || ref($stored) ne 'HASH') {
-        $c->stash->{rest} = { success => 0, error => 'Stored layout JSON could not be decoded.' };
+        $c->stash->{rest} = { success => 0, error => 'Não foi possível decodificar o JSON do layout armazenado.' };
         return;
     }
 
     my @remaining = grep { !_layout_key_matches($_, $year, $season) } @{$stored->{layouts} || []};
     if (@remaining == scalar(@{$stored->{layouts} || []})) {
-        $c->stash->{rest} = { success => 0, error => 'No matching saved layout view was found.' };
+        $c->stash->{rest} = { success => 0, error => 'Nenhuma visualização de layout salva correspondente foi encontrada.' };
         return;
     }
 
@@ -1144,7 +1145,7 @@ sub delete_layout_trial :Path('/ajax/trialallocation/delete_layout_trial') Args(
     my ($self, $c) = @_;
 
     if (!$c->user || !$c->user->check_roles('curator')) {
-        $c->stash->{rest} = { success => 0, error => 'Only curators can remove a trial from a saved layout view.' };
+        $c->stash->{rest} = { success => 0, error => 'Somente curadores podem remover um ensaio de uma visualização de layout salva.' };
         return;
     }
 
@@ -1156,11 +1157,11 @@ sub delete_layout_trial :Path('/ajax/trialallocation/delete_layout_trial') Args(
     $season = '' unless defined $season;
 
     if (!$location_id || $location_id !~ /^\d+$/ || !$year) {
-        $c->stash->{rest} = { success => 0, error => 'A valid location and year are required to update layout.' };
+        $c->stash->{rest} = { success => 0, error => 'Um local e um ano válidos são necessários para atualizar o layout.' };
         return;
     }
     if (!$root && $trial_index eq '') {
-        $c->stash->{rest} = { success => 0, error => 'A trial identifier is required.' };
+        $c->stash->{rest} = { success => 0, error => 'É necessário um identificador de ensaio.' };
         return;
     }
 
@@ -1177,13 +1178,13 @@ sub delete_layout_trial :Path('/ajax/trialallocation/delete_layout_trial') Args(
     });
 
     if (!$prop || !$prop->value) {
-        $c->stash->{rest} = { success => 0, error => 'No saved layout view was found.' };
+        $c->stash->{rest} = { success => 0, error => 'Nenhuma visualização de layout salva foi encontrada.' };
         return;
     }
 
     my $stored = eval { decode_json($prop->value) };
     if (!$stored || ref($stored) ne 'HASH') {
-        $c->stash->{rest} = { success => 0, error => 'Stored layout JSON could not be decoded.' };
+        $c->stash->{rest} = { success => 0, error => 'Não foi possível decodificar o JSON do layout armazenado.' };
         return;
     }
 
@@ -1207,7 +1208,7 @@ sub delete_layout_trial :Path('/ajax/trialallocation/delete_layout_trial') Args(
     }
 
     if (!$removed) {
-        $c->stash->{rest} = { success => 0, error => 'No matching trial was found in the saved layout view.' };
+        $c->stash->{rest} = { success => 0, error => 'Nenhum ensaio correspondente foi encontrado na visualização de layout salva.' };
         return;
     }
 
@@ -1277,20 +1278,20 @@ sub _layout_to_multiple_trial_rows {
     my $program_id = $breeding_program->{program_id};
     my $year = $layout->{year};
 
-    die "A valid location and year are required to save trials.\n"
+    die "Um local e um ano válidos são necessários para salvar os ensaios.\n"
         if !$location_id || $location_id !~ /^\d+$/ || !$year;
-    die "A valid breeding program is required to save trials.\n"
+    die "Um programa de melhoramento válido é necessário para salvar os ensaios.\n"
         if !$program_id || $program_id !~ /^\d+$/;
 
     my $location = $schema->resultset('NaturalDiversity::NdGeolocation')->find({
         nd_geolocation_id => $location_id
     });
-    die "Location $location_id was not found.\n" unless $location;
+    die "O local $location_id não foi encontrado.\n" unless $location;
 
     my $program = $schema->resultset('Project::Project')->find({
         project_id => $program_id
     });
-    die "Breeding program $program_id was not found.\n" unless $program;
+    die "O programa de melhoramento $program_id não foi encontrado.\n" unless $program;
 
     my %forms_by_index = map { $_->{trial_index} => $_ } @{$layout->{trial_forms} || []};
     my @rows;
@@ -1301,16 +1302,16 @@ sub _layout_to_multiple_trial_rows {
         my $trial_name = _sanitize_trial_allocation_trial_name($form->{name});
         my $design_type = _trial_allocation_design_type(_clean_optional_value($form->{design}));
 
-        die "Trial " . ($trial_index + 1) . " is missing a trial name.\n" unless $trial_name;
-        die "Trial $trial_name is missing a valid design type.\n" unless $design_type;
+        die "O ensaio " . ($trial_index + 1) . " não tem nome de ensaio.\n" unless $trial_name;
+        die "O ensaio $trial_name não tem um tipo de delineamento válido.\n" unless $design_type;
 
         foreach my $plot (sort { ($a->{design_index} || 0) <=> ($b->{design_index} || 0) } @{$placed_trial->{plots} || []}) {
             my $plot_number = _clean_optional_value($plot->{plot_number}) || _clean_optional_value($plot->{original_plot_number});
             my $accession_name = _clean_optional_value($plot->{filler_accession}) || _clean_optional_value($plot->{accession_name});
             my $block_number = _clean_optional_value($plot->{block}) || 1;
 
-            die "Trial $trial_name has a plot without a plot number.\n" unless $plot_number;
-            die "Trial $trial_name plot $plot_number has no accession name.\n" unless $accession_name;
+            die "O ensaio $trial_name tem uma parcela sem número de parcela.\n" unless $plot_number;
+            die "A parcela $plot_number do ensaio $trial_name não tem nome de acesso.\n" unless $accession_name;
 
             push @rows, {
                 trial_name => $trial_name,
@@ -1334,7 +1335,7 @@ sub _layout_to_multiple_trial_rows {
         }
     }
 
-    die "There are no placed trial plots to save.\n" unless @rows;
+    die "Não há parcelas de ensaio posicionadas para salvar.\n" unless @rows;
 
     return \@rows;
 }
@@ -1349,7 +1350,7 @@ sub _write_multiple_trial_upload_file {
     my $filepath = $c->config->{basepath} . "/" . $tempfile . ".tsv";
     close($fh);
 
-    open(my $out, ">", $filepath) or die "Could not write multi-trial upload file: $!";
+    open(my $out, ">", $filepath) or die "Não foi possível gravar o arquivo de envio de múltiplos ensaios: $!";
     my $csv = Text::CSV->new({ sep_char => "\t", binary => 1, eol => "\n" });
     $csv->print($out, \@columns);
     foreach my $row (@$rows) {
@@ -1378,7 +1379,7 @@ sub _parse_multiple_trial_upload_file {
         my $warnings = $parser->get_parse_warnings();
         die join("\n", @{$warnings->{warning_messages} || []}) . "\n";
     }
-    die "There is no parsed data from the generated multi-trial file.\n" if !$parsed_data;
+    die "Não há dados processados do arquivo de múltiplos ensaios gerado.\n" if !$parsed_data;
 
     return $parsed_data;
 }
@@ -1387,11 +1388,11 @@ sub save_trials_database :Path('/ajax/trialallocation/save_trials_database') Arg
     my ($self, $c) = @_;
 
     if (!$c->user()) {
-        $c->stash->{rest} = { success => 0, error => "You need to be logged in to save trials." };
+        $c->stash->{rest} = { success => 0, error => "Você precisa estar conectado para salvar ensaios." };
         return;
     }
     if (!any { $_ eq "curator" || $_ eq "submitter" } ($c->user()->roles)) {
-        $c->stash->{rest} = { success => 0, error => "You have insufficient privileges to save trials." };
+        $c->stash->{rest} = { success => 0, error => "Você não tem privilégios suficientes para salvar ensaios." };
         return;
     }
 
@@ -1400,7 +1401,7 @@ sub save_trials_database :Path('/ajax/trialallocation/save_trials_database') Arg
     if (!$layout) {
         $c->stash->{rest} = {
             success => 0,
-            error => "Invalid JSON in 'layout' param: $@"
+            error => "JSON inválido no parâmetro 'layout': $@"
         };
         return;
     }
@@ -1448,14 +1449,14 @@ sub save_trials_database :Path('/ajax/trialallocation/save_trials_database') Arg
                 $trial_info_hash{field_size} = $trial_design->{field_size} if $trial_design->{field_size};
 
                 my $trial_create = CXGN::Trial::TrialCreate->new(\%trial_info_hash);
-                die "Trial name \"" . $trial_create->get_trial_name() . "\" already exists.\n"
+                die "O nome de ensaio \"" . $trial_create->get_trial_name() . "\" já existe.\n"
                     if $trial_create->trial_name_already_exists();
 
                 my $save = $trial_create->save_trial();
                 die $save->{error} . "\n" if $save->{error};
 
                 my $trial_id = $save->{trial_id};
-                die "Trial $trial_name could not be saved.\n" unless $trial_id;
+                die "Não foi possível salvar o ensaio $trial_name.\n" unless $trial_id;
 
                 my $time = DateTime->now();
                 my $timestamp = $time->ymd();
@@ -1479,7 +1480,7 @@ sub save_trials_database :Path('/ajax/trialallocation/save_trials_database') Arg
             }
         });
 
-        die "There are no new trials or existing-trial coordinate updates to save.\n"
+        die "Não há novos ensaios nem atualizações de coordenadas de ensaios existentes para salvar.\n"
             unless @saved_trials || $existing_trials_updated;
     };
     if ($@) {
@@ -1529,7 +1530,7 @@ sub save_coordinates :Path('/ajax/trialallocation/save_coordinates') :Args(0) {
     if (!$data) {
     $c->stash->{rest} = {
         success => 0,
-        error   => "Invalid JSON in 'trial' param: $@"
+        error   => "JSON inválido no parâmetro 'trial': $@"
     };
         return;
     }
@@ -1612,7 +1613,7 @@ sub save_coordinates :Path('/ajax/trialallocation/save_coordinates') :Args(0) {
 
     $c->stash->{rest} = {
         success => 1,
-        message => "Trial saved!"
+        message => "Ensaio salvo!"
     };
 }
 
@@ -1624,12 +1625,12 @@ sub get_design :Path('/ajax/trialallocation/get_design') :Args(0) {
 
     unless ($trial_path && -e $trial_path) {
         $c->res->status(400);
-        $c->res->body("Design file not found or path not provided.");
+        $c->res->body("Arquivo de delineamento não encontrado ou caminho não informado.");
         return;
     }
 
     eval {
-        open(my $fh, '<', $trial_path) or die "Cannot open $trial_path: $!";
+        open(my $fh, '<', $trial_path) or die "Não foi possível abrir $trial_path: $!";
         local $/;
         my $content = <$fh>;
         close($fh);
@@ -1639,7 +1640,7 @@ sub get_design :Path('/ajax/trialallocation/get_design') :Args(0) {
     };
     if ($@) {
         $c->res->status(500);
-        $c->res->body("Error reading design file: $@");
+        $c->res->body("Erro ao ler o arquivo de delineamento: $@");
     }
 }
 

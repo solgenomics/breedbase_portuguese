@@ -1,5 +1,5 @@
 <h1>
-  Integrated Proteome/Transcriptome Profiling of Tomato Fruit
+  Perfil Integrado de Proteoma/Transcriptoma do Fruto de Tomate
 </h1>
 
 <div class="indentedcontent">
@@ -11,62 +11,62 @@
   </div>
 
   <p>
-  We are integrating a <a href="http://ted.bti.cornell.edu">tomato fruit
-  transcript expression profiling initiative</a> with the cell wall
-  proteome analysis, in both wild type ripening fruit and those of the
-  ripening impaired mutants ripening inhibitor (rin), non-ripening (Nor)
-  and never ripe (Nr).  The transcriptome data is being generated with
-  the 8,700 unigene TOM1 cDNA array, the long oligonucleotide 12,000
-  unigene (TOM2) microarrays and two RNASeq platforms (454 and
-  Illumina).
+  Estamos integrando uma <a href="http://ted.bti.cornell.edu">iniciativa de
+  perfil de expressão de transcritos do fruto de tomate</a> com a análise do
+  proteoma da parede celular, tanto em frutos selvagens em amadurecimento quanto
+  nos dos mutantes com amadurecimento comprometido ripening inhibitor (rin),
+  non-ripening (Nor) e never ripe (Nr). Os dados de transcriptoma estão sendo
+  gerados com o arranjo de cDNA TOM1 de 8.700 unigenes, os microarranjos de
+  oligonucleotídeos longos de 12.000 unigenes (TOM2) e duas plataformas de
+  RNASeq (454 e Illumina).
   </p>
 
   <p>
-  Following the identification of genes and their cognate proteins
-  through comparison of MS-derived protein sequence analysis with the
-  complement of the tomato microarray, microarray and proteomics data of
-  this gene set are directly compared to identify: (a) genes showing
-  significant expression changes by proteomic analysis but not by
-  microarray analysis, or vice versa, through fruit development, or in
-  comparison with mutant fruits; (b) genes showing significant
-  differences between changes in transcript and cognate protein levels.
+  Após a identificação dos genes e de suas proteínas cognatas, por meio da
+  comparação da análise de sequências proteicas obtidas por MS com o conjunto
+  de genes do microarranjo de tomate, os dados de microarranjo e de proteômica
+  desse conjunto de genes são comparados diretamente para identificar: (a) genes
+  que mostram mudanças significativas de expressão pela análise proteômica, mas
+  não pela análise de microarranjo, ou vice-versa, ao longo do desenvolvimento
+  do fruto ou em comparação com frutos mutantes; (b) genes que mostram
+  diferenças significativas entre as mudanças nos níveis de transcrito e da
+  proteína cognata.
   </p>
 </div>
 
 <&| /secretom/section_templates/objectives.mas, is_subsection => 1 &>
 
-  Compare the protein and transcriptome profile of each gene in the
-  groups above using correlation analysis and define three different
-  categories: those showing positive, negative or no significant
-  correlation between microarray and proteomic analysis.
+  Comparar o perfil proteico e transcriptômico de cada gene dos
+  grupos acima usando análise de correlação e definir três categorias
+  diferentes: os que mostram correlação positiva, negativa ou nenhuma
+  correlação significativa entre a análise de microarranjo e a proteômica.
 
-  If data sets of sufficient size result, the number of genes
-  represented in each group will be used to derive estimates of
-  secretome genes under transcriptional and/or post-transcriptional
-  control.
+  Se forem obtidos conjuntos de dados de tamanho suficiente, o número de genes
+  representados em cada grupo será usado para obter estimativas dos
+  genes do secretoma sob controle transcricional e/ou pós-transcricional.
 
-  Classify the genes into different functional categories to determine
-  whether certain classes of secretome genes are primarily under
-  transcriptional and/or post-transcriptional control during ripening.
+  Classificar os genes em diferentes categorias funcionais para determinar
+  se certas classes de genes do secretoma estão principalmente sob
+  controle transcricional e/ou pós-transcricional durante o amadurecimento.
 
 </&>
 
 <h1>
- Tissue specific analysis of the tomato pericarp tissues
- transcriptome: an approach to increase specificity in secretome
- studies.
+ Análise tecido-específica do transcriptoma dos tecidos do pericarpo
+ do tomate: uma abordagem para aumentar a especificidade em estudos
+ do secretoma.
 </h1>
 
 <div class="indentedcontent">
   <p>
-  Most studies of the biochemical and regulatory pathways that are
-  associated with, and control, fruit expansion and ripening are based
-  on homogenized bulk tissues, and do not take into consideration the
-  multiplicity of different cell types from which the analytes
-  (transcripts, proteins or metabolites) are extracted. Consequently,
-  potentially valuable spatial information is lost and the lower
-  abundance cellular components that are expressed only in certain cell
-  types can be diluted below the level of detection.
+  A maioria dos estudos das vias bioquímicas e regulatórias associadas à
+  expansão e ao amadurecimento do fruto, e que os controlam, baseia-se em
+  tecidos homogeneizados em massa e não leva em consideração a multiplicidade
+  de tipos celulares diferentes dos quais os analitos (transcritos, proteínas
+  ou metabólitos) são extraídos. Consequentemente, informações espaciais
+  potencialmente valiosas são perdidas, e componentes celulares menos
+  abundantes, expressos apenas em certos tipos celulares, podem ser diluídos
+  abaixo do nível de detecção.
   </p>
 
   <div style="width: 700px" class="captioned_image caption_right">
@@ -74,23 +74,24 @@
     <img src="/documents/img/secretom/tomato_pericarp_section_500.jpg" />
 
     <p style="margin-top: 2em; height: 100%">
-    Light microscope image of a cross section through a tomato fruit
-    pericarp, which comprises several tissue types: outer epidermis,
-    collenchyma, parenchyma, vascular tissues, and inner epidermis.
+    Imagem de microscopia óptica de um corte transversal do pericarpo de um
+    fruto de tomate, que compreende vários tipos de tecido: epiderme externa,
+    colênquima, parênquima, tecidos vasculares e epiderme interna.
     </p>
 
   </div>
 
   <p>
-  We are using laser capture microdissection (LMD), coupled with
-  transcript profiling using RNAseq to identify tissue type specific
-  transcripts and molecular pathways, in to gain new insights into
-  aspects of tissue-specific gene expression, and consequently tissue
-  and organ physiology. In this regard, we are particularly interested
-  in defining tissue-specific secretomes. In addition, this deeper
-  mining of the transcriptome is extremely valuable for tomato gene
-  annotation; for example, revealing substantial alternative splicing,
-  which in turn is critical for enhancing the proteome analyses.
+  Estamos usando microdissecção por captura a laser (LMD), combinada com a
+  análise de perfil de transcritos por RNAseq, para identificar transcritos e
+  vias moleculares específicos de cada tipo de tecido, a fim de obter novas
+  perspectivas sobre aspectos da expressão gênica tecido-específica e,
+  consequentemente, da fisiologia de tecidos e órgãos. Nesse sentido, temos
+  particular interesse em definir secretomas tecido-específicos. Além disso,
+  essa exploração mais profunda do transcriptoma é extremamente valiosa para a
+  anotação de genes do tomate; por exemplo, revelando um splicing alternativo
+  substancial, o que por sua vez é fundamental para aprimorar as análises de
+  proteoma.
   </p>
 </div>
 
@@ -100,7 +101,7 @@
     <img src="/documents/img/secretom/tomato_pericarp_section_LMD_x300.jpg" />
 
     <p>
-    Tomato fruit pericarp section after removal of the vascular tissue using LMD.
+    Corte do pericarpo de fruto de tomate após a remoção do tecido vascular por LMD.
     </p>
 
   </div>
@@ -108,50 +109,50 @@
   <div style="float; left; width: 430px">
   <&| /secretom/section_templates/objectives.mas, is_subsection => 1 &>
 
-    Construct and sequence tissue specific transcript libraries for
-    each tissue in tomato fruit pericarp, using 454 and Illumina
-    technologies , at various developmental stages
+    Construir e sequenciar bibliotecas de transcritos tecido-específicas
+    para cada tecido do pericarpo do fruto de tomate, usando as tecnologias
+    454 e Illumina, em vários estádios de desenvolvimento
 
-    Characterize the predicted secretomes of each tissue
+    Caracterizar os secretomas preditos de cada tecido
 
-    Use the deep coverage of the transcripts to identify enhance gene
-    space definition, and therefore peptide matching for the proteomic
-    studies
+    Usar a cobertura profunda dos transcritos para aprimorar a definição do
+    espaço gênico e, portanto, a correspondência de peptídeos nos estudos
+    proteômicos
 
   </&>
   </div>
 
   <p>
-  To date, a total of 1,456,024 high quality sequences have been
-  generated, distributed among the tissue libraries. Following sequence
-  assembly, 20,976 tomato unigenes (assembled from at least five reads)
-  were associated with one or more of the tissues.
+  Até o momento, um total de 1.456.024 sequências de alta qualidade foram
+  geradas, distribuídas entre as bibliotecas de tecidos. Após a montagem das
+  sequências, 20.976 unigenes de tomate (montados a partir de pelo menos cinco
+  leituras) foram associados a um ou mais dos tecidos.
   </p>
 
 </div>
 
 <&| /secretom/section_templates/data_items.mas, default_ref_base => '/download/data/secretom/Integrated_proteome_transcriptome_profiling_tomato_fruit' &>
-- text: "File 1: 454 GS FLX reads from library AC1001"
+- text: "Arquivo 1: leituras 454 GS FLX da biblioteca AC1001"
   ref: AC1001.sff
-- text: "File 2: 454 GS FLX reads from library AC1002"
+- text: "Arquivo 2: leituras 454 GS FLX da biblioteca AC1002"
   ref: AC1002.sff
-- text: "File 3: 454 GS FLX reads from library AC1003"
+- text: "Arquivo 3: leituras 454 GS FLX da biblioteca AC1003"
   ref: AC1003.sff
-- text: "File 4: 454 GS FLX reads from library AC1004"
+- text: "Arquivo 4: leituras 454 GS FLX da biblioteca AC1004"
   ref: AC1004.sff
-- text: "File 5: 454 GS FLX reads from library AC1005"
+- text: "Arquivo 5: leituras 454 GS FLX da biblioteca AC1005"
   ref: AC1005.sff
-- text: "File 6: Assembled sequences of the tomato transcripts (fasta)"
+- text: "Arquivo 6: sequências montadas dos transcritos de tomate (fasta)"
   ref: LCM454assembled.fasta
-- text: "File 7: Solexa/Illumina reads from library AC1001"
+- text: "Arquivo 7: leituras Solexa/Illumina da biblioteca AC1001"
   ref: AC1001.txt.tar.gz
-- text: "File 8: Solexa/Illumina reads from library AC1002"
+- text: "Arquivo 8: leituras Solexa/Illumina da biblioteca AC1002"
   ref: AC1002.txt.tar.gz
-- text: "File 9: Solexa/Illumina reads from library AC1003"
+- text: "Arquivo 9: leituras Solexa/Illumina da biblioteca AC1003"
   ref: AC1003.txt.gz
-- text: "File 10: Solexa/Illumina reads from library AC1004"
+- text: "Arquivo 10: leituras Solexa/Illumina da biblioteca AC1004"
   ref: AC1004.txt.gz
-- text: "File 11: Solexa/Illumina reads from library AC1005"
+- text: "Arquivo 11: leituras Solexa/Illumina da biblioteca AC1005"
   ref: AC1005.txt.gz
 
 </&>
@@ -164,7 +165,7 @@ Cara, B. and Giovannoni, J. (2008) The molecular biology of ethylene during toma
 
 Vrebalov, J., Pan, I.L., Matas, A.J., McQuinn, R., Chung., M.Y., Poole, M., Rose, J.K.C., Seymour, G., Giovannoni, J.J. and Irish, V.F. (2009) Fleshy fruit expansion and ripening are regulated by the tomato SHATTERPROOF gene, TAGL1. The Plant Cell 21: 3041-3062 (front cover).
 
-Matas, A.J., Agust�, J., Tadeo, F.R., Tal�n, M. and Rose, J.K.C. (2010) Tissue specific transcriptome profiling of the citrus fruit epidermis and subepidermis using laser capture microdissection. Journal of Experimental Botany 61: 3321-3330.
+Matas, A.J., Agustí, J., Tadeo, F.R., Talón, M. and Rose, J.K.C. (2010) Tissue specific transcriptome profiling of the citrus fruit epidermis and subepidermis using laser capture microdissection. Journal of Experimental Botany 61: 3321-3330.
 
 Matas, A.J., Fei, Z., Giovannoni, J.J. and Rose, J.K.C. (2010) Developments in tomato transcriptomics. In: Genetics, Genomics and Breeding in Fruits and Vegetable Crops (Eds. B. Leidl, A. Slade, S. Hurst, J.A. Labate, J.R. Stommel). Pub. Science Publishers, New Hampshire, USA. (in press).
 

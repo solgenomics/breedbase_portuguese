@@ -1,5 +1,6 @@
 
 package CXGN::Trial::TrialDesign::Plugin::RRC;
+use utf8;
 
 use File::Slurp;
 use CXGN::Tools::Run;
@@ -36,7 +37,7 @@ sub create_design {
     @stock_list = @{$self->get_stock_list()};
     $stock_list = '"'.join('","', @stock_list).'"';
   } else {
-    die "No stock list specified\n";
+    die "Nenhuma lista de materiais especificada\n";
   }
   if ($self->has_control_list_crbd()) {
     $control_list = '"'.join('","',@{$self->get_control_list_crbd()}).'"';
@@ -46,7 +47,7 @@ sub create_design {
   if ($self->has_number_of_blocks()) {
     $number_of_blocks = $self->get_number_of_blocks();
   } else {
-    die "Number of blocks not specified\n";
+    die "Número de blocos não especificado\n";
   }
 
   if ($self->has_fieldmap_col_number()) {

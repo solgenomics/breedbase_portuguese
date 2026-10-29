@@ -1,5 +1,6 @@
 
 package SGN::Controller::AJAX::SequencedAccessions;
+use utf8;
 
 use Moose;
 
@@ -144,11 +145,11 @@ sub store_sequencing_info :Path('/ajax/genomes/store_sequencing_info') Args(0) {
     print STDERR "Params for store: ".Dumper($params);
 
     if (!$c->user()) {
-	$c->stash->{rest} = { error => "You need to be logged in to add sequencing information" };
+	$c->stash->{rest} = { error => "Você precisa estar conectado para adicionar informações de sequenciamento" };
 	return;
     }
     if (!$c->user()->check_roles("curator")) {
-	$c->stash->{rest} = { error => "You need to be logged in as a curator to submit this information" };
+	$c->stash->{rest} = { error => "Você precisa estar conectado como curador para enviar estas informações" };
 	return;
     }
 
@@ -174,7 +175,7 @@ sub store_sequencing_info :Path('/ajax/genomes/store_sequencing_info') Args(0) {
     };
     
     if ($@) {
-	$c->stash->{rest} = { error => "Error. The operation could not be completed. ($@)" };
+	$c->stash->{rest} = { error => "Erro. Não foi possível concluir a operação. ($@)" };
 	return;
     }
     
@@ -191,8 +192,8 @@ sub delete_sequencing_info :Path('/ajax/genomes/sequencing_info/delete') Args(1)
     print STDERR "delete_sequencing_info...\n";
 
     if (!$c->user() && !$c->user()->check_roles("curator")) {
-	$c->stash->{rest} = { error => "Log in required for sequencing info dele
-tion." };
+	$c->stash->{rest} = { error => "É necessário entrar em sua conta para excluir informações de sequenciamen
+to." };
 	return;
     }
 
@@ -204,7 +205,7 @@ tion." };
 	});
 
     if ($si->sp_person_id() && $si->sp_person_id() != $c->user()->get_object()->get_sp_person_id()) {
-	$c->stash->{rest} = { error => "You don't own this entry so it cannot be deleted." };
+	$c->stash->{rest} = { error => "Este registro não é seu, portanto não pode ser excluído." };
 	return;
     }
 
@@ -217,7 +218,7 @@ tion." };
 	};
 	if ($@) {
 	    print STDERR "An error occurred during deletion. Sorry.\n";
-	    $c->stash->{rest} = { error => "An error occurred while deleting sequencing info. ($@)" };
+	    $c->stash->{rest} = { error => "Ocorreu um erro ao excluir as informações de sequenciamento. ($@)" };
 	    return;
 	}
     }
@@ -226,7 +227,7 @@ tion." };
 	$c->stash->{rest} = { success => 1 };
     }
     else {
-	$c->stash->{rest} = { error => "An error occurred during deletion." }
+	$c->stash->{rest} = { error => "Ocorreu um erro durante a exclusão." }
     }
 }
 

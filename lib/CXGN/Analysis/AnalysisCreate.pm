@@ -1,4 +1,5 @@
 package CXGN::Analysis::AnalysisCreate;
+use utf8;
 
 =head1 NAME
 
@@ -382,7 +383,7 @@ sub store {
     my $model_type_cvterm_id = SGN::Model::Cvterm->get_cvterm_row($bcs_schema, $analysis_model_type, 'protocol_type')->cvterm_id();
 
     if ($analysis_to_save_boolean eq 'yes' && !$analysis_name) {
-        return { error => "No analysis name given, but trying to save an analysis." };
+        return { error => "Nenhum nome de análise foi informado, mas há uma tentativa de salvar uma análise." };
     }
 
     if (!$analysis_model_protocol_id) {
@@ -619,7 +620,7 @@ sub store {
 
         if ($@) {
             print STDERR "An error occurred storing analysis values ($@).\n";
-            return { error => "An error occurred storing the values ($@).\n" };
+            return { error => "Ocorreu um erro ao armazenar os valores ($@).\n" };
         }
 
         my $refresh = $self->_refresh_matviews($bcs_schema, 'fullview', 'concurrent');
@@ -670,7 +671,7 @@ sub store_analysis_result_stock_names {
 
     if ($@) {
             print STDERR "An error occurred storing analysis result stocks ($@).\n";
-            return { error => "An error occurred storing nalysis result stocks ($@).\n" };
+            return { error => "Ocorreu um erro ao armazenar os materiais de resultado da análise ($@).\n" };
     } else {
         print STDERR "\nDONE storing new analysis result stocks!\n";
         my $refresh = $self->_refresh_matviews($bcs_schema, 'stockprop', 'concurrent');

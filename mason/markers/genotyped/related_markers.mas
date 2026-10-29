@@ -37,7 +37,7 @@ function getRelatedVariants() {
             let html = "";
             if ( response && response.related_variants && !jQuery.isEmptyObject(response.related_variants) ) {
                 html += "<table class='table table-striped'>";
-                html += "<thead><tr><th>Marcador</th><th>Protocolo</th><th>Espécie</th><th>Referência</th><th>Cromossoma</th><th>Posição</th><th>Ref</th><th>Alt</th></tr></thead>";
+                html += "<thead><tr><th>Marcador</th><th>Protocolo</th><th>Espécie</th><th>Referência</th><th>Cromossomo</th><th>Posição</th><th>Ref</th><th>Alt</th></tr></thead>";
                 html += "<tbody>";
                 for ( let variant_name in response.related_variants ) {
                     if ( response.related_variants.hasOwnProperty(variant_name) ) {
@@ -61,7 +61,7 @@ function getRelatedVariants() {
             jQuery("#related-variants").html(html);
         },
         error: function(response) {
-            console.log("Não foi possível obter as variantes relacionadas");
+            console.log("Could not get related variants");
         }
     });
 }
@@ -78,7 +78,7 @@ function getRelatedMappedMarkers() {
             let html = "";
             if ( response && response.related_mapped_markers && response.related_mapped_markers.length > 0 ) {
                 html += "<table class='table table-striped'>";
-                html += "<thead><tr><th>Marcador</th><th>Protocolo</th><th>Espécie</th><th>Mapa</th><th>Cromossoma</th><th>Posição</th></tr></thead>";
+                html += "<thead><tr><th>Marcador</th><th>Protocolo</th><th>Espécie</th><th>Mapa</th><th>Cromossomo</th><th>Posição</th></tr></thead>";
                 html += "<tbody>";
                 let ms = response.related_mapped_markers;
                 for ( let i = 0; i < ms.length; i++ ) {
@@ -95,7 +95,7 @@ function getRelatedMappedMarkers() {
             jQuery("#related-mapped-markers").html(html);
         },
         error: function(response) {
-            console.log("Não foi possível obter os marcadores mapeados relacionados");
+            console.log("Could not get related mapped markers");
         }
     });
 }

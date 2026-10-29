@@ -40,19 +40,19 @@
 
           <p><a href="/documents/markers/role_categories.txt">Categorias de papéis MIPS no momento da anotação do marcador COS</a></p>
 
-          <h4>A lista de marcadores COS está disponível em formato de texto online e simples.</h4>
+          <h4>A lista de marcadores COS está disponível on-line e em formato de texto simples.</h4>
 
-          <p><a href="/search/markers/cos_list.pl">Lista COS on-line</a> - formato on-line com links para sequências e tiling caminho.<br />
-          <a href="/documents/markers/cos_list-old.txt">Velho download de texto simples</a> - formato de texto para download. <br />
-          <a href="/documents/markers/cos_list.txt">Velho texto simples download 2</a> - formato de texto para download. 
+          <p><a href="/search/markers/cos_list.pl">Lista COS on-line</a> - formato on-line com links para as sequências e o tiling path.<br />
+          <a href="/documents/markers/cos_list-old.txt">Download antigo em texto simples</a> - formato de texto para download. <br />
+          <a href="/documents/markers/cos_list.txt">Download antigo em texto simples 2</a> - formato de texto para download. 
           </p>
 
-          <p><strong>Observação:</strong> Para a posição do mapa de tomate na tabela ligada acima:</p>
+          <p><strong>Observação:</strong> sobre a posição no mapa do tomate na tabela indicada acima:</p>
 
           <ul>
-            <li>A cópia não é quantas cópias o marcador COS mostra em uma pesquisa Southern Blot. S (single) é 1-2 cópia, L (low) é 3-4 cópia, M (multiple) significa mais de 4 cópia.</li>
+            <li>"Copy" indica quantas cópias o marcador COS apresenta em uma análise de Southern blot. S (single) indica 1-2 cópias, L (low) indica 3-4 cópias e M (multiple) indica mais de 4 cópias.</li>
 
-            <li>Posição do mapa é onde o marcador COS mapeou no tomate: mapa de arabidopsis sisteny. Por exemplo, a posição do mapa T1675 é 01.005, significando Chromosome 1, 5 cM abaixo do topo. A maioria dos marcadores COS tem apenas uma posição do mapa, se o marcador COS tem uma segunda ou terceira posição do mapa, então havia dois ou três alelos que poderiam ser mapeados.</li>
+            <li>A posição no mapa é onde o marcador COS foi mapeado no mapa de sintenia tomate:Arabidopsis. Por exemplo, a posição de T1675 é 01.005, o que significa cromossomo 1, 5 cM abaixo do topo. A maioria dos marcadores COS tem apenas uma posição no mapa; se um marcador COS tem uma segunda ou terceira posição, havia dois ou três alelos que puderam ser mapeados.</li>
           </ul><br />
           <br />
         </td>

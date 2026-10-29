@@ -12,6 +12,7 @@ Aimin Yan <ay247@cornell.edu>
 =cut
 
 package CXGN::BreederSearch;
+use utf8;
 
 use Moose;
 use Data::Dumper;
@@ -214,7 +215,7 @@ sub avg_phenotypes_query {
       if ($id == $control) {
         #print STDERR "Matched control accession $name with values @avg_values\n";
         if (!defined($avg_values[$i])) {
-          return { error => "Can't scale values using control $name, it has a zero or undefined value for trait with id @$trait_ids[$i] in this trial. Please select a different control for this trait." };
+          return { error => "Não é possível escalonar os valores usando o controle $name, pois ele tem valor zero ou indefinido para a característica com id @$trait_ids[$i] neste ensaio. Selecione outro controle para esta característica." };
         }
         $reference_values[$i] = $avg_values[$i];
       }
@@ -309,15 +310,15 @@ sub test_matviews {
     %response_hash = %$status;
   };
 
-  if (%response_hash && $response_hash{'message'} eq 'Wizard update completed!') {
+  if (%response_hash && $response_hash{'message'} eq 'Wizard: atualização concluída!') {
     print STDERR "Populated views, now proceeding with query . . . .\n";
-    return { status => "Populated views, query can proceed." };
-  } elsif (%response_hash && $response_hash{'message'} eq 'Wizard update initiated.') {
-    return { error => "The search wizard is temporarily unavailable while database indexes are being repopulated. Please try again later." };
+    return { status => "Visualizações populadas; a consulta pode prosseguir." };
+  } elsif (%response_hash && $response_hash{'message'} eq 'Wizard: atualização iniciada.') {
+    return { error => "O assistente de pesquisa está temporariamente indisponível enquanto os índices do banco de dados são repopulados. Tente novamente mais tarde." };
   } elsif (%response_hash && $response_hash{'error'}) {
     return { error => $response_hash{'error'} };
   } else {
-    return { success => "Test successful, query can proceed." };
+    return { success => "Teste bem-sucedido; a consulta pode prosseguir." };
   }
 }
 
@@ -356,7 +357,7 @@ sub refresh_matviews {
     my $refreshing = $h->fetchrow_array();
 
     if ($refreshing) {
-        return { error => $materialized_view.' update already in progress . . . ' };
+        return { error => $materialized_view.': atualização já em andamento . . . ' };
     }
     else {
         try {
@@ -388,13 +389,13 @@ sub refresh_matviews {
             }
 
             if ($refresh_finished) {
-                return { message => $materialized_view . ' update completed!', connection => $async_refresh };
+                return { message => $materialized_view . ': atualização concluída!', connection => $async_refresh };
             } else {
-                return { message => $materialized_view.' update initiated.', connection => $async_refresh  };
+                return { message => $materialized_view.': atualização iniciada.', connection => $async_refresh  };
             }
         } catch {
             print STDERR 'Error initiating '.$materialized_view.' update.' . $@ . "\n";
-            return { error => 'Error initiating '.$materialized_view.' update.' . $@ };
+            return { error => 'Erro ao iniciar a atualização de '.$materialized_view.' (materialized view).' . $@ };
         }
     }
 }
@@ -421,11 +422,11 @@ sub matviews_status {
 
   if ($refreshing) {
     print STDERR "Wizard is already refreshing, current status: $refreshing \n";
-    return { refreshing => "<p id='wizard_status'>Wizard update in progress . . . </p>"};
+    return { refreshing => "<p id='wizard_status'>Atualização do assistente em andamento . . . </p>"};
   }
   else {
     print STDERR "materialized views last updated $timestamp\n";
-    return { timestamp => "<p id='wizard_status'>Wizard last updated: $timestamp</p>" };
+    return { timestamp => "<p id='wizard_status'>Última atualização do assistente: $timestamp</p>" };
   }
 }
 

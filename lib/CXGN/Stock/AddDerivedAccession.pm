@@ -6,6 +6,7 @@ CXGN::Stock::AddDerivedAccession - a module for adding new accession derived fro
 
 
 package CXGN::Stock::AddDerivedAccession;
+use utf8;
 
 use Moose;
 use MooseX::FollowPBP;
@@ -83,7 +84,7 @@ sub add_derived_accession {
     my %return;
 
     if ($self->existing_accession_name()){
-        return {error => "Error: Accession name: $derived_accession_name already exists in the database."};
+        return {error => "Erro: nome do acesso: $derived_accession_name já existe no banco de dados."};
     }
 
     my $coderef = sub {

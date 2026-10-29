@@ -1,15 +1,16 @@
-<& /page/page_title.mas, title => 'Instruções para usar o <span class="secretary">Secretário</span> preditor de peptídeo de sinal' &>
+<& /page/page_title.mas, title => 'Instruções de uso do preditor de peptídeos sinal <span class="secretary">SecreTary</span>' &>
 
 <& /secretom/secretary/nav.mas, curr_page => 'instructions' &>
 
 <div class="indented_content">
 
   <p>
-   <span class="secretary">Secretário</span> É para predição de peptídeos de sinal da sequência de aminoácidos de uma proteína. Os peptídeos de sinal geralmente possuem um projeto estrutural comum, que é caracterizado por uma região n curta e positivamente carregada seguida por uma região hidrofóbica (região H) e um local de clivagem um tanto polar e sem carga (região C). Deve ser enfatizado que a região H é conhecida por ser importante para a translocação dos peptídeos de sinal para o PS. Para melhorar o desempenho da predição do peptídeo de sinal, desenvolvemos novos parâmetros como a hidrofobicidade geral e composição de aminoácidos na região H como entrada. <span class="secretary">Secretário</span> é principalmente treinado e testado no secretoma da planta que foi identificado através de telas funcionais, incluindo uma armadilha de secreção de levedura.
+   O <span class="secretary">SecreTary</span> serve para a predição de peptídeos sinal a partir da sequência de aminoácidos de uma proteína. Os peptídeos sinal geralmente possuem um desenho estrutural comum, caracterizado por uma região n curta e carregada positivamente, seguida por uma região hidrofóbica (região h) e um sítio de clivagem um tanto polar e sem carga (região c). Vale ressaltar que a região h é conhecida por ser importante para a translocação dos peptídeos sinal para o RE. Para melhorar o desempenho da predição de peptídeos sinal, desenvolvemos novos parâmetros, como a hidrofobicidade geral e a composição de aminoácidos na região h, usados como entrada. O <span class="secretary">SecreTary</span> foi treinado e testado principalmente no secretoma vegetal identificado por meio de triagens funcionais, incluindo uma armadilha de secreção em levedura.
   </p>
 
   <p>
-   Perguntas ou sugestões sobre <span class="secretary">Secretário</span> deve ser endereçado a Jocelyn K.C. Rose<a href="mailto:jr286@cornell.edu">
+   Perguntas ou sugestões sobre o <span class="secretary">SecreTary</span> devem ser enviadas a
+   Jocelyn K.C. Rose (<a href="mailto:jr286@cornell.edu">
    jr286@cornell.edu</a>).
   </p>
 
@@ -18,8 +19,13 @@
 <&| /page/info_section.mas, title => '1. Sequências de Entrada' &>
 
   <p>
-  As sequências de aminoácidos podem ser introduzidas colando uma ou mais sequências de proteínas. <b>Formato FASTA</b> para o <span class="secretary">Secretário</span> Página de entrada. <span class="secretary">Secretário</span> analisa proteínas a uma taxa de aproximadamente 80 por segundo. Atualmente há um limite de 10000 sequências. Todas as sequências de entrada devem estar em código de aminoácidos de uma letra, não em caso sensível. Todas as letras do alfabeto são aceitas, mas <b>B J O U </b> e <b>Z</b>
-  são substituídos por <b>X</b> Antes da análise.
+  As sequências de aminoácidos podem ser fornecidas colando uma ou mais
+  sequências de proteínas, em <b>formato FASTA</b>, na página de entrada do <span class="secretary">SecreTary</span>.
+  O <span class="secretary">SecreTary</span> analisa proteínas a uma taxa de aproximadamente 80 por segundo.
+  Atualmente há um limite de 10000 sequências. Todas as sequências de entrada devem
+  estar no código de aminoácidos de uma letra, sem distinção entre maiúsculas e minúsculas.
+  Todas as letras do alfabeto são aceitas, mas <b>B J O U </b> e <b>Z</b>
+  são substituídas por <b>X</b> antes da análise.
   </p>
 
   <h3>Um exemplo:</h3>
@@ -36,10 +42,10 @@
 
 <&| /page/info_section.mas, title => '2. Submissão' &>
 
-  Cole a sequência na janela, ou clique em procurar para selecionar um 
-  Fasta no seu disco para análise. Então, clique no "Enviar" 
-  Botão. Espere para esperar cerca de 10-15 segundos para ver os resultados de
-  Analisando 1000 sequências.
+  Cole a(s) sequência(s) na janela, ou clique em procurar para selecionar um
+  arquivo FASTA no seu disco para análise. Em seguida, clique no botão "Enviar".
+  Espere cerca de 10-15 segundos para ver os resultados da
+  análise de 1000 sequências.
 
 </&>
 
@@ -51,11 +57,11 @@
 <&| /page/info_section.mas, title => '3. Saída' &>
 
   <p>
-  Para cada sequência <span class="secretary">Secretário</span> Dá uma pontuação, sequências com pontuação maior ou igual a 0,75 são previstas para ter um peptídeo sinal. Para cada peptídeo de sinal previsto o comprimento previsto é mostrado, e a localização da região hidrofóbica (em 
-  <FONT style=BACKGROUND-COLOR: #AAAAFF">Azul</FONT>
-  ) dentro do peptídeo de sinal previsto (em 
-  <FONT style=BACKGROUND-COLOR: #FFDD66">Amarelo</FONT>
-  ). Na página de entrada você pode escolher classificar a saída por pontuação, com as pontuações mais altas (candidatos mais fortes) no topo, e você pode suprimir a saída para sequências sem sinal peptídeo previsto.
+  Para cada sequência, o <span class="secretary">SecreTary</span> atribui uma pontuação; sequências com pontuação maior ou igual a 0,75 são preditas como portadoras de peptídeo sinal. Para cada peptídeo sinal predito, são mostrados o comprimento predito e a localização da região hidrofóbica (em 
+  <FONT style=BACKGROUND-COLOR: #AAAAFF">azul</FONT>
+  ) dentro do peptídeo sinal predito (em 
+  <FONT style=BACKGROUND-COLOR: #FFDD66">amarelo</FONT>
+  ). Na página de entrada você pode optar por ordenar a saída por pontuação, com as pontuações mais altas (candidatos mais fortes) no topo, e pode suprimir a saída para sequências sem peptídeo sinal predito.
   </p>
 
   <h3>Um exemplo:</h3>
@@ -80,8 +86,8 @@ AT1G44090.1      NO     0         -       MCIYASRQTVCPYLTPFKVKRPKSREMNSSDVNFSLLQ
    </pre>
 </&>
 
-<&| /page/info_section.mas, title => '4. Conseguir ajuda' &>
+<&| /page/info_section.mas, title => '4. Obter ajuda' &>
   Por favor, contate: <a href="mailto:sgn-feedback@sgn.cornell.edu">sgn-feedback@sgn.cornell.edu</a>.
 </&>
 
-<a href="/secretom/secretary">Voltar para <span class="secretary">Secretário</span> entrada</a>
+<a href="/secretom/secretary">Voltar à entrada do <span class="secretary">SecreTary</span></a>

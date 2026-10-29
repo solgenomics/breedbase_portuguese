@@ -1,4 +1,5 @@
 package CXGN::List::Validate::Plugin::Markers;
+use utf8;
 
 use strict;
 use warnings;
@@ -49,7 +50,7 @@ sub validate {
                     $data = decode_json($val);
                 } else {
 		    print STDERR "error protocol $protocol_id not found\n";
-		    push @missing, "protocol $protocol_id not found";
+		    push @missing, "protocolo $protocol_id não encontrado";
 		}
 		$q = "SELECT name from nd_protocol where nd_protocol_id = ?";
 		$h = $schema->storage->dbh()->prepare($q);

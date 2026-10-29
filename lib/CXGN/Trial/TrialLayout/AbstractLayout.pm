@@ -1,5 +1,6 @@
 
 package CXGN::Trial::TrialLayout::AbstractLayout;
+use utf8;
 
 use Moose;
 use namespace::autoclean;
@@ -394,7 +395,7 @@ sub generate_and_cache_layout {
     $plots_ref = $self->_get_plots();
     if (!$plots_ref) {
       print STDERR "_get_design_from_trial: not plots provided... returning.\n";
-      return { error => "Something went wrong retrieving plots for this trial. This should not happen, so please contact us." };
+      return { error => "Algo deu errado ao recuperar as parcelas deste ensaio. Isso não deveria acontecer; entre em contato conosco." };
   }
 #print STDERR "Check 2.3.4.2: ".localtime()."\n";
 
@@ -671,18 +672,18 @@ sub retrieve_plot_info {
 
     if ($self->get_verify_layout){
 	if (!$accession_name || !$accession_id || !$plot_name || !$plot_id){
-	    push @{$verify_errors{errors}->{layout_errors}}, "Plot: $plot_name does not have an accession!";
+	    push @{$verify_errors{errors}->{layout_errors}}, "Parcela: $plot_name não tem um acesso!";
 	}
 	if (!$block_number_prop || !$plot_number_prop){
-	    push @{$verify_errors{errors}->{layout_errors}}, "Plot: $plot_name does not have a block_number and/or plot_number!";
+	    push @{$verify_errors{errors}->{layout_errors}}, "Parcela: $plot_name não tem block_number e/ou plot_number!";
 	}
 	    if (!$seedlot_transaction->first){
-		push @{$verify_errors{errors}->{seedlot_errors}}, "Plot: $plot_name does not have a seedlot linked.";
+		push @{$verify_errors{errors}->{seedlot_errors}}, "Parcela: $plot_name não tem um lote de sementes vinculado.";
 	    }
     }
     if ($self->get_verify_physical_map){
 	if (!$row_number_prop || !$col_number_prop){
-	    push @{$verify_errors{errors}->{physical_map_errors}}, "Plot: $plot_name does not have a row_number and/or col_number!";
+	    push @{$verify_errors{errors}->{physical_map_errors}}, "Parcela: $plot_name não tem row_number e/ou col_number!";
 	}
     }
 
@@ -692,7 +693,7 @@ sub retrieve_plot_info {
 	if ($self->get_verify_layout){
 	    my $seedlot_accession_check = $seedlot->search_related('stock_relationship_objects', {'stock_relationship_objects.type_id'=>$self->cvterm_id('collection_of')})->search_related('subject', {'subject.stock_id'=>$accession_id, 'subject.type_id'=>$self->cvterm_id('accession')});
 	    if (!$seedlot_accession_check->first){
-		push @{$verify_errors{errors}->{layout_errors}}, "Seedlot: ".$seedlot->first->uniquename." does not have the same accession: $accession_name as the plot: $plot_name.";
+		push @{$verify_errors{errors}->{layout_errors}}, "Lote de sementes: ".$seedlot->first->uniquename." não tem o mesmo acesso ($accession_name) que a parcela $plot_name.";
 	    }
 	}
 	$design_info{"seedlot_name"} = $seedlot->first->uniquename;
@@ -710,7 +711,7 @@ sub retrieve_plot_info {
 	    if ($self->get_verify_layout){
 		my $plant_accession_check = $p->search_related('stock_relationship_subjects', {'me.type_id'=>$self->cvterm_id('plant_of')})->search_related('object', {'object.stock_id'=>$accession_id, 'object.type_id'=>$self->cvterm_id('accession')});
 		if (!$plant_accession_check->first){
-		    push @{$verify_errors{errors}->{layout_errors}}, "Plant: ".$p->uniquename." does not have the same accession: $accession_name as the plot: $plot_name.";
+		    push @{$verify_errors{errors}->{layout_errors}}, "Planta: ".$p->uniquename." não tem o mesmo acesso ($accession_name) que a parcela $plot_name.";
 		}
 	    }
 	    my $plant_name = $p->uniquename();
@@ -744,7 +745,7 @@ sub retrieve_plot_info {
 	    if ($self->get_verify_layout){
 		my $tissue_accession_check = $t->search_related('stock_relationship_subjects', {'me.type_id'=>$self->cvterm_id('tissue_sample_of') })->search_related('object', {'object.stock_id'=>$accession_id, 'object.type_id'=>$self->cvterm_id('accession')});
 		if (!$tissue_accession_check->first){
-		    push @{$verify_errors{errors}->{layout_errors}}, "Tissue Sample: ".$t->uniquename." does not have the same accession: $accession_name as the plot: $plot_name.";
+		    push @{$verify_errors{errors}->{layout_errors}}, "Amostra de tecido: ".$t->uniquename." não tem o mesmo acesso ($accession_name) que a parcela $plot_name.";
 		}
 	    }
 	    my $tissue_name = $t->uniquename();
@@ -775,7 +776,7 @@ sub retrieve_plot_info {
 	    if ($self->get_verify_layout){
 		my $subplot_accession_check = $p->search_related('stock_relationship_subjects', {'me.type_id'=>$self->cvterm_id('subplot_of') })->search_related('object', {'object.stock_id'=>$accession_id, 'object.type_id'=>$self->cvterm_id('accession')});
 		if (!$subplot_accession_check->first){
-		    push @{$verify_errors{errors}->{layout_errors}}, "Subplot: ".$p->uniquename." does not have the same accession: $accession_name as the plot: $plot_name.";
+		    push @{$verify_errors{errors}->{layout_errors}}, "Subparcela: ".$p->uniquename." não tem o mesmo acesso ($accession_name) que a parcela $plot_name.";
 		}
 	    }
 	    my $subplot_name = $p->uniquename();

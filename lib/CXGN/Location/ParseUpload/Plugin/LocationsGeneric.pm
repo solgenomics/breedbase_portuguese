@@ -123,23 +123,10 @@ sub parse {
 }
 
 sub _translate_parser_error {
+    # CXGN::File::Parse messages are already in Portuguese; just tidy them up.
     my $message = shift // '';
     $message =~ s/\s+$//;
-
-    return "O arquivo informado não existe."
-        if $message =~ /^The file .* does not exist$/;
-    return "O arquivo não contém dados."
-        if $message eq 'The file has no data';
-    return "A coluna obrigatória '$1' está ausente."
-        if $message =~ /^Required column (.+) is missing$/;
-    return "A coluna obrigatória '$1' não tem valor na linha $2."
-        if $message =~ /^Required column (.+) does not have a value in row (.+)$/;
-    return "A coluna '$1' exige valores exclusivos, mas o valor '$2' aparece mais de uma vez nas linhas $3."
-        if $message =~ /^Column (.+) requires unique values, but (.+) appears more than once in rows (.+)$/;
-    return "Não há um processador compatível com o formato do arquivo informado."
-        if $message =~ /^No appropriate file parsing plugin/;
-
-    return "Erro ao ler ou processar o arquivo.";
+    return $message;
 }
 
 1;

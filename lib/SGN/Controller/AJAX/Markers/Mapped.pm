@@ -18,6 +18,7 @@ David Waring <djw64@cornell.edu>
 use strict;
 
 package SGN::Controller::AJAX::Markers::Mapped;
+use utf8;
 
 use Moose;
 use JSON;
@@ -204,7 +205,7 @@ sub get_related_variants_of_mapped_marker_GET : Args(0) {
 
     # Check for required parameters
     if ( !defined $marker_id || $marker_id eq '' ) {
-        $c->stash->{rest} = {error => 'marker_id must be provided!'};
+        $c->stash->{rest} = {error => 'marker_id deve ser informado!'};
         $c->detach();
     }
 
@@ -300,11 +301,11 @@ sub query_mapped_markers_GET : Args(0) {
 
     # Check required parameters
     if ( defined $page && !defined $limit ) {
-        $c->stash->{rest} = {error => 'limit must be provided with page!'};
+        $c->stash->{rest} = {error => 'limit deve ser informado junto com page!'};
         $c->detach();
     }
     if ( (defined $start && !defined $end) || (defined $end && !defined $start) ) {
-        $c->stash->{rest} = {error => 'start and end positions are required when filtering by position!'};
+        $c->stash->{rest} = {error => 'as posições inicial e final são obrigatórias ao filtrar por posição!'};
         $c->detach();
     }
 

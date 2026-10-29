@@ -2,48 +2,48 @@
 <%args>
   $organism
 </%args>
-<& /page/page_title.mas, title => '<i>'.$organism->species.'</i> Genome Data' &>
+<& /page/page_title.mas, title => 'Dados do genoma de <i>'.$organism->species.'</i>' &>
 
 <p>
-  O tabaco se destaca como um complexo alotetraplóide com um genoma de 4,5 Gb com proporção significativa (&gt;70%) de repetições. Como espécie, <i>N. tabacum</i> (2n=4x=48) evoluiu através da hibridação interespecífica dos ancestrais de <i>Nicotiana sylvestris</i> (2n=24, doador materno) e <i>Nicotiana tomentosiformis</i> (2n=24, doador paterno) há cerca de 200.000 anos. Tabaco comum (<i>Nicotiana tabacum</i>) is one of the most widely cultivated non-food crops worldwide and is grown in ~120 countries.
-  It belongs to the Nicotiana genus, which is named after Jean Nicot de Villemain who, in 1560, became the first person to import these plants from the Americas to Europe.
-  The term Nicotiana was originally used by Adam Lonitzer to describe tobacco plants in 1630 and in 1788 by Carl von Linné (Linnaeus) to designate the entire genus.
-  Over 75 naturally occurring Nicotiana species, including 49 native to America and 25 native to Australia, have been classified by Goodspeed and Knapp.
-  Most commercial tobaccos cultivated today belong to the species <i>Nicotiana tabacum</i> L., para o qual &gt; 1.600 <i>N. tabacum</i> variedades cultivadas (cultivadores) estão listadas no Sistema Nacional de Germoplasma de Plantas. Os três tipos de tabaco mais usados são Flue-Cured (ou Virginia), Burley e Oriental, que são tradicionalmente cultivados e colhidos sob diferentes práticas agrícolas.
+  O tabaco se destaca como um alotetraploide complexo, com um genoma grande de 4,5 Gb e uma proporção significativa (&gt;70%) de repetições. Como espécie, <i>N. tabacum</i> (2n=4x=48) evoluiu por meio da hibridação interespecífica dos ancestrais de <i>Nicotiana sylvestris</i> (2n=24, doador materno) e <i>Nicotiana tomentosiformis</i> (2n=24, doador paterno) há cerca de 200.000 anos. O tabaco comum (<i>Nicotiana tabacum</i>) é uma das culturas não alimentícias mais amplamente cultivadas no mundo e é plantado em ~120 países.
+  Pertence ao gênero Nicotiana, cujo nome homenageia Jean Nicot de Villemain, que em 1560 se tornou a primeira pessoa a importar essas plantas das Américas para a Europa.
+  O termo Nicotiana foi usado originalmente por Adam Lonitzer para descrever plantas de tabaco em 1630 e, em 1788, por Carl von Linné (Lineu) para designar o gênero inteiro.
+  Mais de 75 espécies de Nicotiana de ocorrência natural, incluindo 49 nativas da América e 25 nativas da Austrália, foram classificadas por Goodspeed e Knapp.
+  A maioria dos tabacos comerciais cultivados hoje pertence à espécie <i>Nicotiana tabacum</i> L., para a qual &gt;1.600 variedades cultivadas (cultivares) de <i>N. tabacum</i> estão listadas no National Plant Germplasm System. Os três tipos de tabaco mais usados são Flue-Cured (ou Virginia), Burley e Oriental, que são tradicionalmente cultivados e colhidos sob diferentes práticas agrícolas.
 </p>
 <p>O texto acima foi extraído de Sierro, N. et al. 2014</p>
 
 <center>
 <img src="/documents/img/homepage_carousel/tobacco_field.jpg" style="width:800px"><br>
-<i>Nicotiana tabacum</i> plantas no campo.
+Plantas de <i>Nicotiana tabacum</i> no campo.
 </center>
 
 <br>
 <p>
-Duas versões do <i>Nicotiana tabacum</i> genoma (Sierro, N. et al. 2014 e Edwards, K. et al. 2017) e os genomas de <i>N. sylvestris</i> e <i>N. tomentosiformis</i> Foram sequenciados:
+Duas versões do genoma de <i>Nicotiana tabacum</i> (Sierro, N. et al. 2014 e Edwards, K. et al. 2017) e os genomas de <i>N. sylvestris</i> e <i>N. tomentosiformis</i> foram sequenciados:
 </p>
 
 <ul>
   <li>
-    Edwards, K. et al. <a href="https://bmcgenomics.biomedcentral.com/articles/10.1186/s12864-017-3791-6">Um genoma de referência para <i>Nicotiana tabacum</i> possibilita a clonagem baseada em mapas de loci homeólogo implicado na eficiência de utilização de nitrogênio</a>. <br>BMC Genomics (2017)
+    Edwards, K. et al. <a href="https://bmcgenomics.biomedcentral.com/articles/10.1186/s12864-017-3791-6">A reference genome for <i>Nicotiana tabacum</i> enables map-based cloning of homeologous loci implicated in nitrogen utilization efficiency</a>. <br>BMC Genomics (2017)
   </li>
   <li>
-    Sierro, N. et al. <a href="http://www.nature.com/ncomms/2014/140508/ncomms4833/full/ncomms4833.html">A sequência do genoma do tabaco e sua comparação com os de tomate e batata</a>. <br>Comunicações Naturais 5 (2014).
+    Sierro, N. et al. <a href="http://www.nature.com/ncomms/2014/140508/ncomms4833/full/ncomms4833.html">The tobacco genome sequence and its comparison with those of tomato and potato</a>. <br>Nature Communications 5 (2014).
   </li>
   <li>
-    Sierro, N. et al. <a href="https://genomebiology.biomedcentral.com/articles/10.1186/gb-2013-14-6-r60">Genomas de referência e transcriptomas de <i>Nicotiana sylvestris</i> e <i>Nicotiana tomentosiformis</i></a>. <br>Biologia Genoma 14, R60 (2013).
+    Sierro, N. et al. <a href="https://genomebiology.biomedcentral.com/articles/10.1186/gb-2013-14-6-r60">Reference genomes and transcriptomes of <i>Nicotiana sylvestris</i> and <i>Nicotiana tomentosiformis</i></a>. <br>Genome Biology 14, R60 (2013).
   </li>
 </ul>
 
 <br>
 <br>
-<&| /page/info_section.mas, title => 'Nicotiana tabacum and related genomes datasets' &>
+<&| /page/info_section.mas, title => 'Conjuntos de dados de genomas de Nicotiana tabacum e relacionados' &>
   
   <div class="container-fluid">
     <div class="row">
     
     <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4 col-xl-4 dataset-title">
-        <b>Sequência do genoma e Anotação</b><br>
+        <b>Sequência do genoma e anotação</b><br>
         <ul>
           <li>
             <a href="ftp://ftp.solgenomics.net/genomes/Nicotiana_tabacum/edwards_et_al_2017">Edwards 2017</a>
@@ -69,7 +69,7 @@ Duas versões do <i>Nicotiana tabacum</i> genoma (Sierro, N. et al. 2014 e Edwar
       </div>
         
       <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4 col-xl-4 dataset-title">
-        <b><i>N. tabacum</i> V1.0 Edwards 2017 BLAST</b><br>
+        <b><i>N. tabacum</i> v1.0 Edwards 2017 BLAST</b><br>
         <ul>
           <li>
           <a href="/tools/blast/?db_id=289" target="blank">Genoma (Chr)</a>
@@ -78,7 +78,7 @@ Duas versões do <i>Nicotiana tabacum</i> genoma (Sierro, N. et al. 2014 e Edwar
           <a href="/tools/blast/?db_id=290" target="blank">Genoma (Scf)</a>
           </li>
           <li>
-          <a href="/tools/blast/?db_id=288" target="blank">CDNA</a>
+          <a href="/tools/blast/?db_id=288" target="blank">cDNA</a>
           </li>
           <li>
           <a href="/tools/blast/?db_id=291" target="blank">Proteínas</a>
@@ -96,7 +96,7 @@ Duas versões do <i>Nicotiana tabacum</i> genoma (Sierro, N. et al. 2014 e Edwar
           <a href="/tools/blast/?db_id=228">CDS</a>
           </li>
           <li>
-          <a href="/tools/blast/?db_id=229">CDNA</a>
+          <a href="/tools/blast/?db_id=229">cDNA</a>
           </li>
           <li>
           <a href="/tools/blast/?db_id=230">Proteínas</a>
@@ -114,7 +114,7 @@ Duas versões do <i>Nicotiana tabacum</i> genoma (Sierro, N. et al. 2014 e Edwar
             <a href="/tools/blast/?db_id=232">CDS</a>
           </li>
           <li>
-            <a href="/tools/blast/?db_id=233">CDNA</a>
+            <a href="/tools/blast/?db_id=233">cDNA</a>
           </li>
           <li>
             <a href="/tools/blast/?db_id=234">Proteínas</a>
@@ -132,7 +132,7 @@ Duas versões do <i>Nicotiana tabacum</i> genoma (Sierro, N. et al. 2014 e Edwar
             <a href="/tools/blast/?db_id=236">CDS</a>
           </li>
           <li>
-            <a href="/tools/blast/?db_id=237">CDNA</a>
+            <a href="/tools/blast/?db_id=237">cDNA</a>
           </li>
           <li>
             <a href="/tools/blast/?db_id=238">Proteínas</a>
@@ -150,7 +150,7 @@ Duas versões do <i>Nicotiana tabacum</i> genoma (Sierro, N. et al. 2014 e Edwar
             <a href="/tools/blast/?db_id=240">CDS</a>
           </li>
           <li>
-            <a href="/tools/blast/?db_id=241">CDNA</a>
+            <a href="/tools/blast/?db_id=241">cDNA</a>
           </li>
           <li>
             <a href="/tools/blast/?db_id=242">Proteínas</a>
@@ -168,7 +168,7 @@ Duas versões do <i>Nicotiana tabacum</i> genoma (Sierro, N. et al. 2014 e Edwar
             <a href="/tools/blast/?db_id=244">CDS</a>
           </li>
           <li>
-            <a href="/tools/blast/?db_id=245">CDNA</a>
+            <a href="/tools/blast/?db_id=245">cDNA</a>
           </li>
         </ul>
       </div>

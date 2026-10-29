@@ -1,5 +1,6 @@
 package CXGN::Phenotypes::ParseUpload::Plugin::AnalysisPhenotypeSpreadsheetCSV;
 
+use utf8;
 # Validate Returns %validate_result = (
 #   error => 'error message'
 #)
@@ -43,7 +44,7 @@ sub validate {
         or die "Could not open file '$filename' $!";
 
     if (!$fh) {
-        $parse_result{'error'} = "Could not read file.";
+        $parse_result{'error'} = "Não foi possível ler o arquivo.";
         print STDERR "Could not read file.\n";
         return \%parse_result;
     }
@@ -53,14 +54,14 @@ sub validate {
     if ($csv->parse($header_row)) {
         @columns = $csv->fields();
     } else {
-        $parse_result{'error'} = "Could not parse header row.";
+        $parse_result{'error'} = "Não foi possível analisar a linha de cabeçalho.";
         print STDERR "Could not parse header.\n";
         return \%parse_result;
     }
 
     my $num_cols = scalar(@columns);
     if ($num_cols < 2){
-        $parse_result{'error'} = 'Header row must contain:  "stock_names" followed by at least one trait.';
+        $parse_result{'error'} = 'A linha de cabeçalho deve conter:  "stock_names" seguido de pelo menos uma característica.';
         print STDERR "Incorrect header.\n";
         return \%parse_result;
     }
@@ -69,7 +70,7 @@ sub validate {
     $stock_names_header =~ s/^\s+|\s+$//g;
 
     if ( $stock_names_header ne "stock_names" ) {
-            $parse_result{'error'} = 'File contents incorrect. Header row must contain: "stock_names" followed by all measured traits.';
+            $parse_result{'error'} = 'Conteúdo do arquivo incorreto. A linha de cabeçalho deve conter: "stock_names" seguido de todas as características medidas.';
             print STDERR "File contents incorrect.\n";
             return \%parse_result;
     }
@@ -86,13 +87,13 @@ sub validate {
         if ($csv->parse($row)) {
             @columns = $csv->fields();
         } else {
-            $parse_result{'error'} = "Could not parse row $row.";
+            $parse_result{'error'} = "Não foi possível analisar a linha $row.";
             print STDERR "Could not parse row $row.\n";
             return \%parse_result;
         }
 
         if (scalar(@columns) != $num_cols){
-            $parse_result{'error'} = 'All lines must have same number of columns as header! Error on row: '.$row;
+            $parse_result{'error'} = 'Todas as linhas devem ter o mesmo número de colunas que o cabeçalho! Erro na linha: '.$row;
             print STDERR "Line $row does not have complete columns.\n";
             return \%parse_result;
         }
@@ -107,7 +108,7 @@ sub validate {
             if ($timestamp_included) {
                 my ($value, $timestamp) = split /,/, $value_string;
                 if (!$timestamp =~ m/(\d{4})-(\d{2})-(\d{2}) (\d{2}):(\d{2}):(\d{2})(\S)(\d{4})/) {
-                    $parse_result{'error'} = "Timestamp needs to be of form YYYY-MM-DD HH:MM:SS-0000 or YYYY-MM-DD HH:MM:SS+0000";
+                    $parse_result{'error'} = "A data e hora deve estar no formato YYYY-MM-DD HH:MM:SS-0000 ou YYYY-MM-DD HH:MM:SS+0000";
                     print STDERR "value: $timestamp\n";
                     return \%parse_result;
                 }
@@ -121,7 +122,7 @@ sub validate {
 
     if (scalar(@stocks_missing) > 0) {
         $parse_result{'missing_stocks'} = \@stocks_missing;
-        $parse_result{'error'} = "The following stocks are not in the database as uniquenames or synonyms: ".join(',',@stocks_missing);
+        $parse_result{'error'} = "Os seguintes materiais (stocks) não estão no banco de dados como nomes únicos ou sinônimos: ".join(',',@stocks_missing);
         return \%parse_result;
     }
 
@@ -131,7 +132,7 @@ sub validate {
 
     if (scalar(@traits_missing) > 0) {
         $parse_result{'missing_traits'} = \@traits_missing;
-        $parse_result{'error'} = "The following traits are not in the database: ".join(',',@traits_missing);
+        $parse_result{'error'} = "As seguintes características não estão no banco de dados: ".join(',',@traits_missing);
         return \%parse_result;
     }
 
@@ -167,7 +168,7 @@ sub parse {
         or die "Could not open file '$filename' $!";
 
     if (!$fh) {
-        $parse_result{'error'} = "Could not read file.";
+        $parse_result{'error'} = "Não foi possível ler o arquivo.";
         print STDERR "Could not read file.\n";
         return \%parse_result;
     }
@@ -177,7 +178,7 @@ sub parse {
     if ($csv->parse($header_row)) {
         @header_columns = $csv->fields();
     } else {
-        $parse_result{'error'} = "Could not parse header row.";
+        $parse_result{'error'} = "Não foi possível analisar a linha de cabeçalho.";
         print STDERR "Could not parse header row.\n";
         return \%parse_result;
     }
@@ -189,7 +190,7 @@ sub parse {
         if ($csv->parse($row)) {
             @columns = $csv->fields();
         } else {
-            $parse_result{'error'} = "Could not parse row $row.";
+            $parse_result{'error'} = "Não foi possível analisar a linha $row.";
             print STDERR "Could not parse row $row.\n";
             return \%parse_result;
         }
@@ -226,7 +227,7 @@ sub parse {
                         $data{$observation_unit_name}->{$trait_name} = [$value, $timestamp];
                     }
                 } else {
-                    $parse_result{'error'} = "Value or timestamp missing.";
+                    $parse_result{'error'} = "Valor ou data e hora ausente.";
                     return \%parse_result;
                 }
             }

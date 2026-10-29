@@ -18,6 +18,7 @@ Nicolas Morales <nm529@cornell.edu>
 =cut
 
 package SGN::Controller::AJAX::PhenotypesUpload;
+use utf8;
 
 use Moose;
 use Try::Tiny;
@@ -103,7 +104,7 @@ sub upload_phenotype_verify_POST : Args(1) {
     if ($verified_warning) {
         push @$warning_status, $verified_warning;
     }
-    push @$success_status, "File data verified. Plot names and trait names are valid.";
+    push @$success_status, "Dados do arquivo verificados. Os nomes das parcelas e das características são válidos.";
 
     $c->stash->{rest} = {success => $success_status, warning => $warning_status, error => $error_status};
 }
@@ -193,7 +194,7 @@ sub upload_phenotype_store_POST : Args(1) {
         }
     }
 
-    push @$success_status, "Metadata saved for archived file.";
+    push @$success_status, "Metadados salvos para o arquivo armazenado.";
     my $bs = CXGN::BreederSearch->new( { dbh=>$c->dbc->dbh, dbname=>$c->config->{dbname}, } );
     my $refresh = $bs->refresh_matviews($c->config->{dbhost}, $c->config->{dbname}, $c->config->{dbuser}, $c->config->{dbpass}, 'phenotypes', 'concurrent', $c->config->{basepath});
 
@@ -208,7 +209,7 @@ sub _prep_upload {
 	my $user = $c->user();
 
 	if (!$user) {# only checks for login, ask whether this needs to be changed...
-		push @error_status, 'You do not have permission to upload data to this trial!';
+		push @error_status, 'Você não tem permissão para enviar dados para este ensaio!';
 		return (\@success_status, \@error_status);
 	}
 
@@ -271,7 +272,7 @@ sub _prep_upload {
 
     my $user_type = $user->get_object->get_user_type();
     if ($user_type ne 'submitter' && $user_type ne 'curator') {
-        push @error_status, 'Must have submitter privileges to upload phenotypes! Please contact us!';
+        push @error_status, 'É preciso ter privilégios de submissor para enviar fenótipos! Entre em contato conosco!';
         return (\@success_status, \@error_status);
     }
 
@@ -279,14 +280,14 @@ sub _prep_upload {
     if ($overwrite_values) {
         #print STDERR $user_type."\n";
         if ($user_type ne 'curator') {
-            push @error_status, 'Must be a curator to overwrite values! Please contact us!';
+            push @error_status, 'É preciso ser curador para sobrescrever valores! Entre em contato conosco!';
             return (\@success_status, \@error_status);
         }
     }
     my $remove_values = $overwrite_values && $c->req->param('phenotype_upload_remove_values');
     if ( $remove_values ) {
         if ($user_type ne 'curator') {
-            push @error_status, 'Must be a curator to remove values! Please contact us!';
+            push @error_status, 'É preciso ser curador para remover valores! Entre em contato conosco!';
             return (\@success_status, \@error_status);
         }
     }
@@ -309,10 +310,10 @@ sub _prep_upload {
     my $archived_filename_with_path = $uploader->archive();
     my $md5 = $uploader->get_md5($archived_filename_with_path);
     if (!$archived_filename_with_path) {
-        push @error_status, "Could not save file $upload_original_name in archive.";
+        push @error_status, "Não foi possível salvar o arquivo $upload_original_name no arquivo permanente.";
         return (\@success_status, \@error_status);
     } else {
-        push @success_status, "File $upload_original_name saved in archive.";
+        push @success_status, "Arquivo $upload_original_name salvo no arquivo permanente.";
     }
     unlink $upload_tempfile;
     #print STDERR "Archived Phenotype File: $archived_filename_with_path\n";
@@ -333,10 +334,10 @@ sub _prep_upload {
         $archived_image_zipfile_with_path = $uploader->archive();
         my $md5 = $uploader->get_md5($archived_image_zipfile_with_path);
         if (!$archived_image_zipfile_with_path) {
-            push @error_status, "Could not save images zipfile $upload_original_name in archive.";
+            push @error_status, "Não foi possível salvar o arquivo zip de imagens $upload_original_name no arquivo permanente.";
             return (\@success_status, \@error_status);
         } else {
-            push @success_status, "Images Zip File $upload_original_name saved in archive.";
+            push @success_status, "Arquivo zip de imagens $upload_original_name salvo no arquivo permanente.";
         }
         unlink $upload_tempfile;
         #print STDERR "Archived Zipfile: $archived_image_zipfile_with_path\n";
@@ -345,11 +346,11 @@ sub _prep_upload {
     ## Validate and parse uploaded file
     my $validate_file = $parser->validate($validate_type, $archived_filename_with_path, $timestamp_included, $data_level, $schema, $archived_image_zipfile_with_path, undef);
     if (!$validate_file) {
-        push @error_status, "Archived file not valid: $upload_original_name.";
+        push @error_status, "Arquivo armazenado inválido: $upload_original_name.";
         return (\@success_status, \@error_status);
     }
     if ($validate_file == 1){
-        push @success_status, "File valid: $upload_original_name.";
+        push @success_status, "Arquivo válido: $upload_original_name.";
     } else {
         if ($validate_file->{'error'}) {
             push @error_status, $validate_file->{'error'};
@@ -366,7 +367,7 @@ sub _prep_upload {
 
     my $parsed_file = $parser->parse($validate_type, $archived_filename_with_path, $timestamp_included, $data_level, $schema, $archived_image_zipfile_with_path, $user_id, $c, undef);
     if (!$parsed_file) {
-        push @error_status, "Error parsing file $upload_original_name.";
+        push @error_status, "Erro ao processar o arquivo $upload_original_name.";
         return (\@success_status, \@error_status);
     }
     if ($parsed_file->{'error'}) {
@@ -381,7 +382,7 @@ sub _prep_upload {
             %parsed_data = %{$parsed_file->{'data'}};
             @plots = @{$parsed_file->{'units'}};
             @traits = @{$parsed_file->{'variables'}};
-            push @success_status, "File data successfully parsed.";
+            push @success_status, "Dados do arquivo processados com sucesso.";
         }
         if ($is_treatment eq "treatment") {
             foreach my $plot (@plots) {
@@ -428,11 +429,11 @@ sub update_plot_phenotype_POST : Args(0) {
 
   if (!$c->user()) {
     print STDERR "User not logged in... not recording phenotype.\n";
-    $c->stash->{rest} = {error => "You need to be logged in to record phenotype." };
+    $c->stash->{rest} = {error => "Você precisa estar conectado para registrar fenótipos." };
     return;
   }
   if (!any { $_ eq "curator" || $_ eq "submitter" } ($c->user()->roles)  ) {
-    $c->stash->{rest} = {error =>  "You have insufficient privileges to record phenotype." };
+    $c->stash->{rest} = {error =>  "Você não tem privilégios suficientes para registrar fenótipos." };
     return;
   }
 
@@ -446,13 +447,13 @@ sub update_plot_phenotype_POST : Args(0) {
   map { $has_roles{$_} = 1; } @user_roles;
 
   if (! ( (exists($has_roles{$breeding_program_name}) && exists($has_roles{submitter})) || exists($has_roles{curator}))) {
-    $c->stash->{rest} = { error => "You need to be either a curator, or a submitter associated with breeding program $breeding_program_name to record phenotype." };
+    $c->stash->{rest} = { error => "Você precisa ser curador ou submissor associado ao programa de melhoramento $breeding_program_name para registrar fenótipos." };
     return;
   }
 
   if ($plot_type_id == $accession_cvterm_id) {
     print "You are using accessions\n";
-    $c->stash->{rest} = {error => "Used only for Plot Phenotyping."};
+    $c->stash->{rest} = {error => "Usado apenas para fenotipagem de parcelas."};
     return;
   }
 
@@ -567,7 +568,7 @@ sub update_single_observation :Path('/ajax/phenotype/edit/') Args(1) {
     my $observationID = shift;
 
     if (!$c->user()) {
-        $c->stash->{rest} = {error => "You need to be logged in to record a phenotype." };
+        $c->stash->{rest} = {error => "Você precisa estar conectado para registrar um fenótipo." };
         return;
     }
 
@@ -582,17 +583,17 @@ sub update_single_observation :Path('/ajax/phenotype/edit/') Args(1) {
     my $trial_id = $c->req->param('trial_id');
 
     if (!$trial_id) {
-        $c->stash->{rest} = {error => "This observation can only be edited in relation to a trial."};
+        $c->stash->{rest} = {error => "Esta observação só pode ser editada em relação a um ensaio."};
         return;
     }
 
     if (!$observationID) {
-        $c->stash->{rest} = {error => "You must supply an observation ID!"};
+        $c->stash->{rest} = {error => "Informe um ID de observação!"};
         return;
     }
 
     if (!defined($new_value) || $new_value eq '') {
-        $c->stash->{rest} = {error => "This function can edit existing phenotype entries, but not delete them. Please enter a value."};
+        $c->stash->{rest} = {error => "Esta função pode editar registros de fenótipo existentes, mas não excluí-los. Informe um valor."};
         return;
     }
 
@@ -605,7 +606,7 @@ sub update_single_observation :Path('/ajax/phenotype/edit/') Args(1) {
     my $owners = $this_trial->_get_trial_owners();
 
     if ( ! $user->check_roles("curator") && !defined($owners->{$sp_person_id}) ) {
-        $c->stash->{rest} = {error => "You do not have permission to make edits on this trial - only curators and trial owners can modify raw phenotype values."};
+        $c->stash->{rest} = {error => "Você não tem permissão para fazer edições neste ensaio - somente curadores e proprietários do ensaio podem modificar valores brutos de fenótipo."};
         return;
     }
 
@@ -641,7 +642,7 @@ sub update_single_observation :Path('/ajax/phenotype/edit/') Args(1) {
         $phenotype->uniquename($pheno_uniquename);
         $phenotype->store();
     } catch {
-        $c->stash->{rest} = {error => "An error occurred trying to store phenotype: $_"};
+        $c->stash->{rest} = {error => "Ocorreu um erro ao tentar armazenar o fenótipo: $_"};
         return;
     };
 

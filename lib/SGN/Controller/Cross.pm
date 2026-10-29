@@ -17,6 +17,7 @@ Lukas Mueller <lam87@cornell.edu>
 =cut
 
 package SGN::Controller::Cross;
+use utf8;
 
 use Moose;
 
@@ -64,13 +65,13 @@ sub upload_cross :  Path('/cross/upload_cross')  Args(0) {
 
      if (!$c->user()) {
        print STDERR "User not logged in... not adding crosses.\n";
-       $c->stash->{rest} = {error => "You need to be logged in to add a cross." };
+       $c->stash->{rest} = {error => "Você precisa estar conectado para adicionar um cruzamento." };
        return;
      }
 
     if (!any { $_ eq "curator" || $_ eq "submitter" } ($c->user()->roles)  ) {
 	print STDERR "User does not have sufficient privileges.\n";
-	$c->stash->{rest} = {error =>  "you have insufficient privileges to add a cross." };
+	$c->stash->{rest} = {error =>  "Você não tem permissão para adicionar um cruzamento." };
 	return;
     }
 
@@ -87,7 +88,7 @@ sub upload_cross :  Path('/cross/upload_cross')  Args(0) {
 	 $first_row[8] ne 'suffix' ||
 	 $first_row[9] ne 'number_of_flowers' ||
 	 $first_row[10] ne 'number_of_seeds') {
-       $header_error = "<b>Error in header:</b><br>Header should contain the following tab-delimited fields:<br>cross_name<br>cross_type<br>maternal_parent<br>paternal_parent<br>trial<br>location<br>number_of_progeny<br>prefix<br>suffix<br>number_of_flowers<br>number_of_seeds<br>";
+       $header_error = "<b>Erro no cabeçalho:</b><br>O cabeçalho deve conter os seguintes campos delimitados por tabulação:<br>cross_name<br>cross_type<br>maternal_parent<br>paternal_parent<br>trial<br>location<br>number_of_progeny<br>prefix<br>suffix<br>number_of_flowers<br>number_of_seeds<br>";
        print STDERR "$header_error\n";
      }
      else {
@@ -96,10 +97,10 @@ sub upload_cross :  Path('/cross/upload_cross')  Args(0) {
 	 $line_number++;
 	 my @row = split /\t/, $line;
 	 if (scalar(@row) < 6) {
-	   $line_errors{$line_number} = "Line $line_number has too few columns\n";
+	   $line_errors{$line_number} = "A linha $line_number tem poucas colunas\n";
 	 }
 	 elsif (!$row[0] || !$row[1] || !$row[2] || !$row[3] || !$row[4] || !$row[5]) {
-	   $line_errors{$line_number} = "Line $line_number is missing a required field\n";
+	   $line_errors{$line_number} = "Falta um campo obrigatório na linha $line_number\n";
 	 }
 	 else {
 	   my %cross;
@@ -217,61 +218,61 @@ sub _verify_cross {
   my $max_seeds = 10000;
   #print STDERR "name: ".$cross_ref->{'cross_name'}."\n";
   if (! $schema->resultset("Stock::Stock")->find({name=>$maternal_parent,})){
-    $error_ref->{$line_number} .= "Line number $line_number, Maternal parent $maternal_parent does not exist in database\n <br>";
+    $error_ref->{$line_number} .= "Linha $line_number, o genitor feminino $maternal_parent não existe no banco de dados\n <br>";
     }
   if ($cross_type ne "biparental" && $cross_type ne "self" && $cross_type ne "open" && $cross_type ne "bulk" && $cross_type ne "bulk_self" && $cross_type ne "bulk_open" && $cross_type ne "doubled_haploid" && $cross_type ne "dihaploid_induction") {
-    $error_ref->{$line_number} .= "Line number $line_number, Cross type $cross_type is not valid\n <br>";
+    $error_ref->{$line_number} .= "Linha $line_number, o tipo de cruzamento $cross_type não é válido\n <br>";
   }
   if ($cross_type eq "self" || $cross_type eq "bulk_self" || $cross_type eq "doubled_haploid" || $cross_type eq "dihaploid_induction") {
     if ($maternal_parent ne $paternal_parent) {
-      $error_ref->{$line_number} .= "Line number $line_number, maternal and paternal parents must match for cross type $cross_type\n <br>";
+      $error_ref->{$line_number} .= "Linha $line_number, os genitores feminino e masculino devem ser iguais para o tipo de cruzamento $cross_type\n <br>";
     }
   }
   if (! $schema->resultset("Stock::Stock")->find({name=>$paternal_parent,})){
-    $error_ref->{$line_number} .= "Line number $line_number, Paternal parent $paternal_parent does not exist in database\n <br>";
+    $error_ref->{$line_number} .= "Linha $line_number, o genitor masculino $paternal_parent não existe no banco de dados\n <br>";
     }
   if (! $schema->resultset("Project::Project")->find({name=>$cross_trial,})){
-    $error_ref->{$line_number} .= "Line number $line_number, Trial $cross_trial does not exist in database\n <br>";
+    $error_ref->{$line_number} .= "Linha $line_number, o ensaio $cross_trial não existe no banco de dados\n <br>";
     }
   if (! $schema->resultset("NaturalDiversity::NdGeolocation")->find({description=>$cross_location,})){
-    $error_ref->{$line_number} .= "Line number $line_number, Location $cross_location does not exist in database\n <br>";
+    $error_ref->{$line_number} .= "Linha $line_number, o local $cross_location não existe no banco de dados\n <br>";
     }
   #check that cross name does not already exist
   if ($schema->resultset("Stock::Stock")->find({name=>$cross_name})){
-    $error_ref->{$line_number} .= "Line number $line_number, Cross $cross_name already exists in database\n <br>";
+    $error_ref->{$line_number} .= "Linha $line_number, o cruzamento $cross_name já existe no banco de dados\n <br>";
   }
   if ($cross_ref->{'number_of_progeny'}) {
     if ($cross_ref->{'number_of_progeny'}  =~ /^[0-9]+$/) { #is an integer
       if ($cross_ref->{'number_of_progeny'} > $max_progeny || $cross_ref->{'number_of_progeny'} < 1) {
-	$error_ref->{$line_number} .= "Line number $line_number, Number of progeny ". $cross_ref->{'number_of_progeny'}." exceeds the maximum of $max_progeny or is invalid\n <br>";
+	$error_ref->{$line_number} .= "Linha $line_number, o número de progênies". $cross_ref->{'number_of_progeny'}." excede o máximo de $max_progeny ou é inválido\n <br>";
       }
     } else {
-      $error_ref->{$line_number} .= "Line number $line_number, Number of progeny ". $cross_ref->{'number_of_progeny'}." is not an integer\n <br>";
+      $error_ref->{$line_number} .= "Linha $line_number, o número de progênies". $cross_ref->{'number_of_progeny'}." não é um número inteiro\n <br>";
     }
   }
   if ($cross_ref->{'number_of_flowers'}) {
     if ($cross_ref->{'number_of_flowers'}  =~ /^[0-9]+$/) { #is an integer
       if ($cross_ref->{'number_of_flowers'} > $max_flowers || $cross_ref->{'number_of_flowers'} < 1) {
-	$error_ref->{$line_number} .= "Line number $line_number, Number of flowers ". $cross_ref->{'number_of_flowers'}." exceeds the maximum of $max_flowers or is invalid\n <br>";
+	$error_ref->{$line_number} .= "Linha $line_number, o número de flores". $cross_ref->{'number_of_flowers'}." excede o máximo de $max_flowers ou é inválido\n <br>";
       }
     } else {
-      $error_ref->{$line_number} .= "Line number $line_number, Number of flowers ". $cross_ref->{'number_of_flowers'}." is not an integer\n <br>";
+      $error_ref->{$line_number} .= "Linha $line_number, o número de flores". $cross_ref->{'number_of_flowers'}." não é um número inteiro\n <br>";
     }
   }
   if ($cross_ref->{'number_of_seeds'}) {
     if ($cross_ref->{'number_of_seeds'}  =~ /^[0-9]+$/) { #is an integer
       if ($cross_ref->{'number_of_seeds'} > $max_seeds || $cross_ref->{'number_of_seeds'} < 1) {
-	$error_ref->{$line_number} .= "Line number $line_number, Number of seeds ". $cross_ref->{'number_of_seeds'}." exceeds the maximum of $max_seeds or is invalid\n <br>";
+	$error_ref->{$line_number} .= "Linha $line_number, o número de sementes". $cross_ref->{'number_of_seeds'}." excede o máximo de $max_seeds ou é inválido\n <br>";
       }
     } else {
-      $error_ref->{$line_number} .= "Line number $line_number, Number of seeds ". $cross_ref->{'number_of_seeds'}." is not an integer\n <br>";
+      $error_ref->{$line_number} .= "Linha $line_number, o número de sementes". $cross_ref->{'number_of_seeds'}." não é um número inteiro\n <br>";
     }
   }
   if ($cross_ref->{'prefix'} =~ m/\-/) {
-	$error_ref->{$line_number} .= "Line number $line_number, Prefix ". $cross_ref->{'prefix'}." contains an illegal character: -\n <br>";
+	$error_ref->{$line_number} .= "Linha $line_number, o prefixo". $cross_ref->{'prefix'}." contém um caractere inválido: -\n <br>";
   }
   if ($cross_ref->{'suffix'} =~ m/\-/) {
-	$error_ref->{$line_number} .= "Line number $line_number, Suffix ". $cross_ref->{'suffix'}." contains an illegal character: -\n <br>";
+	$error_ref->{$line_number} .= "Linha $line_number, o sufixo". $cross_ref->{'suffix'}." contém um caractere inválido: -\n <br>";
   }
   if ($error_ref->{$line_number}) {print $error_ref->{$line_number}."\n";return;} else {return 1;}
 }
@@ -413,7 +414,7 @@ sub _add_cross {
   }
 
   if ($@) {
-      $c->stash->{rest} = { error => "An error occurred: $@"};
+      $c->stash->{rest} = { error => "Ocorreu um erro: $@"};
   }
 
   $c->stash->{rest} = { error => '', };
@@ -593,7 +594,7 @@ sub cross_detail : Path('/cross') Args(1) {
 
     if (!$cross) {
     	$c->stash->{template} = '/generic_message.mas';
-    	$c->stash->{message} = 'The requested cross does not exist.';
+    	$c->stash->{message} = 'O cruzamento solicitado não existe.';
     	return;
     } else {
         $cross_id = $cross->stock_id();
@@ -645,7 +646,7 @@ sub family_name_detail : Path('/family') Args(1) {
     my $family_type_string;
 	if (!$family) {
     	$c->stash->{template} = '/generic_message.mas';
-    	$c->stash->{message} = 'The requested family name does not exist.';
+    	$c->stash->{message} = 'O nome de família solicitado não existe.';
     	return;
     } else {
         $family_id = $family->stock_id();
@@ -655,9 +656,9 @@ sub family_name_detail : Path('/family') Args(1) {
         if ($family_prop){
             $family_type = $family_prop->value();
             if ($family_type eq 'same_parents'){
-                $family_type_string = 'This family includes only crosses having the same female parent and the same male parent';
+                $family_type_string = 'Esta família inclui apenas cruzamentos com o mesmo genitor feminino e o mesmo genitor masculino';
             } elsif ($family_type eq 'reciprocal_parents'){
-                $family_type_string = 'This family includes reciprocal crosses';
+                $family_type_string = 'Esta família inclui cruzamentos recíprocos';
             }
         }
     }

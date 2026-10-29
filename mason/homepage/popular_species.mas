@@ -12,14 +12,14 @@ $show_link=>1
 <tr><td><b>Tomate</b></td><td><a href="/organism/1/view/"><i>Solanum lycopersicum</i></a>, <a href="/organism/770/view"><i>S.&nbsp;pimpinellifolium</i></a></td></tr>
 <tr><td><b>Batata</b></td><td><a href="/organism/12/view"><i>Solanum tuberosum</i></a>, <a href="/organism/20850/view"><i>S.&nbsp;phureja</i></a></td></tr>
 <tr><td><b>Pimenta</b></td><td><a href="/organism/13/view"><i>Capsicum annuum</i></a></td></tr>
-<tr><td><b>Café</b></td><td><a href="/organism/17/view"><i>Coffea canephora</i></a>, <a href="/organism/18/view"><i>C. Arabica</i></a></td></tr>
+<tr><td><b>Café</b></td><td><a href="/organism/17/view"><i>Coffea canephora</i></a>, <a href="/organism/18/view"><i>C.&nbsp;arabica</i></a></td></tr>
 <tr><td><b>Nicotiana</b></td><td><a href="/organism/1490/view"><i>Nicotiana benthamiana</i></a>, <a href="/organism/941/view"><i>N. tabacum</i></a></td></tr>
 <tr><td><b>Petunia</b></td><td><a href="/organism/1487/view"><i>Petunia axillaris</i></a>, <a href="/organism/22659/view"><i>P. x hybrida</i></a>, <a href="/organism/32709/view"><i>P. integrifolia</i> var inflata</a></td></tr>
   </tbody>
 </table>
 
 % if ($show_link) { 
-<button class="btn btn-info btn-sm" onclick=location.href="/search/organisms">Procure outras espécies...</button>
+<button class="btn btn-info btn-sm" onclick=location.href="/search/organisms">Buscar outras espécies...</button>
 %}
 
 <!-- </div>

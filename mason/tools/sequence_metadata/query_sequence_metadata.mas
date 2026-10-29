@@ -4,7 +4,7 @@
 
 <& /util/import_javascript.mas, classes => [ 'jquery', 'jquery.dataTables', 'jquery.dataTables-buttons-min', 'jszip-min', 'buttons.bootstrap-min', 'buttons.html5-min' ],  &>
 
-<p>Filtrar os metadados de sequência por posição, tipo de metadados de sequência e/ou protocolo, e/ou pelo valor(s) do atributo de protocolo.</p>
+<p>Filtrar os metadados de sequência por posição, tipo de metadados de sequência e/ou protocolo, e/ou pelo(s) valor(es) de atributo do protocolo.</p>
 
 <br />
 <a id="sequence_metadata_anchor"></a>
@@ -15,7 +15,7 @@
     <form class="form-horizontal" id="sequence_metadata_filter_form" name="sequence_metadata_filter_form">
 
         <!-- QUERY RANGE -->
-        <&| /page/info_section.mas, title => 'Faixa de Consulta', collapsible=>1, collapsed=>0 &>
+        <&| /page/info_section.mas, title => 'Intervalo da consulta', collapsible=>1, collapsed=>0 &>
             <div class="well">
             
                 <!-- Refence Genome -->
@@ -30,7 +30,7 @@
 
                 <!-- Feature -->
                 <div class="form-group">
-                    <label class="col-sm-2 control-label">Característica: </label>
+                    <label class="col-sm-2 control-label">Feature: </label>
                     <div class="col-sm-10">
                         <select class="form-control" id="sequence_metadata_filter_feature" disabled>
                             <option value="">Carregando...</option>
@@ -66,9 +66,9 @@
                     <div class="form-group">
                         <div class="col-sm-2" style="text-align: right">
                             <label class="control-label">Protocolo: </label><br /><br /><br />
-                            <a id="sequence_metadata_filter_type_info_btn" href="#"><span class="glyphicon glyphicon-question-sign"></span>Informação do tipo de dados</a>
+                            <a id="sequence_metadata_filter_type_info_btn" href="#"><span class="glyphicon glyphicon-question-sign"></span>&nbsp;Informações do tipo de dados</a>
                             <br /><br />
-                            <a id="sequence_metadata_filter_protocol_info_btn" href="#"><span class="glyphicon glyphicon-question-sign"></span>Informação do Protocolo</a>
+                            <a id="sequence_metadata_filter_protocol_info_btn" href="#"><span class="glyphicon glyphicon-question-sign"></span>&nbsp;Informações do protocolo</a>
                         </div>
                         <div class="col-sm-10">
                             <select class="form-control" id="sequence_metadata_filter_protocol" size="10" multiple disabled>
@@ -102,7 +102,7 @@
         <&| /page/info_section.mas, title=>'Pesquisa avançada', subtitle=>'Filtrar por valores de atributos', collapsible=>1, collapsed=>1 &>
             <div class="well">
 
-                <p>Devolva apenas os metadados de sequência que têm valores de atributos que correspondem às comparações adicionadas. Se mais de um filtro de atributos for adicionado, o recurso de metadados de sequência deve corresponder a todos os filtros.</p>
+                <p>Retorna apenas as features de metadados de sequência que têm valores de atributos que correspondem às comparações adicionadas. Se mais de um filtro de atributos for adicionado, a feature de metadados de sequência deve corresponder a todos os filtros.</p>
 
                 <br />
 
@@ -119,9 +119,9 @@
                         <label class="control-label">Comparação</label><br />
                         <select class="form-control" id="sequence_metadata_filter_score_comparison">
                             <option value="eq">Igual</option>
-                            <option value="lte">Menos do que ou igual</option>
-                            <option value="lt">Menos do que</option>
-                            <option value="gte">Maior ou Igual</option>
+                            <option value="lte">Menor ou igual</option>
+                            <option value="lt">Menor que</option>
+                            <option value="gte">Maior ou igual</option>
                             <option value="gt">Maior que</option>
                         </select>
                     </div>
@@ -156,9 +156,9 @@
                         <select class="form-control" id="sequence_metadata_filter_attribute_comparison">
                             <option value="con">Contém</option>
                             <option value="eq">Igual</option>
-                            <option value="lte">Menos do que ou igual</option>
-                            <option value="lt">Menos do que</option>
-                            <option value="gte">Maior ou Igual</option>
+                            <option value="lte">Menor ou igual</option>
+                            <option value="lt">Menor que</option>
+                            <option value="gte">Maior ou igual</option>
                             <option value="gt">Maior que</option>
                         </select>
                     </div>
@@ -175,7 +175,7 @@
 
                 <!-- Attribute Table -->
                 <div>
-                    <p><strong>Filtros de Atributos:</strong></p>
+                    <p><strong>Filtros de atributos:</strong></p>
                     <table id="sequence_metadata_filter_attributes_table" class="table table-striped table-hover">
                         <tr>
                             <th>Protocolo</th>
@@ -210,9 +210,9 @@
 <!-- START AUTO SEARCH SECTION -->
 <div id="sequence_metadata_section_auto_search" style="display: none">
     <div class="well" style="max-width: 500px; margin: 50px auto">
-        <h1>Procurando...</h1>
+        <h1>Buscando...</h1>
         <br /><br />
-        <p>Consultando o banco de dados dos metadados de sequência solicitados...</p>
+        <p>Consultando no banco de dados os metadados de sequência solicitados...</p>
         <br /><br />
     </div>
 </div>
@@ -236,7 +236,7 @@
     <!-- Return -->
     <div class="center">
         <button id="sequence_metadata_filter_return" class="btn btn-primary btn-block" style="max-width: 400px; margin: auto">
-            <span class="glyphicon glyphicon-chevron-left">&nbsp;</span>De volta à busca
+            <span class="glyphicon glyphicon-chevron-left">&nbsp;</span>Voltar à busca
         </button>
     </div>
 
@@ -251,7 +251,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Informação do tipo de dados</h4>
+                <h4 class="modal-title">Informações do tipo de dados</h4>
             </div>
             <div class="modal-body"></div>
         </div>
@@ -264,7 +264,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Informação do Protocolo</h4>
+                <h4 class="modal-title">Informações do protocolo</h4>
             </div>
             <div class="modal-body"></div>
         </div>
@@ -393,12 +393,12 @@ jQuery(document).ready(function() {
         data: [],
         columns: [
             { title: "Protocolo", data: "nd_protocol_name" },
-            { title: "Característica", data: "feature_name" },
+            { title: "Feature", data: "feature_name" },
             { title: "Início", data: "start" },
             { title: "Fim", data: "end" },
-            { title: "Ponto", data: "score" },
+            { title: "Pontuação", data: "score" },
             { title: "Atributos", data: "attributes", render: renderAttributesColumn },
-            { title: "Ligações Externas", data: "links", render: renderLinksColumn },
+            { title: "Links&nbsp;externos", data: "links", render: renderLinksColumn },
             { title: "Marcadores", data: renderMarkersColumn }
         ],
         order: [[ 2, "asc" ]],
@@ -576,11 +576,11 @@ function get_features(callback) {
 
             }
             else {
-                alert("ERRO: não foi possível carregar as características!");
+                alert("ERRO: não foi possível carregar as features!");
             }
         },
         error: function() {
-         alert("ERRO: não foi possível carregar as características");
+         alert("ERRO: não foi possível carregar as features");
         }
     });
 }
@@ -618,7 +618,7 @@ function get_types(callback) {
             if ( data && data.types ) {
 
                 // Build Info Table
-                let info = "<table class='table table-striped'><thead><tr><th>Tipo de Dados</th><th>Definição</th></tr></thead>";
+                let info = "<table class='table table-striped'><thead><tr><th>Tipo&nbsp;de&nbsp;dados</th><th>Definição</th></tr></thead>";
                 info += "<tbody>";
                 for ( let i = 0; i < data.types.length; i++ ) {
                     info += "<tr><td>" + data.types[i].type_name + "</td><td>" + data.types[i].type_definition + "</td></tr>";
@@ -960,7 +960,7 @@ function getQueryURL(format, nd_protocol_id) {
  */
 function query() {
     hide_error();
-    jQuery('#sequence_metadata_filter_query').html("Procurando...");
+    jQuery('#sequence_metadata_filter_query').html("Buscando...");
     jQuery('#sequence_metadata_filter_query').attr('disabled', true);
 
     jQuery.ajax({
@@ -1208,8 +1208,8 @@ function displayMarkers(key, species, reference_genome, feature_name, start, end
         let variants = marker_info.variants;
         let markers_displayed = 0;
         if ( marker_count > 0 ) {
-            let m = marker_count === 1 ? "marker" : "markers";
-            html += "<strong>" + marker_count + " " + m + " encontrado:</strong>";
+            let m = marker_count === 1 ? "marcador" : "marcadores";
+            html += "<strong>" + marker_count + " " + m + " encontrado(s):</strong>";
             html += "<div class='sequence_metadata_marker_search_markers_list'>";
             let sorted_variants = Object.keys(variants).sort();
             for ( let i = 0; i < sorted_variants.length; i++ ) {
@@ -1233,7 +1233,7 @@ function displayMarkers(key, species, reference_genome, feature_name, start, end
                 html += "<em>" + diff + " resultados adicionais não exibidos...</em>";
                 if ( species && reference_genome && feature_name ) {
                     let url = "/search/variants/results?type=genotyped&refmap=" + reference_genome + "&species=" + species + "&chrom=" + feature_name + "&start=" + start + "&end=" + end;
-                    html += "<br /><a href='" + url + "' target='_blank'>Veja todos os marcadores</a>";
+                    html += "<br /><a href='" + url + "' target='_blank'>Ver todos os marcadores</a>";
                 }
             }
             html += "</div>";

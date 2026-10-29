@@ -1,5 +1,6 @@
 
 package CXGN::Stock::StockTemplate;
+use utf8;
 
 
 =head1 NAME
@@ -121,7 +122,7 @@ sub parse {
     my ( $col_min, $col_max ) = $worksheet->col_range();
     print STDERR "$row_min $row_max $col_min $col_max \n";
     if ($col_max < 2 || $row_max < 8 ) {#must have header and at least one row of phenotypes
-      push @errors, "Spreadsheet is missing header";
+      push @errors, "A planilha não tem cabeçalho";
       $self->parse_errors(\@errors);
       return;
     }
@@ -135,18 +136,18 @@ sub parse {
     my $operator        = $worksheet->get_cell(4,1);
     my $date            = $worksheet->get_cell(5,1);
     if (!$spreadsheet_id) {
-      push @errors, "Spreadsheet ID is missing from the header";
+      push @errors, "O ID da planilha está ausente do cabeçalho";
     }
     if (!$trial_name) {
-      push @errors, "Trial name is missing from the header";
+      push @errors, "O nome do ensaio está ausente do cabeçalho";
     }
     #add function to check that the trial name exists?
     if (!$operator) {
-      push @errors, "The name of the operator is missing from the header";
+      push @errors, "O nome do operador está ausente do cabeçalho";
     }
     #add function to check if the operator name exists in the database and matches the logged in user?
     if (!$date) {
-      push @errors, "The date is missing from the header";
+      push @errors, "A data está ausente do cabeçalho";
     }
     #add a check to make sure that the header data is valid?
     if (@errors) {
@@ -241,12 +242,12 @@ sub verify {
             print STDERR "verify .. Looking for stock_id ".$plot_stock_id."\n";
 	    my $stock;
 	    $stock = $schema->resultset("Stock::Stock")->find( { stock_id => $plot_stock_id } );
-            if (!$stock) { push @errors, "Stock $plot_stock_id does not exist in the database!"; }
+            if (!$stock) { push @errors, "O material $plot_stock_id não existe no banco de dados!"; }
             foreach my $cvterm_accession (keys %{$hashref->{$key}->{$plot_stock_id} } ) {
                 print STDERR "verify ... Looking for accession $cvterm_accession..\n";
                 my ($db_name, $accession) = split (/:/, $cvterm_accession);
-                if (!$db_name) { push @errors, "could not find valid db_name in accession $cvterm_accession";}
-                if (!$accession) { push @errors, "Could not find valid cvterm accession in $cvterm_accession";}
+                if (!$db_name) { push @errors, "não foi possível encontrar um db_name válido no accession $cvterm_accession";}
+                if (!$accession) { push @errors, "Não foi possível encontrar um accession de cvterm válido em $cvterm_accession";}
                 #check if the cvterm exists
                 my $db = $schema->resultset("General::Db")->search(
                     { 'me.name' => $db_name } );
@@ -255,13 +256,13 @@ sub verify {
 
                     if ($dbxref->count) {
                         my $cvterm = $dbxref->search_related("cvterm", {} )->single;
-                        if (!$cvterm) { push @errors, "NO cvterm found in the database for accession $cvterm_accession!\n db_name = '" .  $db_name  . "' , accession = '" .  $accession . "'";
+                        if (!$cvterm) { push @errors, "NENHUM cvterm encontrado no banco de dados para o accession $cvterm_accession!\n db_name = '" .  $db_name  . "' , accession = '" .  $accession . "'";
 			}
                     } else {
-                        push @errors, "No dbxref found for cvterm accession $accession";
+                        push @errors, "Nenhum dbxref encontrado para o accession de cvterm $accession";
                     }
                 } else {
-                    push @errors , "db_name $db_name does not exist in the database!";
+                    push @errors , "O db_name $db_name não existe no banco de dados!";
                 }
             }
         }
@@ -430,7 +431,7 @@ sub store {
 		#link the phenotpe to the experiment
 		$experiment->find_or_create_related('nd_experiment_phenotypes' , {
 		    phenotype_id => $phenotype->phenotype_id });
-		$message .= "Added phenotype: trait= " . $cvterm->name . ", value = $value, to stock " . qq|<a href="/stock/$plot_stock_id/view">$stock_name</a><br />| ;
+		$message .= "Fenótipo adicionado: característica= " . $cvterm->name . ", valor = $value, ao material " . qq|<a href="/stock/$plot_stock_id/view">$stock_name</a><br />| ;
 		
 		#link the file to the experiment
 		#$experiment->find_or_create_related('nd_experiment_md_files',{file_id => $file_row->file_id(),});
@@ -455,7 +456,7 @@ sub store {
       $schema->txn_do($coderef);
     } catch {
       # Transaction failed
-      $error =  "An error occured! Cannot store data! <br />" . $_ . "\n";
+      $error =  "Ocorreu um erro! Não é possível armazenar os dados! <br />" . $_ . "\n";
     };
 
     if ($error) {

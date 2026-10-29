@@ -1,5 +1,6 @@
 package CXGN::Trial::ParseUpload::Plugin::TrialUsedSeedlotsGeneric;
 
+use utf8;
 use Moose::Role;
 use CXGN::File::Parse;
 use CXGN::Stock::StockLookup;
@@ -51,7 +52,7 @@ sub _validate_with_plugin {
 
     if ( $additional_columns && scalar(@$additional_columns) > 0 ) {
         $errors{'error_messages'} = [
-            "The following columns are not recognized: " . join(', ', @$additional_columns) . ". Please check the spreadsheet format for the allowed columns."
+            "As seguintes colunas não são reconhecidas: " . join(', ', @$additional_columns) . ". Verifique o formato da planilha para conhecer as colunas permitidas."
         ];
         $self->_set_parse_errors(\%errors);
         return;
@@ -67,13 +68,13 @@ sub _validate_with_plugin {
         push @pairs, [$seedlot_name, $plot_name];
 
         if (!defined $amount && !defined $weight) {
-            push @error_messages, "On row:$row_num you must provide either a weight in grams or a seed count amount per plot.";
+            push @error_messages, "Na linha $row_num: você deve informar o peso em gramas ou a quantidade de sementes por parcela.";
         }
         if ( $amount && $amount ne '' && !($amount =~ /^\d+?$/) ) {
-            push @error_messages, " On row $row_num: num_seed_per_plot <strong>$amount</strong> must be a positive integer.";
+            push @error_messages, " Na linha $row_num: num_seed_per_plot <strong>$amount</strong> deve ser um número inteiro positivo.";
         }
         if ( $weight && $weight ne '' && !(looks_like_number($weight) && $weight > 0)) {
-            push @error_messages, "On row $row_num: weight_gram_seed_per_plot <strong>$</strong> must be a positive number.";
+            push @error_messages, "Na linha $row_num: weight_gram_seed_per_plot <strong>$</strong> deve ser um número positivo.";
         }
     }
 
@@ -86,20 +87,20 @@ sub _validate_with_plugin {
     my %plots = map {$_->[1]=>1} @trial_plots;
     foreach my $plot_name (@$seen_plot_names) {
         if (!exists($plots{$plot_name})) {
-            push @error_messages, "Plot $plot_name does not exist in this trial.";
+            push @error_messages, "A parcela $plot_name não existe neste ensaio.";
         }
     }
 
     my $seedlot_validator = CXGN::List::Validate->new();
     my @seedlots_missing = @{$seedlot_validator->validate($schema,'seedlots',$seen_seedlot_names)->{'missing'}};
     if (scalar(@seedlots_missing) > 0) {
-        push @error_messages, "The following seedlots are not in the database as uniquenames: ".join(',',@seedlots_missing);
+        push @error_messages, "Os seguintes lotes de sementes não estão no banco de dados como nomes únicos: ".join(',',@seedlots_missing);
     }
 
     my $plot_validator = CXGN::List::Validate->new();
     my @plots_missing = @{$plot_validator->validate($schema,'plots',$seen_plot_names)->{'missing'}};
     if (scalar(@plots_missing) > 0) {
-        push @error_messages, "The following plots are not in the database as uniquenames: ".join(',',@plots_missing);
+        push @error_messages, "As seguintes parcelas não estão no banco de dados como nomes únicos: ".join(',',@plots_missing);
     }
 
     my $validate_seedlot_plot_compatibility;

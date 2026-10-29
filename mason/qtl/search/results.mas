@@ -22,7 +22,7 @@ $query
       title => 'Resultados da Pesquisa',
 &>
   <& /page/columnar_table.mas,
-     headings    => [ 'Trait name', 'Definition', 'QTL' ],
+     headings    => [ 'Nome da característica', 'Definição', 'QTL' ],
     data         => $data,
     __alt_freq   => 2,
     __alt_width  => 1,

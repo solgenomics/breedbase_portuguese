@@ -12,6 +12,7 @@
 =cut
 
 package CXGN::Bulk;
+use utf8;
 
 use strict;
 use warnings;
@@ -121,13 +122,13 @@ sub result_summary {
     
     my $numlines = scalar( @{ $self->{ids} } );
     if ( $missing_ids > 0 ) {
-        $missing_ids_msg = "$missing_ids ids were not retrieved from the database because they were not part of the corresponding unigene set or because there were duplicate entries in the submitted id list.";
+        $missing_ids_msg = "$missing_ids IDs não foram recuperados do banco de dados porque não faziam parte do conjunto de unigenes correspondente ou porque havia entradas duplicadas na lista de IDs enviada.";
     }
 
     my $fastalink     = " Fasta ";
     my $fastadownload = " Fasta ";
-    my $fastamessage  = "Note: Fasta option is not available because you didn't
-                        choose a sequence to download.<br />";
+    my $fastamessage  = "Nota: a opção Fasta não está disponível porque você não
+                        escolheu uma sequência para baixar.<br />";
     if ( join( " ", @{ $self->{output_fields} } ) =~ /seq/i ) {
         $fastalink =
 "<a href=\"/tools/bulk/display?outputType=Fasta&amp;dumpfile=$file&amp;unigene_seq=$unigene_seq&amp;est_seq=$est_seq\">Fasta</a>";

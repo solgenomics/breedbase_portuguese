@@ -1,18 +1,18 @@
-<& /page/page_title.mas, title => 'Sobre as paredes das células das plantas' &>
+<& /page/page_title.mas, title => 'Sobre as paredes celulares vegetais' &>
 
 <div class="indented_content" style="margin: 20px auto 30px auto; width: 480px">
 
   <p>
-  Paredes celulares de plantas são tipicamente consideradas matrizes estruturais complexas que cercam todas as células vegetais. Eles consistem principalmente de polissacarídeos, mas também contêm componentes como lignina, lipídios estruturais e proteínas em tipos celulares especializados.
+  As paredes celulares vegetais são tipicamente consideradas matrizes estruturais complexas que envolvem todas as células vegetais. Elas consistem principalmente de polissacarídeos, mas também contêm componentes como lignina, lipídios estruturais e proteínas em tipos celulares especializados.
   </p>
 
   <div style="width: 430px" class="captioned_image">
     <img src="/img/secretom/cell_wall_diagram_400.png" />
-    <p>Planta <a href="http://en.wikipedia.org/wiki/Cell_wall">Parede celular</a> Modelo</p>
+    <p>Modelo de <a href="http://en.wikipedia.org/wiki/Cell_wall">parede celular</a> vegetal</p>
   </div> 
 
   <p>
-  No entanto, o termo "parede celular" também é usado mais amplamente para se referir a todo o compartimento fora da membrana plasmática que forma um contínuo em toda a planta, também chamado de "apoplast", ou compartimento apoplástico.
+  No entanto, o termo "parede celular" também é usado mais amplamente para se referir a todo o compartimento fora da membrana plasmática que forma um contínuo em toda a planta, também chamado de "apoplasto", ou compartimento apoplástico.
   </p>
 
   <div style="width: 430px" class="captioned_image">

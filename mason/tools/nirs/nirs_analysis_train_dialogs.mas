@@ -7,21 +7,21 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="nirsAnalysisTrainingDialog">Modelo Espectral do Trem</h4>
+        <h4 class="modal-title" id="nirsAnalysisTrainingDialog">Treinar modelo espectral</h4>
       </div>
       <div class="modal-body">
         <div class="container-fluid">
 
             <&| /util/workflow.mas, id=> "nirs_analysis_training_workflow" &>
                 <&| /util/workflow.mas:step, title=> "Introdução" &>
-                    <& /page/page_title.mas, title=>"Este fluxo de trabalho irá guiá-lo através do treinamento de um modelo usando espectros e fenótipos no banco de dados." &>
+                    <& /page/page_title.mas, title=>"Este fluxo de trabalho irá guiá-lo no treinamento de um modelo usando espectros e fenótipos no banco de dados." &>
                     <br/><br/>
                     <center>
-                    <button class="btn btn-primary" onclick="Workflow.complete(this); return false;">Vá para o próximo passo</button>
+                    <button class="btn btn-primary" onclick="Workflow.complete(this); return false;">Ir para o próximo passo</button>
                     </center>
                 </&>
-                <&| /util/workflow.mas:step, title=> "Dataset do trem" &>
-                    <& /page/page_title.mas, title=>"Selecione o conjunto de dados que você está interessado em treinar (os acessos ou parcelas ou amostras de tecidos no conjunto de dados precisam ter espectros carregados)" &>
+                <&| /util/workflow.mas:step, title=> "Conjunto de dados de treinamento" &>
+                    <& /page/page_title.mas, title=>"Selecione o conjunto de dados para treinamento (os acessos, parcelas ou amostras de tecido do conjunto de dados precisam ter espectros enviados)" &>
                     <br/><br/>
                     <form class="form-horizontal">
                         <div class="form-group">
@@ -33,16 +33,16 @@
                     </form>
                     <br/><br/>
                     <center>
-                    <button class="btn btn-primary" id="nirs_analysis_training_dataset_train_select_step">Vá para o próximo passo</button>
+                    <button class="btn btn-primary" id="nirs_analysis_training_dataset_train_select_step">Ir para o próximo passo</button>
                     </center>
                 </&>
-                <&| /util/workflow.mas:step, title=> "Dataset de teste" &>
-                    <& /page/page_title.mas, title=>"Selecione o conjunto de dados que você está interessado em testar (opcional)" &>
+                <&| /util/workflow.mas:step, title=> "Conjunto de dados de teste" &>
+                    <& /page/page_title.mas, title=>"Selecione o conjunto de dados para teste (opcional)" &>
                     <br/><br/>
 
                     <div class="form-horizontal" >
                         <div class="form-group">
-                            <label class="col-sm-7 control-label">Selecionar conjunto de dados personalizados para testes? Se não, o conjunto de treinamento e teste será dividido do conjunto de dados de treinamento que você já selecionou: </label>
+                            <label class="col-sm-7 control-label">Selecionar um conjunto de dados personalizado para teste? Se não, os conjuntos de treinamento e teste serão particionados a partir do conjunto de dados de treinamento que você já selecionou: </label>
                             <div class="col-sm-5" >
                                 <select class="form-control" id="nirs_analysis_training_dataset_test_select_option">
                                     <option value="No">Não</option>
@@ -53,13 +53,13 @@
                     </div>
 
                     <center>
-                    <button class="btn btn-primary" id="nirs_analysis_training_dataset_test_select_step">Vá para o próximo passo</button>
+                    <button class="btn btn-primary" id="nirs_analysis_training_dataset_test_select_step">Ir para o próximo passo</button>
                     </center>
                     <br/><br/>
 
                     <div class="form-horizontal" id="nirs_analysis_training_dataset_test_div" style="display:none">
                         <div class="form-group">
-                            <label class="col-sm-1 control-label">Dataset (Opcional) </label>
+                            <label class="col-sm-1 control-label">Conjunto de dados (opcional) (os acessos, parcelas ou amostras de tecido do conjunto de dados precisam ter espectros enviados): </label>
                             <div class="col-sm-11" >
                                 <div id="nirs_analysis_training_dataset_test_select_div"></div>
                             </div>
@@ -68,7 +68,7 @@
 
                 </&>
                 <&| /util/workflow.mas:step, title=> "Característica" &>
-                    <& /page/page_title.mas, title=>"Selecione a característica que você está interessado. Se não há opções disponíveis, os dados de treinamento e teste que você escolheu não compartilham nenhum característica em comum!" &>
+                    <& /page/page_title.mas, title=>"Selecione a característica de interesse. Se não houver opções disponíveis, os conjuntos de dados de treinamento e teste escolhidos não têm nenhuma característica em comum!" &>
                     <br/><br/>
                     <form class="form-horizontal">
                         <div class="form-group">
@@ -80,11 +80,11 @@
                     </form>
                     <br/><br/>
                     <center>
-                    <button class="btn btn-primary" id="nirs_analysis_training_trait_select_step">Vá para o próximo passo</button>
+                    <button class="btn btn-primary" id="nirs_analysis_training_trait_select_step">Ir para o próximo passo</button>
                     </center>
                 </&>
-                <&| /util/workflow.mas:step, title=> "Configuração do Modelo" &>
-                    <& /page/page_title.mas, title=>"Selecione parâmetros para modelagem espectral" &>
+                <&| /util/workflow.mas:step, title=> "Configurações do modelo" &>
+                    <& /page/page_title.mas, title=>"Selecione os parâmetros da modelagem espectral" &>
 
                     <center>
                     <button class="btn btn-info" id="nirs_analysis_training_dataset_info">Mais informações</button>
@@ -106,7 +106,7 @@
                                     <option value="BunchiN500">BunchiN500</option>
                                     <option value="LinkSquare">LinkSquare</option>
                                     <option value="ASD Qualityspec">ASD Qualityspec</option>
-                                    <option value="ASD LabSpec">ASD Lab Spec</option>
+                                    <option value="ASD LabSpec">ASD LabSpec</option>
                                     <option value="Specim FX17">Specim FX17</option>
                                     <option value="FTIR6X">FT/IR-6X</option>
                                     <option value="InnoSpectraNIR-S-G1">InnoSpectraNIR-S-G1</option>
@@ -134,9 +134,9 @@
                             <div class="col-sm-9" >
                                 <select class="form-control" id="nirs_analysis_training_nirs_model_algorithm">
                                     <option value="pls">PLSR</option>
-                                    <option value="rf">Floresta Aleatória</option>
-                                    <option value="svmLinear">SVM com Kernel Linear</option>
-                                    <option value="svmRadial">SVM com núcleo radial</option>
+                                    <option value="rf">Random Forest</option>
+                                    <option value="svmLinear">SVM com kernel linear</option>
+                                    <option value="svmRadial">SVM com kernel radial</option>
                                 </select>
                             </div>
                         </div>
@@ -147,7 +147,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">Comprimento de ajuste: </label>
+                            <label class="col-sm-3 control-label">Tamanho do ajuste (tuning length): </label>
                             <div class="col-sm-9" >
                                 <input class="form-control" type="number" id="nirs_analysis_training_tuneLength_select" name="tuneLength_select" min="1" max="30" step="1" value="10">
                             </div>
@@ -159,7 +159,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">Mostrar importância variável de floresta aleatória? </label>
+                            <label class="col-sm-3 control-label">Mostrar a importância das variáveis do Random Forest? (Observação: isso pode levar muito tempo para ser executado): </label>
                             <div class="col-sm-9" >
                                 <input type="checkbox" id="nirs_analysis_training_rf_var_imp_select" name="rf_var_imp_select" >
                             </div>
@@ -168,19 +168,19 @@
 
                     <br/><br/>
                     <center>
-                    <button class="btn btn-primary" id="nir_analysis_training_model_step">Treine o Modelo</button>
+                    <button class="btn btn-primary" id="nir_analysis_training_model_step">Treinar o modelo</button>
                     </center>
                 </&>
                 <&| /util/workflow.mas:step, title=> "Resumo" &>
-                    <& /page/page_title.mas, title=>"Resumo dos parâmetros selecionados para criação de modelos" &>
+                    <& /page/page_title.mas, title=>"Resumo dos parâmetros selecionados para a criação do modelo" &>
 
                     <div id="nir_analysis_training_model_performance_results"></div>
 
                     <div class="form-horizontal">
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">Quer guardar o modelo para previsões futuras? </label>
+                            <label class="col-sm-3 control-label">Deseja salvar o modelo para predições futuras? </label>
                             <div class="col-sm-9" >
-                                <button class="btn btn-primary" id="nir_analysis_training_model_save_step">Salve o Modelo</button>
+                                <button class="btn btn-primary" id="nir_analysis_training_model_save_step">Salvar o modelo</button>
                             </div>
                         </div>
                     </div>
@@ -203,17 +203,17 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="nirsAnalysisTrainingInfoDialog">Modelo Espectral do Trem</h4>
+        <h4 class="modal-title" id="nirsAnalysisTrainingInfoDialog">Treinar modelo espectral</h4>
       </div>
       <div class="modal-body">
         <div class="container-fluid">
 
-            <h1>Mais </h1>
+            <h1>Mais informações</h1>
             <ul>
-              <li>"CV1": untested lines in tested environments</li>
-              <li>"CV2": tested lines in tested environments</li>
-              <li>"CV0": tested lines in untested environments</li>
-              <li>"CV00": untested lines in untested environments</li>
+              <li>"CV1": linhas não testadas em ambientes testados</li>
+              <li>"CV2": linhas testadas em ambientes testados</li>
+              <li>"CV0": linhas testadas em ambientes não testados</li>
+              <li>"CV00": linhas não testadas em ambientes não testados</li>
             </ul>
         </div>
       </div>

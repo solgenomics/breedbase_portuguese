@@ -28,7 +28,7 @@ $variance_components
     title       => "Componentes de variância"
 &>     
   <& /page/columnar_table.mas,
-     headings   => ["Variance Components", "Estimates"], 
+     headings   => ["Componentes de variância", "Estimativas"], 
      data        => $variance_components,
     __alt_freq   => 2,
     __alt_width  => 1,

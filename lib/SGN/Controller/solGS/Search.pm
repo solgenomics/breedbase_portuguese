@@ -14,6 +14,7 @@ it under the same terms as Perl itself.
 =cut
 
 package SGN::Controller::solGS::Search;
+use utf8;
 
 use Moose;
 use namespace::autoclean;
@@ -46,8 +47,8 @@ sub solgs_login_message : Path('/solgs/login/message') Args(0) {
 
     my $page = $c->req->param('page');
 
-    my $msg = "This is a private data. If you are the owner, "
-      . "please <a href=\"/user/login?goto_url=$page\">login</a> to view it.";
+    my $msg = "Estes são dados privados. Se você for o proprietário, "
+      . "faça <a href=\"/user/login?goto_url=$page\">login</a> para visualizá-los.";
 
     $c->controller('solGS::Utils')->generic_message( $c, $msg );
 

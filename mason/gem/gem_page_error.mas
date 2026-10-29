@@ -48,7 +48,7 @@ $name =~ s/cxgn::gem:://;
 
 </%perl>
 
-<h2>PEDIDO DE PÁGINA DE ERRO:</h2>
+<h2>ERRO NA SOLICITAÇÃO DA PÁGINA:</h2>
 
-<big>Wrong arguments are been used to request the <% $name %> page.</big>
+<big>Foram usados argumentos incorretos para solicitar a página <% $name %>.</big>
 

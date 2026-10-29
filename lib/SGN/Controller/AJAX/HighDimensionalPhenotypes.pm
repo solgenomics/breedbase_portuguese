@@ -1,6 +1,7 @@
 use strict;
 
 package SGN::Controller::AJAX::HighDimensionalPhenotypes;
+use utf8;
 
 use Moose;
 use Data::Dumper;
@@ -56,15 +57,15 @@ sub high_dimensional_phenotypes_nirs_upload_verify_POST : Args(0) {
     my $protocol_device_type = $c->req->param('upload_nirs_spreadsheet_protocol_device_type');
 
     if ($protocol_id && $protocol_name) {
-        $c->stash->{rest} = {error => ["Please give a protocol name or select a previous protocol, not both!"]};
+        $c->stash->{rest} = {error => ["Informe o nome de um protocolo ou selecione um protocolo existente, mas não ambos!"]};
         $c->detach();
     }
     if (!$protocol_id && (!$protocol_name || !$protocol_desc)) {
-        $c->stash->{rest} = {error => ["Please give a protocol name and description, or select a previous protocol!"]};
+        $c->stash->{rest} = {error => ["Informe o nome e a descrição do protocolo ou selecione um protocolo existente!"]};
         $c->detach();
     }
     if ($protocol_name && !$protocol_device_type) {
-        $c->stash->{rest} = {error => ["Please give a NIRS device type to save a new protocol!"]};
+        $c->stash->{rest} = {error => ["Informe o tipo de dispositivo NIRS para salvar um novo protocolo!"]};
         $c->detach();
     }
 
@@ -96,11 +97,11 @@ sub high_dimensional_phenotypes_nirs_upload_verify_POST : Args(0) {
     my $archived_filename_with_path = $uploader->archive();
     my $md5 = $uploader->get_md5($archived_filename_with_path);
     if (!$archived_filename_with_path) {
-        push @error_status, "Could not save file $upload_original_name in archive.";
+        push @error_status, "Não foi possível salvar o arquivo $upload_original_name no arquivo permanente.";
         $c->stash->{rest} = {success => \@success_status, error => \@error_status };
         $c->detach();
     } else {
-        push @success_status, "File $upload_original_name saved in archive.";
+        push @success_status, "Arquivo $upload_original_name salvo no arquivo permanente.";
     }
     unlink $upload_tempfile;
 
@@ -108,12 +109,12 @@ sub high_dimensional_phenotypes_nirs_upload_verify_POST : Args(0) {
     my $nd_protocol_filename;
     my $validate_file = $parser->validate($validate_type, $archived_filename_with_path, $timestamp_included, $data_level, $schema, $archived_image_zipfile_with_path, $protocol_id, $nd_protocol_filename);
     if (!$validate_file) {
-        push @error_status, "Archived file not valid: $upload_original_name.";
+        push @error_status, "Arquivo armazenado inválido: $upload_original_name.";
         $c->stash->{rest} = {success => \@success_status, error => \@error_status };
         $c->detach();
     }
     if ($validate_file == 1){
-        push @success_status, "File valid: $upload_original_name.";
+        push @success_status, "Arquivo válido: $upload_original_name.";
     } else {
         if ($validate_file->{'error'}) {
             push @error_status, $validate_file->{'error'};
@@ -131,7 +132,7 @@ sub high_dimensional_phenotypes_nirs_upload_verify_POST : Args(0) {
 
     my $parsed_file = $parser->parse($validate_type, $archived_filename_with_path, $timestamp_included, $data_level, $schema, $archived_image_zipfile_with_path, $user_id, $c, $protocol_id, $nd_protocol_filename);
     if (!$parsed_file) {
-        push @error_status, "Error parsing file $upload_original_name.";
+        push @error_status, "Erro ao processar o arquivo $upload_original_name.";
         $c->stash->{rest} = {success => \@success_status, error => \@error_status };
         $c->detach();
     }
@@ -148,7 +149,7 @@ sub high_dimensional_phenotypes_nirs_upload_verify_POST : Args(0) {
             %parsed_data = %{$parsed_file->{'data'}};
             @plots = @{$parsed_file->{'units'}};
             @wavelengths = @{$parsed_file->{'variables'}};
-            push @success_status, "File data successfully parsed.";
+            push @success_status, "Dados do arquivo processados com sucesso.";
         }
     }
 
@@ -189,7 +190,7 @@ sub high_dimensional_phenotypes_nirs_upload_verify_POST : Args(0) {
 
     my $parsed_file_agg = $parser->parse($validate_type, $output_csv_filepath, $timestamp_included, $data_level, $schema, $archived_image_zipfile_with_path, $user_id, $c, $protocol_id, $nd_protocol_filename);
     if (!$parsed_file_agg) {
-        push @error_status, "Error parsing aggregated file.";
+        push @error_status, "Erro ao processar o arquivo agregado.";
         $c->stash->{rest} = {success => \@success_status, error => \@error_status };
         $c->detach();
     }
@@ -206,7 +207,7 @@ sub high_dimensional_phenotypes_nirs_upload_verify_POST : Args(0) {
             %parsed_data_agg = %{$parsed_file_agg->{'data'}};
             @plots_agg = @{$parsed_file_agg->{'units'}};
             @wavelengths_agg = @{$parsed_file_agg->{'variables'}};
-            push @success_status, "Aggregated file data successfully parsed.";
+            push @success_status, "Dados do arquivo agregado processados com sucesso.";
         }
     }
 
@@ -242,7 +243,7 @@ sub high_dimensional_phenotypes_nirs_upload_verify_POST : Args(0) {
     if ($verified_warning) {
         push @warning_status, $verified_warning;
     }
-    push @success_status, "Aggregated file data verified. Plot names and trait names are valid.";
+    push @success_status, "Dados do arquivo agregado verificados. Os nomes das parcelas e das características são válidos.";
 
     # print STDERR Dumper \@success_status;
     # print STDERR Dumper \@warning_status;
@@ -275,15 +276,15 @@ sub high_dimensional_phenotypes_nirs_upload_store_POST : Args(0) {
     my $protocol_device_type = $c->req->param('upload_nirs_spreadsheet_protocol_device_type');
 
     if ($protocol_id && $protocol_name) {
-        $c->stash->{rest} = {error => ["Please give a protocol name or select a previous protocol, not both!"]};
+        $c->stash->{rest} = {error => ["Informe o nome de um protocolo ou selecione um protocolo existente, mas não ambos!"]};
         $c->detach();
     }
     if (!$protocol_id && (!$protocol_name || !$protocol_desc)) {
-        $c->stash->{rest} = {error => ["Please give a protocol name and description, or select a previous protocol!"]};
+        $c->stash->{rest} = {error => ["Informe o nome e a descrição do protocolo ou selecione um protocolo existente!"]};
         $c->detach();
     }
     if ($protocol_name && !$protocol_device_type) {
-        $c->stash->{rest} = {error => ["Please give a NIRS device type to save a new protocol!"]};
+        $c->stash->{rest} = {error => ["Informe o tipo de dispositivo NIRS para salvar um novo protocolo!"]};
         $c->detach();
     }
 
@@ -315,11 +316,11 @@ sub high_dimensional_phenotypes_nirs_upload_store_POST : Args(0) {
     my $archived_filename_with_path = $uploader->archive();
     my $md5 = $uploader->get_md5($archived_filename_with_path);
     if (!$archived_filename_with_path) {
-        push @error_status, "Could not save file $upload_original_name in archive.";
+        push @error_status, "Não foi possível salvar o arquivo $upload_original_name no arquivo permanente.";
         $c->stash->{rest} = {success => \@success_status, error => \@error_status };
         $c->detach();
     } else {
-        push @success_status, "File $upload_original_name saved in archive.";
+        push @success_status, "Arquivo $upload_original_name salvo no arquivo permanente.";
     }
     unlink $upload_tempfile;
 
@@ -327,12 +328,12 @@ sub high_dimensional_phenotypes_nirs_upload_store_POST : Args(0) {
     my $nd_protocol_filename;
     my $validate_file = $parser->validate($validate_type, $archived_filename_with_path, $timestamp_included, $data_level, $schema, $archived_image_zipfile_with_path, $protocol_id, $nd_protocol_filename);
     if (!$validate_file) {
-        push @error_status, "Archived file not valid: $upload_original_name.";
+        push @error_status, "Arquivo armazenado inválido: $upload_original_name.";
         $c->stash->{rest} = {success => \@success_status, error => \@error_status };
         $c->detach();
     }
     if ($validate_file == 1){
-        push @success_status, "File valid: $upload_original_name.";
+        push @success_status, "Arquivo válido: $upload_original_name.";
     } else {
         if ($validate_file->{'error'}) {
             push @error_status, $validate_file->{'error'};
@@ -343,7 +344,7 @@ sub high_dimensional_phenotypes_nirs_upload_store_POST : Args(0) {
 
     my $parsed_file = $parser->parse($validate_type, $archived_filename_with_path, $timestamp_included, $data_level, $schema, $archived_image_zipfile_with_path, $user_id, $c, $protocol_id, $nd_protocol_filename);
     if (!$parsed_file) {
-        push @error_status, "Error parsing file $upload_original_name.";
+        push @error_status, "Erro ao processar o arquivo $upload_original_name.";
         $c->stash->{rest} = {success => \@success_status, error => \@error_status };
         $c->detach();
     }
@@ -360,7 +361,7 @@ sub high_dimensional_phenotypes_nirs_upload_store_POST : Args(0) {
             %parsed_data = %{$parsed_file->{'data'}};
             @plots = @{$parsed_file->{'units'}};
             @wavelengths = @{$parsed_file->{'variables'}};
-            push @success_status, "File data successfully parsed.";
+            push @success_status, "Dados do arquivo processados com sucesso.";
         }
     }
 
@@ -424,18 +425,18 @@ sub high_dimensional_phenotypes_nirs_upload_store_POST : Args(0) {
     my $archived_agg_filename_with_path = $uploader->archive();
     my $md5_agg = $uploader_agg->get_md5($archived_agg_filename_with_path);
     if (!$archived_agg_filename_with_path) {
-        push @error_status, "Could not save file $agg_file_name in archive.";
+        push @error_status, "Não foi possível salvar o arquivo $agg_file_name no arquivo permanente.";
         $c->stash->{rest} = {success => \@success_status, error => \@error_status };
         $c->detach();
     } else {
-        push @success_status, "File $agg_file_name saved in archive.";
+        push @success_status, "Arquivo $agg_file_name salvo no arquivo permanente.";
     }
     unlink $output_csv_filepath;
 
     # Using aggregated spectra:
     my $parsed_file_agg = $parser->parse($validate_type, $archived_agg_filename_with_path, $timestamp_included, $data_level, $schema, $archived_image_zipfile_with_path, $user_id, $c, $protocol_id, $nd_protocol_filename);
     if (!$parsed_file_agg) {
-        push @error_status, "Error parsing aggregated file.";
+        push @error_status, "Erro ao processar o arquivo agregado.";
         $c->stash->{rest} = {success => \@success_status, error => \@error_status };
         $c->detach();
     }
@@ -451,7 +452,7 @@ sub high_dimensional_phenotypes_nirs_upload_store_POST : Args(0) {
             %parsed_data_agg = %{$parsed_file_agg->{'data'}};
             @plots_agg = @{$parsed_file_agg->{'units'}};
             @wavelengths_agg = @{$parsed_file_agg->{'variables'}};
-            push @success_status, "Aggregated file data successfully parsed.";
+            push @success_status, "Dados do arquivo agregado processados com sucesso.";
         }
     }
 
@@ -527,7 +528,7 @@ sub high_dimensional_phenotypes_nirs_upload_store_POST : Args(0) {
     if ($verified_warning) {
         push @warning_status, $verified_warning;
     }
-    push @success_status, "Aggregated file data verified. Plot names and trait names are valid.";
+    push @success_status, "Dados do arquivo agregado verificados. Os nomes das parcelas e das características são válidos.";
 
     my ($stored_phenotype_error, $stored_phenotype_success) = $store_phenotypes->store();
     if ($stored_phenotype_error) {
@@ -539,7 +540,7 @@ sub high_dimensional_phenotypes_nirs_upload_store_POST : Args(0) {
         push @success_status, $stored_phenotype_success;
     }
 
-    push @success_status, "Metadata saved for archived file.";
+    push @success_status, "Metadados salvos para o arquivo armazenado.";
     my $bs = CXGN::BreederSearch->new( { dbh=>$c->dbc->dbh, dbname=>$c->config->{dbname}, } );
     my $refresh = $bs->refresh_matviews($c->config->{dbhost}, $c->config->{dbname}, $c->config->{dbuser}, $c->config->{dbpass}, 'fullview', 'concurrent', $c->config->{basepath});
 
@@ -574,11 +575,11 @@ sub high_dimensional_phenotypes_transcriptomics_upload_verify_POST : Args(0) {
 
 
     if ($protocol_id && $protocol_name) {
-        $c->stash->{rest} = {error => ["Please give a protocol name or select a previous protocol, not both!"]};
+        $c->stash->{rest} = {error => ["Informe o nome de um protocolo ou selecione um protocolo existente, mas não ambos!"]};
         $c->detach();
     }
     if (!$protocol_id && (!$protocol_name || !$protocol_desc || !$protocol_unit || !$protocol_genome_version || !$protocol_genome_annotation_version)) {
-        $c->stash->{rest} = {error => ["Please give a protocol name, description, unit, genome and annotation version, or select a previous protocol!"]};
+        $c->stash->{rest} = {error => ["Informe o nome, a descrição, a unidade, o genoma e a versão de anotação do protocolo ou selecione um protocolo existente!"]};
         $c->detach();
     }
 
@@ -606,11 +607,11 @@ sub high_dimensional_phenotypes_transcriptomics_upload_verify_POST : Args(0) {
     my $archived_filename_with_path = $uploader->archive();
     my $md5 = $uploader->get_md5($archived_filename_with_path);
     if (!$archived_filename_with_path) {
-        push @error_status, "Could not save file $upload_original_name in archive.";
+        push @error_status, "Não foi possível salvar o arquivo $upload_original_name no arquivo permanente.";
         $c->stash->{rest} = {success => \@success_status, error => \@error_status };
         $c->detach();
     } else {
-        push @success_status, "File $upload_original_name saved in archive.";
+        push @success_status, "Arquivo $upload_original_name salvo no arquivo permanente.";
     }
     unlink $upload_tempfile;
 
@@ -629,23 +630,23 @@ sub high_dimensional_phenotypes_transcriptomics_upload_verify_POST : Args(0) {
     my $archived_filename_transcripts_with_path = $uploader_transcripts->archive();
     my $md5_transcripts = $uploader_transcripts->get_md5($archived_filename_transcripts_with_path);
     if (!$archived_filename_transcripts_with_path) {
-        push @error_status, "Could not save file $upload_transcripts_original_name in archive.";
+        push @error_status, "Não foi possível salvar o arquivo $upload_transcripts_original_name no arquivo permanente.";
         $c->stash->{rest} = {success => \@success_status, error => \@error_status };
         $c->detach();
     } else {
-        push @success_status, "File $upload_transcripts_original_name saved in archive.";
+        push @success_status, "Arquivo $upload_transcripts_original_name salvo no arquivo permanente.";
     }
     unlink $upload_transcripts_tempfile;
 
     my $archived_image_zipfile_with_path;
     my $validate_file = $parser->validate($validate_type, $archived_filename_with_path, $timestamp_included, $data_level, $schema, $archived_image_zipfile_with_path, $protocol_id, $archived_filename_transcripts_with_path);
     if (!$validate_file) {
-        push @error_status, "Archived file not valid: $upload_original_name.";
+        push @error_status, "Arquivo armazenado inválido: $upload_original_name.";
         $c->stash->{rest} = {success => \@success_status, error => \@error_status };
         $c->detach();
     }
     if ($validate_file == 1){
-        push @success_status, "File valid: $upload_original_name.";
+        push @success_status, "Arquivo válido: $upload_original_name.";
     } else {
         if ($validate_file->{'error'}) {
             push @error_status, $validate_file->{'error'};
@@ -663,7 +664,7 @@ sub high_dimensional_phenotypes_transcriptomics_upload_verify_POST : Args(0) {
 
     my $parsed_file = $parser->parse($validate_type, $archived_filename_with_path, $timestamp_included, $data_level, $schema, $archived_image_zipfile_with_path, $user_id, $c, $protocol_id, $archived_filename_transcripts_with_path);
     if (!$parsed_file) {
-        push @error_status, "Error parsing file $upload_original_name.";
+        push @error_status, "Erro ao processar o arquivo $upload_original_name.";
         $c->stash->{rest} = {success => \@success_status, error => \@error_status };
         $c->detach();
     }
@@ -682,7 +683,7 @@ sub high_dimensional_phenotypes_transcriptomics_upload_verify_POST : Args(0) {
             @plots = @{$parsed_file->{'units'}};
             @transcripts = @{$parsed_file->{'variables'}};
             %transcripts_details = %{$parsed_file->{'variables_desc'}};
-            push @success_status, "File data successfully parsed.";
+            push @success_status, "Dados do arquivo processados com sucesso.";
         }
     }
 
@@ -718,7 +719,7 @@ sub high_dimensional_phenotypes_transcriptomics_upload_verify_POST : Args(0) {
     if ($verified_warning) {
         push @warning_status, $verified_warning;
     }
-    push @success_status, "File data verified. Plot names and trait names are valid.";
+    push @success_status, "Dados do arquivo verificados. Os nomes das parcelas e das características são válidos.";
 
     # print STDERR Dumper \@success_status;
     # print STDERR Dumper \@warning_status;
@@ -762,11 +763,11 @@ sub high_dimensional_phenotypes_transcriptomics_upload_store_POST : Args(0) {
     my $protocol_nucleic_acid_extraction_method = $c->req->param('upload_transcriptomics_spreadsheet_protocol_nucleic_acid_extraction_method');
 
     if ($protocol_id && $protocol_name) {
-        $c->stash->{rest} = {error => ["Please give a protocol name or select a previous protocol, not both!"]};
+        $c->stash->{rest} = {error => ["Informe o nome de um protocolo ou selecione um protocolo existente, mas não ambos!"]};
         $c->detach();
     }
     if (!$protocol_id && (!$protocol_name || !$protocol_desc || !$protocol_unit || !$protocol_genome_version || !$protocol_genome_annotation_version)) {
-        $c->stash->{rest} = {error => ["Please give a protocol name, description, unit, genome and annotation version, or select a previous protocol!"]};
+        $c->stash->{rest} = {error => ["Informe o nome, a descrição, a unidade, o genoma e a versão de anotação do protocolo ou selecione um protocolo existente!"]};
         $c->detach();
     }
 
@@ -794,11 +795,11 @@ sub high_dimensional_phenotypes_transcriptomics_upload_store_POST : Args(0) {
     my $archived_filename_with_path = $uploader->archive();
     my $md5 = $uploader->get_md5($archived_filename_with_path);
     if (!$archived_filename_with_path) {
-        push @error_status, "Could not save file $upload_original_name in archive.";
+        push @error_status, "Não foi possível salvar o arquivo $upload_original_name no arquivo permanente.";
         $c->stash->{rest} = {success => \@success_status, error => \@error_status };
         $c->detach();
     } else {
-        push @success_status, "File $upload_original_name saved in archive.";
+        push @success_status, "Arquivo $upload_original_name salvo no arquivo permanente.";
     }
     unlink $upload_tempfile;
 
@@ -817,23 +818,23 @@ sub high_dimensional_phenotypes_transcriptomics_upload_store_POST : Args(0) {
     my $archived_filename_transcripts_with_path = $uploader_transcripts->archive();
     my $md5_transcripts = $uploader_transcripts->get_md5($archived_filename_transcripts_with_path);
     if (!$archived_filename_transcripts_with_path) {
-        push @error_status, "Could not save file $upload_transcripts_original_name in archive.";
+        push @error_status, "Não foi possível salvar o arquivo $upload_transcripts_original_name no arquivo permanente.";
         $c->stash->{rest} = {success => \@success_status, error => \@error_status };
         $c->detach();
     } else {
-        push @success_status, "File $upload_transcripts_original_name saved in archive.";
+        push @success_status, "Arquivo $upload_transcripts_original_name salvo no arquivo permanente.";
     }
     unlink $upload_transcripts_tempfile;
 
     my $archived_image_zipfile_with_path;
     my $validate_file = $parser->validate($validate_type, $archived_filename_with_path, $timestamp_included, $data_level, $schema, $archived_image_zipfile_with_path, $protocol_id, $archived_filename_transcripts_with_path);
     if (!$validate_file) {
-        push @error_status, "Archived file not valid: $upload_original_name.";
+        push @error_status, "Arquivo armazenado inválido: $upload_original_name.";
         $c->stash->{rest} = {success => \@success_status, error => \@error_status };
         $c->detach();
     }
     if ($validate_file == 1){
-        push @success_status, "File valid: $upload_original_name.";
+        push @success_status, "Arquivo válido: $upload_original_name.";
     } else {
         if ($validate_file->{'error'}) {
             push @error_status, $validate_file->{'error'};
@@ -844,7 +845,7 @@ sub high_dimensional_phenotypes_transcriptomics_upload_store_POST : Args(0) {
 
     my $parsed_file = $parser->parse($validate_type, $archived_filename_with_path, $timestamp_included, $data_level, $schema, $archived_image_zipfile_with_path, $user_id, $c, $protocol_id, $archived_filename_transcripts_with_path);
     if (!$parsed_file) {
-        push @error_status, "Error parsing file $upload_original_name.";
+        push @error_status, "Erro ao processar o arquivo $upload_original_name.";
         $c->stash->{rest} = {success => \@success_status, error => \@error_status };
         $c->detach();
     }
@@ -863,7 +864,7 @@ sub high_dimensional_phenotypes_transcriptomics_upload_store_POST : Args(0) {
             @plots = @{$parsed_file->{'units'}};
             @transcripts = @{$parsed_file->{'variables'}};
             %transcripts_details = %{$parsed_file->{'variables_desc'}};
-            push @success_status, "File data successfully parsed.";
+            push @success_status, "Dados do arquivo processados com sucesso.";
         }
     }
 
@@ -948,7 +949,7 @@ sub high_dimensional_phenotypes_transcriptomics_upload_store_POST : Args(0) {
     if ($verified_warning) {
         push @warning_status, $verified_warning;
     }
-    push @success_status, "File data verified. Plot names and trait names are valid.";
+    push @success_status, "Dados do arquivo verificados. Os nomes das parcelas e das características são válidos.";
 
     my ($stored_phenotype_error, $stored_phenotype_success) = $store_phenotypes->store();
     if ($stored_phenotype_error) {
@@ -960,7 +961,7 @@ sub high_dimensional_phenotypes_transcriptomics_upload_store_POST : Args(0) {
         push @success_status, $stored_phenotype_success;
     }
 
-    push @success_status, "Metadata saved for archived file.";
+    push @success_status, "Metadados salvos para o arquivo armazenado.";
     my $bs = CXGN::BreederSearch->new({ dbh=>$c->dbc->dbh, dbname=>$c->config->{dbname} });
     my $refresh = $bs->refresh_matviews($c->config->{dbhost}, $c->config->{dbname}, $c->config->{dbuser}, $c->config->{dbpass}, 'fullview', 'concurrent', $c->config->{basepath});
 
@@ -1018,19 +1019,19 @@ sub high_dimensional_phenotypes_metabolomics_upload_verify_POST : Args(0) {
     my $protocol_publication = $c->req->param('upload_metabolomics_spreadsheet_protocol_publication');
 
     if ($protocol_id && $protocol_name) {
-        $c->stash->{rest} = {error => ["Please give a protocol name or select a previous protocol, not both!"]};
+        $c->stash->{rest} = {error => ["Informe o nome de um protocolo ou selecione um protocolo existente, mas não ambos!"]};
         $c->detach();
     }
     if (!$protocol_id && (!$protocol_name || !$protocol_desc)) {
-        $c->stash->{rest} = {error => ["Please give a protocol name and description, or select a previous protocol!"]};
+        $c->stash->{rest} = {error => ["Informe o nome e a descrição do protocolo ou selecione um protocolo existente!"]};
         $c->detach();
     }
     if (!$protocol_id && (!$protocol_equipment_type || !$protocol_equipment_desc || !$protocol_data_process_desc || !$protocol_phenotype_type || !$protocol_phenotype_units || !$protocol_target || !$protocol_sample_collection || !$protocol_sample_extraction || !$protocol_rawdata_transformation || !$protocol_metabolite_identification)) {
-        $c->stash->{rest} = {error => ["Please give all protocol equipment descriptions, or select a previous protocol!"]};
+        $c->stash->{rest} = {error => ["Informe todas as descrições de equipamento do protocolo ou selecione um protocolo existente!"]};
         $c->detach();
     }
     if (!$protocol_id && $protocol_equipment_type eq 'MS' && (!$protocol_chromatography_system_brand || !$protocol_chromatography_column_brand || !$protocol_ms_brand || !$protocol_ms_type || !$protocol_ms_instrument_type || !$protocol_ms_ion_mode || !$protocol_chromatography_type || !$protocol_chromatography_column_type || !$protocol_chromatography_protocol || !$protocol_mass_spectrometry_protocol || !$protocol_ms_scan_mz_range)) {
-        $c->stash->{rest} = {error => ["If defining a MS protocol please give all information fields!"]};
+        $c->stash->{rest} = {error => ["Ao definir um protocolo de MS, preencha todos os campos de informação!"]};
         $c->detach();
     }
 
@@ -1058,11 +1059,11 @@ sub high_dimensional_phenotypes_metabolomics_upload_verify_POST : Args(0) {
     my $archived_filename_with_path = $uploader->archive();
     my $md5 = $uploader->get_md5($archived_filename_with_path);
     if (!$archived_filename_with_path) {
-        push @error_status, "Could not save file $upload_original_name in archive.";
+        push @error_status, "Não foi possível salvar o arquivo $upload_original_name no arquivo permanente.";
         $c->stash->{rest} = {success => \@success_status, error => \@error_status };
         $c->detach();
     } else {
-        push @success_status, "File $upload_original_name saved in archive.";
+        push @success_status, "Arquivo $upload_original_name salvo no arquivo permanente.";
     }
     unlink $upload_tempfile;
 
@@ -1081,23 +1082,23 @@ sub high_dimensional_phenotypes_metabolomics_upload_verify_POST : Args(0) {
     my $archived_filename_transcripts_with_path = $uploader_transcripts->archive();
     my $md5_transcripts = $uploader_transcripts->get_md5($archived_filename_transcripts_with_path);
     if (!$archived_filename_transcripts_with_path) {
-        push @error_status, "Could not save file $upload_transcripts_original_name in archive.";
+        push @error_status, "Não foi possível salvar o arquivo $upload_transcripts_original_name no arquivo permanente.";
         $c->stash->{rest} = {success => \@success_status, error => \@error_status };
         $c->detach();
     } else {
-        push @success_status, "File $upload_transcripts_original_name saved in archive.";
+        push @success_status, "Arquivo $upload_transcripts_original_name salvo no arquivo permanente.";
     }
     unlink $upload_transcripts_tempfile;
 
     my $archived_image_zipfile_with_path;
     my $validate_file = $parser->validate($validate_type, $archived_filename_with_path, $timestamp_included, $data_level, $schema, $archived_image_zipfile_with_path, $protocol_id, $archived_filename_transcripts_with_path);
     if (!$validate_file) {
-        push @error_status, "Archived file not valid: $upload_original_name.";
+        push @error_status, "Arquivo armazenado inválido: $upload_original_name.";
         $c->stash->{rest} = {success => \@success_status, error => \@error_status };
         $c->detach();
     }
     if ($validate_file == 1){
-        push @success_status, "File valid: $upload_original_name.";
+        push @success_status, "Arquivo válido: $upload_original_name.";
     } else {
         if ($validate_file->{'error'}) {
             push @error_status, $validate_file->{'error'};
@@ -1115,7 +1116,7 @@ sub high_dimensional_phenotypes_metabolomics_upload_verify_POST : Args(0) {
 
     my $parsed_file = $parser->parse($validate_type, $archived_filename_with_path, $timestamp_included, $data_level, $schema, $archived_image_zipfile_with_path, $user_id, $c, $protocol_id, $archived_filename_transcripts_with_path);
     if (!$parsed_file) {
-        push @error_status, "Error parsing file $upload_original_name.";
+        push @error_status, "Erro ao processar o arquivo $upload_original_name.";
         $c->stash->{rest} = {success => \@success_status, error => \@error_status };
         $c->detach();
     }
@@ -1132,7 +1133,7 @@ sub high_dimensional_phenotypes_metabolomics_upload_verify_POST : Args(0) {
             %parsed_data = %{$parsed_file->{'data'}};
             @plots = @{$parsed_file->{'units'}};
             @metabolites = @{$parsed_file->{'variables'}};
-            push @success_status, "File data successfully parsed.";
+            push @success_status, "Dados do arquivo processados com sucesso.";
         }
     }
 
@@ -1168,7 +1169,7 @@ sub high_dimensional_phenotypes_metabolomics_upload_verify_POST : Args(0) {
     if ($verified_warning) {
         push @warning_status, $verified_warning;
     }
-    push @success_status, "File data verified. Plot names and trait names are valid.";
+    push @success_status, "Dados do arquivo verificados. Os nomes das parcelas e das características são válidos.";
 
     # print STDERR Dumper \@success_status;
     # print STDERR Dumper \@warning_status;
@@ -1227,19 +1228,19 @@ sub high_dimensional_phenotypes_metabolomics_upload_store_POST : Args(0) {
     my $protocol_publication = $c->req->param('upload_metabolomics_spreadsheet_protocol_publication');
 
     if ($protocol_id && $protocol_name) {
-        $c->stash->{rest} = {error => ["Please give a protocol name or select a previous protocol, not both!"]};
+        $c->stash->{rest} = {error => ["Informe o nome de um protocolo ou selecione um protocolo existente, mas não ambos!"]};
         $c->detach();
     }
     if (!$protocol_id && (!$protocol_name || !$protocol_desc)) {
-        $c->stash->{rest} = {error => ["Please give a protocol name and description, or select a previous protocol!"]};
+        $c->stash->{rest} = {error => ["Informe o nome e a descrição do protocolo ou selecione um protocolo existente!"]};
         $c->detach();
     }
     if (!$protocol_id && (!$protocol_equipment_type || !$protocol_equipment_desc || !$protocol_data_process_desc || !$protocol_phenotype_type || !$protocol_phenotype_units || !$protocol_target || !$protocol_sample_collection || !$protocol_sample_extraction || !$protocol_rawdata_transformation || !$protocol_metabolite_identification)) {
-        $c->stash->{rest} = {error => ["Please give all protocol equipment descriptions, or select a previous protocol!"]};
+        $c->stash->{rest} = {error => ["Informe todas as descrições de equipamento do protocolo ou selecione um protocolo existente!"]};
         $c->detach();
     }
     if (!$protocol_id && $protocol_equipment_type eq 'MS' && (!$protocol_chromatography_system_brand || !$protocol_chromatography_column_brand || !$protocol_ms_brand || !$protocol_ms_type || !$protocol_ms_instrument_type || !$protocol_ms_ion_mode || !$protocol_chromatography_type || !$protocol_chromatography_column_type || !$protocol_chromatography_protocol || !$protocol_mass_spectrometry_protocol || !$protocol_ms_scan_mz_range)) {
-        $c->stash->{rest} = {error => ["If defining a MS protocol please give all information fields!"]};
+        $c->stash->{rest} = {error => ["Ao definir um protocolo de MS, preencha todos os campos de informação!"]};
         $c->detach();
     }
 
@@ -1267,11 +1268,11 @@ sub high_dimensional_phenotypes_metabolomics_upload_store_POST : Args(0) {
     my $archived_filename_with_path = $uploader->archive();
     my $md5 = $uploader->get_md5($archived_filename_with_path);
     if (!$archived_filename_with_path) {
-        push @error_status, "Could not save file $upload_original_name in archive.";
+        push @error_status, "Não foi possível salvar o arquivo $upload_original_name no arquivo permanente.";
         $c->stash->{rest} = {success => \@success_status, error => \@error_status };
         $c->detach();
     } else {
-        push @success_status, "File $upload_original_name saved in archive.";
+        push @success_status, "Arquivo $upload_original_name salvo no arquivo permanente.";
     }
     unlink $upload_tempfile;
 
@@ -1290,23 +1291,23 @@ sub high_dimensional_phenotypes_metabolomics_upload_store_POST : Args(0) {
     my $archived_filename_transcripts_with_path = $uploader_transcripts->archive();
     my $md5_transcripts = $uploader_transcripts->get_md5($archived_filename_transcripts_with_path);
     if (!$archived_filename_transcripts_with_path) {
-        push @error_status, "Could not save file $upload_transcripts_original_name in archive.";
+        push @error_status, "Não foi possível salvar o arquivo $upload_transcripts_original_name no arquivo permanente.";
         $c->stash->{rest} = {success => \@success_status, error => \@error_status };
         $c->detach();
     } else {
-        push @success_status, "File $upload_transcripts_original_name saved in archive.";
+        push @success_status, "Arquivo $upload_transcripts_original_name salvo no arquivo permanente.";
     }
     unlink $upload_transcripts_tempfile;
 
     my $archived_image_zipfile_with_path;
     my $validate_file = $parser->validate($validate_type, $archived_filename_with_path, $timestamp_included, $data_level, $schema, $archived_image_zipfile_with_path, $protocol_id, $archived_filename_transcripts_with_path);
     if (!$validate_file) {
-        push @error_status, "Archived file not valid: $upload_original_name.";
+        push @error_status, "Arquivo armazenado inválido: $upload_original_name.";
         $c->stash->{rest} = {success => \@success_status, error => \@error_status };
         $c->detach();
     }
     if ($validate_file == 1){
-        push @success_status, "File valid: $upload_original_name.";
+        push @success_status, "Arquivo válido: $upload_original_name.";
     } else {
         if ($validate_file->{'error'}) {
             push @error_status, $validate_file->{'error'};
@@ -1317,7 +1318,7 @@ sub high_dimensional_phenotypes_metabolomics_upload_store_POST : Args(0) {
 
     my $parsed_file = $parser->parse($validate_type, $archived_filename_with_path, $timestamp_included, $data_level, $schema, $archived_image_zipfile_with_path, $user_id, $c, $protocol_id, $archived_filename_transcripts_with_path);
     if (!$parsed_file) {
-        push @error_status, "Error parsing file $upload_original_name.";
+        push @error_status, "Erro ao processar o arquivo $upload_original_name.";
         $c->stash->{rest} = {success => \@success_status, error => \@error_status };
         $c->detach();
     }
@@ -1336,7 +1337,7 @@ sub high_dimensional_phenotypes_metabolomics_upload_store_POST : Args(0) {
             @plots = @{$parsed_file->{'units'}};
             @metabolites = @{$parsed_file->{'variables'}};
             %metabolites_details = %{$parsed_file->{'variables_desc'}};
-            push @success_status, "File data successfully parsed.";
+            push @success_status, "Dados do arquivo processados com sucesso.";
         }
     }
 
@@ -1438,7 +1439,7 @@ sub high_dimensional_phenotypes_metabolomics_upload_store_POST : Args(0) {
     if ($verified_warning) {
         push @warning_status, $verified_warning;
     }
-    push @success_status, "File data verified. Plot names and trait names are valid.";
+    push @success_status, "Dados do arquivo verificados. Os nomes das parcelas e das características são válidos.";
 
     my ($stored_phenotype_error, $stored_phenotype_success) = $store_phenotypes->store();
     if ($stored_phenotype_error) {
@@ -1450,7 +1451,7 @@ sub high_dimensional_phenotypes_metabolomics_upload_store_POST : Args(0) {
         push @success_status, $stored_phenotype_success;
     }
 
-    push @success_status, "Metadata saved for archived file.";
+    push @success_status, "Metadados salvos para o arquivo armazenado.";
     my $bs = CXGN::BreederSearch->new({ dbh=>$c->dbc->dbh, dbname=>$c->config->{dbname} });
     my $refresh = $bs->refresh_matviews($c->config->{dbhost}, $c->config->{dbname}, $c->config->{dbuser}, $c->config->{dbpass}, 'fullview', 'concurrent', $c->config->{basepath});
 
@@ -1678,7 +1679,7 @@ sub _check_user_login {
         my $dbh = $c->dbc->dbh;
         my @user_info = CXGN::Login->new($dbh)->query_from_cookie($session_id);
         if (!$user_info[0]){
-            $c->stash->{rest} = {error=>'You must be logged in to do this!'};
+            $c->stash->{rest} = {error=>'Você precisa estar conectado para fazer isso!'};
             $c->detach();
         }
         $user_id = $user_info[0];
@@ -1687,7 +1688,7 @@ sub _check_user_login {
         $user_name = $p->get_username;
     } else{
         if (!$c->user){
-            $c->stash->{rest} = {error=>'You must be logged in to do this!'};
+            $c->stash->{rest} = {error=>'Você precisa estar conectado para fazer isso!'};
             $c->detach();
         }
         $user_id = $c->user()->get_object()->get_sp_person_id();
@@ -1695,7 +1696,7 @@ sub _check_user_login {
         $user_role = $c->user->get_object->get_user_type();
     }
     if ($user_role ne 'submitter' && $user_role ne 'curator') {
-        $c->stash->{rest} = {error=>'You do not have permission in the database to do this! Please contact us.'};
+        $c->stash->{rest} = {error=>'Você não tem permissão no banco de dados para fazer isso! Entre em contato conosco.'};
         $c->detach();
     }
     return ($user_id, $user_name, $user_role);

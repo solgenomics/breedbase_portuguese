@@ -9,7 +9,7 @@ Takes no arguments.
 % if( -r $file ) {
   <% $m->file( $file ) %>
 % } else {
- <div class="ghosted">Informações sobre o genoma de tomate temporariamente indisponível</div>
+ <div class="ghosted">Informações sobre o genoma do tomate temporariamente indisponíveis</div>
 % }
 
 

@@ -23,6 +23,7 @@ CXGN::Genotype::ParseUpload::Plugin::transposedVCF - plugin to load transposed V
 
 package CXGN::Genotype::ParseUpload::Plugin::transposedVCF;
 
+use utf8;
 use Moose::Role;
 use SGN::Model::Cvterm;
 use Data::Dumper;
@@ -82,7 +83,7 @@ sub _validate_with_plugin {
     my @chroms = split /\t/, $chroms;
     foreach (@chroms) {
         if ($_ eq '' || !defined($_)) {
-            push @error_messages, 'Chromosome (chrom) must be defined for all markers!';
+            push @error_messages, 'O cromossomo (chrom) deve ser definido para todos os marcadores!';
         }
     }
     $self->chroms(\@chroms);
@@ -92,7 +93,7 @@ sub _validate_with_plugin {
     my @pos = split /\t/, $pos;
     foreach (@pos) {
         if ($_ eq '' || !defined($_)) {
-            push @error_messages, 'Positions (pos) must be defined for all markers!';
+            push @error_messages, 'As posições (pos) devem ser definidas para todos os marcadores!';
         }
     }
     $self->pos(\@pos);
@@ -103,7 +104,7 @@ sub _validate_with_plugin {
     my @ids = split /\t/, $ids;
     foreach (@ids) {
         if ($_ eq '' || !defined($_)) {
-            push @error_messages, 'Identifiers (id) must be defined for all markers (or .)!';
+            push @error_messages, 'Os identificadores (id) devem ser definidos para todos os marcadores (ou .)!';
         }
     }
     $self->ids(\@ids);
@@ -148,31 +149,31 @@ sub _validate_with_plugin {
     print STDERR "marker count = ".scalar(@ids)."\n";
 
     if ($chroms[0] ne '#CHROM'){
-        push @error_messages, 'Line 1 must start with "#CHROM".';
+        push @error_messages, 'A linha 1 deve começar com "#CHROM".';
     }
     if ($pos[0] ne 'POS'){
-        push @error_messages, 'Line 2 must start with "POS".';
+        push @error_messages, 'A linha 2 deve começar com "POS".';
     }
     if ($ids[0] ne 'ID'){
-        push @error_messages, 'Line 3 must start with "ID".';
+        push @error_messages, 'A linha 3 deve começar com "ID".';
     }
     if ($refs[0] ne 'REF'){
-        push @error_messages, 'Line 4 must start with "REF".';
+        push @error_messages, 'A linha 4 deve começar com "REF".';
     }
     if ($alts[0] ne 'ALT'){
-        push @error_messages, 'Line 5 must start with "ALT".';
+        push @error_messages, 'A linha 5 deve começar com "ALT".';
     }
     if ($qual[0] ne 'QUAL'){
-        push @error_messages, 'Line 6 must start with "QUAL".';
+        push @error_messages, 'A linha 6 deve começar com "QUAL".';
     }
     if ($filter[0] ne 'FILTER'){
-        push @error_messages, 'Line 7 must start with "FILTER".';
+        push @error_messages, 'A linha 7 deve começar com "FILTER".';
     }
     if ($info[0] ne 'INFO'){
-        push @error_messages, 'Line 8 must start with "INFO".';
+        push @error_messages, 'A linha 8 deve começar com "INFO".';
     }
     if ($format[0] ne 'FORMAT'){
-        push @error_messages, 'Line 9 must start with "FORMAT".';
+        push @error_messages, 'A linha 9 deve começar com "FORMAT".';
     }
 
     my @observation_unit_names;
@@ -223,7 +224,7 @@ sub _validate_with_plugin {
     } elsif ($stock_type eq 'stocks'){
         @missing_stocks = @{$validator->validate($schema,'stocks',$observation_unit_names)->{'missing'}};
     } else {
-        push @error_messages, "You can only upload genotype data for a tissue_sample OR accession (including synonyms) OR stocks!"
+        push @error_messages, "Você só pode enviar dados de genotipagem para tissue_sample OU accession (incluindo sinônimos) OU materiais (stocks)!"
     }
 
     my %unique_stocks;
@@ -249,7 +250,7 @@ sub _validate_with_plugin {
 
     if (scalar(@missing_stocks_return)>0){
         $errors{'missing_stocks'} = \@missing_stocks_return;
-        push @error_messages, "The following stocks are not in the database: ".join(',',@missing_stocks_return);
+        push @error_messages, "Os seguintes materiais (stocks) não estão no banco de dados: ".join(',',@missing_stocks_return);
     }
 
     #store any errors found in the parsed file to parse_errors accessor

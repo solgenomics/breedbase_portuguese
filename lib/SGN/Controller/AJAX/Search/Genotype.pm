@@ -325,7 +325,7 @@ sub pcr_genotyping_data_download_POST : Args(0) {
 #    print STDERR "TEMPFILE : $tempfile\n";
 
     if (!$c->user()) {
-        $c->stash->{rest} = {error => "You need to be logged in to download genotype data" };
+        $c->stash->{rest} = {error => "Você precisa estar conectado para baixar dados de genótipos" };
         return;
     }
     my $metadata_schema = $c->dbic_schema('CXGN::Metadata::Schema');

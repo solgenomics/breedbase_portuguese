@@ -1,6 +1,7 @@
 use strict;
 
 package SGN::Controller::AJAX::Heritability;
+use utf8;
 
 use Moose;
 use Data::Dumper;
@@ -77,7 +78,7 @@ sub extract_trait_data :Path('/ajax/heritability/getdata') Args(0) {
 
     my $F;
     if (! open($F, "<", $temppath)) {
-	$c->stash->{rest} = { error => "Can't find data." };
+	$c->stash->{rest} = { error => "Não foi possível encontrar os dados." };
 	return;
     }
 

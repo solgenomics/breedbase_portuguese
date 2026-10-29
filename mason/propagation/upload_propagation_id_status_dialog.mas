@@ -90,7 +90,7 @@
                 <div class="container-fluid">
                     <b>Cabeçalho:</b>
                     <br>
-                    A primeira linha (cabeçalho) deve conter <b>propagation_identifier</b>, <b>status_type</b>, <b>status_date</b> E <b>status_updated_by</b>. Inclua informações adicionais nas colunas opcionais indicadas abaixo:
+                    A primeira linha (cabeçalho) deve conter <b>propagation_identifier</b>, <b>status_type</b>, <b>status_date</b> e <b>status_updated_by</b>. Inclua informações adicionais nas colunas opcionais indicadas abaixo:
                     <br/>
                     <br>
                     <table class="table table-hover table-bordered table-condensed" >

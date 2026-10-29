@@ -1,5 +1,6 @@
 package CXGN::Pedigree::ParseUpload::Plugin::TargetNumbersExcel;
 
+use utf8;
 use Moose::Role;
 use Spreadsheet::ParseExcel;
 use Spreadsheet::ParseXLSX;
@@ -38,7 +39,7 @@ sub _validate_with_plugin {
 
     $worksheet = ($excel_obj->worksheets())[0]; #support only one worksheet
     if (!$worksheet){
-        push @error_messages, "Spreadsheet must be on 1st tab in Excel (.xls) file";
+        push @error_messages, "A planilha deve estar na 1ª aba do arquivo Excel (.xls)";
         $errors{'error_messages'} = \@error_messages;
         $self->_set_parse_errors(\%errors);
         return;
@@ -47,7 +48,7 @@ sub _validate_with_plugin {
     my ($row_min, $row_max) = $worksheet->row_range();
     my ($col_min, $col_max) = $worksheet->col_range();
     if (($col_max - $col_min)  < 3 || ($row_max - $row_min) < 1 ) { #must have header and at least one row of target number info
-        push @error_messages, "Spreadsheet is missing header or no target number data";
+        push @error_messages, "A planilha não tem cabeçalho ou não contém dados de números-alvo";
         $errors{'error_messages'} = \@error_messages;
         $self->_set_parse_errors(\%errors);
         return;
@@ -80,19 +81,19 @@ sub _validate_with_plugin {
     }
 
     if (!$female_accession_head || $female_accession_head ne 'female_accession' ) {
-        push @error_messages, "Cell A1: female_accession is missing from the header";
+        push @error_messages, "Célula A1: female_accession está ausente do cabeçalho";
     }
 
     if (!$male_accession_head || $male_accession_head ne 'male_accession' ) {
-        push @error_messages, "Cell A2: male_accession is missing from the header";
+        push @error_messages, "Célula A2: male_accession está ausente do cabeçalho";
     }
 
     if (!$seed_target_number_head || $seed_target_number_head ne 'seed_target_number' ) {
-        push @error_messages, "Cell A3: seed_target_number is missing from the header";
+        push @error_messages, "Célula A3: seed_target_number está ausente do cabeçalho";
     }
 
     if (!$progeny_target_number_head || $progeny_target_number_head ne 'progeny_target_number' ) {
-        push @error_messages, "Cell A4: progeny_target_number is missing from the header";
+        push @error_messages, "Célula A4: progeny_target_number está ausente do cabeçalho";
     }
 
 
@@ -120,21 +121,21 @@ sub _validate_with_plugin {
         }
 
         if (!$female_accession || $female_accession eq '') {
-            push @error_messages, "Cell A$row_name: female accession missing";
+            push @error_messages, "Célula A$row_name: acesso feminino ausente";
         } else {
             $female_accession =~ s/^\s+|\s+$//g;
             $seen_female_accessions{$female_accession}++;
         }
 
         if (!$male_accession || $male_accession eq '') {
-            push @error_messages, "Cell B$row_name: male accession missing";
+            push @error_messages, "Célula B$row_name: acesso masculino ausente";
         } else {
             $male_accession =~ s/^\s+|\s+$//g;
             $seen_male_accessions{$male_accession}++;
         }
 
         if ((!$seed_target_number || $seed_target_number eq '') && (!$progeny_target_number || $progeny_target_number eq '')) {
-            push @error_messages, "Cell C/D$row_name: should have seed target number and/or progeny target number";
+            push @error_messages, "Célula C/D$row_name: deve ter número-alvo de sementes e/ou número-alvo de progênies";
         }
     }
 
@@ -143,7 +144,7 @@ sub _validate_with_plugin {
     my @female_accession_missing = @{$female_accession_validator->validate($schema,'uniquenames',\@female_accessions)->{'missing'}};
 
     if (scalar(@female_accession_missing) > 0){
-        push @error_messages, "The following female accessions are not in the database as uniquenames : ".join(',',@female_accession_missing);
+        push @error_messages, "Os seguintes acessos femininos não estão no banco de dados como nomes únicos : ".join(',',@female_accession_missing);
     }
 
     my @male_accessions = keys %seen_male_accessions;
@@ -151,7 +152,7 @@ sub _validate_with_plugin {
     my @male_accession_missing = @{$male_accession_validator->validate($schema,'uniquenames',\@male_accessions)->{'missing'}};
 
     if (scalar(@male_accession_missing) > 0){
-        push @error_messages, "The following male accessions are not in the database as uniquenames : ".join(',',@male_accession_missing);
+        push @error_messages, "Os seguintes acessos masculinos não estão no banco de dados como nomes únicos : ".join(',',@male_accession_missing);
     }
 
     #store any errors found in the parsed file to parse_errors accessor

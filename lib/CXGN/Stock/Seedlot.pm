@@ -130,6 +130,7 @@ Nick Morales <nm529@cornell.edu>
 =cut
 
 package CXGN::Stock::Seedlot;
+use utf8;
 
 use Moose;
 use DateTime;
@@ -592,10 +593,10 @@ sub verify_seedlot_stock_lists {
     my %return;
 
     if (!$stock_names) {
-        $error .= "No accession list selected!";
+        $error .= "Nenhuma lista de acessos selecionada!";
     }
     if (!$seedlot_names) {
-        $error .= "No seedlot list supplied!";
+        $error .= "Nenhuma lista de lotes de sementes fornecida!";
     }
     if ($error){
         $return{error} = $error;
@@ -605,10 +606,10 @@ sub verify_seedlot_stock_lists {
     my @stock_names = @$stock_names;
     my @seedlot_names = @$seedlot_names;
     if (scalar(@stock_names)<1){
-        $error .= "Your accession list is empty!";
+        $error .= "Sua lista de acessos está vazia!";
     }
     if (scalar(@seedlot_names)<1){
-        $error .= "Your seedlot list is empty!";
+        $error .= "Sua lista de lotes de sementes está vazia!";
     }
     if ($error){
         $return{error} = $error;
@@ -621,10 +622,10 @@ sub verify_seedlot_stock_lists {
     my @seedlots_missing = @{$lv_seedlots->validate($schema,'seedlots',\@seedlot_names)->{'missing'}};
 
     if (scalar(@accessions_missing) > 0){
-        $error .= 'The following accessions are not valid in the database, so you must add them first: '.join ',', @accessions_missing;
+        $error .= 'Os seguintes acessos não são válidos no banco de dados, portanto você deve adicioná-los primeiro: '.join ',', @accessions_missing;
     }
     if (scalar(@seedlots_missing) > 0){
-        $error .= 'The following seedlots are not valid in the database, so you must add them first: '.join ',', @seedlots_missing;
+        $error .= 'Os seguintes lotes de sementes não são válidos no banco de dados, portanto você deve adicioná-los primeiro: '.join ',', @seedlots_missing;
     }
     if ($error){
         $return{error} = $error;
@@ -677,7 +678,7 @@ sub verify_seedlot_plot_compatibility {
     my %return;
 
     if (!$pairs){
-        $error .= "No pair array passed!";
+        $error .= "Nenhum array de pares foi passado!";
     }
     if ($error){
         $return{error} = $error;
@@ -686,7 +687,7 @@ sub verify_seedlot_plot_compatibility {
 
     my @pairs = @$pairs;
     if (scalar(@pairs)<1){
-        $error .= "Your pairs list is empty!";
+        $error .= "Sua lista de pares está vazia!";
     }
     if ($error){
         $return{error} = $error;
@@ -704,7 +705,7 @@ sub verify_seedlot_plot_compatibility {
         #The plot is linked to one accession via 'plot_of'. That accession is then linked to many seedlots via 'collection_of'. Here we can check if the provided seedlot is one of the seedlots linked to the plot's accession.
         my $seedlot_rs = $schema->resultset("Stock::Stock")->search({'me.uniquename'=>$plot_name, 'me.type_id'=>$plot_cvterm_id})->search_related('stock_relationship_subjects', {'stock_relationship_subjects.type_id'=>$plot_of_cvterm_id})->search_related('object')->search_related('stock_relationship_subjects', {'stock_relationship_subjects_2.type_id'=>$collection_of_cvterm_id})->search_related('object', {'object_2.uniquename'=>$seedlot_name, 'object_2.type_id'=>$seedlot_cvterm_id});
         if (!$seedlot_rs->first){
-            $error .= "The seedlot: $seedlot_name is not linked to the same accession as the plot: $plot_name . ";
+            $error .= "O lote de sementes: $seedlot_name não está vinculado ao mesmo acesso que a parcela: $plot_name . ";
         }
     }
     if ($error){
@@ -735,7 +736,7 @@ sub verify_seedlot_family_plot_compatibility {
     my %return;
 
     if (!$pairs){
-        $error .= "No pair array passed!";
+        $error .= "Nenhum array de pares foi passado!";
     }
     if ($error){
         $return{error} = $error;
@@ -744,7 +745,7 @@ sub verify_seedlot_family_plot_compatibility {
 
     my @pairs = @$pairs;
     if (scalar(@pairs)<1){
-        $error .= "Your pairs list is empty!";
+        $error .= "Sua lista de pares está vazia!";
     }
     if ($error){
         $return{error} = $error;
@@ -778,12 +779,12 @@ sub verify_seedlot_family_plot_compatibility {
                 push @members, $each_member->subject_id;
             }
             if (!grep {$_ eq $seedlot_origin_stock_id} @members) {
-                $error .= "The seedlot: $seedlot_name is not linked to the same family as the plot: $plot_name . ";
+                $error .= "O lote de sementes: $seedlot_name não está vinculado à mesma família que a parcela: $plot_name . ";
             }
         } else {
             my $seedlot_rs = $schema->resultset("Stock::Stock")->search({'me.uniquename'=>$plot_name, 'me.type_id'=>$plot_cvterm_id})->search_related('stock_relationship_subjects', {'stock_relationship_subjects.type_id'=>$plot_of_cvterm_id})->search_related('object')->search_related('stock_relationship_subjects', {'stock_relationship_subjects_2.type_id'=>$collection_of_cvterm_id})->search_related('object', {'object_2.uniquename'=>$seedlot_name, 'object_2.type_id'=>$seedlot_cvterm_id});
             if (!$seedlot_rs->first){
-                $error .= "The seedlot: $seedlot_name is not linked to the same accession as the plot: $plot_name . ";
+                $error .= "O lote de sementes: $seedlot_name não está vinculado ao mesmo acesso que a parcela: $plot_name . ";
             }
         }
     }
@@ -816,7 +817,7 @@ sub verify_seedlot_accessions_crosses {
     my %return;
 
     if (!$pairs){
-        $error .= "No pair array passed!";
+        $error .= "Nenhum array de pares foi passado!";
     }
     if ($error){
         $return{error} = $error;
@@ -825,7 +826,7 @@ sub verify_seedlot_accessions_crosses {
 
     my @pairs = @$pairs;
     if (scalar(@pairs)<1){
-        $error .= "Your pairs list is empty!";
+        $error .= "Sua lista de pares está vazia!";
     }
     if ($error){
         $return{error} = $error;
@@ -868,7 +869,7 @@ sub verify_seedlot_accessions_crosses {
 
         my $seedlot_rs = $schema->resultset("Stock::Stock")->search({'me.uniquename'=>$seedlot_name, 'me.type_id'=>$seedlot_cvterm_id})->search_related('stock_relationship_objects', {'stock_relationship_objects.type_id'=>$collection_of_cvterm_id})->search_related('subject', {'subject.uniquename'=>$accession_name, 'subject.type_id'=>[$accession_cvterm_id, $cross_cvterm_id]});
         if (!$seedlot_rs->first){
-            $error .= "The seedlot: $seedlot_name is not linked to the accession/cross_unique_id: $accession_name.";
+            $error .= "O lote de sementes: $seedlot_name não está vinculado ao acesso/cross_unique_id: $accession_name.";
         }
     }
     if ($error){
@@ -900,7 +901,7 @@ sub verify_seedlot_accessions_family_names {
     my %return;
 
     if (!$pairs){
-        $error .= "No pair array passed!";
+        $error .= "Nenhum array de pares foi passado!";
     }
     if ($error){
         $return{error} = $error;
@@ -909,7 +910,7 @@ sub verify_seedlot_accessions_family_names {
 
     my @pairs = @$pairs;
     if (scalar(@pairs)<1){
-        $error .= "Your pairs list is empty!";
+        $error .= "Sua lista de pares está vazia!";
     }
     if ($error){
         $return{error} = $error;
@@ -976,7 +977,7 @@ sub verify_seedlot_accessions_family_names {
             }
             my $seedlot_rs = $schema->resultset("Stock::Stock")->search({'me.uniquename'=>$seedlot_name, 'me.type_id'=>$seedlot_cvterm_id})->search_related('stock_relationship_objects', {'stock_relationship_objects.type_id'=>$collection_of_cvterm_id})->search_related('subject', {'subject.uniquename'=>$stock_name, 'subject.type_id'=>[$accession_cvterm_id]});
             if (!$seedlot_rs->first){
-                $error .= "The seedlot: $seedlot_name is not linked to the accession : $stock_name.";
+                $error .= "O lote de sementes: $seedlot_name não está vinculado ao acesso : $stock_name.";
             }
         } elsif ($family_names_lookup{$stock_name}) {
             my $family_name_id = $family_names_lookup{$stock_name};
@@ -991,7 +992,7 @@ sub verify_seedlot_accessions_family_names {
             my $seedlot_origin_stock_id = $origin_rs->stock_id;
 
             if (!grep {$_ eq $seedlot_origin_stock_id} @members) {
-                $error .= "The seedlot: $seedlot_name is not linked to any cross member of the family: $stock_name. ";
+                $error .= "O lote de sementes: $seedlot_name não está vinculado a nenhum cruzamento membro da família: $stock_name. ";
             }
         }
     }
@@ -1022,7 +1023,7 @@ sub verify_seedlot_seedlot_compatibility {
     my %return;
 
     if (!$pairs){
-        $error .= "No pair array passed!";
+        $error .= "Nenhum array de pares foi passado!";
     }
     if ($error){
         $return{error} = $error;
@@ -1031,7 +1032,7 @@ sub verify_seedlot_seedlot_compatibility {
 
     my @pairs = @$pairs;
     if (scalar(@pairs)<1){
-        $error .= "Your pairs list is empty!";
+        $error .= "Sua lista de pares está vazia!";
     }
     if ($error){
         $return{error} = $error;
@@ -1055,7 +1056,7 @@ sub verify_seedlot_seedlot_compatibility {
         my $content_2_id = $seedlot_2_content->subject_id();
 
         if ($content_1_id ne $content_2_id){
-            $error .= "The seedlots: $seedlot_name_1 and $seedlot_name_2 have different contents.";
+            $error .= "Os lotes de sementes: $seedlot_name_1 e $seedlot_name_2 têm conteúdos diferentes.";
         }
 
     }
@@ -1087,7 +1088,7 @@ sub verify_all_seedlots_compatibility {
     my %return;
 
     if (!$new_seedlot_and_associated_seedlots){
-        $error .= "No seedlot names passed!";
+        $error .= "Nenhum nome de lote de sementes foi passado!";
     }
     if ($error){
         $return{error} = $error;
@@ -1099,7 +1100,7 @@ sub verify_all_seedlots_compatibility {
     my @seedlot_names = keys %{$associated_seedlots};
 
     if (scalar(@seedlot_names)<1){
-        $error .= "No associated seedlot!";
+        $error .= "Nenhum lote de sementes associado!";
     }
     if ($error){
         $return{error} = $error;
@@ -1119,7 +1120,7 @@ sub verify_all_seedlots_compatibility {
 
     my $content_count = keys %seen_content;
     if ($content_count > 1) {
-        $error = "You assigned more than one content to this new seedlot name: $new_seedlot_name "
+        $error = "Você atribuiu mais de um conteúdo a este novo nome de lote de sementes: $new_seedlot_name "
     }
 
     if ($error){
@@ -1149,7 +1150,7 @@ sub verify_accession_content_source_compatibility {
     my %return;
 
     if (!$pairs){
-        $error .= "No pair array passed!";
+        $error .= "Nenhum array de pares foi passado!";
     }
     if ($error){
         $return{error} = $error;
@@ -1158,7 +1159,7 @@ sub verify_accession_content_source_compatibility {
 
     my @pairs = @$pairs;
     if (scalar(@pairs)<1){
-        $error .= "Your pairs list is empty!";
+        $error .= "Sua lista de pares está vazia!";
     }
     if ($error){
         $return{error} = $error;
@@ -1200,7 +1201,7 @@ sub verify_accession_content_source_compatibility {
             } elsif ($source_type_id eq $plant_cvterm_id) {
                 $accession_source_relationship_type = $plant_of_cvterm_id;
             } else {
-                $error .= "The source name: $source_name is not a plot, subplot or plant stock type.";
+                $error .= "O nome de origem: $source_name não é um material do tipo parcela, subparcela ou planta.";
             }
         }
 
@@ -1209,7 +1210,7 @@ sub verify_accession_content_source_compatibility {
             $source_accession_id = $accession_source_relationship_rs->object_id();
 
             if ($accession_id ne $source_accession_id){
-                $error .= "The source name: $source_name is not linked to the same accession as the access content: $accession_name"."<br>";
+                $error .= "O nome de origem: $source_name não está vinculado ao mesmo acesso que o conteúdo do acesso: $accession_name"."<br>";
             }
         }
     }
@@ -1400,7 +1401,7 @@ sub _store_seedlot_accession {
     my $organism_id = $self->schema->resultset('Stock::Stock')->find({stock_id => $accession_stock_id})->organism_id();
     if ($self->organism_id){
         if ($self->organism_id != $organism_id){
-            return "Accessions must all be the same organism, so that a population can group the seed lots.\n";
+            return "Todos os acessos devem ser do mesmo organismo, para que uma população possa agrupar os lotes de sementes.\n";
         }
     }
     $self->organism_id($organism_id);
@@ -1471,7 +1472,7 @@ sub _store_seedlot_cross {
     my $organism_id = $self->schema->resultset('Stock::Stock')->find({stock_id => $cross_stock_id})->organism_id();
     if ($self->organism_id){
         if ($self->organism_id != $organism_id){
-            return "Crosses must all be the same organism to be in a seed lot.\n";
+            return "Todos os cruzamentos devem ser do mesmo organismo para estar em um lote de sementes.\n";
         }
     }
     $self->organism_id($organism_id);
@@ -1711,7 +1712,7 @@ sub store {
                 $self->accession_stock_id($input_accession_id);
                 my $accessions_have_changed = $input_accession_id == $stored_accession_id ? 0 : 1;
                 if ($accessions_have_changed && scalar(@$transactions)>1){
-                    $error = "This seedlot ".$self->uniquename." has been used in transactions, so the contents (accessions) cannot be changed now!";
+                    $error = "O lote de sementes ".$self->uniquename." já foi usado em transações, portanto o conteúdo (acessos) não pode mais ser alterado!";
                 } elsif ($accessions_have_changed && scalar(@$transactions) <= 1) {
                     $error = $self->_update_content_stock_id();
                     my $update_first_transaction_id = $transactions->[0]->update_transaction_object_id($self->accession_stock_id);
@@ -1729,7 +1730,7 @@ sub store {
                 $self->cross_stock_id($input_cross_id);
                 my $crosses_have_changed = $input_cross_id == $stored_cross_id ? 0 : 1;
                 if ($crosses_have_changed && scalar(@$transactions)>1){
-                    $error = "This seedlot ".$self->uniquename." has been used in transactions, so the contents (crosses) cannot be changed now!";
+                    $error = "O lote de sementes ".$self->uniquename." já foi usado em transações, portanto o conteúdo (cruzamentos) não pode mais ser alterado!";
                 } elsif ($crosses_have_changed && scalar(@$transactions) <= 1) {
                     $error = $self->_update_content_stock_id();
                     my $update_first_transaction_id = $transactions->[0]->update_transaction_object_id($self->cross_stock_id);
@@ -1793,13 +1794,13 @@ sub delete {
     my $transactions = $self->transactions();
     my $name = $self->name();
     if (scalar(@$transactions)>1){
-        $error = "Seedlot '$name' has been used in transactions and so cannot be deleted!";
+        $error = "O lote de sementes '$name' foi usado em transações e, portanto, não pode ser excluído!";
     } else {
         my $stock = $self->stock();
         my $experiment_type_id = SGN::Model::Cvterm->get_cvterm_row($self->schema(), "seedlot_experiment", "experiment_type")->cvterm_id();
         my $nd_experiment_rs = $self->schema()->resultset('Stock::Stock')->search({'me.stock_id'=>$self->seedlot_id})->search_related('nd_experiment_stocks')->search_related('nd_experiment', {'nd_experiment.type_id'=>$experiment_type_id});
         if ($nd_experiment_rs->count != 1){
-            $error = "Seedlot '$name' should have only one associated nd_experiment!";
+            $error = "O lote de sementes '$name' deveria ter apenas um nd_experiment associado!";
         } else {
             my $nd_experiment = $nd_experiment_rs->first();
             $nd_experiment->delete();
@@ -1845,7 +1846,7 @@ sub delete_verify_using_list {
 	my $rs = $schema->resultset("Stock::Stock")->search( { uniquename => $ele, type_id => $type_id });
 	if ($rs->count() == 0) {
 	    print STDERR "No such seedlot $ele\n";
-	    push @errors, [ $ele, "No seedlot named '$ele' could be found in the database" ];
+	    push @errors, [ $ele, "Nenhum lote de sementes chamado '$ele' foi encontrado no banco de dados" ];
 	}
 	else {
 	    my $experiment_type_id = SGN::Model::Cvterm->get_cvterm_row($schema, "seedlot_experiment", "experiment_type")->cvterm_id();
@@ -1853,7 +1854,7 @@ sub delete_verify_using_list {
 	    print STDERR "SEEDLOT ID: $seedlot_id\n";
 	    my $nd_experiment_rs = $schema->resultset('Stock::Stock')->search({'me.stock_id'=> $seedlot_id})->search_related('nd_experiment_stocks')->search_related('nd_experiment', {'nd_experiment.type_id'=>$experiment_type_id});
 	    if ($nd_experiment_rs->count != 1){
-		my $error = "Seedlot '$ele' should have only one associated nd_experiment!";
+		my $error = "O lote de sementes '$ele' deveria ter apenas um nd_experiment associado!";
 		push @errors, [ $ele, $error];
 	    }
 	    else {
@@ -1892,7 +1893,7 @@ sub delete_using_list {
 	my $rs = $schema->resultset("Stock::Stock")->search( { uniquename => $ele, type_id => $type_id });
 	if ($rs->count() == 0) {
 	    print STDERR "No such seedlot $ele\n";
-	    push @errors, "No seedlot named '$ele' could be found in the database";
+	    push @errors, "Nenhum lote de sementes chamado '$ele' foi encontrado no banco de dados";
 	}
 	else {
 	    my $seedlot = CXGN::Stock::Seedlot->new( schema => $schema, phenome_schema => $phenome_schema, seedlot_id => $rs->next()->stock_id());
@@ -2022,25 +2023,25 @@ sub store_events {
 
         # Check for required parameters
         if ( !defined $cvterm_id || $cvterm_id eq '' ) {
-            die "cvterm_id is required!";
+            die "cvterm_id é obrigatório!";
         }
         if ( !defined $value || $value eq '' ) {
-            die "value is required!";
+            die "value é obrigatório!";
         }
         if ( !defined $operator || $operator eq '' ) {
-            die "operator is required!";
+            die "operator é obrigatório!";
         }
         if ( !defined $timestamp || $timestamp eq '' ) {
-            die "timestamp is required!";
+            die "timestamp é obrigatório!";
         }
         if ( $timestamp !~ /^[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}$/ ) {
-            die "timestamp not valid format [YYYY-MM-DD HH:MM:SS]!";
+            die "timestamp não está no formato válido [YYYY-MM-DD HH:MM:SS]!";
         }
 
         # Find matching cvterm by id
         my $cvterm_rs = $schema->resultset("Cv::Cvterm")->search({ cvterm_id => $cvterm_id })->first();
         if ( !defined $cvterm_rs ) {
-            die "cvterm_id $cvterm_id not found!";
+            die "cvterm_id $cvterm_id não encontrado!";
         }
         my $cvterm_name = $cvterm_rs->name();
 

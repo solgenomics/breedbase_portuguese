@@ -1,4 +1,5 @@
 package CXGN::Fieldbook::DownloadTrial;
+use utf8;
 
 =head1 NAME
 
@@ -198,7 +199,7 @@ sub download {
 
 
     if (!$wb) {
-        push @error_messages, "Could not create file.";
+        push @error_messages, "Não foi possível criar o arquivo.";
         $errors{'error_messages'} = \@error_messages;
         return \%errors;
     }

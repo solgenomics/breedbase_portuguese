@@ -26,10 +26,10 @@
 <& /page/page_title.mas, title=>"Estabilidade" &>
 
 
-<&| /page/info_section.mas, id=>"input_dataset_section", title=>"Selecione Dados de Entrada", collapsible=>1, collapsed=>0, subtitle=>'<a class="btn btn-link pull-right" href="/help/stability" target="_blank">Socorro! <span class="glyphicon glyphicon-question-sign"></span></a>' &>
+<&| /page/info_section.mas, id=>"input_dataset_section", title=>"Selecionar dados de entrada", collapsible=>1, collapsed=>0, subtitle=>'<a class="btn btn-link pull-right" href="/help/stability" target="_blank">Ajuda <span class="glyphicon glyphicon-question-sign"></span></a>' &>
   <input type="hidden" name="outformat" value="0" />
   <div class="form-group form-inline">
-    <label for="dataset_select">Datasets disponíveis: </label><div id="dataset_select"></div>
+    <label for="dataset_select">Conjuntos de dados disponíveis: </label><div id="dataset_select"></div>
     <br>
     <button class="btn btn-primary" id="selectDataset" type="submit" name="selectDataset" value="selectDataset">Selecionar conjunto de dados</button>
     <br>
@@ -52,7 +52,7 @@
         </div>
       <div class = "form-group form-inline">
        <input type="checkbox" id="dataset_trait_outliers" />
-       <label>Excluir dados outliers </label>
+       <label>Excluir outliers do conjunto de dados </label>
        <br>      
        <label for = select_method>Métodos disponíveis: </label>
        <select class="form-control input-sm" id="select_method">
@@ -64,7 +64,7 @@
       </div>
     </div>
       <div class = "form-group form-inline">
-       <label for = select_imput>O que é isso? </label>
+       <label for = select_imput>Imputar fenótipos: </label>
        <select class="form-control input-sm" id="select_imput">
         <option selected value="imput_empty"></option>
         <option value="imput_yes">Sim</option>
@@ -75,36 +75,36 @@
       <br>
 
             <div style="text-align: center">
-              <button class="btn btn-primary" id="runAMMI" type="submit" name="runAMMI" value="runAMMI">Correr Estabilidade</button>
+              <button class="btn btn-primary" id="runAMMI" type="submit" name="runAMMI" value="runAMMI">Executar estabilidade</button>
             </div>
             <br />
     <div id="tempfile" style="display:none" >
     </div>
 </&>
-<&| /page/info_section.mas, title=>"Instruções", collapsible=>1, collapsed=>1, subtitle=>'<a id="download_table" class="download_tag" target="_blank" href="javascript:download_table();" title="Download results in tabular format">Table&#8675;</a>&nbsp;&nbsp;<a id="download_basic" class="download_tag" target="_blank" href="javascript:download();" title="Download results in basic format">Basic&#8675;</a>' &>
+<&| /page/info_section.mas, title=>"Instruções", collapsible=>1, collapsed=>1, subtitle=>'<a id="download_table" class="download_tag" target="_blank" href="javascript:download_table();" title="Baixar resultados em formato tabular">Tabela&#8675;</a>&nbsp;&nbsp;<a id="download_basic" class="download_tag" target="_blank" href="javascript:download();" title="Baixar resultados em formato básico">Básico&#8675;</a>' &>
 <center>
     <div id="sgn_blast_graph" style="display:none">
         <div id="myCanvas">
-          Seu navegador não suporta a tela HTML5
+          Seu navegador não suporta o canvas do HTML5
         </div>
     </div>
   </center>
   <br>
-  <h5><b>Preparando Dataset:</b></h5> 
-  <h5> 1. Dataset deve ter pelo menos ensaios e características.</h5>
+  <h5><b>Preparando o conjunto de dados:</b></h5> 
+  <h5> 1. O conjunto de dados deve ter pelo menos ensaios e característica(s).</h5>
   <h5> 2. Os ensaios devem ser feitos em mais de 1 local. </h5>
-  <h5> 3. Acessos devem ser colocadas em todos os locais com repetições. Verifique o projeto de ensaio para ter certeza de que tem repetições. </h5>
-  <h5> 4. O mesmo característica deve estar disponível em todos os locais selecionados. Dados desaparecidos são aceitáveis para algumas repetições, no entanto o modelo não funcionará se estiver faltando dados em todas as repetições. </h5>
+  <h5> 3. Os acessos devem estar presentes em todos os locais, com repetições. Verifique o delineamento do ensaio para ter certeza de que há repetições. </h5>
+  <h5> 4. A mesma característica deve estar disponível em todos os locais selecionados. Dados ausentes são aceitáveis para algumas repetições, no entanto o modelo não funcionará se houver dados ausentes em todas as repetições. </h5>
   <h5><b>Imputação:</b></h5>
-  <h5> A imputação é baseada na média dos genótipos usando o pacote R ratos. A precisão da imputação é processada subestabelecendo os dados e calculando a correlação entre dados imputados e dados originais. </h5>
+  <h5> A imputação é baseada na média dos genótipos usando o pacote R mice. A acurácia da imputação é calculada subamostrando os dados e calculando a correlação entre dados imputados e dados originais. </h5>
   <h5><b>Saída:</b></h5>
-  <h5>O gráfico da AMMI mostra variedades estáveis com linhas horríveis. A inclinação é proporcional ao seu índice de estabilidade.</h5>
+  <h5>O gráfico AMMI mostra variedades estáveis com linhas horizontais. A inclinação é proporcional ao seu índice de estabilidade.</h5>
   
   <center>
     <div id="stability_summary"></div>
   </center>
 </&>
-<&| /page/info_section.mas, title=>"Saída", collapsible=>1, collapsed=>0, subtitle=>'<a id="download_table" class="download_tag" target="_blank" href="javascript:download_table();" title="Download results in tabular format">Table&#8675;</a>&nbsp;&nbsp;<a id="download_basic" class="download_tag" target="_blank" href="javascript:download();" title="Download results in basic format">Basic&#8675;</a>' &>
+<&| /page/info_section.mas, title=>"Saída", collapsible=>1, collapsed=>0, subtitle=>'<a id="download_table" class="download_tag" target="_blank" href="javascript:download_table();" title="Baixar resultados em formato tabular">Tabela&#8675;</a>&nbsp;&nbsp;<a id="download_basic" class="download_tag" target="_blank" href="javascript:download();" title="Baixar resultados em formato básico">Básico&#8675;</a>' &>
   <br>
 <div id="stability_message_container">
     <div id="stability_message"></div>
@@ -117,10 +117,10 @@
     <button class="btn btn-primary" id="download-button">Baixar CSV</button>
   </center>
 </&>
-  <&| /page/info_section.mas, title=>"Gráficos", collapsible=>1, collapsed=>1, subtitle=>'<a id="download_graphics" class="download_tag" target="_blank" href="javascript:download_table();" title="Download results in tabular format">Table&#8675;</a>&nbsp;&nbsp;<a id="download_basic" class="download_tag" target="_blank" href="javascript:download();" title="Download results in basic format">Basic&#8675;</a>' &>
+  <&| /page/info_section.mas, title=>"Gráficos", collapsible=>1, collapsed=>1, subtitle=>'<a id="download_graphics" class="download_tag" target="_blank" href="javascript:download_table();" title="Baixar resultados em formato tabular">Tabela&#8675;</a>&nbsp;&nbsp;<a id="download_basic" class="download_tag" target="_blank" href="javascript:download();" title="Baixar resultados em formato básico">Básico&#8675;</a>' &>
   <div style="display: flex;">
     <div>
-      <p>Controle de pressão (ou cmd) para selecionar várias acessos.</p>
+      <p>Pressione Control (ou Cmd) para selecionar vários acessos.</p>
       <select id="accession_select" multiple size="15" style="height: 200px;">
         <!-- Options for accessions will be added dynamically -->
       </select>
@@ -141,7 +141,7 @@
 var require_login = "<%  $c->get_conf('brapi_require_login') %>";
 if (require_login === '1'){
     auth_token = "<%  CXGN::Login->new($c->dbc->dbh)->get_login_cookie() %>";
-    if (!auth_token){ alert("Entre na sua conta para exibir a herdabilidade"); }
+    if (!auth_token){ alert("Entre na sua conta para exibir a estabilidade"); }
 }
 
 var check_outliers = "<% $c->get_conf('exclude_phenotype_outliers') || 0 %>";
@@ -194,7 +194,7 @@ $(document).ready(function(){
         // Get the selected value
         var tempfile = jQuery('#tempfile').html();
         var pheno_select = $(this).val();
-        console.log("Valor selecionado:", pheno_select);
+        console.log("Selected value:", pheno_select);
         console.log(tempfile); // Output the selected value to console
         if (pheno_select !== '') {
             $.get('/ajax/stability/getdata', { file: tempfile })
@@ -224,11 +224,11 @@ $(document).ready(function(){
                         tableHtml += '</table>';
                         $('#pheno_summary_table').html(tableHtml);
                     } else {
-                        console.error("Formato de resposta inválido.");
+                        console.error("Invalid response format.");
                     }
                 })
                 .fail(function(jqXHR, textStatus, errorThrown) {
-                    console.error("Erro ao recuperar o arquivo:", errorThrown);
+                    console.error("Error fetching file:", errorThrown);
                 });
         } else {
             // If pheno_select is empty, clear the table
@@ -372,10 +372,10 @@ jQuery('#runAMMI').click( function () {
 
                                 var table = '<table id="myTable">';
                                 if (method_id == "ammi") {
-                                  table += "<thead class=\"bg-light-blue\"><tr><th>Acesso</th><th>Local</th><th>Efeito</th><th>Nível de estabilidade</th><th>Meios</th></tr></thead>";
+                                  table += "<thead class=\"bg-light-blue\"><tr><th>Acesso</th><th>Local</th><th>Efeito</th><th>Classificação de estabilidade</th><th>Médias</th></tr></thead>";
 
                                 } else {
-                                  table += "<thead class=\"bg-light-blue\"><tr><th>Acesso</th><th>Local</th><th>Meios</th><th>Classificação do local</th><th>Classificação do genótipo</th></tr></thead>";
+                                  table += "<thead class=\"bg-light-blue\"><tr><th>Acesso</th><th>Local</th><th>Médias</th><th>Classificação do local</th><th>Classificação do genótipo</th></tr></thead>";
                                 }
 
                                 if ( method_id == "ammi"){
@@ -666,7 +666,7 @@ function createChart(data) {
         .attr("y", -margin.left)
         .attr("dy", "1em")
         .style("text-anchor", "middle")
-        .text("Estabilidade Escalada");
+        .text("Estabilidade escalonada");
 
     return svg; // Return the SVG node
 }

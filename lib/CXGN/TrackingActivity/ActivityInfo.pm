@@ -1,4 +1,5 @@
 package CXGN::TrackingActivity::ActivityInfo;
+use utf8;
 
 
 =head1 NAME
@@ -96,7 +97,7 @@ sub add_info {
 
         my $tracking_identifier_stock = $self->_get_tracking_identifier($tracking_identifier);
         if (!$tracking_identifier_stock) {
-            return { error => "$tracking_identifier could not be found." };
+            return { error => "$tracking_identifier não foi encontrado." };
         }
 
         my $info_json_string;
@@ -137,7 +138,7 @@ sub add_info {
     };
 
     if ($error) {
-        return { error => "Error storing tracking information: $error\n" };
+        return { error => "Erro ao armazenar as informações de rastreamento: $error\n" };
     } else {
         return { success => 1};
     }

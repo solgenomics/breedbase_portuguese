@@ -346,7 +346,7 @@ jQuery(document).ready(function(){
             // "fnInitComplete": function(oSettings, json) {
             //     //console.log(json);
             //     if (!isLoggedIn()) {
-            //         jQuery('#siblings_to_list_menu').html("<div class='well well-sm'><h3>Entre no sistema para usar listas!</h3></div>");
+            //         jQuery('#siblings_to_list_menu').html("<div class='well well-sm'><h3>Please login to use lists!</h3></div>");
             //     } else {
             //         var html = "";
             //         for(var i=0; i<json.data.length; i++){

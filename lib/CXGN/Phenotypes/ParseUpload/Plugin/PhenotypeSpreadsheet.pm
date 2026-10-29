@@ -1,5 +1,6 @@
 package CXGN::Phenotypes::ParseUpload::Plugin::PhenotypeSpreadsheet;
 
+use utf8;
 # Validate Returns %validate_result = (
 #   error => 'error message'
 #)
@@ -67,7 +68,7 @@ sub validate {
     my ( $row_min, $row_max ) = $worksheet->row_range();
     my ( $col_min, $col_max ) = $worksheet->col_range();
     if (($col_max - $col_min)  < 1 || ($row_max - $row_min) < 1 ) { #must have header with at least plot_name and one trait, as well as one row of phenotypes
-        $parse_result{'error'} = "Spreadsheet is missing plot_name and atleast one trait in header.";
+        $parse_result{'error'} = "A planilha não contém plot_name e pelo menos uma característica no cabeçalho.";
         print STDERR "Spreadsheet is missing header\n";
         return \%parse_result;
     }
@@ -83,12 +84,12 @@ sub validate {
       $design_type =~ s/^\s+|\s+$//g;
     }
     if (!$design_type ) {
-        $parse_result{'error'} = "No design type in header. Make sure you are using the correct spreadsheet format. It may help to recreate your spreadsheet from the website.";
+        $parse_result{'error'} = "Nenhum tipo de delineamento no cabeçalho. Certifique-se de que está usando o formato de planilha correto. Pode ajudar recriar sua planilha a partir do site.";
         print STDERR "No design type in header\n";
         return \%parse_result;
     }
     if (!$name_head || ($name_head ne 'plot_name' && $name_head ne 'plant_name' && $name_head ne 'subplot_name' && $name_head ne 'tissue_sample_name')) {
-        $parse_result{'error'} = "No plot_name or plant_name or subplot_name or tissue_sample_name in header. Make sure you are using the correct spreadsheet format. It may help to recreate your spreadsheet from the website.";
+        $parse_result{'error'} = "Nenhum plot_name, plant_name, subplot_name ou tissue_sample_name no cabeçalho. Certifique-se de que está usando o formato de planilha correto. Pode ajudar recriar sua planilha a partir do site.";
         print STDERR "No plot_name or plant_name or subplot_name or tissue_sample_name in header\n";
         return \%parse_result;
     }
@@ -101,7 +102,7 @@ sub validate {
                                     $worksheet->get_cell(6,6)->value() ne 'planting_date' ||
                                     $worksheet->get_cell(6,7)->value() ne 'harvest_date' ||
                                     $worksheet->get_cell(6,8)->value() ne 'trial_name' ) ) {
-        $parse_result{'error'} = "Data columns must be in this order for uploading Plot phenotypes: 'plot_name', 'accession_name' or 'family_name' or 'cross_unique_id', 'plot_number', 'block_number', 'is_a_control',  'rep_number', 'planting_date', 'harvest_date', 'trial_name'. Make sure to select the correct data level. It may help to recreate your spreadsheet from the website.";
+        $parse_result{'error'} = "As colunas de dados devem estar nesta ordem para enviar fenótipos de parcela: 'plot_name', 'accession_name' ou 'family_name' ou 'cross_unique_id', 'plot_number', 'block_number', 'is_a_control',  'rep_number', 'planting_date', 'harvest_date', 'trial_name'. Certifique-se de selecionar o nível de dados correto. Pode ajudar recriar sua planilha a partir do site.";
         print STDERR "Columns not correct and data_level is plots\n";
         return \%parse_result;
     }
@@ -115,7 +116,7 @@ sub validate {
                                     $worksheet->get_cell(6,7)->value() ne 'planting_date' ||
                                     $worksheet->get_cell(6,8)->value() ne 'harvest_date' ||
                                     $worksheet->get_cell(6,9)->value() ne 'trial_name') ) {
-        $parse_result{'error'} = "Data columns must be in this order for uploading Plant phenotypes: 'plant_name', 'plot_name', 'accession_name' or 'family_name' or 'cross_unique_id', 'plot_number', 'block_number', 'is_a_control', 'rep_number', 'planting_date', 'harvest_date', 'trial_name'. Make sure to select the correct data level. It may help to recreate your spreadsheet from the website.";
+        $parse_result{'error'} = "As colunas de dados devem estar nesta ordem para enviar fenótipos de planta: 'plant_name', 'plot_name', 'accession_name' ou 'family_name' ou 'cross_unique_id', 'plot_number', 'block_number', 'is_a_control', 'rep_number', 'planting_date', 'harvest_date', 'trial_name'. Certifique-se de selecionar o nível de dados correto. Pode ajudar recriar sua planilha a partir do site.";
         print STDERR "Columns not correct and data_level is plants\n";
         return \%parse_result;
     }
@@ -130,7 +131,7 @@ sub validate {
                                     $worksheet->get_cell(6,8)->value() ne 'planting_date' ||
                                     $worksheet->get_cell(6,9)->value() ne 'harvest_date' ||
                                     $worksheet->get_cell(6,10)->value() ne 'trial_name') ) {
-        $parse_result{'error'} = "Data columns must be in this order for uploading Tissue Sample phenotypes: 'tissue_sample_name', 'plant_name', 'plot_name', 'accession_name' or 'family_name' or 'cross_unique_id', 'plot_number', 'block_number', 'is_a_control', 'rep_number', 'planting_date', 'harvest_date', 'trial_name'. Make sure to select the correct data level. It may help to recreate your spreadsheet from the website.";
+        $parse_result{'error'} = "As colunas de dados devem estar nesta ordem para enviar fenótipos de amostra de tecido: 'tissue_sample_name', 'plant_name', 'plot_name', 'accession_name' ou 'family_name' ou 'cross_unique_id', 'plot_number', 'block_number', 'is_a_control', 'rep_number', 'planting_date', 'harvest_date', 'trial_name'. Certifique-se de selecionar o nível de dados correto. Pode ajudar recriar sua planilha a partir do site.";
         print STDERR "Columns not correct and data_level is tissue_samples\n";
         return \%parse_result;
     }
@@ -154,7 +155,7 @@ sub validate {
                                                                     $worksheet->get_cell(6,8)->value() ne 'planting_date' ||
                                                                     $worksheet->get_cell(6,9)->value() ne 'harvest_date' ||
                                                                     $worksheet->get_cell(6,10)->value() ne 'trial_name') ) ) {
-        $parse_result{'error'} = "Data columns must be in one of these two orders for uploading Subplot phenotypes: 1) 'subplot_name', 'plot_name', 'accession_name' or 'family_name' or 'cross_unique_id', 'plot_number', 'block_number', 'is_a_control', 'rep_number', 'planting_date', 'harvest_date', 'trial_name' OR 2) 'plant_name', 'subplot_name', 'plot_name', 'accession_name' or 'family_name' or 'cross_unique_id', 'plot_number', 'block_number', 'is_a_control', 'rep_number', 'planting_date', 'harvest_date', 'trial_name'. Make sure to select the correct data level. It may help to recreate your spreadsheet from the website.";
+        $parse_result{'error'} = "As colunas de dados devem estar em uma destas duas ordens para enviar fenótipos de subparcela: 1) 'subplot_name', 'plot_name', 'accession_name' ou 'family_name' ou 'cross_unique_id', 'plot_number', 'block_number', 'is_a_control', 'rep_number', 'planting_date', 'harvest_date', 'trial_name' OU 2) 'plant_name', 'subplot_name', 'plot_name', 'accession_name' ou 'family_name' ou 'cross_unique_id', 'plot_number', 'block_number', 'is_a_control', 'rep_number', 'planting_date', 'harvest_date', 'trial_name'. Certifique-se de selecionar o nível de dados correto. Pode ajudar recriar sua planilha a partir do site.";
         print STDERR "Columns not correct and data_level is subplots\n";
         return \%parse_result;
     }
@@ -198,7 +199,7 @@ sub validate {
                 if ($timestamp_included) {
                     ($value, $timestamp) = split /,/, $value_string;
                     if (!$timestamp =~ m/(\d{4})-(\d{2})-(\d{2}) (\d{2}):(\d{2}):(\d{2})(\S)(\d{4})/) {
-                        $parse_result{'error'} = "Timestamp needs to be of form YYYY-MM-DD HH:MM:SS-0000 or YYYY-MM-DD HH:MM:SS+0000";
+                        $parse_result{'error'} = "A data e hora deve estar no formato YYYY-MM-DD HH:MM:SS-0000 ou YYYY-MM-DD HH:MM:SS+0000";
                         print STDERR "value: $timestamp\n";
                         return \%parse_result;
                     }

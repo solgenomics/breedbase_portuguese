@@ -1,4 +1,5 @@
 package SGN::Controller::solGS::AnalysisQueue;
+use utf8;
 
 use Moose;
 use namespace::autoclean;
@@ -1310,7 +1311,7 @@ sub delete_old_analyses : Path('/solgs/delete/old/analyses') Args(1) {
   print STDERR "Clearing jobs older than $time...\n";
 
   if ($time ne 'one_week' && $time ne 'one_month' && $time ne 'six_months' && $time ne 'one_year') {
-    $c->stash->{rest} = {error => 'Invalid time period selected.'};
+    $c->stash->{rest} = {error => 'Período de tempo selecionado inválido.'};
   }
 
   $self->analysis_log_file($c);

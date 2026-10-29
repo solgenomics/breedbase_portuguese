@@ -103,7 +103,7 @@ export function WizardSetup(main_id) {
     // Column 1 loader
     .load_initial((target) => {
       var formData = new FormData();
-      formData.append("Categorias", target); // server should receive canonical (plural) here
+      formData.append('categories[]', target); // server should receive canonical (plural) here
       formData.append('data', '');
       return fetch(window.location.origin + "/ajax/breeder/search", {
         method: "POST",
@@ -124,13 +124,13 @@ export function WizardSetup(main_id) {
       }
       var formData = new FormData();
       categories.forEach((c, i) => {
-        formData.append("Categorias", c);
-        formData.append("Tipos de pesquisa", operations[c]);
+        formData.append('categories[]', c);
+        formData.append('querytypes[]', operations[c]);
         (selections[c] || []).forEach(s => {
-          formData.append(`Dados[${i}][]`, s.id);
+          formData.append(`data[${i}][]`, s.id);
         });
       });
-      formData.append("Categorias", target);
+      formData.append('categories[]', target);
       return fetch(window.location.origin + "/ajax/breeder/search", {
         method: "POST",
         credentials: 'include',

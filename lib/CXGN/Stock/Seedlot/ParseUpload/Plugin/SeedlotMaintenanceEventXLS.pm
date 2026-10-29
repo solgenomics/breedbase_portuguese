@@ -1,5 +1,6 @@
 package CXGN::Stock::Seedlot::ParseUpload::Plugin::SeedlotMaintenanceEventXLS;
 
+use utf8;
 use Moose::Role;
 use Spreadsheet::ParseExcel;
 use Spreadsheet::ParseXLSX;
@@ -33,7 +34,7 @@ sub _validate_with_plugin {
 
     # Get cvterm_id of ontology root
     if ( !$event_ontology_root || $event_ontology_root eq '' ) {
-        push(@error_messages, "Seedlot Maintenance Event ontology not set!");
+        push(@error_messages, "A ontologia de eventos de manutenção de lotes de sementes não está configurada!");
         $errors{'error_messages'} = \@error_messages;
         $self->_set_parse_errors(\%errors);
         return;
@@ -67,7 +68,7 @@ sub _validate_with_plugin {
     # Get the first worksheet
     my $worksheet = ( $excel_obj->worksheets() )[0];
     if ( !$worksheet ) {
-        push(@error_messages, "Spreadsheet must be on 1st tab in Excel (.xls) file");
+        push(@error_messages, "A planilha deve estar na 1ª aba do arquivo Excel (.xls)");
         $errors{'error_messages'} = \@error_messages;
         $self->_set_parse_errors(\%errors);
         return;
@@ -77,7 +78,7 @@ sub _validate_with_plugin {
     my ( $row_min, $row_max ) = $worksheet->row_range();
     my ( $col_min, $col_max ) = $worksheet->col_range();
     if (($col_max - $col_min) != 5 || ($row_max - $row_min) < 1 ) {
-        push(@error_messages, "Spreadsheet is missing header or contains no rows");
+        push(@error_messages, "A planilha não tem cabeçalho ou não contém linhas");
         $errors{'error_messages'} = \@error_messages;
         $self->_set_parse_errors(\%errors);
         return;
@@ -117,19 +118,19 @@ sub _validate_with_plugin {
     }
 
     if (!$seedlot_head || $seedlot_head ne 'seedlot' ) {
-        push @error_messages, "Cell A1: seedlot is missing from the header";
+        push @error_messages, "Célula A1: seedlot está ausente do cabeçalho";
     }
     if (!$type_head || $type_head ne 'type') {
-        push @error_messages, "Cell B1: type is missing from the header";
+        push @error_messages, "Célula B1: type está ausente do cabeçalho";
     }
     if (!$value_head || $value_head ne 'value') {
-        push @error_messages, "Cell C1: value is missing from the header";
+        push @error_messages, "Célula C1: value está ausente do cabeçalho";
     }
     if (!$operator_head || $operator_head ne 'operator') {
-        push @error_messages, "Cell D1: operator is missing from the header";
+        push @error_messages, "Célula D1: operator está ausente do cabeçalho";
     }
     if (!$timestamp_head || $timestamp_head ne 'timestamp') {
-        push @error_messages, "Cell E1: timestamp is missing from the header";
+        push @error_messages, "Célula E1: timestamp está ausente do cabeçalho";
     }
 
 
@@ -167,31 +168,31 @@ sub _validate_with_plugin {
         }
 
         if (!$seedlot || $seedlot eq '') {
-            push(@error_messages, "Cell A$row_name: seedlot missing.");
+            push(@error_messages, "Célula A$row_name: seedlot ausente.");
         }
         elsif ($seedlot =~ /\s/ || $seedlot =~ /\// || $seedlot =~ /\\/) {
-            push(@error_messages, "Cell A$row_name: seedlot must not contain spaces or slashes.");
+            push(@error_messages, "Célula A$row_name: seedlot não deve conter espaços nem barras.");
         }
         else {
             $seen_seedlot_names{$seedlot}=1;
         }
         if (!$type || $type eq '') {
-            push(@error_messages, "Cell B$row_name: type missing.");
+            push(@error_messages, "Célula B$row_name: type ausente.");
         }
         else {
             $seen_event_types{$type}=1;
         }
         if (!$value || $value eq '') {
-            push(@error_messages, "Cell C$row_name: value missing.");
+            push(@error_messages, "Célula C$row_name: value ausente.");
         }
         if (!$operator || $operator eq '') {
-            push(@error_messages, "Cell E$row_name: operator missing.");
+            push(@error_messages, "Célula E$row_name: operator ausente.");
         }
         if (!$timestamp || $timestamp eq '') {
-            push(@error_messages, "Cell F$row_name: timestamp missing.");
+            push(@error_messages, "Célula F$row_name: timestamp ausente.");
         }
         elsif ( $timestamp !~ /^[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}$/ ) {
-            push(@error_messages, "Cell F$row_name: timestamp not valid format [YYYY-MM-DD HH:MM:SS]");
+            push(@error_messages, "Célula F$row_name: timestamp em formato inválido [YYYY-MM-DD HH:MM:SS]");
         }
     }
 
@@ -200,7 +201,7 @@ sub _validate_with_plugin {
     my $seedlot_validator = CXGN::List::Validate->new();
     my @seedlots_missing = @{$seedlot_validator->validate($schema, 'seedlots', \@seedlots)->{'missing'}};
     if (scalar(@seedlots_missing) > 0) {
-        push(@error_messages, "The following seedlots are not in the database or are marked as discarded: ".join(',',@seedlots_missing));
+        push(@error_messages, "Os seguintes lotes de sementes não estão no banco de dados ou estão marcados como descartados: ".join(',',@seedlots_missing));
         $errors{'missing_seedlots'} = \@seedlots_missing;
     }
 
@@ -213,7 +214,7 @@ sub _validate_with_plugin {
         }
     }
     if (scalar(@events_missing) > 0) {
-        push(@error_messages, "The following events are not valid: ".join(',',@events_missing));
+        push(@error_messages, "Os seguintes eventos não são válidos: ".join(',',@events_missing));
         $errors{'missing_events'} = \@events_missing;
     }
 

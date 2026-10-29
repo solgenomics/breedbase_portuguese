@@ -796,11 +796,11 @@ $design_types => ()
                             <tr>
                                 <td>trial_name</td>
                                 <td>breeding_program</td>
-                                <td>Localização</td>
-                                <td>ano</td>
+                                <td>location</td>
+                                <td>year</td>
                                 <td>transplanting_date</td>
                                 <td>design_type</td>
-                                <td>Descrição</td>
+                                <td>description</td>
                                 <td>trial_type</td>
                                 <td>trial_stock_type</td>
                                 <td>plot_width</td>
@@ -958,14 +958,14 @@ $design_types => ()
                             <tr>
                                 <td>trial_name</td>
                                 <td>breeding_program</td>
-                                <td>pasta</td>
-                                <td>Localização</td>
-                                <td>ano</td>
+                                <td>folder</td>
+                                <td>location</td>
+                                <td>year</td>
                                 <td>transplanting_date</td>
                                 <td>planting_date</td>
                                 <td>harvest_date</td>
                                 <td>design_type</td>
-                                <td>Descrição</td>
+                                <td>description</td>
                                 <td>trial_type</td>
                                 <td>plot_width</td>
                                 <td>plot_length</td>

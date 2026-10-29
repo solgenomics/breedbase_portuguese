@@ -316,7 +316,7 @@
                             <tr>
                                 <td>female_accession</td>
                                 <td>male_accession</td>
-                                <td>Prioridade</td>
+                                <td>priority</td>
                             </tr>
                         </tbody>
                     </table>

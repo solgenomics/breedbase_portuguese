@@ -48,7 +48,7 @@ my $infoNeeded = ["name", "email", "subject", ];
     <div class="form-group">
       <label class="col-sm-2 control-label"></label>
       <div class="col-sm-10">
-        <h5 valign="middle" style="color:red; font-size:90%; font-style:italic;">Fields Marked With <% '"*"' |h %> Are Required.</h5>
+        <h5 valign="middle" style="color:red; font-size:90%; font-style:italic;">Os campos marcados com <% '"*"' |h %> são obrigatórios.</h5>
       </div>
     </div>
     <hr>
@@ -65,12 +65,12 @@ my $infoNeeded = ["name", "email", "subject", ];
      <tbody>
       <tr>
         <td><b>E-mail</b></td>
-	<td>Note that the contact email address <% $email_address_to_display %> has been deactivated due to extreme levels of spam. <br/>Use este formulário de contato.</td>
+	<td>O endereço de e-mail de contato <% $email_address_to_display %> foi desativado devido ao volume extremo de spam. <br/>Use o formulário de contato acima.</td>
       </tr>
       <tr>
-        <td><b>Endereço de Correio</b></td>
-	<td>Rede Sol Genômica<br />
-	Vamos Lukas Mueller<br />
+        <td><b>Endereço postal</b></td>
+	<td>Sol Genomics Network<br />
+	c/o Lukas Mueller<br />
 	Boyce Thompson Institute<br />
 	533, Tower Road<br />
 	Ithaca, NY 14853<br />
@@ -153,7 +153,7 @@ jQuery(document).ready(function () {
                         html = response.error;
                         html_return = '<div class="panel panel-danger"><div class="panel-heading">Erro</div><div class="panel-body">'+html+'</div></div>';
                     } else {
-                        html = "Thank you for your message. We will reply as soon as possible.";
+                        html = "Obrigado pela sua mensagem. Responderemos o mais breve possível.";
                         html_return = "<div class=\"panel panel-success\"><div class=\"panel-heading\">Sucesso</div><div class=\"panel-body\">"+html+'</div></div>';
                     }
                     jQuery('#contact_form_return_message').html(html_return);

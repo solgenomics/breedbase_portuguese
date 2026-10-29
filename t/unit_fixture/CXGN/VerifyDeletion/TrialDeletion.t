@@ -3,6 +3,7 @@
 # Tests trial deletion functions as they are used from the trial detail page through AJAX requests
 
 use strict;
+use utf8;
 use warnings;
 
 use lib 't/lib';
@@ -96,7 +97,7 @@ sleep(10);
 
 $response = decode_json $mech->content;
 print STDERR Dumper $response;
-is_deeply($response, {'message' => 'Successfully deleted trial data.','success' => 1}, 'test trial layout + entry deletion');
+is_deeply($response, {'message' => 'Dados do ensaio excluídos com sucesso.','success' => 1}, 'test trial layout + entry deletion');
 
 my $project_rs_after_delete = $schema->resultset("Project::Project")->find({name=>'CASS_6Genotypes_Sampling_2015'});
 ok(!$project_rs_after_delete);

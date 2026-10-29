@@ -1,5 +1,6 @@
 package CXGN::Trial::ParseUpload::Plugin::TrialExcelFormat;
 
+use utf8;
 use Moose::Role;
 use Spreadsheet::ParseExcel;
 use Spreadsheet::ParseXLSX;
@@ -63,7 +64,7 @@ sub _validate_with_plugin {
 
   $worksheet = ( $excel_obj->worksheets() )[0]; #support only one worksheet
   if (!$worksheet) {
-    push @error_messages, "Spreadsheet must be on 1st tab in Excel (.xls) file";
+    push @error_messages, "A planilha deve estar na 1ª aba do arquivo Excel (.xls)";
     $errors{'error_messages'} = \@error_messages;
     $self->_set_parse_errors(\%errors);
     return;
@@ -71,7 +72,7 @@ sub _validate_with_plugin {
   my ( $row_min, $row_max ) = $worksheet->row_range();
   my ( $col_min, $col_max ) = $worksheet->col_range();
   if ( ($col_max - $col_min) < 2 || ($row_max - $row_min) < 1 ) { #must have header and at least one row of plot data
-    push @error_messages, "Spreadsheet is missing header or contains no rows";
+    push @error_messages, "A planilha não tem cabeçalho ou não contém linhas";
     $errors{'error_messages'} = \@error_messages;
     $self->_set_parse_errors(\%errors);
     return;
@@ -99,7 +100,7 @@ sub _validate_with_plugin {
 
   # Check trial name for spaces
   elsif ($trial_name =~ /\s/ ) {
-    push @error_messages, "Trial name <b>$trial_name</b> must not contain spaces.";
+    push @error_messages, "O nome do ensaio <b>$trial_name</b> não deve conter espaços.";
   }
 
   my @pairs;
@@ -177,16 +178,16 @@ sub _validate_with_plugin {
       $plot_name = _create_plot_name($trial_name, $plot_number);
     }
     elsif ($plot_name =~ /\s/ ) {
-      push @error_messages, "Row $row_name: plot name must not contain spaces.";
+      push @error_messages, "Linha $row_name: o nome da parcela não deve conter espaços.";
     }
     elsif ($plot_name =~ /\// || $plot_name =~ /\\/) {
-      push @warning_messages, "Row $row_name: plot name contains slashes. Note that slashes can cause problems for third-party applications; however, plotnames can be saved with slashes.";
+      push @warning_messages, "Linha $row_name: o nome da parcela contém barras. Observe que barras podem causar problemas em aplicativos de terceiros; no entanto, nomes de parcelas podem ser salvos com barras.";
     }
     else {
       $plot_name =~ s/^\s+|\s+$//g; #trim whitespace from front and end...
       #file must not contain duplicate plot names
       if ($seen_plot_names{$plot_name}) {
-        push @error_messages, "Row $row_name: duplicate plot name at cell A".$seen_plot_names{$plot_name}.": $plot_name";
+        push @error_messages, "Linha $row_name: nome de parcela duplicado na célula A".$seen_plot_names{$plot_name}.": $plot_name";
       }
       $seen_plot_names{$plot_name}=$row_name;
     }
@@ -195,7 +196,7 @@ sub _validate_with_plugin {
 
     #stock_name must not be blank and must exist in the database
     if (!$stock_name || $stock_name eq '') {
-      push @error_messages, "Row $row_name: entry name missing";
+      push @error_messages, "Linha $row_name: nome da entrada ausente";
     } else {
       $stock_name =~ s/^\s+|\s+$//g; #trim whitespace from front and end...
       $seen_entry_names{$stock_name}++;
@@ -205,44 +206,44 @@ sub _validate_with_plugin {
 
     #plot number must not be blank
     if (!$plot_number || $plot_number eq '') {
-      push @error_messages, "Row $row_name: plot number missing";
+      push @error_messages, "Linha $row_name: número da parcela ausente";
     }
     #plot number must be a positive integer
     if (!($plot_number =~ /^\d+?$/)) {
-      push @error_messages, "Row $row_name: plot number is not a positive integer: $plot_number";
+      push @error_messages, "Linha $row_name: o número da parcela não é um número inteiro positivo: $plot_number";
     }
     #plot number must be unique in file
     if (exists($seen_plot_numbers{$plot_number})){
-      push @error_messages, "Row $row_name: plot number must be unique in your file. You already used this plot number in C".$seen_plot_numbers{$plot_number};
+      push @error_messages, "Linha $row_name: o número da parcela deve ser único no seu arquivo. Você já usou este número de parcela em C".$seen_plot_numbers{$plot_number};
     } else {
       $seen_plot_numbers{$plot_number} = $row_name;
     }
 
     #block number must not be blank
     if (!$block_number || $block_number eq '') {
-      push @error_messages, "Row $row_name: block number missing";
+      push @error_messages, "Linha $row_name: número do bloco ausente";
     }
     #block number must be a positive integer
     if (!($block_number =~ /^\d+?$/)) {
-      push @error_messages, "Row $row_name: block number is not a positive integer: $block_number";
+      push @error_messages, "Linha $row_name: o número do bloco não é um número inteiro positivo: $block_number";
     }
     if ($is_a_control) {
       #is_a_control must be either yes, no 1, 0, or blank
       if (!($is_a_control eq "yes" || $is_a_control eq "no" || $is_a_control eq "1" ||$is_a_control eq "0" || $is_a_control eq '')) {
-        push @error_messages, "Row $row_name: is_a_control is not either yes, no 1, 0, or blank: $is_a_control";
+        push @error_messages, "Linha $row_name: is_a_control não é yes, no, 1, 0 nem em branco: $is_a_control";
       }
     }
     if ($rep_number && !($rep_number =~ /^\d+?$/)){
-      push @error_messages, "Row $row_name: rep_number must be a positive integer: $rep_number";
+      push @error_messages, "Linha $row_name: rep_number deve ser um número inteiro positivo: $rep_number";
     }
     if ($range_number && !($range_number =~ /^\d+?$/)){
-      push @error_messages, "Row $row_name: range_number must be a positive integer: $range_number";
+      push @error_messages, "Linha $row_name: range_number deve ser um número inteiro positivo: $range_number";
     }
     if ($row_number && !($row_number =~ /^\d+?$/)){
-      push @error_messages, "Row $row_name: row_number must be a positive integer: $row_number";
+      push @error_messages, "Linha $row_name: row_number deve ser um número inteiro positivo: $row_number";
     }
     if ($col_number && !($col_number =~ /^\d+?$/)){
-      push @error_messages, "Row $row_name: col_number must be a positive integer: $col_number";
+      push @error_messages, "Linha $row_name: col_number deve ser um número inteiro positivo: $col_number";
     }
     if ($row_number && $col_number) {
       my $k = "$row_number-$col_number";
@@ -260,10 +261,10 @@ sub _validate_with_plugin {
       push @pairs, [$seedlot_name, $stock_name];
     }
     if (defined($num_seed_per_plot) && $num_seed_per_plot ne '' && !($num_seed_per_plot =~ /^\d+?$/)){
-      push @error_messages, "Row $row_name: num_seed_per_plot must be a positive integer: $num_seed_per_plot";
+      push @error_messages, "Linha $row_name: num_seed_per_plot deve ser um número inteiro positivo: $num_seed_per_plot";
     }
     if (defined($weight_gram_seed_per_plot) && $weight_gram_seed_per_plot ne '' && !($weight_gram_seed_per_plot =~ /^\d+?$/)){
-      push @error_messages, "Row $row_name: weight_gram_seed_per_plot must be a positive integer: $weight_gram_seed_per_plot";
+      push @error_messages, "Linha $row_name: weight_gram_seed_per_plot deve ser um número inteiro positivo: $weight_gram_seed_per_plot";
     }
 
     ## ENTRY NUMBER CHECK
@@ -272,12 +273,12 @@ sub _validate_with_plugin {
       my $ex_en = $seen_entry_numbers{by_acc}->{$stock_name};
       if ( $ex_acc ) {
         if ( $ex_acc ne $stock_name ) {
-          push @error_messages, "Row $row_name: entry number $entry_number has already been assigned to a different stock ($ex_acc).";
+          push @error_messages, "Linha $row_name: o número de entrada $entry_number já foi atribuído a um material diferente ($ex_acc).";
         }
       }
       elsif ( $ex_en ) {
         if ( $ex_en ne $entry_number ) {
-          push @error_messages, "Row $row_name: stock $stock_name has already been assigned a different entry number ($ex_en).";
+          push @error_messages, "Linha $row_name: ao material $stock_name já foi atribuído um número de entrada diferente ($ex_en).";
         }
       }
       else {
@@ -291,7 +292,7 @@ sub _validate_with_plugin {
       if($worksheet->get_cell($row,$treatment_col)){
         my $apply_treatment = $worksheet->get_cell($row,$treatment_col)->value();
         if ( ($apply_treatment ne '' ) && defined($apply_treatment) && $apply_treatment ne '1'){
-          push @error_messages, "Treatment value for $treatment_name in row $row_name should be either 1 or empty";
+          push @error_messages, "O valor do tratamento $treatment_name na linha $row_name deve ser 1 ou vazio";
         }
       }
     }
@@ -304,7 +305,7 @@ sub _validate_with_plugin {
 
   if (scalar(@entry_names_missing) > 0) {
     $errors{'missing_stocks'} = \@entry_names_missing;
-    push @error_messages, "The following entry names are not in the database as uniquenames or synonyms: ".join(',',@entry_names_missing);
+    push @error_messages, "Os seguintes nomes de entrada não estão no banco de dados como nomes únicos ou sinônimos: ".join(',',@entry_names_missing);
   }
 
 
@@ -315,7 +316,7 @@ sub _validate_with_plugin {
 
     if (scalar(@seedlots_missing) > 0) {
       $errors{'missing_seedlots'} = \@seedlots_missing;
-      push @error_messages, "The following seedlots are not in the database or are marked as discarded: ".join(',',@seedlots_missing);
+      push @error_messages, "Os seguintes lotes de sementes não estão no banco de dados ou estão marcados como descartados: ".join(',',@seedlots_missing);
     }
 
     my $return = CXGN::Stock::Seedlot->verify_seedlot_accessions_crosses($schema, \@pairs);
@@ -332,7 +333,7 @@ sub _validate_with_plugin {
     'uniquename' => { -in => \@plots }
   });
   while (my $r=$rs->next){
-    push @error_messages, "Row ".$seen_plot_names{$r->uniquename}.": plot name already exists: ".$r->uniquename;
+    push @error_messages, "Linha ".$seen_plot_names{$r->uniquename}.": o nome da parcela já existe: ".$r->uniquename;
   }
 
   # check for multiple plots at the same position
@@ -341,7 +342,7 @@ sub _validate_with_plugin {
     my $count = scalar(@{$plots});
     if ( $count > 1 ) {
       my @pos = split('-', $key);
-      push @warning_messages, "More than 1 plot is assigned to the position row=" . $pos[0] . " col=" . $pos[1] . " plots=" . join(',', @$plots);
+      push @warning_messages, "Mais de 1 parcela está atribuída à posição row=" . $pos[0] . " col=" . $pos[1] . " plots=" . join(',', @$plots);
     }
   }
 
@@ -596,7 +597,7 @@ sub _parse_headers {
 
   foreach (@$req_cols) {
     if ( !exists $columns{$_} ) {
-      push(@errors, "Required column $_ is missing from the file!");
+      push(@errors, "A coluna obrigatória $_ está ausente do arquivo!");
     }
   }
 

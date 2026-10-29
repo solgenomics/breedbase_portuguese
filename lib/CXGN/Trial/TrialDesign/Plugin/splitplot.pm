@@ -1,5 +1,6 @@
 
 package CXGN::Trial::TrialDesign::Plugin::splitplot;
+use utf8;
 
 use Moose::Role;
 use Data::Dumper;
@@ -33,7 +34,7 @@ sub create_design {
         @stock_list = @{$self->get_stock_list()};
         $number_of_stocks = scalar(@stock_list);
     } else {
-        die "No stock list specified\n";
+        die "Nenhuma lista de materiais especificada\n";
     }
     if ($self->has_treatments()) {
         $treatments = $self->get_treatments(); #at this point this is a hashref of arrayrefs. Each hash key is a treatment name, and the arrays are the values of that treatment to be applied.
@@ -58,13 +59,13 @@ sub create_design {
         @unique_treatments = @aggregator;
 
     } else {
-        die "treatments not specified\n";
+        die "tratamentos não especificados\n";
     }
     if ($self->has_number_of_blocks()) {
         $number_of_blocks = $self->get_number_of_blocks();
         $number_of_reps = $number_of_blocks;
     } else {
-        die "Number of blocks not specified\n";
+        die "Número de blocos não especificado\n";
     }
 
     if ($self->has_fieldmap_col_number()) {

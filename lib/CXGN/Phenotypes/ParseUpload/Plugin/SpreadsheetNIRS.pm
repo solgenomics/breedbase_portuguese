@@ -1,5 +1,6 @@
 package CXGN::Phenotypes::ParseUpload::Plugin::SpreadsheetNIRS;
 
+use utf8;
 # Validate Returns %validate_result = (
 #   error => 'error message'
 #)
@@ -48,7 +49,7 @@ sub validate {
         or die "Could not open file '$filename' $!";
 
     if (!$fh) {
-        $parse_result{'error'} = "Could not read file.";
+        $parse_result{'error'} = "Não foi possível ler o arquivo.";
         print STDERR "Could not read file.\n";
         return \%parse_result;
     }
@@ -64,7 +65,7 @@ sub validate {
             @columns = $csv->column_names;
         }
         else {
-            $parse_result{'error'} = "Could not parse header row.";
+            $parse_result{'error'} = "Não foi possível analisar a linha de cabeçalho.";
             print STDERR "Could not parse header.\n";
             return \%parse_result;
         }
@@ -73,7 +74,7 @@ sub validate {
     my $header_col_1 = shift @columns;
     $header_col_1 =~ s/^\s+|\s+$//g;
     if ($header_col_1 ne "sample_name") {
-        $parse_result{'error'} = "First cell must be 'sample_name'. Please, check your file.";
+        $parse_result{'error'} = "A primeira célula deve ser 'sample_name'. Por favor, verifique seu arquivo.";
         print STDERR "First cell must be 'sample_name'\n";
         return \%parse_result;
     }
@@ -81,7 +82,7 @@ sub validate {
     my $header_col_2 = shift @columns;
     $header_col_2 =~ s/^\s+|\s+$//g;
     if ($header_col_2 ne "device_id") {
-        $parse_result{'error'} = "Second cell must be 'device_id'. Please, check your file.";
+        $parse_result{'error'} = "A segunda célula deve ser 'device_id'. Por favor, verifique seu arquivo.";
         print STDERR "Second cell must be 'device_id'\n";
         return \%parse_result;
     }
@@ -89,14 +90,14 @@ sub validate {
     my $header_col_3 = shift @columns;
     $header_col_3 =~ s/^\s+|\s+$//g;
     if ($header_col_3 ne "comments") {
-        $parse_result{'error'} = "Third cell must be 'comments'. Please, check your file.";
+        $parse_result{'error'} = "A terceira célula deve ser 'comments'. Por favor, verifique seu arquivo.";
         print STDERR "Third cell must be 'comments'\n";
         return \%parse_result;
     }
 
     foreach (@columns) {
         if (not $_=~/^[-+]?\d+\.?\d*$/){
-            $parse_result{'error'}= "It is not a valid wavelength in the header. Must be a numeric spectra: '$_'. Could you check the data format?";
+            $parse_result{'error'}= "Não é um comprimento de onda válido no cabeçalho. Deve ser um espectro numérico: '$_'. Você poderia verificar o formato dos dados?";
             return \%parse_result;
         }
     }
@@ -125,7 +126,7 @@ sub validate {
 
         foreach (@fields) {
             if (not $_=~/^[+]?\d+\.?\d*$/){
-                $parse_result{'error'}= "It is not a real value for wavelength. Must be a numeric value: '$_'";
+                $parse_result{'error'}= "Não é um valor real para comprimento de onda. Deve ser um valor numérico: '$_'";
                 return \%parse_result;
             }
         }
@@ -136,7 +137,7 @@ sub validate {
     my @samples_missing = @{$samples_validator->validate($schema, $data_level, \@samples)->{'missing'}};
     if (scalar(@samples_missing) > 0) {
         my $samples_string = join ', ', @samples_missing;
-        $parse_result{'error'}= "The following samples in your file are not valid in the database (".$samples_string."). Please add them in a sampling trial first!";
+        $parse_result{'error'}= "As seguintes amostras do seu arquivo não são válidas no banco de dados (".$samples_string."). Adicione-as primeiro em um ensaio de amostragem!";
         return \%parse_result;
     }
 
@@ -162,7 +163,7 @@ sub validate {
 
         #If there are markers in the uploaded file that are not saved in the protocol, they will be returned along in the error message
         if (scalar(@wavelengths_not_in_protocol)>0){
-            $parse_result{'error'} = "The following wavelengths are not in the database for the selected protocol: ".join(',',@wavelengths_not_in_protocol);
+            $parse_result{'error'} = "Os seguintes comprimentos de onda não estão no banco de dados para o protocolo selecionado: ".join(',',@wavelengths_not_in_protocol);
             return \%parse_result;
         }
     }
@@ -196,7 +197,7 @@ sub parse {
         or die "Could not open file '$filename' $!";
 
     if (!$fh) {
-        $parse_result{'error'} = "Could not read file.";
+        $parse_result{'error'} = "Não foi possível ler o arquivo.";
         print STDERR "Could not read file.\n";
         return \%parse_result;
     }
@@ -212,7 +213,7 @@ sub parse {
             @header = $csv->column_names;
         }
         else {
-            $parse_result{'error'} = "Could not parse header row.";
+            $parse_result{'error'} = "Não foi possível analisar a linha de cabeçalho.";
             print STDERR "Could not parse header.\n";
             return \%parse_result;
         }

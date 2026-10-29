@@ -79,7 +79,7 @@ if (defined $id) {
                push @locus_table, [ $locus_link, $locus->get_locus_name(), $locus->get_gene_activity() ];
            }                                   
         
-           $loci_html = columnar_table_html( headings => [ 'Locus symbol', 'Locus name', 'Gene activity' ],
+           $loci_html = columnar_table_html( headings => [ 'Símbolo do locus', 'Nome do locus', 'Atividade gênica' ],
                                              data     => \@locus_table,
                                              __alt_freq => 2,
                                              __align  => ['c', 'c', 'c'],

@@ -34,7 +34,7 @@ $training_pop_id   => undef,
 
     <div>
     <div id="anova_select_a_trait_div" style="display:inline-block;"></div>
-    <button style="display:inline-block;" id="run_anova" class="btn btn-success">Corra ANOVA</button>
+    <button style="display:inline-block;" id="run_anova" class="btn btn-success">Executar ANOVA</button>
 
     <button id="clear_cache_anova" class="btn btn-warning pull-right hidden">Limpar o cache</button>
 

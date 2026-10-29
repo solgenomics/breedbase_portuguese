@@ -1,4 +1,5 @@
 package SGN::Controller::AJAX::Transformation;
+use utf8;
 
 use Moose;
 use Data::Dumper;
@@ -59,7 +60,7 @@ sub add_transformation_project_POST :Args(0){
     }
 
     if (!any { $_ eq "curator" || $_ eq "submitter" } ($c->user()->roles)){
-        $c->stash->{rest} = {error =>  "you have insufficient privileges to add a transformation project." };
+        $c->stash->{rest} = {error =>  "Você não tem permissão para adicionar um projeto de transformação." };
         return;
     }
 
@@ -69,7 +70,7 @@ sub add_transformation_project_POST :Args(0){
     map { $has_roles{$_} = 1; } @user_roles;
 
     if (! ( (exists($has_roles{$program_name}) && exists($has_roles{submitter})) || exists($has_roles{curator}))) {
-        $c->stash->{rest} = { error => "You need to be either a curator, or a submitter associated with breeding program $program_name to add new transformation project." };
+        $c->stash->{rest} = { error => "Você precisa ser curador ou submissor associado ao programa de melhoramento $program_name para adicionar um novo projeto de transformação." };
         return;
     }
 
@@ -78,7 +79,7 @@ sub add_transformation_project_POST :Args(0){
     my $geolocation_lookup = CXGN::Location::LocationLookup->new(schema =>$schema);
        $geolocation_lookup->set_location_name($location);
        if(!$geolocation_lookup->get_geolocation()){
-           $c->stash->{rest}={error => "Location not found"};
+           $c->stash->{rest}={error => "Local não encontrado"};
            return;
        }
 
@@ -101,7 +102,7 @@ sub add_transformation_project_POST :Args(0){
     };
 
     if (!$return){
-        $c->stash->{rest} = {error => "Error saving project",};
+        $c->stash->{rest} = {error => "Erro ao salvar o projeto",};
         return;
     }
 
@@ -138,7 +139,7 @@ sub add_transformation_project_POST :Args(0){
 
         my $return = $add_tracking_project->save_activity_project();
         if (!$return){
-            $c->stash->{rest} = {error => "Error saving project",};
+            $c->stash->{rest} = {error => "Erro ao salvar o projeto",};
             return;
         }
 
@@ -175,7 +176,7 @@ sub add_transformation_identifier_POST :Args(0){
     }
 
     if (!any { $_ eq "curator" || $_ eq "submitter" } ($c->user()->roles)){
-        $c->stash->{rest} = {error =>  "you have insufficient privileges to add a transformation ID." };
+        $c->stash->{rest} = {error =>  "Você não tem permissão para adicionar um ID de transformação." };
         return;
     }
 
@@ -184,7 +185,7 @@ sub add_transformation_identifier_POST :Args(0){
     map { $has_roles{$_} = 1; } @user_roles;
 
     if (! ( (exists($has_roles{$program_name}) && exists($has_roles{submitter})) || exists($has_roles{curator}))) {
-        $c->stash->{rest} = { error => "You need to be either a curator, or a submitter associated with breeding program $program_name to add transformation identifiers." };
+        $c->stash->{rest} = { error => "Você precisa ser curador ou submissor associado ao programa de melhoramento $program_name para adicionar identificadores de transformação." };
         return;
     }
 
@@ -195,17 +196,17 @@ sub add_transformation_identifier_POST :Args(0){
     my $vector_construct_cvterm_id = SGN::Model::Cvterm->get_cvterm_row($schema,'vector_construct', 'stock_type')->cvterm_id();
 
     if ($schema->resultset("Stock::Stock")->find({uniquename => $transformation_identifier})){
-        $c->stash->{rest} = {error =>  "Transformation ID already exists. Please use another name" };
+        $c->stash->{rest} = {error =>  "O ID de transformação já existe. Use outro nome" };
         return;
     }
 
     if (! $schema->resultset("Stock::Stock")->find({uniquename => $plant_material, type_id => $accession_cvterm_id })){
-        $c->stash->{rest} = {error =>  "Plant material does not exist or does not exist as accession uniquename." };
+        $c->stash->{rest} = {error =>  "O material vegetal não existe ou não existe como nome único (uniquename) de acesso." };
         return;
     }
 
     if (! $schema->resultset("Stock::Stock")->find({uniquename => $vector_construct, type_id => $vector_construct_cvterm_id })){
-        $c->stash->{rest} = {error =>  "vector construct does not exist or does not exist as vector construct uniquename." };
+        $c->stash->{rest} = {error =>  "A construção vetorial não existe ou não existe como nome único (uniquename) de construção vetorial." };
         return;
     }
 
@@ -253,7 +254,7 @@ sub add_transformation_identifier_POST :Args(0){
 
         my $return = $tracking_obj->store();
         if (!$return){
-            $c->stash->{rest} = {error => "Error generating tracking identifier",};
+            $c->stash->{rest} = {error => "Erro ao gerar o identificador de rastreamento",};
             return;
         } elsif ($return->{error}) {
             my $error = $return->{error};
@@ -301,7 +302,7 @@ sub upload_transformation_identifiers_POST : Args(0) {
         my $dbh = $c->dbc->dbh;
         my @user_info = CXGN::Login->new($dbh)->query_from_cookie($session_id);
         if (!$user_info[0]){
-            $c->stash->{rest} = {error=>'You must be logged in to upload transformation identifers!'};
+            $c->stash->{rest} = {error=>'Você precisa estar conectado para enviar identificadores de transformação!'};
             $c->detach();
         }
         $user_id = $user_info[0];
@@ -310,7 +311,7 @@ sub upload_transformation_identifiers_POST : Args(0) {
         $user_name = $p->get_username;
     } else {
         if (!$c->user){
-            $c->stash->{rest} = {error=>'You must be logged in to upload transformation identifiers!'};
+            $c->stash->{rest} = {error=>'Você precisa estar conectado para enviar identificadores de transformação!'};
             $c->detach();
         }
         $user_id = $c->user()->get_object()->get_sp_person_id();
@@ -319,7 +320,7 @@ sub upload_transformation_identifiers_POST : Args(0) {
     }
 
     if (($user_role ne 'curator') && ($user_role ne 'submitter')) {
-        $c->stash->{rest} = {error=>'Only a submitter or a curator can upload transformation identifiers'};
+        $c->stash->{rest} = {error=>'Apenas um submissor ou um curador pode enviar identificadores de transformação'};
         $c->detach();
     }
 
@@ -335,7 +336,7 @@ sub upload_transformation_identifiers_POST : Args(0) {
     map { $has_roles{$_} = 1; } @user_roles;
 
     if (! ( (exists($has_roles{$breeding_program_name}) && exists($has_roles{submitter})) || exists($has_roles{curator}))) {
-      $c->stash->{rest} = { error => "You need to be either a curator, or a submitter associated with breeding program $breeding_program_name to upload transformation identifiers." };
+      $c->stash->{rest} = { error => "Você precisa ser curador ou submissor associado ao programa de melhoramento $breeding_program_name para enviar identificadores de transformação." };
       return;
     }
 
@@ -354,7 +355,7 @@ sub upload_transformation_identifiers_POST : Args(0) {
     $archived_filename_with_path = $uploader->archive();
     $md5 = $uploader->get_md5($archived_filename_with_path);
     if (!$archived_filename_with_path) {
-        $c->stash->{rest} = {error => "Could not save file $upload_original_name in archive",};
+        $c->stash->{rest} = {error => "Não foi possível salvar o arquivo $upload_original_name no arquivo permanente",};
         return;
     }
     unlink $upload_tempfile;
@@ -370,7 +371,7 @@ sub upload_transformation_identifiers_POST : Args(0) {
         my $return_error = '';
         my $parse_errors;
         if (!$parser->has_parse_errors() ){
-            $c->stash->{rest} = {error_string => "Could not get parsing errors"};
+            $c->stash->{rest} = {error_string => "Não foi possível obter os erros de análise do arquivo"};
         } else {
             $parse_errors = $parser->get_parse_errors();
             #print STDERR Dumper $parse_errors;
@@ -509,7 +510,7 @@ sub add_transformants_POST :Args(0){
     }
 
     if (!any { $_ eq "curator" || $_ eq "submitter" } ($c->user()->roles)){
-        $c->stash->{rest} = {error =>  "you have insufficient privileges to add new transformants." };
+        $c->stash->{rest} = {error =>  "Você não tem permissão para adicionar novos transformantes." };
         return;
     }
 
@@ -518,7 +519,7 @@ sub add_transformants_POST :Args(0){
     map { $has_roles{$_} = 1; } @user_roles;
 
     if (! ( (exists($has_roles{$program_name}) && exists($has_roles{submitter})) || exists($has_roles{curator}))) {
-        $c->stash->{rest} = { error => "You need to be either a curator, or a submitter associated with breeding program $program_name to add new transformants." };
+        $c->stash->{rest} = { error => "Você precisa ser curador ou submissor associado ao programa de melhoramento $program_name para adicionar novos transformantes." };
         return;
     }
 
@@ -528,7 +529,7 @@ sub add_transformants_POST :Args(0){
     my $autogenerated_names = CXGN::Transformation::CreateTransformantAutogeneratedNames->new({schema => $schema, dbh => $dbh, breeding_program_id => $program_id, name_format => $name_format, number_of_names => $new_name_count, source_info => $source_info });
     my $return = $autogenerated_names->create_names();
     if (!$return){
-        $c->stash->{rest} = {error => "Error generating transformant names"};
+        $c->stash->{rest} = {error => "Erro ao gerar os nomes dos transformantes"};
         return;
     } elsif ($return->{error}) {
         $c->stash->{rest} = {error => $return->{error}};
@@ -590,7 +591,7 @@ sub add_transformants_POST :Args(0){
         });
         my $return = $add_activity_info->add_info();
         if (!$return){
-            $c->stash->{rest} = {error => "Error saving tracking information"};
+            $c->stash->{rest} = {error => "Erro ao salvar as informações de rastreamento"};
             return;
         } elsif ($return->{error}) {
             $c->stash->{rest} = {error => $return->{error}};
@@ -616,7 +617,7 @@ sub add_transformants_using_list_POST : Args(0) {
     }
 
     if (!($c->user()->has_role('submitter') or $c->user()->has_role('curator'))) {
-        $c->stash->{rest} = { error_string => "You do not have sufficient privileges to add new transformants." };
+        $c->stash->{rest} = { error_string => "Você não tem permissão para adicionar novos transformantes." };
         return;
     }
 
@@ -625,7 +626,7 @@ sub add_transformants_using_list_POST : Args(0) {
     map { $has_roles{$_} = 1; } @user_roles;
 
     if (! ( (exists($has_roles{$program_name}) && exists($has_roles{submitter})) || exists($has_roles{curator}))) {
-        $c->stash->{rest} = { error => "You need to be either a curator, or a submitter associated with breeding program $program_name to add new transformants." };
+        $c->stash->{rest} = { error => "Você precisa ser curador ou submissor associado ao programa de melhoramento $program_name para adicionar novos transformantes." };
         return;
     }
 
@@ -642,7 +643,7 @@ sub add_transformants_using_list_POST : Args(0) {
     my $transformation_stock_id;
     my $transformation_identifier_rs = $schema->resultset("Stock::Stock")->find( { uniquename => $transformation_name, type_id => $transformation_type_id });
     if (!$transformation_identifier_rs) {
-        $c->stash->{rest} = { error_string => "Error! Transformation Identifier: $transformation_name was not found in the database.\n" };
+        $c->stash->{rest} = { error_string => "Erro! Identificador de transformação: $transformation_name não foi encontrado no banco de dados.\n" };
         return;
     } else {
         $transformation_stock_id = $transformation_identifier_rs->stock_id();
@@ -656,7 +657,7 @@ sub add_transformants_using_list_POST : Args(0) {
         'uniquename' => { -in => $new_transformant_names }
     });
     while (my $r=$rs->next){
-        push @error_messages, "Transformant name already exists in database: ".$r->uniquename;
+        push @error_messages, "O nome do transformante já existe no banco de dados:".$r->uniquename;
     }
 
     if (scalar(@error_messages) >= 1) {
@@ -771,7 +772,7 @@ sub set_autogenerated_name_format_POST :Args(0){
     }
 
     if (!any { $_ eq "curator" || $_ eq "submitter" } ($c->user()->roles)){
-        $c->stash->{rest} = {error =>  "you have insufficient privileges to set autogenerated name format for this project." };
+        $c->stash->{rest} = {error =>  "Você não tem permissão para definir o formato de nome gerado automaticamente para este projeto." };
         return;
     }
 
@@ -780,7 +781,7 @@ sub set_autogenerated_name_format_POST :Args(0){
     map { $has_roles{$_} = 1; } @user_roles;
 
     if (! ( (exists($has_roles{$program_name}) && exists($has_roles{submitter})) || exists($has_roles{curator}))) {
-        $c->stash->{rest} = { error => "You need to be either a curator, or a submitter associated with breeding program $program_name to set autogenerated name format for new transformants." };
+        $c->stash->{rest} = { error => "Você precisa ser curador ou submissor associado ao programa de melhoramento $program_name para definir o formato de nome gerado automaticamente para novos transformantes." };
         return;
     }
 
@@ -824,7 +825,7 @@ sub set_default_plant_material_POST :Args(0){
     }
 
     if (!any { $_ eq "curator" || $_ eq "submitter" } ($c->user()->roles)){
-        $c->stash->{rest} = {error =>  "you have insufficient privileges to set default plant material for this project." };
+        $c->stash->{rest} = {error =>  "Você não tem permissão para definir o material vegetal padrão para este projeto." };
         return;
     }
 
@@ -833,7 +834,7 @@ sub set_default_plant_material_POST :Args(0){
     map { $has_roles{$_} = 1; } @user_roles;
 
     if (! ( (exists($has_roles{$program_name}) && exists($has_roles{submitter})) || exists($has_roles{curator}))) {
-        $c->stash->{rest} = { error => "You need to be either a curator, or a submitter associated with breeding program $program_name to set default plant material for transformation." };
+        $c->stash->{rest} = { error => "Você precisa ser curador ou submissor associado ao programa de melhoramento $program_name para definir o material vegetal padrão para a transformação." };
         return;
     }
 
@@ -846,7 +847,7 @@ sub set_default_plant_material_POST :Args(0){
     my $plant_material_stock_id;
     my $plant_material_rs = $schema->resultset("Stock::Stock")->find({uniquename => $default_plant_material_name, type_id => $accession_cvterm_id });
     if (!$plant_material_rs){
-        $c->stash->{rest} = {error =>  "Plant material does not exist or does not exist as accession uniquename." };
+        $c->stash->{rest} = {error =>  "O material vegetal não existe ou não existe como nome único (uniquename) de acesso." };
         return;
     } else {
         $plant_material_stock_id = $plant_material_rs->stock_id();
@@ -940,7 +941,7 @@ sub delete_transformation_id_POST :Args(0){
     }
 
     if (!$c->user()->check_roles("curator")) {
-        $c->stash->{rest} = { error => "You do not have the correct role to delete transformation ID. Please contact us." };
+        $c->stash->{rest} = { error => "Você não tem a função adequada para excluir o ID de transformação. Entre em contato conosco." };
         $c->detach();
     }
 
@@ -951,7 +952,7 @@ sub delete_transformation_id_POST :Args(0){
     my $error = $transformation_obj->delete();
 
     if ($error) {
-	    $c->stash->{rest} = { error => "An error occurred attempting to delete the transformation ID. ($@)" };
+	    $c->stash->{rest} = { error => "Ocorreu um erro ao tentar excluir o ID de transformação. ($@)" };
 	    return;
     }
 
@@ -974,7 +975,7 @@ sub set_transformation_control_POST :Args(0){
     }
 
     if (!any { $_ eq "curator" || $_ eq "submitter" } ($c->user()->roles)){
-        $c->stash->{rest} = {error =>  "you have insufficient privileges to set a control for this transformation ID." };
+        $c->stash->{rest} = {error =>  "Você não tem permissão para definir um controle para este ID de transformação." };
         return;
     }
 
@@ -983,7 +984,7 @@ sub set_transformation_control_POST :Args(0){
     map { $has_roles{$_} = 1; } @user_roles;
 
     if (! ( (exists($has_roles{$program_name}) && exists($has_roles{submitter})) || exists($has_roles{curator}))) {
-        $c->stash->{rest} = { error => "You need to be either a curator, or a submitter associated with breeding program $program_name to set a control for this transformation ID." };
+        $c->stash->{rest} = { error => "Você precisa ser curador ou submissor associado ao programa de melhoramento $program_name para definir um controle para este ID de transformação." };
         return;
     }
 
@@ -993,7 +994,7 @@ sub set_transformation_control_POST :Args(0){
     my $transformation_obj = CXGN::Transformation::Transformation->new({schema=>$schema, dbh=>$dbh, transformation_stock_id=>$transformation_stock_id, transformation_control_stock_id=>$control_stock_id});
     my $error = $transformation_obj->set_transformation_control();
     if ($error) {
-	    $c->stash->{rest} = { error => "An error occurred attempting to set transformation control. ($@)" };
+	    $c->stash->{rest} = { error => "Ocorreu um erro ao tentar definir o controle da transformação. ($@)" };
 	    return;
     }
 
@@ -1017,7 +1018,7 @@ sub set_as_control_POST :Args(0){
     }
 
     if (!any { $_ eq "curator" || $_ eq "submitter" } ($c->user()->roles)){
-        $c->stash->{rest} = {error =>  "you have insufficient privileges to set this transformation ID as a control." };
+        $c->stash->{rest} = {error =>  "Você não tem permissão para definir este ID de transformação como controle." };
         return;
     }
 
@@ -1026,7 +1027,7 @@ sub set_as_control_POST :Args(0){
     map { $has_roles{$_} = 1; } @user_roles;
 
     if (! ( (exists($has_roles{$program_name}) && exists($has_roles{submitter})) || exists($has_roles{curator}))) {
-        $c->stash->{rest} = { error => "You need to be either a curator, or a submitter associated with breeding program $program_name to set this transformation ID as a control." };
+        $c->stash->{rest} = { error => "Você precisa ser curador ou submissor associado ao programa de melhoramento $program_name para definir este ID de transformação como controle." };
         return;
     }
 
@@ -1036,7 +1037,7 @@ sub set_as_control_POST :Args(0){
     my $transformation_obj = CXGN::Transformation::Transformation->new({schema=>$schema, dbh=>$dbh, transformation_stock_id=>$transformation_stock_id, is_a_control=>$is_a_control});
     my $error = $transformation_obj->set_as_control();
     if ($error) {
-        $c->stash->{rest} = { error => "An error occurred attempting to set the transformation ID as a control. ($@)" };
+        $c->stash->{rest} = { error => "Ocorreu um erro ao tentar definir o ID de transformação como controle. ($@)" };
         return;
     }
 
@@ -1226,7 +1227,7 @@ sub upload_transgenic_historical_data_POST : Args(0) {
         my $dbh = $c->dbc->dbh;
         my @user_info = CXGN::Login->new($dbh)->query_from_cookie($session_id);
         if (!$user_info[0]){
-            $c->stash->{rest} = {error=>'You must be logged in to upload transgenic historical data!'};
+            $c->stash->{rest} = {error=>'Você precisa estar conectado para enviar dados históricos de transgênicos!'};
             $c->detach();
         }
         $user_id = $user_info[0];
@@ -1235,12 +1236,12 @@ sub upload_transgenic_historical_data_POST : Args(0) {
         $user_name = $p->get_username;
 
         if (($user_role ne 'curator') && ($user_role ne 'submitter')) {
-            $c->stash->{rest} = {error=>'Only a submitter or a curator can upload transgenic historical data'};
+            $c->stash->{rest} = {error=>'Apenas um submissor ou um curador pode enviar dados históricos de transgênicos'};
             $c->detach();
         }
     } else {
         if (!$c->user){
-            $c->stash->{rest} = {error=>'You must be logged in to upload transgenic historical data!'};
+            $c->stash->{rest} = {error=>'Você precisa estar conectado para enviar dados históricos de transgênicos!'};
             $c->detach();
         }
         $user_id = $c->user()->get_object()->get_sp_person_id();
@@ -1252,7 +1253,7 @@ sub upload_transgenic_historical_data_POST : Args(0) {
         map { $has_roles{$_} = 1; } @user_roles;
 
         if (! ( (exists($has_roles{$breeding_program_name}) && exists($has_roles{submitter})) || exists($has_roles{curator}))) {
-          $c->stash->{rest} = { error => "You need to be either a curator, or a submitter associated with breeding program $breeding_program_name to upload transgenic historical data." };
+          $c->stash->{rest} = { error => "Você precisa ser curador ou submissor associado ao programa de melhoramento $breeding_program_name para enviar dados históricos de transgênicos." };
           return;
         }
 
@@ -1274,7 +1275,7 @@ sub upload_transgenic_historical_data_POST : Args(0) {
     $archived_filename_with_path = $uploader->archive();
     $md5 = $uploader->get_md5($archived_filename_with_path);
     if (!$archived_filename_with_path) {
-        $c->stash->{rest} = {error => "Could not save file $upload_original_name in archive",};
+        $c->stash->{rest} = {error => "Não foi possível salvar o arquivo $upload_original_name no arquivo permanente",};
         return;
     }
     unlink $upload_tempfile;
@@ -1290,7 +1291,7 @@ sub upload_transgenic_historical_data_POST : Args(0) {
         my $return_error = '';
         my $parse_errors;
         if (!$parser->has_parse_errors() ){
-            $c->stash->{rest} = {error => "Could not get parsing errors"};
+            $c->stash->{rest} = {error => "Não foi possível obter os erros de análise do arquivo"};
         } else {
             $parse_errors = $parser->get_parse_errors();
             #print STDERR Dumper $parse_errors;
@@ -1312,7 +1313,7 @@ sub upload_transgenic_historical_data_POST : Args(0) {
                 my $vector_construct_info = $batch_info->{$vector_construct};
                 my @check_type = keys %$vector_construct_info;
                 if (scalar(@check_type) > 1) {
-                    $c->stash->{rest} = { error => "Error! Vector construct: $vector_construct in batch: $batch_number is assigned as both a control and a construct. Please check is_a_control column."};
+                    $c->stash->{rest} = { error => "Erro! Construção vetorial: $vector_construct no lote: $batch_number está atribuída tanto como controle quanto como construção. Verifique a coluna is_a_control."};
                     return;
                 }
 
@@ -1326,7 +1327,7 @@ sub upload_transgenic_historical_data_POST : Args(0) {
                 my $transformant_info = $vector_construct_info->{$type};
                 my @check_accession_type = keys %$transformant_info;
                 if (scalar(@check_accession_type) > 1) {
-                    $c->stash->{rest} = { error => "Error! All accessions in the same file should have the same accession type (either an existing accession in the database or new accession)."};
+                    $c->stash->{rest} = { error => "Erro! Todos os acessos do mesmo arquivo devem ter o mesmo tipo de acesso (um acesso existente no banco de dados ou um novo acesso)."};
                     return;
                 }
 
@@ -1352,13 +1353,13 @@ sub upload_transgenic_historical_data_POST : Args(0) {
                 my $add = $add_transformation->add_transformation_identifier();
                 my $add_transformation_id_error = $add->{error};
                 if ($add_transformation_id_error) {
-                    $c->stash->{rest} = { error => "Error! Cannot generate transformation identifier for vector construct: $vector_construct in batch: $batch_number. $add_transformation_id_error."};
+                    $c->stash->{rest} = { error => "Erro! Não é possível gerar o identificador de transformação para a construção vetorial: $vector_construct no lote: $batch_number. $add_transformation_id_error."};
                     return;
                 }
 
                 my $transformation_stock_id = $add->{transformation_id};
                 if (!$transformation_stock_id) {
-                    $c->stash->{rest} = { error => "Error! Cannot generate transformation identifier for vector construct: $vector_construct in batch: $batch_number."};
+                    $c->stash->{rest} = { error => "Erro! Não é possível gerar o identificador de transformação para a construção vetorial: $vector_construct no lote: $batch_number."};
                     return;
                 }
 
@@ -1377,7 +1378,7 @@ sub upload_transgenic_historical_data_POST : Args(0) {
                         my $response = $add_transformants->add_transformant();
                         my $add_transformant_error = $response->{error};
                         if ($add_transformant_error){
-                            $c->stash->{rest} = {error => "Error adding new accessions for vector contruct: $vector_construct in batch $batch_number."};
+                            $c->stash->{rest} = {error => "Erro ao adicionar novos acessos para a construção vetorial: $vector_construct no lote $batch_number."};
                             return;
                         }
                     } elsif ($accession_type eq 'existing_accession') {
@@ -1391,7 +1392,7 @@ sub upload_transgenic_historical_data_POST : Args(0) {
                         my $response = $add_transformants->link_info();
                         my $add_transformant_error = $response->{error};
                         if ($add_transformant_error){
-                            $c->stash->{rest} = {error => "Error linking accession names with tansformation info for vector contruct: $vector_construct in batch $batch_number."};
+                            $c->stash->{rest} = {error => "Erro ao vincular os nomes dos acessos às informações de transformação da construção vetorial: $vector_construct no lote $batch_number."};
                             return;
                         }
                     }
@@ -1411,7 +1412,7 @@ sub upload_transgenic_historical_data_POST : Args(0) {
                     my $transformation_obj = CXGN::Transformation::Transformation->new({schema=>$schema, dbh=>$dbh, transformation_stock_id=>$id, transformation_control_stock_id=>$control_transformation_id});
                     my $error = $transformation_obj->set_transformation_control();
                     if ($error) {
-                        $c->stash->{rest} = { error => "An error occurred attempting to set transformation control for batch: $batch_number. ($@)" };
+                        $c->stash->{rest} = { error => "Ocorreu um erro ao tentar definir o controle da transformação para o lote: $batch_number. ($@)" };
                         return;
                     }
                 }
@@ -1456,7 +1457,7 @@ sub set_obsolete_accessions_dialog :Path('/ajax/transformation/set_obsolete_acce
             $is_a_parent = 1;
         }
         if ($is_a_parent) {
-            push @transformants, ['Used as a parent, cannot obsolete', $r->[1]];
+            push @transformants, ['Usado como genitor, não pode ser tornado obsoleto', $r->[1]];
         } else {
             push @transformants, ["<input type='checkbox' name='checked_stocks' value='$r->[1]'>", $r->[1]];
         }
@@ -1549,7 +1550,7 @@ sub upload_qPCR_data_POST : Args(0) {
         my $dbh = $c->dbc->dbh;
         my @user_info = CXGN::Login->new($dbh)->query_from_cookie($session_id);
         if (!$user_info[0]){
-            $c->stash->{rest} = {error=>'You must be logged in to upload relative expression data!'};
+            $c->stash->{rest} = {error=>'Você precisa estar conectado para enviar dados de expressão relativa!'};
             $c->detach();
         }
         $user_id = $user_info[0];
@@ -1558,7 +1559,7 @@ sub upload_qPCR_data_POST : Args(0) {
         $user_name = $p->get_username;
     } else {
         if (!$c->user){
-            $c->stash->{rest} = {error=>'You must be logged in to upload relative expression data!'};
+            $c->stash->{rest} = {error=>'Você precisa estar conectado para enviar dados de expressão relativa!'};
             $c->detach();
         }
         $user_id = $c->user()->get_object()->get_sp_person_id();
@@ -1567,7 +1568,7 @@ sub upload_qPCR_data_POST : Args(0) {
     }
 
     if (($user_role ne 'curator') && ($user_role ne 'submitter')) {
-        $c->stash->{rest} = {error=>'Only a submitter or a curator can upload relative expression data'};
+        $c->stash->{rest} = {error=>'Apenas um submissor ou um curador pode enviar dados de expressão relativa'};
         $c->detach();
     }
 
@@ -1589,7 +1590,7 @@ sub upload_qPCR_data_POST : Args(0) {
     $archived_filename_with_path = $uploader->archive();
     $md5 = $uploader->get_md5($archived_filename_with_path);
     if (!$archived_filename_with_path) {
-        $c->stash->{rest} = {error => "Could not save file $upload_original_name in archive",};
+        $c->stash->{rest} = {error => "Não foi possível salvar o arquivo $upload_original_name no arquivo permanente",};
         return;
     }
     unlink $upload_tempfile;
@@ -1620,7 +1621,7 @@ sub upload_qPCR_data_POST : Args(0) {
         my $return_error = '';
         my $parse_errors;
         if (!$parser->has_parse_errors() ){
-            $c->stash->{rest} = {error_string => "Could not get parsing errors"};
+            $c->stash->{rest} = {error_string => "Não foi possível obter os erros de análise do arquivo"};
         } else {
             $parse_errors = $parser->get_parse_errors();
             #print STDERR Dumper $parse_errors;
@@ -1670,7 +1671,7 @@ sub upload_qPCR_data_POST : Args(0) {
 
             my $return = $expression_data->store_qPCR_data();
             if (!$return){
-                $error = "The error storing qPCR data for: $transformant_name";
+                $error = "Erro ao armazenar os dados de qPCR para: $transformant_name";
             }
             if ($return->{error}){
                 $error = $return->{error};

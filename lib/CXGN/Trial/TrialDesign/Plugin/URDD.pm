@@ -1,4 +1,5 @@
 package CXGN::Trial::TrialDesign::Plugin::URDD;
+use utf8;
 
 use File::Slurp;
 use CXGN::Tools::Run;
@@ -40,7 +41,7 @@ sub create_design {
     @stock_list = @{$self->get_stock_list()};
     $stock_list = '"'.join('","', @stock_list).'"';
   } else {
-    die "No stock list specified\n";
+    die "Nenhuma lista de materiais especificada\n";
   }
   if ($self->has_control_list_crbd()) {
     $control_list = '"'.join('","',@{$self->get_control_list_crbd()}).'"';
@@ -79,7 +80,7 @@ sub create_design {
   my $num_controls = $self->has_control_list_crbd() ? scalar(@{$self->get_control_list_crbd()}) : 0;
   my $num_stocks = scalar(@stock_list) - $num_controls;
   if ($num_stocks % $number_of_blocks != 0) {
-      die "The number of stocks ($num_stocks) must be divisible by the number of blocks ($number_of_blocks).";
+      die "O número de materiais ($num_stocks) deve ser divisível pelo número de blocos ($number_of_blocks).";
   }
 
  

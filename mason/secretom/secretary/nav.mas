@@ -3,6 +3,6 @@
 </%args>
 <table id="secretary_nav"><tr>
    <td> <a <% $curr_page eq 'background' ? 'class="active"' : '' %> href="/secretom/detail/prediction">Sobre a predição</a> </td>
-   <td> <a <% $curr_page eq 'tool' ? 'class="active"' : '' %> href="/secretom/secretary"><span class="secretary">Secretário</span> Ferramenta</a> </td>
-   <td> <a <% $curr_page eq 'instructions' ? 'class="active"' : '' %> href="/secretom/secretary/instructions"><span class="secretary">Secretário</span> Instruções</a> </td>
+   <td> <a <% $curr_page eq 'tool' ? 'class="active"' : '' %> href="/secretom/secretary">Ferramenta <span class="secretary">SecreTary</span></a> </td>
+   <td> <a <% $curr_page eq 'instructions' ? 'class="active"' : '' %> href="/secretom/secretary/instructions">Instruções do <span class="secretary">SecreTary</span></a> </td>
 </tr></table>

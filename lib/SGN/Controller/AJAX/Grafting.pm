@@ -46,7 +46,7 @@ sub upload_grafts_verify : Path('/ajax/grafts/upload_verify') Args(0)  {
         my $dbh = $c->dbc->dbh;
         my @user_info = CXGN::Login->new($dbh)->query_from_cookie($session_id);
         if (!$user_info[0]){
-            $c->stash->{rest} = {error=>'You must be logged in to upload seedlots!'};
+            $c->stash->{rest} = {error=>'Você precisa estar conectado para enviar lotes de sementes!'};
             $c->detach();
         }
         $user_id = $user_info[0];
@@ -56,7 +56,7 @@ sub upload_grafts_verify : Path('/ajax/grafts/upload_verify') Args(0)  {
     } else{
 	print STDERR "We do not have a session id...\n";
         if (!$c->user){
-            $c->stash->{rest} = {error=>'You must be logged in to upload seedlots!'};
+            $c->stash->{rest} = {error=>'Você precisa estar conectado para enviar lotes de sementes!'};
             $c->detach();
         }
         $user_id = $c->user()->get_object()->get_sp_person_id();
@@ -65,7 +65,7 @@ sub upload_grafts_verify : Path('/ajax/grafts/upload_verify') Args(0)  {
     }
     
     if (!any { $_ eq "curator" || $_ eq "submitter" }  ($user_role)  ) {
-	$c->stash->{rest} = {error =>  "You have insufficient privileges to add grafts." };
+	$c->stash->{rest} = {error =>  "Você não tem permissão para adicionar enxertos." };
 	return;
     }
     
@@ -83,7 +83,7 @@ sub upload_grafts_verify : Path('/ajax/grafts/upload_verify') Args(0)  {
     # check file type by file name extension
     #
     if ($upload_original_name =~ /\.xls$|\.xlsx/) {
-	$c->stash->{rest} = { error => "Grafting upload requires a tab delimited file. Excel files (.xls and .xlsx) are currently not supported. Please convert the file and try again." };
+	$c->stash->{rest} = { error => "O envio de enxertos requer um arquivo delimitado por tabulação. Arquivos do Excel (.xls e .xlsx) não são suportados no momento. Converta o arquivo e tente novamente." };
 	return;
     }
     
@@ -108,7 +108,7 @@ sub upload_grafts_verify : Path('/ajax/grafts/upload_verify') Args(0)  {
     my $archived_filename_with_path = $uploader->archive();
     
     if (!$archived_filename_with_path) {
-	$c->stash->{rest} = {error => "Could not save file $upload_original_name in archive",};
+	$c->stash->{rest} = {error => "Não foi possível salvar o arquivo $upload_original_name no arquivo permanente",};
 	return;
     }
     
@@ -146,7 +146,7 @@ sub upload_grafts_store : Path('/ajax/grafts/upload_store') Args(0)  {
         my $dbh = $c->dbc->dbh;
         my @user_info = CXGN::Login->new($dbh)->query_from_cookie($session_id);
         if (!$user_info[0]){
-            $c->stash->{rest} = {error=>'You must be logged in to upload seedlots!'};
+            $c->stash->{rest} = {error=>'Você precisa estar conectado para enviar lotes de sementes!'};
             $c->detach();
         }
         $user_id = $user_info[0];
@@ -156,7 +156,7 @@ sub upload_grafts_store : Path('/ajax/grafts/upload_store') Args(0)  {
     } else{
 	print STDERR "We do not have a session id...\n";
         if (!$c->user){
-            $c->stash->{rest} = {error=>'You must be logged in to upload seedlots!'};
+            $c->stash->{rest} = {error=>'Você precisa estar conectado para enviar lotes de sementes!'};
             $c->detach();
         }
         $user_id = $c->user()->get_object()->get_sp_person_id();
@@ -165,7 +165,7 @@ sub upload_grafts_store : Path('/ajax/grafts/upload_store') Args(0)  {
     }
     
     if (!any { $_ eq "curator" || $_ eq "submitter" } ($user_role)  ) {
-	$c->stash->{rest} = {error =>  "You have insufficient privileges to add grafts." };
+	$c->stash->{rest} = {error =>  "Você não tem permissão para adicionar enxertos." };
 	return;
     }
 
@@ -229,11 +229,11 @@ sub validate_grafts {
     my @missing_accessions;
     
     if ($scion_accession ne 'scion accession') {
-	$header_errors{'scion accession'} = "First column must have header 'scion accession' (not '$scion_accession'); ";
+	$header_errors{'scion accession'} = "A primeira coluna deve ter o cabeçalho 'scion accession' (e não '$scion_accession');";
     }
     
     if ($rootstock_accession ne 'rootstock accession') {
-	$header_errors{'rootstock accession'} = "Second column must have header 'rootstock accession' (not '$rootstock_accession'); ";
+	$header_errors{'rootstock accession'} = "A segunda coluna deve ter o cabeçalho 'rootstock accession' (e não '$rootstock_accession');";
     }
     
     if (%header_errors) {
@@ -247,7 +247,7 @@ sub validate_grafts {
 	my ($scion, $rootstock) = @$g;
 	
 	if ($scion eq $rootstock) {
-	    push @errors, "Scion and rootstock ($scion and $rootstock) designate the same accession. Not generating a graft.\n";
+	    push @errors, "O garfo e o porta-enxerto ($scion e $rootstock) designam o mesmo acesso. O enxerto não será gerado.\n";
 	    
 	}
 	
@@ -263,12 +263,12 @@ sub validate_grafts {
 	}
 	
 	if (defined($graft_check->{errors}) && @{$graft_check->{errors}} > 0){
-	    push @errors, "There was a problem validating graft between $scion and $rootstock (".join("\n", @{$graft_check->{errors}}).")";
+	    push @errors, "Ocorreu um problema ao validar o enxerto entre $scion e $rootstock (".join("\n", @{$graft_check->{errors}}).")";
 	}
     }
 
     if (@grafts_already_present == @$grafts) {
-	push @errors, "All grafts are already in the database. Nothing remains to be done :-) ";
+	push @errors, "Todos os enxertos já estão no banco de dados. Não há mais nada a fazer :-)";
     }
     
     if (@errors){

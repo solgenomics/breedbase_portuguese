@@ -52,7 +52,7 @@ $page_name => 'WikiHome'
         </button>
       </div>
       <div class="modal-body">
-    <p><textarea id="wiki_page_content" rows="50" cols="400" alt="ENTER WIKI PAGE EM MARKDOWN"></textarea></p>
+    <p><textarea id="wiki_page_content" rows="50" cols="400" alt="DIGITE A PÁGINA WIKI EM MARKDOWN"></textarea></p>
       </div>
       <div class="modal-footer">
         <button type="button" id="save_wiki_page_button" class="btn btn-primary">Salvar página</button>

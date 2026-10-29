@@ -25,7 +25,7 @@ jQuery( document ).ready( function() {
 
             var formData = new FormData();
             for (var i = 0; i < imageFiles.length; i++) {
-                formData.append("imagens", imageFiles[i]);
+                formData.append('images', imageFiles[i]);
             }
             console.log("AJAX request", imageFiles);
             jQuery.ajax({
@@ -69,7 +69,7 @@ jQuery( document ).ready( function() {
             }
             var formData = new FormData();
             for (var i = 0; i < imageFiles.length; i++) {
-                formData.append("imagens", imageFiles[i]);
+                formData.append('images', imageFiles[i]);
             }
             jQuery.ajax({
                 url: "/ajax/image/scan_barcode",
@@ -331,7 +331,7 @@ function verifyExifData(result) {
         }
 
         if (errorMessages.length === 0) {
-            finalSuccessMessage.push(`${imgName} possui dados EXIF válidos. Material associado: ${exif.stock_name} Característica associada: ${obsVariableName}. Ready to store image`);
+            finalSuccessMessage.push(`${imgName} possui dados EXIF válidos. Material associado: ${exif.stock_name} Característica associada: ${obsVariableName}. Pronta para ser armazenada`);
         }
     });
 
@@ -463,7 +463,7 @@ function verifyBarcodeData(result) {
         const imgName = img.filename || `Imagem ${index + 1}`;
 
         if (result.images[index].multiple_codes === "true") {
-            errorMessages.push(`Vários códigos de barras encontrados em ${imgName}. Please make sure each image only contains one barcode`);
+            errorMessages.push(`Vários códigos de barras encontrados em ${imgName}. Certifique-se de que cada imagem contenha apenas um código de barras`);
         }
         
         if (result.images[index].valid_barcode === "false") {
@@ -478,7 +478,7 @@ function verifyBarcodeData(result) {
         }
 
         if (errorMessages.length === 0) {
-            finalSuccessMessage.push(`${imgName} código de barras lido com sucesso. ID do material associado: ${stockId}. Ready to store image`);
+            finalSuccessMessage.push(`${imgName} código de barras lido com sucesso. ID do material associado: ${stockId}. Pronta para ser armazenada`);
         }
     })
 

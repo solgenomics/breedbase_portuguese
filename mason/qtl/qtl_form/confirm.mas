@@ -37,8 +37,8 @@ if ($pop_id)  {
  <form action="/phenome/qtl_load.pl" method="POST" enctype="MULTIPART/FORM-DATA">  
     <table cellspacing=20>
     <tr>
-      <td><b><p>Você enviou seus dados QTL com sucesso.</p> 
-           <p>Na próxima página você verá o resumo da população. A análise qtl é feita em voo e você precisa clicar no ícone do gráfico correspondente ao característica de seu interesse para prosseguir com a análise de mapeamento QTL. A análise QTL leva alguns minutos, então, por favor, seja paciente. </p>
+      <td><b><p>Você enviou seus dados de QTL com sucesso.</p> 
+           <p>Na próxima página você verá o resumo da população. A análise de QTL é feita em tempo real; clique no ícone do gráfico correspondente à característica de seu interesse para prosseguir com a análise de mapeamento de QTL. A análise de QTL leva alguns minutos; aguarde, por favor. </p>
           <p>Para continuar com a página de análise QTL, siga o link abaixo:</p>
           <% $pop_link %></b>
       </td>

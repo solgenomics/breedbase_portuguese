@@ -26,7 +26,7 @@ sub create_design {
     if ($self->has_stock_list()) {
       @stock_list = @{$self->get_stock_list()};
     } else {
-      die "No stock list specified\n";
+      die "Nenhuma lista de materiais especificada\n";
     }
     if ($self->has_replicated_accession_no()) {
       $number_of_replicated_accession = $self->get_replicated_accession_no();

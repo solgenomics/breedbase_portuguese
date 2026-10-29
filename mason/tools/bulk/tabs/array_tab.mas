@@ -28,7 +28,7 @@ $output_list
 <% $ug_select %>
 <br /><br />
 	<br />
-Digite uma lista de identificadores ou carregue um arquivo contendo um identificador:<br />
+Digite uma lista de identificadores ou envie um arquivo contendo um identificador:<br />
 <table summary="" width="100%"><tr><td>
 <textarea name="ids" rows="5" cols="20"></textarea>
 </td>
@@ -42,7 +42,7 @@ Digite uma lista de identificadores ou carregue um arquivo contendo um identific
 </td></tr></table>
 <br />
 <br />
-E/ou arquivo de lista de upload: <br /><input type="file" name="file" />
+E/ou envie um arquivo de lista: <br /><input type="file" name="file" />
 <br />
 <br />
 

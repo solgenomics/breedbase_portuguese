@@ -1,4 +1,5 @@
 package SGN::Controller::AJAX::LabelDesigner;
+use utf8;
 
 use Moose;
 use CXGN::Stock;
@@ -296,7 +297,7 @@ __PACKAGE__->config(
         my ($trial_num, $design) = get_data($c, $schema, $data_type, $data_level, $source_id);
 
        if ($trial_num > 1) {
-           $c->stash->{rest} = { error => "The selected list contains plots, plants, subplots or tissues from more than one trial. This is not supported. Please select a different data source." };
+           $c->stash->{rest} = { error => "A lista selecionada contém parcelas, plantas, subparcelas ou tecidos de mais de um ensaio. Isso não é suportado. Selecione outra fonte de dados." };
            return;
        }
 
@@ -417,13 +418,13 @@ __PACKAGE__->config(
        my $label_params = $design_params->{'label_elements'};
 
        if ($trial_num > 1) {
-           $c->stash->{rest} = { error => "The selected list contains plots from more than one trial. This is not supported. Please select a different data source." };
+           $c->stash->{rest} = { error => "A lista selecionada contém parcelas de mais de um ensaio. Isso não é suportado. Selecione outra fonte de dados." };
            return;
        }
 
        my %design = %{$design};
        if (!$design) {
-           $c->stash->{rest} = { error => "$source_name is not linked to a valid field design. Can't create labels." };
+           $c->stash->{rest} = { error => "$source_name não está vinculado a um delineamento de campo válido. Não é possível criar etiquetas." };
            return;
        }
 

@@ -125,7 +125,7 @@ $trial_id => undef
                                             var lefts_margin = 10;
                                             var bottoms_margin = 12;
                                             var rights_margin = 10;
-                                            var text = "Ano, localização";
+                                            var text = 'year,location';
                                         }
                                         else if (format == "20A4") {
                                             var labels_row = 10;

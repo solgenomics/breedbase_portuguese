@@ -64,8 +64,8 @@ use CXGN::Page::FormattingHelpers qw | tooltipped_text |;
 #
 # add the input box and form for the hilite marker feature
 #
-my $hilite_tooltip = tooltipped_text("Highlight marker(s)", "You can highlight markers on the overview graphic by entering them here, separated by spaces");
-my $size_tooltip = tooltipped_text("Image size", "You can increase the size of the overview graph by clicking on the (+) button and decrease it by clicking on (-).");
+my $hilite_tooltip = tooltipped_text("Destacar marcador(es)", "Você pode destacar marcadores no gráfico geral digitando-os aqui, separados por espaços");
+my $size_tooltip = tooltipped_text("Tamanho da imagem", "Você pode aumentar o tamanho do gráfico geral clicando no botão (+) e diminuí-lo clicando em (-).");
 
 my $hilite = join " ", @hilite_markers;
 

@@ -24,14 +24,14 @@
 </%perl>
 
 
-<& /page/page_title.mas, title=>"In Silico PCR" &>
+<& /page/page_title.mas, title=>"PCR in silico" &>
 
 <form id="PCRform" method="post" action="/tools/pcr_results/" enctype="multipart/form-data">
-<&| /page/info_section.mas, id=>"pcr_parameter_section", title=>"Primers PCR", collapsible=>1, collapsed=>0, subtitle=>'<button type="button" class="btn btn-link pull-right" data-toggle="modal" data-target="#pcr_help" style="padding:0px">Socorro! <span class="glyphicon glyphicon-question-sign"></span></button>' &>
+<&| /page/info_section.mas, id=>"pcr_parameter_section", title=>"Primers de PCR", collapsible=>1, collapsed=>0, subtitle=>'<button type="button" class="btn btn-link pull-right" data-toggle="modal" data-target="#pcr_help" style="padding:0px">Ajuda <span class="glyphicon glyphicon-question-sign"></span></button>' &>
   <table>
   	<tr>
   		<td>
-      <label class="blast_select_label" for="fprimer">Primer em frente </label>
+      <label class="blast_select_label" for="fprimer">Primer direto </label>
       	</td>
       	<td>
       		<input id="fprimer" class="form-control" size="65" value="ACGATGTGATTTCTCGCTTGATGTTCTA" name="fprimer" />
@@ -41,12 +41,12 @@
   	<tr>
   		<td></td>
       <td>
-  			<input id="frevcom" type="checkbox" name="frevcom"/> <label class="blast_select_label" for="frevcom">Complemento Reverso </label>
+  			<input id="frevcom" type="checkbox" name="frevcom"/> <label class="blast_select_label" for="frevcom">Complemento reverso </label>
       </td>
     </tr>
   	<tr>
   		<td>
-        <label class="blast_select_label" for="rprimer">Primer Reverso </label>
+        <label class="blast_select_label" for="rprimer">Primer reverso </label>
     	</td>
     	<td>
     		<input id="rprimer" class="form-control" size="65" value="TTTCTTATTAAGGTATGATGCTAGATGTCTAA" name="rprimer" />
@@ -57,12 +57,12 @@
   		<td>
       </td>
       <td>
-  			<input id="rrevcom" type="checkbox" name="rrevcom"  checked /> <label class="blast_select_label" for="rrevcom">Complemento Reverso </label>
+  			<input id="rrevcom" type="checkbox" name="rrevcom"  checked /> <label class="blast_select_label" for="rrevcom">Complemento reverso </label>
       </td>
     </tr>
     <tr>
       <td>
-        <label class="blast_select_label" for="productLength">Produto Comprimento Máximo </label>
+        <label class="blast_select_label" for="productLength">Comprimento máximo do produto </label>
       </td>
       <td>
         <input id="product_length" class="blast_select_box form-control" size="5" value="5000" name="productLength" />
@@ -71,7 +71,7 @@
     </tr>
     <tr>
       <td>
-        <label class="blast_select_label" for="allowedMismatches">Permitido Mismatches</label>
+        <label class="blast_select_label" for="allowedMismatches">Mismatches permitidos</label>
       </td>
       <td>
         <input id="allowed_mm" class="blast_select_box form-control" size="5" value="0" name="allowedMismatches" />
@@ -82,7 +82,7 @@
 </&>
 
 
-<&| /page/info_section.mas, id=>"blast_parameter_section", title=>"Parâmetros BLAST", collapsible=>1, collapsed=>0, subtitle=>'<button type="button" class="btn btn-link pull-right" data-toggle="modal" data-target="#blast_help" style="padding:0px">Socorro! <span class="glyphicon glyphicon-question-sign"></span></button>' &>
+<&| /page/info_section.mas, id=>"blast_parameter_section", title=>"Parâmetros do BLAST", collapsible=>1, collapsed=>0, subtitle=>'<button type="button" class="btn btn-link pull-right" data-toggle="modal" data-target="#blast_help" style="padding:0px">Ajuda <span class="glyphicon glyphicon-question-sign"></span></button>' &>
   <input type="hidden" name="outformat" value="0" />
   
   <div class="form-group form-inline">
@@ -120,7 +120,7 @@
       </tr -->
       <tr>
       	<td>
-        <label class="blast_select_label" for="evalue">E valor</label>
+        <label class="blast_select_label" for="evalue">E-value</label>
       	</td>
           <td >
           	<input class="blast_select_box form-control" type="text" size="10" value="10" name="evalue" />
@@ -148,7 +148,7 @@
 </&>
 </form>
     <center>
-      <button id="run_blast" class="btn btn-primary">Corra</button>
+      <button id="run_blast" class="btn btn-primary">Executar</button>
       <!-- <button id="run_blast" class="btn btn-primary" type="submit" form="PCRform" formaction="/tools/pcr_results" formmethod="post" formenctype="multipart/form-data">Run</button> -->
     </center>
 
@@ -161,11 +161,11 @@
   <div class="modal-content">
     <div class="modal-header">
       <button type="button" class="close" data-dismiss="modal">&times;</button>
-      <h4 class="modal-title">Parâmetros PCR Ajuda</h4>
+      <h4 class="modal-title">Ajuda: parâmetros de PCR</h4>
     </div>
     
     <div class="modal-body">
-      <p>Colar seus primers, a distância máxima entre eles e o número de erros</p>
+      <p>Cole seus primers, a distância máxima entre eles e o número de mismatches</p>
     </div>
     
     <div class="modal-footer">
@@ -183,11 +183,11 @@
   <div class="modal-content">
     <div class="modal-header">
       <button type="button" class="close" data-dismiss="modal">&times;</button>
-      <h4 class="modal-title">Parâmetros BLAST Ajuda</h4>
+      <h4 class="modal-title">Ajuda: parâmetros do BLAST</h4>
     </div>
     
     <div class="modal-body">
-      <p>Selecione um banco de dados genômico e os outros parâmetros BLAST</p>
+      <p>Selecione um banco de dados genômico e os demais parâmetros do BLAST</p>
     </div>
     
     <div class="modal-footer">
@@ -223,7 +223,7 @@
     });
       
     $("#allowed_mm").focusout(function(){
-      validate_input_integer($("#allowed_mm"),"O número de incompatibilidades permitidas deve ser um número positivo.");
+      validate_input_integer($("#allowed_mm"),"O número de mismatches permitidos deve ser um número positivo.");
     });
       
     function swap_menu(group_id) { 

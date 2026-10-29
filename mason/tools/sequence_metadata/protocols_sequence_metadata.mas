@@ -1,7 +1,7 @@
 
 <& /util/import_javascript.mas, classes => [ 'jquery', 'jquery.dataTables' ],  &>
 
-<p>Visualize os protocolos de metadados associados a cada metadados de sequência. Clique no nome do protocolo de metadados da sequência para consultar dados desse protocolo.</p>
+<p>Visualize os protocolos de metadados de sequência associados a cada tipo de dado de metadados de sequência. Clique no nome do protocolo de metadados da sequência para consultar dados desse protocolo.</p>
 
 <div id="sequence_metadata_protocol_types"></div>
 

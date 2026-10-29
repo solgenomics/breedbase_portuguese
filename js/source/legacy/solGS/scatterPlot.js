@@ -127,7 +127,7 @@ solGS.scatterPlot = {
         var dataPointColor = "#9A2EFE";
 
         regPlot.append("g")
-            .attr("class", "eixo x")
+            .attr("class", "x axis")
             .attr("transform", "translate(" + pad.left + "," + xAxisMid + ")")
             .call(xAxis)
             .selectAll("text")
@@ -139,7 +139,7 @@ solGS.scatterPlot = {
             .style({ "text-anchor": "start", "fill": regLineColor });
 
         regPlot.append("g")
-            .attr("class", "eixo y")
+            .attr("class", "y axis")
             .attr("transform", "translate(" + yAxisMid + "," + pad.top + ")")
             .call(yAxis)
             .selectAll("text")

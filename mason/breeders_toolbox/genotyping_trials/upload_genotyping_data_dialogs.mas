@@ -596,7 +596,7 @@ $facilities
                         <thead></thead>
                         <tbody>
                             <tr>
-                                <td>Nome da amostra</td>
+                                <td>SampleName.LabID</td>
                                 <td>Todos os nomes dos marcadores em colunas separadas (por exemplo, S12_7926132)</td>
                             </tr>
                         </tbody>
@@ -615,11 +615,11 @@ $facilities
                         <tbody>
                             <tr>
                                 <td>IntertekSNPID</td>
-                                <td>ClienteSNPID</td>
-                                <td>Referência</td>
-                                <td>Alternar</td>
-                                <td>Cromossoma</td>
-                                <td>Posição</td>
+                                <td>CustomerSNPID</td>
+                                <td>Reference</td>
+                                <td>Alternate</td>
+                                <td>Chromosome</td>
+                                <td>Position</td>
                                 <td><b>Opcional:</b> podem ser incluídas informações adicionais dos marcadores; veja abaixo.</td>
                             </tr>
                         </tbody>
@@ -857,12 +857,12 @@ $facilities
                         <tbody>
                             <tr>
                                 <td>sample_name</td>
-                                <td>S01</td>
-                                <td>S01</td>
-                                <td>S01</td>
-                                <td>S02</td>
-                                <td>S02</td>
-                                <td>S02</td>
+                                <td>s01</td>
+                                <td>s01</td>
+                                <td>s01</td>
+                                <td>s02</td>
+                                <td>s02</td>
+                                <td>s02</td>
                             </tr>
                         </tbody>
                         <thead></thead>
@@ -955,11 +955,11 @@ $facilities
                         <thead></thead>
                         <tbody>
                             <tr>
-                                <td>MarcadorName</td>
+                                <td>MarkerName</td>
                                 <td>Xallele</td>
                                 <td>Yallele</td>
-                                <td>Cromossoma</td>
-                                <td>Posição</td>
+                                <td>Chromosome</td>
+                                <td>Position</td>
                                 <td><b>Opcional:</b> podem ser incluídas informações adicionais dos marcadores; veja abaixo.</td>
                             </tr>
                         </tbody>
@@ -986,8 +986,8 @@ $facilities
                     <table class="table table-hover table-bordered table-condensed" >
                         <tbody>
                             <tr>
-                                <td>MarcadorName</td>
-                                <td>AmostraName</td>
+                                <td>MarkerName</td>
+                                <td>SampleName</td>
                                 <td>SNPcall</td>
                                 <td>Xvalue</td>
                                 <td>Yvalue</td>
@@ -1010,8 +1010,8 @@ $facilities
                         <thead></thead>
                         <tbody>
                             <tr>
-                                <td>Marcador de instalaçõesName</td>
-                                <td>InstalaçõesAmplosName</td>
+                                <td>FacilityMarkerName</td>
+                                <td>FacilitySampleName</td>
                                 <td>SNPcall</td>
                                 <td>Xvalue</td>
                                 <td>Yvalue</td>
@@ -1112,14 +1112,14 @@ $facilities
                             <table class="table table-bordered table-hover">
                             <tbody>
                             <tr>
-                                <td>Marcador</td>
+                                <td>Marker</td>
                                 <td>Alias</td>
-                                <td>Descrição</td>
-                                <td>Categoria</td>
+                                <td>Description</td>
+                                <td>Category</td>
                                 <td>...adicione outras colunas Category conforme necessário</td>
-                                <td>Alele</td>
+                                <td>Allele</td>
                                 <td>...adicione outras colunas Allele conforme necessário</td>
-                                <td>Referência</td>
+                                <td>Reference</td>
                                 <td>...adicione outras colunas Reference conforme necessário</td>
                             </tr>
                             </tbody>

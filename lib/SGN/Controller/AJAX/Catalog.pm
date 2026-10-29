@@ -1,4 +1,5 @@
 package SGN::Controller::AJAX::Catalog;
+use utf8;
 
 use Moose;
 use CXGN::Stock::Catalog;
@@ -45,7 +46,7 @@ sub add_catalog_item_POST : Args(0) {
 
     if (!$c->user()) {
         print STDERR "User not logged in... not adding a catalog item.\n";
-        $c->stash->{rest} = {error_string => "You must be logged in to add a catalog item." };
+        $c->stash->{rest} = {error_string => "Você precisa estar conectado para adicionar um item ao catálogo." };
         return;
     }
 
@@ -65,7 +66,7 @@ sub add_catalog_item_POST : Args(0) {
     my $item_rs = $stock_lookup->get_stock_exact();
 
     if (!defined $item_rs) {
-        $c->stash->{rest} = {error_string => "Item name is not in the database or not unique in the database!",};
+        $c->stash->{rest} = {error_string => "O nome do item não está no banco de dados ou não é único no banco de dados!",};
         return;
     } else {
         $item_stock_id = $item_rs->stock_id();
@@ -104,13 +105,13 @@ sub add_catalog_item_POST : Args(0) {
 
     my $sp_person_id = CXGN::People::Person->get_person_by_username($dbh, $contact_person);
     if (!$sp_person_id) {
-        $c->stash->{rest} = {error_string => "Contact person has no record in the database!",};
+        $c->stash->{rest} = {error_string => "A pessoa de contato não tem registro no banco de dados!",};
         return;
     }
 #    print STDERR "PERSON ID =".Dumper($sp_person_id)."\n";
     my $program_rs = $schema->resultset('Project::Project')->find({project_id => $item_breeding_program_id});
     if (!$program_rs) {
-        $c->stash->{rest} = {error_string => "Breeding program is not in the database!",};
+        $c->stash->{rest} = {error_string => "O programa de melhoramento não está no banco de dados!",};
         return;
     }
 
@@ -134,7 +135,7 @@ sub add_catalog_item_POST : Args(0) {
     $stock_catalog->store();
 
     if (!$stock_catalog->store()){
-        $c->stash->{rest} = {error_string => "Error saving catalog item",};
+        $c->stash->{rest} = {error_string => "Erro ao salvar o item do catálogo",};
         return;
     }
 
@@ -177,7 +178,7 @@ sub upload_catalog_items_POST : Args(0) {
         my $dbh = $c->dbc->dbh;
         my @user_info = CXGN::Login->new($dbh)->query_from_cookie($session_id);
         if (!$user_info[0]){
-            $c->stash->{rest} = {error=>'You must be logged in to upload!'};
+            $c->stash->{rest} = {error=>'Você precisa estar conectado para enviar!'};
             $c->detach();
         }
         $user_id = $user_info[0];
@@ -186,7 +187,7 @@ sub upload_catalog_items_POST : Args(0) {
         $user_name = $p->get_username;
     } else{
         if (!$c->user){
-            $c->stash->{rest} = {error=>'You must be logged in to upload catalog items!'};
+            $c->stash->{rest} = {error=>'Você precisa estar conectado para enviar itens do catálogo!'};
             $c->detach();
         }
         $user_id = $c->user()->get_object()->get_sp_person_id();
@@ -207,7 +208,7 @@ sub upload_catalog_items_POST : Args(0) {
     $archived_filename_with_path = $uploader->archive();
     $md5 = $uploader->get_md5($archived_filename_with_path);
     if (!$archived_filename_with_path) {
-        $c->stash->{rest} = {error => "Could not save file $upload_original_name in archive",};
+        $c->stash->{rest} = {error => "Não foi possível salvar o arquivo $upload_original_name no arquivo permanente",};
         return;
     }
     unlink $upload_tempfile;
@@ -221,7 +222,7 @@ sub upload_catalog_items_POST : Args(0) {
         my $return_error = '';
         my $parse_errors;
         if (!$parser->has_parse_errors() ){
-            $c->stash->{rest} = {error_string => "Could not get parsing errors"};
+            $c->stash->{rest} = {error_string => "Não foi possível obter os erros de análise do arquivo"};
         } else {
             $parse_errors = $parser->get_parse_errors();
             #print STDERR Dumper $parse_errors;
@@ -253,7 +254,7 @@ sub upload_catalog_items_POST : Args(0) {
             my $item_rs = $stock_lookup->get_stock_exact();
 
             if (!defined $item_rs) {
-                $c->stash->{rest} = {error_string => "Item name is not unique in the database!",};
+                $c->stash->{rest} = {error_string => "O nome do item não é único no banco de dados!",};
                 return;
             } else {
                 $item_stock_id = $item_rs->stock_id();
@@ -310,7 +311,7 @@ sub upload_catalog_items_POST : Args(0) {
             $stock_catalog->store();
 
             if (!$stock_catalog->store()){
-                $c->stash->{rest} = {error_string => "Error saving catalog items",};
+                $c->stash->{rest} = {error_string => "Erro ao salvar os itens do catálogo",};
                 return;
             }
         }
@@ -487,13 +488,13 @@ sub edit_catalog_image_POST : Args(0) {
     print STDERR "IMAGE ID =".Dumper(\@images)."\n";
     if (!$c->user()) {
         print STDERR "User not logged in... not adding a catalog item.\n";
-        $c->stash->{rest} = {error_string => "You must be logged in to add a catalog image." };
+        $c->stash->{rest} = {error_string => "Você precisa estar conectado para adicionar uma imagem ao catálogo." };
         return;
     }
 
     my $item_rs = $schema->resultset("Stock::Stock")->find({uniquename => $item_name});
     if (!$item_rs) {
-        $c->stash->{rest} = {error_string => "Item name is not in the database!",};
+        $c->stash->{rest} = {error_string => "O nome do item não está no banco de dados!",};
         return;
     } else {
         $item_stock_id = $item_rs->stock_id();
@@ -510,7 +511,7 @@ sub edit_catalog_image_POST : Args(0) {
     $stock_catalog->store();
 
     if (!$stock_catalog->store()){
-        $c->stash->{rest} = {error_string => "Error saving catalog image",};
+        $c->stash->{rest} = {error_string => "Erro ao salvar a imagem do catálogo",};
         return;
     }
 
@@ -531,7 +532,7 @@ sub delete_catalog_item_POST : Args(0) {
     my $catalog_obj = CXGN::Stock::Catalog->new({ bcs_schema => $schema, prop_id => $item_prop_id });
     $catalog_obj->delete();
     if ($catalog_obj->delete() == 0) {
-        $c->stash->{rest} = { error_string => "An error occurred attempting to delete a catalog item." };
+        $c->stash->{rest} = { error_string => "Ocorreu um erro ao tentar excluir um item do catálogo." };
         return;
     }
 
@@ -557,13 +558,13 @@ sub add_catalog_item_list_POST : Args(0) {
 
     if (!$c->user()) {
         print STDERR "User not logged in... not adding catalog items.\n";
-        $c->stash->{rest} = {error_string => "You must be logged in to add catalog items." };
+        $c->stash->{rest} = {error_string => "Você precisa estar conectado para adicionar itens ao catálogo." };
         return;
     }
 
     my $sp_person_id = CXGN::People::Person->get_person_by_username($dbh, $list_contact_person);
     if (!$sp_person_id) {
-        $c->stash->{rest} = {error_string => "Contact person has no record in the database!",};
+        $c->stash->{rest} = {error_string => "A pessoa de contato não tem registro no banco de dados!",};
         return;
     }
 
@@ -592,7 +593,7 @@ sub add_catalog_item_list_POST : Args(0) {
     my $item_validator = CXGN::List::Validate->new();
     my @item_missing = @{$item_validator->validate($schema, $list_type,\@item_names)->{'missing'}};
     if (scalar(@item_missing) > 0) {
-        $list_error_message = "The following items are not in database or are not the specified list type: ".join("\n", @item_missing);
+        $list_error_message = "Os seguintes itens não estão no banco de dados ou não são do tipo de lista especificado:".join("\n", @item_missing);
         $c->stash->{rest} = { error_string => $list_error_message };
         $c->detach();
     } else {
@@ -606,7 +607,7 @@ sub add_catalog_item_list_POST : Args(0) {
             my $item_rs = $stock_lookup->get_stock_exact();
 
             if (!defined $item_rs) {
-                $c->stash->{rest} = {error_string => "Item name is not unique in the database!",};
+                $c->stash->{rest} = {error_string => "O nome do item não é único no banco de dados!",};
                 return;
             } else {
                 $item_stock_id = $item_rs->stock_id();
@@ -648,7 +649,7 @@ sub add_catalog_item_list_POST : Args(0) {
             $stock_catalog->store();
 
             if (!$stock_catalog->store()){
-                $c->stash->{rest} = {error_string => "Error saving catalog items",};
+                $c->stash->{rest} = {error_string => "Erro ao salvar os itens do catálogo",};
                 return;
             }
         }

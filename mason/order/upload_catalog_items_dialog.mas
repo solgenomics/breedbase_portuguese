@@ -100,7 +100,7 @@
                         <tbody>
                             <tr>
                                 <td>item_name</td>
-                                <td>categoria</td>
+                                <td>category</td>
                                 <td>additional_info</td>
                                 <td>material_source</td>
                                 <td>breeding_program</td>
@@ -111,7 +111,7 @@
                     <b>Colunas obrigatórias:</b>
                     <ul>
                         <li><b>item_name:</b>O nome do item deve existir no banco de dados e corresponder a um acesso, lote de sementes, população ou construção vetorial</li>
-                        <li><b>Categoria:</b>Deve ser um dos valores: released variety (variedade lançada), pathogen assay (ensaio de patógeno), control (controle) ou transgenic line (linhagem transgênica). Este campo pode ser personalizado; entre em contato conosco. </li>
+                        <li><b>category:</b>Deve ser um dos valores: released variety (variedade lançada), pathogen assay (ensaio de patógeno), control (controle) ou transgenic line (linhagem transgênica). Este campo pode ser personalizado; entre em contato conosco. </li>
                         <li><b>additional_info:</b> Obrigatório no cabeçalho, mas o valor pode ficar em branco.</li>
                         <li><b>material_source:</b> Obrigatório no cabeçalho, mas o valor pode ficar em branco.</li>
                         <li><b>breeding_program:</b>O programa de melhoramento deve existir no banco de dados.</li>

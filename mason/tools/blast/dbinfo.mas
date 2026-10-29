@@ -12,9 +12,9 @@
 
 </%perl>
 
-<& /page/page_title.mas, title=>"BLAST DB detalhes" &>
+<& /page/page_title.mas, title=>"Detalhes dos bancos de dados BLAST" &>
 
-<div >Esta página fornece detalhes para cada sequência BLAST disponível na SGN.</div>
+<div >Esta página fornece detalhes de cada conjunto de sequências BLAST disponível na SGN.</div>
 
 % foreach my $g (@groups) { 
 

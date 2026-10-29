@@ -142,14 +142,14 @@ if (defined $platform->get_platform_id()) {
    $basic_info_content = <<HTML;
 
    <table width="100%">
-   	   <tr> <td width="25%"> <b>Platform name:</b>            </td> <td> $platform_name </td></tr>
-	   <tr> <td width="25%"> <b>Technology type:</b>          </td> <td> $techtype_name </td></tr>
-           <tr> <td width="25%"> <b>Description:</b>              </td> <td> $description </td></tr>
-	   <tr> <td width="25%"> <b>Template number:</b>          </td> <td> $template_count </td></tr>
-	   <tr> <td width="25%"> <b>Probe number:</b>             </td> <td> $probe_count </td></tr>
-	   <tr> <td width="25%"> <b>Design datasets:</b>          </td> <td> $design_links </td></tr>
-	   <tr> <td width="25%"> <b>Platform external links:</b>  </td> <td> $dbxref_html_list </td></tr>
-	   <tr> <td width="25%"> <b>Contact info:</b>             </td> <td> <b>Nome:</b> $complete_name </td></tr>
+   	   <tr> <td width="25%"> <b>Nome da plataforma:</b>            </td> <td> $platform_name </td></tr>
+	   <tr> <td width="25%"> <b>Tipo de tecnologia:</b>          </td> <td> $techtype_name </td></tr>
+           <tr> <td width="25%"> <b>Descrição:</b>              </td> <td> $description </td></tr>
+	   <tr> <td width="25%"> <b>Número de modelos:</b>          </td> <td> $template_count </td></tr>
+	   <tr> <td width="25%"> <b>Número de sondas:</b>             </td> <td> $probe_count </td></tr>
+	   <tr> <td width="25%"> <b>Conjuntos de dados do delineamento:</b>          </td> <td> $design_links </td></tr>
+	   <tr> <td width="25%"> <b>Links externos da plataforma:</b>  </td> <td> $dbxref_html_list </td></tr>
+	   <tr> <td width="25%"> <b>Contato:</b>             </td> <td> <b>Nome:</b> $complete_name </td></tr>
            <tr> <td width="">                                     </td> <td> <b>E-mail:</b> $contact_email </td></tr>
 
    </table>

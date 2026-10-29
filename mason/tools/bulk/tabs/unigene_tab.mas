@@ -43,7 +43,7 @@ sub unigene_search {
 <table summary="" cellpadding="10" width="100%"><tr><td valign="top" bgcolor="#EEEEEE" width="320">
 
 <br />
-Digite uma lista de identificadores ou carregue um arquivo contendo uma identidade separada por espaço em branco (retornos, espaços ou abas):<br />
+Digite uma lista de identificadores ou envie um arquivo contendo identificadores separados por espaços em branco (quebras de linha, espaços ou tabulações):<br />
 
 
 <table summary="" width="100%" cellpadding="0"><tr><td>
@@ -60,44 +60,44 @@ SGN-U196026
 <br />
 <br />
 
-E/ou arquivo de lista de upload: <br /><input type="file" name="file" />
+E/ou envie um arquivo de lista: <br /><input type="file" name="file" />
 <br />
 <br />
 
 </td><td valign="top" bgcolor="#EEEEEE" width="320">
 
- <input type="checkbox" name="convert_to_current" checked="checked" /><label for="convert_to_current"><a class="stealth" title="Marque esta caixa para converter cada unigene na lista para o seu equivalente na mais atual compilação de unigenes, se disponível"><img src="/documents/img/new.gif" />Converta a lista unigene para a construção atual</a></label>
+ <input type="checkbox" name="convert_to_current" checked="checked" /><label for="convert_to_current"><a class="stealth" title="Marque esta caixa para converter cada unigene da lista no seu equivalente no(s) build(s) de unigenes mais recente(s), se disponível"><img src="/documents/img/new.gif" />Converter a lista de unigenes para o build atual</a></label>
 
  <hr />
 
-<input type="radio" name="unigene_mode" value="unigene_info" checked="checked" /> <b>Baixe informações unigene</b>:<br />
+<input type="radio" name="unigene_mode" value="unigene_info" checked="checked" /> <b>Baixar informações de unigenes</b>:<br />
 <!-- SGN_U for Unigene Info -->
 <div style="padding-left: 1em">
-    <input type="checkbox" name="SGN_U_U" checked="checked" /> Unigene id (SGN-U)<br />
+    <input type="checkbox" name="SGN_U_U" checked="checked" /> ID do unigene (SGN-U)<br />
     <input type="checkbox" name="automatic_annotation" checked="checked" /> Anotação automática (BLAST)<br />
-    <input type="checkbox" name="best_genbank_match" checked="checked" /> Melhor jogo de banco<br />
-    <input type="checkbox" name="best_arabidopsis_match" checked="checked" /> Melhor combinação de arabidopsis<br />
-    <input type="checkbox" name="associated_loci" checked="checked" /> Loci associado<br />
+    <input type="checkbox" name="best_genbank_match" checked="checked" /> Melhor correspondência no GenBank<br />
+    <input type="checkbox" name="best_arabidopsis_match" checked="checked" /> Melhor correspondência em Arabidopsis<br />
+    <input type="checkbox" name="associated_loci" checked="checked" /> Loci associados<br />
     <input type="checkbox" name = "uni_seq" checked="checked" onclick="check_fasta_option()"/> Sequência<br />
     <div style="padding-left: 1em">
-         <input type="radio" name="seq_mode" value="unigene_seq" checked="checked" /> Sequência de nucleotídeo unigene<br />
-         <input type="radio" name="seq_mode" value="estscan_seq" /> Estscan previu proteínas<br />
-         <input type="radio" name="seq_mode" value="longest6frame_seq" /> ORF mais longo da tradução de 6 quadros<br />
+         <input type="radio" name="seq_mode" value="unigene_seq" checked="checked" /> Sequência de nucleotídeos do unigene<br />
+         <input type="radio" name="seq_mode" value="estscan_seq" /> Proteínas preditas pelo ESTScan<br />
+         <input type="radio" name="seq_mode" value="longest6frame_seq" /> ORF mais longa da tradução em 6 quadros<br />
          <input type="radio" name="seq_mode" value="preferred_protein_seq" /> Sequência preferida<br />
     </div>
 </div>
 
-<input type="radio" name="unigene_mode" value="member_info" /> <b>Baixe informações dos membros</b>:
+<input type="radio" name="unigene_mode" value="member_info" /> <b>Baixar informações dos membros</b>:
 <div style="padding-left: 1em">
     <input type="checkbox" name="clone_name" checked="checked" /> Nome do clone<br />
-    <input type="checkbox" name="SGN_C" checked="checked" /> Clone id (SGN-C)<br />
-    <input type="checkbox" name="SGN_T" checked="checked" /> sequência lida id (SGN-T)<br />
+    <input type="checkbox" name="SGN_C" checked="checked" /> ID do clone (SGN-C)<br />
+    <input type="checkbox" name="SGN_T" checked="checked" /> ID da leitura de sequência (SGN-T)<br />
     <input type="checkbox" name="SGN_E" checked="checked" /> est id (SGN-E)<br />
-    <input type="checkbox" name="build_nr" checked="checked" /> Número de construção unigene<br />
+    <input type="checkbox" name="build_nr" checked="checked" /> Número do build do unigene<br />
     <!-- SGN_U for Member Info -->
-    <input type="checkbox" name="SGN_U_M" checked="checked" /> Unigene id (SGN-U)<br />
+    <input type="checkbox" name="SGN_U_M" checked="checked" /> ID do unigene (SGN-U)<br />
     <input type="checkbox" name="chipname" checked="checked" /> chipname<br />
-    <input type="checkbox" name="SGN_S" checked="checked" /> SGN-S<br />
+    <input type="checkbox" name="SGN_S" checked="checked" /> ID do spot de microarranjo (SGN-S)<br />
     <input type="checkbox" name="TUS" checked="checked" /> Número TUS<br />
     <input type="checkbox" name="manual_annotation" /> Anotação manual<br />
     <input type="checkbox" name="est_seq" checked="checked" /> Sequência EST<br />

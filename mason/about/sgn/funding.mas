@@ -4,7 +4,7 @@ use CXGN::Page::FormattingHelpers qw/info_section_html info_table_html/;
 
 print info_section_html( title => 'Financiamento', contents => <<EOHTML);
 
-SGN gratefully acknowledges funding from the following funding sources:
+A SGN agradece o financiamento recebido das seguintes fontes:
 <br /><br />
 <table><tr>
 <td width="100"><a href="http://www.nsf.gov/" class="footer"><img src="/documents/img/nsf_logo.png" border="0" /></a></td>
@@ -25,15 +25,15 @@ SGN gratefully acknowledges funding from the following funding sources:
     </ul>
 </td></tr>
 <tr><td><a href="http://www.nifa.usda.gov/" class="footer"><img src="/documents/img/usda_nifa_v.jpg" border="0" /></a><br /><br /></td>
-<td><b>USDA</b><br /><ul><li>USDA CSREES, grant \#2007-02777</li>
+<td><b>USDA</b><br /><ul><li>USDA CSREES, bolsa \#2007-02777</li>
 <li>SolCAP - Solanaceae Coordinated Agricultural Project</li>
 </ul></td>
 </tr>
 <tr><td>&nbsp;</td><td><b>Nestle Corporation</b><br />
-<ul><li>SGN gratefully acknowledges a grant from the Nestle Corporation for generation, analysis and integration of Coffea canephora data.</li></ul><br /><br />
+<ul><li>A SGN agradece o financiamento da Nestle Corporation para a geração, análise e integração de dados de Coffea canephora.</li></ul><br /><br />
 </td></tr>
 <tr><td><a href="http://www.bard-isus.com/" class="footer"><img src="/documents/img/BARD1.gif" border="0" /></a><br /><br /></td>
-<td><b>BARD</b><br /><ul><li>BARD, grant \#FI-370-2005 Bioinformatic links of simple and complex phenotypes with Solanaceae genomes.</li></ul></td>
+<td><b>BARD</b><br /><ul><li>BARD, bolsa \#FI-370-2005 Bioinformatic links of simple and complex phenotypes with Solanaceae genomes.</li></ul></td>
 </tr>
 </table>
 
@@ -43,8 +43,8 @@ SGN gratefully acknowledges funding from the following funding sources:
 EOHTML
 
  print info_section_html( title=>"Agradecimentos", contents=><<EOHTML );
-<p>Special thanks to the <a href="http://cbsu.tc.cornell.edu">Cornell Biological Services Unit</a> for making their compute clusters available for some of our analyses.</p>
-<p>Some data on SGN was obtained from EU-SOL projects. Special thanks to our colleagues at EU-SOL. <br />
+<p>Agradecimentos especiais à <a href="http://cbsu.tc.cornell.edu">Cornell Biological Services Unit</a> por disponibilizar seus clusters computacionais para algumas de nossas análises.</p>
+<p>Alguns dados da SGN foram obtidos de projetos do EU-SOL. Agradecimentos especiais aos nossos colegas do EU-SOL. <br />
 <center>
 <a href="http://www.eu-sol.net" class="footer"><img src="/documents/img/eusol_logo_small.jpg" /></a> <br />
 </center>

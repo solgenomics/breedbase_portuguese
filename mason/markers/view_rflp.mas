@@ -13,7 +13,7 @@ my $width_attribute = $image_size eq 'full' ? '': 'width="740"' ;
 
 <& /page/page_title.mas, title => "Imagem RFLP para marcador $marker_name" &>
 
-<a href="/search/markers/markerinfo.pl?marker_id=<% $marker_id %>">Return to <% $marker_name %> info page</a>&nbsp;&nbsp;&nbsp;
+<a href="/search/markers/markerinfo.pl?marker_id=<% $marker_id %>">Voltar à página de informações de <% $marker_name %></a>&nbsp;&nbsp;&nbsp;
 
 % #if we are constraining the size of the image (small image view)
 % if( $width_attribute ) {

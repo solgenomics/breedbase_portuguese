@@ -1,5 +1,6 @@
 
 package SGN::Controller::InSilicoPcr;
+use utf8;
 
 use Moose;
 use File::Temp qw | tempfile |;
@@ -50,7 +51,7 @@ sub index :Path('/tools/in_silico_pcr/') :Args(0) {
     my $rs = $schema->resultset("BlastDb")->search( { blast_db_id => $db_id }, { join => 'blast_db_group' });
     
     if ($rs == 0) {
-      $c->throw( is_error => 0, message => "The blast database with id $db_id could not be found.");
+      $c->throw( is_error => 0, message => "O banco de dados BLAST com ID $db_id não foi encontrado.");
     }
     
     $preselected_database = $rs->first()->blast_db_id(); # first database of the category
@@ -125,12 +126,12 @@ sub run_pcr_blast :Path('/tools/pcr_results') :Args(0) {
   
   #validating productLength
   if ($productLength <= 0 or $productLength !~ /^[\d]*$/g) {
-    push (@errors , "Max Product Length should be a positive digit\n");
+    push (@errors , "O comprimento máximo do produto deve ser um número positivo\n");
   }
 
   #validating AllowedMismatches
   if ($allowedMismatches < 0 or $allowedMismatches !~ /^[\d]*$/g) {
-    push (@errors , "Allowed mismatches should be a positive digit\n");
+    push (@errors , "O número de incompatibilidades permitidas deve ser um número positivo\n");
   }
   
   # return errors
@@ -331,7 +332,7 @@ sub _blast_to_pcr {
   if (scalar(@pcr_results) ==  0 ){
     print STDERR "No PCR Product Found\n";
     
-    $pcr_seq = "No PCR Product Found";
+    $pcr_seq = "Nenhum produto de PCR encontrado";
     my $pcr_img_name = "insilicopcr_no_result.png";
     
     system("cp static/img/$pcr_img_name $gel_img_tempdir");

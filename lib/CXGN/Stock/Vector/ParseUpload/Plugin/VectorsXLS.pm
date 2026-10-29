@@ -1,5 +1,6 @@
 package CXGN::Stock::Vector::ParseUpload::Plugin::VectorsXLS;
 
+use utf8;
 use Moose::Role;
 use Spreadsheet::ParseExcel;
 use Spreadsheet::ParseXLSX;
@@ -46,7 +47,7 @@ sub _validate_with_plugin {
 
     my $worksheet = ( $excel_obj->worksheets() )[0]; #support only one worksheet
     if (!$worksheet) {
-        push @error_messages, "Spreadsheet must be on 1st tab in Excel (.xls) file";
+        push @error_messages, "A planilha deve estar na 1ª aba do arquivo Excel (.xls)";
         $errors{'error_messages'} = \@error_messages;
         $self->_set_parse_errors(\%errors);
         return;
@@ -54,7 +55,7 @@ sub _validate_with_plugin {
     my ( $row_min, $row_max ) = $worksheet->row_range();
     my ( $col_min, $col_max ) = $worksheet->col_range();
     if (($col_max - $col_min)  < 1 || ($row_max - $row_min) < 1 ) { #must have header and at least one row of plot data
-        push @error_messages, "Spreadsheet is missing header or contains no rows";
+        push @error_messages, "A planilha não tem cabeçalho ou não contém linhas";
         $errors{'error_messages'} = \@error_messages;
         $self->_set_parse_errors(\%errors);
         return;
@@ -77,12 +78,12 @@ sub _validate_with_plugin {
             $stockprops_head  = $worksheet->get_cell(0,$i)->value();
         }
         if ($stockprops_head && !exists($allowed_stockprops_head{$stockprops_head})){
-            push @error_messages, "$stockprops_head is not a valid property to have in the header! Please check the spreadsheet format help.";
+            push @error_messages, "$stockprops_head não é uma propriedade válida para o cabeçalho! Consulte a ajuda sobre o formato da planilha.";
         }
     }
 
     if (!$uniquename_head || $uniquename_head ne 'uniquename' ) {
-        push @error_messages, "Cell A1: uniquename is missing from the header";
+        push @error_messages, "Célula A1: uniquename está ausente do cabeçalho";
     }
 
     my %seen_vector_names;
@@ -98,7 +99,7 @@ sub _validate_with_plugin {
 
         if (!$vector_name || $vector_name eq '' ) {
             if (! $autogenerate_uniquename ){
-                push @error_messages, "Cell A$row_name: vector_name missing.";
+                push @error_messages, "Célula A$row_name: vector_name ausente.";
             }
         } else {
             $vector_name =~ s/^\s+|\s+$//g; #trim whitespace from front and end...
@@ -110,7 +111,7 @@ sub _validate_with_plugin {
 
     foreach my $k (keys %vector_name_counts) {
         if ($vector_name_counts{$k} > 1) {
-            push @error_messages, "Vector $k occures $vector_name_counts{$k} times in the file. Vector names must be unique. Please remove duplicated vector names.";
+            push @error_messages, "O vetor $k aparece $vector_name_counts{$k} vezes no arquivo. Os nomes de vetor devem ser únicos. Remova os nomes de vetor duplicados.";
         }
     }
 

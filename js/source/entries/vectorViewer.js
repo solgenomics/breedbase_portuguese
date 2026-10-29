@@ -294,7 +294,7 @@ export function init(vector_id) {
     }).then(function(r) {
 	//alert("RETRIEVED DATA: "+JSON.stringify(r));
 
-	if (r.error === "The vector information you are trying to access does not exist.") {
+	if (r.error === "As informações do vetor que você está tentando acessar não existem.") {
 	  //  alert('turning it off');
 	    jQuery('#vector_view_offswitch').click();
 	    return;
@@ -335,7 +335,7 @@ export function init(vector_id) {
 	var feature_name = jQuery('#feature_name').val();
 	var start_coord = jQuery('#feature_start_coord').val();
 	var end_coord = jQuery('#feature_end_coord').val();
-	var feature_color = jQuery('#feature_color_select option:selected').text();
+	var feature_color = jQuery('#feature_color_select').val();
 	var orientation = jQuery('#feature_orientation_select option:selected').text();
 	var row = [ feature_name, start_coord, end_coord, feature_color, orientation ];
 
@@ -828,7 +828,7 @@ export function draw_vector(vector_div, metadata, radius, re_sites_table, featur
 		.attr("stroke", "darkgray")
 		.attr("font-family", "arial")
 		.style("font-size", 0.60 * (geneOuterRadius - geneInnerRadius))
-		.append("TextoPath")
+		.append("textPath")
 		.attr("text-anchor", "middle")
 		.attr("startOffset", "50%")
 		.attr("xlink:href", "#labelClass_" + i)

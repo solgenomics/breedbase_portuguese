@@ -1,4 +1,5 @@
 use strict;
+use utf8;
 use warnings;
 
 use lib 't/lib';
@@ -83,11 +84,11 @@ my $verify_message = $response->decoded_content;
 my $verify_message_hash = decode_json $verify_message;
 #print STDERR "message hash test:" . Dumper $verify_message_hash;
 
-is($verify_message_hash->{success}->[0], 'File transcriptomics_data_matrix saved in archive.');
-is($verify_message_hash->{success}->[1], 'File transcriptomics_details saved in archive.');
-is($verify_message_hash->{success}->[2], 'File valid: transcriptomics_data_matrix.');
-is($verify_message_hash->{success}->[3], 'File data successfully parsed.');
-is($verify_message_hash->{success}->[4], 'File data verified. Plot names and trait names are valid.');
+is($verify_message_hash->{success}->[0], 'Arquivo transcriptomics_data_matrix salvo no arquivo permanente.');
+is($verify_message_hash->{success}->[1], 'Arquivo transcriptomics_details salvo no arquivo permanente.');
+is($verify_message_hash->{success}->[2], 'Arquivo válido: transcriptomics_data_matrix.');
+is($verify_message_hash->{success}->[3], 'Dados do arquivo processados com sucesso.');
+is($verify_message_hash->{success}->[4], 'Dados do arquivo verificados. Os nomes das parcelas e das características são válidos.');
 
 # POST to STORE endpoint
 my $ua = LWP::UserAgent->new;
@@ -113,13 +114,13 @@ my $store_message = $response->decoded_content;
 my $store_message_hash = decode_json $store_message;
 #print STDERR "store hash test:" .  Dumper $store_message_hash;
 
-is($store_message_hash->{success}->[0], 'File transcriptomics_data_matrix saved in archive.');
-is($store_message_hash->{success}->[1], 'File transcriptomics_details saved in archive.');
-is($store_message_hash->{success}->[2], 'File valid: transcriptomics_data_matrix.');
-is($store_message_hash->{success}->[3], 'File data successfully parsed.');
-is($store_message_hash->{success}->[4], 'File data verified. Plot names and trait names are valid.');
+is($store_message_hash->{success}->[0], 'Arquivo transcriptomics_data_matrix salvo no arquivo permanente.');
+is($store_message_hash->{success}->[1], 'Arquivo transcriptomics_details salvo no arquivo permanente.');
+is($store_message_hash->{success}->[2], 'Arquivo válido: transcriptomics_data_matrix.');
+is($store_message_hash->{success}->[3], 'Dados do arquivo processados com sucesso.');
+is($store_message_hash->{success}->[4], 'Dados do arquivo verificados. Os nomes das parcelas e das características são válidos.');
 is($store_message_hash->{success}->[5], 'All values in your file have been successfully processed!<br><br>1 new values stored<br>0 previously stored values skipped<br>0 previously stored values overwritten<br>0 previously stored values removed<br><br>');
-is($store_message_hash->{success}->[6], 'Metadata saved for archived file.');
+is($store_message_hash->{success}->[6], 'Metadados salvos para o arquivo armazenado.');
 
 ok($store_message_hash->{nd_protocol_id}, "Protocol ID returned");
 

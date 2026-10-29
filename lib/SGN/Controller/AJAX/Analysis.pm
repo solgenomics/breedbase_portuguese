@@ -1,4 +1,5 @@
 package SGN::Controller::AJAX::Analysis;
+use utf8;
 
 use Moose;
 
@@ -72,13 +73,13 @@ sub store_analysis_json_POST {
     my ($user_id, $user_name, $user_role) = _check_user_login($c);
 
     if ($analysis_to_save_boolean eq 'yes' && !$analysis_name) {
-        $c->stash->{rest} = {error => "You are trying to save an analysis, but no name was given."};
+        $c->stash->{rest} = {error => "Você está tentando salvar uma análise, mas nenhum nome foi informado."};
         return;
     }
     if ($analysis_name) {
         my $check_name = $schema->resultset("Project::Project")->find({ name => $analysis_name });
         if ($check_name) {
-            $c->stash->{rest} = {error => "An analysis with name $analysis_name already exists in the database. Please choose another name."};
+            $c->stash->{rest} = {error => "Já existe uma análise com o nome $analysis_name no banco de dados. Escolha outro nome."};
             return;
         }
     }
@@ -173,7 +174,7 @@ sub store_analysis_spreadsheet_POST {
 
     my $check_name = $schema->resultset("Project::Project")->find({ name => $analysis_name });
     if ($check_name) {
-        $c->stash->{rest} = {error => "An analysis with name $analysis_name already exists in the database. Please choose another name."};
+        $c->stash->{rest} = {error => "Já existe uma análise com o nome $analysis_name no banco de dados. Escolha outro nome."};
         $c->detach();
     }
 
@@ -198,7 +199,7 @@ sub store_analysis_spreadsheet_POST {
         my $archived_filename_with_path = $uploader->archive();
         my $md5 = $uploader->get_md5($archived_filename_with_path);
         if (!$archived_filename_with_path) {
-            $c->stash->{rest} = {error => "Could not save file $upload_original_name in archive."};
+            $c->stash->{rest} = {error => "Não foi possível salvar o arquivo $upload_original_name no arquivo permanente."};
             $c->detach();
         }
         unlink $upload_tempfile;
@@ -224,7 +225,7 @@ sub store_analysis_spreadsheet_POST {
         my $archived_filename_with_path = $uploader->archive();
         my $md5 = $uploader->get_md5($archived_filename_with_path);
         if (!$archived_filename_with_path) {
-            $c->stash->{rest} = {error => "Could not save file $upload_original_name in archive."};
+            $c->stash->{rest} = {error => "Não foi possível salvar o arquivo $upload_original_name no arquivo permanente."};
             $c->detach();
         }
         unlink $upload_tempfile;
@@ -250,7 +251,7 @@ sub store_analysis_spreadsheet_POST {
         my $archived_filename_with_path = $uploader->archive();
         my $md5 = $uploader->get_md5($archived_filename_with_path);
         if (!$archived_filename_with_path) {
-            $c->stash->{rest} = {error => "Could not save file $upload_original_name in archive."};
+            $c->stash->{rest} = {error => "Não foi possível salvar o arquivo $upload_original_name no arquivo permanente."};
             $c->detach();
         }
         unlink $upload_tempfile;
@@ -278,7 +279,7 @@ sub store_analysis_spreadsheet_POST {
         my $archived_filename_with_path = $uploader->archive();
         my $md5 = $uploader->get_md5($archived_filename_with_path);
         if (!$archived_filename_with_path) {
-            $c->stash->{rest} = {error => "Could not save file $upload_original_name in archive."};
+            $c->stash->{rest} = {error => "Não foi possível salvar o arquivo $upload_original_name no arquivo permanente."};
             $c->detach();
         }
         unlink $upload_tempfile;
@@ -303,7 +304,7 @@ sub store_analysis_spreadsheet_POST {
         my $archived_filename_with_path = $uploader->archive();
         my $md5 = $uploader->get_md5($archived_filename_with_path);
         if (!$archived_filename_with_path) {
-            $c->stash->{rest} = {error => "Could not save file $upload_original_name in archive."};
+            $c->stash->{rest} = {error => "Não foi possível salvar o arquivo $upload_original_name no arquivo permanente."};
             $c->detach();
         }
         unlink $upload_tempfile;
@@ -319,7 +320,7 @@ sub store_analysis_spreadsheet_POST {
         $data_level = 'accession';
     }
     else {
-        $c->stash->{rest} = {error => "Analysis result type not accepted!"};
+        $c->stash->{rest} = {error => "Tipo de resultado de análise não aceito!"};
         $c->detach();
     }
 
@@ -359,7 +360,7 @@ sub store_analysis_spreadsheet_POST {
     my $archived_filename_with_path = $uploader->archive();
     my $md5 = $uploader->get_md5($archived_filename_with_path);
     if (!$archived_filename_with_path) {
-        $c->stash->{rest} = {error => "Could not save file $upload_original_name in archive."};
+        $c->stash->{rest} = {error => "Não foi possível salvar o arquivo $upload_original_name no arquivo permanente."};
         $c->detach();
     }
     unlink $upload_tempfile;
@@ -369,7 +370,7 @@ sub store_analysis_spreadsheet_POST {
     my $parser = CXGN::Phenotypes::ParseUpload->new();
     my $validate_file = $parser->validate($validate_type, $archived_filename_with_path, undef, $data_level, $schema, undef, undef);
     if (!$validate_file) {
-        push @error_status, "Archived file not valid: $upload_original_name.";
+        push @error_status, "Arquivo armazenado inválido: $upload_original_name.";
         $c->stash->{rest} = {error_messages => \@error_status};
         $c->detach();
     }
@@ -384,7 +385,7 @@ sub store_analysis_spreadsheet_POST {
 
     my $parsed_file = $parser->parse($validate_type, $archived_filename_with_path, undef, $data_level, $schema, undef, $user_id, $c, undef);
     if (!$parsed_file) {
-        push @error_status, "Error parsing file $upload_original_name.";
+        push @error_status, "Erro ao processar o arquivo $upload_original_name.";
         $c->stash->{rest} = {error_messages => \@error_status};
         $c->detach();
     }
@@ -787,7 +788,7 @@ sub analysis_model_delete :Path('/ajax/analysis_model/delete') Args(0) {
     my $model_id = $c->req->param('model_id');
     my $analysis_by_model = CXGN::AnalysisModel::GetModel::get_analyses_by_model($schema, $model_id);
     if (scalar(@$analysis_by_model) > 0) {
-        $c->stash->{rest} = {error=>'This model still has analyses associated! Please delete the analyses before deleting this model!'};
+        $c->stash->{rest} = {error=>'Este modelo ainda tem análises associadas! Exclua as análises antes de excluir este modelo!'};
         $c->detach();
     }
 
@@ -824,7 +825,7 @@ sub _check_user_login {
         my $dbh = $c->dbc->dbh;
         my @user_info = CXGN::Login->new($dbh)->query_from_cookie($session_id);
         if (!$user_info[0]){
-            $c->stash->{rest} = {error=>'You must be logged in to do this!'};
+            $c->stash->{rest} = {error=>'Você precisa estar conectado para fazer isso!'};
             $c->detach();
         }
         $user_id = $user_info[0];
@@ -833,7 +834,7 @@ sub _check_user_login {
         $user_name = $p->get_username;
     } else{
         if (!$c->user){
-            $c->stash->{rest} = {error=>'You must be logged in to do this!'};
+            $c->stash->{rest} = {error=>'Você precisa estar conectado para fazer isso!'};
             $c->detach();
         }
         $user_id = $c->user()->get_object()->get_sp_person_id();
@@ -841,7 +842,7 @@ sub _check_user_login {
         $user_role = $c->user->get_object->get_user_type();
     }
     if ($role_check && $user_role ne $role_check) {
-        $c->stash->{rest} = {error=>'You must have permission to do this! Please contact us!'};
+        $c->stash->{rest} = {error=>'Você precisa ter permissão para fazer isso! Entre em contato conosco!'};
         $c->detach();
     }
     return ($user_id, $user_name, $user_role);

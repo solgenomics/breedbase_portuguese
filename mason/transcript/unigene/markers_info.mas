@@ -91,7 +91,7 @@ if (defined $id) {
 
    my $mapped_html;
    if (defined $mapped[0]) {
-       $mapped_html = columnar_table_html( headings => [ 'EST', 'Marker' ], data     => \@mapped );
+       $mapped_html = columnar_table_html( headings => [ 'EST', 'Marcador' ], data     => \@mapped );
    } else {
        $mapped_html = qq|<span class="ghosted">No member sequence or clone is mapped.</span>|;
    }

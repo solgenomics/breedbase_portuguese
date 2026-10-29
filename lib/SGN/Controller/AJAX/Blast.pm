@@ -1,5 +1,6 @@
 
 package SGN::Controller::AJAX::Blast;
+use utf8;
 
 use Moose;
 
@@ -43,7 +44,7 @@ sub run : Path('/tools/blast/run') Args(0) {
     my $valid = $input_query->validate($c, $params->{input_options}, $params->{sequence});
 
     if ($valid ne "OK") {
-        $c->stash->{rest} = { error => "Your input contains illegal characters. Please verify your input." };
+        $c->stash->{rest} = { error => "Sua entrada contém caracteres inválidos. Verifique sua entrada." };
         return;
     }
 
@@ -76,7 +77,7 @@ sub run : Path('/tools/blast/run') Args(0) {
         );
 
         if (!$blast_seq_db_program{$detected_type}{$params->{db_type}}{$params->{program}}) {
-            $c->stash->{rest} = { error => "the program ".$params->{program}." can not be used with a ".$detected_type." sequence (autodetected) and a ".$params->{db_type}." database.\n\nPlease, use different options and disable the autodetection of the query type if it is wrong." };
+            $c->stash->{rest} = { error => "o programa ".$params->{program}." não pode ser usado com uma sequência ".$detected_type." (detectada automaticamente) e um banco de dados ".$params->{db_type}.".\n\nUse opções diferentes e desative a detecção automática do tipo de consulta se ela estiver incorreta." };
             return;
         }
     }
@@ -135,7 +136,7 @@ sub run : Path('/tools/blast/run') Args(0) {
              try {
                  while ( my $s = $i->next_seq ) {
                      $s->length or $c->throw(
-                         message  => 'Sequence '.encode_entities('"'.$s->id.'"').' is empty, this is not allowed by BLAST.',
+                         message  => 'A sequência '.encode_entities('"'.$s->id.'"').' está vazia, o que não é permitido pelo BLAST.',
                          is_error => 0,
                          );
                  }
@@ -153,7 +154,7 @@ sub run : Path('/tools/blast/run') Args(0) {
                      );
              };
 
-             $seq_count >= 1 or $c->throw( message => 'no sequence submitted, cannot run BLAST',
+             $seq_count >= 1 or $c->throw( message => 'nenhuma sequência enviada, não é possível executar o BLAST',
                                            is_error => 0,
                                            developer_message => Data::Dumper::Dumper({
                                                '$seq_count' => $seq_count,
@@ -236,7 +237,7 @@ sub run : Path('/tools/blast/run') Args(0) {
         $arg_handlers{matrix} = sub {
             my $m = $params->{matrix};
             $m =~ /^(BLOSUM|PAM)\d+$/
-                or $c->throw( is_error => 0, message => "invalid matrix '$m'" );
+                or $c->throw( is_error => 0, message => "matriz inválida '$m'" );
             return -M => $m;
         };
     }

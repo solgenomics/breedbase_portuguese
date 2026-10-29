@@ -113,7 +113,7 @@ solGS.sIndex = {
       '<div class="col-sm-12">' +
       '<input style="margin: 10px 0 10px 0;"' +
       'class="btn btn-success" type="submit"' +
-      'value="Calculate" name= "rank" id="calculate_si"' +
+      'value="Calcular" name= "rank" id="calculate_si"' +
       "/>" +
       "</div>";
 
@@ -223,7 +223,7 @@ solGS.sIndex = {
         }
       }
 
-      if (val != "Calculate") {
+      if (val != "Calcular") {
         if (nm != "selection_pop_name") {
           allValues.push(val);
           validate = this.validateRelativeWts(nm, val);

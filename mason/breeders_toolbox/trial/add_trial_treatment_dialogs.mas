@@ -103,7 +103,7 @@
 
             <h4>Observações:</h4>
             <ul>
-                <li>Para o termo hipotético <i>“intensidade luminosa”</i>, <i>“nome do tratamento|ID do tratamento”</i><br> deve ser escrito como <i>“intensidade luminosa|EXPERIMENT_TREATMENT:00000XX”</i>.</li>
+                <li>Para um termo hipotético <i>"light intensity"</i> (intensidade luminosa), o formato <i>"nome do tratamento|ID do tratamento"</i><br> deve ser escrito como <i>"light intensity|EXPERIMENT_TREATMENT:00000XX"</i>.</li>
                 <li>Dois ou mais tratamentos podem ser enviados ao mesmo tempo.</li>
             </ul>
 

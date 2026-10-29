@@ -58,7 +58,7 @@ sub download {
     my $design = $trial_layout->get_design();
 
     if (! $design) {
-	     return { error => "No design found for this trial. A trial design must exist in order to create this file"};
+	     return { error => "Nenhum delineamento encontrado para este ensaio. É necessário existir um delineamento do ensaio para criar este arquivo"};
     }
 
     my %design = %{$trial_layout->get_design()};
@@ -433,7 +433,7 @@ sub download {
     }
     $workbook->close();
     print STDERR "DataCollector File created!\n";
-    return { message => "DataCollector File created!"};
+    return { message => "Arquivo DataCollector criado!"};
 }
 
 1;

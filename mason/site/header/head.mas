@@ -73,7 +73,7 @@
             1: "1 linha copiada para a área de transferência",
             _: "%d linhas copiadas para a área de transferência"
           },
-          copyKeys: "Pressione <i>Ctrl</i> UO <i>⌘</i> + <i>C</i> para copiar os dados da tabela.<br><br>Para cancelar, clique nesta mensagem ou pressione Esc.",
+          copyKeys: "Pressione <i>Ctrl</i> ou <i>⌘</i> + <i>C</i> para copiar os dados da tabela.<br><br>Para cancelar, clique nesta mensagem ou pressione Esc.",
           print: "Imprimir"
         }
       }

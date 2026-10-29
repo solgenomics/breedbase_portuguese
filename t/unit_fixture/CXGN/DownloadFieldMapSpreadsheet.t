@@ -1,4 +1,5 @@
 use strict;
+use utf8;
 use lib 't/lib';
 
 use Test::More;
@@ -74,8 +75,8 @@ my $message = $response->decoded_content;
 my $message_hash = decode_json $message;
 print STDERR Dumper $message_hash;
 my $messages = $message_hash->{error};
-ok($messages =~ m/do not exist in the database as plots/gi);
-ok($messages =~ m/assigned to multiple plots/gi);
+ok($messages =~ m/não existem no banco de dados como parcelas/gi);
+ok($messages =~ m/atribuída a várias parcelas/gi);
 
 my $trial_layout_download = CXGN::Trial::TrialLayoutDownload->new({
     schema => $schema,

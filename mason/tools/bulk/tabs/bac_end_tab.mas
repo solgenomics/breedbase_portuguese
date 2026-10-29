@@ -26,7 +26,7 @@ $debug => ''
 
 
 <br />
-Digite uma lista de identificadores ou carregue um arquivo contendo identificadores separados por espaço em branco (retornos, espaços ou abas):<br />
+Digite uma lista de identificadores ou envie um arquivo contendo identificadores separados por espaços em branco (quebras de linha, espaços ou tabulações):<br />
 <table summary="" width="100%"><tr><td>
 <textarea name="ids" rows="5" cols="25"></textarea>
 </td>
@@ -41,28 +41,28 @@ SL_EcoRI0022A07_T7_229350
 </td></tr></table>
 <br />
 <br />
-E/ou arquivo de lista de upload: <br /><input type="file" name="file" />
+E/ou envie um arquivo de lista: <br /><input type="file" name="file" />
 <br />
 <br />
 
 </td><td valign="top" bgcolor="#EEEEEE" width="280">
 
-<b>Baixe informações finais do BAC:</b><br />
+<b>Baixar informações de extremidades de BAC:</b><br />
 <div style="margin-left: 1em; white-space: nowrap">
-  <input type="checkbox" name="bac_id" checked= "checked" /> Identificador de final bac <br />
+  <input type="checkbox" name="bac_id" checked= "checked" /> Identificador da extremidade de BAC <br />
   <input type="checkbox" name="clone_type" checked="checked" /> Tipo de clone <br />
   <input type="checkbox" name="org_name" checked="checked" /> Nome do organismo <br />
   <input type="checkbox" name="accession_name" checked="checked" /> Nome do acesso <br />
-  <input type="checkbox" name="library_name" checked="checked" /> nome da biblioteca <br />
+  <input type="checkbox" name="library_name" checked="checked" />Nome da biblioteca <br />
   <input type="checkbox" name="estimated_length" checked="checked" /> Comprimento estimado <br />
-  <input type="checkbox" name="genbank_accession" checked="checked" /> Acessos do banco genbank<br />
+  <input type="checkbox" name="genbank_accession" checked="checked" /> Acesso do GenBank<br />
   <!--	<input type="checkbox" name="overgo_matches" checked="checked" DISABLED /> overgo matches <br /> -->  <br />
   <b>Escolha formato e tipo:</b><br />
-  <input type="checkbox" name="bac_end_sequence" checked="checked" /> Sequência de final bac <br />
+  <input type="checkbox" name="bac_end_sequence" checked="checked" /> Sequência da extremidade de BAC <br />
   <input type="checkbox" name="qual_value_seq" checked="checked" /> Valor de qualidade <br />
   <div style="margin-left: 1em">
     <input type="radio" name="bac_seq_type" value="raw_seq" />Sequência bruta e/ou qualidade<br />
-    <input type="radio" name="bac_seq_type" value="trim_seq" checked="checked" />E/ou qualidade<br />
+    <input type="radio" name="bac_seq_type" value="trim_seq" checked="checked" />Sequência aparada e/ou qualidade<br />
   </div>
 </div>
 	

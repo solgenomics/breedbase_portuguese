@@ -1,4 +1,5 @@
 package SGN::Controller::AJAX::DeriveTrait;
+use utf8;
 
 use Moose;
 use Data::Dumper;
@@ -87,12 +88,12 @@ sub compute_derive_traits : Path('/ajax/phenotype/create_derived_trait') Args(0)
 
     if (!$c->user()) {
 	print STDERR "User not logged in... not computing trait.\n";
-	$c->stash->{rest} = {error => "You need to be logged in to compute trait." };
+	$c->stash->{rest} = {error => "Você precisa estar conectado para calcular a característica." };
 	return;
     }
 
     if (!any { $_ eq "curator" || $_ eq "submitter" } ($c->user()->roles)  ) {
-	$c->stash->{rest} = {error =>  "You have insufficient privileges to compute trait." };
+	$c->stash->{rest} = {error =>  "Você não tem privilégios suficientes para calcular a característica." };
 	return;
     }
 
@@ -107,7 +108,7 @@ sub compute_derive_traits : Path('/ajax/phenotype/create_derived_trait') Args(0)
 
 
     if (scalar(@{$triat_name}) == 0)  {
-	$c->stash->{rest} = {error => "No trait assayed for this trial." };
+	$c->stash->{rest} = {error => "Nenhuma característica avaliada neste ensaio." };
 	return;
     }
 
@@ -115,12 +116,12 @@ sub compute_derive_traits : Path('/ajax/phenotype/create_derived_trait') Args(0)
     foreach my $trait_found (@{$triat_name}) {
 	if  ($selected_trait_cvterm_id && ($trait_found->[0] eq $selected_trait_cvterm_id)) {
 	    print "Trait found = $trait_found->[1] with id $trait_found->[0]\n";
-	    $c->stash->{rest} = {error => "$trait_found->[1] has been computed and uploaded for this trial." };
+	    $c->stash->{rest} = {error => "$trait_found->[1] já foi calculada e enviada para este ensaio." };
 	    return;
 	}
 
 	elsif ($selected_trait_cvterm_id eq '')  {
-	    $c->stash->{rest} = {error => "Select trait to compute." };
+	    $c->stash->{rest} = {error => "Selecione a característica a ser calculada." };
 	    return;
 	}
     }
@@ -209,7 +210,7 @@ sub compute_derive_traits : Path('/ajax/phenotype/create_derived_trait') Args(0)
     my ($stock_name, $stock_id, $plot_name, $value);
     if (@found_trait_cvterm_ids != @traits_cvterm_ids) {
 	print STDERR "DEBUG: MISMATCH! found=" . scalar(@found_trait_cvterm_ids) . " needed=" . scalar(@traits_cvterm_ids) . "\n";
-	$c->stash->{rest} = {error => "Upload or compute trait(s) required for computing \n\n$selected_trait = $msg_formula." };
+	$c->stash->{rest} = {error => "Envie ou calcule a(s) característica(s) necessária(s) para calcular \n\n$selected_trait = $msg_formula." };
 	return;
     }
     else {
@@ -417,7 +418,7 @@ sub store_generated_plot_phenotypes : Path('/ajax/breeders/trial/store_generated
         my $user_type = $c->user()->get_object->get_user_type();
         #print STDERR $user_type."\n";
         if ($user_type ne 'curator') {
-            $c->stash->{rest} = {error => 'Must be a curator to overwrite values! Please contact us!'};
+            $c->stash->{rest} = {error => 'É preciso ser curador para sobrescrever valores! Entre em contato conosco!'};
             $c->detach;
         }
     }

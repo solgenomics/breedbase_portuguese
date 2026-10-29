@@ -55,7 +55,7 @@
                 renderLinks(props);
             },
             error: function(response) {
-                console.log("Não foi possível carregar as propriedades do marcador");
+                console.log("Could not load marker props");
                 console.log(response);
             }
         });

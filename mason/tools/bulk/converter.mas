@@ -1,5 +1,5 @@
 
-<& /page/page_title.mas, title=>"Conversor de massa" &>
+<& /page/page_title.mas, title=>"Conversor em lote" &>
 
 Cole os identificadores que gostaria de converter
 
@@ -15,7 +15,7 @@ Saída<br />
 <option value="unigenes"> Unigenes</option>
 <option value="gene_models"> Modelos de genes (ITAG 2.3)</option>
 <option value="tom_microarray"> Identificadores de Microarray TOM</option>
-<option value="affymetrix"> Affymetrix Chip Identificadores</option>
+<option value="affymetrix"> Identificadores de chip Affymetrix</option>
 </select>
 
 

@@ -1,5 +1,6 @@
 package CXGN::Trial::ParseUpload::Plugin::GenotypeTrialCoordinateTemplate;
 
+use utf8;
 use Moose::Role;
 use Text::CSV;
 use CXGN::List::Validate;
@@ -26,7 +27,7 @@ sub _validate_with_plugin {
         or die "Could not open file '$filename' $!";
 
     if (!$fh) {
-        push @error_messages, "Could not read file. Make sure it is a valid CSV file.";
+        push @error_messages, "Não foi possível ler o arquivo. Verifique se é um arquivo CSV válido.";
         $errors{'error_messages'} = \@error_messages;
         $self->_set_parse_errors(\%errors);
         return;
@@ -37,7 +38,7 @@ sub _validate_with_plugin {
     if ($csv->parse($header_row)) {
         @columns = $csv->fields();
     } else {
-        push @error_messages, "Could not parse header row. Make sure it is a valid CSV file.";
+        push @error_messages, "Não foi possível analisar a linha de cabeçalho. Verifique se é um arquivo CSV válido.";
         $errors{'error_messages'} = \@error_messages;
         $self->_set_parse_errors(\%errors);
         return;
@@ -46,14 +47,14 @@ sub _validate_with_plugin {
     my $num_cols = scalar(@columns);
     if ($include_facility_identifiers) {
         if ($num_cols != 7){
-            push @error_messages, 'Header row must contain: "Value","Column","Row","Identification","Person","Date", "Facility Identifier"';
+            push @error_messages, 'A linha de cabeçalho deve conter: "Value","Column","Row","Identification","Person","Date", "Facility Identifier"';
             $errors{'error_messages'} = \@error_messages;
             $self->_set_parse_errors(\%errors);
             return;
         }
     } else {
         if ($num_cols != 6){
-            push @error_messages, 'Header row must contain: "Value","Column","Row","Identification","Person","Date"';
+            push @error_messages, 'A linha de cabeçalho deve conter: "Value","Column","Row","Identification","Person","Date"';
             $errors{'error_messages'} = \@error_messages;
             $self->_set_parse_errors(\%errors);
             return;
@@ -86,7 +87,7 @@ sub _validate_with_plugin {
             $person_header ne "Person" ||
             $date_header ne "Date" ||
             $facility_identifier_header ne "Facility Identifier") {
-            push @error_messages, 'File contents incorrect. Header row must contain: "Value","Column","Row","Identification","Person","Date", Facility Identifier';
+            push @error_messages, 'Conteúdo do arquivo incorreto. A linha de cabeçalho deve conter: "Value","Column","Row","Identification","Person","Date", Facility Identifier';
             $errors{'error_messages'} = \@error_messages;
             $self->_set_parse_errors(\%errors);
             return;
@@ -98,7 +99,7 @@ sub _validate_with_plugin {
             $identification_header ne "Identification" ||
             $person_header ne "Person" ||
             $date_header ne "Date" ) {
-            push @error_messages, 'File contents incorrect. Header row must contain: "Value","Column","Row","Identification","Person","Date"';
+            push @error_messages, 'Conteúdo do arquivo incorreto. A linha de cabeçalho deve conter: "Value","Column","Row","Identification","Person","Date"';
             $errors{'error_messages'} = \@error_messages;
             $self->_set_parse_errors(\%errors);
             return;
@@ -113,14 +114,14 @@ sub _validate_with_plugin {
         if ($csv->parse($row)) {
             @columns = $csv->fields();
         } else {
-            push @error_messages, "Could not parse row $row.";
+            push @error_messages, "Não foi possível analisar a linha $row.";
             $errors{'error_messages'} = \@error_messages;
             $self->_set_parse_errors(\%errors);
             return;
         }
 
         if (scalar(@columns) != $num_cols){
-            push @error_messages, 'All lines must have same number of columns as header! Error on row: '.$row;
+            push @error_messages, 'Todas as linhas devem ter o mesmo número de colunas que o cabeçalho! Erro na linha: '.$row;
             $errors{'error_messages'} = \@error_messages;
             $self->_set_parse_errors(\%errors);
             return;
@@ -140,25 +141,25 @@ sub _validate_with_plugin {
             $seen_source_names{$source_name}++;
         }
         if (!$columns[1] || $columns[1] eq ''){
-            push @error_messages, 'The second column must contain a Column on row: '.$row;
+            push @error_messages, 'A segunda coluna deve conter Column na linha: '.$row;
         }
         if (!$columns[2] || $columns[2] eq ''){
-            push @error_messages, 'The third column must contain a Row on row: '.$row;
+            push @error_messages, 'A terceira coluna deve conter Row na linha: '.$row;
         }
         if (!$columns[4] || $columns[4] eq ''){
-            push @error_messages, 'The fifth column must contain Person on row: '.$row;
+            push @error_messages, 'A quinta coluna deve conter Person na linha: '.$row;
         }
         if (!$columns[5] || $columns[5] eq ''){
-            push @error_messages, 'The sixth column must contain Date on row: '.$row;
+            push @error_messages, 'A sexta coluna deve conter Date na linha: '.$row;
         } elsif (!$columns[5] =~ m/(\d{4})-(\d{2})-(\d{2})/) {
-            push @error_messages, "Date must be YYYY-MM-DD format";
+            push @error_messages, "A data deve estar no formato YYYY-MM-DD";
         }
 
         if ($include_facility_identifiers) {
             if (!$columns[6] || $columns[6] eq ''){
-                push @error_messages, 'The seventh column must contain Facility Identifier on row: '.$row;
+                push @error_messages, 'A sétima coluna deve conter Facility Identifier na linha: '.$row;
             } elsif ($seen_facility_identifiers{$columns[6]}){
-                push @error_messages, "Duplicate Facility Identifier $columns[6] in your file on row: ".$row;
+                push @error_messages, "Identificador da instalação $columns[6] duplicado no seu arquivo na linha: ".$row;
             }
 
             $seen_facility_identifiers{$columns[6]} = $row;
@@ -167,7 +168,7 @@ sub _validate_with_plugin {
         $columns[1] = sprintf("%02d", $columns[1]);
         my $sample_name = $genotyping_plate_id."_".$columns[2].$columns[1];
         if ($seen_sample_ids{$sample_name}){
-            push @error_messages, "Duplicate Sample Name $sample_name in your file on row: ".$row;
+            push @error_messages, "Nome de amostra $sample_name duplicado no seu arquivo na linha: ".$row;
         }
         $seen_sample_ids{$sample_name} = $row;
     }
@@ -178,7 +179,7 @@ sub _validate_with_plugin {
         'uniquename' => { -in => \@sample_ids }
     });
     while (my $r=$rs->next){
-        push @error_messages, "Row".$seen_sample_ids{$r->uniquename}.": Value already exists: ".$r->uniquename;
+        push @error_messages, "Linha".$seen_sample_ids{$r->uniquename}.": Value já existe: ".$r->uniquename;
     }
 
     if ($include_facility_identifiers) {
@@ -189,7 +190,7 @@ sub _validate_with_plugin {
             'value' => { -in => \@identifiers }
         });
         while (my $each_id=$identifier_rs->next){
-            push @error_messages, "Row".$seen_facility_identifiers{$each_id->value}.": facility identifier already exists: ".$each_id->value;
+            push @error_messages, "Linha".$seen_facility_identifiers{$each_id->value}.": o identificador da instalação já existe: ".$each_id->value;
         }
     }
 
@@ -210,7 +211,7 @@ sub _validate_with_plugin {
     }
     foreach (@seen_source_observation_unit_names){
         if (!$found_source_observation_unit_names{$_}){
-            push @error_messages, "This source observation unit name is not in the database: $_ .";
+            push @error_messages, "Este nome de unidade de observação de origem não está no banco de dados: $_ .";
         }
     }
 
@@ -245,7 +246,7 @@ sub _parse_with_plugin {
         or die "Could not open file '$filename' $!";
 
     if (!$fh) {
-        push @error_messages, "Could not read file. Make sure it is a valid CSV file.";
+        push @error_messages, "Não foi possível ler o arquivo. Verifique se é um arquivo CSV válido.";
         $errors{'error_messages'} = \@error_messages;
         $self->_set_parse_errors(\%errors);
         return;
@@ -256,7 +257,7 @@ sub _parse_with_plugin {
     if ($csv->parse($header_row)) {
         @header_columns = $csv->fields();
     } else {
-        push @error_messages, "Could not parse header row. Make sure it is a valid CSV file.";
+        push @error_messages, "Não foi possível analisar a linha de cabeçalho. Verifique se é um arquivo CSV válido.";
         $errors{'error_messages'} = \@error_messages;
         $self->_set_parse_errors(\%errors);
         return;
@@ -270,7 +271,7 @@ sub _parse_with_plugin {
         if ($csv->parse($row)) {
             @columns = $csv->fields();
         } else {
-            push @error_messages, "Could not parse row $row.";
+            push @error_messages, "Não foi possível analisar a linha $row.";
             $errors{'error_messages'} = \@error_messages;
             $self->_set_parse_errors(\%errors);
             return;

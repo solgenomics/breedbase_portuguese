@@ -13,12 +13,12 @@ Rsync anônimo.
 </p>
 
 <p>
-Para baixar manualmente alguns arquivos de vez em quando, FTP anônimo é particularmente conveniente. De um navegador, o site da SGN pode ser acessado em <a
-href="ftp://ftp.sgn.cornell.edu/">ftp://ftp.sgn.cornell.edu/</a>. De outros clientes FTP, quando solicitado para um nome de usuário entrar
-<em>Anonimamente</em> e quando solicitado para senha digite seu endereço de e-mail.
+Para baixar manualmente alguns arquivos de vez em quando, o FTP anônimo é particularmente conveniente. De um navegador, o site da SGN pode ser acessado em <a
+href="ftp://ftp.sgn.cornell.edu/">ftp://ftp.sgn.cornell.edu/</a>. Em outros clientes FTP, quando for solicitado um nome de usuário, digite
+<em>anonymous</em> e, quando for solicitada a senha, digite seu endereço de e-mail.
 </p>
 
-<p> Por manter um conjunto de arquivos atualizados com os arquivos que disponibilizamos, <a href="http://samba.anu.edu.au/rsync/">Rsync</a> é uma ferramenta útil. Para recuperar arquivos de nosso servidor rsync anônimo, use o URL
-<em>rsync://rsync.sgn.cornell.edu/public/</em>. Por exemplo, para recuperar todos os nossos dados de mapa e marcador em uma shell Unix/Linux use o comando:</p>
+<p> Para manter um conjunto de arquivos sincronizado com os arquivos que disponibilizamos, o <a href="http://samba.anu.edu.au/rsync/">Rsync</a> é uma ferramenta útil. Para obter arquivos do nosso servidor rsync anônimo, use a URL
+<em>rsync://rsync.sgn.cornell.edu/public/</em>. Por exemplo, para obter todos os nossos dados de mapas e marcadores em um shell Unix/Linux, use o comando:</p>
 <pre>\$ rsync -az rsync://rsync.sgn.cornell.edu/public/maps_and_markers/ .</pre>
 </div>

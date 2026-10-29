@@ -1,5 +1,6 @@
 package CXGN::File::Parse::Plugin::Spreadsheet;
 
+use utf8;
 use strict;
 use Spreadsheet::ParseExcel;
 use Spreadsheet::ParseXLSX;
@@ -36,7 +37,7 @@ sub parse {
     $parser = Spreadsheet::ParseODS->new();
   }
   else {
-    push @{$rtn{errors}}, "Invalid type $type for spreadsheet parse plugin";
+    push @{$rtn{errors}}, "Tipo $type inválido para o plugin de leitura de planilhas";
     return \%rtn;
   }
 
@@ -64,7 +65,7 @@ sub parse {
     if ( $v && $v ne '' ) {
       # check for duplicated column header
       if ( exists $seen_column_headers{$v} && !exists $column_arrays->{$v} ) {
-        push @{$rtn{errors}}, "The column header $v was duplicated in column " . ($col+1) . " of your file and should only be included once.";
+        push @{$rtn{errors}}, "O cabeçalho de coluna $v está duplicado na coluna " . ($col+1) . " do seu arquivo e deve ser incluído apenas uma vez.";
       }
       $seen_column_headers{$v}++;
 

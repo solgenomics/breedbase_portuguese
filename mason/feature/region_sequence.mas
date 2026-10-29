@@ -40,7 +40,7 @@
                  &>
 
 %            } else { # otherwise, if the sequence is big
-                <p class="warning">Sequence region (<% location_string_html($loc) %>) too large to display.</p>
+                <p class="warning">A região da sequência (<% location_string_html($loc) %>) é grande demais para ser exibida.</p>
 %            }
 %            my ( $start, $end ) = $loc->strand == -1 ? ( $loc->fmax, $loc->fmin+1 ) : ( $loc->fmin+1, $loc->fmax );
              <% info_table_html(

@@ -4,7 +4,7 @@ QTL search help.
 
 <%perl>
 
-my $qtl_search_page = qq | <a href="/search/qtl">QTL/Trait search</a> |;
+my $qtl_search_page = qq | <a href="/search/qtl">pesquisa de QTL/características</a> |;
 my $search_form     = qq | <img src="/documents/help/screenshots/qtl_cvterm_searchform.png" /> |;
 my $search_result   = qq | <img src="/documents/help/screenshots/qtl_cvterm_results.png"/>|;
 my $pop_list        = qq | <img src="/documents/help/screenshots/qtl_cvterm_poplist.png"/> |;
@@ -17,27 +17,27 @@ my $contact         = qq | <a href="mailto:sgn-feedback\@solgenomics.net">sgn-fe
 </%perl>
 
 <& /page/page_title.mas, 
-   title=>'Página de Pesquisa QTL'
+   title=>'Página de pesquisa de QTL'
 &>
 
-<br>The <% $qtl_search_page %> returns phenotypic traits that may have qtl data. 
-A análise QTL é feita na mosca.<br /> 
+<br>A <% $qtl_search_page %> retorna características fenotípicas que podem ter dados de QTL. 
+A análise de QTL é feita em tempo real.<br /> 
 
 
-<br><b>1. Procure no banco de dados usando um nome de característica. Por exemplo, "forma de fruta".</b><br/>
+<br><b>1. Pesquise no banco de dados usando o nome de uma característica. Por exemplo, "fruit shape".</b><br/>
 
 <% $search_form %>
 
-<br/><b>2. Siga a ligação para a característica de seu interesse.</b><br/>
+<br/><b>2. Clique no link da característica de seu interesse.</b><br/>
 
 <% $search_result %>
 
-<br><b>3. Depois de selecionar a característica de seu interesse, por exemplo, a característica 'forma de fruta circular', você será levado para a característica (cvterm) página, rolar para baixo para a subseção ' dados de fenótipo / QTL'. Selecione a população de interesse para a qual a característica foi avaliado. Por exemplo, a população 'Howard alemão x LA1589'. </b><br/>
+<br><b>3. Depois de selecionar a característica de seu interesse, por exemplo, 'fruit shape circular', você será levado à página da característica (cvterm); role para baixo até a subseção 'Dados de fenótipo/QTL'. Selecione a população de interesse na qual a característica foi avaliada. Por exemplo, a população 'Howard German x LA1589'. </b><br/>
 
 <% $pop_list %>
 
 
-<br><b>4. Visualmente determinar qual grupo de ligação contém um QTL, ver o limiar LOD na lenda. Por exemplo, o cromossomo 7 tem um QTL. Clique no grupo de ligação de interesse e na nova janela, siga o link "Vá para a página QTL...".</b><br/>
+<br><b>4. Determine visualmente qual grupo de ligação contém um QTL (veja o limiar de LOD na legenda). Por exemplo, o cromossomo 7 tem um QTL. Clique no grupo de ligação de interesse e, na nova janela, clique no link "Ir para a página do QTL...".</b><br/>
 
 <% $qtl_genome %>
 
@@ -45,13 +45,13 @@ A análise QTL é feita na mosca.<br />
 
 <% $qtl_detail %>
 
-<br><b>7. A página de detalhes do QTL (mostrada acima) apresenta referências cruzadas do QTL para outros dados genéticos e genômicos relevantes e ferramentas bioinformáticas. Por exemplo, para ver a localização genética do QTL de um característica de interesse e compará-lo com outros mapas genéticos usando o Visualizador Comparativo de Mapas, clique no link do grupo de ligação sob as posições genéticas dos marcadores QTL e subeção do Visualizador Comparativo de Mapas.</b><br/>
+<br><b>7. A página de detalhes do QTL (mostrada acima) apresenta referências cruzadas do QTL para outros dados genéticos e genômicos relevantes e ferramentas bioinformáticas. Por exemplo, para ver a localização genética do QTL de uma característica de interesse e compará-lo com outros mapas genéticos usando o Visualizador Comparativo de Mapas, clique no link do grupo de ligação sob as posições genéticas dos marcadores QTL e na subseção do Visualizador Comparativo de Mapas.</b><br/>
 
 <br>Localização genética do QTL:<br/>
 
 <% $chr_location %>
 
-<br><b>To learn on how to perform comparative analysis with genetic maps and physical maps of the same or different Solanaceae species, please read this <% $cview_help %> help document.</a></b><br />  
+<br><b>Para aprender a realizar análises comparativas com mapas genéticos e físicos da mesma ou de diferentes espécies de Solanaceae, leia este <% $cview_help %>documento de ajuda</a>.</b><br />  
 
 
-<br><b>If you have questions, please contact us at: <% $contact %> </b><br/>
+<br><b>Em caso de dúvidas, entre em contato conosco: <% $contact %> </b><br/>

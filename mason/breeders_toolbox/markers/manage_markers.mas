@@ -221,7 +221,7 @@ Titima Tantikanjana <tt15@cornell.edu>
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="addVcfParametersDialog">Add VCF Parameters in Marker Alleles</h4>
+                <h4 class="modal-title" id="addVcfParametersDialog">Adicionar parâmetros VCF aos alelos de marcadores</h4>
             </div>
             <div class="modal-body">
                 <div class="container-fluid">
@@ -233,7 +233,7 @@ Titima Tantikanjana <tt15@cornell.edu>
                                 <div class="col-sm-11">
                                     <div class="form-horizontal">
                                         <div class="form-group">
-                                            <label class="control-label col-sm-4">List Name:</label>
+                                            <label class="control-label col-sm-4">Nome da lista:</label>
                                                 <div class="col-sm-8">
                                                     <div class="input-group">
                                                         <select class="form-control" id="selected_marker_set2">
@@ -242,43 +242,43 @@ Titima Tantikanjana <tt15@cornell.edu>
                                                 </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="control-label col-sm-4">Chromosome:</label>
+                                            <label class="control-label col-sm-4">Cromossomo:</label>
                                                 <div class="col-sm-8">
                                                     <div class="input-group">
-                                                        <input type="text" class="form-control" id="chromosome_number" placeholder="Enter chromosome no.">
+                                                        <input type="text" class="form-control" id="chromosome_number" placeholder="Informe o nº do cromossomo">
                                                     </div>
                                                 </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="control-label col-sm-4">Start Position:</label>
+                                            <label class="control-label col-sm-4">Posição inicial:</label>
                                                 <div class="col-sm-8">
                                                     <div class="input-group">
-                                                        <input type="text" class="form-control" id="start_position" placeholder="Enter an integer value">
+                                                        <input type="text" class="form-control" id="start_position" placeholder="Informe um valor inteiro">
                                                     </div>
                                                 </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="control-label col-sm-4">End Position:</label>
+                                            <label class="control-label col-sm-4">Posição final:</label>
                                                 <div class="col-sm-8">
                                                     <div class="input-group">
-                                                        <input type="text" class="form-control" id="end_position" placeholder="Enter an integer value">
+                                                        <input type="text" class="form-control" id="end_position" placeholder="Informe um valor inteiro">
                                                     </div>
                                                 </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="control-label col-sm-4">Marker Name:</label>
+                                            <label class="control-label col-sm-4">Nome do marcador:</label>
                                                 <div class="col-sm-8">
                                                     <div class="input-group">
-                                                        <input type="text" class="form-control" id="marker_name2" placeholder="Enter marker name">
+                                                        <input type="text" class="form-control" id="marker_name2" placeholder="Informe o nome do marcador">
                                                     </div>
                                                 </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="control-label col-sm-4">SNP alleles:</label>
+                                            <label class="control-label col-sm-4">Alelos SNP:</label>
                                                 <div class="col-sm-8" >
                                                     <div class="input-group">
                                                         <select class="form-control" id="snp_allele">
-                                                            <option value="">Select SNP Alleles</option>
+                                                            <option value="">Selecione os alelos SNP</option>
                                                             <option value="AA">AA</option>
                                                             <option value="TT">TT</option>
                                                             <option value="GG">GG</option>
@@ -294,10 +294,10 @@ Titima Tantikanjana <tt15@cornell.edu>
                                                 </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="control-label col-sm-4">Quality (greater than):</label>
+                                            <label class="control-label col-sm-4">Qualidade (maior que):</label>
                                                 <div class="col-sm-8">
                                                     <div class="input-group">
-                                                        <input type="text" class="form-control" id="quality" placeholder="Enter an integer value">
+                                                        <input type="text" class="form-control" id="quality" placeholder="Informe um valor inteiro">
                                                     </div>
                                                 </div>
                                         </div>
@@ -306,7 +306,7 @@ Titima Tantikanjana <tt15@cornell.edu>
                                                 <div class="col-sm-8" >
                                                     <div class="input-group">
                                                         <select class="form-control" id="filter_status">
-                                                            <option value="">Select filter status</option>
+                                                            <option value="">Selecione o status do filtro</option>
                                                             <option value="PASS">PASS</option>
                                                         </select>
                                                     </div>
@@ -321,7 +321,7 @@ Titima Tantikanjana <tt15@cornell.edu>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
-                <button type="button" class="btn btn-primary" name="add_parameters" id="add_parameters">Add Filtering Parameters</button>
+                <button type="button" class="btn btn-primary" name="add_parameters" id="add_parameters">Adicionar parâmetros de filtragem</button>
             </div>
         </div>
     </div>

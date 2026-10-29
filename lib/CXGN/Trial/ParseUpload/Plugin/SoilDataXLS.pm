@@ -1,5 +1,6 @@
 package CXGN::Trial::ParseUpload::Plugin::SoilDataXLS;
 
+use utf8;
 use Moose::Role;
 use Spreadsheet::ParseExcel;
 use Spreadsheet::ParseXLSX;
@@ -37,7 +38,7 @@ sub _validate_with_plugin {
 
     $worksheet = ($excel_obj->worksheets())[0]; #support only one worksheet
     if (!$worksheet){
-        push @error_messages, "Spreadsheet must be on 1st tab in Excel (.xls) file";
+        push @error_messages, "A planilha deve estar na 1ª aba do arquivo Excel (.xls)";
         $errors{'error_messages'} = \@error_messages;
         $self->_set_parse_errors(\%errors);
         return;
@@ -46,7 +47,7 @@ sub _validate_with_plugin {
     my ($row_min, $row_max) = $worksheet->row_range();
     my ($col_min, $col_max) = $worksheet->col_range();
     if (($col_max - $col_min)  < 1 || ($row_max - $row_min) < 1 ) { #must have header and at least one row of soil data
-        push @error_messages, "Spreadsheet is missing header or no soil data";
+        push @error_messages, "A planilha não tem cabeçalho ou não contém dados de solo";
         $errors{'error_messages'} = \@error_messages;
         $self->_set_parse_errors(\%errors);
         return;
@@ -67,11 +68,11 @@ sub _validate_with_plugin {
     }
 
     if (!$soil_data_type_header || $soil_data_type_header ne 'soil_data_type' ) {
-        push @error_messages, "Cell A1: soil_data_type is missing from the header";
+        push @error_messages, "Célula A1: soil_data_type está ausente do cabeçalho";
     }
 
     if (!$soil_data_value_header || $soil_data_value_header ne 'soil_data_value' ) {
-        push @error_messages, "Cell A2: soil_data_value is missing from the header";
+        push @error_messages, "Célula A2: soil_data_value está ausente do cabeçalho";
     }
 
     for my $row (1 .. $row_max){
@@ -87,7 +88,7 @@ sub _validate_with_plugin {
         }
 
         if (!$data_type || $data_type eq '') {
-            push @error_messages, "Cell A$row_name: soil data type missing";
+            push @error_messages, "Célula A$row_name: tipo de dado de solo ausente";
         }
 
 #        if (!$data_value || $data_value eq '') {

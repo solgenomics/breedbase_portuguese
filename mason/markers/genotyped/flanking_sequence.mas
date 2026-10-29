@@ -6,13 +6,13 @@
 
 <%init>
     if ( !$blast_db ) {
-        print "<p><strong>ERRO: </strong>blast_db desaparecido!</p>";
+        print "<p><strong>ERRO: </strong>blast_db ausente!</p>";
     }
     if ( !$chrom ) {
-        print "<p><strong>ERRO: </strong>Nome cromo desaparecido!</p>";
+        print "<p><strong>ERRO: </strong>nome do cromossomo ausente!</p>";
     }
     if ( !$pos ) {
-        print "<p><strong>ERRO: </strong>Pos desaparecido!</p>";
+        print "<p><strong>ERRO: </strong>posição ausente!</p>";
     }
 </%init>
 

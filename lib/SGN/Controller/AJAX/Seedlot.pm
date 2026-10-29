@@ -1,5 +1,6 @@
 
 package SGN::Controller::AJAX::Seedlot;
+use utf8;
 
 use Moose;
 
@@ -167,11 +168,11 @@ sub seedlot_edit :Chained('seedlot_base') PathPart('edit') Args(0) {
     my $c = shift;
 
     if (!$c->user()){
-        $c->stash->{rest} = { error => "You must be logged in to edit seedlot details" };
+        $c->stash->{rest} = { error => "Você precisa estar conectado para editar os detalhes do lote de sementes" };
         $c->detach();
     }
     if (!$c->user()->check_roles("curator")) {
-        $c->stash->{rest} = { error => "You do not have the correct role to edit seedlot detail. Please contact us." };
+        $c->stash->{rest} = { error => "Você não tem a função adequada para editar os detalhes do lote de sementes. Entre em contato conosco." };
         $c->detach();
     }
     my $seedlot = $c->stash->{seedlot};
@@ -191,7 +192,7 @@ sub seedlot_edit :Chained('seedlot_base') PathPart('edit') Args(0) {
     my $schema = $c->stash->{schema};
     my $breeding_program = $schema->resultset('Project::Project')->find({name=>$breeding_program_name});
     if (!$breeding_program){
-        $c->stash->{rest} = { error => "The breeding program $breeding_program_name does not exist in the database. Please add it first or choose another." };
+        $c->stash->{rest} = { error => "O programa de melhoramento $breeding_program_name não existe no banco de dados. Adicione-o primeiro ou escolha outro." };
         $c->detach();
     }
     my $breeding_program_id = $breeding_program->project_id();
@@ -204,7 +205,7 @@ sub seedlot_edit :Chained('seedlot_base') PathPart('edit') Args(0) {
        #make sure the seedlot name is unique across the entire stock table
         my $previous_seedlot = $schema->resultset('Stock::Stock')->find({uniquename=>$seedlot_name }); #type_id=>$seedlot_cvterm_id});
         if ($previous_seedlot){
-            $c->stash->{rest} = {error=>'The given seedlot uniquename has been taken. Please use another name or use the existing seedlot.'};
+            $c->stash->{rest} = {error=>'O nome único informado para o lote de sementes já está em uso. Use outro nome ou use o lote de sementes existente.'};
             $c->detach();
         }
     }
@@ -217,19 +218,19 @@ sub seedlot_edit :Chained('seedlot_base') PathPart('edit') Args(0) {
         $cross_id = $schema->resultset('Stock::Stock')->find({uniquename=>$cross_uniquename, type_id=>$cross_cvterm_id})->stock_id();
     }
     if ($accession_uniquename && !$accession_id){
-        $c->stash->{rest} = {error=>'The given accession name is not in the database! Seedlots can only be added onto existing accessions.'};
+        $c->stash->{rest} = {error=>'O nome de acesso informado não está no banco de dados! Lotes de sementes só podem ser adicionados a acessos existentes.'};
         $c->detach();
     }
     if ($cross_uniquename && !$cross_id){
-        $c->stash->{rest} = {error=>'The given cross name is not in the database! Seedlots can only be added onto existing crosses.'};
+        $c->stash->{rest} = {error=>'O nome de cruzamento informado não está no banco de dados! Lotes de sementes só podem ser adicionados a cruzamentos existentes.'};
         $c->detach();
     }
     if ($accession_id && $cross_id){
-        $c->stash->{rest} = {error=>'A seedlot must have either an accession OR a cross as contents. Not both.'};
+        $c->stash->{rest} = {error=>'Um lote de sementes deve ter como conteúdo um acesso OU um cruzamento. Não ambos.'};
         $c->detach();
     }
     if (!$accession_id && !$cross_id){
-        $c->stash->{rest} = {error=>'A seedlot must have either an accession or a cross as contents.'};
+        $c->stash->{rest} = {error=>'Um lote de sementes deve ter como conteúdo um acesso ou um cruzamento.'};
         $c->detach();
     }
 
@@ -258,11 +259,11 @@ sub seedlot_delete :Chained('seedlot_base') PathPart('delete') Args(0) {
     my $c = shift;
 
     if (!$c->user()){
-        $c->stash->{rest} = { error => "You must be logged in the delete seedlots" };
+        $c->stash->{rest} = { error => "Você precisa estar conectado para excluir lotes de sementes" };
         $c->detach();
     }
     if (!$c->user()->check_roles("curator")) {
-        $c->stash->{rest} = { error => "You do not have the correct role to delete seedlots. Please contact us." };
+        $c->stash->{rest} = { error => "Você não tem a função adequada para excluir lotes de sementes. Entre em contato conosco." };
         $c->detach();
     }
 
@@ -282,11 +283,11 @@ sub seedlot_verify_delete_by_list :Path('/ajax/seedlots/verify_delete_by_list') 
     my $list_id = $c->req->param("list_id");
 
     if (!$c->user()){
-        $c->stash->{rest} = { error => "You must be logged in the delete seedlots" };
+        $c->stash->{rest} = { error => "Você precisa estar conectado para excluir lotes de sementes" };
         $c->detach();
     }
     if (!$c->user()->check_roles("curator")) {
-        $c->stash->{rest} = { error => "You do not have the correct role to delete seedlots. Please contact us." };
+        $c->stash->{rest} = { error => "Você não tem a função adequada para excluir lotes de sementes. Entre em contato conosco." };
         $c->detach();
     }
 
@@ -307,11 +308,11 @@ sub seedlot_confirm_delete_by_list :Path('/ajax/seedlots/confirm_delete_by_list'
     my $list_id = $c->req->param("list_id");
 
     if (!$c->user()){
-        $c->stash->{rest} = { error => "You must be logged in the delete seedlots" };
+        $c->stash->{rest} = { error => "Você precisa estar conectado para excluir lotes de sementes" };
         $c->detach();
     }
     if (!$c->user()->check_roles("curator")) {
-        $c->stash->{rest} = { error => "You do not have the correct role to delete seedlots. Please contact us." };
+        $c->stash->{rest} = { error => "Você não tem a função adequada para excluir lotes de sementes. Entre em contato conosco." };
         $c->detach();
     }
 
@@ -333,11 +334,11 @@ sub create_seedlot :Path('/ajax/breeders/seedlot-create/') :Args(0) {
     my $self = shift;
     my $c = shift;
     if (!$c->user){
-        $c->stash->{rest} = {error=>'You must be logged in to add a seedlot transaction!'};
+        $c->stash->{rest} = {error=>'Você precisa estar conectado para adicionar uma transação de lote de sementes!'};
         $c->detach();
     }
     if (!($c->user()->check_roles('curator') || $c->user()->check_roles('submitter'))) {
-        $c->stash->{rest} = { error => "You do not have the correct submitter or curator role to add seedlots. Please contact us." };
+        $c->stash->{rest} = { error => "Você não tem a função de submissor ou curador necessária para adicionar lotes de sementes. Entre em contato conosco." };
         $c->detach();
     }
     my $schema = $c->dbic_schema("Bio::Chado::Schema");
@@ -361,7 +362,7 @@ sub create_seedlot :Path('/ajax/breeders/seedlot-create/') :Args(0) {
 
     my $previous_seedlot = $schema->resultset('Stock::Stock')->find({uniquename=>$seedlot_uniquename }); #type_id=>$seedlot_cvterm_id});
     if ($previous_seedlot){
-        $c->stash->{rest} = {error=>'The given seedlot uniquename has been taken. Please use another name or use the existing seedlot.'};
+        $c->stash->{rest} = {error=>'O nome único informado para o lote de sementes já está em uso. Use outro nome ou use o lote de sementes existente.'};
         $c->detach();
     }
     my $accession_id;
@@ -370,7 +371,7 @@ sub create_seedlot :Path('/ajax/breeders/seedlot-create/') :Args(0) {
         my $stock_lookup = CXGN::Stock::StockLookup->new({ schema => $schema, stock_name=>$accession_uniquename });
         my $stock_lookup_rs = $stock_lookup->get_stock($accession_cvterm_id);
         if (!$stock_lookup_rs){
-            $c->stash->{rest} = {error=>'The accession name you provided does not match to a unique accession. Please make sure you are using the correct name or contact us.'};
+            $c->stash->{rest} = {error=>'O nome de acesso informado não corresponde a um acesso único. Verifique se está usando o nome correto ou entre em contato conosco.'};
             $c->detach();
         }
         $accession_id = $stock_lookup_rs->stock_id();
@@ -380,7 +381,7 @@ sub create_seedlot :Path('/ajax/breeders/seedlot-create/') :Args(0) {
     if ($cross_uniquename){
         my $rs = $schema->resultset('Stock::Stock')->find({uniquename=>$cross_uniquename, type_id=>$cross_cvterm_id});
         if (!$rs){
-            $c->stash->{rest} = {error=>'The cross name you provided does not match an existing cross name in the database.  Please make sure you are using the correct name or contact us.'};
+            $c->stash->{rest} = {error=>'O nome de cruzamento informado não corresponde a um cruzamento existente no banco de dados. Verifique se está usando o nome correto ou entre em contato conosco.'};
             $c->detach();
         }
         $cross_id = $rs->stock_id();
@@ -390,7 +391,7 @@ sub create_seedlot :Path('/ajax/breeders/seedlot-create/') :Args(0) {
     if ($seedlot_source) {
         my $rs = $schema->resultset('Stock::Stock')->find({uniquename=>$seedlot_source, type_id => { -in => [ $seedlot_cvterm_id, $plot_cvterm_id, $subplot_cvterm_id, $plant_cvterm_id ] }});
         if ( !$rs ) {
-            $c->stash->{rest} = {error=>'The given seedlot source name does not match an existing entry in the database. Seedlot sources must be an existing seedlot, plot, subplot, or plant name.'};
+            $c->stash->{rest} = {error=>'O nome de origem informado para o lote de sementes não corresponde a uma entrada existente no banco de dados. As origens de lotes de sementes devem ser um nome existente de lote de sementes, parcela, subparcela ou planta.'};
             $c->detach();
         }
         $source_id = $rs->stock_id();
@@ -403,11 +404,11 @@ sub create_seedlot :Path('/ajax/breeders/seedlot-create/') :Args(0) {
             my $source_accession_name = $source_seedlot->accession() ? $source_seedlot->accession()->[1] : undef;
             my $source_cross_name = $source_seedlot->cross() ? $source_seedlot->cross()->[1] : undef;
             if ( $accession_uniquename && $accession_uniquename ne $source_accession_name ) {
-                    $c->stash->{rest} = { error => "The source seedlot contents accession ($source_accession_name) does not match the new seedlot contents accession ($accession_uniquename)." };
+                    $c->stash->{rest} = { error => "O acesso do conteúdo do lote de sementes de origem ($source_accession_name) não corresponde ao acesso do conteúdo do novo lote de sementes ($accession_uniquename)." };
                     $c->detach();
             }
             elsif ( $cross_uniquename && $cross_uniquename ne $source_cross_name ) {
-                    $c->stash->{rest} = { error => "The source seedlot contents cross ($source_cross_name) does not match the new seedlot contents cross ($cross_uniquename)." };
+                    $c->stash->{rest} = { error => "O cruzamento do conteúdo do lote de sementes de origem ($source_cross_name) não corresponde ao cruzamento do conteúdo do novo lote de sementes ($cross_uniquename)." };
                     $c->detach();
             }
         }
@@ -432,41 +433,41 @@ sub create_seedlot :Path('/ajax/breeders/seedlot-create/') :Args(0) {
             }
             if ( $source_stock_type eq 'accession' ) {
                 if ( $accession_uniquename ne $source_stock_name ) {
-                    $c->stash->{rest} = { error => "The source stock accession ($source_stock_name) does not match the seedlot contents accession ($accession_uniquename)." };
+                    $c->stash->{rest} = { error => "O acesso do material de origem ($source_stock_name) não corresponde ao acesso do conteúdo do lote de sementes ($accession_uniquename)." };
                     $c->detach();
                 }
             }
             elsif ( $source_stock_type eq 'cross' ) {
                 if ( $cross_uniquename ne $source_stock_name ) {
-                    $c->stash->{rest} = { error => "The source stock cross ($source_stock_name) does not match the seedlot contents cross ($cross_uniquename)." };
+                    $c->stash->{rest} = { error => "O cruzamento do material de origem ($source_stock_name) não corresponde ao cruzamento do conteúdo do lote de sementes ($cross_uniquename)." };
                     $c->detach();
                 }
             }
             else {
-                $c->stash->{rest} = { error => "Could not check seedlot source due to undefined source stock type" };
+                $c->stash->{rest} = { error => "Não foi possível verificar a origem do lote de sementes porque o tipo do material de origem não está definido" };
                 $c->detach();
             }
         }
 
         else {
-            $c->stash->{rest} = {error => 'Unsupported seedlot source type'};
+            $c->stash->{rest} = {error => 'Tipo de origem de lote de sementes não suportado'};
             $c->detach();
         }
     }
     if ($accession_uniquename && !$accession_id){
-        $c->stash->{rest} = {error=>'The given accession name is not in the database! Seedlots can only be added onto existing accessions.'};
+        $c->stash->{rest} = {error=>'O nome de acesso informado não está no banco de dados! Lotes de sementes só podem ser adicionados a acessos existentes.'};
         $c->detach();
     }
     if ($cross_uniquename && !$cross_id){
-        $c->stash->{rest} = {error=>'The given cross name is not in the database! Seedlots can only be added onto existing crosses.'};
+        $c->stash->{rest} = {error=>'O nome de cruzamento informado não está no banco de dados! Lotes de sementes só podem ser adicionados a cruzamentos existentes.'};
         $c->detach();
     }
     if ($accession_id && $cross_id){
-        $c->stash->{rest} = {error=>'A seedlot must have either an accession OR a cross as contents. Not both.'};
+        $c->stash->{rest} = {error=>'Um lote de sementes deve ter como conteúdo um acesso OU um cruzamento. Não ambos.'};
         $c->detach();
     }
     if (!$accession_id && !$cross_id){
-        $c->stash->{rest} = {error=>'A seedlot must have either an accession or a cross as contents.'};
+        $c->stash->{rest} = {error=>'Um lote de sementes deve ter como conteúdo um acesso ou um cruzamento.'};
         $c->detach();
     }
 
@@ -481,12 +482,12 @@ sub create_seedlot :Path('/ajax/breeders/seedlot-create/') :Args(0) {
     my $breeding_program_id = $c->req->param("seedlot_breeding_program_id");
 
     if (!$timestamp){
-        $c->stash->{rest} = {error=>'A seedlot must have a timestamp for the transaction.'};
+        $c->stash->{rest} = {error=>'Um lote de sementes deve ter data e hora para a transação.'};
         $c->detach();
     }
 
     if (!$breeding_program_id){
-        $c->stash->{rest} = {error=>'A seedlot must have a breeding program.'};
+        $c->stash->{rest} = {error=>'Um lote de sementes deve ter um programa de melhoramento.'};
         $c->detach();
     }
 
@@ -579,7 +580,7 @@ sub upload_seedlots_POST : Args(0) {
         my $dbh = $c->dbc->dbh;
         my @user_info = CXGN::Login->new($dbh)->query_from_cookie($session_id);
         if (!$user_info[0]){
-            $c->stash->{rest} = {error=>'You must be logged in to upload seedlots!'};
+            $c->stash->{rest} = {error=>'Você precisa estar conectado para enviar lotes de sementes!'};
             $c->detach();
         }
         $user_id = $user_info[0];
@@ -588,7 +589,7 @@ sub upload_seedlots_POST : Args(0) {
         $user_name = $p->get_username;
     } else{
         if (!$c->user){
-            $c->stash->{rest} = {error=>'You must be logged in to upload seedlots!'};
+            $c->stash->{rest} = {error=>'Você precisa estar conectado para enviar lotes de sementes!'};
             $c->detach();
         }
         $user_id = $c->user()->get_object()->get_sp_person_id();
@@ -597,7 +598,7 @@ sub upload_seedlots_POST : Args(0) {
     }
 
     if (($user_role ne 'curator') && ($user_role ne 'submitter')) {
-        $c->stash->{rest} = {error=>'Only a submitter or a curator can upload seedlots'};
+        $c->stash->{rest} = {error=>'Apenas um submissor ou um curador pode enviar lotes de sementes'};
         $c->detach();
     }
 
@@ -618,7 +619,7 @@ sub upload_seedlots_POST : Args(0) {
     my $upload_from_accessions = $c->req->upload('seedlot_uploaded_file');
     my $upload_harvested_from_crosses = $c->req->upload('seedlot_harvested_uploaded_file');
     if (!$upload_from_accessions && !$upload_harvested_from_crosses){
-        $c->stash->{rest} = {error=>'You must upload a seedlot file!'};
+        $c->stash->{rest} = {error=>'Você precisa enviar um arquivo de lotes de sementes!'};
         $c->detach();
     }
     my $upload;
@@ -651,7 +652,7 @@ sub upload_seedlots_POST : Args(0) {
     my $archived_filename_with_path = $uploader->archive();
     my $md5 = $uploader->get_md5($archived_filename_with_path);
     if (!$archived_filename_with_path) {
-        $c->stash->{rest} = {error => "Could not save file $upload_original_name in archive",};
+        $c->stash->{rest} = {error => "Não foi possível salvar o arquivo $upload_original_name no arquivo permanente",};
         $c->detach();
     }
     unlink $upload_tempfile;
@@ -663,7 +664,7 @@ sub upload_seedlots_POST : Args(0) {
         my $return_error = '';
         my $parse_errors;
         if (!$parser->has_parse_errors() ){
-            $c->stash->{rest} = {error_string => "Could not get parsing errors"};
+            $c->stash->{rest} = {error_string => "Não foi possível obter os erros de análise do arquivo"};
         } else {
             $parse_errors = $parser->get_parse_errors();
 
@@ -683,7 +684,7 @@ sub upload_seedlots_POST : Args(0) {
             # Check for accession stock id or cross stock id
             if ( !defined $val->{accession_stock_id} && !defined $val->{cross_stock_id} ) {
                 print STDERR "--> ERROR: Acc/Cross Stock ID not defined!";
-                die "ERROR: Could not store/update seedlot $key (The specified accession or cross does not exist).";
+                die "ERRO: não foi possível armazenar/atualizar o lote de sementes $key (o acesso ou cruzamento especificado não existe).";
             }
 
             if (defined($val->{seedlot_id})){
@@ -708,7 +709,7 @@ sub upload_seedlots_POST : Args(0) {
             if ( defined $return->{error} ) {
                 print STDERR "SEEDLOT STORE ERROR:\n";
                 print STDERR Dumper $return->{error};
-                die "ERROR: Could not store/update seedlot $key (" . $return->{error} . ")";
+                die "ERRO: não foi possível armazenar/atualizar o lote de sementes $key (" . $return->{error} . ")";
             }
             my $seedlot_id = $return->{seedlot_id};
 
@@ -724,7 +725,7 @@ sub upload_seedlots_POST : Args(0) {
             }
 
             if (!$from_stock_id || !$from_stock_name){
-                die "ERROR: Could not store/update seedlot $key (An accession or cross must be given to make a seedlot transaction).";
+                die "ERRO: não foi possível armazenar/atualizar o lote de sementes $key (é necessário informar um acesso ou cruzamento para fazer uma transação de lote de sementes).";
             }
 
             # if an alternate source is given, use that, but only if there is an accession present, and
@@ -838,7 +839,7 @@ sub upload_seedlots_inventory_POST : Args(0) {
         my $dbh = $c->dbc->dbh;
         my @user_info = CXGN::Login->new($dbh)->query_from_cookie($session_id);
         if (!$user_info[0]){
-            $c->stash->{rest} = {error=>'You must be logged in to upload seedlot inventory!'};
+            $c->stash->{rest} = {error=>'Você precisa estar conectado para enviar o inventário de lotes de sementes!'};
             $c->detach();
         }
         $user_id = $user_info[0];
@@ -847,7 +848,7 @@ sub upload_seedlots_inventory_POST : Args(0) {
         $user_name = $p->get_username;
     } else{
         if (!$c->user){
-            $c->stash->{rest} = {error=>'You must be logged in to upload seedlot inventory!'};
+            $c->stash->{rest} = {error=>'Você precisa estar conectado para enviar o inventário de lotes de sementes!'};
             $c->detach();
         }
         $user_id = $c->user()->get_object()->get_sp_person_id();
@@ -856,7 +857,7 @@ sub upload_seedlots_inventory_POST : Args(0) {
     }
 
     if (($user_role ne 'curator') && ($user_role ne 'submitter')) {
-        $c->stash->{rest} = {error=>'Only a submitter or a curator can upload seedlot inventory'};
+        $c->stash->{rest} = {error=>'Apenas um submissor ou um curador pode enviar o inventário de lotes de sementes'};
         $c->detach();
     }
 
@@ -882,7 +883,7 @@ sub upload_seedlots_inventory_POST : Args(0) {
     my $archived_filename_with_path = $uploader->archive();
     my $md5 = $uploader->get_md5($archived_filename_with_path);
     if (!$archived_filename_with_path) {
-        $c->stash->{rest} = {error => "Could not save file $upload_original_name in archive",};
+        $c->stash->{rest} = {error => "Não foi possível salvar o arquivo $upload_original_name no arquivo permanente",};
         $c->detach();
     }
     unlink $upload_tempfile;
@@ -895,7 +896,7 @@ sub upload_seedlots_inventory_POST : Args(0) {
         my $return_error = '';
         my $parse_errors;
         if (!$parser->has_parse_errors() ){
-            $c->stash->{rest} = {error_string => "Could not get parsing errors"};
+            $c->stash->{rest} = {error_string => "Não foi possível obter os erros de análise do arquivo"};
         } else {
             $parse_errors = $parser->get_parse_errors();
             #print STDERR Dumper $parse_errors;
@@ -996,9 +997,9 @@ sub seedlot_transaction_details :Chained('seedlot_transaction_base') PathPart(''
     my $factor = $t->factor;
     my $transaction_type;
     if ($factor == 1) {
-        $transaction_type = 'added to this seedlot';
+        $transaction_type = 'adicionado a este lote de sementes';
     } elsif ($factor == -1) {
-        $transaction_type = 'removed from this seedlot';
+        $transaction_type = 'removido deste lote de sementes';
     }
 
     $c->stash->{rest} = {
@@ -1020,11 +1021,11 @@ sub edit_seedlot_transaction :Chained('seedlot_transaction_base') PathPart('edit
     my $schema = $c->dbic_schema("Bio::Chado::Schema");
 
     if (!$c->user()){
-        $c->stash->{rest} = { error => "You must be logged in to edit seedlot transactions" };
+        $c->stash->{rest} = { error => "Você precisa estar conectado para editar transações de lotes de sementes" };
         $c->detach();
     }
     if (!$c->user()->check_roles("curator")) {
-        $c->stash->{rest} = { error => "You do not have the correct role to edit seedlot transactions. Please contact us." };
+        $c->stash->{rest} = { error => "Você não tem a função adequada para editar transações de lotes de sementes. Entre em contato conosco." };
         $c->detach();
     }
 
@@ -1069,7 +1070,7 @@ sub edit_seedlot_transaction :Chained('seedlot_transaction_base') PathPart('edit
 
         $c->stash->{rest} = { success => 1 };
     } else {
-        $c->stash->{rest} = { error => "Something went wrong with the transaction update" };
+        $c->stash->{rest} = { error => "Algo deu errado ao atualizar a transação" };
     }
 }
 
@@ -1144,12 +1145,12 @@ sub add_seedlot_transaction :Chained('seedlot_base') :PathPart('transaction/add'
     my $default_seedlot_material_type = $c->config->{default_seedlot_material_type};
 
     if (!$c->user){
-        $c->stash->{rest} = {error=>'You must be logged in to add a seedlot transaction!'};
+        $c->stash->{rest} = {error=>'Você precisa estar conectado para adicionar uma transação de lote de sementes!'};
         $c->detach();
     }
 
     if (!($c->user()->check_roles('curator') || $c->user()->check_roles('submitter'))) {
-        $c->stash->{rest} = { error => 'Only a submitter or a curator can add seedlot transaction' };
+        $c->stash->{rest} = { error => 'Apenas um submissor ou um curador pode adicionar transação de lote de sementes' };
         $c->detach();
     }
 
@@ -1182,7 +1183,7 @@ sub add_seedlot_transaction :Chained('seedlot_base') :PathPart('transaction/add'
 
             my $previous_seedlot = $schema->resultset('Stock::Stock')->find({uniquename=>$stock_uniquename, type_id=>$seedlot_cvterm_id});
             if ($previous_seedlot){
-                $c->stash->{rest} = {error=>'The given seedlot uniquename has been taken. Please use another name or use the existing seedlot.'};
+                $c->stash->{rest} = {error=>'O nome único informado para o lote de sementes já está em uso. Use outro nome ou use o lote de sementes existente.'};
                 $c->detach();
             }
             my $accession_id;
@@ -1194,19 +1195,19 @@ sub add_seedlot_transaction :Chained('seedlot_base') :PathPart('transaction/add'
                 $cross_id = $schema->resultset('Stock::Stock')->find({uniquename=>$cross_uniquename, type_id=>$cross_cvterm_id})->stock_id();
             }
             if ($accession_uniquename && !$accession_id){
-                $c->stash->{rest} = {error=>'The given accession name is not in the database! Seedlots can only be added onto existing accessions.'};
+                $c->stash->{rest} = {error=>'O nome de acesso informado não está no banco de dados! Lotes de sementes só podem ser adicionados a acessos existentes.'};
                 $c->detach();
             }
             if ($cross_uniquename && !$cross_id){
-                $c->stash->{rest} = {error=>'The given cross name is not in the database! Seedlots can only be added onto existing crosses.'};
+                $c->stash->{rest} = {error=>'O nome de cruzamento informado não está no banco de dados! Lotes de sementes só podem ser adicionados a cruzamentos existentes.'};
                 $c->detach();
             }
             if ($accession_id && $cross_id){
-                $c->stash->{rest} = {error=>'A seedlot must have either an accession OR a cross as contents. Not both.'};
+                $c->stash->{rest} = {error=>'Um lote de sementes deve ter como conteúdo um acesso OU um cruzamento. Não ambos.'};
                 $c->detach();
             }
             if (!$accession_id && !$cross_id){
-                $c->stash->{rest} = {error=>'A seedlot must have either an accession or a cross as contents.'};
+                $c->stash->{rest} = {error=>'Um lote de sementes deve ter como conteúdo um acesso ou um cruzamento.'};
                 $c->detach();
             }
 
@@ -1329,11 +1330,11 @@ sub delete_seedlot_transaction :Chained('seedlot_transaction_base') PathPart('de
     my $schema = $c->dbic_schema("Bio::Chado::Schema");
 
     if (!$c->user()){
-        $c->stash->{rest} = { error => "You must be logged in to delete seedlot transactions" };
+        $c->stash->{rest} = { error => "Você precisa estar conectado para excluir transações de lotes de sementes" };
         $c->detach();
     }
     if (!$c->user()->check_roles("curator")) {
-        $c->stash->{rest} = { error => "You do not have the correct role to delete seedlot transactions. Please contact us." };
+        $c->stash->{rest} = { error => "Você não tem a função adequada para excluir transações de lotes de sementes. Entre em contato conosco." };
         $c->detach();
     }
 
@@ -1367,7 +1368,7 @@ sub delete_seedlot_transaction :Chained('seedlot_transaction_base') PathPart('de
         $c->stash->{rest} = { success => 1 };
     }
     else {
-        $c->stash->{rest} = { error => "An error occured deleting the seedlot transaction" };
+        $c->stash->{rest} = { error => "Ocorreu um erro ao excluir a transação do lote de sementes" };
     }
 }
 
@@ -1397,7 +1398,7 @@ sub seedlot_maintenance_ontology : Path('/ajax/breeders/seedlot/maintenance/onto
 
     # Make sure ontology is set in the conf file
     if ( !defined $c->config->{seedlot_maintenance_event_ontology_root} || $c->config->{seedlot_maintenance_event_ontology_root} eq '' ) {
-        $c->stash->{rest} = { error => 'Seedlot Maintenance Events are not enabled on this server!' };
+        $c->stash->{rest} = { error => 'Os eventos de manutenção de lotes de sementes não estão habilitados neste servidor!' };
         $c->detach();
     }
 
@@ -1570,13 +1571,13 @@ sub seedlot_maintenance_events_POST {
 
     # Require user login
     if (!$c->user){
-        $c->stash->{rest} = {error => 'You must be logged in to add a seedlot transaction!'};
+        $c->stash->{rest} = {error => 'Você precisa estar conectado para adicionar uma transação de lote de sementes!'};
         $c->detach();
     }
 
     # Get user information and check role
     if (!($c->user()->check_roles('curator') || $c->user()->check_roles('submitter'))) {
-        $c->stash->{rest} = { error => 'You do not have the required privileges to seedlot maintenance events.' };
+        $c->stash->{rest} = { error => 'Você não tem as permissões necessárias para eventos de manutenção de lotes de sementes.' };
         $c->detach();
     }
 
@@ -1584,7 +1585,7 @@ sub seedlot_maintenance_events_POST {
     my $body = $c->request->data;
     my $events = $body->{events};
     if ( !defined $events || $events eq '' || ref $events ne 'ARRAY' ) {
-        $c->stash->{rest} = {error => 'Event parameters not provided!'};
+        $c->stash->{rest} = {error => 'Parâmetros do evento não informados!'};
         $c->detach();
     }
 
@@ -1625,7 +1626,7 @@ sub seedlot_maintenance_events_POST {
         $c->stash->{rest} = { events => $processed_events };
     };
     if ($@) {
-        $c->stash->{rest} = {error => "Could not store seedlot maintenance events [$@]!"};
+        $c->stash->{rest} = {error => "Não foi possível armazenar os eventos de manutenção de lotes de sementes [$@]!"};
         $c->detach();
     }
 }
@@ -1703,20 +1704,20 @@ sub seedlot_maintenance_event_upload_POST : Args(0) {
 
     # Check Logged In Status
     if (!$c->user){
-        $c->stash->{rest} = {error => 'You must be logged in to do this!'};
+        $c->stash->{rest} = {error => 'Você precisa estar conectado para fazer isso!'};
         $c->detach();
     }
     my $user_id = $c->user()->get_object()->get_sp_person_id();
     my $user_role = $c->user->get_object->get_user_type();
     if ( $user_role ne 'submitter' && $user_role ne 'curator' ) {
-        $c->stash->{rest} = {error => 'You do not have permission in the database to do this! Please contact us.'};
+        $c->stash->{rest} = {error => 'Você não tem permissão no banco de dados para fazer isso! Entre em contato conosco.'};
         $c->detach();
     }
 
     # Archive upload file
     my $upload = $c->req->upload('file');
     if ( !defined $upload || $upload eq '' ) {
-        $c->stash->{rest} = {error => 'You must provide the upload file!'};
+        $c->stash->{rest} = {error => 'Você precisa fornecer o arquivo a ser enviado!'};
         $c->detach();
     }
     else {
@@ -1738,7 +1739,7 @@ sub seedlot_maintenance_event_upload_POST : Args(0) {
         });
         my $archived_filepath = $uploader->archive();
         if (!$archived_filepath) {
-            $c->stash->{rest} = {error => "Could not save file $upload_original_name in archive",};
+            $c->stash->{rest} = {error => "Não foi possível salvar o arquivo $upload_original_name no arquivo permanente",};
             $c->detach();
         }
         unlink $upload_tempfile;
@@ -1755,7 +1756,7 @@ sub seedlot_maintenance_event_upload_POST : Args(0) {
         # No parsed data returned...
         if (!$parsed_data) {
             if (!$parser->has_parse_errors()) {
-                $c->stash->{rest} = { error => "An unknown error occurred" };
+                $c->stash->{rest} = { error => "Ocorreu um erro desconhecido" };
                 $c->detach();
             }
             else {
@@ -1806,11 +1807,11 @@ sub discard_seedlots : Path('/ajax/breeders/seedlot/discard') :Args(0) {
     my $discard_date = $time->ymd();
 
     if (!$c->user()){
-        $c->stash->{rest} = { error_string => "You must be logged in to discard seedlot" };
+        $c->stash->{rest} = { error_string => "Você precisa estar conectado para descartar o lote de sementes" };
         return;
     }
     if (!$c->user()->check_roles("curator")) {
-        $c->stash->{rest} = { error_string => "You do not have the correct role to discard seedlot. Please contact us." };
+        $c->stash->{rest} = { error_string => "Você não tem a função adequada para descartar o lote de sementes. Entre em contato conosco." };
         return;
     }
 
@@ -1825,7 +1826,7 @@ sub discard_seedlots : Path('/ajax/breeders/seedlot/discard') :Args(0) {
         my @seedlots_missing = @{$seedlot_validator->validate($schema,'seedlots',\@seedlots_to_discard)->{'missing'}};
 
         if (scalar(@seedlots_missing) > 0){
-            $c->stash->{rest} = { error_string => "The following seedlots are not in the database or are marked as discarded : ".join(',',@seedlots_missing) };
+            $c->stash->{rest} = { error_string => "Os seguintes lotes de sementes não estão no banco de dados ou estão marcados como descartados :".join(',',@seedlots_missing) };
             return;
         }
     } elsif (defined $seedlot_name) {
@@ -1862,7 +1863,7 @@ sub discard_seedlots : Path('/ajax/breeders/seedlot/discard') :Args(0) {
         $seedlot_to_discard->store();
 
         if (!$seedlot_to_discard->store()){
-            $c->stash->{rest} = {error_string => "Error discarding seedlot",};
+            $c->stash->{rest} = {error_string => "Erro ao descartar o lote de sementes",};
             return;
         }
     }
@@ -1883,11 +1884,11 @@ sub undo_discarded_seedlots : Path('/ajax/breeders/seedlot/undo_discard') :Args(
     my $seedlot_id = $c->req->param("seedlot_id");
 
     if (!$c->user()){
-        $c->stash->{rest} = { error_string => "You must be logged in to undo discading this seedlot" };
+        $c->stash->{rest} = { error_string => "Você precisa estar conectado para desfazer o descarte deste lote de sementes" };
         return;
     }
     if (!$c->user()->check_roles("curator")) {
-        $c->stash->{rest} = { error_string => "You do not have the correct role to undo discarding this seedlot. Please contact us." };
+        $c->stash->{rest} = { error_string => "Você não tem a função adequada para desfazer o descarte deste lote de sementes. Entre em contato conosco." };
         return;
     }
 
@@ -1927,7 +1928,7 @@ sub upload_transactions_POST : Args(0) {
         my $dbh = $c->dbc->dbh;
         my @user_info = CXGN::Login->new($dbh)->query_from_cookie($session_id);
         if (!$user_info[0]){
-            $c->stash->{rest} = {error=>'You must be logged in to upload seedlots!'};
+            $c->stash->{rest} = {error=>'Você precisa estar conectado para enviar lotes de sementes!'};
             $c->detach();
         }
         $user_id = $user_info[0];
@@ -1936,7 +1937,7 @@ sub upload_transactions_POST : Args(0) {
         $user_name = $p->get_username;
     } else {
         if (!$c->user){
-            $c->stash->{rest} = {error=>'You must be logged in to upload seedlots!'};
+            $c->stash->{rest} = {error=>'Você precisa estar conectado para enviar lotes de sementes!'};
             $c->detach();
         }
         $user_id = $c->user()->get_object()->get_sp_person_id();
@@ -1945,7 +1946,7 @@ sub upload_transactions_POST : Args(0) {
     }
 
     if (($user_role ne 'curator') && ($user_role ne 'submitter')) {
-        $c->stash->{rest} = {error=>'Only a submitter or a curator can upload seedlot transactions'};
+        $c->stash->{rest} = {error=>'Apenas um submissor ou um curador pode enviar transações de lotes de sementes'};
         $c->detach();
     }
 
@@ -1961,7 +1962,7 @@ sub upload_transactions_POST : Args(0) {
     my $new_seedlot_organization = $c->req->param("new_seedlot_organization_name");
 
     if (!$upload_seedlots_to_seedlots && !$upload_seedlots_to_new_seedlots && !$upload_seedlots_to_plots && !$upload_seedlots_to_unspecified_names){
-        $c->stash->{rest} = {error=>'You must upload a transaction file!'};
+        $c->stash->{rest} = {error=>'Você precisa enviar um arquivo de transações!'};
         $c->detach();
     }
     my $upload;
@@ -2002,7 +2003,7 @@ sub upload_transactions_POST : Args(0) {
     my $archived_filename_with_path = $uploader->archive();
     my $md5 = $uploader->get_md5($archived_filename_with_path);
     if (!$archived_filename_with_path) {
-        $c->stash->{rest} = {error => "Could not save file $upload_original_name in archive",};
+        $c->stash->{rest} = {error => "Não foi possível salvar o arquivo $upload_original_name no arquivo permanente",};
         $c->detach();
     }
     unlink $upload_tempfile;
@@ -2014,7 +2015,7 @@ sub upload_transactions_POST : Args(0) {
         my $return_error = '';
         my $parse_errors;
         if (!$parser->has_parse_errors() ){
-            $c->stash->{rest} = {error_string => "Could not get parsing errors"};
+            $c->stash->{rest} = {error_string => "Não foi possível obter os erros de análise do arquivo"};
         } else {
             $parse_errors = $parser->get_parse_errors();
 
@@ -2182,12 +2183,12 @@ sub add_transactions_using_list_POST : Args(0) {
     my $schema = $c->dbic_schema("Bio::Chado::Schema");
 
     if (!$c->user){
-        $c->stash->{rest} = {error=>'You must be logged in to add seedlot transactions!'};
+        $c->stash->{rest} = {error=>'Você precisa estar conectado para adicionar transações de lotes de sementes!'};
         $c->detach();
     }
 
     if (!($c->user()->check_roles('curator') || $c->user()->check_roles('submitter'))) {
-        $c->stash->{rest} = { error => 'Only a submitter or a curator can add seedlot transactions' };
+        $c->stash->{rest} = { error => 'Apenas um submissor ou um curador pode adicionar transações de lotes de sementes' };
         $c->detach();
     }
 

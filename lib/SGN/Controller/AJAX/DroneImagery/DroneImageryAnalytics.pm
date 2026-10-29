@@ -11,6 +11,7 @@ functions for drone imagery analytics
 =cut
 
 package SGN::Controller::AJAX::DroneImagery::DroneImageryAnalytics;
+use utf8;
 
 use strict;
 use warnings;
@@ -90,7 +91,7 @@ sub drone_imagery_calculate_analytics_POST : Args(0) {
     my $field_trial_id_list_string = join ',', @$field_trial_id_list;
 
     if (scalar(@$field_trial_id_list) != 1) {
-        $c->stash->{rest} = { error => "Please select one field trial!"};
+        $c->stash->{rest} = { error => "Selecione um único ensaio de campo!"};
         return;
     }
 
@@ -1053,7 +1054,7 @@ sub drone_imagery_calculate_analytics_POST : Args(0) {
                         my ($data, $unique_traits) = $phenotypes_search->search();
 
                         if (scalar(@$data) == 0) {
-                            $c->stash->{rest} = { error => "There are no phenotypes for the trial you have selected!"};
+                            $c->stash->{rest} = { error => "Não há fenótipos para o ensaio selecionado!"};
                             return;
                         }
 
@@ -1188,7 +1189,7 @@ sub drone_imagery_calculate_analytics_POST : Args(0) {
 
                         }
                         else {
-                            $c->stash->{rest} = { error => "The value of $compute_relationship_matrix_from_htp_phenotypes_time_points htp_pheno_rel_matrix_time_points is not valid!" };
+                            $c->stash->{rest} = { error => "O valor $compute_relationship_matrix_from_htp_phenotypes_time_points de htp_pheno_rel_matrix_time_points não é válido!" };
                             return;
                         }
 
@@ -1243,7 +1244,7 @@ sub drone_imagery_calculate_analytics_POST : Args(0) {
                             my $status = system($htp_cmd);
                         }
                         else {
-                            $c->stash->{rest} = { error => "The value of $compute_relationship_matrix_from_htp_phenotypes_type htp_pheno_rel_matrix_type is not valid!" };
+                            $c->stash->{rest} = { error => "O valor $compute_relationship_matrix_from_htp_phenotypes_type de htp_pheno_rel_matrix_type não é válido!" };
                             return;
                         }
 
@@ -1332,7 +1333,7 @@ sub drone_imagery_calculate_analytics_POST : Args(0) {
                         $grm_file = $stats_out_htp_rel_tempfile_out;
                     }
                     else {
-                        $c->stash->{rest} = { error => "The value of $compute_relationship_matrix_from_htp_phenotypes is not valid!" };
+                        $c->stash->{rest} = { error => "O valor de $compute_relationship_matrix_from_htp_phenotypes não é válido!" };
                         return;
                     }
                 };
@@ -1354,12 +1355,12 @@ sub drone_imagery_calculate_analytics_POST : Args(0) {
                     @sorted_trait_names = sort keys %$unique_traits;
 
                     if (scalar(@$trait_id_list) < 2) {
-                        $c->stash->{rest} = { error => "Select more than 2 time points!"};
+                        $c->stash->{rest} = { error => "Selecione mais de 2 pontos no tempo!"};
                         return;
                     }
 
                     if (scalar(@$data) == 0) {
-                        $c->stash->{rest} = { error => "There are no phenotypes for the trials and traits you have selected!"};
+                        $c->stash->{rest} = { error => "Não há fenótipos para os ensaios e características selecionados!"};
                         return;
                     }
 
@@ -1472,7 +1473,7 @@ sub drone_imagery_calculate_analytics_POST : Args(0) {
                         }
                     }
                     if (scalar(keys %seen_times) == 0) {
-                        $c->stash->{rest} = { error => "There are no phenotypes with associated days after planting time associated to the traits you have selected!"};
+                        $c->stash->{rest} = { error => "Não há fenótipos com tempo em dias após o plantio associados às características selecionadas!"};
                         return;
                     }
 
@@ -1721,7 +1722,7 @@ sub drone_imagery_calculate_analytics_POST : Args(0) {
                                         }
                                     }
                                     else {
-                                        $c->stash->{rest} = { error => "There are not rows and columns for all of the plots! Do not try to use a Euclidean distance between plots for the permanent environment structure"};
+                                        $c->stash->{rest} = { error => "Nem todas as parcelas têm linha e coluna! Não tente usar a distância euclidiana entre parcelas para a estrutura de ambiente permanente"};
                                         return;
                                     }
                                 }
@@ -1757,7 +1758,7 @@ sub drone_imagery_calculate_analytics_POST : Args(0) {
                         my ($data_permanent_environment_structure, $unique_traits_permanent_environment_structure) = $phenotypes_search_permanent_environment_structure->search();
 
                         if (scalar(@$data_permanent_environment_structure) == 0) {
-                            $c->stash->{rest} = { error => "There are no phenotypes for the permanent environment structure traits you have selected!"};
+                            $c->stash->{rest} = { error => "Não há fenótipos para as características de estrutura de ambiente permanente selecionadas!"};
                             return;
                         }
 
@@ -1895,7 +1896,7 @@ sub drone_imagery_calculate_analytics_POST : Args(0) {
                         my @sorted_trait_names_permanent_environment_structure = sort keys %$unique_traits_permanent_environment_structure;
 
                         if (scalar(@$data_permanent_environment_structure) == 0) {
-                            $c->stash->{rest} = { error => "There are no phenotypes for the permanent environment structure traits you have selected!"};
+                            $c->stash->{rest} = { error => "Não há fenótipos para as características de estrutura de ambiente permanente selecionadas!"};
                             return;
                         }
 
@@ -2083,7 +2084,7 @@ sub drone_imagery_calculate_analytics_POST : Args(0) {
                         }
 
                         if ($run_stats_fault || $current_env_row_count == 0) {
-                            $c->stash->{rest} = { error => "There was a problem running the 2D-spline model for the permanent environment structure!"};
+                            $c->stash->{rest} = { error => "Ocorreu um problema ao executar o modelo 2D-spline para a estrutura de ambiente permanente!"};
                             return;
                         }
                     }
@@ -3438,7 +3439,7 @@ sub drone_imagery_calculate_analytics_POST : Args(0) {
                     @sorted_trait_names_2 = sort keys %$unique_traits_2;
 
                     if (scalar(@$data_2) == 0) {
-                        $c->stash->{rest} = { error => "There are no phenotypes for the trials and traits you have selected!"};
+                        $c->stash->{rest} = { error => "Não há fenótipos para os ensaios e características selecionados!"};
                         return;
                     }
 
@@ -4151,7 +4152,7 @@ sub drone_imagery_calculate_analytics_POST : Args(0) {
                         my ($data, $unique_traits) = $phenotypes_search->search();
 
                         if (scalar(@$data) == 0) {
-                            $c->stash->{rest} = { error => "There are no phenotypes for the trial you have selected!"};
+                            $c->stash->{rest} = { error => "Não há fenótipos para o ensaio selecionado!"};
                             return;
                         }
 
@@ -4286,7 +4287,7 @@ sub drone_imagery_calculate_analytics_POST : Args(0) {
 
                         }
                         else {
-                            $c->stash->{rest} = { error => "The value of $compute_relationship_matrix_from_htp_phenotypes_time_points htp_pheno_rel_matrix_time_points is not valid!" };
+                            $c->stash->{rest} = { error => "O valor $compute_relationship_matrix_from_htp_phenotypes_time_points de htp_pheno_rel_matrix_time_points não é válido!" };
                             return;
                         }
 
@@ -4341,7 +4342,7 @@ sub drone_imagery_calculate_analytics_POST : Args(0) {
                             my $status = system($htp_cmd);
                         }
                         else {
-                            $c->stash->{rest} = { error => "The value of $compute_relationship_matrix_from_htp_phenotypes_type htp_pheno_rel_matrix_type is not valid!" };
+                            $c->stash->{rest} = { error => "O valor $compute_relationship_matrix_from_htp_phenotypes_type de htp_pheno_rel_matrix_type não é válido!" };
                             return;
                         }
 
@@ -4410,7 +4411,7 @@ sub drone_imagery_calculate_analytics_POST : Args(0) {
                         $grm_file = $stats_out_htp_rel_tempfile_out;
                     }
                     else {
-                        $c->stash->{rest} = { error => "The value of $compute_relationship_matrix_from_htp_phenotypes is not valid!" };
+                        $c->stash->{rest} = { error => "O valor de $compute_relationship_matrix_from_htp_phenotypes não é válido!" };
                         return;
                     }
                 };
@@ -5713,7 +5714,7 @@ sub drone_imagery_calculate_analytics_POST : Args(0) {
                     @sorted_trait_names_2 = sort keys %$unique_traits_2;
 
                     if (scalar(@$data_2) == 0) {
-                        $c->stash->{rest} = { error => "There are no phenotypes for the trials and traits you have selected!"};
+                        $c->stash->{rest} = { error => "Não há fenótipos para os ensaios e características selecionados!"};
                         return;
                     }
 
@@ -6426,7 +6427,7 @@ sub drone_imagery_calculate_analytics_POST : Args(0) {
                         my ($data, $unique_traits) = $phenotypes_search->search();
 
                         if (scalar(@$data) == 0) {
-                            $c->stash->{rest} = { error => "There are no phenotypes for the trial you have selected!"};
+                            $c->stash->{rest} = { error => "Não há fenótipos para o ensaio selecionado!"};
                             return;
                         }
 
@@ -6561,7 +6562,7 @@ sub drone_imagery_calculate_analytics_POST : Args(0) {
 
                         }
                         else {
-                            $c->stash->{rest} = { error => "The value of $compute_relationship_matrix_from_htp_phenotypes_time_points htp_pheno_rel_matrix_time_points is not valid!" };
+                            $c->stash->{rest} = { error => "O valor $compute_relationship_matrix_from_htp_phenotypes_time_points de htp_pheno_rel_matrix_time_points não é válido!" };
                             return;
                         }
 
@@ -6616,7 +6617,7 @@ sub drone_imagery_calculate_analytics_POST : Args(0) {
                             my $status = system($htp_cmd);
                         }
                         else {
-                            $c->stash->{rest} = { error => "The value of $compute_relationship_matrix_from_htp_phenotypes_type htp_pheno_rel_matrix_type is not valid!" };
+                            $c->stash->{rest} = { error => "O valor $compute_relationship_matrix_from_htp_phenotypes_type de htp_pheno_rel_matrix_type não é válido!" };
                             return;
                         }
 
@@ -6685,7 +6686,7 @@ sub drone_imagery_calculate_analytics_POST : Args(0) {
                         $grm_file = $stats_out_htp_rel_tempfile_out;
                     }
                     else {
-                        $c->stash->{rest} = { error => "The value of $compute_relationship_matrix_from_htp_phenotypes is not valid!" };
+                        $c->stash->{rest} = { error => "O valor de $compute_relationship_matrix_from_htp_phenotypes não é válido!" };
                         return;
                     }
                 };
@@ -8001,7 +8002,7 @@ sub drone_imagery_calculate_analytics_POST : Args(0) {
                     @sorted_trait_names_5 = sort keys %$unique_traits_5;
 
                     if (scalar(@$data_5) == 0) {
-                        $c->stash->{rest} = { error => "There are no phenotypes for the trials and traits you have selected!"};
+                        $c->stash->{rest} = { error => "Não há fenótipos para os ensaios e características selecionados!"};
                         return;
                     }
 
@@ -8093,7 +8094,7 @@ sub drone_imagery_calculate_analytics_POST : Args(0) {
                         }
                     }
                     if (scalar(keys %seen_times_5) == 0) {
-                        $c->stash->{rest} = { error => "There are no phenotypes with associated days after planting time associated to the traits you have selected!"};
+                        $c->stash->{rest} = { error => "Não há fenótipos com tempo em dias após o plantio associados às características selecionadas!"};
                         return;
                     }
 
@@ -8799,7 +8800,7 @@ sub drone_imagery_calculate_analytics_POST : Args(0) {
                         my ($data, $unique_traits) = $phenotypes_search->search();
 
                         if (scalar(@$data) == 0) {
-                            $c->stash->{rest} = { error => "There are no phenotypes for the trial you have selected!"};
+                            $c->stash->{rest} = { error => "Não há fenótipos para o ensaio selecionado!"};
                             return;
                         }
 
@@ -8934,7 +8935,7 @@ sub drone_imagery_calculate_analytics_POST : Args(0) {
 
                         }
                         else {
-                            $c->stash->{rest} = { error => "The value of $compute_relationship_matrix_from_htp_phenotypes_time_points htp_pheno_rel_matrix_time_points is not valid!" };
+                            $c->stash->{rest} = { error => "O valor $compute_relationship_matrix_from_htp_phenotypes_time_points de htp_pheno_rel_matrix_time_points não é válido!" };
                             return;
                         }
 
@@ -8999,7 +9000,7 @@ sub drone_imagery_calculate_analytics_POST : Args(0) {
                             my $status = system($htp_cmd);
                         }
                         else {
-                            $c->stash->{rest} = { error => "The value of $compute_relationship_matrix_from_htp_phenotypes_type htp_pheno_rel_matrix_type is not valid!" };
+                            $c->stash->{rest} = { error => "O valor $compute_relationship_matrix_from_htp_phenotypes_type de htp_pheno_rel_matrix_type não é válido!" };
                             return;
                         }
 
@@ -9066,7 +9067,7 @@ sub drone_imagery_calculate_analytics_POST : Args(0) {
                         $grm_file = $stats_out_htp_rel_tempfile_out;
                     }
                     else {
-                        $c->stash->{rest} = { error => "The value of $compute_relationship_matrix_from_htp_phenotypes is not valid!" };
+                        $c->stash->{rest} = { error => "O valor de $compute_relationship_matrix_from_htp_phenotypes não é válido!" };
                         return;
                     }
                 };
@@ -10377,7 +10378,7 @@ sub drone_imagery_calculate_analytics_POST : Args(0) {
                     @sorted_trait_names_6 = sort keys %$unique_traits_6;
 
                     if (scalar(@$data_6) == 0) {
-                        $c->stash->{rest} = { error => "There are no phenotypes for the trials and traits you have selected!"};
+                        $c->stash->{rest} = { error => "Não há fenótipos para os ensaios e características selecionados!"};
                         return;
                     }
 
@@ -10469,7 +10470,7 @@ sub drone_imagery_calculate_analytics_POST : Args(0) {
                         }
                     }
                     if (scalar(keys %seen_times_6) == 0) {
-                        $c->stash->{rest} = { error => "There are no phenotypes with associated days after planting time associated to the traits you have selected!"};
+                        $c->stash->{rest} = { error => "Não há fenótipos com tempo em dias após o plantio associados às características selecionadas!"};
                         return;
                     }
 
@@ -11175,7 +11176,7 @@ sub drone_imagery_calculate_analytics_POST : Args(0) {
                         my ($data, $unique_traits) = $phenotypes_search->search();
 
                         if (scalar(@$data) == 0) {
-                            $c->stash->{rest} = { error => "There are no phenotypes for the trial you have selected!"};
+                            $c->stash->{rest} = { error => "Não há fenótipos para o ensaio selecionado!"};
                             return;
                         }
 
@@ -11310,7 +11311,7 @@ sub drone_imagery_calculate_analytics_POST : Args(0) {
 
                         }
                         else {
-                            $c->stash->{rest} = { error => "The value of $compute_relationship_matrix_from_htp_phenotypes_time_points htp_pheno_rel_matrix_time_points is not valid!" };
+                            $c->stash->{rest} = { error => "O valor $compute_relationship_matrix_from_htp_phenotypes_time_points de htp_pheno_rel_matrix_time_points não é válido!" };
                             return;
                         }
 
@@ -11375,7 +11376,7 @@ sub drone_imagery_calculate_analytics_POST : Args(0) {
                             my $status = system($htp_cmd);
                         }
                         else {
-                            $c->stash->{rest} = { error => "The value of $compute_relationship_matrix_from_htp_phenotypes_type htp_pheno_rel_matrix_type is not valid!" };
+                            $c->stash->{rest} = { error => "O valor $compute_relationship_matrix_from_htp_phenotypes_type de htp_pheno_rel_matrix_type não é válido!" };
                             return;
                         }
 
@@ -11444,7 +11445,7 @@ sub drone_imagery_calculate_analytics_POST : Args(0) {
                         $grm_file = $stats_out_htp_rel_tempfile_out;
                     }
                     else {
-                        $c->stash->{rest} = { error => "The value of $compute_relationship_matrix_from_htp_phenotypes is not valid!" };
+                        $c->stash->{rest} = { error => "O valor de $compute_relationship_matrix_from_htp_phenotypes não é válido!" };
                         return;
                     }
                 };
@@ -13007,7 +13008,7 @@ sub drone_imagery_calculate_analytics_POST : Args(0) {
         my $archived_aux_filename_with_path = $uploader_autoencoder->archive();
         my $md5_aux = $uploader_autoencoder->get_md5($archived_aux_filename_with_path);
         if (!$archived_aux_filename_with_path) {
-            return { error => "Could not save file $model_aux_original_name in archive." };
+            return { error => "Não foi possível salvar o arquivo $model_aux_original_name no arquivo permanente." };
         }
         print STDERR "Archived Analytics Figure File: $archived_aux_filename_with_path\n";
 
@@ -13045,7 +13046,7 @@ sub drone_imagery_calculate_analytics_POST : Args(0) {
         my $archived_aux_filename_with_path = $uploader_autoencoder->archive();
         my $md5_aux = $uploader_autoencoder->get_md5($archived_aux_filename_with_path);
         if (!$archived_aux_filename_with_path) {
-            return { error => "Could not save file $model_aux_original_name in archive." };
+            return { error => "Não foi possível salvar o arquivo $model_aux_original_name no arquivo permanente." };
         }
         print STDERR "Archived Analytics Data File: $archived_aux_filename_with_path\n";
 
@@ -13106,7 +13107,7 @@ sub _check_user_login {
         my $dbh = $c->dbc->dbh;
         my @user_info = CXGN::Login->new($dbh)->query_from_cookie($session_id);
         if (!$user_info[0]){
-            $c->stash->{rest} = {error=>'You must be logged in to do this!'};
+            $c->stash->{rest} = {error=>'Você precisa estar conectado para fazer isso!'};
             $c->detach();
         }
         $user_id = $user_info[0];
@@ -13115,7 +13116,7 @@ sub _check_user_login {
         $user_name = $p->get_username;
     } else{
         if (!$c->user){
-            $c->stash->{rest} = {error=>'You must be logged in to do this!'};
+            $c->stash->{rest} = {error=>'Você precisa estar conectado para fazer isso!'};
             $c->detach();
         }
         $user_id = $c->user()->get_object()->get_sp_person_id();
@@ -13123,7 +13124,7 @@ sub _check_user_login {
         $user_role = $c->user->get_object->get_user_type();
     }
     if ($role_check && $user_role ne $role_check) {
-        $c->stash->{rest} = {error=>'You must have permission to do this! Please contact us!'};
+        $c->stash->{rest} = {error=>'Você precisa ter permissão para fazer isso! Entre em contato conosco!'};
         $c->detach();
     }
     return ($user_id, $user_name, $user_role);

@@ -1,4 +1,5 @@
 package CXGN::AnalysisModel::GetModel;
+use utf8;
 
 =head1 NAME
 
@@ -146,7 +147,7 @@ sub store_analysis_model_files {
         my $archived_filename_with_path = $uploader->archive();
         my $md5 = $uploader->get_md5($archived_filename_with_path);
         if (!$archived_filename_with_path) {
-            return { error => "Could not save file $model_original_name in archive." };
+            return { error => "Não foi possível arquivar o arquivo $model_original_name." };
         }
         print STDERR "Archived Model File: $archived_filename_with_path\n";
 
@@ -184,7 +185,7 @@ sub store_analysis_model_files {
     my $archived_aux_filename_with_path = $uploader_autoencoder->archive();
     my $md5_aux = $uploader_autoencoder->get_md5($archived_aux_filename_with_path);
     if (!$archived_aux_filename_with_path) {
-        return { error => "Could not save file $model_aux_original_name in archive." };
+        return { error => "Não foi possível arquivar o arquivo $model_aux_original_name." };
     }
     print STDERR "Archived Auxiliary Model File: $archived_aux_filename_with_path\n";
 
@@ -223,7 +224,7 @@ sub store_analysis_model_files {
             my $archived_aux_filename_with_path = $uploader_autoencoder->archive();
             my $md5_aux = $uploader_autoencoder->get_md5($archived_aux_filename_with_path);
             if (!$archived_aux_filename_with_path) {
-                return { error => "Could not save file $model_aux_original_name in archive." };
+                return { error => "Não foi possível arquivar o arquivo $model_aux_original_name." };
             }
             print STDERR "Archived Auxiliary Model File: $archived_aux_filename_with_path\n";
 

@@ -251,7 +251,7 @@ if (defined $template) {
   	       }
 
 	       if (scalar(@corr_data) > 0) {
-		   $corr_analysis_html .= columnar_table_html( headings => [ 'Template', $corrtype, 'Internal Mapping' ],
+		   $corr_analysis_html .= columnar_table_html( headings => [ 'Modelo', $corrtype, 'Mapeamento interno' ],
   						  	       data     => \@corr_data,
   							       __align  => ['l', 'c', 'c'],
   		                                             );
@@ -261,7 +261,7 @@ if (defined $template) {
        }
    }
    else {
-       $corr_analysis_html = 'No correlation analysis was found associated to this template';
+       $corr_analysis_html = 'Nenhuma análise de correlação associada a este modelo foi encontrada';
    }
    $corr_analysis_content = info_section_html( 
                                                title       => "Análise de correlação (".$corr_n.")", 

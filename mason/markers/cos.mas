@@ -62,24 +62,24 @@ $marker
   }
 
   my $orth = <<EOT;
-<b>Arabidopsis identities: </b>$r->{at_identities}<br />
+<b>Identidades com Arabidopsis: </b>$r->{at_identities}<br />
 EOT
   ;
 
 my $basic = <<HTML;
-<b><a href="/documents/markers/role_categories.txt">MIPS Category</a>: </b>$r->{mips_cat}<br />
-<b>Tomato EST read:</b> $trace_name<br />
-<b>Arabidopsis best BAC match:</b> <a href="$at_page$bac_id">$at_match</a><br />
-<b>Arabidopsis position:</b> $at_posn<br />
+<b><a href="/documents/markers/role_categories.txt">Categoria MIPS</a>: </b>$r->{mips_cat}<br />
+<b>Leitura de EST de tomate:</b> $trace_name<br />
+<b>Melhor correspondência de BAC em Arabidopsis:</b> <a href="$at_page$bac_id">$at_match</a><br />
+<b>Posição em Arabidopsis:</b> $at_posn<br />
 HTML
 
   my $genbank = <<EOT;
-<b>Best GenBank protein hit: </b><a href="http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?db=Protein&amp;cmd=search&amp;term=$r->{best_gb_prot_hit}">$r->{best_gb_prot_hit}</a><br />
+<b>Melhor correspondência de proteína no GenBank: </b><a href="http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?db=Protein&amp;cmd=search&amp;term=$r->{best_gb_prot_hit}">$r->{best_gb_prot_hit}</a><br />
 <b>Evalue: </b>$r->{gbprot_evalue}<br />
-<b>Identities: </b>$r->{gbprot_identities}<br />
-<b>Description: </b>$r->{description}<br />
-<b>Comment: </b>$r->{comment}<br />
-More information about COS markers can be found on the <a href="/markers/cos_markers.pl">COS markers</a> page.
+<b>Identidades: </b>$r->{gbprot_identities}<br />
+<b>Descrição: </b>$r->{description}<br />
+<b>Comentário: </b>$r->{comment}<br />
+Mais informações sobre marcadores COS podem ser encontradas na página de <a href="/markers/cos_markers.pl">marcadores COS</a>.
 EOT
   ;
 

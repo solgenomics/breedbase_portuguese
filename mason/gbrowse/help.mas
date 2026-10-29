@@ -1,7 +1,7 @@
 % unless( my $g = $c->enabled_feature('gbrowse2') ) {
 
 <h2>GBrowse não instalado.</h2>
-No help available.
+Nenhuma ajuda disponível.
 
 % } else {
 <& .gbrowse_info, gb => $g &>
@@ -13,22 +13,22 @@ No help available.
   $gb
 </%args>
 
-<& /page/page_title.mas, title => 'GBrowse ajuda' &>
+<& /page/page_title.mas, title => 'Ajuda do GBrowse' &>
 
 <&| /page/info_section.mas, title => 'Sobre' &>
   <p>
-    <% $c->site_name %> uses the Generic Genome Browser (GBrowse),
-    produced by the <a href="http://gmod.org">GMOD project</a>, for
-    providing browsable sequence annotations.
+    O <% $c->site_name %> usa o Generic Genome Browser (GBrowse),
+    desenvolvido pelo <a href="http://gmod.org">projeto GMOD</a>, para
+    disponibilizar anotações de sequências navegáveis.
   </p>
 
-  <p>See the <a href="http://gmod.org/wiki/GBrowse#On-line_documentation">GBrowse online documentation</a> for instructions on how to use GBrowse.</p>
+  <p>Consulte a <a href="http://gmod.org/wiki/GBrowse#On-line_documentation">documentação on-line do GBrowse</a> para instruções de uso.</p>
 </&>
 
 <&| /page/info_section.mas, title => 'Conjuntos de dados disponíveis no GBrowse' &>
 
 %   my $s = $m->scomp('/gbrowse/list_sources.mas');
-    <% $s =~ /\S/ ? $s : '<strong>no sources available</strong>' %>
+    <% $s =~ /\S/ ? $s : '<strong>nenhuma fonte disponível</strong>' %>
 
 </&>
 

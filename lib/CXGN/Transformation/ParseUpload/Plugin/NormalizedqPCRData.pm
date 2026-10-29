@@ -1,5 +1,6 @@
 package CXGN::Transformation::ParseUpload::Plugin::NormalizedqPCRData;
 
+use utf8;
 use Moose::Role;
 use CXGN::File::Parse;
 use CXGN::Stock::StockLookup;
@@ -49,7 +50,7 @@ sub _validate_with_plugin {
 
     if ( $additional_columns && scalar(@$additional_columns) > 0 ) {
         $errors{'error_messages'} = [
-            "The following columns are not recognized: " . join(', ', @$additional_columns) . ". Please check the spreadsheet format for the allowed columns."
+            "As seguintes colunas não são reconhecidas: " . join(', ', @$additional_columns) . ". Verifique no formato da planilha quais colunas são permitidas."
         ];
         $self->_set_parse_errors(\%errors);
         return;
@@ -61,12 +62,12 @@ sub _validate_with_plugin {
     my $accession_validator = CXGN::List::Validate->new();
     my @accessions_missing = @{$accession_validator->validate($schema,'uniquenames', $seen_accession_names)->{'missing'}};
     if (scalar(@accessions_missing) > 0) {
-        push @error_messages, "The following accessions are not in the database, or are not in the database as uniquenames: ".join(',',@accessions_missing);
+        push @error_messages, "Os seguintes acessos não estão no banco de dados, ou não estão no banco de dados como uniquenames: ".join(',',@accessions_missing);
     }
 
     foreach my $gene_name (@$seen_genes) {
         if (!exists $vector_construct_genes{$gene_name}) {
-            push @error_messages, "Gene not in this vector construct: $gene_name.";
+            push @error_messages, "O gene não está nesta construção vetorial: $gene_name.";
         }
     }
 

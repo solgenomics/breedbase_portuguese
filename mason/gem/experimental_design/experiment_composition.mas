@@ -128,7 +128,7 @@ if (scalar(@exp_list) > 0) {
 
     ## Use columnar table to give the html format. If don't exists any data, print message.
 
-    $exp_composition_html = columnar_table_html(  headings => [ 'Experiment', 'Target', 'Ontologies'],
+    $exp_composition_html = columnar_table_html(  headings => [ 'Experimento', 'Alvo', 'Ontologias'],
                                                   data     => \@data,
 	       		  		          __alt_freq => 2,
                                                   __align  => ['l', 'l', 'l'],

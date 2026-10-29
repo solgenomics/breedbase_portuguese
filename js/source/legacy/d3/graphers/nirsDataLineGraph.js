@@ -127,8 +127,8 @@
                 var e = d3.event;
                 tooltip
                     .html(
-                        "<strong>Value:</strong> " + d.value + "<br/>" +
-                        "<strong>Frequency:</strong> " + d.frequency
+                        "<strong>Valor:</strong> " + d.value + "<br/>" +
+                        "<strong>Frequência:</strong> " + d.frequency
                     )
                     .style("left", (e.pageX + 10) + "px")
                     .style("top",  (e.pageY - 25) + "px")
@@ -152,7 +152,7 @@
             .attr("y", height + margin.bottom - 10)
             .attr("text-anchor", "middle")
             .style("font-size", "12px")
-            .text("Frequency");
+            .text("Frequência");
         }
 
         if (options.showYAxis) {
@@ -324,9 +324,9 @@
 
                         tooltip2
                             .html(
-                                "<strong>Sample:<strong> " + dataset.label + "<br/>" +
-                                "<strong>Value:</strong> " + d.value + "<br/>" +
-                                "<strong>Frequency:</strong> " + d.frequency
+                                "<strong>Amostra:</strong> " + dataset.label + "<br/>" +
+                                "<strong>Valor:</strong> " + d.value + "<br/>" +
+                                "<strong>Frequência:</strong> " + d.frequency
                             )
                             .style("left", (e.clientX + 10) + "px")
                             .style("top",  (e.clientY - 25 + window.scrollY) + "px")
@@ -370,7 +370,7 @@
                 legend.append("text")
                     .attr("x", 15)
                     .attr("y", i * 20 + 9)
-                    .text(dataset.label || `Sample ${i + 1}`)
+                    .text(dataset.label || `Amostra ${i + 1}`)
                     .style("font-size", "12px")
                     .attr("alignment-baseline", "middle")
                     .attr("data-label", dataset.label)

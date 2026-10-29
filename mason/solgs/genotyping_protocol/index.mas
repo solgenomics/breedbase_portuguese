@@ -18,13 +18,13 @@ Isaak Y Tecle (iyt2@cornell.edu)
 
 my $url = $c->req->path;
 my $geno_msg = "<p>Este banco de dados não tem dados de genótipo ou você não selecionou um protocolo de genotipagem. ";
-my $geno_msg_part = "either load genotype data to the database and try again or select a genotyping protocol (from above).";
+my $geno_msg_part = "carregue dados de genótipo no banco de dados e tente novamente ou selecione um protocolo de genotipagem (acima).";
 if ($url =~ /solgs/) {
-  $geno_msg = "$geno_msg Therefore, solGS does not function in this website.</p>
-  <p>Por favor, $geno_msg_part</p>";
+  $geno_msg = "$geno_msg Portanto, o solGS não funciona neste site.</p>
+  <p>Para usá-lo, $geno_msg_part</p>";
 } else {
-  $geno_msg = "$geno_msg  Therefore, this tool does not function on genotype data in this website.</p>
-  <p>Se você pretende usar a ferramenta em dados de genótipo, por favor $geno_msg_part</p>";
+  $geno_msg = "$geno_msg  Portanto, esta ferramenta não funciona com dados de genótipo neste site.</p>
+  <p>Se você pretende usar a ferramenta com dados de genótipo, $geno_msg_part</p>";
 }
 
 </%perl>

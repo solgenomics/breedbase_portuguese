@@ -12,7 +12,7 @@ if (!exists($modes{$mode})) { $mode = "clone_search"; }
 
 <& /util/import_javascript.mas, classes => [ 'jqueryui' ] &>
 
-<& /page/page_title.mas, title=>"Descarregar em massa" &>
+<& /page/page_title.mas, title=>"Download em lote" &>
 
 <script>
   jQuery(function() {
@@ -23,8 +23,8 @@ if (!exists($modes{$mode})) { $mode = "clone_search"; }
       beforeLoad: function( event, ui ) {
         ui.jqXHR.fail(function() {
           ui.panel.html(
-            "Não consegui carregar essa conta. Tentaremos consertar isso o mais rápido possível. " +
-            "Se esta não fosse uma demonstração." );
+            "Não foi possível carregar esta aba. Tentaremos corrigir isso o mais rápido possível. " +
+            "Se isto não fosse uma demonstração." );
         });
       }
 
@@ -39,9 +39,9 @@ if (!exists($modes{$mode})) { $mode = "clone_search"; }
     <li><a href="/tools/bulk/tabs/array_tab">Microarranjos</a></li>
     <li><a href="/tools/bulk/tabs/unigene_tab">Unigenes</a></li>
     <li><a href="/tools/bulk/tabs/bac_tab">BACs</a></li>
-    <li><a href="/tools/bulk/tabs/bac_end_tab">BAC termina</a></li>
+    <li><a href="/tools/bulk/tabs/bac_end_tab">Extremidades de BAC</a></li>
     <li><a href="/tools/bulk/tabs/gene_tab">Genes</a></li>
-    <li><a href="/tools/bulk/tabs/feature_tab">Características</a></li>
+    <li><a href="/tools/bulk/tabs/feature_tab">Features</a></li>
     <li><a href="/tools/bulk/tabs/converter_tab">Conversor</a></li>
     <li><a href="/tools/bulk/tabs/ftp_tab">FTP</a></li>
   </ul>

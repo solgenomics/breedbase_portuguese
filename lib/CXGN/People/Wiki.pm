@@ -1,5 +1,6 @@
 
 package CXGN::People::Wiki;
+use utf8;
 
 use Moose;
 
@@ -50,7 +51,7 @@ sub new_page {
     my $row = $self->people_schema()->resultset("SpWiki")->find( { page_name => $page_name } );
 
     if ($row) {
-	die "Page named $page_name already exists!\n";
+	die "A página chamada $page_name já existe!\n";
     }
     elsif (! $sp_person_id) {
 	die "The sp_person_id parameter is required!";
@@ -90,7 +91,7 @@ sub retrieve_page {
 
     if (! $row) {
 	print STDERR "PAGE DOES NOT EXIST!\n";
-	die "The page with name $page_name does not exist!";
+	die "A página com o nome $page_name não existe!";
     }
 
     else {
@@ -145,7 +146,7 @@ sub store_page {
     # }
     if (! $row) {
 	print STDERR "THE WIKI PAGE DOES NOT EXIST ($page_name)\n";
- 	die "The page with page name $page_name does not exist!";
+ 	die "A página $page_name não existe!";
     }
 
     my $sp_wiki_id = $row->sp_wiki_id();
@@ -164,7 +165,7 @@ sub store_page {
 	print STDERR "WE HAVE PREVIOUS DATA...\n";
 	$previous_content_row = $previous_content_rs->next();
 	if ($previous_content_row->page_content() eq $content) {
-	    return { error => "The new content is identical to the content of the page already exists!" };
+	    return { error => "O novo conteúdo é idêntico ao conteúdo já existente da página!" };
 	}
 
 	if ($previous_content_row) {

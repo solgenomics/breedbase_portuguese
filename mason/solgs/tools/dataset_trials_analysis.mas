@@ -48,7 +48,7 @@ my $url = $c->req->path;
     
     <& /solgs/tools/analysis_select.mas &>
     
-    <input id="run_analysis" class="btn btn-success" type="button" value="Correr a Análise" style="margin-top:20px" />
+    <input id="run_analysis" class="btn btn-success" type="button" value="Executar análise" style="margin-top:20px" />
 </div>
 
 % } else {

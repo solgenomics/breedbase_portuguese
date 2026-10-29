@@ -96,7 +96,7 @@ sub analyze_trial_phenotypes : Path('/analyze/phenotypes/trials') Args(0) {
     return;
   }
   else {
-    $c->stash->{rest} = { error => "Error in R script R/Anova.R"};
+    $c->stash->{rest} = { error => "Erro no script R R/Anova.R"};
     return;
   }
 }

@@ -289,9 +289,9 @@ DEPRECATED. THIS SHOULD BE DONE VIA BRAPI
                 <div class="col-sm-11">
 
                     <&| /page/info_section.mas, title=>"<h4 style='display:inline'>Exclusão do ensaio</h4>", collapsible=>1, collapsed=>1, subtitle=>"<font color=\"red\">A eliminação não pode ser desfeita</font>" &>
-                        <div class="boxbgcolor5">Note: Do not delete a genotype layout for an experiment that has already been submitted to the sequencing facility.</div>
+                        <div class="boxbgcolor5">Observação: não exclua a disposição de genótipos de um experimento que já foi enviado ao laboratório de sequenciamento.</div>
                         <br /><br />
-                        <button class="btn btn-default" id="delete_layout_data_by_trial_id">Delete this genotyping experiment</button>
+                        <button class="btn btn-default" id="delete_layout_data_by_trial_id">Excluir este experimento de genotipagem</button>
                     </&>
                 </div>
             </div>

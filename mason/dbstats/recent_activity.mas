@@ -17,7 +17,7 @@ Data final: <input type="text" id="dbstats_end_date" title="dbstats_end_date"  /
 </td><td>
 &nbsp;
 </td><td>
-<input type="checkbox" id="include_dateless_items" checked="1" > Inclui itens sem data</input>
+<input type="checkbox" id="include_dateless_items" checked="1" > Incluir itens sem data</input>
 </td><td>
 &nbsp;
 </td><td>
@@ -78,7 +78,7 @@ function update_dbstats_tables(start_date, end_date, include_dateless_items) {
     var include_dateless_items = jQuery('#include_dateless_items').prop('checked');
     
     var html = "Exibindo itens do banco de dados gerados a partir de: "+start_date+" até: "+end_date;
-    if (include_dateless_items === true) { html += '. Including data items that do not have an associated date.'; }
+    if (include_dateless_items === true) { html += '. Incluindo itens de dados sem data associada.'; }
     jQuery('#dbstats_message').html(html);
 
     jQuery('#recent_activity_trials').dataTable( {

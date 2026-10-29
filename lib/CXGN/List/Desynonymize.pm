@@ -1,4 +1,5 @@
 package CXGN::List::Desynonymize;
+use utf8;
 
 use Moose;
 use CXGN::Stock::StockLookup;
@@ -35,7 +36,7 @@ sub desynonymize {
     if ($match==0){
         return {
             success => "0",
-            error => "not a stock list"
+            error => "não é uma lista de materiais"
         };
     }
     else{

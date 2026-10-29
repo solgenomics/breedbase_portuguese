@@ -505,7 +505,7 @@ sub submit {
         $status = 'submitted';
     } catch {
         $self->update_status('failed');
-        die "An error occured trying to submit a background job.\n$_\n";
+        die "Ocorreu um erro ao tentar enviar uma tarefa em segundo plano.\n$_\n";
     } ;
 
     $self->backend_id($backend_id);
@@ -570,7 +570,7 @@ sub store {
             $self->sp_job_id($row->sp_job_id());
         }
     } catch {
-        die "Error storing job in database!$_\n";
+        die "Erro ao armazenar a tarefa no banco de dados!$_\n";
     } ;
     
     return $self->sp_job_id();

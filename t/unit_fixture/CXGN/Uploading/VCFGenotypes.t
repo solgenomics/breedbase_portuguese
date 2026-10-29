@@ -1,5 +1,6 @@
 
 use strict;
+use utf8;
 use warnings;
 
 use lib 't/lib';
@@ -221,7 +222,7 @@ $response = $ua->post(
 
 $message = $response->decoded_content;
 $message_hash = decode_json $message;
-is($message_hash->{'error'}, 'The selected genotyping project is already associated with a protocol. Each project should be associated with only one protocol');
+is($message_hash->{'error'}, 'O projeto de genotipagem selecionado já está associado a um protocolo. Cada projeto deve estar associado a apenas um protocolo');
 
 #adding genotype data using same project to same protocol
 $ua = LWP::UserAgent->new;
@@ -381,7 +382,7 @@ $response = $ua->post(
 $message = $response->decoded_content;
 $message_hash = decode_json $message;
 my $error_string = $message_hash->{'error_string'};
-like($error_string, qr/^Marker S12_7926132 in the SNP grid file is not found in the marker info file/, 'error starts with "Marker S12_792613200 in"');
+like($error_string, qr/^O marcador S12_7926132 do arquivo SNP grid não foi encontrado no arquivo de informações de marcadores/, 'error starts with "Marker S12_792613200 in"');
 
 
 my $file = $f->config->{basepath}."/t/data/genotype_data/testset_GT-AD-DP-GQ-DS-PL.h5";

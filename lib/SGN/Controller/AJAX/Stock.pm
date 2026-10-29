@@ -16,6 +16,7 @@ Naama Menda <nm249@cornell.edu>
 =cut
 
 package SGN::Controller::AJAX::Stock;
+use utf8;
 
 use Moose;
 
@@ -70,7 +71,7 @@ sub add_stockprop_POST {
     my $response;
     my $schema = $c->dbic_schema('Bio::Chado::Schema', 'sgn_chado');
     if (!$c->user()) {
-	$c->stash->{rest} = { error => "Log in required for adding stock properties." }; return;
+	$c->stash->{rest} = { error => "É necessário entrar em sua conta para adicionar propriedades do material." }; return;
     }
 
     if (  any { $_ eq 'curator' || $_ eq 'submitter' || $_ eq 'sequencer' } $c->user->roles() ) {
@@ -93,11 +94,11 @@ sub add_stockprop_POST {
             my $found_accessions = $fuzzy_search_result->{'found'};
             my $fuzzy_accessions = $fuzzy_search_result->{'fuzzy'};
             if ($fuzzy_search_result->{'error'}){
-                $c->stash->{rest} = { error => "ERROR: ".$fuzzy_search_result->{'error'} };
+                $c->stash->{rest} = { error => "ERRO:".$fuzzy_search_result->{'error'} };
                 $c->detach();
             }
             if (scalar(@$found_accessions) > 0){
-                $c->stash->{rest} = { error => "Synonym not added: The synonym you are adding is already stored as its own unique stock or as a synonym." };
+                $c->stash->{rest} = { error => "Sinônimo não adicionado: o sinônimo que você está adicionando já está armazenado como um material único ou como sinônimo." };
                 $c->detach();
             }
             if (scalar(@$fuzzy_accessions) > 0){
@@ -107,7 +108,7 @@ sub add_stockprop_POST {
                         push @fuzzy_match_names, $m->{'name'};
                     }
                 }
-                $message = "CAUTION: The synonym you are adding is similar to these accessions and synonyms in the database: ".join(', ', @fuzzy_match_names).".";
+                $message = "ATENÇÃO: o sinônimo que você está adicionando é semelhante a estes acessos e sinônimos no banco de dados:".join(', ', @fuzzy_match_names).".";
             }
         }
 
@@ -131,18 +132,18 @@ sub add_stockprop_POST {
             #my $bs = CXGN::BreederSearch->new( { dbh=>$dbh, dbname=>$c->config->{dbname}, } );
 #            my $refresh = $bs->refresh_matviews($c->config->{dbhost}, $c->config->{dbname}, $c->config->{dbuser}, $c->config->{dbpass}, 'stockprop', 'concurrent', $c->config->{basepath});
 
-            $c->stash->{rest} = { message => "$message Stock_id $stock_id and type_id $prop_type have been associated with value $prop. " }; #.$refresh->{'message'} };
+            $c->stash->{rest} = { message => "$message O stock_id $stock_id e o type_id $prop_type foram associados ao valor $prop." }; #.$refresh->{'message'} };
 
         } catch {
 	    print STDERR "AN ERROR OCCURRED: $_\n";
-            $c->stash->{rest} = { error => "Failed: $_" }
+            $c->stash->{rest} = { error => "Falha: $_" }
         };
     } else {
 	print STDERR "CANNOT ASSOCIATE $prop_type $prop with $stock_id\n";
-	    $c->stash->{rest} = { error => "Cannot associate prop $prop_type: $prop with stock $stock_id " };
+	    $c->stash->{rest} = { error => "Não é possível associar a propriedade $prop_type: $prop ao material $stock_id" };
 	}
     } else {
-	$c->stash->{rest} = { error => 'user does not have a curator/sequencer/submitter account' };
+	$c->stash->{rest} = { error => 'O usuário não tem uma conta de curador/sequenciador/submissor' };
     }
     $c->stash->{rest} = { message => 'success' };
 }
@@ -201,23 +202,23 @@ sub delete_stockprop_GET {
     my $c = shift;
     my $stockprop_id = $c->req->param("stockprop_id");
     if (! any { $_ eq 'curator' || $_ eq 'submitter' || $_ eq 'sequencer' } $c->user->roles() ) {
-	$c->stash->{rest} = { error => 'Log in required for deletion of stock properties.' };
+	$c->stash->{rest} = { error => 'É necessário entrar em sua conta para excluir propriedades do material.' };
 	return;
     }
     my $schema = $c->dbic_schema('Bio::Chado::Schema', 'sgn_chado');
     my $spr = $schema->resultset("Stock::Stockprop")->find( { stockprop_id => $stockprop_id });
     if (! $spr) {
-	$c->stash->{rest} = { error => 'The specified prop does not exist' };
+	$c->stash->{rest} = { error => 'A propriedade especificada não existe' };
 	return;
     }
     eval {
 	$spr->delete();
     };
     if ($@) {
-	$c->stash->{rest} = { error => "An error occurred during deletion: $@" };
+	$c->stash->{rest} = { error => "Ocorreu um erro durante a exclusão: $@" };
 	    return;
     }
-    $c->stash->{rest} = { message => "The element was removed from the database." };
+    $c->stash->{rest} = { message => "O elemento foi removido do banco de dados." };
 
 }
 
@@ -227,7 +228,7 @@ sub associate_locus:Path('/ajax/stock/associate_locus') :ActionClass('REST') {}
 
 sub associate_locus_POST :Args(0) {
     my ($self, $c) = @_;
-    $c->stash->{rest} = { error => "Nothing here, it's a POST.." } ;
+    $c->stash->{rest} = { error => "Nada aqui, esta é uma requisição POST.." } ;
 }
 
 sub associate_locus_GET :Args(0) {
@@ -238,7 +239,7 @@ sub associate_locus_GET :Args(0) {
     #phytoene synthase 1 (psy1)
     my $locus_input = $c->req->param('loci') ;
     if (!$locus_input) {
-        $self->status_bad_request($c, message => 'need loci param' );
+        $self->status_bad_request($c, message => 'O parâmetro loci é necessário' );
         return;
     }
     my ($locus_data, $allele_symbol) = split (/ Allele: / ,$locus_input);
@@ -259,13 +260,13 @@ sub associate_locus_GET :Args(0) {
             allele_symbol => $allele_symbol,
             is_default => $is_default} );
     if (!$allele) {
-        $c->stash->{rest} = { error => "no allele found for locus '$locus_data' (allele: '$allele_symbol')" };
+        $c->stash->{rest} = { error => "Nenhum alelo encontrado para o locus '$locus_data' (alelo: '$allele_symbol')" };
         return;
     }
     my $stock = $schema->resultset("Stock::Stock")->find({stock_id => $stock_id } ) ;
     my  $allele_id = $allele->allele_id;
     if (!$c->user) {
-        $c->stash->{rest} = { error => 'Must be logged in for associating loci! ' };
+        $c->stash->{rest} = { error => 'Você precisa estar conectado para associar loci!' };
         return;
     }
     if ( any { $_ eq 'curator' || $_ eq 'submitter' || $_ eq 'sequencer' } $c->user->roles() ) {
@@ -281,14 +282,14 @@ sub associate_locus_GET :Args(0) {
                 # need to update the loci div!!
                 return;
             } catch {
-                $c->stash->{rest} = { error => "Failed: $_" };
+                $c->stash->{rest} = { error => "Falha: $_" };
                 return;
             };
         } else {
-            $c->stash->{rest} = { error => 'need both valid stock_id and allele_id for adding the stockprop! ' };
+            $c->stash->{rest} = { error => 'São necessários stock_id e allele_id válidos para adicionar a stockprop!' };
         }
     } else {
-        $c->stash->{rest} = { error => 'No privileges for adding new loci. You must have an sgn submitter account. Please contact sgn-feedback@solgenomics.net for upgrading your user account. ' };
+        $c->stash->{rest} = { error => 'Sem permissão para adicionar novos loci. Você precisa ter uma conta de submissor na SGN. Entre em contato com sgn-feedback@solgenomics.net para atualizar sua conta de usuário.' };
     }
 }
 
@@ -480,7 +481,7 @@ sub display_ontologies_GET  {
             $obsoleted .= qq |$term  <br />\n |;
         }
         $print_obsoleted = html_alternate_show(
-            'obsoleted_terms', 'Show obsolete',
+            'obsoleted_terms', 'Mostrar obsoletos',
             '',                qq|<div class="minorbox">$obsoleted</div> |,
             );
     }
@@ -493,7 +494,7 @@ sub associate_ontology:Path('/ajax/stock/associate_ontology') :ActionClass('REST
 
 sub associate_ontology_GET :Args(0) {
     my ($self, $c) = @_;
-    $c->stash->{rest} = { error => "Nothing here, it's a GET.." } ;
+    $c->stash->{rest} = { error => "Nada aqui, esta é uma requisição GET.." } ;
 }
 
 
@@ -531,14 +532,14 @@ sub associate_ontology_POST :Args(0) {
         ->search({ 'me.name' => $db_name, } )->search_related('dbxrefs' , { accession => $accession } )
         ->search_related('cvterm')->first; # should be only 1 cvterm per dbxref
     if (!$cvterm) {
-        $c->stash->{rest} = { error => "no ontology term found for term $db_name : $accession" };
+        $c->stash->{rest} = { error => "Nenhum termo de ontologia encontrado para o termo $db_name : $accession" };
         return;
     }
     my ($stock) = $c->stash->{stock} || $schema->resultset("Stock::Stock")->find( { stock_id => $stock_id } );
 
     my  $cvterm_id = $cvterm->cvterm_id;
     if (!$c->user) {
-        $c->stash->{rest} = { error => 'Must be logged in for associating ontology terms! ' };
+        $c->stash->{rest} = { error => 'Você precisa estar conectado para associar termos de ontologia!' };
         return;
     }
     if ( any { $_ eq 'curator' || $_ eq 'submitter' || $_ eq 'sequencer' } $c->user->roles() ) {
@@ -575,7 +576,7 @@ sub associate_ontology_POST :Args(0) {
 
                     # return error if annotation + evidence exist
                     if ($rel_prop && $ev_prop) {
-                        $c->stash->{rest} = { error => "Annotation exists with these evidence codes! " };
+                        $c->stash->{rest} = { error => "Já existe uma anotação com estes códigos de evidência!" };
                         return;
                     }
                 }
@@ -605,7 +606,7 @@ sub associate_ontology_POST :Args(0) {
                 return;
             } catch {
                 print STDERR "***** associate_ontology failed! $_ \n\n";
-                $c->stash->{rest} = { error => "Failed: $_" };
+                $c->stash->{rest} = { error => "Falha: $_" };
                 # send an email to sgn bugs
                 $c->stash->{email} = {
                     to      => 'sgn-bugs@sgn.cornell.edu',
@@ -627,10 +628,10 @@ sub associate_ontology_POST :Args(0) {
             $c->forward( $c->view('Email') );
 
         } else {
-            $c->stash->{rest} = { error => 'need both valid stock_id and cvterm_id for adding an ontology term to this stock! ' };
+            $c->stash->{rest} = { error => 'São necessários stock_id e cvterm_id válidos para adicionar um termo de ontologia a este material!' };
         }
     } else {
-        $c->stash->{rest} = { error => 'No privileges for adding new ontology terms. You must have an sgn submitter account. Please contact sgn-feedback@solgenomics.net for upgrading your user account. ' };
+        $c->stash->{rest} = { error => 'Sem permissão para adicionar novos termos de ontologia. Você precisa ter uma conta de submissor na SGN. Entre em contato com sgn-feedback@solgenomics.net para atualizar sua conta de usuário.' };
     }
 }
 
@@ -697,8 +698,8 @@ sub toggle_obsolete_annotation_POST :Args(0) {
             }
             $response->{response} = "success";
         }
-        else { $response->{error} = "No stock_cvtermp found for id $stock_cvterm_id ! "; }
-    } else { $response->{error} = 'stock_cvterm $stock_cvterm_id does not exists! ';  }
+        else { $response->{error} = "Nenhum stock_cvtermp encontrado para o id $stock_cvterm_id !"; }
+    } else { $response->{error} = 'stock_cvterm $stock_cvterm_id não existe!';  }
     $c->stash->{rest} = $response;
 }
 
@@ -1431,12 +1432,12 @@ sub remove_parent_GET : Path('/ajax/stock/parent/remove') Args(0) {
     my $parent_id = $c->req->param("parent_id");
 
     if (!$stock_id || ! $parent_id) {
-	$c->stash->{rest} = { error => "No stock and parent specified" };
+	$c->stash->{rest} = { error => "Nenhum material e genitor especificados" };
 	return;
     }
 
     if (! ($c->user && ($c->user->check_roles('curator') || $c->user->check_roles('submitter'))))  {
-	$c->stash->{rest} = { error => "Log in is required, or insufficent privileges, for removing parents" };
+	$c->stash->{rest} = { error => "É necessário entrar em sua conta com permissões suficientes para remover genitores" };
 	return;
     }
 
@@ -1472,13 +1473,13 @@ sub add_stock_parent_GET :Args(0) {
     my ($self, $c) = @_;
     if (!$c->user()) {
 	print STDERR "User not logged in... not associating stocks.\n";
-	$c->stash->{rest} = {error => "You need to be logged in to add pedigree information." };
+	$c->stash->{rest} = {error => "Você precisa estar conectado para adicionar informações de pedigree." };
 	return;
     }
 
     if (!any { $_ eq "curator" || $_ eq "submitter" } ($c->user()->roles)  ) {
 	print STDERR "User does not have sufficient privileges.\n";
-	$c->stash->{rest} = {error =>  "you have insufficient privileges to add pedigree information." };
+	$c->stash->{rest} = {error =>  "Você não tem permissão para adicionar informações de pedigree." };
 	return;
     }
 
@@ -1533,7 +1534,7 @@ sub add_phenotype :PATH('/ajax/stock/add_phenotype') : ActionClass('REST') { }
 
 sub add_phenotype_GET :Args(0) {
     my ($self, $c) = @_;
-    $c->stash->{rest} = { error => "Nothing here, it's a GET.." } ;
+    $c->stash->{rest} = { error => "Nada aqui, esta é uma requisição GET.." } ;
 }
 
 sub add_phenotype_POST {
@@ -1583,11 +1584,11 @@ sub add_phenotype_POST {
                     phenotype_id => $phenotype->phenotype_id()
                 } );
 
-            $response = { message => "stock_id $stock_id and project_id $project_id associated with cvterm $observable_id , phenotype value $value (phenotype_id = " . $phenotype->phenotype_id . "\n" , }
+            $response = { message => "stock_id $stock_id e project_id $project_id associados ao cvterm $observable_id , valor do fenótipo $value (phenotype_id =" . $phenotype->phenotype_id . "\n" , }
         } catch {
-            $response = { error => "Failed: $_" }
+            $response = { error => "Falha: $_" }
         };
-    }  else {  $c->stash->{rest} = { error => 'user does not have a curator/sequencer/submitter account' };
+    }  else {  $c->stash->{rest} = { error => 'O usuário não tem uma conta de curador/sequenciador/submissor' };
     }
 }
 
@@ -1797,9 +1798,9 @@ sub get_shared_trials :Path('/stock/get_shared_trials'){
             }
       }
 	    $trials_string  =~ s/,\s+$//;
-	    push @formatted_rows, [ "Trials in Common", $num_trials, $trials_string];
+	    push @formatted_rows, [ "Ensaios em comum", $num_trials, $trials_string];
     } else {
-      push @formatted_rows, [ "Trials in Common", $num_trials, "No shared trials found."];
+      push @formatted_rows, [ "Ensaios em comum", $num_trials, "Nenhum ensaio compartilhado encontrado."];
     }
 
     $c->stash->{rest} = { data => \@formatted_rows, shared_trials => \@shared_trials };
@@ -2038,7 +2039,7 @@ sub get_child_stocks : Path('/stock/get_child_stocks') Args(1) {
 
     if ($@) {
         print STDERR "Error: $@\n";
-        $c->stash->{rest} = {error => "An error occurred: $@"};
+        $c->stash->{rest} = {error => "Ocorreu um erro: $@"};
     }
 
 
@@ -2337,11 +2338,11 @@ sub stock_obsolete_GET {
     my ( $self, $c ) = @_;
     my $schema = $c->dbic_schema('Bio::Chado::Schema', 'sgn_chado');
     if (!$c->user()) {
-        $c->stash->{rest} = { error => "Log in required for making stock obsolete." }; return;
+        $c->stash->{rest} = { error => "É necessário entrar em sua conta para tornar o material obsoleto." }; return;
     }
 
     if ( !any { $_ eq 'curator' || $_ eq 'submitter' || $_ eq 'sequencer' } $c->user->roles() ) {
-        $c->stash->{rest} = { error => 'Cannot obsolete stock! You do not have a curator, sequencer or submitter account' };
+        $c->stash->{rest} = { error => 'Não é possível tornar o material obsoleto! Você não tem uma conta de curador, sequenciador ou submissor' };
         $c->detach();
     }
 
@@ -2366,10 +2367,10 @@ sub stock_obsolete_GET {
             my $saved_stock_id = $stock->store();
             $c->stash->{rest} = { success => 1 };
         } catch {
-            $c->stash->{rest} = { error => "Failed: $_" }
+            $c->stash->{rest} = { error => "Falha: $_" }
         };
     } else {
-	    $c->stash->{rest} = { error => "Not a valid stock $stock_id " };
+	    $c->stash->{rest} = { error => "Material inválido: $stock_id " };
 	}
 
 }
@@ -2454,7 +2455,7 @@ sub stock_additional_file_upload :Chained('/stock/get_stock') PathPart('upload_a
         my $dbh = $c->dbc->dbh;
         my @user_info = CXGN::Login->new($dbh)->query_from_cookie($session_id);
         if (!$user_info[0]){
-            $c->stash->{rest} = {error=>'You must be logged in to upload additional trials to a file!'};
+            $c->stash->{rest} = {error=>'Você precisa estar conectado para enviar ensaios adicionais a um arquivo!'};
             $c->detach();
         }
         $user_id = $user_info[0];
@@ -2463,7 +2464,7 @@ sub stock_additional_file_upload :Chained('/stock/get_stock') PathPart('upload_a
         $user_name = $p->get_username;
     } else{
         if (!$c->user){
-            $c->stash->{rest} = {error=>'You must be logged in to upload additional files to a trial!'};
+            $c->stash->{rest} = {error=>'Você precisa estar conectado para enviar arquivos adicionais a um ensaio!'};
             $c->detach();
         }
         $user_id = $c->user()->get_object()->get_sp_person_id();
@@ -2491,7 +2492,7 @@ sub stock_additional_file_upload :Chained('/stock/get_stock') PathPart('upload_a
     my $archived_filename_with_path = $uploader->archive();
     my $md5 = $uploader->get_md5($archived_filename_with_path);
     if (!$archived_filename_with_path) {
-        $c->stash->{rest} = {error => "Could not save file $upload_original_name in archive",};
+        $c->stash->{rest} = {error => "Não foi possível salvar o arquivo $upload_original_name no arquivo permanente",};
         $c->detach();
     }
     unlink $upload_tempfile;
@@ -2512,7 +2513,7 @@ sub get_accession_additional_file_uploaded :Chained('/stock/get_stock') PathPart
     my $c = shift;
 
     if (!$c->user){
-        $c->stash->{rest} = {error=>'You must be logged in to see uploaded additional files!'};
+        $c->stash->{rest} = {error=>'Você precisa estar conectado para ver os arquivos adicionais enviados!'};
         $c->detach();
     }
 
@@ -2533,7 +2534,7 @@ sub obsolete_trial_additional_file_uploaded :Chained('/stock/get_stock') PathPar
     my $stock_id = $c->stash->{stock_row}->stock_id();
 
     if (!$c->user) {
-	    $c->stash->{rest} = { error => "You must be logged in to obsolete additional files!" };
+	    $c->stash->{rest} = { error => "Você precisa estar conectado para tornar arquivos adicionais obsoletos!" };
 	    $c->detach();
     }
 
@@ -2633,12 +2634,12 @@ sub set_display_image_POST : Args(0) {
     my $image_id = $c->req->param('image_id');
 
     if (!$stock_id) {
-        $c->stash->{rest} = { error_string=> 'Missing stock_id' };
+        $c->stash->{rest} = { error_string=> 'stock_id ausente' };
         return;
     }
 
     if (!$image_id) {
-        $c->stash->{rest} = { error_string=> 'Missing image_id' };
+        $c->stash->{rest} = { error_string=> 'image_id ausente' };
         return;
     }
 
@@ -2649,7 +2650,7 @@ sub set_display_image_POST : Args(0) {
 
     my $stock = $schema->resultset('Stock::Stock')->find({ stock_id => $stock_id });
     if (!$stock) {
-        $c->stash->{rest} = { error_string => 'Stock not found' };
+        $c->stash->{rest} = { error_string => 'Material não encontrado' };
         return;
     }
 
@@ -2660,7 +2661,7 @@ sub set_display_image_POST : Args(0) {
     $stockprop->update({ value => $image_id });
 
     if ($stockprop->value != $image_id) {
-        $c->stash->{rest} = { error_string => 'Error setting display image' };
+        $c->stash->{rest} = { error_string => 'Erro ao definir a imagem de exibição' };
         return;
     }
 
@@ -2788,11 +2789,11 @@ sub add_derived_accessions_using_list_POST : Args(0) {
     my $dbh = $c->dbc->dbh;
 
     if (!$c->user()) {
-        $c->stash->{rest} = { error => "Log in required for adding derived accessions." }; return;
+        $c->stash->{rest} = { error => "É necessário entrar em sua conta para adicionar acessos derivados." }; return;
     }
 
     if ( !any { $_ eq 'curator' || $_ eq 'submitter' || $_ eq 'sequencer' } $c->user->roles() ) {
-        $c->stash->{rest} = { error => 'Cannot add new accessions! You do not have a curator account' };
+        $c->stash->{rest} = { error => 'Não é possível adicionar novos acessos! Você não tem uma conta de curador' };
         $c->detach();
     }
 
@@ -2806,7 +2807,7 @@ sub add_derived_accessions_using_list_POST : Args(0) {
 
     foreach my $new_name (@$all_new_names) {
         if ($schema->resultset('Stock::Stock')->find({ 'uniquename' => $new_name })) {
-            push @error_messages, "Accession name already exists in database: ".$new_name;
+            push @error_messages, "O nome do acesso já existe no banco de dados:".$new_name;
         }
     }
 
@@ -2840,7 +2841,7 @@ sub add_derived_accessions_using_list_POST : Args(0) {
     };
 
     if ($@) {
-        $c->stash->{rest} = { error => "An error occurred while adding new accessions: $@"};
+        $c->stash->{rest} = { error => "Ocorreu um erro ao adicionar novos acessos: $@"};
         return;
     }
     if ($result->{error}) {
@@ -2887,7 +2888,7 @@ sub upload_derived_accessions_file_POST : Args(0) {
         my $dbh = $c->dbc->dbh;
         my @user_info = CXGN::Login->new($dbh)->query_from_cookie($session_id);
         if (!$user_info[0]){
-            $c->stash->{rest} = {error=>'You must be logged in to upload derived accessions!'};
+            $c->stash->{rest} = {error=>'Você precisa estar conectado para enviar acessos derivados!'};
             $c->detach();
         }
         $user_id = $user_info[0];
@@ -2896,7 +2897,7 @@ sub upload_derived_accessions_file_POST : Args(0) {
         $user_name = $p->get_username;
     } else{
         if (!$c->user){
-            $c->stash->{rest} = {error=>'You must be logged in to upload derived accessions!'};
+            $c->stash->{rest} = {error=>'Você precisa estar conectado para enviar acessos derivados!'};
             $c->detach();
         }
         $user_id = $c->user()->get_object()->get_sp_person_id();
@@ -2905,7 +2906,7 @@ sub upload_derived_accessions_file_POST : Args(0) {
     }
 
     if (($user_role ne 'curator') && ($user_role ne 'submitter')) {
-        $c->stash->{rest} = {error=>'Only a submitter or a curator can upload derived accessions'};
+        $c->stash->{rest} = {error=>'Apenas um submissor ou um curador pode enviar acessos derivados'};
         $c->detach();
     }
 
@@ -2923,7 +2924,7 @@ sub upload_derived_accessions_file_POST : Args(0) {
     $archived_filename_with_path = $uploader->archive();
     $md5 = $uploader->get_md5($archived_filename_with_path);
     if (!$archived_filename_with_path) {
-        $c->stash->{rest} = {error => "Could not save file $upload_original_name in archive",};
+        $c->stash->{rest} = {error => "Não foi possível salvar o arquivo $upload_original_name no arquivo permanente",};
         return;
     }
     unlink $upload_tempfile;
@@ -2937,7 +2938,7 @@ sub upload_derived_accessions_file_POST : Args(0) {
         my $return_error;
         my $parse_errors;
         if (!$parser->has_parse_errors() ){
-            $c->stash->{rest} = {error_string => "Could not get parsing errors"};
+            $c->stash->{rest} = {error_string => "Não foi possível obter os erros de análise do arquivo"};
         } else {
             $parse_errors = $parser->get_parse_errors();
             foreach my $error_string (@{$parse_errors->{'error_messages'}}){
@@ -2974,7 +2975,7 @@ sub upload_derived_accessions_file_POST : Args(0) {
             }
         };
         if ($@) {
-            $c->stash->{rest} = { error => "An error occurred while adding new accessions: $@"};
+            $c->stash->{rest} = { error => "Ocorreu um erro ao adicionar novos acessos: $@"};
             return;
         }
         if ($result->{error}) {
@@ -3012,7 +3013,7 @@ sub stock_obsolete_in_bulk_GET {
     my $program_name = $c->req->param('program_name');
 
     if (!$c->user()){
-        $c->stash->{rest} = { error => "You must be logged in to obsolete stocks" };
+        $c->stash->{rest} = { error => "Você precisa estar conectado para tornar materiais obsoletos" };
         $c->detach();
     }
 
@@ -3021,7 +3022,7 @@ sub stock_obsolete_in_bulk_GET {
     map { $has_roles{$_} = 1; } @user_roles;
 
     if (! ( (exists($has_roles{$program_name}) && exists($has_roles{submitter})) || exists($has_roles{curator}))) {
-        $c->stash->{rest} = { error => "You need to be either a curator, or a submitter associated with breeding program $program_name to obsolete stocks." };
+        $c->stash->{rest} = { error => "Você precisa ser curador ou submissor associado ao programa de melhoramento $program_name para tornar materiais obsoletos." };
         return;
     }
 
@@ -3047,10 +3048,10 @@ sub stock_obsolete_in_bulk_GET {
                 });
                 my $saved_stock_id = $stock_obj->store();
             } catch {
-                $c->stash->{rest} = { error => "Failed: $_" }
+                $c->stash->{rest} = { error => "Falha: $_" }
             };
         } else {
-            $c->stash->{rest} = { error => "Not a valid stock: $stock_name" };
+            $c->stash->{rest} = { error => "Material inválido: $stock_name" };
         }
     }
 

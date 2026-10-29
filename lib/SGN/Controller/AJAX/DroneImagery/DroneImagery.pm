@@ -11,6 +11,7 @@ functions for uploading and analyzing drone imagery
 =cut
 
 package SGN::Controller::AJAX::DroneImagery::DroneImagery;
+use utf8;
 
 use Moose;
 use Data::Dumper;
@@ -233,7 +234,7 @@ sub drone_imagery_calculate_statistics_POST : Args(0) {
     my $field_trial_id_list_string = join ',', @$field_trial_id_list;
 
     if (scalar(@$field_trial_id_list) != 1) {
-        $c->stash->{rest} = { error => "Please select one field trial!"};
+        $c->stash->{rest} = { error => "Selecione um único ensaio de campo!"};
         return;
     }
 
@@ -427,7 +428,7 @@ sub drone_imagery_calculate_statistics_POST : Args(0) {
             @sorted_trait_names_original = sort keys %$unique_traits;
 
             if (scalar(@$data) == 0) {
-                $c->stash->{rest} = { error => "There are no phenotypes for the trials and traits you have selected!"};
+                $c->stash->{rest} = { error => "Não há fenótipos para os ensaios e características selecionados!"};
                 return;
             }
 
@@ -573,7 +574,7 @@ sub drone_imagery_calculate_statistics_POST : Args(0) {
             @sorted_trait_names = sort keys %$unique_traits;
 
             if (scalar(@$data) == 0) {
-                $c->stash->{rest} = { error => "There are no phenotypes for the trials and traits you have selected!"};
+                $c->stash->{rest} = { error => "Não há fenótipos para os ensaios e características selecionados!"};
                 return;
             }
 
@@ -659,7 +660,7 @@ sub drone_imagery_calculate_statistics_POST : Args(0) {
                 }
             }
             if (scalar(keys %seen_times) == 0) {
-                $c->stash->{rest} = { error => "There are no phenotypes with associated days after planting time associated to the traits you have selected!"};
+                $c->stash->{rest} = { error => "Não há fenótipos com tempo em dias após o plantio associados às características selecionadas!"};
                 return;
             }
 
@@ -766,12 +767,12 @@ sub drone_imagery_calculate_statistics_POST : Args(0) {
             @sorted_trait_names = sort keys %$unique_traits;
 
             if (scalar(@$trait_id_list) < 2) {
-                $c->stash->{rest} = { error => "Select more than 2 time points!"};
+                $c->stash->{rest} = { error => "Selecione mais de 2 pontos no tempo!"};
                 return;
             }
 
             if (scalar(@$data) == 0) {
-                $c->stash->{rest} = { error => "There are no phenotypes for the trials and traits you have selected!"};
+                $c->stash->{rest} = { error => "Não há fenótipos para os ensaios e características selecionados!"};
                 return;
             }
 
@@ -858,7 +859,7 @@ sub drone_imagery_calculate_statistics_POST : Args(0) {
                 }
             }
             if (scalar(keys %seen_times) == 0) {
-                $c->stash->{rest} = { error => "There are no phenotypes with associated days after planting time associated to the traits you have selected!"};
+                $c->stash->{rest} = { error => "Não há fenótipos com tempo em dias após o plantio associados às características selecionadas!"};
                 return;
             }
 
@@ -1149,7 +1150,7 @@ sub drone_imagery_calculate_statistics_POST : Args(0) {
                                 }
                             }
                             else {
-                                $c->stash->{rest} = { error => "There are not rows and columns for all of the plots! Do not try to use a Euclidean distance between plots for the permanent environment structure"};
+                                $c->stash->{rest} = { error => "Nem todas as parcelas têm linha e coluna! Não tente usar a distância euclidiana entre parcelas para a estrutura de ambiente permanente"};
                                 return;
                             }
                         }
@@ -1185,7 +1186,7 @@ sub drone_imagery_calculate_statistics_POST : Args(0) {
                 my ($data_permanent_environment_structure, $unique_traits_permanent_environment_structure) = $phenotypes_search_permanent_environment_structure->search();
 
                 if (scalar(@$data_permanent_environment_structure) == 0) {
-                    $c->stash->{rest} = { error => "There are no phenotypes for the permanent environment structure traits you have selected!"};
+                    $c->stash->{rest} = { error => "Não há fenótipos para as características de estrutura de ambiente permanente selecionadas!"};
                     return;
                 }
 
@@ -1863,7 +1864,7 @@ sub drone_imagery_calculate_statistics_POST : Args(0) {
                 my ($data, $unique_traits) = $phenotypes_search->search();
 
                 if (scalar(@$data) == 0) {
-                    $c->stash->{rest} = { error => "There are no phenotypes for the trial you have selected!"};
+                    $c->stash->{rest} = { error => "Não há fenótipos para o ensaio selecionado!"};
                     return;
                 }
 
@@ -1998,7 +1999,7 @@ sub drone_imagery_calculate_statistics_POST : Args(0) {
 
                 }
                 else {
-                    $c->stash->{rest} = { error => "The value of $compute_relationship_matrix_from_htp_phenotypes_time_points htp_pheno_rel_matrix_time_points is not valid!" };
+                    $c->stash->{rest} = { error => "O valor $compute_relationship_matrix_from_htp_phenotypes_time_points de htp_pheno_rel_matrix_time_points não é válido!" };
                     return;
                 }
 
@@ -2053,7 +2054,7 @@ sub drone_imagery_calculate_statistics_POST : Args(0) {
                     my $status = system("$htp_cmd > /dev/null");
                 }
                 else {
-                    $c->stash->{rest} = { error => "The value of $compute_relationship_matrix_from_htp_phenotypes_type htp_pheno_rel_matrix_type is not valid!" };
+                    $c->stash->{rest} = { error => "O valor $compute_relationship_matrix_from_htp_phenotypes_type de htp_pheno_rel_matrix_type não é válido!" };
                     return;
                 }
 
@@ -2124,7 +2125,7 @@ sub drone_imagery_calculate_statistics_POST : Args(0) {
                 $grm_file = $stats_out_htp_rel_tempfile_out;
             }
             else {
-                $c->stash->{rest} = { error => "The value of $compute_relationship_matrix_from_htp_phenotypes is not valid!" };
+                $c->stash->{rest} = { error => "O valor de $compute_relationship_matrix_from_htp_phenotypes não é válido!" };
                 return;
             }
         }
@@ -3292,7 +3293,7 @@ sub drone_imagery_calculate_statistics_POST : Args(0) {
         }
         my @unique_accession_ids = keys %unique_accession_ids;
         if (scalar(@unique_accession_ids) == 0) {
-            $c->stash->{rest} = { error => "There are no common accessions in the trials you have selected! If that is the case, please just select one at a time."};
+            $c->stash->{rest} = { error => "Não há acessos em comum nos ensaios selecionados! Nesse caso, selecione um de cada vez."};
             return;
         }
         print STDERR scalar(@unique_accession_ids)." Common Accessions\n";
@@ -3315,7 +3316,7 @@ sub drone_imagery_calculate_statistics_POST : Args(0) {
         my @sorted_trait_names = sort keys %$unique_traits;
 
         if (scalar(@$data) == 0) {
-            $c->stash->{rest} = { error => "There are no phenotypes for the trials and traits you have selected!"};
+            $c->stash->{rest} = { error => "Não há fenótipos para os ensaios e características selecionados!"};
             return;
         }
 
@@ -3481,7 +3482,7 @@ sub drone_imagery_calculate_statistics_POST : Args(0) {
         }
     }
     else {
-        $c->stash->{rest} = { error => "Not supported $statistics_select!"};
+        $c->stash->{rest} = { error => "Não suportado: $statistics_select!"};
         return;
     }
 
@@ -4624,7 +4625,7 @@ sub _perform_match_raw_images_sequential {
     my $skipped_counter = 0;
     my $max_features = 1000;
 
-    my $message = "Completed matching";
+    my $message = "Correspondência concluída";
 
     while ($image_id1 && $image_id2) {
 
@@ -5072,7 +5073,7 @@ sub drone_imagery_calculate_statistics_store_analysis_POST : Args(0) {
     if ($@) {
         print STDERR "An error occurred storing analysis values ($@).\n";
         $c->stash->{rest} = {
-            error => "An error occurred storing the values ($@).\n"
+            error => "Ocorreu um erro ao armazenar os valores ($@).\n"
         };
         return;
     }
@@ -5381,14 +5382,14 @@ sub _perform_plot_polygon_assign {
         }
         if (scalar(@$polygon) != 4){
             # print STDERR Dumper $polygon;
-            $c->stash->{rest} = {error=>'Error: Polygon for '.$stock_name.' should be 4 long!'};
+            $c->stash->{rest} = {error=>'Erro: o polígono de '.$stock_name.' deve ter 4 pontos!'};
             $c->detach();
         }
         $polygon_objs->{$stock_name} = $polygon;
 
         my $stock = $schema->resultset("Stock::Stock")->find({uniquename => $stock_name});
         if (!$stock) {
-            $c->stash->{rest} = {error=>'Error: Stock name '.$stock_name.' does not exist in the database!'};
+            $c->stash->{rest} = {error=>'Erro: o nome de material '.$stock_name.' não existe no banco de dados!'};
             $c->detach();
         }
         $stock_ids{$stock_name} = $stock->stock_id;
@@ -5401,7 +5402,7 @@ sub _perform_plot_polygon_assign {
     my $drone_run_band_plot_polygons_type_id = SGN::Model::Cvterm->get_cvterm_row($schema, 'drone_run_band_plot_polygons', 'project_property')->cvterm_id();
     my $previous_plot_polygons_rs = $schema->resultset('Project::Projectprop')->search({type_id=>$drone_run_band_plot_polygons_type_id, project_id=>$drone_run_band_project_id});
     if ($previous_plot_polygons_rs->count > 1) {
-        die "There should not be more than one saved entry for plot polygons for a drone run band";
+        die "Não deveria haver mais de um registro salvo de polígonos de parcelas para uma banda de voo de drone";
     }
 
     my $save_stock_polygons;
@@ -5436,7 +5437,7 @@ sub _perform_plot_polygon_assign {
 
         if (scalar(@$previous_result) == scalar(@found_stock_ids)) {
             print STDERR "Plot polygon assignment for $assign_plot_polygons_type on project $drone_run_band_project_id has already occured. Skipping \n";
-            return {warning => "Plot polygon assignment already occured for $assign_plot_polygons_type on project $drone_run_band_project_id."};
+            return {warning => "A atribuição de polígonos de parcelas já foi realizada para $assign_plot_polygons_type no projeto $drone_run_band_project_id."};
         }
     }
 
@@ -5573,7 +5574,7 @@ sub drone_imagery_manual_assign_plot_polygon_save_partial_template_POST : Args(0
         my $plot_polygon = $polygon_hash->{$generated_index};
         my $last_point = pop @$plot_polygon;
         if (scalar(@$plot_polygon) != 4){
-            $c->stash->{rest} = {error=>'Error: Polygon for '.$uniquename.' should be 4 long!'};
+            $c->stash->{rest} = {error=>'Erro: o polígono de '.$uniquename.' deve ter 4 pontos!'};
             $c->detach();
         }
         $stock_polygon{$uniquename} = $plot_polygon;
@@ -5652,7 +5653,7 @@ sub drone_imagery_manual_assign_plot_polygon_POST : Args(0) {
         my $plot_polygon = $polygon_hash->{$generated_index};
         my $last_point = pop @$plot_polygon;
         if (scalar(@$plot_polygon) != 4){
-            $c->stash->{rest} = {error=>'Error: Polygon for '.$uniquename.' should be 4 long!'};
+            $c->stash->{rest} = {error=>'Erro: o polígono de '.$uniquename.' deve ter 4 pontos!'};
             $c->detach();
         }
         $stock_polygon{$uniquename} = $plot_polygon;
@@ -5728,14 +5729,14 @@ sub drone_imagery_save_plot_polygons_template_POST : Args(0) {
         my $polygon = $polygon_objs->{$stock_name};
         my $last_point = pop @$polygon;
         if (scalar(@$polygon) != 4){
-            $c->stash->{rest} = {error=>'Error: Polygon for '.$stock_name.' should be 4 long!'};
+            $c->stash->{rest} = {error=>'Erro: o polígono de '.$stock_name.' deve ter 4 pontos!'};
             $c->detach();
         }
         $polygon_objs->{$stock_name} = $polygon;
 
         my $stock = $schema->resultset("Stock::Stock")->find({uniquename => $stock_name});
         if (!$stock) {
-            $c->stash->{rest} = {error=>'Error: Stock name '.$stock_name.' does not exist in the database!'};
+            $c->stash->{rest} = {error=>'Erro: o nome de material '.$stock_name.' não existe no banco de dados!'};
             $c->detach();
         }
         $stock_ids{$stock_name} = $stock->stock_id;
@@ -5744,7 +5745,7 @@ sub drone_imagery_save_plot_polygons_template_POST : Args(0) {
     my $drone_run_band_plot_polygons_type_id = SGN::Model::Cvterm->get_cvterm_row($schema, 'drone_run_band_plot_polygons', 'project_property')->cvterm_id();
     my $previous_plot_polygons_rs = $schema->resultset('Project::Projectprop')->search({type_id=>$drone_run_band_plot_polygons_type_id, project_id=>$drone_run_band_project_id});
     if ($previous_plot_polygons_rs->count > 1) {
-        die "There should not be more than one saved entry for plot polygons for a drone run band";
+        die "Não deveria haver mais de um registro salvo de polígonos de parcelas para uma banda de voo de drone";
     }
 
     my $save_stock_polygons;
@@ -5789,14 +5790,14 @@ sub drone_imagery_save_plot_polygons_template_separated_POST : Args(0) {
         my $polygon = $polygon_objs->{$stock_name};
         my $last_point = pop @$polygon;
         if (scalar(@$polygon) != 4){
-            $c->stash->{rest} = {error=>'Error: Polygon for '.$stock_name.' should be 4 long!'};
+            $c->stash->{rest} = {error=>'Erro: o polígono de '.$stock_name.' deve ter 4 pontos!'};
             $c->detach();
         }
         $polygon_objs->{$stock_name} = $polygon;
 
         my $stock = $schema->resultset("Stock::Stock")->find({uniquename => $stock_name});
         if (!$stock) {
-            $c->stash->{rest} = {error=>'Error: Stock name '.$stock_name.' does not exist in the database!'};
+            $c->stash->{rest} = {error=>'Erro: o nome de material '.$stock_name.' não existe no banco de dados!'};
             $c->detach();
         }
         $stock_ids{$stock_name} = $stock->stock_id;
@@ -5805,7 +5806,7 @@ sub drone_imagery_save_plot_polygons_template_separated_POST : Args(0) {
     my $drone_run_band_plot_polygons_type_id = SGN::Model::Cvterm->get_cvterm_row($schema, 'drone_run_band_plot_polygons_separated', 'project_property')->cvterm_id();
     my $previous_plot_polygons_rs = $schema->resultset('Project::Projectprop')->search({type_id=>$drone_run_band_plot_polygons_type_id, project_id=>$drone_run_band_project_id});
     if ($previous_plot_polygons_rs->count > 1) {
-        die "There should not be more than one saved entry for plot polygons for a drone run band";
+        die "Não deveria haver mais de um registro salvo de polígonos de parcelas para uma banda de voo de drone";
     }
 
     my $save_stock_polygons;
@@ -5927,11 +5928,11 @@ sub drone_imagery_remove_background_display_POST : Args(0) {
     my ($user_id, $user_name, $user_role) = _check_user_login($c);
 
     if (!$lower_threshold && !defined($lower_threshold)) {
-        $c->stash->{rest} = {error => 'Please give a lower threshold'};
+        $c->stash->{rest} = {error => 'Informe um limite inferior'};
         $c->detach();
     }
     if (!$upper_threshold && !defined($upper_threshold)) {
-        $c->stash->{rest} = {error => 'Please give an upper threshold'};
+        $c->stash->{rest} = {error => 'Informe um limite superior'};
         $c->detach();
     }
 
@@ -5984,11 +5985,11 @@ sub drone_imagery_remove_background_save_POST : Args(0) {
     my ($user_id, $user_name, $user_role) = _check_user_login($c);
 
     if (!$lower_threshold && !defined($lower_threshold)) {
-        $c->stash->{rest} = {error => 'Please give a lower threshold'};
+        $c->stash->{rest} = {error => 'Informe um limite inferior'};
         $c->detach();
     }
     if (!$upper_threshold && !defined($upper_threshold)) {
-        $c->stash->{rest} = {error => 'Please give an upper threshold'};
+        $c->stash->{rest} = {error => 'Informe um limite superior'};
         $c->detach();
     }
 
@@ -6083,11 +6084,11 @@ sub drone_imagery_remove_background_percentage_save_POST : Args(0) {
     my ($user_id, $user_name, $user_role) = _check_user_login($c);
 
     if (!$lower_threshold_percentage && !defined($lower_threshold_percentage)) {
-        $c->stash->{rest} = {error => 'Please give a lower threshold percentage'};
+        $c->stash->{rest} = {error => 'Informe um percentual de limite inferior'};
         $c->detach();
     }
     if (!$upper_threshold_percentage && !defined($upper_threshold_percentage)) {
-        $c->stash->{rest} = {error => 'Please give an upper threshold percentage'};
+        $c->stash->{rest} = {error => 'Informe um percentual de limite superior'};
         $c->detach();
     }
 
@@ -6388,7 +6389,7 @@ sub get_plot_polygon_types_images_GET : Args(0) {
         my $original_img = $image->get_image_url("large");
         my $small_image = $image->get_image_url("tiny");
         my $image_page = "/image/view/$image_id";
-        my $colorbox = qq|<a href="$image_img"  title="<a href=$image_page>Go to image page ($image_name)</a>" class="image_search_group" rel="gallery-figures"><img src="$small_image" width="40" height="30" border="0" alt="$image_description" /></a>|;
+        my $colorbox = qq|<a href="$image_img"  title="<a href=$image_page>Ir para a página da imagem ($image_name)</a>" class="image_search_group" rel="gallery-figures"><img src="$small_image" width="40" height="30" border="0" alt="$image_description" /></a>|;
 
         push @res, (
             $colorbox,
@@ -6720,7 +6721,7 @@ sub _perform_get_weeks_drone_run_after_planting {
 
     my $drone_run_date_rs = $schema->resultset('Project::Projectprop')->search({project_id=>$drone_run_project_id, type_id=>$project_start_date_type_id});
     if ($drone_run_date_rs->count != 1) {
-        return { error => 'There is no drone run date saved! This should not be possible, please contact us'};
+        return { error => 'Não há data do voo de drone salva! Isso não deveria acontecer; entre em contato conosco'};
     }
     my $drone_run_date = $drone_run_date_rs->first->value;
     my $drone_date = $calendar_funcs->display_start_date($drone_run_date);
@@ -6733,7 +6734,7 @@ sub _perform_get_weeks_drone_run_after_planting {
 
     my $field_trial_rs = $schema->resultset("Project::ProjectRelationship")->search({subject_project_id=>$drone_run_project_id, type_id=>$project_relationship_type_id});
     if ($field_trial_rs->count != 1) {
-        return { drone_run_date => $drone_date, error => 'There is no field trial saved to the drone run! This should not be possible, please contact us'};
+        return { drone_run_date => $drone_date, error => 'Não há ensaio de campo salvo para o voo de drone! Isso não deveria acontecer; entre em contato conosco'};
     }
     my $trial_id = $field_trial_rs->first->object_project_id;
     my $trial = CXGN::Trial->new( { bcs_schema => $schema, trial_id => $trial_id });
@@ -6744,7 +6745,7 @@ sub _perform_get_weeks_drone_run_after_planting {
     my $drone_date_full_calendar_datetime = $drone_date_time_object->strftime("%Y/%m/%d %H:%M:%S");
 
     if (!$planting_date) {
-        return { drone_run_date => $drone_date, drone_run_date_calendar => $drone_date_full_calendar_datetime, error => 'The planting date is not set on the field trial, so we could not get the time of this flight automaticaly'};
+        return { drone_run_date => $drone_date, drone_run_date_calendar => $drone_date_full_calendar_datetime, error => 'A data de plantio não está definida no ensaio de campo, portanto não foi possível obter automaticamente o tempo deste voo'};
     }
 
     print STDERR "$planting_date\n";
@@ -6794,7 +6795,7 @@ sub _perform_get_weeks_drone_run_after_planting {
     }
 
     if (!$week_cvterm_id) {
-        return { planting_date => $planting_date, planting_date_calendar => $planting_date_full_calendar_datetime, drone_run_date => $drone_date, drone_run_date_calendar => $drone_date_full_calendar_datetime, time_difference_weeks => $time_diff_weeks, time_difference_days => $time_diff_days, rounded_time_difference_weeks => $rounded_time_diff_weeks, error => 'The time ontology term was not found automatically! Maybe the field trial planting date or the drone run date are not correct in the database? This should not be possible, please contact us.'};
+        return { planting_date => $planting_date, planting_date_calendar => $planting_date_full_calendar_datetime, drone_run_date => $drone_date, drone_run_date_calendar => $drone_date_full_calendar_datetime, time_difference_weeks => $time_diff_weeks, time_difference_days => $time_diff_days, rounded_time_difference_weeks => $rounded_time_diff_weeks, error => 'O termo de ontologia de tempo não foi encontrado automaticamente! Talvez a data de plantio do ensaio de campo ou a data do voo de drone não estejam corretas no banco de dados? Isso não deveria acontecer; entre em contato conosco.'};
     }
 
     my $week_term = SGN::Model::Cvterm::get_trait_from_cvterm_id($schema, $week_cvterm_id, 'extended');
@@ -7091,7 +7092,7 @@ sub standard_process_apply_ground_control_points_POST : Args(0) {
     }
 
     if (!$gcp_drone_run_project_id_input) {
-        $c->stash->{rest} = { error => "Please select an imaging event to use as a template!" };
+        $c->stash->{rest} = { error => "Selecione um evento de imageamento para usar como modelo!" };
         $c->detach();
     }
 
@@ -7148,7 +7149,7 @@ sub standard_process_apply_ground_control_points_POST : Args(0) {
     my $template_gcp_points = decode_json $template_gcp_points_json;
     # print STDERR Dumper $template_gcp_points;
     if (scalar(keys %$template_gcp_points)<3) {
-        $c->stash->{rest} = { error => "Not enough GCP points defined in the template drone run!" };
+        $c->stash->{rest} = { error => "Não há pontos GCP suficientes definidos no voo de drone usado como modelo!" };
         $c->detach();
     }
 
@@ -7162,7 +7163,7 @@ sub standard_process_apply_ground_control_points_POST : Args(0) {
     my $current_gcp_points = decode_json $current_gcp_points_json;
     # print STDERR Dumper $current_gcp_points;
     if (scalar(keys %$current_gcp_points)<3) {
-        $c->stash->{rest} = { error => "Not enough GCP points defined in the current drone run!" };
+        $c->stash->{rest} = { error => "Não há pontos GCP suficientes definidos no voo de drone atual!" };
         $c->detach();
     }
 
@@ -7422,7 +7423,7 @@ sub standard_process_apply_ground_control_points_POST : Args(0) {
         $template_gcp_x_scale = ($br_gcp_template_point_x - $bl_gcp_template_point_x) / ($br_gcp_current_point_x - $bl_gcp_current_point_x);
     }
     else {
-        $c->stash->{rest} = { error => "Not enough GCP points to get the x scale!" };
+        $c->stash->{rest} = { error => "Não há pontos GCP suficientes para obter a escala x!" };
         $c->detach();
     }
     my $template_gcp_y_scale;
@@ -7433,7 +7434,7 @@ sub standard_process_apply_ground_control_points_POST : Args(0) {
         $template_gcp_y_scale = ($br_gcp_template_point_y - $tr_gcp_template_point_y) / ($br_gcp_current_point_y - $tr_gcp_current_point_y);
     }
     else {
-        $c->stash->{rest} = { error => "Not enough GCP points to get the y scale!" };
+        $c->stash->{rest} = { error => "Não há pontos GCP suficientes para obter a escala y!" };
         $c->detach();
     }
     print STDERR Dumper [$template_gcp_x_scale, $template_gcp_y_scale];
@@ -7768,7 +7769,7 @@ sub standard_process_apply_previous_imaging_event_POST : Args(0) {
     }
 
     if (!$gcp_drone_run_project_id_input) {
-        $c->stash->{rest} = { error => "Please select an imaging event to use as a template!" };
+        $c->stash->{rest} = { error => "Selecione um evento de imageamento para usar como modelo!" };
         $c->detach();
     }
 
@@ -8049,7 +8050,7 @@ sub standard_process_apply_raw_images_interactive_POST : Args(0) {
     my $drone_run_band_plot_polygons_type_id = SGN::Model::Cvterm->get_cvterm_row($schema, 'drone_run_band_plot_polygons_separated', 'project_property')->cvterm_id();
     my $previous_plot_polygons_rs = $schema->resultset('Project::Projectprop')->search({type_id=>$drone_run_band_plot_polygons_type_id, project_id=>$drone_run_band_project_id});
     if ($previous_plot_polygons_rs->count > 1) {
-        $c->stash->{rest} = { error => "There should not be more than one saved entry for plot polygons for a drone run band" };
+        $c->stash->{rest} = { error => "Não deveria haver mais de um registro salvo de polígonos de parcelas para uma banda de voo de drone" };
         $c->detach();
     }
 
@@ -8058,7 +8059,7 @@ sub standard_process_apply_raw_images_interactive_POST : Args(0) {
         $save_stock_polygons_separated = decode_json $previous_plot_polygons_rs->first->value;
     }
     if (!$save_stock_polygons_separated) {
-        $c->stash->{rest} = { error => "There are no stock polygons saved!" };
+        $c->stash->{rest} = { error => "Não há polígonos de materiais salvos!" };
         $c->detach();
     }
     # print STDERR Dumper $save_stock_polygons;
@@ -8169,7 +8170,7 @@ sub standard_process_apply_raw_images_interactive_POST : Args(0) {
 
             my $stock = $schema->resultset("Stock::Stock")->find({uniquename => $plot_name});
             if (!$stock) {
-                $c->stash->{rest} = {error=>'Error: Stock name '.$plot_name.' does not exist in the database!'};
+                $c->stash->{rest} = {error=>'Erro: o nome de material '.$plot_name.' não existe no banco de dados!'};
                 $c->detach();
             }
             my $stock_id = $stock->stock_id;
@@ -8408,7 +8409,7 @@ sub drone_imagery_accession_phenotype_histogram_GET : Args(0) {
     my @sorted_trait_names = sort keys %$unique_traits;
 
     if (scalar(@$data) == 0) {
-        $c->stash->{rest} = { error => "There are no phenotypes for the trait you have selected in the current field trial!"};
+        $c->stash->{rest} = { error => "Não há fenótipos para a característica selecionada no ensaio de campo atual!"};
         $c->detach();
     }
 
@@ -8535,7 +8536,7 @@ sub drone_imagery_save_single_plot_image_POST : Args(0) {
     $h->execute($drone_run_band_project_id_input);
     my ($project_band_name, $project_band_type) = $h->fetchrow_array();
     if (!$project_band_name || !$project_band_type) {
-        $c->stash->{rest} = { error => "Drone run band not found or the drone run band is not of a known type!" };
+        $c->stash->{rest} = { error => "Banda do voo de drone não encontrada ou de tipo desconhecido!" };
         $c->detach();
     }
 
@@ -8565,18 +8566,18 @@ sub drone_imagery_save_single_plot_image_POST : Args(0) {
     my $image_tag = CXGN::Tag->new($bcs_schema->storage->dbh, $image_tag_id);
 
     if (!$image_input) {
-        $c->stash->{rest} = { error => "ERROR!" };
+        $c->stash->{rest} = { error => "ERRO!" };
         $c->detach();
     }
     my $image_input_filename = $image_input->tempname();
     if (!$image_input_filename) {
-        $c->stash->{rest} = { error => "ERROR! filename" };
+        $c->stash->{rest} = { error => "ERRO! nome do arquivo" };
         $c->detach();
     }
 
     my $stock = $bcs_schema->resultset("Stock::Stock")->find({stock_id => $observation_unit_id});
     if (!$stock) {
-        $c->stash->{rest} = {error=>'Error: Stock '.$observation_unit_id.' does not exist in the database!'};
+        $c->stash->{rest} = {error=>'Erro: o material '.$observation_unit_id.' não existe no banco de dados!'};
         $c->detach();
     }
 
@@ -9398,7 +9399,7 @@ sub drone_imagery_crop_image_GET : Args(0) {
     my $polygon = $c->req->param('polygon');
     my $polygon_obj = decode_json $polygon;
     if (scalar(@$polygon_obj) != 4){
-        $c->stash->{rest} = {error=>'Polygon should be 4 long!'};
+        $c->stash->{rest} = {error=>'O polígono deve ter 4 pontos!'};
         $c->detach();
     }
     my $polygons = encode_json [$polygon_obj];
@@ -9849,7 +9850,7 @@ sub _perform_image_merge {
     my $user_role = shift;
 
     if (!$band_1_drone_run_band_project_id || !$band_2_drone_run_band_project_id || !$band_3_drone_run_band_project_id) {
-        $c->stash->{rest} = { error => 'Please select 3 drone run bands' };
+        $c->stash->{rest} = { error => 'Selecione 3 bandas do voo de drone' };
         $c->detach();
     }
     my @drone_run_bands = ($band_1_drone_run_band_project_id, $band_2_drone_run_band_project_id, $band_3_drone_run_band_project_id);
@@ -10235,7 +10236,7 @@ sub drone_imagery_get_image_for_time_series_GET : Args(0) {
     my ($user_id, $user_name, $user_role) = _check_user_login($c);
 
     if (!$field_trial_id) {
-        $c->stash->{rest} = {error => "No field trial id given!" };
+        $c->stash->{rest} = {error => "Nenhum ID de ensaio de campo informado!" };
         $c->detach();
     }
 
@@ -10562,7 +10563,7 @@ sub _perform_phenotype_calculation {
 
     my $image_band_selected = $isol_terms_map{$plot_polygons_type}->{corresponding_channel};
     if (!defined($image_band_selected) && $phenotype_method eq 'zonal') {
-        return {error => "No corresponding image band for this type $plot_polygons_type!"};
+        return {error => "Nenhuma banda de imagem correspondente para este tipo $plot_polygons_type!"};
     }
 
     my $plot_polygons_images_cvterm_id = SGN::Model::Cvterm->get_cvterm_row($schema, $plot_polygons_type, 'project_md_image')->cvterm_id();
@@ -10577,7 +10578,7 @@ sub _perform_phenotype_calculation {
     my @header_cols;
     my @stocks;
     if ($total_count == 0) {
-        return {error => "No plot polygon images for this type $plot_polygons_type!"};
+        return {error => "Nenhuma imagem de polígono de parcela para este tipo $plot_polygons_type!"};
     } else {
 
         my $traits = SGN::Model::Cvterm->get_traits_from_component_categories($schema, $allowed_composed_cvs, $composable_cvterm_delimiter, $composable_cvterm_format, {
@@ -10758,7 +10759,7 @@ sub _perform_phenotype_calculation {
                     $header_cols[14] ne 'majority_pixel_count' ||
                     $header_cols[15] ne 'pixel_variety_count'
                 ) {
-                    $c->stash->{rest} = { error => "Pheno results must have header: 'stock_id', 'nonzero_pixel_count', 'total_pixel_sum', 'mean_pixel_value', 'harmonic_mean_value', 'median_pixel_value', 'variance_pixel_value', 'stdev_pixel_value', 'pstdev_pixel_value', 'min_pixel_value', 'max_pixel_value', 'minority_pixel_value', 'minority_pixel_count', 'majority_pixel_value', 'majority_pixel_count', 'pixel_variety_count'" };
+                    $c->stash->{rest} = { error => "Os resultados fenotípicos devem ter o cabeçalho: 'stock_id', 'nonzero_pixel_count', 'total_pixel_sum', 'mean_pixel_value', 'harmonic_mean_value', 'median_pixel_value', 'variance_pixel_value', 'stdev_pixel_value', 'pstdev_pixel_value', 'min_pixel_value', 'max_pixel_value', 'minority_pixel_value', 'minority_pixel_count', 'majority_pixel_value', 'majority_pixel_count', 'pixel_variety_count'" };
                     return;
                 }
 
@@ -11391,7 +11392,7 @@ sub drone_imagery_train_keras_model_POST : Args(0) {
         $cmd = $c->config->{python_executable}.' '.$c->config->{rootpath}.'/DroneImageScripts/CNN/KerasCNNSequentialSoftmaxCategorical.py --input_image_label_file \''.$archive_temp_input_file.'\' --input_aux_data_file \''.$archive_temp_input_aux_file.'\' --outfile_path \''.$archive_temp_output_file.'\' --output_model_file_path \''.$archive_temp_output_model_file.'\' '.$log_file_path.' --keras_model_type mlp_cnn_example --output_loss_history \''.$archive_temp_loss_history_file.'\' --output_autoencoder_model_file_path \''.$archive_temp_autoencoder_output_model_file.'\' ';
     }
     else {
-        $c->stash->{rest} = {error => "$model_type not supported!"};
+        $c->stash->{rest} = {error => "$model_type não suportado!"};
         $c->detach();
     }
     print STDERR Dumper $cmd;
@@ -12383,7 +12384,7 @@ sub drone_imagery_autoencoder_keras_vi_model_POST : Args(0) {
     my ($user_id, $user_name, $user_role) = _check_user_login($c);
 
     if (scalar(@$drone_run_ids) > 1) {
-        $c->stash->{rest} = {error => "Please select only one drone run to predict on!"};
+        $c->stash->{rest} = {error => "Selecione apenas um voo de drone para a predição!"};
         $c->detach();
     }
 
@@ -12429,7 +12430,7 @@ sub _perform_autoencoder_keras_cnn_vi {
     my ($training_result, $training_total_count) = $training_images_search->search();
 
     if ($training_total_count == 0) {
-        return {error => "No plot-polygon images for training!"};
+        return {error => "Nenhuma imagem de polígono de parcela para treinamento!"};
     }
 
     my $images_search = CXGN::DroneImagery::ImagesSearch->new({
@@ -12440,7 +12441,7 @@ sub _perform_autoencoder_keras_cnn_vi {
     my ($result, $total_count) = $images_search->search();
 
     if ($total_count == 0) {
-        return {error => "No plot-polygon images for predicting!"};
+        return {error => "Nenhuma imagem de polígono de parcela para predição!"};
     }
 
     my %training_data_hash;
@@ -13604,7 +13605,7 @@ sub drone_imagery_export_drone_runs_GET : Args(0) {
     my $orthoimage_zipfile_file_path = $c->config->{basepath}."/".$orthoimage_zipfile;
 
     unless ( $images_zip->writeToFileNamed($orthoimage_zipfile_file_path) == AZ_OK ) {
-        $c->stash->{rest} = {error => "Images zipfile could not be saved!"};
+        $c->stash->{rest} = {error => "Não foi possível salvar o arquivo ZIP de imagens!"};
         $c->detach;
     }
 
@@ -13658,7 +13659,7 @@ sub drone_imagery_export_drone_runs_GET : Args(0) {
     my $geojson_zipfile_file_path = $c->config->{basepath}."/".$geojson_zipfile;
 
     unless ( $geojson_zip->writeToFileNamed($geojson_zipfile_file_path) == AZ_OK ) {
-        $c->stash->{rest} = {error => "GeoJSON zipfile could not be saved!"};
+        $c->stash->{rest} = {error => "Não foi possível salvar o arquivo ZIP de GeoJSON!"};
         $c->detach;
     }
 
@@ -13698,7 +13699,7 @@ sub _check_user_login {
         my $dbh = $c->dbc->dbh;
         my @user_info = CXGN::Login->new($dbh)->query_from_cookie($session_id);
         if (!$user_info[0]){
-            $c->stash->{rest} = {error=>'You must be logged in to do this!'};
+            $c->stash->{rest} = {error=>'Você precisa estar conectado para fazer isso!'};
             $c->detach();
         }
         $user_id = $user_info[0];
@@ -13707,7 +13708,7 @@ sub _check_user_login {
         $user_name = $p->get_username;
     } else{
         if (!$c->user){
-            $c->stash->{rest} = {error=>'You must be logged in to do this!'};
+            $c->stash->{rest} = {error=>'Você precisa estar conectado para fazer isso!'};
             $c->detach();
         }
         $user_id = $c->user()->get_object()->get_sp_person_id();
@@ -13715,7 +13716,7 @@ sub _check_user_login {
         $user_role = $c->user->get_object->get_user_type();
     }
     if ($role_check && $user_role ne $role_check) {
-        $c->stash->{rest} = {error=>'You must have permission to do this! Please contact us!'};
+        $c->stash->{rest} = {error=>'Você precisa ter permissão para fazer isso! Entre em contato conosco!'};
         $c->detach();
     }
     return ($user_id, $user_name, $user_role);

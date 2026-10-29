@@ -90,11 +90,11 @@ if (defined $organism_group_id) {
    }
    ## Create the HTML table
 
-   $history_html = columnar_table_html( headings => ['Unigene build id', 'Build Name', 'Status', 'Date'],
+   $history_html = columnar_table_html( headings => ['ID da montagem de unigenes', 'Nome da montagem', 'Situação', 'Data'],
                                         data    => \@unigene_data );
    
 } else {
-    $history_html = 'None history was found associated to this unigene build';
+    $history_html = 'Nenhum histórico associado a esta montagem de unigenes foi encontrado';
 }
 
 my $history_content;

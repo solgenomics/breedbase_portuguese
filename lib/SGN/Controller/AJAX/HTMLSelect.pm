@@ -18,6 +18,7 @@ Lukas Mueller <lam87@cornell.edu>
 =cut
 
 package SGN::Controller::AJAX::HTMLSelect;
+use utf8;
 
 use Moose;
 
@@ -67,7 +68,7 @@ sub get_location_select : Path('/ajax/html/select/locations') Args(0) {
 
     my $locations = CXGN::BreedersToolbox::Projects->new( { schema => $c->dbic_schema("Bio::Chado::Schema", undef, $sp_person_id) } )->get_all_locations();
 
-    if ($empty) { unshift @$locations, [ "", "Select Location" ] }
+    if ($empty) { unshift @$locations, [ "", "Selecione o local" ] }
 
     my $default = $c->req->param("default") || @$locations[0]->[0];
 
@@ -91,7 +92,7 @@ sub get_breeding_program_select : Path('/ajax/html/select/breeding_programs') Ar
 
     my $breeding_programs = CXGN::BreedersToolbox::Projects->new( { schema => $c->dbic_schema("Bio::Chado::Schema", undef, $sp_person_id) } )->get_breeding_programs();
 
-    if ($empty) { unshift @$breeding_programs, [ "", "Please select a program" ]; }
+    if ($empty) { unshift @$breeding_programs, [ "", "Selecione um programa" ]; }
     my $default = $c->req->param("default") || @$breeding_programs[0]->[0];
 
     my $html = simple_selectbox_html(
@@ -368,11 +369,11 @@ sub get_projects_select : Path('/ajax/html/select/projects') Args(0) {
 #    if ($empty) { unshift @projects, [ "", "Please select a trial" ]; }
     if ($empty) {
         if ($get_crossing_trials) {
-            unshift @projects, [ "", "Please select a crossing experiment" ];
+            unshift @projects, [ "", "Selecione um experimento de cruzamento" ];
         } elsif ($get_genotyping_projects) {
-            unshift @projects, [ "", "Please select a genotyping project" ];
+            unshift @projects, [ "", "Selecione um projeto de genotipagem" ];
         } else {
-            unshift @projects, [ "", "Please select a trial" ];
+            unshift @projects, [ "", "Selecione um ensaio" ];
         }
     }
 #    print STDERR "PROJECTS =".Dumper(\@projects)."\n";
@@ -474,7 +475,7 @@ sub get_trials_select : Path('/ajax/html/select/trials') Args(0) {
         }
     }
 
-    if ($empty) { unshift @trials, [ "", "Please select a trial" ]; }
+    if ($empty) { unshift @trials, [ "", "Selecione um ensaio" ]; }
 
     my $html = simple_selectbox_html(
       multiple => $multiple,
@@ -521,7 +522,7 @@ sub get_genotyping_trials_select : Path('/ajax/html/select/genotyping_trials') A
     }
     @trials = sort { $a->[1] cmp $b->[1] } @trials;
 
-    if ($empty) { unshift @trials, [ "", "Please select a trial" ]; }
+    if ($empty) { unshift @trials, [ "", "Selecione um ensaio" ]; }
 
     my $html = simple_selectbox_html(
       multiple => $multiple,
@@ -760,7 +761,7 @@ sub get_stocks_select : Path('/ajax/html/select/stocks') Args(0) {
 	}
 	@stocks = sort { $a->[1] cmp $b->[1] } @stocks;
 
-	if ($empty) { unshift @stocks, [ "", "Please select a stock" ]; }
+	if ($empty) { unshift @stocks, [ "", "Selecione um material" ]; }
 
 	my $html = simple_selectbox_html(
 		multiple => $multiple,
@@ -845,7 +846,7 @@ sub get_seedlots_select : Path('/ajax/html/select/seedlots') Args(0) {
 
     @stocks = sort { $a->[1] cmp $b->[1] } @stocks;
 
-    if ($empty) { unshift @stocks, [ "", "Please select a stock" ]; }
+    if ($empty) { unshift @stocks, [ "", "Selecione um material" ]; }
 
     my $html = simple_selectbox_html(
         multiple => $multiple,
@@ -1216,7 +1217,7 @@ sub get_analysis_models : Path('/ajax/html/select/models') Args(0) {
     my $empty = $c->req->param("empty");
 
     @models = sort { $a->[1] cmp $b->[1] } @models;
-    if ($empty) { unshift @models, [ "", "Please select a model" ]; }
+    if ($empty) { unshift @models, [ "", "Selecione um modelo" ]; }
 
     my $html = simple_selectbox_html(
         name => $name,
@@ -1423,7 +1424,7 @@ sub get_traits_select : Path('/ajax/html/select/traits') Args(0) {
     }
 
     @traits = sort { $a->[1] cmp $b->[1] } @traits;
-    if ($empty) { unshift @traits, [ "", "Please select a trait" ]; }
+    if ($empty) { unshift @traits, [ "", "Selecione uma característica" ]; }
 
     my $html = simple_selectbox_html(
       multiple => $multiple,
@@ -1561,7 +1562,7 @@ sub get_genotyping_protocol_select : Path('/ajax/html/select/genotyping_protocol
     }
 
     if ($empty){
-        unshift@$gt_protocols, ['', "Select a genotyping protocol"]
+        unshift@$gt_protocols, ['', "Selecione um protocolo de genotipagem"]
     }
 
     my $html = simple_selectbox_html(
@@ -1907,7 +1908,7 @@ sub get_datasets_intersect_select : Path('/ajax/html/select/datasets_intersect')
     }
 
     if ($empty) {
-        unshift @result, ['', "Select one"];
+        unshift @result, ['', "Selecione um"];
     }
 
     my $html = simple_selectbox_html(
@@ -1942,7 +1943,7 @@ sub get_drone_imagery_parameter_select : Path('/ajax/html/select/drone_imagery_p
         $parameter_type_id = SGN::Model::Cvterm->get_cvterm_row($schema, 'drone_run_band_cropped_polygon', 'project_property')->cvterm_id();
     }
     else {
-        $c->stash->{rest} = { error => "Parameter not supported!" };
+        $c->stash->{rest} = { error => "Parâmetro não suportado!" };
         $c->detach();
     }
 
@@ -1961,7 +1962,7 @@ sub get_drone_imagery_parameter_select : Path('/ajax/html/select/drone_imagery_p
     }
 
     if ($empty) {
-        unshift @result, ['', "Select one"];
+        unshift @result, ['', "Selecione um"];
     }
 
     my $html = simple_selectbox_html(
@@ -2003,7 +2004,7 @@ sub get_drone_imagery_drone_runs_with_gcps : Path('/ajax/html/select/drone_runs_
     }
 
     if ($empty) {
-        unshift @result, ['', "Select one"];
+        unshift @result, ['', "Selecione um"];
     }
 
     my $html = simple_selectbox_html(
@@ -2043,7 +2044,7 @@ sub get_drone_imagery_drone_runs : Path('/ajax/html/select/drone_runs') Args(0) 
     }
 
     if ($empty) {
-        unshift @result, ['', "Select one"];
+        unshift @result, ['', "Selecione um"];
     }
 
     my $html = simple_selectbox_html(
@@ -2088,7 +2089,7 @@ sub get_drone_imagery_plot_polygon_types : Path('/ajax/html/select/drone_imagery
     }
 
     if ($empty) {
-        unshift @result, ['', "Select one"];
+        unshift @result, ['', "Selecione um"];
     }
 
     my $html = simple_selectbox_html(
@@ -2133,7 +2134,7 @@ sub get_micasense_aligned_raw_images : Path('/ajax/html/select/micasense_aligned
     }
 
     if ($empty) {
-        unshift @result, ['', "Select one"];
+        unshift @result, ['', "Selecione um"];
     }
 
     my $html = simple_selectbox_html(
@@ -2397,7 +2398,7 @@ sub get_trial_subplot_select : Path('/ajax/html/select/subplots_from_trial/') Ar
     });
 
     if (!$trial->has_subplot_entries()) {
-        $c->stash->{rest} = { error => "This trial has no subplots.\n" };
+        $c->stash->{rest} = { error => "Este ensaio não tem subparcelas.\n" };
         return;
     }
 
@@ -2470,7 +2471,7 @@ sub get_trial_plant_select : Path('/ajax/html/select/plants_from_trial/') Args(0
     });
 
     if (!$trial->has_plant_entries()) {
-        $c->stash->{rest} = { error => "This trial has no plants.\n" };
+        $c->stash->{rest} = { error => "Este ensaio não tem plantas.\n" };
         return;
     }
 
@@ -2604,7 +2605,7 @@ sub get_plot_polygon_templates_partial : Path('/ajax/html/select/plot_polygon_te
     }
 
     if ($empty) {
-        unshift @result, ['', "Select one"];
+        unshift @result, ['', "Selecione um"];
     }
 
     my $html = simple_selectbox_html(
@@ -2649,7 +2650,7 @@ sub get_plot_image_sizes : Path('/ajax/html/select/plot_image_sizes') Args(0) {
     }
 
     if ($empty) {
-        unshift @result, ['', "Select one"];
+        unshift @result, ['', "Selecione um"];
     }
 
     my $html = simple_selectbox_html(
@@ -2684,7 +2685,7 @@ sub get_drone_imagery_drone_run_band : Path('/ajax/html/select/drone_imagery_dro
     }
 
     if ($empty) {
-        unshift @result, ['', "Select a drone run band"];
+        unshift @result, ['', "Selecione uma banda do evento de imageamento"];
     }
 
     my $html = simple_selectbox_html(
@@ -2733,7 +2734,7 @@ sub get_genotyping_facility_select : Path('/ajax/html/select/genotyping_faciliti
     my $genotyping_facilities = $c->config->{genotyping_facilities};
     my @facilities = split ',',$genotyping_facilities;
 
-    if ($empty) { unshift @facilities, [ "", "Select Facility" ] }
+    if ($empty) { unshift @facilities, [ "", "Selecione a instalação" ] }
 
     my $default = $c->req->param("default") || @facilities[0]->[0];
 
@@ -2778,7 +2779,7 @@ sub get_transformant_related_attributes_select : Path('/ajax/html/select/transfo
     my $empty = $c->req->param("empty") || "";
     my $sp_person_id = $c->user() ? $c->user->get_object()->get_sp_person_id() : undef;
     my @related_attributes;
-    push @related_attributes, ["", "Select Attribute"];
+    push @related_attributes, ["", "Selecione o atributo"];
     push @related_attributes, ['breedingProgram', 'breeding program'];
     push @related_attributes, ['transformationProject', 'transformation project'];
     push @related_attributes, ['transformationID', 'transformation id'];
@@ -2804,7 +2805,7 @@ sub get_plot_related_attributes_select : Path('/ajax/html/select/plot_related_at
     my $empty = $c->req->param("empty") || "";
     my $sp_person_id = $c->user() ? $c->user->get_object()->get_sp_person_id() : undef;
     my @related_attributes;
-    push @related_attributes, ["", "Select Attribute"];
+    push @related_attributes, ["", "Selecione o atributo"];
     push @related_attributes, ['breedingProgram', 'breeding program'];
     push @related_attributes, ['trialName', 'trial name'];
     push @related_attributes, ['accessionName', 'accession name'];
@@ -2837,7 +2838,7 @@ sub get_material_types_select : Path('/ajax/html/select/material_types') Args(0)
     my @material_types;
 
     if ($empty && !$default) {
-        push @material_types, ['', 'Please select a material type'];
+        push @material_types, ['', 'Selecione um tipo de material'];
     }
     push @material_types, ['seed', 'seed'];
     push @material_types, ['root', 'root'];
@@ -2893,7 +2894,7 @@ sub get_control_transformation_ids_select : Path('/ajax/html/select/control_tran
 
     @transformations = sort { $a->[1] cmp $b->[1] } @transformations;
 
-    if ($empty) { unshift @transformations, [ "", "Please select" ]; }
+    if ($empty) { unshift @transformations, [ "", "Selecione" ]; }
 
     my $html = simple_selectbox_html(
         name => $name,
@@ -2915,7 +2916,7 @@ sub get_tissue_types_select : Path('/ajax/html/select/tissue_types') Args(0) {
     my @tissue_types;
 
     if ($empty && !$default) {
-        push @tissue_types, ['', 'Please select a tissue type'];
+        push @tissue_types, ['', 'Selecione um tipo de tecido'];
     }
     push @tissue_types, ['leaf', 'leaf'];
     push @tissue_types, ['sink leaf', 'sink leaf'];
@@ -2950,7 +2951,7 @@ sub get_endogenous_controls_select : Path('/ajax/html/select/endogenous_controls
     my @endogenous_controls;
 
     if ($empty && !$default) {
-        push @endogenous_controls, ['', 'Please select an endogenous control'];
+        push @endogenous_controls, ['', 'Selecione um controle endógeno'];
     }
     push @endogenous_controls, ['GAPDH', 'GAPDH'];
 
@@ -2978,7 +2979,7 @@ sub get_assay_dates_select : Path('/ajax/html/select/assay_dates') Args(0) {
     my @assay_dates;
 
     if ($empty) {
-        push @assay_dates, ['', 'Please select a date'];
+        push @assay_dates, ['', 'Selecione uma data'];
     }
 
     my $vector_construct = CXGN::Stock::Vector->new(schema=>$schema, stock_id=>$vector_stock_id);
@@ -3014,7 +3015,7 @@ sub get_qPCR_normalization_methods_select : Path('/ajax/html/select/qPCR_normali
     my @qPCR_normalization_methods;
 
     if ($empty && !$default) {
-        push @qPCR_normalization_methods, ['', 'Please select a method'];
+        push @qPCR_normalization_methods, ['', 'Selecione um método'];
     }
     push @qPCR_normalization_methods, ['CASS_Delta_Cq', 'CASS Delta Cq'];
 
@@ -3040,7 +3041,7 @@ sub get_vendors_select : Path('/ajax/html/select/vendors') Args(0) {
     my @vendor_names;
 
     if ($empty && !$default) {
-        push @vendor_names, ['', 'Please select'];
+        push @vendor_names, ['', 'Selecione'];
     }
 
     my $q = "SELECT person.sp_person_id, person.first_name, person.last_name

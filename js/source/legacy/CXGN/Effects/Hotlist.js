@@ -36,7 +36,7 @@ Effects.Hotlist = {
 				imgRemove.style.display = "inline";
 				button.firstChild.nodeValue = "Remover " + optionalText + "da lista de favoritos";
 				if(deactivate){
-					button.setAttribute("onClick", "notify('Please Hold')");
+					button.setAttribute("onClick", "notify('Aguarde')");
 				}
 				else {
 					button.setAttribute("onClick", "Hotlist.remove('" + buttonId + "', '" + content + "'); return false;");
@@ -47,7 +47,7 @@ Effects.Hotlist = {
 				imgRemove.style.display = "none";
 				button.firstChild.nodeValue = "Adicionar " + optionalText + "à lista de favoritos";
 				if(deactivate){
-					button.setAttribute("onClick", "notify('Please Hold')");
+					button.setAttribute("onClick", "notify('Aguarde')");
 				}
 				else {
 					button.setAttribute("onClick", "Hotlist.add('" + buttonId + "', '" + content + "'); return false;");

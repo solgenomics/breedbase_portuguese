@@ -157,7 +157,7 @@ if (defined $id) {
    } elsif (scalar(@deprecated_ests) > 0) {
        $library_html .= "<font color='red'><i><b>Não há dados da biblioteca. ";
        $library_html .= "Este unigene é composto por ESTs depreciados:</b></i></font><br>";
-       $library_html .= columnar_table_html( headings  => ['EST Accession', 'Deprecated by'],
+       $library_html .= columnar_table_html( headings  => ['Acesso EST', 'Substituído por'],
                                              data     => \@deprecated_ests,
                                              __alt_freq => 2,
                                              __align  => ['c', 'c'],

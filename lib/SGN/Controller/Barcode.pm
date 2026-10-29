@@ -1,5 +1,6 @@
 
 package SGN::Controller::Barcode;
+use utf8;
 
 use Moose;
 use GD;
@@ -472,7 +473,7 @@ sub generate_unique_barcode_labels : Path('/barcode/unique') Args(0) {
 
     if (! $c->user()) {
 	$c->stash->{template} = 'generic_message.mas';
-	$c->stash->{message} = 'You must be logged in to use the unique barcode tool.';
+	$c->stash->{message} = 'Você precisa estar conectado para usar a ferramenta de códigos de barras únicos.';
 	return;
     }
 

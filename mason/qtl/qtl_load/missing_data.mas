@@ -36,12 +36,12 @@ $count++;
 }
 
 $messages .= qq | <p><a href="javascript:history.go(-1)">
-   Please go back and fill in the missing information.</a> </p>|;
+   Volte e preencha as informações que faltam.</a> </p>|;
 }
 
 </%perl>
 
-<& /page/page_title.mas, title => "Dados desaparecidos:" &>
+<& /page/page_title.mas, title => "Dados faltantes:" &>
 <&| /page/info_section.mas, title => ' ', 
   subtitle => $guide &>
  <% $messages %>  

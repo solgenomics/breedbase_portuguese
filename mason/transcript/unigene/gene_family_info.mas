@@ -80,14 +80,14 @@ if (defined $id) {
 	    my $family_link = '<a href="family.pl?family_id='.$fam_id.'">'.$fam_id."</a>";
 	    push @family_info, [$ivalue, $family_link, $annotation, $count];
 	}
-	$gene_family_content = columnar_table_html( headings => ['Família Construir <br>(Eu valorizo*)','Family ID', 'Annotation**','# Members'],
+	$gene_family_content = columnar_table_html( headings => ['Montagem de famílias <br>(valor de i*)','ID da família', 'Anotação**','Nº de membros'],
 						    data     => \@family_info,
 						    __align => ['c', 'c', 'l', 'c'],
 	                                           );
 
-	$gene_family_content .= '<br> * Valor: controla a inflação, um processo para dissipar grupos familiares. ';
-	$gene_family_content .= 'At high i value, genes tend to be separated into different families.<br>';
-	$gene_family_content .= 'Anotação: a mais comum anotação InterPro dos membros da família Arabidopsis.<br>';
+	$gene_family_content .= '<br> * Valor de i: controla a inflação, um processo para dissipar agrupamentos de famílias. ';
+	$gene_family_content .= 'Com valores altos de i, os genes tendem a ser separados em famílias diferentes.<br>';
+	$gene_family_content .= '** Anotação: a anotação InterPro mais comum entre os membros da família em Arabidopsis.<br>';
 
     }
 

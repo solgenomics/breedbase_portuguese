@@ -4,7 +4,7 @@
 </%doc>
 
 
-<& /page/page_title.mas, title=>"O <i>Solanum lycopersicoides</i> Consórcio Genoma
+<& /page/page_title.mas, title=>"Consórcio do Genoma de <i>Solanum lycopersicoides</i>
 " &>
 
 <& /genomes/Solanum_lycopersicoides/usage_popup.mas &>
@@ -12,7 +12,7 @@
 <div class="page_introduction">
 
   <a href="/organism/Solanum%20lycopersicoides/view/"><i>Solanum
-  lycopersicoides</i></a>  é uma espécie de tomate selvagem relacionada com o domesticado <a href="/organism/Solanum lycopersicum/view"><i>Solanum
+  lycopersicoides</i></a>  é uma espécie de tomate selvagem aparentada ao tomate domesticado <a href="/organism/Solanum lycopersicum/view"><i>Solanum
   lycopersicum</i></a>.  
 
 </div>
@@ -21,12 +21,12 @@
 
 <div style="text-align: justify; border: 1px solid gray; padding: 2em 3em 3em 3em">
 
-<h3 style="text-align: center"><i>Solanum lycopersicoides</i> Acordo de Acesso de Dados</h3>
-<h4 style="text-align: center">POR FAVOR LEIA ANTES DE ACESSAR A SEQUÊNCIA PRÉ-PUBLICAÇÃO DE LICOPERSICOÍDEOS DE SOLANO</h4>
+<h3 style="text-align: center">Acordo de Acesso aos Dados de <i>Solanum lycopersicoides</i></h3>
+<h4 style="text-align: center">LEIA ANTES DE ACESSAR A SEQUÊNCIA PRÉ-PUBLICAÇÃO DE SOLANUM LYCOPERSICOIDES</h4>
 
- O Instituto Boyce Thompson e a Universidade RWTH Aachen têm o prazer de tornar a pré-publicação Solanum lycopersicoides LA2951 sequências de genoma publicamente disponíveis como um recurso para o melhoramento de plantas e biologia. Ao acessar esses dados, eu concordo em respeitar os direitos do consórcio de analisar e publicar as primeiras análises globais em uma publicação revisada pelos pares de acordo com o acordo de Toronto. Isto inclui: 1) análises cromossômicas inteiras ou de genomas inteiros em genes, famílias de genes e sequências repetitivas e 2) análises comparativas com outros organismos. Estudos que não se sobreponham aos planejados pelo consórcio podem ser realizados após um acordo. Por favor, contate.  <a href="mailto:usadel@bio1.rwth-aachen.de">Dr. Bjorn Usadel</a> ou  <a href="mailto:srs57@cornell.edu">Dr. Susan Strickler</a>  
- para discutir tais possibilidades. Os dados podem ser livremente baixados e usados por todos que respeitam as restrições descritas acima.
- <b>Qualquer uso dos dados do genoma de S. lycopersicoides antes de sua publicação deve seguir o acordo e deve crédito "O Consórcio de Genoma de Solanum lycopersicoides".</b>
+ O Boyce Thompson Institute e a RWTH Aachen University têm o prazer de disponibilizar publicamente as sequências de genoma pré-publicação de Solanum lycopersicoides LA2951 como um recurso para o melhoramento de plantas e a biologia. Ao acessar esses dados, concordo em respeitar os direitos do consórcio de analisar e publicar as primeiras análises globais em uma publicação revisada por pares, de acordo com o Acordo de Toronto. Isso inclui: 1) análises em escala de cromossomo inteiro ou de genoma inteiro de genes, famílias gênicas e sequências repetitivas e 2) análises comparativas com outros organismos. Estudos que não se sobreponham aos planejados pelo consórcio podem ser realizados mediante acordo. Entre em contato com  <a href="mailto:usadel@bio1.rwth-aachen.de">Dr. Bjorn Usadel</a> ou  <a href="mailto:srs57@cornell.edu">Dr. Susan Strickler</a>  
+ para discutir tais possibilidades. Os dados podem ser baixados e usados livremente por todos que respeitarem as restrições descritas acima.
+ <b>Qualquer uso dos dados do genoma de S. lycopersicoides antes de sua publicação deve seguir o acordo e deve dar crédito ao "The Solanum lycopersicoides Genome Consortium".</b>
 
  
 </div>  
@@ -36,36 +36,36 @@
 <&| /page/info_section.mas, title => 'Detalhes da montagem' &>
 
 <p>
-O genoma foi sequenciado em 90X de cobertura usando tecnologia PacBio e foi montado com Canu. Contigs foram corrigidos com Quiver e Pilon e andaimes com Hi-C. As aberturas foram preenchidas com a sequência PacBio usando PBJelly. 
+O genoma foi sequenciado com cobertura de 90X usando a tecnologia PacBio e foi montado com o Canu. Os contigs foram corrigidos com Quiver e Pilon e organizados em scaffolds com Hi-C. As lacunas foram preenchidas com sequências PacBio usando o PBJelly. 
 <br><br>
-Comprimento total contíguo: 1.254.763.366 bp<br>
-No contigs: 17.507<br>
-Contíguo mais longo: 3.446.189 bp<br>
-Contíguo N50: 139.475 bp<br>
+Comprimento total dos contigs: 1.254.763.366 bp<br>
+Nº de contigs: 17.507<br>
+Contig mais longo: 3.446.189 bp<br>
+N50 dos contigs: 139.475 bp<br>
 <br>
 Comprimento total da montagem final: 1.269.715.057 bp<br>
-no sequences: 3,096<br>
-Reunião final N50: 93.894.821 bp<br>
-Sequência mais longa: 133,820,975 bp<br>
-89,7% da assembleia é encontrada em 12 andaimes<br>
+Nº de sequências: 3.096<br>
+N50 da montagem final: 93.894.821 bp<br>
+Sequência mais longa: 133.820.975 bp<br>
+89,7% da montagem está contida em 12 scaffolds<br>
 </p>
 
 </&>
 
 
 <&| /page/info_section.mas, title => 'Detalhes da anotação' &>
-<p>Augustus e Snap foram treinados para usar como preditores no gasoduto Maker. Os dados de sequência usados como entrada incluem PacBio IsoSeq, RNA-seq de folhas, frutas e flores, proteínas de S. lycopersicum, S. pennellii, e refseq. Um total de 37.938 genes foram previstos, 34.240 destes estão localizados em pseudomoléculas.</p>
+<p>Augustus e Snap foram treinados para uso como preditores no pipeline Maker. Os dados de sequência usados como entrada incluem PacBio IsoSeq, RNA-seq de folhas, frutos e flores, e proteínas de S. lycopersicum, S. pennellii e RefSeq. Um total de 37.938 genes foram preditos, dos quais 34.240 estão localizados em pseudomoléculas.</p>
 
 </&>
 
 
-<&| /page/info_section.mas, title => 'Dados Disponíveis' &>
+<&| /page/info_section.mas, title => 'Dados disponíveis' &>
    <% info_table_html(
          __border   => 0,
          __multicol => 2,
-   'Genome browser' => '<a href="/jbrowse_solgenomics/?data=data/json/Slyd0.6&tracks=DNA,gene_models">Jbrowse</a>',
+   'Navegador de genoma' => '<a href="/jbrowse_solgenomics/?data=data/json/Slyd0.6&tracks=DNA,gene_models">Jbrowse</a>',
    BLAST => 
-   '<a href="/tools/blast/?db_id=302">Andaimes genômicos</a>'
+   '<a href="/tools/blast/?db_id=302">Scaffolds genômicos</a>'
      )
     %>
 </&>

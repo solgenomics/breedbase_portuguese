@@ -1,4 +1,5 @@
 package SGN::Controller::solGS::AnalysisSave;
+use utf8;
 
 use Moose;
 use namespace::autoclean;
@@ -36,7 +37,7 @@ sub check_analysis_result :Path('/solgs/check/stored/analysis/') Args() {
     $c->stash->{rest} {analysis_id} = $analysis_id;
 
     if ($analysis_id) {
-        $c->stash->{rest}{error} = "The results of this analysis are already in the database.";
+        $c->stash->{rest}{error} = "Os resultados desta análise já estão no banco de dados.";
     } 
         
 }

@@ -904,7 +904,7 @@ function changeLabelSize(width, height) {
     var canvas = d3.select("#d3-draw-area");
     canvas.append("text")
         .attr("id", "dimensions-text")
-        .text("("+in_width.toFixed(2)+" Entrando "+cm_width.toFixed(2)+" cm.) x ("+in_height.toFixed(2)+" Entrando "+cm_height.toFixed(2)+" cm.)");
+        .text("("+in_width.toFixed(2)+" pol. / "+cm_width.toFixed(2)+" cm.) x ("+in_height.toFixed(2)+" pol. / "+cm_height.toFixed(2)+" cm.)");
 
     updateGrid(7);
 }

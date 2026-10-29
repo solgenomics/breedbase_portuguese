@@ -16,6 +16,7 @@ CXGN::Genotype::Delete - an object to delete plate, project or protocol genotypi
 
 =cut
 package CXGN::Genotype::Delete;
+use utf8;
 
 use Moose;
 use SGN::Model::Cvterm;
@@ -181,7 +182,7 @@ sub delete_empty_protocol {
 
         if ($experiment_count > 0) {
             print STDERR "This protocol has associated genotyping data. Cannot delete.\n";
-            die "This protocol has associated genotyping data. Cannot delete.\n";
+            die "Este protocolo tem dados de genotipagem associados. Não é possível excluir.\n";
         } elsif ($experiment_count == 0) {
             my $delete_protocol_q = "DELETE from nd_protocol WHERE nd_protocol_id=?;";
             my $delete_protocol_h = $schema->storage->dbh()->prepare($delete_protocol_q);

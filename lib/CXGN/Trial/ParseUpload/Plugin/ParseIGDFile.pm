@@ -11,6 +11,7 @@ Lukas Mueller
 
 package CXGN::Trial::ParseUpload::Plugin::ParseIGDFile;
 
+use utf8;
 use Moose::Role;
 use File::Slurp "read_file";
 
@@ -44,10 +45,10 @@ sub _validate_with_plugin {
     my %errors;
     my @error_messages;
     if (!$blank_well) { 
-        push @error_messages, "No blank well found in spreadsheet";
+        push @error_messages, "Nenhum poço em branco encontrado na planilha";
     }
     if (keys(%trial_names)>1) {
-	push @error_messages, "All trial names in the trial column must be identical";
+	push @error_messages, "Todos os nomes de ensaio na coluna de ensaio devem ser idênticos";
     }
     
     my @distinct_users = keys(%user_ids);

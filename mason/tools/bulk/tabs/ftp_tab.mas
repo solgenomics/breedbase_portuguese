@@ -13,11 +13,11 @@
 =cut
 
 print <<HTML;
-    <h3 style="margin-bottom: 0.3em">SGN FTP site</h3>
-	<div style="margin: 0 1em 0 1em">Download complete datasets.</div><br />
+    <h3 style="margin-bottom: 0.3em">Site FTP da SGN</h3>
+	<div style="margin: 0 1em 0 1em">Baixe conjuntos de dados completos.</div><br />
 
     <div style="margin: 0; padding: 1em; border: 1px solid #ccccff">
-	<a class="folderlink" href="ftp://ftp.solgenomics.net">ftp top level</a>
+	<a class="folderlink" href="ftp://ftp.solgenomics.net">nível superior do FTP</a>
 	
 	<ul style="margin: 1em 0 0 0; list-style: none">
 	
@@ -25,26 +25,26 @@ HTML
 
     my %ftplinks = (
         'unigene_builds' =>
-'Sequence, quality, and membership information for all SGN unigene builds',
+'Informações de sequência, qualidade e membros de todos os builds de unigenes da SGN',
         'est_sequences' =>
-          'Sequence and quality files for all SGN ESTs, organized by library',
+          'Arquivos de sequência e qualidade de todos os ESTs da SGN, organizados por biblioteca',
         'maps_and_markers' =>
-          'Marker sequences and marker position lists for all SGN maps',
+          'Sequências de marcadores e listas de posições de marcadores de todos os mapas da SGN',
         'physical_mapping' =>
-'Raw data files for Tomato HindIII BAC library FPC and overgo analyses',
+'Arquivos de dados brutos das análises de FPC e overgo da biblioteca de BACs HindIII de tomate',
         'blast_annotations' =>
-'Highest-ranked hits vs. Genbank NR and Arabidopsis for all SGN unigenes.',
+'Melhores resultados contra GenBank NR e Arabidopsis para todos os unigenes da SGN.',
         'manual_annotations' =>
-          'Manual annotations for a number of SGN unigenes',
+          'Anotações manuais de diversos unigenes da SGN',
         'user_requests' =>
-'Conjuntos de dados personalizados para usuários individuais <a href="mailto:sgn-feedback@sgn.cornell.edu">Sgn-feedback</a>)',
+'Conjuntos de dados personalizados para usuários individuais (envie pedidos especiais para <a href="mailto:sgn-feedback@sgn.cornell.edu">sgn-feedback</a>)',
         'genomes/Solanum_lycopersicum' =>
-          'Tomato genomic data, including BAC end and full BAC sequences',
+          'Dados genômicos do tomate, incluindo sequências de extremidades de BAC e de BACs completos',
 	  'genomes/Solanum_tuberosum' => 
-	  'Potato genome data',
-	  'genomes/Nicotiana_benthamiana' => 'Nicotiana benthamiana genome data',
-	  'genomes/Solanum_melongena_consortium' => 'Eggplant V3 genome data',
-        'COSII' => 'COSII marker data'
+	  'Dados do genoma da batata',
+	  'genomes/Nicotiana_benthamiana' => 'Dados do genoma de Nicotiana benthamiana',
+	  'genomes/Solanum_melongena_consortium' => 'Dados do genoma da berinjela V3',
+        'COSII' => 'Dados de marcadores COSII'
     );
 
     foreach my $dir ( sort keys %ftplinks ) {
@@ -61,7 +61,7 @@ HTML
     </div>
 
 	<br />
-	<i>Observação:</i> The SGN FTP site can also be accessed directly through <a href="ftp://ftp.solgenomics.net">ftp://ftp.solgenomics.net</a> using a browser or ftp program.
+	<i>Observação:</i> O site FTP da SGN também pode ser acessado diretamente em <a href="ftp://ftp.solgenomics.net">ftp://ftp.solgenomics.net</a> usando um navegador ou programa de FTP.
 HTML
 
 

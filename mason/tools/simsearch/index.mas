@@ -9,7 +9,7 @@ Envie um arquivo de genotipagem para identificar correspondências dentro do arq
 </div>
 <br />
 <div>
-O formato de envio é qualquer um <a href="https://samtools.github.io/hts-specs/VCFv4.2.pdf">Vcf</a> ou <a href="">dosage</a> formato.
+O formato de envio deve ser <a href="https://samtools.github.io/hts-specs/VCFv4.2.pdf">VCF</a> ou <a href="">dosagem</a>.
 </div>
 <br />
 

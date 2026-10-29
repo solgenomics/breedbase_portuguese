@@ -26,7 +26,7 @@ $debug => ''
 
 
 <br />
-Digite uma lista de identificadores ou carregue um arquivo contendo identificadores separados por espaço em branco (retornos, espaços ou abas):<br />
+Digite uma lista de identificadores ou envie um arquivo contendo identificadores separados por espaços em branco (quebras de linha, espaços ou tabulações):<br />
 <table summary="" width="100%"><tr><td>
 <textarea name="ids" rows="5" cols="20"></textarea>
 </td>
@@ -41,22 +41,22 @@ SL_EcoRI0022A07
 </td></tr></table>
 <br />
 <br />
-E/ou arquivo de lista de upload: <br /><input type="file" name="file" />
+E/ou envie um arquivo de lista: <br /><input type="file" name="file" />
 <br />
 <br />
 
 </td><td valign="top" bgcolor="#EEEEEE" width="320">
-<b>Baixe informações BAC:</b> <br />
+<b>Baixar informações de BAC:</b> <br />
 <div style="margin: 1em; white-space: nowrap">
-  <input type="checkbox" name="arizona_clone_name" checked="checked"  /> Nome de clone do Arizona (LE_HBa0001A01) <br />
-  <input type="checkbox" name="cornell_clone_name" checked="checked"  /> Velho nome de clone estilo Cornell (P001A01)<br />
+  <input type="checkbox" name="arizona_clone_name" checked="checked"  /> Nome de clone no estilo Arizona (LE_HBa0001A01) <br />
+  <input type="checkbox" name="cornell_clone_name" checked="checked"  /> Nome de clone antigo no estilo Cornell (P001A01)<br />
   <input type="checkbox" name="chr_clone_name" checked="checked"  /> Nome do clone com cromossomo (C01HBa0001A01)<br />
   <input type="checkbox" name="clone_type" checked="checked" /> Tipo de clone <br />
   <input type="checkbox" name="org_name" checked="checked" /> Nome do organismo <br />
   <input type="checkbox" name="accession_name" checked="checked" /> Nome do acesso <br />
-  <input type="checkbox" name="library_name" checked="checked" /> nome da biblioteca <br />
+  <input type="checkbox" name="library_name" checked="checked" /> Nome da biblioteca <br />
   <input type="checkbox" name="estimated_length" checked="checked" /> Comprimento estimado <br />
-  <input type="checkbox" name="genbank_accession" checked="checked" /> Acessos do banco genbank<br />
+  <input type="checkbox" name="genbank_accession" checked="checked" /> Acesso do GenBank<br />
 <!--	<input type="checkbox" name="overgo_matches" checked="checked" DISABLED /> overgo matches<br /> -->
 </div>
 

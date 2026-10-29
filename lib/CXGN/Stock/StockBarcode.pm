@@ -1,5 +1,6 @@
 
 package CXGN::Stock::StockBarcode;
+use utf8;
 
 
 =head1 NAME
@@ -112,7 +113,7 @@ sub parse {
         }
         if ($code !~ /^O|^P|^L|^D|^$identifier_prefix|^$db_name:\d+|^\d/ ) {
             print STDERR  "Cannot find code ' $code ' in the database! \n\n";
-            push @errors, " Data ' $code ' cannot be stored in the database! \n Please check your barcode input\n";
+            push @errors, " Os dados ' $code ' não podem ser armazenados no banco de dados! \n Verifique a entrada do código de barras\n";
         }
 
         #O:Lukas, 12:16:46, 12/11/2012
@@ -148,19 +149,19 @@ sub verify {
         my ($op, $project_id, $location_id, $date, $count) = split(/\t/, $key);
         print STDERR "***** verify found key $key !!!!!!!\n\n";
         print STDERR "verify :  ... . . . .op = $op, project_id = $project_id, location_id = $location_id, date = $date\n\n";
-        if (!$project_id) { push @warnings, "Did not scan a project name, will generate a new 'UNKNOWN' project"; }
-        if (!$location_id) { push @warnings, "Did not scan a location, will generate a new 'UNKNOWN' location"; }
+        if (!$project_id) { push @warnings, "Nenhum nome de projeto foi escaneado; será gerado um novo projeto 'UNKNOWN'"; }
+        if (!$location_id) { push @warnings, "Nenhum local foi escaneado; será gerado um novo local 'UNKNOWN'"; }
         foreach my $stock_id (keys %{$hashref->{$key} } ) {
             #check if the stock exists
             print STDERR "verify .. Looking for stock_id $stock_id\n";
             my $stock = $schema->resultset("Stock::Stock")->find( { stock_id => $stock_id } );
-            if (!$stock) { push @errors, "Stock $stock_id does not exist in the database!\n"; }
+            if (!$stock) { push @errors, "O material $stock_id não existe no banco de dados!\n"; }
             foreach my $cvterm_accession (keys %{$hashref->{$key}->{$stock_id} } ) {
                 #push @verify 
                 print STDERR "verify ... Looking for accession $cvterm_accession..\n";
                 my ($db_name, $accession) = split (/:/, $cvterm_accession);
-                if (!$db_name) { push @errors, "could not find valid db_name in accession $cvterm_accession\n";}
-                if (!$accession) { push @errors, "Could not find valid cvterm accession in $cvterm_accession\n";}
+                if (!$db_name) { push @errors, "não foi possível encontrar um db_name válido no accession $cvterm_accession\n";}
+                if (!$accession) { push @errors, "Não foi possível encontrar um accession de cvterm válido em $cvterm_accession\n";}
                 #check if the cvterm exists
                 my $db = $schema->resultset("General::Db")->search(
                     { 'me.name' => $db_name } );
@@ -169,13 +170,13 @@ sub verify {
 
                     if ($dbxref->count) {
                         my $cvterm = $dbxref->search_related("cvterm", {} )->single;
-                        if (!$cvterm) { push @errors, "NO cvterm found in the database for accession $cvterm_accession!\n db_name = '" .  $db_name  . "' , accession = '" .  $accession . "' \n";
+                        if (!$cvterm) { push @errors, "NENHUM cvterm encontrado no banco de dados para o accession $cvterm_accession!\n db_name = '" .  $db_name  . "' , accession = '" .  $accession . "' \n";
 			}
                     } else {
-                        push @errors, "No dbxref found for cvterm accession $accession\n";
+                        push @errors, "Nenhum dbxref encontrado para o accession de cvterm $accession\n";
                     }
                 } else {
-                    push @errors , "db_name $db_name does not exist in the database! \n";
+                    push @errors , "O db_name $db_name não existe no banco de dados! \n";
                 }
             }
         }
@@ -283,7 +284,7 @@ sub store {
                             #link the phenotpe to the experiment
                             $experiment->find_or_create_related('nd_experiment_phenotypes' , {
                                 phenotype_id => $phenotype->phenotype_id });
-                            $message .= "Added phenotype: trait= " . $cvterm->name . ", value = $value, to stock " . qq|<a href="/stock/$stock_id/view">$stock_name</a><br />| ;
+                            $message .= "Fenótipo adicionado: característica= " . $cvterm->name . ", valor = $value, ao material " . qq|<a href="/stock/$stock_id/view">$stock_name</a><br />| ;
                         }
                     }
                 }
@@ -293,10 +294,10 @@ sub store {
     my $error;
     try {
         $schema->txn_do($coderef);
-        $error = "Store completed!";
+        $error = "Armazenamento concluído!";
     } catch {
         # Transaction failed
-        $error =  "An error occured! Cannot store data! <br />" . $_ . "\n";
+        $error =  "Ocorreu um erro! Não é possível armazenar os dados! <br />" . $_ . "\n";
     };
     $self->store_error($error);
     $self->store_message($message);

@@ -1,4 +1,5 @@
 package CXGN::Trial::TrialDesign;
+use utf8;
 
 =head1 NAME
 
@@ -199,7 +200,7 @@ sub validate_field_colNumber {
 
 	return $colNum;
     } else {
-	die "Choose a different row number for field map generation. The product of number of stocks and rep when divided by row number should give an integer\n";
+	die "Escolha outro número de linhas para gerar o mapa de campo. O produto do número de materiais pelo número de repetições, dividido pelo número de linhas, deve resultar em um número inteiro\n";
 	return;
     }
 

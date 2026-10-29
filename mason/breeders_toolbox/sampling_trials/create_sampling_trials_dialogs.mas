@@ -276,17 +276,17 @@ $sample_tissue_types => ();
                         <thead></thead>
                         <tbody>
                             <tr>
-                                <td>Data</td>
+                                <td>date</td>
                                 <td>sample_name</td>
                                 <td>source_observation_unit_name</td>
                                 <td>sample_number</td>
-                                <td>Replicar</td>
+                                <td>replicate</td>
                                 <td>tissue_type</td>
                                 <td>ncbi_taxonomy_id</td>
-                                <td>Pessoa</td>
-                                <td>Notas</td>
-                                <td>extração</td>
-                                <td>concentração</td>
+                                <td>person</td>
+                                <td>notes</td>
+                                <td>extraction</td>
+                                <td>concentration</td>
                                 <td>volume</td>
                             </tr>
                         </tbody>

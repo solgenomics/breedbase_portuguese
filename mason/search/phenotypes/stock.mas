@@ -24,7 +24,7 @@
 
 $form_opts = { stock_types => stock_types($schema), organisms=>stock_organisms($schema)}
 if (!$form_opts) ;
-my $new_stock_link = qq| <a href="/stock/0/new">Submit new stock</a> \| <a href=../../phenome/qtl_form.pl>QTL Population</a>|;
+my $new_stock_link = qq| <a href="/stock/0/new">Cadastrar novo material</a> \| <a href=../../phenome/qtl_form.pl>População de QTL</a>|;
 
 </%perl>
 
@@ -54,7 +54,7 @@ my $new_stock_link = qq| <a href="/stock/0/new">Submit new stock</a> \| <a href=
 %            ] } $results->all;
 
      <% columnar_table_html(
-            headings => ['Stock Name','Stock Type', 'Organism'],
+            headings => ['Nome do material','Tipo de material', 'Organismo'],
             data     => [ @data ],
         )
       %>

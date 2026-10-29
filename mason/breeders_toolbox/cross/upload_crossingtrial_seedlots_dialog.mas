@@ -124,9 +124,9 @@ $locations_by_program_json
                                 <td>seedlot_name</td>
                                 <td>cross_unique_id</td>
                                 <td>operator_name</td>
-                                <td>Quantidade</td>
-                                <td>peso(g)</td>
-                                <td>Descrição</td>
+                                <td>amount</td>
+                                <td>weight(g)</td>
+                                <td>description</td>
                                 <td>box_name</td>
                             </tr>
                         </tbody>

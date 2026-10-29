@@ -11,18 +11,18 @@
 
 </%args>
 
-<& /page/page_title.mas, title => 'Procura rápida '.encode_entities( '"'.$quick_search_term.'"' ) &>
+<& /page/page_title.mas, title => 'Busca rápida por '.encode_entities( '"'.$quick_search_term.'"' ) &>
 
 <div class="page_introduction">
   Nota: a busca rápida não realiza exatamente as mesmas consultas que buscas completas para os vários tipos de dados. Se seu resultado desejado não aparecer, tente de novo com uma das ferramentas de busca avançadas no menu de busca.
 </div>
 
-<&| /page/info_section.mas, title => 'Exatamente' &>
+<&| /page/info_section.mas, title => 'Correspondências exatas' &>
 
 <div class="well">
 
 % if( $show_times ) {
-  <div>Site xref search time: <% sprintf('%0.1f sec', $xrefs_time) %></div>
+  <div>Tempo de busca de referências cruzadas do site: <% sprintf('%0.1f sec', $xrefs_time) %></div>
 % }
 % if( @$xrefs ) {
   <& /sitefeatures/mixed/xref_set/link.mas, xrefs => $xrefs &>
@@ -66,7 +66,7 @@
 </&>
 
 <&| /page/info_section.mas,
-    title => 'Buscas fuzzy',
+    title => 'Buscas aproximadas',
     subtitle => 'Clique para ver os resultados da pesquisa',
  &>
 

@@ -22,7 +22,7 @@ $debug => ''
 	      <div style="border: 1px solid gray; width: 10em; height: 5em">
 <pre><div id="clone_example_ids">cLEB-1-A2
 cLEB-1-A3
-cLEB-1-A4</div></pre><a href="javascript:copy_example_data()">Entendido</a>
+cLEB-1-A4</div></pre><a href="javascript:copy_example_data()">[copiar]</a>
 </div> 
 
 <script>
@@ -35,20 +35,20 @@ document.getElementById("ids").innerHTML=document.getElementById("clone_example_
 	
 	<br />
 	<br />
-	E/ou arquivo de lista de upload: <br /><input type="file" name="file" />
+	E/ou envie um arquivo de lista: <br /><input type="file" name="file" />
 	<br />
 	<br />
 	
     </td><td valign="top" bgcolor="#EEEEEE" width="320">
 	<b>Por favor, selecione as informações que deseja para cada identificador:</b><br />
 	<input type="checkbox" name="clone_name" checked="checked" /> Nome do clone<br />
-	<input type="checkbox" name="SGN_C" checked="checked" /> Clone id (SGN-C)<br />
-	<input type="checkbox" name="SGN_T" checked="checked" /> sequência lida id (SGN-T)<br />
+	<input type="checkbox" name="SGN_C" checked="checked" /> ID do clone (SGN-C)<br />
+	<input type="checkbox" name="SGN_T" checked="checked" /> ID da leitura de sequência (SGN-T)<br />
 	<input type="checkbox" name="SGN_E" checked="checked" /> est id (SGN-E)<br />
-	<input type="checkbox" name="build_nr" checked="checked" /> Unigene construir nr<br />
-	<input type="checkbox" name="SGN_U" checked="checked" /> Unigene id (SGN-U)<br />
+	<input type="checkbox" name="build_nr" checked="checked" /> Nº do build do unigene<br />
+	<input type="checkbox" name="SGN_U" checked="checked" /> ID do unigene (SGN-U)<br />
 	<input type="checkbox" name="chipname" checked="checked" /> chipname<br />
-	<input type="checkbox" name="SGN_S" checked="checked" /> SGN-S<br />
+	<input type="checkbox" name="SGN_S" checked="checked" /> ID do spot de microarranjo (SGN-S)<br />
 	<input type="checkbox" name="TUS" checked="checked" /> Número TUS (usado para encomendar clones)<br />
 	<input type="checkbox" name="manual_annotation" /> Anotação manual<br />
 	<input type="checkbox" name="automatic_annotation" /> Anotação automática (BLAST)<br />

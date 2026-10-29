@@ -214,6 +214,7 @@ and the optional columns (such as planting_date, harvest_date, etc).  Any of the
 
 =cut
 
+use utf8;
 use Moose;
 use Try::Tiny;
 use Module::Pluggable require => 1;
@@ -330,7 +331,7 @@ sub parse {
   # Check if the file exists
   if ( !-e $file ) {
     return {
-      errors => [ "The file $file does not exist" ]
+      errors => [ "O arquivo $file não existe" ]
     };
   }
 
@@ -351,7 +352,7 @@ sub parse {
     try {
       $parsed = $parser->parse($self);
     } catch {
-      $error = "Encountered error while reading and parsing file: $_";
+      $error = "Ocorreu um erro ao ler e processar o arquivo: $_";
     };
     if ( $error ) {
       return {
@@ -374,7 +375,7 @@ sub parse {
     # Check for empty files with no data
     if ( scalar(@$columns) < 1 || scalar(@$data) < 1 ) {
       return {
-        errors => [ "The file has no data" ]
+        errors => [ "O arquivo não contém dados" ]
       };
     }
 
@@ -384,7 +385,7 @@ sub parse {
       # Check for missing required columns
       foreach my $req (@$required_columns) {
         if ( !grep( /^$req$/, @$columns ) ) {
-          push @{$parsed->{errors}}, "Required column $req is missing";
+          push @{$parsed->{errors}}, "A coluna obrigatória $req está ausente";
         }
       }
 
@@ -416,7 +417,7 @@ sub parse {
           my $v = $d->{$c};
           my $r = $d->{_row};
           if ( !defined($v) || $v eq '' ) {
-            push @{$parsed->{errors}}, "Required column $c does not have a value in row $r";
+            push @{$parsed->{errors}}, "A coluna obrigatória $c não tem valor na linha $r";
           }
           elsif ( $unique_only_columns{$c} ) {
             if ( ref($v) eq 'ARRAY' ) {
@@ -455,7 +456,7 @@ sub parse {
         foreach my $v ( sort keys %{$seen->{$c}} ) {
           my @rows = sort keys %{$seen->{$c}->{$v}};
           if ( scalar @rows > 1 ) {
-            push @{$parsed->{errors}}, "Column $c requires unique values, but $v appears more than once in rows " . join(',', @rows);
+            push @{$parsed->{errors}}, "A coluna $c exige valores únicos, mas $v aparece mais de uma vez nas linhas " . join(',', @rows);
           }
         }
       }
@@ -471,7 +472,7 @@ sub parse {
   # No parser plugin found for file type
   else {
     return {
-      errors => [ "No appropriate file parsing plugin for file: $file, type: $type" ]
+      errors => [ "Nenhum plugin de leitura adequado para o arquivo: $file, tipo: $type" ]
     };
   }
 }

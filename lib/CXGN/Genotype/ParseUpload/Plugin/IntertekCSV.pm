@@ -1,5 +1,6 @@
 package CXGN::Genotype::ParseUpload::Plugin::IntertekCSV;
 
+use utf8;
 use Moose::Role;
 use SGN::Model::Cvterm;
 use Data::Dumper;
@@ -72,22 +73,22 @@ sub _validate_with_plugin {
 
         # Check that the columns in the marker info file are what we expect
         if ($intertek_snp_id_header ne 'IntertekSNPID'){
-            push @error_messages, 'Column 1 header must be "IntertekSNPID" in the SNP Info File.';
+            push @error_messages, 'O cabeçalho da coluna 1 deve ser "IntertekSNPID" no arquivo SNP Info File.';
         }
         if ($customer_snp_id_header ne 'CustomerSNPID'){
-            push @error_messages, 'Column 2 header must be "CustomerSNPID" in the SNP Info File.';
+            push @error_messages, 'O cabeçalho da coluna 2 deve ser "CustomerSNPID" no arquivo SNP Info File.';
         }
         if ($ref_header ne 'Reference'){
-            push @error_messages, 'Column 3 header must be "Reference" in the SNP Info File.';
+            push @error_messages, 'O cabeçalho da coluna 3 deve ser "Reference" no arquivo SNP Info File.';
         }
         if ($alt_header ne 'Alternate'){
-            push @error_messages, 'Column 4 header must be "Alternate" in the SNP Info File.';
+            push @error_messages, 'O cabeçalho da coluna 4 deve ser "Alternate" no arquivo SNP Info File.';
         }
         if ($chrom_header ne 'Chromosome'){
-            push @error_messages, 'Column 5 header must be "Chromosome" in the SNP Info File.';
+            push @error_messages, 'O cabeçalho da coluna 5 deve ser "Chromosome" no arquivo SNP Info File.';
         }
         if ($position_header ne 'Position'){
-            push @error_messages, 'Column 6 header must be "Position" in the SNP Info File.';
+            push @error_messages, 'O cabeçalho da coluna 6 deve ser "Position" no arquivo SNP Info File.';
         }
 
         for my $i (6 .. $#marker_header_info){
@@ -95,7 +96,7 @@ sub _validate_with_plugin {
             $each_header =~ s/^\s+|\s+$//g;
 
             if (!$supported_marker_info{$each_header}){
-                push @error_messages, "Invalid  marker info type: $each_header";
+                push @error_messages, "Tipo de informação de marcador inválido: $each_header";
             }
         }
 
@@ -116,19 +117,19 @@ sub _validate_with_plugin {
             $chrom =~ s/^\s+|\s+$//g;
 
             if (!$intertek_snp_id){
-                push @error_messages, 'Intertek snp id is required for all markers.';
+                push @error_messages, 'O Intertek snp id é obrigatório para todos os marcadores.';
             }
             if (!$customer_snp_id){
-                push @error_messages, 'Customer snp id is required for all markers.';
+                push @error_messages, 'O Customer snp id é obrigatório para todos os marcadores.';
             }
             if (!$ref){
-                push @error_messages, 'Reference is required for all markers.';
+                push @error_messages, 'A referência (Reference) é obrigatória para todos os marcadores.';
             }
             if (!$alt){
-                push @error_messages, 'Alternate is required for all markers.';
+                push @error_messages, 'O alelo alternativo (Alternate) é obrigatório para todos os marcadores.';
             }
 	    if (!defined($chrom) || $chrom eq '') {
-                push @error_messages, 'Chromosome is required for all markers.';
+                push @error_messages, 'O cromossomo é obrigatório para todos os marcadores.';
             }
             $marker_names{$customer_snp_id} = 1;
         }
@@ -165,7 +166,7 @@ sub _validate_with_plugin {
 
         foreach (@markers) {
             if (!exists($marker_names{$_})) {
-                push @error_messages, "Marker $_ in the SNP grid file is not found in the marker info file.";
+                push @error_messages, "O marcador $_ do arquivo SNP grid não foi encontrado no arquivo de informações de marcadores.";
             }
         }
 
@@ -186,7 +187,7 @@ sub _validate_with_plugin {
 
     # Check that the first column in the header is equal to 'SampleName.LabID'
     if ($fields[0] ne 'SampleName.LabID'){
-        push @error_messages, 'Column 1 header must be "SampleName.LabID" in the Grid File.';
+        push @error_messages, 'O cabeçalho da coluna 1 deve ser "SampleName.LabID" no Grid File.';
     }
 
     my $number_observation_units = scalar(@observation_unit_names);
@@ -222,7 +223,7 @@ sub _validate_with_plugin {
     } elsif ($stock_type eq 'stocks'){
         @missing_stocks = @{$validator->validate($schema,'stocks',$observation_unit_names)->{'missing'}};
     } else {
-        push @error_messages, "You can only upload genotype data for a tissue_sample OR accession (including synonyms) OR stocks!"
+        push @error_messages, "Você só pode enviar dados de genotipagem para tissue_sample OU accession (incluindo sinônimos) OU materiais (stocks)!"
     }
 
     my %unique_stocks;
@@ -250,7 +251,7 @@ sub _validate_with_plugin {
     # If there are missing sample names, they will be returned along with an error message
     if (scalar(@missing_stocks_return)>0){
         $errors{'missing_stocks'} = \@missing_stocks_return;
-        push @error_messages, "The following stocks are not in the database: ".join(',',@missing_stocks_return);
+        push @error_messages, "Os seguintes materiais (stocks) não estão no banco de dados: ".join(',',@missing_stocks_return);
     }
 
     #store any errors found in the parsed file to parse_errors accessor
@@ -427,7 +428,7 @@ sub _parse_with_plugin {
                             push @gt_vcf_genotype, './.';
                             push @alt_calls, './.';
                         } else {
-                            push @error_messages, "Allele Call Does Not Match Ref or Alt for Sample: $sample_id_with_lab_id Marker: $marker_name Alt: $alt Ref: $ref Allele: $a";
+                            push @error_messages, "A chamada de alelo não corresponde a Ref nem a Alt para a amostra: $sample_id_with_lab_id Marcador: $marker_name Alt: $alt Ref: $ref Alelo: $a";
                         }
                     }
 

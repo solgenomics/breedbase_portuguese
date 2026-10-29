@@ -7,23 +7,23 @@
 <& /page/page_title.mas, title=>"AGIS Tomato 360 Resequencing Project" &>
 
 <div class="page_introduction">
-  Análise genômica de 360 acessos de tomate pelo Instituto de Genômica Agrícola em Shenzhen.
+  Análise genômica de 360 acessos de tomate pelo Agricultural Genomic Institute em Shenzhen.
 </div>
 
 
-<&| /page/info_section.mas, title => '360 Tomato Genomes' &>
-  Análises genômicas fornecem insights sobre a história da criação de tomate <a href="http://www.nature.com/ng/journal/v46/n11/full/ng.3117.html">Lin et al. Nature Genetics, 2014</a><br />
+<&| /page/info_section.mas, title => '360 genomas de tomate' &>
+  Análises genômicas fornecem novas perspectivas sobre a história do melhoramento do tomate <a href="http://www.nature.com/ng/journal/v46/n11/full/ng.3117.html">Lin et al. Nature Genetics, 2014</a><br />
 
-  Veja mais informações sobre o projeto <a href="http://bti.cornell.edu/news/new-genomics-study-mines-360-tomato-varieties-to-trace-history-find-room-for-improvement/">Web site BTI</a>
+  Veja mais informações sobre o projeto no <a href="http://bti.cornell.edu/news/new-genomics-study-mines-360-tomato-varieties-to-trace-history-find-room-for-improvement/">site do BTI</a>
 
 <br />
 
   <% info_table_html(
                      __border   => 0,
                      __multicol => 2,
-                     'Bulk Datasets (via FTP)' =>
+                     'Conjuntos de dados completos (via FTP)' =>
                      '<a href="ftp://ftp.solgenomics.net/genomes/tomato_360/">Arquivos VCF</a>',
-		     'Genome browser' => '<a href="/jbrowse_solgenomics/?data=data/json/tomato_variants_2.5">JBrowse</a>'
+		     'Navegador de genoma' => '<a href="/jbrowse_solgenomics/?data=data/json/tomato_variants_2.5">JBrowse</a>'
                     )
   %>
 </&>

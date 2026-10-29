@@ -152,7 +152,7 @@ jQuery(document).ready(function() {
             var trait_synonym = jQuery('option:selected', this).data("synonym");
             var list_name = jQuery('option:selected', this).data("list_name");
             var control_html = jQuery('#control_list').html();
-            var trait_html = "<tr id='" + trait_id + "_Land'&gt;<td><a href='/cvterm/" + trait_id + "/view' data-list_name='" + list_name + "' data-value='" + trait_id + "'>" + trait_name + "</a></td><td><p id='" + trait_id + "_synonym'>" + trait_synonym + "<p></td><td><input type='text' id='" + coefficient_id + "' class='form-control' placeholder='O padrão é 1'></input></td><td><select class='form-control' id='" + control_id + "'>" + control_html + "</select></td><td align='center'><a title='Remover' id='" + trait_id + "_remove' href='javascript:remove_trait(" + trait_id + ")'><span class='glyphicon glyphicon-remove'></span></a></td></tr>";
+            var trait_html = "<tr id='" + trait_id + "_row'><td><a href='/cvterm/" + trait_id + "/view' data-list_name='" + list_name + "' data-value='" + trait_id + "'>" + trait_name + "</a></td><td><p id='" + trait_id + "_synonym'>" + trait_synonym + "<p></td><td><input type='text' id='" + coefficient_id + "' class='form-control' placeholder='O padrão é 1'></input></td><td><select class='form-control' id='" + control_id + "'>" + control_html + "</select></td><td align='center'><a title='Remover' id='" + trait_id + "_remove' href='javascript:remove_trait(" + trait_id + ")'><span class='glyphicon glyphicon-remove'></span></a></td></tr>";
             jQuery('#trait_table').append(trait_html);
             jQuery('#select_message').text("Adicionar outra característica");
             jQuery('#select_message').attr('selected', true);
@@ -488,7 +488,7 @@ function load_sin() { // update traits and selection index when a saved sin form
         var trait_synonym = jQuery('#trait_list option[value=' + trait_id + ']').data("synonym");
         var control_html = jQuery('#control_list').html();
         //console.log("control html"+control_html);
-        var trait_html = "<tr id='" + trait_id + "_Land'&gt;<td><a href='/cvterm/" + trait_id + "/view' data-value='" + trait_id + "'>" + trait_name + "</a></td><td><p id='" + trait_id + "_synonym'>" + trait_synonym + "<p></td><td><input type='text' id='" + coefficient_input_id + "' class='form-control' placeholder='O padrão é 1'></input></td><td><select class='form-control' id='" + control_select_id + "'>" + control_html + "</select></td><td align='center'><a title='Remover' id='" + trait_id + "_remove' href='javascript:remove_trait(" + trait_id + ")'><span class='glyphicon glyphicon-remove'></span></a></td></tr>";
+        var trait_html = "<tr id='" + trait_id + "_row'><td><a href='/cvterm/" + trait_id + "/view' data-value='" + trait_id + "'>" + trait_name + "</a></td><td><p id='" + trait_id + "_synonym'>" + trait_synonym + "<p></td><td><input type='text' id='" + coefficient_input_id + "' class='form-control' placeholder='O padrão é 1'></input></td><td><select class='form-control' id='" + control_select_id + "'>" + control_html + "</select></td><td align='center'><a title='Remover' id='" + trait_id + "_remove' href='javascript:remove_trait(" + trait_id + ")'><span class='glyphicon glyphicon-remove'></span></a></td></tr>";
 
         jQuery('#trait_table').append(trait_html);
         jQuery('#' + coefficient_input_id).val(coefficients[i]);

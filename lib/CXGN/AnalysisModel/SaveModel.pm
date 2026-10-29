@@ -1,4 +1,5 @@
 package CXGN::AnalysisModel::SaveModel;
+use utf8;
 
 =head1 NAME
 
@@ -162,7 +163,7 @@ sub save_model {
         type_id => $model_type_cvterm_id
     });
     if ($protocol_row) {
-        return { error => "The model name: $model_name has already been used! Please use a new name." };
+        return { error => "O nome do modelo $model_name já foi usado! Use um novo nome." };
     }
     else {
         $protocol_row = $schema->resultset("NaturalDiversity::NdProtocol")->create({

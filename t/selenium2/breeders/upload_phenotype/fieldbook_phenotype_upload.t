@@ -1,4 +1,5 @@
 use strict;
+use utf8;
 use warnings;
 use lib 't/lib';
 use Test::More 'tests' => 57;
@@ -47,10 +48,10 @@ $t->while_logged_in_as("submitter", sub {
         "upload_phenotype_fieldbook_verify_status",
         "id", "verify the verification")->get_attribute('innerHTML');
 
-    ok($verify_status =~ /File fieldbook_phenotype_file_no_fieldbook_image.csv saved in archive./, "Verify the positive validation");
-    ok($verify_status =~ /File valid: fieldbook_phenotype_file_no_fieldbook_image.csv./, "Verify the positive validation");
-    ok($verify_status =~ /File data successfully parsed./, "Verify the positive validation");
-    ok($verify_status =~ /File data verified. Plot names and trait names are valid./, "Verify the positive validation");
+    ok($verify_status =~ /Arquivo fieldbook_phenotype_file_no_fieldbook_image.csv salvo no arquivo permanente./, "Verify the positive validation");
+    ok($verify_status =~ /Arquivo válido: fieldbook_phenotype_file_no_fieldbook_image.csv./, "Verify the positive validation");
+    ok($verify_status =~ /Dados do arquivo processados com sucesso./, "Verify the positive validation");
+    ok($verify_status =~ /Dados do arquivo verificados. Os nomes das parcelas e das características são válidos./, "Verify the positive validation");
 
     $t->find_element_ok("upload_fieldbook_phenotype_submit_store", "id", "submit spreadsheet file for storage")->click();
     sleep(10);
@@ -59,10 +60,10 @@ $t->while_logged_in_as("submitter", sub {
         "upload_phenotype_fieldbook_verify_status",
         "id", "verify the verification")->get_attribute('innerHTML');
 
-    ok($verify_status =~ /File data successfully parsed./, "Verify the positive store validation");
+    ok($verify_status =~ /Dados do arquivo processados com sucesso./, "Verify the positive store validation");
     ok($verify_status =~ /All values in your file have been successfully processed!/, "Verify the positive store validation");
-    ok($verify_status =~ /Metadata saved for archived file./, "Verify the positive store validation");
-    ok($verify_status =~ /Upload Successful!/, "Verify the positive store validation");
+    ok($verify_status =~ /Metadados salvos para o arquivo armazenado./, "Verify the positive store validation");
+    ok($verify_status =~ /Envio concluído com sucesso!/, "Verify the positive store validation");
 
     #back to the trial page and re-upload !!
     $t->get_ok('/breeders/trial/137');
@@ -98,10 +99,10 @@ $t->while_logged_in_as("submitter", sub {
 
     print STDERR "VERIFY STATUS: $verify_status\n";
     
-    ok($verify_status =~ /File data successfully parsed/, "Verify warnings after store validation");
-    ok($verify_status =~ /File data verified. Plot names and trait names are valid./, "Verify plot names and trait names after store validation");
-    ok($verify_status =~ /Warnings are shown in yellow. Either fix the file and try again/, "Verify yellow warnings after store validation");
-    ok($verify_status =~ /To overwrite previously stored values instead/, "Verify overwrite values after store validation");
+    ok($verify_status =~ /Dados do arquivo processados com sucesso/, "Verify warnings after store validation");
+    ok($verify_status =~ /Dados do arquivo verificados. Os nomes das parcelas e das características são válidos./, "Verify plot names and trait names after store validation");
+    ok($verify_status =~ /Os avisos aparecem em amarelo. Corrija o arquivo e tente novamente/, "Verify yellow warnings after store validation");
+    ok($verify_status =~ /Para sobrescrever os valores armazenados anteriormente/, "Verify overwrite values after store validation");
     ok($verify_status =~ /There are 28 values in your file that are the same as values already stored in the database./, "Verify 28 values in your file after store validation");
 
     $t->find_element_ok("upload_fieldbook_phenotype_submit_store", "id", "submit spreadsheet file for storage")->click();
@@ -117,7 +118,7 @@ $t->while_logged_in_as("submitter", sub {
     ok($verify_status =~ /30 previously stored values skipped/, "Verify warnings: 30 previously stored values skipped");
     ok($verify_status =~ /0 previously stored values overwritten/, "Verify warnings: 0 previously stored values overwritten");
     ok($verify_status =~ /0 previously stored values removed/, "Verify warnings: 0 previously stored values removed");
-    ok($verify_status =~ /Upload Successful!/, "Verify warnings: Upload successful");
+    ok($verify_status =~ /Envio concluído com sucesso!/, "Verify warnings: Upload successful");
 
     $t->get_ok('/fieldbook');
     sleep(2);
@@ -144,10 +145,10 @@ $t->while_logged_in_as("submitter", sub {
         "id", "verify the verification")->get_attribute('innerHTML');
 
     #check for warnings after the store_validation 
-    ok($verify_status =~ /File data successfully parsed/, "Verify warnings after store validation");
-    ok($verify_status =~ /File data verified. Plot names and trait names are valid./, "Verify warnings after store validation");
-    ok($verify_status =~ /Warnings are shown in yellow. Either fix the file and try again/, "Verify warnings after store validation");
-    ok($verify_status =~ /To overwrite previously stored values instead/, "Verify warnings after store validation");
+    ok($verify_status =~ /Dados do arquivo processados com sucesso/, "Verify warnings after store validation");
+    ok($verify_status =~ /Dados do arquivo verificados. Os nomes das parcelas e das características são válidos./, "Verify warnings after store validation");
+    ok($verify_status =~ /Os avisos aparecem em amarelo. Corrija o arquivo e tente novamente/, "Verify warnings after store validation");
+    ok($verify_status =~ /Para sobrescrever os valores armazenados anteriormente/, "Verify warnings after store validation");
     ok($verify_status =~ /There are 28 values in your file that are the same as values already stored in the database./, "Verify warnings after store validation");
 
     $t->find_element_ok("upload_fieldbook_phenotype_submit_store", "id", "submit spreadsheet file for storage")->click();
@@ -161,7 +162,7 @@ $t->while_logged_in_as("submitter", sub {
     ok($verify_status =~ /30 previously stored values skipped/, "Verify warnings after store validation");
     ok($verify_status =~ /0 previously stored values overwritten/, "Verify warnings after store validation");
     ok($verify_status =~ /0 previously stored values removed/, "Verify warnings after store validation");
-    ok($verify_status =~ /Upload Successful!/, "Verify warnings after store validation");
+    ok($verify_status =~ /Envio concluído com sucesso!/, "Verify warnings after store validation");
    
     }
 );

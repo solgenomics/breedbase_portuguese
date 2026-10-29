@@ -1,5 +1,6 @@
 package CXGN::Phenotypes::ParseUpload::Plugin::DataCollectorSpreadsheet;
 
+use utf8;
 # Validate Returns %validate_result = (
 #   error => 'error message'
 #)
@@ -63,7 +64,7 @@ sub validate {
 
     $worksheet = ($excel_obj->worksheets())[7]; #support only one worksheet
     if (!$worksheet) {
-        $parse_result{'error'} = "No 7th tab found in your Excel file.";
+        $parse_result{'error'} = "Nenhuma 7ª aba encontrada no seu arquivo Excel.";
         print STDERR "No 7th tab found in your Excel file.\n";
         return \%parse_result;
     }
@@ -72,7 +73,7 @@ sub validate {
    my  ( $col_min, $col_max ) = $worksheet->col_range();
 
     if (($col_max - $col_min)  < 1 || ($row_max - $row_min) < 1 ) { #must have header with at least plot_name and one trait, as well as one row of phenotypes
-        $parse_result{'error'} = "Spreadsheet is missing plot_name and atleast one trait in header.";
+        $parse_result{'error'} = "A planilha não contém plot_name e pelo menos uma característica no cabeçalho.";
         print STDERR "Spreadsheet is missing header\n";
         return \%parse_result;
     }
@@ -84,7 +85,7 @@ sub validate {
     }
 
     if (!$plot_name_head || $plot_name_head ne 'plot_name') {
-        $parse_result{'error'} = "No plot_name in header.";
+        $parse_result{'error'} = "Nenhum plot_name no cabeçalho.";
         print STDERR "No plot_name in header\n";
         return \%parse_result;
     }
@@ -96,7 +97,7 @@ sub validate {
     }
 
     if (!$trial_stock_name_head || (($trial_stock_name_head ne 'accession_name') && ($trial_stock_name_head ne 'family_name') && ($trial_stock_name_head ne 'cross_unique_id'))) {
-        $parse_result{'error'} = "No accession_name or family_name or cross_unique_id in header.";
+        $parse_result{'error'} = "Nenhum accession_name, family_name ou cross_unique_id no cabeçalho.";
         print STDERR "No accession_name or family_name or cross_unique_id in header\n";
         return \%parse_result;
     }
@@ -108,7 +109,7 @@ sub validate {
     }
 
     if (!$plot_num_head || $plot_num_head ne 'plot_number') {
-        $parse_result{'error'} = "No plot_number in header.";
+        $parse_result{'error'} = "Nenhum plot_number no cabeçalho.";
         print STDERR "No plot_number in header\n";
         return \%parse_result;
     }
@@ -120,7 +121,7 @@ sub validate {
     }
 
     if (!$block_head || $block_head ne 'block_number') {
-        $parse_result{'error'} = "No block_number in header.";
+        $parse_result{'error'} = "Nenhum block_number no cabeçalho.";
         print STDERR "No block_number in header\n";
         return \%parse_result;
     }
@@ -132,7 +133,7 @@ sub validate {
     }
 
     if (!$is_control_head || $is_control_head ne 'is_a_control') {
-        $parse_result{'error'} = "No is_a_control in header.";
+        $parse_result{'error'} = "Nenhum is_a_control no cabeçalho.";
         print STDERR "No is_a_control in header\n";
         return \%parse_result;
     }
@@ -144,7 +145,7 @@ sub validate {
     }
 
     if (!$rep_head || $rep_head ne 'rep_number') {
-        $parse_result{'error'} = "No rep_number in header.";
+        $parse_result{'error'} = "Nenhum rep_number no cabeçalho.";
         print STDERR "No rep_number in header\n";
         return \%parse_result;
     }
@@ -202,7 +203,7 @@ sub parse {
 
     $worksheet = ( $excel_obj->worksheets() )[7];
     if (!$worksheet) {
-        $parse_result{'error'} = "No 7th tab found in your Excel file.";
+        $parse_result{'error'} = "Nenhuma 7ª aba encontrada no seu arquivo Excel.";
         print STDERR "No 7th tab found in your Excel file.\n";
         return \%parse_result;
     }
@@ -249,7 +250,7 @@ sub parse {
 
             if ($timestamp_included) {
                 if (!$timestamp =~ m/(\d{4})-(\d{2})-(\d{2}) (\d{2}):(\d{2}):(\d{2})(\S)(\d{4})/) {
-                    $parse_result{'error'} = "Timestamp needs to be of form YYYY-MM-DD HH:MM:SS-0000 or YYYY-MM-DD HH:MM:SS+0000";
+                    $parse_result{'error'} = "A data e hora deve estar no formato YYYY-MM-DD HH:MM:SS-0000 ou YYYY-MM-DD HH:MM:SS+0000";
                     print STDERR "value: $timestamp\n";
                     return \%parse_result;
                 }
@@ -260,7 +261,7 @@ sub parse {
                     $data{$plot_name}->{$trait_key} = [$trait_value, $timestamp];
                 }
             } else {
-                $parse_result{'error'} = "Value or timestamp missing.";
+                $parse_result{'error'} = "Valor ou data e hora ausente.";
                 return \%parse_result;
             }
         }

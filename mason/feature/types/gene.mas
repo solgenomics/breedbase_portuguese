@@ -19,7 +19,7 @@
 
 <&| /page/info_section.mas,
     title       => 'Gene',
-    subtitle    => $feature->is_obsolete ? 'WARNING: This feature is obsolete, new data is available.' : '',
+    subtitle    => $feature->is_obsolete ? 'ATENÇÃO: esta feição está obsoleta; há dados novos disponíveis.' : '',
     collapsible => 1,
 &>
   <& /feature/feature_data.mas,
@@ -45,7 +45,7 @@
 
 
 <&| /page/info_section.mas,
-   title       => 'Características relacionadas',
+   title       => 'Feições relacionadas',
    collapsible => 1,
 &>
   <& /feature/related_features.mas,
@@ -153,7 +153,7 @@
     </&>
 
     <&| /page/info_section.mas,
-        title         => 'Características relacionadas',
+        title         => 'Feições relacionadas',
         is_subsection => 1,
         collapsible   => 1,
      &>

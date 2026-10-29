@@ -1,5 +1,6 @@
 package CXGN::Trial::ParseUpload::Plugin::ProfileXLS;
 
+use utf8;
 use Moose::Role;
 use Spreadsheet::ParseExcel;
 use Spreadsheet::ParseXLSX;
@@ -40,7 +41,7 @@ sub _validate_with_plugin {
 
     $worksheet = ($excel_obj->worksheets())[0]; #support only one worksheet
     if (!$worksheet){
-        push @error_messages, "Spreadsheet must be on 1st tab in Excel (.xls) file";
+        push @error_messages, "A planilha deve estar na 1ª aba do arquivo Excel (.xls)";
         $errors{'error_messages'} = \@error_messages;
         $self->_set_parse_errors(\%errors);
         return;
@@ -49,7 +50,7 @@ sub _validate_with_plugin {
     my ($row_min, $row_max) = $worksheet->row_range();
     my ($col_min, $col_max) = $worksheet->col_range();
     if (($col_max - $col_min)  < 5 || ($row_max - $row_min) < 1 ) { #must have header and at least one row of info
-        push @error_messages, "Spreadsheet is missing header or no profile info";
+        push @error_messages, "A planilha não tem cabeçalho ou não contém informações de perfil";
         $errors{'error_messages'} = \@error_messages;
         $self->_set_parse_errors(\%errors);
         return;
@@ -89,22 +90,22 @@ sub _validate_with_plugin {
     }
 
     if (!$trait_name_header || $trait_name_header ne 'Trait Name' ) {
-        push @error_messages, "Cell A1: Trait Name is missing from the header";
+        push @error_messages, "Célula A1: Trait Name está ausente do cabeçalho";
     }
     if (!$target_value_header || $target_value_header ne 'Target Value') {
-        push @error_messages, "Cell B1: Target Value is missing from the header";
+        push @error_messages, "Célula B1: Target Value está ausente do cabeçalho";
     }
     if (!$benchmark_variety_header || $benchmark_variety_header ne 'Benchmark Variety') {
-        push @error_messages, "Cell C1: Benchmark Variety is missing from the header";
+        push @error_messages, "Célula C1: Benchmark Variety está ausente do cabeçalho";
     }
     if (!$performance_header || $performance_header ne 'Performance (equal, smaller, larger)') {
-        push @error_messages, "Cell D1: Performance is missing from the header";
+        push @error_messages, "Célula D1: Performance está ausente do cabeçalho";
     }
     if (!$weight_header || $weight_header ne 'Weight') {
-        push @error_messages, "Cell E1: Weight is missing from the header";
+        push @error_messages, "Célula E1: Weight está ausente do cabeçalho";
     }
     if (!$trait_type_header || $trait_type_header ne 'Trait Type') {
-        push @error_messages, "Cell F1: Trait Type is missing from the header";
+        push @error_messages, "Célula F1: Trait Type está ausente do cabeçalho";
     }
 
     my %seen_trait_names;
@@ -140,19 +141,19 @@ sub _validate_with_plugin {
         }
 
         if (!$trait_name || $trait_name eq '') {
-            push @error_messages, "Cell A$row_name: Trait name missing";
+            push @error_messages, "Célula A$row_name: nome da característica ausente";
         }
 
         if ((!$target_value || $target_value eq '') && (!$benchmark_variety || $benchmark_variety eq '')) {
-            push @error_messages, "Cell B$row_name or C$row_name: You must indicate either Target Value or Benchmark Variety";
+            push @error_messages, "Célula B$row_name ou C$row_name: você deve indicar Target Value ou Benchmark Variety";
         }
 
         if (defined $target_value && defined $benchmark_variety) {
-            push @error_messages, "Cell B$row_name or C$row_name: You must indicate either Target Value or Benchmark Variety, not both";
+            push @error_messages, "Célula B$row_name ou C$row_name: você deve indicar Target Value ou Benchmark Variety, não ambos";
         }
 
         if (!$performance || $performance eq '') {
-            push @error_messages, "Cell D$row_name: Performance parameter missing";
+            push @error_messages, "Célula D$row_name: parâmetro Performance ausente";
         }
 
         if ($trait_name){
@@ -172,7 +173,7 @@ sub _validate_with_plugin {
     my @traits_missing = @{$trait_validator->validate($schema,'traits',\@traits)->{'missing'}};
 
     if (scalar(@traits_missing) > 0){
-        push @error_messages, "The following Traits are not in the database: ".join(',',@traits_missing);
+        push @error_messages, "As seguintes características não estão no banco de dados: ".join(',',@traits_missing);
         $errors{'missing_traits'} = \@traits_missing;
     }
 

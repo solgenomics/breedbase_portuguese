@@ -3,14 +3,14 @@
 
 </%doc>
 
-<h1>Submeta uma família Gene</h1>
+<h1>Enviar uma família gênica</h1>
 
 <form>
 <table>
 <tr><td>Nome:</td><td> <input name="gfname" size="20" /></td></tr>
 <tr><td>Descrição</td><td><input name="gfdesc" size="80" /></td></tr>
 <tr><td>Membros:</td><td><textarea cols="30" rows="10" /></textarea></td></tr>
-<tr><td colspan="2"><input type="submit" value="Submeta a família genética" /></td></tr>
+<tr><td colspan="2"><input type="submit" value="Enviar família gênica" /></td></tr>
 </table>
 </form>
 

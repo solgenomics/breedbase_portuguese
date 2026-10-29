@@ -44,7 +44,7 @@ my $links = $guide . '|' .  qq | <a href="http://www.biomedcentral.com/1471-2105
         </tr>
         <tr> 
           <td> <input type="hidden"  name = "type" value="begin"> </td>
-          <td> <input type="submit" value="Comece a carregar"> </td>
+          <td> <input type="submit" value="Iniciar envio"> </td>
         </tr>
       </table>
  </form>

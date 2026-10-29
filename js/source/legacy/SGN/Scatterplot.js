@@ -41,8 +41,8 @@ function SGND3ScatterPlot(data, div_id, x_label) {
     }))
     .range([height - margins.top - margins.bottom, 0]);
 
-    svg.append("g").attr("class", "eixo x").attr("transform", "translate(0," + y.range()[0] + ")");
-    svg.append("g").attr("class", "eixo y");
+    svg.append("g").attr("class", "x axis").attr("transform", "translate(0," + y.range()[0] + ")");
+    svg.append("g").attr("class", "y axis");
 
     svg.append("text")
         .attr("fill", "#414241")

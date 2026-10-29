@@ -1,5 +1,6 @@
 package CXGN::Stock::Vector::ParseUpload::Plugin::VectorsGeneric;
 
+use utf8;
 use Moose::Role;
 use CXGN::File::Parse;
 use CXGN::Stock::StockLookup;
@@ -57,7 +58,7 @@ sub _validate_with_plugin {
 
     if ( $additional_columns && scalar(@$additional_columns) > 0 ) {
         $errors{'error_messages'} = [
-            "The following columns are not recognized: " . join(', ', @$additional_columns) . ". Please check the spreadsheet format for the allowed columns."
+            "As seguintes colunas não são reconhecidas: " . join(', ', @$additional_columns) . ". Verifique no formato da planilha quais colunas são permitidas."
         ];
         $self->_set_parse_errors(\%errors);
         return;
@@ -76,7 +77,7 @@ sub _validate_with_plugin {
         }
     }
     if ( scalar(@stocks_existing) > 0 ) {
-        push @error_messages, "The following vector construct names are already used in the database (as different stock types): " . join(',', @stocks_existing);
+        push @error_messages, "Os seguintes nomes de construção vetorial já estão em uso no banco de dados (como outros tipos de material): " . join(',', @stocks_existing);
     }
 
     if (scalar(@error_messages) >= 1) {

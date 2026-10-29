@@ -1,5 +1,6 @@
 
 package CXGN::Trait;
+use utf8;
 
 use Moose;
 use Data::Dumper;
@@ -801,9 +802,9 @@ sub interactive_store {
 
 	my @parent_ids;
 
-    my $name = $self->name() || die "No name found.\n";
-    my $definition = $self->definition() || die "No definition found.\n";
-    my $format = $self->format() || die "No format found.\n";
+    my $name = $self->name() || die "Nenhum nome encontrado.\n";
+    my $definition = $self->definition() || die "Nenhuma definição encontrada.\n";
+    my $format = $self->format() || die "Nenhum formato encontrado.\n";
     my $default_value = $self->default_value() ne "" ? $self->default_value() : undef;
     my $minimum = $self->minimum() ne "" ? $self->minimum() : undef;
     my $maximum = $self->maximum() ne "" ? $self->maximum() : undef;
@@ -888,7 +889,7 @@ sub interactive_store {
 		my $transform = $lt->transform($schema, "traits_2_trait_ids", $parent_terms);
 
 		if (@{$transform->{missing}} > 0) {
-			die "Parent term(s) " . join(", ", @{$transform->{missing}}) . " could not be found in the database.\n";
+			die "Termo(s) pai " . join(", ", @{$transform->{missing}}) . " não encontrado(s) no banco de dados.\n";
 		}
 
 		@parent_ids = @{$transform->{transform}};
@@ -913,7 +914,7 @@ sub interactive_store {
     if ($relationship_cv) {
         $rel_cv_id = $relationship_cv->cv_id ;
     } else {
-        die "No relationship ontology in DB.\n";
+        die "Nenhuma ontologia de relacionamentos no banco de dados.\n";
     }
     my $variable_relationship = $schema->resultset("Cv::Cvterm")->find({ name => 'VARIABLE_OF' , cv_id => $rel_cv_id });
     my $variable_of_id;
@@ -987,7 +988,7 @@ sub interactive_store {
 		};
         if ($@) {
 			$schema->txn_rollback();
-			die "An error occurred! $@";
+			die "Ocorreu um erro! $@";
 		} else {
 			$schema->txn_commit();
 		}
@@ -997,7 +998,7 @@ sub interactive_store {
         $schema->txn_do($coderef);
     };
     if ($@) {
-        die "An error occurred saving trait: $@\n";
+        die "Ocorreu um erro ao salvar a característica: $@\n";
     }
 
 	$self->cvterm($new_trait);
@@ -1039,11 +1040,11 @@ sub delete {
 	my $phenotype_count = $h->fetchrow_array();
 
 	if ($phenotype_count > 0) {
-		die "Cannot delete cvterm $name because it has associated phenotypes. Delete these phenotypes before attempting to delete the cvterm.\n";
+		die "Não é possível excluir o cvterm $name porque ele tem fenótipos associados. Exclua esses fenótipos antes de tentar excluir o cvterm.\n";
 	}
 
 	if (!$self->db) {
-		die "It appears this cvterm is not part of an ontology. Deleting it is likely unsafe.\n";
+		die "Parece que este cvterm não faz parte de uma ontologia. Excluí-lo provavelmente não é seguro.\n";
 	}
 
 	my $coderef = sub {

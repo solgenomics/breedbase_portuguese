@@ -136,8 +136,8 @@
                 var e = d3.event;
                 tooltip
                     .html(
-                        "<strong>Value:</strong> " + d.value + "<br/>" +
-                        "<strong>Date:</strong> " + d3.timeFormat("%Y-%m-%d")(d.date)
+                        "<strong>Valor:</strong> " + d.value + "<br/>" +
+                        "<strong>Data:</strong> " + d3.timeFormat("%Y-%m-%d")(d.date)
                     )
                     .style("left", (e.pageX + 10) + "px")
                     .style("top",  (e.pageY - 25) + "px")
@@ -161,7 +161,7 @@
             .attr("y", height + margin.bottom - 10)
             .attr("text-anchor", "middle")
             .style("font-size", "12px")
-            .text("Collect Date");
+            .text("Data de coleta");
         }
  
         if (options.showYAxis) {

@@ -26,6 +26,7 @@ CXGN::Cross - an object representing a Cross in the database
 =cut
 
 package CXGN::Cross;
+use utf8;
 
 use Moose;
 use SGN::Model::Cvterm;
@@ -893,7 +894,7 @@ sub delete {
     while (my($type_id, $seedlot_name) = $h->fetchrow_array()) {
 	    if ($type_id == $collection_of_type_id) {
             print STDERR "Cross has associated seedlot. Cannot delete.\n";
-	        die "Cross has associated seedlot: $seedlot_name. Cannot delete.\n";
+	        die "O cruzamento tem um lote de sementes associado: $seedlot_name. Não é possível excluir.\n";
 	    }
     }
 
@@ -909,7 +910,7 @@ sub delete {
     while (my($type_id, $project_name) = $h2->fetchrow_array()) {
         if ($type_id == $field_layout_type_id) {
             print STDERR "Cross has associated trial. Cannot delete.\n";
-            die "Cross has associated trial: $project_name. Cannot delete.\n";
+            die "O cruzamento tem um ensaio associado: $project_name. Não é possível excluir.\n";
         }
     }
 
@@ -924,7 +925,7 @@ sub delete {
 
 	if (! $can_delete) {
 	    print STDERR "Cross has associated data. Cannot delete.\n";
-	    die "Cross has associated data. ($properties->{trials} trials, $properties->{traits} traits and $properties->{genoytpes} genotypes. Cannot delete...\n";
+	    die "O cruzamento tem dados associados. ($properties->{trials} ensaios, $properties->{traits} características e $properties->{genoytpes} genótipos. Não é possível excluir...\n";
 	}
 	else {
 	    print STDERR "This cross has no associated data that would prevent deletion.";
@@ -934,7 +935,7 @@ sub delete {
     my $cross_rs = $schema->resultset("Stock::Stock")->find ({stock_id => $cross_id, type_id => $cross_type_id});
     if (!$cross_rs) {
         print STDERR "This stock id is not a cross. Cannot delete.\n";
-	    die "This stock id is not a cross. Cannot delete.\n";
+	    die "Este ID de material não é um cruzamento. Não é possível excluir.\n";
     }
 
     #get nd_experiment_id with cross_experiment_type

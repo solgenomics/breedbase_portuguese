@@ -6,8 +6,7 @@ $analysis_type => $analysis_type
 
 <%perl>
 
-my $login_msg = "To view your datasets and use this tool " .  
-"Você precisa <a href=\"/user/login?goto_url=$tool_url\">login</a>.";
+my $login_msg = "Para ver seus conjuntos de dados e usar esta ferramenta, " . "você precisa <a href=\"/user/login?goto_url=$tool_url\">entrar</a>.";
 
 </%perl>
 

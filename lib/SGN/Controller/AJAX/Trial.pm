@@ -163,21 +163,21 @@ sub generate_experimental_design_POST : Args(0) {
     }
 
     if ( !$start_number ) {
-        $c->stash->{rest} = { error => "You need to select the starting plot number."};
+        $c->stash->{rest} = { error => "Você precisa selecionar o número inicial das parcelas."};
 
     }
 
     if ($design_type eq 'Westcott'){
         if (!$westcott_check_1){
-            $c->stash->{rest} = { error => "You need to provide name of check 1 for westcott design."};
+            $c->stash->{rest} = { error => "Você precisa informar o nome da testemunha 1 para o delineamento Westcott."};
             return;
         }
         if (!$westcott_check_2){
-            $c->stash->{rest} = { error => "You need to provide name of check 2 for westcott design."};
+            $c->stash->{rest} = { error => "Você precisa informar o nome da testemunha 2 para o delineamento Westcott."};
             return;
         }
         if (!$westcott_col){
-            $c->stash->{rest} = { error => "You need to provide number of columns for westcott design."};
+            $c->stash->{rest} = { error => "Você precisa informar o número de colunas para o delineamento Westcott."};
             return;
         }
         push @control_names_crbd, $westcott_check_1;
@@ -186,22 +186,22 @@ sub generate_experimental_design_POST : Args(0) {
 
     if ($design_type eq 'splitplot'){
         if (scalar(keys(%{$treatments}))<1){
-            $c->stash->{rest} = { error => "You need to provide at least one treatment for a splitplot design."};
+            $c->stash->{rest} = { error => "Você precisa informar pelo menos um tratamento para um delineamento em parcelas subdivididas."};
             return;
         }
         if (!$num_plants_per_plot){
-            $c->stash->{rest} = { error => "You need to provide number of plants per treatment for a splitplot design."};
+            $c->stash->{rest} = { error => "Você precisa informar o número de plantas por tratamento para um delineamento em parcelas subdivididas."};
             return;
         }
         if ($num_plants_per_plot <1){
-            $c->stash->{rest} = { error => "You need to provide number of plants per treatment for a splitplot design."};
+            $c->stash->{rest} = { error => "Você precisa informar o número de plantas por tratamento para um delineamento em parcelas subdivididas."};
             return;
         }
     }
 
     if ($design_type eq 'RRC'){
         if (!$fieldmap_row_number){
-            $c->stash->{rest} = { error => "You need to provide number of rows for a resolvable row-column design."};
+            $c->stash->{rest} = { error => "Você precisa informar o número de linhas para um delineamento linha-coluna resolvível."};
             return;
         }
     }
@@ -218,7 +218,7 @@ sub generate_experimental_design_POST : Args(0) {
 
     if ($design_type eq 'URDD'){
         if (!$row_in_design_number || !$col_in_design_number){
-            $c->stash->{rest} = { error => "You need to provide number of rows and cols for a unreplicated diagonal design."};
+            $c->stash->{rest} = { error => "Você precisa informar o número de linhas e colunas para um delineamento diagonal não repetido."};
             return;
         }
     }
@@ -280,17 +280,17 @@ sub generate_experimental_design_POST : Args(0) {
     my $location_number = scalar(@locations);
 
     if (!$c->user()) {
-        $c->stash->{rest} = {error => "You need to be logged in to add a trial" };
+        $c->stash->{rest} = {error => "Você precisa estar conectado para adicionar um ensaio" };
         return;
     }
 
     if (!any { $_ eq "curator" || $_ eq "submitter" } ($c->user()->roles)  ) {  #user must have privileges to add a trial
-        $c->stash->{rest} = {error =>  "You have insufficient privileges to add a trial." };
+        $c->stash->{rest} = {error =>  "Você não tem privilégios suficientes para adicionar um ensaio." };
         return;
     }
     #print "TOTAL PLOTS $p_rep_total_plots AND CALCULATED PLOTS $calculated_total_plot\n";
     if($p_rep_total_plots != $calculated_total_plot){
-        $c->stash->{rest} = {error => "Treatment repeats do not equal number of plots in design" };
+        $c->stash->{rest} = {error => "As repetições de tratamento não correspondem ao número de parcelas do delineamento" };
         return;
     }
 
@@ -304,7 +304,7 @@ sub generate_experimental_design_POST : Args(0) {
 
         $geolocation_lookup->set_location_name($location);
         if (!$geolocation_lookup->get_geolocation()){
-            $c->stash->{rest} = { error => "Trial location not found" };
+            $c->stash->{rest} = { error => "Local do ensaio não encontrado" };
             return;
         }
 
@@ -353,7 +353,7 @@ sub generate_experimental_design_POST : Args(0) {
             $trial_design->set_stock_list(\@stock_names);
             $design_info{'number_of_stocks'} = scalar(@stock_names);
         } else {
-            $c->stash->{rest} = {error => "No list of stocks supplied." };
+            $c->stash->{rest} = {error => "Nenhuma lista de materiais informada." };
             return;
         }
         if ($seedlot_hash_json){
@@ -437,11 +437,11 @@ sub generate_experimental_design_POST : Args(0) {
             $trial_design->set_design_type($design_type);
             $design_info{'design_type'} = $design_type;
         } else {
-            $c->stash->{rest} = {error => "No design type supplied." };
+            $c->stash->{rest} = {error => "Nenhum tipo de delineamento informado." };
             return;
         }
         if (!$trial_design->has_design_type()) {
-            $c->stash->{rest} = {error => "Design type not supported." };
+            $c->stash->{rest} = {error => "Tipo de delineamento não suportado." };
             return;
         }
         if ($fieldmap_col_number) {
@@ -485,7 +485,7 @@ sub generate_experimental_design_POST : Args(0) {
         try {
             $trial_design->calculate_design();
         } catch {
-            $c->stash->{rest} = {error => "Could not calculate design: $_"};
+            $c->stash->{rest} = {error => "Não foi possível calcular o delineamento: $_"};
             $error=1;
         };
         if ($error) {
@@ -494,7 +494,7 @@ sub generate_experimental_design_POST : Args(0) {
         if ($trial_design->get_design()) {
             %design = %{$trial_design->get_design()};
         } else {
-            $c->stash->{rest} = {error => "Could not generate design" };
+            $c->stash->{rest} = {error => "Não foi possível gerar o delineamento" };
             return;
         }
 
@@ -516,9 +516,9 @@ sub generate_experimental_design_POST : Args(0) {
         my $total_area = $plot_width * $plot_length * $num_plots; #sq meters. 1 ha = 10000m2
         my $field_size_m = $field_size * 10000;
         if ($field_size_m < $total_area){
-            $warning_message = "The generated design would require atleast $total_area square meters, which is larger than the $field_size hectare ($field_size_m square meters) field size you indicated.";
+            $warning_message = "O delineamento gerado exigiria pelo menos $total_area metros quadrados, o que é maior do que o tamanho de campo de $field_size hectare ($field_size_m metros quadrados) que você indicou.";
         } else {
-            $warning_message = "The generated design would require atleast $total_area square meters and your field size is $field_size hectare ($field_size_m square meters).";
+            $warning_message = "O delineamento gerado exigiria pelo menos $total_area metros quadrados e o tamanho do seu campo é de $field_size hectare ($field_size_m metros quadrados).";
         }
     }
 
@@ -561,11 +561,11 @@ sub save_experimental_design_POST : Args(0) {
     print STDERR "Saving trial... :-)\n";
 
     if (!$c->user()) {
-        $c->stash->{rest} = {error => "You need to be logged in to add a trial" };
+        $c->stash->{rest} = {error => "Você precisa estar conectado para adicionar um ensaio" };
         return;
     }
     if (!any { $_ eq "curator" || $_ eq "submitter" } ($c->user()->roles)  ) {
-        $c->stash->{rest} = {error =>  "You have insufficient privileges to add a trial." };
+        $c->stash->{rest} = {error =>  "Você não tem privilégios suficientes para adicionar um ensaio." };
         return;
     }
 
@@ -615,7 +615,7 @@ sub save_experimental_design_POST : Args(0) {
 
         my $existing = $schema->resultset("Project::Project")->find( { name => $trial_name });
         if ($existing) {
-            $c->stash->{rest} = { error => "A folder or trial with that name already exists in the database. Please select another name." };
+            $c->stash->{rest} = { error => "Já existe uma pasta ou um ensaio com esse nome no banco de dados. Escolha outro nome." };
             return;
         }
 
@@ -698,7 +698,7 @@ sub save_experimental_design_POST : Args(0) {
         my $trial_create = CXGN::Trial::TrialCreate->new(\%trial_info_hash);
 
         if ($trial_create->trial_name_already_exists()) {
-            $c->stash->{rest} = {error => "Trial name \"".$trial_create->get_trial_name()."\" already exists" };
+            $c->stash->{rest} = {error => "O nome de ensaio \"".$trial_create->get_trial_name()."\" já existe" };
             return;
         }
 
@@ -751,7 +751,7 @@ sub save_experimental_design_POST : Args(0) {
         $trial_activity_obj->parent_id($trial_id);
         my $activity_prop_id = $trial_activity_obj->store();
         if (!$activity_prop_id) {
-            $c->stash->{rest} = {error => "Error saving trial activity info" };
+            $c->stash->{rest} = {error => "Erro ao salvar as informações de atividade do ensaio" };
             return;
         }
 
@@ -839,7 +839,7 @@ sub save_experimental_design_POST : Args(0) {
             }
             if ($verified_error) {
                 print STDERR "$verified_error\n";
-                $c->stash->{rest} = {error => "The trial was saved, but there was an issue applying treatments: $verified_error\n" };
+                $c->stash->{rest} = {error => "O ensaio foi salvo, mas houve um problema ao aplicar os tratamentos: $verified_error\n" };
                 return;
             }
 
@@ -847,7 +847,7 @@ sub save_experimental_design_POST : Args(0) {
 
             if ($stored_phenotype_error) {
                 print STDERR "$stored_phenotype_error\n";
-                $c->stash->{rest} = {error => "The trial was saved, but there was an issue applying treatments: $stored_phenotype_error\n" };
+                $c->stash->{rest} = {error => "O ensaio foi salvo, mas houve um problema ao aplicar os tratamentos: $stored_phenotype_error\n" };
                 return;
             }
         }
@@ -871,14 +871,14 @@ sub verify_trial_name_GET : Args(0) {
     my %errors;
 
     if (!$trial_name) {
-        $c->stash->{rest} = {error => "No trial name supplied"};
+        $c->stash->{rest} = {error => "Nenhum nome de ensaio informado"};
         $c->detach;
     }
 
     my $project_rs = $schema->resultset('Project::Project')->find({name=>$trial_name});
 
     if ($project_rs){
-        my $error = 'The following trial name has aready been used. Please use a unique name';
+        my $error = 'O seguinte nome de ensaio já foi usado. Use um nome exclusivo';
         $c->stash->{rest} = {error => $error};
     } else {
         $c->stash->{rest} = {
@@ -901,7 +901,7 @@ sub verify_stock_list_POST : Args(0) {
     }
 
     if (!@stock_names) {
-        $c->stash->{rest} = {error => "No stock names supplied"};
+        $c->stash->{rest} = {error => "Nenhum nome de material informado"};
         $c->detach;
     }
 
@@ -914,7 +914,7 @@ sub verify_stock_list_POST : Args(0) {
     }
 
     if (scalar(@accessions_missing) > 0){
-        my $error = 'The following accessions are not valid in the database, so you must add them first: '.join ',', @accessions_missing;
+        my $error = 'Os seguintes acessos não são válidos no banco de dados; adicione-os primeiro: '.join ',', @accessions_missing;
         $c->stash->{rest} = {error => $error};
     } else {
         $c->stash->{rest} = {
@@ -936,14 +936,14 @@ sub verify_cross_list_POST : Args(0) {
     }
 
     if (!@stock_names) {
-        $c->stash->{rest} = {error => "No stock names supplied"};
+        $c->stash->{rest} = {error => "Nenhum nome de material informado"};
         $c->detach;
     }
 
     my $lv = CXGN::List::Validate->new();
     my @crosses_missing = @{$lv->validate($schema,'crosses',\@stock_names)->{'missing'}};
     if (scalar(@crosses_missing) > 0){
-        my $error = 'The following crosses are not valid in the database, so you must add them first: '.join ',', @crosses_missing;
+        my $error = 'Os seguintes cruzamentos não são válidos no banco de dados; adicione-os primeiro: '.join ',', @crosses_missing;
         $c->stash->{rest} = {error => $error};
     } else {
         $c->stash->{rest} = {
@@ -965,14 +965,14 @@ sub verify_family_name_list_POST : Args(0) {
     }
 
     if (!@stock_names) {
-        $c->stash->{rest} = {error => "No stock names supplied"};
+        $c->stash->{rest} = {error => "Nenhum nome de material informado"};
         $c->detach;
     }
 
     my $lv = CXGN::List::Validate->new();
     my @family_names_missing = @{$lv->validate($schema,'family_names',\@stock_names)->{'missing'}};
     if (scalar(@family_names_missing) > 0){
-        my $error = 'The following family names are not valid in the database, so you must add them first: '.join ',', @family_names_missing;
+        my $error = 'Os seguintes nomes de família não são válidos no banco de dados; adicione-os primeiro: '.join ',', @family_names_missing;
         $c->stash->{rest} = {error => $error};
     } else {
         $c->stash->{rest} = {
@@ -1085,20 +1085,20 @@ sub upload_trial_file_POST : Args(0) {
         my %valid_attrs = map { $_ => 1 } qw(breedingProgram trialName accessionName plotNumber blockNumber rangeNumber repNumber rowNumber colNumber);
         my $attrs_ok = $format_name && !grep { ref $_ eq 'HASH' ? 0 : !$valid_attrs{$_} } @$name_attributes;
         if (!$attrs_ok) {
-            $c->stash->{rest} = {error => "Invalid plot name template."};
+            $c->stash->{rest} = {error => "Modelo de nome de parcela inválido."};
             return;
         }
 
         my $program_row = $chado_schema->resultset('Project::Project')->find({ name => $program });
         if (!$program_row) {
-            $c->stash->{rest} = {error => "Breeding program not found."};
+            $c->stash->{rest} = {error => "Programa de melhoramento não encontrado."};
             return;
         }
         my $projects = CXGN::BreedersToolbox::Projects->new({ schema => $chado_schema });
         my $available_templates = $projects->get_autogenerated_name_metadata_by_breeding_program($program_row->project_id(), 'plot');
         my %available_template_lookup = map { %$_ } @$available_templates;
         if (!exists $available_template_lookup{$format_name}) {
-            $c->stash->{rest} = {error => "Plot name template <strong>$format_name</strong> does not belong to breeding program <strong>$program</strong>."};
+            $c->stash->{rest} = {error => "O modelo de nome de parcela <strong>$format_name</strong> não pertence ao programa de melhoramento <strong>$program</strong>."};
             return;
         }
     }
@@ -1127,17 +1127,17 @@ sub upload_trial_file_POST : Args(0) {
 
     if ($upload_original_name =~ /\s/ || $upload_original_name =~ /\// || $upload_original_name =~ /\\/ ) {
         print STDERR "File name must not have spaces or slashes.\n";
-        $c->stash->{rest} = {error => "Uploaded file name must not contain spaces or slashes." };
+        $c->stash->{rest} = {error => "O nome do arquivo enviado não pode conter espaços nem barras." };
         return;
     }
 
     if (!$c->user()) {
         print STDERR "User not logged in... not uploading a trial.\n";
-        $c->stash->{rest} = {error => "You need to be logged in to upload a trial." };
+        $c->stash->{rest} = {error => "Você precisa estar conectado para enviar um ensaio." };
         return;
     }
     if (!any { $_ eq "curator" || $_ eq "submitter" } ($c->user()->roles)  ) {
-        $c->stash->{rest} = {error =>  "You have insufficient privileges to upload a trial." };
+        $c->stash->{rest} = {error =>  "Você não tem privilégios suficientes para enviar um ensaio." };
         return;
     }
 
@@ -1157,7 +1157,7 @@ sub upload_trial_file_POST : Args(0) {
     $archived_filename_with_path = $uploader->archive();
     $md5 = $uploader->get_md5($archived_filename_with_path);
     if (!$archived_filename_with_path) {
-        $c->stash->{rest} = {error => "Could not save file $upload_original_name in archive",};
+        $c->stash->{rest} = {error => "Não foi possível salvar o arquivo $upload_original_name no arquivo permanente",};
         return;
     }
     unlink $upload_tempfile;
@@ -1178,7 +1178,7 @@ sub upload_trial_file_POST : Args(0) {
         my $return_error = '';
 
         if (! $parser->has_parse_errors() ){
-            $return_error = "Could not get parsing errors";
+            $return_error = "Não foi possível obter os erros de processamento";
             $c->stash->{rest} = {error_string => $return_error,};
         }
         else {
@@ -1365,7 +1365,7 @@ sub upload_trial_file_POST : Args(0) {
             }
             if ($verified_error) {
                 print STDERR "$verified_error\n";
-                $c->stash->{rest} = {error => "The trial was saved, but there was an issue applying treatments: $verified_error\n" };
+                $c->stash->{rest} = {error => "O ensaio foi salvo, mas houve um problema ao aplicar os tratamentos: $verified_error\n" };
                 return;
             }
 
@@ -1373,7 +1373,7 @@ sub upload_trial_file_POST : Args(0) {
 
             if ($stored_phenotype_error) {
                 print STDERR "$stored_phenotype_error\n";
-                $c->stash->{rest} = {error => "The trial was saved, but there was an issue applying treatments: $stored_phenotype_error\n" };
+                $c->stash->{rest} = {error => "O ensaio foi salvo, mas houve um problema ao aplicar os tratamentos: $stored_phenotype_error\n" };
                 return;
             }
         }
@@ -1420,11 +1420,11 @@ sub upload_multiple_trial_designs_file_POST : Args(0) {
     # Check if user is logged in and has curator or submitter privileges
     if (!$c->user()) {
         print STDERR "User not logged in... not uploading a trial.\n";
-        $c->stash->{rest} = {errors => "You need to be logged in to upload a trial." };
+        $c->stash->{rest} = {errors => "Você precisa estar conectado para enviar um ensaio." };
         return;
     }
     if (!any { $_ eq "curator" || $_ eq "submitter" } ($c->user()->roles)) {
-        $c->stash->{rest} = {errors =>  "You have insufficient privileges to upload a trial." };
+        $c->stash->{rest} = {errors =>  "Você não tem privilégios suficientes para enviar um ensaio." };
         return;
     }
     my $user_id = $c->user()->get_object()->get_sp_person_id();
@@ -1433,7 +1433,7 @@ sub upload_multiple_trial_designs_file_POST : Args(0) {
     # Check filename for spaces and/or slashes
     if ($upload_original_name =~ /\s/ || $upload_original_name =~ /\// || $upload_original_name =~ /\\/ ) {
         print STDERR "File name must not have spaces or slashes.\n";
-        $c->stash->{rest} = {errors => "Uploaded file name must not contain spaces or slashes." };
+        $c->stash->{rest} = {errors => "O nome do arquivo enviado não pode conter espaços nem barras." };
         return;
     }
 
@@ -1449,7 +1449,7 @@ sub upload_multiple_trial_designs_file_POST : Args(0) {
     });
     my $archived_filename_with_path = $uploader->archive();
     if (!$archived_filename_with_path) {
-        $c->stash->{rest} = {errors => "Could not save file $archive_filename in archive",};
+        $c->stash->{rest} = {errors => "Não foi possível salvar o arquivo $archive_filename no arquivo permanente",};
         return;
     }
     unlink $upload_tempfile;
@@ -1579,7 +1579,7 @@ sub upload_trial_metadata_file_POST : Args(0) {
 
     # Check if user is logged in and has curator or submitter privileges
     if (!$c->user()) {
-        $c->stash->{rest} = {errors => "You need to be logged in to update a trial." };
+        $c->stash->{rest} = {errors => "Você precisa estar conectado para atualizar um ensaio." };
         return;
     }
     my $user_id = $c->user()->get_object()->get_sp_person_id();
@@ -1590,14 +1590,14 @@ sub upload_trial_metadata_file_POST : Args(0) {
 
     # User must be a curator or submitter
     if ( !(exists($has_roles{'submitter'}) || exists($has_roles{'curator'}) ) ) {
-        $c->stash->{rest} = {errors =>  "You must be a curator or submitter to update a trial." };
+        $c->stash->{rest} = {errors =>  "Você precisa ser curador ou submissor para atualizar um ensaio." };
         return;
     }
 
     # Check filename for spaces and/or slashes
     if ($upload_original_name =~ /\s/ || $upload_original_name =~ /\// || $upload_original_name =~ /\\/ ) {
         print STDERR "File name must not have spaces or slashes.\n";
-        $c->stash->{rest} = {errors => "Uploaded file name must not contain spaces or slashes." };
+        $c->stash->{rest} = {errors => "O nome do arquivo enviado não pode conter espaços nem barras." };
         return;
     }
 
@@ -1613,7 +1613,7 @@ sub upload_trial_metadata_file_POST : Args(0) {
     });
     my $archived_filename_with_path = $uploader->archive();
     if (!$archived_filename_with_path) {
-        $c->stash->{rest} = {errors => "Could not save file $archive_filename in archive",};
+        $c->stash->{rest} = {errors => "Não foi possível salvar o arquivo $archive_filename no arquivo permanente",};
         return;
     }
     unlink $upload_tempfile;
@@ -1627,7 +1627,7 @@ sub upload_trial_metadata_file_POST : Args(0) {
     my @warnings;
     if (!$parsed_data) {
         my $parse_errors = $parser->get_parse_errors();
-        $c->stash->{rest} = { errors => $parse_errors ? $parse_errors->{'error_messages'} : ['No data returned'] };
+        $c->stash->{rest} = { errors => $parse_errors ? $parse_errors->{'error_messages'} : ['Nenhum dado retornado'] };
         return;
     }
 
@@ -1649,7 +1649,7 @@ sub upload_trial_metadata_file_POST : Args(0) {
             }
         }
         if ( scalar(@missing_breeding_programs) > 0 ) {
-            $c->stash->{rest} = { errors => "You need to be either a curator, or a submitter associated with the breeding program(s) " . join(', ', @missing_breeding_programs) . " to change the details of trial(s) associated with these program(s)." };
+            $c->stash->{rest} = { errors => "Você precisa ser curador ou submissor associado ao(s) programa(s) de melhoramento " . join(', ', @missing_breeding_programs) . " para alterar os detalhes do(s) ensaio(s) associado(s) a esse(s) programa(s)." };
             return;
         }
     }
@@ -1693,7 +1693,7 @@ sub upload_trial_metadata_file_POST : Args(0) {
         }
     };
     if ($@) {
-        $c->stash->{rest} = { errors => "There was an error updating one or more trials: $@" };
+        $c->stash->{rest} = { errors => "Ocorreu um erro ao atualizar um ou mais ensaios: $@" };
         return;
     };
 
@@ -1740,7 +1740,7 @@ sub upload_soil_data_POST : Args(0) {
 
     if ($upload_original_name =~ /\s/ || $upload_original_name =~ /\// || $upload_original_name =~ /\\/ ) {
         print STDERR "File name must not have spaces or slashes.\n";
-        $c->stash->{rest} = {errors => "Uploaded file name must not contain spaces or slashes." };
+        $c->stash->{rest} = {errors => "O nome do arquivo enviado não pode conter espaços nem barras." };
         return;
     }
 
@@ -1748,7 +1748,7 @@ sub upload_soil_data_POST : Args(0) {
         my $dbh = $c->dbc->dbh;
         my @user_info = CXGN::Login->new($dbh)->query_from_cookie($session_id);
         if (!$user_info[0]){
-            $c->stash->{rest} = {error=>'You must be logged in to upload soil data!'};
+            $c->stash->{rest} = {error=>'Você precisa estar conectado para enviar dados de solo!'};
             $c->detach();
         }
         $user_id = $user_info[0];
@@ -1757,7 +1757,7 @@ sub upload_soil_data_POST : Args(0) {
         $user_name = $p->get_username;
     } else{
         if (!$c->user){
-            $c->stash->{rest} = {error=>'You must be logged in to upload soil data!'};
+            $c->stash->{rest} = {error=>'Você precisa estar conectado para enviar dados de solo!'};
             $c->detach();
         }
         $user_id = $c->user()->get_object()->get_sp_person_id();
@@ -1766,7 +1766,7 @@ sub upload_soil_data_POST : Args(0) {
     }
 
     if (($user_role ne 'curator') && ($user_role ne 'submitter')) {
-        $c->stash->{rest} = {error=>'Only a submitter or a curator can upload soil data'};
+        $c->stash->{rest} = {error=>'Somente um submissor ou curador pode enviar dados de solo'};
         $c->detach();
     }
 
@@ -1783,7 +1783,7 @@ sub upload_soil_data_POST : Args(0) {
     $archived_filename_with_path = $uploader->archive();
     $md5 = $uploader->get_md5($archived_filename_with_path);
     if (!$archived_filename_with_path) {
-        $c->stash->{rest} = {errors => "Could not save file $upload_original_name in archive",};
+        $c->stash->{rest} = {errors => "Não foi possível salvar o arquivo $upload_original_name no arquivo permanente",};
         return;
     }
     unlink $upload_tempfile;
@@ -1804,7 +1804,7 @@ sub upload_soil_data_POST : Args(0) {
         my $return_error = '';
         my $parse_errors;
         if (!$parser->has_parse_errors() ){
-            $c->stash->{rest} = {error_string => "Could not get parsing errors"};
+            $c->stash->{rest} = {error_string => "Não foi possível obter os erros de processamento"};
         } else {
             $parse_errors = $parser->get_parse_errors();
             #print STDERR Dumper $parse_errors;

@@ -1,4 +1,5 @@
 package SGN::Controller::AJAX::GenotypingProject;
+use utf8;
 
 use Moose;
 use JSON;
@@ -52,7 +53,7 @@ sub genotyping_project_delete_POST : Args(1) {
     }
 
     if ($user_role ne 'curator') {
-        $c->stash->{rest} = { error => 'Must have correct permissions to delete genotypes! Please contact us.' };
+        $c->stash->{rest} = { error => 'É necessário ter as permissões adequadas para excluir genótipos! Entre em contato conosco.' };
         $c->detach();
     }
 
@@ -112,7 +113,7 @@ sub genotyping_project_delete_POST : Args(1) {
         my $dir = $c->tempfiles_subdir('/genotype_data_delete_nd_experiment_ids');
         my $temp_file_nd_experiment_id = "$basepath/".$c->tempfile( TEMPLATE => 'genotype_data_delete_nd_experiment_ids/fileXXXX');
         open (my $fh, "> :encoding(UTF-8)", $temp_file_nd_experiment_id ) or do {
-	    $c->stash->{rest} = { error => "Could not open temp file $temp_file_nd_experiment_id: $!" };
+	    $c->stash->{rest} = { error => "Não foi possível abrir o arquivo temporário $temp_file_nd_experiment_id: $!" };
 	    return;
 	};
         foreach (@{$genotype_ids_and_nd_experiment_ids_to_delete{nd_experiment_ids}}) {
@@ -140,7 +141,7 @@ sub genotyping_project_delete_POST : Args(1) {
             $async_delete->submit();
         };
         if ($@) {
-            $c->stash->{rest} = {error => "Failed to submit background job: $@"};
+            $c->stash->{rest} = {error => "Falha ao enviar a tarefa em segundo plano: $@"};
             return;
         }
     }
@@ -172,7 +173,7 @@ sub add_genotyping_project_POST :Args(0){
 
     if (!any { $_ eq "curator" || $_ eq "submitter" } ($c->user()->roles)){
         print STDERR "User does not have sufficient privileges.\n";
-        $c->stash->{rest} = {error =>  "you have insufficient privileges to add a genotyping project." };
+        $c->stash->{rest} = {error =>  "você não tem permissão para adicionar um projeto de genotipagem." };
         return;
     }
     my $user_id = $c->user()->get_object()->get_sp_person_id();

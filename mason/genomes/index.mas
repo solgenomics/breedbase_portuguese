@@ -21,7 +21,7 @@ Lukas Mueller
 
 </%doc>
 
-<& /page/page_title.mas, title=> "Projetos Genomas" &>
+<& /page/page_title.mas, title=> "Projetos de Genoma" &>
 
 <div style="width: 30em; margin: 0 auto">
 

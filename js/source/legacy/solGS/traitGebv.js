@@ -68,7 +68,7 @@ jQuery(window).load( function() {
                         },
                     },
                     series: [{
-                            label: "Gebv",
+                            label: "GEBV",
                             neighborThreshold: -1
                         }], 
                     grid: { 

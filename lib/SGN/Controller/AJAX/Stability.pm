@@ -1,6 +1,7 @@
 use strict;
 
 package SGN::Controller::AJAX::Stability;
+use utf8;
 
 use Moose;
 use Data::Dumper;
@@ -85,7 +86,7 @@ sub extract_trait_data :Path('/ajax/stability/getdata') Args(0) {
 
     my $F;
     if (! open($F, "<", $temppath)) {
-  $c->stash->{rest} = { error => "Can't find data." };
+  $c->stash->{rest} = { error => "Não foi possível encontrar os dados." };
   return;
     }
 

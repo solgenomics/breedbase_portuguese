@@ -6,21 +6,21 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="nirsAnalysisPredictionDialog">Fenótipos preditos do Modelo Espectral</h4>
+        <h4 class="modal-title" id="nirsAnalysisPredictionDialog">Predizer fenótipos a partir do modelo espectral</h4>
       </div>
       <div class="modal-body">
         <div class="container-fluid">
 
             <&| /util/workflow.mas, id=> "nirs_analysis_prediction_workflow" &>
                 <&| /util/workflow.mas:step, title=> "Introdução" &>
-                    <& /page/page_title.mas, title=>"Este fluxo de trabalho irá guiá-lo através da previsão de fenótipos de modelos espectrais treinados no banco de dados." &>
+                    <& /page/page_title.mas, title=>"Este fluxo de trabalho irá guiá-lo na predição de fenótipos a partir de modelos espectrais treinados no banco de dados." &>
                     <br/><br/>
                     <center>
-                    <button class="btn btn-primary" onclick="Workflow.complete(this); return false;">Vá para o próximo passo</button>
+                    <button class="btn btn-primary" onclick="Workflow.complete(this); return false;">Ir para o próximo passo</button>
                     </center>
                 </&>
-                <&| /util/workflow.mas:step, title=> "Dataset de teste" &>
-                    <& /page/page_title.mas, title=>"Selecione o conjunto de dados que você está interessado em prever fenótipos para (os acessos ou parcelas ou amostras de tecidos no conjunto de dados precisam ter espectros carregados):" &>
+                <&| /util/workflow.mas:step, title=> "Conjunto de dados de teste" &>
+                    <& /page/page_title.mas, title=>"Selecione o conjunto de dados para o qual deseja predizer fenótipos (os acessos, parcelas ou amostras de tecido do conjunto de dados precisam ter espectros enviados):" &>
                     <br/><br/>
                     <form class="form-horizontal">
                         <div class="form-group">
@@ -31,11 +31,11 @@
                         </div>
                     </form>
                     <center>
-                    <button class="btn btn-primary" id="nirs_analysis_prediction_dataset_select_step">Vá para o próximo passo</button>
+                    <button class="btn btn-primary" id="nirs_analysis_prediction_dataset_select_step">Ir para o próximo passo</button>
                     </center>
                 </&>
-                <&| /util/workflow.mas:step, title=> "Modelo Espectral" &>
-                    <& /page/page_title.mas, title=>"Selecione o modelo espectral para usar em previsões" &>
+                <&| /util/workflow.mas:step, title=> "Modelo espectral" &>
+                    <& /page/page_title.mas, title=>"Selecione o modelo espectral a ser usado nas predições" &>
 
                     <center>
                     <button class="btn btn-info" id="nirs_analysis_prediction_dataset_info">Mais informações</button>
@@ -49,13 +49,13 @@
                     </center>
                 </&>
                 <&| /util/workflow.mas:step, title=> "Resumo" &>
-                    <& /page/page_title.mas, title=>"Resumo das previsões" &>
+                    <& /page/page_title.mas, title=>"Resumo das predições" &>
 
                     <div class="form-horizontal">
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">Quer salvar os resultados da previsão? </label>
+                            <label class="col-sm-3 control-label">Deseja salvar os resultados da predição? </label>
                             <div class="col-sm-9" >
-                                <button class="btn btn-primary" id="nir_analysis_prediction_analysis_save_step">Salve os resultados</button>
+                                <button class="btn btn-primary" id="nir_analysis_prediction_analysis_save_step">Salvar os resultados</button>
                             </div>
                         </div>
                     </div>
@@ -80,12 +80,12 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="nirsAnalysisPredictionInfoDialog">Fenótipos preditos do Modelo Espectral</h4>
+        <h4 class="modal-title" id="nirsAnalysisPredictionInfoDialog">Predizer fenótipos a partir do modelo espectral</h4>
       </div>
       <div class="modal-body">
         <div class="container-fluid">
 
-            <h1>Mais </h1>
+            <h1>Mais informações</h1>
 
         </div>
       </div>

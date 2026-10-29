@@ -11,6 +11,7 @@ SGN::Controller::AJAX::Search::GenotypingProtocol - a REST controller class to p
 =cut
 
 package SGN::Controller::AJAX::GenotypingProtocol;
+use utf8;
 
 use Moose;
 use Data::Dumper;
@@ -68,7 +69,7 @@ sub genotyping_protocol_delete_GET : Args(1) {
     }
 
     if ($user_role ne 'curator') {
-        $c->stash->{rest} = { error => 'Must have correct permissions to delete genotypes! Please contact us.' };
+        $c->stash->{rest} = { error => 'É necessário ter as permissões adequadas para excluir genótipos! Entre em contato conosco.' };
         $c->detach();
     }
 
@@ -160,7 +161,7 @@ sub genotyping_protocol_details_POST : Args(0) {
         my $dbh = $c->dbc->dbh;
         my @user_info = CXGN::Login->new($dbh)->query_from_cookie($session_id);
         if (!$user_info[0]){
-            $c->stash->{rest} = {error=>'You must be logged in to edit genotyping protocol'};
+            $c->stash->{rest} = {error=>'Você precisa estar conectado para editar o protocolo de genotipagem'};
             $c->detach();
         }
         $user_id = $user_info[0];
@@ -169,7 +170,7 @@ sub genotyping_protocol_details_POST : Args(0) {
         $user_name = $p->get_username;
     } else {
         if (!$c->user){
-            $c->stash->{rest} = {error=>'You must be logged in to edit genotyping protocol'};
+            $c->stash->{rest} = {error=>'Você precisa estar conectado para editar o protocolo de genotipagem'};
             $c->detach();
         }
         $user_id = $c->user()->get_object()->get_sp_person_id();
@@ -178,7 +179,7 @@ sub genotyping_protocol_details_POST : Args(0) {
     }
 
     if ($user_role ne 'submitter' && $user_role ne 'curator') {
-        $c->stash->{rest} = { error => 'Must have correct permissions to edit genotyping protocol! Please contact us.' };
+        $c->stash->{rest} = { error => 'É necessário ter as permissões adequadas para editar o protocolo de genotipagem! Entre em contato conosco.' };
         $c->detach();
     }
 
@@ -196,7 +197,7 @@ sub genotyping_protocol_details_POST : Args(0) {
     map { $has_roles{$_} = 1; } @user_roles;
 
     if (! ( (exists($has_roles{$breeding_program_name}) && exists($has_roles{submitter})) || exists($has_roles{curator}))) {
-      $c->stash->{rest} = { error => "You need to be either a curator, or a submitter associated with breeding program $breeding_program_name to change the details of this protocol." };
+      $c->stash->{rest} = { error => "Você precisa ser curador ou um submissor associado ao programa de melhoramento $breeding_program_name para alterar os detalhes deste protocolo." };
       $c->detach();
     }
 
@@ -210,7 +211,7 @@ sub genotyping_protocol_details_POST : Args(0) {
         });
         if ($existing_protocol_name) {
             print STDERR "Can't use this new protocol name: Protocol name already exists\n";
-            $c->stash->{rest} = {error => "New protocol name not saved: Protocol name already exists"};
+            $c->stash->{rest} = {error => "O novo nome do protocolo não foi salvo: o nome do protocolo já existe"};
             $c->detach();
         }
     }
@@ -230,11 +231,11 @@ sub genotyping_protocol_details_POST : Args(0) {
             push @found_organisms, $organism_id;
         }
         if (scalar(@found_organisms) == 0){
-            $c->stash->{rest} = { error => 'The species name you provided is not in the database! Please contact us.' };
+            $c->stash->{rest} = { error => 'O nome da espécie informado não está no banco de dados! Entre em contato conosco.' };
             $c->detach();
         }
         if (scalar(@found_organisms) > 1){
-            $c->stash->{rest} = { error => 'The species name you provided is not unique in the database! Please contact us.' };
+            $c->stash->{rest} = { error => 'O nome da espécie informado não é único no banco de dados! Entre em contato conosco.' };
             $c->detach();
         }
 
@@ -275,7 +276,7 @@ sub genotyping_protocol_details_POST : Args(0) {
     };
 
     if ($@) {
-        $c->stash->{rest} = { error => "An error occurred setting the new protocol details: $@" };
+        $c->stash->{rest} = { error => "Ocorreu um erro ao definir os novos detalhes do protocolo: $@" };
     }
     else {
         $c->stash->{rest} = { success => 1 };
@@ -304,7 +305,7 @@ sub genotyping_protocol_add_marker_metadata_POST : Args(1) {
 
     if (!$c->user()) {
         print STDERR "User not logged in... not uploading marker metadata.\n";
-        push @errors, "You need to be logged in to upload marker metadata.";
+        push @errors, "Você precisa estar conectado para enviar metadados de marcadores.";
         $c->stash->{rest} = {filename => $upload_original_name, error => \@errors };
         return;
     }
@@ -326,7 +327,7 @@ sub genotyping_protocol_add_marker_metadata_POST : Args(1) {
     my $archived_filename_with_path = $uploader->archive();
     my $md5 = $uploader->get_md5($archived_filename_with_path);
     if (!$archived_filename_with_path) {
-        push @errors, "Could not save file $upload_original_name in archive";
+        push @errors, "Não foi possível salvar o arquivo $upload_original_name no arquivo permanente";
         $c->stash->{rest} = {filename => $upload_original_name, error => \@errors };
         return;
     }
@@ -364,7 +365,7 @@ sub genotyping_protocol_add_marker_metadata_POST : Args(1) {
     }
 
     if (!$parsed_data) {
-        $c->stash->{rest} = {error_string => 'The parser did not return any data!'};
+        $c->stash->{rest} = {error_string => 'O analisador não retornou nenhum dado!'};
         return;
     }
 
@@ -419,7 +420,7 @@ sub genotyping_protocol_update_marker_metadata_POST : Args(1) {
     # Must be logged in
     if (!$c->user()) {
         print STDERR "User not logged in... not deleting marker metadata.\n";
-        $c->stash->{rest} = {error => "You need to be logged in to update marker metadata." };
+        $c->stash->{rest} = {error => "Você precisa estar conectado para atualizar metadados de marcadores." };
         return;
     }
 
@@ -427,7 +428,7 @@ sub genotyping_protocol_update_marker_metadata_POST : Args(1) {
     my $user_id = $c->user()->get_object()->get_sp_person_id();
     my $user_role = $c->user->get_object->get_user_type();
     if ($user_role ne 'curator') {
-        $c->stash->{rest} = { error => "You must be a curator to update marker metadata." };
+        $c->stash->{rest} = { error => "Você precisa ser curador para atualizar metadados de marcadores." };
         return;
     }
 
@@ -458,7 +459,7 @@ sub genotyping_protocol_update_marker_metadata_POST : Args(1) {
         if ( defined $db_name && defined $entity && $db_name ne '' && $entity ne '' ) {
             my $db_name_lc = lc($db_name);
             if ( ! exists $existing_dbs{$db_name_lc} ) {
-                $c->stash->{rest} = { error => "DB name $db_name not found in the database" };
+                $c->stash->{rest} = { error => "Nome de DB $db_name não encontrado no banco de dados" };
                 return;
             }
             my $rh = {
@@ -497,14 +498,14 @@ sub genotyping_protocol_delete_marker_metadata_DELETE : Args(1) {
     # Must be logged in
     if (!$c->user()) {
         print STDERR "User not logged in... not deleting marker metadata.\n";
-        $c->stash->{rest} = {error => "You need to be logged in to delete marker metadata." };
+        $c->stash->{rest} = {error => "Você precisa estar conectado para excluir metadados de marcadores." };
         return;
     }
 
     # Must be a curator
     my $user_role = $c->user->get_object->get_user_type();
     if ($user_role ne 'curator') {
-        $c->stash->{rest} = { error => "You must be a curator to delete marker metadata." };
+        $c->stash->{rest} = { error => "Você precisa ser curador para excluir metadados de marcadores." };
         return;
     }
 
@@ -581,7 +582,7 @@ sub empty_protocol_delete_GET : Args(0) {
     }
 
     if ($user_role ne 'curator') {
-        $c->stash->{rest} = { error => 'Must have correct permissions to delete genotyping protocol! Please contact us.' };
+        $c->stash->{rest} = { error => 'É necessário ter as permissões adequadas para excluir o protocolo de genotipagem! Entre em contato conosco.' };
         $c->detach();
     }
 
@@ -590,7 +591,7 @@ sub empty_protocol_delete_GET : Args(0) {
     my $error = $protocol->delete_empty_protocol();
 
     if ($error) {
-        $c->stash->{rest} = { error => "An error occurred attempting to delete genotyping data. ($@)" };
+        $c->stash->{rest} = { error => "Ocorreu um erro ao tentar excluir os dados de genotipagem. ($@)" };
         return;
     }
 

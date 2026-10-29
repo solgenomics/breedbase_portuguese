@@ -4,27 +4,27 @@
     <tr><td>
       <img src="/documents/img/sliced_tomato_60x57.png" width="60" border="0" />
     </td><td>
-      <div style="text-align: center; font-size: 120%; font-weight: bold">Pré-lançamento da sequência de tiros do genoma de tomate</div>
+      <div style="text-align: center; font-size: 120%; font-weight: bold">Pré-lançamento da sequência shotgun do genoma do tomate</div>
 
       <div class="boxcontent">
-         O <span style="font-weight: bold">International Tomato Genome Sequencing Project</span> está feliz em disponibilizar uma versão pré-lançamento do <span style="font-weight: bold">Sequência do Genoma de Tomate</span> para a comunidade. <a href="/tomato/">Mais...</a></div>
+         O <span style="font-weight: bold">International Tomato Genome Sequencing Project</span> tem o prazer de disponibilizar à comunidade uma versão de pré-lançamento da <span style="font-weight: bold">sequência shotgun do genoma do tomate</span>. <a href="/tomato/">Mais...</a></div>
 
 </td></tr>
 <tr><td colspan="2">
 <b>Notícias</b>
 <ul>
 % my ($gbrowse_link) = map $_->view_url, grep $_->description =~ /ITAG1.+genomic/, map $_->data_sources, $c->enabled_feature('gbrowse2');
-<li>Reunião CABOG <a href="ftp://ftp.solgenomics.net/tomato_genome/wgs/assembly/cabog_1.00/">Soltado</a>26 de março de 2010</li>
-<li>Tomate <b>Anotação liberada</b> para montagem <b>V1.00</b>, available in the <a href="<% $gbrowse_link %>">Navegador de genoma SGN</a> e <a href="/tools/blast/">SGN BLAST</a>26 de fevereiro de 2010</li>
-<li><b>Montagem v1.03</b> Foi liberado. Inclui melhor triagem para <i>E. coli</i> sequências, mais duas execuções de sequenciamento 454 e a versão mais recente do software de montagem. [24 de janeiro de 2010]</li>
+<li>Montagem CABOG <a href="ftp://ftp.solgenomics.net/tomato_genome/wgs/assembly/cabog_1.00/">liberada</a>. [26 de março de 2010]</li>
+<li><b>Anotação liberada</b> do tomate para a montagem <b>v1.00</b>, disponível no <a href="<% $gbrowse_link %>">navegador de genoma da SGN</a> e no <a href="/tools/blast/">BLAST da SGN</a>. [26 de fevereiro de 2010]</li>
+<li>A <b>montagem v1.03</b> foi liberada. Inclui melhor triagem de sequências de <i>E. coli</i>, mais duas execuções de sequenciamento 454 e a versão mais recente do software de montagem. [24 de janeiro de 2010]</li>
 </ul>
 
 
-        <div style="text-align: center; margin: 1.5em 0 0 1em"><a href="/tomato/#disclaimer">Acordo de dados e responsabilidade</a> | 
-	  <a href="/tomato/">Tomate Todo o Genoma Dados de Shotgun</a> 
-	  <br /> <a href="/about/tomato_sequencing.pl">por BAC progresso visão geral</a> |
-      <a href="/tools/blast/?db_id=93">BLAST WGS andaimes</a><br />
-      <a href="/tools/blast/?db_id=56">BLAST tomate BAC contíguos</a> | <a href="ftp://ftp.solgenomics.net/tomato_genome/wgs/assembly">FTP</a></div>
+        <div style="text-align: center; margin: 1.5em 0 0 1em"><a href="/tomato/#disclaimer">Acordo de uso de dados e isenção de responsabilidade</a> | 
+	  <a href="/tomato/">Dados de shotgun do genoma completo do tomate</a> 
+	  <br /> <a href="/about/tomato_sequencing.pl">Visão geral do progresso BAC a BAC</a> |
+      <a href="/tools/blast/?db_id=93">BLAST de scaffolds WGS</a><br />
+      <a href="/tools/blast/?db_id=56">BLAST de contigs BAC de tomate</a> | <a href="ftp://ftp.solgenomics.net/tomato_genome/wgs/assembly">FTP</a></div>
       
 
     

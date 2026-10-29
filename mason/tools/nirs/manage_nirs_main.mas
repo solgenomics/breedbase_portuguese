@@ -17,7 +17,7 @@ $sample_tissue_types => ()
 <& /breeders_toolbox/sampling_trials/create_sampling_trials_dialogs.mas, sampling_facilities=>$sampling_facilities, sample_tissue_types=>$sample_tissue_types &>
 
 <div class="well">
-<&| /page/info_section.mas, title=>'Dados NIRS enviados', is_subsection=>1, collapsible=>1, collapsed=>1, subtitle=>'Veja e gerencie arquivos de dados NIRS carregados' &>
+<&| /page/info_section.mas, title=>'Dados NIRS enviados', is_subsection=>1, collapsible=>1, collapsed=>1, subtitle=>'Visualize e gerencie os arquivos de dados NIRS enviados' &>
 
     <&| /page/info_section.mas, title=>'Seus dados NIRS enviados', is_subsection=>1, collapsible=>1, collapsed=>1 &>
         <div class="panel panel-default">
@@ -26,7 +26,7 @@ $sample_tissue_types => ()
             </div>
         </div>
     </&>
-    <&| /page/info_section.mas, title=>'Seus dados da NIRS', is_subsection=>1, collapsible=>1, collapsed=>1, subtitle=>'Estes são arquivos NIRS excluídos' &>
+    <&| /page/info_section.mas, title=>'Seus dados NIRS obsoletos', is_subsection=>1, collapsible=>1, collapsed=>1, subtitle=>'Estes são arquivos NIRS excluídos' &>
         <div class="panel panel-default">
             <div class="panel-body">
                 <& /breeders_toolbox/file_list.mas, files=>$deleted_nirs_files, allow_delete=>0 &>
@@ -40,7 +40,7 @@ $sample_tissue_types => ()
             </div>
         </div>
     </&>
-    <&| /page/info_section.mas, title=>'Todos os dados da NIRS', is_subsection=>1, collapsible=>1, collapsed=>1, subtitle=>'Estes são arquivos NIRS excluídos' &>
+    <&| /page/info_section.mas, title=>'Todos os dados NIRS obsoletos', is_subsection=>1, collapsible=>1, collapsed=>1, subtitle=>'Estes são arquivos NIRS excluídos' &>
         <div class="panel panel-default">
             <div class="panel-body">
                 <& /breeders_toolbox/file_list.mas, files=>$all_deleted_nirs_files, allow_delete=>0 &>
@@ -51,20 +51,20 @@ $sample_tissue_types => ()
 </div>
 
 <div class="well">
-<&| /page/info_section.mas, title=>'Análises NIRS', is_subsection=>1, collapsible=>1, collapsed=>1, subtitle=>'Veja e gerencie suas análises NIRS' &>
+<&| /page/info_section.mas, title=>'Análises NIRS', is_subsection=>1, collapsible=>1, collapsed=>1, subtitle=>'Visualize e gerencie suas análises NIRS' &>
     <div class="panel panel-default">
         <div class="panel-body">
             <table class="table table-bordered table-hover" id="analyses_by_user_table">
               <thead>
               <tr>
                 <th>
-                  Nome da Análise
+                  Nome da análise
                 </th>
                 <th>
                   Descrição
                 </th>
                 <th>
-                  Tipo de Modelo
+                  Tipo de modelo
                 </th>
                 <th>
                   Protocolo
@@ -87,7 +87,7 @@ $sample_tissue_types => ()
 
 
 <div class="well">
-<&| /page/info_section.mas, title=>'Modelos NIRS treinados', is_subsection=>1, collapsible=>1, collapsed=>1, subtitle=>'Veja e gerencie seus modelos NIRS' &>
+<&| /page/info_section.mas, title=>'Modelos NIRS treinados', is_subsection=>1, collapsible=>1, collapsed=>1, subtitle=>'Visualize e gerencie seus modelos NIRS' &>
     <div class="panel panel-default">
         <div class="panel-body">
             <table class="table table-bordered table-hover" id="models_by_user_table">
@@ -100,7 +100,7 @@ $sample_tissue_types => ()
                   Descrição
                 </th>
                 <th>
-                  Tipo de Modelo
+                  Tipo de modelo
                 </th>
                 <th>
                   Protocolo

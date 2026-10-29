@@ -99,7 +99,7 @@ sub create_vector_construct_POST {
     my $user_id = $c->user ? $c->user->get_object()->get_sp_person_id():undef;
 
     if (!$user_id){
-        $status = sprintf('You must be logged in to add a vector!');
+        $status = sprintf('Você precisa estar conectado para adicionar um vetor!');
         $c->stash->{rest} = {error=>$status};
         return;
     }
@@ -173,7 +173,7 @@ sub create_vector_construct_POST {
     };
 
     if ($transaction_error){
-        $status = sprintf('There was an error storing vector %s', $transaction_error);
+        $status = sprintf('Ocorreu um erro ao armazenar o vetor %s', $transaction_error);
     }
 
     if (scalar(@added_stocks) > 0){
@@ -202,7 +202,7 @@ sub verify_vectors_file_POST : Args(0) {
         my $dbh = $c->dbc->dbh;
         my @user_info = CXGN::Login->new($dbh)->query_from_cookie($session_id);
         if (!$user_info[0]){
-            $c->stash->{rest} = {error=>'You must be logged in to upload this vector info!'};
+            $c->stash->{rest} = {error=>'Você precisa estar conectado para enviar estas informações de vetor!'};
             $c->detach();
         }
         $user_id = $user_info[0];
@@ -211,7 +211,7 @@ sub verify_vectors_file_POST : Args(0) {
         $user_name = $p->get_username;
     } else {
         if (!$c->user){
-            $c->stash->{rest} = {error=>'You must be logged in to upload this vector info!'};
+            $c->stash->{rest} = {error=>'Você precisa estar conectado para enviar estas informações de vetor!'};
             $c->detach();
         }
         $user_id = $c->user()->get_object()->get_sp_person_id();
@@ -225,13 +225,13 @@ sub verify_vectors_file_POST : Args(0) {
     my $autogenerate_uniquename = !$c->req->param('autogenerate_uniquename') ? 0 : 1;
 
     if ($user_role ne 'curator' && !$do_fuzzy_search) {
-        $c->stash->{rest} = {error=>'Only a curator can add vectors without using the fuzzy search!'};
+        $c->stash->{rest} = {error=>'Apenas um curador pode adicionar vetores sem usar a busca aproximada!'};
         $c->detach();
     }
 
     # These roles are required by CXGN::UploadFile
     if ($user_role ne 'curator' && $user_role ne 'submitter' && $user_role ne 'sequencer' ) {
-        $c->stash->{rest} = {error=>'Only a curator, submitter or sequencer can upload a file'};
+        $c->stash->{rest} = {error=>'Apenas um curador, submissor ou sequenciador pode enviar um arquivo'};
         $c->detach();
     }
 
@@ -254,7 +254,7 @@ sub verify_vectors_file_POST : Args(0) {
     my $archived_filename_with_path = $uploader->archive();
     my $md5 = $uploader->get_md5($archived_filename_with_path);
     if (!$archived_filename_with_path) {
-        $c->stash->{rest} = {error => "Could not save file $upload_original_name in archive",};
+        $c->stash->{rest} = {error => "Não foi possível salvar o arquivo $upload_original_name no arquivo permanente",};
         $c->detach();
     }
     unlink $upload_tempfile;
@@ -268,7 +268,7 @@ sub verify_vectors_file_POST : Args(0) {
         my $return_error = '';
         my $parse_errors;
         if (!$parser->has_parse_errors() ){
-            $c->stash->{rest} = {error_string => "Could not get parsing errors"};
+            $c->stash->{rest} = {error_string => "Não foi possível obter os erros de análise do arquivo"};
             $c->detach();
         } else {
             $parse_errors = $parser->get_parse_errors();

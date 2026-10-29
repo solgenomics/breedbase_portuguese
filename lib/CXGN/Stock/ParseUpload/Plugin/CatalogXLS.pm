@@ -1,5 +1,6 @@
 package CXGN::Stock::ParseUpload::Plugin::CatalogXLS;
 
+use utf8;
 use Moose::Role;
 use Spreadsheet::ParseExcel;
 use Spreadsheet::ParseXLSX;
@@ -60,7 +61,7 @@ sub _validate_with_plugin {
 
     $worksheet = ($excel_obj->worksheets())[0]; #support only one worksheet
     if (!$worksheet){
-        push @error_messages, "Spreadsheet must be on 1st tab in Excel (.xls) file";
+        push @error_messages, "A planilha deve estar na 1ª aba do arquivo Excel (.xls)";
         $errors{'error_messages'} = \@error_messages;
         $self->_set_parse_errors(\%errors);
         return;
@@ -69,7 +70,7 @@ sub _validate_with_plugin {
     my ($row_min, $row_max) = $worksheet->row_range();
     my ($col_min, $col_max) = $worksheet->col_range();
     if (($col_max - $col_min)  < 5 || ($row_max - $row_min) < 1 ) { #must have header and at least one row of info
-        push @error_messages, "Spreadsheet is missing header or no catalog info";
+        push @error_messages, "A planilha não tem cabeçalho ou não contém informações de catálogo";
         $errors{'error_messages'} = \@error_messages;
         $self->_set_parse_errors(\%errors);
         return;
@@ -109,22 +110,22 @@ sub _validate_with_plugin {
     }
 
     if (!$item_name_header || $item_name_header ne 'item_name' ) {
-        push @error_messages, "Cell A1: item_name is missing from the header";
+        push @error_messages, "Célula A1: item_name está ausente do cabeçalho";
     }
     if (!$category_header || $category_header ne 'category') {
-        push @error_messages, "Cell B1: category is missing from the header";
+        push @error_messages, "Célula B1: category está ausente do cabeçalho";
     }
     if (!$additional_info_header || $additional_info_header ne 'additional_info') {
-        push @error_messages, "Cell C1: additional_info is missing from the header";
+        push @error_messages, "Célula C1: additional_info está ausente do cabeçalho";
     }
     if (!$material_source_header || $material_source_header ne 'material_source') {
-        push @error_messages, "Cell D1: material_source is missing from the header";
+        push @error_messages, "Célula D1: material_source está ausente do cabeçalho";
     }
     if (!$breeding_program_header || $breeding_program_header ne 'breeding_program') {
-        push @error_messages, "Cell E1: breeding_program is missing from the header";
+        push @error_messages, "Célula E1: breeding_program está ausente do cabeçalho";
     }
     if (!$contact_person_header || $contact_person_header ne 'contact_person_username') {
-        push @error_messages, "Cell F1: contact_person_username is missing from the header";
+        push @error_messages, "Célula F1: contact_person_username está ausente do cabeçalho";
     }
 
     my %seen_stock_names;
@@ -164,26 +165,26 @@ sub _validate_with_plugin {
 
 
         if (!$item_name || $item_name eq '') {
-            push @error_messages, "Cell A$row_name: item_name missing";
+            push @error_messages, "Célula A$row_name: item_name ausente";
         }
 
         if (!$category || $category eq '') {
-            push @error_messages, "Cell B$row_name: category missing";
+            push @error_messages, "Célula B$row_name: category ausente";
         } elsif (!$supported_categories{$category}) {
-            push @error_messages, "Cell B$row_name: category is not supported: $category";
+            push @error_messages, "Célula B$row_name: category não suportada: $category";
         }
 
         if (!$breeding_program || $breeding_program eq '') {
-            push @error_messages, "Cell E$row_name: breeding_program missing";
+            push @error_messages, "Célula E$row_name: breeding_program ausente";
         }
 
         if (!$contact_person_username || $contact_person_username eq '') {
-            push @error_messages, "Cell F$row_name: contact person username missing";
+            push @error_messages, "Célula F$row_name: nome de usuário da pessoa de contato ausente";
         }
 
         my $sp_person_id = CXGN::People::Person->get_person_by_username($dbh, $contact_person_username);
         if (!$sp_person_id) {
-            push @error_messages, "Cell H$row_name: contact person username is not in database";
+            push @error_messages, "Célula H$row_name: o nome de usuário da pessoa de contato não está no banco de dados";
         }
 
         if ($item_name){
@@ -202,7 +203,7 @@ sub _validate_with_plugin {
     my @stocks_missing = @{$catalog_item_validator->validate($schema,'stocks',\@catalog_items)->{'missing'}};
 
     if (scalar(@stocks_missing) > 0){
-        push @error_messages, "The following catalog items are not in the database: ".join(',',@stocks_missing);
+        push @error_messages, "Os seguintes itens de catálogo não estão no banco de dados: ".join(',',@stocks_missing);
     }
 
     my @breeding_programs = keys %seen_program_names;
@@ -210,7 +211,7 @@ sub _validate_with_plugin {
     my @programs_missing = @{$breeding_program_validator->validate($schema,'breeding_programs',\@breeding_programs)->{'missing'}};
 
     if (scalar(@programs_missing) > 0){
-        push @error_messages, "The following breeding programs are not in the database: ".join(',',@programs_missing);
+        push @error_messages, "Os seguintes programas de melhoramento não estão no banco de dados: ".join(',',@programs_missing);
     }
 
     if (scalar(@error_messages) >= 1) {

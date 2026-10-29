@@ -10,6 +10,7 @@ and summarized in the marker materialized view).
 =cut
 
 package SGN::Controller::Variant;
+use utf8;
 
 use strict;
 use Moose;
@@ -40,7 +41,7 @@ sub get_variant_details: Chained('get_variant') PathPart('details') :Args(0) {
     # No markers found
     if ( !$markers ) {
         $c->stash->{template} = "generic_message.mas";
-	    $c->stash->{message} = "<strong>No Markers Found</strong> for variant $variant_name<br />You can view and search for markers from the <a href='/search/variants'>Marker Search Page</a>";
+	    $c->stash->{message} = "<strong>Nenhum marcador encontrado</strong> para a variante $variant_name<br />Você pode ver e pesquisar marcadores na <a href='/search/variants'>página de pesquisa de marcadores</a>";
         $c->detach();
     }
 

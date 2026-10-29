@@ -1,5 +1,6 @@
 
 package SGN::Controller::Genefamily;
+use utf8;
 
 use Moose;
 
@@ -63,7 +64,7 @@ sub sequence_details :Path('/tools/genefamily/seq') Args(3) {
     $c->stash->{build} = $build;
     $c->stash->{family} = $family;
     $c->stash->{seq_id} = $seq_id;
-    $c->stash->{desc} = $desc || "[ no description provided ]";
+    $c->stash->{desc} = $desc || "[ nenhuma descrição fornecida ]";
     $c->stash->{seq} = $seq;
 
     $c->stash->{template} = '/tools/genefamily/sequence.mas';
@@ -120,7 +121,7 @@ sub genefamily_details :Path('/tools/genefamily/details') Args(2) {
 
     if (!$family) {
 	$c->stash->{template} = '/generic_message.mas';
-	$c->stash->{message} = 'Need a family to display!';
+	$c->stash->{message} = 'É necessário informar uma família para exibir!';
 	return;
     }
 
@@ -139,7 +140,7 @@ sub genefamily_details :Path('/tools/genefamily/details') Args(2) {
     };
     
     if ($@) {
-      $errors .= "Alignment data not available. ";
+      $errors .= "Dados de alinhamento indisponíveis. ";
       $big_errors++;
       $align_link_disabled="disabled";
     }
@@ -150,7 +151,7 @@ sub genefamily_details :Path('/tools/genefamily/details') Args(2) {
     };
     
     if ($@) {
-      $errors .= "Sequence data not available. ";
+      $errors .= "Dados de sequência indisponíveis. ";
       $big_errors++;
       $fasta_link_disabled = "disabled";
     }
@@ -158,18 +159,18 @@ sub genefamily_details :Path('/tools/genefamily/details') Args(2) {
       $c->stash->{tree_data} = $gf->get_tree();
     };
     if ($@) {
-      $errors .= "Tree data not available. ";
+      $errors .= "Dados da árvore indisponíveis. ";
       $c->stash->{tree_link_disabled} = "disabled"
     }
     eval {
       $c->stash->{annot_data} = $gf->get_annotation();
     };
     if ($@) {
-      $errors .= "Annotation data not available. ";
-      $c->stash->{annot_data} = "(No annotation data available)";
+      $errors .= "Dados de anotação indisponíveis. ";
+      $c->stash->{annot_data} = "(Nenhum dado de anotação disponível)";
     }
     eval {
-      $errors .= "Expression data not available. ";
+      $errors .= "Dados de expressão indisponíveis. ";
       $c->stash->{exp_data} = $gf->get_expression();
     };
     if ($@) {
@@ -177,7 +178,7 @@ sub genefamily_details :Path('/tools/genefamily/details') Args(2) {
     }
 
     if ($big_errors > 0) { 
-      $errors = "This family does not seem to exist!\n";
+      $errors = "Esta família parece não existir!\n";
     }
 
     $c->stash->{template} = '/tools/genefamily/details.mas';

@@ -49,6 +49,7 @@ Lukas Mueller <lam87@cornell.edu>
 
 
 package CXGN::Dataset;
+use utf8;
 
 use Moose;
 use Moose::Util::TypeConstraints;
@@ -485,7 +486,7 @@ sub set_dataset_public {
     my $row = $self->people_schema()->resultset("SpDataset")->find( { sp_dataset_id => $self->sp_dataset_id() });
 
     if (! $row) {
-        return "The specified dataset does not exist";
+        return "O conjunto de dados especificado não existe";
     } else {
         eval {
 	   $row->is_public(1);
@@ -494,7 +495,7 @@ sub set_dataset_public {
 	   $row->update();
         };
         if ($@) {
-            return "An error occurred, $@";
+            return "Ocorreu um erro: $@";
         } else {
             return;
         }
@@ -511,7 +512,7 @@ sub set_dataset_private {
     my $row = $self->people_schema()->resultset("SpDataset")->find( { sp_dataset_id => $self->sp_dataset_id() });
 
     if (! $row) {
-        return "The specified dataset does not exist";
+        return "O conjunto de dados especificado não existe";
     } else {
         eval {
            $row->is_public(0);
@@ -520,7 +521,7 @@ sub set_dataset_private {
            $row->update();
         };
         if ($@) {
-            return "An error occurred, $@";
+            return "Ocorreu um erro: $@";
         } else {
             return;
         }
@@ -1596,7 +1597,7 @@ sub update_tool_compatibility {
 
     my $row = $self->people_schema()->resultset("SpDataset")->find( { sp_dataset_id => $self->sp_dataset_id() });
     if (! $row) {
-        return "The specified dataset does not exist";
+        return "O conjunto de dados especificado não existe";
     } else {
         eval {
             $row->sp_person_id($self->sp_person_id());
@@ -1605,7 +1606,7 @@ sub update_tool_compatibility {
             $row->update();
         };
         if ($@) {
-            return "An error occurred, $@";
+            return "Ocorreu um erro: $@";
         } else {
             return;
         }
@@ -1675,13 +1676,13 @@ sub delete {
     my $row = $self->people_schema()->resultset("SpDataset")->find( { sp_dataset_id => $self->sp_dataset_id() });
 
     if (! $row) {
-	return "The specified dataset does not exist";
+	return "O conjunto de dados especificado não existe";
     } else {
 	eval {
 	    $row->delete();
 	};
 	if ($@) {
-	    return "An error occurred, $@";
+	    return "Ocorreu um erro: $@";
         } else {
 	    return;
 	}
@@ -1694,7 +1695,7 @@ sub update_description {
     my $description = shift;
     my $row = $self->people_schema()->resultset("SpDataset")->find( { sp_dataset_id => $self->sp_dataset_id() });
     if (! $row) {
-        return "The specified dataset does not exist";
+        return "O conjunto de dados especificado não existe";
     } else {
         eval {
             $row->sp_person_id($self->sp_person_id());
@@ -1703,7 +1704,7 @@ sub update_description {
             $row->update();
         };
         if ($@) {
-            return "An error occurred, $@";
+            return "Ocorreu um erro: $@";
         } else {
             return;
         }
@@ -1921,14 +1922,14 @@ sub generate_archive_file {
     # Get published metadata
     my $published = $self->published();
     if ( !exists $published->{$key} ) {
-        return { error => "This dataset archive has not been properly initialized" };
+        return { error => "O arquivamento deste conjunto de dados não foi inicializado corretamente" };
     }
     my $dir = $published->{$key}->{directory};
     my $ids = $published->{$key}->{data}->{$type}->{ids};
 
     # Check for base directory
-    return { error => "Archived dataset base path not set" } if !defined $dir;
-    return { error => "The dataset archive directory does not exist" } if ! -d $dir;
+    return { error => "O caminho base dos conjuntos de dados arquivados não foi definido" } if !defined $dir;
+    return { error => "O diretório de arquivamento de conjuntos de dados não existe" } if ! -d $dir;
 
     #
     # EXPORT DATA
@@ -2018,7 +2019,7 @@ sub generate_archive_file {
             return_only_first_genotypeprop_for_stock => 0,
         });
         my $src = $geno->download($cluster_shared_tempdir, $backend, $cluster_host, $web_cluster_queue, $basepath);
-        copy($src, "$dir/$file_name") or return { error => "Could not copy $file_name file [$!]" };
+        copy($src, "$dir/$file_name") or return { error => "Não foi possível copiar o arquivo $file_name [$!]" };
     }
 
     # Save genotyping projects
@@ -2033,12 +2034,12 @@ sub generate_archive_file {
             return_only_first_genotypeprop_for_stock => 0,
         });
         my $src = $geno->download($cluster_shared_tempdir, $backend, $cluster_host, $web_cluster_queue, $basepath);
-        copy($src, "$dir/$file_name") or return { error => "Could not copy $file_name file [$!]" };
+        copy($src, "$dir/$file_name") or return { error => "Não foi possível copiar o arquivo $file_name [$!]" };
     }
 
     # Unsupported data type
     else {
-        return { error => "Data type $type is not supported" };
+        return { error => "O tipo de dado $type não é suportado" };
     }
 
     # Update the issue metadata
@@ -2066,11 +2067,11 @@ sub add_published {
     # Set output directory
     my $dataset_directory = "$base_directory/" . $self->sp_dataset_id;
     unless (-d $dataset_directory) {
-        mkpath($dataset_directory) or return { error => "Couldn't mkdir $dataset_directory: $!" };
+        mkpath($dataset_directory) or return { error => "Não foi possível criar o diretório $dataset_directory: $!" };
     }
     my $output_directory = "$dataset_directory/$key";
     unless (-d $output_directory) {
-        mkpath($output_directory) or return { error => "Couldn't mkdir $output_directory: $!" };
+        mkpath($output_directory) or return { error => "Não foi possível criar o diretório $output_directory: $!" };
     }
 
     # Set files data hash
@@ -2090,7 +2091,7 @@ sub add_published {
 
     # Get existing dataset row
     my $row = $self->people_schema()->resultset("SpDataset")->find({ sp_dataset_id => $dataset_id });
-    return { error => "Dataset with id $dataset_id does not exist" } unless $row;
+    return { error => "O conjunto de dados com id $dataset_id não existe" } unless $row;
 
     # Get existing published data
     my $dataset = eval { JSON::XS::decode_json($row->dataset) };
@@ -2117,7 +2118,7 @@ sub add_published {
         $row->update();
     };
     if ($@) {
-        return { error => "Could not add to dataset published: $@" };
+        return { error => "Não foi possível adicionar aos dados de publicação do conjunto de dados: $@" };
     }
 
     return { key => $key, directory => $output_directory };
@@ -2136,7 +2137,7 @@ sub update_published {
 
     # Get existing dataset row
     my $row = $self->people_schema()->resultset("SpDataset")->find({ sp_dataset_id => $dataset_id });
-    return { error => "Dataset with id $dataset_id does not exist" } unless $row;
+    return { error => "O conjunto de dados com id $dataset_id não existe" } unless $row;
 
     # Get existing published data
     my $dataset = eval { JSON::XS::decode_json($row->dataset) };
@@ -2144,7 +2145,7 @@ sub update_published {
 
     # Make sure key exists
     if ( !exists $published->{$key} ) {
-        return { error => 'The specified key does not exist for this dataset' };
+        return { error => 'A chave especificada não existe para este conjunto de dados' };
     }
 
     # Update the data in this key (replace with new data)
@@ -2156,7 +2157,7 @@ sub update_published {
         $row->update();
     };
     if ($@) {
-        return { error => "Could not update the dataset published: $@" };
+        return { error => "Não foi possível atualizar os dados de publicação do conjunto de dados: $@" };
     }
 
     return $dataset->{published}->{$key};
@@ -2175,7 +2176,7 @@ sub remove_published {
 
     # Get existing dataset row
     my $row = $self->people_schema()->resultset("SpDataset")->find({ sp_dataset_id => $dataset_id });
-    return { error => "Dataset with id $dataset_id does not exist" } unless $row;
+    return { error => "O conjunto de dados com id $dataset_id não existe" } unless $row;
 
     # Get existing published data
     my $dataset = eval { JSON::XS::decode_json($row->dataset) };
@@ -2183,17 +2184,17 @@ sub remove_published {
 
     # Make sure key exists
     if ( !exists $published->{$key} ) {
-        return { error => 'The specified key does not exist for this dataset' };
+        return { error => 'A chave especificada não existe para este conjunto de dados' };
     }
 
     # remove the directory
     my $directory = $published->{$key}->{'directory'};
     my $re = qr/^$base_directory/;
     if ( -d $directory && $directory =~ $re ) {
-        rmtree("$directory") or return { error => 'Failed to remove the archived files from the server' };
+        rmtree("$directory") or return { error => 'Falha ao remover os arquivos arquivados do servidor' };
     }
     else {
-        return { error => 'Could not remove the archived files from the server' };
+        return { error => 'Não foi possível remover os arquivos arquivados do servidor' };
     }
 
     # remove from dataset
@@ -2206,7 +2207,7 @@ sub remove_published {
         $row->update();
     };
     if ($@) {
-        return { error => "Could not remove from published metadata from the dataset: $@" };
+        return { error => "Não foi possível remover os metadados de publicação do conjunto de dados: $@" };
     }
 
     return { success => 1 };

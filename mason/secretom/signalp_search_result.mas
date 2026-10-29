@@ -5,11 +5,11 @@
   $csv_download
 </%args>
 
-<& /page/page_title.mas, title => 'Sinal secretoP TargetP Pesquisa de resultados' &>
+<& /page/page_title.mas, title => 'Busca de resultados SecreTary SignalP TargetP' &>
 
-<h3 style="text-align: center">Searched for "<% $query |h%>".</h3>
+<h3 style="text-align: center">Busca por "<% $query |h%>".</h3>
 
-<&| /page/info_section.mas, title => 'Resultados', subtitle => @$data." results &mdash; ".qq|<a href="$csv_download">[Download spreadsheet]</a>| &>
+<&| /page/info_section.mas, title => 'Resultados', subtitle => @$data." resultados &mdash; ".qq|<a href="$csv_download">[Baixar planilha]</a>| &>
 
 %  if( @$data ) {
 %    foreach my $row ( @$data ) {
@@ -25,7 +25,7 @@
    </&>
 %    } 
 %  } else {
-   <h3 style="text-align: center">No results found matching "<% $query |h %>".</h3>
+   <h3 style="text-align: center">Nenhum resultado encontrado para "<% $query |h %>".</h3>
 %  }
 
 </&>

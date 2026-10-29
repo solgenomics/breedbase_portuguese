@@ -1,4 +1,5 @@
 package CXGN::DroneImagery::DroneImageryAnalyticsRunSimulation;
+use utf8;
 
 =head1 NAME
 
@@ -833,7 +834,7 @@ sub perform_drone_imagery_analytics {
 
         if ($run_stats_fault == 1) {
             print STDERR "ERROR IN R CMD\n";
-            return {error=>'Error in R! Try a larger tolerance'};
+            return {error=>'Erro no R! Tente uma tolerância maior'};
         }
     }
     elsif ($statistics_select eq 'sommer_grm_univariate_spatial_genetic_blups' || $statistics_select eq 'sommer_grm_univariate_spatial_pure_2dspl_genetic_blups') {
@@ -1394,7 +1395,7 @@ sub perform_drone_imagery_analytics {
 
                 if ($run_stats_fault == 1) {
                     print STDERR "ERROR IN R CMD\n";
-                    return {error=>'Error in R! Try a larger tolerance'};
+                    return {error=>'Erro no R! Tente uma tolerância maior'};
                 }
             }
         }
@@ -2882,7 +2883,7 @@ sub perform_drone_imagery_analytics {
 
                 if ($run_stats_fault == 1) {
                     print STDERR "ERROR IN R CMD\n";
-                    return {error=>'Error in R! Try a larger tolerance'};
+                    return {error=>'Erro no R! Tente uma tolerância maior'};
                 }
             }
         }
@@ -3451,7 +3452,7 @@ sub perform_drone_imagery_analytics {
 
                 if ($run_stats_fault == 1) {
                     print STDERR "ERROR IN R CMD\n";
-                    return {error=>'Error in R! Try a larger tolerance'};
+                    return {error=>'Erro no R! Tente uma tolerância maior'};
                 }
             }
         }
@@ -4162,7 +4163,7 @@ sub perform_drone_imagery_analytics {
 
             if ($run_stats_fault == 1) {
                 print STDERR "ERROR IN R CMD\n";
-                return {error=>'Error in R! Try a larger tolerance'};
+                return {error=>'Erro no R! Tente uma tolerância maior'};
             }
         }
     }
@@ -4873,7 +4874,7 @@ sub perform_drone_imagery_analytics {
 
         if ($run_stats_fault == 1) {
             print STDERR "ERROR IN R CMD\n";
-            return {error=>'Error in R! Try a larger tolerance'};
+            return {error=>'Erro no R! Tente uma tolerância maior'};
         }
     }
     elsif ($statistics_select eq 'sommer_grm_univariate_spatial_genetic_blups' || $statistics_select eq 'sommer_grm_univariate_spatial_pure_2dspl_genetic_blups') {
@@ -5280,7 +5281,7 @@ sub perform_drone_imagery_analytics {
 
                 if ($run_stats_fault == 1) {
                     print STDERR "ERROR IN R CMD\n";
-                    return {error=>'Error in R! Try a larger tolerance'};
+                    return {error=>'Erro no R! Tente uma tolerância maior'};
                 }
             }
         }
@@ -6364,7 +6365,7 @@ sub perform_drone_imagery_analytics {
 
                 if ($run_stats_fault == 1) {
                     print STDERR "ERROR IN R CMD\n";
-                    return {error=>'Error in R! Try a larger tolerance'};
+                    return {error=>'Erro no R! Tente uma tolerância maior'};
                 }
             }
         }
@@ -6791,7 +6792,7 @@ sub perform_drone_imagery_analytics {
 
                 if ($run_stats_fault == 1) {
                     print STDERR "ERROR IN R CMD\n";
-                    return {error=>'Error in R! Try a larger tolerance'};
+                    return {error=>'Erro no R! Tente uma tolerância maior'};
                 }
             }
         }
@@ -7196,7 +7197,7 @@ sub perform_drone_imagery_analytics {
 
             if ($run_stats_fault == 1) {
                 print STDERR "ERROR IN R CMD\n";
-                return {error=>'Error in R! Try a larger tolerance'};
+                return {error=>'Erro no R! Tente uma tolerância maior'};
             }
         }
     }
@@ -8075,7 +8076,7 @@ sub perform_drone_imagery_analytics {
 
         if ($run_stats_fault == 1) {
             print STDERR "ERROR IN R CMD\n";
-            return {error=>'Error in R! Try a larger tolerance'};
+            return {error=>'Erro no R! Tente uma tolerância maior'};
         }
     }
     elsif ($statistics_select eq 'sommer_grm_univariate_spatial_genetic_blups' || $statistics_select eq 'sommer_grm_univariate_spatial_pure_2dspl_genetic_blups') {
@@ -8481,7 +8482,7 @@ sub perform_drone_imagery_analytics {
 
                 if ($run_stats_fault == 1) {
                     print STDERR "ERROR IN R CMD\n";
-                    return {error=>'Error in R! Try a larger tolerance'};
+                    return {error=>'Erro no R! Tente uma tolerância maior'};
                 }
             }
         }
@@ -9565,7 +9566,7 @@ sub perform_drone_imagery_analytics {
 
                 if ($run_stats_fault == 1) {
                     print STDERR "ERROR IN R CMD\n";
-                    return {error=>'Error in R! Try a larger tolerance'};
+                    return {error=>'Erro no R! Tente uma tolerância maior'};
                 }
             }
         }
@@ -9992,7 +9993,7 @@ sub perform_drone_imagery_analytics {
 
                 if ($run_stats_fault == 1) {
                     print STDERR "ERROR IN R CMD\n";
-                    return {error=>'Error in R! Try a larger tolerance'};
+                    return {error=>'Erro no R! Tente uma tolerância maior'};
                 }
             }
         }
@@ -10397,7 +10398,7 @@ sub perform_drone_imagery_analytics {
 
             if ($run_stats_fault == 1) {
                 print STDERR "ERROR IN R CMD\n";
-                return {error=>'Error in R! Try a larger tolerance'};
+                return {error=>'Erro no R! Tente uma tolerância maior'};
             }
         }
     }
@@ -11266,7 +11267,7 @@ sub perform_drone_imagery_analytics {
 
         if ($run_stats_fault == 1) {
             print STDERR "ERROR IN R CMD\n";
-            return {error=>'Error in R! Try a larger tolerance'};
+            return {error=>'Erro no R! Tente uma tolerância maior'};
         }
     }
     elsif ($statistics_select eq 'sommer_grm_univariate_spatial_genetic_blups' || $statistics_select eq 'sommer_grm_univariate_spatial_pure_2dspl_genetic_blups') {
@@ -11672,7 +11673,7 @@ sub perform_drone_imagery_analytics {
 
                 if ($run_stats_fault == 1) {
                     print STDERR "ERROR IN R CMD\n";
-                    return {error=>'Error in R! Try a larger tolerance'};
+                    return {error=>'Erro no R! Tente uma tolerância maior'};
                 }
             }
         }
@@ -12756,7 +12757,7 @@ sub perform_drone_imagery_analytics {
 
                 if ($run_stats_fault == 1) {
                     print STDERR "ERROR IN R CMD\n";
-                    return {error=>'Error in R! Try a larger tolerance'};
+                    return {error=>'Erro no R! Tente uma tolerância maior'};
                 }
             }
         }
@@ -13183,7 +13184,7 @@ sub perform_drone_imagery_analytics {
 
                 if ($run_stats_fault == 1) {
                     print STDERR "ERROR IN R CMD\n";
-                    return {error=>'Error in R! Try a larger tolerance'};
+                    return {error=>'Erro no R! Tente uma tolerância maior'};
                 }
             }
         }
@@ -13588,7 +13589,7 @@ sub perform_drone_imagery_analytics {
 
             if ($run_stats_fault == 1) {
                 print STDERR "ERROR IN R CMD\n";
-                return {error=>'Error in R! Try a larger tolerance'};
+                return {error=>'Erro no R! Tente uma tolerância maior'};
             }
         }
     }
@@ -14458,7 +14459,7 @@ sub perform_drone_imagery_analytics {
 
         if ($run_stats_fault == 1) {
             print STDERR "ERROR IN R CMD\n";
-            return {error=>'Error in R! Try a larger tolerance'};
+            return {error=>'Erro no R! Tente uma tolerância maior'};
         }
     }
     elsif ($statistics_select eq 'sommer_grm_univariate_spatial_genetic_blups' || $statistics_select eq 'sommer_grm_univariate_spatial_pure_2dspl_genetic_blups') {
@@ -14865,7 +14866,7 @@ sub perform_drone_imagery_analytics {
 
                 if ($run_stats_fault == 1) {
                     print STDERR "ERROR IN R CMD\n";
-                    return {error=>'Error in R! Try a larger tolerance'};
+                    return {error=>'Erro no R! Tente uma tolerância maior'};
                 }
             }
         }
@@ -15949,7 +15950,7 @@ sub perform_drone_imagery_analytics {
 
                 if ($run_stats_fault == 1) {
                     print STDERR "ERROR IN R CMD\n";
-                    return {error=>'Error in R! Try a larger tolerance'};
+                    return {error=>'Erro no R! Tente uma tolerância maior'};
                 }
             }
         }
@@ -16376,7 +16377,7 @@ sub perform_drone_imagery_analytics {
 
                 if ($run_stats_fault == 1) {
                     print STDERR "ERROR IN R CMD\n";
-                    return {error=>'Error in R! Try a larger tolerance'};
+                    return {error=>'Erro no R! Tente uma tolerância maior'};
                 }
             }
         }
@@ -16781,7 +16782,7 @@ sub perform_drone_imagery_analytics {
 
             if ($run_stats_fault == 1) {
                 print STDERR "ERROR IN R CMD\n";
-                return {error=>'Error in R! Try a larger tolerance'};
+                return {error=>'Erro no R! Tente uma tolerância maior'};
             }
         }
     }
@@ -17648,7 +17649,7 @@ sub perform_drone_imagery_analytics {
 
         if ($run_stats_fault == 1) {
             print STDERR "ERROR IN R CMD\n";
-            return {error=>'Error in R! Try a larger tolerance'};
+            return {error=>'Erro no R! Tente uma tolerância maior'};
         }
     }
     elsif ($statistics_select eq 'sommer_grm_univariate_spatial_genetic_blups' || $statistics_select eq 'sommer_grm_univariate_spatial_pure_2dspl_genetic_blups') {
@@ -18055,7 +18056,7 @@ sub perform_drone_imagery_analytics {
 
                 if ($run_stats_fault == 1) {
                     print STDERR "ERROR IN R CMD\n";
-                    return {error=>'Error in R! Try a larger tolerance'};
+                    return {error=>'Erro no R! Tente uma tolerância maior'};
                 }
             }
         }
@@ -19139,7 +19140,7 @@ sub perform_drone_imagery_analytics {
 
                 if ($run_stats_fault == 1) {
                     print STDERR "ERROR IN R CMD\n";
-                    return {error=>'Error in R! Try a larger tolerance'};
+                    return {error=>'Erro no R! Tente uma tolerância maior'};
                 }
             }
         }
@@ -19566,7 +19567,7 @@ sub perform_drone_imagery_analytics {
 
                 if ($run_stats_fault == 1) {
                     print STDERR "ERROR IN R CMD\n";
-                    return {error=>'Error in R! Try a larger tolerance'};
+                    return {error=>'Erro no R! Tente uma tolerância maior'};
                 }
             }
         }
@@ -19971,7 +19972,7 @@ sub perform_drone_imagery_analytics {
 
             if ($run_stats_fault == 1) {
                 print STDERR "ERROR IN R CMD\n";
-                return {error=>'Error in R! Try a larger tolerance'};
+                return {error=>'Erro no R! Tente uma tolerância maior'};
             }
         }
     }
@@ -20807,7 +20808,7 @@ sub perform_drone_imagery_analytics {
 
         if ($run_stats_fault == 1) {
             print STDERR "ERROR IN R CMD\n";
-            return {error=>'Error in R! Try a larger tolerance'};
+            return {error=>'Erro no R! Tente uma tolerância maior'};
         }
     }
     elsif ($statistics_select eq 'sommer_grm_univariate_spatial_genetic_blups' || $statistics_select eq 'sommer_grm_univariate_spatial_pure_2dspl_genetic_blups') {
@@ -21216,7 +21217,7 @@ sub perform_drone_imagery_analytics {
 
                 if ($run_stats_fault == 1) {
                     print STDERR "ERROR IN R CMD\n";
-                    return {error=>'Error in R! Try a larger tolerance'};
+                    return {error=>'Erro no R! Tente uma tolerância maior'};
                 }
             }
         }
@@ -22300,7 +22301,7 @@ sub perform_drone_imagery_analytics {
 
                 if ($run_stats_fault == 1) {
                     print STDERR "ERROR IN R CMD\n";
-                    return {error=>'Error in R! Try a larger tolerance'};
+                    return {error=>'Erro no R! Tente uma tolerância maior'};
                 }
             }
         }
@@ -22727,7 +22728,7 @@ sub perform_drone_imagery_analytics {
 
                 if ($run_stats_fault == 1) {
                     print STDERR "ERROR IN R CMD\n";
-                    return {error=>'Error in R! Try a larger tolerance'};
+                    return {error=>'Erro no R! Tente uma tolerância maior'};
                 }
             }
         }
@@ -23132,7 +23133,7 @@ sub perform_drone_imagery_analytics {
 
             if ($run_stats_fault == 1) {
                 print STDERR "ERROR IN R CMD\n";
-                return {error=>'Error in R! Try a larger tolerance'};
+                return {error=>'Erro no R! Tente uma tolerância maior'};
             }
         }
     }
@@ -23184,7 +23185,7 @@ sub perform_drone_imagery_analytics {
         my ($data_phenotypes_search_selected_env, $unique_traits_phenotypes_search_selected_env) = $phenotypes_search_selected_env->search();
 
         if (scalar(@$data_phenotypes_search_selected_env) == 0) {
-            return {error=>'There are no phenotypes for the trials and traits you have selected for the simulated environment from real data!'};
+            return {error=>'Não há fenótipos para os ensaios e características selecionados para o ambiente simulado a partir de dados reais!'};
         }
 
         my $time_count = 0;
@@ -24021,7 +24022,7 @@ sub perform_drone_imagery_analytics {
 
         if ($run_stats_fault == 1) {
             print STDERR "ERROR IN R CMD\n";
-            return {error=>'Error in R! Try a larger tolerance'};
+            return {error=>'Erro no R! Tente uma tolerância maior'};
         }
     }
     elsif ($statistics_select eq 'sommer_grm_univariate_spatial_genetic_blups' || $statistics_select eq 'sommer_grm_univariate_spatial_pure_2dspl_genetic_blups') {
@@ -24430,7 +24431,7 @@ sub perform_drone_imagery_analytics {
 
                 if ($run_stats_fault == 1) {
                     print STDERR "ERROR IN R CMD\n";
-                    return {error=>'Error in R! Try a larger tolerance'};
+                    return {error=>'Erro no R! Tente uma tolerância maior'};
                 }
             }
         }
@@ -25514,7 +25515,7 @@ sub perform_drone_imagery_analytics {
 
                 if ($run_stats_fault == 1) {
                     print STDERR "ERROR IN R CMD\n";
-                    return {error=>'Error in R! Try a larger tolerance'};
+                    return {error=>'Erro no R! Tente uma tolerância maior'};
                 }
             }
         }
@@ -25941,7 +25942,7 @@ sub perform_drone_imagery_analytics {
 
                 if ($run_stats_fault == 1) {
                     print STDERR "ERROR IN R CMD\n";
-                    return {error=>'Error in R! Try a larger tolerance'};
+                    return {error=>'Erro no R! Tente uma tolerância maior'};
                 }
             }
         }
@@ -26346,7 +26347,7 @@ sub perform_drone_imagery_analytics {
 
             if ($run_stats_fault == 1) {
                 print STDERR "ERROR IN R CMD\n";
-                return {error=>'Error in R! Try a larger tolerance'};
+                return {error=>'Erro no R! Tente uma tolerância maior'};
             }
         }
     }

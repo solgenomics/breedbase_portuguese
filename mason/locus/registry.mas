@@ -53,7 +53,7 @@ $registry => undef
 </%perl>
 
 % if ($registry) {
-This locus is associated with registry name: <% $registry %>
+Este locus está associado ao nome de registro: <% $registry %>
 % }
 % if ($is_owner)  {
 

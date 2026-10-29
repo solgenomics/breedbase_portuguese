@@ -2,6 +2,7 @@
 use strict;
 
 package SGN::Controller::AJAX::SpatialModel;
+use utf8;
 
 use Moose;
 use Data::Dumper;
@@ -77,7 +78,7 @@ sub extract_trait_data :Path('/ajax/spatial_model/getdata') Args(0) {
 
     my $F;
     if (! open($F, "<", $temppath)) {
-	$c->stash->{rest} = { error => "Can't find data." };
+	$c->stash->{rest} = { error => "Não foi possível encontrar os dados." };
 	return;
     }
 
@@ -263,7 +264,7 @@ sub generate_results: Path('/ajax/spatial_model/generate_results') Args(1) {
     copy($pheno_filepath.".clean.blues", $c->config->{basepath}."/static/documents/tempfiles/spatial_model_files/".$basename);
 
     my $download_url = '/documents/tempfiles/spatial_model_files/'.$basename;
-    my $download_link = "<a href=\"$download_url\">Download Results</a>";
+    my $download_link = "<a href=\"$download_url\">Baixar resultados</a>";
 
 ####################################################################
 
@@ -435,7 +436,7 @@ sub correct_spatial: Path('/ajax/spatial_model/correct_spatial') Args(1) {
     copy("$phenotype_file.spatially_corrected", $c->config->{basepath}."/static/documents/tempfiles/spatial_model_files/$basename");
 
     my $download_url = "/documents/tempfiles/spatial_model_files/$basename";
-    my $download_link = "<a href=\"$download_url\">Download Results</a>";
+    my $download_link = "<a href=\"$download_url\">Baixar resultados</a>";
 
     $c->stash->{rest} = {
         result => \@data,
@@ -541,7 +542,7 @@ sub store_spatial_adjustments: Path('/ajax/spatial_model/store_spatial_adjustmen
     });
 
     if (!$trial) {
-        $c->stash->{rest} = {error => "Error: no trial with ID $trial_id found.\n"};
+        $c->stash->{rest} = {error => "Erro: nenhum ensaio com ID $trial_id foi encontrado.\n"};
         return;
     }
 
@@ -564,7 +565,7 @@ sub store_spatial_adjustments: Path('/ajax/spatial_model/store_spatial_adjustmen
     };
     
     if ($@) {
-        $c->stash->{rest} = {error => "An error occurred saving spatial corrections to this trial. It may still be saved as a standalone analysis. \n $@ \n"};
+        $c->stash->{rest} = {error => "Ocorreu um erro ao salvar as correções espaciais neste ensaio. Ainda é possível salvá-las como uma análise independente. \n $@ \n"};
         return;
     }
 
@@ -587,7 +588,7 @@ sub retrieve_spatial_adjustments: Path('/ajax/spatial_model/retrieve_spatial_adj
     });
 
     if (!$trial) {
-        $c->stash->{rest} = {error => "Error: no trial with ID $trial_id found.\n"};
+        $c->stash->{rest} = {error => "Erro: nenhum ensaio com ID $trial_id foi encontrado.\n"};
         return;
     }
 
@@ -603,7 +604,7 @@ sub retrieve_spatial_adjustments: Path('/ajax/spatial_model/retrieve_spatial_adj
     my $spatial_adjustments_json = $spatial_adjustments_data_row->fetchrow_array();
 
     if (!$spatial_adjustments_json) {
-        $c->stash->{rest} = {data => "", message => "No spatial corrections associated with this trial.\n"};
+        $c->stash->{rest} = {data => "", message => "Nenhuma correção espacial associada a este ensaio.\n"};
         return;
     } 
 
@@ -624,7 +625,7 @@ sub get_spatial_adjusted_traits: Path('/ajax/spatial_model/get_spatial_adjusted_
     });
 
     if (!$trial) {
-        $c->stash->{rest} = {error => "Error: no trial with ID $trial_id found.\n"};
+        $c->stash->{rest} = {error => "Erro: nenhum ensaio com ID $trial_id foi encontrado.\n"};
         return;
     }
 
@@ -640,7 +641,7 @@ sub get_spatial_adjusted_traits: Path('/ajax/spatial_model/get_spatial_adjusted_
     my $spatial_adjustments_exists = $spatial_adjustments_data_row->fetchrow_array();
 
     if (!$spatial_adjustments_exists) {
-        $c->stash->{rest} = {error => "No spatial corrections associated with this trial.\n"};
+        $c->stash->{rest} = {error => "Nenhuma correção espacial associada a este ensaio.\n"};
         return;
     } 
 

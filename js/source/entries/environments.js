@@ -199,13 +199,13 @@ function renderTraitSummary(data, trait) {
     var variance = values.length ? values.reduce(function(acc, val) { return acc + Math.pow(val - mean, 2); }, 0) / values.length : NaN;
 
     var summary = [{
-        Trait: key,
-        Observations: data.length,
-        Measured: values.length,
-        Missing: missing,
-        Mean: formatNumber(mean),
-        Minimum: formatNumber(Math.min.apply(null, values)),
-        Maximum: formatNumber(Math.max.apply(null, values)),
+        "Característica": key,
+        "Observações": data.length,
+        "Medidos": values.length,
+        "Ausentes": missing,
+        "Média": formatNumber(mean),
+        "Mínimo": formatNumber(Math.min.apply(null, values)),
+        "Máximo": formatNumber(Math.max.apply(null, values)),
         "Desvio padrão": formatNumber(Math.sqrt(variance)),
         "Porcentagem de dados ausentes": formatNumber((missing / data.length) * 100)
     }];
@@ -225,16 +225,16 @@ function renderResults(response) {
 
     var groups = (response.group_summary || []).map(function(row) {
         return {
-            Group: row.group_id,
-            Environments: firstPresent(row.environments, groupsById[row.group_id] ? groupsById[row.group_id].join(', ') : ''),
-            Locations: firstPresent(row.locations, row.location),
-            Trials: firstPresent(row.trials, row.trial),
+            "Grupo": row.group_id,
+            "Ambientes": firstPresent(row.environments, groupsById[row.group_id] ? groupsById[row.group_id].join(', ') : ''),
+            "Locais": firstPresent(row.locations, row.location),
+            "Ensaios": firstPresent(row.trials, row.trial),
             "Nº de ambientes": row.n_env,
             "Nº de genótipos": row.n_genotypes,
             "Valor F": formatNumber(row.f_value),
             "Valor P": formatNumber(row.p_value),
-            Compatible: row.compatible,
-            Message: row.message
+            "Compatível": row.compatible,
+            "Mensagem": row.message
         };
     });
 
@@ -250,29 +250,29 @@ function renderResults(response) {
             "MSE": formatNumber(row.mse_error),
             "Valor F": formatNumber(row.f_value),
             "Valor P": formatNumber(row.p_value),
-            Compatible: row.compatible,
-            Message: row.message
+            "Compatível": row.compatible,
+            "Mensagem": row.message
         };
     });
 
     var anova = (response.anova || []).map(function(row) {
         return {
-            Design: row.design || '',
-            Term: row.term,
-            DF: formatNumber(row.df),
+            "Delineamento": row.design || '',
+            "Termo": row.term,
+            "GL": formatNumber(row.df),
             "Soma de quadrados": formatNumber(row.sum_sq),
             "Quadrado médio": formatNumber(row.mean_sq),
             "Valor F": formatNumber(row.f_value),
             "Valor P": formatNumber(row.p_value),
-            Message: row.message || ''
+            "Mensagem": row.message || ''
         };
     });
 
     var ungrouped = (response.ungrouped || []).map(function(row) {
         return {
-            Environment: firstPresent(row.environment_label, row.environment),
-            Location: firstPresent(row.location, row.environment),
-            Trial: row.trial
+            "Ambiente": firstPresent(row.environment_label, row.environment),
+            "Local": firstPresent(row.location, row.environment),
+            "Ensaio": row.trial
         };
     });
 
@@ -388,7 +388,7 @@ function renderMapLegend(colorByGroup) {
 
     var html = '';
     groups.forEach(function(groupId) {
-        var label = groupId === "Sem grupo" ? "Sem grupo ou estatisticamente distinto" : groupId + " - sem diferença estatística";
+        var label = groupId === 'Ungrouped' ? "Sem grupo ou estatisticamente distinto" : groupId + " - sem diferença estatística";
         html += '<span class="environment-stratification-map-legend-item">' +
             '<span class="environment-stratification-map-swatch" style="background-color:' + htmlEscape(colorByGroup[groupId]) + '"></span>' +
             htmlEscape(label) +

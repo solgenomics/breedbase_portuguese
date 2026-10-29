@@ -11,6 +11,7 @@ SGN::Controller::AJAX::Search::GenotypingDataProject - a REST controller class t
 =cut
 
 package SGN::Controller::AJAX::Search::GenotypingDataProject;
+use utf8;
 
 use Moose;
 use Data::Dumper;
@@ -160,7 +161,7 @@ sub genotyping_project_protocols_GET : Args(0) {
 #    print STDERR "ASSOCIATED PROTOCOL =".Dumper($associated_protocol)."\n";
     my @info;
     if ( defined $associated_protocol && scalar(@$associated_protocol)>1) {
-        $c->stash->{rest} = { error => "Each genotyping project should be associated with only one protocol" };
+        $c->stash->{rest} = { error => "Cada projeto de genotipagem deve estar associado a apenas um protocolo" };
         return;
     } elsif (defined $associated_protocol && scalar(@$associated_protocol) == 1) {
         push @info, {
@@ -203,7 +204,7 @@ sub genotyping_project_has_archived_vcf_GET : Args(0) {
 
     # Make sure there is at least 1 matching project
     if ( scalar(@project_ids) < 1 ) {
-        $c->stash->{rest} = { error => "No genotyping projects selected!" };
+        $c->stash->{rest} = { error => "Nenhum projeto de genotipagem selecionado!" };
         return;
     }
 
@@ -388,7 +389,7 @@ sub genotyping_project_accession_search_POST : Args(0) {
 
     # Make sure we have a list id or accessions ids
     if ( (!defined $accession_list_id || $accession_list_id eq "") && scalar @accession_ids == 0 ) {
-        $error = "You must define the accession_list_id or accession_ids!";
+        $error = "Você precisa definir accession_list_id ou accession_ids!";
     }
 
     # Get Accession IDs from specified List
@@ -409,7 +410,7 @@ sub genotyping_project_accession_search_POST : Args(0) {
 
         }
         else {
-            $error = "List does not contain any list items!";
+            $error = "A lista não contém nenhum item!";
         }
 
     }

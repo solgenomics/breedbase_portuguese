@@ -1,5 +1,6 @@
 
 package SGN::Controller::Bulk::Download;
+use utf8;
 
 use Moose;
 
@@ -218,7 +219,7 @@ sub get_parameters {
 
 sub post_only {
   my ($page) = @_;
-  $page->error_page('This page can only accept HTTP POST requests. Please go to <a href="input.pl">Bulk Download</a> to make your selections.');
+  $page->error_page('Esta página só aceita requisições HTTP POST. Acesse <a href="input.pl">Download em massa</a> para fazer suas seleções.');
 }
 
 sub _invalid_params {
@@ -226,8 +227,8 @@ sub _invalid_params {
     my $c = shift;
 
     $c->throw(
-        title    => "An Error has occured",
-        message  => "ID Type must be provided",
+        title    => "Ocorreu um erro",
+        message  => "O tipo de ID deve ser informado",
         notify   => 0,
         is_error => 0,
     );

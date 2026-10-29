@@ -1,5 +1,6 @@
 
 package CXGN::Trial::TrialDesign::Plugin::RCBD;
+use utf8;
 
 use Moose::Role;
 
@@ -28,7 +29,7 @@ sub create_design {
   if ($self->has_stock_list()) {
     @stock_list = @{$self->get_stock_list()};
   } else {
-    die "No stock list specified\n";
+    die "Nenhuma lista de materiais especificada\n";
   }
   if ($self->has_control_list_crbd()) {
     @control_list_crbd = @{$self->get_control_list_crbd()};
@@ -38,7 +39,7 @@ sub create_design {
   if ($self->has_number_of_blocks()) {
     $number_of_blocks = $self->get_number_of_blocks();
   } else {
-    die "Number of blocks not specified\n";
+    die "Número de blocos não especificado\n";
   }
 
   if ($self->has_fieldmap_col_number()) {

@@ -112,16 +112,16 @@ if (%overgos) {
   my @overgoinfo; #array of html overgo info nuggets
   while(my ($probeid,$thisprobe) = each %overgos) {
     my $overgo_html;
-    $overgo_html .= qq|$marker_name was used as an overgo probe on <a href="$overgo_plate_page$thisprobe->{loc}{plate}&amp;highlightwell=$thisprobe->{loc}{coords}">plate $thisprobe->{loc}{plate}</a> [well $thisprobe->{loc}{coords}]<br />|;
+    $overgo_html .= qq|$marker_name foi usado como sonda overgo na <a href="$overgo_plate_page$thisprobe->{loc}{plate}&amp;highlightwell=$thisprobe->{loc}{coords}">placa $thisprobe->{loc}{plate}</a> [poço $thisprobe->{loc}{coords}]<br />|;
     
     #output the plausible BACs
-    $overgo_html .= qq{<p><b><a href="$plausible_definition_page">Plausível</a> BAC Fósforos:</b>&nbsp;&nbsp;&nbsp;}
+    $overgo_html .= qq{<p><b><a href="$plausible_definition_page">Correspondências plausíveis</a> de BAC:</b>&nbsp;&nbsp;&nbsp;}
       .($thisprobe->{plausible} ? join(",&nbsp;&nbsp;\n", keys %{$thisprobe->{plausible}}) : 'None')
 	."</p>\n";
     
     #output the nonplausible BACs
     if ($thisprobe->{unplausible}) {
-      $overgo_html .= html_optional_show("np$probeid",'<i>Não-Plausível</i> BAC combina',
+      $overgo_html .= html_optional_show("np$probeid",'Correspondências <i>não plausíveis</i> de BAC',
 					 join (",&nbsp;&nbsp;\n",
 					       keys %{$thisprobe->{unplausible}})
 					);

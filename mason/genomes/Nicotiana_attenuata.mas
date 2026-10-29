@@ -1,5 +1,5 @@
 <br />
-<& /page/page_title.mas, title=>"<i>Nicotiana attenuata</i> Anotação do genoma v2 v5" &>
+<& /page/page_title.mas, title=>"Genoma de <i>Nicotiana attenuata</i> versão v2, anotação v5" &>
 
 <div class="container-fluid">
   <div class="row">
@@ -7,14 +7,16 @@
   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
 
     <p>
-      A montagem do genoma e anotação do genoma são depositadas no NCBI sob o bioprojeto PRJNA316810. O perfil de expressão dos genes previstos pode ser acessado através do hub de dados de Nicotiana attenuata http://nadh.ice.mpg.de/NaDH/
+      A montagem e a anotação do genoma estão depositadas no NCBI sob o bioprojeto PRJNA316810.
+      O perfil de expressão dos genes preditos pode ser acessado pelo Nicotiana attenuata data hub:
+      http://nadh.ice.mpg.de/NaDH/
     </p>
 <br>
     <p>
-      Uma descrição detalhada do processo de montagem do genoma e anotação pode ser encontrada nesta referência:<br><br>
+      Uma descrição mais detalhada do processo de montagem e anotação do genoma pode ser encontrada nesta referência:<br><br>
       Xu S, Brockmöller T, Navarro-Quezada A, Kuhl H, Gase K, Ling Z, Zhou W, Kreitzer C, Stanke M, Tang H, et al.<br>
-      <b>Os genomas do tabaco selvagem revelam a evolução da produção prolífica de nicotina.</b><br>
-      Procedimentos da Academia Nacional de Ciências EUA. Na imprensa.
+      <b>Wild tobacco genomes reveal the evolution of prolific nicotine production.</b><br>
+      Proceedings of the National Academy of Sciences USA. No prelo.
     </p>
   </div>
   

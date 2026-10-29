@@ -1,4 +1,5 @@
 package SGN::Controller::solGS::gebvsSave;
+use utf8;
 
 use Moose;
 use namespace::autoclean;
@@ -40,7 +41,7 @@ sub gebvs_result_details :Path('/solgs/gebvs/result/details') Args() {
 
         if ($@) {
             print STDERR "\n$@\n";
-            $c->stash->{rest}{error} = 'Something went wrong structuring the analysis result';
+            $c->stash->{rest}{error} = 'Algo deu errado ao estruturar o resultado da análise';
         } else {
             $c->stash->{rest}{analysis_details} = $analysis_details;
         }
@@ -231,7 +232,7 @@ sub structure_output_values {
 
         return \%output_values_hash;
     } else {
-        $c->stash->{rest}{error} = 'No prediction values found';
+        $c->stash->{rest}{error} = 'Nenhum valor de predição encontrado';
         return;
     }
 }

@@ -12,11 +12,11 @@ sub create_design {
         @stock_list = @{$self->get_stock_list()};
         my $number_of_stocks = scalar(@stock_list);
         if ($number_of_stocks > $self->get_block_size) {
-            die "Too many to fit on one plate! $number_of_stocks > ".$self->get_block_size;
+            die "Excede a capacidade de uma placa! $number_of_stocks > ".$self->get_block_size;
         }
     }
     else {
-        die "No stock list specified\n";
+        die "Nenhuma lista de materiais especificada\n";
     }
 
     my $blank = $self->get_blank ? $self->get_blank : ' ';

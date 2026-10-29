@@ -365,18 +365,18 @@ $facilities => ();
                         <thead></thead>
                         <tbody>
                             <tr>
-                                <td>Data</td>
+                                <td>date</td>
                                 <td>sample_id</td>
                                 <td>well_A01</td>
-                                <td>Reme</td>
-                                <td>coluna</td>
+                                <td>row</td>
+                                <td>column</td>
                                 <td>source_observation_unit_name</td>
                                 <td>ncbi_taxonomy_id</td>
                                 <td>dna_person</td>
-                                <td>Notas</td>
+                                <td>notes</td>
                                 <td>tissue_type</td>
-                                <td>extração</td>
-                                <td>concentração</td>
+                                <td>extraction</td>
+                                <td>concentration</td>
                                 <td>volume</td>
                                 <td>is_blank</td>
                             </tr>
@@ -439,7 +439,7 @@ $facilities => ();
                         <thead></thead>
                         <tbody>
                             <tr>
-                                <td>Data</td>
+                                <td>date</td>
                                 <td>plate_id</td>
                                 <td>plate_name</td>
                                 <td>sample_id</td>
@@ -447,9 +447,9 @@ $facilities => ();
                                 <td>well_01A</td>
                                 <td>tissue_id</td>
                                 <td>dna_person</td>
-                                <td>Notas</td>
+                                <td>notes</td>
                                 <td>tissue_type</td>
-                                <td>extração</td>
+                                <td>extraction</td>
                             </tr>
                         </tbody>
                     </table>
@@ -510,12 +510,12 @@ $facilities => ();
                         <thead></thead>
                         <tbody>
                             <tr>
-                                <td>Valor</td>
-                                <td>Coluna</td>
-                                <td>Reme</td>
-                                <td>Identificação</td>
-                                <td>Pessoa</td>
-                                <td>Data</td>
+                                <td>Value</td>
+                                <td>Column</td>
+                                <td>Row</td>
+                                <td>Identification</td>
+                                <td>Person</td>
+                                <td>Date</td>
                             </tr>
                         </tbody>
                     </table>

@@ -1,5 +1,6 @@
 package CXGN::Stock::ParseUpload::Plugin::PropagationIdentifierStatusUpdate;
 
+use utf8;
 use Moose::Role;
 use CXGN::File::Parse;
 use SGN::Model::Cvterm;
@@ -45,7 +46,7 @@ sub _validate_with_plugin {
 
     if ( $additional_columns && scalar(@$additional_columns) > 0 ) {
         $errors{'error_messages'} = [
-            "The following columns are not recognized: " . join(', ', @$additional_columns) . ". Please check the spreadsheet format for the allowed columns."
+            "As seguintes colunas não são reconhecidas: " . join(', ', @$additional_columns) . ". Verifique no formato da planilha quais colunas são permitidas."
         ];
         $self->_set_parse_errors(\%errors);
         return;
@@ -60,7 +61,7 @@ sub _validate_with_plugin {
     my @propagation_identifiers_missing = @{$propagation_identifier_validator->validate($schema,'propagation',$seen_propagation_identifiers)->{'missing'}};
 
     if (scalar(@propagation_identifiers_missing) > 0) {
-        push @error_messages, "The following propagation identifiers are not in the database: ".join(',',@propagation_identifiers_missing);
+        push @error_messages, "Os seguintes identificadores de propagação não estão no banco de dados: ".join(',',@propagation_identifiers_missing);
     }
 
     if (scalar(@$seen_inventory_identifiers) > 0) {
@@ -69,7 +70,7 @@ sub _validate_with_plugin {
         });
 
         while (my $r=$rs->next){
-            push @error_messages, "Inventory Identifier already exists in database: ".$r->uniquename;
+            push @error_messages, "O identificador de inventário já existe no banco de dados: ".$r->uniquename;
         }
     }
 
@@ -82,13 +83,13 @@ sub _validate_with_plugin {
 
     foreach my $type (@$seen_status_types) {
         if (!exists $supported_status_types{$type}) {
-            push @error_messages, "Status type not supported: <b>$type</b>. Status type should be inventoried, in trial, distribued, dead or disposed ";
+            push @error_messages, "Tipo de status não suportado: <b>$type</b>. O tipo de status deve ser inventoried, in trial, distributed, dead ou disposed ";
         }
     }
 
     foreach my $date (@$seen_status_dates) {
         if (! ($date =~ m/(\d{4})\-(\d{2})\-(\d{2})/)) {
-            push @error_messages, "Invalid date format: $date. Dates need to be YYYY-MM-DD format";
+            push @error_messages, "Formato de data inválido: $date. As datas devem estar no formato YYYY-MM-DD";
         }
     }
 

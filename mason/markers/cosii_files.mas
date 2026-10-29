@@ -50,37 +50,37 @@ for my $additional_data_file(sort {$a cmp $b} @{$cosii_files}) {
   my $view_link='';
   if($additional_data_file=~/([^\/]+)$/){$display_name=$1;}
   if($display_name=~/\.blastx$/) {
-    $description = 'BLASTX result of original unigene sequences against Arabidopsis protein database';
+    $description = 'Resultado do BLASTX das sequências originais de unigenes contra o banco de dados de proteínas de Arabidopsis';
     $html1.="<a href=\"$additional_data_file\">$description</a><br />";
   }
   elsif($display_name=~/[^FRfr]+\.cds\.fasta$/) {
-    $description = 'Alignment of Arabidopsis CDS and edited Asterid unigenes, FASTA';
+    $description = 'Alinhamento de CDS de Arabidopsis e unigenes editados de Asterídeas, FASTA';
     $html2.="<a href=\"$additional_data_file\">$description</a><br />";
   }
   elsif($display_name=~/\.aligned2aa$/) {
-    $description= 'Alignment of DNA and translated peptides from Arabidopsis CDS and edited Asterid unigenes, plain text';
+    $description= 'Alinhamento de DNA e peptídeos traduzidos de CDS de Arabidopsis e unigenes editados de Asterídeas, texto simples';
     $html2.="<a href=\"$additional_data_file\">$description</a><br />";
   }
   elsif($display_name=~/\.pep\.aln$/) {
-    $description = 'Alignment of translated peptides from Arabidopsis CDS and edited Asterid unigenes, ClustalW';
+    $description = 'Alinhamento de peptídeos traduzidos de CDS de Arabidopsis e unigenes editados de Asterídeas, ClustalW';
     $html2.="<a href=\"$additional_data_file\">$description</a><br />";
   }
   elsif($display_name=~/\.pep\.fasta$/) {
-    $description='Alignment of translated peptides from Arabidopsis CDS and edited Asterid unigenes, FASTA';
+    $description='Alinhamento de peptídeos traduzidos de CDS de Arabidopsis e unigenes editados de Asterídeas, FASTA';
     $html2.="<a href=\"$additional_data_file\">$description</a><br />";
   }
   elsif($display_name=~/\.cds\.nex$/) {
-    $description='Input file for PAUP, NEXUS format';
+    $description='Arquivo de entrada para o PAUP, formato NEXUS';
     $html3.="<a href=\"$additional_data_file\">$description</a><br />";
   } 
   elsif($display_name=~/\.ml\.tre$/) {
-    $description='Phylogenetic tree';
+    $description='Árvore filogenética';
     $html3.="<a href=\"$additional_data_file\">$description</a><br />";
     my $file_url=URI::Escape::uri_escape($additional_data_file);
     $html3.="<a href=\"$additional_data_file\">$description</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href=\"/tools/tree_browser/?shared_file=$file_url\">[Ver]</a><br />"; 
   }
   elsif($display_name=~/\.cds\.fasta$/) {
-    $description = 'Amplicon sequence alignment, FASTA';
+    $description = 'Alinhamento de sequências de amplicons, FASTA';
     $html4.="<a href=\"$additional_data_file\">$description</a><br />";
   }
   elsif($display_name=~/\.txt$/ or $display_name=~/\.seq$/) {
@@ -97,7 +97,7 @@ for my $additional_data_file(sort {$a cmp $b} @{$cosii_files}) {
     $html4.="<a href=\"$additional_data_file\">$description</a> $view_link<br />";
   }
   elsif($display_name=~/\.cds\.txt$/) {
-    $description = 'Original unigene seqs and Arabidopsis CDS seq, FASTA';
+    $description = 'Sequências originais de unigenes e sequência de CDS de Arabidopsis, FASTA';
     #display nothing
   }
   else {

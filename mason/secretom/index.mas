@@ -103,22 +103,22 @@
   </style>
 
   <div style="width: 80%; margin: 0 auto">
-    <& /page/page_title.mas, title => 'Um projeto para catalogar e estudar as propriedades dinâmicas do proteoma da parede celular, usando o tomate como um sistema modelo.' &>
+    <& /page/page_title.mas, title => 'Um projeto para catalogar e estudar as propriedades dinâmicas do proteoma da parede celular (o secretoma), usando o tomate como sistema modelo.' &>
   </div>
 
   <div id="secretom_summary" style="float: left; width: 50%">
     <&| /page/info_section.mas, title => 'Resumo' &>
 
       <p>
-      O <a class="info_link" href="/secretom/detail/cell_wall">parede celular da planta/apoplast</a> desempenha um papel fundamental em muitos aspectos do crescimento, desenvolvimento e respostas às condições ambientais e agressão por patógenos e insetos. Portanto, não surpreende que uma parte substancial do proteoma da planta esteja localizada na parede celular/apoplast. No entanto, enquanto grandes iniciativas estão em andamento para mapear os proteomas de muitas organelas de plantas, como o <a  href="http://ppdb.tc.cornell.edu/dbsearch/subproteome.aspx">
-      cloroplasto</a>, the cell wall proteome, or "secretome", is far
-      less well characterized than those of other subcellular compartments.
+      A <a class="info_link" href="/secretom/detail/cell_wall">parede celular/apoplasto vegetal</a> desempenha um papel fundamental em muitos aspectos do crescimento, desenvolvimento e respostas às condições ambientais e agressão por patógenos e insetos. Portanto, não surpreende que uma parte substancial do proteoma da planta esteja localizada na parede celular/apoplasto. No entanto, enquanto grandes iniciativas estão em andamento para mapear os proteomas de muitas organelas de plantas, como o <a  href="http://ppdb.tc.cornell.edu/dbsearch/subproteome.aspx">
+      cloroplasto</a>, o proteoma da parede celular, ou "secretoma", é muito
+      menos caracterizado do que os de outros compartimentos subcelulares.
       </p>
 
       <img width="250" style="display: block; margin: 0 auto" src="/img/secretom/proteome.png" />
 
       <p>
-      <strong>O que é o "secretério"?</strong> O termo "secretoma" é geralmente usado para se referir à população de proteínas que são secretadas fora da membrana plasmática de uma célula, mas também pode ser usado para descrever o subconjunto do proteoma que entra no <a href="/secretom/detail/secretion_path">Caminho secreto</a>.
+      <strong>O que é o "secretoma"?</strong> O termo "secretoma" é geralmente usado para se referir à população de proteínas que são secretadas fora da membrana plasmática de uma célula, mas também pode ser usado para descrever o subconjunto do proteoma que entra no <a href="/secretom/detail/secretion_path">via secretória</a>.
       </p>
 
       <p>
@@ -128,16 +128,16 @@
 
 
       <p>
-      <strong>Por que estudar o segredo?</strong> Proteomic analysis of cellular
-      compartments reveals the subcellular locations of a specific protein,
-      or protein complex, which in turn can be a valuable step towards
-      understanding protein function. Localization information also helps in
-      the identification of protein interactions and targeting pathways, and
-      peptide motifs and structural signatures that can direct proteins to
-      various cellular locations. In addition the analysis of a subcellular
-      proteome has the advantage of requiring "biological
-      pre-fractionation," which can substantially enhance the detection of
-      lower-abundance proteins.
+      <strong>Por que estudar o "secretoma"?</strong> A análise proteômica de
+      compartimentos celulares revela a localização subcelular de uma proteína
+      específica, ou de um complexo proteico, o que por sua vez pode ser um passo
+      valioso para compreender a função das proteínas. A informação de localização
+      também ajuda na identificação de interações proteicas e de vias de
+      endereçamento, bem como de motivos peptídicos e assinaturas estruturais que
+      podem direcionar proteínas para diferentes locais celulares. Além disso, a
+      análise de um proteoma subcelular tem a vantagem de exigir um
+      "pré-fracionamento biológico", o que pode aumentar substancialmente a
+      detecção de proteínas menos abundantes.
       </p>
 
     </&>
@@ -145,16 +145,16 @@
   <div style="float: right; width: 50%">
 
      <div class="projects">
-      <&| /page/info_section.mas, title => 'Projetos', subtitle => 'Download de conjuntos de dados: <a href="ftp://ftp.solgenomics.net/secretom/">[Site FTP da SGN]</a>' &>
+      <&| /page/info_section.mas, title => 'Projetos', subtitle => 'baixar conjuntos de dados: <a href="ftp://ftp.solgenomics.net/secretom/">[Site FTP da SGN]</a>' &>
 
-        <a class="project" href="/secretom/detail/prediction">Previsão Computacional do Segredo da Planta</a>
-        <a class="project" href="/secretom/detail/functional_screens">Telas funcionais para proteínas secretas</a>
-        <a class="project" href="/secretom/detail/glycoproteome">A fruta de tomate Glicoproteoma</a>
-        <a class="project" href="/secretom/detail/proteomics">Tomate Comparativo e Proteômico Quantitativo</a>
-        <a class="project" href="/secretom/detail/profiling">Proteoma Integrado/Transcriptoma Profiling of Tomato Fruit</a>
-        <a class="project" href="/secretom/detail/cuticle">O Proteome de Células Cuticular de Frutas de Tomate</a>
-        <a class="project" href="/secretom/detail/phytophthora_interaction">O segredo das interações Phytophthora/Tomato</a>
-        <a class="project" href="/secretom/detail/spinoffs">Projetos e Colaborações</a>
+        <a class="project" href="/secretom/detail/prediction">Predição Computacional do Secretoma Vegetal</a>
+        <a class="project" href="/secretom/detail/functional_screens">Triagens Funcionais de Proteínas Secretadas</a>
+        <a class="project" href="/secretom/detail/glycoproteome">O Glicoproteoma do Fruto de Tomate</a>
+        <a class="project" href="/secretom/detail/proteomics">Proteômica Comparativa e Quantitativa do Tomate</a>
+        <a class="project" href="/secretom/detail/profiling">Perfil Integrado de Proteoma/Transcriptoma do Fruto de Tomate</a>
+        <a class="project" href="/secretom/detail/cuticle">O Proteoma da Parede Celular Cuticular do Fruto de Tomate</a>
+        <a class="project" href="/secretom/detail/phytophthora_interaction">O Secretoma das Interações Phytophthora/Tomate</a>
+        <a class="project" href="/secretom/detail/spinoffs">Projetos Derivados e Colaborações</a>
 
       </&>
     </div>
@@ -162,15 +162,15 @@
       <&| /page/info_section.mas, title => 'Recursos' &>
 
         <a href="ftp://ftp.solgenomics.net/secretom/">
-          <span class="secretom">secretom</span> Datasets (<span style="text-decoration: underline">SGN FTP</span>)
+          conjuntos de dados do <span class="secretom">secretom</span> (<span style="text-decoration: underline">SGN FTP</span>)
         </a>
         <a href="/secretom/publications">
-          <span class="secretom">secretom</span> publicações
+          publicações do <span class="secretom">secretom</span>
         </a>
         <hr />
         <div class="secretary">
-          <a href="/secretom/secretary">Use o Secretário Tary</a>
-          Uma ferramenta para prever proteínas secretas.
+          <a href="/secretom/secretary">Use o SecreTary</a>
+          Uma ferramenta para predizer proteínas secretadas.
         </div>
       </&>
      </div>
@@ -179,9 +179,9 @@
   <&| /page/info_section.mas, title => 'Notícias' &>
 
     <div style="float: left; width: 50%">
-      <&| /page/info_section.mas, title => 'Abertura de Trabalhos', is_subsection => 1 &>
+      <&| /page/info_section.mas, title => 'Vagas de Trabalho', is_subsection => 1 &>
         <p>
-        O laboratório Rose está buscando uma pesquisa pós-doutorado associada a um interesse em proteômica de plantas, ou desenvolvimento de frutas e maturação. Experiência em espectrometria de massa e biologia molecular de plantas seria uma vantagem, e boas habilidades de comunicação são críticas. Por favor, contate Joss Rose se estiver interessado. 
+        O laboratório Rose está buscando um pesquisador de pós-doutorado com interesse em proteômica de plantas, ou em desenvolvimento e amadurecimento de frutos. Experiência em espectrometria de massa e biologia molecular de plantas seria uma vantagem, e boas habilidades de comunicação são essenciais. Se tiver interesse, entre em contato com Joss Rose: 
         <a href="mailto:jr286@cornell.edu">jr286@cornell.edu</a>
         </p>
       </&>
@@ -193,10 +193,10 @@
       <&| /page/info_section.mas, title => 'Educação, treinamento e divulgação', is_subsection => 1 &>
           <img style="border: 1px solid black; display: block; margin: 15px auto 0 auto" src="/img/secretom/tomato_bath.png" />
           <p>
-             <a href="/secretom/training">Educação e oportunidades de treinamento</a> em proteômica de plantas e biologia de paredes celulares estão disponíveis como parte de <span class="secretom">Secretom</span>.
+             <a href="/secretom/training">Oportunidades de educação e treinamento</a> em proteômica de plantas e biologia da parede celular estão disponíveis como parte de <span class="secretom">Secretom</span>.
           </p>
 
-          <p><a href="/secretom/outreach">Estágios</a> Também estão disponíveis.</p>
+          <p><a href="/secretom/outreach">Estágios</a> também estão disponíveis.</p>
        </&>
     </div>
 
@@ -205,7 +205,7 @@
   <&| /page/info_section.mas, title => 'Pessoas' &>
     <ul class="people">
       <li>Joss Rose <a href="http://labs.plantbio.cornell.edu/rose/">[Laboratório]</a></li>
-      <li>Ted Thannauser <a href="http://www.ars.usda.gov/PandP/docs.htm?docid=9634">[Página pessoal no USDA]</a></li>
+      <li>Ted Thannhauser <a href="http://www.ars.usda.gov/PandP/docs.htm?docid=9634">[Página pessoal no USDA]</a></li>
       <li>Jim Giovannoni <a href="http://www.bti.cornell.edu/JimGiovannoni.php?page=Research#page=ResearchSummary">[Página pessoal no BTI]</a></li>
       <li>Lukas Mueller <a href="http://solgenomics.net/about">[SGN]</a></li>
       <li>Zhangjun Fei <a href="http://www.bti.cornell.edu/ZhangjunFei.php?page=Research#page=ResearchSummary">[Página pessoal no BTI]</a></li>
@@ -217,12 +217,12 @@
        <table><tr>
        <td><a style="background: none" href="http://www.nsf.gov"><img border="0" src="/documents/img/secretom/NSF_Logo.jpg" width="100" height="100"/></a></td>
        <td style="vertical-align: middle; padding-left: 1em">
-        <p>Este projeto e banco de dados são financiados pela Fundação Nacional de Ciências Grant 
+        <p>Este projeto e banco de dados são financiados pela bolsa da National Science Foundation 
         <a href="http://nsf.gov/awardsearch/showAward.do?AwardNumber=0606595">0606595</a>.
         </p>
 
         <p>
-        Para perguntas e comentários sobre o projeto SecreTom, entre em contato com Jocelyn Rose. <a href="mailto:jr286@cornell.edu">jr286@cornell.edu</a>.
+        Para perguntas e comentários sobre o projeto SecreTom, entre em contato com Jocelyn Rose em <a href="mailto:jr286@cornell.edu">jr286@cornell.edu</a>.
         </p>
       </td></tr>
       </table>
@@ -236,8 +236,8 @@
         <li><a href="http://cell.ccrc.uga.edu/~mao/wallmab/Home/Home.php">Anticorpos da parede celular</a></li>
         <li><a href="http://cellwall.genomics.purdue.edu/">Genômica da parede celular</a></li>
         <li><a href="http://csbl1.bmb.uga.edu/pDAWG">Genes da parede celular da planta (pDAWG)</a></li>
-        <li><a href="http://bioweb.ucr.edu/Cellwall">Navegador de Parede de Células</a></li>
-        <li><a href="http://www.cazy.org">Enzimas Ativas carboidratadas</a></li>
+        <li><a href="http://bioweb.ucr.edu/Cellwall">Cell Wall Navigator</a></li>
+        <li><a href="http://www.cazy.org">Enzimas Ativas em Carboidratos</a></li>
       </ul>
 
   </&>

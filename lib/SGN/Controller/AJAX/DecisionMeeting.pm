@@ -1,5 +1,6 @@
 # lib/SGN/Controller/AJAX/DecisionMeeting.pm
 package SGN::Controller::AJAX::DecisionMeeting;
+use utf8;
 use Moose;
 use CXGN::List;
 use JSON;
@@ -41,7 +42,7 @@ sub lists : Path('lists') : Args(0) : ActionClass('REST') {}
 sub lists_GET {
     my ($self, $c) = @_;
 
-    return $self->status_forbidden($c, message => 'Login required')
+    return $self->status_forbidden($c, message => 'É necessário entrar em sua conta')
       unless $c->user;
 
     my $owner_id  = $c->user->get_object->get_sp_person_id;
@@ -88,7 +89,7 @@ sub programs : Path('programs') : ActionClass('REST') { }
 sub programs_GET {
     my ($self, $c) = @_;
 
-    return $self->status_forbidden($c, message => 'Login required')
+    return $self->status_forbidden($c, message => 'É necessário entrar em sua conta')
         unless $c->user;
 
     my $schema   = $c->dbic_schema('Bio::Chado::Schema');
@@ -117,7 +118,7 @@ sub locations : Path('locations') : ActionClass('REST') { }
 sub locations_GET {
     my ($self, $c) = @_;
 
-    return $self->status_forbidden($c, message => 'Login required')
+    return $self->status_forbidden($c, message => 'É necessário entrar em sua conta')
         unless $c->user;
 
     my $schema = $c->dbic_schema('Bio::Chado::Schema');
@@ -146,14 +147,14 @@ sub decisions : Path('decisions') : Args(0) : ActionClass('REST') { }
 sub decisions_GET {
     my ($self, $c) = @_;
 
-    return $self->status_forbidden($c, message => 'Login required')
+    return $self->status_forbidden($c, message => 'É necessário entrar em sua conta')
         unless $c->user;
 
     my $list_id          = $c->req->param('list_id');
     my $meeting_id       = $c->req->param('meeting_id');
     my $selected_program = $c->req->param('breeding_program') // '';
 
-    return $self->status_bad_request($c, message => 'Missing list_id')
+    return $self->status_bad_request($c, message => 'list_id ausente')
         unless $list_id;
 
     my $entity = $self->_decision_rows_entity(
@@ -484,7 +485,7 @@ sub _parse_decision_upload_file {
         my $normalized = $self->_normalize_decision_upload_header($header);
         if ($normalized ne $normalized_expected[$idx]) {
             my $col_letter = chr(65 + $idx);
-            push @errors, "Cell ${col_letter}1 must contain '$expected_headers[$idx]'.";
+            push @errors, "A célula ${col_letter}1 deve conter '$expected_headers[$idx]'.";
         }
     }
 
@@ -509,15 +510,15 @@ sub _parse_decision_upload_file {
         my ($accession, $breeding_program, $previous_stage, $decision, $new_stage, $notes, $comment) = @values;
 
         if ($accession eq '') {
-            push @errors, "Cell A$row_number: accession is required.";
+            push @errors, "Célula A$row_number: o acesso é obrigatório.";
         }
         if ($breeding_program eq '') {
-            push @errors, "Cell B$row_number: breeding program is required.";
+            push @errors, "Célula B$row_number: o programa de melhoramento é obrigatório.";
         }
 
         my $decision_norm = lc($decision || '');
         if ($decision_norm ne '' && !$allowed_decisions{$decision_norm}) {
-            push @errors, "Cell D$row_number: decision must be one of drop, hold, advance, or jump.";
+            push @errors, "Célula D$row_number: a decisão deve ser drop, hold, advance ou jump.";
         }
 
         push @rows, {
@@ -533,7 +534,7 @@ sub _parse_decision_upload_file {
     }
 
     if (!@rows) {
-        push @errors, 'Spreadsheet contains no accession decision rows.';
+        push @errors, 'A planilha não contém linhas de decisão de acessos.';
     }
 
     return (undef, \@errors) if @errors;
@@ -805,7 +806,7 @@ sub _validate_uploaded_decision_rows {
 
         if ($self->_is_drop_stage_value($current_stage_value)) {
             if ($decision ne '') {
-                push @errors, "Row $row_number: current stage '$current_stage_value' is already a DROP stage, so no further decision can be applied to this accession.";
+                push @errors, "Linha $row_number: o estágio atual '$current_stage_value' já é um estágio DROP, portanto nenhuma outra decisão pode ser aplicada a este acesso.";
                 next;
             }
             next;
@@ -813,7 +814,7 @@ sub _validate_uploaded_decision_rows {
 
         if ($decision eq '') {
             if ($new_stage ne '') {
-                push @errors, "Row $row_number: new stage '$new_stage' was provided but decision is empty.";
+                push @errors, "Linha $row_number: o novo estágio '$new_stage' foi informado, mas a decisão está vazia.";
             }
             next;
         }
@@ -834,27 +835,27 @@ sub _validate_uploaded_decision_rows {
         my $uploaded_token = $self->_normalize_stage_token($new_stage, $breeding_stages);
 
         if (($decision eq 'advance' || $decision eq 'jump') && !@allowed) {
-            push @errors, "Row $row_number: decision '$decision' is not compatible with current stage '" . ($target->{stage} || '') . "'.";
+            push @errors, "Linha $row_number: a decisão '$decision' não é compatível com o estágio atual '" . ($target->{stage} || '') . "'.";
             next;
         }
 
         if ($decision eq 'advance' || $decision eq 'jump') {
             if ($new_stage eq '') {
-                push @errors, "Row $row_number: decision '$decision' requires a new stage.";
+                push @errors, "Linha $row_number: a decisão '$decision' requer um novo estágio.";
                 next;
             }
 
             if ($uploaded_token eq '') {
                 my $suggest = $self->_stage_name_suggestion($new_stage, \@allowed) || $self->_stage_name_suggestion($new_stage, \@all_stages);
-                my $msg = "Row $row_number: stage '$new_stage' is not stored.";
-                $msg .= " Did you mean '$suggest'?" if $suggest ne '';
+                my $msg = "Linha $row_number: o estágio '$new_stage' não está armazenado.";
+                $msg .= " Você quis dizer '$suggest'?" if $suggest ne '';
                 push @errors, $msg;
                 next;
             }
 
             my %allowed_lookup = map { $_ => 1 } @allowed;
             if (!$allowed_lookup{$uploaded_token}) {
-                push @errors, "Row $row_number: this stage '$new_stage' is not compatible with the decision '$decision'. Allowed target stages: " . join(', ', @allowed) . ".";
+                push @errors, "Linha $row_number: o estágio '$new_stage' não é compatível com a decisão '$decision'. Estágios de destino permitidos: " . join(', ', @allowed) . ".";
                 next;
             }
 
@@ -870,7 +871,7 @@ sub _validate_uploaded_decision_rows {
             );
 
             if (($expected->{new_stage} || '') ne $new_stage && $new_stage ne $uploaded_token) {
-                push @errors, "Row $row_number: this stage '$new_stage' is not compatible with the decision '$decision'. Did you mean '$expected->{new_stage}'?";
+                push @errors, "Linha $row_number: o estágio '$new_stage' não é compatível com a decisão '$decision'. Você quis dizer '$expected->{new_stage}'?";
                 next;
             }
         }
@@ -890,19 +891,19 @@ sub _validate_uploaded_decision_rows {
 
             if ($new_stage eq '') {
                 my $required_stage = $decision eq 'hold' ? ($current_stage_for_hold || $expected_new_stage) : $expected_new_stage;
-                push @errors, "Row $row_number: decision '$decision' requires new stage '$required_stage'.";
+                push @errors, "Linha $row_number: a decisão '$decision' requer o novo estágio '$required_stage'.";
                 next;
             }
 
             if ($decision eq 'hold') {
                 if ($new_stage ne $expected_new_stage && $new_stage ne $current_stage_for_hold) {
                     my $suggest = $current_stage_for_hold || $expected_new_stage;
-                    push @errors, "Row $row_number: this stage '$new_stage' is not compatible with the decision '$decision'. Did you mean '$suggest'?";
+                    push @errors, "Linha $row_number: o estágio '$new_stage' não é compatível com a decisão '$decision'. Você quis dizer '$suggest'?";
                     next;
                 }
             }
             elsif ($new_stage ne $expected_new_stage) {
-                push @errors, "Row $row_number: this stage '$new_stage' is not compatible with the decision '$decision'. Did you mean '$expected_new_stage'?";
+                push @errors, "Linha $row_number: o estágio '$new_stage' não é compatível com a decisão '$decision'. Você quis dizer '$expected_new_stage'?";
                 next;
             }
         }
@@ -949,7 +950,7 @@ sub stages_GET : Path('/ajax/decisionmeeting/stages') Args(0) {
     unless ($c->user) {
         $c->res->status(403);
         $c->res->content_type('application/json');
-        $c->res->body(encode_json({ error => 'Login required' }));
+        $c->res->body(encode_json({ error => 'É necessário entrar em sua conta' }));
         $c->detach();
     }
 
@@ -984,7 +985,7 @@ sub compute_new_stage : Path('compute_new_stage') : Args(0) : ActionClass('REST'
 sub compute_new_stage_GET {
     my ($self, $c) = @_;
 
-    return $self->status_forbidden($c, message => 'Login required')
+    return $self->status_forbidden($c, message => 'É necessário entrar em sua conta')
         unless $c->user;
 
     my $current_stage  = $c->req->param('current_stage');
@@ -1094,7 +1095,7 @@ sub datasets : Path('datasets') : Args(0) : ActionClass('REST') {}
 sub datasets_GET {
     my ($self, $c) = @_;
 
-    return $self->status_forbidden($c, message => 'Login required')
+    return $self->status_forbidden($c, message => 'É necessário entrar em sua conta')
         unless $c->user;
 
     my $dbh = $c->dbc->dbh;
@@ -1120,7 +1121,7 @@ sub datasets_GET {
 
     if ($@) {
         return $self->status_ok($c, entity => {
-            error    => "Failed to load datasets",
+            error    => "Falha ao carregar os conjuntos de dados",
             details  => "$@",
             datasets => []
         });
@@ -1135,11 +1136,11 @@ sub dataset_summary : Path('dataset_summary') : Args(0) : ActionClass('REST') { 
 sub dataset_summary_GET {
     my ($self, $c) = @_;
 
-    return $self->status_forbidden($c, message => 'Login required')
+    return $self->status_forbidden($c, message => 'É necessário entrar em sua conta')
         unless $c->user;
 
     my $dataset_id = $c->req->param('dataset_id');
-    return $self->status_bad_request($c, message => 'Missing dataset_id')
+    return $self->status_bad_request($c, message => 'dataset_id ausente')
         unless $dataset_id;
 
     $c->tempfiles_subdir("decisionmeeting");
@@ -1162,7 +1163,7 @@ sub dataset_summary_GET {
     if (!$ds_traits || ref($ds_traits) ne 'ARRAY' || !@$ds_traits) {
         return $self->status_ok($c, entity => {
             summary => [],
-            error   => "No traits found in the dataset. Please select a dataset with trial(s) and trait(s)."
+            error   => "Nenhuma característica encontrada no conjunto de dados. Selecione um conjunto de dados com ensaio(s) e característica(s)."
         });
     }
 
@@ -1182,7 +1183,7 @@ sub dataset_summary_GET {
     unless (-e $phenofile) {
         return $self->status_ok($c, entity => {
             summary => [],
-            error   => "Phenotype file was not generated."
+            error   => "O arquivo de fenótipos não foi gerado."
         });
     }
 
@@ -1193,7 +1194,7 @@ sub dataset_summary_GET {
         close($in);
         return $self->status_ok($c, entity => {
             summary => [],
-            error   => "Phenotype file is empty."
+            error   => "O arquivo de fenótipos está vazio."
         });
     }
 
@@ -1213,7 +1214,7 @@ sub dataset_summary_GET {
         close($in);
         return $self->status_ok($c, entity => {
             summary => [],
-            error   => "germplasmName column not found in phenotype file."
+            error   => "Coluna germplasmName não encontrada no arquivo de fenótipos."
         });
     }
 
@@ -1300,7 +1301,7 @@ sub accessions : Path('accessions') : Args(0) : ActionClass('REST') {}
 sub accessions_GET {
     my ($self, $c) = @_;
 
-    return $self->status_forbidden($c, message => 'Login required')
+    return $self->status_forbidden($c, message => 'É necessário entrar em sua conta')
         unless $c->user;
 
     my $dataset_id    = $c->req->param('dataset_id');
@@ -1380,7 +1381,7 @@ sub _dm_build_dataset_phenofile {
 
     if (!$ds_traits || ref($ds_traits) ne 'ARRAY' || !@$ds_traits) {
         return {
-            error   => "No traits found in the dataset. Please select a dataset with trial(s) and trait(s).",
+            error   => "Nenhuma característica encontrada no conjunto de dados. Selecione um conjunto de dados com ensaio(s) e característica(s).",
             summary => [],
         };
     }
@@ -1400,7 +1401,7 @@ sub _dm_build_dataset_phenofile {
 
     unless (-e $phenofile) {
         return {
-            error   => "Phenotype file was not generated.",
+            error   => "O arquivo de fenótipos não foi gerado.",
             summary => [],
         };
     }
@@ -1416,11 +1417,11 @@ sub dataset_traits : Path('dataset_traits') : Args(0) : ActionClass('REST') { }
 sub dataset_traits_GET {
     my ($self, $c) = @_;
 
-    return $self->status_forbidden($c, message => 'Login required')
+    return $self->status_forbidden($c, message => 'É necessário entrar em sua conta')
         unless $c->user;
 
     my $dataset_id = $c->req->param('dataset_id');
-    return $self->status_bad_request($c, message => 'Missing dataset_id')
+    return $self->status_bad_request($c, message => 'dataset_id ausente')
         unless $dataset_id;
 
     my $res = $self->_dm_build_dataset_phenofile($c, $dataset_id);
@@ -1442,7 +1443,7 @@ sub dataset_traits_GET {
         return $self->status_ok($c, entity => {
             traits     => [],
             accessions => [],
-            error      => "Phenotype file is empty.",
+            error      => "O arquivo de fenótipos está vazio.",
         });
     }
 
@@ -1464,7 +1465,7 @@ sub dataset_traits_GET {
         return $self->status_ok($c, entity => {
             traits     => [],
             accessions => [],
-            error      => "germplasmName column not found in phenotype file.",
+            error      => "Coluna germplasmName não encontrada no arquivo de fenótipos.",
         });
     }
 
@@ -1509,16 +1510,16 @@ sub dataset_plot_data : Path('dataset_plot_data') : Args(0) : ActionClass('REST'
 sub dataset_plot_data_GET {
     my ($self, $c) = @_;
 
-    return $self->status_forbidden($c, message => 'Login required')
+    return $self->status_forbidden($c, message => 'É necessário entrar em sua conta')
         unless $c->user;
 
     my $dataset_id = $c->req->param('dataset_id');
     my $trait      = $c->req->param('trait');
 
-    return $self->status_bad_request($c, message => 'Missing dataset_id')
+    return $self->status_bad_request($c, message => 'dataset_id ausente')
         unless $dataset_id;
 
-    return $self->status_bad_request($c, message => 'Missing trait')
+    return $self->status_bad_request($c, message => 'Característica ausente')
         unless defined $trait && $trait ne '';
 
     $trait = $self->_dm_trim($trait);
@@ -1544,7 +1545,7 @@ sub dataset_plot_data_GET {
             trait             => $trait,
             rows              => [],
             accession_summary => [],
-            error             => "Phenotype file is empty.",
+            error             => "O arquivo de fenótipos está vazio.",
         });
     }
 
@@ -1572,7 +1573,7 @@ sub dataset_plot_data_GET {
             trait             => $trait,
             rows              => [],
             accession_summary => [],
-            error             => "germplasmName column not found in phenotype file.",
+            error             => "Coluna germplasmName não encontrada no arquivo de fenótipos.",
         });
     }
 
@@ -1582,7 +1583,7 @@ sub dataset_plot_data_GET {
             trait             => $trait,
             rows              => [],
             accession_summary => [],
-            error             => "Trait column not found in phenotype file.",
+            error             => "Coluna da característica não encontrada no arquivo de fenótipos.",
         });
     }
 
@@ -1659,18 +1660,18 @@ sub save_all_decisions : Path('save_all_decisions') : Args(0) : ActionClass('RES
 sub save_all_decisions_POST {
     my ($self, $c) = @_;
 
-    return $self->status_forbidden($c, message => 'Login required')
+    return $self->status_forbidden($c, message => 'É necessário entrar em sua conta')
         unless $c->user;
 
     my $payload = $c->req->data;
 
     unless ($payload && ref($payload) eq 'HASH') {
-        return $self->status_bad_request($c, message => 'Missing or invalid JSON payload');
+        return $self->status_bad_request($c, message => 'Payload JSON ausente ou inválido');
     }
 
     my $meeting_id = $payload->{meeting_id};
     unless ($meeting_id) {
-        return $self->status_bad_request($c, message => 'Missing meeting_id in payload');
+        return $self->status_bad_request($c, message => 'meeting_id ausente no payload');
     }
 
     my $sp_person_id = $c->user() ? $c->user->get_object()->get_sp_person_id() : undef;
@@ -1708,7 +1709,7 @@ sub save_all_decisions_POST {
     unless ($can_save) {
         return $self->status_forbidden(
             $c,
-            message => 'You are not allowed to save accessions stage change'
+            message => 'Você não tem permissão para salvar a mudança de estágio dos acessos'
         );
     }
 
@@ -1722,7 +1723,7 @@ sub save_all_decisions_POST {
         $json_text = JSON->new->allow_nonref->canonical->encode($payload);
     };
     if ($@) {
-        return $self->status_bad_request($c, message => 'Could not encode payload to JSON');
+        return $self->status_bad_request($c, message => 'Não foi possível codificar o payload em JSON');
     }
 
     my $dbh = $c->dbc->dbh;
@@ -1822,7 +1823,7 @@ sub save_all_decisions_POST {
         }
     };
     if ($@) {
-        return $self->status_bad_request($c, message => "Failed to save decisions: $@");
+        return $self->status_bad_request($c, message => "Falha ao salvar as decisões: $@");
     }
 
     $c->stash(
@@ -1831,7 +1832,7 @@ sub save_all_decisions_POST {
             success      => JSON::true,
             meeting_id   => $meeting_id,
             saved_status => 'successfully',
-            message      => 'Decisions saved successfully'
+            message      => 'Decisões salvas com sucesso'
         }
     );
 }
@@ -1842,7 +1843,7 @@ sub decision_upload_template : Path('decision_upload_template') : Args(0) {
     unless ($c->user) {
         $c->res->status(403);
         $c->res->content_type('application/json');
-        $c->res->body(encode_json({ error => 'Login required' }));
+        $c->res->body(encode_json({ error => 'É necessário entrar em sua conta' }));
         return;
     }
 
@@ -1852,7 +1853,7 @@ sub decision_upload_template : Path('decision_upload_template') : Args(0) {
     unless ($list_id) {
         $c->res->status(400);
         $c->res->content_type('application/json');
-        $c->res->body(encode_json({ error => 'Missing list_id' }));
+        $c->res->body(encode_json({ error => 'list_id ausente' }));
         return;
     }
 
@@ -1912,19 +1913,19 @@ sub upload_decision_template : Path('upload_decision_template') : Args(0) : Acti
 sub upload_decision_template_POST {
     my ($self, $c) = @_;
 
-    return $self->status_forbidden($c, message => 'Login required')
+    return $self->status_forbidden($c, message => 'É necessário entrar em sua conta')
         unless $c->user;
 
     my $list_id    = $c->req->param('list_id');
     my $meeting_id = $c->req->param('meeting_id');
 
-    return $self->status_bad_request($c, message => 'Missing list_id')
+    return $self->status_bad_request($c, message => 'list_id ausente')
         unless $list_id;
-    return $self->status_bad_request($c, message => 'Missing meeting_id')
+    return $self->status_bad_request($c, message => 'meeting_id ausente')
         unless $meeting_id;
 
     my $upload = $c->req->upload('decision_upload_file');
-    return $self->status_bad_request($c, message => 'Missing uploaded Excel file')
+    return $self->status_bad_request($c, message => 'Arquivo Excel enviado ausente')
         unless $upload;
 
     my ($parsed_rows, $parse_errors) = $self->_parse_decision_upload_file(
@@ -1948,7 +1949,7 @@ sub upload_decision_template_POST {
     my $meeting_year = $self->_meeting_year_from_meeting_id($c, $meeting_id);
 
     unless ($meeting_year) {
-        return $self->status_bad_request($c, message => 'The selected meeting does not have a valid date/year, so uploaded stages cannot be validated.');
+        return $self->status_bad_request($c, message => 'A reunião selecionada não tem data/ano válido, portanto os estágios enviados não podem ser validados.');
     }
 
     my ($validation_errors, $unmatched_rows) = $self->_validate_uploaded_decision_rows(
@@ -1987,7 +1988,7 @@ sub upload_decision_template_POST {
         rows           => \@current_rows,
         updated_count  => $updated_count,
         unmatched_rows => $unmatched_rows,
-        message        => 'Decision upload processed successfully',
+        message        => 'Envio de decisões processado com sucesso',
     });
 }
 
@@ -2143,11 +2144,11 @@ sub meetings_GET {
 sub meeting_report_html : Path('/ajax/decisionmeeting/meeting_report_html') Args(0) {
     my ($self, $c) = @_;
 
-    return $self->status_forbidden($c, message => 'Login required')
+    return $self->status_forbidden($c, message => 'É necessário entrar em sua conta')
         unless $c->user;
 
     my $meeting_id = $c->req->param('meeting_id');
-    return $self->status_bad_request($c, message => 'Missing meeting_id')
+    return $self->status_bad_request($c, message => 'meeting_id ausente')
         unless $meeting_id;
 
     my $dbh = $c->dbc->dbh;
@@ -2173,7 +2174,7 @@ sub meeting_report_html : Path('/ajax/decisionmeeting/meeting_report_html') Args
     unless ($project_id) {
         $c->res->status(404);
         $c->res->content_type('text/plain; charset=utf-8');
-        $c->res->body("Meeting not found");
+        $c->res->body("Reunião não encontrada");
         return;
     }
 
@@ -2195,8 +2196,8 @@ sub meeting_report_html : Path('/ajax/decisionmeeting/meeting_report_html') Args
         $c->res->status(409);
         $c->res->content_type('application/json; charset=utf-8');
         $c->res->body(encode_json({
-            error   => 'Report not available yet',
-            message => 'This meeting report cannot be downloaded because decisions have not been saved yet.'
+            error   => 'Relatório ainda não disponível',
+            message => 'Não é possível baixar o relatório desta reunião porque as decisões ainda não foram salvas.'
         }));
         return;
     }
@@ -2269,7 +2270,7 @@ sub meeting_report_html : Path('/ajax/decisionmeeting/meeting_report_html') Args
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>Meeting Report - $safe_project_name</title>
+  <title>Relatório da reunião - $safe_project_name</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -2316,30 +2317,30 @@ sub meeting_report_html : Path('/ajax/decisionmeeting/meeting_report_html') Args
 </head>
 <body>
   <div class="no-print" style="margin-bottom:20px;">
-    <button onclick="window.print()">Print / Save as PDF</button>
+    <button onclick="window.print()">Imprimir / Salvar como PDF</button>
   </div>
 
-  <h1>Meeting Report</h1>
+  <h1>Relatório da reunião</h1>
   <div class="meta">
-    <strong>Meeting:</strong> $safe_project_name<br>
-    <strong>Meeting ID:</strong> $meeting_id<br>
-    <strong>Attendees:</strong> $attendees_html
+    <strong>Reunião:</strong> $safe_project_name<br>
+    <strong>ID da reunião:</strong> $meeting_id<br>
+    <strong>Participantes:</strong> $attendees_html
   </div>
 
-  <h2>Meeting Notes</h2>
+  <h2>Notas da reunião</h2>
   <div class="notes">$meeting_notes</div>
 
-  <h2>Decisions</h2>
+  <h2>Decisões</h2>
   <table>
     <thead>
       <tr>
-        <th>Accession</th>
-        <th>Breeding Program</th>
-        <th>Previous Stage</th>
-        <th>Decision</th>
-        <th>New Stage</th>
-        <th>Current Notes</th>
-        <th>Comment Before Save</th>
+        <th>Acesso</th>
+        <th>Programa de melhoramento</th>
+        <th>Estágio anterior</th>
+        <th>Decisão</th>
+        <th>Novo estágio</th>
+        <th>Notas atuais</th>
+        <th>Comentário antes de salvar</th>
       </tr>
     </thead>
     <tbody>
@@ -2359,7 +2360,7 @@ sub meeting_report_html : Path('/ajax/decisionmeeting/meeting_report_html') Args
 
 sub create : Path('create') Args(0) {
     my ($self, $c) = @_;
-    return $self->status_forbidden($c, message => 'Login required')
+    return $self->status_forbidden($c, message => 'É necessário entrar em sua conta')
         unless $c->user;
 
     my $sp_person_id = $c->user() ? $c->user->get_object()->get_sp_person_id() : undef;
@@ -2397,7 +2398,7 @@ sub create : Path('create') Args(0) {
     unless ($can_create_meeting) {
         return $self->status_forbidden(
             $c,
-            message => 'You are not allowed to create meetings'
+            message => 'Você não tem permissão para criar reuniões'
         );
     }
 
@@ -2416,11 +2417,11 @@ sub create : Path('create') Args(0) {
     my $description   = $p->{data}             // '';
     my $meeting_status= $p->{meeting_status}   // '';
 
-    return $self->status_bad_request($c, message => "Missing meeting_name")
+    return $self->status_bad_request($c, message => "meeting_name ausente")
         unless $trial_name_in;
-    return $self->status_bad_request($c, message => "Missing breeding_program")
+    return $self->status_bad_request($c, message => "breeding_program ausente")
         unless ($program_in || ref($p->{breeding_programs}) eq 'ARRAY');
-    return $self->status_bad_request($c, message => "Missing location")
+    return $self->status_bad_request($c, message => "Local ausente")
         unless $location_in;
 
     my @program_in_list =
@@ -2429,13 +2430,13 @@ sub create : Path('create') Args(0) {
             : (grep { length($_) } map { s/^\s+|\s+$//gr } split(/\s*,\s*/, ($program_in // '')));
 
     my $program_choice = $program_in_list[0] // '';
-    return $self->status_bad_request($c, message => "Missing breeding_program")
+    return $self->status_bad_request($c, message => "breeding_program ausente")
         unless $program_choice;
 
     my $program_name  = _resolve_program_name($schema, $program_choice)
-        or return $self->status_bad_request($c, message => "Breeding program not found: '$program_choice'");
+        or return $self->status_bad_request($c, message => "Programa de melhoramento não encontrado: '$program_choice'");
     my $location_name = _resolve_location_name($schema, $location_in)
-        or return $self->status_bad_request($c, message => "Location not found: '$location_in'");
+        or return $self->status_bad_request($c, message => "Local não encontrado: '$location_in'");
 
     my @program_name_list = grep { defined($_) && $_ ne '' }
                             map  { scalar _resolve_program_name($schema, $_) } @program_in_list;
@@ -2550,7 +2551,7 @@ sub create : Path('create') Args(0) {
         $c->res->content_type('application/json');
         $c->res->body(encode_json({
             ok   => \0,
-            msg  => "Error creating meeting trial: $err",
+            msg  => "Erro ao criar o ensaio da reunião: $err",
             echo => {
                 meeting_name      => $trial_name_in,
                 breeding_programs => \@program_in_list,
@@ -2567,7 +2568,7 @@ sub create : Path('create') Args(0) {
     $c->res->content_type('application/json');
     $c->res->body(encode_json({
         ok               => \1,
-        msg              => "Meeting saved as trial '$trial_name' (type=meeting_project).",
+        msg              => "Reunião salva como ensaio '$trial_name' (type=meeting_project).",
         project_id       => $project_id,
         nd_experiment_id => $nd_experiment_id,
         design_cvterm_id => $design_cvterm_id,

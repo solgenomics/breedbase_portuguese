@@ -81,14 +81,14 @@ $right_map_version_id=>undef
 $color_model=>undef
 </%args>
 
-<& /page/page_title.mas, title => 'Compare mapas inteiros' &>
+<& /page/page_title.mas, title => 'Comparar mapas inteiros' &>
 
 <div style="text-align: center">
    <div style="width: 40em; margin: 0 auto">
       <&| /page/explanation.mas &>
 
-      Selecione mapas para comparar usando o controle abaixo, então
-      Aperte o botão 'set' para atualizar o display.
+      Selecione os mapas a comparar usando o controle abaixo e
+      clique no botão 'set' para atualizar a exibição.
 
       </&>
   </div>
@@ -153,7 +153,7 @@ my $select = $vm->get_select_toolbar();
 print qq|<div style="width: 60%; margin: 0 auto">$select</div>|;
 
 if (!$vm->get_maps()) { 
-  print "<br /><br /><center>Nota: nenhum mapa é selecionado. Por favor, selecione mapas nos menus abaixo.</center>\n";
+  print "<br /><br /><center>Nota: nenhum mapa selecionado. Selecione mapas nos menus acima.</center>\n";
 }
 
 print $vm->get_cache()->get_image_html();

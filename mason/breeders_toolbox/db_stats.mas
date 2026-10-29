@@ -303,7 +303,7 @@ html = `
   <br/>
 
 
-  <div id="pheno_summary_table_`+bp_id+`_Div"&gt;
+  <div id="pheno_summary_table_`+bp_id+`_div">
 
     <table id="phenotype_summary_data_`+bp_id+`" class="display">
       <thead>
@@ -325,7 +325,7 @@ html = `
 </div>
 <div class="well well-sm" id="raw_data_histogram_well_`+bp_id+`">
   <center><h4>Histograma dos dados brutos</h4></center><hr>
-  <div id="program_summary_hist_`+bp_id+`_Div"&gt;
+  <div id="program_summary_hist_`+bp_id+`_div">
     <div class="row">
       <div class="col-sm-8">
         <form class="form-horizontal">

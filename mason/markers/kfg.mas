@@ -33,7 +33,7 @@ my $html = '';
 foreach my $l (@loci) {
   my ($locus_id, $locus_name) = ($l->[0], $l->[1]);
 
-    $html .= qq{Este marcador está associado com <a href="/phenome/locus_display.pl?locus_id=$locus_id">$locus_name</a> Locus.<br /><br />};
+    $html .= qq{Este marcador está associado ao locus <a href="/phenome/locus_display.pl?locus_id=$locus_id">$locus_name</a>.<br /><br />};
   }
 
   

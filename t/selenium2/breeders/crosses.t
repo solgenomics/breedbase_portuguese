@@ -51,7 +51,7 @@ $t->while_logged_in_as("submitter", sub {
 		'xpath',
 		'find feedback info after trial submition')->get_attribute('innerHTML');
 
-	ok($trial_submit_info =~ /Crossing experiment was added successfully/, "Verify feedback after submission, looking for: 'Crossing experiment was added successfully'");
+	ok($trial_submit_info =~ /O experimento de cruzamento foi adicionado com sucesso/, "Verify feedback after submission, looking for: 'Crossing experiment was added successfully'");
 
 	$t->find_element_ok('add_crossing_experiment_dismiss_button_2', 'id', 'find and close "Add New Experiment" modal')->click();
 	sleep(1);
@@ -107,7 +107,7 @@ $t->while_logged_in_as("submitter", sub {
 		'xpath',
 		'find feedback info after add cross')->get_attribute('innerHTML');
 
-	ok($cross_submit_info =~ /The cross was added successfully/, "Verify feedback after submission, looking for: 'The cross was added successfully'");
+	ok($cross_submit_info =~ /O cruzamento foi adicionado com sucesso/, "Verify feedback after submission, looking for: 'The cross was added successfully'");
 
 	$t->find_element_ok('new_cross_close_modal', 'id', 'find "new cross close modal" and click')->click();
 	sleep(1);

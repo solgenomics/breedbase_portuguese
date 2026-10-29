@@ -176,11 +176,11 @@ if ($target->get_target_id() ) {
 	push @target_el_html_list, [$target_el_name, $dye, $sample_html, $protocol_html, $onto_list];
     }
     
-    my $target_el_composition_html = columnar_table_html( headings   => [ 'Target element name',
-									  'Dye',
-                                                                          'Sample',
-							                  'Protocol', 
-							                  'Ontologies',
+    my $target_el_composition_html = columnar_table_html( headings   => [ 'Nome do elemento-alvo',
+									  'Corante',
+                                                                          'Amostra',
+							                  'Protocolo', 
+							                  'Ontologias',
 							                ],
                                                            data       => \@target_el_html_list,
                                                            __align    => ['c', 'c', 'c', 'c', 'l'],
@@ -193,10 +193,10 @@ if ($target->get_target_id() ) {
     $basic_info_content = <<HTML;
 
     <table width="100%">
-   	   <tr> <td width="25%"> <b>Target name:</b>              </td> <td> $target_name </td></tr>
-           <tr> <td width="25%"> <b>Experiment name:</b>          </td> <td> $exp_html </td></tr>
-	   <tr> <td width="25%"> <b>Experimental design name:</b> </td> <td> $expdesign_html</td></tr>
-	   <tr> <td width="25%"> <b>Target external links:</b>    </td> <td> $dbxref_html_list</td></tr>
+   	   <tr> <td width="25%"> <b>Nome do alvo:</b>              </td> <td> $target_name </td></tr>
+           <tr> <td width="25%"> <b>Nome do experimento:</b>          </td> <td> $exp_html </td></tr>
+	   <tr> <td width="25%"> <b>Nome do delineamento experimental:</b> </td> <td> $expdesign_html</td></tr>
+	   <tr> <td width="25%"> <b>Links externos do alvo:</b>    </td> <td> $dbxref_html_list</td></tr>
     </table>
 
     <br>

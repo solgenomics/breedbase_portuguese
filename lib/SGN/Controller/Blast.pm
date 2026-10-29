@@ -1,5 +1,6 @@
 
 package SGN::Controller::Blast;
+use utf8;
 
 use Moose;
 
@@ -48,7 +49,7 @@ sub index :Path('/tools/blast/') :Args(0) {
     my $rs = $schema->resultset("BlastDb")->search( { 'me.blast_db_id' => $db_id }, { join => 'blast_db_blast_db_groups' });
     
     if ($rs == 0) {
-      $c->throw( is_error => 0, message => "The blast database with id $db_id could not be found.");
+      $c->throw( is_error => 0, message => "O banco de dados BLAST com ID $db_id não foi encontrado.");
     }
     
     $preselected_database = $rs->first()->blast_db_id(); # first database of the category
@@ -215,7 +216,7 @@ sub show_match_seq : Path('/tools/blast/match/show') Args(0) {
 
     my $seq = $bo->get_sequence($id) # returns a Bio::Seq object.
 	or $c->throw( is_error => 0,
-		      message => "The sequence could not be found in the blast database with id $blast_db_id.");
+		      message => "A sequência não foi encontrada no banco de dados BLAST com ID $blast_db_id.");
 
     # parse the coords param
     my @coords =
@@ -236,10 +237,10 @@ sub show_match_seq : Path('/tools/blast/match/show') Args(0) {
 	$c->stash->{template} = '/blast/show_seq/html.mas';
 	$c->stash->{seq} = $seq;
 	$c->stash->{highlight_coords} = \@coords;
-	$c->stash->{source} = '"'.$bo->title().'" BLAST dataset ';
+	$c->stash->{source} = 'conjunto de dados BLAST "'.$bo->title().'" ';
 	$c->stash->{format_links} = [
-            ( $seq->length > 500_000 ? () : [ 'View as FASTA' => $view_link ] ),
-            [ 'Download as FASTA' => $download_link ],
+            ( $seq->length > 500_000 ? () : [ 'Ver como FASTA' => $view_link ] ),
+            [ 'Baixar como FASTA' => $download_link ],
 	    ];
         $c->stash->{blast_url} = '/tools/blast';
 

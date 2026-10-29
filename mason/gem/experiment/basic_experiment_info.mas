@@ -196,15 +196,15 @@ if (defined $experiment->get_experiment_id()) {
    $basic_info_content = <<HTML;
 
    <table width="100%">
-   	   <tr> <td width="25%"> <b>Experiment name:</b>           </td> <td> $experiment_name </td></tr>
-           <tr> <td width="25%"> <b>Description:</b>               </td> <td> $description </td></tr>
-	   <tr>	<td width="25%"> <b>Colours:</b>                   </td> <td> $colour_nr </td></tr>
-           <tr>	<td width="25%"> <b>Replicates:</b>                </td> <td> $replicates_nr </td></tr>
-	   <tr> <td width="25%"> <b>Experiment external links:</b> </td> <td> $exp_dbxref_html_list </td></tr>
-	   <tr> <td width="25%"> <b>Experimental design:</b>       </td> <td> $expdesign_html </td></tr>
-	   <tr> <td width="25%"> <b>Targets:</b>                   </td> <td> $target_html_list </td></tr>
-	   <tr> <td width="25%"> <b>Ontologies:</b>                </td> <td> $onto_list </td></tr>
-	   <tr> <td width="25%"> <b>Contact info:</b>              </td> <td> <b>Nome:</b> $complete_name </td></tr>
+   	   <tr> <td width="25%"> <b>Nome do experimento:</b>           </td> <td> $experiment_name </td></tr>
+           <tr> <td width="25%"> <b>Descrição:</b>               </td> <td> $description </td></tr>
+	   <tr>	<td width="25%"> <b>Cores:</b>                   </td> <td> $colour_nr </td></tr>
+           <tr>	<td width="25%"> <b>Repetições:</b>                </td> <td> $replicates_nr </td></tr>
+	   <tr> <td width="25%"> <b>Links externos do experimento:</b> </td> <td> $exp_dbxref_html_list </td></tr>
+	   <tr> <td width="25%"> <b>Delineamento experimental:</b>       </td> <td> $expdesign_html </td></tr>
+	   <tr> <td width="25%"> <b>Alvos:</b>                   </td> <td> $target_html_list </td></tr>
+	   <tr> <td width="25%"> <b>Ontologias:</b>                </td> <td> $onto_list </td></tr>
+	   <tr> <td width="25%"> <b>Contato:</b>              </td> <td> <b>Nome:</b> $complete_name </td></tr>
            <tr> <td width="">                                      </td> <td> <b>E-mail:</b> $contact_email </td></tr>
    </table>
 

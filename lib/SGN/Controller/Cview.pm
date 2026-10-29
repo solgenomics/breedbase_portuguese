@@ -2,6 +2,7 @@
 use Modern::Perl;
 
 package SGN::Controller::Cview;
+use utf8;
 
 use Moose;
 use namespace::autoclean;
@@ -117,7 +118,7 @@ sub map :Path("/cview/map.pl") :Args(0) {
 
     if (!$map) {
 	$c->stash->{template} = '/cview/map/missing.mas';
-	$c->stash->{title} = "The map you are trying to view does not exist!";
+	$c->stash->{title} = "O mapa que você está tentando visualizar não existe!";
 	return;
     }
 
@@ -184,7 +185,7 @@ sub map :Path("/cview/map.pl") :Args(0) {
     my @markers_not_found = $map_overview -> get_markers_not_found();
 
     if (@markers_not_found) {
-      $message .= "The following markers requested for hiliting were not found on this map (click to search on other maps):<br />";
+      $message .= "Os seguintes marcadores solicitados para destaque não foram encontrados neste mapa (clique para pesquisar em outros mapas):<br />";
       foreach my $m (@markers_not_found) {
 	$message .= "&nbsp;&nbsp;<a href=\"/search/markers/markersearch.pl?searchtype=exactly&amp;name=$m\">$m</a>";
       }
@@ -277,10 +278,10 @@ sub data_is_private {
     	   my $submitter_name = $submitter->get_first_name()." ".$submitter->get_last_name();
     	   my $submitter_link = qq |<a href="/solpeople/personal-info.pl?sp_person_id=$owner_id">$submitter_name</a> |;
        
-	   my $private = qq | <p>This genetic map is not public yet. 
-       	              If you would like to know more about this data, 
-                      please contact the owner of the data: <b>$submitter_link</b> 
-                      or email to SGN:
+	   my $private = qq | <p>Este mapa genético ainda não é público. 
+       	              Se quiser saber mais sobre estes dados, 
+                      entre em contato com o proprietário dos dados: <b>$submitter_link</b> 
+                      ou envie um e-mail ao SGN:
                       <a href=mailto:sgn-feedback\@sgn.cornell.edu>
                       sgn-feedback\@sgn.cornell.edu</a>.
                     </p> |;

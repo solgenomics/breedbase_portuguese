@@ -408,7 +408,7 @@ $locations
                             <& /page/page_title.mas, title=>"Concluído! Seu cruzamento está no banco de dados" &>
                             <p>
                                 <span class="ui-icon ui-icon-circle-check" style="float: left; margin: 0 7px 50px 0;"></span>
-                                A cruz foi adicionada com sucesso
+                                O cruzamento foi adicionado com sucesso
                             </p>
 
                             <ul>
@@ -480,7 +480,7 @@ $locations
         <div class="container-fluid">
 	    <p>
     	  <span class="ui-icon ui-icon-circle-check" style="float: left; margin: 0 7px 50px 0;"></span>
-    	  A cruz ou cruz foi salva com sucesso.
+    	  O cruzamento ou os cruzamentos foram salvos com sucesso.
   	  </p>
         </div>
       </div>

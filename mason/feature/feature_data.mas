@@ -1,26 +1,26 @@
 <%args>
     $feature
-    $title   => 'Característica'
+    $title   => 'Feição'
     $description_from => [ $feature ]
     $featurelocs
 </%args>
 
 
 <% info_table_html(
-    'Name'          => feature_link( $feature ),
-    ( $synonyms ? ( 'Synonyms / aliases' => $synonyms ) : () ),
-    'Type'          => cvterm_link( $feature->type, 'caps' ),
-    ( $length ? ( 'Length'        => $length ) : () ),
-    'Organism' => organism_link($feature->organism),
+    'Nome'          => feature_link( $feature ),
+    ( $synonyms ? ( 'Sinônimos / aliases' => $synonyms ) : () ),
+    'Tipo'          => cvterm_link( $feature->type, 'caps' ),
+    ( $length ? ( 'Comprimento'        => $length ) : () ),
+    'Organismo' => organism_link($feature->organism),
      __border => 0,
      __multicol => 4
    )
 %>
 
 <% info_table_html(
-    ( $description ? ( 'Description'   => $description || '<span class="ghosted">none</span>' ) : () ),
-    ( $featurelocs->count ? ( 'Location(s)'   => join('', map "<div>$_</div>\n", location_list( $feature, $featurelocs )) ) : () ),
-    ( $cvterms_html =~ /\S/ ? ( 'Ontology term(s)' => $cvterms_html ) : () ),
+    ( $description ? ( 'Descrição'   => $description || '<span class="ghosted">nenhuma</span>' ) : () ),
+    ( $featurelocs->count ? ( 'Localização(ões)'   => join('', map "<div>$_</div>\n", location_list( $feature, $featurelocs )) ) : () ),
+    ( $cvterms_html =~ /\S/ ? ( 'Termo(s) de ontologia' => $cvterms_html ) : () ),
      __border => 0,
 )%>
 

@@ -77,7 +77,7 @@ if (scalar(@template_row_list) > 0) {
 
     ## Use columnar table to give the html format. If don't exists any data, print message.
 
-    $template_composition_html = columnar_table_html(  headings => [ 'Template'],
+    $template_composition_html = columnar_table_html(  headings => [ 'Modelo'],
                                                        data     => \@data,
 	       		  		               __alt_freq => 2,
                                                        __align  => ['c'],

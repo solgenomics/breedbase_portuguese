@@ -1,5 +1,6 @@
 
 package SGN::Controller::AJAX::TrackingActivity;
+use utf8;
 
 use Moose;
 use CXGN::Stock::Order;
@@ -67,7 +68,7 @@ sub create_tracking_activity_project_POST : Args(0) {
     }
 
     if (!($user->has_role('submitter') or $user->has_role('curator'))) {
-        $c->stash->{rest} = { error => "You do not have sufficient privileges to create tracking activity project." };
+        $c->stash->{rest} = { error => "Você não tem privilégios suficientes para criar um projeto de atividade de rastreamento." };
         return;
     }
 
@@ -77,7 +78,7 @@ sub create_tracking_activity_project_POST : Args(0) {
     map { $has_roles{$_} = 1; } @user_roles;
 
     if (! ( (exists($has_roles{$program_name}) && exists($has_roles{submitter})) || exists($has_roles{curator}))) {
-        $c->stash->{rest} = { error => "You need to be either a curator, or a submitter associated with breeding program $program_name to add tracking project." };
+        $c->stash->{rest} = { error => "Você precisa ser curador ou um submissor associado ao programa de melhoramento $program_name para adicionar um projeto de rastreamento." };
         return;
     }
 
@@ -86,7 +87,7 @@ sub create_tracking_activity_project_POST : Args(0) {
     my $geolocation_lookup = CXGN::Location::LocationLookup->new(schema =>$schema);
     $geolocation_lookup->set_location_name($project_location);
     if(!$geolocation_lookup->get_geolocation()){
-        $c->stash->{rest}={error => "Location not found"};
+        $c->stash->{rest}={error => "Local não encontrado"};
         return;
     }
 
@@ -108,7 +109,7 @@ sub create_tracking_activity_project_POST : Args(0) {
     };
 
     if (!$return){
-        $c->stash->{rest} = {error => "Error saving project",};
+        $c->stash->{rest} = {error => "Erro ao salvar o projeto",};
         return;
     }
 
@@ -138,11 +139,11 @@ sub generate_tracking_identifiers_POST : Args(0) {
     my $program_name = $c->req->param("program_name");
 
     if (!$c->user()) {
-        $c->stash->{rest} = { error => "You must be logged in to generate tracking identifiers." };
+        $c->stash->{rest} = { error => "Você precisa estar conectado para gerar identificadores de rastreamento." };
         return;
     }
     if (!($c->user()->has_role('submitter') or $c->user()->has_role('curator'))) {
-        $c->stash->{rest} = { error => "You do not have sufficient privileges to add tracking identifiers." };
+        $c->stash->{rest} = { error => "Você não tem privilégios suficientes para adicionar identificadores de rastreamento." };
         return;
     }
 
@@ -151,7 +152,7 @@ sub generate_tracking_identifiers_POST : Args(0) {
     map { $has_roles{$_} = 1; } @user_roles;
 
     if (! ( (exists($has_roles{$program_name}) && exists($has_roles{submitter})) || exists($has_roles{curator}))) {
-        $c->stash->{rest} = { error => "You need to be either a curator, or a submitter associated with breeding program $program_name to add tracking identifiers." };
+        $c->stash->{rest} = { error => "Você precisa ser curador ou um submissor associado ao programa de melhoramento $program_name para adicionar identificadores de rastreamento." };
         return;
     }
 
@@ -164,7 +165,7 @@ sub generate_tracking_identifiers_POST : Args(0) {
     my $project_id;
     my $project_rs = $schema->resultset("Project::Project")->find( { name => $project_name });
     if (!$project_rs) {
-        $c->stash->{rest} = { error => "Error! Project name: $project_name was not found in the database.\n" };
+        $c->stash->{rest} = { error => "Erro! Nome do projeto: $project_name não foi encontrado no banco de dados.\n" };
         return;
     } else {
         $project_id = $project_rs->project_id();
@@ -193,7 +194,7 @@ sub generate_tracking_identifiers_POST : Args(0) {
         'uniquename' => { -in => \@check_identifier_names }
     });
     while (my $r=$rs->next){
-        push @error_messages, "Tracking identifier name already exists in database: ".$r->uniquename;
+        push @error_messages, "O nome do identificador de rastreamento já existe no banco de dados: ".$r->uniquename;
     }
 
     if (scalar(@error_messages) >= 1) {
@@ -216,7 +217,7 @@ sub generate_tracking_identifiers_POST : Args(0) {
 
         my $return = $tracking_obj->store();
         if (!$return) {
-            $c->stash->{rest} = {error => "Error generating tracking identifier"};
+            $c->stash->{rest} = {error => "Erro ao gerar o identificador de rastreamento"};
             return;
         } elsif ($return->{error}) {
             my $error = $return->{error};
@@ -247,11 +248,11 @@ sub activity_info_save_POST : Args(0) {
     my $tracking_transformation = $c->config->{tracking_transformation};
 
     if (!$c->user()) {
-        $c->stash->{rest} = { error => "You must be logged in to add new information." };
+        $c->stash->{rest} = { error => "Você precisa estar conectado para adicionar novas informações." };
         return;
     }
     if (!($c->user()->has_role('submitter') or $c->user()->has_role('curator'))) {
-        $c->stash->{rest} = { error => "You do not have sufficient privileges to record new information." };
+        $c->stash->{rest} = { error => "Você não tem privilégios suficientes para registrar novas informações." };
         return;
     }
 
@@ -260,14 +261,14 @@ sub activity_info_save_POST : Args(0) {
     map { $has_roles{$_} = 1; } @user_roles;
 
     if (! ( (exists($has_roles{$program_name}) && exists($has_roles{submitter})) || exists($has_roles{curator}))) {
-        $c->stash->{rest} = { error => "You need to be either a curator, or a submitter associated with breeding program $program_name to record new information." };
+        $c->stash->{rest} = { error => "Você precisa ser curador ou um submissor associado ao programa de melhoramento $program_name para registrar novas informações." };
         return;
     }
 
     my $user_id = $c->user()->get_object()->get_sp_person_id();
 
     if ($selected_type =~ m/number/ && !($input =~ /^\d+?$/) ) {
-        $c->stash->{rest} = {error => "Input is not a positive integer"};
+        $c->stash->{rest} = {error => "A entrada não é um número inteiro positivo"};
         return;
     }
 
@@ -288,14 +289,14 @@ sub activity_info_save_POST : Args(0) {
             my $new_names_info;
             my $stored_name_format = $schema->resultset('Project::Projectprop')->find({ project_id => $linked_project_id, type_id => $autogenerated_name_format_cvterm_id});
             if (!$stored_name_format) {
-                $c->stash->{rest} = {error => "Please set up prefix for autogenerated names for this transformation project before using tracking tool"};
+                $c->stash->{rest} = {error => "Configure o prefixo para nomes gerados automaticamente deste projeto de transformação antes de usar a ferramenta de rastreamento"};
                 return;
             } else {
                 my $name_format = $stored_name_format->value();
                 my $autogenerated_names = CXGN::Transformation::CreateTransformantAutogeneratedNames->new({schema => $schema, dbh => $dbh, breeding_program_id => $program_id, name_format => $name_format, number_of_names => $number_of_transformants, source_info => $source_info });
                 my $return = $autogenerated_names->create_names();
                 if (!$return){
-                    $c->stash->{rest} = {error => "Error generating transformant names"};
+                    $c->stash->{rest} = {error => "Erro ao gerar os nomes dos transformantes"};
                     return;
                 } elsif ($return->{error}) {
                     $c->stash->{rest} = {error => $return->{error}};
@@ -345,7 +346,7 @@ sub activity_info_save_POST : Args(0) {
     my $return = $add_activity_info->add_info();
 
     if (!$return){
-        $c->stash->{rest} = {error => "Error saving info",};
+        $c->stash->{rest} = {error => "Erro ao salvar as informações",};
         return;
     } else {
         $c->stash->{rest} = $return;
@@ -498,9 +499,9 @@ sub get_activity_summary :Path('/ajax/tracking_activity/summary') :Args(1) {
 
                     if (($type eq 'number_of_transformants') && ($obsoleted_transformant_count >= 1)) {
                         my @details = ();
-                        my $generated_count = 'Selected'. ":"." ".$input;
-                        my $obsoleted_count = 'Obsoleted'. ":"." ".$obsoleted_transformant_count;
-                        my $current_number = 'Current Number'. ":"." ".($input-=$obsoleted_transformant_count);
+                        my $generated_count = 'Selecionados'. ":"." ".$input;
+                        my $obsoleted_count = 'Obsoletos'. ":"." ".$obsoleted_transformant_count;
+                        my $current_number = 'Número atual'. ":"." ".($input-=$obsoleted_transformant_count);
                         push @details, ($current_number, $generated_count, $obsoleted_count);
                         my $details_string = join("<br>", @details);
                         push @summary, $details_string;
@@ -643,11 +644,11 @@ sub update_status_POST : Args(0) {
     my @stocks_to_update;
 
     if (!$c->user()){
-        $c->stash->{rest} = { error_string => "You must be logged in to update status" };
+        $c->stash->{rest} = { error_string => "Você precisa estar conectado para atualizar o status" };
         return;
     }
     if (!$c->user()->check_roles("curator")) {
-        $c->stash->{rest} = { error_string => "You do not have the correct role to update status. Please contact us." };
+        $c->stash->{rest} = { error_string => "Você não tem a função adequada para atualizar o status. Entre em contato conosco." };
         return;
     }
 
@@ -660,7 +661,7 @@ sub update_status_POST : Args(0) {
     if ($identifier_id) {
         my $identifier_rs = $schema->resultset("Stock::Stock")->find( { stock_id => $identifier_id, type_id => $tracking_identifier_type_id });
         if (!$identifier_rs) {
-            $c->stash->{rest} = { error_string => 'Error. No tracking identifier entry found in the database.' };
+            $c->stash->{rest} = { error_string => 'Erro. Nenhuma entrada de identificador de rastreamento encontrada no banco de dados.' };
     	    return;
         } else {
             push @stocks_to_update, $identifier_id;
@@ -670,7 +671,7 @@ sub update_status_POST : Args(0) {
     my $material_stock_type_id;
     my $material_rs = $schema->resultset("Stock::Stock")->find( { stock_id => $material_id });
     if (!$material_rs) {
-        $c->stash->{rest} = { error_string => 'Error. No material entry found in the database.' };
+        $c->stash->{rest} = { error_string => 'Erro. Nenhuma entrada de material encontrada no banco de dados.' };
         return;
     } else {
        $material_stock_type_id = $material_rs->type_id;
@@ -702,7 +703,7 @@ sub update_status_POST : Args(0) {
         $update_status->store();
 
         if (!$update_status->store()){
-            $c->stash->{rest} = {error_string => "Error updating status"};
+            $c->stash->{rest} = {error_string => "Erro ao atualizar o status"};
             return;
         }
     }
@@ -723,11 +724,11 @@ sub reverse_status_POST : Args(0) {
     my $program_name = $c->req->param("program_name");
 
     if (!$c->user()){
-        $c->stash->{rest} = { error_string => "You must be logged in to reverse status of this tracking identifier" };
+        $c->stash->{rest} = { error_string => "Você precisa estar conectado para reverter o status deste identificador de rastreamento" };
         return;
     }
     if (!$c->user()->check_roles("curator")) {
-        $c->stash->{rest} = { error_string => "You do not have the correct role to reverse status of this tracking identifier. Please contact us." };
+        $c->stash->{rest} = { error_string => "Você não tem a função adequada para reverter o status deste identificador de rastreamento. Entre em contato conosco." };
         return;
     }
 
@@ -747,7 +748,7 @@ sub reverse_status_POST : Args(0) {
     my $material_stock_type_id;
     my $material_rs = $schema->resultset("Stock::Stock")->find( { stock_id => $material_id });
     if (!$material_rs) {
-        $c->stash->{rest} = { error_string => 'Error. No material entry found in the database.' };
+        $c->stash->{rest} = { error_string => 'Erro. Nenhuma entrada de material encontrada no banco de dados.' };
         return;
     } else {
        $material_stock_type_id = $material_rs->type_id;

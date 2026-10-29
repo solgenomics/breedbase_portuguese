@@ -1,5 +1,6 @@
 
 package SGN::Controller::StockBarcode;
+use utf8;
 
 use Moose;
 use File::Slurp;
@@ -1052,7 +1053,7 @@ sub download_qrcode : Path('/barcode/stock/download/plot_QRcode') : Args(0) {
     my $type_id = $stock->type_id();
     if ($type_id == $accession_cvterm_id) {
       print "You are using accessions\n";
-      my $error = "used only for downloading Plot barcodes.";
+      my $error = "usado apenas para baixar códigos de barras de parcelas.";
       $c->stash->{error} = $error;
       $c->stash->{template} = '/barcode/stock_download_result.mas';
       $c->detach;

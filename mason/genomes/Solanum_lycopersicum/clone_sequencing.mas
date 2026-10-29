@@ -7,11 +7,11 @@
   $bac_publish_subdir
 </%args>
 
-<& /page/page_title.mas, title => 'Sequência de Clone Genômico de Tomate' &>
+<& /page/page_title.mas, title => 'Sequenciamento de Clones Genômicos de Tomate' &>
 
 <div class="page_introduction"> <& /genomes/Solanum_lycopersicum/project_background.mas &> </div>
 
-<&| /page/info_section.mas, title => 'BAC-by-BAC sequencing statistics', empty_message => '&nbsp;' &>
+<&| /page/info_section.mas, title => 'Estatísticas do sequenciamento BAC a BAC', empty_message => '&nbsp;' &>
   <& /genomes/Solanum_lycopersicum/bac_by_bac_progress.mas,
       dbh      => $dbh,
       basepath => $basepath,
@@ -21,7 +21,7 @@
 </&>
 
 <&| /page/info_section.mas,
-     title => 'Clone anotações preliminares',
+     title => 'Anotações preliminares dos clones',
  &>
 
 %   my $ftp_link  = qq|<a href="|.$c->get_conf('ftpsite_url'). '/'. $bac_publish_subdir.'">[FTP]</a>';
@@ -43,7 +43,7 @@
 <a name ="clones"></a>
 <&| /page/info_section.mas,
      title    => 'Sequências de clones',
-     subtitle => 'Navegue e baixe sequências de clones genômicos individuais',
+     subtitle => 'navegue e baixe sequências individuais de clones genômicos',
  &>
 
      <% clone_sequences_html( $dbh, $chrnum ) %>
@@ -183,7 +183,7 @@ EOQ
        qq|<a style="color: black" href="$details_url">$clone_seqs->{seqname}</a>|,
        $clone_seqs->{accession} ? link_identifier($clone_seqs->{accession}) : '-',
        phase_html($clone_seqs->{phase}),
-       ($gbrowse ? CGI->a({href => $gbrowse}, '[browse]' ) : '<span class="ghosted">Nenhum</span>'),
+       ($gbrowse ? CGI->a({href => $gbrowse}, '[navegar]' ) : '<span class="ghosted">Nenhum</span>'),
        $details_url ? qq(&nbsp;<a href="$details_url">[Detalhes]</a>) : '',
       ]
     }

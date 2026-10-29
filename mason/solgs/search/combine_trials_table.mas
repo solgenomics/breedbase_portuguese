@@ -55,7 +55,7 @@ Isaak Y Tecle (iyt2@cornell.edu)
   </td>
   <td>
     <div id="search_again_div" style="display:none;text-align:right">
-    <input style class="button" type="button" id="search_again" value="Procure novamente"/>
+    <input style class="button" type="button" id="search_again" value="Pesquisar novamente"/>
   </div>
  </td>
 </tr>

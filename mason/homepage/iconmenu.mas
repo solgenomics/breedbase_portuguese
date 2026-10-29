@@ -145,9 +145,9 @@ pages.
         	  <div class="submenu MapsMarkersSubMenu">
 		    <li><a href="/cview/index.pl">Mapas disponíveis</a></li>
                     <li><a href="/cview/view_chromosome.pl?show_offsets=1&show_ruler=1&show_offsets=1">Visualizador comparativo</a></li>
-                    <li><a href="/search/direct_search.pl?search=markers">Marcas de busca</a></li>
+                    <li><a href="/search/direct_search.pl?search=markers">Buscar marcadores</a></li>
 		    <li><a href="">&nbsp;</a></li>
-		    <li><a href="/cview/help/map_submission">Envie informações do mapa para a SGN</a></li>
+		    <li><a href="/cview/help/map_submission">Enviar informações de mapas para a SGN</a></li>
 		  </div>
 		</ul>
 	</li>
@@ -155,10 +155,10 @@ pages.
 	<li class="Genes"><a href="/search/direct_search.pl?search=loci" style="background: none"><img src="/img/soliconmenu/Genes.png" title="Genes" /></a>
 	  <ul>
             <div class="submenu GenesSubMenu"  >
-              <li><a href="/search/direct_search.pl?search=loci">Procure loci</a></li>
-              <li><a href="/search/direct_search.pl?search=unigene">Procure unigenes</a></li>
+              <li><a href="/search/direct_search.pl?search=loci">Buscar loci</a></li>
+              <li><a href="/search/direct_search.pl?search=unigene">Buscar unigenes</a></li>
               <li><a href="/search/direct_search.pl?search=template">Expressão</a></li>
-              <li><a href="/organism/Solanum_lycopersicum/genome">Busque o genoma do tomate</a></li>
+              <li><a href="/organism/Solanum_lycopersicum/genome">Buscar/navegar pelo genoma do tomate</a></li>
 	      <li><a href="/phenome/">Torne-se um editor de locus da SGN</a></li>              
 	      </div>
 	      
@@ -169,18 +169,18 @@ pages.
 	<li class="Phenotypes"><a href="/search/direct_search.pl?search=phenotypes" style="background: none"><img src="/img/soliconmenu/Phenotypes.png" alt="Fenótipos e QTLs" title="Fenótipos e QTLs" /></a>
 	  <ul>
 	    <div class="submenu PhenotypesSubMenu">
-              <li><a href="/search/direct_search.pl?search=phenotypes">Busque fenótipos</a></li>
+              <li><a href="/search/direct_search.pl?search=phenotypes">Buscar fenótipos</a></li>
 
-              <li><a href="/qtl/">Analise QTLs</a></li>
+              <li><a href="/qtl/">Analisar QTLs</a></li>
               <li><a href="/tools/onto/">Navegador de ontologia</a></li>
 	      <li><a href="">&nbsp;</a></li>
-	      <li><a href="/phenome/">Envie dados fenotípicos</a></li>
+	      <li><a href="/phenome/">Enviar dados fenotípicos</a></li>
             </div>
           </ul>
 
 	</li>
     
-    <li class="BreedersToolBox"><a href="/breeders/"><img src="/img/soliconmenu/BreedersToolBox.png" alt="Caixa de Ferramentas dos Criadores" title="Clique para acessar a caixa de ferramentas do Melhorista" /></a>
+    <li class="BreedersToolBox"><a href="/breeders/"><img src="/img/soliconmenu/BreedersToolBox.png" alt="Caixa de Ferramentas do Melhorista" title="Clique para acessar a Caixa de Ferramentas do Melhorista" /></a>
     	<!--
 		<ul>
             <div class="submenu BreedersToolBoxSubMenu">
@@ -195,18 +195,18 @@ pages.
   <li class="GenomesSequences"><a href="/genomes"><img src="/img/soliconmenu/GenomesSequences.png" alt="Genomas e sequências" title="Genomas e sequências" /></a>
     <ul>
       <div class="submenu GenomesSequencesSubMenu">
-        <li><a href="/organism/Solanum_lycopersicum/genome">Tomato Genome Project</a></li>
+        <li><a href="/organism/Solanum_lycopersicum/genome">Projeto Genoma do Tomate</a></li>
         <!-- <li><a href="/organism/Solanum_lycopersicum/genome">Search/browse tomato genome</a></li> -->
-        <li><a href="/organism/Solanum_pimpinellifolium/genome"><i>Solanum pimpinellifolium</i> Genoma</a></li>
-        <li><a href="/organism/Nicotiana_benthamiana/genome"><i>Nicotiana benthamiana</i> Genoma</a></li>
+        <li><a href="/organism/Solanum_pimpinellifolium/genome">Genoma de <i>Solanum pimpinellifolium</i></a></li>
+        <li><a href="/organism/Nicotiana_benthamiana/genome">Genoma de <i>Nicotiana benthamiana</i></a></li>
         
         <li><a href=""></a>&nbsp;<li>
-        <li><a href="/sequencing/sol100.pl">Gêmeos SOL100</a></li>
+        <li><a href="/sequencing/sol100.pl">Genomas do SOL100</a></li>
       </div>
     </ul>
   </li>
     
-    <li class="Pathways"><a href="http://solcyc.solgenomics.net/"><img src="/img/soliconmenu/Pathways.png" alt="Caminhos" title="Clique para acessar SolCyc" /></a>
+    <li class="Pathways"><a href="http://solcyc.solgenomics.net/"><img src="/img/soliconmenu/Pathways.png" alt="Vias metabólicas" title="Clique para acessar o SolCyc" /></a>
     	<!--
 		<ul>
             <div class="submenu PathwaysSubMenu">

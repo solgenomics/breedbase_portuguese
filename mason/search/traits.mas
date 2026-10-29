@@ -65,8 +65,8 @@
                       <tr>
                         <th>Selecionar</th>
                         <th>Copiando nome!</th>
-                        <th>ID do Trait</th>
-                        <th>Nome do Trait</th>
+                        <th>ID da característica</th>
+                        <th>Nome da característica</th>
                         <th>Sinónimo</th>
                         <th>Definição</th>
                         <th>Uso de Características</th>
@@ -97,7 +97,7 @@
 
 <& /breeders_toolbox/add_new_trait_dialogs.mas &>
 
-    <&| /page/info_section.mas, title => 'Socorro!', collapsible=>1, collapsed=>0 &>
+    <&| /page/info_section.mas, title => 'Ajuda', collapsible=>1, collapsed=>0 &>
         <div class="well well-sm">
             <div class="panel panel-default">
                 <div class="panel-body">

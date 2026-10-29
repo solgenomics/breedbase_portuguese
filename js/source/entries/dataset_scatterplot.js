@@ -532,7 +532,7 @@ export function init(datasetId, datasetName, baseWidth) {
 
                 var mousemove = function (d) {
                     tooltip
-                        .html("id: " + LocalThis.phenoIds[d] + "<br>" + "Val: " + LocalThis.traitVals[d])
+                        .html("id: " + LocalThis.phenoIds[d] + "<br>" + "Valor: " + LocalThis.traitVals[d])
                         .style("left", (d3.mouse(this)[0] + 50) + "px")
                         .style("top", (d3.mouse(this)[1] + 40) + "px")
                 }
@@ -673,7 +673,7 @@ export function init(datasetId, datasetName, baseWidth) {
 
 
                 legend.append("text")
-                    .text(metricString + ": " + (LocalThis.metricValue == "Iqr" ? "(" + metric[0].toFixed(1) + ", " + metric[1].toFixed(1) + ")" : metric.toFixed(2)))
+                    .text(metricString + ": " + (LocalThis.metricValue == "iqr" ? "(" + metric[0].toFixed(1) + ", " + metric[1].toFixed(1) + ")" : metric.toFixed(2)))
                     .attr('x', legendSize.posX + 20 - dotSize / 2)
                     .attr('y', legendSize.posY + 85);
 

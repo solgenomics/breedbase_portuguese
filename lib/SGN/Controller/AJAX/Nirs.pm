@@ -1,6 +1,7 @@
 use strict;
 
 package SGN::Controller::AJAX::Nirs;
+use utf8;
 
 use Moose;
 use Data::Dumper;
@@ -76,7 +77,7 @@ sub generate_spectral_plot_POST : Args(0) {
     # print STDERR Dumper \@training_data_input;
 
     if (scalar(@training_data_input) < 5) {
-        $c->stash->{rest} = { error => "Not enough data! Need atleast 5 samples with a phenotype and spectra! Maybe choose a different device type?"};
+        $c->stash->{rest} = { error => "Dados insuficientes! São necessárias pelo menos 5 amostras com fenótipo e espectros! Talvez escolher um tipo de dispositivo diferente?"};
         $c->detach();
     }
 
@@ -217,7 +218,7 @@ sub generate_results_POST : Args(0) {
         }
 
         if (scalar(keys %testing_pheno_data) == 0 ) {
-            $c->stash->{rest} = { error => "Not enough data! Are you sure phenotypes were uploaded for the trait in your testing dataset?"};
+            $c->stash->{rest} = { error => "Dados insuficientes! Tem certeza de que os fenótipos foram enviados para a característica no seu conjunto de dados de teste?"};
             $c->detach();
         }
     }
@@ -243,7 +244,7 @@ sub generate_results_POST : Args(0) {
     # print STDERR Dumper \%testing_pheno_data;
 
     if (scalar(keys %training_pheno_data) == 0 ) {
-        $c->stash->{rest} = { error => "Not enough data! Are you sure phenotypes were uploaded for the trait in your training dataset?"};
+        $c->stash->{rest} = { error => "Dados insuficientes! Tem certeza de que os fenótipos foram enviados para a característica no seu conjunto de dados de treinamento?"};
         $c->detach();
     }
 
@@ -305,7 +306,7 @@ sub generate_results_POST : Args(0) {
     # print STDERR Dumper \@training_data_input;
 
     if (scalar(@training_data_input) < 10) {
-        $c->stash->{rest} = { error => "Not enough data! Need atleast 10 samples with a phenotype and spectra! Maybe choose a different device type?"};
+        $c->stash->{rest} = { error => "Dados insuficientes! São necessárias pelo menos 10 amostras com fenótipo e espectros! Talvez escolher um tipo de dispositivo diferente?"};
         $c->detach();
     }
 
@@ -568,7 +569,7 @@ sub generate_predictions_POST : Args(0) {
     my @field_trial_ids_seen = sort keys %seen_field_trial_ids;
 
     if (scalar(@training_data_input) == 0) {
-        $c->stash->{rest} = { error => "There is no NIRs using $format_id and phenotype data for $trait_name through the dataset selected!" };
+        $c->stash->{rest} = { error => "Não há dados NIRS usando $format_id e dados fenotípicos para $trait_name no conjunto de dados selecionado!" };
         $c->detach();
     }
 
@@ -699,7 +700,7 @@ sub _check_user_login_nirs {
         my $dbh = $c->dbc->dbh;
         my @user_info = CXGN::Login->new($dbh)->query_from_cookie($session_id);
         if (!$user_info[0]){
-            return {error=>'You must be logged in to do this!'};
+            return {error=>'Você precisa estar conectado para fazer isso!'};
         }
         $user_id = $user_info[0];
         $user_role = $user_info[1];
@@ -707,7 +708,7 @@ sub _check_user_login_nirs {
         $user_name = $p->get_username;
     } else{
         if (!$c->user){
-            return {error=>'You must be logged in to do this!'};
+            return {error=>'Você precisa estar conectado para fazer isso!'};
         }
         $user_id = $c->user()->get_object()->get_sp_person_id();
         $user_name = $c->user()->get_object()->get_username();
@@ -717,17 +718,17 @@ sub _check_user_login_nirs {
     if ($check_priv) {
         if ($user_role eq 'user') {
             if ($check_priv ne 'user') {
-                return {error=>'You must be logged in and have privileges to do this!'};
+                return {error=>'Você precisa estar conectado e ter permissão para fazer isso!'};
             }
         }
         elsif ($user_role eq 'submitter') {
             if ($check_priv ne 'user' && $check_priv ne 'submitter') {
-                return {error=>'You must be logged in and have privileges to do this!'};
+                return {error=>'Você precisa estar conectado e ter permissão para fazer isso!'};
             }
         }
         elsif ($user_role eq 'sequencer') {
             if ($check_priv ne 'user' && $check_priv ne 'submitter' && $check_priv ne 'sequencer') {
-                return {error=>'You must be logged in and have privileges to do this!'};
+                return {error=>'Você precisa estar conectado e ter permissão para fazer isso!'};
             }
         }
         elsif ($user_role eq 'curator') {

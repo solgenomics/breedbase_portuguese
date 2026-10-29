@@ -1,4 +1,5 @@
 package SGN::Controller::solGS::solGS;
+use utf8;
 
 use Moose;
 use namespace::autoclean;
@@ -58,7 +59,7 @@ sub population : Path('/solgs/population') Args() {
 
     if ( !$training_pop_id ) {
         $c->stash->{message} =
-          "You can not access this page with out population id.";
+          "Você não pode acessar esta página sem o ID da população.";
         $c->stash->{template} = "/generic_message.mas";
     }
 
@@ -79,9 +80,9 @@ sub population : Path('/solgs/population') Args() {
 
     if ( !$cached ) {
         $c->stash->{message} =
-"Cached output for this training population  does not exist anymore.\n"
-          . "Please go to <a href=\"/solgs/search/\">the search page</a>"
-          . " and create the training population data.";
+"Os resultados em cache para esta população de treinamento não existem mais.\n"
+          . "Acesse <a href=\"/solgs/search/\">a página de pesquisa</a>"
+          . " e crie os dados da população de treinamento.";
 
         $c->stash->{template} = "/generic_message.mas";
     }
@@ -281,10 +282,10 @@ sub selection_trait : Path('/solgs/selection/') Args() {
 
     if ( !-s $gebvs_file ) {
         $model_page = $c->controller('solGS::Path')
-          ->create_hyperlink( $model_page, 'training model page' );
+          ->create_hyperlink( $model_page, 'página do modelo de treinamento' );
 
-        $c->stash->{message} = "No cached output was found for this trait.\n"
-          . " Please go to the $model_page and run the prediction.";
+        $c->stash->{message} = "Nenhum resultado em cache foi encontrado para esta característica.\n"
+          . " Acesse a $model_page e execute a predição.";
 
         $c->stash->{template} = "/generic_message.mas";
     }
@@ -413,7 +414,7 @@ sub trait : Path('/solgs/trait') Args(5) {
 
     if ( !$training_pop_id || !$trait_id ) {
         $c->stash->{message} =
-          "You can not access this page with out population id or trait id.";
+          "Você não pode acessar esta página sem o ID da população ou o ID da característica.";
         $c->stash->{template} = "/generic_message.mas";
     }
 
@@ -453,8 +454,8 @@ sub trait : Path('/solgs/trait') Args(5) {
 
     if ( !$cached ) {
         $c->stash->{message} =
-            "Cached output for this model does not exist anymore.\n"
-          . " Please go to $training_pop_page and run the analysis.";
+            "Os resultados em cache para este modelo não existem mais.\n"
+          . " Acesse $training_pop_page e execute a análise.";
 
         $c->stash->{template} = "/generic_message.mas";
     }
@@ -1048,8 +1049,8 @@ sub all_traits_output : Path('/solgs/traits/all/population') Args() {
 
     if ( !@traits_ids ) {
         $c->stash->{message} =
-            "Cached output for this page does not exist anymore.\n"
-          . " Please go to $training_pop_page and run the analysis.";
+            "Os resultados em cache para esta página não existem mais.\n"
+          . " Acesse $training_pop_page e execute a análise.";
 
         $c->stash->{template} = "/generic_message.mas";
     }

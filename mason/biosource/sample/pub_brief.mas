@@ -25,7 +25,7 @@ arrayref of BCS publication rows to render
  &>
 % if( @pub_objects ) {
   <% columnar_table_html(
-       headings => [ 'Year', 'Title', 'Series' ],
+       headings => [ 'Ano', 'Título', 'Série' ],
        __align    => 'lll',
        __alt_freq => 2,
        data => [ map {

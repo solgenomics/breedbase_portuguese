@@ -1,4 +1,5 @@
 package CXGN::ODK::Crosses;
+use utf8;
 
 =head1 NAME
 
@@ -896,10 +897,10 @@ sub save_ona_cross_info {
             user_id => $self->sp_person_id
         });
         if (!$cross_add->validate_crosses()){
-            return {error => 'Error validating crosses'};
+            return {error => 'Erro ao validar os cruzamentos'};
         }
         if (!$cross_add->add_crosses()){
-            return {error => 'Error saving crosses'};
+            return {error => 'Erro ao salvar os cruzamentos'};
         }
 
 #        print STDERR "FIELD CROSS INFO =".Dumper(\%musa_cross_info)."\n";
@@ -995,7 +996,7 @@ sub save_ona_cross_info {
                 owner_name => $self->sp_person_username,
             });
             if (!$progeny_add->add_progeny()){
-                return {error => 'Error saving progenies'};
+                return {error => 'Erro ao salvar as progênies'};
             }
         }
 
@@ -1014,7 +1015,7 @@ sub save_ona_cross_info {
 
     } else {
         #print STDERR Dumper $resp;
-        return { error => "Could not connect to ONA" };
+        return { error => "Não foi possível conectar ao ONA" };
     }
 }
 

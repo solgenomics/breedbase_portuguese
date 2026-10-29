@@ -45,12 +45,12 @@ $pop_id = $trial_id if $trial_id;
 <&| /page/info_section.mas, 
       collapsible => 1, 
       collapsed   => 0, 
-      title       => "Ferramenta de Controle de Qualidade (st4gi)"
+      title       => "Ferramenta de controle de qualidade (st4gi)"
 &>
 
 
 <div id="qualityControl_canvas">
-  <input id="run_pheno_qualityControl" class="button" type="button" value="Corra, QC" /> 
+  <input id="run_pheno_qualityControl" class="button" type="button" value="Executar CQ" /> 
   <input type="hidden" id="population_id" value="<% $pop_id %>" />
   <div id="qualityControl_message"  style="font-weight:bold;text-align:center;color:#A7C942"></div>
 </div>

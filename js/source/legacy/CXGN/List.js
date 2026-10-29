@@ -725,7 +725,7 @@ CXGN.List.prototype = {
             var list_item_id = jQuery(this).data('listitemid');
             var list_item_name = jQuery(this).data('listitemname');
             var list_item_div = jQuery(this).data('listitemdiv');
-            var list_item_edit_html = '<div class="input-group"><input type="text" class="form-control" value="'+list_item_name+'" placeholder="'+list_item_name+'" id="list_item_edit_input_'+list_item_id+'" data-listitemid="'+list_item_id+'" /><span class="input-group-btn"><button class="btn btn-default" type="button" name="list_item_edit_submit" data-inputid="list_item_edit_input_'+list_item_id+"\">Certo</button></span></div>";
+            var list_item_edit_html = '<div class="input-group"><input type="text" class="form-control" value="'+list_item_name+'" placeholder="'+list_item_name+'" id="list_item_edit_input_'+list_item_id+'" data-listitemid="'+list_item_id+'" /><span class="input-group-btn"><button class="btn btn-default" type="button" name="list_item_edit_submit" data-inputid="list_item_edit_input_'+list_item_id+"\">OK</button></span></div>";
             jQuery("#"+list_item_div).empty().html(list_item_edit_html);
         });
 
@@ -909,7 +909,7 @@ CXGN.List.prototype = {
         if (empty_element) {
             html += '<option value="" >'+empty_element+'</option>\n';
         }
-        html += "<option disabled>------suas escutas Abaixo-------</option>";
+        html += "<option disabled>--------SUAS LISTAS ABAIXO--------</option>";
         for (var n=0; n<lists.length; n++) {
             html += '<option value='+lists[n][0]+'>'+lists[n][1]+'</option>';
         }
@@ -1036,7 +1036,7 @@ CXGN.List.prototype = {
                     }
 		}
 	    },
-        error: function(e) { alert('Ocorreu um erro ao validar a lista '+list_id+" (tipo=)"+type+')'); }
+        error: function(e) { alert('Ocorreu um erro ao validar a lista '+list_id+" (tipo="+type+')'); }
 	});
 	return valid;
     },
@@ -1071,7 +1071,7 @@ CXGN.List.prototype = {
                 var count = list.addBulk(newListID, names);
                 if (!count) throw "Nenhum item foi adicionado à lista ou houve uma falha na adição.";
                 jQuery('#working_modal').modal('hide');
-                alert("Lista \""+form["Nome"]+"\" criada com "+count+" Itens.");
+                alert("Lista \""+form["name"]+"\" criada com "+count+" itens.");
                 self.renderLists('list_dialog');
             }
             catch(err) {
@@ -1137,7 +1137,7 @@ CXGN.List.prototype = {
                             var count = list.addBulk(newListID,response.list);
                             if (!count) throw "Nenhum item foi adicionado à lista ou houve uma falha na adição.";
                             jQuery('#working_modal').modal('hide');
-                            alert("Lista \""+form["Nome"]+"\" criada com "+count+" Itens.");
+                            alert("Lista \""+form["name"]+"\" criada com "+count+" itens.");
                             self.renderLists('list_dialog');
                         }
                         catch(err) {
@@ -1149,11 +1149,11 @@ CXGN.List.prototype = {
                         }
                     });
                 } else {
-                    alert("Ocorreu um erro ao substituir sinônimos na lista de ID: "+list_id);
+                    alert("Ocorreu um erro ao substituir sinônimos na lista com ID: "+list_id);
                 }
             },
             error: function(response) {
-                alert("Ocorreu um erro ao substituir sinônimos na lista de ID: "+list_id);
+                alert("Ocorreu um erro ao substituir sinônimos na lista com ID: "+list_id);
                 jQuery('#working_modal').modal('hide');
                 error=1;
             }
@@ -1193,7 +1193,7 @@ CXGN.List.prototype = {
                     }
                     html += "</tbody></table>";
                     html += "<h2>"+list_type_name+" que não foram encontrados no banco de dados e não possuem correspondência</h2>";
-                    html += "<table class='table table-hover table-bordered' ><thead><tr><th>Not Encontrado no banco de dados</th></tr></thead><tbody>";
+                    html += "<table class='table table-hover table-bordered' ><thead><tr><th>Não encontrado no banco de dados</th></tr></thead><tbody>";
                     for(var i=0; i<response.absent.length; i++){
                         html += "<tr><td>"+response.absent[i]+"</td></tr>";
                     }

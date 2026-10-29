@@ -22,7 +22,7 @@ Isaak Y Tecle (iyt2@cornell.edu)
            onkeyup="Qtl.getTaxons(this.value)">
     <input type="button"
            id="associate_taxon_button"
-           value="organismo associado"
+           value="Associar organismo"
            disabled="true"	  
            onclick="Qtl.associateTaxon();this.disabled=false;">
     <select id="taxon_select"

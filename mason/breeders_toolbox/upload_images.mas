@@ -105,12 +105,12 @@
                     <thead></thead>
                     <tbody>
                         <tr>
-                            <td>observaçãoUnitName</td>
-                            <td>observação VariávelName</td>
-                            <td>valor</td>
-                            <td>Timetamp</td>
+                            <td>observationUnitName</td>
+                            <td>observationVariableName</td>
+                            <td>value</td>
+                            <td>timestamp</td>
                             <td>image_name</td>
-                            <td>Pessoa</td>
+                            <td>person</td>
                         </tr>
                     </tbody>
                 </table>

@@ -1,6 +1,7 @@
 use strict;
 
 package SGN::Controller::AJAX::GCPC;
+use utf8;
 
 use Moose;
 use Data::Dumper;
@@ -128,7 +129,7 @@ sub factors :Path('/ajax/gcpc/factors') Args(0) {
 	}
 
     }
-    unshift @factor_select, "<b style=\"font-size:15px\">Select fixed and random factors to be included in the model</b></br>";
+    unshift @factor_select, "<b style=\"font-size:15px\">Selecione os fatores fixos e aleatórios a serem incluídos no modelo</b></br>";
     push @factor_select, "<h4 style=\"padding-left: 10px\">germplasmName</h4> \&emsp\;
                           <input type = radio name=\"random\" value=\"random\" checked> random </input> \&emsp\;";
 
@@ -165,7 +166,7 @@ sub extract_trait_data :Path('/ajax/gcpc/getdata') Args(0) {
 
     my $F;
     if (! open($F, "<", $temppath)) {
-	$c->stash->{rest} = { error => "Can't find data." };
+	$c->stash->{rest} = { error => "Não foi possível encontrar os dados." };
 	return;
     }
 
@@ -348,12 +349,12 @@ sub generate_results: Path('/ajax/gcpc/generate_results') : {
     }
 
     if (scalar(@missing_traits) == scalar(@si_r_traits)) {
-	$c->stash->{rest} = { error => "None of the traits in the selection index are present in the dataset. Please choose another selection index." };
+	$c->stash->{rest} = { error => "Nenhuma das características do índice de seleção está presente no conjunto de dados. Escolha outro índice de seleção." };
 	return ;
     }
 
     if (scalar(@missing_traits) < scalar(@si_r_traits)) {
-	$c->stash->{rest} = { message => "Some of the traits in the selection index are not in the dataset (".join(",", @missing_traits)."). Their weights will be ignored." };
+	$c->stash->{rest} = { message => "Algumas das características do índice de seleção não estão no conjunto de dados (".join(",", @missing_traits)."). Seus pesos serão ignorados." };
     }
 
     my $genotyping_protocols = $ds->retrieve_genotyping_protocols();
@@ -461,7 +462,7 @@ sub generate_results: Path('/ajax/gcpc/generate_results') : {
     my $basename;
     my $imagename;
     eval {
-        open(my $F, "<", $pheno_filepath.".clean.out") || die "Can't open result file $pheno_filepath".".clean.out";
+        open(my $F, "<", $pheno_filepath.".clean.out") || die "Não foi possível abrir o arquivo de resultados $pheno_filepath".".clean.out";
         my $header = <$F>;
         my @h = split(',', $header);
         foreach my $item (@h) {
@@ -506,7 +507,7 @@ sub generate_results: Path('/ajax/gcpc/generate_results') : {
     
     my $download_url = '/documents/tempfiles/gcpc_files/'.$basename;
     my $histogram_image = '/documents/tempfiles/gcpc_files/'.$imagename;
-    my $download_link = "<a href=\"$download_url\" download>Download Results</a>";
+    my $download_link = "<a href=\"$download_url\" download>Baixar resultados</a>";
 
     $c->stash->{rest} = {
 	data => \@data,

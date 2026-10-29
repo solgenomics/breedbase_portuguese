@@ -1,4 +1,5 @@
 package CXGN::Onto;
+use utf8;
 
 use Moose;
 use Moose::Util::TypeConstraints;
@@ -158,7 +159,7 @@ sub store_composed_term {
         my @component_ids = split ',', $ids;
 
         if (scalar(@component_ids)<2){
-            die "Should not save postcomposed term with less than 2 components\n";
+            die "Não é possível salvar um termo pós-composto com menos de 2 componentes\n";
         }
 
         my $existing_trait_id = SGN::Model::Cvterm->get_trait_from_exact_components($schema, \@component_ids);
@@ -289,14 +290,14 @@ sub store_ontology_identifier {
     my $cv_check = $schema->resultset("Cv::Cv")->find({name=>$ontology_name});
     if ($cv_check) {
         return {
-            error => "The ontology name $ontology_name has already been used!"
+            error => "O nome de ontologia $ontology_name já foi usado!"
         };
     }
 
     my $db_check = $schema->resultset("General::Db")->find({name=>$ontology_name});
     if ($db_check) {
         return {
-            error => "The ontology identifier $ontology_identifier has already been used!"
+            error => "O identificador de ontologia $ontology_identifier já foi usado!"
         };
     }
 
@@ -378,7 +379,7 @@ sub store_observation_variable_trait_method_scale {
         name => $new_observation_variable_name,
     });
     if ($new_observation_variable_cvterm_check->count() > 0) {
-        return { error => "The observation variable $new_observation_variable_name already exists in the database!" };
+        return { error => "A variável de observação $new_observation_variable_name já existe no banco de dados!" };
     }
 
     if (!$selected_trait_cvterm_id) {
@@ -386,7 +387,7 @@ sub store_observation_variable_trait_method_scale {
             name => $new_trait_name,
         });
         if ($new_trait_cvterm_check->count() > 0) {
-            return { error => "The trait $new_trait_name already exists in the database!" };
+            return { error => "A característica $new_trait_name já existe no banco de dados!" };
         }
     }
 
@@ -395,7 +396,7 @@ sub store_observation_variable_trait_method_scale {
             name => $new_method_name,
         });
         if ($new_method_cvterm_check->count() > 0) {
-            return { error => "The method $new_method_name already exists in the database!" };
+            return { error => "O método $new_method_name já existe no banco de dados!" };
         }
     }
 
@@ -404,7 +405,7 @@ sub store_observation_variable_trait_method_scale {
             name => $new_scale_name,
         });
         if ($new_scale_cvterm_check->count() > 0) {
-            return { error => "The scale $new_scale_name already exists in the database!" };
+            return { error => "A escala $new_scale_name já existe no banco de dados!" };
         }
     }
 

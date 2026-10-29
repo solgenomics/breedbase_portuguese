@@ -1,5 +1,6 @@
 
 package CXGN::Trial::FieldMap;
+use utf8;
 
 use CXGN::Chado::Cvterm;
 use Moose;
@@ -306,12 +307,12 @@ sub update_fieldmap_precheck {
     #print STDERR Dumper($triat_name);
 
     if (scalar(@{$triat_name}) != 0)  {
-        $error = "One or more traits have been assayed for this trial; Map/Layout can not be modified. Please contact us.";
+        $error = "Uma ou mais características já foram avaliadas neste ensaio; o mapa/layout não pode ser modificado. Entre em contato conosco.";
         return $error;
     }
     my $seedlots = $trial->get_seedlots();
     if (scalar(@$seedlots) != 0){
-        $error = "Seedlots have already been saved as the source material for the plots in this trial. Map/Layout can not be modified. Please contact us.";
+        $error = "Lotes de sementes já foram salvos como material de origem das parcelas deste ensaio. O mapa/layout não pode ser modificado. Entre em contato conosco.";
     }
     return $error;
 }
@@ -338,7 +339,7 @@ sub substitute_accession_precheck {
     }
 
     if (scalar(@plots) != 0)  {
-        $error = "Accessions used as control/check can't be substituted between plots...";
+        $error = "Acessos usados como controle/testemunha não podem ser substituídos entre parcelas...";
     }
     return $error;
 }
@@ -401,9 +402,9 @@ sub replace_plot_accession_fieldMap {
         });
     }
     elsif ($stockprop_rs->count > 1) {
-        $error = "There should only be one accession linked to the plot via plot_of\n";
+        $error = "Deve haver apenas um acesso vinculado à parcela via plot_of\n";
     } else {
-        $error = "Plot entry does not exist in database.\n";
+        $error = "A entrada da parcela não existe no banco de dados.\n";
     }
 
     my $plot = CXGN::Stock->new({
@@ -426,7 +427,7 @@ sub replace_plot_accession_fieldMap {
                     object_id => $new_accession_id
                 });
             } else {
-                $error = "Strange: plant with id $stock_id has either no accession or multiple accessions.\n";
+                $error = "Estranho: a planta com id $stock_id não tem acesso ou tem vários acessos.\n";
             }
         }
         if ($child->{type} eq "subplot") {
@@ -448,7 +449,7 @@ sub replace_plot_accession_fieldMap {
                     object_id => $new_accession_id
                 });
             } else {    
-                $error = "Strange: tissue sample with id $stock_id has either no accession or multiple accessions.\n";
+                $error = "Estranho: a amostra de tecido com id $stock_id não tem acesso ou tem vários acessos.\n";
             }
         }
     }
@@ -470,7 +471,7 @@ sub replace_plot_name_fieldMap {
     my $new_plot_name_validator = CXGN::List::Validate->new();
     my $valid_new_plot_name = @{$new_plot_name_validator->validate($schema,'plots',[$new_plot_name])->{'missing'}};
     if (!$valid_new_plot_name) {
-        $error .= "Plot name $new_plot_name already exists in the database";
+        $error .= "O nome de parcela $new_plot_name já existe no banco de dados";
     } else {
         my $plot_type_id = SGN::Model::Cvterm->get_cvterm_row($schema, 'plot', 'stock_type')->cvterm_id();
         my $stock_rs = $schema->resultset("Stock::Stock")->search(

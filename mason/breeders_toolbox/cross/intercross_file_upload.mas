@@ -116,16 +116,16 @@ $trial_name
                     <table class="table table-bordered table-hover">
                         <tbody>
                             <tr>
-                                <td>crossDld</td>
-                                <td>MulherObsUnitDbld</td>
-                                <td>MaleObsUnitDbld</td>
-                                <td>Timetamp</td>
-                                <td>Pessoa</td>
-                                <td>experimento</td>
-                                <td>tipo</td>
-                                <td>Frutos</td>
-                                <td>Flores</td>
-                                <td>Sementes</td>
+                                <td>crossDbId</td>
+                                <td>femaleObsUnitDbId</td>
+                                <td>maleObsUnitDbId</td>
+                                <td>timestamp</td>
+                                <td>person</td>
+                                <td>experiment</td>
+                                <td>type</td>
+                                <td>fruits</td>
+                                <td>flowers</td>
+                                <td>seeds</td>
                             </tr>
                         </tbody>
                     </table>

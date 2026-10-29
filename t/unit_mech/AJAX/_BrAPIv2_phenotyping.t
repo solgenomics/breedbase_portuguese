@@ -1,5 +1,6 @@
 
 use strict;
+use utf8;
 use warnings;
 
 
@@ -681,7 +682,7 @@ for my $extension ("xls", "xlsx") {
     my $message_hash = decode_json $message;
     print STDERR Dumper $message_hash;
     ok($message_hash->{figure});
-    is_deeply($message_hash->{success}, [ 'File nirs_data_upload saved in archive.', 'File valid: nirs_data_upload.', 'File data successfully parsed.', 'Aggregated file data successfully parsed.', 'Aggregated file data verified. Plot names and trait names are valid.' ]);
+    is_deeply($message_hash->{success}, [ 'Arquivo nirs_data_upload salvo no arquivo permanente.', 'Arquivo válido: nirs_data_upload.', 'Dados do arquivo processados com sucesso.', 'Dados do arquivo agregado processados com sucesso.', 'Dados do arquivo agregado verificados. Os nomes das parcelas e das características são válidos.' ]);
 
     my $ua = LWP::UserAgent->new;
     $response = $ua->post(

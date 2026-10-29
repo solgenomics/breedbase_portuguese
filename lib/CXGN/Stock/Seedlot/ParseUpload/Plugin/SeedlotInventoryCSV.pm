@@ -1,5 +1,6 @@
 package CXGN::Stock::Seedlot::ParseUpload::Plugin::SeedlotInventoryCSV;
 
+use utf8;
 use Moose::Role;
 use JSON;
 use Data::Dumper;
@@ -25,7 +26,7 @@ sub _validate_with_plugin {
         or die "Could not open file '$filename' $!";
 
     if (!$fh) {
-        push @error_messages, "Could not read file. Make sure it is a valid CSV file.";
+        push @error_messages, "Não foi possível ler o arquivo. Verifique se é um arquivo CSV válido.";
         $errors{'error_messages'} = \@error_messages;
         $self->_set_parse_errors(\%errors);
         return;
@@ -36,7 +37,7 @@ sub _validate_with_plugin {
     if ($csv->parse($header_row)) {
         @columns = $csv->fields();
     } else {
-        push @error_messages, "Could not parse header row. Make sure it is a valid CSV file.";
+        push @error_messages, "Não foi possível processar a linha de cabeçalho. Verifique se é um arquivo CSV válido.";
         $errors{'error_messages'} = \@error_messages;
         $self->_set_parse_errors(\%errors);
         return;
@@ -44,7 +45,7 @@ sub _validate_with_plugin {
 
     my $num_cols = scalar(@columns);
     if ($num_cols != 5){
-        push @error_messages, 'Header row must contain: "box_id","seed_id","inventory_date","inventory_person","weight_gram"';
+        push @error_messages, 'A linha de cabeçalho deve conter: "box_id","seed_id","inventory_date","inventory_person","weight_gram"';
         $errors{'error_messages'} = \@error_messages;
         $self->_set_parse_errors(\%errors);
         return;
@@ -71,7 +72,7 @@ sub _validate_with_plugin {
         $inventory_date_head ne "inventory_date" ||
         $inventory_person_head ne "inventory_person" ||
         $weight_gram_head ne "weight_gram" ) {
-            push @error_messages, 'File contents incorrect. Header row must contain: "box_id","seed_id","inventory_date","inventory_person","weight_gram"';
+            push @error_messages, 'Conteúdo do arquivo incorreto. A linha de cabeçalho deve conter: "box_id","seed_id","inventory_date","inventory_person","weight_gram"';
             $errors{'error_messages'} = \@error_messages;
             $self->_set_parse_errors(\%errors);
             return;
@@ -83,36 +84,36 @@ sub _validate_with_plugin {
         if ($csv->parse($row)) {
             @columns = $csv->fields();
         } else {
-            push @error_messages, "Could not parse row $row.";
+            push @error_messages, "Não foi possível processar a linha $row.";
             $errors{'error_messages'} = \@error_messages;
             $self->_set_parse_errors(\%errors);
             return;
         }
 
         if (scalar(@columns) != $num_cols){
-            push @error_messages, 'All lines must have same number of columns as header! Error on row: '.$row;
+            push @error_messages, 'Todas as linhas devem ter o mesmo número de colunas que o cabeçalho! Erro na linha: '.$row;
             $errors{'error_messages'} = \@error_messages;
             $self->_set_parse_errors(\%errors);
             return;
         }
 
         if (!$columns[0] || $columns[0] eq ''){
-            push @error_messages, 'The first column must contain a box_id on row: '.$row;
+            push @error_messages, 'A primeira coluna deve conter um box_id na linha: '.$row;
         }
         if (!$columns[1] || $columns[1] eq ''){
-            push @error_messages, 'The second column must contain a seed_id on row: '.$row;
+            push @error_messages, 'A segunda coluna deve conter um seed_id na linha: '.$row;
         } else {
             $columns[1] =~ s/^\s+|\s+$//g; #trim whitespace from front and end...
             $seen_seedlot_names{$columns[1]}++;
         }
         if (!$columns[2] || $columns[2] eq ''){
-            push @error_messages, 'The third column must contain an inventory_date on row: '.$row;
+            push @error_messages, 'A terceira coluna deve conter um inventory_date na linha: '.$row;
         }
         if (!$columns[3] || $columns[3] eq ''){
-            push @error_messages, 'The fourth column must contain an inventory_person on row: '.$row;
+            push @error_messages, 'A quarta coluna deve conter um inventory_person na linha: '.$row;
         }
         if (!defined($columns[4]) || $columns[4] eq ''){
-            push @error_messages, 'The fifth column must contain weight_gram on row: '.$row;
+            push @error_messages, 'A quinta coluna deve conter weight_gram na linha: '.$row;
         }
     }
 
@@ -121,7 +122,7 @@ sub _validate_with_plugin {
     my @seedlots_missing = @{$seedlots_validator->validate($schema,'seedlots',\@seedlots)->{'missing'}};
 
     if (scalar(@seedlots_missing) > 0) {
-        push @error_messages, "The following seedlots are not in the database or are marked as discarded: ".join(',',@seedlots_missing);
+        push @error_messages, "Os seguintes lotes de sementes não estão no banco de dados ou estão marcados como descartados: ".join(',',@seedlots_missing);
         $errors{'missing_seedlots'} = \@seedlots_missing;
     }
 
@@ -150,7 +151,7 @@ sub _parse_with_plugin {
         or die "Could not open file '$filename' $!";
 
     if (!$fh) {
-        push @error_messages, "Could not read file. Make sure it is a valid CSV file.";
+        push @error_messages, "Não foi possível ler o arquivo. Verifique se é um arquivo CSV válido.";
         $errors{'error_messages'} = \@error_messages;
         $self->_set_parse_errors(\%errors);
         return;
@@ -161,7 +162,7 @@ sub _parse_with_plugin {
     if ($csv->parse($header_row)) {
         @header_columns = $csv->fields();
     } else {
-        push @error_messages, "Could not parse header row. Make sure it is a valid CSV file.";
+        push @error_messages, "Não foi possível processar a linha de cabeçalho. Verifique se é um arquivo CSV válido.";
         $errors{'error_messages'} = \@error_messages;
         $self->_set_parse_errors(\%errors);
         return;
@@ -174,7 +175,7 @@ sub _parse_with_plugin {
         if ($csv->parse($row)) {
             @columns = $csv->fields();
         } else {
-            push @error_messages, "Could not parse row $row.";
+            push @error_messages, "Não foi possível processar a linha $row.";
             $errors{'error_messages'} = \@error_messages;
             $self->_set_parse_errors(\%errors);
             return;

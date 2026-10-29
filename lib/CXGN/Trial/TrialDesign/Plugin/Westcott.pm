@@ -26,7 +26,7 @@ sub create_design {
     if ($self->has_stock_list()) {
       @stock_list = @{$self->get_stock_list()};
     } else {
-      die "No stock list specified\n";
+      die "Nenhuma lista de materiais especificada\n";
     }
     if ($self->has_control_list_crbd()) {
       @control_list = @{$self->get_control_list_crbd()};

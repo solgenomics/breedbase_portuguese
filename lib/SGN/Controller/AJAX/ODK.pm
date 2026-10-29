@@ -11,6 +11,7 @@ backend for ODK services
 =cut
 
 package SGN::Controller::AJAX::ODK;
+use utf8;
 
 use Moose;
 use List::MoreUtils qw /any /;
@@ -60,7 +61,7 @@ sub get_phenotyping_data_GET {
         }
 
     } else {
-        $c->stash->{rest} = { error => 'Error: We only support SMAP as an ODK phenotyping service for now.' };
+        $c->stash->{rest} = { error => 'Erro: no momento, só oferecemos suporte ao SMAP como serviço de fenotipagem ODK.' };
         $c->detach();
     }
     $c->stash->{rest} = { success => 1 };
@@ -83,7 +84,7 @@ sub get_crossing_available_forms_GET {
         my $dbh = $c->dbc->dbh;
         my @user_info = CXGN::Login->new($dbh)->query_from_cookie($session_id);
         if (!$user_info[0]){
-            $c->stash->{rest} = {error=>'You must be logged in to look at ONA forms!'};
+            $c->stash->{rest} = {error=>'Você precisa estar conectado para ver os formulários ONA!'};
             $c->detach();
         }
         $user_id = $user_info[0];
@@ -92,7 +93,7 @@ sub get_crossing_available_forms_GET {
         $user_name = $p->get_username;
     } else{
         if (!$c->user){
-            $c->stash->{rest} = {error=>'You must be logged in to look at ONA forms!'};
+            $c->stash->{rest} = {error=>'Você precisa estar conectado para ver os formulários ONA!'};
             $c->detach();
         }
         $user_id = $c->user()->get_object()->get_sp_person_id();
@@ -130,7 +131,7 @@ sub get_crossing_data_GET {
         my $dbh = $c->dbc->dbh;
         my @user_info = CXGN::Login->new($dbh)->query_from_cookie($session_id);
         if (!$user_info[0]){
-            $c->stash->{rest} = {error=>'You must be logged in to request ODK crossing data import!'};
+            $c->stash->{rest} = {error=>'Você precisa estar conectado para solicitar a importação de dados de cruzamento do ODK!'};
             $c->detach();
         }
         $user_id = $user_info[0];
@@ -139,7 +140,7 @@ sub get_crossing_data_GET {
         $user_name = $p->get_username;
     } else{
         if (!$c->user){
-            $c->stash->{rest} = {error=>'You must be logged in to request ODK crossing data import!'};
+            $c->stash->{rest} = {error=>'Você precisa estar conectado para solicitar a importação de dados de cruzamento do ODK!'};
             $c->detach();
         }
         $user_id = $c->user()->get_object()->get_sp_person_id();
@@ -187,7 +188,7 @@ sub get_crossing_data_GET {
             $c->detach();
         }
     } else {
-        $c->stash->{rest} = { error => 'Error: We only support ONA as an ODK crossing service for now.' };
+        $c->stash->{rest} = { error => 'Erro: no momento, só oferecemos suporte ao ONA como serviço de cruzamentos ODK.' };
         $c->detach();
     }
 }
@@ -197,7 +198,7 @@ sub schedule_get_crossing_data : Path('/ajax/odk/schedule_get_crossing_data') : 
 sub schedule_get_crossing_data_GET {
     my ( $self, $c ) = @_;
     if ($c->config->{production_server}){
-        $c->stash->{rest} = { error=>'Please use contact form. Currently this cannot be set through the website.' };
+        $c->stash->{rest} = { error=>'Use o formulário de contato. No momento, isso não pode ser configurado pelo site.' };
         $c->detach();
     }
     my $form_id = $c->req->param('form_id');
@@ -210,7 +211,7 @@ sub schedule_get_crossing_data_GET {
         my $dbh = $c->dbc->dbh;
         my @user_info = CXGN::Login->new($dbh)->query_from_cookie($session_id);
         if (!$user_info[0]){
-            $c->stash->{rest} = {error=>'You must be logged in to schedule ODK crossing data import!'};
+            $c->stash->{rest} = {error=>'Você precisa estar conectado para agendar a importação de dados de cruzamento do ODK!'};
             $c->detach();
         }
         $user_id = $user_info[0];
@@ -219,7 +220,7 @@ sub schedule_get_crossing_data_GET {
         $user_name = $p->get_username;
     } else{
         if (!$c->user){
-            $c->stash->{rest} = {error=>'You must be logged in to schedule ODK crossing data import!'};
+            $c->stash->{rest} = {error=>'Você precisa estar conectado para agendar a importação de dados de cruzamento do ODK!'};
             $c->detach();
         }
         $user_id = $c->user()->get_object()->get_sp_person_id();
@@ -292,7 +293,7 @@ sub get_crossing_data_cronjobs_GET {
         my $dbh = $c->dbc->dbh;
         my @user_info = CXGN::Login->new($dbh)->query_from_cookie($session_id);
         if (!$user_info[0]){
-            $c->stash->{rest} = {error=>'You must be logged in to see scheduled ODK crossing data import!'};
+            $c->stash->{rest} = {error=>'Você precisa estar conectado para ver a importação agendada de dados de cruzamento do ODK!'};
             $c->detach();
         }
         $user_id = $user_info[0];
@@ -301,7 +302,7 @@ sub get_crossing_data_cronjobs_GET {
         $user_name = $p->get_username;
     } else{
         if (!$c->user){
-            $c->stash->{rest} = {error=>'You must be logged in to see scheduled ODK crossing data import!'};
+            $c->stash->{rest} = {error=>'Você precisa estar conectado para ver a importação agendada de dados de cruzamento do ODK!'};
             $c->detach();
         }
         $user_id = $c->user()->get_object()->get_sp_person_id();
@@ -339,7 +340,7 @@ sub get_crossing_available_wishlists_GET {
         my $dbh = $c->dbc->dbh;
         my @user_info = CXGN::Login->new($dbh)->query_from_cookie($session_id);
         if (!$user_info[0]){
-            $c->stash->{rest} = {error=>'You must be logged in to see ODK cross wishlists!'};
+            $c->stash->{rest} = {error=>'Você precisa estar conectado para ver as listas de desejos de cruzamentos do ODK!'};
             $c->detach();
         }
         $user_id = $user_info[0];
@@ -348,7 +349,7 @@ sub get_crossing_available_wishlists_GET {
         $user_name = $p->get_username;
     } else{
         if (!$c->user){
-            $c->stash->{rest} = {error=>'You must be logged in to see ODK cross wishlists!'};
+            $c->stash->{rest} = {error=>'Você precisa estar conectado para ver as listas de desejos de cruzamentos do ODK!'};
             $c->detach();
         }
         $user_id = $c->user()->get_object()->get_sp_person_id();
@@ -384,7 +385,7 @@ sub get_odk_cross_progress_cached_GET {
         my $dbh = $c->dbc->dbh;
         my @user_info = CXGN::Login->new($dbh)->query_from_cookie($session_id);
         if (!$user_info[0]){
-            $c->stash->{rest} = {error=>'You must be logged in to see ODK crossing data progress!'};
+            $c->stash->{rest} = {error=>'Você precisa estar conectado para ver o progresso dos dados de cruzamento do ODK!'};
             $c->detach();
         }
         $user_id = $user_info[0];
@@ -393,7 +394,7 @@ sub get_odk_cross_progress_cached_GET {
         $user_name = $p->get_username;
     } else{
         if (!$c->user){
-            $c->stash->{rest} = {error=>'You must be logged in to see ODK crossing data progress!'};
+            $c->stash->{rest} = {error=>'Você precisa estar conectado para ver o progresso dos dados de cruzamento do ODK!'};
             $c->detach();
         }
         $user_id = $c->user()->get_object()->get_sp_person_id();
@@ -455,7 +456,7 @@ sub get_odk_cross_summary_cached_GET {
         my $dbh = $c->dbc->dbh;
         my @user_info = CXGN::Login->new($dbh)->query_from_cookie($session_id);
         if (!$user_info[0]){
-            $c->stash->{rest} = {error=>'You must be logged in to see ODK crossing data progress!'};
+            $c->stash->{rest} = {error=>'Você precisa estar conectado para ver o progresso dos dados de cruzamento do ODK!'};
             $c->detach();
         }
         $user_id = $user_info[0];
@@ -464,7 +465,7 @@ sub get_odk_cross_summary_cached_GET {
         $user_name = $p->get_username;
     } else{
         if (!$c->user){
-            $c->stash->{rest} = {error=>'You must be logged in to see ODK crossing data progress!'};
+            $c->stash->{rest} = {error=>'Você precisa estar conectado para ver o progresso dos dados de cruzamento do ODK!'};
             $c->detach();
         }
         $user_id = $c->user()->get_object()->get_sp_person_id();
@@ -516,7 +517,7 @@ sub get_crossing_saved_ona_forms_GET {
         my $dbh = $c->dbc->dbh;
         my @user_info = CXGN::Login->new($dbh)->query_from_cookie($session_id);
         if (!$user_info[0]){
-            $c->stash->{rest} = {error=>'You must be logged in to see your saved odk ona forms!'};
+            $c->stash->{rest} = {error=>'Você precisa estar conectado para ver seus formulários ONA do ODK salvos!'};
             $c->detach();
         }
         $user_id = $user_info[0];
@@ -525,7 +526,7 @@ sub get_crossing_saved_ona_forms_GET {
         $user_name = $p->get_username;
     } else{
         if (!$c->user){
-            $c->stash->{rest} = {error=>'You must be logged in to see your saved odk ona forms!'};
+            $c->stash->{rest} = {error=>'Você precisa estar conectado para ver seus formulários ONA do ODK salvos!'};
             $c->detach();
         }
         $user_id = $c->user()->get_object()->get_sp_person_id();

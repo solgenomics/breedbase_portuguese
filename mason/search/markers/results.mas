@@ -114,7 +114,7 @@ jQuery(document).ready(function() {
             },
             { title: "Espécie", data: "species_name" },
             { title: "Genoma de Referência", data: "reference_genome_name" },
-            { title: "Cromossoma", data: "chrom" },
+            { title: "Cromossomo", data: "chrom" },
             { title: "Posição", data: "pos" },
             { title: "Ref", data: "ref" },
             { title: "Alt", data: "alt" }
@@ -142,7 +142,7 @@ jQuery(document).ready(function() {
             { title: "Protocolo", data: "protocol" },
             { title: "Espécie", data: "species_name" },
             { title: "Mapa", data: "map_name" },
-            { title: "Cromossoma", data: "lg_name" },
+            { title: "Cromossomo", data: "lg_name" },
             { title: "Posição", data: "position" },
             { title: "Unidades do mapa", data: "map_units" },
         ],
@@ -229,7 +229,7 @@ function searchGenotypedMarkers() {
     let dt = jQuery('#genotyped-marker-results-table').DataTable();
     dt.clear();
     dt.draw();
-    jQuery("#genotyped-marker-results-table .dataTables_empty").html("Procurando...");
+    jQuery("#genotyped-marker-results-table .dataTables_empty").html("Pesquisando...");
     jQuery("#genotyped-marker-page-prev").attr('disabled', true);
     jQuery("#genotyped-marker-page-next").attr('disabled', true);
 
@@ -344,7 +344,7 @@ function searchMappedMarkers() {
     let dt = jQuery('#mapped-marker-results-table').DataTable();
     dt.clear();
     dt.draw();
-    jQuery("#mapped-marker-results-table .dataTables_empty").html("Procurando...");
+    jQuery("#mapped-marker-results-table .dataTables_empty").html("Pesquisando...");
     jQuery("#mapped-marker-page-prev").attr('disabled', true);
     jQuery("#mapped-marker-page-next").attr('disabled', true);
 

@@ -47,7 +47,7 @@ my $e = undef;
 
 if (!$marker_id) { 
   $c->throw(
-     public_message => 'marker_id must be provided as an argument for this page',
+     public_message => 'É necessário informar marker_id como argumento para esta página',
      is_client_error => 1,
   );
 }

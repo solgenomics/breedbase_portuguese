@@ -6,6 +6,7 @@ CXGN::Propagation::AddPropagationProject - a module for adding propagation proje
 
 
 package CXGN::Propagation::AddPropagationProject;
+use utf8;
 
 use Moose;
 use MooseX::FollowPBP;
@@ -86,11 +87,11 @@ sub save_propagation_project {
     my $schema = $self->get_chado_schema();
 
     if ($self->existing_propagation_project()){
-        return {error => "Propagation project not saved: Project name already exists"};
+        return {error => "Projeto de propagação não salvo: o nome do projeto já existe"};
     }
 
     if (!$self->get_breeding_program_id()){
-        return {error => "Propagation project not saved: Breeding program does not exist"};
+        return {error => "Projeto de propagação não salvo: o programa de melhoramento não existe"};
     }
 
     my $project_year_cvterm = SGN::Model::Cvterm->get_cvterm_row($schema,'project year', 'project_property');

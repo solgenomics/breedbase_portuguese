@@ -1,5 +1,6 @@
 
 package SGN::Controller::Dataset;
+use utf8;
 
 use Moose;
 use CXGN::Dataset;
@@ -29,7 +30,7 @@ sub dataset :Chained('/') Path('dataset') Args(1) {
     if ($@) {
         print STDERR "Dataset retrieval error: $@ \n";
         $c->stash->{template} = 'generic_message.mas';
-	    $c->stash->{message} = "The requested dataset does not exist or has been deleted.";
+	    $c->stash->{message} = "O conjunto de dados solicitado não existe ou foi excluído.";
 	    return;
     }
     
@@ -38,7 +39,7 @@ sub dataset :Chained('/') Path('dataset') Args(1) {
     my $owner_id = $dataset->sp_person_id;
     if ( ! ($user_id == $owner_id || $dataset->is_public) ) {
         $c->stash->{template} = 'generic_message.mas';
-        $c->stash->{message} = "You do not have access to this dataset.<br /><br />If you are the owner of this dataset, make sure you are logged in, or ask the owner to make it public.";
+        $c->stash->{message} = "Você não tem acesso a este conjunto de dados.<br /><br />Se você é o proprietário deste conjunto de dados, verifique se está conectado ou peça ao proprietário para torná-lo público.";
         return;
     }
 
@@ -111,7 +112,7 @@ sub publish_dataset_authorize_start : Path('/dataset/publish/authorize') Args(1)
     my $config = $c->get_conf('dataset_archive_clients') || {};
     if ( ! exists $config->{$service} ) {
         $c->stash->{template} = "generic_message.mas";
-        $c->stash->{message} = "The selected service does not exist in the server configuration";
+        $c->stash->{message} = "O serviço selecionado não existe na configuração do servidor";
         return;
     }
     my $selected = $config->{$service};
@@ -133,12 +134,12 @@ sub publish_dataset_authorize_finish : Path('/dataset/publish/authorize') Args(0
     my $code = $c->req->param('code');
 
     if ( !defined $code && !defined $error ) {
-        $error = "Authorization code not returned by the service";
+        $error = "Código de autorização não retornado pelo serviço";
     }
 
     if ( $error ) {
         $c->stash->{template} = 'generic_message.mas';
-        $c->stash->{message} = "Could not authorize the appication: $error";
+        $c->stash->{message} = "Não foi possível autorizar o aplicativo: $error";
         return;
     }
 

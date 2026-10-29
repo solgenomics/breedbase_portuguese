@@ -26,7 +26,7 @@ Ordem de exibição: <input id="display_order" value="<% $display_order %>" >
            error: function(e) { alert("ocorreu um erro"); },
            success: function(r) {
              if (r.error) { alert(r.error); return; }
-             alert("Com sucesso mudou display_order");
+             alert("Ordem de exibição alterada com sucesso.");
            }
         });
      });

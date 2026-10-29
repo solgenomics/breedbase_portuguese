@@ -1,5 +1,6 @@
 package CXGN::Phenotypes::ParseUpload::Plugin::TranscriptomicsSpreadsheetCSV;
 
+use utf8;
 # Validate Returns %validate_result = (
 #   error => 'error message'
 #)
@@ -62,7 +63,7 @@ sub validate {
     open(my $fh, '<', $filename) or die "Could not open file '$filename' $!";
 
     if (!$fh) {
-        $parse_result{'error'} = "Could not read file.";
+        $parse_result{'error'} = "Não foi possível ler o arquivo.";
         print STDERR "Could not read file.\n";
         return \%parse_result;
     }
@@ -79,7 +80,7 @@ sub validate {
             @columns = $csv->column_names;
         }
         else {
-            $parse_result{'error'} = "Could not parse header row.";
+            $parse_result{'error'} = "Não foi possível analisar a linha de cabeçalho.";
             print STDERR "Could not parse header.\n";
             return \%parse_result;
         }
@@ -88,7 +89,7 @@ sub validate {
     my $header_col_1 = shift @columns;
     $header_col_1 =~ s/^\s+|\s+$//g;
     if ( $header_col_1 ne "sample_name" ) {
-      $parse_result{'error'} = "First cell must be 'sample_name'. Please, check your file.";
+      $parse_result{'error'} = "A primeira célula deve ser 'sample_name'. Por favor, verifique seu arquivo.";
       print STDERR "First cell must be 'sample_name'\n";
       return \%parse_result;
     }
@@ -96,7 +97,7 @@ sub validate {
     my $header_col_2 = shift @columns;
     $header_col_2 =~ s/^\s+|\s+$//g;
     if ($header_col_2 ne "device_id") {
-        $parse_result{'error'} = "Second cell must be 'device_id'. Please, check your file.";
+        $parse_result{'error'} = "A segunda célula deve ser 'device_id'. Por favor, verifique seu arquivo.";
         print STDERR "Second cell must be 'device_id'\n";
         return \%parse_result;
     }
@@ -104,7 +105,7 @@ sub validate {
     my $header_col_3 = shift @columns;
     $header_col_3 =~ s/^\s+|\s+$//g;
     if ($header_col_3 ne "comments") {
-        $parse_result{'error'} = "Third cell must be 'comments'. Please, check your file.";
+        $parse_result{'error'} = "A terceira célula deve ser 'comments'. Por favor, verifique seu arquivo.";
         print STDERR "Third cell must be 'comments'\n";
         return \%parse_result;
     }
@@ -125,7 +126,7 @@ sub validate {
 
         foreach (@fields) {
             if (not $_=~/^[-+]?\d+\.?\d*$/ && $_ ne 'NA'){
-                $parse_result{'error'}= "It is not a real value for trancripts. Must be numeric or NA: '$_'";
+                $parse_result{'error'}= "Não é um valor real para transcritos. Deve ser numérico ou NA: '$_'";
                 return \%parse_result;
             }
         }
@@ -136,7 +137,7 @@ sub validate {
         or die "Could not open file '$nd_protocol_filename' $!";
 
     if (!$fh) {
-        $parse_result{'error'} = "Could not read file.";
+        $parse_result{'error'} = "Não foi possível ler o arquivo.";
         print STDERR "Could not read file.\n";
         return \%parse_result;
     }
@@ -146,7 +147,7 @@ sub validate {
     if ($csv->parse($header_row)) {
         @columns = $csv->fields();
     } else {
-        $parse_result{'error'} = "Could not parse header row.";
+        $parse_result{'error'} = "Não foi possível analisar a linha de cabeçalho.";
         print STDERR "Could not parse header.\n";
         return \%parse_result;
     }
@@ -175,7 +176,7 @@ sub validate {
         $pos_right_head ne "pos_right" ||
         $functional_annotation_head ne "functional_annotation" ||
         $notes_head ne "notes") {
-      $parse_result{'error'} = "Header row must be 'gene_id', 'chromosome', 'pos_left', 'pos_right', 'functional_annotation', 'notes'. Please, check your file.";
+      $parse_result{'error'} = "A linha de cabeçalho deve ser 'gene_id', 'chromosome', 'pos_left', 'pos_right', 'functional_annotation', 'notes'. Por favor, verifique seu arquivo.";
       return \%parse_result;
     }
     while (my $line = <$fh>) {
@@ -191,19 +192,19 @@ sub validate {
         my $notes = $fields[5];
 
         if (!$gene_id){
-            $parse_result{'error'}= "Transcript name is required!";
+            $parse_result{'error'}= "O nome do transcrito é obrigatório!";
             return \%parse_result;
         }
         if (!defined($chromosome) && !length($chromosome)) {
-            $parse_result{'error'}= "Chromosome is required!";
+            $parse_result{'error'}= "O cromossomo é obrigatório!";
             return \%parse_result;
         }
         if (!defined($pos_left) && !length($pos_left)){
-            $parse_result{'error'}= "Start position is required!";
+            $parse_result{'error'}= "A posição inicial é obrigatória!";
             return \%parse_result;
         }
         if (!defined($pos_right) && !length($pos_right)){
-            $parse_result{'error'}= "End position is required!";
+            $parse_result{'error'}= "A posição final é obrigatória!";
             return \%parse_result;
         }
     }
@@ -213,7 +214,7 @@ sub validate {
     my @samples_missing = @{$samples_validator->validate($schema, $data_level, \@samples)->{'missing'}};
     if (scalar(@samples_missing) > 0) {
         my $samples_string = join ', ', @samples_missing;
-        $parse_result{'error'}= "The following samples in your file are not valid in the database (".$samples_string."). Please add them in a sampling trial first!";
+        $parse_result{'error'}= "As seguintes amostras do seu arquivo não são válidas no banco de dados (".$samples_string."). Adicione-as primeiro em um ensaio de amostragem!";
         return \%parse_result;
     }
 
@@ -239,7 +240,7 @@ sub validate {
 
         #If there are markers in the uploaded file that are not saved in the protocol, they will be returned along in the error message
         if (scalar(@transcripts_not_in_protocol)>0){
-            $parse_result{'error'} = "The following transcripts are not in the database for the selected protocol: ".join(',',@transcripts_not_in_protocol);
+            $parse_result{'error'} = "Os seguintes transcritos não estão no banco de dados para o protocolo selecionado: ".join(',',@transcripts_not_in_protocol);
             return \%parse_result;
         }
     }
@@ -274,7 +275,7 @@ sub parse {
         or die "Could not open file '$filename' $!";
 
     if (!$fh) {
-        $parse_result{'error'} = "Could not read file.";
+        $parse_result{'error'} = "Não foi possível ler o arquivo.";
         print STDERR "Could not read file.\n";
         return \%parse_result;
     }
@@ -290,7 +291,7 @@ sub parse {
             @header = $csv->column_names;
         }
         else {
-            $parse_result{'error'} = "Could not parse header row.";
+            $parse_result{'error'} = "Não foi possível analisar a linha de cabeçalho.";
             print STDERR "Could not parse header.\n";
             return \%parse_result;
         }
@@ -328,7 +329,7 @@ sub parse {
         or die "Could not open file '$nd_protocol_filename' $!";
 
     if (!$fh) {
-        $parse_result{'error'} = "Could not read file.";
+        $parse_result{'error'} = "Não foi possível ler o arquivo.";
         print STDERR "Could not read file.\n";
         return \%parse_result;
     }
@@ -345,7 +346,7 @@ sub parse {
             @columns = $csv->column_names;
         }
         else {
-            $parse_result{'error'} = "Could not parse header row of nd_protocol_file.";
+            $parse_result{'error'} = "Não foi possível analisar a linha de cabeçalho do nd_protocol_file.";
             print STDERR "Could not parse header of nd_protocol_file.\n";
             return \%parse_result;
         }

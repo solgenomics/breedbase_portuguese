@@ -6,6 +6,7 @@ CXGN::TrackingActivity::AddActivityProject - a module for adding activity projec
 
 
 package CXGN::TrackingActivity::AddActivityProject;
+use utf8;
 
 use Moose;
 use MooseX::FollowPBP;
@@ -104,12 +105,12 @@ sub save_activity_project {
 
     if ($self->existing_project_name()){
         print STDERR "Can't create activity project: Project name already exists\n";
-        return {error => "Tracking activity project not saved: Project name already exists"};
+        return {error => "Projeto de atividade de rastreamento não salvo: o nome do projeto já existe"};
     }
 
     if (!$self->get_breeding_program_id()){
         print STDERR "Can't create activity project: Breeding program does not exist\n";
-        return {error => "Tracking activity project not saved: Breeding program does not exist"};
+        return {error => "Projeto de atividade de rastreamento não salvo: o programa de melhoramento não existe"};
     }
 
     my $parent_folder_id;

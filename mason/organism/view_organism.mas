@@ -73,19 +73,19 @@ my $image_subtitle =
 
 <& /page/info_table.mas,
    data => [
-  'Libraries ('.scalar(@links).')' => (join ", ", (@links)),
-  Attribution => $est_attribution ], border => 0
+  'Bibliotecas ('.scalar(@links).')' => (join ", ", (@links)),
+  'Atribuição' => $est_attribution ], border => 0
  &>
 </&>
 
 
-<&| /page/info_section.mas, title=>'Detalhes Fenômicos', collapsible=>1 &>
+<&| /page/info_section.mas, title=>'Detalhes fenômicos', collapsible=>1 &>
 
-Number of phenotyped lines : <% $phenotypes %>
+Número de linhagens fenotipadas: <% $phenotypes %>
 <br />
-Number of traits scored  : <% $trait_count %>
+Número de características avaliadas: <% $trait_count %>
 <br />
-Number of ontology annotations : <% $onto_count %>
+Número de anotações de ontologia: <% $onto_count %>
 <br /><br />
 
 
@@ -94,7 +94,7 @@ Number of ontology annotations : <% $onto_count %>
 % if ($qtl_data) {
   <& /page/columnar_table.mas,
     data => $qtl_data,
-    headings => [ 'Name', 'Traits' ],
+    headings => [ 'Nome', 'Características' ],
     __alt_freq   => 2,
     __alt_width  => 1,
     __alt_offset => 3,

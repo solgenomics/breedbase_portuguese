@@ -1,27 +1,27 @@
 
-<& /page/page_title.mas, title => "Ajuda no conjunto de dados" &>
+<& /page/page_title.mas, title => "Ajuda sobre conjuntos de dados" &>
 
-<p><b>Trabalhando com Datasets</b></p>
+<p><b>Trabalhando com conjuntos de dados</b></p>
 
-<p>Datasets são coleções de identificadores que são armazenados no banco de dados. Datasets podem ser compostos de acessos, parcelas, características, locais e ensaios. Os conjuntos de dados são anexados à conta individual do usuário, e só podem ser criados e vistos pelo usuário enquanto estão conectados. Bancos de dados da SGN usam Datasets em ferramentas de análise no site como Wizard, GWAS, GS, Heritability e Ferramentas de Estabilidade.</p>
+<p>Conjuntos de dados são coleções de identificadores armazenadas no banco de dados. Eles podem ser compostos de acessos, parcelas, características, locais e ensaios. Os conjuntos de dados ficam vinculados à conta de cada usuário e só podem ser criados e visualizados pelo usuário quando ele está conectado. Os bancos de dados da SGN usam conjuntos de dados em ferramentas de análise do site, como o Assistente (Wizard), GWAS, GS, Herdabilidade e Estabilidade.</p>
 
-<p><b>Criando Datasets</b></p>
+<p><b>Criando conjuntos de dados</b></p>
 
-<p>Os dados são gerados no Mago. Até 4 identificadores podem ser selecionados. Primeiro selecione as categorias e entradas em cada coluna. Neste exemplo, selecionamos ensaios, acessos e protocolos de genotipagem. Então insira um nome na seção "Criar novos dados". Neste exemplo usamos "Tinker QTL 2021". Depois de criar o conjunto de dados, você pode torná-lo público para os outros a usar selecionando primeiro o conjunto de dados usando a lista "Load Dataset" e, em seguida, selecionando o botão "Make Public".</p>
+<p>Os conjuntos de dados são criados no Assistente (Wizard). Até 4 tipos de identificadores podem ser selecionados. Primeiro, selecione as categorias e os itens de cada coluna. Neste exemplo, selecionamos ensaios, acessos e protocolos de genotipagem. Em seguida, informe um nome na seção "Criar novo conjunto de dados". Neste exemplo, usamos "Tinker QTL 2021". Depois de criar o conjunto de dados, você pode torná-lo público para que outras pessoas o usem: selecione o conjunto de dados na lista "Carregar conjunto de dados" e clique no botão "Tornar público".</p>
 <img src="/static/documents/help/screenshots/DatasetHelpImage001.png" width="1000px">
 <img src="/static/documents/help/screenshots/DatasetHelpImage002.png" width="600px">
 
-<p><b>Recuperando Datasets</b></p>
+<p><b>Recuperando conjuntos de dados</b></p>
 
-<p>Para recuperar um conjunto de dados no Wizard, selecione o conjunto de dados na entrada "Load Dataset" e selecione o botão "Load". Isso vai preencher as colunas no Wizard e então permitir que você baixe e analise o conjunto de dados.</p><br>
+<p>Para recuperar um conjunto de dados no Assistente, selecione-o na lista "Carregar conjunto de dados" e clique no botão "Carregar". Isso preencherá as colunas do Assistente e permitirá baixar e analisar o conjunto de dados.</p><br>
 <img src="/static/documents/help/screenshots/DatasetHelpImage003.png" width="600px">
 
-<p><b>Pesquisando Datasets</b></p>
+<p><b>Pesquisando conjuntos de dados</b></p>
 
-<p>Para procurar por um conjunto de dados, selecione o link "Datasets" na barra de ferramentas na parte superior direita do site. Selecionar o nome do Dataset lhe dará uma página de Detalhes do Dataset.</p><br>
+<p>Para procurar um conjunto de dados, clique no link "Conjuntos de dados" na barra de ferramentas, no canto superior direito do site. Clicar no nome de um conjunto de dados abre a página de detalhes desse conjunto de dados.</p><br>
 <img src="/static/documents/help/screenshots/DatasetHelpImage004.png" width="800px">
 <img src="/static/documents/help/screenshots/DatasetHelpImage005.png" width="800px">
 
 <br><br>
-<p>Os conjuntos de dados também podem ser usados em publicações para vincular dados disponíveis. Copie a URL da página de detalhes encontrada na página de dados de busca.</p>
+<p>Os conjuntos de dados também podem ser citados em publicações para vincular os dados disponíveis. Copie a URL da página de detalhes, encontrada na página de pesquisa de conjuntos de dados.</p>
 

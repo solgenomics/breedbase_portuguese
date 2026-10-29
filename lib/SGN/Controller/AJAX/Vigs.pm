@@ -1,5 +1,6 @@
 
 package SGN::Controller::AJAX::Vigs;
+use utf8;
 
 use Moose;
 
@@ -40,7 +41,7 @@ sub run_bowtie2 :Path('/tools/vigs/result') :Args(0) {
 	
     # clean the sequence and check if there are more than one sequence pasted
     if ($sequence =~ tr/>/>/ > 1) {
-		push ( @errors , "Please, paste only one sequence.\n");	
+		push ( @errors , "Cole apenas uma sequência.\n");	
     }
     my $id = "pasted_sequence";
     my @seq = [];
@@ -87,7 +88,7 @@ sub run_bowtie2 :Path('/tools/vigs/result') :Args(0) {
 		# print STDERR "seq: $sequence\n";
 		
 		if ($sequence =~ tr/acgtACGT/acgtACGT/ < 30) {
-			push ( @errors , "Your input sequence is not valid: $pasted_gene_name\n");
+			push ( @errors , "A sequência informada não é válida: $pasted_gene_name\n");
 		}
 		
     } else {
@@ -96,23 +97,23 @@ sub run_bowtie2 :Path('/tools/vigs/result') :Args(0) {
 
     # Check input sequence and fragment size    
     if (length($sequence) < 100) { 
-		push ( @errors , "You should paste a valid sequence (100 bp or longer) in the VIGS Tool Sequence window.\n");	
+		push ( @errors , "Cole uma sequência válida (100 pb ou mais) na janela de sequência da ferramenta VIGS.\n");	
     }
     elsif ($sequence =~ /([^ACGT]+)/i) {
-		push (@errors, "Unexpected characters found in the sequence: $1\n");	
+		push (@errors, "Caracteres inesperados encontrados na sequência: $1\n");	
     }
     elsif (length($sequence) < $fragment_size) {
-		push (@errors, "n-mer size must be lower or equal to sequence length.\n");
+		push (@errors, "O tamanho do n-mer deve ser menor ou igual ao comprimento da sequência.\n");
     }
 
     if (!$fragment_size ||$fragment_size < 18 || $fragment_size > 24 ) { 
-		push (@errors, "n-mer size ($fragment_size) value must be between 18-24 bp.\n");
+		push (@errors, "O tamanho do n-mer ($fragment_size) deve estar entre 18 e 24 pb.\n");
     }
     if (!$seq_fragment || $seq_fragment < 100 || $seq_fragment > length($sequence)) {
-		push (@errors, "Wrong fragment size ($seq_fragment), it must be higher than 100 bp and lower than sequence length\n");
+		push (@errors, "Tamanho de fragmento incorreto ($seq_fragment); deve ser maior que 100 pb e menor que o comprimento da sequência\n");
     }
     if ($missmatch =~ /[^\d]/ || $missmatch < 0 || $missmatch > 2 ) { 
-		push (@errors, "miss-match value ($missmatch) must be between 0-2\n");
+		push (@errors, "o valor de mismatches ($missmatch) deve estar entre 0 e 2\n");
     }
 		#     if ($missmatch =~ /[^\d]/ || $missmatch < 0 || $missmatch > 1 ) { 
 		# push (@errors, "miss-match value ($missmatch) must be between 0-1\n");
@@ -185,7 +186,7 @@ sub run_bowtie2 :Path('/tools/vigs/result') :Args(0) {
    
 
 	if ($err) {
-		$c->stash->{rest} = {error => "Bowtie execution failed"};
+		$c->stash->{rest} = {error => "Falha na execução do Bowtie"};
 	} 
 	else {
 		$id = $urlencode{basename($seq_filename)};

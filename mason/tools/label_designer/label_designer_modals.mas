@@ -3,7 +3,7 @@
         <div class="modal-content">
             <div class="modal-body">
                 <div class="row">
-                    <center><label>Custom_Field:</label></center>
+                    <center><label>Campo personalizado:</label></center>
                     <div class="col-md-3"></div>
                     <div class="col-md-6">
                         <center>
@@ -24,14 +24,14 @@
                         <center>
                             <label>Adicionar número personalizado:</label><br>
                             <input type="number" class="form-control" id="start_number" placeholder="Número de início">
-                            <input type="number" class="form-control" id="increment_number" placeholder="Número de Incremento">
+                            <input type="number" class="form-control" id="increment_number" placeholder="Incremento">
                             <button class="btn btn-primary" id="d3-add-number">Adicionar</button>
                         </center>
                     </div>
                 </div>
                 <br>
                 <div class="row">
-                    <center><button class="btn btn-primary" id="d3-custom-preview">Veja a visualização</button></center><br><br>
+                    <center><button class="btn btn-primary" id="d3-custom-preview">Ver pré-visualização</button></center><br><br>
                     <div class="col-md-3"></div>
                     <div class="col-md-6">
                         <center><p id="d3-custom-content"></p></center>
@@ -41,7 +41,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                <button id="d3-custom-field-save" type="button" class="btn btn-primary" data-dismiss="modal">Certo</button>
+                <button id="d3-custom-field-save" type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
             </div>
         </div>
     </div>
@@ -66,7 +66,7 @@
                 </div>
                 <div class="col-md-12" id="">
                     <center>
-                        <label class='radio'><input type="radio" name="dimoptradio2" id="dim_inches2" class="radio-select-imperial" value="inch">Imperial</label>
+                        <label class='radio'><input type="radio" name="dimoptradio2" id="dim_inches2" class="radio-select-imperial" value="inch">Imperial (polegadas)</label>
                         <label class='radio'><input type="radio" name="dimoptradio2" id="dim_cm2" class="radio-select-metric" value="cm" checked>Sistema métrico (cm)</label>
                     </center>
                     <div class="col-md-1">
@@ -89,13 +89,13 @@
                     <div class="col-md-1"></div>
                     <div class="col-md-5">
                         <center>
-                            <br><label>Gap horizontal:</label><br>
+                            <br><label>Espaçamento horizontal:</label><br>
                             <input class="form-control"  type="number" id="horizontal_gap" style="max-width: 100%;">
                         </center>
                     </div>
                     <div class="col-md-5">
                         <center>
-                            <br><label>Gap vertical:</label><br>
+                            <br><label>Espaçamento vertical:</label><br>
                             <input class="form-control" type="number" id="vertical_gap" style="max-width: 100%;">
                         </center>
                     </div>
@@ -106,13 +106,13 @@
                     <div class="col-md-5">
                         <center>
                             <br><label>Número de colunas:</label>
-                            <input class="form-control" placeholder="Nom rótulos através" type="number" id="number_of_columns" style="max-width: 100%;">
+                            <input class="form-control" placeholder="Nº de etiquetas na horizontal" type="number" id="number_of_columns" style="max-width: 100%;">
                         </center>
                     </div>
                     <div class="col-md-5">
                         <center>
                             <br><label>Número de linhas:</label>
-                            <input class="form-control" placeholder="Etiquetas para baixo" type="number" id="number_of_rows" style="max-width: 100%;">
+                            <input class="form-control" placeholder="Nº de etiquetas na vertical" type="number" id="number_of_rows" style="max-width: 100%;">
                         </center>
                     </div>
                     <div class="col-md-1"></div>
@@ -121,14 +121,14 @@
                     <div class="col-md-1"></div>
                     <div class="col-md-5">
                         <center>
-                        <br><label>Limite por Rep:</label>
+                        <br><label>Limitar por repetição:</label>
                             <select class="form-control" id="plot_filter" name="plot_filter" style="max-width: 100%">
                             </select>
                         </center>
                     </div>
                     <div class="col-md-5">
                         <center>
-                            <br><label>Cópias por rótulo:</label>
+                            <br><label>Cópias por etiqueta:</label>
                             <input class="form-control" id="copies_per_plot" name="copies_per_plot" type="number" value="1" style="max-width: 100%;">
                         </center>
                     </div>
@@ -138,7 +138,7 @@
                     <div class="col-md-1"></div>
                     <div class="col-md-5">
                         <center>
-                            <br><label>Total # to download:</label>
+                            <br><label>Total a baixar:</label>
                             <input class="form-control" id="label_designer_labels_to_download" name="label_designer_labels_to_download" type="number" placeholder="10" style="max-width: 100%;">
                         </center>
                     </div>
@@ -149,8 +149,8 @@
                     <div class="col-md-1"></div>
                     <div class="col-md-10">
                         <br /><br />
-                        <p><strong>Posição da Primeira Marca:</strong><br />
-                        Defina a coluna e o número da linha de onde imprimir o primeiro rótulo, se usar uma folha que já foi parcialmente usada.</p>
+                        <p><strong>Posição da primeira etiqueta:</strong><br />
+                        Defina a coluna e a linha onde a primeira etiqueta será impressa, caso use uma folha já parcialmente utilizada.</p>
                     </div>
                     <div class="col-md-1"></div>
                 </div>
@@ -164,7 +164,7 @@
                     </div>
                     <div class="col-md-5">
                         <center>
-                            <br><label>Linha de início:</label>
+                            <br><label>Linha inicial:</label>
                             <input class="form-control" id="start_row" name="start_row" type="number" value="1" style="max-width: 100%;">
                         </center>
                     </div>
@@ -173,7 +173,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                <button id="d3-edit-additional-settings" type="button" class="btn btn-primary" data-dismiss="modal">Salve</button>
+                <button id="d3-edit-additional-settings" type="button" class="btn btn-primary" data-dismiss="modal">Salvar</button>
             </div>
         </div>
     </div>
@@ -187,7 +187,7 @@
                     <div class="col-md-1"></div>
                     <div class="col-md-10">
                         <center>
-                            <label>Lote Download:</label>
+                            <label>Download em lotes:</label>
                         <br>
                         <p id="batch_download_message"></p>
                     </center>

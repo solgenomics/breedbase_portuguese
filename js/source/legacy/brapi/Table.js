@@ -93,7 +93,7 @@ function brapi_create_paginated_table(data, pagination, div_id, return_url, link
     var page_size = pagination.pageSize;
     var total_count = pagination.totalCount;
     var total_pages = pagination.totalPages;
-    var url = jQuery("#table_return_url_input").val() ? jQuery("#table_return_url_input").val() : 'This Database';
+    var url = jQuery("#table_return_url_input").val() ? jQuery("#table_return_url_input").val() : 'este banco de dados';
     var html = "<input id='table_div_id_input' type='hidden' value='"+div_id+"'/>";
     var html = html+"<input id='table_return_url_input' type='hidden' value='"+return_url+"'/>";
     if (checkDefined(link) == 1) {
@@ -109,9 +109,9 @@ function brapi_create_paginated_table(data, pagination, div_id, return_url, link
     var html = html+"<input id='table_display_columns_params' type='hidden' value='"+JSON.stringify(display_columns)+"'/>";
     var html = html+"<input id='table_display_select_data_param' type='hidden' value='"+JSON.stringify(select_data)+"'/>";
     if (data.length == 0) {
-        html = html+"<center><h3>No data available!</h3></center>";
+        html = html+"<center><h3>Nenhum dado disponível!</h3></center>";
     } else {
-        html = html+"<h3>Results From "+url+"</h3><table class='table table-hover table-bordered'><thead><tr><th>Select</th>";
+        html = html+"<h3>Resultados de "+url+"</h3><table class='table table-hover table-bordered'><thead><tr><th>Selecionar</th>";
         var header = [];
         for(var h in data[0]) {
             if (data[0].hasOwnProperty(h)) {
@@ -170,19 +170,19 @@ function brapi_create_paginated_table(data, pagination, div_id, return_url, link
         html = html+"</tbody></table>";
         
         html = html+"<div class='well well-sm'><div class='row'>";
-        html = html+"<div class='col-sm-7'><div class='row'><div class='col-sm-2'><button class='btn btn-primary' id='brapi_table_select_submit_"+div_id+"' >Select</button></div><div class='col-sm-7 col-md-5'><div class='btn-group' role='group'>";
+        html = html+"<div class='col-sm-7'><div class='row'><div class='col-sm-2'><button class='btn btn-primary' id='brapi_table_select_submit_"+div_id+"' >Selecionar</button></div><div class='col-sm-7 col-md-5'><div class='btn-group' role='group'>";
         
         if (total_pages > 1) {
             if (current_page > 0) {
-                html = html+"<button id='table_previous_page_button' class='btn btn-sm btn-default glyphicon glyphicon-arrow-left'></button><button class='btn btn-sm btn-default' style='margin-top:1px'>Page "+current_page+" of "+total_pages+"</button><button id='table_next_page_button' class='btn btn-sm btn-default glyphicon glyphicon-arrow-right'></button>";
+                html = html+"<button id='table_previous_page_button' class='btn btn-sm btn-default glyphicon glyphicon-arrow-left'></button><button class='btn btn-sm btn-default' style='margin-top:1px'>Página "+current_page+" de "+total_pages+"</button><button id='table_next_page_button' class='btn btn-sm btn-default glyphicon glyphicon-arrow-right'></button>";
             } else {
-                html = html+"<button class='disabled btn btn-sm btn-default glyphicon glyphicon-arrow-left'></button><button class='btn btn-sm btn-default' style='margin-top:1px'>Page "+current_page+" of "+total_pages+"</button><button id='table_next_page_button' class='btn btn-sm btn-default glyphicon glyphicon-arrow-right'></button>";
+                html = html+"<button class='disabled btn btn-sm btn-default glyphicon glyphicon-arrow-left'></button><button class='btn btn-sm btn-default' style='margin-top:1px'>Página "+current_page+" de "+total_pages+"</button><button id='table_next_page_button' class='btn btn-sm btn-default glyphicon glyphicon-arrow-right'></button>";
             }
         } else {
-            html = html+"<button class='disabled btn btn-sm btn-default glyphicon glyphicon-arrow-left'></button><button class='btn btn-sm btn-default' style='margin-top:1px'>Page "+current_page+" of "+total_pages+"</button><button id='table_next_page_button' class='disabled btn btn-sm btn-default glyphicon glyphicon-arrow-right'></button>";
+            html = html+"<button class='disabled btn btn-sm btn-default glyphicon glyphicon-arrow-left'></button><button class='btn btn-sm btn-default' style='margin-top:1px'>Página "+current_page+" de "+total_pages+"</button><button id='table_next_page_button' class='disabled btn btn-sm btn-default glyphicon glyphicon-arrow-right'></button>";
         }
-        html = html+"</div></div><div class='col-sm-3 col-md-5'><div class='input-group input-group-sm'><span class='input-group-addon' id='basic-addon1'>Page:</span><input type='text' id='table_change_current_page_input' class='form-control' placeholder='"+current_page+"' aria-describedby='basic-addon1'></div></div></div></div>";
-        html = html+"<div class='col-sm-5'><div class='row'><div class='col-sm-7'><div class='input-group input-group-sm'><span class='input-group-addon' id='basic-addon2'>Page Size:</span><input type='text' id='table_change_page_size_input' class='form-control' placeholder='"+page_size+"' aria-describedby='basic-addon2'></div></div><div class='col-sm-5'><button class='btn btn-sm btn-default'>Total: "+total_count+"</button></div></div></div></div>";
+        html = html+"</div></div><div class='col-sm-3 col-md-5'><div class='input-group input-group-sm'><span class='input-group-addon' id='basic-addon1'>Página:</span><input type='text' id='table_change_current_page_input' class='form-control' placeholder='"+current_page+"' aria-describedby='basic-addon1'></div></div></div></div>";
+        html = html+"<div class='col-sm-5'><div class='row'><div class='col-sm-7'><div class='input-group input-group-sm'><span class='input-group-addon' id='basic-addon2'>Tamanho da página:</span><input type='text' id='table_change_page_size_input' class='form-control' placeholder='"+page_size+"' aria-describedby='basic-addon2'></div></div><div class='col-sm-5'><button class='btn btn-sm btn-default'>Total: "+total_count+"</button></div></div></div></div>";
         html = html+"</div>";
     }
     jQuery("#"+div_id).html(html);
@@ -234,7 +234,7 @@ function brapi_recreate_paginated_table(search_query_data, display_columns, sele
             },
             error: function(response) {
                 jQuery("#working_modal").modal("hide");
-                alert('An error occurred constructing table after moving to the previous page.');
+                alert('Ocorreu um erro ao montar a tabela após voltar para a página anterior.');
             }
         });
     }, 200);

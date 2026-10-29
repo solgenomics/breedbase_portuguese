@@ -12,6 +12,7 @@ SGN::Controller::AJAX::PCRBasedGenotypeData
 =cut
 
 package SGN::Controller::AJAX::PCRBasedGenotypeData;
+use utf8;
 
 use Moose;
 use Try::Tiny;
@@ -74,7 +75,7 @@ sub upload_ssr_protocol_POST : Args(0) {
         my $dbh = $c->dbc->dbh;
         my @user_info = CXGN::Login->new($dbh)->query_from_cookie($session_id);
         if (!$user_info[0]){
-            $c->stash->{rest} = {error=>'You must be logged in to upload SSR marker info!'};
+            $c->stash->{rest} = {error=>'Você precisa estar conectado para enviar informações de marcadores SSR!'};
             $c->detach();
         }
         $user_id = $user_info[0];
@@ -83,7 +84,7 @@ sub upload_ssr_protocol_POST : Args(0) {
         $user_name = $p->get_username;
     } else {
         if (!$c->user){
-            $c->stash->{rest} = {error=>'You must be logged in to upload progenies!'};
+            $c->stash->{rest} = {error=>'Você precisa estar conectado para enviar progênies!'};
             $c->detach();
         }
         $user_id = $c->user()->get_object()->get_sp_person_id();
@@ -105,7 +106,7 @@ sub upload_ssr_protocol_POST : Args(0) {
     $archived_filename_with_path = $uploader->archive();
     $md5 = $uploader->get_md5($archived_filename_with_path);
     if (!$archived_filename_with_path) {
-        $c->stash->{rest} = {error => "Could not save file $upload_original_name in archive",};
+        $c->stash->{rest} = {error => "Não foi possível salvar o arquivo $upload_original_name no arquivo permanente",};
         return;
     }
     unlink $upload_tempfile;
@@ -124,11 +125,11 @@ sub upload_ssr_protocol_POST : Args(0) {
         push @found_organisms, $organism_id;
     }
     if (scalar(@found_organisms) == 0){
-        $c->stash->{rest} = { error => 'The organism species you provided is not in the database! Please contact us.' };
+        $c->stash->{rest} = { error => 'A espécie de organismo informada não está no banco de dados! Entre em contato conosco.' };
         $c->detach();
     }
     if (scalar(@found_organisms) > 1){
-        $c->stash->{rest} = { error => 'The organism species you provided is not unique in the database! Please contact us.' };
+        $c->stash->{rest} = { error => 'A espécie de organismo informada não é única no banco de dados! Entre em contato conosco.' };
         $c->detach();
     }
     my $organism_id = $found_organisms[0];
@@ -152,7 +153,7 @@ sub upload_ssr_protocol_POST : Args(0) {
         my $return_error = '';
         my $parse_errors;
         if (!$parser->has_parse_errors() ){
-            $c->stash->{rest} = {error_string => "Could not get parsing errors"};
+            $c->stash->{rest} = {error_string => "Não foi possível obter os erros de análise do arquivo"};
         } else {
             $parse_errors = $parser->get_parse_errors();
             #print STDERR Dumper $parse_errors;
@@ -179,7 +180,7 @@ sub upload_ssr_protocol_POST : Args(0) {
 #    print STDERR "PROTOCOL ID =".Dumper($protocol_id)."\n";
 
     if (!$protocol_id) {
-        $c->stash->{rest} = {error_string => "Error saving PCR marker info",};
+        $c->stash->{rest} = {error_string => "Erro ao salvar as informações de marcadores PCR",};
         return;
     }
 

@@ -48,6 +48,7 @@ Lukas Mueller <lam87@cornell.edu> and many others
 
 
 package CXGN::Trial;
+use utf8;
 
 use Moose;
 use Data::Dumper;
@@ -328,12 +329,12 @@ sub get_sorted_plots {
 
                 # Check for undefined row and column positions
                 if ( !defined($row) || !defined($col) ) {
-                    return { error => "One or more plots do not have a row and/or column defined!" };
+                    return { error => "Uma ou mais parcelas não têm linha e/ou coluna definida!" };
                 }
 
                 # Check for duplicate positions (plots with the same row / col positions)
                 if ( exists $seen_row_cols{$key} ) {
-                    return { error => "One or more plots share the same row and column position!" };
+                    return { error => "Uma ou mais parcelas compartilham a mesma posição de linha e coluna!" };
                 }
 
                 # Set the min/max row/col

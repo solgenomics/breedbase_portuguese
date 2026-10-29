@@ -9,6 +9,7 @@ A page for handling identifier generation. identifier generation is used by ACAI
 =cut
 
 package SGN::Controller::AJAX::IdentifierGeneration;
+use utf8;
 
 use Moose;
 use Data::Dumper;
@@ -34,7 +35,7 @@ sub new_identifier_generation : Path('/ajax/breeders/new_identifier_generation')
     my $schema = $c->dbic_schema('Bio::Chado::Schema', 'sgn_chado', $sp_person_id);
 
     if(!$c->user){
-        $c->stash->{rest} = { error => "You must be logged in first!"};
+        $c->stash->{rest} = { error => "Você precisa entrar em sua conta primeiro!"};
         $c->detach();
     }
 
@@ -44,23 +45,23 @@ sub new_identifier_generation : Path('/ajax/breeders/new_identifier_generation')
     my $current_number = $c->req->param('current_number');
     my $description = $c->req->param('description');
     if (!$identifier_name){
-        $c->stash->{rest} = { error => "Identifier Name is required!"};
+        $c->stash->{rest} = { error => "O nome do identificador é obrigatório!"};
         $c->detach();
     }
     if (!$identifier_prefix){
-        $c->stash->{rest} = { error => "Identifier Prefix is required!"};
+        $c->stash->{rest} = { error => "O prefixo do identificador é obrigatório!"};
         $c->detach();
     }
     if (!$num_digits){
-        $c->stash->{rest} = { error => "Num digits is required!"};
+        $c->stash->{rest} = { error => "O número de dígitos é obrigatório!"};
         $c->detach();
     }
     if (!$current_number){
-        $c->stash->{rest} = { error => "Current number is required!"};
+        $c->stash->{rest} = { error => "O número atual é obrigatório!"};
         $c->detach();
     }
     if (!$description){
-        $c->stash->{rest} = { error => "Identifier Description is required!"};
+        $c->stash->{rest} = { error => "A descrição do identificador é obrigatória!"};
         $c->detach();
     }
 
@@ -76,7 +77,7 @@ sub new_identifier_generation : Path('/ajax/breeders/new_identifier_generation')
         }
     }
     if (exists($used_prefixes{$identifier_prefix})) {
-        $c->stash->{rest} = { error => "That identifier prefix has already been used and so nothing was saved! Please use the identifier already in use"};
+        $c->stash->{rest} = { error => "Esse prefixo de identificador já foi usado e, por isso, nada foi salvo! Use o identificador já existente"};
         $c->detach();
     }
 
@@ -96,7 +97,7 @@ sub new_identifier_generation : Path('/ajax/breeders/new_identifier_generation')
     $list->type('identifier_generation');
     $list->make_public();
 
-    $c->stash->{rest} = { new_list_id => $new_list_id, success => "Stored $identifier_name!" };
+    $c->stash->{rest} = { new_list_id => $new_list_id, success => "$identifier_name armazenado!" };
 }
 
 sub identifier_generation_list : Path('/ajax/breeders/identifier_generation_list') Args(0) {
@@ -106,7 +107,7 @@ sub identifier_generation_list : Path('/ajax/breeders/identifier_generation_list
     my $schema = $c->dbic_schema('Bio::Chado::Schema', 'sgn_chado', $sp_person_id);
 
     if(!$c->user){
-        $c->stash->{rest} = { error => "You must be logged in first!"};
+        $c->stash->{rest} = { error => "Você precisa entrar em sua conta primeiro!"};
         $c->detach();
     }
 
@@ -122,8 +123,8 @@ sub identifier_generation_list : Path('/ajax/breeders/identifier_generation_list
             my $current_number = $identifier_generator->{current_number};
             my $num = sprintf '%0'.$num_digits.'d', $current_number;
             my $next_identifier = $prefix.$num;
-            my $history_button = '<button class="btn btn-primary" name="identifier_generation_history" data-list_id="'.$_->[0].'">View</button>';
-            my $button = '<div class="form-group"><label class="col-sm-4 control-label">Next Count: </label><div class="col-sm-8"> <input type="number" class="form-control" id="identifier_generation_next_numbers_'.$_->[0].'" placeholder="EG: 100" /></div></div><button class="btn btn-primary" name="identifier_generation_download" data-list_id="'.$_->[0].'">Download Next</button>';
+            my $history_button = '<button class="btn btn-primary" name="identifier_generation_history" data-list_id="'.$_->[0].'">Visualizar</button>';
+            my $button = '<div class="form-group"><label class="col-sm-4 control-label">Próxima contagem: </label><div class="col-sm-8"> <input type="number" class="form-control" id="identifier_generation_next_numbers_'.$_->[0].'" placeholder="EX: 100" /></div></div><button class="btn btn-primary" name="identifier_generation_download" data-list_id="'.$_->[0].'">Baixar próximos</button>';
             push @data, [$_->[1], $_->[2], $prefix, $num_digits, $current_number, $next_identifier, $history_button, $button];
         }
     }
@@ -139,18 +140,18 @@ sub identifier_generation_download : Path('/ajax/breeders/identifier_generation_
     my $schema = $c->dbic_schema('Bio::Chado::Schema', 'sgn_chado', $sp_person_id);
 
     if(!$c->user){
-        $c->stash->{rest} = { error => "You must be logged in first!"};
+        $c->stash->{rest} = { error => "Você precisa entrar em sua conta primeiro!"};
         $c->detach();
     }
 
     my $list_id = $c->req->param('list_id');
     my $next_number = $c->req->param('next_number');
     if(!$list_id){
-        $c->stash->{rest} = { error => "List id is required!"};
+        $c->stash->{rest} = { error => "O ID da lista é obrigatório!"};
         $c->detach();
     }
     if(!$next_number){
-        $c->stash->{rest} = { error => "Next count is required!"};
+        $c->stash->{rest} = { error => "A próxima contagem é obrigatória!"};
         $c->detach();
     }
 
@@ -202,13 +203,13 @@ sub identifier_generation_history : Path('/ajax/breeders/identifier_generation_h
     my $schema = $c->dbic_schema('Bio::Chado::Schema', 'sgn_chado', $sp_person_id);
 
     if(!$c->user){
-        $c->stash->{rest} = { error => "You must be logged in first!"};
+        $c->stash->{rest} = { error => "Você precisa entrar em sua conta primeiro!"};
         $c->detach();
     }
 
     my $list_id = $c->req->param('list_id');
     if(!$list_id){
-        $c->stash->{rest} = { error => "List id is required!"};
+        $c->stash->{rest} = { error => "O ID da lista é obrigatório!"};
         $c->detach();
     }
 

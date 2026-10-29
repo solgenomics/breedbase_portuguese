@@ -38,7 +38,7 @@ A hashref containing the variants and the markers related to one or more of the 
         print "<p><strong>ERRO: </strong>Nome da variante em falta!</p>";
     }
     if ( !$markers ) {
-        print "<p><strong>ERRO: </strong>Marcadores variantes desaparecidos!</p>";
+        print "<p><strong>ERRO: </strong>Marcadores variantes ausentes!</p>";
     }
 
     # Set variant properties
@@ -49,7 +49,7 @@ A hashref containing the variants and the markers related to one or more of the 
 
     # Set title
     my $title = $species . " Markers";
-    my $subtitle = "Cromossoma " . $chrom . " @ " . $pos;
+    my $subtitle = "Cromossomo " . $chrom . " @ " . $pos;
 
     # Set parameters for flanking sequence
     my $flanking_sequence_blast_db = undef;

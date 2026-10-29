@@ -1,5 +1,6 @@
 
 package SGN::Controller::BreedersToolbox::Trial;
+use utf8;
 
 use Moose;
 
@@ -43,7 +44,7 @@ sub trial_init : Chained('/') PathPart('breeders/trial') CaptureArgs(1) {
     };
     if ($@) {
 	    $c->stash->{template} = 'system_message.txt';
-	    $c->stash->{message} = "The requested trial ($trial_id) does not exist";
+	    $c->stash->{message} = "O ensaio solicitado ($trial_id) não existe";
 	    return;
     }
 
@@ -96,7 +97,7 @@ sub trial_info : Chained('trial_init') PathPart('') Args(0) {
     my $program_object = CXGN::BreedersToolbox::Projects->new( { schema => $schema });
 
     if (!$program_object->trial_exists($c->stash->{trial_id})) {
-	$c->stash->{message} = "The requested trial does not exist or has been deleted.";
+	$c->stash->{message} = "O ensaio solicitado não existe ou foi excluído.";
 	$c->stash->{template} = 'generic_message.mas';
 	return;
     }
@@ -567,14 +568,14 @@ sub trial_download : Chained('trial_init') PathPart('download') Args(1) {
     if ($data_level eq 'plants') {
         if (!$trial->has_plant_entries()) {
             $c->stash->{template} = 'generic_message.mas';
-            $c->stash->{message} = "The requested trial (".$trial->get_name().") does not have plant entries. Please create the plant entries first.";
+            $c->stash->{message} = "O ensaio solicitado (".$trial->get_name().") não possui registros de plantas. Crie os registros de plantas primeiro.";
             return;
         }
     }
     if ($data_level eq 'subplots' || $data_level eq 'plants_subplots') {
         if (!$trial->has_subplot_entries()) {
             $c->stash->{template} = 'generic_message.mas';
-            $c->stash->{message} = "The requested trial (".$trial->get_name().") does not have subplot entries.";
+            $c->stash->{message} = "O ensaio solicitado (".$trial->get_name().") não possui registros de subparcelas.";
             return;
         }
     }
@@ -595,7 +596,7 @@ sub trial_download : Chained('trial_init') PathPart('download') Args(1) {
         my @absent_traits = @{$validator->validate($schema, 'traits', \@selected_trait_names)->{'missing'}};
         if (scalar(@absent_traits)>0){
             $c->stash->{template} = 'generic_message.mas';
-            $c->stash->{message} = "Trait list is not valid because of these terms: ".join ',',@absent_traits;
+            $c->stash->{message} = "A lista de características não é válida por causa destes termos: ".join ',',@absent_traits;
             return;
         }
         my $lt = CXGN::List::Transform->new();
@@ -798,7 +799,7 @@ sub search_trial : Private {
     # NO MATCH FOUND
     if ( $count != 1 ) {
         $c->stash->{template} = "generic_message.mas";
-        $c->stash->{message} = "<strong>No Matching Trial Found</strong> ($trial_query)<br />You can view and search for trials from the <a href='/search/trials'>Trial Search Page</a>";
+        $c->stash->{message} = "<strong>Nenhum ensaio correspondente encontrado</strong> ($trial_query)<br />Você pode visualizar e pesquisar ensaios na <a href='/search/trials'>página de pesquisa de ensaios</a>";
     }
 
     # 1 MATCH FOUND - FORWARD TO VIEW TRIAL

@@ -28,7 +28,7 @@ $top_marker_effects
 <i>Top 10 marcadores</i>:
 
 <& /page/columnar_table.mas,
-  headings     => ["Marker", "Effects"], 
+  headings     => ["Marcador", "Efeitos"], 
   data         => $top_marker_effects,
   __alt_freq   => 2,
   __alt_width  => 1,

@@ -1,5 +1,6 @@
 package CXGN::Genotype::ParseUpload::Plugin::SSRExcel;
 
+use utf8;
 use Moose::Role;
 use Spreadsheet::ParseExcel;
 use Spreadsheet::ParseXLSX;
@@ -40,7 +41,7 @@ sub _validate_with_plugin {
 
     $worksheet = ($excel_obj->worksheets())[0]; #support only one worksheet
     if (!$worksheet){
-        push @error_messages, "Spreadsheet must be on 1st tab in Excel (.xls) file";
+        push @error_messages, "A planilha deve estar na 1ª aba do arquivo Excel (.xls)";
         $errors{'error_messages'} = \@error_messages;
         $self->_set_parse_errors(\%errors);
         return;
@@ -49,7 +50,7 @@ sub _validate_with_plugin {
     my ($row_min, $row_max) = $worksheet->row_range();
     my ($col_min, $col_max) = $worksheet->col_range();
     if (($col_max - $col_min)  < 1 || ($row_max - $row_min) < 2 ) { #must have marker names and product sizes and at least one row of data
-        push @error_messages, "Spreadsheet is missing marker name info, product size info or no data";
+        push @error_messages, "A planilha não contém informações de nome do marcador, informações de tamanho do produto ou não contém dados";
         $errors{'error_messages'} = \@error_messages;
         $self->_set_parse_errors(\%errors);
         return;
@@ -64,7 +65,7 @@ sub _validate_with_plugin {
     }
 
     if (!$sample_name_head || $sample_name_head ne 'sample_name' ) {
-        push @error_messages, "Cell A1:sample_name is missing from the header";
+        push @error_messages, "Célula A1:sample_name está ausente do cabeçalho";
     }
 
     my %seen_sample_names;
@@ -78,7 +79,7 @@ sub _validate_with_plugin {
         }
 
         if (!$sample_name || $sample_name eq '') {
-            push @error_messages, "Cell A$row_name: sample name missing";
+            push @error_messages, "Célula A$row_name: nome da amostra ausente";
         } else {
             $sample_name =~ s/^\s+|\s+$//g;
             $seen_sample_names{$sample_name}++;
@@ -90,7 +91,7 @@ sub _validate_with_plugin {
                 my $ssr_data = $worksheet->get_cell($row,$column)->value();
                 $ssr_data =~ s/^\s+|\s+$//g;
                 if (($ssr_data ne '0') && ($ssr_data ne '1') && ($ssr_data ne '?')) {
-                    push @error_messages, "Row:$row_name Column:$column_name data missing or incorrect data type";
+                    push @error_messages, "Linha:$row_name Coluna:$column_name dados ausentes ou tipo de dado incorreto";
                 }
             }
         }
@@ -102,7 +103,7 @@ sub _validate_with_plugin {
     my @samples_missing = @{$sample_validator->validate($schema,'accessions',\@samples)->{'missing'}};
 
     if (scalar(@samples_missing) > 0){
-        push @error_messages, "The following accessions are not in the database: ".join(',',@samples_missing);
+        push @error_messages, "Os seguintes acessos não estão no banco de dados: ".join(',',@samples_missing);
     }
 
     #store any errors found in the parsed file to parse_errors accessor

@@ -1,4 +1,5 @@
 package SGN::Controller::Authenticate::OIDC;
+use utf8;
 
 use Moose;
 use namespace::autoclean;
@@ -64,7 +65,7 @@ sub login : Chained('provider') PathPart('login') Args(0) {
 
     try {
         # Read the provider configuration
-        my $config = $c->get_conf('oidc_client')->{$provider} || die "The provider '$provider' is not configured for this instance.\n";
+        my $config = $c->get_conf('oidc_client')->{$provider} || die "O provedor '$provider' não está configurado para esta instância.\n";
 
         # ---------------------------------------------------------------------
         # Client-Side Secrets
@@ -90,7 +91,7 @@ sub login : Chained('provider') PathPart('login') Args(0) {
         # Universal Provider Parameters
 
         # Fetch the .well-known JSON configuration
-        my $well_known_url = $config->{well_known_url} || die "The well known url is not configured for '$provider'.\n";
+        my $well_known_url = $config->{well_known_url} || die "A URL well-known não está configurada para '$provider'.\n";
         my $well_known = fetch_json($well_known_url);
 
         my ($error, $error_description) = (
@@ -98,10 +99,10 @@ sub login : Chained('provider') PathPart('login') Args(0) {
             $well_known->{error_description}
         );
         if ($error) {
-            die "Failed to fetch well known url. $error. $error_description\n";
+            die "Falha ao obter a URL well-known. $error. $error_description\n";
         }
 
-        my $client_id = $config->{client_id} || die " The client ID is not configured for '$provider'.\n";
+        my $client_id = $config->{client_id} || die " O client ID não está configurado para '$provider'.\n";
 
         my $params = {
             client_id     => $client_id,
@@ -173,7 +174,7 @@ sub callback : Chained('provider') PathPart('callback') Args(0) {
 
     try {
         # Read the provider configuration
-        my $config = $c->get_conf('oidc_client')->{$provider} || die "The provider '$provider' is not configured for this instance.\n";
+        my $config = $c->get_conf('oidc_client')->{$provider} || die "O provedor '$provider' não está configurado para esta instância.\n";
 
         # ---------------------------------------------------------------------
         # Error handling and state verification
@@ -182,17 +183,17 @@ sub callback : Chained('provider') PathPart('callback') Args(0) {
         my $error = $c->req->param("error");
         my $error_description = $c->req->param("error_description");
         if ($error) {
-            die "Received error in the callback params. $error. $error_description\n";
+            die "Erro recebido nos parâmetros de callback. $error. $error_description\n";
         }
 
         # Check that the state is correct
-        my $state_verifier = $c->request->cookies->{$provider . "_state_verifier"} || die "The state verifier could not be found. Please try to login again, or contact your system administrator.\n";
+        my $state_verifier = $c->request->cookies->{$provider . "_state_verifier"} || die "O verificador de estado não foi encontrado. Tente entrar novamente ou entre em contato com o administrador do sistema.\n";
         $state_verifier = $state_verifier->value;
 
         my $state_expected = urlsafe_b64encode(sha256($state_verifier));
         my $state_observed = $c->req->param("state");
         if ($state_expected ne $state_observed) {
-            die "The state returned by the provider does not match the initiating state. Please try to login again, or contact your system administrator for more help.\n";
+            die "O estado retornado pelo provedor não corresponde ao estado inicial. Tente entrar novamente ou entre em contato com o administrador do sistema para obter mais ajuda.\n";
         }
 
         # ---------------------------------------------------------------------
@@ -205,7 +206,7 @@ sub callback : Chained('provider') PathPart('callback') Args(0) {
             $well_known->{error_description}
         );
         if ($error) {
-            die "Failed to fetch well known url. $error. $error_description\n";
+            die "Falha ao obter a URL well-known. $error. $error_description\n";
         }
 
         # Fetch the certificates for verifying token signatures
@@ -216,7 +217,7 @@ sub callback : Chained('provider') PathPart('callback') Args(0) {
             $certs->{error_description}
         );
         if ($error) {
-            die "Failed to fetch provider's certificate. $error. $error_description\n";
+            die "Falha ao obter o certificado do provedor. $error. $error_description\n";
         }
 
         # Universal Provider Parameters
@@ -244,7 +245,7 @@ sub callback : Chained('provider') PathPart('callback') Args(0) {
         );
 
         if ($error) {
-            die "Failed to fetch access token. $error. $error_description\n";
+            die "Falha ao obter o token de acesso. $error. $error_description\n";
         }
 
         # Extract the tokens
@@ -272,7 +273,7 @@ sub callback : Chained('provider') PathPart('callback') Args(0) {
             $userinfo->{error_description}
         );
         if ($error) {
-            die "Failed to fetch  userinfo. $error. $error_description\n";
+            die "Falha ao obter as informações do usuário. $error. $error_description\n";
         }
 
         my $first_name = $userinfo->{given_name};
@@ -287,7 +288,7 @@ sub callback : Chained('provider') PathPart('callback') Args(0) {
         }
 
         if (! $userinfo->{email_verified}) {
-            die "Your email is not verified with the external provider. Please verify your email with $provider first.\n";
+            die "Seu e-mail não está verificado no provedor externo. Verifique primeiro seu e-mail com $provider.\n";
         }
 
         # Clean up short-lived verifier cookies, we're done with them now
@@ -305,7 +306,7 @@ sub callback : Chained('provider') PathPart('callback') Args(0) {
 
         # Uh oh, too many matches (not sure if this is even possible)
         if ( $count > 1 ) {
-            die "Multiple users were found to have the email: '$email'. Please contact your system administrator for more help.\n";
+            die "Foram encontrados vários usuários com o e-mail: '$email'. Entre em contato com o administrador do sistema para obter mais ajuda.\n";
         }
 
         $q = "
@@ -332,13 +333,13 @@ sub callback : Chained('provider') PathPart('callback') Args(0) {
             my $num_rows = $h->execute($email, $email);
             my ($other_username) = $h->fetchrow_array();
             if ( $num_rows > 0 ) {
-                die "The provided email '$email' is associated with a different user '$other_username'. Please contact your system administrator for more help.\n";
+                die "O e-mail informado '$email' está associado a outro usuário '$other_username'. Entre em contato com o administrador do sistema para obter mais ajuda.\n";
             }
 
 
             # Not auto-provision, raise error
             if (! $config->{auto_provision}) {
-                die "No system user was found with the email '$email'. If you have not yet registered for an account, please do so first. Otherwise, please contact your system administrator.\n";
+                die "Nenhum usuário do sistema foi encontrado com o e-mail '$email'. Se você ainda não criou uma conta, faça isso primeiro. Caso contrário, entre em contato com o administrador do sistema.\n";
             }
 
             # ---------------------------------------------------------------------
@@ -346,14 +347,14 @@ sub callback : Chained('provider') PathPart('callback') Args(0) {
 
             # Check for mirror site status
             if ($c->config->{is_mirror}) {
-                die "This site is a mirror site and does not support adding users. Please go to the main site to create an account.\n";
+                die "Este site é um espelho e não permite adicionar usuários. Acesse o site principal para criar uma conta.\n";
             }
 
             # breedbase specific requirements for username composition
             if (length($username) < 7) {
-                die "The username '$username' is too short. Username must be 7 or more characters.\n";
+                die "O nome de usuário '$username' é muito curto. O nome de usuário deve ter 7 ou mais caracteres.\n";
             } elsif ( $username =~ /\s/ ) {
-                die "The username '$username' contains spaces.\n";
+                die "O nome de usuário '$username' contém espaços.\n";
             }
 
             # generate random password. if the user laters wants to use the
@@ -438,7 +439,7 @@ sub fetch_json {
     try {
         $content = decode_json $response->{_content};
     } catch {
-        $content->{error} = "Failed to fetch the well known configuration.";
+        $content->{error} = "Falha ao obter a configuração well-known.";
         $content->{error_description} = $response->{_content};
     };
     return $content

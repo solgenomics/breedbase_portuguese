@@ -1,4 +1,5 @@
 package CXGN::Trial::TrialLayoutDownload;
+use utf8;
 
 =head1 NAME
 
@@ -234,14 +235,14 @@ sub get_layout_output {
     };
     if (!$trial_layout) {
         #print STDERR "Trial does not have valid field design.\n";
-        push @error_messages, "Trial does not have valid field design.";
+        push @error_messages, "O ensaio não tem um delineamento de campo válido.";
         $errors{'error_messages'} = \@error_messages;
         return \%errors;
     }
     print STDERR "TrialLayoutDownload retrieving deisgn ".localtime."\n";
     my $design = $trial_layout->get_design();
     if (!$design){
-        push @error_messages, "Trial does not have valid field design. Please contact us.";
+        push @error_messages, "O ensaio não tem um delineamento de campo válido. Entre em contato conosco.";
         $errors{'error_messages'} = \@error_messages;
         return \%errors;
     }
@@ -301,7 +302,7 @@ sub get_layout_output {
         $exact_performance_hash = $exact->search(); #this gets treatments too!
     } elsif ($data_level eq 'plants') {
         if (!$has_plants){
-            push @error_messages, "Trial does not have plants, so you should not try to download a plant level layout.";
+            push @error_messages, "O ensaio não tem plantas; portanto, não tente baixar um layout em nível de planta.";
             $errors{'error_messages'} = \@error_messages;
             return \%errors;
         }
@@ -313,7 +314,7 @@ sub get_layout_output {
         $exact_performance_hash = $exact->search();
     } elsif ($data_level eq 'subplots') {
         if (!$has_subplots){
-            push @error_messages, "Trial does not have subplots, so you should not try to download a subplot level layout.";
+            push @error_messages, "O ensaio não tem subparcelas; portanto, não tente baixar um layout em nível de subparcela.";
             $errors{'error_messages'} = \@error_messages;
             return \%errors;
         }
@@ -325,7 +326,7 @@ sub get_layout_output {
         $exact_performance_hash = $exact->search();
     } elsif ($data_level eq 'field_trial_tissue_samples') {
         if (!$has_tissue_samples){
-            push @error_messages, "Trial does not have tissue samples, so you should not try to download a tissue sample level layout.";
+            push @error_messages, "O ensaio não tem amostras de tecido; portanto, não tente baixar um layout em nível de amostra de tecido.";
             $errors{'error_messages'} = \@error_messages;
             return \%errors;
         }

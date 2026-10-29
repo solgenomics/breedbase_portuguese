@@ -106,12 +106,12 @@ sub add_data_agreement :Path('/breeders/trial/add/data_agreement') Args(0) {
     my $data_agreement = $c->req->param('text');
 
     if (!$c->user()) {
-	$c->stash->{rest} = { error => 'You need to be logged in to add a data agreement' };
+	$c->stash->{rest} = { error => 'Você precisa entrar em sua conta para adicionar um acordo de dados' };
 	return;
     }
 
     if (!($c->user()->check_roles('curator') || $c->user()->check_roles('submitter'))) {
-	$c->stash->{rest} = { error => 'You do not have the required privileges to add a data agreement to this trial.' };
+	$c->stash->{rest} = { error => 'Você não tem os privilégios necessários para adicionar um acordo de dados a este ensaio.' };
 	return;
     }
 
@@ -131,7 +131,7 @@ sub add_data_agreement :Path('/breeders/trial/add/data_agreement') Args(0) {
 	    );
 
 	if ($project_rs->count() == 0) {
-	    $c->stash->{rest} = { error => "No such project $project_id", };
+	    $c->stash->{rest} = { error => "Projeto inexistente: $project_id", };
 	    return;
 	}
 
@@ -144,11 +144,11 @@ sub add_data_agreement :Path('/breeders/trial/add/data_agreement') Args(0) {
 	    $projectprop = $projectprop_rs->first();
 	    $projectprop->value($data_agreement);
 	    $projectprop->update();
-	    $c->stash->{rest} = { message => 'Updated data agreement.' };
+	    $c->stash->{rest} = { message => 'Acordo de dados atualizado.' };
 	}
 	else {
 	    $projectprop = $project->create_projectprops( { 'data_agreement' => $data_agreement,}, {autocreate=>1});
-	    $c->stash->{rest} = { message => 'Inserted new data agreement.'};
+	    $c->stash->{rest} = { message => 'Novo acordo de dados inserido.'};
 	}
     };
     if ($@) {
@@ -169,7 +169,7 @@ sub get_data_agreement :Path('/breeders/trial/data_agreement/get') :Args(0) {
     my $data_agreement_cvterm_id_rs = $schema->resultset('Cv::Cvterm')->search( { name => 'data_agreement' });
 
     if ($data_agreement_cvterm_id_rs->count() == 0) {
-	$c->stash->{rest} = { error => "No data agreements have been added yet." };
+	$c->stash->{rest} = { error => "Nenhum acordo de dados foi adicionado ainda." };
 	return;
     }
 
@@ -182,7 +182,7 @@ sub get_data_agreement :Path('/breeders/trial/data_agreement/get') :Args(0) {
 	);
 
     if ($projectprop_rs->count() == 0) {
-	$c->stash->{rest} = { error => "No such project $project_id", };
+	$c->stash->{rest} = { error => "Projeto inexistente: $project_id", };
 	return;
     }
     my $projectprop = $projectprop_rs->first();
@@ -217,7 +217,7 @@ sub get_trial_location : Path('/ajax/breeders/trial/location') Args(1) {
 	$c->stash->{rest} = { location => $t->get_location() };
     }
     else {
-	$c->stash->{rest} = { error => "The trial with id $trial_id does not exist" };
+	$c->stash->{rest} = { error => "O ensaio com ID $trial_id não existe" };
 
     }
 }
@@ -267,7 +267,7 @@ sub get_accession_plots_plants :Path('/ajax/breeders/get_accession_plots_plants'
     my $accession_related_stocks = CXGN::Stock::RelatedStocks->new({dbic_schema => $schema, stock_id =>$accession_id, trial_id => $trial_id});
     my $plots_and_plants = $accession_related_stocks->get_plots_and_plants();
     my @results = @$plots_and_plants;
-    my @blank = ('' , 'Please select a plot or plant');
+    my @blank = ('' , 'Selecione uma parcela ou planta');
     unshift @results, [@blank];
 
     $c->stash->{rest} = {data => \@results};

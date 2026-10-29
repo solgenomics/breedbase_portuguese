@@ -16,7 +16,7 @@ use CXGN::Tools::File;
 
 my $file=(File::Spec->catfile($c->get_conf("homepage_files_dir"), "loci.txt"));
 
-my $loci = qq{ <br /><p class="boxbgcolor5"><br />A lista de todos os locais da semana está indisponível devido a um problema com o servidor. Pedimos desculpas por qualquer inconveniente. Por favor, volte mais tarde.<br /><br /></p><br /><br /> };
+my $loci = qq{ <br /><p class="boxbgcolor5"><br />A lista de todos os loci da semana está indisponível no momento devido a um problema com o servidor. Pedimos desculpas por qualquer inconveniente. Por favor, volte mais tarde.<br /><br /></p><br /><br /> };
 
 
 eval { 
@@ -28,7 +28,7 @@ eval {
 
 </%perl>
 
-<& /page/page_title.mas, title=>'Todo Loci da Semana' &>
+<& /page/page_title.mas, title=>'Todos os loci da semana' &>
 
 <% $loci %>
 

@@ -1,4 +1,5 @@
 package SGN::Controller::AJAX::Report;
+use utf8;
 
 use Moose;
 use strict;
@@ -46,7 +47,7 @@ sub generatereport_POST :Path('generatereport') :Args(0) {
     unless ($curator) {
         $c->stash->{rest} = {
             success => JSON::false,
-            error   => "This is a curator tool. Please contact the database responsible to generate a report for you.",
+            error   => "Esta é uma ferramenta de curadoria. Entre em contato com o responsável pelo banco de dados para gerar um relatório para você.",
         };
         $c->detach;
     }
@@ -165,7 +166,7 @@ sub generatereport_POST :Path('generatereport') :Args(0) {
     # Respond immediately
     $c->stash->{rest} = {
         success => JSON::true,
-        message => "Your report(s) are being generated and will be emailed when ready. Feel free to navigate to other pages!",
+        message => "Os relatórios estão sendo gerados e serão enviados por e-mail quando estiverem prontos. Fique à vontade para navegar para outras páginas!",
     };
 }
 

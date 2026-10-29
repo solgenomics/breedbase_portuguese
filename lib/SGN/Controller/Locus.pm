@@ -1,4 +1,5 @@
 package SGN::Controller::Locus;
+use utf8;
 
 =head1 NAME
 
@@ -107,7 +108,7 @@ sub view_by_name : Path('/locus/view/') Args(0) {
     }
     else { 
         $c->stash->{template} = 'generic_message.mas';
-        $c->stash->{message} = "No locus was found for the identifier provided ($symbol $locusname $species).";
+        $c->stash->{message} = "Nenhum locus foi encontrado para o identificador informado ($symbol $locusname $species).";
         # forward to search page ?
     }
 
@@ -149,18 +150,18 @@ sub view_locus : Chained('get_locus') PathPart('view') Args(0) {
 
     # print message if locus_id is not valid
     unless ( ( $locus_id =~ m /^\d+$/ ) || ($action eq 'new' && !$locus_id) ) {
-        $c->throw_404( "No locus exists for that identifier." );
+        $c->throw_404( "Não existe locus para esse identificador." );
     }
     unless ( $locus || !$locus_id && $action && $action eq 'new' ) {
-        $c->throw_404( "No locus exists for that identifier." );
+        $c->throw_404( "Não existe locus para esse identificador." );
     }
 
     # print message if the locus is obsolete
     my $obsolete = $locus->get_obsolete();
     if ( $obsolete eq 't'  && !$curator ) {
         $c->throw(is_client_error => 0,
-                  title             => 'Obsolete locus',
-                  message           => "Locus $locus_id is obsolete!",
+                  title             => 'Locus obsoleto',
+                  message           => "O locus $locus_id está obsoleto!",
                   developer_message => 'only curators can see obsolete loci',
                   notify            => 0,   #< does not send an error email
             );
@@ -169,7 +170,7 @@ sub view_locus : Chained('get_locus') PathPart('view') Args(0) {
 
     # print message if locus_id does not exist
     if ( !$locus && $action ne 'new' && $action ne 'store' ) {
-        $c->throw_404('No locus exists for this identifier');
+        $c->throw_404('Não existe locus para este identificador');
     }
 
     ####################
@@ -248,7 +249,7 @@ sub get_locus : Chained('/')  PathPart('locus')  CaptureArgs(1) {
 	    $c->stash->{locus}     = CXGN::Phenome::Locus->new($c->dbc->dbh);
 	    return 1;
 	} elsif ( $locus_id < 0 ) {
-	    $c->throw_client_error( public_message => 'Locus ID must be a positive integer.' );
+	    $c->throw_client_error( public_message => 'O ID do locus deve ser um número inteiro positivo.' );
 	}
     }
     #remove version numbers from locus name locus123.1.2
@@ -263,11 +264,11 @@ sub get_locus : Chained('/')  PathPart('locus')  CaptureArgs(1) {
 	} );
     
     if( $matching_loci->count > 1 ) {
-        $c->throw_client_error( public_message => 'Multiple matching loci' );
+        $c->throw_client_error( public_message => 'Vários loci correspondentes' );
     }    
     
     my ( $locus ) = $matching_loci->all
-	or $c->throw_404( "Locus not found" );
+	or $c->throw_404( "Locus não encontrado" );
     my $found_locus_id = $locus->locus_id;
     
     $c->stash->{locus}     = CXGN::Phenome::Locus->new($c->dbc->dbh, $found_locus_id);

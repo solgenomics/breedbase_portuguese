@@ -21,7 +21,7 @@ $guide
 use CXGN::Phenome::Qtl::Tools;
 use CXGN::Page::FormattingHelpers qw | tooltipped_text |;
 
-my $organism = qq| <a href="javascript:Qtl.toggleAssociateTaxon()">[Select Organism]</a> |;
+my $organism = qq| <a href="javascript:Qtl.toggleAssociateTaxon()">[Selecionar organismo]</a> |;
 my $required = qq | <font color="red"><sup>*</sup></font>|;
 my $qtltools = CXGN::Phenome::Qtl::Tools->new();
    
@@ -46,22 +46,22 @@ my $parent_f = tooltipped_text('Female parent', 'format eg. Solanum lycopersicum
 <&| /page/info_section.mas,
   title => "Detalhes da população",
 &>
-<% $required %> <span><i>Deve ser preenchido.</i><br/><br/></span>
+<% $required %> <span><i>Preenchimento obrigatório.</i><br/><br/></span>
 <form action="/phenome/qtl_load.pl" method="POST" enctype="MULTIPART/FORM-DATA">        
      <table>
      <tr>
-       <td>Cross type<% $required %></td>
+       <td>Tipo de cruzamento<% $required %></td>
 	 <td> <select name="pop_type">
 	          <% $cross_options %>
              </select>
          </td>
      </tr>
      <tr>
-	<td>Population name<% $required %></td>
+	<td>Nome da população<% $required %></td>
 	<td><input type="text" name="pop_name" size=42></td>    
      </tr>
      <tr>
-         <td>Population description<% $required %></td>
+         <td>Descrição da população<% $required %></td>
          <td><textarea name="pop_desc" rows = 5 cols=44></textarea></td>
      </tr>  
      <tr>

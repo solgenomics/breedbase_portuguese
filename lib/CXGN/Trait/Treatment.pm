@@ -26,6 +26,7 @@ Ryan Preble <rsp98@cornell.edu>
 =cut
 
 package CXGN::Trait::Treatment;
+use utf8;
 
 use Moose;
 use Data::Dumper;
@@ -58,14 +59,14 @@ sub store {
     my $transform = $lt->transform($schema, "traits_2_trait_ids", $parent_terms);
 
     if (@{$transform->{missing}} > 0) {
-        die "Parent term(s) " . join(", ", @{$transform->{missing}}) . " could not be found in the database.\n";
+        die "Termo(s) pai " . join(", ", @{$transform->{missing}}) . " não encontrado(s) no banco de dados.\n";
     }
 
     my @parent_ids = @{$transform->{transform}};
 
-    my $name = $self->name() || die "No name found.\n";
-    my $definition = $self->definition() || die "No definition found.\n";
-    my $format = $self->format() || die "No format found.\n";
+    my $name = $self->name() || die "Nenhum nome encontrado.\n";
+    my $definition = $self->definition() || die "Nenhuma definição encontrada.\n";
+    my $format = $self->format() || die "Nenhum formato encontrado.\n";
     my $default_value = $self->default_value() ne "" ? $self->default_value() : undef;
     my $minimum = $self->minimum() ne "" ? $self->minimum() : undef;
     my $maximum = $self->maximum() ne "" ? $self->maximum() : undef;
@@ -127,7 +128,7 @@ sub store {
     if ($relationship_cv) {
         $rel_cv_id = $relationship_cv->cv_id ;
     } else {
-        die "No relationship ontology in DB.\n";
+        die "Nenhuma ontologia de relacionamentos no banco de dados.\n";
     }
     my $variable_relationship = $schema->resultset("Cv::Cvterm")->find({ name => 'VARIABLE_OF' , cv_id => $rel_cv_id });
     my $variable_of_id;
@@ -145,7 +146,7 @@ sub store {
     if ($experiment_treatment_cv) {
         $experiment_treatment_cv_id = $experiment_treatment_cv->cv_id ;
     } else {
-        die "No experiment_treatment CV found. Has DB patch been run?\n";
+        die "Nenhum CV experiment_treatment encontrado. O patch do banco de dados foi executado?\n";
     }
 
     my $h = $schema->storage->dbh->prepare($get_db_accessions_sql);
@@ -209,7 +210,7 @@ sub store {
         };
         if ($@) {
             $schema->txn_rollback();
-            die "An error occurred! $@";
+            die "Ocorreu um erro! $@";
         } else {
             $schema->txn_commit();
         }
@@ -219,7 +220,7 @@ sub store {
         $schema->txn_do($coderef);
     };
     if ($@) {
-        die "An error occurred saving treatment: $@\n";
+        die "Ocorreu um erro ao salvar o tratamento: $@\n";
     }
     
     $self->cvterm($new_treatment);

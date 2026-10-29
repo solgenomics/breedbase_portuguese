@@ -1,5 +1,6 @@
 package CXGN::Stock::Seedlot::ParseUpload::Plugin::SeedlotsToPlots;
 
+use utf8;
 use Moose::Role;
 use Spreadsheet::ParseExcel;
 use Spreadsheet::ParseXLSX;
@@ -41,7 +42,7 @@ sub _validate_with_plugin {
 
     my $worksheet = ( $excel_obj->worksheets() )[0]; #support only one worksheet
     if (!$worksheet) {
-        push @error_messages, "Spreadsheet must be on 1st tab in Excel (.xls) file";
+        push @error_messages, "A planilha deve estar na 1ª aba do arquivo Excel (.xls)";
         $errors{'error_messages'} = \@error_messages;
         $self->_set_parse_errors(\%errors);
         return;
@@ -49,7 +50,7 @@ sub _validate_with_plugin {
     my ( $row_min, $row_max ) = $worksheet->row_range();
     my ( $col_min, $col_max ) = $worksheet->col_range();
     if (($col_max - $col_min)  < 2 || ($row_max - $row_min) < 1 ) { #must have header and at least one row of transaction data
-        push @error_messages, "Spreadsheet is missing header or contains no rows";
+        push @error_messages, "A planilha não tem cabeçalho ou não contém linhas";
         $errors{'error_messages'} = \@error_messages;
         $self->_set_parse_errors(\%errors);
         return;
@@ -88,22 +89,22 @@ sub _validate_with_plugin {
     }
 
     if (!$from_seedlot_name_head || $from_seedlot_name_head ne 'from_seedlot_name' ) {
-        push @error_messages, "Cell A1: from_seedlot_name is missing from the header";
+        push @error_messages, "Célula A1: from_seedlot_name está ausente do cabeçalho";
     }
     if (!$to_plot_name_head || $to_plot_name_head ne 'to_plot_name') {
-        push @error_messages, "Cell B1: to_plot_name is missing from the header";
+        push @error_messages, "Célula B1: to_plot_name está ausente do cabeçalho";
     }
     if (!$amount_head || $amount_head ne 'amount') {
-        push @error_messages, "Cell C1: amount is missing from the header";
+        push @error_messages, "Célula C1: amount está ausente do cabeçalho";
     }
     if (!$weight_head || $weight_head ne 'weight(g)') {
-        push @error_messages, "Cell D1: weight(g) is missing from the header";
+        push @error_messages, "Célula D1: weight(g) está ausente do cabeçalho";
     }
     if (!$operator_name_head || $operator_name_head ne 'operator_name') {
-        push @error_messages, "Cell E1: operator_name is missing from the header";
+        push @error_messages, "Célula E1: operator_name está ausente do cabeçalho";
     }
     if (!$transaction_description_head || $transaction_description_head ne 'transaction_description') {
-        push @error_messages, "Cell F1: transaction_description is missing from the header";
+        push @error_messages, "Célula F1: transaction_description está ausente do cabeçalho";
     }
 
     my %seen_seedlot_names;
@@ -142,31 +143,31 @@ sub _validate_with_plugin {
         }
 
         if (!$from_seedlot_name || $from_seedlot_name eq '' ) {
-            push @error_messages, "Cell A$row_name: from_seedlot_name missing.";
+            push @error_messages, "Célula A$row_name: from_seedlot_name ausente.";
         } else {
             $from_seedlot_name =~ s/^\s+|\s+$//g;
             $seen_seedlot_names{$from_seedlot_name}++;
         }
 
         if (!$to_plot_name || $to_plot_name eq '') {
-            push @error_messages, "Cell B:$row_name: to_plot_name missing.";
+            push @error_messages, "Célula B:$row_name: to_plot_name ausente.";
         } else {
             $to_plot_name =~ s/^\s+|\s+$//g;
             $seen_plot_names{$to_plot_name}++;
         }
 
         if (!defined($amount) || $amount eq '') {
-            push @error_messages, "Cell C$row_name: amount missing";
+            push @error_messages, "Célula C$row_name: amount ausente";
         }
         if (!defined($weight) || $weight eq '') {
-            push @error_messages, "Cell D$row_name: weight(g) missing";
+            push @error_messages, "Célula D$row_name: weight(g) ausente";
         }
         if ($amount eq 'NA' && $weight eq 'NA') {
-            push @error_messages, "On row:$row_name you must provide either a weight in grams or a seed count amount.";
+            push @error_messages, "Na linha $row_name, você deve informar um peso em gramas ou uma quantidade de sementes.";
         }
 
         if (!defined($operator_name) || $operator_name eq '') {
-            push @error_messages, "Cell E$row_name: operator_name missing";
+            push @error_messages, "Célula E$row_name: operator_name ausente";
         }
 
         push @seedlot_plot_pairs, [$from_seedlot_name, $to_plot_name];
@@ -187,11 +188,11 @@ sub _validate_with_plugin {
     }
 
     if (scalar(@seedlots_missing) > 0) {
-        push @error_messages, "The following seedlots are not in the database: ".join(',',@seedlots_missing);
+        push @error_messages, "Os seguintes lotes de sementes não estão no banco de dados: ".join(',',@seedlots_missing);
     }
 
     if (scalar(@seedlots_discarded) > 0) {
-        push @error_messages, "The following seedlots are marked as DISCARDED: ".join(',',@seedlots_discarded);
+        push @error_messages, "Os seguintes lotes de sementes estão marcados como DESCARTADOS: ".join(',',@seedlots_discarded);
     }
 
     my @plots = keys %seen_plot_names;
@@ -199,7 +200,7 @@ sub _validate_with_plugin {
     my @plots_missing = @{$plots_validator->validate($schema,'plots',\@plots)->{'missing'}};
 
     if (scalar(@plots_missing) > 0) {
-        push @error_messages, "The following plots are not in the database: ".join(',',@plots_missing);
+        push @error_messages, "As seguintes parcelas não estão no banco de dados: ".join(',',@plots_missing);
     }
 
     my $pairs_error = CXGN::Stock::Seedlot->verify_seedlot_plot_compatibility($schema, \@seedlot_plot_pairs);

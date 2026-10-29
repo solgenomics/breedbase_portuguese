@@ -1,5 +1,6 @@
 
 use strict;
+use utf8;
 
 use lib 't/lib';
 
@@ -396,7 +397,7 @@ ok($list->exists_element("bla3"), 'remove trailing and leading spaces element ch
 ok(!$list->exists_element(" bla3 "), 'trailing and leading spaces removed from element');
 
 my $space4 = $list->add_element("    ");
-ok($space4 eq "Empty list elements are not allowed", 'element with only spaces cannot be added');
+ok($space4 eq "Elementos de lista vazios não são permitidos", 'element with only spaces cannot be added');
 
 #test sort
 my $list = CXGN::List->new( { dbh => $t->dbh(), list_id => $list_id } );

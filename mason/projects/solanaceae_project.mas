@@ -1,8 +1,8 @@
-<& /page/page_title.mas,  title=>'Projeto Internacional Solanaceae Genomics (Sol)<br />Sistema Abordagem para Diversidade e Adaptação' &>
+<& /page/page_title.mas,  title=>'International Solanaceae Genomics Project (SOL)<br />Abordagem Sistêmica para Diversidade e Adaptação' &>
 
 <br>
 <p>
-  Ao longo da próxima década, o Projeto Genoma Internacional Solanaceae (SOL) criará uma rede coordenada de conhecimento sobre a família Solanaceae com o objetivo de responder a duas das questões mais importantes sobre vida e agricultura:
+  Ao longo da próxima década, o International Solanaceae Genome Project (SOL) criará uma rede coordenada de conhecimento sobre a família Solanaceae com o objetivo de responder a duas das questões mais importantes sobre vida e agricultura:
 </p>
 
 <ul>
@@ -10,26 +10,26 @@
     Como um conjunto comum de genes/proteínas pode dar origem a uma ampla gama de organismos morfologicamente e ecologicamente distintos que ocupam nosso planeta?
   </li>
   <li>
-    Como uma compreensão mais profunda da base genética da diversidade pode ser aproveitada para melhor atender às necessidades da sociedade de uma forma ambientalmente amigável?
+    Como uma compreensão mais profunda da base genética da diversidade pode ser aproveitada para melhor atender às necessidades da sociedade de uma forma ambientalmente correta?
   </li>
 </ul>
 
 <p>
-  Nesta página, você encontrará mais informações sobre a estratégia usada para responder essas perguntas. A
-  <a href="/static_content/solanaceae-project/docs/SOL_vision.pdf">Papel branco</a>
-  está disponível com mais detalhes. Contém contribuições de cientistas Solanaceae em todo o mundo. O whitepaper e a apresentação do Powerpoint devem ser recursos para pessoas que querem escrever subsídios no quadro internacional Solanaceae. Todos os textos e imagens podem ser usados livremente.
+  Nesta página, você encontrará mais informações sobre a estratégia usada para responder a essas perguntas. Um
+  <a href="/static_content/solanaceae-project/docs/SOL_vision.pdf">white paper</a>
+  com mais detalhes está disponível. Ele contém contribuições de cientistas de Solanaceae de todo o mundo. O white paper e a apresentação em PowerPoint que o acompanha servem como recursos para quem deseja escrever propostas de financiamento no âmbito do International Solanaceae. Todos os textos e imagens podem ser usados livremente.
 </p>
 
 <a href="/static_content/solanaceae-project/docs/SOL_vision.pdf">
-  <img style="border: 0; margin: 1em" src="/static_content/solanaceae-project/SOL_title.jpg" alt="Projeto SOL Whitepaper Cover" />
+  <img style="border: 0; margin: 1em" src="/static_content/solanaceae-project/SOL_title.jpg" alt="Capa do white paper do Projeto SOL" />
 </a>
 
-<&| /page/info_section.mas, title=>'SOL sites ao redor do mundo' &>
+<&| /page/info_section.mas, title=>'Sites do SOL ao redor do mundo' &>
 
 <ul>
-<li><a href="http://www.afri-sol.net">AFRI-SOL</a> A iniciativa do SOL Africano, com foco em plantas de Solanaceae africanas e intercâmbio de informações.</li>
-<li><a href="http://cnia.inta.gov.ar/lat-sol/">Lat-Sol</a> - Laboratórios SOL da América do Sul<br /></li>
-<li><a href="http://www.srcuk.org/index.htm">SRCUK</a> - Comunidade de Pesquisa Solanaceae no Reino Unido<br /></li>
+<li><a href="http://www.afri-sol.net">AFRI-SOL</a> A iniciativa SOL africana, com foco em plantas de Solanaceae africanas e no intercâmbio de informações.</li>
+<li><a href="http://cnia.inta.gov.ar/lat-sol/">Lat-SOL</a> - Laboratórios SOL da América do Sul<br /></li>
+<li><a href="http://www.srcuk.org/index.htm">SRCUK</a> - Solanaceae Research Community no Reino Unido<br /></li>
 </ul>
 
 <a name="news" id="news"></a>
@@ -59,10 +59,10 @@
 
 
 <a name="sol_newsletters">
-<&| /page/info_section.mas, title=>'Boletins SOL' &>
+<&| /page/info_section.mas, title=>'Boletins do SOL' &>
 
   <ul>
-<li><a href="/static_content/solanaceae-project/docs/SOL_newsletter_Sep_13.pdf">Setembro de 2013</a> <b>(Questão atual)</b></li>
+<li><a href="/static_content/solanaceae-project/docs/SOL_newsletter_Sep_13.pdf">Setembro de 2013</a> <b>(edição atual)</b></li>
 <li><a href="/static_content/solanaceae-project/docs/SOL_newsletter_Apr_13.pdf">Abril de 2013</a> </li>
 <li><a href="/static_content/solanaceae-project/docs/SOL_newsletter_Oct_12.pdf">Outubro de 2012</a></li>
 <li><a href="/static_content/solanaceae-project/docs/SOL_newsletter_Jun_12.pdf">Junho de 2012</a></li>
@@ -79,7 +79,7 @@
 <li><a href="/static_content/solanaceae-project/docs/SOL_newsletter_Mar_09.pdf">Março de 2009</a></li>
 <li><a href="/static_content/solanaceae-project/docs/SOL_newsletter_Dec_08.pdf">Dezembro de 2008</a></li>
 <li><a href="/static_content/solanaceae-project/docs/SOL_newsletter_Aug_08.pdf">Agosto de 2008</a> </li>
-<li><a href="/static_content/solanaceae-project/docs/SOL_newsletter_May_08.pdf">Maio de 2008</a> [<a href="/static_content/solanaceae-project/docs/postersolanaceaesymposium-2gvdw.pdf">Nijmegen simpósio suplemento poster</a>]</li>
+<li><a href="/static_content/solanaceae-project/docs/SOL_newsletter_May_08.pdf">Maio de 2008</a> [<a href="/static_content/solanaceae-project/docs/postersolanaceaesymposium-2gvdw.pdf">suplemento de pôsteres do simpósio de Nijmegen</a>]</li>
 <li><a href="/static_content/solanaceae-project/docs/SOL_newsletter_Mar_08.pdf">Março de 2008</a></li>
         <li><a href="/static_content/solanaceae-project/docs/SOL_newsletter_Nov_07.pdf">Novembro de 2007</a></li>
 	<li><a href="/static_content/solanaceae-project/docs/SOL_newsletter_Jul_07.pdf">Julho de 2007</a></li>
@@ -91,11 +91,11 @@
 		<li><a href="/static_content/solanaceae-project/docs/SOL_newsletter_Sep_06.pdf">Setembro de 2006</a></li>
 		<li><a href="/static_content/solanaceae-project/docs/SOL_newsletter_Jun_06.pdf">Junho de 2006</a> </li>
 		<li><a href="/static_content/solanaceae-project/docs/SOL_newsletter_Apr_06.pdf">Abril de 2006</a></li>
-		<li><a href="/static_content/solanaceae-project/docs/SOL_newsletter_Feb_06.pdf">Fev 2006</a></li>
-		<li><a href="/static_content/solanaceae-project/docs/SOL_newsletter_Nov_05.pdf">Nov 2005</a> </li>
+		<li><a href="/static_content/solanaceae-project/docs/SOL_newsletter_Feb_06.pdf">Fevereiro de 2006</a></li>
+		<li><a href="/static_content/solanaceae-project/docs/SOL_newsletter_Nov_05.pdf">Novembro de 2005</a> </li>
 		<li><a href="/static_content/solanaceae-project/docs/SOL_newsletter_Sept_05.pdf">Setembro de 2005</a></li>
 		<li><a href="/static_content/solanaceae-project/docs/SOL_newsletter_July_05.pdf">Julho de 2005</a></li>
-		<li><a href="/static_content/solanaceae-project/docs/SOL_newsletter_May_05.pdf">Maio de 2005</a> E suplemento <a  href="/static_content/solanaceae-project/docs/FISH_supplement.ppt">[ppt]</a></li>
+		<li><a href="/static_content/solanaceae-project/docs/SOL_newsletter_May_05.pdf">Maio de 2005</a> e suplemento <a  href="/static_content/solanaceae-project/docs/FISH_supplement.ppt">[ppt]</a></li>
 		<li><a href="/static_content/solanaceae-project/docs/SOL_newsletter_Mar_05.pdf">Março de 2005</a></li>
 		<li><a href="/static_content/solanaceae-project/docs/SOL_newsletter_Dec_04.pdf">Dezembro de 2004</a></li>
 		<li><a href="/static_content/solanaceae-project/docs/SOL_newsletter_Nov_04.pdf">Novembro de 2004</a></li>
@@ -111,43 +111,43 @@
 -->
 
 
-<&| /page/info_section.mas, title=>'SOL Livro Branco' &>
+<&| /page/info_section.mas, title=>'White Paper do SOL' &>
 
 <dl>
 
-<dt>Whitepaper atualizado [Set 4, 2004]</dt>
+<dt>White paper atualizado [4 de setembro de 2004]</dt>
 
-<dd>O whitepaper atualizado está agora convenientemente disponível em 5 partes:
+<dd>O white paper atualizado agora está disponível, de forma prática, em 5 partes:
 
 <div style="margin-left: 1em">
   <table summary="">
   <tr>
     <td><a  href="/static_content/solanaceae-project/docs/SOL_vision.pdf">[pdf]</a></td>
-    <td>Parte I - A visão SOL</td>
+    <td>Parte I &ndash; A visão do SOL</td>
     <td></td>
   </tr><tr>
     <td><a  href="/static_content/solanaceae-project/docs/solanaceae-crop.pdf">[pdf]</a></td>
-    <td>Parte II – Plantações de Solanaceae</td>
+    <td>Parte II &ndash; Culturas de Solanaceae</td>
     <td></td>
   </tr><tr>
     <td><a  href="/static_content/solanaceae-project/docs/solanaceae-countries.pdf">[pdf]</a></td>
-    <td>Parte III - Países Solanaceae</td>
-    <td>[atualizado 9 de agosto de 2005]</td>
+    <td>Parte III &ndash; Países do Solanaceae</td>
+    <td>[atualizado em 9 de agosto de 2005]</td>
   </tr><tr>
     <td><a  href="/static_content/solanaceae-project/docs/tomato-sequencing.pdf">[pdf]</a></td>
-    <td>Parte IV - Estratégia de Sequenciamento de Tomate</td>
+    <td>Parte IV &ndash; Estratégia de sequenciamento do tomate</td>
     <td></td>
   </tr><tr>
     <td><!-- a  href="/static_content/solanaceae-project/docs/tomato-standards.pdf" -->
     <a href="http://docs.google.com/View?docid=dggs4r6k_1dd5p56">[Google doc]</a></td>
-    <td>Parte V - Normas e Diretrizes da Bioinformática
+    <td>Parte V &ndash; Padrões e diretrizes de bioinformática
 <!-- table><tr><td class="boxbgcolor4">Available as a Google document. <br />You can request edit privileges by <a href="mailto:sgn-feedback\@sgn.cornell.edu">contacting us</a>.</td></tr></table --><br />
     </td>
     <td></td>
   </tr><tr>
     <td><a  href="/static_content/solanaceae-project/SOL.final.31_12.sent.ppt">[ppt]</a></td>
-    <td>SOL Project apresenta slides</td>
-    <td>[atualizado 31 de dezembro de 2003]</td>
+    <td>Slides de apresentação do Projeto SOL</td>
+    <td>[atualizado em 31 de dezembro de 2003]</td>
   </tr>
   </table>
 </div>
@@ -169,31 +169,31 @@ are anchored to a genetic map are considered with high
 priority.</dd>
 
 -->
-<&| /page/info_section.mas, title=>"Encontro Internacional Solanaceae, 15 de novembro de 2003" &>
+<&| /page/info_section.mas, title=>"Reunião Internacional de Solanaceae, 15 de novembro de 2003" &>
 
-Localização: Washington, D.C. (Holiday Inn Dulles International)<br />
+Local: Washington, D.C. (Holiday Inn Dulles International)<br />
 <br />
 Data: 3 de novembro de 2003<br />
 <br />
-O objetivo do encontro era determinar a viabilidade, utilidade, estratégia e nível de interesse internacional/compromisso para sequenciar o genoma de tomate como uma referência para a família Solanaceae e outras famílias de plantas intimamente relacionadas. A oficina reuniu um grupo internacional de cientistas para discutir:
+O objetivo do encontro era determinar a viabilidade, utilidade, estratégia e nível de interesse internacional/compromisso para sequenciar o genoma de tomate como uma referência para a família Solanaceae e outras famílias de plantas intimamente relacionadas. O workshop reuniu um grupo internacional de cientistas para discutir:
 <ol>
 <li>o status atual da pesquisa Solanaceae - incluindo aspectos da biologia vegetal para os quais as espécies solanáceas são um modelo preferido,</li>
-<li>o impacto do sequenciamento do genoma de tomate nas pesquisas nas plantas e na biologia de plantas em geral,</li>
+<li>o impacto do sequenciamento do genoma do tomate na pesquisa em Solanaceae e na biologia vegetal em geral,</li>
 <li>estratégia de sequenciamento,</li>
-<li>mecanismos pelos quais tal projeto de sequenciamento pode ser realizado como parte de um consórcio multinacional, e 5) estratégias para gerenciamento de sequência de informação, curadoria e divulgação pública.</li>
+<li>mecanismos pelos quais tal projeto de sequenciamento pode ser realizado como parte de um consórcio multinacional, e 5) estratégias para gerenciamento, curadoria e disseminação pública das informações de sequência.</li>
 </ol>
 Resumo completo da reunião:
 <a  href="summary.pl">[html]</a>
-<a  href="/static_content/solanaceae-project/summary.pdf">[pdf (carta EUA]]</a> 
+<a  href="/static_content/solanaceae-project/summary.pdf">[pdf (carta EUA)]</a> 
 <a  href="/static_content/solanaceae-project/summary_A4.pdf">[pdf (A4)]</a> 
 <a  href="/static_content/solanaceae-project/summary.doc">[doc]</a>
 
 </&>
 
 
-<&| /page/info_section.mas, title=>"Páginas da SOL Bioinformática" &>
+<&| /page/info_section.mas, title=>"Páginas de bioinformática do SOL" &>
 
-Consulte o <a href="sol-bioinformatics/index.pl">Páginas de bioinformática SOL</a> com notas de reunião, slides powerpoint, etc
+Consulte as <a href="sol-bioinformatics/index.pl">páginas de bioinformática do SOL</a>, com notas de reuniões, slides de PowerPoint etc.
 
 
 </&>

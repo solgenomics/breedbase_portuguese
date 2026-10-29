@@ -132,7 +132,7 @@ foreach ( @{ $dbxrefs{'tgrc'} } ) {
     my $url       = $_->[0]->get_urlprefix() . $_->[0]->get_url();
     my $accession = $_->[0]->get_accession();
     $tgrc .=
-      qq|<br>$locus_name is a <a href="$url$accession" target="blank">TGRC gene</a><br />|;
+      qq|<br>$locus_name é um <a href="$url$accession" target="blank">gene do TGRC</a><br />|;
   }
 }
 my $tair;
@@ -141,7 +141,7 @@ foreach ( @{ $dbxrefs{'TAIR locus'} } ) {
     my $url       = $_->[0]->get_urlprefix() . $_->[0]->get_url();
     my $accession = $_->[0]->get_accession();
     $tair .=
-      qq|<br>$locus_name is a <a href="$url$accession" target="blank">TAIR locus</a><br />|;
+      qq|<br>$locus_name é um <a href="$url$accession" target="blank">locus do TAIR</a><br />|;
   }
 }
 
@@ -151,7 +151,7 @@ foreach ( @{ $dbxrefs{'PhyloGenes'} } ) {
     my $url       = $_->[0]->get_urlprefix() . $_->[0]->get_url();
     my $accession = $_->[0]->get_accession();
     $phylogenes .=
-      qq|<br>$locus_name is on <a href="$url$accession" target="blank">PhyloGenes</a><br />|;
+      qq|<br>$locus_name está no <a href="$url$accession" target="blank">PhyloGenes</a><br />|;
   }
 }
 
@@ -223,7 +223,7 @@ my $ontology_subtitle = $curator || $submitter || $sequencer  ?
 <& /page/page_title.mas, title=> "$common_name locus ".$locus->get_locus_name &>
 
 
-<&| /page/info_section.mas, title=>"Locus details" , subtitle => "$locus_xml | $editor_note | $guide_html" &>
+<&| /page/info_section.mas, title=>"Detalhes do locus" , subtitle => "$locus_xml | $editor_note | $guide_html" &>
 
 
 <& /page/form.mas,

@@ -4,7 +4,7 @@
 
 <%init>
     if ( !$markers ) {
-        print "<p><strong>ERRO: </strong>Marcadores variantes desaparecidos!</p>";
+        print "<p><strong>ERRO: </strong>Marcadores variantes ausentes!</p>";
     }
 </%init>
 
@@ -15,7 +15,7 @@
             <th>Protocolo</th>
             <th>Espécie</th>
             <th>Referência</th>
-            <th>Cromossoma</th>
+            <th>Cromossomo</th>
             <th>Posição</th>
             <th>Ref</th>
             <th>Alt</th>

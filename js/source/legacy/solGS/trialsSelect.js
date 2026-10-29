@@ -130,7 +130,7 @@ jQuery(document).on("change", "#trial_select", function () {
         var popName = jQuery(this).find("option:selected").text()
         console.log("Nome da população: ", popName);
         jQuery("#analysis_pop_name").val(popName);
-        if (!jQuery(this).find("option:selected").text().match(/Dataset:/)) {
+        if (!jQuery(this).find("option:selected").text().match(/Conjunto de dados:/)) {
             jQuery("#data_structure").val("trial");
             jQuery("#analysis_pop_id").val(selectedTrial);
         } else {

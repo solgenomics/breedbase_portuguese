@@ -1,4 +1,5 @@
 package CXGN::Genotype::SequenceMetadata;
+use utf8;
 
 =head1 NAME
 
@@ -155,13 +156,13 @@ sub verify {
     my $cmd = "bash " . $script . " \"" . $input . "\" \"" . $output . "\"";
     my $rv = system($cmd);
     if ($rv == -1) {
-        $results{'error'} = "Could not launch pre-processing script: $!";
+        $results{'error'} = "Não foi possível iniciar o script de pré-processamento: $!";
     }
     elsif (my $s = $rv & 127) { 
-        $results{'error'} = "Pre-processing script died from signal $s";
+        $results{'error'} = "O script de pré-processamento foi encerrado pelo sinal $s";
     }
     elsif (my $e = $rv >> 8)  { 
-        $results{'error'} = "Pre-processing script exited with code $e"; 
+        $results{'error'} = "O script de pré-processamento terminou com o código $e"; 
     }
 
     # VERIFY THE FEATURES
@@ -275,21 +276,21 @@ sub create_protocol {
 
     # Make sure SMD type_id is set
     if ( !defined $self->type_id || $self->type_id eq '' ) {
-        $results{'error'} = "Sequence Metadata type_id not set!";
+        $results{'error'} = "type_id dos metadados de sequência não definido!";
         return(\%results);
     }
 
     # Check required arguments
     if ( !$protocol_name || $protocol_name eq '' ) {
-        $results{'error'} = "Protocol name not set!";
+        $results{'error'} = "Nome do protocolo não definido!";
         return(\%results);
     }
     if ( !$protocol_description || $protocol_description eq '' ) {
-        $results{'error'} = "Protocol description not set!";
+        $results{'error'} = "Descrição do protocolo não definida!";
         return(\%results);
     }
     if ( !$reference_genome || $reference_genome eq '' ) {
-        $results{'error'} = "Reference genome not set!";
+        $results{'error'} = "Genoma de referência não definido!";
         return(\%results);
     }
 
@@ -365,11 +366,11 @@ sub store {
 
     # Make sure type_id and nd_protocol_id are set
     if ( !defined $self->type_id || $self->type_id eq '' ) {
-       $results{'error'} = "Sequence Metadata type_id not set!";
+       $results{'error'} = "type_id dos metadados de sequência não definido!";
        return(\%results);
     }
     if ( !defined $self->nd_protocol_id || $self->nd_protocol_id eq '' ) {
-        $results{'error'} = "Sequence Metadata nd_protocol_id not set!";
+        $results{'error'} = "nd_protocol_id dos metadados de sequência não definido!";
         return(\%results);
     }
 
@@ -381,14 +382,14 @@ sub store {
     # Check cvterm id
     my $cvterm = $self->bcs_schema->resultset("Cv::Cvterm")->find({ cvterm_id => $self->type_id });
     if ( !$cvterm ) {
-        $results{'error'} = "No matching cvterm found for the specified type id";
+        $results{'error'} = "Nenhum cvterm correspondente encontrado para o type id especificado";
         return(\%results);
     }
 
     # Check nd protocol id
     my $nd_protocol = $self->bcs_schema->resultset("NaturalDiversity::NdProtocol")->find({ nd_protocol_id => $self->nd_protocol_id });
     if ( !$nd_protocol ) {
-        $results{'error'} = "No matching nd protocol found for the specified nd protocol id";
+        $results{'error'} = "Nenhum nd protocol correspondente encontrado para o nd protocol id especificado";
         return(\%results);
     }
 
@@ -446,7 +447,7 @@ sub store {
                 my $value = $kv[1];
                 ($value) = $value =~ /^"?([^"]*)"?$/;
                 if ( $key eq "score" || $key eq "start" || $key eq "end" ) {
-                    $results{'error'} = "Line has reserved key in attribute list (attributes cannot use keys of 'score', 'start' or 'end')";
+                    $results{'error'} = "A linha tem uma chave reservada na lista de atributos (os atributos não podem usar as chaves 'score', 'start' ou 'end')";
                     return(\%results);
                 }
                 $attribute_hash{$key} = $value;
@@ -576,11 +577,11 @@ sub query {
 
     # Check for required parameters
     if ( !defined $feature_id || $feature_id eq '' ) {
-        $results{'error'} = "Feature ID not provided!";
+        $results{'error'} = "ID da feature não informado!";
         return(\%results);
     }
     if ( (!defined $reference_genome || $reference_genome eq '') && (defined $start || defined $end) ) {
-        $results{'error'} = "Reference genome must be provided with start and/or end positions(s)!";
+        $results{'error'} = "O genoma de referência deve ser informado junto com as posições inicial e/ou final!";
         return(\%results);
     }
 
@@ -606,7 +607,7 @@ sub query {
     # Check if feature_id exists
     my $feature_rs = $schema->resultset("Sequence::Feature")->find({ feature_id => $feature_id });
     if ( !defined $feature_rs ) {
-        $results{'error'} = 'Could not find matching feature!';
+        $results{'error'} = 'Não foi possível encontrar a feature correspondente!';
         return(\%results);
     }
 
@@ -615,7 +616,7 @@ sub query {
         my $cv_rs = $schema->resultset('Cv::Cv')->find({ name => "sequence_metadata_types" });
         my $cvterm_rs = $schema->resultset('Cv::Cvterm')->find({ cvterm_id => $type_id, cv_id => $cv_rs->cv_id() });
         if ( !defined $cvterm_rs ) {
-            $results{'error'} = "Could not find matching sequence metadata type [$type_id]!";
+            $results{'error'} = "Não foi possível encontrar o tipo de metadados de sequência correspondente [$type_id]!";
             return(\%results);
         }
     }
@@ -628,7 +629,7 @@ sub query {
         my $protocol_cvterm_rs = $schema->resultset('Cv::Cvterm')->find({ name => "sequence_metadata_protocol", cv_id => $protocol_cv_rs->cv_id() });
         my $protocol_rs = $schema->resultset("NaturalDiversity::NdProtocol")->find({ nd_protocol_id => $nd_protocol_id, type_id => $protocol_cvterm_rs->cvterm_id() });
         if ( !defined $protocol_rs ) {
-            $results{'error'} = "Could not find matching nd_protocol [$nd_protocol_id]!";
+            $results{'error'} = "Não foi possível encontrar o nd_protocol correspondente [$nd_protocol_id]!";
             return(\%results);
         }
 
@@ -673,7 +674,7 @@ sub query {
     
     # DATA QUERY TOO LARGE: return with an error message
     if ( $chunk_count > $MAX_CHUNK_COUNT ) {
-        $results{'error'} = "The requested query is too large to perform at once.  Try filtering the data by including fewer data types/protocols and/or a smaller sequence range.";
+        $results{'error'} = "A consulta solicitada é grande demais para ser executada de uma só vez.  Tente filtrar os dados incluindo menos tipos de dados/protocolos e/ou um intervalo de sequência menor.";
         return(\%results);
     }
 

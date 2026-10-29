@@ -92,7 +92,7 @@ $trial_name
                 <div class="container-fluid">
                     <b>Cabeçalho:</b>
                     <br>
-                    A primeira linha (cabeçalho) deve conter <b>propagation_group_identifier</b>, <b>accession_name</b>, <b>material_type</b>, <b>Data</b>, <b>Descrição</b> E <b>operator_name</b>. Inclua informações adicionais nas colunas opcionais indicadas abaixo:
+                    A primeira linha (cabeçalho) deve conter <b>propagation_group_identifier</b>, <b>accession_name</b>, <b>material_type</b>, <b>date</b>, <b>description</b> e <b>operator_name</b>. Inclua informações adicionais nas colunas opcionais indicadas abaixo:
                     <br/>
                     <br>
                     <table class="table table-hover table-bordered table-condensed" >
@@ -102,13 +102,13 @@ $trial_name
                                 <td>propagation_group_identifier</td>
                                 <td>accession_name</td>
                                 <td>material_type</td>
-                                <td>Data</td>
-                                <td>Descrição</td>
+                                <td>date</td>
+                                <td>description</td>
                                 <td>operator_name</td>
                                 <td>source_type</td>
                                 <td>source_name</td>
                                 <td>sub_location</td>
-                                <td>propósito</td>
+                                <td>purpose</td>
                             </tr>
                         </tbody>
                     </table>
@@ -119,7 +119,7 @@ $trial_name
                         <li>accession_name (deve corresponder a um <b>nome único</b> existente no banco de dados)</li>
                         <li>material_type (use um dos valores: budwood, stem, shoot, root, corm, plant ou seed; entre em contato conosco para adicionar outros tipos)</li>
                         <li>date (data de início da propagação no formato AAAA-MM-DD)</li>
-                        <li>Descrição</li>
+                        <li>description</li>
                         <li>operator_name</li>
                     </ul>
 

@@ -14,14 +14,14 @@ border:1px solid red;color:red;
 
 </style>
 
-<& /page/page_title.mas, title => "<a href=\"http://solcyc.solgenomics.net/\">SolCyc</a> Caminhos Bioquímicos" &>
+<& /page/page_title.mas, title => "<a href=\"http://solcyc.solgenomics.net/\">SolCyc</a> Vias bioquímicas" &>
 
 <div class="boxbgcolor1">
 <p>
-SolCyc é uma coleção de bases de dados de genomas de Pathway (PGDBs) para espécies de Solanaceae geradas usando <a href="http://bioinformatics.ai.sri.com/ptools/">Ferramentas do Caminho</a> Software de <a href="http://www.sri.com">SRI Internacional</a>, the same software that is used in <a href="http://www.arabidopsis.org/tools/aracyc/">AraCyc</a> porque <i>Arabidopsis thaliana</i> e <a href="http://www.ecocyc.org">EcoCyc</a> porque <i>E. coli</i>. 
+O SolCyc é uma coleção de bancos de dados de vias e genomas (Pathway Genome Databases, PGDBs) para espécies de Solanaceae, gerados com o software <a href="http://bioinformatics.ai.sri.com/ptools/">Pathway Tools</a> da <a href="http://www.sri.com">SRI International</a>, o mesmo software usado no <a href="http://www.arabidopsis.org/tools/aracyc/">AraCyc</a> para <i>Arabidopsis thaliana</i> e no <a href="http://www.ecocyc.org">EcoCyc</a> para <i>E. coli</i>. 
 </p>
 <p>
-Atualmente, bancos de dados de tomate, batata e pimenta estão disponíveis, gerados a partir das respectivas anotações do genoma. Bancos de dados que receberam curadoria significativa são marcados com um <span class="tier">Nível 1</span>. O banco de dados de berinjela não é mais suportado ou disponível.
+Atualmente, bancos de dados de tomate, batata e pimenta estão disponíveis, gerados a partir das respectivas anotações do genoma. Bancos de dados que receberam curadoria significativa são marcados com um <span class="tier">Nível 1</span>. O banco de dados de berinjela não é mais mantido nem está disponível.
 </p>
 
 
@@ -46,21 +46,21 @@ Atualmente, bancos de dados de tomate, batata e pimenta estão disponíveis, ger
   <li><a target="_blank" href="http://solcyc.solgenomics.net/organism-summary?object=NITOM"><i>Nicotiana tomentosiformis</i> (NiTomCyc)</a></li>
 
  </ul>
-<h4>Multi-species databases:</h4>
+<h4>Bancos de dados multiespécies:</h4>
 <ul>
   <li><a target="_blank" href="http://solcyc.solgenomics.net/organism-summary?object="><b>Tabaco</b> Gênero Nicotiana combinado (NicotianaCyc)</a> <span class="tier">Nível 1</span></li>
   <li><a target="_blank" href="http://solcyc.solgenomics.net/organism-summary?object="><b>Solanaceae</b> Banco de dados Solanaceae (SolanaCyc)</a> <span class="tier">Nível 1</span></li>
 </ul>
 
 <p>
-Mais bancos de dados serão gerados no futuro, e a anotação será melhorada adicionando mais caminhos específicos de Solanaceae.
+Mais bancos de dados serão gerados no futuro, e a anotação será aprimorada com a adição de mais vias específicas de Solanaceae.
 </p>
 <p>
-Observe a disponibilidade do <a href="http://solcyc.solgenomics.net/expression.html">Visualizador de Omics</a>, which allows microarray, gene chip, proteomics, and metabolomic information to be overlaid over the pathway overview diagrams.
+Observe a disponibilidade do <a href="http://solcyc.solgenomics.net/expression.html">Omics Viewer</a>, que permite sobrepor informações de microarranjos, chips de genes, proteômica e metabolômica aos diagramas gerais das vias.
 </p>
 </div>
 
 
-<b>Interfaces programáticas para ferramentas de caminhos</b>:<br />
-Atualmente mantemos uma interface Perl e uma interface Java para Ferramentas de Caminho:
-<a href="ftp://ftp.solgenomics.net/programs/javacyc/javacyc.tar.gz">JavaCyc</a> e <a href="ftp://ftp.solgenomics.net/programs/perlcyc/perlcyc.tar.gz">PerlCyc</a>. Mais informações estão disponíveis sobre <a href="/downloads/">Transferências de software</a> Página
+<b>Interfaces programáticas para o Pathway Tools</b>:<br />
+Atualmente mantemos uma interface Perl e uma interface Java para o Pathway Tools:
+<a href="ftp://ftp.solgenomics.net/programs/javacyc/javacyc.tar.gz">JavaCyc</a> e <a href="ftp://ftp.solgenomics.net/programs/perlcyc/perlcyc.tar.gz">PerlCyc</a>. Mais informações estão disponíveis na página de <a href="/downloads/">downloads de software</a>.

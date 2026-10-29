@@ -1,18 +1,18 @@
 
-<& /page/page_title.mas, title=>"Ajuda na Barra de Ferramentas" &>
+<& /page/page_title.mas, title=>"Ajuda da barra de ferramentas" &>
 
 <%perl>
 use CXGN::Page::Toolbar::SGN;
 
 print<<END_HEREDOC;
-The toolbar is located on the upper portion of the screen on almost
-every page on the SGN site and provides an easy way to navigate the
-site. The toolbar consists of the SGN logo and a row of links that link
-to the main portions of the site. When the mouse passes over a link, a
-pull down menu is displayed (assuming you have JavaScript turned on). 
-You can either click the main link or scroll down the menu to choose a 
-menu item. If you are having problems with the toolbar, you may want to
-bookmark this page, and use it instead.
+A barra de ferramentas fica na parte superior da tela em quase
+todas as páginas do site da SGN e oferece uma maneira fácil de navegar pelo
+site. Ela consiste no logotipo da SGN e em uma linha de links que levam
+às principais seções do site. Quando o mouse passa sobre um link, um
+menu suspenso é exibido (desde que o JavaScript esteja ativado).
+Você pode clicar no link principal ou percorrer o menu para escolher um
+item. Se tiver problemas com a barra de ferramentas, adicione esta página
+aos favoritos e use-a no lugar da barra.
 <br /><br />
 END_HEREDOC
 

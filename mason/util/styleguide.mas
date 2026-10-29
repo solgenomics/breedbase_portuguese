@@ -1,15 +1,15 @@
 <h3>Importando CSS</h3>
 
 <p>
-  To import CSS one should use the <code>/util/import_css.mas</code> 
-  mason component instead of a <code>&lt;link&gt;</code> element. This will 
-  ensure that a link is added to the <code>&lt;head&gt;</code> 
-  instead of being part of the <code>&lt;body&gt;</code>. One provides this 
-  Mason Componant com uma lista de cordas que são uma das seguintes:
+  Para importar CSS, deve-se usar o componente Mason <code>/util/import_css.mas</code> 
+  em vez de um elemento <code>&lt;link&gt;</code>. Isso garante que o link seja 
+  adicionado ao <code>&lt;head&gt;</code> 
+  em vez de fazer parte do <code>&lt;body&gt;</code>. Esse componente Mason 
+  recebe uma lista de strings, cada uma sendo um dos seguintes itens:
   <ul>
-    <li>O caminho relativo para o arquivo CSS da pasta /static/css.</li>
-    <li>O caminho absoluto para o arquivo CSS.</li>
-    <li>Uma URL começando com o nome do esquema (ou seja, 'http://...').</li>
+    <li>O caminho relativo do arquivo CSS a partir da pasta /static/css.</li>
+    <li>O caminho absoluto do arquivo CSS no site.</li>
+    <li>Uma URL começando com o nome do esquema (por exemplo, 'http://...').</li>
   </ul>
     <pre><%text><& /util/import_css.mas, paths => [
     'bootstrap/v1.css',
@@ -23,22 +23,22 @@
 <h3>Importando JavaScript</h3>
 
 <p>
-  To import JavaScript one should use the <code>/util/import_javascript.mas</code> 
-  Componente de pedreiro. Isso garantirá que o roteiro seja carregado no 
-  <code>&lt;head&gt;</code> instead of being part of the 
-  <code>&lt;body&gt;</code>. One provides this mason componant with a list of 
-  cordas que são o caminho para o arquivo JavaScript com barras substituídas por 
-  periods (e.g. <code>s/\/\./g</code>) and the file extension removed.
+  Para importar JavaScript, deve-se usar o componente Mason <code>/util/import_javascript.mas</code>. 
+  Isso garante que o script seja carregado no 
+  <code>&lt;head&gt;</code> em vez de fazer parte do 
+  <code>&lt;body&gt;</code>. Esse componente Mason recebe uma lista de 
+  strings com o caminho do arquivo JavaScript, com as barras substituídas por 
+  pontos (por exemplo, <code>s/\/\./g</code>) e sem a extensão do arquivo.
   <pre><%text><& /util/import_javascript.mas, classes => [qw[ CXGN.Effects CXGN.Phenome.Locus MochiKit.DOM ]] &></%text></pre>
 </p>
 
 <hr>
 
-<h3>Seções de Informação</h3>
-<p>Fonte:</p>
+<h3>Seções de informações</h3>
+<p>Código-fonte:</p>
 <pre><%text>
 &lt;&| /page/info_section.mas, id=&gt;'Example_Info_Section', 
-    title =&gt; 'Example Info Section', subtitle =&gt; 'This is a subtitle', 
+    title =&gt; 'Seção de informações de exemplo', subtitle =&gt; 'Este é um subtítulo', 
     collapsible=&gt;1, collapsed=&gt;0 &&gt;
     
   Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
@@ -46,30 +46,30 @@
 &lt;/&&gt;
 </%text></pre>
 
-<p>Cria:</p>
+<p>Resultado:</p>
 <&| /page/info_section.mas, id=>'Example_Info_Section', 
-    title => 'Seção de Informações de Exemplo', subtitle => 'Isso é uma legenda', 
+    title => 'Seção de informações de exemplo', subtitle => 'Este é um subtítulo', 
     collapsible=>1, collapsed=>0 &>
     
-  Lorem ipsum dolor set amet, consectetur adipiscing elit. 
+  Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
   
 </&>
 
 <hr>
 
-<h3>Lista Selecionar Menus</h3>
-<p>Fonte:</p>
+<h3>Menus de seleção de listas</h3>
+<p>Código-fonte:</p>
 <pre>
   &lt;& /util/import_javascript.mas, classes => ['CXGN.List'] &&gt;
   &lt;div id="select_div_id"&gt;&lt;/div&gt;
   &lt;script type="text/javascript"&gt;
     var list_obj = new CXGN.List();
-    var listhtml = list_obj.listSelect('select_div_id', ['accessions'], "Select an Accession List", undefined, undefined);
+    var listhtml = list_obj.listSelect('select_div_id', ['accessions'], "Selecione uma lista de acessos", undefined, undefined);
     jQuery('#select_div_id').html(listhtml);
   &lt;/script&gt;
 </pre>
 
-<p>Cria:</p>
+<p>Resultado:</p>
 <div id="select_div_id"></div>
 <script type="text/javascript">
   var lo = new CXGN.List();
@@ -79,7 +79,7 @@
 <hr>
 
 <h3>Seleções HTML (get_select_box)</h3>
-<p>Fonte:</p>
+<p>Código-fonte:</p>
 <pre>
 &lt;& /util/import_javascript.mas, classes => ['CXGN.BreedersToolbox.HTMLSelect'] &&gt;
 &lt;div id="htmlselectexample"&gt;&lt;/div&gt;
@@ -88,7 +88,7 @@
 &lt;/script&gt;
 </pre>
 
-<p>Cria:</p>
+<p>Resultado:</p>
 <div id="htmlselectexample"></div>
 <script type="text/javascript">
     get_select_box("trials", "htmlselectexample")
@@ -96,8 +96,8 @@
 
 <hr>
 
-<h3>HTML Muliple Selects (get_select_box tem muitas opções por exemplo, busca por ensaios em breeding_program_name)</h3>
-<p>Fonte:</p>
+<h3>Seleções HTML múltiplas (get_select_box tem muitas opções, por exemplo, buscar ensaios em breeding_program_name)</h3>
+<p>Código-fonte:</p>
 <pre>
 &lt;& /util/import_javascript.mas, classes => ['CXGN.BreedersToolbox.HTMLSelect'] &&gt;
 &lt;div id="htmlselectmultipleexample"&gt;&lt;/div&gt;
@@ -106,7 +106,7 @@
 &lt;/script&gt;
 </pre>
 
-<p>Cria:</p>
+<p>Resultado:</p>
 <div id="htmlselectmultipleexample"></div>
 <script type="text/javascript">
     get_select_box("trials", "htmlselectmultipleexample", {'multiple':1, 'size':10, 'breeding_program_name':'test'})
@@ -114,8 +114,8 @@
 
 <hr>
 
-<h3>Adicionar ao Menu Lista</h3>
-<p>Fonte:</p>
+<h3>Menu "Adicionar à lista"</h3>
+<p>Código-fonte:</p>
 <pre>
 &lt;div id="styleguide_add_to_list_menu"&gt;&lt;/div&gt;
 &lt;div id="styleguide_add_to_list_items" style="display:none"&gt;item1
@@ -129,7 +129,7 @@
 &lt;/script&gt;
 </pre>
 
-<p>Cria:</p>
+<p>Resultado:</p>
 <div id="styleguide_add_to_list_menu"></div>
 <div id="styleguide_add_to_list_items" style="display:none">item1
     item2
@@ -143,10 +143,10 @@
 
 <hr>
 
-<h3>JQueryUI autocompleta</h3>
-<p>Fonte:</p>
+<h3>Autocompletar do jQueryUI</h3>
+<p>Código-fonte:</p>
 <pre>
-&lt;input type="text" class="form-control" id="popname" value="" placeholder="Populations autocomplete..."&gt;
+&lt;input type="text" class="form-control" id="popname" value="" placeholder="Autocompletar populações..."&gt;
 &lt;script type="text/javascript"&gt;
     jQuery('#popname').autocomplete({
         source: '/ajax/stock/population_autocomplete',
@@ -154,8 +154,8 @@
 &lt;/script&gt;
 </pre>
 
-<p>Cria:</p>
-<input type="text" class="form-control" id="popname" value="" placeholder="Populações completas...">
+<p>Resultado:</p>
+<input type="text" class="form-control" id="popname" value="" placeholder="Autocompletar populações...">
 <script type="text/javascript">
   jQuery('#popname').autocomplete({
     source: '/ajax/stock/population_autocomplete',
@@ -164,51 +164,51 @@
 
 <hr>
 
-<h3>2 Colunas Detalhe Página Seção</h3>
-<p>Esta seção é usada na página de detalhes do ensaio e na página de detalhes do material, mas idealmente seria usada em todas as páginas de detalhes. O info_section_id especifica o que mostrar na seção principal. Botões podem ser passados para o buttons_html.</p>
-<p>Fonte:</p>
+<h3>Seção de página de detalhes com 2 colunas</h3>
+<p>Esta seção é usada na página de detalhes do ensaio e na página de detalhes do material, mas idealmente seria usada em todas as páginas de detalhes. O info_section_id especifica o que mostrar na seção principal. Botões podem ser passados em buttons_html.</p>
+<p>Código-fonte:</p>
 <pre>
 &lt;& /page/detail_page_2_col_section.mas,
-info_section_title =&gt; "&lt;h4 style='display:inline'&gt;My Info Section&lt;/h4&gt;",
-info_section_subtitle =&gt; 'View my info.',
+info_section_title =&gt; "&lt;h4 style='display:inline'&gt;Minha seção de informações&lt;/h4&gt;",
+info_section_subtitle =&gt; 'Veja minhas informações.',
 icon_class =&gt; "glyphicon glyphicon-equalizer",
 info_section_id =&gt; "",
-buttons_html =&gt; "&lt;button class='btn btn-sm btn-primary' style='margin:3px' id='my_example_button'&gt;Example Button&lt;/button&gt;"
+buttons_html =&gt; "&lt;button class='btn btn-sm btn-primary' style='margin:3px' id='my_example_button'&gt;Botão de exemplo&lt;/button&gt;"
 &&gt;
 </pre>
 
-<p>Cria:</p>
-<& /page/detail_page_2_col_section.mas, info_section_title => "<h4 style='display:inline'>Minha Seção de Informações</h4>", info_section_subtitle => 'Veja minhas informações.', icon_class => "glyphicon glyphicon-equalizer", info_section_id => "", buttons_html => "<button class='btn btn-sm btn-primary' style='margin:3px' id='my_example_button'>Example Button</button>" &>
+<p>Resultado:</p>
+<& /page/detail_page_2_col_section.mas, info_section_title => "<h4 style='display:inline'>Minha seção de informações</h4>", info_section_subtitle => 'Veja minhas informações.', icon_class => "glyphicon glyphicon-equalizer", info_section_id => "", buttons_html => "<button class='btn btn-sm btn-primary' style='margin:3px' id='my_example_button'>Botão de exemplo</button>" &>
 
 <hr>
 
-<h3>3 Colunas Detalhe Página Seção</h3>
-<p>Fonte:</p>
+<h3>Seção de página de detalhes com 3 colunas</h3>
+<p>Código-fonte:</p>
 <pre>
 &lt;& /page/detail_page_3_col_section.mas,
 icon_class =&gt; "glyphicon glyphicon-qrcode",
-title =&gt; "Example title.",
+title =&gt; "Título de exemplo.",
 button_id =&gt; "example_button_link"
 &&gt;
 </pre>
 
-<p>Cria:</p>
+<p>Resultado:</p>
 <& /page/detail_page_3_col_section.mas, icon_class => "glyphicon glyphicon-qrcode", title => "Título de exemplo.", button_id => "example_button_link" &>
 
 <hr>
 
-<h3>Um exemplo de fluxo de trabalho explicando fluxos de trabalho</h3>
+<h3>Um fluxo de trabalho de exemplo que explica os fluxos de trabalho</h3>
 
 <&| /util/workflow.mas , id=> "my_workflow"&>
 
   <&| /util/workflow.mas:step, title=>"workflow.mas" &>
-    <p>Add a workflow using the <code>/util/workflow.mas</code> mason component</p>
+    <p>Adicione um fluxo de trabalho usando o componente Mason <code>/util/workflow.mas</code></p>
     <p><pre><%text>&lt;&amp;| /util/workflow.mas, id=> "my_workflow" &amp;&gt;...&lt;/&amp;&gt;</%text></pre></p>
     <button type="button" class="btn btn-default" onclick="Workflow.complete(this);">Próximo</button>
   </&>
   
   <&| /util/workflow.mas:step, title=>"Adicionando passos" &>
-    <p>Add steps to the workflow using the <code>/util/workflow.mas:step</code> mason method.</p>
+    <p>Adicione passos ao fluxo de trabalho usando o método Mason <code>/util/workflow.mas:step</code>.</p>
     <p>
 <pre><%text>&lt;&amp;| /util/workflow.mas, id=&gt; "my_workflow" &amp;&gt;
     &lt;&amp;| /util/workflow.mas:step, title=&gt; "Step A" &amp;&gt;...&lt;/&amp;&gt;
@@ -219,11 +219,11 @@ button_id =&gt; "example_button_link"
     <button type="button" class="btn btn-default" onclick="Workflow.complete(this);">Próximo</button>
   </&>
   
-  <&| /util/workflow.mas:step, title=>"Completando passos" &>
+  <&| /util/workflow.mas:step, title=>"Concluindo passos" &>
   <p>
-    Use the <code>Workflow.complete(Element)</code> JavaScript function to 
-    complete a step. <code>Element</code> should be any DOM element within the 
-    Passo que gostaria de completar.
+    Use a função JavaScript <code>Workflow.complete(Element)</code> para 
+    concluir um passo. <code>Element</code> deve ser qualquer elemento DOM dentro do 
+    passo que você deseja concluir.
   </p>
   <p>
 <pre><%text>&lt;&amp;| /util/workflow.mas, id=&gt; "my_workflow"&amp;&gt;
@@ -237,10 +237,10 @@ button_id =&gt; "example_button_link"
   <button type="button" class="btn btn-default" onclick="Workflow.complete(this);">Próximo</button>
   </&>
   
-  <&| /util/workflow.mas:step, title=>"Saltando Passos" &>
+  <&| /util/workflow.mas:step, title=>"Pulando passos" &>
   <p>
-    Saltar funciona como completar, mas marca o passo como incompleto. Use
-    <code>Workflow.skip(Element)</code> just like you would 
+    Pular funciona como concluir, mas marca o passo como incompleto. Use
+    <code>Workflow.skip(Element)</code> da mesma forma que 
     <code>Workflow.complete(Element)</code>.
   </p>
   <p>
@@ -252,14 +252,14 @@ button_id =&gt; "example_button_link"
   ...
 &lt;/&amp;&gt;</%text></pre>
   </p>
-  <button type="button" class="btn btn-default" onclick="Workflow.skip(this);">Pule este passo</button>
+  <button type="button" class="btn btn-default" onclick="Workflow.skip(this);">Pular este passo</button>
   </&>
   
   <&| /util/workflow.mas:step, title=>"Passos pendentes" &>
   <p>
-    Às vezes um passo precisa de tempo para completar, como uploads. Você pode marcar um
-    step as pending using <code>Workflow.pending(Element)</code>. You can later
-    fully complete the step using <code>Workflow.complete(Element)</code>.
+    Às vezes um passo precisa de tempo para ser concluído, como no caso de envios. Você pode marcar um
+    passo como pendente usando <code>Workflow.pending(Element)</code>. Depois, você pode
+    concluir totalmente o passo usando <code>Workflow.complete(Element)</code>.
   </p>
   <p>
 <pre><%text>&lt;&amp;| /util/workflow.mas, id=&gt; "my_workflow"&amp;&gt;
@@ -271,15 +271,15 @@ button_id =&gt; "example_button_link"
   ...
 &lt;/&amp;&gt;</%text></pre>
   </p>
-  <button id="to_complete" type="button" class="btn btn-primary" onclick="Workflow.pending(this);">Espere e continue</button>
+  <button id="to_complete" type="button" class="btn btn-primary" onclick="Workflow.pending(this);">Aguardar e continuar</button>
   </&>
   
   <&| /util/workflow.mas:step, title=>"Telas finais" &>
   <p>
-    Depois que o passo final estiver concluído, uma tela final será mostrada. Para definir o 
-    content of the endscreen, use the <code>/util/workflow.mas:complete</code> 
-    Método Mason. Você também pode opcionalmente definir uma tela especial que é mostrado
-    Em vez disso, enquanto há passos pendentes usando 
+    Depois que o último passo for concluído, uma tela final será exibida. Para definir o 
+    conteúdo da tela final, use o método Mason <code>/util/workflow.mas:complete</code>. 
+    Opcionalmente, você também pode definir uma tela final especial, exibida
+    enquanto houver passos pendentes, usando 
     <code>/util/workflow.mas:pending</code>.
   </p>
   <p>
@@ -289,25 +289,25 @@ button_id =&gt; "example_button_link"
   &lt;&amp;| /util/workflow.mas:pending &amp;&gt; ... &lt;/&amp;&gt;
 &lt;/&amp;&gt;</%text></pre>
   </p>
-  <button type="button" class="btn btn-default" onclick="Workflow.complete(this);">Vá para a tela final</button>
+  <button type="button" class="btn btn-default" onclick="Workflow.complete(this);">Ir para a tela final</button>
   </&>
   
   <&| /util/workflow.mas:pending &>
-    <h2>Ainda há um passo pendente. Complete para ver a tela final.</h2>
-    <button type="button" class="btn btn-default" onclick="Workflow.complete(document.querySelector('#to_complete'),false);">Passo pendente completo</button>
+    <h2>Ainda há um passo pendente. Conclua-o para ver a tela final.</h2>
+    <button type="button" class="btn btn-default" onclick="Workflow.complete(document.querySelector('#to_complete'),false);">Concluir passo pendente</button>
   </&>
   <&| /util/workflow.mas:complete &>
-    <h1>Parabéns, você conseguiu passar pelo fluxo de trabalho!</h1>
+    <h1>Parabéns, você concluiu o fluxo de trabalho!</h1>
     <h4>Aqui estão outras dicas e truques:</h4>
-    <p>Para definir o passo atualmente visível do uso do fluxo de trabalho</p>
+    <p>Para definir o passo visível no momento no fluxo de trabalho, use</p>
     <pre>var wf = document.querySelector("#my_workflow");
 Workflow.focus(wf,step_index);</pre>
     <p>
-      By default, <code>Workflow.complete(...)</code>, 
-      <code>Workflow.skip(...)</code>, and <code>Workflow.pending(...)</code> 
-      Também mude o foco para o próximo passo. Às vezes, você precisa dar um passo 
-      para completar sem mudar o foco. Para fazer isso, passe 
-      <code>false</code> as the second argument.
+      Por padrão, <code>Workflow.complete(...)</code>, 
+      <code>Workflow.skip(...)</code> e <code>Workflow.pending(...)</code> 
+      também mudam o foco para o próximo passo. Às vezes, é preciso concluir um passo 
+      sem mudar o foco. Para isso, passe 
+      <code>false</code> como segundo argumento.
     </p>
     <pre>Workflow.complete(Element,false);
 Workflow.skip(Element,false);
@@ -317,18 +317,18 @@ Workflow.pending(Element,false);</pre>
 
 <hr>
 
-<h3>Vega (-lite) Gráficos</h3>
+<h3>Gráficos Vega(-lite)</h3>
 
 <p>
-    Usando <a href="https://vega.github.io/vega-lite/">Vega-lite</a> é uma maneira fácil e rápida de fazer gráficos no DB. Simplesmente incluir vega-lite:
+    Usar o <a href="https://vega.github.io/vega-lite/">vega-lite</a> é uma maneira fácil e rápida de criar gráficos no banco de dados. Basta incluir o vega-lite:
     <pre><%text><& /util/import_javascript.mas, classes => [qw[ vega.vega3 vega.vega-lite2 vega.vega-embed3 vega.vega-defaults ]] &></%text></pre>
-    Prepare um div:
+    criar uma div:
 <pre><%text>&lt;div id="vis"&gt;&lt;/div&gt;</%text></pre>
-    e depois executar vega-lite (você também pode usar um <a href="https://vega.github.io/vega/">Vega</a> Espectro gráfico: 
+    e então executar o vega-lite (você também pode usar uma especificação de gráfico do <a href="https://vega.github.io/vega/">vega</a>): 
 <pre><%text>&lt;script type="text/javascript"&gt;
     var yourVlSpec = {
       "$schema": "https://vega.github.io/schema/vega-lite/v2.0.json",
-      "description": "A simple bar chart with embedded data.",
+      "description": "Um gráfico de barras simples com dados incorporados.",
       "data": {
         "values": [
           {"a": "A","b": 28}, {"a": "B","b": 55}, {"a": "C","b": 43},
@@ -372,24 +372,24 @@ para criar:
 
 <hr>
 
-<h3>Ensaios de campo Buscam Datatable</h3>
-<p>Fonte:</p>
+<h3>Tabela de pesquisa de ensaios de campo</h3>
+<p>Código-fonte:</p>
 <pre>
     &lt;div class="well"&gt;
     &lt;table id="trial_search_results" width="100%" class="table table-hover table-striped"&gt;
     &lt;thead&gt;
       &lt;tr&gt;
-        &lt;th&gt;Trial name&lt;/th&gt;
-        &lt;th&gt;Description&lt;/th&gt;
-        &lt;th&gt;Breeding program&lt;/th&gt;
-        &lt;th&gt;Folder&lt;/th&gt;
-        &lt;th&gt;Year&lt;/th&gt;
-        &lt;th&gt;Location&lt;/th&gt;
-        &lt;th&gt;Trial type&lt;/th&gt;
-        &lt;th&gt;Design&lt;/th&gt;
-        &lt;th&gt;Planting Date&lt;/th&gt;
-        &lt;th&gt;Harvest Date&lt;/th&gt;
-        &lt;th&gt;Download&lt;/th&gt;
+        &lt;th&gt;Nome do ensaio&lt;/th&gt;
+        &lt;th&gt;Descrição&lt;/th&gt;
+        &lt;th&gt;Programa de melhoramento&lt;/th&gt;
+        &lt;th&gt;Pasta&lt;/th&gt;
+        &lt;th&gt;Ano&lt;/th&gt;
+        &lt;th&gt;Local&lt;/th&gt;
+        &lt;th&gt;Tipo de ensaio&lt;/th&gt;
+        &lt;th&gt;Delineamento&lt;/th&gt;
+        &lt;th&gt;Data de plantio&lt;/th&gt;
+        &lt;th&gt;Data de colheita&lt;/th&gt;
+        &lt;th&gt;Baixar&lt;/th&gt;
     &lt;/tr&gt;
     &lt;/thead&gt;
     &lt;/table&gt;
@@ -406,7 +406,7 @@ para criar:
     &lt;/script&gt;
 </pre>
 
-<p>Cria:</p>
+<p>Resultado:</p>
 <div class="well">
 <table id="styleguide_trial_search_results" width="100%" class="table table-hover table-striped">
 <thead>
@@ -414,14 +414,14 @@ para criar:
     <th>Selecionar</th>
     <th>Nome do ensaio</th>
     <th>Descrição</th>
-    <th>programa de melhoramento</th>
+    <th>Programa de melhoramento</th>
     <th>Pasta</th>
     <th>Ano</th>
     <th>Local</th>
     <th>Tipo de ensaio</th>
-    <th>Desenho</th>
-    <th>Data de implantação</th>
-    <th>Data da colheita</th>
+    <th>Delineamento</th>
+    <th>Data de plantio</th>
+    <th>Data de colheita</th>
     <th>Baixar</th>
 </tr>
 </thead>
@@ -440,10 +440,11 @@ var styleguide_trial_table = jQuery('#styleguide_trial_search_results').DataTabl
 
 <hr>
 
-<h3>Uso de Símbolos</h3>
+<h3>Uso de símbolos</h3>
 
 <p>
-  Abaixo está uma tabela com usos atuais de símbolos no banco de dados. Por favor, adicione esta história quando escolher usar um novo símbolo.
+  Abaixo está uma tabela com os usos atuais de símbolos no banco de dados. 
+  Acrescente a esta tabela quando decidir usar um novo símbolo.
 </p>
 <style media="screen">
   .symbol-table>tbody>tr>td{
@@ -462,7 +463,7 @@ var styleguide_trial_table = jQuery('#styleguide_trial_search_results').DataTabl
     <td><span class="glyphicon glyphicon-dashboard"></span></td>
     <td>
       <ul>
-        <li>Detalhes do ensaio Seção de topo</li>
+        <li>Seção superior de detalhes do ensaio [Detalhes do ensaio]</li>
       </ul>
     </td>
   </tr>
@@ -470,8 +471,8 @@ var styleguide_trial_table = jQuery('#styleguide_trial_search_results').DataTabl
     <td><span class="glyphicon glyphicon-align-left"></span></td>
     <td>
       <ul>
-        <li>JBrowse</li>
-        <li>JBrowse</li>
+        <li>JBrowse [Detalhes do ensaio]</li>
+        <li>JBrowse [Detalhes do material]</li>
       </ul>
     </td>
   </tr>
@@ -479,8 +480,8 @@ var styleguide_trial_table = jQuery('#styleguide_trial_search_results').DataTabl
     <td><span class="glyphicon glyphicon-book"></span></td>
     <td>
       <ul>
-        <li>Anotação de Literatura</li>
-        <li>Carregar dados de fenotipo</li>
+        <li>Anotação da literatura [Detalhes do material]</li>
+        <li>Enviar dados fenotípicos [Ajuda da página inicial]</li>
       </ul>
     </td>
   </tr>
@@ -488,10 +489,10 @@ var styleguide_trial_table = jQuery('#styleguide_trial_search_results').DataTabl
     <td><span class="glyphicon glyphicon-briefcase"></span></td>
     <td>
       <ul>
-        <li>Símbolo do programa de melhoramento</li>
-        <li>Símbolo do programa de melhoramento</li>
-        <li>Símbolo do programa de melhoramento</li>
-        <li>Símbolo do programa de melhoramento</li>
+        <li>Símbolo de programa de melhoramento [Gerenciar ensaios]</li>
+        <li>Símbolo de programa de melhoramento [Gerenciar cruzamentos]</li>
+        <li>Símbolo de programa de melhoramento [Gerenciar placas de genotipagem]</li>
+        <li>Símbolo de programa de melhoramento [Detalhes da pasta]</li>
       </ul>
     </td>
   </tr>
@@ -499,10 +500,10 @@ var styleguide_trial_table = jQuery('#styleguide_trial_search_results').DataTabl
     <td><span class="glyphicon glyphicon-folder-open"></span></td>
     <td>
       <ul>
-        <li>Símbolo da Pasta</li>
-        <li>Símbolo da Pasta</li>
-        <li>Símbolo da Pasta</li>
-        <li>Símbolo da pasta</li>
+        <li>Símbolo de pasta [Gerenciar ensaios]</li>
+        <li>Símbolo de pasta [Gerenciar cruzamentos]</li>
+        <li>Símbolo de pasta [Gerenciar placas de genotipagem]</li>
+        <li>Símbolo de pasta [Detalhes da pasta]</li>
       </ul>
     </td>
   </tr>
@@ -510,7 +511,7 @@ var styleguide_trial_table = jQuery('#styleguide_trial_search_results').DataTabl
     <td><span class="glyphicon glyphicon-camera"></span></td>
     <td>
       <ul>
-        <li>Imagens</li>
+        <li>Imagens [Detalhes do material]</li>
       </ul>
     </td>
   </tr>
@@ -518,7 +519,7 @@ var styleguide_trial_table = jQuery('#styleguide_trial_search_results').DataTabl
     <td><span class="glyphicon glyphicon-transfer"></span></td>
     <td>
       <ul>
-        <li>Transferência de dados</li>
+        <li>Transferência de dados [Gerenciar ODK]</li>
       </ul>
     </td>
   </tr>
@@ -526,7 +527,7 @@ var styleguide_trial_table = jQuery('#styleguide_trial_search_results').DataTabl
     <td><span class="glyphicon glyphicon-cloud"></span></td>
     <td>
       <ul>
-        <li>Dados meteorológicos</li>
+        <li>Dados meteorológicos [Detalhes do ensaio]</li>
       </ul>
     </td>
   </tr>
@@ -534,8 +535,8 @@ var styleguide_trial_table = jQuery('#styleguide_trial_search_results').DataTabl
     <td><span class="glyphicon glyphicon-equalizer"></span></td>
     <td>
       <ul>
-        <li>Fenótipos Estatísticas Sumárias</li>
-        <li>Características testados</li>
+        <li>Estatísticas resumidas de fenótipos [Detalhes do ensaio]</li>
+        <li>Características avaliadas [Detalhes do material]</li>
       </ul>
     </td>
   </tr>
@@ -543,7 +544,7 @@ var styleguide_trial_table = jQuery('#styleguide_trial_search_results').DataTabl
     <td><span class="glyphicon glyphicon-inbox"></span></td>
     <td>
       <ul>
-        <li>Acordo de dados</li>
+        <li>Acordo de dados [Detalhes do ensaio]</li>
       </ul>
     </td>
   </tr>
@@ -551,7 +552,7 @@ var styleguide_trial_table = jQuery('#styleguide_trial_search_results').DataTabl
     <td><span class="glyphicon glyphicon-info-sign"></span></td>
     <td>
       <ul>
-        <li>Informações adicionais</li>
+        <li>Informações adicionais [Detalhes do material]</li>
       </ul>
     </td>
   </tr>
@@ -559,10 +560,10 @@ var styleguide_trial_table = jQuery('#styleguide_trial_search_results').DataTabl
     <td><span class="glyphicon glyphicon-leaf"></span></td>
     <td>
       <ul>
-        <li>Uso de Experimentos</li>
-        <li>Símbolo de ensaio</li>
-        <li>Símbolo de ensaio</li>
-        <li>Seção de ensaio de campo</li>
+        <li>Uso em experimentos [Detalhes do material]</li>
+        <li>Símbolo de ensaio [Gerenciar ensaios]</li>
+        <li>Símbolo de ensaio [Detalhes da pasta]</li>
+        <li>Seção de ensaios de campo [Gerenciar amostras de tecido]</li>
       </ul>
     </td>
   </tr>
@@ -570,7 +571,7 @@ var styleguide_trial_table = jQuery('#styleguide_trial_search_results').DataTabl
     <td><span class="glyphicon glyphicon-link"></span></td>
     <td>
       <ul>
-        <li>Experiment Linkage</li>
+        <li>Vínculo de experimentos [Detalhes do ensaio]</li>
       </ul>
     </td>
   </tr>
@@ -578,8 +579,8 @@ var styleguide_trial_table = jQuery('#styleguide_trial_search_results').DataTabl
     <td><span class="glyphicon glyphicon-list-alt"></span></td>
     <td>
       <ul>
-        <li>Design de experiências</li>
-        <li>Catalog Seed Inventory[Homepage Help]</li>
+        <li>Delineamento experimental [Detalhes do ensaio]</li>
+        <li>Catalogar inventário de sementes [Ajuda da página inicial]</li>
       </ul>
     </td>
   </tr>
@@ -587,7 +588,7 @@ var styleguide_trial_table = jQuery('#styleguide_trial_search_results').DataTabl
     <td><span class="glyphicon glyphicon-flash"></span></td>
     <td>
       <ul>
-        <li>Design New Trial</li>
+        <li>Planejar novo ensaio [Ajuda da página inicial]</li>
       </ul>
     </td>
   </tr>
@@ -595,8 +596,8 @@ var styleguide_trial_table = jQuery('#styleguide_trial_search_results').DataTabl
     <td><span class="glyphicon glyphicon-cloud-upload"></span></td>
     <td>
       <ul>
-        <li>Enviar arquivos de dados</li>
-        <li>Envie o ensaio</li>
+        <li>Enviar arquivos de dados [Detalhes do ensaio]</li>
+        <li>Enviar ensaio [Ajuda da página inicial]</li>
       </ul>
     </td>
   </tr>
@@ -604,7 +605,7 @@ var styleguide_trial_table = jQuery('#styleguide_trial_search_results').DataTabl
     <td><span class="glyphicon glyphicon-floppy-save"></span></td>
     <td>
       <ul>
-        <li>Compute Novos Fenótipos</li>
+        <li>Calcular novos fenótipos [Detalhes do ensaio]</li>
       </ul>
     </td>
   </tr>
@@ -612,8 +613,8 @@ var styleguide_trial_table = jQuery('#styleguide_trial_search_results').DataTabl
     <td><span class="glyphicon glyphicon-pencil"></span></td>
     <td>
       <ul>
-        <li>Registre os Fenótipos</li>
-        <li>Comentários</li>
+        <li>Registrar fenótipos [Detalhes do ensaio]</li>
+        <li>Comentários [Detalhes do material]</li>
       </ul>
     </td>
   </tr>
@@ -621,7 +622,7 @@ var styleguide_trial_table = jQuery('#styleguide_trial_search_results').DataTabl
     <td><span class="glyphicon glyphicon-qrcode"></span></td>
     <td>
       <ul>
-        <li>Código de barras</li>
+        <li>Código de barras [Detalhes do ensaio]</li>
       </ul>
     </td>
   </tr>
@@ -629,8 +630,8 @@ var styleguide_trial_table = jQuery('#styleguide_trial_search_results').DataTabl
     <td><span class="glyphicon glyphicon-random"></span></td>
     <td>
       <ul>
-        <li>Pedigree!</li>
-        <li>Envie Cruzamentos[Página Inicial Ajuda]</li>
+        <li>Pedigree [Detalhes do material]</li>
+        <li>Enviar cruzamentos [Ajuda da página inicial]</li>
       </ul>
     </td>
   </tr>
@@ -638,7 +639,7 @@ var styleguide_trial_table = jQuery('#styleguide_trial_search_results').DataTabl
     <td><span class="glyphicon glyphicon-flag"></span></td>
     <td>
       <ul>
-        <li>Plano Amostra de Tecidos</li>
+        <li>Planejar amostragem de tecidos [Ajuda da página inicial]</li>
       </ul>
     </td>
   </tr>
@@ -646,7 +647,7 @@ var styleguide_trial_table = jQuery('#styleguide_trial_search_results').DataTabl
     <td><span class="glyphicon glyphicon-tags"></span></td>
     <td>
       <ul>
-        <li>Imprimir etiquetas de código de barras</li>
+        <li>Imprimir etiquetas de código de barras [Ajuda da página inicial]</li>
       </ul>
     </td>
   </tr>
@@ -654,8 +655,8 @@ var styleguide_trial_table = jQuery('#styleguide_trial_search_results').DataTabl
     <td><span class="glyphicon glyphicon-map-marker"></span></td>
     <td>
       <ul>
-        <li>Dados de Marcadores Genótipos</li>
-        <li>Envie os dados do Genótipo VCF</li>
+        <li>Dados de marcadores de genótipo [Detalhes do material]</li>
+        <li>Enviar dados de genótipo VCF [Ajuda da página inicial]</li>
       </ul>
     </td>
   </tr>
@@ -663,7 +664,7 @@ var styleguide_trial_table = jQuery('#styleguide_trial_search_results').DataTabl
     <td><span class="glyphicon glyphicon-retweet"></span></td>
     <td>
       <ul>
-        <li>Ações relacionadas</li>
+        <li>Materiais relacionados [Detalhes do material]</li>
       </ul>
     </td>
   </tr>
@@ -671,8 +672,8 @@ var styleguide_trial_table = jQuery('#styleguide_trial_search_results').DataTabl
     <td><span class="glyphicon glyphicon-grain"></span></td>
     <td>
       <ul>
-        <li>Símbolo de Cruzamentos</li>
-        <li>Símbolo de Cruzamentos</li>
+        <li>Símbolo de cruzamentos [Gerenciar cruzamentos]</li>
+        <li>Símbolo de cruzamentos [Detalhes da pasta]</li>
       </ul>
     </td>
   </tr>
@@ -680,7 +681,7 @@ var styleguide_trial_table = jQuery('#styleguide_trial_search_results').DataTabl
     <td><span class="glyphicon glyphicon-signal"></span></td>
     <td>
       <ul>
-        <li>Análise</li>
+        <li>Análise [Detalhes do ensaio]</li>
       </ul>
     </td>
   </tr>
@@ -688,11 +689,11 @@ var styleguide_trial_table = jQuery('#styleguide_trial_search_results').DataTabl
     <td><span class="glyphicon glyphicon-th"></span></td>
     <td>
       <ul>
-        <li>Disposição espacial de campo e mapa de calor</li>
-        <li>Adicionar placa de genotipagem (96 ou 384 bem placa)</li>
-        <li>Símbolo de placa de genotipagem (96 ou 384 bem placa)</li>
-        <li>Símbolo de placa de genotipagem (96 ou 384 bem placa)</li>
-        <li>Seção de placas de genotipagem</li>
+        <li>Disposição de campo e mapa de calor [Detalhes do ensaio]</li>
+        <li>Adicionar placa de genotipagem (placa de 96 ou 384 poços) [Ajuda da página inicial]</li>
+        <li>Símbolo de placa de genotipagem (placa de 96 ou 384 poços) [Gerenciar placas de genotipagem]</li>
+        <li>Símbolo de placa de genotipagem (placa de 96 ou 384 poços) [Detalhes da pasta]</li>
+        <li>Seção de placas de genotipagem [Gerenciar amostras de tecido]</li>
       </ul>
     </td>
   </tr>
@@ -700,7 +701,7 @@ var styleguide_trial_table = jQuery('#styleguide_trial_search_results').DataTabl
     <td><span class="glyphicon glyphicon-blackboard"></span></td>
     <td>
       <ul>
-        <li>Analisar os Fenótipos</li>
+        <li>Analisar fenótipos [Ajuda da página inicial]</li>
       </ul>
     </td>
   </tr>
@@ -708,7 +709,7 @@ var styleguide_trial_table = jQuery('#styleguide_trial_search_results').DataTabl
     <td><span class="glyphicon glyphicon-trash"></span></td>
     <td>
       <ul>
-        <li>Exclusão</li>
+        <li>Exclusão [Detalhes do ensaio]</li>
       </ul>
     </td>
   </tr>

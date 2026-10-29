@@ -20,6 +20,7 @@ Clay Birkett <clb343@cornell.edu>
 use strict;
 
 package SGN::Controller::AJAX::Markers::Genotyped;
+use utf8;
 
 use Moose;
 use JSON;
@@ -158,19 +159,19 @@ sub query_variants_GET : Args(0) {
 
     # Check required parameters
     if ( (!defined $species || $species eq '') && (defined $chrom || defined $start || defined $end) ) {
-        $c->stash->{rest} = {error => 'Species must be provided!'};
+        $c->stash->{rest} = {error => 'A espécie deve ser informada!'};
         $c->detach();
     }
     if ( (!defined $reference_genome || $reference_genome eq '') && (defined $chrom || defined $start || defined $end) ) {
-        $c->stash->{rest} = {error => 'Reference genome must be provided!'};
+        $c->stash->{rest} = {error => 'O genoma de referência deve ser informado!'};
         $c->detach();
     }
     if ( (!defined $chrom || $chrom eq '') && (defined $start || defined $end) ) {
-        $c->stash->{rest} = {error => 'Chromosome name must be provided!'};
+        $c->stash->{rest} = {error => 'O nome do cromossomo deve ser informado!'};
         $c->detach();
     }
     if ( defined $page && !defined $limit ) {
-        $c->stash->{rest} = {error => 'limit must be provided with page!'};
+        $c->stash->{rest} = {error => 'limit deve ser informado junto com page!'};
         $c->detach();
     }
 

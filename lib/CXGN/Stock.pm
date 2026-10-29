@@ -27,6 +27,7 @@ object that instantiates the correct object given the stock_id).
 =cut
 
 package CXGN::Stock;
+use utf8;
 
 use Moose;
 
@@ -696,7 +697,7 @@ sub store {
 
         }
         else {
-            die "The entry ".$self->uniquename()." already exists in the database. Error: $exists\n";
+            die "A entrada ".$self->uniquename()." já existe no banco de dados. Erro: $exists\n";
         }
     }
     else {
@@ -1236,12 +1237,12 @@ sub obsolete_uploaded_file {
 	    $uh->execute($metadata_id);
 	}
 	else {
-	    push @errors, "Only the owner of the uploaded file, or a curator, can delete this file.";
+	    push @errors, "Somente o proprietário do arquivo enviado, ou um curador, pode excluir este arquivo.";
 	}
 
     }
     else {
-	push @errors, "No such file currently exists.";
+	push @errors, "Esse arquivo não existe atualmente.";
     }
 
     if (@errors >0) {
@@ -1622,7 +1623,7 @@ sub add_parent {
     
     if ($previous_parent) {
 	print STDERR "The stock ".$previous_parent->subject_id." is already associated with stock ".$self->stock_id()." - returning.\n";
-	$error = "A $parent_type parent with id ".$previous_parent->subject_id." is already associated with this stock. Please specify another parent.";
+	$error = "Um genitor do tipo $parent_type com id ".$previous_parent->subject_id." já está associado a este material. Especifique outro genitor.";
 	return $error;
     }
 
@@ -1635,11 +1636,11 @@ sub add_parent {
 
 
     if (!$self->stock_id()) {
-	$error = "Stock with ".$self->stock_id()." is not found in the database!";
+	$error = "Material com id ".$self->stock_id()." não foi encontrado no banco de dados!";
 	return $error;
     }
     if (!$parent) {
-	$error = "Stock with uniquename $parent_name was not found, Either this is not unique name or it is not in the database!";
+	$error = "O material com uniquename $parent_name não foi encontrado; ou este não é um nome único ou não está no banco de dados!";
 	return $error;
     }
 
@@ -1656,7 +1657,7 @@ sub add_parent {
     };
 
     if ($@) {
-	$error = "An error occurred: $@";
+	$error = "Ocorreu um erro: $@";
     }
     else {
 	$error = undef;
@@ -2867,7 +2868,7 @@ sub bulk_hard_delete {
     $h->execute(@{$stock_ids});
     my ($count) = $h->fetchrow_array();
     if ($count > 0) {
-        die "There are traits observed for these stock entries - delete phenotypes before deleting stocks.\n";
+        die "Há características observadas para estes materiais. Exclua os fenótipos antes de excluir os materiais.\n";
     }
 
     my $q = "DELETE FROM phenome.stock_owner WHERE stock_id IN ($placeholders)";

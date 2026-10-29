@@ -1,5 +1,6 @@
 
 package CXGN::PhenotypingTrial;
+use utf8;
 
 use Moose;
 
@@ -239,7 +240,7 @@ sub remove_treatment { #TODO REFACTOR
 
     my $treatment_rs = $schema->resultset('Project::Project')->find({ project_id => $treatment_id });
     if (!$treatment_rs) {
-        return { error => "Treatment not found" };
+        return { error => "Tratamento não encontrado" };
     }
 
     eval {
@@ -269,7 +270,7 @@ sub remove_treatment_project {
 
     my $treatment_rs = $schema->resultset('Project::Project')->find({ project_id => $treatment_id });
     if (!$treatment_rs) {
-        return { error => "Treatment not found" };
+        return { error => "Tratamento não encontrado" };
     }
 
     eval {
@@ -383,7 +384,7 @@ sub add_additional_stocks_for_greenhouse {
 
     if (scalar @invalid_stocks > 0) {
         my $invalid_stocks_string = join(",", @invalid_stocks);
-        return {error=>"Error: accessions or crosses or families already in this trial: $invalid_stocks_string"};
+        return {error=>"Erro: acessos, cruzamentos ou famílias já estão neste ensaio: $invalid_stocks_string"};
     }
 
     my $coderef = sub {
@@ -428,7 +429,7 @@ sub add_additional_stocks_for_greenhouse {
         my $validate_design_error = $trial_design_store->validate_design();
         if ($validate_design_error) {
             print STDERR "ERROR: $validate_design_error\n";
-            return { error => "Error validating trial design: $validate_design_error." };
+            return { error => "Erro ao validar o delineamento do ensaio: $validate_design_error." };
         } else {
             my $new_design = $trial_design_store->store();
         }
@@ -502,7 +503,7 @@ sub add_additional_plants_for_greenhouse {
 
     if (scalar @invalid_stocks > 0) {
         my $invalid_stocks_string = join(",", @invalid_stocks);
-        return {error=>"Error: accessions or crosses or families are not in this trial: $invalid_stocks_string"};
+        return {error=>"Erro: acessos, cruzamentos ou famílias não estão neste ensaio: $invalid_stocks_string"};
     }
 
     my $coderef = sub {

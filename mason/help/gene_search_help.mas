@@ -26,7 +26,7 @@ Neste menu você verá uma lista dos nomes comuns das espécies que compõem a c
 </p>
 
 
-<h4>3. Cromossoma</h4>
+<h4>3. Cromossomo</h4>
 <p>
 Escolha um cromossomo deste menu para limitar os resultados aos loci mapeados nesse cromossomo ou grupo de ligação.
 
@@ -54,7 +54,7 @@ Use estas caixas de seleção para estreitar sua busca para apenas genes com uma
 
 <h4>6. Fenótipo</h4>
 <p>
-Alguns genes podem ter uma descrição fenotípica, seja como um alelo associado, ou um acesso fenotípica associada. Essa opção reduzirá os resultados de busca apenas por genes com uma descrição fenotípica contendo a palavra ou corda que você digitou. Para pesquisar fenótipos de acessos não necessariamente associados a um gene, você deve usar SGN <a href="../search/direct_search.pl?search=phenotypes">Pesquisa fenotípica</a> Page. 
+Alguns genes podem ter uma descrição fenotípica, seja de um alelo associado ou de um acesso associado. Esta opção restringe os resultados da busca aos genes com uma descrição fenotípica que contenha a palavra ou o texto digitado. Para pesquisar fenótipos de acessos não necessariamente associados a um gene, use a página de <a href="../search/direct_search.pl?search=phenotypes">pesquisa de fenótipos</a> da SGN. 
 
 </p>
 

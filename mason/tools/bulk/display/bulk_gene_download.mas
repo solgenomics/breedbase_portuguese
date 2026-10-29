@@ -5,14 +5,14 @@
     $bulk_download_success
 </%args>
 
-<h1>Gene Download Sumário</h1>
+<h1>Resumo do download de genes</h1>
 
 % if($bulk_download_success) {
-    Sua pergunta foi bem sucedida.<br>
+    Sua consulta foi bem-sucedida.<br>
 <div id="bulk_download_stats">
 <% $bulk_download_stats %>
 </div>
 Baixar como <a href="/bulk/gene/download/<% $sha1 %>.fasta">Fasta</a>
 % } else {
-    Your query did not contain any valid identifiers. Please try again.
+    Sua consulta não continha nenhum identificador válido. Por favor, tente novamente.
 % }

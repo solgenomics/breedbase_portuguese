@@ -40,7 +40,7 @@ jQuery(document).ready(function() {
     // Parse the query arguments
     parseArgs();
 
-    // Start the Leitor de códigos de barras
+    // Start the Barcode Reader
     startReader();
 
 });
@@ -60,7 +60,7 @@ function parseArgs() {
 
 
 /**
- * Start the Leitor de códigos de barras
+ * Start the Barcode Reader
  * - Start the camera feed
  * - Start processing the images for a barcode
  * - Call processCode(data) when a barcode has been found

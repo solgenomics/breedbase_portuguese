@@ -76,7 +76,7 @@ $edit_privs
 <br />
 <!-- <button id="saveButton" style="btn"> Save Vector </button> -->
 <!-- <button id="loadButton" style="btn"> Load Vector </button> -->
-<button id="saveVector" style="btn"> Salve Vector </button>
+<button id="saveVector" style="btn"> Salvar vetor </button>
 <button id="loadVector" style="btn"> Carregar vetor </button>
 <button id="update_vector" style="btn">Update/Reset</button>
 <button id="zoomIn" style="btn"> + </button>
@@ -256,7 +256,7 @@ $(document).ready(function () {
 
 
    var columnDefs = [{
-      title: "Nome da característica",
+      title: "Nome da feature",
       type: "text"
     }, {
       title: "Coordenada inicial",
@@ -283,17 +283,17 @@ $(document).ready(function () {
       altEditor: true,     // Enable altEditor
       buttons: [
           {
-          text: 'Add',
+          text: 'Adicionar',
           name: 'add'        // do not change name
           },
           {
           extend: 'selected', // Bind to Selected row
-          text: 'Edit',
+          text: 'Editar',
           name: 'edit'        // do not change name
           },
           {
           extend: 'selected', // Bind to Selected row
-          text: 'Delete',
+          text: 'Excluir',
           name: 'delete'      // do not change name
           }
       ]
@@ -305,7 +305,7 @@ $(document).ready(function () {
 
     //RE sites table
     var columnDefs2 = [{
-      title: "Local da Enzima de Restrição",
+      title: "Sítio da enzima de restrição",
       type: "text"
     }, {
       title: "Coordenada de corte",
@@ -324,17 +324,17 @@ $(document).ready(function () {
       altEditor: true,     // Enable altEditor
       buttons: [
           {
-          text: 'Add',
+          text: 'Adicionar',
           name: 'add'        // do not change name
           },
           {
           extend: 'selected', // Bind to Selected row
-          text: 'Edit',
+          text: 'Editar',
           name: 'edit'        // do not change name
           },
           {
           extend: 'selected', // Bind to Selected row
-          text: 'Delete',
+          text: 'Excluir',
           name: 'delete'      // do not change name
           }
       ]
@@ -422,11 +422,11 @@ jQuery("#loadVector").click(function () {
 
 </div>
 
-<div id="saveDialog" title="Salve Vector">
+<div id="saveDialog" title="Salvar vetor">
 
 <input id="saveInput" ></input>
 
-<button id="dialogSaveButton"> Salve </button>
+<button id="dialogSaveButton"> Salvar </button>
 
 </div>
 

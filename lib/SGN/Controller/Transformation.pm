@@ -1,4 +1,5 @@
 package SGN::Controller::Transformation;
+use utf8;
 
 use Moose;
 use URI::FromHash 'uri';
@@ -36,7 +37,7 @@ sub transformation_page : Path('/transformation') Args(1) {
     my $transformation_name;
 	if (!$transformation) {
     	$c->stash->{template} = '/generic_message.mas';
-    	$c->stash->{message} = 'The requested transformation does not exist.';
+    	$c->stash->{message} = 'A transformação solicitada não existe.';
     	return;
     } else {
         $transformation_id = $transformation->stock_id();
@@ -80,10 +81,10 @@ sub transformation_page : Path('/transformation') Args(1) {
     my $terminated_metadata;
     my $status_display;
     if ($updated_status_type eq 'terminated_metadata') {
-        $status_display = '<span style="color:red">'.'TERMINATED'.'</span>';
+        $status_display = '<span style="color:red">'.'ENCERRADO'.'</span>';
         $terminated_metadata = 1;
     } elsif ($updated_status_type eq 'completed_metadata') {
-        $status_display = '<span style="color:red">'.'COMPLETED'.'</span>';
+        $status_display = '<span style="color:red">'.'CONCLUÍDO'.'</span>';
         $completed_metadata = 1;
     }
 
@@ -94,9 +95,9 @@ sub transformation_page : Path('/transformation') Args(1) {
         my $person_id = $updated_status_info->[0];
         my $person= CXGN::People::Person->new($dbh, $person_id);
         my $person_name=$person->get_first_name()." ".$person->get_last_name();
-        my $operator_info = "Updated by". ":"."".$person_name;
-        my $date_info = "Updated Date". ":"."".$updated_status_info->[1];
-        my $reason_info = "Comments". ":"."".$updated_status_info->[2];
+        my $operator_info = "Atualizado por". ":"."".$person_name;
+        my $date_info = "Data de atualização". ":"."".$updated_status_info->[1];
+        my $reason_info = "Comentários". ":"."".$updated_status_info->[2];
         my @all_info = ($operator_info, $date_info, $reason_info);
         my $all_info_string = join("<br>", @all_info);
         $updated_status_string = '<span style="color:red">'.$all_info_string.'</span>';

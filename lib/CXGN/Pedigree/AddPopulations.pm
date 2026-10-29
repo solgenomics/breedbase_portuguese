@@ -1,4 +1,5 @@
 package CXGN::Pedigree::AddPopulations;
+use utf8;
 
 =head1 NAME
 
@@ -92,7 +93,7 @@ sub add_population {
         type_id => $population_cvterm_id,
     });
     if ($previous_pop_rs->count() > 0){
-        return { error => "$population_name already used in the database! Use another name or use the existing population entry." };
+        return { error => "$population_name já está sendo usado no banco de dados! Use outro nome ou use o registro de população existente." };
     }
 
     my $acc_synonym_rs = $schema->resultset("Stock::Stock")->search({
@@ -143,7 +144,7 @@ sub add_population {
     };
     if ($error) {
         print STDERR "Error creating population $population_name: $error\n";
-        return { error => "Error creating population $population_name: $error" };
+        return { error => "Erro ao criar a população $population_name: $error" };
     } else {
         print STDERR "population $population_name added successfully\n";
         $phenome_schema->resultset("StockOwner")->find_or_create ({
@@ -152,7 +153,7 @@ sub add_population {
         });
     }
 
-    return { success => "Success! Population $population_name created", population_id=>$population_id };
+    return { success => "Sucesso! População $population_name criada", population_id=>$population_id };
 }
 
 sub add_members {
@@ -185,10 +186,10 @@ sub add_members {
     };
     if ($error) {
         print STDERR "Error adding members to population $population_name: $error\n";
-        return { error => "Error adding members to population $population_name: $error" };
+        return { error => "Erro ao adicionar membros à população $population_name: $error" };
     } else {
         print STDERR "Member added to population $population_name successfully\n";
-        return { success => "Member added to population $population_name successfully!" };
+        return { success => "Membro adicionado à população $population_name com sucesso!" };
     }
 }
 

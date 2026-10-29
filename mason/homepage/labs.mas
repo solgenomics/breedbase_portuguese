@@ -24,7 +24,7 @@ my $contents = CXGN::Tools::File::get_sections($file);
 
 <% $contents %>
 
-<button class="btn btn-info btn-sm" onclick='location.href="/community/feature/index.pl"'>Veja todos os laboratórios...</button>
+<button class="btn btn-info btn-sm" onclick='location.href="/community/feature/index.pl"'>Ver todos os laboratórios em destaque...</button>
 
 
 

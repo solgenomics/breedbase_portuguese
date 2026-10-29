@@ -15,6 +15,7 @@ Jeremy Edwards <jde22@cornell.edu>
 =cut
 
 package SGN::Controller::AJAX::FieldBook;
+use utf8;
 
 use Moose;
 use List::MoreUtils qw /any /;
@@ -66,33 +67,33 @@ sub create_fieldbook_from_trial_POST : Args(0) {
 
     chomp($trial_id);
     if (!$c->user()) {
-        $c->stash->{rest} = {error => "You need to be logged in to create a field book" };
+        $c->stash->{rest} = {error => "Você precisa estar conectado para criar um arquivo do Field Book" };
         return;
     }
     if (!any { $_ eq "curator" || $_ eq "submitter" } ($c->user()->roles)  ) {
-        $c->stash->{rest} = {error =>  "You have insufficient privileges to create a field book." };
+        $c->stash->{rest} = {error =>  "Você não tem privilégios suficientes para criar um arquivo do Field Book." };
         return;
     }
     if (!$trial_id) {
-        $c->stash->{rest} = {error =>  "No trial ID supplied." };
+        $c->stash->{rest} = {error =>  "Nenhum ID de ensaio informado." };
         return;
     }
     my $trial = $schema->resultset('Project::Project')->find({project_id => $trial_id});
     if (!$trial) {
-        $c->stash->{rest} = {error =>  "Trial does not exist with id $trial_id." };
+        $c->stash->{rest} = {error =>  "Não existe ensaio com o id $trial_id." };
         return;
     }
     if ($data_level eq 'plants') {
         my $trial = CXGN::Trial->new( { bcs_schema => $schema, trial_id => $trial_id });
         if (!$trial->has_plant_entries()){
-            $c->stash->{rest} = {error =>  "Trial does not have plant entries. You must first create plant entries." };
+            $c->stash->{rest} = {error =>  "O ensaio não possui registros de plantas. Crie os registros de plantas primeiro." };
             return;
         }
     }
     if ($data_level eq 'subplots' || $data_level eq 'plants_subplots') {
         my $trial = CXGN::Trial->new( { bcs_schema => $schema, trial_id => $trial_id });
         if (!$trial->has_subplot_entries()) {
-            $c->stash->{rest} = {error =>  "Trial does not have subplot entries." };
+            $c->stash->{rest} = {error =>  "O ensaio não possui registros de subparcelas." };
             return;
         }
     }
@@ -130,7 +131,7 @@ sub create_fieldbook_from_trial_POST : Args(0) {
         my $validator = CXGN::List::Validate->new();
         my @absent_traits = @{$validator->validate($schema, 'traits', \@trait_list)->{'missing'}};
         if (scalar(@absent_traits)>0){
-            $c->stash->{rest} = {error =>  "Trait list is not valid because of these terms: ".join ',',@absent_traits };
+            $c->stash->{rest} = {error =>  "A lista de características não é válida por causa destes termos: ".join ',',@absent_traits };
             $c->detach();
 	    return;
         }
@@ -184,11 +185,11 @@ sub create_trait_file_for_field_book_POST : Args(0) {
     my ($self, $c) = @_;
 
     if (!$c->user()) {
-	$c->stash->{rest} = {error => "You need to be logged in to create a field book" };
+	$c->stash->{rest} = {error => "Você precisa estar conectado para criar um arquivo do Field Book" };
 	return;
     }
     if (!any { $_ eq "curator" || $_ eq "submitter" } ($c->user()->roles)  ) {
-	$c->stash->{rest} = { error =>  "You have insufficient privileges to create a field book." };
+	$c->stash->{rest} = { error =>  "Você não tem privilégios suficientes para criar um arquivo do Field Book." };
 	return;
     }
 

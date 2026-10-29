@@ -23,17 +23,10 @@ $referer
 
 use CXGN::Page::FormattingHelpers qw | tooltipped_text |;
 
-my $no_draws = tooltipped_text('No. of imputations:', 'required only if the 
-                                Simulate method is selected for the 
-                                calculation of QTL genotype probability 
-                                method and Multiple Imputation');
-my $permu_level = tooltipped_text('Significance level of permutation test:', 
-                                  'required only if permutation analysis 
-                                  (LOD threshold) is run');
-my $genome_scan = tooltipped_text('Genome scan size (cM):', 'not required for 
-                                   Marker Regression');
-my $qtl_prob = tooltipped_text('QTL genotype probablity method:', 
-                               'not required for Marker Regression');
+my $no_draws = tooltipped_text('Nº de imputações:', 'obrigatório apenas se o método Simulate for selecionado para o cálculo da probabilidade de genótipo do QTL e para Multiple Imputation');
+my $permu_level = tooltipped_text('Nível de significância do teste de permutação:', 'obrigatório apenas se a análise de permutação (limiar de LOD) for executada');
+my $genome_scan = tooltipped_text('Tamanho da varredura do genoma (cM):', 'não é necessário para Marker Regression');
+my $qtl_prob = tooltipped_text('Método de probabilidade de genótipo do QTL:', 'não é necessário para Marker Regression');
 
 </%perl>
 
@@ -41,7 +34,7 @@ my $qtl_prob = tooltipped_text('QTL genotype probablity method:',
 % if ( $referer =~ /qtl\/form\/stat_form/) 
 %{
 <& /page/page_title.mas, 
-   title => "Passo 5: Submeta parâmetros estatísticos" 
+   title => "Passo 5: Enviar parâmetros estatísticos" 
 &>
 <& /page/info_section.mas, 
    title => "Parâmetros estatísticos", 

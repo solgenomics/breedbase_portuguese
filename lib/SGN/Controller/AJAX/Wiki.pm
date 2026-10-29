@@ -1,5 +1,6 @@
 
 package SGN::Controller::AJAX::Wiki;
+use utf8;
 
 use Data::Dumper;
 use URI::FromHash 'uri';
@@ -49,7 +50,7 @@ sub ajax_wiki_new :Path('/ajax/wiki/new') Args(0) {
     my $c = shift;
 
     if (! $c->user()->check_roles("curator")) {
-	$c->stash->{rest} = { error => "You do not have the privileges to create wiki pages." };
+	$c->stash->{rest} = { error => "Você não tem permissão para criar páginas wiki." };
 	$c->detach();
     }
 
@@ -69,7 +70,7 @@ sub ajax_wiki_new :Path('/ajax/wiki/new') Args(0) {
 
     eval {
 	if (length($wiki_page_name) == 0) {
-	    die "The name of the wiki page cannot be the empty string or consist only of special characters.";
+	    die "O nome da página wiki não pode ser vazio nem conter apenas caracteres especiais.";
 	}
 
 	$wiki->page_name($wiki_page_name);
@@ -98,14 +99,14 @@ sub store_POST {
     my $sp_person_id = $c->user->get_object->get_sp_person_id();
 
     if (! $sp_person_id) {
-	$c->stash->{rest} = { error => "You need to be logged in to store wiki pages." };
+	$c->stash->{rest} = { error => "Você precisa entrar em sua conta para armazenar páginas wiki." };
 	$c->detach();
     }
 
     my $page_name = $c->stash->{page_name};
 
     if (! $c->user()->check_roles("curator")) {
-	$c->stash->{rest} = { error => "You do not have the privileges to modify wiki pages." };
+	$c->stash->{rest} = { error => "Você não tem permissão para modificar páginas wiki." };
 	$c->detach();
     }
 
@@ -115,7 +116,7 @@ sub store_POST {
 
     print STDERR "PAGE OWNED BY ".$wiki->sp_person_id()."\n";
     if ($wiki->sp_person_id() != $sp_person_id) {
-	$c->stash->{rest} = { error => "Only the original owner can modify the wiki page." };
+	$c->stash->{rest} = { error => "Somente o proprietário original pode modificar a página wiki." };
 	$c->detach();
     }
     my $content_data;
@@ -148,7 +149,7 @@ sub delete : Chained('ajax_wiki') PathPart('delete') Args(0) {
     print STDERR "DELETE WIKI PAGE ".$c->stash->{page_name}."\n";
 
     if (! $c->user()->check_roles("curator")) {
-	$c->stash->{rest} = { error => "You do not have the privileges to delete wiki pages." };
+	$c->stash->{rest} = { error => "Você não tem permissão para excluir páginas wiki." };
 	$c->detach();
     }
     my $user_id = $c->user()->get_object->get_sp_person_id();
@@ -158,7 +159,7 @@ sub delete : Chained('ajax_wiki') PathPart('delete') Args(0) {
     print STDERR "WIKI PAGE OWNER: ".$wiki->sp_person_id()." (user id is $user_id)\n";
 
     if ($user_id != $wiki->sp_person_id()) {
-	$c->stash->{rest} = { error => "Only the original page creator can delete the page. It is not you." };
+	$c->stash->{rest} = { error => "Somente o criador original da página pode excluí-la. Não é você." };
 	$c->detach();
     }
 
@@ -201,7 +202,7 @@ sub view : Chained('ajax_wiki') PathPart('view') Args(0) {
 
     };
     if ($@) {
-	$c->stash->{rest} = { error => "An error occurred retrieving the page. It may not exist $@" };
+	$c->stash->{rest} = { error => "Ocorreu um erro ao recuperar a página. Ela pode não existir $@" };
 	$c->detach();
     }
     my $wiki_html = markdown($page_content, { use_wikilinks => 1, base_url => '/wiki/' } );

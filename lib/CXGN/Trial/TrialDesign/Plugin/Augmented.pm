@@ -1,5 +1,6 @@
 
 package CXGN::Trial::TrialDesign::Plugin::Augmented;
+use utf8;
 
 use Moose::Role;
 use POSIX; # for ceil function
@@ -34,7 +35,7 @@ sub create_design {
     if ($self->has_stock_list()) {
 	@stock_list = @{$self->get_stock_list()};
     } else {
-	die "No stock list specified\n";
+	die "Nenhuma lista de materiais especificada\n";
     }
 
     if ($self->has_control_list()) {
@@ -42,7 +43,7 @@ sub create_design {
 	%control_names_lookup = map { $_ => 1 } @control_list;
 	$self->_check_controls_and_accessions_lists;
     } else {
-	die "No list of control stocks specified.  Required for augmented design.\n";
+	die "Nenhuma lista de materiais de controle especificada. Obrigatória para o delineamento aumentado.\n";
     }
 
     if ($self->has_maximum_block_size()) {
@@ -51,11 +52,11 @@ sub create_design {
 	#     die "Maximum block size must be greater the number of control stocks for augmented design\n";
 	# }
 	if ($maximum_block_size >= scalar(@control_list)+scalar(@stock_list)) {
-	    die "Maximum block size must be less than the number of stocks plus the number of controls for augmented design\n";
+	    die "O tamanho máximo do bloco deve ser menor que o número de materiais mais o número de controles no delineamento aumentado\n";
 	}
 	$number_of_blocks = ceil(scalar(@stock_list)/($maximum_block_size-scalar(@control_list)));
     } else {
-	die "No block size specified\n";
+	die "Nenhum tamanho de bloco especificado\n";
     }
 
     my $plot_start = $self->get_plot_start_number();

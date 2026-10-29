@@ -1,5 +1,6 @@
 package CXGN::Stock::ParseUpload::Plugin::AccessionsGeneric;
 
+use utf8;
 use Moose::Role;
 use CXGN::File::Parse;
 use CXGN::Stock::StockLookup;
@@ -80,7 +81,7 @@ sub _validate_with_plugin {
     # return if unknown columns (neither required nor optional)
     if ( $additional_columns && scalar(@$additional_columns) > 0 ) {
       $errors{'error_messages'} = [
-        "The following columns are not recognized: " . join(', ', @$additional_columns) . ". Please check the spreadsheet format for the allowed columns."
+        "As seguintes colunas não são reconhecidas: " . join(', ', @$additional_columns) . ". Verifique no formato da planilha quais colunas são permitidas."
       ];
       $self->_set_parse_errors(\%errors);
       return;
@@ -91,7 +92,7 @@ sub _validate_with_plugin {
     my $species_validator = CXGN::List::Validate->new();
     my @species_missing = @{$species_validator->validate($schema,'species',$seen_species_names)->{'missing'}};
     if (scalar(@species_missing) > 0) {
-        push @error_messages, "The following species are not in the database as species in the organism table: ".join(',',@species_missing);
+        push @error_messages, "As seguintes espécies não estão no banco de dados como espécies na tabela de organismos: ".join(',',@species_missing);
         $errors{'missing_species'} = \@species_missing;
     }
 
@@ -104,7 +105,7 @@ sub _validate_with_plugin {
       push @stocks_existing, $r->uniquename;
     }
     if ( scalar(@stocks_existing) > 0 ) {
-      push @error_messages, "The following accession names are already used in the database (as different stock types): " . join(',', @stocks_existing);
+      push @error_messages, "Os seguintes nomes de acesso já estão em uso no banco de dados (como outros tipos de material): " . join(',', @stocks_existing);
     }
 
     #store any errors found in the parsed file to parse_errors accessor

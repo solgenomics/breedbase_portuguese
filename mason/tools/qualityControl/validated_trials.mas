@@ -17,12 +17,12 @@
 
 
 
-<& /page/page_title.mas, title=>"Ensaios Validados" &>
+<& /page/page_title.mas, title=>"Ensaios validados" &>
 
 <p>Esta tabela apresenta todos os ensaios que foram completamente filtrados e validados através da ferramenta de controle de qualidade.</p>
 <br>
 <div>
-    <input type="text" id="searchBox" placeholder="Ferramenta de busca..." onkeyup="filterTable()">
+    <input type="text" id="searchBox" placeholder="Buscar..." onkeyup="filterTable()">
     <br>
 </div>
 <div id="validated_trials_tool">
@@ -32,9 +32,9 @@
         <thead>
             <tr>
                 <th>Selecionar</th>
-                <th>Nome do Projeto</th>
-                <th>Localização do Projeto</th>
-                <th>Nome do Trait</th>
+                <th>Nome do projeto</th>
+                <th>Local do projeto</th>
+                <th>Nome da característica</th>
                 <th>Validado por</th>
             </tr>
         </thead>
@@ -68,7 +68,7 @@
 <br>
 <br>
 
-<&| /page/info_section.mas, title=>"Statiscs", collapsible=>1, collapsed=>1 &>
+<&| /page/info_section.mas, title=>"Estatísticas", collapsible=>1, collapsed=>1 &>
 
     <button id="calculate_statistics">Calcular estatísticas</button>
     <br>
@@ -99,24 +99,24 @@
 
 <&| /page/info_section.mas, title=>"Gráficos", collapsible=>1, collapsed=>1 &>
 
-    <label for="traitSelection">Selecione Trait:</label>
+    <label for="traitSelection">Selecionar característica:</label>
     <select id="traitSelection" class="form-control">
         <option value="" disabled selected>Selecione uma característica</option>
         <!-- Options will be dynamically populated -->
     </select>
 
     <div id="filterOptions" style="margin-bottom: 20px;">
-      <label><input type="radio" name="filter" value="5"> Mostre os 5% melhores</label>
-      <label><input type="radio" name="filter" value="10" checked > Mostre os 10% melhores</label>
-      <label><input type="radio" name="filter" value="25"> Mostre os 25% melhores</label>
-      <label><input type="radio" name="filter" value="50"> Mostre os melhores 50%</label>
-      <label><input type="radio" name="filter" value="100"> Mostre 100%</label>
+      <label><input type="radio" name="filter" value="5"> Mostrar os 5% superiores</label>
+      <label><input type="radio" name="filter" value="10" checked > Mostrar os 10% superiores</label>
+      <label><input type="radio" name="filter" value="25"> Mostrar os 25% superiores</label>
+      <label><input type="radio" name="filter" value="50"> Mostrar os 50% superiores</label>
+      <label><input type="radio" name="filter" value="100"> Mostrar 100%</label>
       <br>
       <!-- Bottom filters -->
-      <label><input type="radio" name="filter" value="bottom-5"> Mostre os 5% mais baixos</label>
-      <label><input type="radio" name="filter" value="bottom-25"> Mostre 25% de baixo</label>
-      <label><input type="radio" name="filter" value="bottom-50"> Mostre 50% de baixo</label>
-      <label><input type="radio" name="filter" value="bottom-75"> Mostre abaixo 75%</label>
+      <label><input type="radio" name="filter" value="bottom-5"> Mostrar os 5% inferiores</label>
+      <label><input type="radio" name="filter" value="bottom-25"> Mostrar os 25% inferiores</label>
+      <label><input type="radio" name="filter" value="bottom-50"> Mostrar os 50% inferiores</label>
+      <label><input type="radio" name="filter" value="bottom-75"> Mostrar os 75% inferiores</label>
     </div>
 
     <br>
@@ -326,7 +326,7 @@ $('#traitSelection, input[name="filter"]').on('change', function () {
 function drawGroupedBoxplot(data, selectedTrait) {
     const container = document.getElementById('boxplotContainer');
     if (!container || !container.clientWidth) {
-        console.error("Erro: o contêiner do diagrama de caixa está ausente ou não foi renderizado.");
+        console.error('Error: boxplotContainer is missing or not rendered.');
         return;
     }
 
@@ -597,7 +597,7 @@ $(document).ready(function () {
 
       },
       error: function (xhr, status, error) {
-        console.error("Erro:", error);
+        console.error('Error:', error);
         alert("Ocorreu um erro ao calcular as estatísticas.");
       },
       complete: function () {
@@ -744,17 +744,17 @@ function fetchLatLonForProjects(selectedLocations) {
                 const coordinates = typeof response === 'string' ? JSON.parse(response) : response;
                 // Check the structure of the parsed data
                 if (!Array.isArray(coordinates)) {
-                    console.error("Era esperado um vetor, mas foi recebido:", coordinates);
+                    console.error('Expected an array but got:', coordinates);
                     return;
                 }
                 // Pass the data to the map update function
                 updateMapWithSelectedProjects(coordinates);
             } catch (error) {
-                console.error("Erro ao processar a resposta do servidor:", error);
+                console.error('Error processing server response:', error);
             }
         },
         error: function(xhr, status, error) {
-            console.error("Erro AJAX:", {
+            console.error('AJAX Error:', {
                 status: status,
                 error: error,
                 responseText: xhr.responseText
@@ -777,7 +777,7 @@ setTimeout(function () {
 
     const container = document.getElementById('boxplotContainer');
     if (!container || !container.clientWidth) {
-      console.error("Erro: o contêiner do diagrama de caixa está ausente ou não foi renderizado.");
+      console.error('Error: boxplotContainer is missing or not rendered.');
       return;
     }
 
@@ -804,7 +804,7 @@ function updateMapWithSelectedProjects(coordinates) {
                 .bindPopup(`<span>${coord.name}</span>`) // Display only the name in the popup
                 .openPopup();
         } else {
-            console.error("Ignorando coordenada inválida:", coord);
+            console.error('Skipping invalid coordinate:', coord);
         }
     });
 }

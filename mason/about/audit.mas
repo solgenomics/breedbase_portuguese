@@ -122,7 +122,7 @@ jQuery(document).ready(function(){
             jQuery('#audit_results').DataTable({
                 data: json_object,
                 columns: [
-                    { title: "Timetamp" },
+                    { title: "Data e hora" },
                     { title: "Operação" },
                     { title: "Nome de usuário" },
                     { title: "Usuário conectado" },

@@ -48,7 +48,7 @@ jQuery(document).ready(function(){
             { title: "Marcar acesso como obsoleto", "data": null, "render": function ( data, type, row ) {
                 if (can_obsolete) {
                     if (row.is_a_parent) {
-                        return 'Used as a parent, cannot obsolete';
+                        return 'Usado como genitor; não pode ser marcado como obsoleto';
                     } else {
                         return "<a onclick='obsoleteStock("+row.transformant_id+",\""+row.transformant_name+"\")'>X</a>";
                     }

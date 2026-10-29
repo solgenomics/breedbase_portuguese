@@ -1,4 +1,5 @@
 use strict;
+use utf8;
 use warnings;
 
 use lib 't/lib';
@@ -304,7 +305,7 @@ my $before_deleting_project = $schema->resultset("Project::Project")->search({})
 
 $mech->post_ok('http://localhost:3010/ajax/transformation/delete', ['transformation_stock_id' => $transformation_stock_id]);
 $response = decode_json $mech->content;
-is($response->{'error'}, 'An error occurred attempting to delete the transformation ID. (Transformation ID has associated transformants. Cannot delete.
+is($response->{'error'}, 'Ocorreu um erro ao tentar excluir o ID de transformação. (Transformation ID has associated transformants. Cannot delete.
 )');
 
 my $after_invalid_deleting_stocks = $schema->resultset("Stock::Stock")->search({})->count();

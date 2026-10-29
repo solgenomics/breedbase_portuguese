@@ -68,7 +68,7 @@ my $e_val_blast_cutoff = '1.0e-4';
        <&| /page/info_section.mas, title => 'Sequência RFLP combina com unigenes' &>
 %          if( @$forward_unigene_matches || @$reverse_unigene_matches ) {
                <% columnar_table_html(
-                      headings => ['Unigene','e value','Match length (bp)','Strand'],
+                      headings => ['Unigene','valor e','Comprimento da correspondência (pb)','Fita'],
                       data     => [
                                     ( map [ link_identifier($_->[0]), $_->[1], len_pct($_->[2], $r->{forward_seq}), '+' ], @$forward_unigene_matches ),
                                     ( map [ link_identifier($_->[0]), $_->[1], len_pct($_->[2], $r->{reverse_seq}), '-' ], @$reverse_unigene_matches ),

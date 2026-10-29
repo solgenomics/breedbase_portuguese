@@ -13,6 +13,7 @@ Bryan Ellerbrock <bje24@cornell.edu>
 =cut
 
 package SGN::Controller::AJAX::ImageAnalysis;
+use utf8;
 
 use Moose;
 use Data::Dumper;
@@ -249,14 +250,14 @@ sub image_analysis_submit_POST : Args(0) {
                 if ($project_id) {
                     my $ret = $image->process_image($archive_temp_image, 'project', $project_id, $linking_table_type_id);
                     if (!$ret ) {
-                        return {error => "Image processing for $archive_temp_image did not work. Image not associated to stock_id $stock_id.<br/><br/>"};
+                        return {error => "O processamento da imagem $archive_temp_image falhou. A imagem não foi associada ao stock_id $stock_id.<br/><br/>"};
                     }
                     my $stock_associate = $image->associate_stock($stock_id);
                 }
                 else {
                     my $ret = $image->process_image($archive_temp_image, 'stock', $stock_id);
                     if (!$ret ) {
-                        return {error => "Image processing for $archive_temp_image did not work. Image not associated to stock_id $stock_id.<br/><br/>"};
+                        return {error => "O processamento da imagem $archive_temp_image falhou. A imagem não foi associada ao stock_id $stock_id.<br/><br/>"};
                     }
                 }
                 print STDERR "Saved $archive_temp_image\n";
@@ -581,7 +582,7 @@ sub get_image_file : Path('/get_image_file') Args(0) {
         $c->res->body($res->decoded_content(charset => 'none'));
     } else {
         $c->res->status(500);
-        $c->res->body("Failed to fetch image");
+        $c->res->body("Falha ao obter a imagem");
     }
 }
 
@@ -599,7 +600,7 @@ sub get_activity_data : Path('/ajax/image_analysis/activity') Args(0) {
             push @activity, { date => $ts_parts[0]};
         }
     } else {
-        $c->stash->{rest} = {error=>'No activity log set up.'};
+        $c->stash->{rest} = {error=>'Nenhum registro de atividades configurado.'};
         $c->detach();
     }
 
@@ -619,7 +620,7 @@ sub _check_user_login {
         my $dbh = $c->dbc->dbh;
         my @user_info = CXGN::Login->new($dbh)->query_from_cookie($session_id);
         if (!$user_info[0]){
-            $c->stash->{rest} = {error=>'You must be logged in to do this!'};
+            $c->stash->{rest} = {error=>'Você precisa estar conectado para fazer isso!'};
             $c->detach();
         }
         $user_id = $user_info[0];
@@ -628,7 +629,7 @@ sub _check_user_login {
         $user_name = $p->get_username;
     } else{
         if (!$c->user){
-            $c->stash->{rest} = {error=>'You must be logged in to do this!'};
+            $c->stash->{rest} = {error=>'Você precisa estar conectado para fazer isso!'};
             $c->detach();
         }
         $user_id = $c->user()->get_object()->get_sp_person_id();

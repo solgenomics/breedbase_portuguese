@@ -22,7 +22,7 @@ Data final: <input type="text" id="dbstats_end_date" title="dbstats_end_date"  /
 </td><td>
 &nbsp;
 </td><td>
-<input type="checkbox" id="include_dateless_items"> Inclui itens sem data</input>
+<input type="checkbox" id="include_dateless_items"> Incluir itens sem data</input>
 </td><td>
 &nbsp;
 </td><td>

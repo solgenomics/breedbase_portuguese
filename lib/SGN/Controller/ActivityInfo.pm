@@ -1,5 +1,6 @@
 
 package SGN::Controller::ActivityInfo;
+use utf8;
 
 use Moose;
 use URI::FromHash 'uri';
@@ -80,9 +81,9 @@ sub activity_details :Path('/activity/details') : Args(1) {
         my $person_id = $updated_status_info->[0];
         my $person= CXGN::People::Person->new($dbh, $person_id);
         my $person_name=$person->get_first_name()." ".$person->get_last_name();
-        my $operator_info = "Updated by". ":"."".$person_name;
-        my $date_info = "Updated Date". ":"."".$updated_status_info->[1];
-        my $reason_info = "Comments". ":"."".$updated_status_info->[2];
+        my $operator_info = "Atualizado por". ":"."".$person_name;
+        my $date_info = "Data de atualização". ":"."".$updated_status_info->[1];
+        my $reason_info = "Comentários". ":"."".$updated_status_info->[2];
         my @all_info = ($operator_info, $date_info, $reason_info);
         my $all_info_string = join("<br>", @all_info);
         $updated_status_string = '<span style="color:red">'.$all_info_string.'</span>';
@@ -178,7 +179,7 @@ sub record_activity :Path('/activity/record') :Args(0) {
     if ($identifier_name) {
         my $identifier_rs = $schema->resultset("Stock::Stock")->find({uniquename => $identifier_name});
         if (!$identifier_rs) {
-            $c->stash->{message} = "The tracking identifier does not exist or has been deleted.";
+            $c->stash->{message} = "O identificador de rastreamento não existe ou foi excluído.";
             $c->stash->{template} = 'generic_message.mas';
             return;
         } else {

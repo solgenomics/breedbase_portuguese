@@ -1,5 +1,6 @@
 package CXGN::Trial::ParseUpload::Plugin::GenotypeTrialXLS;
 
+use utf8;
 use Moose::Role;
 use Spreadsheet::ParseExcel;
 use Spreadsheet::ParseXLSX;
@@ -45,7 +46,7 @@ sub _validate_with_plugin {
 
     $worksheet = ( $excel_obj->worksheets() )[0]; #support only one worksheet
     if (!$worksheet) {
-        push @error_messages, "Spreadsheet must be on 1st tab in Excel (.xls or .xlsx) file";
+        push @error_messages, "A planilha deve estar na 1ª aba do arquivo Excel (.xls ou .xlsx)";
         $errors{'error_messages'} = \@error_messages;
         $self->_set_parse_errors(\%errors);
         return;
@@ -53,7 +54,7 @@ sub _validate_with_plugin {
     my ( $row_min, $row_max ) = $worksheet->row_range();
     my ( $col_min, $col_max ) = $worksheet->col_range();
     if (($col_max - $col_min)  < 2 || ($row_max - $row_min) < 1 ) { #must have header and at least one row of plot data
-        push @error_messages, "Spreadsheet is missing header or contains no rows";
+        push @error_messages, "A planilha não tem cabeçalho ou não contém linhas";
         $errors{'error_messages'} = \@error_messages;
         $self->_set_parse_errors(\%errors);
         return;
@@ -140,50 +141,50 @@ sub _validate_with_plugin {
     }
 
     if (!$date_head || $date_head ne 'date' ) {
-        push @error_messages, "Cell A1: date is missing from the header";
+        push @error_messages, "Célula A1: date está ausente do cabeçalho";
     }
     if (!$sample_id_head || $sample_id_head ne 'sample_id') {
-        push @error_messages, "Cell B1: sample_id is missing from the header";
+        push @error_messages, "Célula B1: sample_id está ausente do cabeçalho";
     }
     if (!$well_A01_head || $well_A01_head ne 'well_A01') {
-        push @error_messages, "Cell C1: well_A01 is missing from the header.";
+        push @error_messages, "Célula C1: well_A01 está ausente do cabeçalho.";
     }
     if (!$row_head || $row_head ne 'row') {
-        push @error_messages, "Cell D1: row is missing from the header.";
+        push @error_messages, "Célula D1: row está ausente do cabeçalho.";
     }
     if (!$column_head || $column_head ne 'column') {
-        push @error_messages, "Cell E1: column is missing from the header.";
+        push @error_messages, "Célula E1: column está ausente do cabeçalho.";
     }
     if (!$source_observation_unit_name_head || $source_observation_unit_name_head ne 'source_observation_unit_name') {
-        push @error_messages, "Cell F1: source_observation_unit_name is missing from the header.";
+        push @error_messages, "Célula F1: source_observation_unit_name está ausente do cabeçalho.";
     }
     if (!$ncbi_taxonomy_id_head || $ncbi_taxonomy_id_head ne 'ncbi_taxonomy_id') {
-        push @error_messages, "Cell G1: ncbi_taxonomy_id is missing from the header. (Header is required, but values are optional)";
+        push @error_messages, "Célula G1: ncbi_taxonomy_id está ausente do cabeçalho. (O cabeçalho é obrigatório, mas os valores são opcionais)";
     }
     if (!$dna_person_head || $dna_person_head ne 'dna_person') {
-        push @error_messages, "Cell H1: dna_person is missing from the header. (Header is required, but values are optional)";
+        push @error_messages, "Célula H1: dna_person está ausente do cabeçalho. (O cabeçalho é obrigatório, mas os valores são opcionais)";
     }
     if (!$notes_head || $notes_head ne 'notes') {
-        push @error_messages, "Cell I1: notes is missing from the header. (Header is required, but values are optional)";
+        push @error_messages, "Célula I1: notes está ausente do cabeçalho. (O cabeçalho é obrigatório, mas os valores são opcionais)";
     }
     if (!$tissue_type_head || $tissue_type_head ne 'tissue_type') {
-        push @error_messages, "Cell J1: tissue_type is missing from the header. (Header is required, but values are optional)";
+        push @error_messages, "Célula J1: tissue_type está ausente do cabeçalho. (O cabeçalho é obrigatório, mas os valores são opcionais)";
     }
     if (!$extraction_head || $extraction_head ne 'extraction') {
-        push @error_messages, "Cell K1: col_number is missing from the header. (Header is required, but values are optional)";
+        push @error_messages, "Célula K1: col_number está ausente do cabeçalho. (O cabeçalho é obrigatório, mas os valores são opcionais)";
     }
     if (!$concentration_head || $concentration_head ne 'concentration') {
-        push @error_messages, "Cell L1: concentration is missing from the header. (Header is required, but values are optional)";
+        push @error_messages, "Célula L1: concentration está ausente do cabeçalho. (O cabeçalho é obrigatório, mas os valores são opcionais)";
     }
     if (!$volume_head || $volume_head ne 'volume') {
-        push @error_messages, "Cell M1: volume is missing from the header. (Header is required, but values are optional)";
+        push @error_messages, "Célula M1: volume está ausente do cabeçalho. (O cabeçalho é obrigatório, mas os valores são opcionais)";
     }
     if (!$is_blank_head || $is_blank_head ne 'is_blank') {
-        push @error_messages, "Cell N1: is_blank is missing from the header.";
+        push @error_messages, "Célula N1: is_blank está ausente do cabeçalho.";
     }
     if ($include_facility_identifiers) {
         if (!$facility_identifier_head || $facility_identifier_head ne 'facility_identifier') {
-            push @error_messages, "Cell O1: facility_identifier is missing from the header.";
+            push @error_messages, "Célula O1: facility_identifier está ausente do cabeçalho.";
         }
     }
 
@@ -266,16 +267,16 @@ sub _validate_with_plugin {
 
         #sample_id must not be blank
         if (!$sample_id || $sample_id eq '' ) {
-            push @error_messages, "Cell B$row_name: sample_id missing.";
+            push @error_messages, "Célula B$row_name: sample_id ausente.";
         }
         elsif ($sample_id =~ /\s/ || $sample_id =~ /\// || $sample_id =~ /\\/ ) {
-            push @error_messages, "Cell B$row_name: sample_id name must not contain spaces or slashes.";
+            push @error_messages, "Célula B$row_name: o nome em sample_id não deve conter espaços ou barras.";
         }
         else {
             #file must not contain duplicate sample_id
             $sample_id =~ s/^\s+|\s+$//g; #trim whitespace from front and end...
             if ($seen_sample_ids{$sample_id}) {
-                push @error_messages, "Cell B$row_name: duplicate sample_id at cell B".$seen_sample_ids{$sample_id}.": $sample_id";
+                push @error_messages, "Célula B$row_name: sample_id duplicado na célula B".$seen_sample_ids{$sample_id}.": $sample_id";
             }
             $seen_sample_ids{$sample_id}=$row_name;
         }
@@ -288,50 +289,50 @@ sub _validate_with_plugin {
 
         #well_A01 must not be blank
         if (!$well_A01 || $well_A01 eq '') {
-            push @error_messages, "Cell C$row_name: well_A01 missing";
+            push @error_messages, "Célula C$row_name: well_A01 ausente";
         } else {
             $well_A01 =~ s/^\s+|\s+$//g;
         }
         #well A01 must be unique in file
         if (exists($seen_well_numbers{$well_A01})){
-            push @error_messages, "Cell C$row_name: well_A01 must be unique in your file. You already used this plot number in C".$seen_well_numbers{$well_A01};
+            push @error_messages, "Célula C$row_name: well_A01 deve ser único no seu arquivo. Você já usou este valor em C".$seen_well_numbers{$well_A01};
         } else {
             $seen_well_numbers{$well_A01} = $row_name;
         }
 
         #row must not be blank
         if (!$row_val || $row_val eq '') {
-            push @error_messages, "Cell D$row_name: row missing";
+            push @error_messages, "Célula D$row_name: row ausente";
         }
         #column must not be blank
         if (!$column || $column eq '') {
-            push @error_messages, "Cell E$row_name: column missing";
+            push @error_messages, "Célula E$row_name: column ausente";
         }
         #date must not be blank
         if (!$date || $date eq '') {
-            push @error_messages, "Cell A$row_name: date missing";
+            push @error_messages, "Célula A$row_name: date ausente";
         } elsif (!$date =~ m/(\d{4})-(\d{2})-(\d{2})/) {
-            push @error_messages, "Cell A$row_name: date must be YYYY-MM-DD format";
+            push @error_messages, "Célula A$row_name: date deve estar no formato YYYY-MM-DD";
         }
 
         if ($is_blank) {
             if (!($is_blank eq "1" || $is_blank eq "0" || $is_blank eq '')) {
-                push @error_messages, "Cell M$row_name: is_blank is not either 1, 0, or blank: $is_blank";
+                push @error_messages, "Célula M$row_name: is_blank não é 1, 0 nem em branco: $is_blank";
             }
         }
         #tissue_type must not be blank and must be either leaf, root, stem, seed, fruit, tuber
         if (!$tissue_type || $tissue_type eq '' || ($tissue_type ne 'leaf' && $tissue_type ne 'root' && $tissue_type ne 'stem' && $tissue_type ne 'seed' && $tissue_type ne 'fruit' && $tissue_type ne 'tuber')) {
-            push @error_messages, "Cell E$row_name: column tissue type and must be either stem, leaf, root, seed, fruit or tuber";
+            push @error_messages, "Célula E$row_name: o tipo de tecido da coluna deve ser stem, leaf, root, seed, fruit ou tuber";
         }
 
         if ($include_facility_identifiers) {
             if (!$facility_identifier || ($facility_identifier eq '')) {
-                push @error_messages, "Cell O$row_name: facility_identifier is misssing";
+                push @error_messages, "Célula O$row_name: facility_identifier está ausente";
             } else {
                 $facility_identifier =~ s/^\s+|\s+$//g;
 
                 if ($seen_facility_identifiers{$facility_identifier}) {
-                    push @error_messages, "Cell O$row_name: duplicate facility identifier at cell O".$seen_facility_identifiers{$facility_identifier}.": $facility_identifier";
+                    push @error_messages, "Célula O$row_name: identificador da instalação duplicado na célula O".$seen_facility_identifiers{$facility_identifier}.": $facility_identifier";
                 }
 
                 $seen_facility_identifiers{$facility_identifier}=$row_name;
@@ -346,7 +347,7 @@ sub _validate_with_plugin {
         'uniquename' => { -in => \@sample_ids }
     });
     while (my $r=$rs->next){
-        push @error_messages, "Cell B".$seen_sample_ids{$r->uniquename}.": sample_id already exists: ".$r->uniquename;
+        push @error_messages, "Célula B".$seen_sample_ids{$r->uniquename}.": sample_id já existe: ".$r->uniquename;
     }
 
     if ($include_facility_identifiers) {
@@ -357,7 +358,7 @@ sub _validate_with_plugin {
             'value' => { -in => \@identifiers }
         });
         while (my $each_id=$identifier_rs->next){
-            push @error_messages, "Cell O".$seen_facility_identifiers{$each_id->value}.": facility identifier already exists: ".$each_id->value;
+            push @error_messages, "Célula O".$seen_facility_identifiers{$each_id->value}.": o identificador da instalação já existe: ".$each_id->value;
         }
     }
 
@@ -378,7 +379,7 @@ sub _validate_with_plugin {
     }
     foreach (@seen_source_observation_unit_names){
         if (!$found_source_observation_unit_names{$_}){
-            push @error_messages, "This source observation unit name is not in the database: $_ .";
+            push @error_messages, "Este nome de unidade de observação de origem não está no banco de dados: $_ .";
         }
     }
 

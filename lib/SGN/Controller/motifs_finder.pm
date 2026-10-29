@@ -1,4 +1,5 @@
 package SGN::Controller::motifs_finder;
+use utf8;
 
 use Moose;
 use namespace::autoclean;
@@ -57,7 +58,7 @@ sub name_var :Path('/test/') :Args(0) {
 
     print STDERR Dumper($filename);
     if ($sequence !~ /^>/ && $seq_file eq '')  {
-	push ( @errors , "Please, paste sequences or attach sequence file.<br/>Ensure your sequence conform with 'usage help' description.\n");
+	push ( @errors , "Cole as sequências ou anexe um arquivo de sequências.<br/>Verifique se suas sequências estão de acordo com a descrição da 'Ajuda de uso'.\n");
     }
 
     # To send error file to index.mas

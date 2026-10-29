@@ -1,5 +1,6 @@
 package CXGN::Trial::ParseUpload::Plugin::TrialSpatialLayoutGeneric;
 
+use utf8;
 use Moose::Role;
 use List::MoreUtils qw(uniq);
 use CXGN::File::Parse;
@@ -50,7 +51,7 @@ sub _validate_with_plugin {
 
     # Unsupported column headers
     if ( $additional_columns && scalar(@$additional_columns) > 0 ) {
-        $errors{'error_messages'} = [ 'The following column headers are not supported: ' . join(', ', @$additional_columns) ];
+        $errors{'error_messages'} = [ 'Os seguintes cabeçalhos de coluna não são suportados: ' . join(', ', @$additional_columns) ];
         $self->_set_parse_errors(\%errors);
         return;
     }
@@ -66,12 +67,12 @@ sub _validate_with_plugin {
 
         # Row Number: must be a positive integer
         if (!($row_number =~ /^\d+?$/)) {
-            push @error_messages, "Row $row: row_number <strong>$row_number</strong> must be a positive integer.";
+            push @error_messages, "Linha $row: row_number <strong>$row_number</strong> deve ser um número inteiro positivo.";
         }
 
         # Col Number: must be a positive integer
         if (!($col_number =~ /^\d+?$/)) {
-            push @error_messages, "Row $row: col_number <strong>$col_number</strong> must be a positive integer.";
+            push @error_messages, "Linha $row: col_number <strong>$col_number</strong> deve ser um número inteiro positivo.";
         }
 
         # Track row/col positions to check for duplicates
@@ -90,7 +91,7 @@ sub _validate_with_plugin {
 
     # Report missing plots
     if (scalar(@missing_plots) > 0) {
-        push @error_messages, "Plot name(s) <strong>".join(', ',@missing_plots)."</strong> do not exist in the database as plots.";
+        push @error_messages, "Nome(s) de parcela <strong>".join(', ',@missing_plots)."</strong> não existem no banco de dados como parcelas.";
     }
 
     # Check that all plots belong to the same trial
@@ -110,7 +111,7 @@ sub _validate_with_plugin {
     }
 
     if (scalar(@mismatched_plots) > 0) {
-        push @error_messages, "All plots must belong to ".$trial->get_name().". ";
+        push @error_messages, "Todas as parcelas devem pertencer a ".$trial->get_name().". ";
     }
 
     # Check for unique row/col positions
@@ -119,7 +120,7 @@ sub _validate_with_plugin {
         my $count = scalar(@$plots);
         if ( $count > 1 ) {
             my @pos = split('-', $position_key);
-            push @error_messages, "Position row=" . $pos[0] . " col=" . $pos[1] . " is assigned to multiple plots: <strong>" . join(', ', @$plots) . "</strong>. Each position can only be occupied once.";
+            push @error_messages, "A posição row=" . $pos[0] . " col=" . $pos[1] . " está atribuída a várias parcelas: <strong>" . join(', ', @$plots) . "</strong>. Cada posição só pode ser ocupada uma vez.";
         }
     }
 

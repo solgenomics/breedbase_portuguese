@@ -22,7 +22,7 @@ Isaak Y Tecle (iyt2@cornell.edu)
     <strong> Escolha o organismo:</strong> Preencha o nome comum da espécie a que a população pertence. Aperte o botão "organismo associado". Então prossiga com o resto do formulário.
   </li>
   <li>
-    <strong> Tipo cruz:</strong> nesta fase, apenas populações diplóides intercruzadas (F2), retrocruzadas, RIL (do acasalamento de irmãos e auto-acasalamento) são suportadas.
+    <strong> Tipo de cruzamento:</strong> nesta fase, apenas populações diplóides intercruzadas (F2), retrocruzadas, RIL (do acasalamento de irmãos e auto-acasalamento) são suportadas.
   </li>
   <li>
     <strong> Nome da população:</strong> fornecer um nome conciso e preciso para a população. Isso também servirá como o mapa genético da população.

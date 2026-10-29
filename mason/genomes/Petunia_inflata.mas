@@ -1,13 +1,13 @@
 <br />
-<& /page/page_title.mas, title=>"<i>Petunia inflata</i> Rascunho da sequência do genoma v1.0.1" &>
+<& /page/page_title.mas, title=>"Sequência preliminar do genoma de <i>Petunia inflata</i> v1.0.1" &>
 
 <p>
-  Uma sequência de rascunho do <i>Petunia inflata</i> O genoma, um dos ancestrais da Petunia Hybrida, está disponível publicamente (Bombarely et al, 2016). O <i>P. inflata S6</i> a sequência do genoma, foi realizada usando uma montagem de novo de curta leitura (Illumina; cobertura 135X)<br>
+  Uma sequência preliminar do genoma de <i>Petunia inflata</i>, um dos ancestrais de Petunia hybrida, está disponível publicamente (Bombarely et al, 2016). A sequência do genoma de <i>P. inflata S6</i> foi obtida por meio de uma montagem de novo de leituras curtas (Illumina; cobertura de 135X)<br>
 </p>
 
 
 <p>
-  O <i>Petunia inflata</i> Dados do genoma são acessíveis na SGN através do BLAST, JBrowse e da ferramenta SGN VIGS, e eles podem ser baixados do site SGN ftp.
+  Os dados do genoma de <i>Petunia inflata</i> estão acessíveis na SGN por meio do BLAST, do JBrowse e da ferramenta SGN VIGS, e podem ser baixados do site FTP da SGN.
 </p>
 
 <br>
@@ -24,9 +24,9 @@
 <h4>Referências</h4>
 <ul style="list-style-type:disc">
   <li>
-    Bombarely, A., Moser, M, ... Sims, T.L. e Kuhlemeier, C. (2016)<br>
-    Visão sobre a evolução das Solanaceae dos genomas parentais de Petunia Hybrida<br>
-   <a href="https://www.nature.com/articles/nplants201674">Plantas Naturais 2, Artigo número: 16074 (2016)</a><br>
+    Bombarely, A., Moser, M, ... Sims, T.L. and Kuhlemeier, C. (2016)<br>
+    Insight into the evolution of the Solanaceae from the parental genomes of Petunia hybrida<br>
+   <a href="https://www.nature.com/articles/nplants201674">Nature Plants 2, Article number: 16074 (2016)</a><br>
   </li>
 </ul>
 <br>

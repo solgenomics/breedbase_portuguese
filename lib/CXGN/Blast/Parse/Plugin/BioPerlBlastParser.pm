@@ -1,5 +1,6 @@
 
 package CXGN::Blast::Parse::Plugin::BioPerlBlastParser;
+use utf8;
 
 use Moose;
 
@@ -30,16 +31,16 @@ return <<EOJS;
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Match Information</h4>
+        <h4 class="modal-title">Informações da correspondência</h4>
       </div>
       <div class="modal-body">
         <dl>
-          <dt>Hit region <span class="region_string"></span></dt>
+          <dt>Região do hit <span class="region_string"></span></dt>
             <dd>
-              <div style="margin: 0.5em 0"><a class="match_details" href="" target="_blank">View matched sequence</a></div>
+              <div style="margin: 0.5em 0"><a class="match_details" href="" target="_blank">Ver sequência correspondente</a></div>
               <div class="hit_region_xrefs"></div>
             </dd>
-          <dt>Subject sequence <span class="sequence_name"></span></dt>
+          <dt>Sequência alvo (subject) <span class="sequence_name"></span></dt>
             <dd class="subject_sequence_xrefs">
             </dd>
         </dl>
@@ -68,12 +69,12 @@ return <<EOJS;
 
     // look up xrefs for overall subject sequence
     var subj = popup.find('.subject_sequence_xrefs');
-    subj.html( '<img src="/img/throbber.gif" /> searching ...' );
+    subj.html( '<img src="/img/throbber.gif" /> pesquisando ...' );
     subj.load( '/api/v1/feature_xrefs?q='+id );
 
     // look up xrefs for the hit region
     var region = popup.find('.hit_region_xrefs');
-    region.html( '<img src="/img/throbber.gif" /> searching ...' );
+    region.html( '<img src="/img/throbber.gif" /> pesquisando ...' );
     region.load( '/api/v1/feature_xrefs?q='+id_region );
 
     popup.modal("show");
@@ -95,8 +96,8 @@ sub parse {
 
     # check if $raw_report_file exists
     unless (-e $raw_report_file) {
-        my $error = "BLAST results are automatically deleted after 7 days. You may need to run your BLAST again. "
-            . "If you feel you received this message in error, please <a href='/contact/form'>contact us</a>.";
+        my $error = "Os resultados do BLAST são excluídos automaticamente após 7 dias. Talvez seja necessário executar o BLAST novamente. "
+            . "Se você acredita ter recebido esta mensagem por engano, <a href='/contact/form'>entre em contato conosco</a>.";
 	return { file => '',
 		 error => $error,
 	};

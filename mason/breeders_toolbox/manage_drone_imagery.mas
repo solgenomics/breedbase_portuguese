@@ -587,7 +587,7 @@ my $buttons_html = "<button class='btn btn-primary' style='margin:3px' id='uploa
                 </div>
             </form>
             <button class="btn btn-primary btn-sm" id="drone_imagery_standard_process_raw_images_retrain_mask_rcnn_predict_button" onclick="return false;">Predizer máscara</button>
-            <button class="btn btn-primary btn-sm" id="drone_imagery_standard_process_raw_images_retrain_mask_rcnn_modal_button" onclick="return false;">Mascara Retreinar R-CNN</button>
+            <button class="btn btn-primary btn-sm" id="drone_imagery_standard_process_raw_images_retrain_mask_rcnn_modal_button" onclick="return false;">Retreinar Mask R-CNN</button>
             <hr>
 
             <hr>
@@ -2182,7 +2182,7 @@ my $buttons_html = "<button class='btn btn-primary' style='margin:3px' id='uploa
                     <label class="col-sm-3 control-label">Tipo de modelo:</label>
                     <div class="col-sm-9" >
                         <select class="form-control" id="drone_imagery_standard_process_raw_images_retrain_mask_rcnn_model_type">
-                            <option value="Mask R-CNN">Mascara R-CNN</option>
+                            <option value="Mask R-CNN">Mask R-CNN</option>
                         </select>
                     </div>
                 </div>
@@ -6784,7 +6784,7 @@ jQuery(document).ready(function() {
     function droneImageryRectangleLayoutTable(generated_polygons, plot_polygons_layout_assignment_info, plot_polygons_generate_assignment_button, plot_polygon_assignment_submit_button) {
         var html = '<hr><div class="well well-sm"><h2>Ou atribua automaticamente os polígonos às parcelas do ensaio de campo</h2>';
         html = html + '<div class="panel panel-default"><div class="panel-body"><div class="form form-horizontal">';
-        html = html + "<div class=\"row\"><div class=\"col-sm-6\"><div class=\"form-group form-group-sm\"><label class=\"col-sm-6 control-label\">Localização da primeira parcela (por exemplo, parcela número 1): </label><div class=\"col-sm-6\"><select class=\"form-control\" id=\"drone_imagery_plot_polygons_first_plot_start\" name=\"drone_imagery_plot_polygons_first_plot_start\"><option value=\"top_left\">Superior Esquerdo</option><option value=\"top_right\">Superior direito</option><option value=\"bottom_left\" disabled>Inferior esquerdo</option><option value=\"bottom_right\" disabled>Inferior direito</option></select></div></div></div><div class=\"col-sm-6\"><div class=\"form-group form-group-sm\"><label class=\"col-sm-6 control-label\">Direção da segunda parcela a partir da primeira: </label><div class=\"col-sm-6\"><select class=\"form-control\" id=\"drone_imagery_plot_polygons_second_plot_follows\" name=\"drone_imagery_plot_polygons_second_plot_follows\"><option value=\"right\">Direita</option><option value=\"up\">Acima</option><option value=\"down\">Abaixo</option><option value=\"left\">Esquerda</option></select></div></div></div></div>";
+        html = html + "<div class=\"row\"><div class=\"col-sm-6\"><div class=\"form-group form-group-sm\"><label class=\"col-sm-6 control-label\">Localização da primeira parcela (por exemplo, parcela número 1): </label><div class=\"col-sm-6\"><select class=\"form-control\" id=\"drone_imagery_plot_polygons_first_plot_start\" name=\"drone_imagery_plot_polygons_first_plot_start\"><option value=\"top_left\">Superior esquerdo</option><option value=\"top_right\">Superior direito</option><option value=\"bottom_left\" disabled>Inferior esquerdo</option><option value=\"bottom_right\" disabled>Inferior direito</option></select></div></div></div><div class=\"col-sm-6\"><div class=\"form-group form-group-sm\"><label class=\"col-sm-6 control-label\">Direção da segunda parcela a partir da primeira: </label><div class=\"col-sm-6\"><select class=\"form-control\" id=\"drone_imagery_plot_polygons_second_plot_follows\" name=\"drone_imagery_plot_polygons_second_plot_follows\"><option value=\"right\">Direita</option><option value=\"up\">Acima</option><option value=\"down\">Abaixo</option><option value=\"left\">Esquerda</option></select></div></div></div></div>";
         html = html + '<div class="row"><div class="col-sm-6"><div class="form-group form-group-sm"><label class="col-sm-6 control-label">Orientação da numeração das parcelas: </label><div class="col-sm-6"><select class="form-control" id="drone_imagery_plot_polygons_plot_orientation" name="drone_imagery_plot_polygons_plot_orientation"><option value="serpentine">Serpentina</option><option value="zigzag">Zigue-zague (não serpentina)</option></select></div></div></div></div>';
         html = html + '<button class="btn btn-primary" id="'+plot_polygons_generate_assignment_button+'">Gerar atribuições (não salva)</button>&nbsp;&nbsp;&nbsp;<button class="btn btn-primary" name="'+plot_polygon_assignment_submit_button+'">Concluir e salvar os polígonos nas parcelas</button></div>';
         html = html + '</div></div></div></div>';

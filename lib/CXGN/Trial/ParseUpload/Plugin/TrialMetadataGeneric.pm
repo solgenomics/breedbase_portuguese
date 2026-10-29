@@ -1,5 +1,6 @@
 package CXGN::Trial::ParseUpload::Plugin::TrialMetadataGeneric;
 
+use utf8;
 use Moose::Role;
 use List::MoreUtils qw(uniq);
 use CXGN::File::Parse;
@@ -78,7 +79,7 @@ sub _validate_with_plugin {
 
     # Unsupported column headers
     if ( $additional_columns && scalar(@$additional_columns) > 0 ) {
-        $errors{'error_messages'} = [ 'The follow column headers are not supported: ' . join(', ', @$additional_columns) ];
+        $errors{'error_messages'} = [ 'Os seguintes cabeçalhos de coluna não são suportados: ' . join(', ', @$additional_columns) ];
         $self->_set_parse_errors(\%errors);
         return;
     }
@@ -97,24 +98,24 @@ sub _validate_with_plugin {
 
         # Transplanting / Planting / Harvest Dates: must be YYYY-MM-DD format, if provided
         if ($transplanting_date && $transplanting_date ne 'remove' && !$calendar_funcs->check_value_format($transplanting_date)) {
-            push @error_messages, "Row $row: transplanting_date <strong>$transplanting_date</strong> must be in the format YYYY-MM-DD.";
+            push @error_messages, "Linha $row: transplanting_date <strong>$transplanting_date</strong> deve estar no formato YYYY-MM-DD.";
         }
         if ($planting_date && $planting_date ne 'remove' && !$calendar_funcs->check_value_format($planting_date)) {
-            push @error_messages, "Row $row: planting_date <strong>$planting_date</strong> must be in the format YYYY-MM-DD.";
+            push @error_messages, "Linha $row: planting_date <strong>$planting_date</strong> deve estar no formato YYYY-MM-DD.";
         }
         if ($harvest_date && $harvest_date ne 'remove' && !$calendar_funcs->check_value_format($harvest_date)) {
-            push @error_messages, "Row $row: harvest_date <strong>$harvest_date</strong> must be in the format YYYY-MM-DD.";
+            push @error_messages, "Linha $row: harvest_date <strong>$harvest_date</strong> deve estar no formato YYYY-MM-DD.";
         }
 
         # Plot Width / Plot Length / Field Size: must be a positive number, if provided
         if ($plot_width && !($plot_width =~ /^([\d]*)([\.]?)([\d]+)$/)) {
-            push @error_messages, "Row $row: plot_width <strong>$plot_width</strong> must be a positive number.";
+            push @error_messages, "Linha $row: plot_width <strong>$plot_width</strong> deve ser um número positivo.";
         }
         if ($plot_length && !($plot_length =~ /^([\d]*)([\.]?)([\d]+)$/)) {
-            push @error_messages, "Row $row: plot_length <strong>$plot_length</strong> must be a positive number.";
+            push @error_messages, "Linha $row: plot_length <strong>$plot_length</strong> deve ser um número positivo.";
         }
         if ($field_size && !($field_size =~ /^([\d]*)([\.]?)([\d]+)$/)) {
-            push @error_messages, "Row $row: plot_width <strong>$field_size</strong> must be a positive number.";
+            push @error_messages, "Linha $row: plot_width <strong>$field_size</strong> deve ser um número positivo.";
         }
     }
 
@@ -126,7 +127,7 @@ sub _validate_with_plugin {
     my $trial_validation = $validator->validate($schema,'trials',$parsed_values->{'trial_name'});
     my @missing_trial_names = @{$trial_validation->{'missing'}};
     if (scalar(@missing_trial_names) > 0) {
-        push @error_messages, "Trial name(s) <strong>".join(', ',@missing_trial_names)."</strong> do not exist in the database.";
+        push @error_messages, "Nome(s) de ensaio <strong>".join(', ',@missing_trial_names)."</strong> não existem no banco de dados.";
     }
 
     # New Trial Names: must NOT already exist in the database, cannot contains spaces
@@ -136,21 +137,21 @@ sub _validate_with_plugin {
     foreach (@{$parsed_values->{'name'}}) {
         push(@already_used_new_trial_names, $_) unless exists $unused_new_trial_names{$_};
         if ($_ =~ /\s/) {
-            push @error_messages, "new_trial_name <strong>$_</strong> must not contain spaces.";
+            push @error_messages, "new_trial_name <strong>$_</strong> não deve conter espaços.";
         }
         if ($_ =~ /\// || $_ =~ /\\/) {
-            push @warning_messages, "trial_name <strong>$_</strong> contains slashes. Note that slashes can cause problems for third-party applications; however, trial names can be saved with slashes if you ignore warnings.";
+            push @warning_messages, "trial_name <strong>$_</strong> contém barras. Observe que barras podem causar problemas em aplicativos de terceiros; no entanto, nomes de ensaios podem ser salvos com barras se você ignorar os avisos.";
         }
     }
     if (scalar(@already_used_new_trial_names) > 0) {
-        push @error_messages, "New Trial Name(s) <strong>".join(', ',@already_used_new_trial_names)."</strong> are invalid because they are already used in the database.";
+        push @error_messages, "Novo(s) nome(s) de ensaio <strong>".join(', ',@already_used_new_trial_names)."</strong> são inválidos porque já estão em uso no banco de dados.";
     }
 
     # Breeding Program: must already exist in the database
     my $breeding_programs_missing = $validator->validate($schema,'breeding_programs',$parsed_values->{'breeding_program'})->{'missing'};
     my @breeding_programs_missing = @{$breeding_programs_missing};
     if (scalar(@breeding_programs_missing) > 0) {
-        push @error_messages, "Breeding program(s) <strong>".join(', ',@breeding_programs_missing)."</strong> are not in the database.";
+        push @error_messages, "Programa(s) de melhoramento <strong>".join(', ',@breeding_programs_missing)."</strong> não estão no banco de dados.";
     }
 
     # Folder: should already exist in the database
@@ -165,7 +166,7 @@ sub _validate_with_plugin {
         }
     }
     if ( scalar @missing_folders > 0 ) {
-        push @warning_messages, "The following folders do not exist and will be created if warnings are ignored: " . join(', ', @missing_folders);
+        push @warning_messages, "As seguintes pastas não existem e serão criadas se os avisos forem ignorados: " . join(', ', @missing_folders);
     }
 
     # Location: Transform location abbreviations/codes to full names
@@ -176,7 +177,7 @@ sub _validate_with_plugin {
         my $location_code = $code->[0];
         my $found_location_name = $code->[1];
         $location_code_map{$location_code} = $found_location_name;
-        push @warning_messages, "File location <strong>$location_code</strong> matches the code for the location named <strong>$found_location_name</strong> and will be substituted if you ignore warnings.";
+        push @warning_messages, "O local <strong>$location_code</strong> do arquivo corresponde ao código do local chamado <strong>$found_location_name</strong> e será substituído se você ignorar os avisos.";
     }
     $self->_set_location_code_map(\%location_code_map);
 
@@ -184,27 +185,27 @@ sub _validate_with_plugin {
     my @locations_missing = @{$locations_hashref->{'missing'}};
     my @locations_missing_no_codes = grep { !exists $location_code_map{$_} } @locations_missing;
     if (scalar(@locations_missing_no_codes) > 0) {
-        push @error_messages, "Location(s) <strong>".join(', ',@locations_missing_no_codes)."</strong> are not in the database.";
+        push @error_messages, "Local(is) <strong>".join(', ',@locations_missing_no_codes)."</strong> não estão no banco de dados.";
     }
 
     # Year: must be a 4 digit integer
     foreach (@{$parsed_values->{'year'}}) {
         if (!($_ =~ /^\d{4}$/)) {
-            push @error_messages, "year <strong>$_</strong> is not a valid year, must be a 4 digit positive integer.";
+            push @error_messages, "year <strong>$_</strong> não é um ano válido; deve ser um número inteiro positivo de 4 dígitos.";
         }
     }
 
     # Design Type: must be a valid / supported design type
     foreach (@{$parsed_values->{'design_type'}}) {
         if ( !exists $valid_design_types{$_} ) {
-            push @error_messages, "design_type <strong>$_</strong> is not supported. Supported design types: " . join(', ', keys(%valid_design_types)) . ".";
+            push @error_messages, "design_type <strong>$_</strong> não é suportado. Tipos de delineamento suportados: " . join(', ', keys(%valid_design_types)) . ".";
         }
     }
 
     # Trial Type: must be a valid / supported trial type
     foreach (@{$parsed_values->{'type'}}) {
         if ( !exists $valid_trial_types{$_} ) {
-            push @error_messages, "trial_type <strong>$_</strong> is not supported. Supported trial types: " . join(', ', keys(%valid_trial_types)) . ".";
+            push @error_messages, "trial_type <strong>$_</strong> não é suportado. Tipos de ensaio suportados: " . join(', ', keys(%valid_trial_types)) . ".";
         }
     }
 

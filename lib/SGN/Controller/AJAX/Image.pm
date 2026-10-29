@@ -24,6 +24,7 @@ Lukas Mueller <lam87@cornell.edu>
 =cut
 
 package SGN::Controller::AJAX::Image;
+use utf8;
 
 use Moose;
 use File::Temp qw(tempdir);
@@ -198,12 +199,12 @@ sub add_image_stock_display_order_POST {
     my $display_order = shift;
 
     if (!$c->user()) { 
-	$c->stash->{rest} = { error => "you need to be logged in to modify the display order of images"};
+	$c->stash->{rest} = { error => "você precisa estar conectado para modificar a ordem de exibição das imagens"};
 	return;
     }
     
     if (!$c->user()->check_roles("curator") && $c->stash->{image}->get_sp_person_id() != $c->user()->get_object()->get_sp_person_id()) { 
-	$c->stash->{rest} = { error => "You cannot modify an image that you don't own.\n" };
+	$c->stash->{rest} = { error => "Você não pode modificar uma imagem que não é sua.\n" };
 	return;
     }
 
@@ -235,12 +236,12 @@ sub image_locus_connection_POST {
     $c->stash->{locus_id} = shift;
 
     if (!$c->user()) { 
-	$c->stash->{rest} = { error => "you need to be logged in to modify the display order of images"};
+	$c->stash->{rest} = { error => "você precisa estar conectado para modificar a ordem de exibição das imagens"};
 	return;
     }
     
     if (!$c->user()->check_roles("curator") && $c->stash->{image}->get_sp_person_id() != $c->user()->get_object()->get_sp_person_id()) { 
-	$c->stash->{rest} = { error => "You cannot modify an image that you don't own.\n" };
+	$c->stash->{rest} = { error => "Você não pode modificar uma imagem que não é sua.\n" };
 	return;
     }
 }

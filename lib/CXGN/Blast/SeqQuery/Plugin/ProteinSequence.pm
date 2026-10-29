@@ -1,5 +1,6 @@
 
 package CXGN::Blast::SeqQuery::Plugin::ProteinSequence;
+use utf8;
 
 use Moose;
 
@@ -28,12 +29,12 @@ sub validate {
 	my $s = Bio::Seq->new(-seq => $input);
 
 	if ($s->seq() !~ /^[ACDEFGHIKLMNPQRSTVWYX\n\s\t]$/i) { 
-	    $c->stash->{rest} = { error=> "Protein sequence contains illegal characters: ".($s->id)};
+	    $c->stash->{rest} = { error=> "A sequência de proteína contém caracteres inválidos: ".($s->id)};
 	    return;
 	}
     };
     if ($@) { 
-	$c->stash->{rest} = {error => "The sequence does not seem to be a legal protein sequence.", };
+	$c->stash->{rest} = {error => "A sequência não parece ser uma sequência de proteína válida.", };
 	return;
     }
     

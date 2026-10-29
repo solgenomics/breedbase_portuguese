@@ -380,7 +380,7 @@ solGS.pca = {
         lists = list.addDataTypeAttr(lists, "");
         var datasets = solGS.dataset.getDatasetPops(["accessions", "trials"]);
 
-        datasets = solGS.dataset.addDataTypeAttr(datasets, "Estrutura populacional");
+        datasets = solGS.dataset.addDataTypeAttr(datasets, "Population Structure");
         var pcaPops = [lists, datasets];
 
         return pcaPops.flat();
@@ -809,7 +809,7 @@ solGS.pca = {
 
         pcaPlot
             .append("g")
-            .attr("class", "Eixo PC1")
+            .attr("class", "PC1 axis")
             .attr(
                 "transform",
                 "translate(" + pad.left + "," + (pad.top + height) + ")"
@@ -849,7 +849,7 @@ solGS.pca = {
 
         pcaPlot
             .append("g")
-            .attr("class", "Eixo PC2")
+            .attr("class", "PC2 axis")
             .attr("transform", "translate(" + pad.left + "," + pad.top + ")")
             .call(pc2Axis)
             .selectAll("text")

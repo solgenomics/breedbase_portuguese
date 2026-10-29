@@ -1,5 +1,6 @@
 package CXGN::Pedigree::ParseUpload::Plugin::PedigreesGeneric;
 
+use utf8;
 use Moose::Role;
 use CXGN::File::Parse;
 use CXGN::Stock::StockLookup;
@@ -45,7 +46,7 @@ sub _validate_with_plugin {
 
     if ( $additional_columns && scalar(@$additional_columns) > 0 ) {
         $errors{'error_messages'} = [
-            "The following columns are not recognized: " . join(', ', @$additional_columns) . ". Please check the spreadsheet format for the allowed columns."
+            "As seguintes colunas não são reconhecidas: " . join(', ', @$additional_columns) . ". Verifique o formato da planilha para as colunas permitidas."
         ];
         $self->_set_parse_errors(\%errors);
         return;
@@ -63,7 +64,7 @@ sub _validate_with_plugin {
 
     foreach my $type (@$seen_cross_types) {
         if (!exists $supported_cross_types{$type}) {
-            push @error_messages, "Cross type not supported: $type. Cross type should be biparental, self, open, sib, backcross, reselected, polycross, doubled_haploid or dihaploid_induction";
+            push @error_messages, "Tipo de cruzamento não suportado: $type. O tipo de cruzamento deve ser biparental, self, open, sib, backcross, reselected, polycross, doubled_haploid ou dihaploid_induction";
         }
     }
 
@@ -72,7 +73,7 @@ sub _validate_with_plugin {
     my $cross_validator = CXGN::List::Validate->new();
     my @stocks_missing = @{$cross_validator->validate($schema,'crosses',\@accessions_missing)->{'missing'}};
     if (scalar(@stocks_missing) > 0) {
-        push @error_messages, "The following accessions are not in the database, or are not in the database as uniquenames: ".join(',',@stocks_missing);
+        push @error_messages, "Os seguintes acessos não estão no banco de dados, ou não estão no banco de dados como nomes únicos: ".join(',',@stocks_missing);
     }
 
     my @pedigrees;
@@ -88,30 +89,30 @@ sub _validate_with_plugin {
 
         if ($female eq $male) {
             if ($cross_type ne 'self' && $cross_type ne 'sib' && $cross_type ne 'reselected' && $cross_type ne 'doubled_haploid' && $cross_type ne 'dihaploid_induction'){
-                push @error_messages, "Female parent and male parent are the same on line $line_number, but cross type is not self, sib, reselected, doubled_haploid or dihaploid_induction.";
+                push @error_messages, "O genitor feminino e o genitor masculino são iguais na linha $line_number, mas o tipo de cruzamento não é self, sib, reselected, doubled_haploid ou dihaploid_induction.";
             }
         }
         if (($female && !$male) && ($cross_type ne 'open')) {
-            push @error_messages, "For $progeny on line number $line_number no male parent specified and cross_type is not open...";
+            push @error_messages, "Para $progeny na linha $line_number nenhum genitor masculino foi especificado e o cross_type não é open...";
         }
         if ($cross_type eq 'biparental') {
             if (!$male){
-                push @error_messages, "For $progeny Cross Type is biparental, but no male parent given";
+                push @error_messages, "Para $progeny o tipo de cruzamento é biparental, mas nenhum genitor masculino foi informado";
             }
         }
         if($cross_type eq 'backcross') {
             if (!$male){
-                push @error_messages, "For $progeny Cross Type is backcross, but no male parent given";
+                push @error_messages, "Para $progeny o tipo de cruzamento é backcross, mas nenhum genitor masculino foi informado";
             }
         }
         elsif($cross_type eq "sib") {
             if (!$male){
-                push @error_messages, "For $progeny Cross Type is sib, but no male parent given";
+                push @error_messages, "Para $progeny o tipo de cruzamento é sib, mas nenhum genitor masculino foi informado";
             }
         }
         elsif($cross_type eq "polycross") {
             if (!$male){
-                push @error_messages, "For $progeny Cross Type is polycross, but no male parent given";
+                push @error_messages, "Para $progeny o tipo de cruzamento é polycross, mas nenhum genitor masculino foi informado";
             }
         }
     }
@@ -142,7 +143,7 @@ sub _parse_with_plugin {
 
     my %return;
     if (!$pedigree_check){
-        $return{'error_messages'} = "There was a problem validating pedigrees. Pedigrees were not stored.";
+        $return{'error_messages'} = "Houve um problema ao validar os pedigrees. Os pedigrees não foram armazenados.";
         $self->_set_parse_errors(\%return);
         return;
     } else {

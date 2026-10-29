@@ -2,7 +2,7 @@
   $xrefs => []
 </%args>
   <& /page/columnar_table.mas,
-            headings => ["Annotation Set", "Feature(s)", "Region"],
+            headings => ["Conjunto de anotações", "Feição(ões)", "Região"],
             data     => \@rows,
             __align  => 'l'
   &>

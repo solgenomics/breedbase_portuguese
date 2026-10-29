@@ -19,7 +19,7 @@
 
 <h4>Resultados</h4>
 
-<p>A seção Resultados mostrará o ouput (dependendo de suas opções de saída escolhidas) quando uma análise BLAST foi executada. Quando a análise terminar, as seções de parâmetros de entrada serão colapsadas e a seção de resultados será aberta. Para re-executar uma consulta, basta clicar no sinal + no cabeçalho da seção do parâmetro Input para ver essa seção novamente e ajustar os parâmetros.</p>
+<p>A seção Resultados mostra a saída (de acordo com as opções de saída escolhidas) quando uma análise BLAST é executada. Quando a análise termina, as seções de parâmetros de entrada são recolhidas e a seção de resultados é aberta. Para executar a consulta novamente, basta clicar no sinal + no cabeçalho da seção de parâmetros de entrada para exibi-la novamente e ajustar os parâmetros.</p>
 
 <p>O relatório BLAST pode ser baixado usando o link de download no cabeçalho da seção Resultados.</p>
 

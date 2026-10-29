@@ -1,5 +1,6 @@
 package CXGN::Pedigree::ParseUpload::Plugin::CrossesGeneric;
 
+use utf8;
 use Moose::Role;
 use CXGN::File::Parse;
 use CXGN::Stock::StockLookup;
@@ -48,7 +49,7 @@ sub _validate_with_plugin {
 
     if ( $additional_columns && scalar(@$additional_columns) > 0 ) {
         $errors{'error_messages'} = [
-            "The following columns are not recognized: " . join(', ', @$additional_columns) . ". Please check the spreadsheet format for the allowed columns."
+            "As seguintes colunas não são reconhecidas: " . join(', ', @$additional_columns) . ". Verifique o formato da planilha para as colunas permitidas."
         ];
         $self->_set_parse_errors(\%errors);
         return;
@@ -78,7 +79,7 @@ sub _validate_with_plugin {
 
     foreach my $type (@$seen_cross_types) {
         if (!exists $supported_cross_types{$type}) {
-            push @error_messages, "Cross type not supported: $type. Cross type should be biparental, self, open, sib, bulk_self, bulk_open, backcross, polycross, doubled_haploid or dihaploid_induction";
+            push @error_messages, "Tipo de cruzamento não suportado: $type. O tipo de cruzamento deve ser biparental, self, open, sib, bulk_self, bulk_open, backcross, polycross, doubled_haploid ou dihaploid_induction";
         }
     }
 
@@ -86,7 +87,7 @@ sub _validate_with_plugin {
     my @parents_missing = @{$parent_validator->validate($schema,'accessions_or_populations_or_crosses_or_plots_or_plants',\@all_parents)->{'missing'}};
 
     if (scalar(@parents_missing) > 0) {
-        push @error_messages, "The following parents are not in the database, or are not in the database as accession names, population names, cross unique ids, plot names or plant names: ".join(',',@parents_missing);
+        push @error_messages, "Os seguintes genitores não estão no banco de dados, ou não estão no banco de dados como nomes de acessos, nomes de populações, IDs únicos de cruzamento, nomes de parcelas ou nomes de plantas: ".join(',',@parents_missing);
     }
 
     my $rs = $schema->resultset("Stock::Stock")->search({
@@ -95,7 +96,7 @@ sub _validate_with_plugin {
     });
 
     while (my $r=$rs->next){
-        push @error_messages, "Cross unique id already exists in database: ".$r->uniquename;
+        push @error_messages, "O ID único do cruzamento já existe no banco de dados: ".$r->uniquename;
     }
 
     foreach my $row (@$parsed_data) {
@@ -107,32 +108,32 @@ sub _validate_with_plugin {
 
         if ($female_parent eq $male_parent) {
             if ($cross_type ne 'self' && $cross_type ne 'sib' && $cross_type ne 'doubled_haploid' && $cross_type ne 'dihaploid_induction'){
-                push @error_messages, "Female parent and male parent are the same on line $line_number, but cross type is not self, sib, doubled_haploid or dihaploid_induction.";
+                push @error_messages, "O genitor feminino e o genitor masculino são iguais na linha $line_number, mas o tipo de cruzamento não é self, sib, doubled_haploid ou dihaploid_induction.";
             }
         }
         if ($cross_type eq 'biparental') {
             if (!$male_parent){
-                push @error_messages, "For $cross_name on line number $line_number, Cross Type is biparental, but no male parent given";
+                push @error_messages, "Para $cross_name na linha $line_number, o tipo de cruzamento é biparental, mas nenhum genitor masculino foi informado";
             }
         }
         if($cross_type eq 'backcross') {
             if (!$male_parent){
-                push @error_messages, "For $cross_name on line number $line_number, Cross Type is backcross, but no male parent given";
+                push @error_messages, "Para $cross_name na linha $line_number, o tipo de cruzamento é backcross, mas nenhum genitor masculino foi informado";
             }
         }
         if($cross_type eq "sib") {
             if (!$male_parent){
-                push @error_messages, "For $cross_name on line number $line_number, Cross Type is sib, but no male parent given";
+                push @error_messages, "Para $cross_name na linha $line_number, o tipo de cruzamento é sib, mas nenhum genitor masculino foi informado";
             }
         }
         if($cross_type eq "polycross") {
             if (!$male_parent){
-                push @error_messages, "For $cross_name on line number $line_number, Cross Type is polycross, but no male parent given";
+                push @error_messages, "Para $cross_name na linha $line_number, o tipo de cruzamento é polycross, mas nenhum genitor masculino foi informado";
             }
         }
         if($cross_type eq "bulk") {
             if (!$male_parent){
-                push @error_messages, "For $cross_name on line number $line_number, Cross Type is bulk, but no male parent given";
+                push @error_messages, "Para $cross_name na linha $line_number, o tipo de cruzamento é bulk, mas nenhum genitor masculino foi informado";
             }
         }
     }

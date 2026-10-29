@@ -1,10 +1,10 @@
 <%args>
   $organism
 </%args>
-<& /page/page_title.mas, title => '<i>'.$organism->species.'</i> Genome Data' &>
+<& /page/page_title.mas, title => 'Dados do genoma de <i>'.$organism->species.'</i>' &>
 
 <&| /page/info_section.mas,
-      title       => 'Datasets de sequência',
+      title       => 'Conjuntos de dados de sequência',
       collapsible => 1,
  &>
   <& /genomes/default/genome_builds.mas, %ARGS &>
@@ -12,7 +12,7 @@
 
 
 <&| /page/info_section.mas,
-      title       => 'Anotações de navegação',
+      title       => 'Anotações navegáveis',
       collapsible => 1,
       hide_if_empty => 1,
  &>
@@ -22,7 +22,7 @@
 </&>
 
 <&| /page/info_section.mas,
-      title       => 'Datasets de anotações',
+      title       => 'Conjuntos de dados de anotação',
       collapsible => 1,
       hide_if_empty => 1,
  &>

@@ -6,6 +6,7 @@ SGN::Controller::BreedingProgram - Catalyst controller for the Breeding Program 
 =cut
 
 package SGN::Controller::BreedingProgram;
+use utf8;
 
 use Moose;
 
@@ -41,7 +42,7 @@ sub get_breeding_program : Chained('/') PathPart('breeders/program') CaptureArgs
     };
     if ($@) {
 	$c->stash->{template} = 'system_message.txt';
-	$c->stash->{message} = "The requested breeding program ($program_id) does not exist";
+	$c->stash->{message} = "O programa de melhoramento solicitado ($program_id) não existe";
 	return;
     }
     $c->stash->{user} = $c->user();
@@ -59,7 +60,7 @@ sub program_info : Chained('get_breeding_program') PathPart('') Args(0) {
     my $program = $c->stash->{program};
 
     if (!$program) {
-	$c->stash->{message} = "The requested breeding program does not exist or has been deleted.";
+	$c->stash->{message} = "O programa de melhoramento solicitado não existe ou foi excluído.";
 	$c->stash->{template} = 'generic_message.mas';
 	return;
     }
@@ -77,7 +78,7 @@ sub profile_detail : Path('/profile') Args(1) {
     my $profile_rs = $schema->resultset("Project::Projectprop")->search({ projectprop_id => $profile_id, type_id => $profile_json_type_id });
 
     if (!$profile_rs) {
-        $c->stash->{message} = 'The requested profile does not exist.';
+        $c->stash->{message} = 'O perfil solicitado não existe.';
     }
 
     my $profile_row = $profile_rs->next();

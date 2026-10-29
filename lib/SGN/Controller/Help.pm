@@ -1,5 +1,6 @@
 
 package SGN::Controller::Help;
+use utf8;
 
 use Moose;
 
@@ -35,7 +36,7 @@ sub help_section : Path('/help') Args(1) {
     }
     else { 
     	$c->stash->{template} = '/generic_message.mas';
-	$c->stash->{message}  = 'The requested page could not be found. <br /><a href="/help">Help page</a>';
+	$c->stash->{message}  = 'A página solicitada não foi encontrada. <br /><a href="/help">Página de ajuda</a>';
     }
 }
 

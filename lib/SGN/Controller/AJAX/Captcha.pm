@@ -1,5 +1,6 @@
 
 package SGN::Controller::AJAX::Captcha;
+use utf8;
 
 use Data::Dumper;
 use Moose;
@@ -34,7 +35,7 @@ sub captcha : Path("/ajax/captcha") Args(0) {
 
     # Check the captcha config
     if ( !defined $config || !defined $config->{server} || !defined $config->{client_id} || !defined $config->{client_secret} || !defined $config->{signing_key} ) {
-        $c->stash->{rest} = { error => 'Missing server captcha config' };
+        $c->stash->{rest} = { error => 'Configuração de captcha do servidor ausente' };
         return;
     }
 

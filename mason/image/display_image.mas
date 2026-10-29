@@ -112,13 +112,13 @@ background: white;
 
 
 <br /><br />
-<center><table><tr><td class="boxbgcolor5"><b>Observação:</b> A imagem acima pode estar sujeita a direitos autorais. Por favor, entre em contato com o remetente sobre permissão para usar a imagem.</td></tr></table></center><br />
+<center><table><tr><td class="boxbgcolor5"><b>Observação:</b> A imagem acima pode estar sujeita a direitos autorais. Entre em contato com quem enviou a imagem para obter permissão de uso.</td></tr></table></center><br />
 
 
 % my $tag_count = scalar($image->get_tags());
 
-<&| /page/info_section.mas, title=>"Marcas associadas" &>
-<br><b>Marcas associadas</b> [<a href="/tag/index.pl?image_id=<% $object_id %>&amp;action=new">add/remove</a>]: <% $tag_count %>
+<&| /page/info_section.mas, title=>"Tags associadas" &>
+<br><b>Tags associadas</b> [<a href="/tag/index.pl?image_id=<% $object_id %>&amp;action=new">adicionar/remover</a>]: <% $tag_count %>
 
 
 % foreach my $tag ($image->get_tags()) { 

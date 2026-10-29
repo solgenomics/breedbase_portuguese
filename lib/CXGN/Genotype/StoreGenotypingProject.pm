@@ -6,6 +6,7 @@ CXGN::Genotype::StoreGenotypingProject - a module for adding new genotyping proj
 
 
 package CXGN::Genotype::StoreGenotypingProject;
+use utf8;
 
 
 use Moose;
@@ -74,7 +75,7 @@ sub store_genotyping_project {
 
     if ($self->existing_genotyping_project()){
         print STDERR "Can't create genotyping project: Genotyping project name already exists\n";
-        return {error => "Genotyping project not saved: Genotyping project name already exists"};
+        return {error => "Projeto de genotipagem não salvo: o nome do projeto de genotipagem já existe"};
     }
 
     my $project_type_cvterm_id = SGN::Model::Cvterm->get_cvterm_row($schema, 'genotyping_project', 'project_type')->cvterm_id();

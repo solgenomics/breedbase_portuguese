@@ -1,5 +1,6 @@
 package CXGN::Trial::ParseUpload::Plugin::TrialGeneric;
 
+use utf8;
 use Moose::Role;
 use List::MoreUtils qw(uniq);
 use JSON;
@@ -55,13 +56,13 @@ sub _validate_with_plugin {
 
     foreach my $treatment (@{$treatments}) {
         if ($treatment !~ m/_TREATMENT:/) {
-            push @error_messages, "Column $treatment is not formatted like a treatment. Use only full, valid treatment names.\n";
+            push @error_messages, "A coluna $treatment não está formatada como um tratamento. Use apenas nomes de tratamento completos e válidos.\n";
         }
     }
 
     if (@{$validate->{missing}}>0) {
         foreach my $missing (@{$validate->{missing}}) {
-            push @error_messages, "Treatment $missing does not exist in the database.\n";
+            push @error_messages, "O tratamento $missing não existe no banco de dados.\n";
         }
     }
 
@@ -130,16 +131,16 @@ sub _validate_with_plugin {
                 cvterm_id => $treatment_id
             });
             if ($treatment_obj->format() eq "numeric" && defined($treatment_obj->minimum()) && defined($data->{$treatment}) && $data->{$treatment} < $treatment_obj->minimum()) {
-                push @error_messages, "Row $row: value for $treatment is lower than the allowed minimum for that treatment.";
+                push @error_messages, "Linha $row: o valor de $treatment é menor que o mínimo permitido para esse tratamento.";
             }
             if ($treatment_obj->format() eq "numeric" && defined($treatment_obj->maximum()) && defined($data->{$treatment}) && $data->{$treatment} > $treatment_obj->maximum()) {
-                push @error_messages, "Row $row: value for $treatment is higher than the allowed maximum for that treatment.";
+                push @error_messages, "Linha $row: o valor de $treatment é maior que o máximo permitido para esse tratamento.";
             }
             if ($treatment_obj->format() eq "qualitative" && defined($treatment_obj->categories()) && defined($data->{$treatment})) {
                 my $qual_value = $data->{$treatment};
                 my $categories = $treatment_obj->categories();
                 if ( $categories !~ m/$qual_value/) {
-                    push @error_messages, "Row $row: value for $treatment is not in the valid categories for that treatment.";
+                    push @error_messages, "Linha $row: o valor de $treatment não está entre as categorias válidas para esse tratamento.";
                 }
             }
         }
@@ -147,52 +148,52 @@ sub _validate_with_plugin {
 
         # Plot Number: must be a positive number
         if (!($plot_number =~ /^\d+?$/)) {
-            push @error_messages, "Row $row: plot number <strong>$plot_number</strong> must be a positive integer.";
+            push @error_messages, "Linha $row: o número da parcela <strong>$plot_number</strong> deve ser um número inteiro positivo.";
         }
 
         # Block Number: must be a positive integer
         if (!($block_number =~ /^\d+?$/)) {
-            push @error_messages, "Row $row: block number <strong>$block_number</strong> must be a positive integer.";
+            push @error_messages, "Linha $row: o número do bloco <strong>$block_number</strong> deve ser um número inteiro positivo.";
         }
 
         # Rep Number: must be a positive integer, if provided
         if ($rep_number && !($rep_number =~ /^\d+?$/)){
-            push @error_messages, "Row $row: rep_number <strong>$rep_number</strong> must be a positive integer.";
+            push @error_messages, "Linha $row: rep_number <strong>$rep_number</strong> deve ser um número inteiro positivo.";
         }
 
         # Plot Name: cannot contain spaces, should not contain slashes
         if ($plot_name =~ /\s/ ) {
-            push @error_messages, "Row $row: plot name <strong>$plot_name</strong> must not contain spaces.";
+            push @error_messages, "Linha $row: o nome da parcela <strong>$plot_name</strong> não deve conter espaços.";
         }
         if ($plot_name =~ /\// || $plot_name =~ /\\/) {
-            push @warning_messages, "Row $row: plot name <strong>$plot_name</strong> contains slashes. Note that slashes can cause problems for third-party applications; however, plot names can be saved with slashes if you ignore warnings.";
+            push @warning_messages, "Linha $row: o nome da parcela <strong>$plot_name</strong> contém barras. Observe que barras podem causar problemas em aplicativos de terceiros; no entanto, nomes de parcelas podem ser salvos com barras se você ignorar os avisos.";
         }
 
         # Plot Width / Plot Length / Field Size: must be a positive number, if provided
         if ($plot_width && !($plot_width =~ /^([\d]*)([\.]?)([\d]+)$/)) {
-            push @error_messages, "Row $row: plot_width <strong>$plot_width</strong> must be a positive number.";
+            push @error_messages, "Linha $row: plot_width <strong>$plot_width</strong> deve ser um número positivo.";
         }
         if ($plot_length && !($plot_length =~ /^([\d]*)([\.]?)([\d]+)$/)) {
-            push @error_messages, "Row $row: plot_length <strong>$plot_length</strong> must be a positive number.";
+            push @error_messages, "Linha $row: plot_length <strong>$plot_length</strong> deve ser um número positivo.";
         }
         if ($field_size && !($field_size =~ /^([\d]*)([\.]?)([\d]+)$/)) {
-            push @error_messages, "Row $row: plot_width <strong>$field_size</strong> must be a positive number.";
+            push @error_messages, "Linha $row: plot_width <strong>$field_size</strong> deve ser um número positivo.";
         }
 
         # Is A Control: must be blank, 0, or 1, if provided
         if ( $is_a_control && $is_a_control ne '' && $is_a_control ne '0' && $is_a_control ne '1' ) {
-            push @error_messages, "Row $row: is_a_control value of <strong>$is_a_control</strong> is invalid.  It must be blank (not a control), 0 (not a control), or 1 (is a control).";
+            push @error_messages, "Linha $row: o valor de is_a_control <strong>$is_a_control</strong> é inválido. Deve ser em branco (não é controle), 0 (não é controle) ou 1 (é controle).";
         }
 
         # Range Number / Row Number / Col Number: must be a positive integer, if provided
         if ($range_number && !($range_number =~ /^\d+?$/)) {
-            push @error_messages, "Row $row: range_number <strong>$range_number</strong> must be a positive integer.";
+            push @error_messages, "Linha $row: range_number <strong>$range_number</strong> deve ser um número inteiro positivo.";
         }
         if ($row_number && !($row_number =~ /^\d+?$/)) {
-            push @error_messages, "Row $row: row_number <strong>$row_number</strong> must be a positive integer.";
+            push @error_messages, "Linha $row: row_number <strong>$row_number</strong> deve ser um número inteiro positivo.";
         }
         if ($col_number && !($col_number =~ /^\d+?$/)) {
-            push @error_messages, "Row $row: col_number <strong>$col_number</strong> must be a positive integer.";
+            push @error_messages, "Linha $row: col_number <strong>$col_number</strong> deve ser um número inteiro positivo.";
         }
 
         # Seedlots: add seedlot_name / accession_name to seedlot_pairs
@@ -201,19 +202,19 @@ sub _validate_with_plugin {
         if ( $seedlot_name ) {
             push @seedlot_pairs, [$seedlot_name, $stock_name];
             if ( $num_seed_per_plot && $num_seed_per_plot ne '' && !($num_seed_per_plot =~ /^\d+?$/) ) {
-                push @error_messages, "Row $row: num_seed_per_plot <strong>$num_seed_per_plot</strong> must be a positive integer.";
+                push @error_messages, "Linha $row: num_seed_per_plot <strong>$num_seed_per_plot</strong> deve ser um número inteiro positivo.";
             }
             if ( $weight_gram_seed_per_plot && $weight_gram_seed_per_plot ne '' && !($weight_gram_seed_per_plot =~ /^\d+?$/) ) {
-                push @error_messages, "Row $row: weight_gram_seed_per_plot <strong>$weight_gram_seed_per_plot</strong> must be a positive integer.";
+                push @error_messages, "Linha $row: weight_gram_seed_per_plot <strong>$weight_gram_seed_per_plot</strong> deve ser um número inteiro positivo.";
             }
             if ( !$num_seed_per_plot && !$weight_gram_seed_per_plot ) {
-                push @warning_messages, "Row $row: this plot does not have a count or weight of seed to be used from seedlot <strong>$seedlot_name</strong>."
+                push @warning_messages, "Linha $row: esta parcela não tem quantidade nem peso de sementes a serem usados do lote de sementes <strong>$seedlot_name</strong>."
             }
         }
 
         # Entry Number: must be a positive integer, if provided
         if ($entry_number && !($entry_number =~ /^\d+?$/)) {
-            push @error_messages, "Row $row: entry_number <strong>$entry_number</strong> must be a positive integer.";
+            push @error_messages, "Linha $row: entry_number <strong>$entry_number</strong> deve ser um número inteiro positivo.";
         }
 
 
@@ -271,14 +272,14 @@ sub _validate_with_plugin {
     foreach (($trial_name)) {
         push(@already_used_trial_names, $_) unless exists $unused_trial_names{$_};
         if ($_ =~ /\s/) {
-            push @error_messages, "trial_name <strong>$_</strong> must not contain spaces.";
+            push @error_messages, "trial_name <strong>$_</strong> não deve conter espaços.";
         }
         if ($_ =~ /\// || $_ =~ /\\/) {
-            push @warning_messages, "trial_name <strong>$_</strong> contains slashes. Note that slashes can cause problems for third-party applications; however, trial names can be saved with slashes if you ignore warnings.";
+            push @warning_messages, "trial_name <strong>$_</strong> contém barras. Observe que barras podem causar problemas em aplicativos de terceiros; no entanto, nomes de ensaios podem ser salvos com barras se você ignorar os avisos.";
         }
     }
     if (scalar(@already_used_trial_names) > 0) {
-        push @error_messages, "Trial name(s) <strong>".join(', ',@already_used_trial_names)."</strong> are invalid because they are already used in the database.";
+        push @error_messages, "Nome(s) de ensaio <strong>".join(', ',@already_used_trial_names)."</strong> são inválidos porque já estão em uso no banco de dados.";
     }
 
     # Stock Names: must exist in the database
@@ -291,26 +292,26 @@ sub _validate_with_plugin {
         @entry_names_missing = @{$entry_name_validator->validate($schema,'accessions_or_synonyms_or_crosses',\@merged_names)->{'missing'}};
         if (scalar(@entry_names_missing) > 0) {
             $errors{'missing_stocks'} = \@entry_names_missing;
-            push @error_messages, "The following entry names are not in the database or are not accession or cross stock type: ".join(',',@entry_names_missing);
+            push @error_messages, "Os seguintes nomes de entrada não estão no banco de dados ou não são do tipo acesso ou cruzamento: ".join(',',@entry_names_missing);
         }
     } elsif ($trial_stock_type eq 'family_name') {
         @entry_names_missing = @{$entry_name_validator->validate($schema,'accessions_or_family_names',\@merged_names)->{'missing'}};
         if (scalar(@entry_names_missing) > 0) {
             $errors{'missing_stocks'} = \@entry_names_missing;
-            push @error_messages, "The following entry names are not in the database or are not accession or family name stock type: ".join(',',@entry_names_missing);
+            push @error_messages, "Os seguintes nomes de entrada não estão no banco de dados ou não são do tipo acesso ou nome de família: ".join(',',@entry_names_missing);
         }
     } else {
         @entry_names_missing = @{$entry_name_validator->validate($schema,'accessions',\@merged_names)->{'missing'}};
         if (scalar(@entry_names_missing) > 0) {
             $errors{'missing_stocks'} = \@entry_names_missing;
-            push @error_messages, "The following entry names are not in the database as uniquenames or synonyms of accession stock type: ".join(',',@entry_names_missing);
+            push @error_messages, "Os seguintes nomes de entrada não estão no banco de dados como nomes únicos ou sinônimos do tipo acesso: ".join(',',@entry_names_missing);
         }
     }
 
     # Seedlots: names must exist in the database
     my @seedlots_missing = @{$validator->validate($schema,'seedlots',$parsed_values->{'seedlot_name'})->{'missing'}};
     if (scalar(@seedlots_missing) > 0) {
-        push @error_messages, "Seedlot(s) <strong>".join(',',@seedlots_missing)."</strong> are not in the database.  To use a seedlot as a seed source for a plot, the seedlot must already exist in the database.";
+        push @error_messages, "Lote(s) de sementes <strong>".join(',',@seedlots_missing)."</strong> não estão no banco de dados. Para usar um lote de sementes como fonte de sementes de uma parcela, o lote de sementes já deve existir no banco de dados.";
     }
 
     # Verify seedlot pairs: accession name of plot must match seedlot contents
@@ -339,14 +340,14 @@ sub _validate_with_plugin {
         push @already_used_plot_names, $r->uniquename();
     }
     if (scalar(@already_used_plot_names) > 0) {
-        push @error_messages, "Plot name(s) <strong>".join(', ',@already_used_plot_names)."</strong> are invalid because they are already used in the database.";
+        push @error_messages, "Nome(s) de parcela <strong>".join(', ',@already_used_plot_names)."</strong> são inválidos porque já estão em uso no banco de dados.";
     }
 
     # Check for duplicated plot numbers
     foreach my $pk (keys %seen_plot_numbers) {
         my $count = $seen_plot_numbers{$pk};
         if ( $count > 1 ) {
-            push @error_messages, "Plot number <strong>$pk</strong> is used $count times.  Each plot should have a unique plot number.";
+            push @error_messages, "O número de parcela <strong>$pk</strong> é usado $count vezes. Cada parcela deve ter um número de parcela único.";
         }
     }
 
@@ -354,7 +355,7 @@ sub _validate_with_plugin {
     foreach my $pk (keys %seen_plot_names) {
         my $count = $seen_plot_names{$pk};
         if ( $count > 1 ) {
-            push @error_messages, "Plot name <strong>$pk</strong> is used $count times. Each plot should have a unique plot name.";
+            push @error_messages, "O nome de parcela <strong>$pk</strong> é usado $count vezes. Cada parcela deve ter um nome de parcela único.";
         }
     }
 
@@ -364,7 +365,7 @@ sub _validate_with_plugin {
         my $count = scalar(@$plots);
         if ( $count > 1 ) {
             my @pos = split('-', $pk);
-            push @warning_messages, "More than 1 plot is assigned to the position row=" . $pos[0] . " col=" . $pos[1] . " plots=" . join(',', @$plots);
+            push @warning_messages, "Mais de 1 parcela está atribuída à posição row=" . $pos[0] . " col=" . $pos[1] . " plots=" . join(',', @$plots);
         }
     }
 
@@ -377,7 +378,7 @@ sub _validate_with_plugin {
         my @ens = uniq @{$seen_entry_numbers{'by_acc'}{$an}};
         my $count = scalar(@ens);
         if ( scalar(@ens) > 1 ) {
-            push @error_messages, "Entry Number mismatch: Accession <strong>$an</strong> has multiple entry numbers (" . join(', ', @ens) . ") assigned to it.";
+            push @error_messages, "Inconsistência no número de entrada: o acesso <strong>$an</strong> tem vários números de entrada (" . join(', ', @ens) . ") atribuídos a ele.";
         }
     }
 
@@ -386,7 +387,7 @@ sub _validate_with_plugin {
         my @ans = uniq @{$seen_entry_numbers{'by_num'}{$en}};
         my $count = scalar(@ans);
         if ( scalar(@ans) > 1 ) {
-            push @error_messages, "Entry Number mismatch: Entry number <strong>$en</strong> has multiple accessions (" . join(', ', @ans) . ") assigned to it.";
+            push @error_messages, "Inconsistência no número de entrada: o número de entrada <strong>$en</strong> tem vários acessos (" . join(', ', @ans) . ") atribuídos a ele.";
         }
     }
 

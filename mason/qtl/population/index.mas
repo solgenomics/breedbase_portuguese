@@ -85,7 +85,7 @@ my $submit_new = qq | <a href="/qtl/form">Submit QTL population</a> |;
   &>   
  
   <& /page/columnar_table.mas,
-     headings     => ["Trait name", "Acronym"],
+     headings     => ["Nome da característica", "Sigla"],
      data         => $trait_acronym_pairs,
      __alt_freq   => 2,
      __alt_width  => 1,

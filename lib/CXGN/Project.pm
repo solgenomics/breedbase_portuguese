@@ -24,6 +24,7 @@ Lukas Mueller <lam87@cornell.edu>
 =cut
 
 package CXGN::Project;
+use utf8;
 
 use Moose;
 
@@ -368,12 +369,12 @@ sub get_nd_experiment_id {
         { 'join' => {'nd_experiment_projects'=>'project'}}
     );
     if ($nd_experiment_rs->count > 1){
-        return {error => "A trial cannot have more than one nd_experiment entry of type field_layout. Please contact us."};
+        return {error => "Um ensaio não pode ter mais de uma entrada nd_experiment do tipo field_layout. Entre em contato conosco."};
     }
     if ($nd_experiment_rs == 1){
         return {success => 1, nd_experiment_id => $nd_experiment_rs->first->nd_experiment_id};
     } else {
-        return {error => "This trial does not have an nd_experiment entry of type field_layout. Please contact us."}
+        return {error => "Este ensaio não tem uma entrada nd_experiment do tipo field_layout. Entre em contato conosco."}
     }
 }
 
@@ -1083,7 +1084,7 @@ sub set_breeding_program {
 
 	if ($@) {
 		print STDERR "ERROR: $@\n";
-		return { error => "An error occurred while setting the trial's breeding program." };
+		return { error => "Ocorreu um erro ao definir o programa de melhoramento do ensaio." };
 	}
 	return {};
 }
@@ -2267,15 +2268,15 @@ sub delete_field_layout {
     my $cxgn_project_type = $self->get_cxgn_project_type()->{cxgn_project_type};
 
     if (scalar(@{$self->get_genotyping_trials_from_field_trial}) > 0) {
-        return 'This field trial has been linked to genotyping trials already, and cannot be deleted.';
+        return 'Este ensaio de campo já foi vinculado a ensaios de genotipagem e não pode ser excluído.';
     }
     if (scalar(@{$self->get_field_trials_source_of_genotyping_trial}) > 0) {
-        return 'This genotyping trial has been linked to field trials already, and cannot be deleted.';
+        return 'Este ensaio de genotipagem já foi vinculado a ensaios de campo e não pode ser excluído.';
     }
 
     if ($cxgn_project_type ne 'analysis_project') {
         if (scalar(@{$self->get_crossing_experiments_from_field_trial}) >0) {
-            return 'This field trial has been linked to crossing experiments already, and cannot be deleted.';
+            return 'Este ensaio de campo já foi vinculado a experimentos de cruzamento e não pode ser excluído.';
         }
     }
 
@@ -2409,15 +2410,15 @@ sub delete_metadata {
     my $cxgn_project_type = $self->get_cxgn_project_type()->{cxgn_project_type};
 
     if (scalar(@{$self->get_genotyping_trials_from_field_trial}) > 0) {
-        return 'This field trial has been linked to genotyping trials already, and cannot be deleted.';
+        return 'Este ensaio de campo já foi vinculado a ensaios de genotipagem e não pode ser excluído.';
     }
     if (scalar(@{$self->get_field_trials_source_of_genotyping_trial}) > 0) {
-        return 'This genotyping trial has been linked to field trials already, and cannot be deleted.';
+        return 'Este ensaio de genotipagem já foi vinculado a ensaios de campo e não pode ser excluído.';
     }
 
     if ($cxgn_project_type ne 'analysis_project') {
         if (scalar(@{$self->get_crossing_experiments_from_field_trial}) >0) {
-            return 'This field trial has been linked to crossing experiments already, and cannot be deleted.';
+            return 'Este ensaio de campo já foi vinculado a experimentos de cruzamento e não pode ser excluído.';
         }
     }
 
@@ -2474,7 +2475,7 @@ sub _delete_field_layout_experiment {
     if ($self->phenotype_count() > 0) {
         print STDERR "Attempt to delete field layout that still has associated phenotype data.\n";
         die "cannot delete because of associated phenotypes\n";
-        return { error => "Trial still has associated phenotyping experiment, cannot delete." };
+        return { error => "O ensaio ainda tem um experimento de fenotipagem associado; não é possível excluir." };
     }
 
     my $field_layout_type_id = SGN::Model::Cvterm->get_cvterm_row($self->bcs_schema, 'field_layout', 'experiment_type')->cvterm_id();
@@ -2669,10 +2670,10 @@ sub delete_project_entry {
     }
 
     if (scalar(@{$self->get_genotyping_trials_from_field_trial}) > 0) {
-        return 'This field trial has been linked to genotyping trials already, and cannot be deleted.';
+        return 'Este ensaio de campo já foi vinculado a ensaios de genotipagem e não pode ser excluído.';
     }
     if (scalar(@{$self->get_field_trials_source_of_genotyping_trial}) > 0) {
-        return 'This genotyping trial has been linked to field trials already, and cannot be deleted.';
+        return 'Este ensaio de genotipagem já foi vinculado a ensaios de campo e não pode ser excluído.';
     }
 
     my $project_owner_schema = CXGN::Phenome::Schema->connect( sub {
@@ -2850,12 +2851,12 @@ sub obsolete_additional_uploaded_file {
 	    $uh->execute($metadata_id);
 	}
 	else {
-	    push @errors, "Only the owner of the uploaded file, or a curator, can delete this file.";
+	    push @errors, "Somente o proprietário do arquivo enviado, ou um curador, pode excluir este arquivo.";
 	}
 
     }
     else {
-	push @errors, "No such file currently exists.";
+	push @errors, "Esse arquivo não existe atualmente.";
     }
 
     if (@errors >0) {
@@ -3360,7 +3361,7 @@ sub create_plant_entities {
                 if ($additional_plants) {
                     my $total_capacity = $rows_per_plot * $cols_per_plot;
                     if ($existing_count + $plants_per_plot > $total_capacity) {
-                        die "Cannot add $plants_per_plot plant(s) to plot $design->{$plot}->{plot_name}: $existing_count plant(s) already exist and the grid capacity is $total_capacity ($rows_per_plot rows x $cols_per_plot cols).";
+                        die "Não é possível adicionar $plants_per_plot planta(s) à parcela $design->{$plot}->{plot_name}: já existe(m) $existing_count planta(s) e a capacidade da grade é $total_capacity ($rows_per_plot linhas x $cols_per_plot colunas).";
                     }
                     my %occupied_coords;
                     my $existing_plants_ref = $design->{$plot}->{plant_names} // [];
@@ -3378,14 +3379,14 @@ sub create_plant_entities {
                     }
                     @plant_coords = grep { !$occupied_coords{$_} } @plant_coords;
                     if (scalar(@plant_coords) < $plants_per_plot) {
-                        die "Cannot add $plants_per_plot plant(s) to plot $design->{$plot}->{plot_name}: only " . scalar(@plant_coords) . " unoccupied grid position(s) available within the ${rows_per_plot}x${cols_per_plot} grid.";
+                        die "Não é possível adicionar $plants_per_plot planta(s) à parcela $design->{$plot}->{plot_name}: somente " . scalar(@plant_coords) . " posição(ões) livre(s) disponível(is) na grade ${rows_per_plot}x${cols_per_plot}.";
                     }
                 }
             }
 
             if (! $plot_row) {
                 print STDERR "The plot $plot is not found in the database\n";
-                die "The plot $plot is not yet in the database. Cannot create plant entries.";
+                die "A parcela $plot ainda não está no banco de dados. Não é possível criar as entradas de planta.";
             }
 
             my $parent_plot = $plot_row->stock_id();
@@ -3465,13 +3466,13 @@ sub create_plant_entities {
             my ($stored_phenotype_error, $stored_phenotype_success) = $store_phenotypes->store();
 
             if ($stored_phenotype_error) {
-                die "An error occurred inheriting treatments: $stored_phenotype_error\n";
+                die "Ocorreu um erro ao herdar os tratamentos: $stored_phenotype_error\n";
             }
         }
     };
     if ($@) {
         print STDERR "An error occurred creating the plant entities. $@\n";
-        return {error => "An error occurred creating the plant entities. $@"};
+        return {error => "Ocorreu um erro ao criar as entidades de planta. $@"};
     }
 
     print STDERR "Plant entities created.\n";
@@ -3684,7 +3685,7 @@ sub save_plant_entries {
             my ($stored_phenotype_error, $stored_phenotype_success) = $store_phenotypes->store();
 
             if ($stored_phenotype_error) {
-                die "An error occurred inheriting treatments: $stored_phenotype_error\n";
+                die "Ocorreu um erro ao herdar os tratamentos: $stored_phenotype_error\n";
             }
         }
 
@@ -3796,7 +3797,7 @@ sub create_plant_subplot_entities {
 
             if (! $plot_row) {
                 print STDERR "The plot $plot is not found in the database\n";
-                die "The plot $plot is not yet in the database. Cannot create plant entries.";
+                die "A parcela $plot ainda não está no banco de dados. Não é possível criar as entradas de planta.";
             }
 
             my $parent_plot = $plot_row->stock_id();
@@ -3810,7 +3811,7 @@ sub create_plant_subplot_entities {
                 my $subplot_row = $chado_schema->resultset("Stock::Stock")->find({ uniquename => $subplot, type_id => $subplot_cvterm });
                 if ( !$subplot_row ) {
                     print STDERR "The subplot $subplot is not found in the database\n";
-                    die "The subplot $subplot is not yet in the database. Cannot create plant entries.";
+                    die "A subparcela $subplot ainda não está no banco de dados. Não é possível criar as entradas de planta.";
                 }
 
                 my $parent_subplot = $subplot_row->stock_id();
@@ -3832,7 +3833,7 @@ sub create_plant_subplot_entities {
                     if ($additional_plants) {
                         my $total_capacity = $rows_per_subplot * $cols_per_subplot;
                         if ($existing_count + $plants_per_subplot > $total_capacity) {
-                            die "Cannot add $plants_per_subplot plant(s) to subplot $subplot: $existing_count plant(s) already exist and the grid capacity is $total_capacity ($rows_per_subplot rows x $cols_per_subplot cols).";
+                            die "Não é possível adicionar $plants_per_subplot planta(s) à subparcela $subplot: já existe(m) $existing_count planta(s) e a capacidade da grade é $total_capacity ($rows_per_subplot linhas x $cols_per_subplot colunas).";
                         }
                         # Query the actual row/col coordinates of existing plants so we exclude
                         # only the slots that are genuinely occupied (the old grid may have had
@@ -3853,7 +3854,7 @@ sub create_plant_subplot_entities {
                         }
                         @plant_coords = grep { !$occupied_coords{$_} } @plant_coords;
                         if (scalar(@plant_coords) < $plants_per_subplot) {
-                            die "Cannot add $plants_per_subplot plant(s) to subplot $subplot: only " . scalar(@plant_coords) . " unoccupied grid position(s) available within the ${rows_per_subplot}x${cols_per_subplot} grid.";
+                            die "Não é possível adicionar $plants_per_subplot planta(s) à subparcela $subplot: somente " . scalar(@plant_coords) . " posição(ões) livre(s) disponível(is) na grade ${rows_per_subplot}x${cols_per_subplot}.";
                         }
                     }
                 }
@@ -3932,13 +3933,13 @@ sub create_plant_subplot_entities {
             my ($stored_phenotype_error, $stored_phenotype_success) = $store_phenotypes->store();
 
             if ($stored_phenotype_error) {
-                die "An error occurred inheriting treatments: $stored_phenotype_error\n";
+                die "Ocorreu um erro ao herdar os tratamentos: $stored_phenotype_error\n";
             }
         }
     };
     if ($@) {
         print STDERR "An error occurred creating the plant entities. $@\n";
-        return {error => "An error occurred creating the plant entities. $@"};
+        return {error => "Ocorreu um erro ao criar as entidades de planta. $@"};
     }
 
     print STDERR "Plant entities created.\n";
@@ -4184,7 +4185,7 @@ sub save_plant_subplot_entries {
             my ($stored_phenotype_error, $stored_phenotype_success) = $store_phenotypes->store();
 
             if ($stored_phenotype_error) {
-                die "An error occurred inheriting treatments: $stored_phenotype_error\n";
+                die "Ocorreu um erro ao herdar os tratamentos: $stored_phenotype_error\n";
             }
         }
     };
@@ -4288,7 +4289,7 @@ sub _save_plant_entry {
     #the plant has a relationship to the accession
     my $plot_accession_rs = $self->bcs_schema()->resultset("Stock::StockRelationship")->search({'me.subject_id'=>$parent_plot, 'me.type_id'=>$plot_relationship_cvterm, 'object.type_id'=>[$accession_cvterm, $cross_cvterm, $family_name_cvterm] }, {'join'=>'object'});
     if ($plot_accession_rs->count != 1){
-        die "There is not 1 stock_relationship of type plot_of between the plot $parent_plot and an accession, a cross or a family_name.";
+        die "Não existe exatamente 1 stock_relationship do tipo plot_of entre a parcela $parent_plot e um acesso, um cruzamento ou um family_name.";
     }
     $stock_relationship = $self->bcs_schema()->resultset("Stock::StockRelationship")->create({
         subject_id => $plant->stock_id(),
@@ -4553,7 +4554,7 @@ sub create_tissue_samples {
             my ($stored_phenotype_error, $stored_phenotype_success) = $store_phenotypes->store();
 
             if ($stored_phenotype_error) {
-                die "An error occurred inheriting treatments: $stored_phenotype_error\n";
+                die "Ocorreu um erro ao herdar os tratamentos: $stored_phenotype_error\n";
             }
         }
     };
@@ -4800,7 +4801,7 @@ sub create_subplot_entities {
             my ($stored_phenotype_error, $stored_phenotype_success) = $store_phenotypes->store();
 
             if ($stored_phenotype_error) {
-                die "An error occurred inheriting treatments: $stored_phenotype_error\n";
+                die "Ocorreu um erro ao herdar os tratamentos: $stored_phenotype_error\n";
             }
         }
     };
@@ -4984,7 +4985,7 @@ sub save_subplot_entries {
             my ($stored_phenotype_error, $stored_phenotype_success) = $store_phenotypes->store();
 
             if ($stored_phenotype_error) {
-                die "An error occurred inheriting treatments: $stored_phenotype_error\n";
+                die "Ocorreu um erro ao herdar os tratamentos: $stored_phenotype_error\n";
             }
         }
     };
@@ -5059,7 +5060,7 @@ sub _save_subplot_entry {
     #the subplot has a relationship to the accession
     my $plot_accession_rs = $self->bcs_schema()->resultset("Stock::StockRelationship")->search({'me.subject_id'=>$parent_plot, 'me.type_id'=>$plot_relationship_cvterm, 'object.type_id'=>[$accession_cvterm, $cross_cvterm, $family_name_cvterm] }, {'join'=>'object'});
     if ($plot_accession_rs->count != 1){
-        die "There is not 1 stock_relationship of type plot_of between the plot $parent_plot and an accession, a cross or a family_name.";
+        die "Não existe exatamente 1 stock_relationship do tipo plot_of entre a parcela $parent_plot e um acesso, um cruzamento ou um family_name.";
     }
     $stock_relationship = $self->bcs_schema()->resultset("Stock::StockRelationship")->create({
         subject_id => $subplot->stock_id(),
@@ -5803,7 +5804,7 @@ sub suppress_plot_phenotype {
 		});
 	}
 	else {
-		$error = "This plot phenotype has already been suppressed.";
+		$error = "Este fenótipo da parcela já foi suprimido.";
 	}
 
 	return $error;
@@ -5866,7 +5867,7 @@ sub delete_assayed_trait {
         return delete_phenotype_values_and_nd_experiment_md_values($dbhost, $dbname, $dbuser, $dbpass, $temp_file_nd_experiment_id, $basepath, $schema, \%phenotype_ids_and_nd_experiment_ids_to_delete);
     }
     else {
-        $error = "List of trait or phenotype ids was not provided for deletion.";
+        $error = "A lista de IDs de características ou fenótipos para exclusão não foi informada.";
     }
     return $error;
 }
@@ -5886,7 +5887,7 @@ sub delete_empty_crossing_experiment {
     my $self = shift;
 
     if ($self->cross_count() > 0) {
-	return 'Cannot delete crossing experiment with associated crosses.';
+	return 'Não é possível excluir um experimento de cruzamento com cruzamentos associados.';
     }
 
     my $project_owner_schema = CXGN::Phenome::Schema->connect( sub {$self->bcs_schema->storage->dbh()},{on_connect_do => ['SET search_path TO public,phenome;']});
@@ -5956,7 +5957,7 @@ sub delete_genotyping_plate_from_field_trial_linkage {
 
     #Make sure to have the right access to delete
     if ($role ne "curator") {
-        push @errors, "Only a curator can delete this linkage.";
+        push @errors, "Somente um curador pode excluir este vínculo.";
         return { errors => \@errors };
     }
 
@@ -5976,10 +5977,10 @@ sub delete_genotyping_plate_from_field_trial_linkage {
             $uh->execute($project_relationship_id,$genotyping_trial_from_field_trial_cvterm_id);
         }
         else {
-            push @errors, "An error occurred during deletion.";
+            push @errors, "Ocorreu um erro durante a exclusão.";
         }
     } else {
-        push @errors, "Project relationship does not exists or has more than 1 occurrence.";
+        push @errors, "A relação de projeto não existe ou tem mais de 1 ocorrência.";
     }
 
     if (@errors >0) {
@@ -6007,11 +6008,11 @@ sub delete_empty_genotyping_project {
     my $self = shift;
 
     if ($self->genotyping_plate_count() > 0) {
-        return 'Cannot delete genotyping project with associated genotyping plates.';
+        return 'Não é possível excluir um projeto de genotipagem com placas de genotipagem associadas.';
     }
 
     if ($self->genotyping_protocol_count() > 0) {
-        return 'Cannot delete genotyping project with associated genotyping protocol.';
+        return 'Não é possível excluir um projeto de genotipagem com protocolo de genotipagem associado.';
     }
 
     my $project_owner_schema = CXGN::Phenome::Schema->connect( sub {$self->bcs_schema->storage->dbh()},{on_connect_do => ['SET search_path TO public,phenome;']});
@@ -6102,7 +6103,7 @@ sub delete_empty_transformation_project {
     my $project_id = $self->get_trial_id();
 
     if ($self->transformation_id_count() > 0) {
-        return 'Cannot delete transformation project with associated transformation IDs.';
+        return 'Não é possível excluir um projeto de transformação com IDs de transformação associados.';
     }
 
     my $project_owner_schema = CXGN::Phenome::Schema->connect( sub {$self->bcs_schema->storage->dbh()},{on_connect_do => ['SET search_path TO public,phenome;']});
@@ -6349,7 +6350,7 @@ sub update_metadata {
         }
     };
     if ($@) {
-        return "An error occurred setting the new trial details of trial " . $self->get_name() . ": $@";
+        return "Ocorreu um erro ao definir os novos detalhes do ensaio " . $self->get_name() . ": $@";
     }
 }
 

@@ -149,7 +149,7 @@ $program_name
                                 <td>Target Value (valor-alvo)</td>
                                 <td>Benchmark Variety (cultivar de referência)</td>
                                 <td>Performance (desempenho: equal, smaller, larger)</td>
-                                <td>Peso (peso)</td>
+                                <td>Weight (peso)</td>
                                 <td>Trait Type (tipo de característica)</td>
                             </tr>
                         </tbody>

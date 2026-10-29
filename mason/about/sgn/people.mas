@@ -36,36 +36,36 @@ sub ul(@) { "<ul>\n".( join '', map {"<li>$_</li>\n"} @_ )."</ul>\n"; }
 
 print info_section_html( title => 'Membros do laboratório',
 			 contents =>
-			 info_section_html( title => 'Pessoal',
+			 info_section_html( title => 'Equipe',
 					    is_subsection => 1,
 					    contents => person_set 
               ([
                 ['white','',''],
-                ['lukas','Lukas Mueller','Director'],
+                ['lukas','Lukas Mueller','Diretor'],
                 ['white','',''],
                ],
 	       [
-		['naama','Naama Menda','Postdoc'],
-		['isaak', 'Isaak Y Tecle', 'Bioinformatics Consultant' ],
-		['tom', 'Tom York', 'Postdoc' ],
+		['naama','Naama Menda','Pós-doutorando(a)'],
+		['isaak', 'Isaak Y Tecle', 'Consultor de bioinformática' ],
+		['tom', 'Tom York', 'Pós-doutorando(a)' ],
                ],
 	       [
-		['suzy', 'Susan Strickler', 'Postdoc'],
-                ['noe', 'Noe Fernandez-Pozo', 'Postdoc' ],
-                [ 'hartmut', 'Hartmut Foerster', 'MetaCyc curator' ],
+		['suzy', 'Susan Strickler', 'Pós-doutorando(a)'],
+                ['noe', 'Noe Fernandez-Pozo', 'Pós-doutorando(a)' ],
+                [ 'hartmut', 'Hartmut Foerster', 'Curador do MetaCyc' ],
 	       ],
 	       [
-		['surya', 'Surya Saha', 'Postdoc' ],
-		['guillaume', 'Guillaume Bauchet', 'Postdoc' ],
-		['bryan', 'Bryan Ellerbrock', 'Bioinformatics' ],
+		['surya', 'Surya Saha', 'Pós-doutorando(a)' ],
+		['guillaume', 'Guillaume Bauchet', 'Pós-doutorando(a)' ],
+		['bryan', 'Bryan Ellerbrock', 'Bioinformática' ],
 	       ],
                [
-		['nick', 'Nicolas Morales', 'Programmer' ],
-		['alex', 'Alex Agbonna', 'Bioinformatics' ],
-		['white', 'Prashant Hosmani', 'Postdoc'],
+		['nick', 'Nicolas Morales', 'Programador' ],
+		['alex', 'Alex Agbonna', 'Bioinformática' ],
+		['white', 'Prashant Hosmani', 'Pós-doutorando(a)'],
                ],
 	       [
-		['white', 'Mirella Flores', 'Postdoc'],
+		['white', 'Mirella Flores', 'Pós-doutorando(a)'],
 		['white', '', ''],
 		['white', '', ''],
 	       ]
@@ -76,17 +76,17 @@ print info_section_html( title => 'Membros do laboratório',
 					     is_subsection => 1,
 					     contents => 
 					     ul(
-                                                '<a href="/about/Summer_Internship_2008.pl">Ver verão 2008 fotos e projetos internos</a>',
-                                                '<a href="/outreach/index.pl#interns">Obter informações sobre o nosso programa de estágio de verão bioinformática</a>',            
+                                                '<a href="/about/Summer_Internship_2008.pl">Ver fotos e projetos dos estagiários do verão de 2008</a>',
+                                                '<a href="/outreach/index.pl#interns">Obter informações sobre o nosso programa de estágio de verão em bioinformática</a>',            
                         ),
                                            )
 
-			 .qq|<a href="/sgn_photos/index.pl"><strong>View more staff &amp; intern photos</strong></a>|
+			 .qq|<a href="/sgn_photos/index.pl"><strong>Ver mais fotos da equipe e dos estagiários</strong></a>|
 		       );
-print info_section_html( title => 'Pessoal Emérito',
+print info_section_html( title => 'Ex-membros da equipe',
 			 contents =>
 			 info_table_html( __multicol => 3, __border => 0,
-					 'Bioinformatics Analysts' =>
+					 'Analistas de bioinformática' =>
 					  ul('Aimin Yan',
 					     'Jeremy Edwards',
 					     'Aureliano Bombarely',
@@ -107,7 +107,7 @@ print info_section_html( title => 'Pessoal Emérito',
 					     'Robert Ahrens',
 					     'Mark Wright',
 					    ),
-					  'Interns' =>
+					  'Estagiários' =>
 					  ul('Allison Izsak (2015)',
 					     'Jonathan Gomes Selman (2015)',
 					     'Ivana Rodriguez (2015)',

@@ -35,7 +35,7 @@ foreach my $qtl_pop (@qtl_pops)
   <table align=center cellpadding=20px>
     <tr>
       <td>
-        <h4>Browse Traits With QTLs: <% $links %></h4>
+        <h4>Navegar pelas características com QTLs: <% $links %></h4>
       </td>
     </tr>
   </table>

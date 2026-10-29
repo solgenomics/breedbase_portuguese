@@ -1,5 +1,6 @@
 
 use strict;
+use utf8;
 use warnings;
 
 use lib 't/lib';
@@ -30,12 +31,12 @@ print STDERR Dumper $response;
 my $new_list_id = $response->{new_list_id};
 like($new_list_id, qr/\d+/, "list id is numeric check");
 
-is_deeply($response, {'success' => 'Stored test_identifier_generation!','new_list_id' => $new_list_id}, 'test create identifier generation list entry');
+is_deeply($response, {'success' => 'test_identifier_generation armazenado!','new_list_id' => $new_list_id}, 'test create identifier generation list entry');
 
 $mech->get_ok('http://localhost:3010/ajax/breeders/identifier_generation_list');
 $response = decode_json $mech->content;
 print STDERR Dumper $response;
-is_deeply($response, {'data' => [['test_identifier_generation','test','ACTLNG','6',1,'ACTLNG000001','<button class="btn btn-primary" name="identifier_generation_history" data-list_id="'.$new_list_id.'">View</button>','<div class="form-group"><label class="col-sm-4 control-label">Next Count: </label><div class="col-sm-8"> <input type="number" class="form-control" id="identifier_generation_next_numbers_'.$new_list_id.'" placeholder="EG: 100" /></div></div><button class="btn btn-primary" name="identifier_generation_download" data-list_id="'.$new_list_id.'">Download Next</button>']]}, 'test identifier generation list');
+is_deeply($response, {'data' => [['test_identifier_generation','test','ACTLNG','6',1,'ACTLNG000001','<button class="btn btn-primary" name="identifier_generation_history" data-list_id="'.$new_list_id.'">Visualizar</button>','<div class="form-group"><label class="col-sm-4 control-label">Próxima contagem: </label><div class="col-sm-8"> <input type="number" class="form-control" id="identifier_generation_next_numbers_'.$new_list_id.'" placeholder="EX: 100" /></div></div><button class="btn btn-primary" name="identifier_generation_download" data-list_id="'.$new_list_id.'">Baixar próximos</button>']]}, 'test identifier generation list');
 
 $mech->get_ok('http://localhost:3010/ajax/breeders/identifier_generation_download?list_id='.$new_list_id.'&next_number=5');
 $response = decode_json $mech->content;

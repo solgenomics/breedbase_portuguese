@@ -22,6 +22,6 @@ $dumpfile
 <a href="display.pl?dumpfile=<% $dumpfile %>&amp;page_number=<% $page_number - 1 %>">Página anterior</a>
 % }
 % else {
-  Previous Page
+  Página anterior
 % }
 

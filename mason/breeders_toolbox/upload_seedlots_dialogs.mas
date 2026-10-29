@@ -261,12 +261,12 @@ $default_seedlot_material_type => undef
                                 <td>seedlot_name</td>
                                 <td>accession_name</td>
                                 <td>operator_name</td>
-                                <td>Quantidade</td>
+                                <td>amount</td>
                                 <td>weight_gram</td>
-                                <td>Descrição</td>
+                                <td>description</td>
                                 <td>box_name</td>
-                                <td>Qualidade</td>
-                                <td>Fonte</td>
+                                <td>quality</td>
+                                <td>source</td>
                             </tr>
                         </tbody>
                     </table>
@@ -321,11 +321,11 @@ $default_seedlot_material_type => undef
                                 <td>seedlot_name</td>
                                 <td>cross_unique_id</td>
                                 <td>operator_name</td>
-                                <td>Quantidade</td>
+                                <td>amount</td>
                                 <td>weight_gram</td>
-                                <td>Descrição</td>
+                                <td>description</td>
                                 <td>box_name</td>
-                                <td>Qualidade</td>
+                                <td>quality</td>
                             </tr>
                         </tbody>
                     </table>

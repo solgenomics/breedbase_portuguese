@@ -274,14 +274,14 @@ if (defined $template->get_template_id() ) {
 
     ## Create the table using columnar_table_html
    
-    my $experiments_html = columnar_table_html( headings => [ 'Experimental design name', 
-                                                              'Experiment name',
-							      'Tissue',
-                                                              'Experiment replicates', 
-                                                              'Replicates pValue<0.05', 
-                                                              'Mean', 
-                                                              'Median', 
-                                                              'SD', 
+    my $experiments_html = columnar_table_html( headings => [ 'Nome do delineamento experimental', 
+                                                              'Nome do experimento',
+							      'Tecido',
+                                                              'Repetições do experimento', 
+                                                              'Repetições com valor p<0,05', 
+                                                              'Média', 
+                                                              'Mediana', 
+                                                              'DP', 
                                                               'CV' ],
 						data     => \@expression_data,
 						__align  => ['l', 'l', 'l', 'c', 'c', 'c', 'c', 'c'],
@@ -290,7 +290,7 @@ if (defined $template->get_template_id() ) {
    ## If there are any experiment, replace the table for a message
    my $exp_number = scalar(@expression_data);
    if ($exp_number == 0) {
-       $experiments_html = 'No experiment was found associated to this template';
+       $experiments_html = 'Nenhum experimento associado a este modelo foi encontrado';
    }
 
     $experiment_info_content = info_section_html( title       => "Tabela: dados de expressão por experiência (".$exp_number.")", 
@@ -381,13 +381,13 @@ if (defined $template->get_template_id() ) {
     my $experiments_by_targets_html;
     my $exprep_n = scalar(@expression_targ_list);
     if ($exprep_n == 0) {
-        $experiments_by_targets_html = 'No hybridization target data was found associated to this template';
+        $experiments_by_targets_html = 'Nenhum dado de alvo de hibridização associado a este modelo foi encontrado';
     } else {
-        $experiments_by_targets_html = columnar_table_html( headings => [ 'Experiment name', 
-									  'Target name', 
+        $experiments_by_targets_html = columnar_table_html( headings => [ 'Nome do experimento', 
+									  'Nome do alvo', 
 									  $template_signal_type, 
 									  $statistical_signal_type, 
-									  'flag' ],
+									  'sinalizador' ],
                                                             data     => \@expression_targ_list,
  					                    __align  => ['l', 'l', 'c', 'c', 'c'],
                                                            );

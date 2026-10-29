@@ -1,6 +1,6 @@
 <div class="text-center">
-    <p>Último passo! Aqui você pode editar configurações de disposição espacial adicionais e/ou salvar seu design.</p>
-    <p>Quando estiver pronto, clique em "Download pdf" para gerar seus rótulos. Se você está tentando baixar um conjunto muito grande, você terá a opção de baixar seus rótulos em lotes.</p>
+    <p>Último passo! Aqui você pode editar configurações adicionais de layout e/ou salvar seu design.</p>
+    <p>Quando estiver pronto, clique em "Baixar PDF" para gerar suas etiquetas. Se você está tentando baixar um conjunto muito grande, você terá a opção de baixar suas etiquetas em lotes.</p>
 </div>
 <div id="save-labels-display"></div>
 <div style="clear: both"></div>
@@ -12,11 +12,11 @@
 
     <!-- Additional Sort Options -->
     <div id="sort_order_2_container" style="display: none">
-        <label>Então por:<span style="font-size: 60%; margin-left: 15px; padding: 5px; border-radius: 5px; background-color: #ccc;">Opcional</span></label>
+        <label>...Depois por:<span style="font-size: 60%; margin-left: 15px; padding: 5px; border-radius: 5px; background-color: #ccc;">Opcional</span></label>
         <select class="form-control" id="sort_order_2" name="sort_by" style="max-width: 300px"></select>
     </div>
     <div id="sort_order_3_container" style="display: none">
-        <label>Então por:<span style="font-size: 60%; margin-left: 15px; padding: 5px; border-radius: 5px; background-color: #ccc;">Opcional</span></label>
+        <label>...Depois por:<span style="font-size: 60%; margin-left: 15px; padding: 5px; border-radius: 5px; background-color: #ccc;">Opcional</span></label>
         <select class="form-control" id="sort_order_3" name="sort_by" style="max-width: 300px"></select>
     </div>
 
@@ -24,25 +24,25 @@
     <div id="sort_order_layout_order_container" style="display: none">
         <label>...Ordem das parcelas:</label>
         <select class="form-control" id="sort_order_layout_order" name="sort_by" style="max-width: 300px">
-            <option value="by_col_serpentine">Por coluna: Serpentina</option>
-            <option value="by_col_zigzag">Pela coluna: Zigzag</option>
-            <option value="by_row_serpentine">Por Linha: Serpentina</option>
-            <option value="by_row_zigzag">Zigzag</option>
+            <option value="by_col_serpentine">Por coluna: serpentina</option>
+            <option value="by_col_zigzag">Por coluna: zigue-zague</option>
+            <option value="by_row_serpentine">Por linha: serpentina</option>
+            <option value="by_row_zigzag">Por linha: zigue-zague</option>
         </select>
     </div>
     <div id="sort_order_layout_start_container" style="display: none">
-        <label>...Começando o enredo:</label>
+        <label>...Parcela inicial:</label>
         <select class="form-control" id="sort_order_layout_start" name="sort_by" style="max-width: 300px">
             <option value="bottom_left">Inferior esquerdo</option>
-            <option value="top_left">Cima-esquerda</option>
-            <option value="top_right">Cima- Direita</option>
-            <option value="bottom_right">Fundo direito</option>
+            <option value="top_left">Superior esquerdo</option>
+            <option value="top_right">Superior direito</option>
+            <option value="bottom_right">Inferior direito</option>
         </select>
     </div>
 </div>
 <div style="margin-top: 40px; margin-bottom: 40px; display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 20px 40px">
     <div>
-        <label>Definir margens, # de linhas/cols, etc</label>
+        <label>Definir margens, nº de linhas/colunas etc.:</label>
         <div class="input-group">
             <button class="btn btn-primary" id="edit_additional_settings">Editar configurações adicionais</button>
         </div>
@@ -52,15 +52,15 @@
         <div class="input-group" id="save_design_div">
             <input type="text" id="save_design_name" class="form-control" placeholder="Digite um nome" />
             <span class="input-group-btn">
-                <button class="btn btn-default" id="d3-save-button" type="button">Salve</button>
+                <button class="btn btn-default" id="d3-save-button" type="button">Salvar</button>
             </span>
         </div>
     </div>
     <div>
-        <label>Download de etiquetas:</label>
+        <label>Baixar etiquetas:</label>
         <div class="input-group">
             <button id="d3-pdf-button" value="pdf" class="btn btn-primary" style="display:none;">Baixar PDF</button>
-            <button id="d3-zpl-button" value="zpl" class="btn btn-primary" style="display:none;">Baixar arquivo zpl</button>
+            <button id="d3-zpl-button" value="zpl" class="btn btn-primary" style="display:none;">Baixar arquivo ZPL</button>
         </div>
     </div>
 </div>

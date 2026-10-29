@@ -54,6 +54,7 @@ Lukas Mueller <lam87@cornell.edu>
 =cut
 
 package CXGN::Analysis;
+use utf8;
 
 use Moose;
 
@@ -330,16 +331,16 @@ sub create_and_store_analysis_design {
     print STDERR "CREATE AND STORE ANALYSIS DESIGN...\n";
 
     if (!$self->user_id()) {
-        die "Need an sp_person_id to store an analysis.";
+        die "É necessário um sp_person_id para armazenar uma análise.";
     }
     if (!$self->get_description()) {
-        die "Need a description to store an analysis.";
+        die "É necessária uma descrição para armazenar uma análise.";
     }
     if (!$self->get_name()) {
-        die "Need a name to store an analysis.";
+        die "É necessário um nome para armazenar uma análise.";
     }
     if (!$self->breeding_program_id()) {
-        die "Need a breeding program to store an analysis.";
+        die "É necessário um programa de melhoramento para armazenar uma análise.";
     }
 
     my $p = CXGN::People::Person->new($dbh, $self->user_id);
@@ -423,7 +424,7 @@ sub create_and_store_analysis_design {
             $self->design($design);
         }
         else {
-            die "An error occurred creating the analysis design.";
+            die "Ocorreu um erro ao criar o delineamento da análise.";
         }
     } else {
         $design = $precomputed_design_to_save;
@@ -476,7 +477,7 @@ sub create_and_store_analysis_design {
         $trial_create->save_trial();
     }
     catch {
-        die "Error saving trial: $_";
+        die "Erro ao salvar o ensaio: $_";
     };
 
     $self->_get_layout()->get_design();
@@ -544,7 +545,7 @@ sub store_analysis_values {
     my ($stored_phenotype_error, $stored_phenotype_success) = $store_phenotypes->store();
 
     if ($stored_phenotype_error) {
-	    die "An error occurred storing the phenotypes: $stored_phenotype_error\n";
+	    die "Ocorreu um erro ao armazenar os fenótipos: $stored_phenotype_error\n";
     }
 
 }

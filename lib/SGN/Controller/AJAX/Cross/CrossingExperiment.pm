@@ -13,6 +13,7 @@ Titima Tantikanjana <tt15@cornell.edu>
 =cut
 
 package SGN::Controller::AJAX::Cross::CrossingExperiment;
+use utf8;
 use Moose;
 use Try::Tiny;
 use DateTime;
@@ -78,7 +79,7 @@ sub upload_target_numbers_POST : Args(0) {
         my $dbh = $c->dbc->dbh;
         my @user_info = CXGN::Login->new($dbh)->query_from_cookie($session_id);
         if (!$user_info[0]){
-            $c->stash->{rest} = {error=>'You must be logged in to upload target numbers!'};
+            $c->stash->{rest} = {error=>'Você precisa estar conectado para enviar números-alvo!'};
             $c->detach();
         }
         $user_id = $user_info[0];
@@ -87,7 +88,7 @@ sub upload_target_numbers_POST : Args(0) {
         $user_name = $p->get_username;
     } else {
         if (!$c->user){
-            $c->stash->{rest} = {error=>'You must be logged in to upload intercross data!'};
+            $c->stash->{rest} = {error=>'Você precisa estar conectado para enviar dados do Intercross!'};
             $c->detach();
         }
         $user_id = $c->user()->get_object()->get_sp_person_id();
@@ -96,7 +97,7 @@ sub upload_target_numbers_POST : Args(0) {
     }
 
     if (($user_role ne 'curator') && ($user_role ne 'submitter')) {
-        $c->stash->{rest} = {error=>'Only a submitter or a curator can upload target numbers of seed/progenies'};
+        $c->stash->{rest} = {error=>'Apenas um submissor ou um curador pode enviar números-alvo de sementes/progênies'};
         $c->detach();
     }
 
@@ -114,7 +115,7 @@ sub upload_target_numbers_POST : Args(0) {
     $archived_filename_with_path = $uploader->archive();
     $md5 = $uploader->get_md5($archived_filename_with_path);
     if (!$archived_filename_with_path) {
-        $c->stash->{rest} = {error => "Could not save file $upload_original_name in archive",};
+        $c->stash->{rest} = {error => "Não foi possível salvar o arquivo $upload_original_name no arquivo permanente",};
         return;
     }
     unlink $upload_tempfile;
@@ -128,7 +129,7 @@ sub upload_target_numbers_POST : Args(0) {
         my $return_error = '';
         my $parse_errors;
         if (!$parser->has_parse_errors() ){
-            $c->stash->{rest} = {error_string => "Could not get parsing errors"};
+            $c->stash->{rest} = {error_string => "Não foi possível obter os erros de análise do arquivo"};
         } else {
             $parse_errors = $parser->get_parse_errors();
             #print STDERR Dumper $parse_errors;

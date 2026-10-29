@@ -5,6 +5,7 @@ SGN::Controller::Marker - controller for marker-related stuff
 =cut
 
 package SGN::Controller::Marker;
+use utf8;
 use Moose;
 use namespace::autoclean;
 use CXGN::Marker::Search;
@@ -30,7 +31,7 @@ sub view_rflp_image: Chained('get_marker') PathPart('rflp_image/view') :Args(0) 
   my $image_size = $c->req->query_parameters->{size};
 
   my $image_location = $self->rflp_image_link( $c, $c->stash->{marker} )
-      or $c->throw_404( "RFLP image not found for SGN-M".$c->stash->{marker}->marker_id );
+      or $c->throw_404( "Imagem RFLP não encontrada para SGN-M".$c->stash->{marker}->marker_id );
 
   $c->stash(
       template => '/markers/view_rflp.mas',
@@ -75,7 +76,7 @@ sub get_marker: Chained('/') PathPart('marker') :CaptureArgs(1) {
         $c->stash->{marker} = CXGN::Marker->new( $c->dbc->dbh, $marker_id);
 	$c->stash->{marker_id} = $marker_id;
     } else {
-        $c->throw_404('No marker found with that ID');
+        $c->throw_404('Nenhum marcador encontrado com esse ID');
     }
 }
 
@@ -144,7 +145,7 @@ sub search_marker : Private {
     # NO MATCH FOUND
     if ( ($mapped_count == 0) && ($genotyped_count == 0) ) {
         $c->stash->{template} = "generic_message.mas";
-        $c->stash->{message} = "<strong>No Matching Marker Found</strong> ($marker_query)<br />You can view and search for markers from the <a href='/search/variants'>Marker Search Page</a>";
+        $c->stash->{message} = "<strong>Nenhum marcador correspondente encontrado</strong> ($marker_query)<br />Você pode visualizar e pesquisar marcadores na <a href='/search/variants'>página de pesquisa de marcadores</a>";
     }
 
     # MULTIPLE MATCHES FOUND
@@ -153,7 +154,7 @@ sub search_marker : Private {
         
         # Display mapped markers
         if ( $mapped_count > 0 ) {
-            $list .= "<tr><td colspan='2'><strong>Mapped Markers:</strong></td></tr>";
+            $list .= "<tr><td colspan='2'><strong>Marcadores mapeados:</strong></td></tr>";
             foreach my $marker_id (@filtered_mapped_marker_ids) {
                 my $marker = CXGN::Marker->new($dbh, $marker_id);
                 my $marker_name = $marker->name_that_marker();
@@ -181,7 +182,7 @@ sub search_marker : Private {
 
         # Display genotyped markers
         if ( $genotyped_count > 0 ) {
-            $list .= "<tr><td colspan='2'><strong>Genotyped Markers:</strong></td></tr>";
+            $list .= "<tr><td colspan='2'><strong>Marcadores genotipados:</strong></td></tr>";
             foreach my $variant_name (keys %$genotyped_variants) {
                 my $markers = $genotyped_variants->{$variant_name};
                 foreach my $marker (@$markers) {
@@ -194,7 +195,7 @@ sub search_marker : Private {
 
         $list .= "</table>";
         $c->stash->{template} = "generic_message.mas";
-        $c->stash->{message} = "<strong>Markers Results</strong><br />" . $list;
+        $c->stash->{message} = "<strong>Resultados de marcadores</strong><br />" . $list;
     } 
     
     # 1 MATCH FOUND - FORWARD TO VIEW MARKER
@@ -209,7 +210,7 @@ sub search_marker : Private {
         } 
         else {
             $c->stash->{template} = "generic_message.mas";
-            $c->stash->{message} = "<strong>No Matching Marker Found</strong> ($marker_query)<br />You can view and search for markers from the <a href='/search/variants'>Marker Search Page</a>";
+            $c->stash->{message} = "<strong>Nenhum marcador correspondente encontrado</strong> ($marker_query)<br />Você pode visualizar e pesquisar marcadores na <a href='/search/variants'>página de pesquisa de marcadores</a>";
         }
     }
 }

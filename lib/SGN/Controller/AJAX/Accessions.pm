@@ -63,7 +63,7 @@ sub verify_accession_list_POST : Args(0) {
         my $dbh = $c->dbc->dbh;
         my @user_info = CXGN::Login->new($dbh)->query_from_cookie($session_id);
         if (!$user_info[0]){
-            $c->stash->{rest} = {error=>'You must be logged in to upload this info!'};
+            $c->stash->{rest} = {error=>'Você precisa estar conectado para enviar estas informações!'};
             $c->detach();
         }
         $user_id = $user_info[0];
@@ -72,7 +72,7 @@ sub verify_accession_list_POST : Args(0) {
         $user_name = $p->get_username;
     } else {
         if (!$c->user){
-            $c->stash->{rest} = {error=>'You must be logged in to upload this info!'};
+            $c->stash->{rest} = {error=>'Você precisa estar conectado para enviar estas informações!'};
             $c->detach();
         }
         $user_id = $c->user()->get_object()->get_sp_person_id();
@@ -121,11 +121,11 @@ sub do_fuzzy_search {
     my $absent_organisms;
 
     if (!$c->user()) {
-	$c->stash->{rest} = {error => "You need to be logged in to add accessions." };
+	$c->stash->{rest} = {error => "Você precisa estar conectado para adicionar acessos." };
 	return;
     }
     if (!any { $_ eq "curator" || $_ eq "submitter" } ($c->user()->roles)  ) {
-	$c->stash->{rest} = {error =>  "You have insufficient privileges to add accessions." };
+	$c->stash->{rest} = {error =>  "Você não tem permissão para adicionar acessos." };
 	return;
     }
     #remove all trailing and ending spaces from accessions and organisms
@@ -217,7 +217,7 @@ sub verify_accessions_file_POST : Args(0) {
         my $dbh = $c->dbc->dbh;
         my @user_info = CXGN::Login->new($dbh)->query_from_cookie($session_id);
         if (!$user_info[0]){
-            $c->stash->{rest} = {error=>'You must be logged in to upload this seedlot info!'};
+            $c->stash->{rest} = {error=>'Você precisa estar conectado para enviar estas informações de lote de sementes!'};
             $c->detach();
         }
         $user_id = $user_info[0];
@@ -226,7 +226,7 @@ sub verify_accessions_file_POST : Args(0) {
         $user_name = $p->get_username;
     } else {
         if (!$c->user){
-            $c->stash->{rest} = {error=>'You must be logged in to upload this seedlot info!'};
+            $c->stash->{rest} = {error=>'Você precisa estar conectado para enviar estas informações de lote de sementes!'};
             $c->detach();
         }
         $user_id = $c->user()->get_object()->get_sp_person_id();
@@ -248,7 +248,7 @@ sub verify_accessions_file_POST : Args(0) {
 
     # These roles are required by CXGN::UploadFile
     if ($user_role ne 'curator' && $user_role ne 'submitter' && $user_role ne 'sequencer' ) {
-        $c->stash->{rest} = {error=>'Only a curator, submitter or sequencer can upload a file'};
+        $c->stash->{rest} = {error=>'Apenas um curador, submissor ou sequenciador pode enviar um arquivo'};
         $c->detach();
     }
 
@@ -271,7 +271,7 @@ sub verify_accessions_file_POST : Args(0) {
     my $archived_filename_with_path = $uploader->archive();
     my $md5 = $uploader->get_md5($archived_filename_with_path);
     if (!$archived_filename_with_path) {
-        $c->stash->{rest} = {error => "Could not save file $upload_original_name in archive",};
+        $c->stash->{rest} = {error => "Não foi possível salvar o arquivo $upload_original_name no arquivo permanente",};
         $c->detach();
     }
     unlink $upload_tempfile;
@@ -285,7 +285,7 @@ sub verify_accessions_file_POST : Args(0) {
         my $return_error = '';
         my $parse_errors;
         if (!$parser->has_parse_errors() ){
-            $c->stash->{rest} = {error_string => "Could not get parsing errors"};
+            $c->stash->{rest} = {error_string => "Não foi possível obter os erros de análise do arquivo"};
             $c->detach();
         } else {
             $parse_errors = $parser->get_parse_errors();
@@ -406,14 +406,14 @@ sub add_accession_list_POST : Args(0) {
     my $phenome_schema = $c->dbic_schema("CXGN::Phenome::Schema", undef, $user_id);
 
     if (!$c->user()) {
-        $c->stash->{rest} = {error => "You need to be logged in to submit accessions." };
+        $c->stash->{rest} = {error => "Você precisa estar conectado para enviar acessos." };
         return;
     }
 
     my $user_name = $c->user()->get_object()->get_username();
 
     if (!any { $_ eq "curator" || $_ eq "submitter" } ($c->user()->roles)  ) {
-        $c->stash->{rest} = {error =>  "You have insufficient privileges to submit accessions." };
+        $c->stash->{rest} = {error =>  "Você não tem permissão para enviar acessos." };
         return;
     }
 
@@ -506,12 +506,12 @@ sub add_accession_list_POST : Args(0) {
             # print STDERR "send email: $email_address\n";
             print STDERR "transaction succeeded! committing accessions\n\n";
 
-            $email_subject = "Accessions upload status";
-            $email_body = "Dear $user_name,\n\n";
-            $email_body.= "Congratulations, all your accessions have been successfully uploaded to the database.\n\n";
-            $email_body.= "Upload details:\n";
-            $email_body.= "Total accessions added: " . scalar(@added_stocks) . "\n\n";
-            $email_body.= "Accession ID\tAccession Name\tAccession URLs\n";
+            $email_subject = "Status do envio de acessos";
+            $email_body = "Prezado(a) $user_name,\n\n";
+            $email_body.= "Parabéns, todos os seus acessos foram enviados com sucesso para o banco de dados.\n\n";
+            $email_body.= "Detalhes do envio:\n";
+            $email_body.= "Total de acessos adicionados:" . scalar(@added_stocks) . "\n\n";
+            $email_body.= "ID do acesso\tNome do acesso\tURLs do acesso\n";
 
             $base_url = "$main_production_site_url/stock/";
             # $base_url = "http://localhost:8080/stock/";
@@ -527,10 +527,10 @@ sub add_accession_list_POST : Args(0) {
 
             #uploading more than 1000 accessions
             if (scalar(@sort_added_fullinfo_stocks) > 1000) {
-                $email_body .= "... and more accessions are uploaded.\n";
+                $email_body .= "... e mais acessos foram enviados.\n";
             }
 
-            $email_body.= "\nThank you.\nHave a nice day\n";
+            $email_body.= "\nObrigado.\nTenha um bom dia\n";
 
             CXGN::Contact::send_email($email_subject, $email_body, $email_address);
         }
@@ -542,21 +542,21 @@ sub add_accession_list_POST : Args(0) {
         };
     } catch {
         $transaction_error =  $_;
-        my $error_message = "An error occurred while uploading accessions: $_\n";
+        my $error_message = "Ocorreu um erro ao enviar os acessos: $_\n";
         print STDERR $error_message;
 
         if ($email_option_enabled == 1 && $email_address) {
-            $email_subject = 'Error in Accession Upload';
-            $email_body    = "Dear $user_name,\n\n$error_message\n";
-            $email_body   .= "Please correct these errors and try uploading again.\n\n";
-            $email_body   .= "Thank you\nHave a nice day\n";
+            $email_subject = 'Erro no envio de acessos';
+            $email_body    = "Prezado(a) $user_name,\n\n$error_message\n";
+            $email_body   .= "Corrija esses erros e tente enviar novamente.\n\n";
+            $email_body   .= "Obrigado\nTenha um bom dia\n";
 
             CXGN::Contact::send_email($email_subject, $email_body, $email_address);
         }
         $c->stash->{rest} = {error => $error_message};
     };
     if ($transaction_error) {
-        $c->stash->{rest} = {error =>  "Transaction error storing stocks: $transaction_error" };
+        $c->stash->{rest} = {error =>  "Erro na transação ao armazenar os materiais: $transaction_error" };
         print STDERR "Transaction error storing stocks: $transaction_error\n";
         return;
     }

@@ -1,4 +1,5 @@
 package CXGN::Phenotypes::HighDimensionalPhenotypesRelationshipMatrix;
+use utf8;
 
 =head1 NAME
 
@@ -113,7 +114,7 @@ sub search {
     my $dbh = $schema->storage->dbh();
 
     if (!$accession_ids && !$plot_ids && !$plant_ids) {
-        return { error => "No accessions or plots or plants in your selected dataset!" };
+        return { error => "Não há acessos, parcelas ou plantas no conjunto de dados selecionado!" };
     }
 
     my $data_term;
@@ -127,7 +128,7 @@ sub search {
         $data_term = 'metabolomics';
     }
     else {
-        return { error => "$high_dimensional_phenotype_type is not supported!" };
+        return { error => "$high_dimensional_phenotype_type não é suportado!" };
     }
 
     my $phenotypes_search = CXGN::Phenotypes::HighDimensionalPhenotypesSearch->new({

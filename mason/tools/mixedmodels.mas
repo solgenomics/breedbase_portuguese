@@ -10,7 +10,7 @@
 <script src="https://cdn.jsdelivr.net/npm/vega-embed@3"></script>
 
 
-<& /page/page_title.mas, title=>"Análise de Modelos Misturados" &>
+<& /page/page_title.mas, title=>"Análise de modelos mistos" &>
 
 <& /analyses/store_new_analysis_values_and_model.mas &>
 
@@ -81,12 +81,12 @@
 	      </span>
 	      <div>
 		<div style="float:right">
-		  <button class="btn btn-main" id="mixed_model_analysis_prepare_button" 	onclick="Workflow.complete(this);">Escolha Dataset e continue</button>
+		  <button class="btn btn-main" id="mixed_model_analysis_prepare_button" 	onclick="Workflow.complete(this);">Escolha o conjunto de dados e continue</button>
 		</div>
 	      </div>
 	      <br />
         <input type="checkbox" id="dataset_trait_outliers" />
-        <label>Use ensaios validados </label>          
+        <label>Usar ensaios validados </label>          
         <br>
 	      <br />
 
@@ -111,19 +111,19 @@
 </&>
 
 
-<&| /util/workflow.mas:step, title=> "Construir Modelo" &>
+<&| /util/workflow.mas:step, title=> "Construir modelo" &>
   <& /page/page_title.mas, title=>"Construir modelo misto" &>
 
     <div class="container form-check form-switch">
-      <h4>Escolha o motor</h4>
-      <input class="form-check-input" type="radio" id="select_engine_lme4" name="select_engine" value="lme4" checked="1" > Ime4</input> |
-      <input class="form-check-input" type="radio" id="select_engine_sommer" name="select_engine" value="sommer"> Sommer</input> |
-      <input class="form-check-input" type="radio" id="select_engine_sommer" name="select_engine" value="spl2D"> Sommer com correção espacial spl2D</input>
+      <h4>Escolha o mecanismo</h4>
+      <input class="form-check-input" type="radio" id="select_engine_lme4" name="select_engine" value="lme4" checked="1" > lme4</input> |
+      <input class="form-check-input" type="radio" id="select_engine_sommer" name="select_engine" value="sommer"> sommer</input> |
+      <input class="form-check-input" type="radio" id="select_engine_sommer" name="select_engine" value="spl2D"> sommer com correção espacial spl2D</input>
 	<br /><br />
     </div>
 
     <div class="model_bg" >
-      <div id="model_string" style="margin-top:10px;margin-bottom:10px;text-align:center;font-weight:bold">[Modelo aparecerá aqui no formato Ime4]</div>
+      <div id="model_string" style="margin-top:10px;margin-bottom:10px;text-align:center;font-weight:bold">[o modelo aparecerá aqui no formato lme4]</div>
       <!--  button id="store_model_formula" class="btn btn-default btn-sm">Save model</button -->
     </div>
 
@@ -135,10 +135,10 @@
         <div id="left-margin" class="col-md-2"></div>
 	<div class="col-md-4">
 	  <div class="panel panel-default" style="border-width:0px">
-	    <div class="panel panel-header" style="border-width:0px">Fatores Disponíveis</div>
+	    <div class="panel panel-header" style="border-width:0px">Fatores disponíveis</div>
 	    <hr />
             <div id="factors" class="panel panel-body" style="border-style:dotted;border-width:0px;">
-	      [ Escolha o conjunto de dados e variável dependente primeiro ]
+	      [ Escolha primeiro o conjunto de dados e a variável dependente ]
             </div>
           </div>
 	</div>
@@ -164,8 +164,8 @@
 	    <!--    style="border-style:dotted;border-width:0px;margin-top:20px;height:auto;z-index:1" -->
 
             <div class="panel-header">
-              Fatores aleatórios com inclinação variável/intersetos<br />
-              <button  id="add_variable_slope_intersect_button">adicionar nova variável inclinação/intersecção</button>
+              Fatores aleatórios com inclinação/intercepto variáveis<br />
+              <button  id="add_variable_slope_intersect_button">adicionar nova inclinação/intercepto variável</button>
 	    </div>
 	    <div id="variable_slope_intersect_collection" class="panel-body">
 
@@ -190,7 +190,7 @@
 
     <div>
       <div style="float:right">
-	<button style="position:relative;" id="run_mixed_model_button" class="btn btn-main" 	onclick="Workflow.complete(this)" >Faça a análise e vá para o próximo passo</button>
+	<button style="position:relative;" id="run_mixed_model_button" class="btn btn-main" 	onclick="Workflow.complete(this)" >Executar a análise e ir para o próximo passo</button>
       </div>
     </div>
     <hr />
@@ -199,43 +199,43 @@
 
 <&| /util/workflow.mas:step, title=> "Resultados" &>
 
-<& /page/page_title.mas, title=>"Resultados da Análise" &>
+<& /page/page_title.mas, title=>"Resultados da análise" &>
 
   <div>
     <ul class="nav nav-tabs">
-      <li class="active"><a data-toggle="tab" id="adjusted_blups_tab_link" href="#adjusted_blups_tab">Meios ajustados (BLUPS)</a></li>
+      <li class="active"><a data-toggle="tab" id="adjusted_blups_tab_link" href="#adjusted_blups_tab">Médias ajustadas (BLUPs)</a></li>
       <li><a data-toggle="tab" id="blups_tab_link" href="#blups_tab">BLUPs</a></li>
-      <li><a data-toggle="tab" id="adjusted_blues_tab_link" href="#adjusted_blues_tab">Meios ajustados</a></li>
+      <li><a data-toggle="tab" id="adjusted_blues_tab_link" href="#adjusted_blues_tab">Médias ajustadas (BLUEs)</a></li>
       <li><a data-toggle="tab" id="blues_tab_link" href="#blues_tab">BLUEs</a></li>
     </ul>
     <div class="tab-content">
       <div id="adjusted_blups_tab" class="tab-pane fade in active">
 	<br />
-	  <button id="open_store_adjusted_blups_dialog_button" class="btn btn-primary" data-toggle="modal" data-analysis_type="adjusted_means">Salvar meios ajustados</button>
+	  <button id="open_store_adjusted_blups_dialog_button" class="btn btn-primary" data-toggle="modal" data-analysis_type="adjusted_means">Salvar médias ajustadas</button>
 
 	  <!-- button class="btn btn-primary">Baixar</button -->
 	  <br />
-	  <div id="mixed_models_adjusted_blups_results_div">[Carregando ...]</div>
+	  <div id="mixed_models_adjusted_blups_results_div">[carregando...]</div>
       </div>
 
       <div id="blups_tab" class="tab-pane fade">
 	<br />
-	<button id="open_store_blups_dialog_button" class="btn btn-primary" data-toggle="modal" data-analysis_type="blup" data-target="#generic_save_analysis_dialog">Salve BLUPs</button>
+	<button id="open_store_blups_dialog_button" class="btn btn-primary" data-toggle="modal" data-analysis_type="blup" data-target="#generic_save_analysis_dialog">Salvar BLUPs</button>
 	<div id="mixed_models_blups_results_div">[não disponível]</div>
       </div>
 
       <div id="adjusted_blues_tab" class="tab-pane fade">
 	<br />
-	<button id="open_store_adjusted_blues_dialog_button" class="btn btn-primary" data-toggle="modal" data-analysis_type="blues">Economize azul ajustado</button>
+	<button id="open_store_adjusted_blues_dialog_button" class="btn btn-primary" data-toggle="modal" data-analysis_type="blues">Salvar BLUEs ajustados</button>
 
-	<div id="mixed_models_adjusted_blues_results_div">[Carregando ...]</div>
+	<div id="mixed_models_adjusted_blues_results_div">[carregando...]</div>
       </div>
 
       <div id="blues_tab" class="tab-pane fade">
 	<br />
-	<button id="open_store_blues_dialog_button" class="btn btn-primary" data-toggle="modal" data-analysis_type="blues">Salve AZULS</button>
+	<button id="open_store_blues_dialog_button" class="btn btn-primary" data-toggle="modal" data-analysis_type="blues">Salvar BLUEs</button>
 
-	<div id="mixed_models_blues_results_div">[Carregando ...]</div>
+	<div id="mixed_models_blues_results_div">[carregando...]</div>
       </div>
     </div> <!-- results_tab div -->
   </div>

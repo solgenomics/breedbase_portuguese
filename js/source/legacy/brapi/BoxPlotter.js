@@ -350,7 +350,7 @@ var BoxPlotter = function () {
 
 BoxPlotter.groupAccessors = {
   study: {
-    name: "Study",
+    name: "Estudo",
     key: function key(o) {
       return o._obsUnit.studyDbId;
     },
@@ -359,7 +359,7 @@ BoxPlotter.groupAccessors = {
     }
   },
   studyLocation: {
-    name: "Study Location",
+    name: "Local do estudo",
     key: function key(o) {
       return o._obsUnit.studyLocationDbId;
     },
@@ -368,31 +368,31 @@ BoxPlotter.groupAccessors = {
     }
   },
   block: {
-    name: "Block",
+    name: "Bloco",
     key: function key(o) {
       return o._obsUnit.blockNumber;
     },
     label: function label(o) {
-      return "Block #" + o._obsUnit.blockNumber;
+      return "Bloco nº " + o._obsUnit.blockNumber;
     }
   },
   replicate: {
-    name: "Replicate",
+    name: "Repetição",
     key: function key(o) {
       return o._obsUnit.replicate;
     },
     label: function label(o) {
-      return "Replicate #" + o._obsUnit.replicate;
+      return "Repetição nº " + o._obsUnit.replicate;
     }
   },
   program: {
-    name: "Program",
+    name: "Programa",
     key: function key(o) {
       return o._obsUnit.programName;
     }
   },
   germplasm: {
-    name: "Germplasm",
+    name: "Germoplasma",
     key: function key(o) {
       return o._obsUnit.germplasmDbId;
     },
@@ -401,23 +401,23 @@ BoxPlotter.groupAccessors = {
     }
   },
   treatment: {
-    name: "Treatment",
+    name: "Tratamento",
     key: function key(o) {
       return (o._obsUnit.treatments || []).reduce(function (v, t) {
-        v += "Factor: \"" + t.factor + "\". ";
-        v += "Modality: \"" + t.modality + "\". ";
+        v += "Fator: \"" + t.factor + "\". ";
+        v += "Modalidade: \"" + t.modality + "\". ";
         return v;
       }, "");
     }
   },
   season: {
-    name: "Season",
+    name: "Safra",
     key: function key(o) {
       return o.season;
     }
   },
   collector: {
-    name: "Collector",
+    name: "Coletor",
     key: function key(o) {
       return o.collector;
     }

@@ -1,5 +1,6 @@
 
 package SGN::Controller::AJAX::VectorViewer;
+use utf8;
 
 use Moose;
 use Data::Dumper;
@@ -35,13 +36,13 @@ sub store_POST : Args(0) {
     $c->response->headers->header( 'Access-Control-Allow-Headers' => 'DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Content-Range,Range,Authorization');
 	
     if (! $c->user()) {
-	$c->stash->{rest} = { error => 'You need to be logged in with corresponding privileges to store vectors.' };
+	$c->stash->{rest} = { error => 'Você precisa estar conectado com as permissões correspondentes para armazenar vetores.' };
 	return;
     }
     
     if ($c->user && ! ($c->user->check_roles('submitter') || $c->user->check_roles('curator'))) {
 
-	$c->stash->{rest} = { error => 'You do not have the privileges to store vectors.' };
+	$c->stash->{rest} = { error => 'Você não tem permissão para armazenar vetores.' };
 	return;
     }
     
@@ -56,7 +57,7 @@ sub store_POST : Args(0) {
     my $vector_check_row = $schema->resultset("Stock::Stock")->find( { type_id => $vector_construct_cvterm_id, stock_id => $c->stash->{vector_stock_id} });
     
     if (!$vector_check_row) {
-	$c->stash->{rest} = { error => 'The vector construct with id ".$c->stash->{vector_stock_id}." does not seem to exist' };
+	$c->stash->{rest} = { error => 'A construção vetorial com id ".$c->stash->{vector_stock_id}." parece não existir' };
 	return;
     }
 
@@ -106,7 +107,7 @@ sub retrieve :Chained('vector') PathPart('retrieve') Args(0) {
 	$genbank_record_id = $genbank_record_term->cvterm_id();
     }
     if (! $c->user()) {
-	$c->stash->{rest} = { error => 'You need to be logged in to view vector data.' };
+	$c->stash->{rest} = { error => 'Você precisa estar conectado para visualizar os dados do vetor.' };
 	return;
     }
 
@@ -137,7 +138,7 @@ sub retrieve :Chained('vector') PathPart('retrieve') Args(0) {
 		my $record = $gb_row->value();
 
 		if (! $record) {
-		    $error = "No vectorviewer data or genbank record.";
+		    $error = "Não há dados do vectorviewer nem registro do GenBank.";
 		}
 		else {
 		    print STDERR "Parsing genbank record ($record)...\n";
@@ -190,7 +191,7 @@ sub retrieve :Chained('vector') PathPart('retrieve') Args(0) {
 	    return;
 	}
 	
-	$c->stash->{rest} = { error => 'The vector information you are trying to access does not exist.' };
+	$c->stash->{rest} = { error => 'As informações do vetor que você está tentando acessar não existem.' };
 	return;
     }
     
@@ -213,7 +214,7 @@ sub import :Chained('vector') PathPart('import') Args(0) {
     $c->response->headers->header( 'Access-Control-Allow-Headers' => 'DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Content-Range,Range,Authorization');
     
     if (! $c->user()) {
-	$c->stash->{rest} = { error => 'You need to be logged in to store vectors.' };
+	$c->stash->{rest} = { error => 'Você precisa estar conectado para armazenar vetores.' };
 	return;
     }
 
@@ -224,7 +225,7 @@ sub import :Chained('vector') PathPart('import') Args(0) {
     my $vector_check_row = $schema->resultset("Stock::Stock")->find( { type_id => $vector_construct_cvterm_id, stock_id => $c->stash->{vector_stock_id} });
 
     if (!$vector_check_row) {
-	$c->stash->{rest} = { error => 'The vector construct with id ".$c->stash->{vector_stock_id}." does not seem to exist' };
+	$c->stash->{rest} = { error => 'A construção vetorial com id ".$c->stash->{vector_stock_id}." parece não existir' };
 	return;
     }
 
@@ -244,7 +245,7 @@ sub import :Chained('vector') PathPart('import') Args(0) {
 	    
 	}
 	else {
-	    $c->stash->{rest} = { error => "Unknown data format for vector: $format" };
+	    $c->stash->{rest} = { error => "Formato de dados desconhecido para o vetor: $format" };
 	    return;
 	}
 	
@@ -252,7 +253,7 @@ sub import :Chained('vector') PathPart('import') Args(0) {
 	
 	$c->stash->{rest} = { sequence => $sequence, re_sites => $vv->re_sites(), features => $parsed, metadata => $metadata };
     }
-    else { $c->stash->{rest} = { error => "You do not have the privileges to import vector data." };
+    else { $c->stash->{rest} = { error => "Você não tem permissão para importar dados de vetor." };
 	   
     }
 }

@@ -1,5 +1,6 @@
 
 package CXGN::Trial::TrialDesign::Plugin::DRRC;
+use utf8;
 
 use File::Slurp;
 use CXGN::Tools::Run;
@@ -42,7 +43,7 @@ sub create_design {
     @stock_list = @{$self->get_stock_list()};
     $stock_list = '"'.join('","', @stock_list).'"';
   } else {
-    die "No stock list specified\n";
+    die "Nenhuma lista de materiais especificada\n";
   }
   if ($self->has_control_list_crbd()) {
     $control_list = '"'.join('","',@{$self->get_control_list_crbd()}).'"';
@@ -52,13 +53,13 @@ sub create_design {
   if ($self->has_number_of_reps()) {
     $repNumber = $self->get_number_of_reps();
   } else {
-    die "Number of reps not specified\n";
+    die "Número de repetições não especificado\n";
   }
 
   if ($self->has_number_of_cols()) {
     $colNumber = $self->get_number_of_cols();
   } else {
-    die "Number of cols not specified\n";
+    die "Número de colunas não especificado\n";
   }
 
   my $rowNumber = scalar(@stock_list) / ($colNumber/$repNumber);
@@ -67,12 +68,12 @@ sub create_design {
   if (scalar(@stock_list) % $colNumber == 0) {
     print "Correct entries and col number proportion.\n";
   } else {
-    die "The number of entries must be divisible by the number of cols.\nThis design is resulting in:\nCols: $colNumber\nRows: $rowNumber\n";
+    die "O número de entradas deve ser divisível pelo número de colunas.\nEste delineamento está resultando em:\nColunas: $colNumber\nLinhas: $rowNumber\n";
   }
   if (scalar(@stock_list) % $rowNumber == 0)  {
     print "Correct entries and row number proportion.\n "
     } else {
-    die "Total number of treatments must be divisible by the number of rows.\nThis design is resulting in:\nCols: $colNumber\nRows: $rowNumber\n";
+    die "O número total de tratamentos deve ser divisível pelo número de linhas.\nEste delineamento está resultando em:\nColunas: $colNumber\nLinhas: $rowNumber\n";
   }
 
   print STDERR "Stock number is ".scalar(@stock_list)." and the number of rep is $repNumber and row number is $rowNumber and the number of col is $colNumber\n";

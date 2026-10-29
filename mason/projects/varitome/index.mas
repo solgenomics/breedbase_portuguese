@@ -2,24 +2,24 @@
 <%args>
 </%args>
 
-<& /page/page_title.mas, title=>"Projeto Varitome: Exploração da variação genética e epigenética na regulação de características de qualidade de frutos de tomate" &>
+<& /page/page_title.mas, title=>"Projeto Varitome: exploração da variação genética e epigenética na regulação de características de qualidade de frutos de tomate" &>
 
 <&| /page/info_section.mas, title => ''  &>
 <center><img src="/img/varitome/varitome_tomatoes.jpg" align="center"/></center>
 
 </&>
 
-<&| /page/info_section.mas, title => 'Grandes objetivos' &>
+<&| /page/info_section.mas, title => 'Principais objetivos' &>
 
 
 <div>
-A melhoria da cultura futura depende em aproveitar a diversidade genética mais ampla presente nos ancestrais de nossas culturas. Recentemente, nossa equipe ganhou conhecimento detalhado da transição de espécies selvagens para as primeiras raças de tomate. O tomate cultivado (Solanum lycopersicum var lycopersicum) evoluiu de populações semidomesticadas e selvagens de S. lycopersicum var cerasiforme, que por sua vez evoluiu de uma subpopulação da espécie selvagem de frutos vermelhos, S. pimplenellifolium. Este conhecimento nos permite selecionar e explorar germoplasma subutilizado para a identificação de genes que controlam a qualidade das frutas e alelos benéficos que podem ter sido deixados para trás durante a domesticação das culturas. Com esta informação, buscamos obter insights fundamentais sobre as vias moleculares e bioquímicas que afetam as características. Isso levaria a um entendimento avançado sobre a regulação de processos básicos de plantas de importância econômica. Para identificar eficientemente genes e vias que controlam características complexas de qualidade dos frutos no tomate, propomos os seguintes objetivos específicos:
+O melhoramento futuro das culturas depende do aproveitamento da diversidade genética mais ampla presente nos ancestrais de nossas culturas. Recentemente, nossa equipe obteve conhecimento detalhado da transição das espécies selvagens para as primeiras variedades crioulas de tomate. O tomate cultivado (Solanum lycopersicum var lycopersicum) evoluiu de populações semidomesticadas e selvagens de S. lycopersicum var cerasiforme, que por sua vez evoluiu de uma subpopulação da espécie selvagem de frutos vermelhos, S. pimpinellifolium. Este conhecimento nos permite selecionar e explorar germoplasma subutilizado para a identificação de genes que controlam a qualidade dos frutos e de alelos benéficos que podem ter sido deixados para trás durante a domesticação das culturas. Com essas informações, buscamos obter conhecimentos fundamentais sobre as vias moleculares e bioquímicas que afetam as características. Isso levaria a um entendimento avançado sobre a regulação de processos básicos de plantas de importância econômica. Para identificar eficientemente genes e vias que controlam características complexas de qualidade dos frutos no tomate, propomos os seguintes objetivos específicos:
 </div>
 <ol>
-<li>Montagem e fenotipagem de uma população de tomate constituindo o contínuo de terras selvagens, semidomesticadas e ancestrais. Esta coleção é chamada Varitome para distingui-la de outros projetos de sequenciamento de tomate.</li>
-<li>Identificação de características de qualidade de frutos subjacentes através de estudos de associação (GWAS) e RNAs pequenos expressos diferencialmente. </li>
-<li>Confirmação genética de associação de características com regiões candidatas a genes. </li>
-<li>Análise funcional do desenvolvimento e vias bioquímicas que controlam a qualidade dos frutos. </li>
+<li>Montagem e fenotipagem de uma população de tomate que constitui o contínuo entre materiais selvagens, semidomesticados e variedades crioulas ancestrais. Esta coleção é chamada Varitome para distingui-la de outros projetos de sequenciamento de tomate.</li>
+<li>Identificação de loci subjacentes a características de qualidade de frutos por meio de estudos de associação genômica ampla (GWAS) e de pequenos RNAs diferencialmente expressos. </li>
+<li>Confirmação genética da associação de características, de regiões candidatas até genes. </li>
+<li>Análise funcional das vias de desenvolvimento e bioquímicas que controlam a qualidade dos frutos. </li>
 <li>Desenvolvimento de banco de dados e integração na Sol Genomics Network (SGN). </li>
 </ol>
 </&>
@@ -51,12 +51,12 @@ A melhoria da cultura futura depende em aproveitar a diversidade genética mais 
 
 <&| /page/info_section.mas, title => 'Os produtos' &>
 
- <&| /page/info_section.mas, title => "Apresentação de BCN" , collapsible=>1 &>
+ <&| /page/info_section.mas, title => "Submissão ao NCBI" , collapsible=>1 &>
 
   <ul>
     <li>NCBI BioProject <a href="https://www.ncbi.nlm.nih.gov/bioproject/PRJNA454805">PRJNA454805</a></li>
     <li>Sequências de DNA genômico de tomate <a href="https://www.ncbi.nlm.nih.gov/sra/SRP150040">SRP150040</a></il>
-<li>SRNA de tomate e sequências de mRNA<a href="https://www.ncbi.nlm.nih.gov/sra/SRP135718">SRP135718</a></i
+<li>Sequências de sRNA e mRNA de tomate <a href="https://www.ncbi.nlm.nih.gov/sra/SRP135718">SRP135718</a></i
   </ul>
 
  </&>
@@ -89,7 +89,7 @@ my $iframe_url = $jbrowse_url . "&tracklist=0&nav=1&overview=0" ;
 
 
 
- <&| /page/info_section.mas, id=>"program_traits_assayed", title => "Características testados" , collapsible=>1, collapsed=>1, hide_ixsf_empty=>1 &>
+ <&| /page/info_section.mas, id=>"program_traits_assayed", title => "Características avaliadas" , collapsible=>1, collapsed=>1, hide_ixsf_empty=>1 &>
 
   <& /breeders_toolbox/program/traits.mas, program_id => 54, collapse_phenotypes_section => 1  &>
 

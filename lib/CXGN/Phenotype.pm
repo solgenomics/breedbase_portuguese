@@ -33,6 +33,7 @@ Phenotypes can have different types:
 =cut
 
 package CXGN::Phenotype;
+use utf8;
 
 use Moose;
 use Data::Dumper;
@@ -428,7 +429,7 @@ sub store {
         #print STDERR "INSERTING... ".$self->value()."\n";
         if (! $self->image_id() && ($self->value() eq "" || ! defined($self->value()) || $self->value() eq ".") || $self->value() eq "NA") {
             #print STDERR "NOT STORING EMTPY VALUE\n";
-            return { success => 1, skip_count => 1, message => "Not storing empty values" };
+            return { success => 1, skip_count => 1, message => "Valores vazios não são armazenados" };
         }
         #print STDERR "INSERTING new value ...\n";
         my $phenotype_row = $self->schema->resultset('Phenotype::Phenotype')->create({
@@ -588,7 +589,7 @@ sub check_categories {
         foreach my $value (@check_values) {
             if ($value ne '' && defined($value) && !exists($trait_categories_hash{$value})) {
                 my $valid_values = join("/", sort keys %trait_categories_hash);  # Sort values for consistent order
-                $error_message =  "<small> This trait value should be one of $valid_values: <br/>Value: ".$self->value()."</small><hr>";
+                $error_message =  "<small> Este valor de característica deve ser um destes $valid_values: <br/>Valor: ".$self->value()."</small><hr>";
             }
             else {
                 #print STDERR "Trait value ".$self->value()." is valid\n";
@@ -636,15 +637,15 @@ sub check {
 
     if (defined($trait_value) && $trait_value ne '' && $trait_value ne 'NA' && $trait_value ne '.' && $self->trait_format() eq 'numeric') { # check only if the trait_value is defined and not NA etc.
         if (! looks_like_number($trait_value)) {
-            push @errors, "Trait format is numeric but value is not a number ($trait_value)\n";
+            push @errors, "O formato da característica é numérico, mas o valor não é um número ($trait_value)\n";
         }
 
         if ($self->check_trait_minimum()) {
-            push @errors, "Trait value $trait_value is smaller than defined minimum ".$self->trait_min_value()."\n";
+            push @errors, "O valor da característica $trait_value é menor que o mínimo definido ".$self->trait_min_value()."\n";
         }
 
         if ($self->check_trait_maximum()) {
-            push @errors, "Trait value $trait_value is larger than defined maximum ".$self->trait_max_value()."\n";
+            push @errors, "O valor da característica $trait_value é maior que o máximo definido ".$self->trait_max_value()."\n";
         }
     }
 
@@ -669,7 +670,7 @@ sub check {
         #print STDERR "Trait repeat type: ".$self->trait_repeat_type()."\n";
         if (!$self->collect_date()) {
             # print STDERR "cvterm_id : ".$self->cvterm_id()." is multiple without timestamp \n";
-            push @errors, "For trait with cvterm_id ".$self->cvterm_id()." that is defined as a 'multiple' or 'time_series' repeat type trait, a timestamp is required.\n";
+            push @errors, "Para a característica com cvterm_id ".$self->cvterm_id().", definida com tipo de repetição 'multiple' ou 'time_series', é necessário um timestamp.\n";
         }
     }
 
@@ -678,7 +679,7 @@ sub check {
     #       push @errors, "No file type provided for archived file.";
     #  }
     if (!$self->operator()) {
-        push @warnings, "No operator provided in file upload metadata.";
+        push @warnings, "Nenhum operador informado nos metadados de envio do arquivo.";
 
     }
     #    if (!$self->metadata_hash->{'date'} || $self->metadata_hash->{'date'} eq "") {
@@ -757,7 +758,7 @@ sub check_collect_date {
     if ( (!$timestamp && !$trait_value) || ($timestamp && !$trait_value) || ($timestamp && $trait_value) ) {
         if ($timestamp) {
             if( !$timestamp =~ m/(\d{4})-(\d{2})-(\d{2}) (\d{2}):(\d{2}):(\d{2})(\S)(\d{4})/) {
-                $error_message = $error_message."<small>Bad timestamp for value for observation unit id: ".$self->observationunit_id()."<br/>Trait Name: ".$trait_name."<br/>Should be YYYY-MM-DD HH:MM:SS-0000 or YYYY-MM-DD HH:MM:SS+0000</small><hr>";
+                $error_message = $error_message."<small>Timestamp inválido no valor do id de unidade de observação: ".$self->observationunit_id()."<br/>Nome da característica: ".$trait_name."<br/>Deve ser YYYY-MM-DD HH:MM:SS-0000 ou YYYY-MM-DD HH:MM:SS+0000</small><hr>";
                 return 0;
             }
             else {

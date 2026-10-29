@@ -3,11 +3,11 @@
 
 </%args>
 <br />
-<& /page/page_title.mas, title=>"Seleção Genômica" &>
+<& /page/page_title.mas, title=>"Seleção genômica" &>
 
 Nota: esta ferramenta ainda não está disponível.
 <ul>
-<li><h4>Gerar Modelo</h4></li>
+<li><h4>Gerar modelo</h4></li>
 <li><h4>Predizer valores genéticos</h4></li>
 
 </ul>

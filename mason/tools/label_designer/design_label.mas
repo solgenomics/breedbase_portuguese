@@ -1,7 +1,7 @@
 <div class="text-center">
-    <p>Hora de desenhar! Comece selecionando um tipo e campo. Então clique em "Adicionar" para gerar seu novo elemento de etiqueta na área de sorteio.</p>
+    <p>Hora de criar! Comece selecionando um tipo e um campo. Depois clique em "Adicionar" para gerar o novo elemento da etiqueta na área de desenho.</p>
     <p>Adicione, arraste, personalize, redimensione e apague quantos elementos quiser. Um código de barras contendo seu identificador único (plot_name, plant_name, etc) é fortemente recomendado.</p>
-    <p><em><strong>NOTE:</strong> Os valores de propriedade mostrados aqui na ferramenta de design podem não ser do mesmo gráfico, item de lista, etc. O maior valor é mostrado aqui para ajudar no posicionamento e dimensionamento do elemento. Os valores serão corretamente associados quando todos os rótulos forem impressos no próximo passo.</em></p>
+    <p><em><strong>NOTA:</strong> Os valores de propriedade mostrados aqui na ferramenta de design podem não ser da mesma parcela, item de lista, etc. O maior valor é mostrado aqui para ajudar no posicionamento e dimensionamento do elemento. Os valores serão corretamente associados quando todas as etiquetas forem impressas no próximo passo.</em></p>
 </div>
 </br>
 <div class="col-md-12" id="d3-draw-div" style="margin-bottom:20px;">
@@ -19,8 +19,8 @@
             <select id="d3-add-type-input" class="form-control"></select>&nbsp&nbsp
             <br>
             <div style="text-align:left;">
-                <label class='radio'><input type="radio" name="alignmentradio" id="align_left" value="left">Elementos de texto alinhados à esquerda</label>
-                <label class='radio'><input type="radio" name="alignmentradio" id="align_middle" value="middle" checked>Elementos de texto centralmente alinhados</label>
+                <label class='radio'><input type="radio" name="alignmentradio" id="align_left" value="left">Alinhar elementos de texto à esquerda</label>
+                <label class='radio'><input type="radio" name="alignmentradio" id="align_middle" value="middle" checked>Centralizar elementos de texto</label>
             </div>
         </center>
     </div>
@@ -28,7 +28,7 @@
         <center>
             <label>Campo:</label><br>
             <select id="d3-add-field-input" class="form-control"></select><br>
-            <button class="btn btn-primary" id="d3-custom-field">Criar Campo Personalizado</button>
+            <button class="btn btn-primary" id="d3-custom-field">Criar campo personalizado</button>
         </center>
         &nbsp&nbsp
     </div>

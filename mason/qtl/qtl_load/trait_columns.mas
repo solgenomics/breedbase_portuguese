@@ -20,14 +20,14 @@ $guide
 </%args>
 
 <%perl>
-$error .= qq |<p>Please go <a href="javascript:history.go(-1)"><b>back</b></a> and 
-                 rearrange the order of the columns and upload the file again or if 
-                 you keep having problem with it contact us.
+$error .= qq |<p><a href="javascript:history.go(-1)"><b>Volte</b></a>, 
+                 reorganize a ordem das colunas e envie o arquivo novamente ou, se 
+                 o problema persistir, entre em contato conosco.
               </p>
              |;
 </%perl>
 
-<& /page/page_title.mas, title => 'Arquivo de Características' &>
+<& /page/page_title.mas, title => 'Arquivo de características' &>
 <&| /page/info_section.mas, title => '', subtitle => $guide &>
   <% $error %>  
 </&>

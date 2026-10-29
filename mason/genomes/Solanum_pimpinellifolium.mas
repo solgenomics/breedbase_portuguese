@@ -9,8 +9,8 @@
 <div class="page_introduction">
 
   <a href="/chado/organism.pl?organism_id=770"><i>Solanum
-  pimpinellifolium</i></a> é o tomate selvagem que está mais intimamente relacionado com o domesticado <a href="/chado/organism.pl?organism_id=1"><i>Solanum
-  lycopersicum</i></a>. Foi sequenciado por um grupo de cientistas no <a href="http://cshl.org">Laboratório Cold Spring Harbor</a>.
+  pimpinellifolium</i></a> é o tomate selvagem mais próximo do tomate domesticado <a href="/chado/organism.pl?organism_id=1"><i>Solanum
+  lycopersicum</i></a>. Foi sequenciado por um grupo de cientistas no <a href="http://cshl.org">Cold Spring Harbor Laboratory</a>.
 
 </div>
 
@@ -50,22 +50,22 @@
 </div -->  
 
 <div>
- Estes dados foram publicados e são livremente acessíveis. Por favor, cite <a href="http://www.nature.com/nature/journal/v485/n7400/full/nature11119.html">Nature 485, 635-641</a> ao usar esse recurso. <br /><br />
- Por favor, contate D. Ware ou Z. B. Lippman (E-mail:
+ Estes dados foram publicados e são de livre acesso. Cite <a href="http://www.nature.com/nature/journal/v485/n7400/full/nature11119.html">Nature 485, 635-641</a> ao usar esse recurso. <br /><br />
+ Em caso de dúvidas, entre em contato com D. Ware ou Z. B. Lippman (e-mail:
   <a href="mailto:ware@cshl.edu">ware@cshl.edu</a> ou
-  <a href="mailto:lippman@cshl.edu">lippman@cshl.edu</a>) com qualquer pergunta.
+  <a href="mailto:lippman@cshl.edu">lippman@cshl.edu</a>).
 
 </div>
 </&>
 
 
-<&| /page/info_section.mas, title => 'Dados Disponíveis' &>
+<&| /page/info_section.mas, title => 'Dados disponíveis' &>
    <% info_table_html(
          __border   => 0,
          __multicol => 2,
-         'Bulk Datasets (via FTP)' =>
-           '<a href="ftp://ftp.solgenomics.net/genomes/Solanum_pimpinellifolium/LA1589/assemblies/A-1.0/">Andaimes genômicos</a>',
-         BLAST => '<a href="/tools/blast/?db_id=114">Andaimes genômicos</a>'
+         'Conjuntos de dados completos (via FTP)' =>
+           '<a href="ftp://ftp.solgenomics.net/genomes/Solanum_pimpinellifolium/LA1589/assemblies/A-1.0/">Scaffolds genômicos</a>',
+         BLAST => '<a href="/tools/blast/?db_id=114">Scaffolds genômicos</a>'
      )
     %>
 </&>

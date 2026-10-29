@@ -2,9 +2,9 @@
 
 <div style="margin: 1em 0; padding: 0.2em 2em 0.4em 2em">
   <p>
-  SGN e <a href="http://compbio.dfci.harvard.edu/tgi/">Projeto Gene Index (TGI)</a>, now at <a href="http://www.dana-farber.org/">DFCI</a>, maintain
-  independent unigene/TC databases, entries in which tend to have common
-  member ESTs.
+  A SGN e o <a href="http://compbio.dfci.harvard.edu/tgi/">Projeto Gene Index (TGI)</a>, agora no <a href="http://www.dana-farber.org/">DFCI</a>, mantêm
+  bancos de dados independentes de unigenes/TCs, cujas entradas tendem a ter
+  ESTs membros em comum.
   </p>
 
   <p>
@@ -16,12 +16,12 @@
 <&| /page/info_section.mas, title => 'Mapeando SGN-U para TGI TC' &>
 
   Use as sequências SGN-U como entrada para a ferramenta BLAST em
-  <a href="http://compbio.dfci.harvard.edu/tgi/">O site TGI</a>.
+  <a href="http://compbio.dfci.harvard.edu/tgi/">site do TGI</a>.
 
 </&>
 
 <&| /page/info_section.mas, title => 'Mapeando TGI TC para SGN-U' &>
 
-  Use as sequências TGI TC como entrada para o <a href="/tools/blast">Ferramenta SGN BLAST</a>, selecting one of the SGN unigene data sets.
+  Use as sequências TGI TC como entrada para a <a href="/tools/blast">ferramenta BLAST da SGN</a>, selecionando um dos conjuntos de dados de unigenes da SGN.
 
 </&>

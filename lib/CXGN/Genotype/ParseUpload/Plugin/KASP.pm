@@ -1,5 +1,6 @@
 package CXGN::Genotype::ParseUpload::Plugin::KASP;
 
+use utf8;
 use Moose::Role;
 use SGN::Model::Cvterm;
 use Data::Dumper;
@@ -114,19 +115,19 @@ sub _validate_with_plugin {
         $position_header =~ s/^\s+|\s+$//g;
 
         if ($marker_name_header ne 'MarkerName'){
-            push @error_messages, 'Column 1 header must be "MarkerName" in the marker Info File.';
+            push @error_messages, 'O cabeçalho da coluna 1 deve ser "MarkerName" no arquivo de informações de marcadores.';
         }
         if ($Xallele_header ne 'Xallele'){
-            push @error_messages, 'Column 2 header must be "Xallele" in the marker Info File.';
+            push @error_messages, 'O cabeçalho da coluna 2 deve ser "Xallele" no arquivo de informações de marcadores.';
         }
         if ($Yallele_header ne 'Yallele'){
-            push @error_messages, 'Column 3 header must be "Yallele" in the marker Info File.';
+            push @error_messages, 'O cabeçalho da coluna 3 deve ser "Yallele" no arquivo de informações de marcadores.';
         }
         if ($chrom_header ne 'Chromosome'){
-            push @error_messages, 'Column 4 header must be "Chromosome" in the SNP Info File.';
+            push @error_messages, 'O cabeçalho da coluna 4 deve ser "Chromosome" no arquivo SNP Info File.';
         }
         if ($position_header ne 'Position'){
-            push @error_messages, 'Column 5 header must be "Position" in the SNP Info File.';
+            push @error_messages, 'O cabeçalho da coluna 5 deve ser "Position" no arquivo SNP Info File.';
         }
 
         my $facility_marker_name_column_location;
@@ -137,7 +138,7 @@ sub _validate_with_plugin {
                 $facility_marker_name_column_location = $i;
             }
             if (!$supported_marker_info{$each_header}){
-                push @error_messages, "Invalid  marker info type: $each_header";
+                push @error_messages, "Tipo de informação de marcador inválido: $each_header";
             } else {
                 if ($each_header eq 'Quality') {
                     push @marker_info_keys, 'qual';
@@ -179,7 +180,7 @@ sub _validate_with_plugin {
                 $facility_marker_name = $marker_line_info[$facility_marker_name_column_location];
                 $facility_marker_name =~ s/^\s+|\s+$//g;
                 if (!defined $facility_marker_name){
-                    push @error_messages, 'Facility marker name is required for all markers.';
+                    push @error_messages, 'O nome do marcador da instituição (facility marker name) é obrigatório para todos os marcadores.';
                 } else {
                     $seen_facility_marker_names{$facility_marker_name} = 1;
                     $marker_facility_link{$facility_marker_name} = $marker_name;
@@ -187,31 +188,31 @@ sub _validate_with_plugin {
             }
 
             if (!defined $marker_name){
-                push @error_messages, 'Marker name is required for all markers.';
+                push @error_messages, 'O nome do marcador é obrigatório para todos os marcadores.';
             } else {
                 $marker{'name'} = $marker_name;
             }
 
             if (!defined $Xallele){
-                push @error_messages, 'X allele info is required for all markers.';
+                push @error_messages, 'A informação do alelo X é obrigatória para todos os marcadores.';
             } else {
                 $marker{'ref'} = $Xallele;
             }
 
             if (!defined $Yallele){
-                push @error_messages, 'Y allele info is required for all markers.';
+                push @error_messages, 'A informação do alelo Y é obrigatória para todos os marcadores.';
             } else {
                 $marker{'alt'} = $Yallele;
             }
 
             if (!defined $chrom) {
-                push @error_messages, 'Chromosome is required for all markers.';
+                push @error_messages, 'O cromossomo é obrigatório para todos os marcadores.';
             } else {
                 $marker{'chrom'} = $chrom;
             }
 
             if (!defined $position) {
-                push @error_messages, 'Position is required for all markers.';
+                push @error_messages, 'A posição é obrigatória para todos os marcadores.';
             } else {
                 $marker{'pos'} = $position;
             }
@@ -291,27 +292,27 @@ sub _validate_with_plugin {
         $Yvalue_header =~ s/^\s+|\s+$//g;
 
         if (($marker_name_header ne 'MarkerName') && ($marker_name_header ne 'FacilityMarkerName')){
-            push @error_messages, 'Column 1 header must be "MarkerName" or "FacilityMarkerName" in the KASP result File.';
+            push @error_messages, 'O cabeçalho da coluna 1 deve ser "MarkerName" ou "FacilityMarkerName" no arquivo de resultados KASP.';
         } else {
             $marker_name_type = $marker_name_header;
         }
 
         if (($sample_name_header ne 'SampleName') && ($sample_name_header ne 'FacilitySampleName')){
-            push @error_messages, 'Column 2 header must be "SampleName" or "FacilitySampleName" in the KASP result File.';
+            push @error_messages, 'O cabeçalho da coluna 2 deve ser "SampleName" ou "FacilitySampleName" no arquivo de resultados KASP.';
         } else {
             $sample_name_type = $sample_name_header;
         }
 
         if ($snpcall_header ne 'SNPcall'){
-            push @error_messages, 'Column 3 header must be "SNPcall" in the KASP result File.';
+            push @error_messages, 'O cabeçalho da coluna 3 deve ser "SNPcall" no arquivo de resultados KASP.';
         }
 
         if ($Xvalue_header ne 'Xvalue'){
-            push @error_messages, 'Column 4 header must be "Xvalue" in the KASP result File.';
+            push @error_messages, 'O cabeçalho da coluna 4 deve ser "Xvalue" no arquivo de resultados KASP.';
         }
 
         if ($Yvalue_header ne 'Yvalue'){
-            push @error_messages, 'Column 5 header must be "Yvalue" in the KASP result File.';
+            push @error_messages, 'O cabeçalho da coluna 5 deve ser "Yvalue" no arquivo de resultados KASP.';
         }
 
         while (my $line = <$F>) {
@@ -333,9 +334,9 @@ sub _validate_with_plugin {
             $yvalue =~ s/^\s+|\s+$//g;
 
             if (!defined $m_name){
-                push @error_messages, 'Marker name or facility marker name is required for all rows.';
+                push @error_messages, 'O nome do marcador ou o facility marker name é obrigatório para todas as linhas.';
             } elsif (!exists($seen_marker_names{$m_name}) && !exists($seen_facility_marker_names{$m_name})) {
-                push @error_messages, "Marker $m_name in the result file is not found in the marker info file.";
+                push @error_messages, "O marcador $m_name do arquivo de resultados não foi encontrado no arquivo de informações de marcadores.";
             } else {
                 if ($marker_name_type eq 'FacilityMarkerName') {
                     $marker_name = $marker_facility_link{$m_name};
@@ -345,7 +346,7 @@ sub _validate_with_plugin {
             }
 
             if (!defined $sample_name){
-                push @error_messages, 'Sample name or facility sample name is required for all rows.';
+                push @error_messages, 'O nome da amostra ou o facility sample name é obrigatório para todas as linhas.';
             } else {
                 if ($sample_name_header eq 'SampleName') {
                     $seen_sample_names{$sample_name}++;
@@ -355,15 +356,15 @@ sub _validate_with_plugin {
             }
 
             if (!defined $snpcall){
-                push @error_messages, 'SNP call is required for all rows.';
+                push @error_messages, 'O SNP call é obrigatório para todas as linhas.';
             }
 
             if (!defined $xvalue){
-                push @error_messages, 'X value is required for all rows.';
+                push @error_messages, 'O valor X é obrigatório para todas as linhas.';
             }
 
             if (!defined $yvalue){
-                push @error_messages, 'Y value is required for all rows.';
+                push @error_messages, 'O valor Y é obrigatório para todas as linhas.';
             }
 
             if ((defined $marker_name) && (defined $sample_name) && (defined $snpcall) && (defined $xvalue) && (defined $yvalue)) {
@@ -385,7 +386,7 @@ sub _validate_with_plugin {
         my @sample_missing = @{$sample_validator->validate($schema,$validate_type,\@all_sample_names)->{'missing'}};
 
         if (scalar(@sample_missing) > 0) {
-            push @error_messages, "The following sample names are not in the database, or are not in the database as uniquenames: ".join(',',@sample_missing);
+            push @error_messages, "Os seguintes nomes de amostras não estão no banco de dados, ou não estão no banco de dados como nomes únicos: ".join(',',@sample_missing);
         }
     } elsif ($sample_name_header eq 'FacilitySampleName') {
         my @all_facility_sample_names = keys %seen_facility_sample_names;
@@ -393,7 +394,7 @@ sub _validate_with_plugin {
         my @facility_sample_missing = @{$facility_sample_validator->validate($schema,'facility_identifiers',\@all_facility_sample_names)->{'missing'}};
 
         if (scalar(@facility_sample_missing) > 0) {
-            push @error_messages, "The following facility sample names are not in the database: ".join(',',@facility_sample_missing);
+            push @error_messages, "Os seguintes facility sample names não estão no banco de dados: ".join(',',@facility_sample_missing);
         }
     }
 
@@ -489,7 +490,7 @@ sub _parse_with_plugin {
                         push @gt_vcf_genotype, './.';
                         push @alt_calls, './.';
                     } else {
-                        push @error_messages, "SNP Call Does Not Match X allele or Y allele for Sample: $sample Marker: $marker_name_key X allele: $ref Y allele: $alt Allele: $a";
+                        push @error_messages, "O SNP call não corresponde ao alelo X nem ao alelo Y para a amostra: $sample Marcador: $marker_name_key Alelo X: $ref Alelo Y: $alt Alelo: $a";
                     }
                 }
 

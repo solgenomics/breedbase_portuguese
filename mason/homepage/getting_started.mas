@@ -25,7 +25,7 @@ use strict;
 
 my $file = File::Spec->catfile($c->get_conf('homepage_files_dir'), 'getting_started.txt');
 
-my $contents = "Conteúdo lateral não está disponível no momento.<br /><br />";
+my $contents = "O conteúdo da barra lateral não está disponível no momento.<br /><br />";
 
 eval {
   $contents = $m->file($file);

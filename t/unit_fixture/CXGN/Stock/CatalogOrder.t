@@ -1,4 +1,5 @@
 use strict;
+use utf8;
 use warnings;
 use lib 't/lib';
 
@@ -136,7 +137,7 @@ my $before_adding_an_order = $people_schema->resultset('SpOrder')->search( { ord
 
 $mech->post_ok('http://localhost:3010/ajax/order/submit', ['list_id' => $your_cart_id,]);
 $response = decode_json $mech->content;
-is($response->{'success'}, 'Your order has been submitted successfully and the vendor has been notified.');
+is($response->{'success'}, 'Seu pedido foi enviado com sucesso e o fornecedor foi notificado.');
 
 my $after_adding_an_order = $people_schema->resultset('SpOrder')->search( { order_to_id => $johndoe_id })->count();
 is($after_adding_an_order, $before_adding_an_order + 1);
@@ -191,7 +192,7 @@ is($order_status, 're-opened by Jane Doe');
 #test_single_step_submission
 $mech->post_ok('http://localhost:3010/ajax/order/single_step_submission', ['item_name' => 'UG120001', 'order_details' => '{"Quantity":"2","Comments":""}']);
 $response = decode_json $mech->content;
-is($response->{'success'}, 'Your request has been submitted successfully and the vendor has been notified.');
+is($response->{'success'}, 'Sua solicitação foi enviada com sucesso e o fornecedor foi notificado.');
 
 #test deleting catalog
 my $catalog_rs = $schema->resultset("Stock::Stockprop")->search({ type_id => $catalog_type_id });

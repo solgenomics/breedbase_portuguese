@@ -14,7 +14,7 @@
         <a href="<% $r %>"><% $item->{text} %></a>
 %    } else {
         <span class="ghosted"><% $item->{text} %></span>
-          <div style="margin-left: 2em; font-size: 90%">(ficheiro temporariamente indisponível, contato <a href="mailto:jr286@cornell.edu">Joss Rose</a> para detalhes)</div>
+          <div style="margin-left: 2em; font-size: 90%">(arquivo temporariamente indisponível; entre em contato com <a href="mailto:jr286@cornell.edu">Joss Rose</a> para mais detalhes)</div>
 
 %    }
   </li>

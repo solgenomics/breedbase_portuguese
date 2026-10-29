@@ -92,10 +92,10 @@ if (defined $expdesign->get_experimental_design_id()) {
     $basic_info_content = <<HTML;
 
     <table width="100%">
-	<tr> <td width="25%"> <b>Experimental design name:</b>   </td> <td> $expdesign_name </td></tr>
-	<tr> <td width="25%"> <b>Experimental design type:</b>   </td> <td> $expdesign_type </td></tr>
-	<tr> <td width="25%"> <b>Description:</b>                </td> <td> $description </td></tr>
-	<tr> <td width="25%"> <b>Experimental design links:</b>  </td> <td> $dbxref_html_list </td></tr>
+	<tr> <td width="25%"> <b>Nome do delineamento experimental:</b>   </td> <td> $expdesign_name </td></tr>
+	<tr> <td width="25%"> <b>Tipo de delineamento experimental:</b>   </td> <td> $expdesign_type </td></tr>
+	<tr> <td width="25%"> <b>Descrição:</b>                </td> <td> $description </td></tr>
+	<tr> <td width="25%"> <b>Links do delineamento experimental:</b>  </td> <td> $dbxref_html_list </td></tr>
    </table>
 
 HTML

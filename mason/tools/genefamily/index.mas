@@ -3,14 +3,14 @@
 
 </%doc>
 
-<& /page/page_title.mas, title=>"Anotação Genefamiliar" &>
+<& /page/page_title.mas, title=>"Anotação de famílias gênicas" &>
 
-<p>Aqui você pode procurar em diferentes famílias de genes, tanto para uma família específica, quanto para um membro da família de genes. Você pode então ver o fasta, alinhamentos e árvores, se disponíveis.</p>
+<p>Aqui você pode pesquisar em diferentes builds de famílias gênicas, tanto por uma família específica quanto por um membro de família gênica. Você pode então visualizar o FASTA, alinhamentos e árvores, se disponíveis.</p>
 
 <!-- div class="boxbgcolor2">
 Submit a new gene family<br /><br />
 </div -->
 <br />
 <div class="boxbgcolor2">
-<a href="/tools/genefamily/search">Procure famílias de genes</a><br /><br />
+<a href="/tools/genefamily/search">Pesquisar famílias gênicas</a><br /><br />
 </div>

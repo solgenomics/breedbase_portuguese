@@ -1,5 +1,6 @@
 package CXGN::Genotype::ParseUpload::Plugin::MarkerMetadata;
 
+use utf8;
 use Moose::Role;
 use CXGN::File::Parse;
 use CXGN::Onto;
@@ -63,7 +64,7 @@ sub _validate_with_plugin {
     # Make sure marker names are valid
     foreach my $marker (@markers) {
         if ( !exists $valid_markers->{$marker} ) {
-            push @error_messages, "The marker '$marker' in your file does not match any of the markers in the selected protocol.";
+            push @error_messages, "O marcador '$marker' do seu arquivo não corresponde a nenhum dos marcadores do protocolo selecionado.";
         }
     }
 
@@ -82,7 +83,7 @@ sub _validate_with_plugin {
         push @existing_protocol_locus_ids, $locus_id;
     }
     if ( scalar @existing_protocol_locus_names > 0 ) {
-        push @warning_messages, "The following markers already exist in the Locus table and are associated with this protocol: " . join(', ', sort @existing_protocol_locus_names) . ".  You can replace the existing metadata with the information in your file by selecting the 'ignore warnings' option.";
+        push @warning_messages, "Os seguintes marcadores já existem na tabela Locus e estão associados a este protocolo: " . join(', ', sort @existing_protocol_locus_names) . ".  Você pode substituir os metadados existentes pelas informações do seu arquivo selecionando a opção 'Ignorar avisos'.";
     }
     $parsed->{existing_locus_names} = \@existing_protocol_locus_names;
     $parsed->{existing_locus_ids} = \@existing_protocol_locus_ids;
@@ -105,7 +106,7 @@ sub _validate_with_plugin {
         push @existing_global_locus_names, $locus_name;
     }
     if ( scalar @existing_global_locus_names > 0 ) {
-        push @error_messages, "The following markers already exist in the Locus table outside of this protocol: " . join(', ', sort @existing_global_locus_names) . ". These locus names cannot be used.";
+        push @error_messages, "Os seguintes marcadores já existem na tabela Locus fora deste protocolo: " . join(', ', sort @existing_global_locus_names) . ". Esses nomes de locus não podem ser usados.";
     }
 
     # Return a warning for allele names that already exist and are associated with this protocol
@@ -120,7 +121,7 @@ sub _validate_with_plugin {
         push @existing_protocol_allele_ids, $allele_id;
     }
     if ( scalar @existing_protocol_allele_names > 0 ) {
-        push @warning_messages, "The following alleles already exist in the Allele table and are associated with this protocol: " . join(', ', sort @existing_protocol_allele_names) . ".  You can replace the existing metadata with the information in your file by selecting the 'ignore warnings' option.";
+        push @warning_messages, "Os seguintes alelos já existem na tabela Allele e estão associados a este protocolo: " . join(', ', sort @existing_protocol_allele_names) . ".  Você pode substituir os metadados existentes pelas informações do seu arquivo selecionando a opção 'Ignorar avisos'.";
     }
     $parsed->{existing_allele_names} = \@existing_protocol_allele_names;
     $parsed->{existing_allele_ids} = \@existing_protocol_allele_ids;
@@ -143,7 +144,7 @@ sub _validate_with_plugin {
         push @existing_global_allele_names, $allele_name;
     }
     if ( scalar @existing_global_allele_names > 0 ) {
-        push @error_messages, "The following alleles already exist in the Allele table outside of this protocol: " . join(', ', sort @existing_global_allele_names) . ". These names cannot be used.";
+        push @error_messages, "Os seguintes alelos já existem na tabela Allele fora deste protocolo: " . join(', ', sort @existing_global_allele_names) . ". Esses nomes não podem ser usados.";
     }
 
     # Parse each row to get unique marker and allele counts
@@ -174,15 +175,15 @@ sub _validate_with_plugin {
         }
     }
     if ( scalar @duplicated_markers > 0 ) {
-        push @error_messages, "The following markers were included in your file more than once: " . join(', ', sort @duplicated_markers);
+        push @error_messages, "Os seguintes marcadores foram incluídos no seu arquivo mais de uma vez: " . join(', ', sort @duplicated_markers);
     }
     if ( scalar @duplicated_alleles > 0 ) {
-        push @error_messages, "The following alleles were included in your file more than once: " . join(', ', sort @duplicated_alleles);
+        push @error_messages, "Os seguintes alelos foram incluídos no seu arquivo mais de uma vez: " . join(', ', sort @duplicated_alleles);
     }
 
     # Ensure that the marker trait ontology root is set in the config
     if ( ! $self->{marker_metadata_trait_ontology_root} ) {
-        push @error_messages, "The marker metadata trait ontology is not set in the server config.";
+        push @error_messages, "A ontologia de características de metadados de marcadores não está definida na configuração do servidor.";
     }
 
     # Check the trait categories against the ontology terms
@@ -215,7 +216,7 @@ sub _validate_with_plugin {
 
         # Return an error if there are missing categories
         if ( scalar(@missing_categories) > 0 ) {
-            push @error_messages, "The following trait categories are not in the marker metadata trait ontology: " . join(', ', @missing_categories);
+            push @error_messages, "As seguintes categorias de características não estão na ontologia de características de metadados de marcadores: " . join(', ', @missing_categories);
         }
 
         # Cache the parsed ontology terms
@@ -251,7 +252,7 @@ sub _validate_with_plugin {
         }
     }
     if ( scalar @missing_dbs > 0 ) {
-        push @error_messages, "The following external reference databases do not exist: " . join(', ', @missing_dbs);
+        push @error_messages, "Os seguintes bancos de dados de referência externa não existem: " . join(', ', @missing_dbs);
     }
 
     # return any error messages

@@ -106,7 +106,7 @@ $d->while_logged_in_as("submitter", sub {
 
         sleep(1);
         my $alert_text = $d->driver->get_alert_text;
-        if ($alert_text eq 'This list passed validation.'){
+        if ($alert_text eq 'A lista foi validada com sucesso.'){
             $d->accept_alert_ok();
         } else {
             print STDERR "\n\n<ERROR>: list not validated: ".$list_type."\n\n";

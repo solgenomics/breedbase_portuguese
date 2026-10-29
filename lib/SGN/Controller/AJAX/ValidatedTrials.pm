@@ -1,5 +1,6 @@
 
 package SGN::Controller::AJAX::ValidatedTrials;
+use utf8;
 
 use Moose;
 
@@ -85,7 +86,7 @@ sub grab_data :Path('/ajax/validatedtrials/grabdata') Args(0) {
     $c->response->body($encoded_response);
 
     if ($@) {
-        $c->response->body("Failed to search data: $@");
+        $c->response->body("Falha ao pesquisar os dados: $@");
             return;
     }
 }
@@ -132,7 +133,7 @@ sub get_coordinate :Path('/ajax/validatedtrials/getcoordinates') Args(0) {
 
     if ($@) {
         $c->res->status(500);
-        $c->res->body(encode_json({ error => "Database error: $_" }));
+        $c->res->body(encode_json({ error => "Erro no banco de dados: $_" }));
     };
 
 }

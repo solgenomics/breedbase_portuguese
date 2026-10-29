@@ -175,7 +175,7 @@ CXGN.Page.Form.JSFormPage.prototype = {
     printDeleteDialog: function() {
 	var deleteDialog =  
 	"<br/><b>Excluir este " + this.getObjectName() + ' ' +this.getObjectId()  + '?</b> ';
-	deleteDialog += '<input id=\"'+this.getJsObjectName()+'_delete_button\" class=\"btn btn-primary btn-sm\" type =\"button\" onClick=\"javascript:' + this.getJsObjectName() + '.printForm(\'confirm_delete\')\" value=\"Confirm delete\"/><br><br>';
+	deleteDialog += '<input id=\"'+this.getJsObjectName()+'_delete_button\" class=\"btn btn-primary btn-sm\" type =\"button\" onClick=\"javascript:' + this.getJsObjectName() + '.printForm(\'confirm_delete\')\" value=\"Confirmar exclusão\"/><br><br>';
 	this.printEditLinks('delete');
 	document.getElementById(this.getFormId() ).innerHTML = deleteDialog;
 
@@ -196,7 +196,7 @@ CXGN.Page.Form.JSFormPage.prototype = {
 
 	this.setGhostedEditButton(" <span class=\"btn btn-sm btn-default ghosted\">Editar</span> ");
 
-	this.setCancelEditButton(' <a class=\"btn btn-sm btn-default\" href= \"javascript:onClick='+this.getJsObjectName()+"\"Cancelar\"</a> ");
+	this.setCancelEditButton(' <a class=\"btn btn-sm btn-default\" href= \"javascript:onClick='+this.getJsObjectName()+'.render() \">Cancelar</a> ');
 
 	this.setDeleteButton(' <a class=\"btn btn-sm btn-default\" href=\"javascript:onClick=' + this.getJsObjectName() + ".printForm('delete')\">Excluir</a> ");
 
@@ -216,8 +216,8 @@ CXGN.Page.Form.JSFormPage.prototype = {
 	var buttons='';
 	//if ((this.getUserType() == "curator") || this.getIsOwner() == 1 ) {
 	if (action == 'edit' ||  action == 'new' ) { 
-	    buttons = '<input id=\"'+this.getJsObjectName()+'_submit_button\" class=\"btn btn-primary btn-sm\" type=\"button\" onClick=\"javascript:' + this.getJsObjectName() + '.store()\" value=\"Store\"/>&nbsp;&nbsp;&nbsp;';
-	    buttons +='<input id=\"'+this.getJsObjectName()+'_reset_button\"class=\"btn btn-default btn-sm\" type=\"button\" onClick=\"javascript:' + this.getJsObjectName() + '.render( \'edit\' )\" value=\"Reset form\"/><br/><br/>';
+	    buttons = '<input id=\"'+this.getJsObjectName()+'_submit_button\" class=\"btn btn-primary btn-sm\" type=\"button\" onClick=\"javascript:' + this.getJsObjectName() + '.store()\" value=\"Salvar\"/>&nbsp;&nbsp;&nbsp;';
+	    buttons +='<input id=\"'+this.getJsObjectName()+'_reset_button\"class=\"btn btn-default btn-sm\" type=\"button\" onClick=\"javascript:' + this.getJsObjectName() + '.render( \'edit\' )\" value=\"Redefinir formulário\"/><br/><br/>';
 
 	    //}
 	}

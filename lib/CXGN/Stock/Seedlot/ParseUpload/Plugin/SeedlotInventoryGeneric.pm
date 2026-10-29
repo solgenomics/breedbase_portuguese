@@ -1,5 +1,6 @@
 package CXGN::Stock::Seedlot::ParseUpload::Plugin::SeedlotInventoryGeneric;
 
+use utf8;
 use Moose::Role;
 use CXGN::File::Parse;
 use CXGN::Stock::StockLookup;
@@ -47,7 +48,7 @@ sub _validate_with_plugin {
 
     if ( $additional_columns && scalar(@$additional_columns) > 0 ) {
         $errors{'error_messages'} = [
-            "The following columns are not recognized: " . join(', ', @$additional_columns) . ". Please check the spreadsheet format for the allowed columns."
+            "As seguintes colunas não são reconhecidas: " . join(', ', @$additional_columns) . ". Verifique no formato da planilha quais colunas são permitidas."
         ];
         $self->_set_parse_errors(\%errors);
         return;
@@ -60,7 +61,7 @@ sub _validate_with_plugin {
         my $weight = $row->{'weight_gram'};
 
         if (!defined $amount && !defined $weight) {
-            push @error_messages, "On row:$row_num you must provide either a weight in grams or a seed count amount.";
+            push @error_messages, "Na linha $row_num, você deve informar um peso em gramas ou uma quantidade de sementes.";
         }
     }
 
@@ -69,7 +70,7 @@ sub _validate_with_plugin {
     my $seedlot_validator = CXGN::List::Validate->new();
     my @seedlots_missing = @{$seedlot_validator->validate($schema,'seedlots',$seen_seedlot_names)->{'missing'}};
     if (scalar(@seedlots_missing) > 0) {
-        push @error_messages, "The following seedlots are not in the database as uniquenames: ".join(',',@seedlots_missing);
+        push @error_messages, "Os seguintes lotes de sementes não estão no banco de dados como uniquenames: ".join(',',@seedlots_missing);
     }
 
     if (scalar(@error_messages) >= 1) {

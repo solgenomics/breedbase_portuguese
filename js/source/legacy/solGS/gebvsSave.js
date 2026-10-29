@@ -35,7 +35,7 @@ jQuery(document).ready(function () {
         if (res.error) {
           jQuery("#gebvs_output .multi-spinner-container").hide();
           jQuery("#gebvs_save_message")
-            .html(res.error + ". The logged info may not exist for the result.")
+            .html(res.error + ". As informações registradas podem não existir para este resultado.")
             .show()
             .fadeOut(50000);
   
@@ -105,7 +105,7 @@ jQuery(document).ready(function () {
         if (res.error) {
           jQuery("#gebvs_output .multi-spinner-container").hide();
           jQuery("#gebvs_save_message")
-            .html(res.error + ". The logged info may not exist for the result.")
+            .html(res.error + ". As informações registradas podem não existir para este resultado.")
             .show()
             .fadeOut(50000);
   

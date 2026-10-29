@@ -1,5 +1,6 @@
 package CXGN::Stock::Seedlot::ParseUpload::Plugin::SeedlotHarvestedXLS;
 
+use utf8;
 use Moose::Role;
 use Spreadsheet::ParseExcel;
 use Spreadsheet::ParseXLSX;
@@ -44,7 +45,7 @@ sub _validate_with_plugin {
 
     my $worksheet = ( $excel_obj->worksheets() )[0]; #support only one worksheet
     if (!$worksheet) {
-        push @error_messages, "Spreadsheet must be on 1st tab in Excel (.xls) file";
+        push @error_messages, "A planilha deve estar na 1ª aba do arquivo Excel (.xls)";
         $errors{'error_messages'} = \@error_messages;
         $self->_set_parse_errors(\%errors);
         return;
@@ -52,7 +53,7 @@ sub _validate_with_plugin {
     my ( $row_min, $row_max ) = $worksheet->row_range();
     my ( $col_min, $col_max ) = $worksheet->col_range();
     if (($col_max - $col_min)  < 2 || ($row_max - $row_min) < 1 ) { #must have header and at least one row of plot data
-        push @error_messages, "Spreadsheet is missing header or contains no rows";
+        push @error_messages, "A planilha não tem cabeçalho ou não contém linhas";
         $errors{'error_messages'} = \@error_messages;
         $self->_set_parse_errors(\%errors);
         return;
@@ -97,25 +98,25 @@ sub _validate_with_plugin {
     }
 
     if (!$seedlot_name_head || $seedlot_name_head ne 'seedlot_name' ) {
-        push @error_messages, "Cell A1: seedlot_name is missing from the header";
+        push @error_messages, "Célula A1: seedlot_name está ausente do cabeçalho";
     }
     if (!$cross_name_head || $cross_name_head ne 'cross_unique_id') {
-        push @error_messages, "Cell B1: cross_unique_id is missing from the header";
+        push @error_messages, "Célula B1: cross_unique_id está ausente do cabeçalho";
     }
     if (!$operator_name_head || $operator_name_head ne 'operator_name') {
-        push @error_messages, "Cell C1: operator_name is missing from the header";
+        push @error_messages, "Célula C1: operator_name está ausente do cabeçalho";
     }
     if (!$amount_head || $amount_head ne 'amount') {
-        push @error_messages, "Cell D1: amount is missing from the header";
+        push @error_messages, "Célula D1: amount está ausente do cabeçalho";
     }
     if (!$weight_head || $weight_head ne 'weight(g)') {
-        push @error_messages, "Cell E1: weight(g) is missing from the header";
+        push @error_messages, "Célula E1: weight(g) está ausente do cabeçalho";
     }
     if (!$description_head || $description_head ne 'description') {
-        push @error_messages, "Cell F1: description is missing from the header";
+        push @error_messages, "Célula F1: description está ausente do cabeçalho";
     }
     if (!$box_name_head || $box_name_head ne 'box_name') {
-        push @error_messages, "Cell G1: box_name is missing from the header";
+        push @error_messages, "Célula G1: box_name está ausente do cabeçalho";
     }
 
     my %seen_seedlot_names;
@@ -157,42 +158,42 @@ sub _validate_with_plugin {
         }
 
         if (!$seedlot_name || $seedlot_name eq '' ) {
-            push @error_messages, "Cell A$row_name: seedlot_name missing.";
+            push @error_messages, "Célula A$row_name: seedlot_name ausente.";
         }
         elsif ($seedlot_name =~ /\s/ || $seedlot_name =~ /\// || $seedlot_name =~ /\\/ ) {
-            push @error_messages, "Cell A$row_name: seedlot_name must not contain spaces or slashes.";
+            push @error_messages, "Célula A$row_name: seedlot_name não deve conter espaços nem barras.";
         }
         else {
             $seedlot_name =~ s/^\s+|\s+$//g;
             #file must not contain duplicate plot names
             if ($seen_seedlot_names{$seedlot_name}) {
-                push @error_messages, "Cell A$row_name: duplicate seedlot_name at cell A".$seen_seedlot_names{$seedlot_name}.": $seedlot_name";
+                push @error_messages, "Célula A$row_name: seedlot_name duplicado na célula A".$seen_seedlot_names{$seedlot_name}.": $seedlot_name";
             }
             $seen_seedlot_names{$seedlot_name}=$row_name;
         }
 
         if (!$cross_name || $cross_name eq '') {
-            push @error_messages, "Cell B:$row_name: you must provide a cross_unique_id for the contents of the seedlot.";
+            push @error_messages, "Célula B:$row_name: você deve informar um cross_unique_id para o conteúdo do lote de sementes.";
         } else {
             $cross_name =~ s/^\s+|\s+$//g;
             $seen_cross_names{$cross_name}++;
         }
 
         if (!defined($operator_name) || $operator_name eq '') {
-            push @error_messages, "Cell C$row_name: operator_name missing";
+            push @error_messages, "Célula C$row_name: operator_name ausente";
         }
 
         if (!defined($amount) || $amount eq '') {
-            push @error_messages, "Cell D$row_name: amount missing";
+            push @error_messages, "Célula D$row_name: amount ausente";
         }
         if (!defined($weight) || $weight eq '') {
-            push @error_messages, "Cell E$row_name: weight(g) missing";
+            push @error_messages, "Célula E$row_name: weight(g) ausente";
         }
         if ($amount eq 'NA' && $weight eq 'NA') {
-            push @error_messages, "On row:$row_name you must provide either a weight in grams or a seed count amount.";
+            push @error_messages, "Na linha $row_name, você deve informar um peso em gramas ou uma quantidade de sementes.";
         }
         if (!defined($box_name) || $box_name eq '') {
-            push @error_messages, "Cell G$row_name: box_name missing";
+            push @error_messages, "Célula G$row_name: box_name ausente";
         }
     }
 
@@ -201,7 +202,7 @@ sub _validate_with_plugin {
     my @crosses_missing = @{$cross_validator->validate($schema,'crosses',\@crosses)->{'missing'}};
 
     if (scalar(@crosses_missing) > 0) {
-        push @error_messages, "The following crosses are not in the database: ".join(',',@crosses_missing);
+        push @error_messages, "Os seguintes cruzamentos não estão no banco de dados: ".join(',',@crosses_missing);
         $errors{'missing_crosses'} = \@crosses_missing;
     }
 
@@ -212,7 +213,7 @@ sub _validate_with_plugin {
     });
     while (my $r=$rs->next) {
         if ( $r->type->name ne 'seedlot' ) {
-            push @error_messages, "Cell A".$seen_seedlot_names{$r->uniquename}.": stock name already exists in database: ".$r->uniquename.".  The seedlot name must be unique.";
+            push @error_messages, "Célula A".$seen_seedlot_names{$r->uniquename}.": o nome de material já existe no banco de dados: ".$r->uniquename.".  O nome do lote de sementes deve ser único.";
         }
     }
 

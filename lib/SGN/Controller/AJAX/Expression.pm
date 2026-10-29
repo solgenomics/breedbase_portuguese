@@ -1,5 +1,6 @@
 
 package SGN::Controller::AJAX::Expression;
+use utf8;
 
 use Moose;
 
@@ -54,7 +55,7 @@ sub get_data :Path('/tools/expression/result') :Args(0) {
     ## Add expression object
     foreach my $template (@template_array) {
 		if (!defined $template || !defined $template->get_template_id()) {
-			push (@errors, "The query gene is not available in our database. Please try again\n");
+			push (@errors, "O gene consultado não está disponível em nosso banco de dados. Tente novamente\n");
 		} else {
 			$template_id = $template->get_template_id();
 			print "id: $template_id\n";

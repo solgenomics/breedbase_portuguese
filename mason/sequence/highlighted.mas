@@ -60,7 +60,7 @@ $seq
 $highlight_description => 'matches'
 $highlight_coords      => [ ]
 $width     => 100
-$source    => '<span class="ghosted">not recorded</span>'
+$source    => '<span class="ghosted">não registrado</span>'
 $whole_seq => 0
 $blast_url => undef
 $collapsable => 0

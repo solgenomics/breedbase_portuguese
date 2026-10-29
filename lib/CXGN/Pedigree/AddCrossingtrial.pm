@@ -6,6 +6,7 @@ CXGN::Pedigree::AddCrossingtrial - a module for adding crossing experiment
 
 
 package CXGN::Pedigree::AddCrossingtrial;
+use utf8;
 
 use Moose;
 use MooseX::FollowPBP;
@@ -81,13 +82,13 @@ sub save_crossingtrial {
 
     if ($self->existing_crossingtrials()){
         print STDERR "Can't create crossing experiment: Crossing experiment name already exists\n";
-        return {error => "Crossing experiment not saved: Crossing experiment name already exists"};
+        return {error => "Experimento de cruzamento não salvo: o nome do experimento de cruzamento já existe"};
     }
 
 
     if (!$self->get_breeding_program_id()){
         print STDERR "Can't create crossing experiment: Breeding program does not exist\n";
-        return {error => "Crossing experiment not saved: Breeding program does not exist"};
+        return {error => "Experimento de cruzamento não salvo: o programa de melhoramento não existe"};
     }
 
     my $parent_folder_id;

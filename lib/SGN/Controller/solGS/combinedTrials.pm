@@ -1,4 +1,5 @@
 package SGN::Controller::solGS::combinedTrials;
+use utf8;
 
 use Moose;
 use namespace::autoclean;
@@ -150,9 +151,9 @@ sub combined_trials_page : Path('/solgs/populations/combined') Args() {
 
     if ( !$cached ) {
         my $msg =
-"Cached output for this training population  does not exist anymore.\n"
-          . "Please go to <a href=\"/solgs/search/\">the search page</a>"
-          . " and create the training population data.";
+"Os resultados em cache desta população de treinamento não existem mais.\n"
+          . "Acesse <a href=\"/solgs/search/\">a página de pesquisa</a>"
+          . " e crie os dados da população de treinamento.";
 
         $c->controller('solGS::Utils')->generic_message( $c, $msg );
     }
@@ -213,8 +214,8 @@ sub models_combined_trials : Path('/solgs/models/combined/trials') Args() {
 
     if ( !@traits_ids ) {
         $c->stash->{message} =
-            "Cached output for this page does not exist anymore.\n"
-          . " Please go to $training_pop_page and run the analysis.";
+            "Os resultados em cache desta página não existem mais.\n"
+          . " Acesse $training_pop_page e execute a análise.";
 
         $c->stash->{template} = "/generic_message.mas";
     }
@@ -299,10 +300,10 @@ sub display_combined_pops_result : Path('/solgs/model/combined/trials/') Args()
         my $training_pop_page =
           $c->controller('solGS::Path')->training_page_url($args);
         $training_pop_page =
-          qq | <a href="$training_pop_page">training population page </a>|;
+          qq | <a href="$training_pop_page">página da população de treinamento </a>|;
 
-        my $msg = "Cached output for this model does not exist anymore.\n"
-          . " Please go to the $training_pop_page and run the analysis.";
+        my $msg = "Os resultados em cache deste modelo não existem mais.\n"
+          . " Acesse a $training_pop_page e execute a análise.";
 
         $c->controller('solGS::Utils')->generic_message( $c, $msg );
 

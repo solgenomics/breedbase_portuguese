@@ -26,7 +26,7 @@ my $is_curator = ($c->user && $c->user->check_roles('curator')) ? 1 : 0;
 </script>
 
 <& /util/import_javascript.mas, classes => ['jquery', 'jszip-min', 'CXGN.BreedersToolbox.HTMLSelect'], entries => ['trialallocation' ] &>
-<& /page/page_title.mas, title=>"Alocação de Ensaio" &>
+<& /page/page_title.mas, title=>"Alocação de ensaios" &>
 
 <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <style>
@@ -203,38 +203,38 @@ my $is_curator = ($c->user && $c->user->check_roles('curator')) ? 1 : 0;
 
 <div id="trial-allocation-page" class="bg-white text-gray-800 font-sans p-8 space-y-12">
 
-  <&| /page/info_section.mas, id=>"trial_summary_section", title=>"1- Resumo de alocação de ensaio", collapsible=>1, collapsed=>1 &>
-    <h2 class="text-2xl font-bold mb-4">Fluxo de trabalho de campo</h2>
+  <&| /page/info_section.mas, id=>"trial_summary_section", title=>"1 - Resumo da alocação de ensaios", collapsible=>1, collapsed=>1 &>
+    <h2 class="text-2xl font-bold mb-4">Fluxo de trabalho do layout de campo</h2>
     <ol class="list-decimal pl-6 space-y-2 text-gray-700">
-      <li>Selecione o programa de melhoramento, localização, ano, estação, tamanho do campo e dimensões do terreno.</li>
-      <li>Defina os ensaios para alocar: criar novos projetos de ensaio em ajustes de ensaio ou adicionar um ensaio experimental existente para o local e ano selecionados.</li>
-      <li>Construa a grade, então marque linhas ou colunas não utilizadas antes de colocar ensaios para que as parcelas não sejam alocadas no espaço de campo indisponível.</li>
-      <li>Arraste cada caixa de ensaio do painel de ensaios para a grade de campo. Use a direção e gire os controles ao lado de cada ensaio para ajustar a ordem do enredo antes da colocação.</li>
-      <li>Clique em um ensaio colocado para selecioná-lo, em seguida, use as teclas do cursor para movê-lo. Use a tecla Shift + cursor para mover cinco parcelas de cada vez.</li>
-      <li>Use as ferramentas da grade para colocar fronteiras, definir acessos de fronteira, e revisar detalhes do gráfico movendo o cursor sobre cada enredo.</li>
-      <li>Guarde o disposição espacial para armazenar o arranjo multi-ensaio completo para o local selecionado, ano e temporada.</li>
-      <li>Use o Save Disposição espacial Trials no banco de dados para criar novos ensaios ou atualizar coordenadas para ensaios existentes incluídos.</li>
-      <li>Abra a ferramenta de plantio, defina as configurações do plantador, como linhas por parcela, plantas por parcela, espaçamento e direção de plantio, então baixe o mapa de plantio do arquivo Excel ou gere gráficos de disposição espacial.</li>
+      <li>Selecione o programa de melhoramento, local, ano, safra, tamanho do campo e dimensões das parcelas.</li>
+      <li>Defina os ensaios a alocar: crie novos delineamentos de ensaio em Configurações de ensaio ou adicione um ensaio experimental existente para o local e ano selecionados.</li>
+      <li>Construa a grade e, em seguida, marque linhas ou colunas não utilizadas antes de colocar ensaios para que as parcelas não sejam alocadas em espaço indisponível do campo.</li>
+      <li>Arraste cada caixa de ensaio do painel de ensaios para a grade de campo. Use os controles de direção e rotação ao lado de cada ensaio para ajustar a ordem das parcelas antes do posicionamento.</li>
+      <li>Clique em um ensaio posicionado para selecioná-lo e, em seguida, use as teclas de seta para movê-lo. Use Shift + seta para mover cinco parcelas de cada vez.</li>
+      <li>Use as ferramentas da grade para posicionar bordaduras, definir acessos de bordadura e revisar detalhes das parcelas passando o cursor sobre cada parcela.</li>
+      <li>Salve a visualização do layout para armazenar o arranjo completo de múltiplos ensaios para o local, ano e safra selecionados.</li>
+      <li>Use 'Salvar ensaios do layout no banco de dados' para criar novos ensaios ou atualizar as coordenadas dos ensaios existentes incluídos.</li>
+      <li>Abra a ferramenta de plantio, defina as configurações da plantadeira, como linhas por parcela, plantas por parcela, espaçamento e direção de plantio, e então baixe o arquivo Excel do mapa de plantio ou gere gráficos de disposição espacial.</li>
     </ol>
   </&>
 
-  <&| /page/info_section.mas, id=>"farm_settings_section", title=>"2 - Configurações de localização", collapsible=>1, collapsed=>0 &>
+  <&| /page/info_section.mas, id=>"farm_settings_section", title=>"2 - Configurações do local", collapsible=>1, collapsed=>0 &>
     <div class="space-y-4">
       <div class="grid grid-cols-4 gap-4">
         <label>Programa de melhoramento
           <select id="breeding_program_dropdown" class="w-full border rounded px-2 py-1">
-            <option value="">Selecione programa de melhoramento</option>
+            <option value="">Selecione o programa de melhoramento</option>
           </select>
         </label>
         <label>Local
           <select id="farm_dropdown" class="w-full border rounded px-2 py-1">
-            <option value="">Selecionar localização</option>
+            <option value="">Selecione o local</option>
           </select>
         </label>
         <label>Ano
           <input type="number" id="layout-year" min="1961" max="2099" step="1" inputmode="numeric" class="w-full border rounded px-2 py-1" />
         </label>
-        <label>Temporada
+        <label>Safra
           <select id="layout-season" class="w-full border rounded px-2 py-1">
             <option value="">Selecione a safra</option>
           </select>
@@ -244,7 +244,7 @@ my $is_curator = ($c->user && $c->user->check_roles('curator')) ? 1 : 0;
         <label>Total de linhas
           <input type="number" id="farm-rows" class="w-full border rounded px-2 py-1" />
         </label>
-        <label>Colunas Total
+        <label>Total de colunas
           <input type="number" id="farm-cols" class="w-full border rounded px-2 py-1"/>
         </label>
       </div>
@@ -252,7 +252,7 @@ my $is_curator = ($c->user && $c->user->check_roles('curator')) ? 1 : 0;
   </&>
 
 
-  <&| /page/info_section.mas, id=>"trial_settings_section", title=>"3-Configurações de ensaio", collapsible=>1, collapsed=>0 &>
+  <&| /page/info_section.mas, id=>"trial_settings_section", title=>"3 - Configurações de ensaio", collapsible=>1, collapsed=>0 &>
     <div class="mb-6 flex items-center gap-3">
       <input type="hidden" id="num-trials" value="0" />
       <button type="button" id="add-trial-btn" class="bg-blue-700 text-white px-4 py-2 rounded hover:bg-blue-800 text-sm font-semibold">
@@ -263,9 +263,9 @@ my $is_curator = ($c->user && $c->user->check_roles('curator')) ? 1 : 0;
     <div id="trial-details" class="mb-6"></div>
   </&>
 
-  <&| /page/info_section.mas, id=>"existing_project_section", title=>"4-Incluir Projeto Existente", collapsible=>1, collapsed=>0 &>
+  <&| /page/info_section.mas, id=>"existing_project_section", title=>"4 - Incluir projeto existente", collapsible=>1, collapsed=>0 &>
     <div class="grid grid-cols-3 gap-4 items-end">
-      <label class="col-span-2">Ensaio experimental para este local/ano
+      <label class="col-span-2">Ensaio experimental existente para este local/ano
         <select id="existing-trial-select" class="w-full border rounded px-2 py-1">
           <option value="">Selecione primeiro o local e o ano</option>
         </select>
@@ -276,7 +276,7 @@ my $is_curator = ($c->user && $c->user->check_roles('curator')) ? 1 : 0;
     </div>
   </&>
 
-  <&| /page/info_section.mas, id=>"layout_section", title=>"5 - Disposição espacial", collapsible=>1, collapsed=>0 &>
+  <&| /page/info_section.mas, id=>"layout_section", title=>"5 - Layout", collapsible=>1, collapsed=>0 &>
     <label class="inline-flex items-center mb-4 space-x-2">
       <input type="checkbox" id="edit-toggle" />
       <span class="font-semibold ml-1">Editar parcelas não utilizadas</span>
@@ -284,18 +284,18 @@ my $is_curator = ($c->user && $c->user->check_roles('curator')) ? 1 : 0;
 
     <label class="inline-flex items-center mb-4 space-x-2 ml-4">
       <input type="checkbox" id="border-toggle" />
-      <span class="font-semibold ml-1">Coloque as fronteiras</span>
+      <span class="font-semibold ml-1">Posicionar bordaduras</span>
     </label>
 
     <label class="inline-flex items-center mb-4 ml-4">
-      <span class="font-semibold mr-2">Acesso à fronteira</span>
+      <span class="font-semibold mr-2">Acesso de bordadura</span>
       <select id="border-accession" class="border rounded px-2 py-1" style="width: 16rem;">
         <option value=""></option>
       </select>
     </label>
 
     <div id="layout-hint" class="text-sm text-gray-600 mb-4">
-      Clique em um ensaio colocado para selecioná-lo, em seguida, use as setas para movê-lo. Use Shift + seta para mover cinco parcelas.
+      Clique em um ensaio posicionado para selecioná-lo e, em seguida, use as setas para movê-lo. Use Shift + seta para mover cinco parcelas.
     </div>
 
     <div class="mb-6">
@@ -312,7 +312,7 @@ my $is_curator = ($c->user && $c->user->check_roles('curator')) ? 1 : 0;
         <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
         <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
       </svg>
-      <span>Removendo o ensaio do disposição espacial...</span>
+      <span>Removendo o ensaio do layout...</span>
     </div>
 
 
@@ -321,24 +321,24 @@ my $is_curator = ($c->user && $c->user->check_roles('curator')) ? 1 : 0;
         <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
         <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
       </svg>
-      <span>Grade de construção...</span>
+      <span>Construindo a grade...</span>
     </div>
 
     <div class="flex gap-8">
       <div class="w-1/4">
         <h3 class="font-semibold mb-2">Ensaios</h3>
         <div id="trial-boxes" class="space-y-4"></div>
-        <button id="save-trials-db-btn" class="mt-4 w-full bg-indigo-700 text-white px-5 py-4 rounded hover:bg-indigo-800 text-base font-bold">Salvar os ensaios da disposição espacial no banco de dados</button>
+        <button id="save-trials-db-btn" class="mt-4 w-full bg-indigo-700 text-white px-5 py-4 rounded hover:bg-indigo-800 text-base font-bold">Salvar ensaios do layout no banco de dados</button>
       </div>
 
       <div class="border p-4 rounded w-3/4 bg-green-50 relative">
         <div class="mb-2 flex flex-wrap items-center justify-between gap-2">
-          <h3 class="font-semibold">Grelha de Campo de Localização</h3>
+          <h3 class="font-semibold">Grade de campo do local</h3>
           <div class="flex flex-wrap gap-2">
-            <button id="save-layout-btn" class="bg-purple-600 text-white px-3 py-1 rounded hover:bg-purple-700 text-sm">Salvar disposição espacial</button>
-            <button id="delete-layout-btn" class="<% $is_curator ? '' : 'hidden ' %>bg-red-700 text-white px-3 py-1 rounded hover:bg-red-800 text-sm">Apagar a Vista</button>
-            <button id="export-full-jpg-btn" class="bg-green-600 text-white px-2 py-1 rounded hover:bg-green-700 text-sm">Exportar grade cheia</button>
-            <button id="export-jpg-btn" class="bg-blue-600 text-white px-2 py-1 rounded hover:bg-blue-700 text-sm">Exportar vista como JPG</button>
+            <button id="save-layout-btn" class="bg-purple-600 text-white px-3 py-1 rounded hover:bg-purple-700 text-sm">Salvar layout</button>
+            <button id="delete-layout-btn" class="<% $is_curator ? '' : 'hidden ' %>bg-red-700 text-white px-3 py-1 rounded hover:bg-red-800 text-sm">Excluir visualização</button>
+            <button id="export-full-jpg-btn" class="bg-green-600 text-white px-2 py-1 rounded hover:bg-green-700 text-sm">Exportar grade COMPLETA</button>
+            <button id="export-jpg-btn" class="bg-blue-600 text-white px-2 py-1 rounded hover:bg-blue-700 text-sm">Exportar visualização como JPG</button>
           </div>
         </div>
 
@@ -349,55 +349,55 @@ my $is_curator = ($c->user && $c->user->check_roles('curator')) ? 1 : 0;
         </div>
 
         <div class="mt-4">
-          <label for="zoom-slider" class="block font-semibold mb-1">Grelha de Campo Zoom</label>
+          <label for="zoom-slider" class="block font-semibold mb-1">Zoom da grade de campo</label>
           <input type="range" id="zoom-slider" min="0.5" max="2" step="0.1" value="1" class="w-1/2" />
         </div>
       </div>
     </div>
   </&>
 
-  <&| /page/info_section.mas, id=>"planting_map_section", title=>"6- Ferramenta de Plantação", collapsible=>1, collapsed=>0 &>
+  <&| /page/info_section.mas, id=>"planting_map_section", title=>"6 - Ferramenta de plantio", collapsible=>1, collapsed=>0 &>
     <div class="grid grid-cols-3 gap-4">
-      <label>Filas por enredo
+      <label>Linhas por parcela
         <input id="planting-rows-per-plot" type="number" min="1" value="1" class="w-full border rounded px-2 py-1" />
       </label>
       <label>Plantas por parcela
         <input id="planting-plants-per-plot" type="number" min="1" value="1" class="w-full border rounded px-2 py-1" />
       </label>
-      <label>Espaçamento da planta
+      <label>Espaçamento entre plantas
         <input id="planting-plant-spacing" type="number" min="0" step="0.01" class="w-full border rounded px-2 py-1" placeholder="cm" />
       </label>
-      <label>Espaçamento da linha
+      <label>Espaçamento entre linhas
         <input id="planting-row-spacing" type="number" min="0" step="0.01" class="w-full border rounded px-2 py-1" placeholder="cm" />
       </label>
-      <label>Beco entre parcelas
+      <label>Corredor entre parcelas
         <input id="planting-alley-spacing" type="number" min="0" step="0.01" class="w-full border rounded px-2 py-1" placeholder="cm" />
       </label>
-      <label>Plantando direção
+      <label>Direção de plantio
         <select id="planting-direction" class="w-full border rounded px-2 py-1">
-          <option value="row_col">Filas, esquerda para direita</option>
-          <option value="row_col_reverse">Filas, direita para esquerda</option>
+          <option value="row_col">Linhas, da esquerda para a direita</option>
+          <option value="row_col_reverse">Linhas, da direita para a esquerda</option>
           <option value="serpentine">Serpentina por linha</option>
           <option value="col_row">Colunas, de cima a baixo</option>
         </select>
       </label>
-      <label class="col-span-3">Plantando notas
-        <input id="planting-notes" type="text" class="w-full border rounded px-2 py-1" placeholder="Instruções de plantador opcionais" />
+      <label class="col-span-3">Observações de plantio
+        <input id="planting-notes" type="text" class="w-full border rounded px-2 py-1" placeholder="Instruções opcionais para a plantadeira" />
       </label>
     </div>
     <div class="mt-4 flex flex-wrap gap-3">
-      <button id="download-planting-map-btn" class="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-800 text-sm font-semibold">Baixar Planting Map Excel</button>
+      <button id="download-planting-map-btn" class="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-800 text-sm font-semibold">Baixar mapa de plantio em Excel</button>
       <button id="generate-layout-graphics-btn" class="bg-blue-700 text-white px-4 py-2 rounded hover:bg-blue-800 text-sm font-semibold">Gerar gráficos</button>
     </div>
 
     <div id="layout-graphics-panel" class="hidden mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
       <div class="border rounded p-4 bg-white">
-        <h3 class="font-semibold mb-3">Área por Ensaio</h3>
+        <h3 class="font-semibold mb-3">Área por ensaio</h3>
         <canvas id="trial-area-chart" width="360" height="260" class="w-full max-w-md"></canvas>
         <div id="trial-area-legend" class="mt-3 text-sm space-y-1"></div>
       </div>
       <div class="border rounded p-4 bg-white">
-        <h3 class="font-semibold mb-3">Uso de Área de Campo</h3>
+        <h3 class="font-semibold mb-3">Uso da área do campo</h3>
         <canvas id="field-usage-chart" width="360" height="260" class="w-full max-w-md"></canvas>
         <div id="field-usage-legend" class="mt-3 text-sm space-y-1"></div>
       </div>

@@ -4,7 +4,7 @@ $contig
 $seq_source
 </%args>
 
-<& /page/page_title.mas, title => "Vendo Contig $contig_name" &>
+<& /page/page_title.mas, title => "Visualizando o contig $contig_name" &>
 
 <table style="font-family: monospace; font-size: 110%">
 % foreach (mesh( @seq_lines )) {

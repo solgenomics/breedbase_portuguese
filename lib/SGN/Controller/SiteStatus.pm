@@ -1,5 +1,6 @@
 
 package SGN::Controller::SiteStatus;
+use utf8;
 
 use Moose;
 
@@ -16,7 +17,7 @@ sub login_status :Path('/about/status/logins') Args(0) {
     }
     if (!$c->user()->check_roles("curator")) { 
 	$c->stash->{template} = '/generic_message.mas';
-	$c->stash->{message} = 'You do not have the required privileges to view this page';
+	$c->stash->{message} = 'Você não tem os privilégios necessários para ver esta página';
 	return;
     }
 	

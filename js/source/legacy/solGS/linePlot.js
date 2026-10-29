@@ -191,14 +191,14 @@ solGS.linePlot = function (allData) {
             .orient("left");
 	
 	graph.append("g")
-	    .attr("class", "eixo x")
+	    .attr("class", "x axis")
 	    .attr("transform", "translate(0,"  +  height + ")")
 	    .call(xAxis)
 	    .attr("fill", axisColor)
             .style({"text-anchor":"start", "fill": axisColor});
 
 	graph.append("g")
-	    .attr("class", "eixo y")
+	    .attr("class", "y axis")
 	    .attr("transform", "translate(0,0)")
 	    .call(yAxis)
 	    .attr("fill", axisColor);

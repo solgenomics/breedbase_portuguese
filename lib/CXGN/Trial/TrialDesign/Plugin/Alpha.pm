@@ -1,5 +1,6 @@
 
 package CXGN::Trial::TrialDesign::Plugin::Alpha;
+use utf8;
 
 use Moose::Role;
 
@@ -30,7 +31,7 @@ sub create_design {
     if ($self->has_stock_list()) {
 	@stock_list = @{$self->get_stock_list()};
     } else {
-	die "No stock list specified\n";
+	die "Nenhuma lista de materiais especificada\n";
     }
     if ($self->has_control_list_crbd()) {
 	@control_list_crbd = @{$self->get_control_list_crbd()};
@@ -41,10 +42,10 @@ sub create_design {
     if ($self->has_number_of_reps()) {
 	$number_of_reps = $self->get_number_of_reps();
 	if ($number_of_reps < 2) {
-	    die "Number of reps for alpha lattice design must be 2 or greater\n";
+	    die "O número de repetições do delineamento alpha lattice deve ser 2 ou mais\n";
 	}
     } else {
-	die "Number of reps not specified\n";
+	die "Número de repetições não especificado\n";
     }
     
     if ($self->has_fieldmap_col_number()) {
@@ -55,11 +56,11 @@ sub create_design {
 	$block_size = $self->get_block_size();
 	#print STDERR "block size = $block_size\n";
 	if ($block_size < 3) {
-	    die "Block size must be greater than 2 for alpha lattice design\n";
+	    die "O tamanho do bloco deve ser maior que 2 no delineamento alpha lattice\n";
 	}
 	#	print "stock_list: ".scalar(@stock_list)."block_size: $block_size\n";
 	if (scalar(@stock_list) % $block_size != 0) {
-	    die "Number of stocks (".scalar(@stock_list).") for alpha lattice design is not divisible by the block size ($block_size)\n";
+	    die "O número de materiais (".scalar(@stock_list).") do delineamento alpha lattice não é divisível pelo tamanho do bloco ($block_size)\n";
 	}
 	#     else {
 	# 		my $dummy_var = scalar(@stock_list) % $block_size;
@@ -74,10 +75,10 @@ sub create_design {
 	
 	$number_of_blocks = scalar(@stock_list)/$block_size;
 	if ($number_of_blocks < $block_size) {
-	    die "The number of blocks ($number_of_blocks) for alpha lattice design must not be less than the block size ($block_size)\n";
+	    die "O número de blocos ($number_of_blocks) do delineamento alpha lattice não deve ser menor que o tamanho do bloco ($block_size)\n";
 	}
     } else {
-	die "No block size specified\n";
+	die "Nenhum tamanho de bloco especificado\n";
     }
     
     if ($self->has_fieldmap_row_number()) {

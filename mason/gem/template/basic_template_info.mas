@@ -145,11 +145,11 @@ if (defined $template->get_template_id() ) {
     $basic_info_content = <<HTML;
 
     <table width="100%">
-   	   <tr> <td width="25%"> <b>Template name:</b>              </td> <td> $template_name </td></tr>
-           <tr> <td width="25%"> <b>Template type:</b>              </td> <td> $template_type </td></tr>
-	   <tr> <td width="25%"> <b>Platform:</b>                   </td> <td> $platform_html</td></tr>
-	   <tr> <td width="25%"> <b>Internal db links:</b>             </td> <td> $dbiref_html_list</td></tr>
-	   <tr> <td width="25%"> <b>External db links:</b>             </td> <td> $dbxref_html_list</td></tr>
+   	   <tr> <td width="25%"> <b>Nome do modelo:</b>              </td> <td> $template_name </td></tr>
+           <tr> <td width="25%"> <b>Tipo de modelo:</b>              </td> <td> $template_type </td></tr>
+	   <tr> <td width="25%"> <b>Plataforma:</b>                   </td> <td> $platform_html</td></tr>
+	   <tr> <td width="25%"> <b>Links internos de BD:</b>             </td> <td> $dbiref_html_list</td></tr>
+	   <tr> <td width="25%"> <b>Links externos de BD:</b>             </td> <td> $dbxref_html_list</td></tr>
     </table>
 
     <br>

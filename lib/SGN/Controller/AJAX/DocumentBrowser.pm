@@ -11,6 +11,7 @@ SGN::Controller::AJAX::DocumentBrowser - a REST controller class to provide the 
 =cut
 
 package SGN::Controller::AJAX::DocumentBrowser;
+use utf8;
 
 use Moose;
 use Try::Tiny;
@@ -45,7 +46,7 @@ sub upload_document_POST : Args(0) {
     my $timestamp = $time->ymd()."_".$time->hms();
     
     if (!$c->user){
-        $c->stash->{rest} = { error => 'Must be logged in!' };
+        $c->stash->{rest} = { error => 'Você precisa estar conectado!' };
         $c->detach;
     }
     
@@ -63,12 +64,12 @@ sub upload_document_POST : Args(0) {
     });
     my $archived_filename_with_path = $uploader->archive();
     if (!$archived_filename_with_path){
-        $c->stash->{rest} = { error => 'Problem archiving the file!' };
+        $c->stash->{rest} = { error => 'Problema ao arquivar o arquivo!' };
         $c->detach;
     }
     my $md5 = $uploader->get_md5($archived_filename_with_path);
     if (!$md5){
-        $c->stash->{rest} = { error => 'Problem retrieving file md5!' };
+        $c->stash->{rest} = { error => 'Problema ao obter o md5 do arquivo!' };
         $c->detach;
     }
 
@@ -84,7 +85,7 @@ sub upload_document_POST : Args(0) {
         });
     $file_row->insert();
 
-    $c->stash->{rest} = {success => 'Successfully saved file!'};
+    $c->stash->{rest} = {success => 'Arquivo salvo com sucesso!'};
 }
 
 sub search_document :  Path('/ajax/tools/documents/search') : ActionClass('REST') { }

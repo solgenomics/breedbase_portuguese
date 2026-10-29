@@ -1,5 +1,6 @@
 
 package CXGN::Trial::TrialDesignStore::SamplingTrial;
+use utf8;
 
 use Moose;
 use Try::Tiny;
@@ -53,7 +54,7 @@ sub validate_design {
     my $error = '';
 
    if ($design_type ne 'sampling_trial') {
-        $error .= "design_type not equal to 'sampling_trial'";
+        $error .= "design_type não é igual a 'sampling_trial'";
         return $error;
     }
 
@@ -66,7 +67,7 @@ sub validate_design {
     foreach my $stock (keys %design){
         foreach my $property (keys %{$design{$stock}}){
             if (!exists($allowed_properties{$property})) {
-                $error .= "Property: $property not allowed! ";
+                $error .= "Propriedade: $property não permitida! ";
             }
             if ($property eq 'stock_name') {
                 my $stock_name = $design{$stock}->{$property};
@@ -82,10 +83,10 @@ sub validate_design {
     my @stock_names = keys %seen_stock_names;
     my @accession_names = keys %seen_accession_names;
     if(scalar(@stock_names)<1){
-        $error .= "You cannot create a trial with less than one sample.";
+        $error .= "Não é possível criar um ensaio com menos de uma amostra.";
     }
     if(scalar(@accession_names)<1){
-        $error .= "You cannot create a trial with less than one accession.";
+        $error .= "Não é possível criar um ensaio com menos de um acesso.";
     }
     my $subplot_type_id = SGN::Model::Cvterm->get_cvterm_row($chado_schema, 'subplot', 'stock_type')->cvterm_id();
     my $accession_type_id = SGN::Model::Cvterm->get_cvterm_row($chado_schema, 'accession', 'stock_type')->cvterm_id();
@@ -97,7 +98,7 @@ sub validate_design {
         uniquename=>{-in=>\@stock_names}
     });
     while (my $s = $stocks->next()) {
-        $error .= "Name $s->uniquename already exists in the database.";
+        $error .= "O nome $s->uniquename já existe no banco de dados.";
     }
 
     my @source_stock_types = ($accession_type_id, $plot_type_id, $plant_type_id, $tissue_type_id);
@@ -113,7 +114,7 @@ sub validate_design {
     }
     foreach (@accession_names){
         if (!$found_data{$_}){
-            $error .= "The following name is not in the database: $_ .";
+            $error .= "O seguinte nome não está no banco de dados: $_ .";
         }
     }
 

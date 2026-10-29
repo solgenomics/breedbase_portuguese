@@ -70,9 +70,9 @@ $user_can_modify => undef
             </div>
 <!--
 %  if ($phenotypes_fully_uploaded) {
-            <p class="text-success" title="All recorded phenotypes for this trial are saved in the database. You can change this by clicking [Phenotypes Fully Uploaded?] in the Files section on this page."><small>Phenotyping<br/>Complete&nbsp;&nbsp;</small><span class="glyphicon glyphicon-ok-sign"></span></p>
+            <p class="text-success" title="Todos os fenótipos registrados deste ensaio estão salvos no banco de dados. Você pode alterar isso clicando em [Fenótipos totalmente enviados?] na seção Arquivos desta página."><small>Fenotipagem<br/>concluída&nbsp;&nbsp;</small><span class="glyphicon glyphicon-ok-sign"></span></p>
 %  } else {
-            <p class="text-info" title="Once phenotypes are fully uploaded for a trial, you can click [Phenotypes Fully Uploaded?] in the Files section on this page."><small>Phenotyping<br/>Incomplete&nbsp;&nbsp;</small><span class="glyphicon glyphicon-info-sign"></span></p>
+            <p class="text-info" title="Quando todos os fenótipos do ensaio tiverem sido enviados, clique em [Fenótipos totalmente enviados?] na seção Arquivos desta página."><small>Fenotipagem<br/>incompleta&nbsp;&nbsp;</small><span class="glyphicon glyphicon-info-sign"></span></p>
 %  }
 -->
 </&>

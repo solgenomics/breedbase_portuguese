@@ -11,6 +11,7 @@ SGN::Controller::AJAX::Search::GenotypingProtocol - a REST controller class to p
 =cut
 
 package SGN::Controller::AJAX::Search::GenotypingProtocol;
+use utf8;
 
 use Moose;
 use Data::Dumper;
@@ -227,7 +228,7 @@ sub genotyping_protocol_accession_search_POST : Args(0) {
 
     # Make sure we have a list id or accessions ids
     if ( (!defined $accession_list_id || $accession_list_id eq "") && scalar @accession_ids == 0 ) {
-        $error = "You must define the accession_list_id or accession_ids!";
+        $error = "Você precisa definir accession_list_id ou accession_ids!";
     }
 
     # Get Accession IDs from specified List
@@ -248,7 +249,7 @@ sub genotyping_protocol_accession_search_POST : Args(0) {
 
         }
         else {
-            $error = "List does not contain any list items!";
+            $error = "A lista não contém nenhum item!";
         }
 
     }

@@ -71,11 +71,11 @@ $allele_div
     <form name="loci_form" class="form-horizontal">
 
         <div class="form-group">
-            <label for="loci" class="col-sm-6 control-label">Associar outro Locus:</label>
+            <label for="loci" class="col-sm-6 control-label">Associar outro locus:</label>
             <div class="input-group col-sm-6">
-                <input class="form-control" placeholder="Allele_name (Allele_symbol)" type="text" id="loci" name="loci">
+                <input class="form-control" placeholder="Nome_do_alelo (Símbolo_do_alelo)" type="text" id="loci" name="loci">
                 <span class="input-group-btn">
-                    <button class="btn btn-primary" type="button" id="associate_allele_addon" name="associate_locus" onclick="javascript:submit_locus_form()">Locus associado</button>
+                    <button class="btn btn-primary" type="button" id="associate_allele_addon" name="associate_locus" onclick="javascript:submit_locus_form()">Associar locus</button>
                 </span>
             </div>
         </div>

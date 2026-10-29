@@ -30,33 +30,33 @@ span.filesize:after {
 
 </style>
 
-<& /page/page_title.mas, title => 'Previsão computacional de proteínas secretadas' &>
+<& /page/page_title.mas, title => 'Predição computacional de proteínas secretadas' &>
 
 <& /secretom/secretary/nav.mas, curr_page => 'background' &>
 
 <div class="page_introduction">
   <p>
 
-  Um número de <a class="tools_popup" href="#">Ferramentas computacionais</a> foram desenvolvidos para prever a presença de SPs. Esses programas têm sido muito refinados nos últimos anos e sua precisão melhorou com a adoção de algoritmos de aprendizado de máquina. No entanto, embora esta seja uma abordagem valiosa, como com todas as ferramentas baseadas em previsões, há uma taxa de erro consistente e previsões falsas positivas e negativas devem ser esperadas. Um de nossos principais objetivos é identificar as previsões incorretas e gerar um banco de dados de proteínas vegetais secretadas computacional e funcionalmente confirmadas. Foi relatado que um dos preditores mais eficazes de SPs é <a
-  href="http://www.cbs.dtu.dk/services/SignalP">SinalP 3.0</a>. Usamos SignalP e nosso preditor recentemente desenvolvido, 
-  <a href="/secretom/secretary">Secretário</a>, 
-  to screen the predicted proteomes of several plant species
-  to date. See below for these prediction results.
+  Diversas <a class="tools_popup" href="#">ferramentas computacionais</a> foram desenvolvidas para predizer a presença de SPs. Esses programas foram muito refinados nos últimos anos e sua precisão melhorou com a adoção de algoritmos de aprendizado de máquina. No entanto, embora esta seja uma abordagem valiosa, como em todas as ferramentas baseadas em predição, há uma taxa de erro consistente, e predições falsas positivas e falsas negativas devem ser esperadas. Um de nossos principais objetivos é identificar as predições incorretas e gerar um banco de dados de proteínas vegetais secretadas computacional e funcionalmente confirmadas. Foi relatado que um dos preditores mais eficazes de SPs é <a
+  href="http://www.cbs.dtu.dk/services/SignalP">SignalP 3.0</a>. Usamos SignalP e nosso preditor recentemente desenvolvido, 
+  <a href="/secretom/secretary">SecreTary</a>,
+  para triar os proteomas preditos de várias espécies de plantas
+  até o momento. Veja abaixo os resultados dessas predições.
   </p>
 
 </div>
 
-<&| /page/info_section.mas, title => 'Novo preditor: Secretário' &>
+<&| /page/info_section.mas, title => 'Novo preditor: SecreTary' &>
 
   <p>
-  Desenvolvemos um novo preditor, <a href="/secretom/secretary">Secretário</a>,
-  for more accurate computational prediction of plant proteins that
-  traffic through the classical secretory pathway.  <a href="/secretom/secretary">Tente o Secretário Tary</a>,
+  Desenvolvemos um novo preditor, <a href="/secretom/secretary">SecreTary</a>,
+  para a predição computacional mais precisa de proteínas vegetais que
+  trafegam pela via secretória clássica.  <a href="/secretom/secretary">Experimente o SecreTary</a>,
   </p>
 
 </&>
 
-<&| /page/info_section.mas, title => 'Secretary, SignalP, resultados do TargetP' &>
+<&| /page/info_section.mas, title => 'Resultados do SecreTary, SignalP e TargetP' &>
 
   <table class="species_predictions">
   <tr>
@@ -91,7 +91,7 @@ span.filesize:after {
 </tr>
   </table>
 
-  <&| /page/info_section.mas, title => 'Search Secretary, SignalP, resultados do TargetP para proteínas secretas', is_subsection => 1 &>
+  <&| /page/info_section.mas, title => 'Buscar nos resultados do SecreTary, SignalP e TargetP por proteínas secretadas', is_subsection => 1 &>
 
 
     <form method="GET" style="text-align: center; margin: 2em auto" action="<% $signalp_search_action %>">
@@ -102,7 +102,7 @@ span.filesize:after {
     </form>
 
     <p>
-    Use termos de texto (por exemplo, "poligalacturonase", "família glicosil hidrolase", "gh9"), ou nomes de locus (por exemplo, "At1G65610.1"). Isso fornecerá uma lista de proteínas preditas, agrupadas por espécie, com o comprimento da proteína anotação, peso molecular, escores de confiança para a presença de um peptídeo de sinal secretor e localização prevista.
+    Use termos de texto (por exemplo, "poligalacturonase", "família glicosil hidrolase", "gh9"), ou nomes de locus (por exemplo, "At1G65610.1"). Isso fornecerá uma lista de proteínas preditas, agrupadas por espécie, com a anotação, o comprimento e o peso molecular da proteína, escores de confiança para a presença de um peptídeo sinal secretor e a localização predita.
     </p>
     
   </&>
@@ -113,12 +113,12 @@ span.filesize:after {
   jQuery(".tools_popup").colorbox({width:"60%", inline:true, href:"#tools_popup"});
 </script>
 <div id="tools_popup">
-<&| /page/info_section.mas, title => 'Outras ferramentas computacionais para predição de peptídeos de sinal direcionadores de emergência' &>
+<&| /page/info_section.mas, title => 'Outras ferramentas computacionais para predição de peptídeos sinal de endereçamento ao RE' &>
   <ul>
-  <li><a href="http://www.cbs.dtu.dk/services/SignalP">SinalP</a></li>
+  <li><a href="http://www.cbs.dtu.dk/services/SignalP">SignalP</a></li>
   <li><a href="http://www.predisi.de">PrediSi</a></li>
-  <li><a href="http://rpsp.bioinfo.pl/">Previsão rápida de peptídeos de sinal (RPSP)</a></li>
-  <li><a href="http://phobius.sbc.su.se/">Fobius</a></li>
+  <li><a href="http://rpsp.bioinfo.pl/">Rapid Prediction of Signal Peptides (RPSP)</a></li>
+  <li><a href="http://phobius.sbc.su.se/">Phobius</a></li>
   <li><a href="http://urgi.versailles.inra.fr/predotar/predotar.html">Predotar</a></li>
   </ul>
 </&>
@@ -139,11 +139,11 @@ $dir
     <span class="filename"><% $abs->basename %></span>
 
     <div>
-      <a href="/download/<% file($file)->as_foreign('Unix') %>">[Download]</a>
+      <a href="/download/<% file($file)->as_foreign('Unix') %>">[Baixar]</a>
       <span class="filesize"><%  Number::Bytes::Human::format_bytes( $size ) %></span>
     </div>
 % } else {
-    <span class="ghosted">temporarily unavailable</span>
+    <span class="ghosted">temporariamente indisponível</span>
 % }
 </%def>
 

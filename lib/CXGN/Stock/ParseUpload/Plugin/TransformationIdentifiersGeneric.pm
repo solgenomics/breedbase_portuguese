@@ -1,5 +1,6 @@
 package CXGN::Stock::ParseUpload::Plugin::TransformationIdentifiersGeneric;
 
+use utf8;
 use Moose::Role;
 use CXGN::File::Parse;
 use CXGN::Stock::StockLookup;
@@ -43,7 +44,7 @@ sub _validate_with_plugin {
 
     if ( $additional_columns && scalar(@$additional_columns) > 0 ) {
         $errors{'error_messages'} = [
-            "The following columns are not recognized: " . join(', ', @$additional_columns) . ". Please check the spreadsheet format for the allowed columns."
+            "As seguintes colunas não são reconhecidas: " . join(', ', @$additional_columns) . ". Verifique no formato da planilha quais colunas são permitidas."
         ];
         $self->_set_parse_errors(\%errors);
         return;
@@ -56,20 +57,20 @@ sub _validate_with_plugin {
     my $accession_validator = CXGN::List::Validate->new();
     my @accessions_missing = @{$accession_validator->validate($schema,'accessions', $seen_accession_names)->{'missing'}};
     if (scalar(@accessions_missing) > 0) {
-        push @error_messages, "The following accessions are not in the database, or are not in the database as uniquenames: ".join(',',@accessions_missing);
+        push @error_messages, "Os seguintes acessos não estão no banco de dados, ou não estão no banco de dados como uniquenames: ".join(',',@accessions_missing);
     }
 
     my $vector_construct_validator = CXGN::List::Validate->new();
     my @vector_constructs_missing = @{$vector_construct_validator->validate($schema,'vector_constructs', $seen_vector_constructs)->{'missing'}};
     if (scalar(@vector_constructs_missing) > 0) {
-        push @error_messages, "The following vector constructs are not in the database, or are not in the database as uniquenames: ".join(',',@vector_constructs_missing);
+        push @error_messages, "As seguintes construções vetoriais não estão no banco de dados, ou não estão no banco de dados como uniquenames: ".join(',',@vector_constructs_missing);
     }
 
     my $rs = $schema->resultset("Stock::Stock")->search({
         'uniquename' => { -in => $seen_transformation_identifiers }
     });
     while (my $r=$rs->next){
-        push @error_messages, "Transformation Identifier already exists in database: ".$r->uniquename;
+        push @error_messages, "O identificador de transformação já existe no banco de dados: ".$r->uniquename;
     }
 
     my %duplicated_transformation_ids;
@@ -78,7 +79,7 @@ sub _validate_with_plugin {
         my $transformation_id = $row->{'transformation_identifier'};
 
         if ($duplicated_transformation_ids{$transformation_id}) {
-            push @error_messages, "Cell A$row_num: duplicate transformation identifier: $transformation_id. Transformation Identifier must be unique.";
+            push @error_messages, "Célula A$row_num: identificador de transformação duplicado: $transformation_id. O identificador de transformação deve ser único.";
         } else {
             $duplicated_transformation_ids{$transformation_id}++;
         }

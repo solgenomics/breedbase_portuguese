@@ -269,7 +269,7 @@ solGS.heatmap = {
 
           if (parsedScatterInputData) {
             jQuery("#" + scatterPlotMsgDivId)
-              .html("Gráfico de dispersão: " + rowLabel + " Vs. " + colLabel)
+              .html("Gráfico de dispersão: " + rowLabel + " vs. " + colLabel)
               .show();
 
             var xData = [];
@@ -336,7 +336,7 @@ solGS.heatmap = {
     if (heatmapCanvasDiv.match(/kinship/)) {
       legendValues.push(
         [legendValues.length + 1, "Diagonal: coeficientes de endogamia"],
-        [legendValues.length + 2, "Off-diag: kinship coefficients"]
+        [legendValues.length + 2, "Fora da diagonal: coeficientes de parentesco"]
       );
     }
 

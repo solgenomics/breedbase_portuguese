@@ -1,10 +1,10 @@
-<& /page/page_title.mas, title => 'Mostre uma sequência de um banco de dados BLAST' &>
+<& /page/page_title.mas, title => 'Exibir uma sequência de um banco de dados BLAST' &>
 
 <form>
 <table cellpadding="5" cellspacing="5" alt=""><tr>
 <td><b>Conjunto de dados</b></td><td> <select name="blast_db_id">
-<option value="93">Tomato WGS Sequence</option>
-<option value="56">Tomate BAC contíguos</option>
+<option value="93">Sequência WGS de tomate</option>
+<option value="56">Contigs de BACs de tomate</option>
 </select></td></tr>
 
 <td><b>Id</b></td><td> <input type="text" name="id" size="10"/><br /></td></tr>

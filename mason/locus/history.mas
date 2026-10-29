@@ -70,8 +70,8 @@ if (@history) {
 
   $history_data .= columnar_table_html(
             headings => [
-                'Symbol',     'Name', 'Activity', 'Description',
-                'Chromosome', 'Arm',  'Updated by',
+                'Símbolo',     'Nome', 'Atividade', 'Descrição',
+                'Cromossomo', 'Braço',  'Atualizado por',
             ],
             data         => \@history,
             __alt_freq   => 2,

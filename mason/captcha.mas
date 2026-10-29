@@ -60,11 +60,11 @@
                     loader.style.display = "none";
                 }
                 else {
-                    status.innerHTML = "<strong>Saved verification token!</strong><br />You should now be redirected to <a href='<% $goto_url %>'><% $goto_url %></a>";
+                    status.innerHTML = "<strong>Token de verificação salvo!</strong><br />Você será redirecionado para <a href='<% $goto_url %>'><% $goto_url %></a>";
                     loader.style.display = "none";
                     const url = new URL("<% $goto_url %>", `${window.location.protocol}//${window.location.host}`);
                     if ( !url.searchParams.has("captcha") ) {
-                        url.searchParams.append("Captcha", "passed");
+                        url.searchParams.append("captcha", "passed");
                         url.searchParams.delete("captcha-token");
                         window.location = url.pathname + url.search;
                     }

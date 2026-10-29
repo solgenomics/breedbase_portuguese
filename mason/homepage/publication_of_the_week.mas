@@ -22,7 +22,7 @@ use strict;
 use File::Spec;
 use CXGN::Tools::File;
 
-my $publications = "A publicação da semana não está disponível.<br /><br />";
+my $publications = "A publicação da semana não está disponível no momento.<br /><br />";
 
 eval {
 
@@ -41,4 +41,4 @@ eval {
 
 <h4>Publicação em destaque</h4>
 <% $publications %>
-<button class="btn btn-info btn-sm" onclick='location.href="/oldpublications.pl"'>Veja todas as publicações...</button>
+<button class="btn btn-info btn-sm" onclick='location.href="/oldpublications.pl"'>Ver todas as publicações...</button>

@@ -1,5 +1,6 @@
 
 use strict;
+use utf8;
 use warnings;
 
 use lib 't/lib';
@@ -78,11 +79,11 @@ $response = $ua->post(
 my $verify_message = $response->decoded_content;
 my $verify_message_hash = decode_json $verify_message;
 
-is($verify_message_hash->{success}->[0], 'File nirs_data_matrix saved in archive.');
-is($verify_message_hash->{success}->[1], 'File valid: nirs_data_matrix.');
-is($verify_message_hash->{success}->[2], 'File data successfully parsed.');
-is($verify_message_hash->{success}->[3], 'Aggregated file data successfully parsed.');
-is($verify_message_hash->{success}->[4], 'Aggregated file data verified. Plot names and trait names are valid.');
+is($verify_message_hash->{success}->[0], 'Arquivo nirs_data_matrix salvo no arquivo permanente.');
+is($verify_message_hash->{success}->[1], 'Arquivo válido: nirs_data_matrix.');
+is($verify_message_hash->{success}->[2], 'Dados do arquivo processados com sucesso.');
+is($verify_message_hash->{success}->[3], 'Dados do arquivo agregado processados com sucesso.');
+is($verify_message_hash->{success}->[4], 'Dados do arquivo agregado verificados. Os nomes das parcelas e das características são válidos.');
 
 #Store test NIRS data
 $response = $ua->post(
@@ -100,11 +101,11 @@ $response = $ua->post(
 my $store_message = $response->decoded_content;
 my $store_message_hash = decode_json $store_message;
 
-is($store_message_hash->{success}->[0], 'File nirs_data_matrix saved in archive.');
-is($store_message_hash->{success}->[1], 'File valid: nirs_data_matrix.');
-is($store_message_hash->{success}->[2], 'File data successfully parsed.');
-is($store_message_hash->{success}->[4], 'Aggregated file data successfully parsed.');
-is($store_message_hash->{success}->[5], 'Aggregated file data verified. Plot names and trait names are valid.');
+is($store_message_hash->{success}->[0], 'Arquivo nirs_data_matrix salvo no arquivo permanente.');
+is($store_message_hash->{success}->[1], 'Arquivo válido: nirs_data_matrix.');
+is($store_message_hash->{success}->[2], 'Dados do arquivo processados com sucesso.');
+is($store_message_hash->{success}->[4], 'Dados do arquivo agregado processados com sucesso.');
+is($store_message_hash->{success}->[5], 'Dados do arquivo agregado verificados. Os nomes das parcelas e das características são válidos.');
 
 $mech->get_ok('http://localhost:3010/brapi/v2/nirs/protocols');
 $response = decode_json $mech->content;
@@ -171,11 +172,11 @@ $response = $ua->post(
 my $verify_message = $response->decoded_content;
 my $verify_message_hash = decode_json $verify_message;
 
-is($verify_message_hash->{success}->[0], 'File transcriptomics_data_matrix saved in archive.');
-is($verify_message_hash->{success}->[1], 'File transcript_metadata_file saved in archive.');
-is($verify_message_hash->{success}->[2], 'File valid: transcriptomics_data_matrix.');
-is($verify_message_hash->{success}->[3], 'File data successfully parsed.');
-is($verify_message_hash->{success}->[4], 'File data verified. Plot names and trait names are valid.');
+is($verify_message_hash->{success}->[0], 'Arquivo transcriptomics_data_matrix salvo no arquivo permanente.');
+is($verify_message_hash->{success}->[1], 'Arquivo transcript_metadata_file salvo no arquivo permanente.');
+is($verify_message_hash->{success}->[2], 'Arquivo válido: transcriptomics_data_matrix.');
+is($verify_message_hash->{success}->[3], 'Dados do arquivo processados com sucesso.');
+is($verify_message_hash->{success}->[4], 'Dados do arquivo verificados. Os nomes das parcelas e das características são válidos.');
 
 #Store test transcriptomics data
 $response = $ua->post(
@@ -200,10 +201,10 @@ my $store_message = $response->decoded_content;
 my $store_message_hash = decode_json $store_message;
 print STDERR "store message hash: " . Dumper($store_message_hash);
 
-is($store_message_hash->{success}->[0], 'File transcriptomics_data_matrix saved in archive.');
-is($store_message_hash->{success}->[1], 'File transcript_metadata_file saved in archive.');
-is($store_message_hash->{success}->[2], 'File valid: transcriptomics_data_matrix.');
-is($store_message_hash->{success}->[4], 'File data verified. Plot names and trait names are valid.');
+is($store_message_hash->{success}->[0], 'Arquivo transcriptomics_data_matrix salvo no arquivo permanente.');
+is($store_message_hash->{success}->[1], 'Arquivo transcript_metadata_file salvo no arquivo permanente.');
+is($store_message_hash->{success}->[2], 'Arquivo válido: transcriptomics_data_matrix.');
+is($store_message_hash->{success}->[4], 'Dados do arquivo verificados. Os nomes das parcelas e das características são válidos.');
 
 $mech->get_ok('http://localhost:3010/brapi/v2/transcriptomics/protocols');
 $response = decode_json $mech->content;

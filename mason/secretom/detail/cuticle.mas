@@ -1,16 +1,16 @@
-<& /page/page_title.mas, title => 'O Proteome de Células Cuticular de Frutas de Tomate' &>
+<& /page/page_title.mas, title => 'O Proteoma da Parede Celular Cuticular do Fruto de Tomate' &>
 
 <div class="indentedcontent">
   <p>
-  A cutícula vegetal é uma parede celular hidrofóbica altamente especializada que cobre os órgãos aéreos das plantas terrestres e fornece proteção contra dessecação, patógenos, radiação UV e herbivoria. É contínua com a parede celular de polissacarídeo periclinal da epiderme e consiste em ceras solúveis orgânicas incorporadas em, e em camadas sobre, uma matriz de poliéster não solúvel de ácidos graxos substituídos ω. As ceras incluem compostos alifáticos, derivados de ácidos graxos de cadeia muito longa, e metabólitos secundários, como triterpenoides e flavonoides.
+  A cutícula vegetal é uma parede celular hidrofóbica altamente especializada que cobre os órgãos aéreos das plantas terrestres e fornece proteção contra dessecação, patógenos, radiação UV e herbivoria. É contínua com a parede celular polissacarídica periclinal externa da epiderme e consiste em ceras solúveis em solventes orgânicos, incorporadas em, e depositadas sobre, uma matriz de poliéster insolúvel de ácidos graxos &omega;-substituídos. As ceras incluem compostos alifáticos, derivados de ácidos graxos de cadeia muito longa, e metabólitos secundários, como triterpenoides e flavonoides.
   </p>
 
   <p>
-  Pouco se sabe sobre muitos mecanismos chave da biogênese da cutícula, e estratégias experimentais para identificar novas proteínas que se associam com cutina e ceras poderiam fornecer um meio valioso para identificar novos candidatos.
+  Ainda pouco se sabe sobre muitos mecanismos-chave da biogênese da cutícula, e estratégias experimentais para identificar novas proteínas que se associam com cutina e ceras poderiam fornecer um meio valioso para identificar novos candidatos.
   </p>
 
   <p>
-  Embora a pesquisa Arabidopsis tenha acelerado muito a descoberta de novos genes relacionados à cutícula, sua cutícula apresenta algumas limitações experimentais, uma vez que é relativamente fina, frágil e difícil de isolar em quantidades substanciais. Por outro lado, cutículas de frutos de tomate são astomatosas e grandes quantidades de material cuticular intacto podem ser isoladas para análises químicas e biomecânicas. Por exemplo, a fruta se acumula na ordem de 1 mg cm.<sup>-2</sup> Cutina, comparada ao caule de Arabidopsis, que tem 0,5-10 μg cm<sup>-2</sup>. Assim, o típico período de 6 semanas de desenvolvimento precoce de frutos de tomate representa uma fase notavelmente rápida e extensa da biossíntese cutícula.
+  Embora a pesquisa com Arabidopsis tenha acelerado muito a descoberta de novos genes relacionados à cutícula, sua cutícula apresenta algumas limitações experimentais, uma vez que é relativamente fina, frágil e difícil de isolar em quantidades substanciais. Por outro lado, cutículas de frutos de tomate são astomatosas e grandes quantidades de material cuticular intacto podem ser isoladas para análises químicas e biomecânicas. Por exemplo, o fruto acumula cerca de 1 mg cm<sup>-2</sup> de cutina, em comparação com o caule de Arabidopsis, que tem 0,5-10 &mu;g cm<sup>-2</sup>. Assim, o período típico de 6 semanas do desenvolvimento inicial do fruto de tomate representa uma fase notavelmente rápida e extensa de biossíntese da cutícula.
   </p>
 
   <div style="width: 420px" class="captioned_image img_float_left caption_right">
@@ -18,17 +18,17 @@
     <img src="/documents/img/secretom/tomato_cuticle_stain_400.jpg" />
 
     <p>
-    Imagem de microscópio de luz da superfície de uma fruta de tomate em expansão com a cutícula manchada de vermelho.
+    Imagem de microscopia óptica da superfície de um fruto de tomate em expansão, com a cutícula corada em vermelho.
     </p>
 
   </div>
 
   <p>
-  Para identificar novas proteínas candidatas com um papel potencial na biossíntese cutícula, e particularmente aquelas que são secretadas para o apoplasto, estamos gerando um inventário mais abrangente de proteínas que estão associadas com os tecidos superficiais mais externos de órgãos vegetais, estamos usando uma gama de estratégias complementares de fracionamento de proteínas (1D à base de gel e cromatografia líquida), juntamente com várias plataformas sensíveis de espectrometria de massa (MS).
+  Para identificar novas proteínas candidatas com potencial papel na biossíntese da cutícula, particularmente aquelas secretadas para o apoplasto, e gerar um inventário mais abrangente de proteínas associadas aos tecidos superficiais mais externos dos órgãos vegetais, estamos usando uma gama de estratégias complementares de fracionamento de proteínas (1D à base de gel e cromatografia líquida), juntamente com várias plataformas sensíveis de espectrometria de massa (MS).
   </p>
 
   <p>
-  Também estamos caracterizando vários mutantes cutículas de frutos de tomate e desenvolvemos uma nova técnica de imagem 3D usando microscopia a laser de varredura confocal para visualizar a arquitetura, padrões de deposição e microestrutura de cutículas de plantas. Isso permitiu a modelagem de cutículas 3-D baseada na reconstrução de seções ópticas seriadas e seu uso na identificação de várias características não relatadas da cutícula de frutos de tomate. Esta informação, juntamente com o estudo proteoma está fornecendo novas insights sobre os processos moleculares subjacentes formação cutícula e reestruturação.
+  Também estamos caracterizando vários mutantes de cutícula de fruto de tomate e desenvolvemos uma nova técnica de imagem 3D usando microscopia confocal de varredura a laser para visualizar a arquitetura, os padrões de deposição e a microestrutura de cutículas vegetais. Isso permitiu a modelagem 3D da cutícula com base na reconstrução de seções ópticas seriadas e seu uso na identificação de várias características ainda não relatadas da cutícula do fruto de tomate. Essa informação, juntamente com o estudo do proteoma, está fornecendo novas perspectivas sobre os processos moleculares subjacentes à formação e reestruturação da cutícula.
   </p>
 </div>
 
@@ -37,7 +37,7 @@
     <img src="/documents/img/secretom/tomato_cuticle_3d_350.jpg" />
 
     <p>
-    Uma renderização 3-D da fruta de tomate (cv. Cutícula M8).
+    Uma renderização 3D da cutícula do fruto de tomate (cv. M8).
     </p>
 
   </div>
@@ -45,17 +45,17 @@
 <div style="float: left; width: 345px">
   <&| /secretom/section_templates/objectives.mas &>
 
-    Isole e identifique proteínas da superfície do tomate em expansão
-    frutos no momento da biossíntese cutícula máxima, usando solvente
-    Mergulhos seguidos de separação à base de gel e cromatografia líquida e
-    várias abordagens MS
+    Isolar e identificar proteínas da superfície de frutos de tomate em
+    expansão no momento de máxima biossíntese da cutícula, usando imersões
+    em solventes seguidas de separação em gel e cromatografia líquida e
+    diversas abordagens de MS
 
-    Identificar proteínas potencialmente secretadas e caracterizar suas
-    padrões de expressão durante a ontogenia da fruta
+    Identificar proteínas potencialmente secretadas e caracterizar seus
+    padrões de expressão durante a ontogenia do fruto
 
-    Incorpore esta informação em estudos relacionados do tomate
-    Cutículas de frutas desenvolvem uma compreensão mais detalhada da cutícula
-    Deposição e reestruturação
+    Incorporar essas informações a estudos relacionados de cutículas de
+    fruto de tomate para desenvolver uma compreensão mais detalhada da
+    deposição e reestruturação da cutícula
 
   </&>
 </div>
@@ -63,33 +63,33 @@
 <&| /secretom/section_templates/data_items.mas,
       default_ref_base => '/download/data/secretom/Tomato_fruit_cuticular_cell_wall_proteome'
  &>
-- texto: "fruto de tomate (cv. M82) proteínas de superfície identificadas"
-  Tomato_fruit_surface_proteins.XLSX
-- texto: "fruto de tomate (cv. M82) proteínas de superfície: de bandas de gel"
-  Tomato_fruit_surface_proteins_gel_bands.XLSX
-- texto: "fruto de tomate (cv. M82) proteínas de superfície: de placas de gel"
-  Tomato_fruit_surface_proteins_gel_slabs.XLSX
-- texto: "fruto de tomate (cv. M82) proteínas de superfície: de gel livre"
-  Tomato_fruit_surface_proteins_gel_free.XLSX
+- text: "Proteínas de superfície identificadas em fruto de tomate (cv. M82)"
+  ref: Tomato_fruit_surface_proteins.xlsx
+- text: "Proteínas de superfície de fruto de tomate (cv. M82): a partir de bandas de gel"
+  ref: Tomato_fruit_surface_proteins_gel_bands.xlsx
+- text: "Proteínas de superfície de fruto de tomate (cv. M82): a partir de placas de gel"
+  ref: Tomato_fruit_surface_proteins_gel_slabs.xlsx
+- text: "Proteínas de superfície de fruto de tomate (cv. M82): sem gel (gel free)"
+  ref: Tomato_fruit_surface_proteins_gel_free.xlsx
 </&>
 
 <&| /secretom/section_templates/publications.mas, entitize => 1 &>
 
-Sim, T.H., Martin, L.B.B., Viart, H. M-F., Isaacson, T., He, Y., Zhao, L., Matas, A.J., Buda, G., Domozych, D.S. e Rose, J.K.C. (2012) A identificação da cutina sintase: formação da planta de poliéster cutina.
+Yeats, T.H., Martin, L.B.B., Viart, H. M-F., Isaacson, T., He, Y., Zhao, L., Matas, A.J., Buda, G., Domozych, D.S. and Rose, J.K.C. (2012) The identification of cutin synthase: formation of the plant polyester cutin. (In press Nature Chemical Biology).
 
 Yeats, T.H., Buda, G.J., Wang, Z., Moyle, L.C., Jetter, R., Schaffer, A.A. and Rose, J.K.C. (2012) The fruit cuticles of wild tomato species exhibit architectural and chemical diversity, providing a new model for studying the evolution of cuticle function. The Plant Journal 69: 655-666.
 
-Wang, Z., Guhling, O., Yao, R., Li, F., Yeats, T.H., Rose, J.K.C., Jetter, R. (2011) Duas ciclases de oxidosqualeno responsáveis pela biossíntese de triterpenóides cuticulares de tomate. Fisiologia de plantas 155: 540-552.
+Wang, Z., Guhling, O., Yao, R., Li, F., Yeats, T.H., Rose, J.K.C., Jetter, R. (2011) Two oxidosqualene cyclases responsible for biosynthesis of tomato fruit cuticular triterpenoids. Plant Physiology 155: 540-552.
 
-Yeats, T.H., Howe, K.J., Matas, A.J., Buda, G.J., Thanhauser, T.W. e Rose, J.K.C. (2010) Extraindo o proteoma cuticular e epidérmico da parede celular do tomate para proteínas associadas à biogênese da cutícula. Jornal de Botânica Experimental 61: 3759-3771.
+Yeats, T.H., Howe, K.J., Matas, A.J., Buda, G.J., Thannhauser, T.W. and Rose, J.K.C. (2010) Mining the tomato fruit cuticular and epidermal cell wall proteome for proteins associated with cuticle biogenesis. Journal of Experimental Botany 61: 3759-3771.
 
 Matas, A.J., AgustÃ­, J., Tadeo, F.R., Talon, M. and Rose, J.K.C. (2010) Tissue specific transcriptome profiling of the citrus fruit epidermis and subepidermis using laser capture microdissection. Journal of Experimental Botany 61: 3321-3330.
-DeBono, A., Yeats, T., Rose, J.K.C., Bird, D., Jetter, R., Kunst, L. e Samuels, L. (2009) LTPG é uma proteína de transferência de lipídios que é necessária para exportação de lipídios para a superfície da planta. A Célula da Planta 21:1230-1238.
+DeBono, A., Yeats, T., Rose, J.K.C., Bird, D., Jetter, R., Kunst, L. and Samuels, L. (2009) LTPG is a GPI-anchored lipid transfer protein required for export of lipids to the plant surface. The Plant Cell 21:1230-1238.
 
-Isaacson, T., Kosma, D.K., Matas, A.J., Buda, G.J., He, Y., Yu, B., Pravitasari, A., Batteas, J.D., Stark, R.E., Jenks, M.A. e Rose, J.K.C. (2009) Deficiência de cutina na cutícula de tomate afeta consistentemente resistência à infecção microbiana e propriedades biomecânicas, mas não perda transpiracional de água. The Plant Journal 60: 363-377.
+Isaacson, T., Kosma, D.K., Matas, A.J., Buda, G.J., He, Y., Yu, B., Pravitasari, A., Batteas, J.D., Stark, R.E., Jenks, M.A. and Rose, J.K.C. (2009) Cutin deficiency in the tomato fruit cuticle consistently affects resistance to microbial infection and biomechanical properties, but not transpirational water loss. The Plant Journal 60: 363-377.
 
-Buda, G.J., Isaacson, T., Matas, A.J., Paolillo, D.J. e Rose, J.K.C. (2009) Imagens tridimensionais da arquitetura da cutícula da planta usando microscopia a laser de varredura confocal. The Plant Journal 60: 378-385.
+Buda, G.J., Isaacson, T., Matas, A.J., Paolillo, D.J. and Rose, J.K.C. (2009) Three dimensional imaging of plant cuticle architecture using confocal scanning laser microscopy. The Plant Journal 60: 378-385.
 
-Yeats, T.H. e Rose, J.K.C. (2008) A bioquímica e biologia das proteínas extracelulares de transferência de lipídios (LTPs). Ciência da Proteína 17: 191-198. 
+Yeats, T.H. and Rose, J.K.C. (2008) The biochemistry and biology of extracellular plant lipid-transfer proteins (LTPs). Protein Science 17: 191-198. 
 </&>
 

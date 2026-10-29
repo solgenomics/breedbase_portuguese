@@ -83,12 +83,12 @@
                         <thead></thead>
                             <tbody>
                                 <tr>
-                                    <td>Lote de sementes</td>
-                                    <td>tipo</td>
-                                    <td>valor</td>
-                                    <td>Notas</td>
-                                    <td>operador</td>
-                                    <td>Timetamp</td>
+                                    <td>seedlot</td>
+                                    <td>type</td>
+                                    <td>value</td>
+                                    <td>notes</td>
+                                    <td>operator</td>
+                                    <td>timestamp</td>
                                 </tr>
                         </tbody>
                     </table>

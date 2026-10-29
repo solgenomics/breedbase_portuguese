@@ -1,4 +1,5 @@
 package SGN::Controller::AJAX::Organism;
+use utf8;
 use Moose;
 use List::MoreUtils qw | any |;
 use YAML::Any;
@@ -93,7 +94,7 @@ sub project_metadata :Chained('/organism/find_organism') :PathPart('metadata') :
     if (!$action) { $action = 'view'; }
     if ($login_user_can_modify && ($action ne 'view')) {
         if (!$login_user_id) {
-            $self->status_bad_request( $c, message => 'Must be logged in to edit' );
+            $self->status_bad_request( $c, message => 'Você precisa estar conectado para editar' );
             return;
         }
         if ($action eq 'confirm_delete') {
@@ -121,7 +122,7 @@ sub project_metadata :Chained('/organism/find_organism') :PathPart('metadata') :
                     unless( $prop ) {
                         $self->status_bad_request(
                             $c, message =>
-                            'no such organismprop',
+                            'organismprop inexistente',
                          );
                         return;
                     }
@@ -139,7 +140,7 @@ sub project_metadata :Chained('/organism/find_organism') :PathPart('metadata') :
 		$c->forward('/organism/invalidate_organism_tree_cache');
             }
             else {
-                $self->status_bad_request( $c, message => 'Form is not valid' );
+                $self->status_bad_request( $c, message => 'O formulário não é válido' );
                 return;
             }
         }
@@ -319,7 +320,7 @@ sub verify_name_GET :Args(0) {
   my $organism;
   $organism = $schema->resultset("Organism::Organism")->find({species => $species_name});
   if (!$organism) {
-     $c->stash->{rest} = {error => "Species name $species_name not found." };
+     $c->stash->{rest} = {error => "Nome da espécie $species_name não encontrado." };
      return;
   }
   else {

@@ -46,13 +46,13 @@ tr.shown td.details-control {
 
 <div class="well well-sm">
     <center>
-    <button class="btn btn-primary" id="upload_images_link">Enviar Novas Imagens</button>
+    <button class="btn btn-primary" id="upload_images_link">Enviar novas imagens</button>
     </center>
 </div>
 <& /breeders_toolbox/upload_images.mas &>
 <& /breeders_toolbox/trial/create_spreadsheet_dialog.mas &>
 
-<&| /page/info_section.mas, title=>"Critérios de busca de imagens",  collapsible => 1, collapsed=>0, subtitle => "Todas as imagens podem não ter nomes, descrições ou etiquetas associadas a elas."&>
+<&| /page/info_section.mas, title=>"Critérios de busca de imagens",  collapsible => 1, collapsed=>0, subtitle => "Nem todas as imagens têm nomes, descrições ou tags associados."&>
 
     <div id="image_search_form" class="well well-sm">
         <div class="form-horizontal" >
@@ -64,27 +64,27 @@ tr.shown td.details-control {
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-sm-6 control-label">Descrevedores de imagens (nome, descrição ou nome do arquivo): </label>
+                <label class="col-sm-6 control-label">Descritores de imagem (nome, descrição ou nome do arquivo): </label>
                 <div class="col-sm-6" >
-                    <input class="form-control" type="text" id="image_description_filename_composite" name="image_description_filename_composite" placeholder="Por exemplo. MyImageName" />
+                    <input class="form-control" type="text" id="image_description_filename_composite" name="image_description_filename_composite" placeholder="ex.: MyImageName" />
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-sm-6 control-label">Submeter: </label>
+                <label class="col-sm-6 control-label">Enviado por: </label>
                 <div class="col-sm-6" >
-                    <input class="form-control" type="text" id="image_submitter" name="image_submitter" placeholder="Por exemplo. JaneDoe" />
+                    <input class="form-control" type="text" id="image_submitter" name="image_submitter" placeholder="ex.: JaneDoe" />
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-sm-6 control-label">Marca de imagem: </label>
+                <label class="col-sm-6 control-label">Tag da imagem: </label>
                 <div class="col-sm-6" >
-                    <input class="form-control" type="text" id="image_tag" name="image_tag" placeholder="Por exemplo. ImageTagName" />
+                    <input class="form-control" type="text" id="image_tag" name="image_tag" placeholder="ex.: ImageTagName" />
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-sm-6 control-label">Ações associadas: </label>
+                <label class="col-sm-6 control-label">Material associado: </label>
                 <div class="col-sm-6" >
-                    <input class="form-control" type="text" id="image_stock_uniquename" name="image_stock_uniquename" placeholder="Por exemplo. FieldPlot100" />
+                    <input class="form-control" type="text" id="image_stock_uniquename" name="image_stock_uniquename" placeholder="ex.: FieldPlot100" />
                 </div>
             </div>
         </div>
@@ -95,7 +95,7 @@ tr.shown td.details-control {
     </div>
 </&>
 
-<&| /page/info_section.mas, title=>"Resultados da Pesquisa de Imagens",  collapsible => 1, collapsed=>0 &>
+<&| /page/info_section.mas, title=>"Resultados da busca de imagens",  collapsible => 1, collapsed=>0 &>
     <div class="well well-sm">
         <div class="panel panel-default">
             <div class="panel-body">
@@ -103,13 +103,13 @@ tr.shown td.details-control {
                 <thead>
                   <tr>
                     <th>Selecionar</th>
-                    <th>Miniatura da Imagem</th>
+                    <th>Miniatura da imagem</th>
                     <th>Nome do arquivo</th>
                     <th>Descrição</th>
-                    <th>Submisso</th>
+                    <th>Enviado por</th>
                     <th>Associações</th>
                     <th>Observações</th>
-                    <th>Etiquetas</th>
+                    <th>Tags</th>
                 </tr>
                 </thead>
                 </table>
@@ -123,7 +123,7 @@ tr.shown td.details-control {
         <div class="panel panel-default">
             <div class="panel-body">
                 <div class="form-group">
-                    <label class="col-sm-6 control-label">Serviço de Análise de Imagens: </label>
+                    <label class="col-sm-6 control-label">Serviço de análise de imagens: </label>
                     <div class="col-sm-6" >
                         <select class="form-control" id="image_analysis_service_select" name="image_analysis_service_select">
                             <option value="">Selecione um serviço de análise:</option>
@@ -142,7 +142,7 @@ tr.shown td.details-control {
                 </div>
                 <br/>
                 <div class="form-group" id="image_analysis_trait_group" style="display: none;">
-                    <label class="col-sm-6 control-label">Característica a ser analisado: </label>
+                    <label class="col-sm-6 control-label">Característica a ser analisada: </label>
                     <div class="col-sm-6" >
                         <select class="form-control" id="image_analysis_trait_select" name="image_analysis_service_select"></select>
                     </div>
@@ -151,7 +151,7 @@ tr.shown td.details-control {
 
                 <hr>
                 <center>
-                <button class="btn btn-primary" id="image_analysis_submit" disabled>Submeta-se para análise</button>
+                <button class="btn btn-primary" id="image_analysis_submit" disabled>Enviar para análise</button>
                 </center>
                 <hr>
 
@@ -170,11 +170,11 @@ tr.shown td.details-control {
                                <th>Material</th>
                                <th>Característica</th>
                                <th id="analyzed_header"></th>
-                               <th>Valor Médio</th>
+                               <th>Valor médio</th>
                            </tr>
                        </thead>
                        <caption class="well well-sm" style="caption-side: bottom;margin-top: 10px;">
-                        <center> Detalhes do Serviço de Análise: <a id="model_metrics_link"  style="cursor: pointer;">Modelo Métrico</a> </center>
+                        <center> Detalhes do serviço de análise: <a id="model_metrics_link"  style="cursor: pointer;">Métricas do modelo</a> </center>
                        </caption>
                     </table>
                     <hr>
@@ -190,15 +190,15 @@ tr.shown td.details-control {
             <div class="panel-body">
                 <div class="form-group">
                     <div class="col-sm-9">
-                    <label class="col-sm-6 control-label">Uso da Análise de Imagens </label>
+                    <label class="col-sm-6 control-label">Uso da análise de imagens </label>
                     </div>
                     <div class="col-sm-3" >
-                        <label class="control-label">Data: </label>
+                        <label class="control-label">Intervalo de datas: </label>
                         <select class="form-control" id="usage_range_select" name="usage_range_select">
                             <option value="all">Todas as datas</option>
-                            <option value="year">Último Ano</option>
-                            <option value="month">Mês passado</option>
-                            <option value="week">Semana passada</option>
+                            <option value="year">Último ano</option>
+                            <option value="month">Último mês</option>
+                            <option value="week">Última semana</option>
                         </select>
                     </div>
                 </div>
@@ -213,7 +213,7 @@ tr.shown td.details-control {
       <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="modelMetricsDialogTitle">Modelo Métrico</h5>
+            <h5 class="modal-title" id="modelMetricsDialogTitle">Métricas do modelo</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -233,7 +233,7 @@ tr.shown td.details-control {
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="saveResultModalTitle">Análise de imagem Salvar status</h5>
+            <h5 class="modal-title" id="saveResultModalTitle">Status do salvamento da análise de imagem</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -256,7 +256,7 @@ tr.shown td.details-control {
         </div>
 
         <div class="modal-body">
-            <p>A imagem que você enviou para análise está associada a um enredo. Se você guardar esses resultados, uma nova planta será criada para esta trama.</p>
+            <p>A imagem que você enviou para análise está associada a uma parcela. Se você salvar esses resultados, uma nova planta será criada para esta parcela.</p>
         </div>
 
         <div class="modal-footer">
@@ -352,7 +352,7 @@ jQuery(document).ready(function(){
                     jQuery('#working_modal').modal('hide');
                 },
                 error: function(response) {
-                    console.log("erro ao recuperar os nomes das culturas: "+response);
+                    console.log("error retrieving crop names: "+response);
                     // just add all traits regardless of crop
                     trait_names.forEach(function(name) {
                         // console.log("Id is "+id);
@@ -449,7 +449,7 @@ jQuery(document).ready(function(){
                 error: function(response) {
                     images_finished++;
                     // console.log(response);
-                    jQuery('#progress_msg').text("Acabei de analisar "+images_finished+" de um total de "+image_total+" imagens");
+                    jQuery('#progress_msg').text("Análise concluída de "+images_finished+" de um total de "+image_total+" imagens");
                     current_progress += (1 / image_total) * 90
                     progress_modal.find('.modal-footer').append(
                         "<ul class=\"list-group\"><li class=\"list-group-item list-group-item-danger\"><span class=\"badge\"><span class=\"glyphicon glyphicon-remove\"></span></span>Erro ao analisar a imagem número "+index+': '+response+'</li></ul>'
@@ -459,10 +459,10 @@ jQuery(document).ready(function(){
             return call;
         });
 
-        jQuery('#progress_msg').text("Todos "+image_total+" imagens enviadas; aguardando respostas.");
+        jQuery('#progress_msg').text("Todas as "+image_total+" imagens foram enviadas; aguardando respostas.");
 
         jQuery.when.apply(jQuery, deferred_calls).then(function() {
-            console.log("Os resultados são:");
+            console.log("Results are:");
             console.log(results);
             var first = results[0];
             submit_results = first;
@@ -569,7 +569,7 @@ jQuery(document).ready(function(){
                     error: function(response) {
                         // jQuery('#working_modal').modal('hide');
                         progress_modal.modal('hide');
-                        console.log("Erro: "+response);
+                        console.log('Error: '+response);
                         // jQuery('#'+image_id).text('Error analyzing image number '+index+'. '+response);
                         alert("Ocorreu um erro ao exibir os resultados da análise de imagens.");
                     }
@@ -584,7 +584,7 @@ jQuery(document).ready(function(){
     });
 
     jQuery('#image_analysis_save_results').click(function(){
-        console.log("enviar resultados", submit_results);
+        console.log("submit results", submit_results);
         if (submit_results.stock_type_name === "plot") {
             jQuery('#plantCreationWarning').modal('show');
         }
@@ -806,7 +806,7 @@ jQuery(document).ready(function(){
                             jQuery('#saveResultModal').modal('show');
                         },
                         error: function (err) {
-                            console.error("Erro ao salvar as observações", err.responseText);
+                            console.error("Error saving observations", err.responseText);
                         }
                     });
                 });
@@ -858,7 +858,7 @@ jQuery(document).ready(function(){
                             success: function(obsResponse) {
                                 let promise = (imageFiles && imageFiles.length) ? loadAllImages(imageFiles, imageData) : Promise.resolve();
                                 promise.then(function(uploadStatus) {
-                                    console.log("Envio concluído!");
+                                    console.log("Upload completed!");
                                     jQuery('#working_modal').modal('hide');
                                     jQuery('#saveResultModalBody').html("<ul class=\"list-group\"><li class=\"list-group-item list-group-item-success\"><span class=\"badge\"><span class=\"glyphicon glyphicon-ok\"></span></span>Resultados da análise salvos no banco de dados com sucesso.</li></ul>");
                                     jQuery('#saveResultModal').modal('show');
@@ -1080,7 +1080,7 @@ function format ( d ) {
     d.details.forEach(function (image, index) {
         var result = image.analyzed_link;
         var text;
-        if (result.startsWith("Erro: ")) {
+        if (result.startsWith("Error: ")) {
             text = result;
         } else if (Object.hasOwn(image, 'object_name')) {
             text = '';

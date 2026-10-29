@@ -214,7 +214,7 @@ jQuery(document).ready( function() {
         var input_type = jQuery('#type_select').val();
         if (input_type.indexOf('date') != -1) {
             flatpickr('#selected_type_input', {
-                allowValor: true,
+                allowInput: true,
                 dateFormat: "Y-m-d",
                 defaultDate: "today"
             });

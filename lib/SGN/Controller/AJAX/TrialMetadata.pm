@@ -1,4 +1,5 @@
 package SGN::Controller::AJAX::TrialMetadata;
+use utf8;
 
 use Moose;
 use Data::Dumper;
@@ -85,7 +86,7 @@ sub trial : Chained('/') PathPart('ajax/breeders/trial') CaptureArgs(1) {
     });
 
     if (!$c->stash->{trial}) {
-	$c->stash->{rest} = { error => "The specified trial with id $trial_id does not exist" };
+	$c->stash->{rest} = { error => "O ensaio especificado com id $trial_id não existe" };
 	return;
     }
 
@@ -127,7 +128,7 @@ sub delete_trial_data_GET : Chained('trial') PathPart('delete') Args(1) {
     my $phenome_schema = $c->dbic_schema("CXGN::Phenome::Schema", undef, $sp_person_id);
 
     if ($self->privileges_denied($c)) {
-        $c->stash->{rest} = { error => "You have insufficient access privileges to delete trial data." };
+        $c->stash->{rest} = { error => "Você não tem privilégios de acesso suficientes para excluir os dados do ensaio." };
         return;
     }
 
@@ -154,7 +155,7 @@ sub delete_trial_data_GET : Chained('trial') PathPart('delete') Args(1) {
         my ($drone_run_count) = $drone_image_check_h->fetchrow_array();
 
         if ($drone_run_count > 0) {
-            $c->stash->{rest} = { error => "Please delete the imaging events belonging to this field trial first!" };
+            $c->stash->{rest} = { error => "Exclua primeiro os eventos de imageamento pertencentes a este ensaio de campo!" };
             return;
         }
 
@@ -179,7 +180,7 @@ sub delete_trial_data_GET : Chained('trial') PathPart('delete') Args(1) {
         $error = $c->stash->{trial}->delete_empty_transformation_project();
     }
     else {
-        $c->stash->{rest} = { error => "unknown delete action for $datatype" };
+        $c->stash->{rest} = { error => "ação de exclusão desconhecida para $datatype" };
         return;
     }
     if ($error) {
@@ -187,7 +188,7 @@ sub delete_trial_data_GET : Chained('trial') PathPart('delete') Args(1) {
         return;
     }
 
-    $c->stash->{rest} = { message => "Successfully deleted trial data.", success => 1 };
+    $c->stash->{rest} = { message => "Dados do ensaio excluídos com sucesso.", success => 1 };
 }
 
 sub trial_phenotypes_fully_uploaded : Chained('trial') PathPart('phenotypes_fully_uploaded') Args(0) ActionClass('REST') {};
@@ -208,7 +209,7 @@ sub trial_phenotypes_fully_uploaded_POST  {
         $trial->set_phenotypes_fully_uploaded($value);
     };
     if ($@) {
-        $c->stash->{rest} = { error => "An error occurred setting phenotypes_fully_uploaded: $@" };
+        $c->stash->{rest} = { error => "Ocorreu um erro ao definir phenotypes_fully_uploaded: $@" };
     }
     else {
         $c->stash->{rest} = { success => 1 };
@@ -251,7 +252,7 @@ sub trial_details_POST  {
     }
 
     if (!%{$details}) {
-      $c->stash->{rest} = { error => "No values were edited, so no changes could be made for this trial's details." };
+      $c->stash->{rest} = { error => "Nenhum valor foi editado, portanto nenhuma alteração pôde ser feita nos detalhes deste ensaio." };
       return;
     }
     else {
@@ -261,7 +262,7 @@ sub trial_details_POST  {
     #check privileges
     print STDERR " curator status = ".$c->user()->check_roles('curator')." and submitter status = ".$c->user()->check_roles('submitter')."\n";
     if (!($c->user()->check_roles('curator') || $c->user()->check_roles('submitter'))) {
-      $c->stash->{rest} = { error => 'You do not have the required privileges to edit trial details, trial details can only be edited by accounts with submitter or curator privileges' };
+      $c->stash->{rest} = { error => 'Você não tem os privilégios necessários para editar os detalhes do ensaio; os detalhes do ensaio só podem ser editados por contas com privilégios de submissor ou curador' };
       return;
     }
 
@@ -285,7 +286,7 @@ sub trial_details_POST  {
     if (! ( (exists($has_roles{$breeding_program_name}) && exists($has_roles{submitter})) || exists($has_roles{curator}))) {
 
 #    if (!exists($has_roles{$breeding_program_name})) {
-      $c->stash->{rest} = { error => "You need to be either a curator, or a submitter associated with breeding program $breeding_program_name to change the details of this trial." };
+      $c->stash->{rest} = { error => "Você precisa ser curador ou submissor associado ao programa de melhoramento $breeding_program_name para alterar os detalhes deste ensaio." };
       return;
     }
 
@@ -688,7 +689,7 @@ sub get_trial_folder :Chained('trial') PathPart('folder') Args(0) {
     my $c = shift;
 
     if (!($c->user()->check_roles('curator') || $c->user()->check_roles('submitter'))) {
-	$c->stash->{rest} = { error => 'You do not have the required privileges to edit the trial type of this trial.' };
+	$c->stash->{rest} = { error => 'Você não tem os privilégios necessários para editar o tipo deste ensaio.' };
 	return;
     }
 
@@ -770,7 +771,7 @@ sub trial_used_seedlots_upload : Chained('trial') PathPart('upload_used_seedlots
         my $dbh = $c->dbc->dbh;
         my @user_info = CXGN::Login->new($dbh)->query_from_cookie($session_id);
         if (!$user_info[0]){
-            $c->stash->{rest} = {error=>'You must be logged in to upload this seedlot info!'};
+            $c->stash->{rest} = {error=>'Você precisa estar conectado para enviar estas informações de lote de sementes!'};
             $c->detach();
         }
         $user_id = $user_info[0];
@@ -779,7 +780,7 @@ sub trial_used_seedlots_upload : Chained('trial') PathPart('upload_used_seedlots
         $user_name = $p->get_username;
     } else{
         if (!$c->user){
-            $c->stash->{rest} = {error=>'You must be logged in to upload this seedlot info!'};
+            $c->stash->{rest} = {error=>'Você precisa estar conectado para enviar estas informações de lote de sementes!'};
             $c->detach();
         }
         $user_id = $c->user()->get_object()->get_sp_person_id();
@@ -808,7 +809,7 @@ sub trial_used_seedlots_upload : Chained('trial') PathPart('upload_used_seedlots
     my $archived_filename_with_path = $uploader->archive();
     my $md5 = $uploader->get_md5($archived_filename_with_path);
     if (!$archived_filename_with_path) {
-        $c->stash->{rest} = {error => "Could not save file $upload_original_name in archive",};
+        $c->stash->{rest} = {error => "Não foi possível salvar o arquivo $upload_original_name no arquivo permanente",};
         $c->detach();
     }
     unlink $upload_tempfile;
@@ -821,7 +822,7 @@ sub trial_used_seedlots_upload : Chained('trial') PathPart('upload_used_seedlots
         my $return_error = '';
         my $parse_errors;
         if (!$parser->has_parse_errors() ){
-            $c->stash->{rest} = {error_string => "Could not get parsing errors"};
+            $c->stash->{rest} = {error_string => "Não foi possível obter os erros de processamento"};
             $c->detach();
         } else {
             $parse_errors = $parser->get_parse_errors();
@@ -884,7 +885,7 @@ sub trial_upload_plants : Chained('trial') PathPart('upload_plants') Args(0) {
         my $dbh = $c->dbc->dbh;
         my @user_info = CXGN::Login->new($dbh)->query_from_cookie($session_id);
         if (!$user_info[0]){
-            $c->stash->{rest} = {error=>'You must be logged in to upload this plants info!'};
+            $c->stash->{rest} = {error=>'Você precisa estar conectado para enviar estas informações de plantas!'};
             $c->detach();
         }
         $user_id = $user_info[0];
@@ -893,7 +894,7 @@ sub trial_upload_plants : Chained('trial') PathPart('upload_plants') Args(0) {
         $user_name = $p->get_username;
     } else{
         if (!$c->user){
-            $c->stash->{rest} = {error=>'You must be logged in to upload this plants info!'};
+            $c->stash->{rest} = {error=>'Você precisa estar conectado para enviar estas informações de plantas!'};
             $c->detach();
         }
         $user_id = $c->user()->get_object()->get_sp_person_id();
@@ -925,7 +926,7 @@ sub trial_upload_plants : Chained('trial') PathPart('upload_plants') Args(0) {
     my $archived_filename_with_path = $uploader->archive();
     my $md5 = $uploader->get_md5($archived_filename_with_path);
     if (!$archived_filename_with_path) {
-        $c->stash->{rest} = {error => "Could not save file $upload_original_name in archive",};
+        $c->stash->{rest} = {error => "Não foi possível salvar o arquivo $upload_original_name no arquivo permanente",};
         $c->detach();
     }
     unlink $upload_tempfile;
@@ -938,7 +939,7 @@ sub trial_upload_plants : Chained('trial') PathPart('upload_plants') Args(0) {
         my $return_error = '';
         my $parse_errors;
         if (!$parser->has_parse_errors() ){
-            $c->stash->{rest} = {error_string => "Could not get parsing errors"};
+            $c->stash->{rest} = {error_string => "Não foi possível obter os erros de processamento"};
             $c->detach();
         } else {
             $parse_errors = $parser->get_parse_errors();
@@ -1020,7 +1021,7 @@ sub trial_upload_plants_subplot : Chained('trial') PathPart('upload_plants_subpl
         my $dbh = $c->dbc->dbh;
         my @user_info = CXGN::Login->new($dbh)->query_from_cookie($session_id);
         if (!$user_info[0]){
-            $c->stash->{rest} = {error=>'You must be logged in to upload this plants info!'};
+            $c->stash->{rest} = {error=>'Você precisa estar conectado para enviar estas informações de plantas!'};
             $c->detach();
         }
         $user_id = $user_info[0];
@@ -1029,7 +1030,7 @@ sub trial_upload_plants_subplot : Chained('trial') PathPart('upload_plants_subpl
         $user_name = $p->get_username;
     } else{
         if (!$c->user){
-            $c->stash->{rest} = {error=>'You must be logged in to upload this plants info!'};
+            $c->stash->{rest} = {error=>'Você precisa estar conectado para enviar estas informações de plantas!'};
             $c->detach();
         }
         $user_id = $c->user()->get_object()->get_sp_person_id();
@@ -1061,7 +1062,7 @@ sub trial_upload_plants_subplot : Chained('trial') PathPart('upload_plants_subpl
     my $archived_filename_with_path = $uploader->archive();
     my $md5 = $uploader->get_md5($archived_filename_with_path);
     if (!$archived_filename_with_path) {
-        $c->stash->{rest} = {error => "Could not save file $upload_original_name in archive",};
+        $c->stash->{rest} = {error => "Não foi possível salvar o arquivo $upload_original_name no arquivo permanente",};
         $c->detach();
     }
     unlink $upload_tempfile;
@@ -1074,7 +1075,7 @@ sub trial_upload_plants_subplot : Chained('trial') PathPart('upload_plants_subpl
         my $return_error = '';
         my $parse_errors;
         if (!$parser->has_parse_errors() ){
-            $c->stash->{rest} = {error_string => "Could not get parsing errors"};
+            $c->stash->{rest} = {error_string => "Não foi possível obter os erros de processamento"};
             $c->detach();
         } else {
             $parse_errors = $parser->get_parse_errors();
@@ -1132,7 +1133,7 @@ sub trial_upload_plants_subplot : Chained('trial') PathPart('upload_plants_subpl
     if ($t->save_plant_subplot_entries(\%subplot_plant_hash, $plants_per_subplot, $inherits_plot_treatments, $user_id, $user_name, $phenotype_store_config, $additional_plants)) {
         $c->stash->{rest} = { success => 1 };
     } else {
-        $c->stash->{rest} = { error => "An error occurred uploading plants to subplots." };
+        $c->stash->{rest} = { error => "Ocorreu um erro ao enviar plantas para as subparcelas." };
     }
 
     my $layout = $c->stash->{trial_layout};
@@ -1155,7 +1156,7 @@ sub trial_upload_subplots : Chained('trial') PathPart('upload_subplots') Args(0)
         my $dbh = $c->dbc->dbh;
         my @user_info = CXGN::Login->new($dbh)->query_from_cookie($session_id);
         if (!$user_info[0]){
-            $c->stash->{rest} = {error=>'You must be logged in to upload this subplots info!'};
+            $c->stash->{rest} = {error=>'Você precisa estar conectado para enviar estas informações de subparcelas!'};
             $c->detach();
         }
         $user_id = $user_info[0];
@@ -1164,7 +1165,7 @@ sub trial_upload_subplots : Chained('trial') PathPart('upload_subplots') Args(0)
         $user_name = $p->get_username;
     } else{
         if (!$c->user){
-            $c->stash->{rest} = {error=>'You must be logged in to upload this subplots info!'};
+            $c->stash->{rest} = {error=>'Você precisa estar conectado para enviar estas informações de subparcelas!'};
             $c->detach();
         }
         $user_id = $c->user()->get_object()->get_sp_person_id();
@@ -1196,7 +1197,7 @@ sub trial_upload_subplots : Chained('trial') PathPart('upload_subplots') Args(0)
     my $archived_filename_with_path = $uploader->archive();
     my $md5 = $uploader->get_md5($archived_filename_with_path);
     if (!$archived_filename_with_path) {
-        $c->stash->{rest} = {error => "Could not save file $upload_original_name in archive",};
+        $c->stash->{rest} = {error => "Não foi possível salvar o arquivo $upload_original_name no arquivo permanente",};
         $c->detach();
     }
     unlink $upload_tempfile;
@@ -1209,7 +1210,7 @@ sub trial_upload_subplots : Chained('trial') PathPart('upload_subplots') Args(0)
         my $return_error = '';
         my $parse_errors;
         if (!$parser->has_parse_errors() ){
-            $c->stash->{rest} = {error_string => "Could not get parsing errors"};
+            $c->stash->{rest} = {error_string => "Não foi possível obter os erros de processamento"};
             $c->detach();
         } else {
             $parse_errors = $parser->get_parse_errors();
@@ -1265,7 +1266,7 @@ sub trial_upload_subplots : Chained('trial') PathPart('upload_subplots') Args(0)
     if ($t->save_subplot_entries(\%plot_subplot_hash, $subplots_per_plot, $inherits_plot_treatments, $user_id, $user_name, $phenotype_store_config, $add_subplots)) {
         $c->stash->{rest} = { success => 1 };
     } else {
-        $c->stash->{rest} = { error => "An error occurred uploading subplots." };
+        $c->stash->{rest} = { error => "Ocorreu um erro ao enviar as subparcelas." };
     }
 
     my $layout = $c->stash->{trial_layout};
@@ -1288,7 +1289,7 @@ sub trial_upload_plants_with_index_number : Chained('trial') PathPart('upload_pl
         my $dbh = $c->dbc->dbh;
         my @user_info = CXGN::Login->new($dbh)->query_from_cookie($session_id);
         if (!$user_info[0]){
-            $c->stash->{rest} = {error=>'You must be logged in to upload this plant info!'};
+            $c->stash->{rest} = {error=>'Você precisa estar conectado para enviar estas informações das plantas!'};
             $c->detach();
         }
         $user_id = $user_info[0];
@@ -1297,7 +1298,7 @@ sub trial_upload_plants_with_index_number : Chained('trial') PathPart('upload_pl
         $user_name = $p->get_username;
     } else{
         if (!$c->user){
-            $c->stash->{rest} = {error=>'You must be logged in to upload this plant info!'};
+            $c->stash->{rest} = {error=>'Você precisa estar conectado para enviar estas informações das plantas!'};
             $c->detach();
         }
         $user_id = $c->user()->get_object()->get_sp_person_id();
@@ -1329,7 +1330,7 @@ sub trial_upload_plants_with_index_number : Chained('trial') PathPart('upload_pl
     my $archived_filename_with_path = $uploader->archive();
     my $md5 = $uploader->get_md5($archived_filename_with_path);
     if (!$archived_filename_with_path) {
-        $c->stash->{rest} = {error => "Could not save file $upload_original_name in archive",};
+        $c->stash->{rest} = {error => "Não foi possível salvar o arquivo $upload_original_name no arquivo permanente",};
         $c->detach();
     }
     unlink $upload_tempfile;
@@ -1342,7 +1343,7 @@ sub trial_upload_plants_with_index_number : Chained('trial') PathPart('upload_pl
         my $return_error = '';
         my $parse_errors;
         if (!$parser->has_parse_errors() ){
-            $c->stash->{rest} = {error_string => "Could not get parsing errors"};
+            $c->stash->{rest} = {error_string => "Não foi possível obter os erros de processamento"};
             $c->detach();
         } else {
             $parse_errors = $parser->get_parse_errors();
@@ -1402,7 +1403,7 @@ sub trial_upload_plants_with_index_number : Chained('trial') PathPart('upload_pl
     if ($t->save_plant_entries(\%plot_plant_hash, $plants_per_plot, $inherits_plot_treatments, $user_id, $phenotype_store_config, $add_additional_plants)) {
         $c->stash->{rest} = { success => 1 };
     } else {
-        $c->stash->{rest} = { error => "An error occurred uploading plants." };
+        $c->stash->{rest} = { error => "Ocorreu um erro ao enviar as plantas." };
     }
 
     my $layout = $c->stash->{trial_layout};
@@ -1425,7 +1426,7 @@ sub trial_upload_plants_subplot_with_index_number : Chained('trial') PathPart('u
         my $dbh = $c->dbc->dbh;
         my @user_info = CXGN::Login->new($dbh)->query_from_cookie($session_id);
         if (!$user_info[0]){
-            $c->stash->{rest} = {error=>'You must be logged in to upload this plant info!'};
+            $c->stash->{rest} = {error=>'Você precisa estar conectado para enviar estas informações das plantas!'};
             $c->detach();
         }
         $user_id = $user_info[0];
@@ -1434,7 +1435,7 @@ sub trial_upload_plants_subplot_with_index_number : Chained('trial') PathPart('u
         $user_name = $p->get_username;
     } else{
         if (!$c->user){
-            $c->stash->{rest} = {error=>'You must be logged in to upload this plant info!'};
+            $c->stash->{rest} = {error=>'Você precisa estar conectado para enviar estas informações das plantas!'};
             $c->detach();
         }
         $user_id = $c->user()->get_object()->get_sp_person_id();
@@ -1466,7 +1467,7 @@ sub trial_upload_plants_subplot_with_index_number : Chained('trial') PathPart('u
     my $archived_filename_with_path = $uploader->archive();
     my $md5 = $uploader->get_md5($archived_filename_with_path);
     if (!$archived_filename_with_path) {
-        $c->stash->{rest} = {error => "Could not save file $upload_original_name in archive",};
+        $c->stash->{rest} = {error => "Não foi possível salvar o arquivo $upload_original_name no arquivo permanente",};
         $c->detach();
     }
     unlink $upload_tempfile;
@@ -1479,7 +1480,7 @@ sub trial_upload_plants_subplot_with_index_number : Chained('trial') PathPart('u
         my $return_error = '';
         my $parse_errors;
         if (!$parser->has_parse_errors() ){
-            $c->stash->{rest} = {error_string => "Could not get parsing errors"};
+            $c->stash->{rest} = {error_string => "Não foi possível obter os erros de processamento"};
             $c->detach();
         } else {
             $parse_errors = $parser->get_parse_errors();
@@ -1539,7 +1540,7 @@ sub trial_upload_plants_subplot_with_index_number : Chained('trial') PathPart('u
     if ($t->save_plant_subplot_entries(\%subplot_plant_hash, $plants_per_subplot, $inherits_plot_treatments, $user_id, $user_name, $phenotype_store_config, $additional_plants)) {
         $c->stash->{rest} = { success => 1 };
     } else {
-        $c->stash->{rest} = { error => "An error occurred uploading plants to subplots." };
+        $c->stash->{rest} = { error => "Ocorreu um erro ao enviar plantas para as subparcelas." };
     }
 
     my $layout = $c->stash->{trial_layout};
@@ -1562,7 +1563,7 @@ sub trial_upload_subplots_with_index_number : Chained('trial') PathPart('upload_
         my $dbh = $c->dbc->dbh;
         my @user_info = CXGN::Login->new($dbh)->query_from_cookie($session_id);
         if (!$user_info[0]){
-            $c->stash->{rest} = {error=>'You must be logged in to upload this subplot info!'};
+            $c->stash->{rest} = {error=>'Você precisa estar conectado para enviar estas informações das subparcelas!'};
             $c->detach();
         }
         $user_id = $user_info[0];
@@ -1571,7 +1572,7 @@ sub trial_upload_subplots_with_index_number : Chained('trial') PathPart('upload_
         $user_name = $p->get_username;
     } else{
         if (!$c->user){
-            $c->stash->{rest} = {error=>'You must be logged in to upload this subplot info!'};
+            $c->stash->{rest} = {error=>'Você precisa estar conectado para enviar estas informações das subparcelas!'};
             $c->detach();
         }
         $user_id = $c->user()->get_object()->get_sp_person_id();
@@ -1603,7 +1604,7 @@ sub trial_upload_subplots_with_index_number : Chained('trial') PathPart('upload_
     my $archived_filename_with_path = $uploader->archive();
     my $md5 = $uploader->get_md5($archived_filename_with_path);
     if (!$archived_filename_with_path) {
-        $c->stash->{rest} = {error => "Could not save file $upload_original_name in archive",};
+        $c->stash->{rest} = {error => "Não foi possível salvar o arquivo $upload_original_name no arquivo permanente",};
         $c->detach();
     }
     unlink $upload_tempfile;
@@ -1616,7 +1617,7 @@ sub trial_upload_subplots_with_index_number : Chained('trial') PathPart('upload_
         my $return_error = '';
         my $parse_errors;
         if (!$parser->has_parse_errors() ){
-            $c->stash->{rest} = {error_string => "Could not get parsing errors"};
+            $c->stash->{rest} = {error_string => "Não foi possível obter os erros de processamento"};
             $c->detach();
         } else {
             $parse_errors = $parser->get_parse_errors();
@@ -1673,7 +1674,7 @@ sub trial_upload_subplots_with_index_number : Chained('trial') PathPart('upload_
     if ($t->save_subplot_entries(\%plot_subplot_hash, $subplots_per_plot, $inherits_plot_treatments, $user_id, $user_name, $phenotype_store_config, $additional_subplots)) {
         $c->stash->{rest} = { success => 1 };
     } else {
-        $c->stash->{rest} = { error => "An error occurred uploading subplots." };
+        $c->stash->{rest} = { error => "Ocorreu um erro ao enviar as subparcelas." };
     }
 
     my $layout = $c->stash->{trial_layout};
@@ -1696,7 +1697,7 @@ sub trial_upload_plants_with_number_of_plants : Chained('trial') PathPart('uploa
         my $dbh = $c->dbc->dbh;
         my @user_info = CXGN::Login->new($dbh)->query_from_cookie($session_id);
         if (!$user_info[0]){
-            $c->stash->{rest} = {error=>'You must be logged in to upload this plant info!'};
+            $c->stash->{rest} = {error=>'Você precisa estar conectado para enviar estas informações das plantas!'};
             $c->detach();
         }
         $user_id = $user_info[0];
@@ -1705,7 +1706,7 @@ sub trial_upload_plants_with_number_of_plants : Chained('trial') PathPart('uploa
         $user_name = $p->get_username;
     } else{
         if (!$c->user){
-            $c->stash->{rest} = {error=>'You must be logged in to upload this plant info!'};
+            $c->stash->{rest} = {error=>'Você precisa estar conectado para enviar estas informações das plantas!'};
             $c->detach();
         }
         $user_id = $c->user()->get_object()->get_sp_person_id();
@@ -1737,7 +1738,7 @@ sub trial_upload_plants_with_number_of_plants : Chained('trial') PathPart('uploa
     my $archived_filename_with_path = $uploader->archive();
     my $md5 = $uploader->get_md5($archived_filename_with_path);
     if (!$archived_filename_with_path) {
-        $c->stash->{rest} = {error => "Could not save file $upload_original_name in archive",};
+        $c->stash->{rest} = {error => "Não foi possível salvar o arquivo $upload_original_name no arquivo permanente",};
         $c->detach();
     }
     unlink $upload_tempfile;
@@ -1750,7 +1751,7 @@ sub trial_upload_plants_with_number_of_plants : Chained('trial') PathPart('uploa
         my $return_error = '';
         my $parse_errors;
         if (!$parser->has_parse_errors() ){
-            $c->stash->{rest} = {error_string => "Could not get parsing errors"};
+            $c->stash->{rest} = {error_string => "Não foi possível obter os erros de processamento"};
             $c->detach();
         } else {
             $parse_errors = $parser->get_parse_errors();
@@ -1809,7 +1810,7 @@ sub trial_upload_plants_with_number_of_plants : Chained('trial') PathPart('uploa
     if ($t->save_plant_entries(\%plot_plant_hash, $plants_per_plot, $inherits_plot_treatments, $user_id, $phenotype_store_config, $additional_plants)){
         $c->stash->{rest} = { success => 1 };
     } else {
-        $c->stash->{rest} = { error => "An error occurred uploading plants." };
+        $c->stash->{rest} = { error => "Ocorreu um erro ao enviar as plantas." };
     }
 
     my $layout = $c->stash->{trial_layout};
@@ -1832,7 +1833,7 @@ sub trial_upload_plants_subplot_with_number_of_plants : Chained('trial') PathPar
         my $dbh = $c->dbc->dbh;
         my @user_info = CXGN::Login->new($dbh)->query_from_cookie($session_id);
         if (!$user_info[0]){
-            $c->stash->{rest} = {error=>'You must be logged in to upload this plant info!'};
+            $c->stash->{rest} = {error=>'Você precisa estar conectado para enviar estas informações das plantas!'};
             $c->detach();
         }
         $user_id = $user_info[0];
@@ -1841,7 +1842,7 @@ sub trial_upload_plants_subplot_with_number_of_plants : Chained('trial') PathPar
         $user_name = $p->get_username;
     } else{
         if (!$c->user){
-            $c->stash->{rest} = {error=>'You must be logged in to upload this plant info!'};
+            $c->stash->{rest} = {error=>'Você precisa estar conectado para enviar estas informações das plantas!'};
             $c->detach();
         }
         $user_id = $c->user()->get_object()->get_sp_person_id();
@@ -1873,7 +1874,7 @@ sub trial_upload_plants_subplot_with_number_of_plants : Chained('trial') PathPar
     my $archived_filename_with_path = $uploader->archive();
     my $md5 = $uploader->get_md5($archived_filename_with_path);
     if (!$archived_filename_with_path) {
-        $c->stash->{rest} = {error => "Could not save file $upload_original_name in archive",};
+        $c->stash->{rest} = {error => "Não foi possível salvar o arquivo $upload_original_name no arquivo permanente",};
         $c->detach();
     }
     unlink $upload_tempfile;
@@ -1886,7 +1887,7 @@ sub trial_upload_plants_subplot_with_number_of_plants : Chained('trial') PathPar
         my $return_error = '';
         my $parse_errors;
         if (!$parser->has_parse_errors() ){
-            $c->stash->{rest} = {error_string => "Could not get parsing errors"};
+            $c->stash->{rest} = {error_string => "Não foi possível obter os erros de processamento"};
             $c->detach();
         } else {
             $parse_errors = $parser->get_parse_errors();
@@ -1945,7 +1946,7 @@ sub trial_upload_plants_subplot_with_number_of_plants : Chained('trial') PathPar
     if ($t->save_plant_subplot_entries(\%subplot_plant_hash, $plants_per_subplot, $inherits_plot_treatments, $user_id, $user_name, $phenotype_store_config, $additional_plants)) {
         $c->stash->{rest} = { success => 1 };
     } else {
-        $c->stash->{rest} = { error => "An error occurred uploading plants to subplots." };
+        $c->stash->{rest} = { error => "Ocorreu um erro ao enviar plantas para as subparcelas." };
     }
 
     my $layout = $c->stash->{trial_layout};
@@ -1968,7 +1969,7 @@ sub trial_upload_subplots_with_number_of_subplots : Chained('trial') PathPart('u
         my $dbh = $c->dbc->dbh;
         my @user_info = CXGN::Login->new($dbh)->query_from_cookie($session_id);
         if (!$user_info[0]){
-            $c->stash->{rest} = {error=>'You must be logged in to upload this subplot info!'};
+            $c->stash->{rest} = {error=>'Você precisa estar conectado para enviar estas informações das subparcelas!'};
             $c->detach();
         }
         $user_id = $user_info[0];
@@ -1977,7 +1978,7 @@ sub trial_upload_subplots_with_number_of_subplots : Chained('trial') PathPart('u
         $user_name = $p->get_username;
     } else{
         if (!$c->user){
-            $c->stash->{rest} = {error=>'You must be logged in to upload this subplot info!'};
+            $c->stash->{rest} = {error=>'Você precisa estar conectado para enviar estas informações das subparcelas!'};
             $c->detach();
         }
         $user_id = $c->user()->get_object()->get_sp_person_id();
@@ -2009,7 +2010,7 @@ sub trial_upload_subplots_with_number_of_subplots : Chained('trial') PathPart('u
     my $archived_filename_with_path = $uploader->archive();
     my $md5 = $uploader->get_md5($archived_filename_with_path);
     if (!$archived_filename_with_path) {
-        $c->stash->{rest} = {error => "Could not save file $upload_original_name in archive",};
+        $c->stash->{rest} = {error => "Não foi possível salvar o arquivo $upload_original_name no arquivo permanente",};
         $c->detach();
     }
     unlink $upload_tempfile;
@@ -2022,7 +2023,7 @@ sub trial_upload_subplots_with_number_of_subplots : Chained('trial') PathPart('u
         my $return_error = '';
         my $parse_errors;
         if (!$parser->has_parse_errors() ){
-            $c->stash->{rest} = {error_string => "Could not get parsing errors"};
+            $c->stash->{rest} = {error_string => "Não foi possível obter os erros de processamento"};
             $c->detach();
         } else {
             $parse_errors = $parser->get_parse_errors();
@@ -2078,7 +2079,7 @@ sub trial_upload_subplots_with_number_of_subplots : Chained('trial') PathPart('u
     if ($t->save_subplot_entries(\%plot_subplot_hash, $subplots_per_plot, $inherits_plot_treatments, $user_id, $user_name, $phenotype_store_config, $additional_subplots)) {
         $c->stash->{rest} = { success => 1 };
     } else {
-        $c->stash->{rest} = { error => "An error occurred uploading subplots." };
+        $c->stash->{rest} = { error => "Ocorreu um erro ao enviar as subparcelas." };
     }
 
     my $layout = $c->stash->{trial_layout};
@@ -2101,7 +2102,7 @@ sub trial_plot_gps_upload : Chained('trial') PathPart('upload_plot_gps') Args(0)
         my $dbh = $c->dbc->dbh;
         my @user_info = CXGN::Login->new($dbh)->query_from_cookie($session_id);
         if (!$user_info[0]){
-            $c->stash->{rest} = {error=>'You must be logged in to upload this seedlot info!'};
+            $c->stash->{rest} = {error=>'Você precisa estar conectado para enviar estas informações de lote de sementes!'};
             $c->detach();
         }
         $user_id = $user_info[0];
@@ -2110,7 +2111,7 @@ sub trial_plot_gps_upload : Chained('trial') PathPart('upload_plot_gps') Args(0)
         $user_name = $p->get_username;
     } else{
         if (!$c->user){
-            $c->stash->{rest} = {error=>'You must be logged in to upload this seedlot info!'};
+            $c->stash->{rest} = {error=>'Você precisa estar conectado para enviar estas informações de lote de sementes!'};
             $c->detach();
         }
         $user_id = $c->user()->get_object()->get_sp_person_id();
@@ -2128,7 +2129,7 @@ sub trial_plot_gps_upload : Chained('trial') PathPart('upload_plot_gps') Args(0)
     );
     my $nd_geolocation = $nd_geolocation_rs->first;
     if (!$nd_geolocation){
-        $c->stash->{rest} = {error=>'This trial has no location set!'};
+        $c->stash->{rest} = {error=>'Este ensaio não tem local definido!'};
         $c->detach();
     }
 
@@ -2152,7 +2153,7 @@ sub trial_plot_gps_upload : Chained('trial') PathPart('upload_plot_gps') Args(0)
     my $archived_filename_with_path = $uploader->archive();
     my $md5 = $uploader->get_md5($archived_filename_with_path);
     if (!$archived_filename_with_path) {
-        $c->stash->{rest} = {error => "Could not save file $upload_original_name in archive",};
+        $c->stash->{rest} = {error => "Não foi possível salvar o arquivo $upload_original_name no arquivo permanente",};
         $c->detach();
     }
     unlink $upload_tempfile;
@@ -2166,7 +2167,7 @@ sub trial_plot_gps_upload : Chained('trial') PathPart('upload_plot_gps') Args(0)
         my $return_error = '';
         my $parse_errors;
         if (!$parser->has_parse_errors() ){
-            $c->stash->{rest} = {error_string => "Could not get parsing errors"};
+            $c->stash->{rest} = {error_string => "Não foi possível obter os erros de processamento"};
             $c->detach();
         } else {
             $parse_errors = $parser->get_parse_errors();
@@ -2262,7 +2263,7 @@ sub trial_change_plot_accessions_upload : Chained('trial') PathPart('change_plot
     my $schema = $c->dbic_schema('Bio::Chado::Schema', undef, $sp_person_id);
 
     if (!$c->user){
-        $c->stash->{rest} = {error=>'You must be logged in to upload this seedlot info!'};
+        $c->stash->{rest} = {error=>'Você precisa estar conectado para enviar estas informações de lote de sementes!'};
         return;
     }
 
@@ -2287,7 +2288,7 @@ sub trial_change_plot_accessions_upload : Chained('trial') PathPart('change_plot
     my $archived_filename_with_path = $uploader->archive();
     my $md5 = $uploader->get_md5($archived_filename_with_path);
     if (!$archived_filename_with_path) {
-        $c->stash->{rest} = {error => "Could not save file $upload_original_name in archive",};
+        $c->stash->{rest} = {error => "Não foi possível salvar o arquivo $upload_original_name no arquivo permanente",};
         $c->detach();
     }
     unlink $upload_tempfile;
@@ -2304,7 +2305,7 @@ sub trial_change_plot_accessions_upload : Chained('trial') PathPart('change_plot
         my $return_error = '';
         my $parse_errors;
         if (!$parser->has_parse_errors() ){
-            $c->stash->{rest} = {error_string => "Could not get parsing errors"};
+            $c->stash->{rest} = {error_string => "Não foi possível obter os erros de processamento"};
             $c->detach();
         } else {
             $parse_errors = $parser->get_parse_errors();
@@ -2509,7 +2510,7 @@ sub trial_additional_file_upload : Chained('trial') PathPart('upload_additional_
         my $dbh = $c->dbc->dbh;
         my @user_info = CXGN::Login->new($dbh)->query_from_cookie($session_id);
         if (!$user_info[0]){
-            $c->stash->{rest} = {error=>'You must be logged in to upload additional trials to a file!'};
+            $c->stash->{rest} = {error=>'Você precisa estar conectado para enviar ensaios adicionais a um arquivo!'};
             $c->detach();
         }
         $user_id = $user_info[0];
@@ -2518,7 +2519,7 @@ sub trial_additional_file_upload : Chained('trial') PathPart('upload_additional_
         $user_name = $p->get_username;
     } else{
         if (!$c->user){
-            $c->stash->{rest} = {error=>'You must be logged in to upload additional files to a trial!'};
+            $c->stash->{rest} = {error=>'Você precisa estar conectado para enviar arquivos adicionais a um ensaio!'};
             $c->detach();
         }
         $user_id = $c->user()->get_object()->get_sp_person_id();
@@ -2546,7 +2547,7 @@ sub trial_additional_file_upload : Chained('trial') PathPart('upload_additional_
     my $archived_filename_with_path = $uploader->archive();
     my $md5 = $uploader->get_md5($archived_filename_with_path);
     if (!$archived_filename_with_path) {
-        $c->stash->{rest} = {error => "Could not save file $upload_original_name in archive",};
+        $c->stash->{rest} = {error => "Não foi possível salvar o arquivo $upload_original_name no arquivo permanente",};
         $c->detach();
     }
     unlink $upload_tempfile;
@@ -2565,7 +2566,7 @@ sub get_trial_additional_file_uploaded : Chained('trial') PathPart('get_uploaded
     my $c = shift;
 
     if (!$c->user){
-        $c->stash->{rest} = {error=>'You must be logged in to see uploaded additional files!'};
+        $c->stash->{rest} = {error=>'Você precisa estar conectado para ver os arquivos adicionais enviados!'};
         $c->detach();
     }
 
@@ -2579,7 +2580,7 @@ sub obsolete_trial_additional_file_uploaded :Chained('trial') PathPart('obsolete
     my $file_id = shift;
 
     if (!$c->user) {
-	$c->stash->{rest} = { error => "You must be logged in to obsolete additional files!" };
+	$c->stash->{rest} = { error => "Você precisa estar conectado para tornar obsoletos arquivos adicionais!" };
 	$c->detach();
     }
 
@@ -2826,7 +2827,7 @@ sub trial_add_treatment : Chained('trial') PathPart('add_treatment') Args(0) { #
     my $c = shift;
 
     if (!$c->user()){
-        $c->stash->{rest} = {error => "You must be logged in to add a treatment"};
+        $c->stash->{rest} = {error => "Você precisa estar conectado para adicionar um tratamento"};
         $c->detach();
     }
 
@@ -2859,7 +2860,7 @@ sub trial_add_treatment : Chained('trial') PathPart('add_treatment') Args(0) { #
 	});
     my $error = $trial_design_store->store();
     if ($error){
-        $c->stash->{rest} = {error => "Treatment not added: ".$error};
+        $c->stash->{rest} = {error => "Tratamento não adicionado: ".$error};
     } else {
         $c->stash->{rest} = {success => 1};
     }
@@ -2871,12 +2872,12 @@ sub trial_remove_treatment : Chained('trial') PathPart('remove_treatment') Args(
     my $treatment_id = $c->req->param('treatment_id');
 
     if (!$treatment_id) {
-        $c->stash->{rest} = {errpr => "You need to supply a valid treatment id."};
+        $c->stash->{rest} = {errpr => "Informe um id de tratamento válido."};
         return;
     }
 
     if (!($c->user()->check_roles('curator'))) {
-        $c->stash->{rest} = { error => 'You do not have the privileges to remove a treatment from this trial.'};
+        $c->stash->{rest} = { error => 'Você não tem privilégios para remover um tratamento deste ensaio.'};
         return;
     }
     my $trial = $c->stash->{trial};
@@ -2888,7 +2889,7 @@ sub trial_remove_treatment : Chained('trial') PathPart('remove_treatment') Args(
         return;
     }
 
-    $c->stash->{rest} = { success => 1, message => "Treatment removed from trial." };
+    $c->stash->{rest} = { success => 1, message => "Tratamento removido do ensaio." };
 }
 
 sub trial_layout : Chained('trial') PathPart('layout') Args(0) {
@@ -3089,7 +3090,7 @@ sub delete_field_coord : Path('/ajax/phenotype/delete_field_coords') Args(0) {
     });
 
     if ($self->privileges_denied($c)) {
-        $c->stash->{rest} = { error => "You have insufficient access privileges to update this map." };
+        $c->stash->{rest} = { error => "Você não tem privilégios de acesso suficientes para atualizar este mapa." };
         return;
     }
 
@@ -3123,12 +3124,12 @@ sub replace_trial_stock : Chained('trial') PathPart('replace_stock') Args(0) {
   my $trial_id = $c->stash->{trial_id};
 
   if ($self->privileges_denied($c)) {
-    $c->stash->{rest} = { error => "You have insufficient access privileges to edit this map." };
+    $c->stash->{rest} = { error => "Você não tem privilégios de acesso suficientes para editar este mapa." };
     return;
   }
 
   if (!$new_stock){
-    $c->stash->{rest} = { error => "Provide new stock name." };
+    $c->stash->{rest} = { error => "Informe o novo nome do material." };
     return;
   }
 
@@ -3184,17 +3185,17 @@ sub replace_plot_accession : Chained('trial') PathPart('replace_plot_accessions'
     my $trial_id = $c->stash->{trial_id};
 
     if (!$c->user){
-        $c->stash->{rest} = {error=>'You must be logged in to change a plot accession!'};
+        $c->stash->{rest} = {error=>'Você precisa estar conectado para alterar o acesso de uma parcela!'};
         return;
     }
 
     if ($self->privileges_denied($c)) {
-        $c->stash->{rest} = { error => "You have insufficient access privileges to edit this map." };
+        $c->stash->{rest} = { error => "Você não tem privilégios de acesso suficientes para editar este mapa." };
     return;
     }
 
     if (!$new_accession) {
-        $c->stash->{rest} = { error => "Provide new accession name." };
+        $c->stash->{rest} = { error => "Informe o novo nome do acesso." };
     return;
     }
 
@@ -3279,7 +3280,7 @@ sub replace_plot_accession : Chained('trial') PathPart('replace_plot_accessions'
         uniquename => $new_accession
     });
     if (!$accession_rs || $accession_rs->count() < 1) {
-        $c->stash->{rest} = { error => "Could not find accession $new_accession - does it exist?" };
+        $c->stash->{rest} = { error => "Não foi possível encontrar o acesso $new_accession - ele existe?" };
         return;
     }
     $accession_rs = $accession_rs->next();
@@ -3288,7 +3289,7 @@ sub replace_plot_accession : Chained('trial') PathPart('replace_plot_accessions'
         uniquename => $old_accession
     });
     if (!$old_accession_rs || $old_accession_rs->count() < 1) {
-        $c->stash->{rest} = { error => "Could not find accession $old_accession - does it exist?" };
+        $c->stash->{rest} = { error => "Não foi possível encontrar o acesso $old_accession - ele existe?" };
         return;
     }
     $old_accession_rs = $old_accession_rs->next();
@@ -3377,7 +3378,7 @@ sub accession_exists : Chained('trial') PathPart('accession_exists') Args(0) {
     my $accession_name = $c->req->param('accession_name');
     my $rs = $schema->resultset("Stock::Stock")->search({uniquename=> $accession_name });
     if (!$rs->first()) {
-        $c->stash->{rest} = { error => "Error: $accession_name is not a valid accession in the database." };
+        $c->stash->{rest} = { error => "Erro: $accession_name não é um acesso válido no banco de dados." };
         return;
     }
     my $accession_id = $rs->first()->stock_id();
@@ -3391,7 +3392,7 @@ sub check_curator_privileges : Chained('trial') PathPart('check_curator_privileg
     if ($c->user()->check_roles("curator")) {
         $c->stash->{rest} = { success => 1};
     } else {
-        $c->stash->{rest} = { error => "You have insufficient access privileges to edit this map." };
+        $c->stash->{rest} = { error => "Você não tem privilégios de acesso suficientes para editar este mapa." };
     }
 
 }
@@ -3408,12 +3409,12 @@ sub replace_well_accession : Chained('trial') PathPart('replace_well_accessions'
   my $trial_id = $c->stash->{trial_id};
 
   if ($self->privileges_denied($c)) {
-    $c->stash->{rest} = { error => "You have insufficient access privileges to edit this map." };
+    $c->stash->{rest} = { error => "Você não tem privilégios de acesso suficientes para editar este mapa." };
     return;
   }
 
   if (!$new_accession){
-    $c->stash->{rest} = { error => "Provide new accession name." };
+    $c->stash->{rest} = { error => "Informe o novo nome do acesso." };
     return;
   }
   my $cxgn_project_type = $c->stash->{trial}->get_cxgn_project_type();
@@ -3458,12 +3459,12 @@ sub substitute_stock : Chained('trial') PathPart('substitute_stock') Args(0) {
   my ($plot_2_id, $accession_2) = split /,/, $plot_2_info;
 
   if ($self->privileges_denied($c)) {
-    $c->stash->{rest} = { error => "You have insufficient access privileges to update this map." };
+    $c->stash->{rest} = { error => "Você não tem privilégios de acesso suficientes para atualizar este mapa." };
     return;
   }
 
   if ($plot_1_id == $plot_2_id){
-    $c->stash->{rest} = { error => "Choose a different plot/stock in 'select plot 2' to perform this operation." };
+    $c->stash->{rest} = { error => "Escolha uma parcela/material diferente em 'Selecione a parcela 2' para realizar esta operação." };
     return;
   }
 
@@ -3521,7 +3522,7 @@ sub create_plant_plot_entries : Chained('trial') PathPart('create_plant_entries'
     }
 
     if (!$plants_per_plot || $plants_per_plot > 500) {
-        $c->stash->{rest} = { error => "Plants per plot number is required and must be smaller than 500." };
+        $c->stash->{rest} = { error => "O número de plantas por parcela é obrigatório e deve ser menor que 500." };
         return;
     }
 
@@ -3564,12 +3565,12 @@ sub create_plant_plot_entries : Chained('trial') PathPart('create_plant_entries'
     if ($include_plant_coordinates) {
 
         if (!$num_rows || !$num_cols || $num_rows * $num_cols == 0) {
-            $c->stash->{rest} = { error => "To include plant coordinate data, rows and columns must be specified." };
+            $c->stash->{rest} = { error => "Para incluir dados de coordenadas das plantas, é preciso especificar linhas e colunas." };
             return;
         }
 
         if ($num_rows * $num_cols < $plants_per_plot) {
-            $c->stash->{rest} = { error => "You cannot have more plants than available spaces. Decrease plants per plot or increase rows or columns." };
+            $c->stash->{rest} = { error => "Não é possível ter mais plantas do que espaços disponíveis. Diminua as plantas por parcela ou aumente as linhas ou colunas." };
             return;
         }
 
@@ -3623,7 +3624,7 @@ sub create_plant_subplot_entries : Chained('trial') PathPart('create_plant_subpl
     }
 
     if (!$plants_per_subplot || $plants_per_subplot > 500) {
-        $c->stash->{rest} = { error => "Plants per subplot number is required and must be smaller than 500." };
+        $c->stash->{rest} = { error => "O número de plantas por subparcela é obrigatório e deve ser menor que 500." };
         return;
     }
 
@@ -3669,12 +3670,12 @@ sub create_plant_subplot_entries : Chained('trial') PathPart('create_plant_subpl
     if ($include_plant_coordinates) {
 
         if (!$num_rows || !$num_cols || $num_rows * $num_cols == 0) {
-            $c->stash->{rest} = { error => "To include plant coordinate data, rows and columns must be specified." };
+            $c->stash->{rest} = { error => "Para incluir dados de coordenadas das plantas, é preciso especificar linhas e colunas." };
             return;
         }
 
         if ($num_rows * $num_cols < $plants_per_subplot) {
-            $c->stash->{rest} = { error => "You cannot have more plants than available spaces. Decrease plants per subplot or increase rows or columns." };
+            $c->stash->{rest} = { error => "Não é possível ter mais plantas do que espaços disponíveis. Diminua as plantas por subparcela ou aumente as linhas ou colunas." };
             return;
         }
 
@@ -3723,7 +3724,7 @@ sub create_subplot_entries : Chained('trial') PathPart('create_subplot_entries')
     }
 
     if (!$subplots_per_plot || $subplots_per_plot > 500) {
-        $c->stash->{rest} = { error => "Subplots per plot number is required and must be smaller than 500." };
+        $c->stash->{rest} = { error => "O número de subparcelas por parcela é obrigatório e deve ser menor que 500." };
         return;
     }
 
@@ -3771,7 +3772,7 @@ sub create_subplot_entries : Chained('trial') PathPart('create_subplot_entries')
         $c->stash->{rest} = {success => 1};
         return;
     } else {
-        $c->stash->{rest} = { error => "Error creating subplot entries in controller." };
+        $c->stash->{rest} = { error => "Erro ao criar os registros de subparcelas no controlador." };
     	return;
     }
 
@@ -3797,17 +3798,17 @@ sub create_tissue_samples : Chained('trial') PathPart('create_tissue_samples') A
     }
 
     if (!$c->stash->{trial}->has_plant_entries){
-        $c->stash->{rest} = { error => "Trial must have plant entries before you can add tissue samples entries. Plant entries are added from the trial detail page." };
+        $c->stash->{rest} = { error => "O ensaio precisa ter registros de plantas antes que você possa adicionar registros de amostras de tecido. Os registros de plantas são adicionados na página de detalhes do ensaio." };
         $c->detach;
     }
 
     if (!$tissue_names || scalar(@$tissue_names) < 1){
-        $c->stash->{rest} = { error => "You must provide tissue name(s) for your samples" };
+        $c->stash->{rest} = { error => "Informe o(s) nome(s) do(s) tecido(s) das suas amostras" };
         $c->detach;
     }
 
     if (!$tissues_per_plant || $tissues_per_plant > 50) {
-        $c->stash->{rest} = { error => "Tissues per plant is required and must be smaller than 50." };
+        $c->stash->{rest} = { error => "O número de tecidos por planta é obrigatório e deve ser menor que 50." };
         $c->detach;
     }
 
@@ -3854,7 +3855,7 @@ sub create_tissue_samples : Chained('trial') PathPart('create_tissue_samples') A
         $c->stash->{rest} = {success => 1};
         $c->detach;;
     } else {
-        $c->stash->{rest} = { error => "Error creating tissues samples in controller." };
+        $c->stash->{rest} = { error => "Erro ao criar as amostras de tecido no controlador." };
         $c->detach;;
     }
 
@@ -3890,20 +3891,20 @@ sub edit_management_factor_details : Chained('trial') PathPart('edit_management_
     }
 
     if (!$management_factor_schedule) {
-        $c->stash->{rest} = { error => 'No schedule given!' };
+        $c->stash->{rest} = { error => 'Nenhum cronograma informado!' };
         return;
     }
 
     if (!$management_factor_description) {
-        $c->stash->{rest} = { error => 'No description given!' };
+        $c->stash->{rest} = { error => 'Nenhuma descrição informada!' };
         return;
     }
     if (!$management_factor_type) {
-        $c->stash->{rest} = { error => 'No type given!' };
+        $c->stash->{rest} = { error => 'Nenhum tipo informado!' };
         return;
     }
     if (!$action) {
-        $c->stash->{rest} = { error => 'Server error! Somebody tried sending bad data.' };
+        $c->stash->{rest} = { error => 'Erro no servidor! Alguém tentou enviar dados inválidos.' };
         return;
     }
 
@@ -3926,7 +3927,7 @@ sub edit_management_factor_details : Chained('trial') PathPart('edit_management_
         }
     };
     if ($@) {
-        $c->stash->{rest} = {error => "Error editing management regime. $@"};
+        $c->stash->{rest} = {error => "Erro ao editar o regime de manejo. $@"};
     } else {
         $c->stash->{rest} = { success => 1 };
     }
@@ -3938,7 +3939,7 @@ sub privileges_denied {
 
     my $trial_id = $c->stash->{trial_id};
 
-    if (! $c->user) { return "Login required for modifying trial."; }
+    if (! $c->user) { return "É necessário estar conectado para modificar o ensaio."; }
     my $user_id = $c->user->get_object->get_sp_person_id();
 
     if ($c->user->check_roles('curator')) {
@@ -3950,7 +3951,7 @@ sub privileges_denied {
     if ( ($c->user->check_roles('submitter')) && ( $c->user->check_roles($breeding_programs->[0]->[1]))) {
 	return 0;
     }
-    return "You have insufficient privileges to modify or delete this trial.";
+    return "Você não tem privilégios suficientes para modificar ou excluir este ensaio.";
 }
 
 # loading field coordinates
@@ -3967,7 +3968,7 @@ sub upload_trial_coordinates : Path('/ajax/breeders/trial/coordsupload') Args(0)
         my $dbh = $c->dbc->dbh;
         my @user_info = CXGN::Login->new($dbh)->query_from_cookie($session_id);
         if (!$user_info[0]){
-            $c->stash->{rest} = {error=>'You must be logged in to upload plot coordinates (row and column number)!'};
+            $c->stash->{rest} = {error=>'Você precisa estar conectado para enviar as coordenadas das parcelas (número de linha e coluna)!'};
             $c->detach();
         }
         $user_id = $user_info[0];
@@ -3976,7 +3977,7 @@ sub upload_trial_coordinates : Path('/ajax/breeders/trial/coordsupload') Args(0)
         $user_name = $p->get_username;
     } else{
         if (!$c->user){
-            $c->stash->{rest} = {error=>'You must be logged in to upload plot coordinates (row and column number)!'};
+            $c->stash->{rest} = {error=>'Você precisa estar conectado para enviar as coordenadas das parcelas (número de linha e coluna)!'};
             $c->detach();
         }
         $user_id = $c->user()->get_object()->get_sp_person_id();
@@ -3985,7 +3986,7 @@ sub upload_trial_coordinates : Path('/ajax/breeders/trial/coordsupload') Args(0)
     }
 
     if ($user_role ne 'curator' && $user_role ne 'submitter') {
-        $c->stash->{rest} = {error =>  "You have insufficient privileges to add coordinates (row and column numbers)." };
+        $c->stash->{rest} = {error =>  "Você não tem privilégios suficientes para adicionar coordenadas (números de linha e coluna)." };
         $c->detach();
     }
 
@@ -4013,7 +4014,7 @@ sub upload_trial_coordinates : Path('/ajax/breeders/trial/coordsupload') Args(0)
     my $archived_filename_with_path = $uploader->archive();
 
     if (!$archived_filename_with_path) {
-    	$c->stash->{rest} = {error => "Could not save file $upload_original_name in archive",};
+    	$c->stash->{rest} = {error => "Não foi possível salvar o arquivo $upload_original_name no arquivo permanente",};
     	return;
     }
 
@@ -4055,7 +4056,7 @@ sub upload_trial_coordinates : Path('/ajax/breeders/trial/coordsupload') Args(0)
         my $return_error = '';
 
         if (! $parser->has_parse_errors() ){
-            $return_error = "Parsing failed, but we could not get parsing errors...";
+            $return_error = "O processamento falhou, mas não foi possível obter os erros de processamento...";
         }
         else {
             my $parse_errors = $parser->get_parse_errors();
@@ -4088,7 +4089,7 @@ sub upload_trial_coordinates : Path('/ajax/breeders/trial/coordsupload') Args(0)
         }
     };
     if ($@) {
-        $c->stash->{rest} = {error => "The upload was successful, but an error occurred trying to save the row and column data: $@\n"};
+        $c->stash->{rest} = {error => "O envio foi bem-sucedido, mas ocorreu um erro ao tentar salvar os dados de linha e coluna: $@\n"};
         $job->additional_args({
             error => $@
         });
@@ -4367,11 +4368,11 @@ sub delete_all_crosses_in_crossingtrial : Chained('trial') PathPart('delete_all_
     my $trial_id = $c->stash->{trial_id};
 
     if (!$c->user()){
-        $c->stash->{rest} = { error => "You must be logged in to delete crosses" };
+        $c->stash->{rest} = { error => "Você precisa estar conectado para excluir cruzamentos" };
         $c->detach();
     }
     if (!$c->user()->check_roles("curator")) {
-        $c->stash->{rest} = { error => "You do not have the correct role to delete crosses. Please contact us." };
+        $c->stash->{rest} = { error => "Você não tem a função adequada para excluir cruzamentos. Entre em contato conosco." };
         $c->detach();
     }
 
@@ -4386,7 +4387,7 @@ sub delete_all_crosses_in_crossingtrial : Chained('trial') PathPart('delete_all_
         print STDERR "ERROR = $error\n";
 
         if ($error) {
-            $c->stash->{rest} = { error => "An error occurred attempting to delete a cross. ($@)" };
+            $c->stash->{rest} = { error => "Ocorreu um erro ao tentar excluir um cruzamento. ($@)" };
             return;
         }
     }
@@ -4592,7 +4593,7 @@ sub get_suppress_plot_phenotype : Chained('trial') PathPart('suppress_phenotype'
   my $timestamp = $time->ymd()."_".$time->hms();
 
   if ($self->privileges_denied($c)) {
-    $c->stash->{rest} = { error => "You have insufficient access privileges to suppress this phenotype." };
+    $c->stash->{rest} = { error => "Você não tem privilégios de acesso suficientes para suprimir este fenótipo." };
     return;
   }
 
@@ -4616,12 +4617,12 @@ sub delete_single_assayed_trait : Chained('trial') PathPart('delete_single_trait
 
     if (!$c->user()) {
         print STDERR "User not logged in... not deleting trait.\n";
-        $c->stash->{rest} = {error => "You need to be logged in to delete trait." };
+        $c->stash->{rest} = {error => "Você precisa estar conectado para excluir a característica." };
         return;
     }
 
     if ($self->privileges_denied($c)) {
-        $c->stash->{rest} = { error => "You have insufficient access privileges to delete assayed trait for this trial." };
+        $c->stash->{rest} = { error => "Você não tem privilégios de acesso suficientes para excluir a característica avaliada deste ensaio." };
         return;
     }
 
@@ -4711,7 +4712,7 @@ sub retrieve_plot_image : Chained('trial') PathPart('retrieve_plot_images') Args
   if (@more_is) {    #html_optional_show if there are more than 3 figures
     $image_html .= html_optional_show(
   				    "Images",
-  				    "<b>See $more more images...</b>",
+  				    "<b>Ver mais $more imagens...</b>",
   				    qq| $m_image_html |,
   				    0, #< do not show by default
   				    'abstract_optional_show', #< don't use the default button-like style
@@ -4753,7 +4754,7 @@ sub delete_genotyping_plate_from_field_trial_linkage : Chained('trial') PathPart
     my $schema = $c->dbic_schema("Bio::Chado::Schema", undef, $sp_person_id);
 
     if (!$c->user) {
-        $c->stash->{rest} = { error => "You must be logged in to remove genotyping plate and field trial linkage!" };
+        $c->stash->{rest} = { error => "Você precisa estar conectado para remover o vínculo entre a placa de genotipagem e o ensaio de campo!" };
         $c->detach();
     }
 
@@ -4845,7 +4846,7 @@ sub trial_correlate_traits : Chained('trial') PathPart('correlate_traits') Args(
         my $dbh = $c->dbc->dbh;
         my @user_info = CXGN::Login->new($dbh)->query_from_cookie($session_id);
         if (!$user_info[0]){
-            $c->stash->{rest} = {error=>'You must be logged in to do this analysis!'};
+            $c->stash->{rest} = {error=>'Você precisa estar conectado para fazer esta análise!'};
             $c->detach();
         }
         $user_id = $user_info[0];
@@ -4854,7 +4855,7 @@ sub trial_correlate_traits : Chained('trial') PathPart('correlate_traits') Args(
         $user_name = $p->get_username;
     } else{
         if (!$c->user){
-            $c->stash->{rest} = {error=>'You must be logged in to do this analysis!'};
+            $c->stash->{rest} = {error=>'Você precisa estar conectado para fazer esta análise!'};
             $c->detach();
         }
         $user_id = $c->user()->get_object()->get_sp_person_id();
@@ -4879,7 +4880,7 @@ sub trial_correlate_traits : Chained('trial') PathPart('correlate_traits') Args(
     my @sorted_trait_names = sort keys %$unique_traits;
 
     if (scalar(@$data) == 0) {
-        $c->stash->{rest} = { error => "There are no phenotypes for the trials and traits you have selected!"};
+        $c->stash->{rest} = { error => "Não há fenótipos para os ensaios e características selecionados!"};
         return;
     }
 
@@ -4982,7 +4983,7 @@ sub trial_plot_time_series_accessions : Chained('trial') PathPart('plot_time_ser
         my $dbh = $c->dbc->dbh;
         my @user_info = CXGN::Login->new($dbh)->query_from_cookie($session_id);
         if (!$user_info[0]){
-            $c->stash->{rest} = {error=>'You must be logged in to do this analysis!'};
+            $c->stash->{rest} = {error=>'Você precisa estar conectado para fazer esta análise!'};
             $c->detach();
         }
         $user_id = $user_info[0];
@@ -4991,7 +4992,7 @@ sub trial_plot_time_series_accessions : Chained('trial') PathPart('plot_time_ser
         $user_name = $p->get_username;
     } else{
         if (!$c->user){
-            $c->stash->{rest} = {error=>'You must be logged in to do this analysis!'};
+            $c->stash->{rest} = {error=>'Você precisa estar conectado para fazer esta análise!'};
             $c->detach();
         }
         $user_id = $c->user()->get_object()->get_sp_person_id();
@@ -5017,7 +5018,7 @@ sub trial_plot_time_series_accessions : Chained('trial') PathPart('plot_time_ser
     my @sorted_trait_names = sort keys %$unique_traits;
 
     if (scalar(@$data) == 0) {
-        $c->stash->{rest} = { error => "There are no phenotypes for the trials and traits you have selected!"};
+        $c->stash->{rest} = { error => "Não há fenótipos para os ensaios e características selecionados!"};
         return;
     }
 
@@ -5186,7 +5187,7 @@ sub trial_accessions_rank : Chained('trial') PathPart('accessions_rank') Args(0)
         my $dbh = $c->dbc->dbh;
         my @user_info = CXGN::Login->new($dbh)->query_from_cookie($session_id);
         if (!$user_info[0]){
-            $c->stash->{rest} = {error=>'You must be logged in to do this analysis!'};
+            $c->stash->{rest} = {error=>'Você precisa estar conectado para fazer esta análise!'};
             $c->detach();
         }
         $user_id = $user_info[0];
@@ -5195,7 +5196,7 @@ sub trial_accessions_rank : Chained('trial') PathPart('accessions_rank') Args(0)
         $user_name = $p->get_username;
     } else{
         if (!$c->user){
-            $c->stash->{rest} = {error=>'You must be logged in to do this analysis!'};
+            $c->stash->{rest} = {error=>'Você precisa estar conectado para fazer esta análise!'};
             $c->detach();
         }
         $user_id = $c->user()->get_object()->get_sp_person_id();
@@ -5221,7 +5222,7 @@ sub trial_accessions_rank : Chained('trial') PathPart('accessions_rank') Args(0)
     my @sorted_trait_names = sort keys %$unique_traits;
 
     if (scalar(@$data) == 0) {
-        $c->stash->{rest} = { error => "There are no phenotypes for the trials and traits you have selected!"};
+        $c->stash->{rest} = { error => "Não há fenótipos para os ensaios e características selecionados!"};
         return;
     }
 
@@ -5286,7 +5287,7 @@ sub trial_genotype_comparison : Chained('trial') PathPart('genotype_comparison')
         my $dbh = $c->dbc->dbh;
         my @user_info = CXGN::Login->new($dbh)->query_from_cookie($session_id);
         if (!$user_info[0]){
-            $c->stash->{rest} = {error=>'You must be logged in to do this analysis!'};
+            $c->stash->{rest} = {error=>'Você precisa estar conectado para fazer esta análise!'};
             $c->detach();
         }
         $user_id = $user_info[0];
@@ -5295,7 +5296,7 @@ sub trial_genotype_comparison : Chained('trial') PathPart('genotype_comparison')
         $user_name = $p->get_username;
     } else{
         if (!$c->user){
-            $c->stash->{rest} = {error=>'You must be logged in to do this analysis!'};
+            $c->stash->{rest} = {error=>'Você precisa estar conectado para fazer esta análise!'};
             $c->detach();
         }
         $user_id = $c->user()->get_object()->get_sp_person_id();
@@ -5322,7 +5323,7 @@ sub trial_genotype_comparison : Chained('trial') PathPart('genotype_comparison')
     my @sorted_trait_names = sort keys %$unique_traits;
 
     if (scalar(@$data) == 0) {
-        $c->stash->{rest} = { error => "There are no phenotypes for the trials and traits you have selected!"};
+        $c->stash->{rest} = { error => "Não há fenótipos para os ensaios e características selecionados!"};
         return;
     }
 
@@ -5524,7 +5525,7 @@ sub trial_calculate_numerical_derivative : Chained('trial') PathPart('calculate_
         my $dbh = $c->dbc->dbh;
         my @user_info = CXGN::Login->new($dbh)->query_from_cookie($session_id);
         if (!$user_info[0]){
-            $c->stash->{rest} = {error=>'You must be logged in to do this analysis!'};
+            $c->stash->{rest} = {error=>'Você precisa estar conectado para fazer esta análise!'};
             $c->detach();
         }
         $user_id = $user_info[0];
@@ -5533,7 +5534,7 @@ sub trial_calculate_numerical_derivative : Chained('trial') PathPart('calculate_
         $user_name = $p->get_username;
     } else{
         if (!$c->user){
-            $c->stash->{rest} = {error=>'You must be logged in to do this analysis!'};
+            $c->stash->{rest} = {error=>'Você precisa estar conectado para fazer esta análise!'};
             $c->detach();
         }
         $user_id = $c->user()->get_object()->get_sp_person_id();
@@ -5560,7 +5561,7 @@ sub trial_calculate_numerical_derivative : Chained('trial') PathPart('calculate_
     my @sorted_trait_names = sort keys %$unique_traits;
 
     if (scalar(@$data) == 0) {
-        $c->stash->{rest} = { error => "There are no phenotypes for the trials and traits you have selected!"};
+        $c->stash->{rest} = { error => "Não há fenótipos para os ensaios e características selecionados!"};
         return;
     }
 
@@ -5740,7 +5741,7 @@ sub trial_calculate_numerical_derivative : Chained('trial') PathPart('calculate_
     # print STDERR Dumper \%derivative_results;
 
     if (scalar(keys %derivative_results) != scalar(@sorted_plot_names)) {
-        $c->stash->{rest} = { error => "Not all plots have rows and columns defined! Please make sure row and columns are saved for this field trial!"};
+        $c->stash->{rest} = { error => "Nem todas as parcelas têm linhas e colunas definidas! Certifique-se de que as linhas e colunas estejam salvas para este ensaio de campo!"};
         return;
     }
 
@@ -5897,7 +5898,7 @@ sub upload_entry_number_template_POST : Args(0) {
 
     ## Make sure user is logged in
     if ( !$c->user() ) {
-        push(@errors, "You need to be logged in to upload entry numbers.");
+        push(@errors, "Você precisa estar conectado para enviar números de entrada.");
         $c->stash->{rest} = { filename => $upload_original_name, error => \@errors };
         return;
     }
@@ -5919,7 +5920,7 @@ sub upload_entry_number_template_POST : Args(0) {
     });
     my $archived_filename_with_path = $uploader->archive();
     if ( !$archived_filename_with_path ) {
-        push(@errors, "Could not save file $upload_original_name in archive");
+        push(@errors, "Não foi possível salvar o arquivo $upload_original_name no arquivo permanente");
         $c->stash->{rest} = { filename => $upload_original_name, error => \@errors };
         return;
     }
@@ -5937,7 +5938,7 @@ sub upload_entry_number_template_POST : Args(0) {
     ## Return with warnings and errors
     if ( $parse_errors || (!$ignore_warnings && $parse_warnings) || !$parsed_data ) {
         if ( !$parse_errors && !$parse_warnings ) {
-            push(@errors, "Data could not be parsed");
+            push(@errors, "Não foi possível processar os dados");
             $c->stash->{rest} = { filename => $upload_original_name, error => \@errors };
             return;
         }
@@ -5972,17 +5973,17 @@ sub delete_entry_numbers :Path('/ajax/breeders/trial_entry_numbers/delete') Args
     my $trial_id = $c->req->param("trial_id");
 
     if (! $trial_id) {
-	$c->stash->{rest} = { error_string => 'A trial id must be provided to delete the entry numbers.' };
+	$c->stash->{rest} = { error_string => 'É preciso informar o id do ensaio para excluir os números de entrada.' };
 	return;
     }
 
     if (!$c->user()) {
-        $c->stash->{rest} = {error_string => "You must be logged in to update trial status." };
+        $c->stash->{rest} = {error_string => "Você precisa estar conectado para atualizar o status do ensaio." };
         return;
     }
 
     if (!$c->user()->check_roles("curator")) {
-	$c->stash->{rest} = {error_string => "Your account must have the curator role to delete entry numbers" };
+	$c->stash->{rest} = {error_string => "Sua conta precisa ter a função de curador para excluir números de entrada" };
 	return;
     }
 
@@ -5998,7 +5999,7 @@ sub delete_entry_numbers :Path('/ajax/breeders/trial_entry_numbers/delete') Args
     };
 
     if ($@) {
-	$c->stash->{rest} = { error_string => "The following error occurred when trying to delete an entry map: $@\n" };
+	$c->stash->{rest} = { error_string => "Ocorreu o seguinte erro ao tentar excluir um mapa de entradas: $@\n" };
 	return;
     }
     else {
@@ -6016,7 +6017,7 @@ sub delete_trial_plants_POST : Args(0) {
     my @delete_plants = split("\t", $plants_liststr);
 
     if (!$c->user() || !$c->user->check_roles("curator")) {
-        $c->stash->{rest} = {error => "Only curators can delete plants." };
+        $c->stash->{rest} = {error => "Somente curadores podem excluir plantas." };
         return;
     }
 
@@ -6046,7 +6047,7 @@ sub delete_trial_plants_POST : Args(0) {
 
     if (scalar(@mismatch_plants) > 0) {
         print STDERR "Plants not found in trial on plant delete...\n";
-        $c->stash->{rest} = {error => "The following plants are not found in this trial: ".join(", ", @mismatch_plants)};
+        $c->stash->{rest} = {error => "As seguintes plantas não foram encontradas neste ensaio: ".join(", ", @mismatch_plants)};
         return;
     }
 
@@ -6063,7 +6064,7 @@ sub delete_trial_plants_POST : Args(0) {
     };
     if ($@) {
         print STDERR $@, "\n";
-        $c->stash->{rest} = {error => "An error occurred deleting stocks: $@"};
+        $c->stash->{rest} = {error => "Ocorreu um erro ao excluir os materiais: $@"};
         return;
     }
 
@@ -6087,7 +6088,7 @@ sub delete_trial_subplots_POST : Args(0) {
     my @delete_subplots = split("\t", $subplots_liststr);
 
     if (!$c->user() || !$c->user->check_roles("curator")) {
-        $c->stash->{rest} = {error => "Only curators can delete subplots." };
+        $c->stash->{rest} = {error => "Somente curadores podem excluir subparcelas." };
         return;
     }
 
@@ -6116,7 +6117,7 @@ sub delete_trial_subplots_POST : Args(0) {
     }
 
     if (scalar(@mismatch_subplots) > 0) {
-        $c->stash->{rest} = {error => "The following subplots are not found in this trial: ".join(", ", @mismatch_subplots)};
+        $c->stash->{rest} = {error => "As seguintes subparcelas não foram encontradas neste ensaio: ".join(", ", @mismatch_subplots)};
         return;
     }
 
@@ -6133,7 +6134,7 @@ sub delete_trial_subplots_POST : Args(0) {
     };
     if ($@) {
         print STDERR $@, "\n";
-        $c->stash->{rest} = {error => "An error occurred deleting stocks: $@"};
+        $c->stash->{rest} = {error => "Ocorreu um erro ao excluir os materiais: $@"};
         return;
     };
 
@@ -6159,7 +6160,7 @@ sub update_trial_status_POST : Args(0) {
     my $activity_date = $c->req->param("activity_date");
 
     if (!$c->user()) {
-        $c->stash->{rest} = {error_string => "You must be logged in to update trial status." };
+        $c->stash->{rest} = {error_string => "Você precisa estar conectado para atualizar o status do ensaio." };
         return;
     }
     my $user_id = $c->user()->get_object()->get_sp_person_id();
@@ -6217,7 +6218,7 @@ sub update_trial_design_type_POST : Args(0) {
     my $trial_design_type = $c->req->param("trial_design_type");
 
     if (!$c->user()) {
-        $c->stash->{rest} = {error_string => "You must be logged in to update trial status." };
+        $c->stash->{rest} = {error_string => "Você precisa estar conectado para atualizar o status do ensaio." };
         return;
     }
     my $user_id;
@@ -6228,7 +6229,7 @@ sub update_trial_design_type_POST : Args(0) {
     my $schema = $c->dbic_schema('Bio::Chado::Schema', 'sgn_chado', $user_id);
 
     if (!$curator == 1) {
-        $c->stash->{rest} = {error_string => "You must be curator to change experimental design type." };
+        $c->stash->{rest} = {error_string => "Você precisa ser curador para alterar o tipo de delineamento experimental." };
         return;
     }
 
@@ -6282,19 +6283,19 @@ sub get_trial_plot_order : Path('/ajax/breeders/trial_plot_order') : Args(0) {
 
     # Check parameters
     if ( scalar(@trial_ids) eq 0 ) {
-        $c->stash->{rest} = { error => "No trial_ids provided!" };
+        $c->stash->{rest} = { error => "Nenhum trial_ids informado!" };
         return;
     }
     if ( $type ne 'planting' && $type ne 'collection' && $type ne 'harvest' && $type ne 'harvestmaster' ) {
-        $c->stash->{rest} = { error => "Unrecognized type!" };
+        $c->stash->{rest} = { error => "Tipo não reconhecido!" };
         return;
     }
     if ( ( $order !~ /by_col/ && $order !~ /by_row/ ) || ( $order !~ /serpentine/ && $order !~ /zigzag/ ) ) {
-        $c->stash->{rest} = { error => "Unrecognized order!" };
+        $c->stash->{rest} = { error => "Ordem não reconhecida!" };
         return;
     }
     if ( ( $start !~ /bottom/ && $start !~ /top/ ) || ( $start !~ /left/ && $start !~ /right/ ) ) {
-        $c->stash->{rest} = { error => "Unrecognized start!" };
+        $c->stash->{rest} = { error => "Início não reconhecido!" };
         return;
     }
     my %borders = (
@@ -6309,7 +6310,7 @@ sub get_trial_plot_order : Path('/ajax/breeders/trial_plot_order') : Args(0) {
 
     # Return error message, if set
     if ( !defined $results->{error} && !defined $results->{plots} ) {
-        $results->{error} = "An unknown error occurred";
+        $results->{error} = "Ocorreu um erro desconhecido";
     }
     if ( defined $results->{error} ) {
         $c->stash->{rest} = { error => $results->{error} };
@@ -6668,7 +6669,7 @@ sub get_linked_field_trials : Chained('trial') PathPart('linked_field_trials') A
         if ( $l->[0] eq $trial_location_id ) {
             my $location_type = $l->[8];
             if ( $location_type ne "Field" ) {
-                $c->stash->{rest} = { error => "The location for this trial is a \"$location_type\" location.  In order to group trials together: they must share the same year, the same location, and the location type must be \"Field\"" };
+                $c->stash->{rest} = { error => "O local deste ensaio é do tipo \"$location_type\".  Para agrupar ensaios, eles devem ter o mesmo ano, o mesmo local, e o tipo de local deve ser \"Field\"" };
                 return;
             }
         }
@@ -6691,7 +6692,7 @@ sub get_linked_field_trials : Chained('trial') PathPart('linked_field_trials') A
 
     # No matches found...
     if ( scalar(@rtn) == 0 ) {
-        $c->stash->{rest} = { error => "No linked Trials found.  In order to group trials together: they must share the same year, the same location, and the location type must be \"Field\"" };
+        $c->stash->{rest} = { error => "Nenhum ensaio vinculado encontrado.  Para agrupar ensaios, eles devem ter o mesmo ano, o mesmo local, e o tipo de local deve ser \"Field\"" };
         return;
     }
 
@@ -6759,7 +6760,7 @@ sub delete_soil_data_POST : Args(0) {
         my $dbh = $c->dbc->dbh;
         my @user_info = CXGN::Login->new($dbh)->query_from_cookie($session_id);
         if (!$user_info[0]){
-            $c->stash->{rest} = {error=>'You must be logged in to delete soil data!'};
+            $c->stash->{rest} = {error=>'Você precisa estar conectado para excluir dados de solo!'};
             $c->detach();
         }
         $user_id = $user_info[0];
@@ -6768,7 +6769,7 @@ sub delete_soil_data_POST : Args(0) {
         $user_name = $p->get_username;
     } else{
         if (!$c->user){
-            $c->stash->{rest} = {error=>'You must be logged in to delete soil data!'};
+            $c->stash->{rest} = {error=>'Você precisa estar conectado para excluir dados de solo!'};
             $c->detach();
         }
         $user_id = $c->user()->get_object()->get_sp_person_id();
@@ -6779,7 +6780,7 @@ sub delete_soil_data_POST : Args(0) {
     my $schema = $c->dbic_schema('Bio::Chado::Schema', 'sgn_chado', $user_id);
 
     if ($user_role ne 'curator') {
-        $c->stash->{rest} = {error=>'Only a curator can delete soil data'};
+        $c->stash->{rest} = {error=>'Somente um curador pode excluir dados de solo'};
         $c->detach();
     }
 
@@ -6789,7 +6790,7 @@ sub delete_soil_data_POST : Args(0) {
     print STDERR "ERROR = $error\n";
 
     if ($error) {
-	    $c->stash->{rest} = { error => "An error occurred attempting to delete soil data. ($@)"};
+	    $c->stash->{rest} = { error => "Ocorreu um erro ao tentar excluir os dados de solo. ($@)"};
 	    return;
     }
 
@@ -6814,7 +6815,7 @@ sub delete_all_genotyping_plates_in_project : Chained('trial') PathPart('delete_
     }
 
     if (!$c->user()->check_roles("curator")) {
-        $c->stash->{rest} = { error => "You do not have the correct role to delete genotyping plates. Please contact us." };
+        $c->stash->{rest} = { error => "Você não tem a função adequada para excluir placas de genotipagem. Entre em contato conosco." };
         $c->detach();
     }
 
@@ -6827,7 +6828,7 @@ sub delete_all_genotyping_plates_in_project : Chained('trial') PathPart('delete_
     foreach  my $plate(@$data){
         my $number_of_samples_with_data = $plate->{number_of_samples_with_data};
         if ($number_of_samples_with_data > 0) {
-            $c->stash->{rest} = { error => 'Cannot delete! One or more plates have genotyping data' };
+            $c->stash->{rest} = { error => 'Não é possível excluir! Uma ou mais placas possuem dados de genotipagem' };
             return;
         } else {
             my $plate_id = $plate->{plate_id};
@@ -6889,7 +6890,7 @@ sub trial_collect_date_range :Chained('trial') :PathPart('collect_date_range') A
     my ($start_date, $end_date, $project_id) = $h->fetchrow_array();
 
     if (! $project_id) {
-	    $c->stash->{rest} = { error => "Trial with id $trial_id does not exist" };
+	    $c->stash->{rest} = { error => "O ensaio com id $trial_id não existe" };
 	    return;
     }
 
@@ -6992,7 +6993,7 @@ sub add_additional_stocks_for_greenhouse_POST : Args(0) {
     map { $has_roles{$_} = 1; } @user_roles;
 
     if (! ( (exists($has_roles{$program_name}) && exists($has_roles{submitter})) || exists($has_roles{curator}))) {
-        $c->stash->{rest} = { error => "You need to be either a curator, or a submitter associated with breeding program $program_name to add additional stocks in the greenhouse trial." };
+        $c->stash->{rest} = { error => "Você precisa ser curador ou submissor associado ao programa de melhoramento $program_name para adicionar materiais adicionais ao ensaio em casa de vegetação." };
         return;
     }
 
@@ -7034,7 +7035,7 @@ sub add_additional_stocks_for_greenhouse_POST : Args(0) {
             $result = $trial->add_additional_stocks_for_greenhouse($stock_list, $number_of_plants_array, $user_id);
         };
         if ($@) {
-            $c->stash->{rest} = { error => "An error occurred while adding additional stocks: $@" };
+            $c->stash->{rest} = { error => "Ocorreu um erro ao adicionar materiais adicionais: $@" };
             return;
         }
         if ($result->{error}) {
@@ -7046,7 +7047,7 @@ sub add_additional_stocks_for_greenhouse_POST : Args(0) {
             $result = $trial->add_additional_plants_for_greenhouse($stock_list, $number_of_plants_array, $user_id, $phenotype_store_config);
         };
         if ($@) {
-            $c->stash->{rest} = { error => "An error occurred while adding additional plants: $@" };
+            $c->stash->{rest} = { error => "Ocorreu um erro ao adicionar plantas adicionais: $@" };
             return;
         }
         if ($result->{error}) {

@@ -16,13 +16,13 @@ $page_links => ''
 <%perl>
 
 use CXGN::Page::FormattingHelpers qw | tooltipped_text |;
-my $marker_tip = tooltipped_text("Tip", "You can combine trials sharing the same color.");
+my $marker_tip = tooltipped_text("Dica", "Você pode combinar ensaios que compartilham a mesma cor.");
 
 </%perl>
 
 
 <& /page/columnar_table.mas,
-     headings    => ['', 'Projects', 'Description', 'Location', 'Year', $marker_tip ],
+     headings    => ['', 'Projetos', 'Descrição', 'Local', 'Ano', $marker_tip ],
      data        => $result,
     __alt_freq   => 2,
     __alt_width  => 1,

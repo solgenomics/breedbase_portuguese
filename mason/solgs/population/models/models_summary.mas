@@ -47,7 +47,7 @@ $model_data
     </td>
     <td>
       <& /page/columnar_table.mas,
-         headings    => ['Trait', 'Model accuracy', 'Additive variance',  'SNP heritability'],
+         headings    => ['Característica', 'Acurácia do modelo', 'Variância aditiva',  'Herdabilidade SNP'],
          data        => $model->[2],
         __alt_freq   => 1,
         __align      => "l",

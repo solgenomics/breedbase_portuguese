@@ -1,5 +1,6 @@
 package CXGN::Phenotypes::ParseUpload::Plugin::PhenotypeSpreadsheetSimple;
 
+use utf8;
 # Validate Returns %validate_result = (
 #   error => 'error message'
 #)
@@ -76,14 +77,14 @@ sub validate {
     my ( $row_min, $row_max ) = $worksheet->row_range();
     my ( $col_min, $col_max ) = $worksheet->col_range();
     if (($col_max - $col_min)  < 1 || ($row_max - $row_min) < 1 ) { #must have header with at least observationunit_name and one trait, as well as one row of phenotypes
-        $parse_result{'error'} = "Spreadsheet is missing observationunit_name and at least one trait in header.";
+        $parse_result{'error'} = "A planilha não contém observationunit_name e pelo menos uma característica no cabeçalho.";
         print STDERR "Spreadsheet is missing header\n";
         return \%parse_result;
     }
 
     # check if the first column is one of the supported variations of observationunit_name
     if ( !exists($oun_columns_map{$worksheet->get_cell(0,0)->value()}) ) {
-        $parse_result{'error'} = "First column must be one of: '" . join("', '", @oun_columns) . "'. It may help to recreate your spreadsheet from the website.";
+        $parse_result{'error'} = "A primeira coluna deve ser uma das seguintes: '" . join("', '", @oun_columns) . "'. Pode ajudar recriar sua planilha a partir do site.";
         print STDERR "Columns not correct\n";
         return \%parse_result;
     }
@@ -101,7 +102,7 @@ sub validate {
                 if ($timestamp_included) {
                     ($value, $timestamp) = split /,/, $value_string;
                     if (!$timestamp =~ m/(\d{4})-(\d{2})-(\d{2}) (\d{2}):(\d{2}):(\d{2})(\S)(\d{4})/) {
-                        $parse_result{'error'} = "Timestamp needs to be of form YYYY-MM-DD HH:MM:SS-0000 or YYYY-MM-DD HH:MM:SS+0000";
+                        $parse_result{'error'} = "A data e hora deve estar no formato YYYY-MM-DD HH:MM:SS-0000 ou YYYY-MM-DD HH:MM:SS+0000";
                         print STDERR "value: $timestamp\n";
                         return \%parse_result;
                     }

@@ -1,5 +1,6 @@
 package CXGN::Stock::ParseUpload::Plugin::TransgenicHistoricalDataGeneric;
 
+use utf8;
 use Moose::Role;
 use CXGN::File::Parse;
 use SGN::Model::Cvterm;
@@ -44,7 +45,7 @@ sub _validate_with_plugin {
 
     if ( $additional_columns && scalar(@$additional_columns) > 0 ) {
         $errors{'error_messages'} = [
-            "The following columns are not recognized: " . join(', ', @$additional_columns) . ". Please check the spreadsheet format for the allowed columns."
+            "As seguintes colunas não são reconhecidas: " . join(', ', @$additional_columns) . ". Verifique no formato da planilha quais colunas são permitidas."
         ];
         $self->_set_parse_errors(\%errors);
         return;
@@ -57,7 +58,7 @@ sub _validate_with_plugin {
     my $vector_construct_validator = CXGN::List::Validate->new();
     my @vector_constructs_missing = @{$vector_construct_validator->validate($schema,'vector_constructs', $seen_vector_constructs)->{'missing'}};
     if (scalar(@vector_constructs_missing) > 0) {
-        push @error_messages, "The following vector constructs are not in the database, or are not in the database as uniquenames: ".join(',',@vector_constructs_missing);
+        push @error_messages, "As seguintes construções vetoriais não estão no banco de dados, ou não estão no banco de dados como uniquenames: ".join(',',@vector_constructs_missing);
     }
 
     my $accession_type_id =  SGN::Model::Cvterm->get_cvterm_row($schema, 'accession', 'stock_type')->cvterm_id;
@@ -69,7 +70,7 @@ sub _validate_with_plugin {
             my $accession_validator = CXGN::List::Validate->new();
             my @accessions_missing = @{$accession_validator->validate($schema,'accessions_and_obsoleted_accessions', $seen_accession_names)->{'missing'}};
             if (scalar(@accessions_missing) > 0) {
-                push @error_messages, "The following accessions are not in the database, or are not in the database as uniquenames: ".join(',',@accessions_missing);
+                push @error_messages, "Os seguintes acessos não estão no banco de dados, ou não estão no banco de dados como uniquenames: ".join(',',@accessions_missing);
             }
 
             foreach my $row (@$parsed_data) {
@@ -94,15 +95,15 @@ sub _validate_with_plugin {
                         });
 
                         if (!$vector_construct_stock) {
-                            push @error_messages, "Error retrieving vector construct for previously stored accession: $accession_name!";
+                            push @error_messages, "Erro ao recuperar a construção vetorial do acesso já armazenado: $accession_name!";
                         } else {
                             my $stored_vector_construct = $vector_construct_stock->uniquename();
                             if ($stored_vector_construct ne $vector_construct) {
-                                push @error_messages, "Previously stored accession: $accession_name has vector construct: $stored_vector_construct, but the vector construct in the file is $vector_construct";
+                                push @error_messages, "O acesso já armazenado $accession_name tem a construção vetorial $stored_vector_construct, mas a construção vetorial no arquivo é $vector_construct";
                             }
                         }
                     } else {
-                        push @error_messages, "Previously stored accession: $accession_name is not linked to any vector construct in the database";
+                        push @error_messages, "O acesso já armazenado $accession_name não está vinculado a nenhuma construção vetorial no banco de dados";
                     }
                 }
             }
@@ -112,7 +113,7 @@ sub _validate_with_plugin {
             'uniquename' => { -in => $seen_accession_names }
         });
         while (my $r=$rs->next){
-            push @error_messages, "Accession name already exists in database: ".$r->uniquename;
+            push @error_messages, "O nome de acesso já existe no banco de dados: ".$r->uniquename;
         }
     }
 
@@ -122,7 +123,7 @@ sub _validate_with_plugin {
         my $accession_name = $row->{'accession_name'};
 
         if ($duplicated_accession_names{$accession_name}) {
-            push @error_messages, "Cell A$row_num: duplicate accession name: $accession_name. Accession name must be unique.";
+            push @error_messages, "Célula A$row_num: nome de acesso duplicado: $accession_name. O nome de acesso deve ser único.";
         } else {
             $duplicated_accession_names{$accession_name}++;
         }

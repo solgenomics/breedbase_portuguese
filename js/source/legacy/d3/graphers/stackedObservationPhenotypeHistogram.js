@@ -64,7 +64,7 @@
       return (!!o.value || o.value === 0 || o.value === -0.0) && (!isNaN(o.value));
     });
     if (observations.length<3){
-      histLoc.html("<center><h4>This trait is not numeric, or there are fewer than 3 values. Unable to draw a histogram.</h4></center>");
+      histLoc.html("<center><h4>Esta característica não é numérica ou tem menos de 3 valores. Não é possível desenhar o histograma.</h4></center>");
       return;
     } else {
       histLoc.selectAll(function(s){return this.children;})
@@ -75,7 +75,7 @@
     });
 
     if (allValues.every( (val, i, arr) => val === arr[0] )){
-      histLoc.html("<center><h4>All values are the same ("+allValues[0]+") for this trait. Unable to draw a histogram.</h4></center>");
+      histLoc.html("<center><h4>Todos os valores desta característica são iguais ("+allValues[0]+"). Não é possível desenhar o histograma.</h4></center>");
       return;
     }
 
@@ -192,7 +192,7 @@
       .attr("x",0 - (layout.height / 2))
       .attr("dy", "1em")
       .style("text-anchor", "middle")
-      .text("Frequency (Count)");
+      .text("Frequência (contagem)");
 
 
     var groups = hist.select(".series-groups").selectAll(".series")

@@ -1,5 +1,6 @@
 
 package CXGN::Trial::TrialDesign::Plugin::CRD;
+use utf8;
 
 use Moose::Role;
 
@@ -34,7 +35,7 @@ sub create_design {
         @stock_list = @{$self->get_stock_list()};
         $number_of_stocks = scalar(@stock_list);
     } else {
-        die "No stock list specified\n";
+        die "Nenhuma lista de materiais especificada\n";
     }
     if ($self->has_control_list_crbd()) {
       @control_list_crbd = @{$self->get_control_list_crbd()};
@@ -44,7 +45,7 @@ sub create_design {
     if ($self->has_number_of_reps()) {
         $number_of_reps = $self->get_number_of_reps();
     } else {
-        die "Number of reps not specified\n";
+        die "Número de repetições não especificado\n";
     }
 
     if ($self->has_fieldmap_col_number()) {

@@ -1,20 +1,20 @@
 <br />
-<& /page/page_title.mas, title=>"<i>Nicotiana benthamiana</i> Rascunho da sequência do genoma v1.0.1" &>
+<& /page/page_title.mas, title=>"Sequência preliminar do genoma de <i>Nicotiana benthamiana</i> v1.0.1" &>
 
 <p>
-  Uma nova sequência de rascunhos <i>Nicotiana benthamiana</i> O genoma foi liberado por pesquisadores da <a href="http://btiscience.org/" target="_blank">Instituto Boyce Thompson para Pesquisa de Plantas (BTI)</a>. É acessível através da ferramenta SGN BLAST e JBrowse, e pode ser baixado do site SGN ftp. Mais informações sobre este projeto podem ser encontradas no <a href="https://btiscience.org/our-research/research-facilities/research-resources/nicotiana-benthamiana/" target="_blank">BTI <i>Nicotiana benthamiana</i> Local do projeto</a>
+  Uma nova sequência preliminar do genoma de <i>Nicotiana benthamiana</i> foi liberada por pesquisadores do <a href="http://btiscience.org/" target="_blank">Boyce Thompson Institute for Plant Research (BTI)</a>. Ela está acessível pela ferramenta BLAST da SGN e pelo JBrowse, e pode ser baixada do site FTP da SGN. Mais informações sobre este projeto podem ser encontradas no <a href="https://btiscience.org/our-research/research-facilities/research-resources/nicotiana-benthamiana/" target="_blank">BTI <i>Nicotiana benthamiana</i> Project site</a>
 </p>
 
 <p>
-  <i>N. benthamiana</i> tem um genoma muito complexo composto por cromossomos n=19 que é estimado em mais de 3,5GB de tamanho. Taxonomicamente, é um velho alotetraplóide da seção Suaveolentes que foi formado de pais diplóides da seção Sylvestres e da seção Noctiflorae. É nativo da Austrália [2, 3].
+  <i>N. benthamiana</i> tem um genoma muito complexo composto por n=19 cromossomos, com tamanho estimado em mais de 3,5 GB. Taxonomicamente, é um alotetraploide antigo da seção Suaveolentes, formado a partir de genitores diploides da seção Sylvestres e da seção Noctiflorae. É nativo da Austrália [2, 3].
 </p>
 
 <p>
-  <i>N. benthamiana</i> é um modelo amplamente utilizado para biologia microbiana e outras aplicações de pesquisa. É particularmente útil porque está relacionado ao tomate e à batata e é passível de silenciar genes induzidos pelo vírus (VIGS), o que facilita o estudo funcional eficiente de genes vegetais.
+  <i>N. benthamiana</i> é um modelo amplamente utilizado para a biologia de interações planta-micro-organismo e outras aplicações de pesquisa. É particularmente útil porque é aparentado ao tomate e à batata e é passível de silenciamento gênico induzido por vírus (VIGS), o que facilita o estudo funcional eficiente de genes vegetais.
 </p>
 
 <p>
-  A sequência de rascunho de <i>N. benthamiana</i> Permitirá um melhor desenho de construtos para o silenciamento genético induzido pelo vírus (VIGS), a fim de reduzir a possibilidade de silenciar o gene 'off-target' [1]. A sequência também será útil para identificar ortologs de tomate e batata para genômica comparativa com outras espécies de Solanaceae e, para recuperar sequências promotoras.
+  A sequência preliminar de <i>N. benthamiana</i> permitirá um melhor desenho de construções para o silenciamento gênico induzido por vírus (VIGS), a fim de reduzir a possibilidade de silenciamento gênico fora do alvo ('off-target') [1]. A sequência também será útil para identificar ortólogos de tomate e batata para genômica comparativa com outras espécies de Solanaceae e para recuperar sequências promotoras.
 </p>
 
 
@@ -25,19 +25,19 @@
     <a id="blue_button" href="http://vigs.solgenomics.net" target="_blank" style="background-image:none;">Ferramenta VIGS</a>
 </center>
 
-<h4>Acordo de dados</h4>
+<h4>Acordo de uso dos dados</h4>
 
 <p>
-  Acessando ao <i>Nicotiana benthamiana</i> Dados do genoma, você concorda em não publicar nenhum artigo contendo qualquer análise de todo o espaço do gene ou escala do genoma inteiro antes da publicação pelo Consórcio de Sequência e Anotação de Benthamiana (BSAC). Estas análises incluem a identificação de conjuntos completos (todo genoma) de características genômicas, tais como genes, famílias de genes, elementos regulatórios, estruturas repetidas, conteúdo de GC, ou qualquer outra característica do genoma, e comparações em escala de genoma inteiro ou cromossomo com outras espécies. Usuários científicos são livres para publicar análises baseadas em um único gene (ou grupo de genes).
+  Ao acessar os dados do genoma de <i>Nicotiana benthamiana</i>, você concorda em não publicar nenhum artigo contendo qualquer análise de todo o espaço gênico ou em escala de genoma completo antes da publicação pelo Benthamiana Sequencing and Annotation Consortium (BSAC). Essas análises incluem a identificação de conjuntos completos (genoma inteiro) de elementos genômicos, como genes, famílias gênicas, elementos regulatórios, estruturas repetitivas, conteúdo de GC ou qualquer outro elemento do genoma, e comparações em escala de genoma completo ou de cromossomo com outras espécies. Usuários científicos são livres para publicar análises baseadas em um único gene (ou grupo de genes).
 </p>
 
 <p>
-Se tiver alguma pergunta, por favor, contate o Professor <a href="mailto:gbm7@cornell.edu">Gregory Martin</a> Ou Professor <a href="mailto:aurebg@vt.edu">Aureliano Bombarely</a>.
+Se tiver alguma dúvida, entre em contato com o Professor <a href="mailto:gbm7@cornell.edu">Gregory Martin</a> ou o Professor <a href="mailto:aurebg@vt.edu">Aureliano Bombarely</a>.
 </p>
 
 <h4>Estatísticas de montagem</h4>
 
-<i>N. benthamiana</i> Genoma v1.0.1. Estatísticas do arquivo <a href="ftp://ftp.solgenomics.net/genomes/Nicotiana_benthamiana/assemblies/" target="_blank">Niben.genome.v1.0.1. andaimes.nrcontigs.fasta</a>
+Genoma de <i>N. benthamiana</i> v1.0.1. Estatísticas do arquivo <a href="ftp://ftp.solgenomics.net/genomes/Nicotiana_benthamiana/assemblies/" target="_blank">Niben.genome.v1.0.1.scaffolds.nrcontigs.fasta</a>
 <br />
 <br />
 
@@ -58,19 +58,19 @@ Se tiver alguma pergunta, por favor, contate o Professor <a href="mailto:gbm7@co
     <th>Sequência mais curta (pb)</th><td>500</td><td>ID = Niben101Ctg00001</td>
   </tr>
   <tr>
-    <th>N95 comprimento (bp)</th><td>77,805</td>
+    <th>Comprimento N95 (pb)</th><td>77,805</td>
   </tr>
   <tr>
-    <th>N90 comprimento (bp)</th><td>140,694</td>
+    <th>Comprimento N90 (pb)</th><td>140,694</td>
   </tr>
   <tr>
-    <th>N75 comprimento (bp)</th><td>282,465</td>
+    <th>Comprimento N75 (pb)</th><td>282,465</td>
   </tr>
   <tr>
-    <th>N50 comprimento (bp)</th><td>520,105</td>
+    <th>Comprimento N50 (pb)</th><td>520,105</td>
   </tr>
   <tr>
-    <th>N25 comprimento (bp)</th><td>859,098</td>
+    <th>Comprimento N25 (pb)</th><td>859,098</td>
   </tr>
   <tr>
     <th>Índice N95</th><td>7,206</td>
@@ -132,29 +132,33 @@ N25 index:    12906 sequences<br />
 ==========================================================<br />
 <br /> -->
 
-<h4>Sequenciando aproximação</h4>
+<h4>Estratégia de sequenciamento</h4>
 
 <p>
-  Sementes foram cultivadas na estufa e DNA nuclear foi extraído de folhas etioladas. A partir do DNA, três bibliotecas distintas foram sintetizadas para uso em um sequenciador Illumina HiSeq-2000: 1) uma biblioteca final emparelhada com um tamanho de inserção de aproximadamente 500 bp de tamanho de inserção; 2) uma biblioteca do tipo mate-pair com um tamanho de inserção de 2kb; e 3) um par mate com um tamanho de inserção de 5kb. A sequência foi feita usando uma corrida completa com 4 faixas da biblioteca emparelhada e 1 faixa cada uma das bibliotecas duplas.
+  Plântulas foram cultivadas em casa de vegetação e o DNA nuclear foi extraído de folhas estioladas. A partir do DNA, três bibliotecas distintas foram sintetizadas para uso em um sequenciador Illumina HiSeq-2000:
+  1) uma biblioteca paired-end com tamanho de inserto de aproximadamente 500 pb;
+  2) uma biblioteca do tipo mate-pair com tamanho de inserto de 2 kb; e
+  3) uma mate-pair com tamanho de inserto de 5 kb.
+  O sequenciamento foi realizado em uma corrida completa, com 4 lanes da biblioteca paired-end e 1 lane para cada uma das bibliotecas mate-pair.
 </p>
 
-<h4>Acesso sequenciada</h4>
+<h4>Acesso sequenciado</h4>
 
 <p>
-  O acesso sequenciada é chamada de "Nb-1". As sementes podem ser obtidas contatando o Professor. <a href="mailto:gbm7@cornell.edu">Gregory Martin</a>.
+  O acesso sequenciado é denominado "Nb-1". As sementes podem ser obtidas entrando em contato com o Professor <a href="mailto:gbm7@cornell.edu">Gregory Martin</a>.
 </p>
 
 <h4>Links</h4>
 
 <ul>
   <li>
-    Mais informações sobre este projeto no <a href="https://btiscience.org/our-research/research-facilities/research-resources/nicotiana-benthamiana/" target="_blank">BTI <i>Nicotiana benthamiana</i> Local do projeto</a>
+    Mais informações sobre este projeto no <a href="https://btiscience.org/our-research/research-facilities/research-resources/nicotiana-benthamiana/" target="_blank">BTI <i>Nicotiana benthamiana</i> Project site</a>
   </li>
   <li>
-    <a href="http://sydney.edu.au/science/molecular_bioscience/sites/benthamiana/" target="_blank">Áustria/Nova Zelândia <i>Nicotiana benthamiana</i> sequencing project</a>
+    <a href="http://sydney.edu.au/science/molecular_bioscience/sites/benthamiana/" target="_blank">Projeto de sequenciamento de <i>Nicotiana benthamiana</i> da Austrália/Nova Zelândia</a>
   </li>
   <li>
-    <a href="http://www.jove.com/video/1292/virus-induced-gene-silencing-vigs-in-nicotiana-benthamiana-and-tomato" target="_blank">Tutorial on-line para procedimento VIGS</a>
+    <a href="http://www.jove.com/video/1292/virus-induced-gene-silencing-vigs-in-nicotiana-benthamiana-and-tomato" target="_blank">Tutorial on-line do procedimento de VIGS</a>
   </li>
 </ul>
 
@@ -162,23 +166,26 @@ N25 index:    12906 sequences<br />
 
 <ol>
   <li>
-    Bombarely, A., H. G. Rosli, J. Vrebalov, P. Moffett, L. A. Mueller, e G. B. Martin (2012). Uma sequência de genoma de Nicotiana benthamiana para melhorar a pesquisa molecular em biologia microbiana.
-    <a href="http://apsjournals.apsnet.org/doi/abs/10.1094/MPMI-06-12-0148-TA" target="_blank">Interações Moleculares Planta-Microbo 25:1523-1530.</a>
+    Bombarely, A., H. G. Rosli, J. Vrebalov, P. Moffett, L. A. Mueller, and G. B. Martin (2012).
+    A draft genome sequence of Nicotiana benthamiana to enhance molecular plant-microbe biology research.
+    <a href="http://apsjournals.apsnet.org/doi/abs/10.1094/MPMI-06-12-0148-TA" target="_blank">Molecular Plant-Microbe Interactions 25:1523-1530.</a>
   </li>
   <li>
-    Knapp, S. M. W. Chase e J. J. Clarkson (2004). Mudanças nominais e uma nova classificação seccional em Nicotiana (Solanaceae).
+    Knapp, S. M. W. Chase and J. J. Clarkson (2004).
+    Nomenclatural changes and a new sectional classification in Nicotiana (Solanaceae).
     <a href="http://www.jstor.org/stable/4135490?seq=1#page_scan_tab_contents" target="_blank">Taxon 53:73-82.</a>
   </li>
   <li>
-    Goodin, M. M., D. Zaitlin, R. A. Naidu, e S. A. Lommel (2008). Sua história e futuro como modelo para interações planta-patógeno.
-    <a href="http://apsjournals.apsnet.org/doi/abs/10.1094/MPMI-21-8-1015" target="_blank">Interações Moleculares Planta-Microbe 21:1026.</a>
+    Goodin, M. M., D. Zaitlin, R. A. Naidu, and S. A. Lommel (2008).
+    Nicotiana benthamiana: Its history and future as a model for plant-pathogen interactions.
+    <a href="http://apsjournals.apsnet.org/doi/abs/10.1094/MPMI-21-8-1015" target="_blank">Molecular Plant-Microbe Interactions 21:1026.</a>
   </li>
 </ol>
 
 <h4>Agradecimentos</h4>
 
 <p>
-Sequência do <i>N. benthamiana</i> o genoma recebeu financiamento do Boyce Thompson Institute for Plant Research e das bolsas IOS-1025642 (A. Collmer e G. Martin) e IOS-0343327 (P. Moffett) da National Science Foundation.
+O sequenciamento do genoma de <i>N. benthamiana</i> recebeu financiamento do Boyce Thompson Institute for Plant Research e das bolsas IOS-1025642 (A. Collmer e G. Martin) e IOS-0343327 (P. Moffett) da National Science Foundation.
 </p>
 
 <br />

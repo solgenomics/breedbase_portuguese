@@ -17,6 +17,7 @@ Titima Tantikanjana <tt15@cornell.edu>
 =cut
 
 package SGN::Controller::AJAX::Cross;
+use utf8;
 
 use Moose;
 use Try::Tiny;
@@ -115,7 +116,7 @@ sub upload_cross_file_POST : Args(0) {
         my $dbh = $c->dbc->dbh;
         my @user_info = CXGN::Login->new($dbh)->query_from_cookie($session_id);
         if (!$user_info[0]){
-            $c->stash->{rest} = {error=>'You must be logged in to upload crosses!'};
+            $c->stash->{rest} = {error=>'Você precisa estar conectado para enviar cruzamentos!'};
             $c->detach();
         }
         $user_id = $user_info[0];
@@ -124,7 +125,7 @@ sub upload_cross_file_POST : Args(0) {
         $user_name = $p->get_username;
     } else{
         if (!$c->user){
-            $c->stash->{rest} = {error=>'You must be logged in to upload crosses!'};
+            $c->stash->{rest} = {error=>'Você precisa estar conectado para enviar cruzamentos!'};
             $c->detach();
         }
         $user_id = $c->user()->get_object()->get_sp_person_id();
@@ -133,7 +134,7 @@ sub upload_cross_file_POST : Args(0) {
     }
 
     if (($user_role ne 'curator') && ($user_role ne 'submitter')) {
-        $c->stash->{rest} = {error=>'Only a submitter or a curator can upload crosses'};
+        $c->stash->{rest} = {error=>'Apenas um submissor ou um curador pode enviar cruzamentos'};
         $c->detach();
     }
 
@@ -151,7 +152,7 @@ sub upload_cross_file_POST : Args(0) {
     $archived_filename_with_path = $uploader->archive();
     $md5 = $uploader->get_md5($archived_filename_with_path);
     if (!$archived_filename_with_path) {
-        $c->stash->{rest} = {error => "Could not save file $upload_original_name in archive",};
+        $c->stash->{rest} = {error => "Não foi possível salvar o arquivo $upload_original_name no arquivo permanente",};
         return;
     }
     unlink $upload_tempfile;
@@ -170,7 +171,7 @@ sub upload_cross_file_POST : Args(0) {
         my $return_error = '';
         my $parse_errors;
         if (!$parser->has_parse_errors() ){
-            $c->stash->{rest} = {error_string => "Could not get parsing errors"};
+            $c->stash->{rest} = {error_string => "Não foi possível obter os erros de análise do arquivo"};
         } else {
             $parse_errors = $parser->get_parse_errors();
             #print STDERR Dumper $parse_errors;
@@ -210,13 +211,13 @@ sub upload_cross_file_POST : Args(0) {
 
     #validate the crosses
     if (!$cross_add->validate_crosses()){
-        $c->stash->{rest} = {error_string => "Error validating crosses",};
+        $c->stash->{rest} = {error_string => "Erro ao validar os cruzamentos",};
         return;
     }
 
     #add the crosses
     if (!$cross_add->add_crosses()){
-        $c->stash->{rest} = {error_string => "Error adding crosses",};
+        $c->stash->{rest} = {error_string => "Erro ao adicionar os cruzamentos",};
         return;
     }
 
@@ -237,7 +238,7 @@ sub upload_cross_file_POST : Args(0) {
                $cross_add_info->add_info();
 
                if (!$cross_add_info->add_info()){
-                   $c->stash->{rest} = {error_string => "Error saving info",};
+                   $c->stash->{rest} = {error_string => "Erro ao salvar as informações",};
                    return;
                }
 
@@ -266,13 +267,13 @@ sub add_cross_POST :Args(0) {
     my $user_id;
     if (!$c->user()) {
         print STDERR "User not logged in... not adding a cross.\n";
-        $c->stash->{rest} = {error => "You need to be logged in to add a cross." };
+        $c->stash->{rest} = {error => "Você precisa estar conectado para adicionar um cruzamento." };
         return;
     }
 
     if (!any { $_ eq "curator" || $_ eq "submitter" } ($c->user()->roles)  ) {
         print STDERR "User does not have sufficient privileges.\n";
-        $c->stash->{rest} = {error =>  "you have insufficient privileges to add a cross." };
+        $c->stash->{rest} = {error =>  "Você não tem permissão para adicionar um cruzamento." };
         return;
     } else {
         $user_id = $c->user()->get_object()->get_sp_person_id();
@@ -351,7 +352,7 @@ sub get_cross_relationships :Path('/cross/ajax/relationships') :Args(1) {
     my $cross = $schema->resultset("Stock::Stock")->find( { stock_id => $cross_id });
 
     if ($cross && $cross->type()->name() ne "cross") {
-	    $c->stash->{rest} = { error => 'This entry is not of type cross and cannot be displayed using this page.' };
+	    $c->stash->{rest} = { error => 'Esta entrada não é do tipo cruzamento e não pode ser exibida nesta página.' };
 	    return;
     }
 
@@ -376,7 +377,7 @@ sub get_membership :Path('/ajax/cross/membership') :Args(1) {
     my $cross = $schema->resultset("Stock::Stock")->find( { stock_id => $cross_id });
 
     if ($cross && $cross->type()->name() ne "cross") {
-	    $c->stash->{rest} = { error => 'This entry is not of type cross and cannot be displayed using this page.' };
+	    $c->stash->{rest} = { error => 'Esta entrada não é do tipo cruzamento e não pode ser exibida nesta página.' };
 	    return;
     }
 
@@ -403,7 +404,7 @@ sub get_cross_parents :Path('/ajax/cross/accession_plot_plant_parents') Args(1) 
     my $cross = $schema->resultset("Stock::Stock")->find( { stock_id => $cross_id });
 
     if ($cross && $cross->type()->name() ne "cross") {
-	    $c->stash->{rest} = { error => 'This entry is not of type cross and cannot be displayed using this page.' };
+	    $c->stash->{rest} = { error => 'Esta entrada não é do tipo cruzamento e não pode ser exibida nesta página.' };
 	    return;
     }
 
@@ -613,13 +614,13 @@ sub get_cross_tissue_culture_summary :Path('/ajax/cross/tissue_culture_summary')
 
     if (ref($suggested_values{$type})) {
 	      if (!exists($suggested_values{$type}->{$value})) { # don't make this case insensitive!
-	          $c->stash->{rest} =  { message => 'The provided value is not in the suggested list of terms. This could affect downstream data processing.' };
+	          $c->stash->{rest} =  { message => 'O valor informado não está na lista de termos sugeridos. Isso pode afetar o processamento posterior dos dados.' };
 	          return;
 	      }
     }
     else {
 	      if ($value !~ m/^$suggested_values{$type}$/) {
-	          $c->stash->{rest} = { error => 'The provided value is not in a valid format. Format example: "'.$example_values{$type}.'"' };
+	          $c->stash->{rest} = { error => 'O valor informado não está em um formato válido. Exemplo de formato: "'.$example_values{$type}.'"' };
 	          return;
 	      }
     }
@@ -633,11 +634,11 @@ sub cross_property_save :Path('/cross/property/save') Args(1) {
     my $c = shift;
 
     if (!$c->user()) {
-	      $c->stash->{rest} = { error => "You must be logged in to add properties." };
+	      $c->stash->{rest} = { error => "Você precisa estar conectado para adicionar propriedades." };
 	      return;
     }
     if (!($c->user()->has_role('submitter') or $c->user()->has_role('curator'))) {
-	      $c->stash->{rest} = { error => "You do not have sufficient privileges to add properties." };
+	      $c->stash->{rest} = { error => "Você não tem permissão para adicionar propriedades." };
 	      return;
     }
 
@@ -662,7 +663,7 @@ sub cross_property_save :Path('/cross/property/save') Args(1) {
     $cross_add_info->add_info();
 
     if (!$cross_add_info->add_info()){
-        $c->stash->{rest} = {error_string => "Error saving info",};
+        $c->stash->{rest} = {error_string => "Erro ao salvar as informações",};
         return;
     }
 
@@ -675,11 +676,11 @@ sub add_more_progeny :Path('/cross/progeny/add') Args(1) {
     my $cross_id = shift;
 
     if (!$c->user()) {
-	$c->stash->{rest} = { error => "You must be logged in add progeny." };
+	$c->stash->{rest} = { error => "Você precisa estar conectado para adicionar progênie." };
 	return;
     }
     if (!($c->user()->has_role('submitter') or $c->user()->has_role('curator'))) {
-	$c->stash->{rest} = { error => "You do not have sufficient privileges to add progeny." };
+	$c->stash->{rest} = { error => "Você não tem permissão para adicionar progênie." };
 	return;
     }
 
@@ -712,7 +713,7 @@ sub add_more_progeny :Path('/cross/progeny/add') Args(1) {
 	    owner_name => $owner_name,
 	      });
     if (!$progeny_add->add_progeny()){
-      $c->stash->{rest} = {error_string => "Error adding progeny. Please change the input parameters and try again.",};
+      $c->stash->{rest} = {error_string => "Erro ao adicionar a progênie. Altere os parâmetros de entrada e tente novamente.",};
       #should delete crosses and other progeny if add progeny fails?
       return;
     }
@@ -788,45 +789,45 @@ sub add_individual_cross {
     my $maximum_progeny_number = 999; #higher numbers break cross name convention
     if ($progeny_number) {
         if ((! $progeny_number =~ m/^\d+$/) or ($progeny_number > $maximum_progeny_number) or ($progeny_number < 1)) {
-            $c->stash->{rest} = {error =>  "progeny number exceeds the maximum of $maximum_progeny_number or is invalid." };
+            $c->stash->{rest} = {error =>  "O número de progênies excede o máximo de $maximum_progeny_number ou é inválido." };
             return 0;
         }
     }
 
     #check that maternal name is not blank
     if ($maternal eq "") {
-        $c->stash->{rest} = {error =>  "Female parent name cannot be blank." };
+        $c->stash->{rest} = {error =>  "O nome do genitor feminino não pode ficar em branco." };
         return 0;
     }
 
     #if required, check that paternal parent name is not blank;
     if ($paternal eq "" && ($cross_type ne "open") && ($cross_type ne "bulk_open")) {
-        $c->stash->{rest} = {error =>  "Male parent name cannot be blank." };
+        $c->stash->{rest} = {error =>  "O nome do genitor masculino não pode ficar em branco." };
         return 0;
     }
 
     #check that parents exist in the database
     if (! $chado_schema->resultset("Stock::Stock")->find({uniquename=>$maternal,})){
-        $c->stash->{rest} = {error =>  "Female parent does not exist." };
+        $c->stash->{rest} = {error =>  "O genitor feminino não existe." };
         return 0;
     }
 
     if ($paternal) {
         if (! $chado_schema->resultset("Stock::Stock")->find({uniquename=>$paternal,})){
-            $c->stash->{rest} = {error =>  "Male parent does not exist." };
+            $c->stash->{rest} = {error =>  "O genitor masculino não existe." };
             return 0;
         }
     }
 
     #check that cross name does not already exist
     if ($chado_schema->resultset("Stock::Stock")->find({uniquename=>$cross_name})){
-        $c->stash->{rest} = {error =>  "Cross Unique ID already exists." };
+        $c->stash->{rest} = {error =>  "O ID único do cruzamento já existe." };
         return 0;
     }
 
     #check that progeny do not already exist
     if ($chado_schema->resultset("Stock::Stock")->find({uniquename=>$cross_name.$prefix.'001'.$suffix,})){
-        $c->stash->{rest} = {error =>  "progeny already exist." };
+        $c->stash->{rest} = {error =>  "A progênie já existe." };
         return 0;
     }
 
@@ -882,7 +883,7 @@ sub add_individual_cross {
     };
 
     if ($@) {
-        $c->stash->{rest} = { error => "Error creating the cross: $@" };
+        $c->stash->{rest} = { error => "Erro ao criar o cruzamento: $@" };
         return 0;
     }
 
@@ -912,7 +913,7 @@ sub add_individual_cross {
     };
 
     if ($@) {
-        $c->stash->{rest} = { error => "An error occurred: $@"};
+        $c->stash->{rest} = { error => "Ocorreu um erro: $@"};
         return 0;
     }
     return 1;
@@ -936,7 +937,7 @@ sub add_crossingtrial_POST :Args(0){
 
     if (!$c->user()){
         print STDERR "User not logged in... not adding a crossing experiment.\n";
-        $c->stash->{rest} = {error => "You need to be logged in to add a crossing experiment."};
+        $c->stash->{rest} = {error => "Você precisa estar conectado para adicionar um experimento de cruzamento."};
         return;
     }
 
@@ -944,10 +945,10 @@ sub add_crossingtrial_POST :Args(0){
     my $check_roles = CXGN::People::Roles->new({ people_schema => $people_schema});
     my $invalid_roles = $check_roles->check_sp_roles(\@user_roles, $program_name);
     if ($invalid_roles->{'invalid_role'}) {
-        $c->stash->{rest} = {error =>  "you have insufficient privileges to add a crossing experiment." };
+        $c->stash->{rest} = {error =>  "Você não tem permissão para adicionar um experimento de cruzamento." };
         return;
     } elsif ($invalid_roles->{'invalid_program'}) {
-        $c->stash->{rest} = { error => "You need to be either a curator, or a submitter associated with breeding program $program_name to add new crossing experiment." };
+        $c->stash->{rest} = { error => "Você precisa ser curador ou submissor associado ao programa de melhoramento $program_name para adicionar um novo experimento de cruzamento." };
         return;
     }
 
@@ -956,7 +957,7 @@ sub add_crossingtrial_POST :Args(0){
     my $geolocation_lookup = CXGN::Location::LocationLookup->new(schema =>$schema);
     $geolocation_lookup->set_location_name($location);
     if(!$geolocation_lookup->get_geolocation()){
-        $c->stash->{rest}={error => "Location not found"};
+        $c->stash->{rest}={error => "Local não encontrado"};
         return;
     }
 
@@ -1025,7 +1026,7 @@ sub upload_progenies_POST : Args(0) {
         my $dbh = $c->dbc->dbh;
         my @user_info = CXGN::Login->new($dbh)->query_from_cookie($session_id);
         if (!$user_info[0]){
-            $c->stash->{rest} = {error=>'You must be logged in to upload progenies!'};
+            $c->stash->{rest} = {error=>'Você precisa estar conectado para enviar progênies!'};
             $c->detach();
         }
         $user_id = $user_info[0];
@@ -1034,7 +1035,7 @@ sub upload_progenies_POST : Args(0) {
         $user_name = $p->get_username;
     } else{
         if (!$c->user){
-            $c->stash->{rest} = {error=>'You must be logged in to upload progenies!'};
+            $c->stash->{rest} = {error=>'Você precisa estar conectado para enviar progênies!'};
             $c->detach();
         }
         $user_id = $c->user()->get_object()->get_sp_person_id();
@@ -1043,7 +1044,7 @@ sub upload_progenies_POST : Args(0) {
     }
 
     if (($user_role ne 'curator') && ($user_role ne 'submitter')) {
-        $c->stash->{rest} = {error=>'Only a submitter or a curator can upload progenies'};
+        $c->stash->{rest} = {error=>'Apenas um submissor ou um curador pode enviar progênies'};
         $c->detach();
     }
 
@@ -1061,7 +1062,7 @@ sub upload_progenies_POST : Args(0) {
     $archived_filename_with_path = $uploader->archive();
     $md5 = $uploader->get_md5($archived_filename_with_path);
     if (!$archived_filename_with_path) {
-        $c->stash->{rest} = {error => "Could not save file $upload_original_name in archive",};
+        $c->stash->{rest} = {error => "Não foi possível salvar o arquivo $upload_original_name no arquivo permanente",};
         return;
     }
     unlink $upload_tempfile;
@@ -1076,7 +1077,7 @@ sub upload_progenies_POST : Args(0) {
         my $return_error = '';
         my $parse_errors;
         if (!$parser->has_parse_errors() ){
-            $c->stash->{rest} = {error_string => "Could not get parsing errors"};
+            $c->stash->{rest} = {error_string => "Não foi possível obter os erros de análise do arquivo"};
         } else {
             $parse_errors = $parser->get_parse_errors();
             #print STDERR Dumper $parse_errors;
@@ -1104,7 +1105,7 @@ sub upload_progenies_POST : Args(0) {
             owner_name => $user_name,
         });
         if (!$progeny_add->add_progeny()){
-            $c->stash->{rest} = {error_string => "Error adding progeny",};
+            $c->stash->{rest} = {error_string => "Erro ao adicionar a progênie",};
             return;
         }
     }
@@ -1172,7 +1173,7 @@ sub validate_upload_existing_progenies_POST : Args(0) {
         my $dbh = $c->dbc->dbh;
         my @user_info = CXGN::Login->new($dbh)->query_from_cookie($session_id);
         if (!$user_info[0]){
-            $c->stash->{rest} = {error=>'You must be logged in to upload progenies!'};
+            $c->stash->{rest} = {error=>'Você precisa estar conectado para enviar progênies!'};
             $c->detach();
         }
         $user_id = $user_info[0];
@@ -1181,7 +1182,7 @@ sub validate_upload_existing_progenies_POST : Args(0) {
         $user_name = $p->get_username;
     } else {
         if (!$c->user){
-            $c->stash->{rest} = {error=>'You must be logged in to upload progenies!'};
+            $c->stash->{rest} = {error=>'Você precisa estar conectado para enviar progênies!'};
             $c->detach();
         }
         $user_id = $c->user()->get_object()->get_sp_person_id();
@@ -1190,7 +1191,7 @@ sub validate_upload_existing_progenies_POST : Args(0) {
     }
 
     if (($user_role ne 'curator') && ($user_role ne 'submitter')) {
-        $c->stash->{rest} = {error=>'Only a submitter or a curator can upload progenies'};
+        $c->stash->{rest} = {error=>'Apenas um submissor ou um curador pode enviar progênies'};
         $c->detach();
     }
 
@@ -1208,7 +1209,7 @@ sub validate_upload_existing_progenies_POST : Args(0) {
     $archived_filename_with_path = $uploader->archive();
     $md5 = $uploader->get_md5($archived_filename_with_path);
     if (!$archived_filename_with_path) {
-        $c->stash->{rest} = {error => "Could not save file $upload_original_name in archive",};
+        $c->stash->{rest} = {error => "Não foi possível salvar o arquivo $upload_original_name no arquivo permanente",};
         return;
     }
     unlink $upload_tempfile;
@@ -1222,7 +1223,7 @@ sub validate_upload_existing_progenies_POST : Args(0) {
         my $return_error = '';
         my $existing_pedigree = '';
         if (!$parser->has_parse_errors() ){
-            $c->stash->{rest} = {error_string => "Could not get parsing errors"};
+            $c->stash->{rest} = {error_string => "Não foi possível obter os erros de análise do arquivo"};
         } else {
             $parse_errors = $parser->get_parse_errors();
             #print STDERR Dumper $parse_errors;
@@ -1274,7 +1275,7 @@ sub store_upload_existing_progenies : Path('/ajax/cross/store_upload_existing_pr
             my $return = $adding_progenies->add_progenies_existing_accessions($overwrite_pedigrees);
             my $error;
             if (!$return){
-                $error = "The progenies were not stored";
+                $error = "As progênies não foram armazenadas";
             }
 
             if ($return->{error}){
@@ -1367,7 +1368,7 @@ sub upload_info_POST : Args(0) {
         my $dbh = $c->dbc->dbh;
         my @user_info = CXGN::Login->new($dbh)->query_from_cookie($session_id);
         if (!$user_info[0]){
-            $c->stash->{rest} = {error=>'You must be logged in to upload cross info!'};
+            $c->stash->{rest} = {error=>'Você precisa estar conectado para enviar informações de cruzamento!'};
             $c->detach();
         }
         $user_id = $user_info[0];
@@ -1376,7 +1377,7 @@ sub upload_info_POST : Args(0) {
         $user_name = $p->get_username;
     } else {
         if (!$c->user){
-            $c->stash->{rest} = {error=>'You must be logged in to upload cross info!'};
+            $c->stash->{rest} = {error=>'Você precisa estar conectado para enviar informações de cruzamento!'};
             $c->detach();
         }
         $user_id = $c->user()->get_object()->get_sp_person_id();
@@ -1385,7 +1386,7 @@ sub upload_info_POST : Args(0) {
     }
 
     if (($user_role ne 'curator') && ($user_role ne 'submitter')) {
-        $c->stash->{rest} = {error=>'Only a submitter or a curator can upload cross info'};
+        $c->stash->{rest} = {error=>'Apenas um submissor ou um curador pode enviar informações de cruzamento'};
         $c->detach();
     }
 
@@ -1403,7 +1404,7 @@ sub upload_info_POST : Args(0) {
     $archived_filename_with_path = $uploader->archive();
     $md5 = $uploader->get_md5($archived_filename_with_path);
     if (!$archived_filename_with_path) {
-        $c->stash->{rest} = {error => "Could not save file $upload_original_name in archive",};
+        $c->stash->{rest} = {error => "Não foi possível salvar o arquivo $upload_original_name no arquivo permanente",};
         return;
     }
     unlink $upload_tempfile;
@@ -1426,7 +1427,7 @@ sub upload_info_POST : Args(0) {
         my $return_error = '';
         my $parse_errors;
         if (!$parser->has_parse_errors() ){
-            $c->stash->{rest} = {error_string => "Could not get parsing errors"};
+            $c->stash->{rest} = {error_string => "Não foi possível obter os erros de análise do arquivo"};
         } else {
             $parse_errors = $parser->get_parse_errors();
             #print STDERR Dumper $parse_errors;
@@ -1458,7 +1459,7 @@ sub upload_info_POST : Args(0) {
                $cross_add_info->add_info();
 
                if (!$cross_add_info->add_info()){
-                   $c->stash->{rest} = {error_string => "Error saving info",};
+                   $c->stash->{rest} = {error_string => "Erro ao salvar as informações",};
                    return;
                }
             }
@@ -1545,7 +1546,7 @@ sub upload_family_names_POST : Args(0) {
         my $dbh = $c->dbc->dbh;
         my @user_info = CXGN::Login->new($dbh)->query_from_cookie($session_id);
         if (!$user_info[0]){
-            $c->stash->{rest} = {error=>'You must be logged in to upload family names!'};
+            $c->stash->{rest} = {error=>'Você precisa estar conectado para enviar nomes de família!'};
             $c->detach();
         }
         $user_id = $user_info[0];
@@ -1554,7 +1555,7 @@ sub upload_family_names_POST : Args(0) {
         $user_name = $p->get_username;
     } else{
         if (!$c->user){
-            $c->stash->{rest} = {error=>'You must be logged in to upload family names!'};
+            $c->stash->{rest} = {error=>'Você precisa estar conectado para enviar nomes de família!'};
             $c->detach();
         }
         $user_id = $c->user()->get_object()->get_sp_person_id();
@@ -1563,7 +1564,7 @@ sub upload_family_names_POST : Args(0) {
     }
 
     if (($user_role ne 'curator') && ($user_role ne 'submitter')) {
-        $c->stash->{rest} = {error=>'Only a submitter or a curator can upload family names'};
+        $c->stash->{rest} = {error=>'Apenas um submissor ou um curador pode enviar nomes de família'};
         $c->detach();
     }
 
@@ -1581,7 +1582,7 @@ sub upload_family_names_POST : Args(0) {
     $archived_filename_with_path = $uploader->archive();
     $md5 = $uploader->get_md5($archived_filename_with_path);
     if (!$archived_filename_with_path) {
-        $c->stash->{rest} = {error => "Could not save file $upload_original_name in archive",};
+        $c->stash->{rest} = {error => "Não foi possível salvar o arquivo $upload_original_name no arquivo permanente",};
         return;
     }
     unlink $upload_tempfile;
@@ -1596,7 +1597,7 @@ sub upload_family_names_POST : Args(0) {
         my $return_error = '';
         my $parse_errors;
         if (!$parser->has_parse_errors() ){
-            $c->stash->{rest} = {error_string => "Could not get parsing errors"};
+            $c->stash->{rest} = {error_string => "Não foi possível obter os erros de análise do arquivo"};
         } else {
             $parse_errors = $parser->get_parse_errors();
             #print STDERR Dumper $parse_errors;
@@ -1630,7 +1631,7 @@ sub upload_family_names_POST : Args(0) {
             my $return = $family_name_add->add_family_name();
             my $error;
             if (!$return){
-                $error = "Error adding family name";
+                $error = "Erro ao adicionar o nome de família";
             }
             if ($return->{error}){
                 $error = $return->{error};
@@ -1679,11 +1680,11 @@ sub delete_cross_POST : Args(0) {
     my $c = shift;
 
     if (!$c->user()){
-        $c->stash->{rest} = { error => "You must be logged in to delete crosses" };
+        $c->stash->{rest} = { error => "Você precisa estar conectado para excluir cruzamentos" };
         $c->detach();
     }
     if (!$c->user()->check_roles("curator")) {
-        $c->stash->{rest} = { error => "You do not have the correct role to delete crosses. Please contact us." };
+        $c->stash->{rest} = { error => "Você não tem a função adequada para excluir cruzamentos. Entre em contato conosco." };
         $c->detach();
     }
 
@@ -1692,7 +1693,7 @@ sub delete_cross_POST : Args(0) {
     my $cross = CXGN::Cross->new( { schema => $c->dbic_schema('Bio::Chado::Schema', 'sgn_chado'), cross_stock_id => $cross_stock_id });
 
     if (!$cross->cross_stock_id()) {
-	$c->stash->{rest} = { error => "No such cross exists. Cannot delete." };
+	$c->stash->{rest} = { error => "Esse cruzamento não existe. Não é possível excluí-lo." };
 	return;
     }
 
@@ -1701,7 +1702,7 @@ sub delete_cross_POST : Args(0) {
     print STDERR "ERROR = $error\n";
 
     if ($error) {
-	$c->stash->{rest} = { error => "An error occurred attempting to delete a cross. ($@)" };
+	$c->stash->{rest} = { error => "Ocorreu um erro ao tentar excluir um cruzamento. ($@)" };
 	return;
     }
 

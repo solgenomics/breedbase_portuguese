@@ -200,7 +200,7 @@ $parent2_stock_name => '(unknown)'
 
 
 % my $total = 0; 
-% my $html = '<table class="table table-hover table-condensed table-bordered"><thead><tr class="info"><th>Cromossoma</th><th>Marcadores</th></tr></thead><tbody>';
+% my $html = '<table class="table table-hover table-condensed table-bordered"><thead><tr class="info"><th>Cromossomo</th><th>Marcadores</th></tr></thead><tbody>';
 % foreach (@$chromosome_stats) { $html .= "<tr><td>$_->[0]</td><td>$_->[1]</td></tr>"; $total += $_->[2];  }
 % $html .= '<tr><td><b>Total:</b></td><td>'.$total.'</td></tr></tbody>';
 % $html .= '</table>';

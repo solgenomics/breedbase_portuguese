@@ -34,7 +34,7 @@ hashref of:
 %    if( $organism_tree->{newick} ) {
        <form action="/tools/tree_browser/index.pl" method="post">
           <input type="hidden" name="tree_string" value="<% $organism_tree->{newick} |h %>" />
-          <input type="submit" value="Mostrar no navegador de árvores" />
+          <input type="submit" value="Mostrar no navegador da árvore" />
        </form>
 %    }
 

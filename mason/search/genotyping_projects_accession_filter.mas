@@ -199,7 +199,7 @@ function showAccessionsList() {
     acc_names.sort();
 
     // Show Dialog of Accessions List
-    jQuery("#genotypingProjectAccessionsListDialog").html(list_type === "Combinando" ? `Acessos encontrados no projeto ${gen_name}` : `Acessos ausentes no projeto ${gen_name}`);
+    jQuery("#genotypingProjectAccessionsListDialog").html(list_type === "matching" ? `Acessos encontrados no projeto ${gen_name}` : `Acessos ausentes no projeto ${gen_name}`);
     jQuery("#genotyping_project_accessions_list_results").html(acc_names.join("\n"));
     jQuery("#genotyping_project_accessions_list").modal("show");
 

@@ -23,17 +23,17 @@ given URL
 </%args>
 
 
-<& /page/page_title.mas, title => 'Tradução: '.$seq->id &>
+<& /page/page_title.mas, title => 'Tradução em seis quadros: '.$seq->id &>
 
 <& /util/import_javascript.mas, classes => 'Text.Markup' &>
 
-<&| /page/info_section.mas, title => 'Sequência Nucleotídica' &>
+<&| /page/info_section.mas, title => 'Sequência de nucleotídeos' &>
   <div style="margin-left: 3em">
     <& /sequence/with_markup.mas, seq => $seq, width => 80, subdiv => undef, blast_url => $blast_url  &>
   </div>
 </&>
 
-<&| /page/info_section.mas, title => 'Tradução de Seis Quadros' &>
+<&| /page/info_section.mas, title => 'Tradução em seis quadros' &>
   <& /sequence/sixframe_translate.mas, %ARGS &>
 </&>
 

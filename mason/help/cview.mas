@@ -37,14 +37,14 @@
 
 <h3>A visão cromossômica</h3>
 
-<p>Clicar em um dos glifos cromossômicos na página de visão geral trará a visão cromossômica. Nesta visão, um cromossoma é exibido em sua totalidade, mas a maioria dos nomes dos marcadores serão escondidos porque na maioria dos mapas há muitos marcadores para serem exibidos. Para ver todos os marcadores, o mapa pode ser ampliado clicando em um ponto de interesse. Isso trará uma visão ampliada ao lado do cromossomo. O cromossomo também pode ser comparado a outro cromossomo de outro mapa escolhendo um cromossomo de comparação da lista.</p>
+<p>Clicar em um dos glifos cromossômicos na página de visão geral trará a visão cromossômica. Nesta visão, um cromossoma é exibido em sua totalidade, mas a maioria dos nomes dos marcadores serão escondidos porque na maioria dos mapas há muitos marcadores para serem exibidos. Para ver todos os marcadores, o mapa pode ser ampliado clicando em um ponto de interesse. Isso exibirá uma visão ampliada ao lado do cromossomo. O cromossomo também pode ser comparado a outro cromossomo de outro mapa escolhendo um cromossomo de comparação da lista.</p>
 
 <div class="boxbgcolor5"><center><img src="/documents/img/cview_screenshot.jpg" alt="Visualizador comparativo" /></center></div>
 
     <p>Uma imagem típica de uma visão cromossômica é mostrada na figura acima (a versão exata dos botões dependerá da plataforma e do navegador usados). Os diferentes elementos da tela são:</p>
 
                 <ol>
-                  <li><p>O cromossomo de referência, sempre mostrado em vermelho. O número do cromossomo é dado no topo e aproximadamente uma dúzia de marcadores selecionados são desenhados de acordo com a posição do mapa. Os outros marcadores no cromossomo só são identificados por carrapatos. Eles podem ser vistos clicando em qualquer lugar no cromossomo de referência, que traz o mapa ampliado (2), no qual todos os marcadores são exibidos no intervalo dado. Para certos mapas, o cromossoma de referência pode ter informações adicionais exibidas, como informações de linha de IL, uma régua e mapa físico.</p></li>
+                  <li><p>O cromossomo de referência, sempre mostrado em vermelho. O número do cromossomo é dado no topo e aproximadamente uma dúzia de marcadores selecionados são desenhados de acordo com a posição do mapa. Os outros marcadores no cromossomo são identificados apenas por marcas. Eles podem ser vistos clicando em qualquer lugar no cromossomo de referência, que traz o mapa ampliado (2), no qual todos os marcadores são exibidos no intervalo dado. Para certos mapas, o cromossoma de referência pode ter informações adicionais exibidas, como informações de linha de IL, uma régua e mapa físico.</p></li>
 
                   <li><p>O zoom no mapa mostra uma seção do cromossomo de referência, mostrando todos os marcadores no ponto de corte atual. Os nomes dos marcadores podem ser clicados para alcançar a página de detalhes dos marcadores. Um ponto cinza ao lado dos nomes dos marcadores significa que uma sonda overgo foi desenvolvida para este marcador. Um ponto vermelho significa que os BACs foram ancorados ao overgo desenvolvido a partir deste marcador. Clicando no ponto vermelho mostra todos os BACs ancorados e em que FPC contíguos eles caem.</p></li>
 
@@ -67,7 +67,7 @@
 
                       <li><p>Ir para um mapa ou cromossomo diferente. Também contém uma caixa de entrada para hilite marcadores no cromossomo. Isso só hilita marcadores no cromossomo atualmente mostrado.</p></li>
 
-                      <li><p>Permite o deslocamento dos governantes, ILs e mapa físico, e selecionar o tamanho da imagem. O tamanho menor da imagem é ideal para telas menores, como telas de laptop.</p></li>
+                      <li><p>Permite alternar a exibição das réguas, ILs e mapa físico, e selecionar o tamanho da imagem. O tamanho menor da imagem é ideal para telas menores, como telas de laptop.</p></li>
                     </ul>
                   </li>
                 </ol>

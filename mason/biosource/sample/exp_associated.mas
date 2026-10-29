@@ -70,7 +70,7 @@ if (scalar(@target_list) > 0 ) {
 
     ## Use columnar table to give the html format. If don't exists any data, print message.
     
-    my $exp_composition_html = columnar_table_html( headings => [ 'Experiment', 'Target' ],
+    my $exp_composition_html = columnar_table_html( headings => [ 'Experimento', 'Alvo' ],
                                                     data     => \@exp_list,
        		        	                    __alt_freq => 2,
                                                     __align  => ['c', 'c'], );
@@ -78,7 +78,7 @@ if (scalar(@target_list) > 0 ) {
 
     my $exp_n = scalar(@exp_list);                                              
     if ($exp_n == 0) {
-	$exp_composition_html = 'None experiment was found associated to this sample';
+	$exp_composition_html = 'Nenhum experimento associado a esta amostra foi encontrado';
     }
 
     $exp_content = info_section_html( title        => "Experimentos de Expressão (".$exp_n.")", 

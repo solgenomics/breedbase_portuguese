@@ -1,5 +1,6 @@
 
 package SGN::Controller::AJAX::Order;
+use utf8;
 
 use Moose;
 use CXGN::Stock::Order;
@@ -58,7 +59,7 @@ sub submit_order_POST : Args(0) {
 
     if (!$c->user()) {
         print STDERR "User not logged in... not adding a catalog item.\n";
-        $c->stash->{rest} = {error_string => "You must be logged in to add a catalog item." };
+        $c->stash->{rest} = {error_string => "Você precisa estar conectado para adicionar um item ao catálogo." };
         return;
     }
     my $user_id = $c->user()->get_object()->get_sp_person_id();
@@ -119,7 +120,7 @@ sub submit_order_POST : Args(0) {
         $new_order->create_date($timestamp);
         my $order_id = $new_order->store();
         if (!$order_id){
-            $c->stash->{rest} = {error_string => "Error saving your order",};
+            $c->stash->{rest} = {error_string => "Erro ao salvar seu pedido",};
             return;
         }
 
@@ -134,7 +135,7 @@ sub submit_order_POST : Args(0) {
 #        print STDERR "ORDER PROP ID =".($order_prop_id)."\n";
 
         if (!$order_prop_id){
-            $c->stash->{rest} = {error_string => "Error saving your order",};
+            $c->stash->{rest} = {error_string => "Erro ao salvar seu pedido",};
             return;
         }
 
@@ -157,7 +158,7 @@ sub submit_order_POST : Args(0) {
                 my $geolocation_lookup = CXGN::Location::LocationLookup->new(schema =>$schema);
                 $geolocation_lookup->set_location_name('[Computation]');
                 if(!$geolocation_lookup->get_geolocation()){
-                    $c->stash->{rest}={error => "Location not found"};
+                    $c->stash->{rest}={error => "Local não encontrado"};
                     return;
                 }
 
@@ -199,7 +200,7 @@ sub submit_order_POST : Args(0) {
                  });
                 my $return = $tracking_obj->store();
                 if (!$return) {
-                    $c->stash->{rest} = {error_string => "Error generating tracking identifier"};
+                    $c->stash->{rest} = {error_string => "Erro ao gerar o identificador de rastreamento"};
                     return;
                 } elsif ($return->{error}) {
                     my $error = $return->{error};
@@ -217,7 +218,7 @@ sub submit_order_POST : Args(0) {
         	my $prop_id = $order_tracking_identifier_prop->store_sp_orderprop();
 
             if (!$prop_id){
-                $c->stash->{rest} = {error_string => "Error saving your tracking identifiers",};
+                $c->stash->{rest} = {error_string => "Erro ao salvar seus identificadores de rastreamento",};
                 return;
             }
         }
@@ -230,14 +231,14 @@ sub submit_order_POST : Args(0) {
 
     my $host = $c->config->{main_production_site_url};
     my $project_name = $c->config->{project_name};
-    my $subject="Ordering Notification from $project_name";
+    my $subject="Notificação de pedido de $project_name";
     my $body=<<END_HEREDOC;
 
-You have an order submitted to $project_name ($host/order/stocks/view).
-Please do *NOT* reply to this message.
+Há um pedido enviado para você no $project_name ($host/order/stocks/view).
+*NÃO* responda a esta mensagem.
 
-Thank you,
-$project_name Team
+Obrigado,
+Equipe $project_name
 
 END_HEREDOC
 
@@ -245,7 +246,7 @@ END_HEREDOC
         CXGN::Contact::send_email($subject,$body,$each_email);
     }
 
-    $c->stash->{rest}->{success} .= 'Your order has been submitted successfully and the vendor has been notified.';
+    $c->stash->{rest}->{success} .= 'Seu pedido foi enviado com sucesso e o fornecedor foi notificado.';
 
 }
 
@@ -260,7 +261,7 @@ sub get_user_current_orders :Path('/ajax/order/current') Args(0) {
     my $user_id;
 
     if (!$c->user){
-        $c->stash->{rest} = {error=>'You must be logged in to view your current orders!'};
+        $c->stash->{rest} = {error=>'Você precisa estar conectado para visualizar seus pedidos atuais!'};
         $c->detach();
     }
 
@@ -302,7 +303,7 @@ sub get_user_completed_orders :Path('/ajax/order/completed') Args(0) {
     my $user_id;
 
     if (!$c->user){
-        $c->stash->{rest} = {error=>'You must be logged in to view your completed orders!'};
+        $c->stash->{rest} = {error=>'Você precisa estar conectado para visualizar seus pedidos concluídos!'};
         $c->detach();
     }
 
@@ -347,7 +348,7 @@ sub get_vendor_current_orders :Path('/ajax/order/vendor_current_orders') Args(0)
     my $user_id;
 
     if (!$c->user){
-        $c->stash->{rest} = {error=>'You must be logged in to view your orders!'};
+        $c->stash->{rest} = {error=>'Você precisa estar conectado para visualizar seus pedidos!'};
         $c->detach();
     }
 
@@ -393,7 +394,7 @@ sub get_vendor_completed_orders :Path('/ajax/order/vendor_completed_orders') Arg
     my $user_id;
 
     if (!$c->user){
-        $c->stash->{rest} = {error=>'You must be logged in to view your orders!'};
+        $c->stash->{rest} = {error=>'Você precisa estar conectado para visualizar seus pedidos!'};
         $c->detach();
     }
 
@@ -443,7 +444,7 @@ sub update_order_POST : Args(0) {
     my $user_id;
 
     if (!$c->user){
-        $c->stash->{rest} = {error=>'You must be logged in to update the orders!'};
+        $c->stash->{rest} = {error=>'Você precisa estar conectado para atualizar os pedidos!'};
         $c->detach();
     }
 
@@ -469,14 +470,14 @@ sub update_order_POST : Args(0) {
 
             my $host = $c->config->{main_production_site_url};
             my $project_name = $c->config->{project_name};
-            my $subject="Ordering Notification from $project_name";
+            my $subject="Notificação de pedido de $project_name";
             my $body=<<END_HEREDOC;
 
-You have a re-opened order submitted to $project_name ($host/order/stocks/view).
-Please do *NOT* reply to this message.
+Há um pedido reaberto para você no $project_name ($host/order/stocks/view).
+*NÃO* responda a esta mensagem.
 
-Thank you,
-$project_name Team
+Obrigado,
+Equipe $project_name
 
 END_HEREDOC
 
@@ -494,7 +495,7 @@ END_HEREDOC
     my $updated_order = $order_obj->store();
 #    print STDERR "UPDATED ORDER ID =".Dumper($updated_order)."\n";
     if (!$updated_order){
-        $c->stash->{rest} = {error_string => "Error updating the order",};
+        $c->stash->{rest} = {error_string => "Erro ao atualizar o pedido",};
         return;
     }
 
@@ -517,7 +518,7 @@ END_HEREDOC
     my $updated_orderprop = $order_prop->store_sp_orderprop();
 
     if (!$updated_orderprop){
-        $c->stash->{rest} = {error_string => "Error updating the order",};
+        $c->stash->{rest} = {error_string => "Erro ao atualizar o pedido",};
         return;
     }
 
@@ -527,14 +528,14 @@ END_HEREDOC
 
     my $host = $c->config->{main_production_site_url};
     my $project_name = $c->config->{project_name};
-    my $subject="Ordering Notification from $project_name";
+    my $subject="Notificação de pedido de $project_name";
     my $body=<<END_HEREDOC;
 
-You have an order update submitted to $project_name ($host/order/stocks/view).
-Please do *NOT* reply to this message.
+Há uma atualização de pedido para você no $project_name ($host/order/stocks/view).
+*NÃO* responda a esta mensagem.
 
-Thank you,
-$project_name Team
+Obrigado,
+Equipe $project_name
 
 END_HEREDOC
 
@@ -561,7 +562,7 @@ sub single_step_submission_POST : Args(0) {
     $details{$item_name} = $order_details;
     if (!$c->user()) {
         print STDERR "User not logged in... not adding order.\n";
-        $c->stash->{rest} = {error_string => "You must be logged in to submit an order." };
+        $c->stash->{rest} = {error_string => "Você precisa estar conectado para enviar um pedido." };
         return;
     }
     my $user_id = $c->user()->get_object()->get_sp_person_id();
@@ -593,7 +594,7 @@ sub single_step_submission_POST : Args(0) {
     my $order_id = $new_order->store();
 #        print STDERR "ORDER ID =".($order_id)."\n";
     if (!$order_id){
-        $c->stash->{rest} = {error_string => "Error saving your order",};
+        $c->stash->{rest} = {error_string => "Erro ao salvar seu pedido",};
         return;
     }
 
@@ -609,7 +610,7 @@ sub single_step_submission_POST : Args(0) {
 #        print STDERR "ORDER PROP ID =".($order_prop_id)."\n";
 
     if (!$order_prop_id){
-        $c->stash->{rest} = {error_string => "Error saving your order",};
+        $c->stash->{rest} = {error_string => "Erro ao salvar seu pedido",};
         return;
     }
 
@@ -618,20 +619,20 @@ sub single_step_submission_POST : Args(0) {
 
     my $host = $c->config->{main_production_site_url};
     my $project_name = $c->config->{project_name};
-    my $subject="Ordering Notification from $project_name";
+    my $subject="Notificação de pedido de $project_name";
     my $body=<<END_HEREDOC;
 
-You have an order submitted to $project_name ($host/order/stocks/view).
-Please do *NOT* reply to this message.
+Há um pedido enviado para você no $project_name ($host/order/stocks/view).
+*NÃO* responda a esta mensagem.
 
-Thank you,
-$project_name Team
+Obrigado,
+Equipe $project_name
 
 END_HEREDOC
 
     CXGN::Contact::send_email($subject,$body,$contact_email);
 
-    $c->stash->{rest}->{success} .= 'Your request has been submitted successfully and the vendor has been notified.';
+    $c->stash->{rest}->{success} .= 'Sua solicitação foi enviada com sucesso e o fornecedor foi notificado.';
 
 }
 
@@ -653,7 +654,7 @@ sub request_form_submission_POST : Args(0) {
 
     foreach my $item (keys %$item_info) {
         if (!$item_info->{$item}) {
-            $c->stash->{rest} = {error_string => "Please provide quantity for: $item" };
+            $c->stash->{rest} = {error_string => "Informe a quantidade para: $item" };
             return;
         }
     }
@@ -664,7 +665,7 @@ sub request_form_submission_POST : Args(0) {
 
     if (!$c->user()) {
         print STDERR "User not logged in.\n";
-        $c->stash->{rest} = {error_string => "You must be logged in to submit request form." };
+        $c->stash->{rest} = {error_string => "Você precisa estar conectado para enviar o formulário de solicitação." };
         return;
     }
     my $user_id = $c->user()->get_object()->get_sp_person_id();
@@ -683,7 +684,7 @@ sub request_form_submission_POST : Args(0) {
     $new_order->create_date($timestamp);
     my $order_id = $new_order->store();
     if (!$order_id){
-        $c->stash->{rest} = {error_string => "Error saving your order",};
+        $c->stash->{rest} = {error_string => "Erro ao salvar seu pedido",};
         return;
     }
 
@@ -697,7 +698,7 @@ sub request_form_submission_POST : Args(0) {
     my $order_prop_id = $order_prop->store_sp_orderprop();
 
     if (!$order_prop_id){
-        $c->stash->{rest} = {error_string => "Error saving your request",};
+        $c->stash->{rest} = {error_string => "Erro ao salvar sua solicitação",};
         return;
     }
 
@@ -711,14 +712,14 @@ sub request_form_submission_POST : Args(0) {
 
     my $host = $c->config->{main_production_site_url};
     my $project_name = $c->config->{project_name};
-    my $subject="Ordering Notification from $project_name";
+    my $subject="Notificação de pedido de $project_name";
     my $body1=<<END_HEREDOC;
 
-You order was submitted to $project_name ($host/order/stocks/view).
-Please do *NOT* reply to this message.
+Seu pedido foi enviado para o $project_name ($host/order/stocks/view).
+*NÃO* responda a esta mensagem.
 
-Thank you,
-$project_name Team
+Obrigado,
+Equipe $project_name
 
 END_HEREDOC
 
@@ -726,17 +727,17 @@ END_HEREDOC
 
     my $body2=<<END_HEREDOC;
 
-You have an order submitted to $project_name ($host/order/stocks/view).
-Please do *NOT* reply to this message.
+Há um pedido enviado para você no $project_name ($host/order/stocks/view).
+*NÃO* responda a esta mensagem.
 
-Thank you,
-$project_name Team
+Obrigado,
+Equipe $project_name
 
 END_HEREDOC
 
     CXGN::Contact::send_email($subject,$body2,$vendor_email);
 
-    $c->stash->{rest}->{success} .= 'Your request has been submitted successfully and the vendor has been notified.';
+    $c->stash->{rest}->{success} .= 'Sua solicitação foi enviada com sucesso e o fornecedor foi notificado.';
 
 }
 
@@ -751,7 +752,7 @@ sub get_order_tracking_ids :Path('/ajax/order/order_tracking_ids') Args(0) {
     my $user_id;
 
     if (!$c->user){
-        $c->stash->{rest} = {error=>'You must be logged in to view your orders!'};
+        $c->stash->{rest} = {error=>'Você precisa estar conectado para visualizar seus pedidos!'};
         $c->detach();
     }
 
@@ -842,7 +843,7 @@ sub get_active_order_tracking_ids :Path('/ajax/order/active_order_tracking_ids')
     my $user_id;
 
     if (!$c->user){
-        $c->stash->{rest} = {error=>'You must be logged in to view your orders!'};
+        $c->stash->{rest} = {error=>'Você precisa estar conectado para visualizar seus pedidos!'};
         $c->detach();
     }
 
@@ -874,7 +875,7 @@ sub get_order_progress :Path('/ajax/order/progress') Args(0) {
     my $user_id;
 
     if (!$c->user){
-        $c->stash->{rest} = {error=>'You must be logged in to view your orders!'};
+        $c->stash->{rest} = {error=>'Você precisa estar conectado para visualizar seus pedidos!'};
         $c->detach();
     }
 

@@ -14,6 +14,7 @@ CXGN::Transformation::Transformation - an object representing transformation in 
 =cut
 
 package CXGN::Transformation::Transformation;
+use utf8;
 
 use Moose;
 use SGN::Model::Cvterm;
@@ -384,12 +385,12 @@ sub delete {
         my $tracking_experiment_type_id = SGN::Model::Cvterm->get_cvterm_row($schema, 'tracking_activity', 'experiment_type')->cvterm_id();
 
         if (($number_of_transformants > 0) || ($number_of_obsoleted_transformants > 0)) {
-	        die "Transformation ID has associated transformants. Cannot delete.\n";
+	        die "O ID de transformação tem transformantes associados. Não é possível excluir.\n";
         }
 
         my $transformation_rs = $schema->resultset("Stock::Stock")->find ({stock_id => $transformation_stock_id, type_id => $transformation_type_id});
         if (!$transformation_rs) {
-	        die "This stock id is not a transformation ID. Cannot delete.\n";
+	        die "Este ID de material não é um ID de transformação. Não é possível excluir.\n";
         }
 
         my $transformation_experiment_id;
@@ -528,7 +529,7 @@ sub set_as_control {
         if ($transformation_rs && $is_a_control) {
             my $previous_stockprop_rs = $transformation_rs->stockprops({type_id=>$is_a_transformation_control_cvterm->cvterm_id});
             if ($previous_stockprop_rs->count > 0){
-                die "This transformation ID has already been set as a control.\n";
+                die "Este ID de transformação já foi definido como controle.\n";
             } else {
                 $transformation_rs->create_stockprops({$is_a_transformation_control_cvterm->name() => $is_a_control});
             }

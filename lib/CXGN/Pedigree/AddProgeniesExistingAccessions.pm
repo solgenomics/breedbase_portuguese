@@ -1,4 +1,5 @@
 package CXGN::Pedigree::AddProgeniesExistingAccessions;
+use utf8;
 
 =head1 NAME
 
@@ -137,7 +138,7 @@ sub add_progenies_existing_accessions {
     };
 
     if ($transaction_error) {
-		$return{error} = "Transaction error adding progenies: $transaction_error";
+		$return{error} = "Erro de transação ao adicionar progênies: $transaction_error";
 		return \%return;
     }
 

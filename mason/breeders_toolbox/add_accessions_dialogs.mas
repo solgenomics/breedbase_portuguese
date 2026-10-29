@@ -152,8 +152,8 @@ $editable_stock_props_definitions
                                 <td>accession_name</td>
                                 <td>species_name</td>
                                 <td>population_name</td>
-                                <td>Sinónimos</td>
-				<td>Descrição</td>
+                                <td>synonym</td>
+				<td>description</td>
 %  foreach my $editable_stockprop (sort keys %$editable_stock_props) {
 %                               print "<td>$editable_stockprop</td>";
 % }
@@ -184,7 +184,7 @@ $editable_stock_props_definitions
 %    if (exists($editable_stock_props_definitions->{$editable_stockprop})) {
 %                   print "<li>$editable_stockprop (".$editable_stock_props_definitions->{$editable_stockprop}.")</li>";
 %    } else {
-%                   print "<li>$editable_stockprop (no definition available)</li>";
+%                   print "<li>$editable_stockprop (nenhuma definição disponível)</li>";
 %    }
 %  }
                     </ul>

@@ -188,7 +188,7 @@ jQuery(document).ready( function() {
                 { title: "Disponibilidade", "data": "availability"},
                 { title: " ", "data": "null", "render": function ( data, type, row ) {
                     if (row.availability == 'available') {
-                        return "<a onclick='addToCart(\""+row.item_name+"\", \""+additional_order_info+"\", \""+ordering_service_name+"\", \""+ordering_type+"\", \""+order_properties_dialog+"\")'>Solicitador</a>";
+                        return "<a onclick='addToCart(\""+row.item_name+"\", \""+additional_order_info+"\", \""+ordering_service_name+"\", \""+ordering_type+"\", \""+order_properties_dialog+"\")'>Solicitar</a>";
                     } else {
                         return ' '
                     }

@@ -95,7 +95,7 @@ if (scalar(@target_list) > 0) {
 
     ## Use columnar table to give the html format. If don't exists any data, print message.
 
-    $hyb_composition_html = columnar_table_html(  headings => [ 'Hybridization id', 'Platform', 'Experiment', 'Target'],
+    $hyb_composition_html = columnar_table_html(  headings => [ 'ID da hibridização', 'Plataforma', 'Experimento', 'Alvo'],
                                                   data     => \@data,
 	       		  		          __alt_freq => 2,
                                                   __align  => ['c', 'l', 'l', 'l'],

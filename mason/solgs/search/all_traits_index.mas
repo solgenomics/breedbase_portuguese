@@ -14,7 +14,7 @@ $traits_list
 &>
 
 <&| /page/info_section.mas, 
-   title    => qq |Traits beginning with "$index" |
+   title    => qq |Características que começam com "$index" |
 &>
 
 <&/page/columnar_table.mas,

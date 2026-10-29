@@ -1,4 +1,5 @@
 package SGN::Controller::AJAX::Trait;
+use utf8;
 
 use Moose;
 use CXGN::Trait;
@@ -22,12 +23,12 @@ sub create_trait :Path('/ajax/trait/create') {
     my $schema = $c->dbic_schema("Bio::Chado::Schema", undef, $sp_person_id);
 
     if (!($c->user() && $c->user->check_roles('curator'))) {
-        $c->stash->{rest} = {error => "You do not have permission to design new traits.\n"};
+        $c->stash->{rest} = {error => "Você não tem permissão para criar novas características.\n"};
         return;
     }
 
     if (! $c->config->{allow_trait_edits}) {
-        $c->stash->{rest} = {error => "You do not have permission to design new traits.\n"};
+        $c->stash->{rest} = {error => "Você não tem permissão para criar novas características.\n"};
         return;
     }
 
@@ -64,28 +65,28 @@ sub create_trait :Path('/ajax/trait/create') {
     my $error = "";
 
     if (!$name) {
-        $error .= "You must supply a name.\n";
+        $error .= "Informe um nome.\n";
     }
     if (!$definition) {
-        $error .= "You must supply a definition.\n";
+        $error .= "Informe uma definição.\n";
     }
     if (defined($definition) && $definition !~ m/([^\s]+\s+){6,}/) {
-        $error .= "You supplied a definition, but it seems short. Please ensure the definition fully describes the trait and allows it to be differentiated from other traits.\n";
+        $error .= "A definição informada parece curta. Certifique-se de que ela descreva completamente a característica e permita diferenciá-la de outras características.\n";
     }
     if (!$format || $format !~ m/numeric|categorical|date|percent|counter|boolean|text|ontology/i) {
-        $error .= "Treatment format must be numeric, categorical, date, percent, counter, boolean, text, or ontology.\n";
+        $error .= "O formato deve ser numeric, categorical, date, percent, counter, boolean, text ou ontology.\n";
     }
     if (defined($categories) && defined($default_value) && $categories !~ m/$default_value/) {
-        $error .= "The default value of the trait is not in the categories list.\n";
+        $error .= "O valor padrão da característica não está na lista de categorias.\n";
     }
     if (defined($default_value) && $default_value =~ m/[=\/]/) {
-        $error .= "The default value you supplied contains special characters.\n";
+        $error .= "O valor padrão informado contém caracteres especiais.\n";
     }
     if (defined($minimum) && defined($maximum) && $maximum < $minimum) {
-        $error .= "The maximum value cannot be less than the minimum value.\n";
+        $error .= "O valor máximo não pode ser menor que o valor mínimo.\n";
     }
     if ($repeat_type && $repeat_type ne 'single' && $repeat_type ne 'multiple' && $repeat_type ne 'time_series') {
-        $error .- "Invalid repeat type. Must be single, multiple, or time_series.\n";
+        $error .- "Tipo de repetição inválido. Deve ser single, multiple ou time_series.\n";
     }
 
     if ($error) {
@@ -143,7 +144,7 @@ sub create_trait :Path('/ajax/trait/create') {
     };
 
     if ($@) {
-        $c->stash->{rest} = {error => "An error occurred trying to create trait: $@"};
+        $c->stash->{rest} = {error => "Ocorreu um erro ao tentar criar a característica: $@"};
         return;
     }
 
@@ -158,12 +159,12 @@ sub edit_trait :Path('/ajax/trait/edit') {
     my $schema = $c->dbic_schema("Bio::Chado::Schema", undef, $sp_person_id);
 
     if (!($c->user() && $c->user->check_roles('curator'))) {
-        $c->stash->{rest} = {error => "You do not have permission to edit cvterms.\n"};
+        $c->stash->{rest} = {error => "Você não tem permissão para editar cvterms.\n"};
         return;
     }
 
     if (! $c->config->{allow_trait_edits}) {
-        $c->stash->{rest} = {error => "You do not have permission to edit cvterms. Check server configuration.\n"};
+        $c->stash->{rest} = {error => "Você não tem permissão para editar cvterms. Verifique a configuração do servidor.\n"};
         return;
     }
 
@@ -172,7 +173,7 @@ sub edit_trait :Path('/ajax/trait/edit') {
     my $new_definition = $c->req->param('new_definition') ? $c->req->param('new_definition') : undef;
 
     if (!$cvterm_id) {
-        $c->stash->{rest} = {error => "Cvterm ID missing.\n"};
+        $c->stash->{rest} = {error => "ID do cvterm ausente.\n"};
         return;
     }
 
@@ -193,7 +194,7 @@ sub edit_trait :Path('/ajax/trait/edit') {
     };
 
     if ($@) {
-        $c->stash->{rest} = {error => "An error occurred updating cvterm: $@"};
+        $c->stash->{rest} = {error => "Ocorreu um erro ao atualizar o cvterm: $@"};
         return;
     }
 
@@ -208,19 +209,19 @@ sub delete_trait :Path('/ajax/trait/delete') {
     my $schema = $c->dbic_schema("Bio::Chado::Schema", undef, $sp_person_id);
 
     if (!($c->user() && $c->user->check_roles('curator'))) {
-        $c->stash->{rest} = {error => "You do not have permission to edit cvterms.\n"};
+        $c->stash->{rest} = {error => "Você não tem permissão para editar cvterms.\n"};
         return;
     }
 
     if (! $c->config->{allow_trait_edits}) {
-        $c->stash->{rest} = {error => "You do not have permission to edit cvterms. Check server configuration.\n"};
+        $c->stash->{rest} = {error => "Você não tem permissão para editar cvterms. Verifique a configuração do servidor.\n"};
         return;
     }
 
     my $cvterm_id = $c->req->param('cvterm_id') ? $c->req->param('cvterm_id') : undef;
 
     if (!$cvterm_id) {
-        $c->stash->{rest} = {error => "Cvterm ID missing.\n"};
+        $c->stash->{rest} = {error => "ID do cvterm ausente.\n"};
         return;
     }
 
@@ -234,7 +235,7 @@ sub delete_trait :Path('/ajax/trait/delete') {
     };
 
     if ($@) {
-        $c->stash->{rest} = {error => "An error occurred deleting cvterm: $@"};
+        $c->stash->{rest} = {error => "Ocorreu um erro ao excluir o cvterm: $@"};
         return;
     }
 

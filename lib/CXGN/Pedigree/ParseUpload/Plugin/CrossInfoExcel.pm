@@ -1,5 +1,6 @@
 package CXGN::Pedigree::ParseUpload::Plugin::CrossInfoExcel;
 
+use utf8;
 use Moose::Role;
 use Spreadsheet::ParseExcel;
 use Spreadsheet::ParseXLSX;
@@ -41,7 +42,7 @@ sub _validate_with_plugin {
 
     $worksheet = ($excel_obj->worksheets())[0]; #support only one worksheet
     if (!$worksheet){
-        push @error_messages, "Spreadsheet must be on 1st tab in Excel (.xls) file";
+        push @error_messages, "A planilha deve estar na 1ª aba do arquivo Excel (.xls)";
         $errors{'error_messages'} = \@error_messages;
         $self->_set_parse_errors(\%errors);
         return;
@@ -50,7 +51,7 @@ sub _validate_with_plugin {
     my ($row_min, $row_max) = $worksheet->row_range();
     my ($col_min, $col_max) = $worksheet->col_range();
     if (($col_max - $col_min)  < 1 || ($row_max - $row_min) < 1 ) { #must have header and at least one row of progeny
-        push @error_messages, "Spreadsheet is missing header or no cross info data";
+        push @error_messages, "A planilha não tem cabeçalho ou não contém dados de informações de cruzamento";
         $errors{'error_messages'} = \@error_messages;
         $self->_set_parse_errors(\%errors);
         return;
@@ -65,7 +66,7 @@ sub _validate_with_plugin {
     }
 
     if (!$cross_name_head || $cross_name_head ne 'cross_unique_id' ) {
-        push @error_messages, "Cell A1: cross_unique_id is missing from the header";
+        push @error_messages, "Célula A1: cross_unique_id está ausente do cabeçalho";
     }
 
     my %valid_properties;
@@ -79,7 +80,7 @@ sub _validate_with_plugin {
         $header_string =~ s/^\s+|\s+$//g;
 
         if (!$valid_properties{$header_string}){
-            push @error_messages, "Invalid info type: $header_string";
+            push @error_messages, "Tipo de informação inválido: $header_string";
         }
     }
 
@@ -94,9 +95,9 @@ sub _validate_with_plugin {
         }
 
         if (!$cross_name || $cross_name eq '') {
-            push @error_messages, "Cell A$row_name: cross unique id missing";
+            push @error_messages, "Célula A$row_name: ID único do cruzamento ausente";
         } elsif ($seen_cross_names{$cross_name}) {
-            push @error_messages, "Duplicate cross unique id at cell A$row_name".": $cross_name";
+            push @error_messages, "ID único do cruzamento duplicado na célula A$row_name".": $cross_name";
         } else {
             $cross_name =~ s/^\s+|\s+$//g;
             $seen_cross_names{$cross_name}++;
@@ -107,10 +108,10 @@ sub _validate_with_plugin {
                 my $info_value = $worksheet->get_cell($row,$column)->value();
                 my $info_type = $worksheet->get_cell(0,$column)->value();
                 if ( ($info_type =~ m/days/  || $info_type =~ m/number/) && !($info_value =~ /^\d+?$/) ) {
-                    push @error_messages, "Cell $info_type:$row_name: is not a positive integer: $info_value";
+                    push @error_messages, "Célula $info_type:$row_name: não é um número inteiro positivo: $info_value";
                 }
                 elsif ( $info_type =~ m/date/ && !($info_value =~ m/(\d{4})\/(\d{2})\/(\d{2})/) ) {
-                    push @error_messages, "Cell $info_type:$row_name: is not a valid date: $info_value. Dates need to be of form YYYY/MM/DD";
+                    push @error_messages, "Célula $info_type:$row_name: não é uma data válida: $info_value. As datas devem estar no formato YYYY/MM/DD";
                 }
             }
         }
@@ -121,7 +122,7 @@ sub _validate_with_plugin {
     my @crosses_missing = @{$cross_validator->validate($schema,'crosses',\@crosses)->{'missing'}};
 
     if (scalar(@crosses_missing) > 0){
-        push @error_messages, "The following cross unique ids are not in the database as uniquenames or synonyms: ".join(',',@crosses_missing);
+        push @error_messages, "Os seguintes IDs únicos de cruzamento não estão no banco de dados como nomes únicos ou sinônimos: ".join(',',@crosses_missing);
         $errors{'missing_crosses'} = \@crosses_missing;
     }
 

@@ -1,5 +1,6 @@
 package CXGN::Pedigree::ParseUpload::Plugin::CrossesSimplifiedParentInfoExcel;
 
+use utf8;
 use Moose::Role;
 use Spreadsheet::ParseExcel;
 use Spreadsheet::ParseXLSX;
@@ -57,7 +58,7 @@ sub _validate_with_plugin {
 
     $worksheet = ( $excel_obj->worksheets() )[0]; #support only one worksheet
     if (!$worksheet) {
-        push @error_messages, "Spreadsheet must be on 1st tab in Excel (.xls) file";
+        push @error_messages, "A planilha deve estar na 1ª aba do arquivo Excel (.xls)";
         $errors{'error_messages'} = \@error_messages;
         $self->_set_parse_errors(\%errors);
         return;
@@ -65,7 +66,7 @@ sub _validate_with_plugin {
     my ( $row_min, $row_max ) = $worksheet->row_range();
     my ( $col_min, $col_max ) = $worksheet->col_range();
     if (($col_max - $col_min)  < 4 || ($row_max - $row_min) < 1 ) { #must have header and at least one row of crosses
-        push @error_messages, "Spreadsheet is missing header or contains no row";
+        push @error_messages, "A planilha não tem cabeçalho ou não contém nenhuma linha";
         $errors{'error_messages'} = \@error_messages;
         $self->_set_parse_errors(\%errors);
         return;
@@ -101,19 +102,19 @@ sub _validate_with_plugin {
 
 
     if (!$cross_name_head || $cross_name_head ne 'cross_unique_id' ) {
-        push @error_messages, "Cell A1: cross_unique_id is missing from the header";
+        push @error_messages, "Célula A1: cross_unique_id está ausente do cabeçalho";
     }
     if (!$cross_combination_head || $cross_combination_head ne 'cross_combination') {
-        push @error_messages, "Cell B1: cross_combination is missing from the header";
+        push @error_messages, "Célula B1: cross_combination está ausente do cabeçalho";
     }
     if (!$cross_type_head || $cross_type_head ne 'cross_type') {
-        push @error_messages, "Cell C1: cross_type is missing from the header";
+        push @error_messages, "Célula C1: cross_type está ausente do cabeçalho";
     }
     if (!$female_parent_head || $female_parent_head ne 'female_parent') {
-        push @error_messages, "Cell D1: female_parent is missing from the header";
+        push @error_messages, "Célula D1: female_parent está ausente do cabeçalho";
     }
     if (!$male_parent_head || $male_parent_head ne 'male_parent') {
-        push @error_messages, "Cell E1: male_parent is missing from the header";
+        push @error_messages, "Célula E1: male_parent está ausente do cabeçalho";
     }
 
     my %valid_additional_info;
@@ -128,7 +129,7 @@ sub _validate_with_plugin {
             $header_string =~ s/^\s+|\s+$//g;
 
             if (($header_string) && (!$valid_additional_info{$header_string})){
-                push @error_messages, "Invalid info type: $header_string";
+                push @error_messages, "Tipo de informação inválido: $header_string";
             }
         }
     }
@@ -168,32 +169,32 @@ sub _validate_with_plugin {
 
         #cross name must not be blank
         if (!$cross_name || $cross_name eq '') {
-            push @error_messages, "Cell A$row_name: cross unique id missing";
+            push @error_messages, "Célula A$row_name: ID único do cruzamento ausente";
         } else {
             $cross_name =~ s/^\s+|\s+$//g; #trim whitespace from front and end.
         }
 #        } elsif ($cross_name =~ /\s/ || $cross_name =~ /\// || $cross_name =~ /\\/ ) {
 #            push @error_messages, "Cell A$row_name: cross_name must not contain spaces or slashes.";
         if ($seen_cross_names{$cross_name}) {
-            push @error_messages, "Cell A$row_name: duplicate cross unique id: $cross_name";
+            push @error_messages, "Célula A$row_name: ID único do cruzamento duplicado: $cross_name";
         }
 
         #cross type must not be blank
         if (!$cross_type || $cross_type eq '') {
-            push @error_messages, "Cell C$row_name: cross type missing";
+            push @error_messages, "Célula C$row_name: tipo de cruzamento ausente";
         } elsif (!$supported_cross_types{$cross_type}){
-            push @error_messages, "Cell C$row_name: cross type not supported: $cross_type";
+            push @error_messages, "Célula C$row_name: tipo de cruzamento não suportado: $cross_type";
         }
 
         #female parent must not be blank
         if (!$female_parent || $female_parent eq '') {
-            push @error_messages, "Cell D$row_name: female parent missing";
+            push @error_messages, "Célula D$row_name: genitor feminino ausente";
         }
 
         #male parent must not be blank if type is biparental, sib, polycross or bulk
         if (!$male_parent || $male_parent eq '') {
             if ($cross_type eq ( 'biparental' || 'bulk' || 'sib' || 'polycross' || 'backcross' )) {
-                push @error_messages, "Cell E$row_name: male parent required for biparental, sib, polycross, backcross and bulk cross types";
+                push @error_messages, "Célula E$row_name: genitor masculino obrigatório para os tipos de cruzamento biparental, sib, polycross, backcross e bulk";
             }
         }
 
@@ -219,7 +220,7 @@ sub _validate_with_plugin {
     my @parents_missing = @{$parent_validator->validate($schema,'accessions_or_populations_or_plots_or_plants',\@parent_list)->{'missing'}};
 
     if (scalar(@parents_missing) > 0) {
-        push @error_messages, "The following parents are not in the database, or are not in the database as accession names, plot names or plant names: ".join(',',@parents_missing);
+        push @error_messages, "Os seguintes genitores não estão no banco de dados, ou não estão no banco de dados como nomes de acessos, nomes de parcelas ou nomes de plantas: ".join(',',@parents_missing);
     }
 
     my @crosses = keys %seen_cross_names;
@@ -228,7 +229,7 @@ sub _validate_with_plugin {
         'uniquename' => { -in => \@crosses }
     });
     while (my $r=$rs->next){
-        push @error_messages, "Cross unique id already exists in database: ".$r->uniquename;
+        push @error_messages, "O ID único do cruzamento já existe no banco de dados: ".$r->uniquename;
     }
 
     #store any errors found in the parsed file to parse_errors accessor

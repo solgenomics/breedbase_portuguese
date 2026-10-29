@@ -1,4 +1,5 @@
 package SGN::Controller::solGS::Correlation;
+use utf8;
 
 use Moose;
 use namespace::autoclean;
@@ -38,7 +39,7 @@ sub pheno_correlation_analysis :Path('/phenotypic/correlation/analysis') Args(0)
 
     if (!$c->user()) {
         $c->res->content_type('application/json');
-        $c->res->body(to_json({ error => 'You must be logged in to run this analysis.', login_required => 1 }));
+        $c->res->body(to_json({ error => 'Você precisa estar conectado para executar esta análise.', login_required => 1 }));
         return;
     }
 
@@ -49,7 +50,7 @@ sub pheno_correlation_analysis :Path('/phenotypic/correlation/analysis') Args(0)
     my $corre_json_file = $c->stash->{pheno_corr_json_file};
     my $corre_input_data_json_file = $c->stash->{corr_pheno_input_data_json_file};
 
-    my $ret->{status} = 'Correlation analysis failed.';
+    my $ret->{status} = 'A análise de correlação falhou.';
 
     if (!-s $corre_json_file) {
 	    $c->controller('solGS::Utils')->save_metadata($c);
@@ -92,11 +93,11 @@ sub genetic_correlation_analysis :Path('/genetic/correlation/analysis') Args() {
     $c->controller('solGS::Gebvs')->combined_gebvs_file($c);
     my $combined_gebvs_file = $c->stash->{combined_gebvs_file};
 
-    my $ret->{status} = 'Correlation analysis failed.';
+    my $ret->{status} = 'A análise de correlação falhou.';
 
     my $json = JSON->new();
     if ( !-s $combined_gebvs_file ) {
-        $ret->{status} = "There is no GEBVs input. Error occured combining the GEBVs of the traits.";
+        $ret->{status} = "Não há entrada de GEBVs. Ocorreu um erro ao combinar os GEBVs das características.";
     } else {   
         $self->run_correlation_analysis($c);
     }

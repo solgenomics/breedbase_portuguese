@@ -28,9 +28,9 @@
      name=>"matrix",
      params=>"class\=\"form-control input-sm blast_select_box\"",
      id=>"matrix",
-     choices => [  [ 'BLOSUM62', 'BLOSUM62 (default)' ],
-                   [ 'BLOSUM80', 'BLOSUM80 (recent divergence)' ],
-  		 [ 'BLOSUM45', 'BLOSUM45 (ancient divergence)' ],
+     choices => [  [ 'BLOSUM62', 'BLOSUM62 (padrão)' ],
+                   [ 'BLOSUM80', 'BLOSUM80 (divergência recente)' ],
+  		 [ 'BLOSUM45', 'BLOSUM45 (divergência antiga)' ],
   		 'PAM30',
   		 'PAM70',
   ]);
@@ -99,16 +99,16 @@
 
 <& /page/page_title.mas, title=>"BLAST" &>
 
-<div style="border-style:dotted;border-width:1px;margin-bottom:20px;"><div style="margin-top:10px;margin-right:10px;margin-bottom:10px;margin-left:10px;" ><b>Nota</b>Para combinar sequências mais curtas:
+<div style="border-style:dotted;border-width:1px;margin-bottom:20px;"><div style="margin-top:10px;margin-right:10px;margin-bottom:10px;margin-left:10px;" ><b>Nota</b>: Para encontrar correspondências com sequências mais curtas:
 <div>
 <ul>
 <li>Considere definir o word_size para um valor menor.</li>
-<li>Você pode ter que definir o valor para um valor maior.</li>
+<li>Talvez seja necessário definir o evalue para um valor maior.</li>
 </ul>
 </div>
-O word_size padrão para blashn é 11 e para os programas de explosão baseados em proteínas é 3. O padrão correto será definido automaticamente ao mudar o programa.</div></div>
+O word_size padrão para blastn é 11 e para os programas BLAST baseados em proteínas é 3. O padrão correto será definido automaticamente ao mudar o programa.</div></div>
 
-<&| /page/info_section.mas, id=>"input_parameter_section", title=>"Parâmetros de entrada", collapsible=>1, collapsed=>0, subtitle=>'<a class="btn btn-link pull-right" href="/help/tools/blast" target="_blank">Socorro! <span class="glyphicon glyphicon-question-sign"></span></a>' &>
+<&| /page/info_section.mas, id=>"input_parameter_section", title=>"Parâmetros de entrada", collapsible=>1, collapsed=>0, subtitle=>'<a class="btn btn-link pull-right" href="/help/tools/blast" target="_blank">Ajuda <span class="glyphicon glyphicon-question-sign"></span></a>' &>
   <input type="hidden" name="outformat" value="0" />
 
   <div class="form-group form-inline">
@@ -118,18 +118,18 @@ O word_size padrão para blashn é 11 e para os programas de explosão baseados 
 
 % if ($blast_db_icons) {
 <!-- images to get direct access to the model plant dbs. db_id is the blast_db_id on the SGN database -->
-<img class="fruit_icon" height="25" src="/documents/img/blast_icons/tomato.png" db_id="34" title="Tomato current DB">
-<img class="fruit_icon" height="18" src="/documents/img/blast_icons/potato.png" db_id="10" title="Potato current DB">
-<img class="fruit_icon" height="25" src="/documents/img/blast_icons/pepper.png" db_id="21" title="A corrente de pimenta DB">
-<img class="fruit_icon" height="25" src="/documents/img/blast_icons/eggplant.png" db_id="29" title="Berinjela atual DB">
-<img class="fruit_icon" height="25" src="/documents/img/blast_icons/benth.png" db_id="9" title="N.Benthamiana atual DB">
+<img class="fruit_icon" height="25" src="/documents/img/blast_icons/tomato.png" db_id="34" title="BD atual de tomate">
+<img class="fruit_icon" height="18" src="/documents/img/blast_icons/potato.png" db_id="10" title="BD atual de batata">
+<img class="fruit_icon" height="25" src="/documents/img/blast_icons/pepper.png" db_id="21" title="BD atual de pimenta">
+<img class="fruit_icon" height="25" src="/documents/img/blast_icons/eggplant.png" db_id="29" title="BD atual de berinjela">
+<img class="fruit_icon" height="25" src="/documents/img/blast_icons/benth.png" db_id="9" title="BD atual de N. benthamiana">
 % }
 
 <br>
 
     <label class="blast_select_label" for="database_select">Banco de dados </label>
 
-    <span id='database_select' ></span><a style="font-size: 80%" title="Veja detalhes de cada banco de dados" href="/tools/blast/dbinfo">Db detalhes</a>
+    <span id='database_select' ></span><a style="font-size: 80%" title="Veja detalhes de cada banco de dados" href="/tools/blast/dbinfo">detalhes do BD</a>
     <br>
 
     <label class="blast_select_label" for="program_select">Programa </label>
@@ -137,7 +137,7 @@ O word_size padrão para blashn é 11 e para os programas de explosão baseados 
     <br>
 
     <label class="blast_select_label" for="input_example">Consulta </label>
-    <% $input_options_select %><a id="input_example" style="font-size: 80%;cursor:pointer;">Mostre o exemplo</a>
+    <% $input_options_select %><a id="input_example" style="font-size: 80%;cursor:pointer;">Mostrar exemplo</a>
   </div>
 
     <textarea name="sequence" id="sequence" class="form-control" rows="8" cols="80"><% $preload %></textarea></td></tr>
@@ -148,15 +148,15 @@ O word_size padrão para blashn é 11 e para os programas de explosão baseados 
         </div>
         <br />
 
-<&| /page/info_section.mas, title=>"Opções Avançadas", collapsible=>1, collapsed =>1, is_subsection=>"1" &>
+<&| /page/info_section.mas, title=>"Opções avançadas", collapsible=>1, collapsed =>1, is_subsection=>"1" &>
 
 	<& /page/info_table.mas, title=>'', data => [
-	  'Expect (e-value) Threshold' => '<input id="evalue" class="blast_select_box form-control" type="text" size="6" value="1e-10" name="expect" />',
-	  'Word Size (default 11, use lower value for shorter sequences)' => '<input id="word_size" class="blast_select_box form-control" type="text" size="6" value="11" name="word_size" />',
-	  'Substitution Matrix' => $substitution_matrix_select,
-		'Output Options' => $parse_options_select,
-	  'Max. hits to show' => '<input id="maxhits" class="blast_select_box form-control" type="text" name="maxhits" size="6" value="20" />',
-	  'Filters' => '<div class="checkbox"><label><input type="checkbox" name="filterq" checked="1" /> Filter Low complexity</label>',
+	  'Limite de expectativa (e-value)' => '<input id="evalue" class="blast_select_box form-control" type="text" size="6" value="1e-10" name="expect" />',
+	  'Tamanho da palavra (padrão 11, use valor menor para sequências mais curtas)' => '<input id="word_size" class="blast_select_box form-control" type="text" size="6" value="11" name="word_size" />',
+	  'Matriz de substituição' => $substitution_matrix_select,
+		'Opções de saída' => $parse_options_select,
+	  'Máx. de hits a exibir' => '<input id="maxhits" class="blast_select_box form-control" type="text" name="maxhits" size="6" value="20" />',
+	  'Filtros' => '<div class="checkbox"><label><input type="checkbox" name="filterq" checked="1" /> Filtrar baixa complexidade</label>',
 	  __multicol => 2,
 	  __border => 0,
 	  __tableattrs => 'width="80%"',
@@ -173,17 +173,17 @@ O word_size padrão para blashn é 11 e para os programas de explosão baseados 
   <input class="form-control" value="putrescine" id="blast_desc"/>
   <button id="search_by_desc" class="btn btn-primary">Buscar</button>
   </div>
-  <div class="well well-sm">Selecione um banco de dados BLAST e cole um gene ou descrição. Eg: Solic07g063040 ou ribulose</div>
+  <div class="well well-sm">Selecione um banco de dados BLAST e cole o nome ou a descrição de um gene. Ex.: Solyc07g063040 ou ribulose</div>
 </&>
 
-<&| /page/info_section.mas, title=>"Resultados", collapsible=>1, collapsed=>0, subtitle=>'<a id="download_table" class="download_tag" target="_blank" href="javascript:download_table();" title="Download results in tabular format">Table&#8675;</a>&nbsp;&nbsp;<a id="download_basic" class="download_tag" target="_blank" href="javascript:download();" title="Download results in basic format">Basic&#8675;</a>' &>
+<&| /page/info_section.mas, title=>"Resultados", collapsible=>1, collapsed=>0, subtitle=>'<a id="download_table" class="download_tag" target="_blank" href="javascript:download_table();" title="Baixar resultados em formato tabular">Tabela&#8675;</a>&nbsp;&nbsp;<a id="download_basic" class="download_tag" target="_blank" href="javascript:download();" title="Baixar resultados em formato básico">Básico&#8675;</a>' &>
 
   <div id="prereqs"></div>
 
   <center>
     <div id="sgn_blast_graph" style="display:none">
         <div id="myCanvas">
-          Seu navegador não suporta a tela HTML5
+          Seu navegador não suporta o canvas do HTML5
         </div>
     </div>
   </center>
@@ -208,7 +208,7 @@ O word_size padrão para blashn é 11 e para os programas de explosão baseados 
     <!-- Modal content-->
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title">Status BLAST</h4>
+        <h4 class="modal-title">Status do BLAST</h4>
       </div>
       <div class="modal-body">
         <center>
@@ -293,7 +293,7 @@ jQuery(document).ready(function() {
 			if (seq_num.length <= 20 ) {
 			  run_blast(database_types, input_option_types);
 			} else {
-				alert("Não execute mais de 20 sequências");
+				alert("Por favor, não execute mais de 20 sequências");
 			}
 		} else {
 			run_blast(database_types, input_option_types);

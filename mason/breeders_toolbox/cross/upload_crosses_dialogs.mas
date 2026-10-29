@@ -249,7 +249,7 @@ $breeding_program_id => undef
                     <ul>
                         <li><b>cross_unique_id</b> — NÃO pode existir no banco de dados.</li>
                         <li><b>cross_combination</b> — obrigatória no cabeçalho, mas seu valor, como acesso feminino/acesso masculino, pode ficar vazio.</li>
-                        <li><b>cross_type</b> - Deve ser: biparental, self, aberto, sib, policross, backcross, bulk, bulk_open, bulk_self, doubled_haploid ou dihaploid_induction.</li>
+                        <li><b>cross_type</b> — deve ser: biparental, self, open, sib, polycross, backcross, bulk, bulk_open, bulk_self, doubled_haploid ou dihaploid_induction.</li>
                         <ul class="a">
                             <li><b>Biparental:</b> uma planta individual polinizada por outra planta individual.</li>
                             <li><b>Self:</b> uma planta individual autopolinizada.</li>

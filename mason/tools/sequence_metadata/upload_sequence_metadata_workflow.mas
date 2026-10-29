@@ -20,33 +20,33 @@
             <&| /util/workflow.mas:step, title=> "Introdução" &>
               <& /page/page_title.mas, title=>"Enviar metadados de sequência" &>
               <div class="well">
-                  <p>Este fluxo de trabalho irá guiá-lo através do processo de upload de metadados de sequência para o banco de dados usando um 
-                  <a href="https://m.ensembl.org/info/website/upload/gff3.html">Gff3 formatado</a> Arquivo.</p>
-                  <p>As seguintes colunas Gff3 são usadas pelo upload de metadados de sequência:</p>
+                  <p>Este fluxo de trabalho irá guiá-lo no processo de envio de metadados de sequência para o banco de dados usando um arquivo 
+                  <a href="https://m.ensembl.org/info/website/upload/gff3.html">no formato gff3</a>.</p>
+                  <p>As seguintes colunas do gff3 são usadas pelo importador de metadados de sequência:</p>
                   <ul>
                     <li>
-                      <strong>#1 / seqid:</strong> O nome da característica do banco de dados (isto é, cromossoma) os metadados estão associados com<br />
-                      <em>Os nomes desta coluna devem corresponder às características existentes no banco de dados.</em>
+                      <strong>#1 / seqid:</strong> O nome da feature do banco de dados (isto é, cromossomo) à qual os metadados estão associados<br />
+                      <em>Os nomes desta coluna devem corresponder a features existentes no banco de dados.</em>
                     </li>
                     <li><strong>#4 / start:</strong> A posição inicial dos metadados</li>
                     <li><strong>#5 / end:</strong> A posição final dos metadados</li>
                     <li><strong>#6 / score:</strong> O atributo principal de pontuação dos metadados</li>
                     <li>
                       <strong>#9 / attributes:</strong> Atributos de chave/valor secundários a serem salvos com a pontuação<br />
-                      <em>A chave do atributo também não pode ser <strong>Pontuação</strong>, <strong>Comece</strong>, or <strong>Fim</strong>.</em>
+                      <em>A chave do atributo não pode ser <strong>score</strong>, <strong>start</strong> nem <strong>end</strong>.</em>
                     </li>
                   </ul>
               </div>
 
               <div class="center">
-                <button class="btn btn-primary" id="sequence_metadata_intro_step">Vá para o próximo passo</button>
+                <button class="btn btn-primary" id="sequence_metadata_intro_step">Ir para o próximo passo</button>
               </div>
             </&>
             <!-- End Intro -->
 
 
             <!-- Step 2: Data Type -->
-            <&| /util/workflow.mas:step, title=> "Tipo de Dados" &>
+            <&| /util/workflow.mas:step, title=> "Tipo de dados" &>
               <& /page/page_title.mas, title=>"Selecione o tipo de metadados de sequência" &>
               <br /><br />
               <form class="form-horizontal">
@@ -63,24 +63,24 @@
                   </div>
                 </div>
               </form>
-              <p><span class="glyphicon glyphicon-question-sign"></span>Se seus dados não são um dos tipos de dados acima, por favor. <a href="/contact/form">Nos contate</a> sobre adicionar um novo tipo de dados.</p>
+              <p><span class="glyphicon glyphicon-question-sign"></span>&nbsp;Se seus dados não forem de um dos tipos acima, <a href="/contact/form">entre em contato conosco</a> para adicionar um novo tipo de dados.</p>
               
               <br /><br />
 
               <div class="center">
-                <button class="btn btn-primary" id="sequence_metadata_upload_type_step">Vá para o próximo passo</button>
+                <button class="btn btn-primary" id="sequence_metadata_upload_type_step">Ir para o próximo passo</button>
               </div>
             </&>
             <!-- End Data Type -->
 
 
             <!-- Step 3: Protocol Info -->
-            <&| /util/workflow.mas:step, title=> "Informação do Protocolo" &>
-              <& /page/page_title.mas, title=>"Selecione um protocolo para como seus dados foram gerados ou crie um novo protocolo." &>
+            <&| /util/workflow.mas:step, title=> "Informações do protocolo" &>
+              <& /page/page_title.mas, title=>"Selecione um protocolo que descreva como seus dados foram gerados ou crie um novo protocolo" &>
 
               <ul class="nav nav-tabs">
                 <li class="active"><a data-toggle="tab" href="#sequence_metadata_upload_protocol_select">Selecione o protocolo existente</a></li>
-                <li><a data-toggle="tab" href="#sequence_metadata_upload_protocol_div">Criar Novo Protocolo</a></li>
+                <li><a data-toggle="tab" href="#sequence_metadata_upload_protocol_div">Criar novo protocolo</a></li>
               </ul>
 
               <div class="tab-content">
@@ -94,7 +94,7 @@
                 <div id="sequence_metadata_upload_protocol_div" class="tab-pane fade">
                   <form class="form-horizontal" id="sequence_metadata_upload_protocol_form" name="sequence_metadata_upload_file_form">
 
-                    <h3>Informação do Protocolo</h3>
+                    <h3>Informações do protocolo</h3>
                     
                     <!-- Protocol Name -->
                     <div class="form-group">
@@ -108,13 +108,13 @@
                     <div class="form-group">
                       <label class="col-sm-3 control-label">Descrição do protocolo: </label>
                       <div class="col-sm-9">
-                        <textarea class="form-control" id="sequence_metadata_upload_protocol_description" rows="5" placeholder="Incluir uma descrição dos métodos usados para gerar os dados"></textarea>
+                        <textarea class="form-control" id="sequence_metadata_upload_protocol_description" rows="5" placeholder="Inclua uma descrição dos métodos usados para gerar os dados"></textarea>
                       </div>
                     </div>
 
                     <!-- Sequence Metadata Type -->
                     <div class="form-group">
-                      <label class="col-sm-3 control-label">Tipo de Metadados de Sequência: </label>
+                      <label class="col-sm-3 control-label">Tipo de metadados de sequência: </label>
                       <div class="col-sm-9">
                         <input class="form-control" id="sequence_metadata_upload_protocol_sequence_metadata_type" type="text" disabled>
                       </div>
@@ -138,18 +138,18 @@
                     <div class="form-group">
                       <label class="col-sm-3 control-label">Descrição da pontuação: </label>
                       <div class="col-sm-9">
-                        <input class="form-control" id="sequence_metadata_upload_score_description" type="text" placeholder="Inclua uma descrição dos valores na coluna &#x27;Score&#x27;">
+                        <input class="form-control" id="sequence_metadata_upload_score_description" type="text" placeholder="Inclua uma descrição dos valores na coluna &#x27;score&#x27;">
                       </div>
                     </div>
 
                     <br />
                     <p><strong>Adicione uma descrição para cada um dos pares chave/valor incluídos na coluna de atributos.</strong></p>
-                    <p><em>Especificar o atributo aqui no protocolo permitirá que o atributo seja usado como filtro em uma consulta. Certifique-se que a chave do atributo corresponde exatamente à chave usada no arquivo Gff.</em></p>
+                    <p><em>Especificar o atributo aqui no protocolo permitirá que o atributo seja usado como filtro em uma consulta. Certifique-se que a chave do atributo corresponde exatamente à chave usada no arquivo gff.</em></p>
 
                     <div class="form-group">
                       <label class="col-sm-3 control-label">Chave do atributo: </label>
                       <div class="col-sm-9">
-                        <input class="form-control" id="sequence_metadata_upload_new_attribute_key" type="text" placeholder="Digite a tecla do atributo">
+                        <input class="form-control" id="sequence_metadata_upload_new_attribute_key" type="text" placeholder="Digite a chave do atributo">
                       </div>
                     </div>
 
@@ -178,30 +178,30 @@
                     <br /><br />
 
                     <!-- External Link Templates -->
-                    <h3>Ligações Externas</h3>
+                    <h3>Links externos</h3>
 
-                    <p><strong>Adicione modelos para gerar links externos exibidos com os resultados da sequência de metadados.</strong></p>
-                    <p>Links externos são definidos usando modelos que podem incluir o nome do recurso / cromo, start e / ou posição final, e / ou qualquer valor atributo 
-                    as a variable in the URL.  The variable will be replaced with the value for each sequence metadata result and displayed in the query results table.  The variable in the URL takes the form of: <code>{{variable}}</code> where <code>variable</code> can be: <code>feature</code>, <code>start</code>,
-                    <code>end</code> or the key of any attribute defined by the sequence metadata protocol.</p>
-                    <p>Example: <code>https://wheat.pw.usda.gov/jb/?data=/ggds/whe-iwgsc2018&loc={{Locus}}&highlight={{feature}}:{{start}}..{{end}}</code></p>
+                    <p><strong>Adicione modelos para gerar links externos exibidos com os resultados dos metadados de sequência.</strong></p>
+                    <p>Links externos são definidos usando modelos que podem incluir o nome da feature/cromossomo, as posições inicial e/ou final e/ou qualquer valor de atributo 
+                    como variável na URL. A variável será substituída pelo valor de cada resultado de metadados de sequência e exibida na tabela de resultados da consulta. A variável na URL tem a forma <code>{{variable}}</code>, onde <code>variable</code> pode ser: <code>feature</code>, <code>start</code>,
+                    <code>end</code> ou a chave de qualquer atributo definido pelo protocolo de metadados de sequência.</p>
+                    <p>Exemplo: <code>https://wheat.pw.usda.gov/jb/?data=/ggds/whe-iwgsc2018&loc={{Locus}}&highlight={{feature}}:{{start}}..{{end}}</code></p>
 
                     <div class="form-group">
-                      <label class="col-sm-3 control-label">Título da ligação: </label>
+                      <label class="col-sm-3 control-label">Título do link: </label>
                       <div class="col-sm-9">
                         <input class="form-control" id="sequence_metadata_upload_new_link_title" type="text" placeholder="Digite o título do link externo">
                       </div>
                     </div>
 
                     <div class="form-group">
-                      <label class="col-sm-3 control-label">Modelo de URL da ligação: </label>
+                      <label class="col-sm-3 control-label">Modelo de URL do link: </label>
                       <div class="col-sm-9">
                         <input class="form-control" id="sequence_metadata_upload_new_link_url" type="text" placeholder="Digite o modelo de URL do link externo">
                       </div>
                     </div>
 
                     <div class="form-group center">
-                      <button class="btn btn-info" id="sequence_metadata_upload_new_link_submit">Salvar Link</button>
+                      <button class="btn btn-info" id="sequence_metadata_upload_new_link_submit">Salvar link</button>
                     </div>
 
                     <div>
@@ -224,7 +224,7 @@
               <br /><br />
 
               <div class="center">
-                <button class="btn btn-primary" id="sequence_metadata_upload_protocol_step">Vá para o próximo passo</button>
+                <button class="btn btn-primary" id="sequence_metadata_upload_protocol_step">Ir para o próximo passo</button>
               </div>
 
               <br /><br />
@@ -238,7 +238,7 @@
               <& /page/page_title.mas, title=>"Envie seu arquivo gff3" &>
               <br /><br />
 
-              <p>Selecione seu arquivo gff3 para carregar. Então, clique no <strong>Verificar</strong> botão para carregar seu arquivo e verificar seu formato e conteúdo. Se verificar com sucesso, clique no <strong>Loja</strong> botão para armazenar os dados no banco de dados.</p>
+              <p>Selecione o arquivo gff3 a ser enviado. Em seguida, clique no botão <strong>Verificar</strong> para enviar o arquivo e verificar seu formato e conteúdo. Se a verificação for bem-sucedida, clique no botão <strong>Armazenar</strong> para armazenar os dados no banco de dados.</p>
 
               <br /><br />
 
@@ -255,7 +255,7 @@
 
               <div class="center">
                 <button id="sequence_metadata_upload_verify" class="btn btn-info">Verificar</button>
-                <button id="sequence_metadata_upload_store" class="btn btn-primary" disabled>Loja</button>
+                <button id="sequence_metadata_upload_store" class="btn btn-primary" disabled>Armazenar</button>
               </div>
 
               <br /><br />
@@ -486,13 +486,13 @@ function upload_and_verify() {
   
   // Build the FormData to pass as POST arguments
   let formData = new FormData();
-  formData.append("arquivo", jQuery('#sequence_metadata_upload_file_input').prop('files')[0]);
+  formData.append('file', jQuery('#sequence_metadata_upload_file_input').prop('files')[0]);
   formData.append('use_existing_protocol', use_existing_protocol);
   if ( use_existing_protocol ) {
     formData.append('existing_protocol_id', jQuery('input[name="sequence_metadata_upload_protocol_id"]:checked').val());
   }
   else {
-    formData.append("Espécie", jQuery('#sequence_metadata_upload_protocol_reference_genome option:selected').attr('data-species'));
+    formData.append('species', jQuery('#sequence_metadata_upload_protocol_reference_genome option:selected').attr('data-species'));
     formData.append('new_protocol_attribute_count', new_attribute_count);
     for ( let i = 0; i <= new_attribute_count; i++ ) {
       formData.append('new_protocol_attribute_key_' + i, jQuery('#sequence_metadata_upload_attribute_key_' + i).val());
@@ -553,7 +553,7 @@ function upload_and_verify() {
         }
 
         if ( response.results.missing_features && response.results.missing_features.length > 0 ) {
-          let msg = "As seguintes características não existem no banco de dados. Entre em contato conosco para incluí-los ou alterar os nomes dos recursos para combinar com os recursos existentes.";
+          let msg = "ERRO: as seguintes features não existem no banco de dados. Entre em contato conosco para adicioná-las ou altere os nomes das features para corresponder a features existentes.";
           msg += "<ul>";
           for ( let i = 0; i < response.results.missing_features.length; i++ ) {
             msg += "<li>" + response.results.missing_features[i] + "</li>";
@@ -589,7 +589,7 @@ function upload_and_verify() {
       if ( response && response.results && response.results.processed && response.results.processed === 1 && response.results.verified && response.results.verified === 1 && response.results.processed_filepath ) {
         jQuery('#sequence_metadata_upload_verify').attr('disabled', true);
         jQuery('#sequence_metadata_upload_store').attr('disabled', false);
-        add_message("info", "Verificação concluída. A seguir, clique no botão <strong>Loja</strong> para salvar os dados no banco de dados.");
+        add_message("info", "Verificação concluída. A seguir, clique no botão <strong>Armazenar</strong> para salvar os dados no banco de dados.");
         processed_filepath = response.results.processed_filepath;
       }
 
@@ -611,7 +611,7 @@ function upload_and_verify() {
 function store() {
 
   // Setup working modal
-  jQuery('#working_msg').html("Armazenando Metadados de Sequência");
+  jQuery('#working_msg').html("Armazenando metadados de sequência");
   jQuery('#working_modal').modal("show");
   jQuery('#sequence_metadata_upload_messages_list').empty();
 

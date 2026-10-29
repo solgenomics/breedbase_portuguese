@@ -935,10 +935,10 @@
               hovertemplate:
                 '<b>%{x}</b><br>' +
                 'Média: %{y:.3f}<br>' +
-                "N: % {dados personalizados[0]}<br>" +
+                "N: %{customdata[0]}<br>" +
                 'Mínimo: %{customdata[1]}<br>' +
                 'Máximo: %{customdata[2]}<br>' +
-                "Std: % {dados personalizados[3]}<extra></extra>"
+                "Desvio padrão: %{customdata[3]}<extra></extra>"
             };
 
             var layout = {
@@ -1192,7 +1192,7 @@
         $subtitle.text(
           "Acesso: " + accession +
           (meetingDate ? " | Data da reunião: " + meetingDate : '') +
-          (currentStage ? " Estágio atual: " + currentStage : '')
+          (currentStage ? " | Estágio atual: " + currentStage : '')
         );
 
         $options.empty();

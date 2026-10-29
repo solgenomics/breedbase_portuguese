@@ -22,7 +22,7 @@ use strict;
 use File::Spec;
 use CXGN::Tools::File;
 
-my $publication = "A informação da publicação do genoma de tomate está indisponível.<br /><br />";
+my $publication = "As informações sobre a publicação do genoma do tomate não estão disponíveis no momento.<br /><br />";
 
 eval {
 
@@ -35,7 +35,7 @@ if ($@) { print "ERRO $@\n"; }
 </%perl>
 
 <div class="boxbgcolor1" style="margin:0px;">
-<div class="boxheading">Tomato Genome Published</div>
+<div class="boxheading">Genoma do tomate publicado</div>
 <div class="boxcontent"><% $publication %>
 
 </div>

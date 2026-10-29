@@ -92,13 +92,13 @@
         
             <!-- Date -->
             <div class="form-group">
-                <label class="col-sm-3 control-label">Dados: </label>
+                <label class="col-sm-3 control-label">Data: </label>
                 <div class="col-sm-4">
                     <input class="form-control" id="event_filter_date" type="date">
                 </div>
                 <div class="col-sm-4">
                     <select class="form-control" id="event_filter_date_type">
-                        <option value="=">Na data</option>
+                        <option value="=">na data</option>
                         <option value="<=">na data ou antes</option>
                         <option value="<">antes</option>
                         <option value=">=">na data ou depois</option>

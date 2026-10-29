@@ -87,7 +87,7 @@ foreach my $relation (@relation_types) {
 
     ## Use columnar table to give the html format. If don't exists any data, print message.
     
-    my $rel_composition_html = columnar_table_html( headings => [ 'Relation', 'Sample', 'Type'],
+    my $rel_composition_html = columnar_table_html( headings => [ 'Relação', 'Amostra', 'Tipo'],
                                                     data     => \@sample_rel_list,
        		        	                    __alt_freq => 2,
                                                     __align  => ['c', 'c', 'c'], );
@@ -95,7 +95,7 @@ foreach my $relation (@relation_types) {
 
     my $rel_n = scalar(@sample_rel_list);                                              
     if ($rel_n == 0) {
-	$rel_composition_html = 'No relation was found associated to this sample';
+	$rel_composition_html = 'Nenhuma relação associada a esta amostra foi encontrada';
     }
 
     $rel_content = info_section_html( title        => "Relacionamentos de Amostra (".$rel_n.")", 

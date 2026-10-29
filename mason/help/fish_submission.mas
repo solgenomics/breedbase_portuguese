@@ -1,14 +1,14 @@
 
-<& /page/page_title.mas, title=>"Ajuda na submissão de dados dos peixes" &>
+<& /page/page_title.mas, title=>"Ajuda para envio de dados de FISH" &>
 
-<p>Este documento descreve o que nós da SGN estamos preparados para aceitar para os dados do experimento FISH. Por favor. <a href="/contact/form">Nos contate</a> Se tiver alguma dúvida sobre essas diretrizes.</p>
+<p>Este documento descreve o que a SGN está preparada para aceitar como dados de experimentos de FISH. <a href="/contact/form">Entre em contato conosco</a> se tiver alguma dúvida sobre essas diretrizes.</p>
 
 
-<p>Ao enviar spreads, o disposição espacial de pastas preferido é assim:</p>
+<p>Ao enviar spreads, a estrutura de pastas preferida é a seguinte:</p>
 
 <pre>&lt;chromosome arm&gt;/&lt;BACS on arm&gt;/&lt;spreads for BAC&gt;/&lt;files for spread&gt;</pre>
 
-<p>Por exemplo, uma única propagação para um BAC no braço longo do cromossomo 11 seria:</p>
+<p>Por exemplo, um único spread de um BAC no braço longo do cromossomo 11 ficaria assim:</p>
 
 <pre>
   Tomato_11Q/
@@ -19,13 +19,13 @@
   Tomato_11Q/BAC_323E19/Spread_127/127_fluorescence.jpg
 </pre>
 
-<p>Outros spreads para BAC 323E19 estariam ao lado de Spread_127 na pasta BAC_323E19, outros BACs no braço 11Q de Tomato estariam ao lado de BAC_323E19 na pasta Tomato_11Q, e BACs em outros braços cromossomos estariam em pastas ao lado de Tomato_11Q.</p>
+<p>Outros spreads para BAC 323E19 estariam ao lado de Spread_127 na pasta BAC_323E19, outros BACs no braço 11Q de Tomato estariam ao lado de BAC_323E19 na pasta Tomato_11Q, e BACs em outros braços cromossômicos estariam em pastas ao lado de Tomato_11Q.</p>
 
-<p>Os IDs "Spread" acima são arbitrários, mas é melhor se o remetente usa diferentes IDs para cada spread, em todo seu projeto de pesca (supomos que o laboratório já usa identificadores únicos para seus experimentos, então podemos usar esses identificadores, para simplicidade).</p>
+<p>Os IDs "Spread" acima são arbitrários, mas é melhor que quem envia use IDs diferentes para cada spread em todo o projeto de FISH (supomos que o laboratório já use identificadores únicos para seus experimentos; assim, por simplicidade, podemos usar esses identificadores).</p>
 
 <p>Cada pasta deve ter pelo menos os 3 arquivos de imagem. Também guardaremos arquivos de dados adicionais ao lado dos JPGs nas pastas Spread_NNN.</p>
 
-<p><em>Nota</em> Se possível, quando vários BACs ocorrem no mesmo spread, fazer duas pastas distintas com uma cópia de cada imagem em cada pasta (por exemplo, ter duas pastas "Spread_15" e "Spread_16", em vez de colocar as imagens em uma única pasta chamada "Spreads_15_and_16" ou algo assim).</p>
+<p><em>Nota:</em> se possível, quando vários BACs ocorrerem no mesmo spread, crie pastas distintas com uma cópia de cada imagem em cada pasta (por exemplo, ter duas pastas "Spread_15" e "Spread_16", em vez de colocar as imagens em uma única pasta chamada "Spreads_15_and_16" ou algo assim).</p>
 
 <p>Para cada upload de vários spreads, uma única planilha com pelo menos as seguintes colunas (colunas de outros dados serão ignoradas):</p>
 

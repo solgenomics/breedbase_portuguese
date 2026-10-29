@@ -555,7 +555,7 @@ for my $extension ("xls", "xlsx") {
         ok($response_raster->is_success);
         my $message_raster = $response_raster->decoded_content;
         print STDERR Dumper $message_raster;
-        ok($message_raster =~ /Successfully uploaded!/);
+        ok($message_raster =~ /Enviado com sucesso!/);
 
         $ua = LWP::UserAgent->new;
         $ua->timeout(3600);
@@ -573,7 +573,7 @@ for my $extension ("xls", "xlsx") {
         ok($response_raster->is_success);
         my $message_raster = $response_raster->decoded_content;
         print STDERR Dumper $message_raster;
-        ok($message_raster =~ /Successfully uploaded!/);
+        ok($message_raster =~ /Enviado com sucesso!/);
 
         my $rasterblue = $f->config->{basepath} . "/t/data/imagebreed/RasterBlue.png";
         my $rastergreen = $f->config->{basepath} . "/t/data/imagebreed/RasterGreen.png";
@@ -623,7 +623,7 @@ for my $extension ("xls", "xlsx") {
         ok($response_raster->is_success);
         my $message_raster = $response_raster->decoded_content;
         print STDERR Dumper $message_raster;
-        ok($message_raster =~ /Successfully uploaded!/);
+        ok($message_raster =~ /Enviado com sucesso!/);
     };
 
     $f->clean_up_db();

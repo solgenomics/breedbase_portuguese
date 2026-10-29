@@ -184,7 +184,7 @@ CXGN.Dataset.prototype = {
       html += '<option value='+datasets[n][0]+'>'+datasets[n][1]+'</option>';
   }
   if (refresh) {
-    html = '<div class="input-group">'+html+'</select><span class="input-group-btn"><button class="btn btn-default" type="button" id="'+div_name+"_dataset_refresh\" title=\"Atualizar conjuntos de dados\" onclick=\"refreshDatasetSelect('"+div_name+"_dataset_select, 'Opções atualizadas')\"&gt;<span class=\"glyphicon glyphicon-refresh\" aria-hidden=\"true\"></span></button></span></div>";
+    html = '<div class="input-group">'+html+'</select><span class="input-group-btn"><button class="btn btn-default" type="button" id="'+div_name+'_dataset_refresh" title="Atualizar conjuntos de dados" onclick="refreshDatasetSelect(\''+div_name+'_dataset_select\',\'Opções atualizadas.\')"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span></button></span></div>';
     return html;
   }
   else {

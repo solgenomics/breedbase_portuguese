@@ -5,7 +5,7 @@ $prefill_ids => ''
 
 <form name="bulk_feature" action="/bulk/feature/submit/" method="post" enctype="multipart/form-data">
 <table summary="" cellpadding="10" width="100%"><tr><td valign="top" bgcolor="#EEEEEE" width="320">
-Digite uma lista de identificadores de recursos ou carregue um arquivo contendo uma identidade separada por espaço em branco (retornos, espaços ou abas):<br />
+Digite uma lista de identificadores de features ou envie um arquivo contendo identificadores separados por espaços em branco (quebras de linha, espaços ou tabulações):<br />
 <table summary="" width="100%" cellpadding="0"><tr><td>
 <textarea name="ids" rows="10" cols="30">
 <% $prefill_ids |h%>
@@ -23,16 +23,16 @@ Solyc01g005080.2.1
 <br />
 <br />
 
-E/ou arquivo de lista de upload: <br /><input type="file" name="feature_file" />
+E/ou envie um arquivo de lista: <br /><input type="file" name="feature_file" />
 <br />
 <br />
 
 </td>
 <td valign="top" bgcolor="#EEEEEE" width="320">
 
-<b>Baixe a informação do recurso</b>:<br />
+<b>Baixar informações da feature</b>:<br />
 <div style="padding-left: 1em">
-    <input type="checkbox" name="feature_sequence" onchange="this.checked='checked'" checked="checked" /> Sequência do recurso <br />
+    <input type="checkbox" name="feature_sequence" onchange="this.checked='checked'" checked="checked" /> Sequência da feature <br />
 </div>
 </td>
 </tr></table>

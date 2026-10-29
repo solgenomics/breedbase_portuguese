@@ -15,6 +15,7 @@ Nicolas Morales <nm529@cornell.edu>
 =cut
 
 package SGN::Controller::AJAX::Contact;
+use utf8;
 
 use Moose;
 use Data::Dumper;
@@ -40,7 +41,7 @@ sub submit_contact_form_POST : Args(0) {
     my $security_attempt = $c->req->param('security_attempt');
 
     if (!$security_attempt || !$security_answer || $security_answer ne $security_attempt){
-        $c->stash->{rest} = {error => "You must be a clever bot"};
+        $c->stash->{rest} = {error => "Você deve ser um robô esperto"};
         $c->detach;
     }
 
@@ -65,10 +66,10 @@ sub submit_contact_form_POST : Args(0) {
         if ($message_hash->{id}){
             $c->stash->{rest} = {success => 1};
         } else {
-            $c->stash->{rest} = {error => 'The message was not posted to github correctly. Please try again.'};
+            $c->stash->{rest} = {error => 'A mensagem não foi publicada corretamente no GitHub. Tente novamente.'};
         }
     } else {
-        $c->stash->{rest} = {error => "There was an error submitting the message. Please try again."};
+        $c->stash->{rest} = {error => "Ocorreu um erro ao enviar a mensagem. Tente novamente."};
     }
 }
 

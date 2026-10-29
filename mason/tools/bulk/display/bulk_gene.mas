@@ -5,7 +5,7 @@
 <% $bulk_js_menu %>
 <form name="bulk_gene" action="/bulk/gene/submit/" method="post" enctype="multipart/form-data">
 <table summary="" cellpadding="10" width="100%"><tr><td valign="top" bgcolor="#EEEEEE" width="320">
-Digite uma lista de identificadores de genes ou carregue um arquivo contendo uma identidade separada por espaço em branco (retornos, espaços ou abas):<br />
+Digite uma lista de identificadores de genes ou envie um arquivo contendo identificadores separados por espaços em branco (quebras de linha, espaços ou tabulações):<br />
 <table summary="" width="100%" cellpadding="0"><tr><td>
 <textarea name="ids" rows="10" cols="30">
 <% $prefill_ids |h %>
@@ -23,14 +23,14 @@ Os02g0289500
 <br />
 <br />
 
-E/ou arquivo de lista de upload: <br /><input type="file" name="gene_file" />
+E/ou envie um arquivo de lista: <br /><input type="file" name="gene_file" />
 <br />
 <br />
 
 </td>
 <td valign="top" bgcolor="#EEEEEE" width="320">
 
-<b>Baixe informações genéticas</b>:<br />
+<b>Baixar informações de genes</b>:<br />
 <div style="padding-left: 1em">
     <input type="radio" name="gene_type" value="cdna" checked="checked" />Sequência cDNA <br />
     <input type="radio" name="gene_type" value="cds" checked="unchecked" />Sequência de CDS <br />

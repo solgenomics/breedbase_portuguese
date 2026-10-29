@@ -1,5 +1,6 @@
 package CXGN::Trial::ParseUpload::Plugin::TrialPlantsSubplotWithNumberOfPlantsXLS;
 
+use utf8;
 use Moose::Role;
 use Spreadsheet::ParseExcel;
 use Spreadsheet::ParseXLSX;
@@ -40,7 +41,7 @@ sub _validate_with_plugin {
 
     my $worksheet = ( $excel_obj->worksheets() )[0]; #support only one worksheet
     if (!$worksheet) {
-        push @error_messages, "Spreadsheet must be on 1st tab in Excel (.xls) file";
+        push @error_messages, "A planilha deve estar na 1ª aba do arquivo Excel (.xls)";
         $errors{'error_messages'} = \@error_messages;
         $self->_set_parse_errors(\%errors);
         return;
@@ -48,7 +49,7 @@ sub _validate_with_plugin {
     my ( $row_min, $row_max ) = $worksheet->row_range();
     my ( $col_min, $col_max ) = $worksheet->col_range();
     if (($col_max - $col_min)  < 1 || ($row_max - $row_min) < 1 ) { #must have header and at least one row of plot data
-        push @error_messages, "Spreadsheet is missing header or contains no rows";
+        push @error_messages, "A planilha não tem cabeçalho ou não contém linhas";
         $errors{'error_messages'} = \@error_messages;
         $self->_set_parse_errors(\%errors);
         return;
@@ -69,10 +70,10 @@ sub _validate_with_plugin {
         $num_plants_per_subplot_head =~ s/^\s+|\s+$//g;
     }
     if (!$subplot_name_head || $subplot_name_head ne 'subplot_name' ) {
-        push @error_messages, "Cell A1: subplot_name is missing from the header";
+        push @error_messages, "Célula A1: subplot_name está ausente do cabeçalho";
     }
     if (!$num_plants_per_subplot_head || $num_plants_per_subplot_head ne 'num_plants_per_subplot') {
-        push @error_messages, "Cell B1: num_plants_per_subplot is missing from the header";
+        push @error_messages, "Célula B1: num_plants_per_subplot está ausente do cabeçalho";
     }
     if ($worksheet->get_cell(0,2)) {
         $row_num_head  = $worksheet->get_cell(0,2)->value();
@@ -83,7 +84,7 @@ sub _validate_with_plugin {
         $col_num_head =~ s/^\s+|\s+$//g;
     }
     if (($row_num_head && $row_num_head ne "num_rows")||($col_num_head && $col_num_head ne "num_cols")) {
-        push @error_messages, "If including row and column data, cells C1 and D1 must be num_rows and num_cols respectively.";
+        push @error_messages, "Se incluir dados de linha e coluna, as células C1 e D1 devem ser num_rows e num_cols, respectivamente.";
     }
 
     my %seen_subplot_names;
@@ -109,35 +110,35 @@ sub _validate_with_plugin {
             $coords_given = 1;
         }
         if ($coords_given && (!$num_rows || !$num_cols)) {
-            push @error_messages, "Number of rows and columns given, but missing for plot $subplot_name.";
+            push @error_messages, "Número de linhas e colunas informado, mas ausente para a parcela $subplot_name.";
         }
         if($coords_given && $num_rows * $num_cols < $num_plants_per_subplot) {
-            push @error_messages, "Number of rows and columns not sufficient for the number of plants in $subplot_name.";
+            push @error_messages, "O número de linhas e colunas não é suficiente para o número de plantas em $subplot_name.";
         }
 
         if (!$subplot_name || $subplot_name eq '' ) {
-            push @error_messages, "Cell A$row_name: subplot_name missing.";
+            push @error_messages, "Célula A$row_name: subplot_name ausente.";
         }
         elsif ($subplot_name =~ /\s/ || $subplot_name =~ /\// || $subplot_name =~ /\\/ ) {
-            push @error_messages, "Cell A$row_name: subplot_name must not contain spaces or slashes.";
+            push @error_messages, "Célula A$row_name: subplot_name não deve conter espaços ou barras.";
         }
         else {
             $seen_subplot_names{$subplot_name}=$row_name;
         }
 
         if (!$num_plants_per_subplot || $num_plants_per_subplot eq '') {
-            push @error_messages, "Cell B$row_name: num_plants_per_subplot missing";
+            push @error_messages, "Célula B$row_name: num_plants_per_subplot ausente";
         } if (!($num_plants_per_subplot =~ /^\d+?$/)) {
-            push @error_messages, "Cell B$row_name: num_plants_per_subplot must be a number";
+            push @error_messages, "Célula B$row_name: num_plants_per_subplot deve ser um número";
         } else {
             #file must not contain duplicate plant names
             for my $i (1 .. $num_plants_per_subplot) {
                 my $plant_name = $subplot_name."_plant_".$i;
                 if ($seen_plant_names{$plant_name}) {
-                    push @error_messages, "Cell B$row_name: duplicate plant_name at cell A".$seen_plant_names{$plant_name}.": $plant_name";
+                    push @error_messages, "Célula B$row_name: plant_name duplicado na célula A".$seen_plant_names{$plant_name}.": $plant_name";
                 }
                 if (!$plant_name){
-                    push @error_messages, "CellB$row_name: No plant name could be made!";
+                    push @error_messages, "Célula B$row_name: não foi possível gerar o nome da planta!";
                 }
                 $seen_plant_names{$plant_name}++;
             }
@@ -150,14 +151,14 @@ sub _validate_with_plugin {
     my @subplots_missing = @{$subplots_validator->validate($schema,'subplots',\@subplots)->{'missing'}};
 
     if (scalar(@subplots_missing) > 0) {
-        push @error_messages, "The following subplot_name are not in the database: ".join(',',@subplots_missing);
+        push @error_messages, "Os seguintes subplot_name não estão no banco de dados: ".join(',',@subplots_missing);
         $errors{'missing_subplots'} = \@subplots_missing;
     }
 
     my @plants = keys %seen_plant_names;
     my $plant_rs = $schema->resultset('Stock::Stock')->search({ 'uniquename' => {-in => \@plants} });
     while (my $r = $plant_rs->next){
-        push @error_messages, "The following plant_name is already in the database and is not unique ".$r->uniquename;
+        push @error_messages, "O seguinte plant_name já está no banco de dados e não é único ".$r->uniquename;
     }
 
     #store any errors found in the parsed file to parse_errors accessor
