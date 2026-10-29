@@ -1,3 +1,5 @@
+use utf8;
+
 package SGN::Controller::Publication;
 
 =head1 NAME
@@ -89,11 +91,11 @@ sub view_by_doi : Path('/doi/pub/') CaptureArgs(3) {
 	    } );
     
     if( $matching_pubs->count > 1 ) {
-        $c->throw_client_error( public_message => 'Multiple matching publications' );
+        $c->throw_client_error( public_message => 'Várias publicações correspondentes' );
     }    
     
     my ( $publication ) = $matching_pubs->all
-	or $c->throw_404( "publication $doi  not found" );
+	or $c->throw_404( "Publicação $doi não encontrada" );
     my $found_pub_id = $publication->pub_id;
     my $pub =  CXGN::Chado::Publication->new($c->dbc->dbh, $found_pub_id);
     $c->{stash}->{pub} = $pub;
@@ -155,15 +157,15 @@ sub view_pub : Chained('get_pub') PathPart('view') Args(0) {
 
     # print message if pub_id is not valid
     unless ( ( $pub_id =~ m /^\d+$/ ) || ($action eq 'new' && !$pub_id) ) {
-        $c->throw_404( "No publication exists for that identifier." );
+        $c->throw_404( "Não há publicação com esse identificador." );
     }
     unless ( $pub || !$pub_id && $action && $action eq 'new' ) {
-        $c->throw_404( "No publication exists for that identifier." );
+        $c->throw_404( "Não há publicação com esse identificador." );
     }
 
     # print message if pub_id does not exist
     if ( !$pub && $action ne 'new' && $action ne 'store' ) {
-        $c->throw_404('No publication exists for this identifier');
+        $c->throw_404('Não há publicação com esse identificador');
     }
 
     ####################
@@ -213,7 +215,7 @@ sub get_pub : Chained('/')  PathPart('publication')  CaptureArgs(1) {
 	    return 1;
 	}
 	$pub_id > 0
-            or $c->throw_client_error( public_message => 'Publication ID must be a positive integer.' );
+            or $c->throw_client_error( public_message => 'O ID da publicação deve ser um número inteiro positivo.' );
     }
     my $matching_pubs;
     
@@ -224,11 +226,11 @@ sub get_pub : Chained('/')  PathPart('publication')  CaptureArgs(1) {
 	    } );
     }
     if( $matching_pubs->count > 1 ) {
-        $c->throw_client_error( public_message => 'Multiple matching publications' );
+        $c->throw_client_error( public_message => 'Várias publicações correspondentes' );
     }    
     
     my ( $publication ) = $matching_pubs->all
-	or $c->throw_404( "publication $pub_id  not found" );
+	or $c->throw_404( "Publicação $pub_id não encontrada" );
     my $found_pub_id = $publication->pub_id;
 
     $c->stash->{pub} = CXGN::Chado::Publication->new($c->dbc->dbh, $found_pub_id);
@@ -274,7 +276,7 @@ sub doi_banner : Path('/doibanner/') CaptureArgs(3) {
 	    } );
     my $pub_count = $matching_pubs->count;
     if( $matching_pubs->count > 1 ) {
-        $c->throw_client_error( public_message => 'Multiple matching publications' );
+        $c->throw_client_error( public_message => 'Várias publicações correspondentes' );
     }
 
     my $image = $c->path_to('/documents/img/white_pixel.png');

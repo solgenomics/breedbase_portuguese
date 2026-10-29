@@ -18,7 +18,7 @@
 # Get Arguments
 args <- commandArgs(trailingOnly = TRUE)
 if (length(args) < 3) {
-  stop("Two or more arguments are required.")
+  stop("São necessários dois ou mais argumentos.")
 }
 phenotypeFile <- args[1]
 genotypeFile <- args[2]
@@ -572,11 +572,11 @@ if (userSexes != "") { # "plant sex estimation 0-4"
   ## histogram
   histogra <- paste(phenotypeFile, ".png", sep = "")
   png(file = histogra, width = 600, height = 350)
-  hist(crossPlan$CrossPredictedMerit, xlab = "Cross Predicted Merit", main = "Distribution")
-  mtext(paste("Mean =", avg), side = 3, adj = 1, line = 0)
-  mtext(paste("Standard Deviation = ", std), side = 3, adj = 1, line = -1)
-  mtext(paste("Range = (", min, " to ", max, ")"), side = 3, adj = 1, line = -2)
-  mtext(paste("No. of predictions = ", leng), side = 3, adj = 1, line = -3)
+  hist(crossPlan$CrossPredictedMerit, xlab = "Mérito predito do cruzamento", main = "Distribuição", ylab = "Frequência")
+  mtext(paste("Média =", avg), side = 3, adj = 1, line = 0)
+  mtext(paste("Desvio padrão = ", std), side = 3, adj = 1, line = -1)
+  mtext(paste("Intervalo = (", min, " a ", max, ")"), side = 3, adj = 1, line = -2)
+  mtext(paste("Número de predições = ", leng), side = 3, adj = 1, line = -3)
   dev.off()
 
 
@@ -611,11 +611,11 @@ if (userSexes != "") { # "plant sex estimation 0-4"
   ## histogram
   histogra <- paste(phenotypeFile, ".png", sep = "")
   png(file = histogra, width = 600, height = 350)
-  hist(crossPlan$CrossPredictedMerit, xlab = "Cross Predicted Merit", main = "Distribution")
-  mtext(paste("Mean =", avg), side = 3, adj = 1, line = 0)
-  mtext(paste("Standard Deviation = ", std), side = 3, adj = 1, line = -1)
-  mtext(paste("Range = (", min, " to ", max, ")"), side = 3, adj = 1, line = -2)
-  mtext(paste("No. of predictions = ", leng), side = 3, adj = 1, line = -3)
+  hist(crossPlan$CrossPredictedMerit, xlab = "Mérito predito do cruzamento", main = "Distribuição", ylab = "Frequência")
+  mtext(paste("Média =", avg), side = 3, adj = 1, line = 0)
+  mtext(paste("Desvio padrão = ", std), side = 3, adj = 1, line = -1)
+  mtext(paste("Intervalo = (", min, " a ", max, ")"), side = 3, adj = 1, line = -2)
+  mtext(paste("Número de predições = ", leng), side = 3, adj = 1, line = -3)
   dev.off()
 
   ## save the best 100 predictions

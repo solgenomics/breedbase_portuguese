@@ -1,3 +1,5 @@
+use utf8;
+
 
 =head1 NAME
 
@@ -274,7 +276,7 @@ sub get_html {
 
 	my $remove_link = "&nbsp;";
 	if ($sp_person_id && ($self->get_user_id() == $sp_person_id || $user_type eq 'curator' )) {
-	  $remove_link = "<a href=\"/forum/forum_post_delete.pl?post_id=".($p->get_forum_post_id())."&amp;refering_page=$encoded_url\">Delete</a>\n"; 
+	  $remove_link = "<a href=\"/forum/forum_post_delete.pl?post_id=".($p->get_forum_post_id())."&amp;refering_page=$encoded_url\">Excluir</a>\n";
 	}
 
 	if($user_type and $user_type ne 'user'){
@@ -292,7 +294,7 @@ sub get_html {
 
 	$s .= "<tr><td><div class=\"boxbgcolor2\">
 
-                   <table summary=\"\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\" width=\"100%\"><tr><td>Posted by <b>$poster_html</b> on $date  </td><td class=\"right\">$remove_link&nbsp;</td></tr></table>
+                   <table summary=\"\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\" width=\"100%\"><tr><td>Publicado por <b>$poster_html</b> em $date  </td><td class=\"right\">$remove_link&nbsp;</td></tr></table>
 
 </div>";
 	$s .= "<div class=\"boxbgcolor5\"><div class=\"indentedcontent\">$text</div></div></td></tr>";
@@ -300,7 +302,7 @@ sub get_html {
       $s .= "</table></div>";
     }	
   
-  $subtitle .= "<a href=\"/forum/add_post.pl?page_type=".$self->get_type()."&amp;page_object_id=".$self->get_id()."&amp;refering_page=$encoded_url\">[Add comment]</a>";
+  $subtitle .= "<a href=\"/forum/add_post.pl?page_type=".$self->get_type()."&amp;page_object_id=".$self->get_id()."&amp;refering_page=$encoded_url\">[Adicionar comentário]</a>";
   
 
   return CXGN::Page::FormattingHelpers::info_section_html(title   => 'User comments',

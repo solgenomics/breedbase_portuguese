@@ -1,3 +1,5 @@
+use utf8;
+
 package SGN::Controller::Feature;
 
 =head1 NAME
@@ -88,7 +90,7 @@ sub get_feature : Chained('/') CaptureArgs(1) PathPart('feature') {
 
     if( $identifier_type eq 'feature_id' ) {
         $id > 0
-            or $c->throw_client_error( public_message => 'Feature ID must be a positive integer.' );
+            or $c->throw_client_error( public_message => 'O ID da feature deve ser um número inteiro positivo.' );
     }
 
     #debug mode
@@ -104,12 +106,12 @@ sub get_feature : Chained('/') CaptureArgs(1) PathPart('feature') {
             );
 
     if( $matching_features->count > 1 ) {
-        $c->throw_client_error( public_message => 'Multiple matching features' );
+        $c->throw_client_error( public_message => 'Várias features correspondentes' );
     }
 
     my ( $feature ) = $matching_features->all;
     $c->stash->{feature} = $feature
-        or $c->throw_404( "Feature not found" );
+        or $c->throw_404( "Feature não encontrada" );
 
     return 1;
 }

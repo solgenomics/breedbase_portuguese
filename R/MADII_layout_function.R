@@ -24,7 +24,7 @@ MADIIdgn <- function(enviro="Eretz",
   if(annoy==T & is.null(designID)==F){
   YorN <- NA    
     while(YorN %in% c("y","n","Y","N","yes","no","YES","NO","Yes","No") == F){
-      YorN <- readline("Confirm there is Not a folder and/or file in your Working Directory with\nthe same name as 'designID' (type 'y' to proceed, or 'n' to stop): ")
+      YorN <- readline("Confirme que não há pasta ou arquivo no diretório de trabalho com\no mesmo nome de 'designID' (digite 'y' para continuar ou 'n' para parar): ")
     }  
     #JL It doesn't look like typing 'n' will actually stop the function...
     # I would put in something like if(YorN %in% c("n", "N", "no", "No", "NO")) stop("User requested stop")
@@ -46,19 +46,19 @@ MADIIdgn <- function(enviro="Eretz",
   ## QC of function inputs
   #JL why are these only warnings and not errors that cause the function to stop?
   if(is.null(entries) & is.null(num.entries)){
-    warning("Must provide an entry list (entries=) OR the number of entries desired (num.entries=).")
+    warning("Informe uma lista de entradas (entries=) OU o número de entradas desejado (num.entries=).")
   }
   
   if(is.null(chk.names) & is.null(num.sec.chk)){
-    warning("Must provide a list of check names (chk.names=) with the primary check listed first\n OR the number of SECONDARY checks desired (num.sec.chk=).")
+    warning("Informe uma lista de nomes de testemunhas (chk.names=), com a testemunha principal em primeiro lugar,\n OU o número de testemunhas SECUNDÁRIAS desejado (num.sec.chk=).")
   }
   
   if(is.null(num.rows)){
-    warning("Provide the number of rows (sometimes called ranges or beds) (num.rows=).")
+    warning("Informe o número de linhas (também chamadas de faixas ou canteiros) (num.rows=).")
   }
   
   if(num.rows %% 3 != 0){
-    warning("The MADII design requires that the number of rows be a multiple of 3.")
+    warning("O delineamento MADII exige que o número de linhas seja múltiplo de 3.")
   }
   
   
@@ -76,7 +76,7 @@ MADIIdgn <- function(enviro="Eretz",
   ## This warning is dependent on the number of entries
   if(is.null(num.cols)==F){
     if(((num.cols / 5) * (num.rows / 3) + num.entries) > num.cols*num.rows){
-      warning("The minimum number of plots has not been met by the given row/column dimensions.")
+      warning("As dimensões de linhas e colunas informadas não atendem ao número mínimo de parcelas.")
     }
   }
   
@@ -96,7 +96,7 @@ MADIIdgn <- function(enviro="Eretz",
   if(is.null(num.cols)==F){
     
     if(num.cols%%5 != 0){
-      warning("The MADII design requires that the number of columns be a multiple of 5.")
+      warning("O delineamento MADII exige que o número de colunas seja múltiplo de 5.")
     }
     
     blk.cols <- num.cols / 5 # This is the standard for the MADII design
@@ -334,11 +334,11 @@ MADIIdgn <- function(enviro="Eretz",
   
   if(is.null(designID)==F){
     assign(designID, fld.dgn.mod, envir=.GlobalEnv)
-    cat("\nYour MADII design is available in your working directory and R environment; named per ID provided.")
+    cat("\nSeu delineamento MADII está disponível no diretório de trabalho e no ambiente R, com o nome do ID informado.")
     write.csv(get(designID), paste(designID,"/",designID, ".csv", sep=""), row.names=F)
   } else{
     assign("YourMADIIdgn", fld.dgn.mod, envir=.GlobalEnv)
-    cat("\nYour MADII design is available in your working directory and R environment; named 'YourMADIIdgn'.")
+    cat("\nSeu delineamento MADII está disponível no diretório de trabalho e no ambiente R, com o nome 'YourMADIIdgn'.")
     write.csv(YourMADIIdgn, "YourMADIIdgn.csv", row.names=F)
   }
   
@@ -400,13 +400,13 @@ MADIIdgn <- function(enviro="Eretz",
   colors <- c("red", "blue", "green", "orange", "gray", "brown", "yellow", "purple", "cyan")
   par(new=T,mar=c(4.5,2,.5,.5), srt=0, xpd=T, font=2, bg="white")
   s
-  image(field.plot, add=F, col=0, xaxt='n', yaxt='n' ,xlab="Columns", ylab="Rows", line=0.5)
+  image(field.plot, add=F, col=0, xaxt='n', yaxt='n' ,xlab="Colunas", ylab="Linhas", line=0.5)
   image(field.NA.plot, add=T, col=colors[1:sum(length(chk.names),(num.fill/num.fill), na.rm=T)])
   
   box(lwd=3)
   
   if(num.fill>0){
-    legend("bottom",legend=c(chk.names, "Fill"), bty="n", horiz=T, cex=.75, inset=c(0,-.125), 
+    legend("bottom",legend=c(chk.names, "Preenchimento"), bty="n", horiz=T, cex=.75, inset=c(0,-.125),
            xjust=0.5, text.col=colors[1:sum(length(chk.names),(num.fill/num.fill), na.rm=T)])}
   else{
     legend("bottom",legend=c(chk.names), bty="n", horiz=T, cex=.75, inset=c(0,-.125), 
@@ -420,7 +420,7 @@ MADIIdgn <- function(enviro="Eretz",
   
   dev.off()
   
-  cat("\n\nA graphic of the design can also be found in the project's folder.\n ")
+  cat("\n\nUm gráfico do delineamento também está disponível na pasta do projeto.\n ")
   
   options(warn=0)
   

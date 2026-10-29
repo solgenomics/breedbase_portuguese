@@ -1,3 +1,5 @@
+use utf8;
+
 =head1 NAME
 
 SGN::Controller::Clone::Genomic - Catalyst controller for dealing with
@@ -46,15 +48,15 @@ sub clone_annot_download :Chained('get_clone') :PathPart('annotation/download') 
     my %files =
         $self->_is_tomato($clone) ? CXGN::TomatoGenome::BACPublish::sequencing_files( $clone, $c->config->{'ftpsite_root'} ) :
         $self->_is_potato($clone) ? $self->_potato_seq_files( $c, $clone )                                                   :
-	                            $c->throw_404('No annotation sets found for that clone.');
+	                            $c->throw_404('Nenhum conjunto de anotações encontrado para esse clone.');
 
-    %files or $c->throw_404('No annotation sets found for that clone.');
+    %files or $c->throw_404('Nenhum conjunto de anotações encontrado para esse clone.');
 
     if( my $file = $files{$set eq 'all' ? $format : $set.'_'.$format} ) {
         $c->stash->{download_filename} = $file;
         $c->forward('Controller::Download','download');
     } else {
-        $c->throw_404('Annotation set not found.');
+        $c->throw_404('Conjunto de anotações não encontrado.');
     }
 }
 
@@ -72,7 +74,7 @@ sub get_clone :Chained('/') PathPart('genomic/clone') :CaptureArgs(1) {
 
     $c->stash->{clone} =
         CXGN::Genomic::Clone->retrieve( $clone_id )
-              or $c->throw_404('Clone not found.');
+              or $c->throw_404('Clone não encontrado.');
 
 }
 
@@ -140,16 +142,16 @@ sub _ftp_seq_repos_link {
 	    : "Chromosome $chrnum "
 		: '';
 	my $bac_dir = CXGN::TomatoGenome::Config->load_locked->{'bac_publish_subdir'};
-	return qq|<a href="$ftp_base/$bac_dir/$ftp_subdir">${project_name}Sequencing repository (FTP)</a>|;
+	return qq|<a href="$ftp_base/$bac_dir/$ftp_subdir">${project_name}Repositório de sequenciamento (FTP)</a>|;
     }
     elsif( $self->_is_potato( $clone ) ) {
 	my $country = $clone->seqprops->{project_country} || '';
 	my $bac_dir = CXGN::PotatoGenome::Config->load_locked->{'bac_publish_subdir'};
 	my $subdir =  $country ? "$country/" : '';
-	return qq|<a href="$ftp_base/$bac_dir/$subdir">$country Sequencing repository (FTP)</a>|;
+	return qq|<a href="$ftp_base/$bac_dir/$subdir">$country Repositório de sequenciamento (FTP)</a>|;
     }
 
-    return '<span class="ghosted">not available</span>';
+    return '<span class="ghosted">não disponível</span>';
 }
 
 

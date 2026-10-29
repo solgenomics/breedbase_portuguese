@@ -1,3 +1,5 @@
+use utf8;
+
 
 package CXGN::Blast::Parse::Plugin::BlastOverviewGraph;
 
@@ -26,11 +28,11 @@ sub parse {
   my $raw_report_file = shift;
   my $bdb = shift;
   
-  return 'No report found.' unless -e $raw_report_file;
+  return 'Nenhum relatório encontrado.' unless -e $raw_report_file;
   
-  return 'graphical display not available for BLAST reports larger than 1 MB' if -s $raw_report_file > 1_000_000;
+  return 'A exibição gráfica não está disponível para relatórios BLAST maiores que 1 MB' if -s $raw_report_file > 1_000_000;
   
-  return '<b>Overview graph:</b> Not shown because no hits were found.<br /><br />' if no_hits($raw_report_file);
+  return '<b>Gráfico geral:</b> não exibido porque nenhum resultado foi encontrado.<br /><br />' if no_hits($raw_report_file);
 
   open(my $fh, ">", $raw_report_file.".blast_graph.html") || die "Can't open $raw_report_file .blast_graph.html";
 
@@ -49,7 +51,7 @@ sub parse {
   };
 
   if ($@) { 
-    return "<b>No overview graph available</b> ($@)";
+    return "<b>Nenhum gráfico geral disponível</b> ($@)";
   }
   
   my $html = "<center>". read_file($raw_report_file.".blast_graph.html")."</center>";

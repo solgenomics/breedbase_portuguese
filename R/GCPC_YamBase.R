@@ -18,7 +18,7 @@
 #Get Arguments
 args = commandArgs(trailingOnly=TRUE)
 if (length(args)!=2) {
-  stop('Two Arguments are required.')
+  stop('São necessários dois argumentos.')
 }
 phenotypeFile = args[1]
 genotypeFile = args[2]

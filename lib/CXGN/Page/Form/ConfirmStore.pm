@@ -1,3 +1,5 @@
+use utf8;
+
 
 =head1 NAME
 
@@ -26,8 +28,8 @@ sub new {
 	my $class = shift;
 	my $self = $class->SUPER::new(@_);
 	$self->set_static_form(CXGN::Page::Form::Static->new()) ;
-	$self->set_reset_button_text("Reset");
-	$self->set_submit_button_text("Store");
+	$self->set_reset_button_text("Limpar");
+	$self->set_submit_button_text("Gravar");
 	$self->set_submit_method(); #use hardcoded default
 	return $self;
 }
@@ -83,7 +85,7 @@ sub store {
       if ($obj->can("exists_in_database")) { 
 	  my $message = $obj->exists_in_database();
 	 if ($message) { 
-	     my $text = "This object (" . ref($obj) . ") already seems to exist in the database and violates constraints. Please correct your input.";
+	     my $text = "Este objeto (" . ref($obj) . ") parece já existir no banco de dados e viola as restrições. Corrija os dados informados.";
 	     $message = "" unless ($message =~ /[a-zA-Z]/);
 	     CXGN::Page->new()->message_page($text, $message);
 	 }

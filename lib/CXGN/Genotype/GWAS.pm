@@ -1,3 +1,5 @@
+use utf8;
+
 package CXGN::Genotype::GWAS;
 
 =head1 NAME
@@ -278,7 +280,7 @@ sub get_gwas {
     my @all_marker_objects = values %$markers;
     if (scalar(@all_marker_objects) > 10000) {
 	my $page = CXGN::Page->new();
-	$page->message_page('GWAS Error', 'Please choose less than 10,000 markers');
+	$page->message_page('Erro na análise GWAS', 'Selecione menos de 10.000 marcadores');
         print STDERR "Error: for GWAS please choose less than 10,000 markers";
     }
 
@@ -294,7 +296,7 @@ sub get_gwas {
         @all_individual_accessions_stock_ids = @$accession_list;
         if (scalar(@all_individual_accessions_stock_ids) > 100) {
 	    my $page = CXGN::Page->new();
-            $page->message_page('GWAS Error', 'Please choose less than 100 accessions');
+            $page->message_page('Erro na análise GWAS', 'Selecione menos de 100 acessos');
             print STDERR "Error: for GWAS please choose less than 100 accessions";
         }
         foreach (@$accession_list) {
@@ -497,7 +499,7 @@ sub get_gwas {
     gwas_results <- GWAS(pheno[pheno\$gid %in% remaining_samples, ], geno_gwas, fixed=c(\'field_trial_id\',\'replicate\'), K=K.mat, plot=F, min.MAF='.$maf.'); #columns are ID,CHROM,POS,TraitIDs and values in TraitIDs column are -log10 p values'."\n";
     if ($download_format eq 'manhattan_qq_plots') {
 	$cmd .= 'pdf( \''.$gwas_tempfile.'\', width = 11, height = 8.5 );
-        for (i in 4:length(gwas_results)) { alpha_bonferroni=-log10(0.05/length(gwas_results[,i])); chromosome_ids <- as.factor(gwas_results\$CHROM); marker_indicator <- match(unique(gwas_results\$CHROM), gwas_results\$CHROM); N <- length(gwas_results[,1]); plot(seq(1:N), gwas_results[,i], col=chromosome_ids, ylab=\'-log10(pvalue)\', main=paste(\'Manhattan Plot \',colnames(gwas_results)[i]), xaxt=\'n\', xlab=\'Position\', ylim=c(0,14)); axis(1,at=marker_indicator,labels=gwas_results\$CHROM[marker_indicator], cex.axis=0.8, las=2); abline(h=alpha_bonferroni,col=\'red\',lwd=2); expected.logvalues <- sort( -log10( c(1:N) * (1/N) ) ); observed.logvalues <- sort(gwas_results[,i]); plot(expected.logvalues, observed.logvalues, main=paste(\'QQ Plot \',colnames(gwas_results)[i]), xlab=\'Expected -log p-values \', ylab=\'Observed -log p-values\', col.main=\'black\', col=\'coral1\', pch=20); abline(0,1,lwd=3,col=\'black\'); }
+        for (i in 4:length(gwas_results)) { alpha_bonferroni=-log10(0.05/length(gwas_results[,i])); chromosome_ids <- as.factor(gwas_results\$CHROM); marker_indicator <- match(unique(gwas_results\$CHROM), gwas_results\$CHROM); N <- length(gwas_results[,1]); plot(seq(1:N), gwas_results[,i], col=chromosome_ids, ylab=\'-log10(pvalue)\', main=paste(\'Gr\u00e1fico de Manhattan \',colnames(gwas_results)[i]), xaxt=\'n\', xlab=\'Posi\u00e7\u00e3o\', ylim=c(0,14)); axis(1,at=marker_indicator,labels=gwas_results\$CHROM[marker_indicator], cex.axis=0.8, las=2); abline(h=alpha_bonferroni,col=\'red\',lwd=2); expected.logvalues <- sort( -log10( c(1:N) * (1/N) ) ); observed.logvalues <- sort(gwas_results[,i]); plot(expected.logvalues, observed.logvalues, main=paste(\'Gráfico Q-Q \',colnames(gwas_results)[i]), xlab=\'Valores de -log(p) esperados \', ylab=\'Valores de -log(p) observados\', col.main=\'black\', col=\'coral1\', pch=20); abline(0,1,lwd=3,col=\'black\'); }
         dev.off();
         "';
     }

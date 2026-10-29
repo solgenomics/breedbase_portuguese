@@ -1,3 +1,5 @@
+use utf8;
+
 package SGN::Controller::AJAX::Job;
 
 use Moose;
@@ -123,7 +125,7 @@ sub retrieve_jobs_by_user :Path('/ajax/job/jobs_by_user') Args(1) {
         #     $actions_html .= "<button id=\"save_job_$job_id\" class=\"btn btn-small btn-success\">Save Results</button>";
         # } 
         if ($status eq "submitted") {
-            $actions_html .= "<button id=\"cancel_job_$job_id\" onclick=\"jsMod['job'].cancel_job($job_id)\" class=\"btn btn-small btn-danger\">Cancel</button>";
+            $actions_html .= "<button id=\"cancel_job_$job_id\" onclick=\"jsMod['job'].cancel_job($job_id)\" class=\"btn btn-small btn-danger\">Cancelar</button>";
             $results_page = "In progress";
         }
         elsif ($status eq "finished") {
@@ -131,7 +133,7 @@ sub retrieve_jobs_by_user :Path('/ajax/job/jobs_by_user') Args(1) {
             if ($results_page) {
                 $results_page =~ s/http[s]*:\/\///;
                 $results_page =~ s/localhost[:0-9]*//;
-                $results_page = '<a href="'.$results_page.'">View</a>';
+                $results_page = '<a href="'.$results_page.'">Ver</a>';
             } else {
                 $results_page = '';
             }

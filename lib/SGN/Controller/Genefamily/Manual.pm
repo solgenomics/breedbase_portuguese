@@ -1,3 +1,5 @@
+use utf8;
+
 package SGN::Controller::Genefamily::Manual;
 
 
@@ -55,10 +57,10 @@ sub view_genefamily : Chained('get_genefamily') PathPart('view') Args(0) {
 
     # print message if locusgroup_id is not valid
     unless ( $genefamily_id =~ m /^\d+$/ )  {
-        $c->throw_404( "No gene family exists for that identifier." );
+        $c->throw_404( "Não há família gênica com esse identificador." );
     }
     unless ( $genefamily ) {
-        $c->throw_404( "No gene family  exists for that identifier." );
+        $c->throw_404( "Não há família gênica com esse identificador." );
     }
     ####################
     my $is_owner;

@@ -6,6 +6,49 @@
 # Isaak Y Tecle (iyt2@cornell.edu)
 
 options(echo = FALSE)
+
+# Scripts are copied individually to cluster workers, so this presentation helper
+# is kept self-contained. Apply it only to generated prose, never to tabular data.
+localize_analysis_report <- function(text, protected = character()) {
+  if (is.null(text) || length(text) == 0) return(text)
+  protected <- unique(as.character(protected))
+  protected <- protected[!is.na(protected) & nzchar(protected)]
+  protected <- protected[order(nchar(protected), decreasing = TRUE)]
+  prefix <- "BB_LOCALIZED_NAME_"
+  while (any(grepl(prefix, c(text, protected), fixed = TRUE), na.rm = TRUE)) prefix <- paste0(prefix, "_")
+  tokens <- paste0(prefix, seq_along(protected), "_END")
+  rules <- list(
+    c("^Running ANOVA for trait (.*) from trial (.*)\\.$", "Executando a ANOVA da característica \\1 no ensaio \\2."),
+    c("^This trial has (.*) experimental design and ANOVA will be run accordingly to calculate the clone adjusted means\\.$", "Este ensaio usa o delineamento \\1. A ANOVA será realizada conforme esse delineamento para calcular as médias ajustadas dos clones."),
+    c("^Genotypes are fitted as fixed effects where as the environmental factors are fitted as random effects\\.$", "Os genótipos são ajustados como efeitos fixos e os fatores ambientais como efeitos aleatórios."),
+    c("^Genotypes are fitted as random effects where as the environmental factors are fitted as random effects\\.$", "Os genótipos e os fatores ambientais são ajustados como efeitos aleatórios."),
+    c("^Trial (.*) does not have a proper experimental design\\. Therefore ANOVA was not run on the trial to calculate the trait adjusted means\\.$", "O ensaio \\1 não tem um delineamento experimental adequado. Por isso, a ANOVA não foi realizada para calcular as médias ajustadas da característica."),
+    c("^The (.*) values for the trial are arithmetic averages\\.$", "Os valores de \\1 para o ensaio são médias aritméticas."),
+    c("^Can't perform ANOVA on this trait\\. Because, the trial has no proper or supported experimental design for the trait\\.$", "Não é possível realizar a ANOVA desta característica. O ensaio não tem um delineamento experimental adequado ou compatível para a característica."),
+    c("^No of markers before applying any filter: (.*)$", "Número de marcadores antes da aplicação dos filtros: \\1"),
+    c("^No\\. of markers \\(columns\\) remaining after filtering out markers with (.*)% or more missing data:(.*)$", "Número de marcadores (colunas) restantes após a remoção dos marcadores com \\1% ou mais de dados ausentes: \\2"),
+    c("^No\\. of individuals \\(rows\\) before applying any filter: (.*)$", "Número de indivíduos (linhas) antes da aplicação dos filtros: \\1"),
+    c("^No\\. of individuals \\(rows\\) remaining after filtering out individuals with (.*)% or more missing data: (.*)$", "Número de indivíduos (linhas) restantes após a remoção dos indivíduos com \\1% ou mais de dados ausentes: \\2"),
+    c("^No\\. of markers before applying monomorphic markers filter: (.*)$", "Número de marcadores antes da filtragem dos marcadores monomórficos: \\1"),
+    c("^No\\. of markers remaining after filtering out monomorphic markers: (.*)$", "Número de marcadores restantes após a remoção dos marcadores monomórficos: \\1"),
+    c("^No of markers before applying MAF filter: (.*)$", "Número de marcadores antes da aplicação do filtro de MAF: \\1"),
+    c("^No\\. of markers remaining after filtering out markers with (.*)% or less minor allele frequency \\(MAF\\): (.*)$", "Número de marcadores restantes após a remoção dos marcadores com frequência do alelo menor (MAF) de \\1% ou menos: \\2")
+  )
+  vapply(text, function(value) {
+    if (is.na(value)) return(NA_character_)
+    for (i in seq_along(protected)) value <- gsub(protected[i], tokens[i], value, fixed = TRUE)
+    lines <- strsplit(sub("\n*$", "", value), "\n", fixed = TRUE)[[1]]
+    for (rule in rules) lines <- sub(rule[1], rule[2], lines)
+    result <- paste(lines, collapse = "\n")
+    # Preserve the report's trailing line breaks.
+    trailing <- regmatches(value, regexpr("\n*$", value))
+    result <- paste0(result, trailing)
+    for (i in seq_along(protected)) result <- gsub(tokens[i], protected[i], result, fixed = TRUE)
+    result
+  }, character(1), USE.NAMES = FALSE)
+}
+
+
 # options(warn = -1)
 suppressWarnings(suppressPackageStartupMessages({
     library(methods)
@@ -31,13 +74,13 @@ all_args <- commandArgs()
 input_files <- tryCatch({
     scan(grep("input_files", all_args, value = TRUE), what = "character")
 }, error = function(e) {
-    stop("Input files are missing or do not exist.")
+    stop("Os arquivos de entrada não foram informados ou não existem.")
 })
 
 output_files <- tryCatch({
     scan(grep("output_files", all_args, value = TRUE), what = "character")
 }, error = function(e) {
-    stop("Output files are missing or do not exist.")
+    stop("Os arquivos de saída não foram informados ou não existem.")
 })
 
 message("input_files: ", paste(input_files, collapse = ", "))
@@ -85,14 +128,14 @@ if (length(dataset_info_file) != 0) {
 validation_file  <- grep("validation", output_files, value = TRUE)
 
 if (is.null(validation_file)) {
-    stop("Validation output file is missing.")
+    stop("O arquivo de saída da validação não foi informado.")
 }
 
 #kinshipTrait <- paste("rrblup_training_gebvs", trait, sep = "_")
 blup_file <- grep("rrblup_training_gebvs", output_files, value = TRUE)
 
 if (length(blup_file) == 0) {
-    stop("GEBVs file is missing.")
+    stop("O arquivo de GEBVs não foi informado.")
 }
 
 #markerTrait <- paste("marker_effects", trait, sep = "_")
@@ -163,11 +206,11 @@ geno_file <- grep("genotype_data_",
                   value = TRUE)
 
 if (is.null(geno_file)) {
-    stop("genotype data file is missing.")
+    stop("O arquivo de dados genotípicos não foi informado.")
 }
 
 if (file.info(geno_file)$size == 0) {
-    stop(paste0("genotype data file ", geno_file, " is empty."))
+    stop(paste0("O arquivo de dados genotípicos ", geno_file, " está vazio."))
 }
 
 read_filtered_training_geno_data <- c()
@@ -182,14 +225,14 @@ maf <- 0.01
 marker_filter_threshold <- 0.6
 pheno_filter_threshold <- 0.8
 
-log_heading <- paste0("Genomic Prediction Analysis Log for ",
+log_heading <- paste0("Relatório da análise de predição genômica para ",
     trait_abbr,
     ".\n"
 )
 
 message("log heading: ", log_heading)
 log_heading <- append(log_heading,
-    paste0("Date: ",
+    paste0("Data: ",
            format(Sys.time(), "%d %b %Y %H:%M"),
            "\n\n\n")
 )
@@ -198,32 +241,32 @@ message("log heading: ", log_heading)
 log_heading <- format(log_heading, width = 80, justify = "c")
 
 training_log <- paste0(
-    "\n\n#Preprocessing training population genotype data.\n\n"
+    "\n\n#Pré-processamento dos dados genotípicos da população de treinamento.\n\n"
 )
 training_log <- append(
     training_log,
-    "The following data filtering will be applied to the genotype dataset:\n\n"
+    "Os seguintes filtros serão aplicados ao conjunto de dados genotípicos:\n\n"
 )
 training_log <- append(
     training_log,
-    paste0("Markers with less or equal to ",
+    paste0("Marcadores com frequência do alelo menor (MAF) menor ou igual a ",
         maf * 100,
-        "% minor allele frequency (maf)  will be removed.\n"
+        "% serão removidos.\n"
     )
 )
 
 training_log <- append(
     training_log,
-    paste0("\nMarkers with greater or equal to ",
+    paste0("\nMarcadores com proporção de valores ausentes maior ou igual a ",
         marker_filter_threshold * 100,
-        "% missing values will be removed.\n"
+        "% serão removidos.\n"
     )
 )
 training_log <- append(
     training_log,
-    paste0("Clones  with greater or equal to ",
+    paste0("Clones com proporção de valores ausentes maior ou igual a ",
         pheno_filter_threshold * 100,
-        "% missing values  will be removed.\n"
+        "% serão removidos.\n"
     )
 )
 
@@ -253,8 +296,8 @@ if (is.null(filtered_training_geno_data)) {
 
     training_log <- append(training_log,
         paste0(
-            "#Running training population",
-            " genotype data cleaning.\n\n"
+            "#Limpeza dos dados genotípicos",
+            " da população de treinamento.\n\n"
         )
     )
 
@@ -284,6 +327,7 @@ if (is.null(filtered_training_geno_data)) {
 message("geno filtering logfile: ", geno_filtering_log_file)
 message("geno filtering log: ", geno_filtering_log)
 
+geno_filtering_log <- localize_analysis_report(geno_filtering_log)
 training_log <- append(training_log, geno_filtering_log)
 
 geno_data <- geno_data[order(row.names(geno_data)), ]
@@ -310,11 +354,11 @@ if (length(formatted_pheno_file) != 0 &&
     }
 
     if (is.null(pheno_file)) {
-        stop("phenotype data file is missing.")
+        stop("O arquivo de dados fenotípicos não foi informado.")
     }
 
     if (file.info(pheno_file)$size == 0) {
-        stop(paste0("phenotype data file ", pheno_file, " is empty."))
+        stop(paste0("O arquivo de dados fenotípicos ", pheno_file, " está vazio."))
 
     }
 
@@ -326,7 +370,7 @@ if (length(formatted_pheno_file) != 0 &&
 
 pheno_trait_data <- c()
 trait_raw_pheno_data <- c()
-anova_log <- paste0("#Preprocessing training population phenotype data.\n\n")
+anova_log <- paste0("#Pré-processamento dos dados fenotípicos da população de treinamento.\n\n")
 
 if (dataset_info == "combined_populations") {
     anova_log <- scan(analysis_report_file, what = "character", sep = "\n")
@@ -366,7 +410,7 @@ if (dataset_info == "combined_populations") {
         )
 
 
-        anova_log <- paste0(anova_log, pheno_adjusted_means_result$log)
+        anova_log <- paste0(anova_log, localize_analysis_report(pheno_adjusted_means_result$log, c(trait_abbr, pheno_data$studyName)))
         pheno_trait_data <- pheno_adjusted_means_result$adjMeans
     }
 
@@ -421,7 +465,7 @@ selection_prediction_log <- c()
 if (length(selection_pop_geno_file) != 0) {
     selection_prediction_log <- append(
         selection_prediction_log,
-        paste0("#Data preprocessing of selection population genotype data.\n\n")
+        paste0("#Pré-processamento dos dados genotípicos da população de seleção.\n\n")
     )
 
     selection_pop_data <- fread(selection_pop_geno_file,
@@ -445,7 +489,7 @@ if (length(selection_pop_geno_file) != 0) {
 
     selection_prediction_log <- append(
         selection_prediction_log,
-        paste0("Running selection population genotype data cleaning.")
+        paste0("Realizando a limpeza dos dados genotípicos da população de seleção.")
     )
 
     selection_pop_filtered_data <- filterGenoData(selection_pop_data,
@@ -457,7 +501,7 @@ if (length(selection_pop_geno_file) != 0) {
 
     selection_pop_data <- selection_pop_filtered_data$data
     selection_prediction_log <- append(selection_prediction_log,
-                                       selection_pop_filtered_data$log)
+                                       localize_analysis_report(selection_pop_filtered_data$log))
 
     selection_pop_data <- roundAlleleDosage(selection_pop_data)
 }
@@ -478,26 +522,26 @@ if (sum(is.na(geno_data)) > 0) {
 #phenotype and genotype data only.
 training_log <- append(
     training_log,
-    paste0("\n\n#Filtering for training population genotypes",
-        " with both phenotype and marker data.\n\n"
+    paste0("\n\n#Filtragem dos genótipos da população de treinamento",
+        " com dados fenotípicos e de marcadores.\n\n"
     )
 )
 
 training_log <- append(
     training_log,
-    paste0("After calculating trait averages,",
-        " the training population phenotype dataset has ",
+    paste0("Após o cálculo das médias da característica,",
+        " o conjunto de dados fenotípicos da população de treinamento contém ",
         length(rownames(pheno_trait_data)),
-        " individuals.\n"
+        " indivíduos.\n"
     )
 )
 
 training_log <- append(
     training_log,
-    paste0("After cleaning up for missing values,",
-        " the training population genotype dataset has ",
+    paste0("Após a limpeza dos valores ausentes,",
+        " o conjunto de dados genotípicos da população de treinamento contém ",
         length(rownames(geno_data)),
-        " individuals.\n"
+        " indivíduos.\n"
     )
 )
 
@@ -506,8 +550,8 @@ common_genotypes <- intersect(pheno_trait_data$genotypes, row.names(geno_data))
 training_log <- append(
     training_log,
     paste0(length(common_genotypes),
-        " individuals are shared in both phenotype",
-        " and genotype datasets.\n"
+        " indivíduos estão presentes tanto no conjunto de dados fenotípicos",
+        " quanto no de dados genotípicos.\n"
     )
 )
 
@@ -517,10 +561,10 @@ geno_data_filtered_genotypes <- geno_data[(rownames(geno_data) %in%
 
 training_log <- append(
     training_log,
-    paste0("After removing individuals without phenotype data,",
-        " this genotype dataset has ",
+    paste0("Após a remoção dos indivíduos sem dados fenotípicos,",
+        " este conjunto de dados genotípicos contém ",
         length(rownames(geno_data_filtered_genotypes)),
-        " individuals.\n"
+        " indivíduos.\n"
     )
 )
 
@@ -530,10 +574,10 @@ pheno_trait_data <- pheno_trait_data[(pheno_trait_data$genotypes %in%
 
 training_log <- append(
     training_log,
-    paste0("After removing individuals without genotype data,",
-        " this phenotype dataset has ",
+    paste0("Após a remoção dos indivíduos sem dados genotípicos,",
+        " este conjunto de dados fenotípicos contém ",
         length(rownames(pheno_trait_data)),
-        " individuals.\n"
+        " indivíduos.\n"
     )
 )
 
@@ -551,33 +595,33 @@ if (length(selection_pop_data) != 0) {
 
     selection_prediction_log <- append(
         selection_prediction_log,
-        paste0("#Comparing markers in the training and",
-            " selection populations genotype datasets.\n\n"
+        paste0("#Comparação dos marcadores nos conjuntos de dados genotípicos das populações",
+            " de treinamento e de seleção.\n\n"
         )
     )
 
     selection_prediction_log <- append(
         selection_prediction_log,
-        paste0("The training population genotype dataset has ",
+        paste0("O conjunto de dados genotípicos da população de treinamento contém ",
             length(training_pop_markers),
-            " markers.\n"
+            " marcadores.\n"
         )
     )
 
     selection_prediction_log <- append(
         selection_prediction_log,
-        paste0("The selection population genotype dataset has ",
+        paste0("O conjunto de dados genotípicos da população de seleção contém ",
             length(selection_pop_markers),
-            " markers.\n"
+            " marcadores.\n"
         )
     )
 
     common_markers  <- intersect(training_pop_markers, selection_pop_markers)
     selection_prediction_log <- append(
         selection_prediction_log,
-        paste0("The training and selection populations genotype dataset have ",
+        paste0("Os conjuntos de dados genotípicos das populações de treinamento e de seleção têm ",
             length(training_pop_markers),
-            " markers in common.\n"
+            " marcadores em comum.\n"
         )
     )
 
@@ -586,19 +630,19 @@ if (length(selection_pop_data) != 0) {
 
     selection_prediction_log <- append(
         selection_prediction_log,
-        paste0("After filtering for shared markers,",
-            " the training population genotype dataset has ",
-            length(names(selection_pop_data)), " markers.\n"
+        paste0("Após a filtragem dos marcadores compartilhados,",
+            " o conjunto de dados genotípicos da população de treinamento contém ",
+            length(names(selection_pop_data)), " marcadores.\n"
         )
     )
 
     selection_pop_data <- subset(selection_pop_data, select = common_markers)
     selection_prediction_log <- append(
         selection_prediction_log,
-        paste0("After filtering for shared markers,",
-            " the selection population genotype dataset has ",
+        paste0("Após a filtragem dos marcadores compartilhados,",
+            " o conjunto de dados genotípicos da população de seleção contém ",
             length(names(selection_pop_data)),
-            " markers.\n"
+            " marcadores.\n"
         )
     )
 
@@ -726,13 +770,13 @@ trait_kinship_matrix <- trait_kinship_matrix[,
 kinship_log <- c()
 if (any(eigen(trait_kinship_matrix)$values < 0)) {
     kinship_log <- paste0(
-        "\n\nNote: The kinship matrix of this dataset causes",
+        "\n\nObservação: a matriz de parentesco deste conjunto de dados causa",
         " \"Not positive semi-definite error\"",
-        " while running the Cholesky decomposition.",
-        " To fix this and run the modeling, a corrected",
-        " positive semi-definite matrix was computed",
-        " using the \"Matrix::nearPD\" function. The negative eigen values",
-        " from this decomposition nudged to positive values.\n\n"
+        " durante a decomposição de Cholesky.",
+        " Para corrigir isso e realizar a modelagem, foi calculada uma matriz",
+        " semidefinida positiva corrigida",
+        " usando a função \"Matrix::nearPD\". Os autovalores negativos",
+        " dessa decomposição foram ajustados para valores positivos.\n\n"
     )
 
     trait_kinship_matrix <- Matrix::nearPD(as.matrix(trait_kinship_matrix))$mat
@@ -750,16 +794,16 @@ if (cores_count > 1) {
 
 variance_components <- c()
 
-modeling_log <- paste0("\n\n#Training a model for ", trait_abbr, ".\n\n")
+modeling_log <- paste0("\n\n#Treinamento de um modelo para ", trait_abbr, ".\n\n")
 modeling_log <- append(
     modeling_log,
-    paste0("The genomic prediction modeling follows a two-step approach.",
-        " First trait average values, as described above,",
-        " are computed for each genotype.",
-        " This is followed by the model fitting on the basis",
-        " of single phenotype value",
-        " for each genotype entry and kinship matrix ",
-        " computed from their marker data.\n"
+    paste0("A modelagem de predição genômica segue uma abordagem em duas etapas.",
+        " Primeiro, os valores médios da característica, conforme descrito acima,",
+        " são calculados para cada genótipo.",
+        " Em seguida, o modelo é ajustado com base",
+        " em um único valor fenotípico",
+        " para cada genótipo e na matriz de parentesco ",
+        " calculada a partir dos dados de marcadores.\n"
     )
 )
 
@@ -779,10 +823,10 @@ if (length(selection_pop_data) == 0) {
     )
 
     modeling_log <- paste0(modeling_log, 
-        "\nThe model training is based on rrBLUP R package, version ",
+        "\nO treinamento do modelo usa o pacote R rrBLUP, versão ",
         packageVersion("rrBLUP"),
-        ". GEBVs are predicted using the kin.blup function",
-        " and GBLUP method.\n\n"
+        ". Os GEBVs são preditos usando a função kin.blup",
+        " e o método GBLUP.\n\n"
     )
 
     training_pop_genetic_values <- data.frame(
@@ -875,15 +919,15 @@ if (length(selection_pop_data) == 0) {
     additive_variance <- round(training_model_result$Vg, 2)
     error_variance <- round(training_model_result$Ve, 2)
 
-    variance_components <- c("\nAdditive genetic variance\t",
+    variance_components <- c("\nVariância genética aditiva\t",
                              additive_variance, "\n")
     variance_components <- append(variance_components,
-        c("Error variance\t",
+        c("Variância residual\t",
           error_variance, "\n")
     )
 
     variance_components <- append(variance_components,
-        c("SNP heritability (h)\t",
+        c("Herdabilidade baseada em SNPs (h)\t",
           heritability, "\n"))
 
     combined_gebvs_file <- grep(
@@ -918,7 +962,7 @@ if (length(selection_pop_data) == 0) {
         genotypes_count <- nrow(pheno_trait_data)
 
         if (genotypes_count < 20 ) {
-            warning(genotypes_count, " is too small number of genotypes.")
+            warning(genotypes_count, " é um número muito pequeno de genótipos.")
         }
 
         set.seed(4567)
@@ -930,12 +974,12 @@ if (length(selection_pop_data) == 0) {
 
         modeling_log <- paste0(
             modeling_log,
-            "Model prediction accuracy is evaluated using",
-            " cross-validation method. ",
+            "A acurácia preditiva do modelo é avaliada usando",
+            " o método de validação cruzada. São usados ",
             k,
-            " folds, replicated ",
+            " grupos, com ",
             reps,
-            " times are used to predict the model accuracy.\n\n"
+            " repetições, para estimar a acurácia do modelo.\n\n"
         )
 
         for (rep in 1:reps) {

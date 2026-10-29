@@ -1,3 +1,5 @@
+use utf8;
+
 =head1 NAME
 
 t/integration/solpeople.t - tests for solpeople URLs
@@ -30,7 +32,7 @@ $mech->while_logged_in_all( sub {
     $mech->content_contains('[log out]');
     $mech->content_contains('User Status');
     $mech->content_contains('General Tools');
-    $mech->content_like(qr{Your current user status is\s+<b>$user_info->{user_type}</b>});
+    $mech->content_like(qr{Seu tipo de usuário atual é\s+<b>$user_info->{user_type}</b>});
 });
 
 {

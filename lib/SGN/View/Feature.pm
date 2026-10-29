@@ -1,3 +1,5 @@
+use utf8;
+
 package SGN::View::Feature;
 use strict;
 use warnings;
@@ -151,7 +153,7 @@ sub location_list_html {
           #             : $feature->featureloc_features->all );
 	  $featurelocs ? $featurelocs->search({locgroup => 0,},)->all
                        : $feature->featureloc_features->search({locgroup => 0,},)->all)
-        or return '<span class="ghosted">none</span>';
+        or return '<span class="ghosted">nenhum</span>';
     return @coords;
 }
 sub location_list {

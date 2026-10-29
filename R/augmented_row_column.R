@@ -47,38 +47,38 @@ validate_inputs <- function(treatments, controls, rows_in_field, cols_in_field,
   n_candidates <- as.integer(n_candidates)
   
   if (rows_in_field <= 0 || cols_in_field <= 0) {
-    stop("rows_in_field and cols_in_field must be positive integers.")
+    stop("rows_in_field e cols_in_field devem ser números inteiros positivos.")
   }
   if (rows_per_block <= 0 || cols_per_block <= 0) {
-    stop("rows_per_block and cols_per_block must be positive integers.")
+    stop("rows_per_block e cols_per_block devem ser números inteiros positivos.")
   }
   if (rows_in_field %% rows_per_block != 0) {
-    stop("rows_in_field must be divisible by rows_per_block.")
+    stop("rows_in_field deve ser divisível por rows_per_block.")
   }
   if (cols_in_field %% cols_per_block != 0) {
-    stop("cols_in_field must be divisible by cols_per_block.")
+    stop("cols_in_field deve ser divisível por cols_per_block.")
   }
   if (length(controls) == 0) {
-    stop("At least one control/check is required.")
+    stop("É necessário informar pelo menos uma testemunha.")
   }
   if (length(unique(controls)) != length(controls)) {
-    stop("controls contains duplicated names. Check names must be unique.")
+    stop("controls contém nomes duplicados. Os nomes das testemunhas devem ser únicos.")
   }
   if (length(unique(treatments)) != length(treatments)) {
-    stop("treatments contains duplicated names. Entry names must be unique.")
+    stop("treatments contém nomes duplicados. Os nomes das entradas devem ser únicos.")
   }
   if (is.na(n_candidates) || n_candidates < 1) {
-    stop("n_candidates must be a positive integer.")
+    stop("n_candidates deve ser um número inteiro positivo.")
   }
   
   n_checks <- length(controls)
   if (n_checks > rows_per_block || n_checks > cols_per_block) {
     stop(
       paste0(
-        "Impossible check placement: ", n_checks,
-        " checks must fit inside each block with no duplicated row or column, but block size is ",
-        rows_per_block, " rows x ", cols_per_block,
-        " columns. Increase block size or reduce number of checks."
+        "Não é possível distribuir as testemunhas: ", n_checks,
+        " testemunhas devem caber em cada bloco sem repetir linha ou coluna, mas o tamanho do bloco é de ",
+        rows_per_block, " linhas x ", cols_per_block,
+        " colunas. Aumente o tamanho do bloco ou reduza o número de testemunhas."
       )
     )
   }
@@ -91,8 +91,8 @@ validate_inputs <- function(treatments, controls, rows_in_field, cols_in_field,
   if (length(treatments) != expected_entries) {
     stop(
       paste0(
-        "The number of treatments does not match the available entry plots. ",
-        "Expected ", expected_entries, " entries, but received ", length(treatments), "."
+        "O número de tratamentos não corresponde ao número de parcelas disponíveis para as entradas. ",
+        "Esperado: ", expected_entries, " entradas, mas foram recebidas ", length(treatments), "."
       )
     )
   }
@@ -127,7 +127,7 @@ make_plot_order <- function(df, plot_type = "serpentine") {
   } else if (plot_type %in% c("cartesian", "rowcol", "row_col", "normal")) {
     df <- df[order(df$row, df$col), ]
   } else {
-    stop("Unknown plot_type: ", plot_type, ". Use 'serpentine' or 'cartesian'.")
+    stop("plot_type desconhecido: ", plot_type, ". Use 'serpentine' ou 'cartesian'.")
   }
   
   rownames(df) <- NULL
@@ -142,21 +142,21 @@ validate_check_layout <- function(df) {
     x <- check_df[check_df$block == b, ]
     
     if (anyDuplicated(x$row)) {
-      stop("Invalid plot_type: block ", b, " has more than one check in the same row.")
+      stop("plot_type inválido: o bloco ", b, " tem mais de uma testemunha na mesma linha.")
     }
     if (anyDuplicated(x$col)) {
-      stop("Invalid plot_type: block ", b, " has more than one check in the same column.")
+      stop("plot_type inválido: o bloco ", b, " tem mais de uma testemunha na mesma coluna.")
     }
     if (anyDuplicated(x$trt)) {
-      stop("Invalid plot_type: block ", b, " has duplicated check/control labels.")
+      stop("plot_type inválido: o bloco ", b, " tem rótulos de testemunhas duplicados.")
     }
   }
 
   if (any(table(check_df$trt, check_df$row) > 1)) {
-    stop("Invalid check layout: the same check appears more than once in the same field row.")
+    stop("Distribuição de testemunhas inválida: a mesma testemunha aparece mais de uma vez na mesma linha do campo.")
   }
   if (any(table(check_df$trt, check_df$col) > 1)) {
-    stop("Invalid check layout: the same check appears more than once in the same field column.")
+    stop("Distribuição de testemunhas inválida: a mesma testemunha aparece mais de uma vez na mesma coluna do campo.")
   }
   
   invisible(TRUE)
@@ -229,7 +229,7 @@ assign_check_names_without_row_col_repeats <- function(check_slots, controls) {
   }
 
   if (!assign_block(1L)) {
-    stop("Could not assign check names without repeating the same check in a field row or column.")
+    stop("Não foi possível atribuir nomes às testemunhas sem repetir a mesma testemunha em uma linha ou coluna do campo.")
   }
 
   check_slots
@@ -389,7 +389,7 @@ allocate_best_augmented_row_column <- function(treatments, controls,
   }
 
   if (is.null(best_design)) {
-    stop("Unable to assign check names without repeating the same check in a field row or column.")
+    stop("Não foi possível atribuir nomes às testemunhas sem repetir a mesma testemunha em uma linha ou coluna do campo.")
   }
   
   attr(best_design, "design_score") <- best_score

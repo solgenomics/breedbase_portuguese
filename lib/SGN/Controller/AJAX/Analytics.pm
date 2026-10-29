@@ -102,7 +102,7 @@ sub list_analytics_protocols_result_files :Path('/ajax/analytics_protocols/resul
         # $result{$model_id}->{model_experiment_type_id} = $experiment_type_id;
         # $result{$model_id}->{model_files}->{$filetype} = $filename."/".$basename;
         # $result{$model_id}->{model_file_ids}->{$file_id} = $basename;
-        push @table, [$basename, $filetype, "<a href='/breeders/phenotyping/download/$file_id'>Download</a>"];
+        push @table, [$basename, $filetype, "<a href='/breeders/phenotyping/download/$file_id'>Baixar</a>"];
     }
 
     $c->stash->{rest} = { data => \@table };

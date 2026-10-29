@@ -456,24 +456,24 @@ sub _parse_decision_upload_file {
         $parser = Spreadsheet::ParseExcel->new();
     }
     else {
-        return (undef, ['The uploaded file must be an Excel .xls or .xlsx file.']);
+        return (undef, ['O arquivo enviado deve ser uma planilha Excel .xls ou .xlsx.']);
     }
 
     my $excel_obj = $parser->parse($filename);
     if (!$excel_obj) {
-        my $err = eval { $parser->error() } || 'Could not parse the Excel file.';
+        my $err = eval { $parser->error() } || 'Não foi possível ler a planilha Excel.';
         return (undef, [$err]);
     }
 
     my $worksheet = ($excel_obj->worksheets())[0];
     unless ($worksheet) {
-        return (undef, ['Spreadsheet must be on the first worksheet.']);
+        return (undef, ['Os dados devem estar na primeira aba da planilha.']);
     }
 
     my ($row_min, $row_max) = $worksheet->row_range();
     my ($col_min, $col_max) = $worksheet->col_range();
     if (!defined $row_max || $row_max < 1) {
-        return (undef, ['Spreadsheet is missing data rows.']);
+        return (undef, ['A planilha não contém linhas de dados.']);
     }
 
     my @expected_headers = $self->_decision_upload_headers();

@@ -1,3 +1,5 @@
+use utf8;
+
 =head1 NAME
 
 SGN::Controller::ITAG - actions related to ITAG things
@@ -99,7 +101,7 @@ sub get_release :Chained('/') :PathPart('itag/release') :CaptureArgs(1) {
         releasenum => $releasenum,
         dir        => $itag->releases_base,
        )
-        or $c->throw_404("Release not found");
+        or $c->throw_404("Versão não encontrada");
 }
 
 1;

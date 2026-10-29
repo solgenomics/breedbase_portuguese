@@ -1,3 +1,5 @@
+use utf8;
+
 
 package SGN::Controller::AJAX::Search::Trial;
 
@@ -63,7 +65,7 @@ sub search : Path('/ajax/search/trials') Args(0) {
             $_->{design},
             $_->{project_planting_date},
             $_->{project_harvest_date},
-            "<a class='btn btn-sm btn-default' href='/breeders/trial/$_->{trial_id}/download/layout?format=csv&dataLevel=plots&selected_columns=$selected_columns_json'>Download Plot Layout</a>"
+            "<a class='btn btn-sm btn-default' href='/breeders/trial/$_->{trial_id}/download/layout?format=csv&dataLevel=plots&selected_columns=$selected_columns_json'>Baixar layout de parcelas</a>"
         );
         push @result, \@res;
     }

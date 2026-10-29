@@ -1,3 +1,5 @@
+use utf8;
+
 package SGN::Controller::QuickSearch;
 use Moose;
 use namespace::autoclean;
@@ -116,7 +118,7 @@ sub quick_search: Path('/search/quick') {
     $term =~ s/^\s*|\s*$//g;
 
     defined $term && length $term
-        or $c->throw_client_error( public_message => 'Must provide a search term' );
+        or $c->throw_client_error( public_message => 'Informe um termo de busca' );
 
     $c->stash(
         quick_search_term => $term,

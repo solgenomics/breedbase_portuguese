@@ -1139,7 +1139,7 @@ sub create_odk_cross_progress_tree {
                     }
                 }
                 my $male_accession_names = join ',', keys %$male_hash;
-                $top_level_title{$top_level} = "Planned Female Accession: $female_accession_name. Planned Female Plot: $planned_female_plot_name. Planned Male Accession(s): $male_accession_names.";
+                $top_level_title{$top_level} = "Acesso feminino planejado: $female_accession_name. Parcela feminina planejada: $planned_female_plot_name. Acesso(s) masculino(s) planejado(s): $male_accession_names.";
             }
         }
     }
@@ -1173,19 +1173,19 @@ sub create_odk_cross_progress_tree {
         my $crossed_female_plot_name = '';
         if (!exists($open_tree{$top_level})){
             $node->{state}->{opened} = JSON::false;
-            $node->{text} = '<span order-field="2" title="'.$top_level_title{$top_level}.'">Wishlist Entry: '.$top_level." : No Crosses</span>";
+            $node->{text} = '<span order-field="2" title="'.$top_level_title{$top_level}.'">Entrada planejada: '.$top_level." : Sem cruzamentos</span>";
             $icon_color = 'text-danger';
             $node->{icon} = 'glyphicon glyphicon-briefcase '.$icon_color;
         }
         if (exists($female_accession_hash->{wishlist_female_plot_match})){
             #print STDERR Dumper $female_accession_hash;
-            $node->{text} = '<span order-field="0" title="'.$top_level_title{$top_level}.'" class="text-success">Crossed Wishlist Entry: '.$top_level.'</span>';
+            $node->{text} = '<span order-field="0" title="'.$top_level_title{$top_level}.'" class="text-success">Entrada planejada cruzada: '.$top_level.'</span>';
             $icon_color = 'text-success';
             $node->{icon} = 'glyphicon glyphicon-briefcase '.$icon_color;
             $node->{state}->{opened} = JSON::true;
             $crossed_female_plot_name = $female_accession_hash->{wishlist_female_plot_match};
         } elsif (exists($female_accession_hash->{wishlist_female_plot_no_match})){
-            $node->{text} = '<span order-field="1" title="'.$top_level_title{$top_level}.'">Possibly Crossed Wishlist Entry: '.$top_level.': Cross Performed But Not On This Wishlist Female Plot</span>';
+            $node->{text} = '<span order-field="1" title="'.$top_level_title{$top_level}.'">Possível cruzamento da entrada planejada: '.$top_level.': Cruzamento realizado, mas fora desta parcela feminina planejada</span>';
             $icon_color = 'text-info';
             $node->{icon} = 'glyphicon glyphicon-briefcase '.$icon_color;
             $node->{state}->{opened} = JSON::false;
@@ -1197,14 +1197,14 @@ sub create_odk_cross_progress_tree {
         while (my ($female_accession_name, $planned_female_plot_name_hash) = each %$female_accession_hash){
             if ($female_accession_name ne 'wishlist_female_plot_match' && $female_accession_name ne 'wishlist_female_plot_no_match'){
                 my $planned_female_node = {
-                    'text' => 'Wishlist Female Accession: '.$female_accession_name,
+                    'text' => 'Acesso feminino planejado: '.$female_accession_name,
                     'icon' => 'glyphicon glyphicon-queen '.$icon_color,
                     'state' => { 'opened' => JSON::true }
                 };
                 push @top_level_content_json, $planned_female_node;
                 while (my ($planned_female_plot_name, $male_accession_hash) = each %$planned_female_plot_name_hash){
                     my $planned_female_plot_node = {
-                        'text' => 'Wishlist Female Plot: '.$planned_female_plot_name,
+                        'text' => 'Parcela feminina planejada: '.$planned_female_plot_name,
                         'icon' => 'glyphicon glyphicon-queen '.$icon_color
                     };
                     push @{$planned_female_node->{children}}, $planned_female_plot_node;
@@ -1212,11 +1212,11 @@ sub create_odk_cross_progress_tree {
                         if ($male_accession_name eq 'planned_female_plot_name_status'){
                             my $status = $crosses_cycle_hash;
                             #print STDERR Dumper $status;
-                            $planned_female_plot_node->{text} .= ' : '.$status->{'attachment_display_tiny'}.' : STATUS = '.$status->{'status_message'};
+                            $planned_female_plot_node->{text} .= ' : '.$status->{'attachment_display_tiny'}.' : SITUAÇÃO = '.$status->{'status_message'};
                         }
                         else {
                             my $planned_male_node = {
-                                'text' => 'Wishlist Male Accession: '.$male_accession_name
+                                'text' => 'Acesso masculino planejado: '.$male_accession_name
                             };
                             push @{$planned_female_plot_node->{children}}, $planned_male_node;
                             if (ref($crosses_cycle_hash) eq "HASH") {
@@ -1233,14 +1233,14 @@ sub create_odk_cross_progress_tree {
                                             $planned_male_node->{icon} = 'glyphicon glyphicon-king';
                                             $planned_male_node->{state}->{opened} = JSON::false;
                                             my $cross_node = {
-                                                'text' => 'No Crosses',
+                                                'text' => 'Sem cruzamentos',
                                                 'icon' => 'glyphicon glyphicon-minus',
                                             };
                                             push @{$planned_male_node->{children}}, $cross_node;
                                             next;
                                         }
                                         my $cross_node = {
-                                            'text' => 'Cross Name: '.$cross_name,
+                                            'text' => 'Nome do cruzamento: '.$cross_name,
                                             'icon' => 'glyphicon glyphicon-random text-primary',
                                             'state' => { 'opened' => JSON::true }
                                         };

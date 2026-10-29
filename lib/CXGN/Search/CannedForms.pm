@@ -1,3 +1,5 @@
+use utf8;
+
 package CXGN::Search::CannedForms;
 use Modern::Perl;
 
@@ -65,7 +67,7 @@ sub expr_template_search_form {
 
     return <<EOH
   <table class="search_form_title"><tr><td>
-    <span class="search_form_title">Expression Search By Template</span>
+    <span class="search_form_title">Busca de expressão por molde</span>
   </td>
   </tr>
   </table>
@@ -95,7 +97,7 @@ sub expr_experiment_search_form {
 
     return <<EOH
   <table class="search_form_title"><tr><td>
-    <span class="search_form_title">Expression Search By Experiment</span>
+    <span class="search_form_title">Busca de expressão por experimento</span>
   </td>
   </tr>
   </table>
@@ -125,7 +127,7 @@ sub expr_platform_search_form {
 
     return <<EOH
   <table class="search_form_title"><tr><td>
-    <span class="search_form_title">Expression Search By Platform</span>
+    <span class="search_form_title">Busca de expressão por plataforma</span>
   </td>
   </tr>
   </table>
@@ -157,7 +159,7 @@ sub image_search_form {
 
     return <<EOH
   <table class="search_form_title"><tr><td>
-    <span class="search_form_title">Image Search</span>
+    <span class="search_form_title">Busca de imagens</span>
   </td>
   </tr>
   </table>
@@ -186,7 +188,7 @@ sub people_search_form {
 
     return <<EOH
   <table class="search_form_title"><tr><td>
-    <span class="search_form_title">Directory search</span>
+    <span class="search_form_title">Busca no diretório</span>
   </td>
   </tr>
   </table>
@@ -212,7 +214,7 @@ sub family_search_form {
     $q ||= CXGN::Searches::Family->new()->new_query();
     return <<HTML
   <table class="search_form_title"><tr><td>
-    <span class="search_form_title">Family search</span>
+    <span class="search_form_title">Busca de famílias</span>
   </td>
   </tr>
   </table>
@@ -242,7 +244,7 @@ sub library_search_form {
 
     return <<EOH
   <table class="search_form_title"><tr><td>
-    <span class="search_form_title">Library search</span>
+    <span class="search_form_title">Busca de bibliotecas</span>
   </td>
   </tr>
   </table>
@@ -274,10 +276,10 @@ sub est_search_form {
     return <<EOH
 
   <table class="search_form_title" summary=""><tr><td>
-    <span class="search_form_title">EST Search</span>
+    <span class="search_form_title">Busca de ESTs</span>
   </td><td align="right">
     <a class="search_form_random" href="/search/est.pl?random=yes">
-    Select an EST sequence at random
+    Selecionar uma sequência EST ao acaso
     </a>
   </td></tr></table>
 
@@ -293,13 +295,13 @@ EOH
     <td colspan="3" align="right">
 
       <table summary="" cellpadding="0" cellspacing="0"><tr>
-        <td>EST Identifier</td>
+        <td>Identificador EST</td>
         <td><input class="form-control" name="request_id" type="text" style="background: #EEEEFF;" size="20" /></td>
-	<td style="padding: 1em">Enter your sequence identifier and select the identifier type, or 'automatic'.</td>
+	<td style="padding: 1em">Informe o identificador da sequência e selecione o tipo de identificador ou a opção automática.</td>
       </tr></table>
     </td>
   </tr>
-  <tr><td colspan="2"><i>Identifier Type</i></td><td><i>Example</i></td></tr>
+  <tr><td colspan="2"><i>Tipo de identificador</i></td><td><i>Exemplo</i></td></tr>
 <!--
   <tr>
 Automatic guessing of the input's intensional type didn't work too well.
@@ -310,44 +312,44 @@ Automatic guessing of the input's intensional type didn't work too well.
 -->
   <tr>
     <td><input type="radio" name="request_type" value="7" checked="checked" /></td>
-    <td>SGN EST Identifier (SGN-E#)</td>
+    <td>Identificador EST da SGN (SGN-E#)</td>
     <td>SGN-E143721</td>
   </tr>
   <tr>
     <td><input type="radio" name="request_type" value="8" /></td>
-    <td>SGN cDNA Clone Identifier (SGN-C#)</td>
+    <td>Identificador de clone de cDNA da SGN (SGN-C#)</td>
     <td>SGN-C157205</td>
   </tr>
   <tr>
     <td><input type="radio" name="request_type" value="9" /></td>
-    <td>SGN Chromatogram/Trace Identifer (SGN-T#)</td>
+    <td>Identificador de cromatograma da SGN (SGN-T#)</td>
     <td>SGN-T123401</td>
   </tr>
   <tr>
     <td><input type="radio" name="request_type" value="14" /></td>
-    <td>SGN/TMD/CGEP Microarray Spot Identifier</td>
+    <td>Identificador de ponto de microarranjo SGN/TMD/CGEP</td>
     <td>1-1-1.1.1.2</td>
   </tr>
   <tr>
     <td><input type="radio" name="request_type" value="10" /></td>
-    <td>cDNA Clone Name (Library/Plate/Well location)</td>
+    <td>Nome do clone de cDNA (biblioteca/placa/poço)</td>
     <td>cLED-1-A1</td>
   </tr>
   <tr>
     <td><input type="radio" name="request_type" value="11" /></td>
-    <td>Sequencing Facility Identifier</td>
+    <td>Identificador do centro de sequenciamento</td>
     <td>&nbsp;</td>
   </tr>
   <tr>
     <td colspan="3">&nbsp;</td>
   </tr>
   <tr>
-    <td colspan="2" align="center"><input class="btn btn-primary" type="submit" value="Search" name="search" /></td>
+    <td colspan="2" align="center"><button class="btn btn-primary" type="submit" value="Search" name="search">Buscar</button></td>
     <td>&nbsp;</td>
   </tr>
   </table>
 
-  <p><b>Hint:</b> Try the automatic setting if your identifier type is not listed. Genbank identifiers (gi#), accessions, and dbEST numbers may be used in this way. SGN may return more recent versions of EST sequences than those recorded by Genbank.</p>
+  <p><b>Dica:</b> Use a opção automática se o tipo do identificador não estiver listado. Identificadores do GenBank (gi#), números de acesso e números dbEST podem ser usados dessa forma. A SGN pode retornar versões de sequências EST mais recentes que as registradas no GenBank.</p>
 EOH
       . <<EOH;
   </div>
@@ -371,7 +373,7 @@ sub clone_search_form {
 
     return <<EOH
   <table class="search_form_title" summary=""><tr><td>
-    <span class="search_form_title">Genomic Clone Search</span>
+    <span class="search_form_title">Busca de clones genômicos</span>
   </td><td align="right">
     <a class="search_form_random" href="/maps/physical/clone_info.pl?random=yes">
     Select a genomic clone at random
@@ -382,15 +384,15 @@ sub clone_search_form {
   <div class="indentedcontent">
 EOH
       . $q->to_html . <<EOH;
-    <h3>Related Links:</h3>
+    <h3>Links relacionados:</h3>
     <ul>
-    <li><a href="/maps/physical/list_bacs_by_plate.pl">Browse BACs by Overgo Plate</a></li>
-    <li><a href="/cview/map.pl?map_id=1&amp;physical=1">About Physical Mapping</a></li>
-    <li><a href="/maps/physical/overgo_stats.pl">Overgo Project</a></li>
-    <li><a href="/maps/physical/overgo_process_explained.pl">Overgo plating process</a></li>
-    <li><a href="http://www.genome.arizona.edu/fpc/tomato/">Tomato FPC Map at AGI</a></li>
-    <li><a href="/supplement/plantcell-14-1441/bac_annotation.pl">Old (2000) chromosome 6 tomato BAC annotation</a></li>
-    <li><a href="/solanaceae-project/seed_bac_selection.pl">Guidelines for seed BAC selection</a></li>
+    <li><a href="/maps/physical/list_bacs_by_plate.pl">Consultar BACs por placa de overgo</a></li>
+    <li><a href="/cview/map.pl?map_id=1&amp;physical=1">Sobre o mapeamento físico</a></li>
+    <li><a href="/maps/physical/overgo_stats.pl">Projeto overgo</a></li>
+    <li><a href="/maps/physical/overgo_process_explained.pl">Processo de distribuição de overgos em placas</a></li>
+    <li><a href="http://www.genome.arizona.edu/fpc/tomato/">Mapa FPC de tomate no AGI</a></li>
+    <li><a href="/supplement/plantcell-14-1441/bac_annotation.pl">Anotação antiga (2000) de BACs do cromossomo 6 de tomate</a></li>
+    <li><a href="/solanaceae-project/seed_bac_selection.pl">Orientações para selecionar BACs iniciais</a></li>
     </ul>
   </div>
 </form>
@@ -413,7 +415,7 @@ sub unigene_search_form {
 
     return <<EOH
   <table class="search_form_title" summary=""><tr><td>
-    <span class="search_form_title">Unigene Search</span>
+    <span class="search_form_title">Busca de unigenes</span>
   </td><td align="right">
     <a class="search_form_random" href="/search/unigene.pl?random=yes">
     Select a unigene at random
@@ -428,7 +430,7 @@ EOH
 <hr />
 <span style="margin-top: 1em" class="search_form_title">TIGR TC</span>
 <div class="indentedcontent">
-  See <a href="/tools/convert/input.pl">Converting between SGN unigenes and TGI TC sequences</a>.
+  See <a href="/tools/convert/input.pl">Conversão entre unigenes da SGN e sequências TC do TGI</a>.
 </div>
 EOH
 }
@@ -439,20 +441,20 @@ sub annotation_search_form {
 
     return <<EOH;
   <table class="search_form_title" summary=""><tr><td>
-    <span class="search_form_title">Annotation search</span>
+    <span class="search_form_title">Busca de anotações</span>
   </td><td align="right">
 <!-- what good would selecting a random annotation be? -->
   </td></tr></table>
 
-Full-text search of unigene annotations, either automatic (BLAST) or manually curated.
+Busca de texto completo nas anotações de unigenes, automáticas (BLAST) ou com curadoria manual.
 <br /><br />
 
 <form name="annotation_search" method="get" action="/search/annotation_search_result.pl">
 <input type="hidden" name="request_from" value="0" />
 <div align="center">
   <table summary=""><tr><td>
-  <input name="search_text" type="text" size="50" /><input name="submit" type="submit" value="Search" /><br />
-  <input name="search_type" value="blast_search" type="radio" checked="checked" />Search&nbsp;Automatic&nbsp;&nbsp;<input name="search_type" type="radio" value="manual_search" checked="checked" />Search&nbsp;Manual
+  <input name="search_text" type="text" size="50" /><button name="submit" type="submit" value="Search">Buscar</button><br />
+  <input name="search_type" value="blast_search" type="radio" checked="checked" />Busca&nbsp;automática&nbsp;&nbsp;<input name="search_type" type="radio" value="manual_search" checked="checked" />Busca&nbsp;manual
   </td></tr></table>
 </div>
 </form>
@@ -482,7 +484,7 @@ sub gene_search_form {
     return <<EOHTML;
 
 <table class="search_form_title" summary=""><tr><td>
-    <h4><span class="search_form_title">Gene search</span></h4>
+    <h4><span class="search_form_title">Busca de genes</span></h4>
   </td>
   </tr></table>
 
@@ -590,7 +592,7 @@ sub to_html {
     <div class="col-sm-8">
       <div class="form-horizontal" >
         <div class="form-group">
-          <label class="col-sm-3 control-label">Marker Name or SGN-M \#: </label>
+          <label class="col-sm-3 control-label">Nome do marcador ou SGN-M \#: </label>
           <div class="col-sm-9" >
             <div class="row">
               <div class="col-sm-5">
@@ -605,9 +607,9 @@ sub to_html {
         <div class="form-group">
           <label class="col-sm-3 control-label"></label>
 	  <div class="col-sm-9" >
-	    <input class="btn btn-primary" type="submit" name="$uniq{submit}" value="Search" />&nbsp;&nbsp;&nbsp;&nbsp;
+	    <button class="btn btn-primary" type="submit" name="$uniq{submit}" value="Search">Buscar</button>&nbsp;&nbsp;&nbsp;&nbsp;
             $checkbox{'mapped','checked'}
-            <span class="help" title="Unmapped markers include candidate markers that have not yet been mapped, and polymorphism surveys.">Find only markers on <a href=/cview>maps</a></span>
+            <span class="help" title="Marcadores não mapeados incluem candidatos ainda não mapeados e levantamentos de polimorfismo.">Buscar apenas marcadores em <a href=/cview>mapas</a></span>
 	  </div>
 	</div>
       </div>
@@ -616,47 +618,47 @@ sub to_html {
     </div>
   </div>
 
-  <h3 style="margin-bottom: 0; padding-bottom: 0;margin-top: 30px;">Advanced Search Options</h3>
-  <div ><small>(Questions? See the <a href="/help/marker_search_help.pl">help page</a>)</small></div>
+  <h3 style="margin-bottom: 0; padding-bottom: 0;margin-top: 30px;">Opções avançadas de busca</h3>
+  <div ><small>(Dúvidas? Consulte a <a href="/help/marker_search_help.pl">página de ajuda</a>)</small></div>
   <br/>
   <div class="row well">
     <div class="col-sm-6">
 
 EOHTML
 
-    $retstring .= blue_section_html( 'Marker Options', '<a style="font-size: 75%" href="/search/markers/markersearch.pl?random=yes">  
-    [Select a marker at random]</a>', <<EOFOO);
+    $retstring .= blue_section_html( 'Opções de marcadores', '<a style="font-size: 75%" href="/search/markers/markersearch.pl?random=yes">
+    [Selecionar um marcador ao acaso]</a>', <<EOFOO);
 
     $checkbox{bac_assoc}
-    Show only markers with BAC associations<br />
+    Exibir apenas marcadores associados a BACs<br />
       <div style="margin-left: 20px;">
         $checkbox{overgo_assoc}
-        <span class="help" title="The overgo process associates BACs with certain markers from SGN tomato maps.">Overgo associations<small> <a href="/maps/physical/overgo_process_explained.pl">[About the overgo process]</a></small></span><br />
+        <span class="help" title="O processo overgo associa BACs a determinados marcadores dos mapas de tomate da SGN.">Associações por overgo<small> <a href="/maps/physical/overgo_process_explained.pl">[Sobre o processo overgo]</a></small></span><br />
 
         $checkbox{manual_assoc}
-        <span class="help" title="Some markers have been manually associated with BACs.">Manual associations</span><br />
+        <span class="help" title="Alguns marcadores foram associados manualmente a BACs.">Associações manuais</span><br />
 
         $checkbox{comp_assoc}
-        <span class="help" title="Some markers have been BLASTed against our collection of BACs.">Computational associations</span><br />
+        <span class="help" title="Alguns marcadores foram comparados por BLAST com nossa coleção de BACs.">Associações computacionais</span><br />
 
       </div>
       <br />
 
       <div class="form-horizontal" >
 	<div class="form-group">
-      	  <label class="col-sm-6 control-label">Show markers in species: </label>
+          <label class="col-sm-6 control-label">Exibir marcadores da espécie: </label>
       	  <div class="col-sm-6" >
 	    $species{yeah}
           </div>
 	</div>
 	<div class="form-group">
-      	  <label class="col-sm-6 control-label"><span class="help" title="Protocol definitions: AFLP - Amplified Fragment Length Polymorphisms. CAPS - Cleaved Amplified Polymorphisms. PCR - any unspecified PCR-based method. RFLP - Restriction Fragment Length Polymorphism. SSR - Short Sequence Repeats (microsatellites)">Show markers in Protocol: </span></label>
+          <label class="col-sm-6 control-label"><span class="help" title="Definições dos protocolos: AFLP - polimorfismos de comprimento de fragmentos amplificados. CAPS - polimorfismos amplificados e clivados. PCR - qualquer método baseado em PCR não especificado. RFLP - polimorfismo de comprimento de fragmentos de restrição. SSR - repetições de sequências curtas (microssatélites)">Exibir marcadores do protocolo: </span></label>
       	  <div class="col-sm-6" >
 	    $protocols{'yeah'}
           </div>
 	</div>
 	<div class="form-group">
-	  <label class="col-sm-6 control-label"><span class="help" title="Collections: COS - Conserved Ortholog Sequences (tomato and Arabidopsis). COSII - Conserved Ortholog Sequences II (several Asterid species). KFG - Known Function Genes')">Show markers in group: </span></label>
+	  <label class="col-sm-6 control-label"><span class="help" title="Coleções: COS - sequências ortólogas conservadas (tomate e Arabidopsis). COSII - sequências ortólogas conservadas II (várias espécies de asterídeas). KFG - genes de função conhecida">Exibir marcadores do grupo: </span></label>
           <div class="col-sm-6" >
 	    $colls{'yeah'}
 	  </div>
@@ -671,33 +673,33 @@ EOFOO
 
 EOHTML
 
-    $retstring .= blue_section_html( 'Map/Marker Locations', <<EOHTML);
+    $retstring .= blue_section_html( 'Localizações de mapas/marcadores', <<EOHTML);
 
       <div class="form-horizontal" >
 	<div class="form-group">
-      	  <label class="col-sm-6 control-label">Show only markers on chromosomes: </label>
+          <label class="col-sm-6 control-label">Exibir apenas marcadores dos cromossomos: </label>
       	  <div class="col-sm-6" >
 	    $chromos{yeah}
           </div>
 	</div>
 	<div class="form-group">
-      	  <label class="col-sm-6 control-label">Position start: </label>
+          <label class="col-sm-6 control-label">Posição inicial: </label>
       	  <div class="col-sm-6" >
 	     $textbox{'pos_start',3}
           </div>
-	  <label class="col-sm-6 control-label">Position stop: </label>
+	  <label class="col-sm-6 control-label">Posição final: </label>
 	  <div class="col-sm-6">
 	     $textbox{'pos_end', 3}
 	  </div>
 	</div>
 	<div class="form-group">
-	  <label class="col-sm-6 control-label"><span class="help" title="Maps that have been made with MapMaker have confidence values associated with their positions. Leave this setting at &quot;uncalculated&quot; to see all markers on all maps.">Confidence at least: </span></label>
+	  <label class="col-sm-6 control-label"><span class="help" title="Mapas gerados com MapMaker têm valores de confiança associados às posições. Mantenha a opção de confiança não calculada para exibir todos os marcadores de todos os mapas.">Confiança mínima: </span></label>
           <div class="col-sm-6" >
              $confs{yeah}
           </div>
 	</div>
 	<div class="form-group">
-      	  <label class="col-sm-6 control-label">On maps: </label>
+          <label class="col-sm-6 control-label">Nos mapas: </label>
       	  <div class="col-sm-6" >
 	     $maps{yeah}
           </div>
@@ -708,7 +710,7 @@ EOHTML
 
     $retstring .= <<EOHTML;
     </div>
-    <center><input class="btn btn-primary" type="submit" name="$uniq{submit}" value="Search" /></center>
+    <center><button class="btn btn-primary" type="submit" name="$uniq{submit}" value="Search">Buscar</button></center>
   </div>
 </div>
 EOHTML
@@ -782,7 +784,7 @@ sub selectbox {
 
         $retstring = '<select multiple="multiple" size="3" class="form-control"  name="'
           . $self->uniqify_name($fieldname) . '" >';
-        $retstring .= qq{<option $anysel>Any</option>};
+        $retstring .= qq{<option value="Any" $anysel>Qualquer um</option>};
 
     }
     else {
@@ -835,7 +837,7 @@ sub selectboxMap {
     if ($mult) {
         $retstring = '<select multiple="multiple" size="3" class="form-control"  name="'
           . $self->uniqify_name($fieldname) . '" >';
-        $retstring .= qq{<option $anysel>Any</option>};
+        $retstring .= qq{<option value="Any" $anysel>Qualquer um</option>};
     } else {
         $retstring = '<select class="form-control" name="' . $self->uniqify_name($fieldname) . '" >';
     }
@@ -898,7 +900,7 @@ sub collection_select {
 sub nametype {
 
     my $self = shift;
-    my @namelist = ( 'starts with', 'exactly', 'contains' );
+    my @namelist = ( ['starts with', 'começa com'], ['exactly', 'exatamente'], ['contains', 'contém'] );
 
     return $self->selectbox( 'nametype', \@namelist );
 

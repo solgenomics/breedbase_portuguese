@@ -1,3 +1,5 @@
+use utf8;
+
 =head1 NAME
 
 SGN::Role::Site::Exceptions - Moose role for Catalyst-based site
@@ -101,15 +103,15 @@ then throws an exception that will display a 404 error page.
 sub throw_404 {
     my ( $c, $message ) = @_;
 
-    $message ||= 'Resource not found.';
+    $message ||= 'Recurso não encontrado.';
     $message .= '.' unless $message =~ /\.\s*$/; #< add a period at the end if the message does not have one
 
     $c->log->debug("throwing 404 error ('$message')") if $c->debug;
 
     my %throw = (
-            title => '404 - not found',
+            title => '404 - não encontrado',
             http_status => 404,
-            public_message => "$message  We apologize for the inconvenience.",
+            public_message => "$message  Pedimos desculpas pelo inconveniente.",
            );
 
     # not sure if this logic works if we run under Ambikon
@@ -124,7 +126,7 @@ sub throw_404 {
         $throw{notify} = 0; # was 1 - but don't send these emails - too voluminous - and the above logic probably does not work correctly under Ambikon
         $throw{developer_message} = "404 error seems to be our fault, referrer is '".$c->req->referer."'";
     } else {
-        $throw{public_message}  .= ' If you reached this page from a link on another site, you may wish to inform them that the link is incorrect.';
+        $throw{public_message}  .= ' Se você chegou a esta página por um link em outro site, informe ao responsável por ele que o link está incorreto.';
         $throw{is_client_error} = 1;
         $throw{is_server_error} = 0;
         $throw{notify} = 0;

@@ -1,3 +1,5 @@
+use utf8;
+
 =head1 NAME
 
 SimpleFormPage.pm -- an abstract class that implements a simple webpage that can be use to add, view and modify information in the database.
@@ -95,11 +97,11 @@ sub new {
     }
 
     if (!$self->get_object_id() && $self->get_action()!~/new|store|confirm_store/) {
-        $self->get_page()->message_page("No identifier provided to display data of this page for action view.");
+        $self->get_page()->message_page("Nenhum identificador foi informado para exibir os dados desta página.");
     }
     else {
         if ($self->get_action()!~/new|view|edit|store|delete|confirm_delete|confirm_store/) {
-            $self->get_page()->error_page("Undefined input. Cannot proceed. Sorry.\n");
+            $self->get_page()->error_page("Entrada indefinida. Não é possível continuar.\n");
         }
     }
 
@@ -123,12 +125,12 @@ sub new {
     elsif ($self->get_action() eq "confirm_delete") {
         my $id = $args{$self->get_primary_key()};
         if (!$id) {
-            $self->get_page()->error_page("need an id for deleting");
+            $self->get_page()->error_page("É necessário um ID para excluir");
         }
-        $self->delete_dialog("Delete", "Object",
+        $self->delete_dialog("Excluir", "Objeto",
                              $self->get_primary_key(),
                              $id,
-                             "<a href=\"".$self->get_script_name()."?".$self->get_primary_key()."=".$id."&amp;action=view\">Go back to detail page without deleting</a>");
+                             "<a href=\"".$self->get_script_name()."?".$self->get_primary_key()."=".$id."&amp;action=view\">Voltar à página de detalhes sem excluir</a>");
 
      }
      elsif ($self->get_action() eq "delete") {
@@ -171,7 +173,7 @@ sub check_modify_privileges {
         return 0;
     }
     if ($user->get_user_type() !~ /submitter|sequencer|curator/) {
-        $self->get_page()->message_page("You must have an account of type submitter to be able to submit data. Please contact SGN to change your account type.");
+        $self->get_page()->message_page("Você precisa de uma conta do tipo submitter para enviar dados. Entre em contato com a SGN para alterar o tipo de conta.");
     }
 
     my @owners = $self->get_owners();
@@ -183,7 +185,7 @@ sub check_modify_privileges {
         #  {
 
 
-        $self->get_page()->message_page("You do not have rights to modify this database entry because you do not own it. [$user_id, @owners]");
+        $self->get_page()->message_page("Você não tem permissão para modificar este registro do banco de dados porque não é seu proprietário. [$user_id, @owners]");
     }
     else {
         return 0;
@@ -412,10 +414,10 @@ sub delete_dialog {
     page_title_html("$title");
     print qq {
         <form>
-        Delete database object $object_name (id=$object_id)?
+        Excluir o objeto $object_name (id=$object_id) do banco de dados?
         <input type="hidden" name="action" value="delete" />
         <input type="hidden" name="$field_name" value="$object_id" />
-        <input type="submit" value="Delete" />
+        <input type="submit" value="Excluir" />
         </form>
 
         $back_link
@@ -443,7 +445,7 @@ sub delete {
     my $self = shift;
     warn "Override 'delete' function in derived class\n";
 
-    $self->get_page()->message_page("Deleting is not implemented for this object");
+    $self->get_page()->message_page("A exclusão não está implementada para este objeto");
 
 }
 
@@ -460,16 +462,16 @@ sub confirm_store {
     $self->get_page()->header();
 
 
-    page_title_html("Confirm store");
+    page_title_html("Confirmar gravação");
     print qq {
         <form>
-        Store object in the database?
+        Gravar o objeto no banco de dados?
         <input type="hidden" name="action" value="store" />
 
-        <input type="submit" value="Store" />
+        <input type="submit" value="Gravar" />
         </form>
 
-        <a href="javascript:history.back(1)">Go back without storing the object</a>
+        <a href="javascript:history.back(1)">Voltar sem gravar o objeto</a>
 
     };
 
@@ -902,12 +904,12 @@ sub get_new_link_html {
     my $primary_key = $self->get_primary_key();
     my $object_id = $self->get_object_id();
 
-    my $new_link = qq { <a href="$script_name?action=new&amp;form=$form_name">[New]</a> };
+    my $new_link = qq { <a href="$script_name?action=new&amp;form=$form_name">[Novo]</a> };
     if ($self->get_action() eq "edit") {
-        $new_link = qq { <span class="ghosted">[New]</span> };
+        $new_link = qq { <span class="ghosted">[Novo]</span> };
     }
     if ($self->get_action() eq "new") {
-        $new_link = qq { <a onClick="history.go(-1)">[Cancel]</a> };
+        $new_link = qq { <a onClick="history.go(-1)">[Cancelar]</a> };
     }
     return $new_link;
 }
@@ -930,19 +932,19 @@ sub get_edit_link_html {
     my $user_id= $self->get_user()->get_sp_person_id();
     my @owners= $self->get_owners();
     if (($self->get_user()->get_user_type() eq "curator") || $user_id && grep{/^$user_id$/} @owners ) {
-         $edit_link = qq { <a href="$script_name?action=edit&amp;form=$form_name&amp;$primary_key=$object_id">[Edit]</a> };
+         $edit_link = qq { <a href="$script_name?action=edit&amp;form=$form_name&amp;$primary_key=$object_id">[Editar]</a> };
 
      }else {
-         $edit_link = qq { <span class="ghosted">[Edit]</span> };
+         $edit_link = qq { <span class="ghosted">[Editar]</span> };
      }
 
 
     if ($self->get_action() eq "edit") {
-        $edit_link = qq { <a href="$script_name?action=view&amp;form=$form_name&amp;$primary_key=$object_id">[Cancel Edit]</a> };
+        $edit_link = qq { <a href="$script_name?action=view&amp;form=$form_name&amp;$primary_key=$object_id">[Cancelar edição]</a> };
     }
 
     if ($self->get_action() eq "new") {
-        $edit_link = qq { <span class="ghosted">[Edit]</span> };
+        $edit_link = qq { <span class="ghosted">[Editar]</span> };
     }
 
     return $edit_link;
@@ -966,18 +968,18 @@ sub get_delete_link_html {
     my @owners= $self->get_owners();
     if (($self->get_user()->get_user_type() eq "curator") || grep{/^$user_id$/} @owners ) {
 
-        $delete_link = qq { <a href="$script_name?action=confirm_delete&amp;form=$form_name&amp;$primary_key=$object_id">[Delete]</a> };
+        $delete_link = qq { <a href="$script_name?action=confirm_delete&amp;form=$form_name&amp;$primary_key=$object_id">[Excluir]</a> };
 
     }else {
-        $delete_link = qq { <span class="ghosted">[Delete]</span> };
+        $delete_link = qq { <span class="ghosted">[Excluir]</span> };
     }
 
     if ($self->get_action() eq "edit") {
-        $delete_link = qq { <span class="ghosted">[Delete]</span> };
+        $delete_link = qq { <span class="ghosted">[Excluir]</span> };
     }
 
     if ($self->get_action() eq "new") {
-        $delete_link = qq { <span class="ghosted">[Delete]</span> };
+        $delete_link = qq { <span class="ghosted">[Excluir]</span> };
     }
     return $delete_link;
 }

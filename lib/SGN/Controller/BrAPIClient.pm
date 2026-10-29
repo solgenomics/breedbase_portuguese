@@ -1,3 +1,5 @@
+use utf8;
+
 
 package SGN::Controller::BrAPIClient;
 
@@ -54,7 +56,7 @@ sub authorize_client :Path('/brapi/authorize') QueryParam('redirect_uri') { #bre
             return;
         }
     } else {
-        $c->throw_404("No authorized client found with return url $redirect_uri. If you are an app developer please contact the BreedBase development team to become an authorized client.");
+        $c->throw_404("Nenhum cliente autorizado foi encontrado para a URL de retorno $redirect_uri. Se você desenvolve um aplicativo, entre em contato com a equipe do BreedBase para autorizar o cliente.");
     }
 
 }

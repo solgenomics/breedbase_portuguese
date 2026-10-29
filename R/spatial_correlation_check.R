@@ -57,7 +57,7 @@ library('stats')
 # Get Arguments
 args <- commandArgs(trailingOnly = TRUE)
 if (length(args) < 2) {
-    stop("Two or more arguments are required.")
+    stop("São necessários dois ou mais argumentos.")
 }
 phenotypeFile <- args[1]
 traits <- args[2]
@@ -158,36 +158,36 @@ for (i in 1:length(userResponse)) {
     quality_summary <- check_quality(userPheno, userResponse[i], replicate)
     # write(paste("quality_summary:", quality_summary), stderr())
     if (quality_summary$missing_data > 90) {
-        quality <- "too much missing data"
+        quality <- "excesso de dados ausentes"
         Moran_pvalue <- NA
         spatial_correction_needed <- "NO"
     } else if (quality_summary$outliers > 10) {
-        quality <- "too many outliers"
+        quality <- "excesso de valores atípicos"
         Moran_pvalue <- NA
         spatial_correction_needed <- "NO"
     } else if (is.na(quality_summary$skewness) && is.na(quality_summary$shapiro_val)) {
-        quality <- "not enough data to check for normality"
+        quality <- "dados insuficientes para verificar a normalidade"
         Moran_pvalue <- NA
         spatial_correction_needed <- "NO"
     } else if (quality_summary$unique_count < 2) {
-        quality <- "not enough unique values"
+        quality <- "número insuficiente de valores distintos"
         Moran_pvalue <- NA
         spatial_correction_needed <- "NO"
     } else if (quality_summary$replicate_count < 2) {
-        quality <- "not enough replicates"
+        quality <- "número insuficiente de repetições"
         Moran_pvalue <- NA
         spatial_correction_needed <- "NO"
     } else {
         write(paste("Trait: ", userResponse[i]), stderr())
         if (quality_summary$shapiro_val < 0.05) {
-            quality <- "good but not normally distributed"
+            quality <- "dados adequados, mas sem distribuição normal"
             spatial_correction_needed <- "YES"
         } else if (quality_summary$skewness > 1 || quality_summary$skewness < -1) {
-            quality <- "good but skewed"
+            quality <- "dados adequados, mas assimétricos"
             # Moran_pvalue <- NA
             spatial_correction_needed <- "YES"
         } else {
-            quality <- "good data"
+            quality <- "dados adequados"
             spatial_correction_needed <- "YES"
         }
 

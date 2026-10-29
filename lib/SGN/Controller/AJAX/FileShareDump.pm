@@ -95,8 +95,8 @@ sub filesharedump_list_GET : Args(0) {
 
     my @files;
     while (my ($file_id, $basename, $dirname, $sp_person_id, $create_date, $username) = $h->fetchrow_array()) {
-        #my $options = '<a href="/breeders/phenotyping/view/'.$file_id.'">View</a> | <a href="/breeders/phenotyping/download/'.$file_id.'">Download</a>';
-        my $options = '<a href="/breeders/phenotyping/download/'.$file_id.'">Download</a>';
+        #my $options = '<a href="/breeders/phenotyping/view/'.$file_id.'">Ver</a> | <a href="/breeders/phenotyping/download/'.$file_id.'">Baixar</a>';
+        my $options = '<a href="/breeders/phenotyping/download/'.$file_id.'">Baixar</a>';
         push @files, [$basename, $username, $create_date, $options];
     }
 

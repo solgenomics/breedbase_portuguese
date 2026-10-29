@@ -1,0 +1,51 @@
+arquivo	situacao	observacao
+R/BLUP_modelling.r	revisado_sem_alteracao	Rascunho de modelos; sem interface; erro de sintaxe preexistente na linha 28.
+R/DRRC.r	revisado_sem_alteracao	Sem textos próprios de interface pendentes; identificadores, dados e registros de depuração preservados.
+R/GBS_QC.R	traduzido	Textos de apresentação traduzidos; cálculos, identificadores e contratos de dados preservados.
+R/GCPC.R	traduzido	Textos de apresentação traduzidos; cálculos, identificadores e contratos de dados preservados.
+R/GCPC_YamBase.R	traduzido	Textos de apresentação traduzidos; cálculos, identificadores e contratos de dados preservados.
+R/MADII_layout_function.R	traduzido	Textos de apresentação traduzidos; cálculos, identificadores e contratos de dados preservados.
+R/Nirs/nirs.R	revisado_sem_alteracao	Sem textos próprios de interface pendentes; identificadores, dados e registros de depuração preservados.
+R/Nirs/nirs_upload_filter_aggregate.R	traduzido	Textos de apresentação traduzidos; cálculos, identificadores e contratos de dados preservados.
+R/Nirs/nirs_visualize_spectra.R	traduzido	Textos de apresentação traduzidos; cálculos, identificadores e contratos de dados preservados.
+R/Nirs/predict_NIRS.R	revisado_sem_alteracao	Sem textos próprios de interface pendentes; identificadores, dados e registros de depuração preservados.
+R/RCBD.R	revisado_sem_alteracao	Sem textos próprios de interface pendentes; identificadores, dados e registros de depuração preservados.
+R/Spatial_Correction.R	traduzido	Textos de apresentação traduzidos; cálculos, identificadores e contratos de dados preservados.
+R/analyze_phenotype.r	traduzido	Textos de apresentação traduzidos; cálculos, identificadores e contratos de dados preservados.
+R/augmented_row_column.R	traduzido	Textos de apresentação traduzidos; cálculos, identificadores e contratos de dados preservados.
+R/banana_pipeline/banana_pipeline_analysisScript.R	revisado_sem_alteracao	Chaves de dados e e-mail interno preservados; erro de sintaxe preexistente na linha 665.
+R/banana_pipeline/banana_shinyApp.R	traduzido	Textos de apresentação traduzidos; cálculos, identificadores e contratos de dados preservados.
+R/dataset/rosner_test.R	revisado_sem_alteracao	Sem textos próprios de interface pendentes; identificadores, dados e registros de depuração preservados.
+R/environment_stratification.R	traduzido	Textos de apresentação traduzidos; cálculos, identificadores e contratos de dados preservados.
+R/hapMap2numeric.R	traduzido	Textos de apresentação traduzidos; cálculos, identificadores e contratos de dados preservados.
+R/heritability/h2_blup_rscript.R	traduzido	Textos de apresentação traduzidos; cálculos, identificadores e contratos de dados preservados.
+R/heritability/h2_rscript.R	revisado_sem_alteracao	Sem textos próprios de interface pendentes; identificadores, dados e registros de depuração preservados.
+R/mixed_models.R	revisado_sem_alteracao	Sem textos próprios de interface pendentes; identificadores, dados e registros de depuração preservados.
+R/mixed_models_sommer.R	revisado_sem_alteracao	Sem textos próprios de interface pendentes; identificadores, dados e registros de depuração preservados.
+R/mixed_models_spl2D.R	revisado_sem_alteracao	Sem textos próprios de interface pendentes; identificadores, dados e registros de depuração preservados.
+R/qualityControl/qc_rscript.R	traduzido	Textos de apresentação traduzidos; cálculos, identificadores e contratos de dados preservados.
+R/rrc_design.R	revisado_sem_alteracao	Sem textos próprios de interface pendentes; identificadores, dados e registros de depuração preservados.
+R/sgnPackages.r	revisado_sem_alteracao	Instalação de dependências e diagnósticos de administração; sem textos de interface.
+R/solGS/anova.r	traduzido	Textos de apresentação traduzidos; cálculos, identificadores e contratos de dados preservados.
+R/solGS/banana_pipeline/banana_pipeline_analysisScript.R	revisado_sem_alteracao	Chaves de dados e e-mail interno preservados; erro de sintaxe preexistente na linha 665.
+R/solGS/banana_pipeline/banana_shinyApp.R	traduzido	Textos de apresentação traduzidos; cálculos, identificadores e contratos de dados preservados.
+R/solGS/combine_gebvs_files.r	revisado_sem_alteracao	Sem textos próprios de interface pendentes; identificadores, dados e registros de depuração preservados.
+R/solGS/combine_genotype_data.r	revisado_sem_alteracao	Sem textos próprios de interface pendentes; identificadores, dados e registros de depuração preservados.
+R/solGS/combine_populations.r	traduzido	Textos de apresentação traduzidos; cálculos, identificadores e contratos de dados preservados.
+R/solGS/correlation.r	traduzido	Textos de apresentação traduzidos; cálculos, identificadores e contratos de dados preservados.
+R/solGS/genetic_gain.r	traduzido	Textos de apresentação traduzidos; cálculos, identificadores e contratos de dados preservados.
+R/solGS/hclustering.r	traduzido	Textos de apresentação traduzidos; cálculos, identificadores e contratos de dados preservados.
+R/solGS/histogram.r	traduzido	Textos de apresentação traduzidos; cálculos, identificadores e contratos de dados preservados.
+R/solGS/kclustering.r	traduzido	Textos de apresentação traduzidos; cálculos, identificadores e contratos de dados preservados.
+R/solGS/kinship.r	traduzido	Textos de apresentação traduzidos; cálculos, identificadores e contratos de dados preservados.
+R/solGS/pca.r	traduzido	Textos de apresentação traduzidos; cálculos, identificadores e contratos de dados preservados.
+R/solGS/qtl_analysis.r	revisado_sem_alteracao	Nomes de métodos/modelos comparados com entradas do servidor; cabeçalhos de dados preservados.
+R/solGS/rrblup_gblup_gs.r	traduzido	Textos de apresentação traduzidos; cálculos, identificadores e contratos de dados preservados.
+R/solGS/selection_index.r	traduzido	Textos de apresentação traduzidos; cálculos, identificadores e contratos de dados preservados.
+R/solgwas/solgwas_genoPCA_script.R	traduzido	Textos de apresentação traduzidos; cálculos, identificadores e contratos de dados preservados.
+R/solgwas/solgwas_script.R	traduzido	Textos de apresentação traduzidos; cálculos, identificadores e contratos de dados preservados.
+R/spatial_correlation_check.R	traduzido	Textos de apresentação traduzidos; cálculos, identificadores e contratos de dados preservados.
+R/spatial_modeling.R	traduzido	Textos de apresentação traduzidos; cálculos, identificadores e contratos de dados preservados.
+R/stability/ammi_script.R	traduzido	Textos de apresentação traduzidos; cálculos, identificadores e contratos de dados preservados.
+R/unreplicated_diagonal_design.R	revisado_sem_alteracao	Sem textos próprios de interface pendentes; identificadores, dados e registros de depuração preservados.
+R/urdd_design.R	revisado_sem_alteracao	Protocolo de saída do FielDHub e cabeçalhos de arquivos preservados; mensagens de depuração.

@@ -98,10 +98,10 @@ sub format_sequencing_infos {
 	my $delete_link_js = "window.jsMod['sequenced_accessions'].delete_sequencing_info(".$info->{prop_id}.");";
 	
 	my $edit_link_js = "window.jsMod['sequenced_accessions'].edit_sequencing_info(".$info->{prop_id}.");";
-	my $edit_delete_html = "Edit | Delete";
+	my $edit_delete_html = "Editar | Excluir";
 	
 	if ($user_id && ($info->{sp_person_id} == $user_id)) {
-	    $edit_delete_html = '<a href="javascript:'.$edit_link_js.'">Edit</a> | <a href="javascript:'.$delete_link_js.'">Delete</a>';
+	    $edit_delete_html = '<a href="javascript:'.$edit_link_js.'">Editar</a> | <a href="javascript:'.$delete_link_js.'">Excluir</a>';
 	}
 		
 	push @data, [

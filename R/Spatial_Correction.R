@@ -24,7 +24,7 @@ library(dplyr)
 # Get Arguments
 args <- commandArgs(trailingOnly = TRUE)
 if (length(args) < 2) {
-    stop("Two or more arguments are required.")
+    stop("São necessários dois ou mais argumentos.")
 }
 phenotypeFile <- args[1]
 spatialFile <- args[2]

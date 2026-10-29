@@ -89,7 +89,7 @@ has 'plot_number_increment' => (isa => 'Int', is => 'rw', predicate => 'has_plot
 subtype 'PlotNumberingSchemeType',
     as 'Str',
     where { $_ eq "block_based" || $_ eq "consecutive" },
-    message { "The string $_ is not a valid plot numbering scheme. Currently allowed are 'block_based' or 'consecutive'"};
+    message { "O valor $_ não é um esquema válido de numeração de parcelas. Os valores permitidos são 'block_based' ou 'consecutive'"};
 
 has 'plot_numbering_scheme' => (isa => 'Maybe[PlotNumberingSchemeType]', is => 'rw', default => 'block_based'); # so far, either block_based or consecutive
 
@@ -136,14 +136,14 @@ subtype 'RandomizationMethodType',
   as 'Str',
   where { $_ eq "Wichmann-Hill" || $_ eq  "Marsaglia-Multicarry" || $_ eq  "Super-Duper" || $_ eq  "Mersenne-Twister" || $_ eq  "Knuth-
 TAOCP" || $_ eq  "Knuth-TAOCP-2002"},
-  message { "The string, $_, was not a valid randomization method"};
+  message { "O valor $_ não é um método válido de casualização"};
 
 has 'randomization_method' => (isa => 'RandomizationMethodType', is => 'rw', default=> "Mersenne-Twister");
 
 subtype 'DesignType',
   as 'Str',
   where { $_ eq "CRD" || $_ eq "RCBD" || $_ eq "RRC" || $_ eq "DRRC" || $_ eq "URDD" || $_ eq "Alpha" || $_ eq "Lattice" || $_ eq "Augmented" || $_ eq "MAD" || $_ eq "genotyping_plate" || $_ eq "greenhouse" || $_ eq "p-rep" || $_ eq "splitplot" || $_ eq "Westcott" || $_ eq "Analysis" },
-  message { "The string, $_, was not a valid design type" };
+  message { "O valor $_ não é um tipo válido de delineamento" };
 
 has 'design_type' => (isa => 'DesignType', is => 'rw', predicate => 'has_design_type', clearer => 'clear_design_type');
 

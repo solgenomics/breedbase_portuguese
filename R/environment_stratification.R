@@ -3,7 +3,7 @@ rm(list = ls())
 required_packages <- c("dplyr", "tidyr", "jsonlite")
 missing_packages <- required_packages[!vapply(required_packages, requireNamespace, logical(1), quietly = TRUE)]
 if (length(missing_packages) > 0) {
-  stop("Missing required R package(s): ", paste(missing_packages, collapse = ", "))
+  stop("Pacotes R obrigatórios ausentes: ", paste(missing_packages, collapse = ", "))
 }
 
 suppressPackageStartupMessages({
@@ -13,7 +13,7 @@ suppressPackageStartupMessages({
 
 args <- commandArgs(trailingOnly = TRUE)
 if (length(args) < 10) {
-  stop("Usage: Rscript environment_stratification.R <phenotype_file> <trait> <alpha> <pairwise_json> <group_summary_json> <group_membership_json> <ungrouped_json> <summary_json> <anova_json> <message_file>")
+  stop("Uso: Rscript environment_stratification.R <phenotype_file> <trait> <alpha> <pairwise_json> <group_summary_json> <group_membership_json> <ungrouped_json> <summary_json> <anova_json> <message_file>")
 }
 
 phenotype_file <- args[1]
@@ -106,7 +106,7 @@ normalize_column_name <- function(x) {
 find_column <- function(data, candidates, label) {
   matches <- candidates[candidates %in% colnames(data)]
   if (length(matches) == 0) {
-    stop("Could not find required column for ", label, ". Tried: ", paste(candidates, collapse = ", "))
+    stop("Não foi possível encontrar a coluna obrigatória para ", label, ". Colunas procuradas: ", paste(candidates, collapse = ", "))
   }
   matches[1]
 }
@@ -248,8 +248,8 @@ detect_design <- function(data) {
   is_row_column_design <- grepl("row[- ]?column|row.*column|column.*row|spatial", design_text)
 
   if (is_row_column_design) {
-    design_label <- "Row-column"
-    design_message <- "Detected row and column layout; row and column are fitted within environment when those terms have at least two levels."
+    design_label <- "Linhas e colunas"
+    design_message <- "Delineamento em linhas e colunas detectado; linhas e colunas são ajustadas dentro de cada ambiente quando esses termos têm pelo menos dois níveis."
     design_terms <- c(
       if (has_rep) "environment:rep_number",
       if (has_row) "environment:row_number",
@@ -257,30 +257,30 @@ detect_design <- function(data) {
     )
   } else if (grepl("rcbd|randomized complete block|randomised complete block", design_text)) {
     design_label <- "RCBD"
-    design_message <- "Detected randomized complete block layout; blocks are fitted within environment when block has at least two levels."
+    design_message <- "Delineamento em blocos completos casualizados detectado; os blocos são ajustados dentro de cada ambiente quando o fator bloco tem pelo menos dois níveis."
     design_terms <- c(
       if (has_block) "environment:block_number" else if (has_rep) "environment:rep_number"
     )
   } else if (grepl("alpha|lattice|incomplete", design_text) || block_differs_from_rep) {
-    design_label <- "Incomplete block / alpha-lattice"
-    design_message <- "Detected replicate and block layout; blocks are fitted within replicate and environment when those terms have at least two levels."
+    design_label <- "Blocos incompletos / látice alfa"
+    design_message <- "Delineamento com repetições e blocos detectado; os blocos são ajustados dentro de cada repetição e ambiente quando esses termos têm pelo menos dois níveis."
     design_terms <- c(
       if (has_rep) "environment:rep_number",
       if (has_rep && has_block) "environment:rep_number:block_number"
     )
   } else if (grepl("augmented", design_text) || (has_block && !has_rep)) {
-    design_label <- "Augmented / block-only"
-    design_message <- "Detected block-only layout; blocks are fitted within environment when block has at least two levels."
+    design_label <- "Aumentado / apenas blocos"
+    design_message <- "Delineamento apenas com blocos detectado; os blocos são ajustados dentro de cada ambiente quando o fator bloco tem pelo menos dois níveis."
     design_terms <- c(if (has_block) "environment:block_number")
   } else if (has_rep) {
     design_label <- "RCBD"
-    design_message <- "Detected randomized complete block layout; blocks are fitted within environment when available."
+    design_message <- "Delineamento em blocos completos casualizados detectado; os blocos são ajustados dentro de cada ambiente quando disponíveis."
     design_terms <- c(
       if (has_block) "environment:block_number" else "environment:rep_number"
     )
   } else {
     design_label <- "CRD"
-    design_message <- "No usable blocking, replicate, row, or column layout detected; using CRD model."
+    design_message <- "Nenhuma estrutura utilizável de blocos, repetições, linhas ou colunas foi detectada; será usado o modelo inteiramente casualizado (CRD)."
     design_terms <- character()
   }
 
@@ -367,7 +367,7 @@ lin_ss_ge <- function(data, envs) {
         ss_ge = NA_real_,
         df_ge = NA_real_,
         ms_ge = NA_real_,
-        message = "Not enough genotypes or environments"
+        message = "Número insuficiente de genótipos ou ambientes"
       ),
       common_genotypes = common_genotypes
     ))
@@ -436,7 +436,7 @@ lin_error_mse <- function(data, envs, common_genotypes) {
 
   df_error <- df.residual(fit)
   if (df_error <= 0) {
-    return(list(mse = NA_real_, df_error = df_error, message = "No residual degrees of freedom"))
+    return(list(mse = NA_real_, df_error = df_error, message = "Não há graus de liberdade residuais"))
   }
 
   list(mse = sum(residuals(fit)^2, na.rm = TRUE) / df_error, df_error = df_error, message = design$message)
@@ -567,16 +567,16 @@ lin_group_environments <- function(data, alpha = 0.05) {
 
 main <- function() {
   if (is.na(alpha) || alpha <= 0 || alpha >= 1) {
-    stop("Alpha must be a number between 0 and 1.")
+    stop("Alfa deve ser um número entre 0 e 1.")
   }
 
   pheno <- read.table(phenotype_file, sep = "\t", header = TRUE, check.names = FALSE, quote = "", comment.char = "", stringsAsFactors = FALSE)
   colnames(pheno) <- normalize_column_name(colnames(pheno))
   study_trait <- normalize_column_name(gsub("\\.", " ", study_trait))
 
-  trait_col <- find_column(pheno, c(study_trait), "selected trait")
-  accession_col <- find_column(pheno, c("germplasmName", "accession_name", "accessionName", "stockName"), "accession")
-  location_col <- find_column(pheno, c("locationName", "location", "studyLocation"), "location")
+  trait_col <- find_column(pheno, c(study_trait), "característica selecionada")
+  accession_col <- find_column(pheno, c("germplasmName", "accession_name", "accessionName", "stockName"), "acesso")
+  location_col <- find_column(pheno, c("locationName", "location", "studyLocation"), "local")
   trial_col <- c("studyName", "trialName", "trial_name", "projectName")
   year_col <- c("year", "Year", "season")
   design_col <- c("studyDesign", "study_design", "trialDesign", "design")
@@ -664,7 +664,7 @@ main <- function() {
     write_json_rows(env_info, ungrouped_file)
     write_json_rows(summary, summary_file)
     write_json_rows(anova_results, anova_file)
-    write_message("The selected trait must be measured in at least two environments.")
+    write_message("A característica selecionada deve ser medida em pelo menos dois ambientes.")
     return(invisible(NULL))
   }
 
@@ -685,11 +685,11 @@ main <- function() {
   group_count <- nrow(lin_results$group_summary)
   ungrouped_count <- nrow(lin_results$ungrouped)
   write_message(paste0(
-    "Environment stratification finished. ",
+    "Estratificação de ambientes concluída. ",
     group_count,
-    " compatible group(s) found; ",
+    " grupo(s) compatível(is) encontrado(s); ",
     ungrouped_count,
-    " environment(s) left ungrouped."
+    " ambiente(s) sem agrupamento."
   ))
 }
 
@@ -702,7 +702,7 @@ tryCatch(
     write_json_rows(empty_ungrouped(), ungrouped_file)
     write_json_rows(data.frame(error = e$message), summary_file)
     write_json_rows(empty_anova(), anova_file)
-    write_message(paste("Environment stratification failed:", e$message))
+    write_message(paste("Falha na estratificação de ambientes:", e$message))
     stop(e)
   }
 )

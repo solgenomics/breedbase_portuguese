@@ -1,3 +1,5 @@
+use utf8;
+
 package CXGN::Genotype::SearchStocks;
 
 =head1 NAME
@@ -90,7 +92,7 @@ sub get_selected_stocks {
             if ($chrom){
                 $chrom_hash{$chrom}{$marker_name}{'DS'} = $allele_dosage;
             } else {
-                push @incorrect_marker_names, "Marker name: $marker_name is not in genotyping protocol: $protocol_name. \n";
+                push @incorrect_marker_names, "O marcador $marker_name não está no protocolo de genotipagem $protocol_name. \n";
             }
         } elsif ($data_type eq 'SNP') {
             my $allele_1 = $params{allele1};
@@ -107,7 +109,7 @@ sub get_selected_stocks {
             while (my ($ref, $alt, $chrom) = $h->fetchrow_array()){
                 push @ref_alt_chrom, ($ref, $alt, $chrom);
                 if (!@ref_alt_chrom) {
-                    push @incorrect_marker_names, "Marker name: $marker_name is not in genotyping protocol: $protocol_name. \n";
+                    push @incorrect_marker_names, "O marcador $marker_name não está no protocolo de genotipagem $protocol_name. \n";
                 }
             }
 

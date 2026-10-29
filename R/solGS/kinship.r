@@ -65,7 +65,7 @@ createGenoData <- function(inputFiles) {
     }
    
     if (is.null(genoData)) {
-        stop("There is no genotype dataset.")
+        stop("Não há dados genotípicos.")
         q("no", 1, FALSE)
     } else {
 

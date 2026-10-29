@@ -940,7 +940,7 @@ sub get_high_dimensional_phenotypes_protocols : Path('/ajax/html/select/high_dim
         $h->execute();
     }
 
-    my $html = '<table class="table table-bordered table-hover" id="html-select-highdimprotocol-table"><thead><tr><th>Select</th><th>Protocol Name</th><th>Description</th><th>Create Date</th><th>Properties</th></tr></thead><tbody>';
+    my $html = '<table class="table table-bordered table-hover" id="html-select-highdimprotocol-table"><thead><tr><th>Selecionar</th><th>Nome do protocolo</th><th>Descrição</th><th>Data de criação</th><th>Properties</th></tr></thead><tbody>';
 
     while (my ($nd_protocol_id, $name, $description, $create_date, $props_json) = $h->fetchrow_array()) {
         my $props = decode_json $props_json;
@@ -977,7 +977,7 @@ sub get_analytics_protocols : Path('/ajax/html/select/analytics_protocols') Args
     my $h = $schema->storage->dbh()->prepare($q);
     $h->execute();
 
-    my $html = '<table class="table table-bordered table-hover" id="html-select-analyticsprotocol-table"><thead><tr><th>Select</th><th>Analytics Name</th><th>Description</th><th>Create Date</th><th>Properties</th></tr></thead><tbody>';
+    my $html = '<table class="table table-bordered table-hover" id="html-select-analyticsprotocol-table"><thead><tr><th>Selecionar</th><th>Nome da análise</th><th>Descrição</th><th>Data de criação</th><th>Properties</th></tr></thead><tbody>';
 
     while (my ($nd_protocol_id, $name, $description, $create_date, $props_json) = $h->fetchrow_array()) {
         my $props = decode_json $props_json;
@@ -1017,8 +1017,8 @@ sub get_sequence_metadata_protocols : Path('/ajax/html/select/sequence_metadata_
     $h->execute();
 
     my $html = '<table class="table table-bordered table-hover" id="html-select-sdmprotocol-table-' . $data_type_cvterm_id . '">';
-    my $select_th = defined $checkbox_name ? "<th>Select</th>" : "";
-    $html .= '<thead><tr>' . $select_th . '<th>Protocol&nbsp;Name</th><th>Description</th><th>Properties</th></tr></thead>';
+    my $select_th = defined $checkbox_name ? "<th>Selecionar</th>" : "";
+    $html .= '<thead><tr>' . $select_th . '<th>Nome&nbsp;do&nbsp;protocolo</th><th>Descrição</th><th>Properties</th></tr></thead>';
     $html .= '<tbody>';
 
     while (my ($nd_protocol_id, $name, $description, $props_json) = $h->fetchrow_array()) {
@@ -1037,14 +1037,14 @@ sub get_sequence_metadata_protocols : Path('/ajax/html/select/sequence_metadata_
 
         my $type = $props->{'sequence_metadata_type'};
         $type =~ s/ /&nbsp;/;
-        $html .= "<strong>Data&nbsp;Type:</strong>&nbsp;" . $type . "<br />";
+        $html .= "<strong>Tipo&nbsp;de&nbsp;dado:</strong>&nbsp;" . $type . "<br />";
         $html .= "<strong>Reference&nbsp;Genome:</strong>&nbsp;" . $props->{'reference_genome'} . "<br />";
         $html .= "<strong>Score:</strong>&nbsp;" . $props->{'score_description'} . "<br />";
         $html .= "<strong>Attributes:</strong><br />";
 
         my $attributes = $props->{'attribute_descriptions'};
         $html .= "<table class='table table-striped' style='min-width: 300px'>";
-        $html .= "<thead><tr><th>Key</th><th>Description</th></tr></thead>";
+        $html .= "<thead><tr><th>Key</th><th>Descrição</th></tr></thead>";
         while (my($k,$v) = each %$attributes) {
             $html .= "<tr><td>$k</td><td>$v</td></tr>";
         }
@@ -1088,7 +1088,7 @@ sub get_trained_nirs_models : Path('/ajax/html/select/trained_nirs_models') Args
     my $model_h = $schema->storage->dbh()->prepare($model_q);
     $model_h->execute();
 
-    my $html = '<table class="table table-bordered table-hover" id="html-select-nirsmodel-table"><thead><tr><th>Select</th><th>Model Name</th><th>Description</th><th>Format</th><th>Trait</th><th>Algorithm</th></tr></thead><tbody>';
+    my $html = '<table class="table table-bordered table-hover" id="html-select-nirsmodel-table"><thead><tr><th>Selecionar</th><th>Nome do modelo</th><th>Descrição</th><th>Formato</th><th>Característica</th><th>Algoritmo</th></tr></thead><tbody>';
 
     while (my ($nd_protocol_id, $name, $description, $model_type) = $model_h->fetchrow_array()) {
         my $model_type_hash = decode_json $model_type;
@@ -1291,7 +1291,7 @@ sub get_traits_select : Path('/ajax/html/select/traits') Args(0) {
       my $bs = CXGN::BreederSearch->new( { dbh=> $c->dbc->dbh() } );
       my $status = $bs->test_matviews($c->config->{dbhost}, $c->config->{dbname}, $c->config->{dbuser}, $c->config->{dbpass});
       unless ($status->{'success'}) {
-          $c->stash->{rest} = { select => '<center><p>Direct trait select is not currently available</p></center>'};
+          $c->stash->{rest} = { select => '<center><p>A seleção direta de características não está disponível no momento</p></center>'};
           return;
       }
       my $query = $bs->metadata_query([ 'traits' ], {}, {});
@@ -1327,7 +1327,7 @@ sub get_traits_select : Path('/ajax/html/select/traits') Args(0) {
             }
         }
         if ($select_format eq 'component_table_select') {
-            my $html = '<table class="table table-hover table-bordered" id="'.$id.'"><thead><th>Observation Variable Components</th><th>Select</th></thead><tbody>';
+            my $html = '<table class="table table-hover table-bordered" id="'.$id.'"><thead><th>Componentes da variável de observação</th><th>Selecionar</th></thead><tbody>';
             my %unique_components;
             foreach (values %unique_traits_ids) {
                 foreach my $component (@{$_->[2]}) {
@@ -1368,7 +1368,7 @@ sub get_traits_select : Path('/ajax/html/select/traits') Args(0) {
             $c->detach;
         }
         elsif ($select_format eq 'component_table_multiseason_select') {
-            my $html = '<table class="table table-hover table-bordered" id="'.$id.'"><thead><th>Observation Variable Components</th><th>Select</th></thead><tbody>';
+            my $html = '<table class="table table-hover table-bordered" id="'.$id.'"><thead><th>Componentes da variável de observação</th><th>Selecionar</th></thead><tbody>';
             my %unique_components;
             foreach (values %unique_traits_ids) {
                 foreach my $component (@{$_->[2]}) {
@@ -1803,7 +1803,7 @@ sub get_datasets_select :Path('/ajax/html/select/datasets') Args(0) {
     if ($show_compatibility){
         $compatibility_header = '<th>Compatibility</th>';
     }
-    my $html = '<table class="table table-bordered table-hover" id="html-select-dataset-table-'.$num.'"><thead><tr><th>Select</th><th>Dataset Name</th><th>Contents</th>'.$compatibility_header.'</tr></thead><tbody>';
+    my $html = '<table class="table table-bordered table-hover" id="html-select-dataset-table-'.$num.'"><thead><tr><th>Selecionar</th><th>Nome do conjunto de dados</th><th>Contents</th>'.$compatibility_header.'</tr></thead><tbody>';
     foreach my $ds (@datasets) {
         $html .= '<tr><td><input type="checkbox" name="'.$checkbox_name.'" value="'.$ds->{id}.'"></td><td><a href="/dataset/'.$ds->{id}.'">'.$ds->{name}.'</a></td><td>';
 
@@ -2340,7 +2340,7 @@ sub get_trial_plot_select : Path('/ajax/html/select/plots_from_trial/') Args(0) 
     my $h = $schema->storage()->dbh()->prepare($plots_q);
     $h->execute($intercrop_plot_of_id, $plot_of_id, \@plots, $plot_num_id, $row_num_id, $col_num_id, $rep_id, $block_id, $synonym_id, $plot_num_id, $row_num_id, $col_num_id, $rep_id, $block_id, $synonym_id);
 
-    my $html = "<table id=\"plots_from_trial_select_table\" width=\"100%\"><thead><tr><th></th><th>Plot</th><th>Number</th><th>(Row, Column)</th><th>Rep</th><th>Block</th><th>Accession</th></tr></thead><tbody>";
+    my $html = "<table id=\"plots_from_trial_select_table\" width=\"100%\"><thead><tr><th></th><th>Plot</th><th>Número</th><th>(Row, Column)</th><th>Rep</th><th>Block</th><th>Accession</th></tr></thead><tbody>";
 
     while (my ($plot_id, $plot_name, $plot_number, $row, $column, $rep, $block, $accession_id, $accession_name, $synonyms, $intercrop_accession_id, $intercrop_accession_name, $intercrop_synonyms) = $h->fetchrow_array()) {
 
@@ -2438,7 +2438,7 @@ sub get_trial_subplot_select : Path('/ajax/html/select/subplots_from_trial/') Ar
     my $h = $schema->storage()->dbh()->prepare($subplots_q);
     $h->execute($subplot_of_id,\@subplots, $subplot_of_id, $synonym_id);
 
-    my $html = "<table id=\"subplots_from_trial_select_table\" width=\"100%\"><thead><tr><th></th><th>Subplot</th><th>Parent Plot</th><th>Accession</th></tr></thead><tbody>";
+    my $html = "<table id=\"subplots_from_trial_select_table\" width=\"100%\"><thead><tr><th></th><th>Subplot</th><th>Parcela de origem</th><th>Accession</th></tr></thead><tbody>";
 
     while (my ($subplot_id, $subplot_name, $plot_id, $plot_name, $accession_id, $accession_name, $synonyms) = $h->fetchrow_array()) {
         my $accession_label = $accession_name;
@@ -2513,7 +2513,7 @@ sub get_trial_plant_select : Path('/ajax/html/select/plants_from_trial/') Args(0
         JOIN stock as mysubplot ON stock_relationship.object_id=mysubplot.stock_id
         WHERE stock_relationship.type_id=$plant_of_subplot_id)";
         $subplot_join = "JOIN subplot ON subplot.plant_id=plant.plant_id";
-        $subplot_header = "<th>Parent Subplot</th>";
+        $subplot_header = "<th>Subparcela de origem</th>";
         $subplot_select = ", subplot.subplot_id as subplot_id, subplot.subplot_name as subplot_name"
     }
 
@@ -2549,7 +2549,7 @@ sub get_trial_plant_select : Path('/ajax/html/select/plants_from_trial/') Args(0
     my $h = $schema->storage()->dbh()->prepare($plants_q);
     $h->execute($plant_of_id, \@plants, $plant_of_id, $row_num_id, $col_num_id, $synonym_id, $row_num_id, $col_num_id, $synonym_id);
 
-    my $html = "<table style=\"width:100%\" id=\"plants_from_trial_select_table\"><thead><tr><th></th><th>Plant</th>$subplot_header<th>Parent Plot</th><th>In-Plot Position (row,column)</th><th>Accession</th><th>Synonyms</th></tr></thead><tbody>";
+    my $html = "<table style=\"width:100%\" id=\"plants_from_trial_select_table\"><thead><tr><th></th><th>Plant</th>$subplot_header<th>Parcela de origem</th><th>In-Plot Position (row,column)</th><th>Accession</th><th>Synonyms</th></tr></thead><tbody>";
 
     while (my ($plant_id, $plant_name, $plot_id, $plot_name, $row, $column, $accession_id, $accession_name, $synonyms, $subplot_id, $subplot_name) = $h->fetchrow_array()) {
         my $coordinates = "NA";

@@ -1,3 +1,5 @@
+use utf8;
+
 =head1 NAME
 
 SGN::Controller::Qtl- controller for solQTL
@@ -68,7 +70,7 @@ sub population : Path('/qtl/population') Args(1) {
     }
     else 
     {
-            $c->throw_404("There is no QTL population for $id");
+            $c->throw_404("Não há população de QTL para $id");
     }
 
 }
@@ -515,7 +517,7 @@ sub qtl_form : PathPart('qtl/form') Chained Args {
    
     if (!$pop_id and $type !~ /intro|pop_form/ ) 
     {
-     $c->throw_404("Population id argument is missing");   
+     $c->throw_404("O argumento com o ID da população não foi informado");
     }
 
     if ($pop_id and $pop_id !~ /^([0-9]+)$/)  

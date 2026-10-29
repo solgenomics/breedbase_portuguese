@@ -1,3 +1,5 @@
+use utf8;
+
 package SGN::Controller::Search::Feature;
 use Moose;
 use namespace::autoclean;
@@ -64,7 +66,7 @@ sub csv_export_search : Path('/search/features/export_csv') {
 
     if( $c->stash->{search_resultset}->count > $self->maximum_export_size ) {
         $c->throw_client_error( public_message => <<'' );
-The search matched too many records, please make your search more specific.
+A busca encontrou muitos registros. Torne a busca mais específica.
 
     }
 

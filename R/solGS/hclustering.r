@@ -56,7 +56,7 @@ predictedTraits <- clusterOptions["predicted_traits", 1]
 predictedTraits <- unlist(strsplit(predictedTraits, ','))
 
 if (is.null(newickFile) && is.null(jsonFile)) {
-  stop("Hierarchical output file is missing.")
+  stop("O arquivo de saída do agrupamento hierárquico não foi informado.")
   q("no", 1, FALSE)
 }
 
@@ -97,7 +97,7 @@ extractGenotype <- function(inputFiles) {
     }
 
     if (is.null(genoData)) {
-        stop("There is no genotype dataset.")
+        stop("Não há dados genotípicos.")
         q("no", 1, FALSE)
     } else {
         ##genoDataFilter::filterGenoData
@@ -134,9 +134,9 @@ if (grepl("genotype", dataType, ignore.case = TRUE)) {
     selectPcs <- varProp %>% filter(cumVar <= 0.9)
     pcsCnt    <- nrow(selectPcs)
 
-    reportNotes <- paste0("Before clustering this dataset, principal component analysis (PCA) was done on it. ", "\n")
-    reportNotes <- paste0(reportNotes, "Based on the PCA, ", pcsCnt, " PCs are used to cluster this dataset. ", "\n")
-    reportNotes <- paste0(reportNotes, "They explain 90% of the variance in the original dataset.", "\n")
+    reportNotes <- paste0("Antes do agrupamento deste conjunto de dados, foi realizada uma análise de componentes principais (PCA). ", "\n")
+    reportNotes <- paste0(reportNotes, "Com base na PCA, ", pcsCnt, " componentes principais são usados para agrupar este conjunto de dados. ", "\n")
+    reportNotes <- paste0(reportNotes, "Eles explicam 90% da variância do conjunto de dados original.", "\n")
 
     scores   <- data.frame(pca$x)
     scores   <- scores[, 1:pcsCnt]
@@ -171,7 +171,7 @@ if (grepl("genotype", dataType, ignore.case = TRUE)) {
     clusterDataNotScaled <- na.omit(clusterData)
 
     clusterData <- scale(clusterDataNotScaled, center=TRUE, scale=TRUE)
-    reportNotes <- paste0(reportNotes, "Note: Data was standardized before clustering.", "\n")
+    reportNotes <- paste0(reportNotes, "Observação: os dados foram padronizados antes do agrupamento.", "\n")
 }
 
 sIndexFile <- grep("selection_index", inputFiles, value = TRUE)

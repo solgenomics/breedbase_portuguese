@@ -35,5 +35,16 @@ spec.plot <- raw.spectra %>%
   dplyr::select(-device_type) %>%
   plot_spectra(wls, num.col.before.spectra = 3, window.size = 100)
 
+# Override package-generated captions only; spectrum values remain unchanged.
+if (!is.null(spec.plot)) {
+  spec.plot <- spec.plot +
+    ggplot2::labs(title = "Espectros NIRS", x = "Comprimento de onda", y = "Valor espectral")
+  outlier_scale <- spec.plot$scales$get_scales("colour")
+  if (!is.null(outlier_scale)) {
+    outlier_scale$name <- "Valor atípico?"
+    outlier_scale$labels <- c("FALSE" = "Não", "TRUE" = "Sim")
+  }
+}
+
 #### Output plot ####
 ggsave(plot = spec.plot, filename = args[2], units = "in", height = 7, width = 10)

@@ -1,3 +1,5 @@
+use utf8;
+
 
 =head1 NAME
 
@@ -596,30 +598,30 @@ sub get_error_message {
     print  $CXGN::Page::Form::INPUT_REQUIRED_ERROR."\n";
 
     if ($error == $CXGN::Page::Form::ElementI::INPUT_REQUIRED_ERROR) { 
-	return qq { <font color="red">Input required</font>\n };
+	return qq { <font color="red">Campo obrigatório</font>\n };
     }
     if ($error == $CXGN::Page::Form::ElementI::INTEGER_REQUIRED_ERROR) { 
-	return qq { <font color="red">Integer required</font>\n };
+	return qq { <font color="red">É necessário um número inteiro</font>\n };
     }
     if ($error == $CXGN::Page::Form::ElementI::NUMBER_REQUIRED_ERROR) { 
-	return qq { <font color="red">Number required</font>\n };
+	return qq { <font color="red">É necessário um número</font>\n };
     }
     if ($error == $CXGN::Page::Form::ElementI::TOKEN_REQUIRED_ERROR) { 
-	return qq { <font color="red">Token required. No spaces or special characters are allowed.\n</font>\n };
+	return qq { <font color="red">É necessário um identificador sem espaços ou caracteres especiais.\n</font>\n };
     }
     if ($error == $CXGN::Page::Form::ElementI::LENGTH_EXCEEDED_ERROR) { 
-	return qq { <font color="red">Field length limit exceeded.\n</font> };
+	return qq { <font color="red">O limite de tamanho do campo foi excedido.\n</font> };
     }
     if ($error == $CXGN::Page::Form::ElementI::DATE_REQUIRED_ERROR) { 
-	return qq { <font color="red">Date required</font> };
+	return qq { <font color="red">É necessário informar uma data</font> };
     }
     if ($error == $CXGN::Page::Form::ElementI::UNIQUE_REQUIRED_ERROR) { 
-	return qq { <font color="red">Unique input required</font> };
+	return qq { <font color="red">É necessário um valor único</font> };
     }
     if ($error == $CXGN::Page::Form::ElementI::ALLELE_SYMBOL_REQUIRED_ERROR) { 
-	return qq { <font color="red">Allele symbol required XXX-NN</font> };
+	return qq { <font color="red">É necessário um símbolo de alelo no formato XXX-NN</font> };
     }
-    if ($error) { return qq { <font color="red">Unknown error [$error]\n</font> }; }
+    if ($error) { return qq { <font color="red">Erro desconhecido [$error]\n</font> }; }
 }
 
 

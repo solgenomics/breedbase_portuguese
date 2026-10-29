@@ -1,3 +1,5 @@
+use utf8;
+
 
 =head1 NAME
 
@@ -35,8 +37,8 @@ sub new {
 	my $args=shift;
 	$self->set_form_id($args->{form_id}); #optional. Set a form id. Required for javasctipt forms
 	$self->set_no_buttons($args->{no_buttons}); #optional. Used in javascript forms, which should generate their own 'store' and 'reset form' buttons.
-	$self->set_reset_button_text("Reset form");
-	$self->set_submit_button_text("Store");
+	$self->set_reset_button_text("Limpar formulário");
+	$self->set_submit_button_text("Gravar");
 	$self->set_submit_method(); #use hardcoded default
 
 	return $self;
@@ -190,7 +192,7 @@ sub store {
       if ($obj->can("exists_in_database")) { 
 	  	my $message = $obj->exists_in_database; #message is optional
 	 if ($message) { 
-	 	my $text = 	"This object (" . ref($distinct_objects{$k}) . ") already seems to exist in the database and violates constraints. Please correct your input.\n";
+                my $text = 	"Este objeto (" . ref($distinct_objects{$k}) . ") parece já existir no banco de dados e viola as restrições. Corrija os dados informados.\n";
 		$message = "" unless ($message =~ /[a-zA-Z]/);
  	    CXGN::Page->new()->message_page($text, $message);
 	}

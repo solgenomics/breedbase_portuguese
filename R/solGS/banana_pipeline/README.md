@@ -1,2 +1,2 @@
 # banana_pipeline_script
-R scripts that gets raw data from ona platform, manipulates it and push media files back to ona
+Scripts R que obtêm dados brutos da plataforma Ona, processam esses dados e enviam os arquivos de mídia de volta à plataforma.

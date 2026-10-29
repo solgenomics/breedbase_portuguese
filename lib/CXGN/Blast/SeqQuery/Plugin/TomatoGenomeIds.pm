@@ -1,3 +1,5 @@
+use utf8;
+
 
 package CXGN::Blast::SeqQuery::Plugin::TomatoGenomeIds;
 
@@ -42,7 +44,7 @@ sub validate {
 
     }
     if (@missing) { 
-	return "The folloing ids entered do not exist: ".(join ",", @missing);
+	return "Os seguintes IDs informados não existem: ".(join ",", @missing);
     }
     else { 
 	return "OK";

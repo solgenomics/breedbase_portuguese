@@ -1,3 +1,5 @@
+use utf8;
+
 =head1 NAME
 
 t/integration/feature_invalid.t - integration tests for invalid feature URLs
@@ -23,11 +25,11 @@ my $mech = SGN::Test::WWW::Mechanize->new;
 
 $mech->get("/feature/JUNK/details");
 is($mech->status, 404, 'status is 404');
-$mech->content_contains("Feature not found");
+$mech->content_contains("Feature não encontrada");
 
 $mech->get("/feature/-1/details");
 is($mech->status, 400, 'status is 400');
-$mech->content_contains("positive integer");
+$mech->content_contains("número inteiro positivo");
 
 $mech->get("/feature/JUNK/details");
 is($mech->status, 404, 'status is 404');

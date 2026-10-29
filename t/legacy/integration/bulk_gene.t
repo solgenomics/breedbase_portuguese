@@ -1,3 +1,5 @@
+use utf8;
+
 use strict;
 use warnings;
 use Test::More tests => 61;
@@ -44,7 +46,7 @@ $mech->with_test_level( remote => sub {
             gene_type => '',
         },
     }, "submit bulk_gene with a single valid identifier but invalid gene_type");
-    $mech->content_like(qr/Invalid data type chosen/);
+    $mech->content_like(qr/Tipo de dado selecionado inválido/);
 });
 
 $mech->with_test_level( remote => sub {
@@ -56,7 +58,7 @@ $mech->with_test_level( remote => sub {
             gene_type => 'not_valid',
         },
     }, "submit bulk_gene with a single valid identifier");
-    $mech->content_like(qr/Invalid data type chosen/);
+    $mech->content_like(qr/Tipo de dado selecionado inválido/);
 });
 
 $mech->with_test_level( remote => sub {
@@ -86,7 +88,7 @@ $mech->with_test_level( remote => sub {
     my $sha1 = sha1_hex("cds $id");
     $mech->content_unlike(qr/Caught exception/) or diag $mech->content;
     $mech->content_unlike(qr/Your query did not contain any valid identifiers/);
-    $mech->content_unlike(qr/Invalid data type/);
+    $mech->content_unlike(qr/Tipo de dado inválido/);
     $mech->content_unlike(qr/At least one valid identifier must be given/);
     my @flinks = $mech->find_all_links( url_regex => qr{/gene/download/$sha1\.fasta} );
     cmp_ok(@flinks, '==', 1, "found one FASTA download link for $gene_type $id $sha1.fasta");
@@ -142,7 +144,7 @@ $mech->with_test_level( remote => sub {
     my $sha1 = sha1_hex("cdna $id");
     $mech->content_unlike(qr/Caught exception/) or diag $mech->content;
     $mech->content_unlike(qr/Your query did not contain any valid identifiers/);
-    $mech->content_unlike(qr/Invalid data type/);
+    $mech->content_unlike(qr/Tipo de dado inválido/);
     $mech->content_unlike(qr/At least one valid identifier must be given/);
     my @flinks = $mech->find_all_links( url_regex => qr{/bulk/gene/download/$sha1\.fasta} );
     cmp_ok(@flinks, '==', 1, "found one FASTA download link for $gene_type $id $sha1.fasta");

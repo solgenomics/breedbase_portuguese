@@ -1,3 +1,5 @@
+use utf8;
+
 package CXGN::Trial::Download::Plugin::ExcelBasicSimple;
 
 =head1 NAME
@@ -84,7 +86,7 @@ sub download {
         my $design = $trial_layout->get_design();
 
         if (!$design) {
-            return "No design found for trial: ".$trial_name;
+            return "Nenhum delineamento encontrado para o ensaio: ".$trial_name;
         }
         my %design = %{$design};
 

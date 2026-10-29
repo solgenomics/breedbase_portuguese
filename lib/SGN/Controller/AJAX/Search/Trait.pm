@@ -1,3 +1,5 @@
+use utf8;
+
 
 package SGN::Controller::AJAX::Search::Trait;
 
@@ -131,7 +133,7 @@ sub search : Path('/ajax/search/traits') Args(0) {
         my $db_name = $trait->{db_name};
         my $accession = $trait->{accession};
         my $trait_id = $trait->{trait_id};
-        my $trait_accession = $db_name .":". $accession;        my $trait_usage = "<em>None</em>";
+        my $trait_accession = $db_name .":". $accession;        my $trait_usage = "<em>Nenhum</em>";
 
         my @cleaned_synonyms;
         foreach my $syn (@{$trait->{synonyms}}) {

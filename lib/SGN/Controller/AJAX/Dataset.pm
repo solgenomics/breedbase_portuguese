@@ -874,7 +874,7 @@ sub publish_dataset_articles_new_POST {
     my $created = decode_json($resp->content || '{}');
 
     if ( ! exists $created->{entity_id} || exists $created->{message} ) {
-        $c->stash->{rest} = { error => $created->{message} || 'No entity id returned' };
+        $c->stash->{rest} = { error => $created->{message} || 'Nenhum ID de entidade foi retornado' };
         return;
     }
 

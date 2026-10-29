@@ -1,3 +1,5 @@
+use utf8;
+
 package SGN::Controller::Bulk;
 use 5.010;
 use Moose;
@@ -219,7 +221,7 @@ sub bulk_gene_type_validate :Local :Args(0) {
 
     unless ($type && $type ~~ [qw/cdna cds protein/]) {
         $c->throw_client_error(
-            public_message => 'Invalid data type chosen',
+            public_message => 'Tipo de dado selecionado inválido',
             http_status    => 200,
         );
     }
@@ -257,7 +259,7 @@ sub bulk_gene_submit :Path('/bulk/gene/submit') :Args(0) {
 
     unless ($ids) {
         $c->throw_client_error(
-            public_message => 'At least one identifier must be given',
+            public_message => 'Informe pelo menos um identificador',
             http_status => 200,
         );
     }
@@ -349,7 +351,7 @@ sub populate_gene_sequences :Local {
 
         unless (defined $index) {
             $c->throw_client_error(
-                public_message => 'Invalid data type',
+                public_message => 'Tipo de dado inválido',
                 http_status    => 200,
             );
         }
@@ -381,7 +383,7 @@ sub bulk_gene_download :Path('/bulk/gene/download') :Args(1) {
     $sha1 =~ s/\.(fasta|txt)$//g;
 
     my $seqs = $self->gene_cache->thaw($sha1)
-        or $c->throw_404('Bulk dataset not found');
+        or $c->throw_404('Conjunto de dados para operação em massa não encontrado');
 
     $c->stash->{sequences} = $seqs;
     $c->forward('View::SeqIO');
@@ -414,7 +416,7 @@ sub bulk_feature_download :Path('/bulk/feature/download') :Args(1) {
     $sha1 =~ s/\.(fasta|txt)$//g;
 
     my $seqs = $self->feature_cache->thaw($sha1)
-        or $c->throw_404('Bulk dataset not found');
+        or $c->throw_404('Conjunto de dados para operação em massa não encontrado');
 
     $c->stash( sequences => $seqs->[1] );
 
@@ -444,7 +446,7 @@ sub bulk_feature_submit :Path('/bulk/feature/submit') :Args(0) {
     $ids = trim($ids);
 
     unless ($ids) {
-        $c->throw_client_error(public_message => 'At least one identifier must be given');
+        $c->throw_client_error(public_message => 'Informe pelo menos um identificador');
     }
 
     $c->stash( sequence_identifiers => [ split /\s+/, $ids ] );
@@ -497,9 +499,9 @@ sub ug_build_selectbox {
 
     return simple_selectbox_html(
         name    => 'build_id',
-        label   => 'Only include unigene build:',
+        label   => 'Incluir apenas a montagem de unigene:',
         choices => [
-            [ all => 'include all' ],
+            [ all => 'incluir todas' ],
             ( map [ $_, $builds{$_} ], keys %builds ),
         ],
     );
@@ -509,21 +511,21 @@ sub ug_build_selectbox {
 
 sub output_list {
     return <<OUTPUT_LIST 
-	"<b>Please select the information you would like for each identifier:</b><br />
-	<input type="checkbox" name="clone_name" checked="checked" /> clone name<br />
-	<input type="checkbox" name="SGN_C" checked="checked" /> clone id (SGN-C)<br />
-	<input type="checkbox" name="SGN_T" checked="checked" /> sequence read id (SGN-T)<br />
-	<input type="checkbox" name="SGN_E" checked="checked" /> est id (SGN-E)<br />
-	<input type="checkbox" name="build_nr" checked="checked" /> unigene build nr<br />
-	<input type="checkbox" name="SGN_U" checked="checked" /> unigene id (SGN-U)<br />
-	<input type="checkbox" name="chipname" checked="checked" /> chipname<br />
-	<input type="checkbox" name="SGN_S" checked="checked" /> microarray spot id (SGN-S)<br />
-	<input type="checkbox" name="TUS" checked="checked" /> TUS number (used to order clones)<br />
-	<input type="checkbox" name="manual_annotation" /> manual annotation<br />
-	<input type="checkbox" name="automatic_annotation" /> automatic (BLAST) annotation<br />
-	<input type="checkbox" name="sequence" onclick="check_fasta_option()" /> sequence<br />
-	&nbsp;&nbsp;&nbsp;<input type="radio" name="seq_type" value="est_seq" checked="checked" /> EST sequence<br />
-	&nbsp;&nbsp;&nbsp;<input type="radio" name="seq_type" value="unigene_seq" /> Unigene sequence<br />";
+	"<b>Selecione as informações desejadas para cada identificador:</b><br />
+	<input type="checkbox" name="clone_name" checked="checked" /> nome do clone<br />
+	<input type="checkbox" name="SGN_C" checked="checked" /> ID do clone (SGN-C)<br />
+	<input type="checkbox" name="SGN_T" checked="checked" /> ID da leitura de sequência (SGN-T)<br />
+	<input type="checkbox" name="SGN_E" checked="checked" /> ID da EST (SGN-E)<br />
+	<input type="checkbox" name="build_nr" checked="checked" /> número da montagem de unigene<br />
+	<input type="checkbox" name="SGN_U" checked="checked" /> ID do unigene (SGN-U)<br />
+	<input type="checkbox" name="chipname" checked="checked" /> nome do chip<br />
+	<input type="checkbox" name="SGN_S" checked="checked" /> ID do ponto de microarranjo (SGN-S)<br />
+	<input type="checkbox" name="TUS" checked="checked" /> número TUS (usado para solicitar clones)<br />
+	<input type="checkbox" name="manual_annotation" /> anotação manual<br />
+	<input type="checkbox" name="automatic_annotation" /> anotação automática (BLAST)<br />
+	<input type="checkbox" name="sequence" onclick="check_fasta_option()" /> sequência<br />
+	&nbsp;&nbsp;&nbsp;<input type="radio" name="seq_type" value="est_seq" checked="checked" /> sequência EST<br />
+	&nbsp;&nbsp;&nbsp;<input type="radio" name="seq_type" value="unigene_seq" /> sequência de unigene<br />";
 
 OUTPUT_LIST
 

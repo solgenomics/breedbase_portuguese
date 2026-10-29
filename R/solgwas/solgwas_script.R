@@ -186,7 +186,7 @@ chromosome_ids <- as.factor(gwasresults$chr)
 marker_indicator <- match(unique(gwasresults$chr), gwasresults$chr)
 png(figure3_file_name)
 plot(gwasresults$PHENO,col=chromosome_ids,ylab="-log10(pvalue)",
-     main="Manhattan Plot",xaxt="n",xlab="Position",ylim=c(0,14))
+     main="Gráfico de Manhattan",xaxt="n",xlab="Posição",ylim=c(0,14))
 axis(1,at=marker_indicator,labels=gwasresults$chr[marker_indicator], cex.axis=0.8, las=2)
 #axis(1,at=c(1:length(unique(gwasresults$chr))),labels=unique(gwasresults$chr))
 abline(a=NULL,b=NULL,h=alpha_bonferroni,col="red",lwd=2)
@@ -203,9 +203,9 @@ expected.logvalues <- sort( -log10( c(1:N) * (1/N) ) )
 observed.logvalues <- sort( gwasresults$PHENO)
 
 png(figure4_file_name)
-plot(expected.logvalues , observed.logvalues, main="QQ Plot",
-     xlab="Expected -log p-values ",
-     ylab="Observed -log p-values",col.main="black",col="coral1",pch=20)
+plot(expected.logvalues , observed.logvalues, main="Gráfico Q-Q",
+     xlab="Valores de -log(p) esperados ",
+     ylab="Valores de -log(p) observados",col.main="black",col="coral1",pch=20)
 abline(0,1,lwd=3,col="black")
 dev.off()
 

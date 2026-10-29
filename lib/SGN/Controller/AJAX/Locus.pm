@@ -500,7 +500,7 @@ sub locus_network_GET :Args(0) {
             $gene_activity = $associated_locus->get_gene_activity();
             $organism      = $associated_locus->get_common_name;
             my $lgm_obsolete_link =  $privileged ?
-                qq|<a href="javascript:Locus.obsoleteLocusgroupMember(\'$lgm_id\', \'$locus_id\', \'/ajax/locus/obsolete_locusgroup_member\', \'/locus/$locus_id/netwrok\')">[Remove]</a>| : qq| <span class="ghosted">[Remove]</span> |;
+                qq|<a href="javascript:Locus.obsoleteLocusgroupMember(\'$lgm_id\', \'$locus_id\', \'/ajax/locus/obsolete_locusgroup_member\', \'/locus/$locus_id/netwrok\')">[Remover]</a>| : qq| <span class="ghosted">[Remover]</span> |;
 
             $by_organism{$organism} .=
                 qq|<a href="/locus/$member_locus_id/view">$associated_locus_name</a> $lgm_obsolete_link <br /> |
@@ -690,7 +690,7 @@ sub locus_unigenes_GET :Args(0) {
             Coffee  => "COFFEA"
         );
         if ( !@unigenes ) {
-            $unigenes = qq|<span class=\"ghosted\">none</span>|;
+            $unigenes = qq|<span class=\"ghosted\">nenhum</span>|;
         }
         my @solcyc;
         my ( $solcyc_links, $sequence_links );
@@ -705,7 +705,7 @@ sub locus_unigenes_GET :Args(0) {
             #
             my $unigene_obsolete_link = $privileged ?
                 qq | <input type = "button" onclick="javascript:Locus.obsoleteLocusUnigene(\'$locus_unigene_id\',  \'$locus_id\')" value ="Remove" /> |
-                : qq| <span class="ghosted">[Remove]</span> |;
+                : qq| <span class="ghosted">[Remover]</span> |;
             #
             my $blast_link = "<a href='/tools/blast/?preload_id=SGN-U" . $unigene_id . "&preload_type=15'>[Blast]</a>";
             $unigenes .=

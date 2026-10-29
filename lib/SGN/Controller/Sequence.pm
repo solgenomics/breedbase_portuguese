@@ -1,3 +1,5 @@
+use utf8;
+
 package SGN::Controller::Sequence;
 
 =head1 NAME
@@ -140,7 +142,7 @@ sub fetch_sequences :Private {
         # otherwise, ignore it so bulk downloads via the multi api still work
         # Bulk queries always ignore all invalid identifiers
         if( @$sequence_idents == 1 and !$c->stash->{bulk_query} ){
-            $found or $c->throw_404( sprintf('No sequence found with id "%s"', encode_entities( $id )) );
+            $found or $c->throw_404( sprintf('Nenhuma sequência encontrada com o ID "%s"', encode_entities( $id )) );
         }
     }
 

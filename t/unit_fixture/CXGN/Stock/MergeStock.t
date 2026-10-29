@@ -1,3 +1,5 @@
+use utf8;
+
 
 use strict;
 
@@ -24,7 +26,7 @@ eval {
     
     # try self merge, should fail:
     my $error = $stock->merge($this_stock_id);
-    is($error, "Error: cannot merge stock into itself", "merge stock into itself test");
+    is($error, "Erro: não é possível mesclar um material com ele mesmo", "merge stock into itself test");
     
     my $initial_counts_other = get_counts($other_stock_id);
 

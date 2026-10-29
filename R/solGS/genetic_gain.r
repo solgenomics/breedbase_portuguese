@@ -78,6 +78,7 @@ boxplotData$pop <- with(boxplotData, relevel(pop, "training"))
 bp <- ggplot(boxplotData,
              aes(y=GEBVs, x=pop, fill=pop)) +
              geom_boxplot(width=0.4) +
+             scale_x_discrete(labels = c(training = "Treinamento", selection = "Seleção")) +
              stat_summary(geom="text", fun.y=quantile, size=5,
              aes(label=sprintf("%1.3f", ..y..), color=pop),
              position=position_nudge(x=0.35)) +

@@ -1,3 +1,5 @@
+use utf8;
+
 
 =head1 AUTHOR
 
@@ -50,11 +52,11 @@ sub anova_check_design : Path('/anova/check/design/') Args(0) {
     $supported = $self->check_design_support($design) if $design;
 
     if ( !$design ) {
-        $c->stash->{rest}{'Error'} = 'This trial has no design. ANOVA can not be applied.';
+        $c->stash->{rest}{'Error'} = 'Este ensaio não tem delineamento. Não é possível aplicar a ANOVA.';
     }
     elsif ( $design && !$supported ) {
         $c->stash->{rest}{'Error'} = $design
-          . ' design is not supported yet. Please report this to the database team. ';
+          . ' ainda não é um delineamento compatível. Informe a equipe responsável pelo banco de dados. ';
     }
     else {
         $c->stash->{rest}{'Design'} = $design;
@@ -92,19 +94,19 @@ sub anova_phenotype_data : Path('/anova/phenotype/data/') Args(0) {
 
         if ( !-s $pheno_file ) {
             $c->stash->{rest}{'Error'} =
-              'There is no phenotype data for this  trial.';
+              'Não há dados fenotípicos para este ensaio.';
         }
 
         if ( @{ $c->error } ) {
             $c->stash->{rest}{'Error'} =
-              'There was error querying for the phenotype data.';
+              'Ocorreu um erro ao consultar os dados fenotípicos.';
         }
     }
     else {
         my $categorical = $self->check_categorical_dependent_variable($c);
         if ($categorical) {
             $c->stash->{rest}{'Error'} =
-"The trait data is not all numeric. Some or all of the trait values are text. ";
+"Os dados da característica não são todos numéricos. Alguns ou todos os valores são texto. ";
         }
         else {
             $c->stash->{rest}{'success'} = 'Success.';

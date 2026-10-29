@@ -1,3 +1,5 @@
+use utf8;
+
 =head1 NAME
 
 t/integration/search.t - integration tests for generic search URLs
@@ -34,25 +36,25 @@ $mech->get_ok("/search/index.pl");
 # $mech->content_like(qr/A database of in-situ/);
 
 my $type_regex = {
-    bacs                         => qr/Genomic Clone Search/,
-    directory                    => qr/Directory search/,
-    est                          => qr/EST Search/,
-    est_library                  => qr/Library search/,
-    experiment                   => qr/Expression Search/,
-    family                       => qr/Family search/,
-    images                       => qr/Image Search/,
-    library                      => qr/Library search/,
+    bacs                         => qr/Busca de clones genômicos/,
+    directory                    => qr/Busca no diretório/,
+    est                          => qr/Busca de ESTs/,
+    est_library                  => qr/Busca de bibliotecas/,
+    experiment                   => qr/Busca de expressão/,
+    family                       => qr/Busca de famílias/,
+    images                       => qr/Busca de imagens/,
+    library                      => qr/Busca de bibliotecas/,
     loci                         => qr/Search Genes and Loci/,
-    marker                       => qr/Map\/Marker Locations/,
-    markers                      => qr/Marker Options/,
+    marker                       => qr/Localizações de mapas\/marcadores/,
+    markers                      => qr/Opções de marcadores/,
     #phenotype                    => qr/Submit New Stock/,
     #phenotype_qtl_trait          => qr/Submit New Stock/,
-    platform                     => qr/Expression Search/,
+    platform                     => qr/Busca de expressão/,
     qtl                          => qr/Search QTLs/,
-    template_experiment_platform => qr/Expression Search/,
+    template_experiment_platform => qr/Busca de expressão/,
     trait                        => qr/Search and browse tree of traits/,
-    unigene                      => qr/Unigene Search/,
-    glossary                     => qr/Glossary search/,
+    unigene                      => qr/Busca de unigenes/,
+    glossary                     => qr/Busca no glossário/,
 };
 
 $mech->get("/search/wombats");

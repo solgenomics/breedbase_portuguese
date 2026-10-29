@@ -1411,7 +1411,7 @@ sub _store_seedlot_accession {
 
     if ($already_exists) {
         print STDERR "Accession with id $accession_stock_id is already associated with seedlot id ".$self->seedlot_id()."\n";
-        return "Accession with id $accession_stock_id is already associated with seedlot id ".$self->seedlot_id();
+        return "O acesso com ID $accession_stock_id já está associado ao lote de sementes com ID ".$self->seedlot_id();
     }
     my $row = $self->schema()->resultset("Stock::StockRelationship")->create({
         object_id => $self->seedlot_id(),
@@ -1482,7 +1482,7 @@ sub _store_seedlot_cross {
 
     if ($already_exists) {
         print STDERR "Cross with id $cross_stock_id is already associated with seedlot id ".$self->seedlot_id()."\n";
-        return "Cross with id $cross_stock_id is already associated with seedlot id ".$self->seedlot_id();
+        return "O cruzamento com ID $cross_stock_id já está associado ao lote de sementes com ID ".$self->seedlot_id();
     }
     my $row = $self->schema()->resultset("Stock::StockRelationship")->create({
         object_id => $self->seedlot_id(),

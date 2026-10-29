@@ -1,3 +1,5 @@
+use utf8;
+
 
 =head1 NAME
 
@@ -55,7 +57,7 @@ sub add_sp_role {
 		$sth->execute($name);
 	};
 	if ($@) {
-		return "An error occurred while storing a new role. ($@)";
+		return "Ocorreu um erro ao gravar uma nova função. ($@)";
 	}
 }
 
@@ -79,7 +81,7 @@ sub update_sp_role {
 	$sth->execute($new_name,$old_name);
     };
     if ($@) {
-	return "An error occurred while updating an existing role. ($@)";
+	return "Ocorreu um erro ao atualizar uma função existente. ($@)";
     }
 }
 

@@ -1,3 +1,5 @@
+use utf8;
+
 
 =head1 NAME
 
@@ -286,7 +288,7 @@ sub day_click_personal_GET {
         if ($term) {
             push(@projectprop_types, {cvterm_id=>$term->cvterm_id(), cvterm_name=>$term->name() });
         } else {
-            push(@projectprop_types, {cvterm_id=>'', cvterm_name=>'Error: Missing cvterm '.$_->[0].' : '.$_->[1].' in database.'});
+            push(@projectprop_types, {cvterm_id=>'', cvterm_name=>'Erro: termo de vocabulário controlado ausente: '.$_->[0].' : '.$_->[1].' no banco de dados.'});
         }
     }
     

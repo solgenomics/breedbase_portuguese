@@ -100,7 +100,7 @@ pheno <- pheno[pheno$replicate <= nReps & pheno$germplasmName %in% accessions_se
 dat1 <- pheno %>% dplyr::select(germplasmName, locationName, replicate, trait=study_trait[1])
 
 fMissing <- nrow(dat1[is.na(dat1$trait),])/nrow(dat1)
-message2 <- paste0("The frequency of missing data is too high. Please, check the dataset.")
+message2 <- paste0("A proporção de dados ausentes é muito alta. Verifique o conjunto de dados.")
 
 summaryData <- data.frame(mean = mean(dat1[,4], na.rm=TRUE),
 													min = min(dat1[,4], na.rm=TRUE),
@@ -161,7 +161,7 @@ replicate_df <- data.frame(replicate = tapply(dat$Yield, list(dat$Gen, dat$Env),
 replicate_df$germplasmName <- rownames(replicate_df)
 gathered_df <- gather(replicate_df, key = "replicate_locations", value = "value", -germplasmName)
 repAcc <- unique(gathered_df$value)
-message1 <- paste0("Please, check dataset for accessions per locations and reps.")
+message1 <- paste0("Verifique os acessos por local e repetição no conjunto de dados.")
 
 # Saving error message
 errorMessages <- c()
@@ -180,7 +180,7 @@ if(nReps == 1 && stability_method == "ammi"){
   dat2 <- rbind(dat2,dat2.1)
   dat2$Rep <- as.factor(dat2$Rep)
 }else if (nReps == 1 && stability_method == "gge"){
-	errorMessages <- append(errorMessages, "The number of replication must be greater than 1 for gge.")
+	errorMessages <- append(errorMessages, "O número de repetições deve ser maior que 1 para a análise GGE.")
 }
 
 
@@ -194,8 +194,8 @@ if(stability_method=="ammi" && length(errorMessages) == 0 ){
 	  model<- with(dat2,AMMI(Env, Gen, Rep, Yield, console=FALSE))
 	}, error = function(e) {
 	  # Handle the error by printing a message
-	  cat("An error occurred:", conditionMessage(e), "\n")
-	  append(errorMessages, paste0("An error occurred:", conditionMessage(e)))
+	  cat("Ocorreu um erro:", conditionMessage(e), "\n")
+	  append(errorMessages, paste0("Ocorreu um erro:", conditionMessage(e)))
 	})
 
 	index<-index.AMMI(model)
@@ -286,8 +286,8 @@ if(stability_method=="ammi" && length(errorMessages) == 0 ){
 		    effectsDF <- stability::ge_means(.data = dat2, .y = Yield, .gen = Gen, .env = Env)
 		}, error = function(e) {
 		    # Handle the error by printing a message
-		    cat("An error occurred:", conditionMessage(e), "\n")
-		    append(errorMessages, paste0("An error occurred:", conditionMessage(e)))
+		    cat("Ocorreu um erro:", conditionMessage(e), "\n")
+		    append(errorMessages, paste0("Ocorreu um erro:", conditionMessage(e)))
 		})
 		
 		effectsDF <-  stability::ge_means(.data=dat2, .y= Yield, .gen=Gen, .env=Env)

@@ -1,3 +1,5 @@
+use utf8;
+
 
 package SGN::Controller::People;
 
@@ -111,20 +113,20 @@ sub people_top_level : Path('/solpeople/profile') Args(1) {
             }
         }
         if ($more) {
-            $locus_annotations .= " and $more more, not shown.<br />";
+            $locus_annotations .= " e mais $more não exibidos.<br />";
 
-            $locus_annotations .= html_optional_show( 'locus_annotations', 'Show more', qq|<div class="minorbox">$more_annotations</div> | );
+            $locus_annotations .= html_optional_show( 'locus_annotations', 'Mostrar mais', qq|<div class="minorbox">$more_annotations</div> | );
         }
-        $locus_annotations .= qq| <a href="../phenome/recent_annotated_loci.pl">[View annotated loci by date]</a> |;
+        $locus_annotations .= qq| <a href="../phenome/recent_annotated_loci.pl">[Ver loci anotados por data]</a> |;
         $c->stash->{loci_annotations} = $locus_annotations;
 
         #User status section
         my $user_info = {
-            user => qq{ Your current user status is <b>$user_type</b>. Please contact <a href="mailto:sgn-feedback\@sgn.cornell.edu">SGN</a> to upgrade to a <b>submitter</b> account with more privileges. Submitters can upload user maps, EST data, and become locus editors. },
-            submitter => qq{ Your current user status is <b>$user_type</b>. You have the maximum user privileges on SGN. Please contact <a href="mailto:sgn-feedback\@sgn.cornell.edu">SGN</a> if you would like to change your user status.},
-            curator => qq{ Your current user status is <b>$user_type</b>. },
-            sequencer => qq{ Your current user status is <b>$user_type</b>. You have maximum user privileges on SGN. },
-            genefamily_editor => qq{ Your current user status is <b>$user_type</b>. },
+            user => qq{ Seu tipo de usuário atual é <b>$user_type</b>. Entre em contato com <a href="mailto:sgn-feedback\@sgn.cornell.edu">SGN</a> para mudar para uma conta <b>submitter</b> com mais privilégios. Usuários com esse perfil podem enviar mapas e dados de ESTs e atuar como editores de loci. },
+            submitter => qq{ Seu tipo de usuário atual é <b>$user_type</b>. Você tem o nível máximo de privilégios na SGN. Entre em contato com <a href="mailto:sgn-feedback\@sgn.cornell.edu">SGN</a> se quiser alterar seu tipo de usuário.},
+            curator => qq{ Seu tipo de usuário atual é <b>$user_type</b>. },
+            sequencer => qq{ Seu tipo de usuário atual é <b>$user_type</b>. Você tem o nível máximo de privilégios na SGN. },
+            genefamily_editor => qq{ Seu tipo de usuário atual é <b>$user_type</b>. },
         };
         $c->stash->{user_status} = $user_info->{$user_type};
     }

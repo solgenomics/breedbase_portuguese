@@ -8,15 +8,15 @@ hapMap2numeric <- function(file){
   #make sure sites are biallelic
   siteCheck <- names(table(hapmap[ ,1]))
   if(sum(grepl("/", siteCheck)) != length(siteCheck)){
-    stop("There appear to be monomorphic sites in your file. Please remove them.")
+    stop("O arquivo parece conter sítios monomórficos. Remova-os.")
   }
   
   siteCheck2 <- strsplit(siteCheck, "/")
   siteCheck2 <- unlist(lapply(siteCheck2, length))
   siteCheck2 <- siteCheck2 == 2
   if(sum(siteCheck2) != length(siteCheck2)){
-    stop("There appear to be sites with more than two allele states in your file.
-         Please allow a maximum of two alleles per site in your file.")
+    stop("O arquivo parece conter sítios com mais de dois alelos.
+         Mantenha no máximo dois alelos por sítio no arquivo.")
   }
   
   

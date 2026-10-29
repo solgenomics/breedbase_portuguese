@@ -165,7 +165,7 @@ sub project_metadata :Chained('/organism/find_organism') :PathPart('metadata') :
 
         if ($login_user_can_modify) {
             # add appropriate edit and delete links
-            $html .= "<a href=\"javascript:organismObjectName.setObjectId('$p->{organismprop_id}-$organism_id'); organismObjectName.printForm('edit'); \">Edit</a> <a href=\"javascript:organismObjectName.setObjectId('$p->{organismprop_id}-$organism_id'); organismObjectName.printDeleteDialog();\">Delete</a><hr />";
+            $html .= "<a href=\"javascript:organismObjectName.setObjectId('$p->{organismprop_id}-$organism_id'); organismObjectName.printForm('edit'); \">Editar</a> <a href=\"javascript:organismObjectName.setObjectId('$p->{organismprop_id}-$organism_id'); organismObjectName.printDeleteDialog();\">Excluir</a><hr />";
 
         }
     }
@@ -173,10 +173,10 @@ sub project_metadata :Chained('/organism/find_organism') :PathPart('metadata') :
     if ($login_user_can_modify && $action eq 'new') {
         $form = $self->metadata_form($c, undef, undef, $organism_id);
         $html .= $form->render();
-        $html .= qq | <br /><a href="javascript:organismObjectName.render();">Cancel</a><br /><br /> | ;
+        $html .= qq | <br /><a href="javascript:organismObjectName.render();">Cancelar</a><br /><br /> | ;
     }
     elsif ($login_user_can_modify) {
-        $html .=  "<br /><a href=\"javascript:organismObjectName.setObjectId('-$organism_id' ); organismObjectName.printForm('new');\">New</a>";
+        $html .=  "<br /><a href=\"javascript:organismObjectName.setObjectId('-$organism_id' ); organismObjectName.printForm('new');\">Novo</a>";
     }
 
     if ( $action eq 'new' || $action eq 'view' || !$action || !$login_user_can_modify) {

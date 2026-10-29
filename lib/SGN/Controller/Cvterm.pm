@@ -1,3 +1,5 @@
+use utf8;
+
 
 package SGN::Controller::Cvterm;
 
@@ -95,7 +97,7 @@ sub get_cvterm : Chained('/')  PathPart('cvterm')  CaptureArgs(1) {
 	$cvterm = CXGN::Cvterm->new({ schema=>$self->schema, accession=>$cvterm_id } ) ;
     }
     my $found_cvterm = $cvterm->cvterm 
-	or $c->throw_404( "Cvterm $cvterm_id not found" );
+	or $c->throw_404( "Termo de vocabulário controlado $cvterm_id não encontrado" );
     
     $c->stash->{cvterm}     = $cvterm; 
     

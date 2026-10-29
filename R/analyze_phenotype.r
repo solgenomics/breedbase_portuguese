@@ -81,10 +81,10 @@ datamatrix <- data.matrix(wfAllTrialsData)
 
 
 if (nrow(datamatrix)==0) { 
-   write("No data was retrieved from the database for this combination of trials: ", file = errorfile);
+   write("Nenhum dado foi recuperado do banco para esta combinação de ensaios: ", file = errorfile);
 }
 if (ncol(datamatrix) < 2) { 
-   write("No data. Try again", file = errorfile);
+   write("Não há dados. Tente novamente.", file = errorfile);
 }
 
 # correlation
@@ -122,7 +122,8 @@ panel.hist <- function(x, ...)
 {
     usr <- par("usr"); on.exit(par(usr))
     par(usr = c(usr[1:2], 0, 1.5) )
-    h <- hist(x, plot = TRUE)
+    h <- hist(x, plot = TRUE, main = "Distribuição",
+              xlab = "Valores da característica", ylab = "Frequência")
     breaks <- h$breaks; nB <- length(breaks)
     y <- h$counts; y <- y/max(y)
     rect(breaks[-nB], 0, breaks[-1], y, col="red", ...)
@@ -156,8 +157,9 @@ freqPlot <- function (wfTrialsData) {
   averages <- ddply(lfTrDa,  "Trials", summarise, traitAverage = mean(Trait))
   
   freq <- ggplot(lfTrDa, aes(x=Trait, fill=Trials)) +
-  xlab("Trait values") +
-  ylab("Frequency") +
+  labs(fill = "Ensaios") +
+  xlab("Valores da característica") +
+  ylab("Frequência") +
   theme(plot.title = element_text(size=18, face="bold", color="olivedrab4",  margin = margin(40, 40, 40, 40)),
         plot.margin = unit(c(0.75, 1, 0.75, 1), "cm"),
         axis.title.x = element_text(size=14, face="bold", color="olivedrab4"),

@@ -1654,10 +1654,10 @@ sub create_rcbd {
   my $n_col = ($total_entries * $blocks) / $n_row;
 
   if ($n_col != int($n_col)) {
-    return ($n_row, $n_col, "Invalid dimensions", []);
+    return ($n_row, $n_col, "Dimensões inválidas", []);
   }
 
-  open my $fh, "<", $design_file or return ($n_row, $n_col, "Cannot open $design_file", []);
+  open my $fh, "<", $design_file or return ($n_row, $n_col, "Não foi possível abrir $design_file", []);
 
   my $header_line = <$fh>;
   chomp $header_line;
@@ -1692,7 +1692,7 @@ sub create_rcbd {
 sub arrange_design {
   my ($design_file, $design_type) = @_;
 
-  open my $fh, "<", $design_file or return ("Cannot open $design_file", []);
+  open my $fh, "<", $design_file or return ("Não foi possível abrir $design_file", []);
   my @lines = <$fh>;
   chomp @lines;
   close $fh;
@@ -1740,7 +1740,7 @@ sub arrange_design {
       }
 
       # Overwrite original file with the selected columns
-      open my $outfh, ">", $design_file or return ("Cannot write to $design_file", []);
+      open my $outfh, ">", $design_file or return ("Não foi possível gravar em $design_file", []);
       print $outfh "$_\n" for @output_lines;
       close $outfh;
     }

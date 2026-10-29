@@ -102,7 +102,7 @@ ID_LIST
 $mech->with_test_level( local => sub {
     # attempt to post an empty list
     $mech->post('/bulk/feature/submit/', { ids => "" }  );
-    $mech->content_like(qr/At least one identifier must be given/);
+    $mech->content_like(qr/Informe pelo menos um identificador/);
 });
 
 done_testing();

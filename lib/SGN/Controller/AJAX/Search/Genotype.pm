@@ -143,7 +143,7 @@ sub genotyping_data_search_GET : Args(0) {
                     $identifier_hash{$stock_id}{description},
                     $identifier_hash{$stock_id}{result_count},
                     $identifier_hash{$stock_id}{igd_number},
-                    "<a href=\"/stock/$stock_id/genotypes?genotype_id=$identifier_hash{$stock_id}{genotype_id}\">Download</a>"
+                    "<a href=\"/stock/$stock_id/genotypes?genotype_id=$identifier_hash{$stock_id}{genotype_id}\">Baixar</a>"
                 ]
             }
             $counter++;

@@ -1,3 +1,5 @@
+use utf8;
+
 package SGN::View::Trial;
 use base 'Exporter';
 use List::MoreUtils ':all';
@@ -19,7 +21,7 @@ sub trial_detail_design_view {
   my $design_result_html;
 
   $design_result_html .= '<table border="1">';
-  $design_result_html .= qq{<tr><th>Plot Name</th><th>Accession Name</th><th>Check Name</th><th>Row number</th><th>Col number</th><th>Block Number</th><th>Block Row Number</th><th>Block Col Number</th><th>Rep Number</th></tr>};
+  $design_result_html .= qq{<tr><th>Nome da parcela</th><th>Nome do acesso</th><th>Nome da testemunha</th><th>Número da linha</th><th>Número da coluna</th><th>Número do bloco</th><th>Linha do bloco</th><th>Coluna do bloco</th><th>Número da repetição</th></tr>};
 
   foreach my $key (sort { $a <=> $b} keys %design) {
       $design_result_html .= "<tr>";
@@ -208,27 +210,27 @@ sub design_layout_view {
 
     if ($trial_stock_type eq 'family_name') {
         if ($design_type eq 'greenhouse') {
-            $design_result_html .= qq{<tr><th>Plant Name</th><th>Plot Name</th><th>Family Name</th><th>Check Name</th><th>Plot Number</th><th>Row number</th><th>Col number</th><th>Block Number</th><th>Block Row Number</th><th>Block Col Number</th><th>Rep Number</th><th>Seedlot Name</th><th>Num Seeds Per Plot</th></tr>};
+            $design_result_html .= qq{<tr><th>Nome da planta</th><th>Nome da parcela</th><th>Nome da família</th><th>Nome da testemunha</th><th>Número da parcela</th><th>Número da linha</th><th>Número da coluna</th><th>Número do bloco</th><th>Linha do bloco</th><th>Coluna do bloco</th><th>Número da repetição</th><th>Nome do lote de sementes</th><th>Número de sementes por parcela</th></tr>};
         } elsif ($design_type eq 'splitplot') {
-            $design_result_html .= qq{<tr><th>Plant Name</th><th>Subplot Name</th><th>Plot Name</th><th>Family Name</th><th>Check Name</th><th>Plot Number</th><th>Row number</th><th>Col number</th><th>Block Number</th><th>Block Row Number</th><th>Block Col Number</th><th>Rep Number</th><th>Seedlot Name</th><th>Num Seeds Per Plot</th></tr>};
+            $design_result_html .= qq{<tr><th>Nome da planta</th><th>Nome da subparcela</th><th>Nome da parcela</th><th>Nome da família</th><th>Nome da testemunha</th><th>Número da parcela</th><th>Número da linha</th><th>Número da coluna</th><th>Número do bloco</th><th>Linha do bloco</th><th>Coluna do bloco</th><th>Número da repetição</th><th>Nome do lote de sementes</th><th>Número de sementes por parcela</th></tr>};
         } else {
-            $design_result_html .= qq{<tr><th>Plot Name</th><th>Family Name</th><th>Check Name</th><th>Plot Number</th><th>Row number</th><th>Col number</th><th>Block Number</th><th>Block Row Number</th><th>Block Col Number</th><th>Rep Number</th><th>Seedlot Name</th><th>Num Seeds Per Plot</th></tr>};
+            $design_result_html .= qq{<tr><th>Nome da parcela</th><th>Nome da família</th><th>Nome da testemunha</th><th>Número da parcela</th><th>Número da linha</th><th>Número da coluna</th><th>Número do bloco</th><th>Linha do bloco</th><th>Coluna do bloco</th><th>Número da repetição</th><th>Nome do lote de sementes</th><th>Número de sementes por parcela</th></tr>};
         }
     } elsif ($trial_stock_type eq 'cross') {
         if ($design_type eq 'greenhouse') {
-            $design_result_html .= qq{<tr><th>Plant Name</th><th>Plot Name</th><th>Cross Unique ID</th><th>Check Name</th><th>Plot Number</th><th>Row number</th><th>Col number</th><th>Block Number</th><th>Block Row Number</th><th>Block Col Number</th><th>Rep Number</th><th>Seedlot Name</th><th>Num Seeds Per Plot</th></tr>};
+            $design_result_html .= qq{<tr><th>Nome da planta</th><th>Nome da parcela</th><th>ID único do cruzamento</th><th>Nome da testemunha</th><th>Número da parcela</th><th>Número da linha</th><th>Número da coluna</th><th>Número do bloco</th><th>Linha do bloco</th><th>Coluna do bloco</th><th>Número da repetição</th><th>Nome do lote de sementes</th><th>Número de sementes por parcela</th></tr>};
         } elsif ($design_type eq 'splitplot') {
-            $design_result_html .= qq{<tr><th>Plant Name</th><th>Subplot Name</th><th>Plot Name</th><th>Cross Unique ID</th><th>Check Name</th><th>Plot Number</th><th>Row number</th><th>Col number</th><th>Block Number</th><th>Block Row Number</th><th>Block Col Number</th><th>Rep Number</th><th>Seedlot Name</th><th>Num Seeds Per Plot</th></tr>};
+            $design_result_html .= qq{<tr><th>Nome da planta</th><th>Nome da subparcela</th><th>Nome da parcela</th><th>ID único do cruzamento</th><th>Nome da testemunha</th><th>Número da parcela</th><th>Número da linha</th><th>Número da coluna</th><th>Número do bloco</th><th>Linha do bloco</th><th>Coluna do bloco</th><th>Número da repetição</th><th>Nome do lote de sementes</th><th>Número de sementes por parcela</th></tr>};
         } else {
-            $design_result_html .= qq{<tr><th>Plot Name</th><th>Cross Unique ID</th><th>Check Name</th><th>Plot Number</th><th>Row number</th><th>Col number</th><th>Block Number</th><th>Block Row Number</th><th>Block Col Number</th><th>Rep Number</th><th>Seedlot Name</th><th>Num Seeds Per Plot</th></tr>};
+            $design_result_html .= qq{<tr><th>Nome da parcela</th><th>ID único do cruzamento</th><th>Nome da testemunha</th><th>Número da parcela</th><th>Número da linha</th><th>Número da coluna</th><th>Número do bloco</th><th>Linha do bloco</th><th>Coluna do bloco</th><th>Número da repetição</th><th>Nome do lote de sementes</th><th>Número de sementes por parcela</th></tr>};
         }
     } else {
         if ($design_type eq 'greenhouse') {
-            $design_result_html .= qq{<tr><th>Plant Name</th><th>Plot Name</th><th>Accession Name</th><th>Check Name</th><th>Plot Number</th><th>Row number</th><th>Col number</th><th>Block Number</th><th>Block Row Number</th><th>Block Col Number</th><th>Rep Number</th><th>Seedlot Name</th><th>Num Seeds Per Plot</th></tr>};
+            $design_result_html .= qq{<tr><th>Nome da planta</th><th>Nome da parcela</th><th>Nome do acesso</th><th>Nome da testemunha</th><th>Número da parcela</th><th>Número da linha</th><th>Número da coluna</th><th>Número do bloco</th><th>Linha do bloco</th><th>Coluna do bloco</th><th>Número da repetição</th><th>Nome do lote de sementes</th><th>Número de sementes por parcela</th></tr>};
         } elsif ($design_type eq 'splitplot') {
-            $design_result_html .= qq{<tr><th>Plant Name</th><th>Subplot Name</th><th>Plot Name</th><th>Accession Name</th><th>Check Name</th><th>Plot Number</th><th>Row number</th><th>Col number</th><th>Block Number</th><th>Block Row Number</th><th>Block Col Number</th><th>Rep Number</th><th>Seedlot Name</th><th>Num Seeds Per Plot</th></tr>};
+            $design_result_html .= qq{<tr><th>Nome da planta</th><th>Nome da subparcela</th><th>Nome da parcela</th><th>Nome do acesso</th><th>Nome da testemunha</th><th>Número da parcela</th><th>Número da linha</th><th>Número da coluna</th><th>Número do bloco</th><th>Linha do bloco</th><th>Coluna do bloco</th><th>Número da repetição</th><th>Nome do lote de sementes</th><th>Número de sementes por parcela</th></tr>};
         } else {
-            $design_result_html .= qq{<tr><th>Plot Name</th><th>Accession Name</th><th>Check Name</th><th>Plot Number</th><th>Row number</th><th>Col number</th><th>Block Number</th><th>Block Row Number</th><th>Block Col Number</th><th>Rep Number</th><th>Seedlot Name</th><th>Num Seeds Per Plot</th></tr>};
+            $design_result_html .= qq{<tr><th>Nome da parcela</th><th>Nome do acesso</th><th>Nome da testemunha</th><th>Número da parcela</th><th>Número da linha</th><th>Número da coluna</th><th>Número do bloco</th><th>Linha do bloco</th><th>Coluna do bloco</th><th>Número da repetição</th><th>Nome do lote de sementes</th><th>Número de sementes por parcela</th></tr>};
         }
     }
 
@@ -312,25 +314,25 @@ sub design_info_view { #TODO: fix treatments here
 #    if ($design_info{'design_type'} eq "MADIV") {
 #      $design_description = "Modified Augmented Design IV";
 #    }
-        $design_info_html .= "<dt>Design type</dt><dd>".$design_description."</dd>";
+        $design_info_html .= "<dt>Tipo de delineamento</dt><dd>".$design_description."</dd>";
     }
     if ($design_info{'number_of_locations'}) {
-        $design_info_html .= "<dt>Number of locations</dt><dd>".$design_info{'number_of_locations'}."</dd>";
+        $design_info_html .= "<dt>Número de locais</dt><dd>".$design_info{'number_of_locations'}."</dd>";
     }
     if ($design_info{'number_of_stocks'}) {
         if ($trial_stock_type eq 'family_name') {
-            $design_info_html .= "<dt>Number of family names</dt><dd>".$design_info{'number_of_stocks'}."</dd>";
+            $design_info_html .= "<dt>Número de famílias</dt><dd>".$design_info{'number_of_stocks'}."</dd>";
         } elsif ($trial_stock_type eq 'cross') {
-            $design_info_html .= "<dt>Number of cross unique ids</dt><dd>".$design_info{'number_of_stocks'}."</dd>";
+            $design_info_html .= "<dt>Número de IDs únicos de cruzamentos</dt><dd>".$design_info{'number_of_stocks'}."</dd>";
         } else {
-            $design_info_html .= "<dt>Number of accessions</dt><dd>".$design_info{'number_of_stocks'}."</dd>";
+            $design_info_html .= "<dt>Número de acessos</dt><dd>".$design_info{'number_of_stocks'}."</dd>";
         }
     }
     if ($design_info{'number_of_checks'}) {
-        $design_info_html .= "<dt>Number of checks</dt><dd>".$design_info{'number_of_checks'}."</dd>";
+        $design_info_html .= "<dt>Número de testemunhas</dt><dd>".$design_info{'number_of_checks'}."</dd>";
     }
     if ($design_info{'number_of_controls'}) {
-        $design_info_html .= "<dt>Number of controls</dt><dd>".$design_info{'number_of_controls'}."</dd>";
+        $design_info_html .= "<dt>Número de controles</dt><dd>".$design_info{'number_of_controls'}."</dd>";
     }
 
     my $treatment_info_string = "";
@@ -361,19 +363,19 @@ sub design_info_view { #TODO: fix treatments here
     }
 
     if (%block_hash) {
-        $design_info_html .= "<dt>Number of blocks</dt><dd>".scalar(keys %block_hash)."</dd>";
+        $design_info_html .= "<dt>Número de blocos</dt><dd>".scalar(keys %block_hash)."</dd>";
         if ($trial_stock_type eq 'family_name') {
-            $design_info_html .= "<dt>Number of family names per block</dt><dd>";
+            $design_info_html .= "<dt>Número de famílias por bloco</dt><dd>";
             foreach my $key (sort { $a <=> $b} keys %block_hash) {
                 $design_info_html .= "Block ".$key.": ".$block_hash{$key}." family names <br>";
             }
         } elsif ($trial_stock_type eq 'cross') {
-            $design_info_html .= "<dt>Number of cross unique ids per block</dt><dd>";
+            $design_info_html .= "<dt>Número de IDs únicos de cruzamentos por bloco</dt><dd>";
             foreach my $key (sort { $a <=> $b} keys %block_hash) {
                 $design_info_html .= "Block ".$key.": ".$block_hash{$key}." cross unique ids <br>";
             }
         } else {
-            $design_info_html .= "<dt>Number of accessions per block</dt><dd>";
+            $design_info_html .= "<dt>Número de acessos por bloco</dt><dd>";
             foreach my $key (sort { $a <=> $b} keys %block_hash) {
                 $design_info_html .= "Block ".$key.": ".$block_hash{$key}." accessions <br>";
             }
@@ -383,13 +385,13 @@ sub design_info_view { #TODO: fix treatments here
 
 
     if (%rep_hash) {
-        $design_info_html .= "<dt>Number of reps</dt><dd>".scalar(keys %rep_hash)."</dd>";
+        $design_info_html .= "<dt>Número de repetições</dt><dd>".scalar(keys %rep_hash)."</dd>";
     }
 
     if ($treatment_info_string) {
-        $design_info_html .= "<dt>Treatments:</dt><dd><div id='trial_design_confirm_treatments' >$treatment_info_string</div></dd>";
+        $design_info_html .= "<dt>Tratamentos:</dt><dd><div id='trial_design_confirm_treatments' >$treatment_info_string</div></dd>";
     } else {
-        $design_info_html .= "<dt>Treatments:</dt><dd><div id='trial_design_confirm_treatments' >None added. Treatments and management regimes can be added on the trial detail page.</div></dd>";
+        $design_info_html .= "<dt>Tratamentos:</dt><dd><div id='trial_design_confirm_treatments' >Nenhum adicionado. Os tratamentos e regimes de manejo podem ser adicionados na página de detalhes do ensaio.</div></dd>";
     }
 
     

@@ -8,6 +8,49 @@
 
 options(echo = FALSE)
 
+# Scripts are copied individually to cluster workers, so this presentation helper
+# is kept self-contained. Apply it only to generated prose, never to tabular data.
+localize_analysis_report <- function(text, protected = character()) {
+  if (is.null(text) || length(text) == 0) return(text)
+  protected <- unique(as.character(protected))
+  protected <- protected[!is.na(protected) & nzchar(protected)]
+  protected <- protected[order(nchar(protected), decreasing = TRUE)]
+  prefix <- "BB_LOCALIZED_NAME_"
+  while (any(grepl(prefix, c(text, protected), fixed = TRUE), na.rm = TRUE)) prefix <- paste0(prefix, "_")
+  tokens <- paste0(prefix, seq_along(protected), "_END")
+  rules <- list(
+    c("^Running ANOVA for trait (.*) from trial (.*)\\.$", "Executando a ANOVA da característica \\1 no ensaio \\2."),
+    c("^This trial has (.*) experimental design and ANOVA will be run accordingly to calculate the clone adjusted means\\.$", "Este ensaio usa o delineamento \\1. A ANOVA será realizada conforme esse delineamento para calcular as médias ajustadas dos clones."),
+    c("^Genotypes are fitted as fixed effects where as the environmental factors are fitted as random effects\\.$", "Os genótipos são ajustados como efeitos fixos e os fatores ambientais como efeitos aleatórios."),
+    c("^Genotypes are fitted as random effects where as the environmental factors are fitted as random effects\\.$", "Os genótipos e os fatores ambientais são ajustados como efeitos aleatórios."),
+    c("^Trial (.*) does not have a proper experimental design\\. Therefore ANOVA was not run on the trial to calculate the trait adjusted means\\.$", "O ensaio \\1 não tem um delineamento experimental adequado. Por isso, a ANOVA não foi realizada para calcular as médias ajustadas da característica."),
+    c("^The (.*) values for the trial are arithmetic averages\\.$", "Os valores de \\1 para o ensaio são médias aritméticas."),
+    c("^Can't perform ANOVA on this trait\\. Because, the trial has no proper or supported experimental design for the trait\\.$", "Não é possível realizar a ANOVA desta característica. O ensaio não tem um delineamento experimental adequado ou compatível para a característica."),
+    c("^No of markers before applying any filter: (.*)$", "Número de marcadores antes da aplicação dos filtros: \\1"),
+    c("^No\\. of markers \\(columns\\) remaining after filtering out markers with (.*)% or more missing data:(.*)$", "Número de marcadores (colunas) restantes após a remoção dos marcadores com \\1% ou mais de dados ausentes: \\2"),
+    c("^No\\. of individuals \\(rows\\) before applying any filter: (.*)$", "Número de indivíduos (linhas) antes da aplicação dos filtros: \\1"),
+    c("^No\\. of individuals \\(rows\\) remaining after filtering out individuals with (.*)% or more missing data: (.*)$", "Número de indivíduos (linhas) restantes após a remoção dos indivíduos com \\1% ou mais de dados ausentes: \\2"),
+    c("^No\\. of markers before applying monomorphic markers filter: (.*)$", "Número de marcadores antes da filtragem dos marcadores monomórficos: \\1"),
+    c("^No\\. of markers remaining after filtering out monomorphic markers: (.*)$", "Número de marcadores restantes após a remoção dos marcadores monomórficos: \\1"),
+    c("^No of markers before applying MAF filter: (.*)$", "Número de marcadores antes da aplicação do filtro de MAF: \\1"),
+    c("^No\\. of markers remaining after filtering out markers with (.*)% or less minor allele frequency \\(MAF\\): (.*)$", "Número de marcadores restantes após a remoção dos marcadores com frequência do alelo menor (MAF) de \\1% ou menos: \\2")
+  )
+  vapply(text, function(value) {
+    if (is.na(value)) return(NA_character_)
+    for (i in seq_along(protected)) value <- gsub(protected[i], tokens[i], value, fixed = TRUE)
+    lines <- strsplit(sub("\n*$", "", value), "\n", fixed = TRUE)[[1]]
+    for (rule in rules) lines <- sub(rule[1], rule[2], lines)
+    result <- paste(lines, collapse = "\n")
+    # Preserve the report's trailing line breaks.
+    trailing <- regmatches(value, regexpr("\n*$", value))
+    result <- paste0(result, trailing)
+    for (i in seq_along(protected)) result <- gsub(tokens[i], protected[i], result, fixed = TRUE)
+    result
+  }, character(1), USE.NAMES = FALSE)
+}
+
+
+
 library(randomForest)
 library(data.table)
 library(genoDataFilter)
@@ -34,17 +77,17 @@ combinedDataFile <- grep("combined_pca_data_file", outputFiles, value = TRUE)
 reportFile       <- grep("report", outputFiles, value = TRUE)
 
 if (is.null(inputFiles)) {
-  stop("Input files are missing.")
+  stop("Os arquivos de entrada não foram informados.")
   q("no", 1, FALSE)
 }
 
 if (is.null(scoresFile)) {
-  stop("Scores output file is missing.")
+  stop("O arquivo de saída dos escores não foi informado.")
   q("no", 1, FALSE)
 }
 
 if (is.null(loadingsFile)) {
-  stop("Laodings file is missing.")
+  stop("O arquivo de cargas não foi informado.")
   q("no", 1, FALSE)
 }
 
@@ -116,30 +159,30 @@ if (dataType == 'genotype') {
     }
 
     traits <- colnames(phenoData)
-    phenoDataNotes <- paste0("\nThis PCA is done on phenotype data. \n")
+    phenoDataNotes <- paste0("\nEsta PCA é realizada com dados fenotípicos. \n")
     phenoDataNotes <- append(phenoDataNotes, 
-    paste0("\n\nTraits before removing zero variance traits: ", 
+    paste0("\n\nCaracterísticas antes da remoção daquelas com variância zero: ",
     paste(traits, collapse = ", ")))
     
     phenoData <- phenoData[, apply(phenoData, 2, var) != 0 ]
     traits <- colnames(phenoData)
     phenoDataNotes <- append(phenoDataNotes, 
-    paste0("\n\nTraits After removing zero variance traits: ", 
+    paste0("\n\nCaracterísticas após a remoção daquelas com variância zero: ",
     paste(traits, collapse = ", ")))
     phenoDataNotes <- append(phenoDataNotes, 
-    paste0("\nTrait data is centered and scaled before PCA.\n"))
+    paste0("\nOs dados das características são centrados e padronizados antes da PCA.\n"))
     phenoData <- scale(phenoData, center=TRUE, scale=TRUE)
     phenoData <- round(phenoData, 3)
 }
 
 
 if (is.null(genoData) && is.null(phenoData)) {
-  stop("There is no data to run PCA.")
+  stop("Não há dados para realizar a PCA.")
   q("no", 1, FALSE)
 }
 
-notesHeader <- paste0("PCA Analysis Report")
-notesHeader <- append(notesHeader, paste0("\nDate: ",
+notesHeader <- paste0("Relatório de análise de componentes principais (PCA)")
+notesHeader <- append(notesHeader, paste0("\nData: ",
            format(Sys.time(), "%d %b %Y %H:%M"),
            "\n\n\n"))
 
@@ -151,8 +194,8 @@ genoDataMissing <- c()
 if (dataType == 'genotype') {
     genoData <- genoDataFilter::convertToNumeric(genoData)
     filterGenoDataResult <- genoDataFilter::filterGenoData(genoData, maf=0.01, logReturn = TRUE)
-    genoProcessingNotes <- paste0("\nPreprocessing genotype data before PCA\n")
-    genoProcessingNotes <- append(genoProcessingNotes, filterGenoDataResult$log)
+    genoProcessingNotes <- paste0("\nPré-processamento dos dados genotípicos antes da PCA\n")
+    genoProcessingNotes <- append(genoProcessingNotes, localize_analysis_report(filterGenoDataResult$log))
     genoData <- filterGenoDataResult$data
     genoData <- genoDataFilter::roundAlleleDosage(genoData)
 
@@ -177,7 +220,7 @@ if (sum(is.na(pcaData)) > 0) {
 }
 
 pcsCnt <- ifelse(ncol(pcaData) < 10, ncol(pcaData), 10)
-pcaNotes <- paste0("\n\nPCA is done using the prcomp function in R.\n")
+pcaNotes <- paste0("\n\nA PCA é realizada usando a função prcomp do R.\n")
 pca    <- prcomp(pcaData, retx=TRUE)
 pca    <- summary(pca)
 
@@ -221,7 +264,7 @@ screePlot <- ggplot(varianceAllPCs, aes(x = reorder(PCs, -Variances), y = Varian
     geom_line(color="red") +
     geom_point() +
     xlab('PCs') +
-    ylab('Explained variance (%)') +
+    ylab('Variância explicada (%)') +
     theme(axis.text.x = element_text(angle = 90))
 
 png(screeFile)

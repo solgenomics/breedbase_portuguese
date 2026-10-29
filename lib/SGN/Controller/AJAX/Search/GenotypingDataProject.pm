@@ -117,7 +117,7 @@ sub genotyping_project_plates_GET : Args(0) {
             $plate->{plate_format},
             $plate->{sample_type},
             $plate->{number_of_samples},
-            "<a class='btn btn-sm btn-default' href='/breeders/trial/$plate->{plate_id}/download/layout?format=csv&dataLevel=plate'>Download Layout</a>"
+            "<a class='btn btn-sm btn-default' href='/breeders/trial/$plate->{plate_id}/download/layout?format=csv&dataLevel=plate'>Baixar layout</a>"
         ];
     }
 

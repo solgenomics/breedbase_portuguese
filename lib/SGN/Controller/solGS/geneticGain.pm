@@ -1,3 +1,5 @@
+use utf8;
+
 
 =head1 AUTHOR
 
@@ -108,7 +110,7 @@ sub genetic_gain_boxplot : Path('/solgs/genetic/gain/boxplot/') Args(0) {
         $c->stash->{rest}{Error}        = undef;
     }
     else {
-        $c->stash->{rest}{Error} = 'Error occured plotting the boxplot(s).';
+        $c->stash->{rest}{Error} = 'Ocorreu um erro ao gerar os boxplots.';
     }
     
 }

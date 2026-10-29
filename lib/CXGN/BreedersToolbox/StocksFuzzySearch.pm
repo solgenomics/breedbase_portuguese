@@ -1,3 +1,5 @@
+use utf8;
+
 package CXGN::BreedersToolbox::StocksFuzzySearch;
 
 =head1 NAME
@@ -185,7 +187,7 @@ sub get_matches {
             my %match_info;
             if (scalar(@{$lowercase_synonym_lookup{$lc_name}}) > 1){
                 my $synonym_lookup_uniquename = join ',', @{$lowercase_synonym_lookup{$lc_name}};
-                $error .= "This synonym $stock_name has more than one uniquename $synonym_lookup_uniquename. This should not happen!";
+                $error .= "O sinônimo $stock_name corresponde a mais de um nome único: $synonym_lookup_uniquename. Isso não deveria acontecer!";
                 next;
             } elsif (scalar(@{$lowercase_synonym_lookup{$lc_name}}) == 1){
                 $match_info{matched_string} = $stock_name." (SYNONYM OF ".$lowercase_synonym_lookup{$lc_name}->[0].")";
@@ -220,7 +222,7 @@ sub get_matches {
                 my $synonym_lookup_of_matched_string = $synonym_uniquename_lookup{$original_matched_name} || [];
                 if (scalar(@$synonym_lookup_of_matched_string) > 1){
                     my $synonym_lookup_uniquename = join ',', @$synonym_lookup_of_matched_string;
-                    $error .= "This synonym $matched_name has more than one uniquename $synonym_lookup_uniquename. This should not happen!";
+                    $error .= "O sinônimo $matched_name corresponde a mais de um nome único: $synonym_lookup_uniquename. Isso não deveria acontecer!";
                     next;
                 } elsif (scalar(@$synonym_lookup_of_matched_string) == 1){
                     $match_info{'unique_names'} = [$original_matched_name];

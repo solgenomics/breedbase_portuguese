@@ -1,3 +1,5 @@
+use utf8;
+
 
 package SGN::Controller::BreedersToolbox;
 
@@ -235,7 +237,7 @@ sub index :Path('/breeders/meeting') :Args(0) {
   if (!$can_access) {
     $c->res->status(403);
     $c->res->content_type('text/plain; charset=utf-8');
-    $c->res->body('You are not authorized to access the decision meeting page.');
+    $c->res->body('Você não tem autorização para acessar a página da reunião de decisão.');
     return;
   }
 

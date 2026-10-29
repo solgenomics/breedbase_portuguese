@@ -40,15 +40,15 @@ message('raw pheno file: ', traitRawPhenoFile)
 
 
 if (is.null(grep("phenotype_data", allTraitsPhenoFile))) {
-  stop("Phenotype dataset missing.")
+  stop("Os dados fenotípicos não foram informados.")
 }
 
 if (is.null(grep("phenotype_trait", traitPhenoMeansFile))) {
-  stop("Output file is missing.")
+  stop("O arquivo de saída não foi informado.")
 }
 
 if (is.null(trait)) {
-  stop("trait name is missing.")
+  stop("O nome da característica não foi informado.")
 }
 
 traitRawPhenoData <- extractPhenotypes(inputFiles, metadata_file)

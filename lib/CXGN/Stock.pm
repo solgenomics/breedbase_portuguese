@@ -642,10 +642,10 @@ sub store {
 
             my $organism_rs = $self->schema->resultset("Organism::Organism")->search({ species=>$self->species });
             if ($organism_rs->count > 1){
-                return $return{error} = "More than one organism returned for species: ".$self->species;
+                return $return{error} = "Mais de um organismo foi encontrado para a espécie: ".$self->species;
             }
             if ($organism_rs->count == 0){
-                return $return{error} = "NO ORGANISM FOUND OF SPECIES: ".$self->species;
+                return $return{error} = "NENHUM ORGANISMO ENCONTRADO PARA A ESPÉCIE: ".$self->species;
             }
             if ($organism_rs->count == 1){
                 my $organism = $organism_rs->first();
@@ -759,7 +759,7 @@ sub exists_in_database {
     #
     if (defined($s) && !$stock ) {
 
-	return "Uniquename already exists in database with stock_id: ".$s->stock_id;
+	return "O nome único já existe no banco de dados com stock_id: ".$s->stock_id;
     #    return $s->stock_id;
     }
 
@@ -771,7 +771,7 @@ sub exists_in_database {
 	    #trying to update the uniquename
 	}
 	elsif ( $s->stock_id != $stock_id ) {
-	    return " Can't update an existing stock $stock_id uniquename:$uniquename.";
+	    return " Não é possível atualizar um material existente com stock_id $stock_id e uniquename:$uniquename.";
 	    # if the new name we're trying to update/insert does not exist
 	    # in the stock table..
 	    #
@@ -2043,7 +2043,7 @@ sub _store_parent_relationship {
             value      => $cross_type
         });
     } else {
-        return $return{error} = "Parent accession not found: ".$parent_accession;
+        return $return{error} = "Acesso progenitor não encontrado: ".$parent_accession;
     }
 }
 
@@ -2470,7 +2470,7 @@ sub merge {
     
     if ($other_stock_id == $self->stock_id()) {
 	print STDERR "Trying to merge stock into itself ($other_stock_id) Skipping...\n";
-	return "Error: cannot merge stock into itself";
+	return "Erro: não é possível mesclar um material com ele mesmo";
     }
 
     my $stockprop_count=0;

@@ -124,7 +124,7 @@ if (length(result)>=1){
       cat("removing empty spaces ",i,"\n")
     }else{
       black_list[i] = result[i]
-      black_list_message[i] = "This trait is not in st4gi"
+      black_list_message[i] = "Esta característica não está no st4gi"
     }
   }
 }
@@ -132,7 +132,7 @@ if (length(result)>=1){
 black_list<-black_list[!is.na(black_list)]
 result_traits <- c(1:length(traits))
 for (i in 1:length(traits)){
-  result_traits[i] <- "Trait passed on QC"
+  result_traits[i] <- "Característica aprovada no controle de qualidade"
 }
 
 for (i in 1:length(result_traits)){
@@ -148,7 +148,7 @@ if (length(result)>1){
     j=1
     for (j in 1:length(black_list)){
       if (traits[i] == black_list[j]){
-        result_traits[i] = "Trait is not in st4gi"
+        result_traits[i] = "A característica não está no st4gi"
         cat("Found the wrong trait!", "\n")
         j=length(black_list)
       }else{

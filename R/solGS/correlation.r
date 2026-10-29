@@ -142,7 +142,7 @@ if (any(grepl("phenotype_data", inputFiles))) {
 }
 
 if (is.null(correInputData)) {
-    stop("Can't run correlation analysis. There is no input data.")
+    stop("Não é possível realizar a análise de correlação. Não há dados de entrada.")
 }
 
 corrInputDataJson <- convertDataFrameToJson(correInputData)

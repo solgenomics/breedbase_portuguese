@@ -1,0 +1,21 @@
+arquivo	linha	area	exemplo_em_ingles	contexto	situacao
+lib/SGN/Controller/Image.pm	56	Envio de imagens	No image file uploaded.	public_message	traduzido
+lib/SGN/Controller/QuickSearch.pm	119	Busca rápida	Must provide a search term	public_message	traduzido
+lib/SGN/Controller/Bulk.pm	222	Operações em massa	Invalid data type chosen	public_message; também linhas 260, 352 e 447	traduzido
+lib/SGN/Controller/Feature.pm	91	Consulta de features	Feature ID must be a positive integer.	public_message; também linha 107	traduzido
+lib/SGN/Controller/Publication.pm	92	Publicações	Multiple matching publications	public_message; também linhas 216, 227 e 277	traduzido
+lib/SGN/Controller/Search/Feature.pm	67	Exportação da busca	The search matched too many records, please make your search more specific.	heredoc de public_message	traduzido
+lib/SGN/Controller/solGS/Anova.pm	53	ANOVA	This trial has no design. ANOVA can not be applied.	Resposta JSON; outras mensagens nas linhas 57, 95, 100 e 106	traduzido
+lib/SGN/Controller/solGS/geneticGain.pm	111	Ganho genético	Error occured plotting the boxplot(s).	Resposta JSON	traduzido
+lib/CXGN/Page/Form/Static.pm	599	Validação de formulários	Input required	HTML; outras validações até a linha 622	traduzido
+lib/CXGN/Page/Form/SimpleFormPage.pm	174	Permissões de formulários	You must have an account of type submitter to be able to submit data.	message_page; também linhas 98, 102, 126, 186 e 446	traduzido
+lib/CXGN/Page/Form/ConfirmStore.pm	86	Gravação de formulários	already seems to exist in the database and violates constraints. Please correct your input.	Texto repassado a message_page na linha 88	traduzido
+lib/CXGN/Page/Form/Editable.pm	193	Edição de formulários	already seems to exist in the database and violates constraints. Please correct your input.	Texto repassado a message_page na linha 195	traduzido
+lib/CXGN/Genotype/GWAS.pm	281	GWAS	Please choose less than 10,000 markers	message_page; também linha 297	traduzido
+lib/CXGN/Blast/Parse/Plugin/BlastOverviewGraph.pm	33	Resultado do BLAST	Overview graph: Not shown because no hits were found.	HTML do resultado; também linhas 29 e 31	traduzido
+lib/CXGN/Stock.pm	2046	Materiais e acessos	Parent accession not found:	Retorno error; também mensagens nas linhas 762 e 2473	traduzido
+lib/CXGN/Stock/Seedlot.pm	1414	Lotes de sementes	Accession with id ... is already associated with seedlot id	Retorno de validação; também linha 1485. Outras mensagens do módulo já estão em português.	traduzido
+lib/CXGN/Trial/Download/Plugin/ExcelBasic.pm	161	Download de ensaios	No design found for trial:	Erro retornado pelo gerador de planilhas; preservar cabeçalhos de dados	traduzido
+lib/CXGN/Trial/Download/Plugin/ExcelBasicSimple.pm	87	Download de ensaios	No design found for trial:	Erro retornado pelo gerador de planilhas; preservar cabeçalhos de dados	traduzido
+lib/CXGN/Trial/Download/Plugin/ExcelAssociatedImages.pm	74	Download de imagens de ensaios	No design found for trial:	Erro retornado pelo gerador de planilhas; preservar cabeçalhos de dados	traduzido
+lib/CXGN/List/Validate/Plugin/LabelDesign.pm	55	Validação de modelos de etiquetas	Invalid JSON in list items	Lista de problemas de validação	traduzido

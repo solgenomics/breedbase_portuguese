@@ -1,3 +1,5 @@
+use utf8;
+
 
 package CXGN::List::Validate::Plugin::LabelDesign;
 
@@ -52,7 +54,7 @@ sub validate {
     try {
         $obj_ref = JSON::Any->decode($JSON);
     } catch {
-        push @problems, "\nInvalid JSON in list items\n";
+        push @problems, "\nJSON inválido nos itens da lista\n";
         push @problems, "$_\n";
     };
 

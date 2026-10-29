@@ -179,15 +179,15 @@ sub error_message {
 
     my $html = $self ->{content} . "\n";
     $html .= <<EOH;
-<h3>Bulk download error</h3>
-I could not process your input.  Possible reasons for this include:
+<h3>Erro no download em massa</h3>
+Não foi possível processar os dados informados. Possíveis causas:
 <ul>
-<li>You may not have entered any identifiers for download</li>
-<li>You may not have entered any identifiers that exist</li>
-<li>Your identifiers may not be one-per-line, with no quotation marks, etc (see input example)</li>
-<li>The input set may be larger than the limit of 10,000 identifiers</li>
+<li>Nenhum identificador foi informado para download</li>
+<li>Os identificadores informados podem não existir</li>
+<li>Os identificadores devem estar um por linha, sem aspas ou outros caracteres adicionais (veja o exemplo de entrada)</li>
+<li>O conjunto de entrada pode ultrapassar o limite de 10.000 identificadores</li>
 </ul>
-Please check your input and use your browser\'s "back" button to go back and try again!
+Verifique os dados informados e use o botão de voltar do navegador para tentar novamente!
 EOH
 
 return $html;

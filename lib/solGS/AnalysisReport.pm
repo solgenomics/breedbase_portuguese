@@ -1,3 +1,5 @@
+use utf8;
+
 package solGS::AnalysisReport;
 
 use Moose;
@@ -7,6 +9,8 @@ use DateTime;
 use Email::Sender::Simple qw /sendmail/;
 use Email::Simple;
 use Email::Simple::Creator;
+use Encode qw(encode);
+use MIME::QuotedPrint qw(encode_qp);
 use File::Spec::Functions qw /catfile catdir/;
 use File::Slurp qw /write_file read_file/;
 use JSON;
@@ -255,11 +259,11 @@ sub check_selection_prediction {
                               )
                             {
                                 $output_details->{$k}->{failure_reason} =
-'No genotype data was found for this selection population.';
+'Nenhum dado genotípico foi encontrado para esta população de seleção.';
                             }
                             else {
                                 $output_details->{$k}->{failure_reason} =
-'The prediction of the selection population failed.';
+'A predição da população de seleção falhou.';
                             }
 
                             $output_details->{$k}->{success} = 0;
@@ -337,12 +341,12 @@ sub check_population_download {
 
                     if ( !$pheno_file ) {
                         $output_details->{$k}->{pheno_message} =
-                          'Could not find the phenotype file for this dataset.';
+                          'Não foi possível encontrar o arquivo de fenótipos deste conjunto de dados.';
                     }
 
                     if ( !$geno_file ) {
                         $output_details->{$k}->{geno_message} =
-                          'Could not find the genotype file for this dataset.';
+                          'Não foi possível encontrar o arquivo de genótipos deste conjunto de dados.';
                     }
 
                     if ( $pheno_file && $geno_file ) {
@@ -360,7 +364,7 @@ sub check_population_download {
                             }
                             else {
                                 $output_details->{$k}->{pheno_message} =
-'There is no phenotype data for this dataset.';
+'Não há dados fenotípicos para este conjunto de dados.';
                             }
 
                             if ($geno_size) {
@@ -368,7 +372,7 @@ sub check_population_download {
                             }
                             else {
                                 $output_details->{$k}->{geno_message} =
-                                  'There is no genotype data for this dataset.';
+                                  'Não há dados genotípicos para este conjunto de dados.';
                             }
 
                             if ( $pheno_size && $geno_size ) {
@@ -427,11 +431,11 @@ sub check_kinship_analysis {
                         if ($end_process) {
                             if ( !-s $output_details->{$k}->{genotype_file} ) {
                                 $output_details->{$k}->{failure_reason} =
-'No genotype data was found for this kinship analysis.';
+'Nenhum dado genotípico foi encontrado para esta análise de parentesco.';
                             }
                             else {
                                 $output_details->{$k}->{failure_reason} =
-                                  'The kinship analysis failed.';
+                                  'A análise de parentesco falhou.';
                             }
 
                             $output_details->{$k}->{success} = 0;
@@ -477,7 +481,7 @@ sub check_pca_analysis {
                             # {
                             if ( !-s $input_file ) {
                                 $failure_reason =
-"This dataset has no data. $input_file is empty.";
+"Este conjunto não contém dados. O arquivo $input_file está vazio.";
                             }
 
                             # }
@@ -488,7 +492,7 @@ sub check_pca_analysis {
                             }
                             else {
                                 $output_details->{$k}->{failure_reason} =
-'The pca algorithm (R) caught an exception. Details are in the analysis error file.';
+'O algoritmo de PCA (R) encontrou uma exceção. Os detalhes estão no arquivo de erros da análise.';
                             }
 
                             $output_details->{$k}->{success} = 0;
@@ -526,11 +530,11 @@ sub check_cluster_analysis {
 
                             if ( !-s $input_file ) {
                                 $output_details->{$k}->{failure_reason} =
-"The input data file ($input_file) is empty.\n";
+"O arquivo de dados de entrada ($input_file) está vazio.\n";
                             }
                             else {
                                 $output_details->{$k}->{failure_reason} =
-"The clustering algorithm (R) caught an exception. Details are in the analysis error file.\n";
+"O algoritmo de agrupamento (R) encontrou uma exceção. Os detalhes estão no arquivo de erros da análise.\n";
                             }
 
                             $output_details->{$k}->{success} = 0;
@@ -572,11 +576,11 @@ sub email_analysis_status {
 
     my $analysis_status = $self->email_body($output_details);
     my $closing =
-        "If you have any remarks, please contact us:\n"
+        "Se tiver alguma observação, entre em contato conosco:\n"
       . $output_details->{contact_page}
-      . "\n\nThanks and regards,\nsolGS M Tool";
+      . "\n\nAgradecemos pela atenção,\nsolGS M Tool";
 
-    my $body = "Dear $first_name,\n" . "\n$analysis_status" . "$closing";
+    my $body = "Olá, $first_name,\n" . "\n$analysis_status" . "$closing";
 
     my $email_adds    = $self->email_addresses($output_details);
     my $analysis_name = $output_details->{analysis_profile}->{analysis_name};
@@ -586,9 +590,11 @@ sub email_analysis_status {
             From    => $email_adds->{email_from},
             To      => $email_adds->{email_to},
             Cc      => $email_adds->{email_cc},
-            Subject => "solGS Report: $analysis_name",
+            Subject => encode('MIME-Header', "Relatório solGS: $analysis_name"),
+            'Content-Type' => 'text/plain; charset=UTF-8',
+            'Content-Transfer-Encoding' => 'quoted-printable',
         ],
-        body => $body,
+        body => encode_qp(encode('UTF-8', $body)),
     );
 
     sendmail($email);
@@ -679,14 +685,14 @@ sub multi_modeling_message {
                     $cnt++;
                     $all_success = 1;
                     $message .=
-                        "The analysis for $trait_name is done."
-                      . " You can view the model output here:"
+                        "A análise de $trait_name foi concluída."
+                      . " Você pode consultar os resultados do modelo aqui:"
                       . "\n\n$trait_page\n\n";
                 }
                 else {
                     $all_success = 0;
-                    $message .= "The analysis for $trait_name failed.\n\n";
-                    $message .= 'Refering page: ' . $trait_page . "\n\n";
+                    $message .= "A análise de $trait_name falhou.\n\n";
+                    $message .= 'Página de referência: ' . $trait_page . "\n\n";
                 }
             }
         }
@@ -715,15 +721,15 @@ sub single_modeling_message {
 
                     if ( $output_details->{$k}->{success} ) {
                         $message =
-                            "The modeling for $trait_name is done."
-                          . "\nYou can view the model output here:"
+                            "A modelagem de $trait_name foi concluída."
+                          . "\nVocê pode consultar os resultados do modelo aqui:"
                           . "\n\n$trait_page\n\n";
                     }
                     else {
-                        $message = "The modeling for $trait_name failed.\n\n";
-                        $message .= 'Refering page: ' . $trait_page . "\n\n";
+                        $message = "A modelagem de $trait_name falhou.\n\n";
+                        $message .= 'Página de referência: ' . $trait_page . "\n\n";
                         $message .=
-"We will troubleshoot the cause and contact you when we find out more.";
+"Investigaremos a causa e entraremos em contato quando tivermos mais informações.";
                     }
                 }
             }
@@ -754,8 +760,8 @@ sub selection_prediction_message {
                     $cnt++;
                     if ( $cnt == 1 ) {
                         $message .=
-"The prediction of selection population $selection_pop_name is done."
-                          . "\nYou can view the prediction output here:\n\n";
+"A predição da população de seleção $selection_pop_name foi concluída."
+                          . "\nVocê pode consultar os resultados da predição aqui:\n\n";
                     }        
                     $message .= uc($trait_name) . ":\n" .  $selection_pop_page . "\n\n";
                 }
@@ -763,11 +769,11 @@ sub selection_prediction_message {
                     my $failure_reason =
                       $output_details->{$k}->{failure_reason};
                     $message =
-"The analysis for $trait_name failed. Possible reason is:\n\n";
+"A análise de $trait_name falhou. Possível causa:\n\n";
                     $message .= "$failure_reason\n\n";
-                    $message .= "Refering page: $selection_pop_page\n\n";
+                    $message .= "Página de referência: $selection_pop_page\n\n";
                     $message .=
-"We will troubleshoot the cause and contact you when we find out more.\n\n";
+"Investigaremos a causa e entraremos em contato quando tivermos mais informações.\n\n";
                 }
             }
         }
@@ -785,8 +791,8 @@ sub multi_models_extra_message {
 
     my $multi_models_url = $output_details->{multi_models_url};
     my $message .=
-        "You can also view the summary of all the analyses in the page below.\n"
-      . "Additionally, you may find the analytical features in the page useful.\n"
+        "Você também pode consultar o resumo de todas as análises na página abaixo.\n"
+      . "Os recursos de análise disponíveis nessa página também podem ser úteis.\n"
       . $multi_models_url . "\n\n";
 
     return $message;
@@ -805,8 +811,8 @@ sub population_download_message {
 
                 if ( $output_details->{$k}->{success} ) {
                     $message =
-"The phenotype and genotype data for $pop_name is ready for analysis."
-                      . "\nYou can view the training population page here:\n"
+"Os dados fenotípicos e genotípicos de $pop_name estão prontos para análise."
+                      . "\nVocê pode consultar a página da população de treinamento aqui:\n"
                       . "\n$pop_page\n\n";
                 }
                 else {
@@ -815,12 +821,12 @@ sub population_download_message {
                     my $msg_pheno = $output_details->{$k}->{pheno_message};
 
                     $message =
-"Downloading phenotype and genotype data for $pop_name failed.\n";
+"O download dos dados fenotípicos e genotípicos de $pop_name falhou.\n";
                     $message .=
-                      "\nPossible causes are:\n$msg_geno\n$msg_pheno\n";
-                    $message .= 'Refering page: ' . $pop_page . "\n\n";
+                      "\nPossíveis causas:\n$msg_geno\n$msg_pheno\n";
+                    $message .= 'Página de referência: ' . $pop_page . "\n\n";
                     $message .=
-"We will troubleshoot the cause and contact you when we find out more.\n\n";
+"Investigaremos a causa e entraremos em contato quando tivermos mais informações.\n\n";
                 }
             }
         }
@@ -839,10 +845,10 @@ sub combine_populations_message {
     if ($no_match) {
         $message =
             $no_match
-          . " can not be combined.\n"
-          . "Possibly the the populations were genotyped\n"
-          . "with different marker alleles or querying the data for one or more of the\n"
-          . "populations failed. See details below:\n\n";
+          . " não podem ser combinadas.\n"
+          . "Possivelmente, as populações foram genotipadas\n"
+          . "com alelos de marcadores diferentes ou a consulta dos dados de uma ou mais\n"
+          . "populações falhou. Veja os detalhes abaixo:\n\n";
 
         foreach my $k ( keys %{$output_details} ) {
             if ( $k =~ /population_id/ ) {
@@ -853,16 +859,16 @@ sub combine_populations_message {
 
                     if ( $output_details->{$k}->{success} ) {
                         $message .=
-"The phenotype and genotype data for $pop_name is succesfuly downloaded."
-                          . "\nYou can view the population here:"
+"O download dos dados fenotípicos e genotípicos de $pop_name foi concluído com sucesso."
+                          . "\nVocê pode consultar a população aqui:"
                           . "\n$pop_page.\n\n";
                     }
                     else {
                         $message .=
-"Downloading phenotype and genotype data for $pop_name failed.";
-                        $message .= 'Refering page: ' . $pop_page . "\n\n";
+"O download dos dados fenotípicos e genotípicos de $pop_name falhou.";
+                        $message .= 'Página de referência: ' . $pop_page . "\n\n";
                         $message .=
-"We will troubleshoot the cause and contact you when we find out more.\n\n";
+"Investigaremos a causa e entraremos em contato quando tivermos mais informações.\n\n";
                     }
                 }
             }
@@ -871,8 +877,8 @@ sub combine_populations_message {
     }
     else {
         my $combined_pops_page = $output_details->{combined_pops_page};
-        $message .= "Your combined training population is ready for analysis."
-          . " You can view it here:\n\n$combined_pops_page\n\n";
+        $message .= "Sua população de treinamento combinada está pronta para análise."
+          . " Você pode consultá-la aqui:\n\n$combined_pops_page\n\n";
     }
 
     return $message;
@@ -897,12 +903,12 @@ sub generic_analysis_email_message {
                     my $alternative_output_page = $output_page;
                     $output_page = $referer;
 
-                    $extra_info = 'Please run the analysis again using the same parameters to see the output.';
-                    $extra_info .= "\n\nAlternatively, if you don't remember the parameters, you can access the output here:";
+                    $extra_info = 'Execute a análise novamente com os mesmos parâmetros para ver os resultados.';
+                    $extra_info .= "\n\nSe não lembrar os parâmetros, você também pode acessar os resultados aqui:";
                     $extra_info .= "\n" .$alternative_output_page . "\n\n";
                 }   
 
-                $message = "Your $analysis_type analysis, $analysis_name, is done. You can access the result here:";
+                $message = "Sua análise $analysis_type, $analysis_name, foi concluída. Você pode acessar o resultado aqui:";
                 $message .= "\n$output_page\n\n";
 
                 if ($extra_info) {
@@ -914,12 +920,12 @@ sub generic_analysis_email_message {
                 no warnings 'uninitialized';
                 my $fail_message = $output_details->{$k}->{failure_reason};
 
-                $message = "The $analysis_type analysis, $analysis_name, failed.\n";
-                $message .= "\nPossible causes are:\n$fail_message\n";
-                $message .= 'Refering page: ' . $referer. "\n\n";
-                $message .= 'Output page: ' . $output_page. "\n\n";
+                $message = "A análise $analysis_type, $analysis_name, falhou.\n";
+                $message .= "\nPossíveis causas:\n$fail_message\n";
+                $message .= 'Página de referência: ' . $referer. "\n\n";
+                $message .= 'Página de resultados: ' . $output_page. "\n\n";
                 $message .=
-"We will troubleshoot the cause and contact you when we find out more.\n\n";
+"Investigaremos a causa e entraremos em contato quando tivermos mais informações.\n\n";
             }
         }
 

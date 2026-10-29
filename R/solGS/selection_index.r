@@ -36,9 +36,9 @@ traitFilesList <- strsplit(inTraitFiles, "\t");
 traitsTotal    <- length(traitFilesList)
 
 if (traitsTotal == 0)
-  stop("There are no traits with GEBV data.")
+  stop("Não há características com dados de GEBV.")
 if (length(relWeightsFile) == 0)
-  stop("There is no file with relative weights of traits.")
+  stop("Não há arquivo com os pesos relativos das características.")
 
 
 relWeights           <- data.frame(fread(relWeightsFile, header = TRUE))
@@ -46,7 +46,7 @@ rownames(relWeights) <- relWeights[, 1]
 relWeights[, 1]      <- NULL 
 
 if (is.null(relWeights)) {
-    stop('There were no relative weights for all the traits.')
+    stop('Não foram encontrados pesos relativos para todas as características.')
 }
 
 combinedRelGebvs <- c()

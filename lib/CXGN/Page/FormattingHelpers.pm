@@ -1,3 +1,5 @@
+use utf8;
+
 package CXGN::Page::FormattingHelpers;
 use strict;
 use CXGN::Tools::List;
@@ -1227,9 +1229,9 @@ qq|onchange="CXGN.Page.FormattingHelpers.update_numerical_range_input('$id','$pa
     $params{value2}[1] = '' unless defined( $params{value2}[1] );
 
     return <<EOH;
-<div class="form-group"><div class="input-group col-sm-6"><span class="input-group-btn ">$compare_select</span><span class="input-group-btn"><input class="form-control" type="text" size="8" name="$params{value1}[0]" value="$params{value1}[1]" /></span></div>&nbsp;<span id="${id}_m">and</span>&nbsp;<span id="${id}_2" ><input size="8" type="text" name="$params{value2}[0]" value="$params{value2}[1]" />&nbsp;</span><span id="${id}_e">$params{units}</span></div>
+<div class="form-group"><div class="input-group col-sm-6"><span class="input-group-btn ">$compare_select</span><span class="input-group-btn"><input class="form-control" type="text" size="8" name="$params{value1}[0]" value="$params{value1}[1]" /></span></div>&nbsp;<span id="${id}_m">e</span>&nbsp;<span id="${id}_2" ><input size="8" type="text" name="$params{value2}[0]" value="$params{value2}[1]" />&nbsp;</span><span id="${id}_e">$params{units}</span></div>
 
-<!--$compare_select&nbsp;<input type="text" size="8" name="$params{value1}[0]" value="$params{value1}[1]" />&nbsp;<span id="${id}_m">and</span>&nbsp;<span id="${id}_2" ><input size="8" type="text" name="$params{value2}[0]" value="$params{value2}[1]" />&nbsp;</span><span id="${id}_e">$params{units}</span>-->
+<!--$compare_select&nbsp;<input type="text" size="8" name="$params{value1}[0]" value="$params{value1}[1]" />&nbsp;<span id="${id}_m">e</span>&nbsp;<span id="${id}_2" ><input size="8" type="text" name="$params{value2}[0]" value="$params{value2}[1]" />&nbsp;</span><span id="${id}_e">$params{units}</span>-->
 <script language="JavaScript" type="text/javascript">
   CXGN.Page.FormattingHelpers.update_numerical_range_input('$id','$params{units}');
 </script>

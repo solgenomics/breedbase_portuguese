@@ -123,15 +123,15 @@ sub factors :Path('/ajax/gcpc/factors') Args(0) {
     print STDERR "Processing factor $factor\n";
 
 	    push @factor_select, "<h4 style=\"padding-left: 10px\">".$factor."</h4> \&emsp\;
-      <input type = radio name=\"$factor\_factor\" value=\"fixed\"> fixed </input>\&emsp\;
-      <input type = radio name=\"$factor\_factor\" value=\"random\"> random </input> \&emsp\;
-      <input type = radio name=\"$factor\_factor\" value=\"None\"> None</input><br />";
+      <input type = radio name=\"$factor\_factor\" value=\"fixed\"> fixo </input>\&emsp\;
+      <input type = radio name=\"$factor\_factor\" value=\"random\"> aleatório </input> \&emsp\;
+      <input type = radio name=\"$factor\_factor\" value=\"None\"> Nenhum</input><br />";
 	}
 
     }
     unshift @factor_select, "<b style=\"font-size:15px\">Selecione os fatores fixos e aleatórios a serem incluídos no modelo</b></br>";
     push @factor_select, "<h4 style=\"padding-left: 10px\">germplasmName</h4> \&emsp\;
-                          <input type = radio name=\"random\" value=\"random\" checked> random </input> \&emsp\;";
+                          <input type = radio name=\"random\" value=\"random\" checked> aleatório </input> \&emsp\;";
 
     print STDERR "FACTORS: ".Dumper(\@factors);
     print STDERR "FACTOR_SELECT: ".Dumper(\@factor_select);

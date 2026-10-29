@@ -1,3 +1,5 @@
+use utf8;
+
 package SGN::Controller::solGS::SelectionIndex;
 
 use Moose;
@@ -233,7 +235,7 @@ sub download_sindex_url {
 
 
     my $sindex_name = $c->controller('solGS::Files')->create_file_id($c);
-    my $url = qq | <a href="/solgs/download/selection/index/$sindex_name">Download selection indices</a> |;
+    my $url = qq | <a href="/solgs/download/selection/index/$sindex_name">Baixar índices de seleção</a> |;
 
     $c->stash->{selection_index_download_url} = $url;
 

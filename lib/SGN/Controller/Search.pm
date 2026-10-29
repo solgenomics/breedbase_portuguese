@@ -1,3 +1,5 @@
+use utf8;
+
 package SGN::Controller::Search;
 use Moose;
 use URI::FromHash 'uri';
@@ -47,7 +49,7 @@ sub glossary : Path('/search/glossary') :Args() {
     if($term){
         my @defs = get_definitions($term);
         unless (@defs){
-            $response = "<p>Your term was not found. <br> The term you searched for was $term.</p>";
+            $response = "<p>O termo não foi encontrado. <br> O termo buscado foi $term.</p>";
         } else {
             $response = "<hr /><dl><dt>$term</dt>";
             for my $d (@defs){
@@ -58,12 +60,12 @@ sub glossary : Path('/search/glossary') :Args() {
     } else {
         $response =<<DEFAULT;
 <hr />
-<h2>Glossary search</h2>
+<h2>Busca no glossário</h2>
 <form action="#" method='get' name='glossary'>
-<b>Search the glossary by term:</b>
+<b>Buscar no glossário por termo:</b>
 <input type = 'text' name = 'getTerm' size = '50' tabindex='0' />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<input type = 'submit' value = 'Lookup' /></form>
+<input type = 'submit' value = 'Buscar' /></form>
 <script type="text/javascript" language="javascript">
 document.glossary.getTerm.focus();
 </script>

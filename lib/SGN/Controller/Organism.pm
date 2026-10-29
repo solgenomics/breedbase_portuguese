@@ -1,3 +1,5 @@
+use utf8;
+
 =head1 NAME
 
 SGN::Controller::Organism - Catalyst controller for dealing with
@@ -189,7 +191,7 @@ sub add_sol100_organism :Path('sol100/add_organism') :Args(0) {
                        sub { $c->req->method eq 'POST' }
                      ],
                      [ RC_BAD_REQUEST,
-                       'Organism not found',
+                       'Organismo não encontrado',
                        sub { $organism },
                      ],
                     );
@@ -238,8 +240,8 @@ sub find_organism :Chained('/') :PathPart('organism') :CaptureArgs(1) {
     }
 
     my ( $organism ) = my @organisms = $rs->all;
-    $c->throw_client_error('Multiple matching organisms') if @organisms > 1;
-    $c->throw_404('Organism not found') unless $organism;
+    $c->throw_client_error('Vários organismos correspondentes') if @organisms > 1;
+    $c->throw_404('Organismo não encontrado') unless $organism;
 
     $c->stash(
         organism_rs => $rs,

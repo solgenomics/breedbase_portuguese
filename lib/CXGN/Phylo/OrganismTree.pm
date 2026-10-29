@@ -1,3 +1,5 @@
+use utf8;
+
 package CXGN::Phylo::OrganismTree;
 
 =head1 NAME
@@ -98,10 +100,10 @@ sub recursive_children {
     my $content = do {
         if( my $species_data = $species_cache->thaw($orgkey) ) {
             join '<br />', map {
-                    "<b>$_:</b> ".( $species_data->{$_} || '<span class="ghosted">not set</span>' )
+                    "<b>$_:</b> ".( $species_data->{$_} || '<span class="ghosted">não definido</span>' )
                   } sort keys %$species_data
         } else {
-            '<span class="ghosted">no data available</span>'
+            '<span class="ghosted">nenhum dado disponível</span>'
         }
     };
 

@@ -1,0 +1,22 @@
+arquivo	linha	classificacao	texto_em_ingles	contexto
+lib/SGN/Controller/Biosource.pm	48	confirmada	invalid arguments	Mensagem de validação enviada por throw_client_error.
+lib/SGN/Controller/Qtl.pm	68	confirmada	$id is not a QTL population.	Erro público com variável no início; há outras validações de ID no mesmo arquivo.
+lib/SGN/Controller/Qtl.pm	81	confirmada	is not a valid population id	Mensagem pública de ID inválido.
+lib/SGN/Controller/Qtl.pm	525	confirmada	is not an accepted argument.	Erro público multilinha.
+lib/SGN/Controller/ITAG.pm	31	confirmada	ITAG site feature not available	Mensagem pública de recurso desabilitado.
+lib/SGN/Controller/Bulk/Display.pm	532	confirmada	The results of that search or not available anymore. Please repeat your search.	Texto impresso por no_data_error_page.
+forms/primer3/formfu_create.yaml	21	confirmada	Paste source sequence below	Rótulo do formulário carregado por lib/SGN/Controller/Primer3.pm:35.
+forms/primer3/formfu_create.yaml	77	confirmada	Pick left primer, or use left primer below:	Rótulo visível; preservar nomes PRIMER_* e valores das opções.
+forms/primer3/formfu_create.yaml	244	confirmada	The maximum number of primer pairs to return.	Texto de ajuda do formulário; há outros títulos e rótulos em inglês.
+cgi-bin/bulk/download.pl	221	confirmada_em_codigo_legado	This page can only accept HTTP POST requests.	Texto de error_page; confirmar se a rota CGI está habilitada na instalação.
+cgi-bin/search/est.pl	134	confirmada_em_codigo_legado	No EST identifier specified	Texto de message_page.
+cgi-bin/search/route-order.pl	24	confirmada_em_codigo_legado	Cannot route order because shopping cart is empty.	Texto de error_page.
+cgi-bin/image/add_image.pl	168	confirmada_em_codigo_legado	You do not have sufficient privileges to upload images.	Mensagem de permissão para envio de imagens.
+cgi-bin/insitu/detail/add_image.pl	58	confirmada_em_codigo_legado	Need an experiment_id to add image.	Texto de error_page; preservar o identificador experiment_id.
+cgi-bin/insitu/detail/experiment.pl	49	confirmada_em_codigo_legado	The experiment $experiment_name has been deleted.	Mensagem de confirmação.
+cgi-bin/insitu/detail/probe.pl	50	confirmada_em_codigo_legado	This probe has either associated experiments	Mensagem de validação antes da exclusão.
+cgi-bin/maps/physical/view_fish.pl	64	confirmada_em_codigo_legado	Clone image not found.	Texto de message_page.
+cgi-bin/sequencing/tpf.pl	55	confirmada_em_codigo_legado	TPF validation failed	Mensagem de falha de validação.
+cgi-bin/sequencing/agp.pl	59	confirmada_em_codigo_legado	AGP validation failed	Mensagem de falha de validação.
+cgi-bin/forum/add_post.pl	100	confirmada_em_codigo_legado	Sorry, but there was insufficient data to add this post.	Texto de error_page.
+cgi-bin/solpeople/personal-info.pl	66	confirmada_em_codigo_legado	You do not have rights to modify this database entry because you do not own it.	Mensagem de permissão.

@@ -532,7 +532,7 @@ sub render_canvas_graph : Path('/tools/blast/render_graph') Args(1) {
     open (my $blast_fh, "<", $file);
 
     push(@res_html, "<table id=\"blast_table\" class=\"table\">");
-    push(@res_html, "<tr><th>SubjectId</th><th>id%</th><th>Aln</th><th>evalue</th><th>Score</th><th>Description</th></tr>");
+    push(@res_html, "<tr><th>SubjectId</th><th>id%</th><th>Aln</th><th>evalue</th><th>Score</th><th>Descrição</th></tr>");
 
     while (my $line = <$blast_fh>) {
       chomp($line);
@@ -723,11 +723,11 @@ sub render_canvas_graph : Path('/tools/blast/render_graph') Args(1) {
 	      <dl>
 	      <dt>Sequence match</dt>
                     <dd>
-		    <div style="margin: 0.5em 0"><a class="match_details" href="" target="_blank">View matched sequence</a></div>
+		    <div style="margin: 0.5em 0"><a class="match_details" href="" target="_blank">Ver sequência correspondente</a></div>
 		    </dd>
 	      <dt> JBrowse match </dt>
 		   <dd>
-                      <div id="jbrowse_div" style="display:none"><a id="jbrowse_link" href="" target="_blank">View in genome context</a></div>
+                      <div id="jbrowse_div" style="display:none"><a id="jbrowse_link" href="" target="_blank">Ver no contexto genômico</a></div>
                     </dd>
 		    <dt>Genome Feature match</dt>
 		    <dd class="subject_sequence_xrefs">

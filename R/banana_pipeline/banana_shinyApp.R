@@ -64,75 +64,154 @@ nTable = read.csv("D:\\github\\ODK_bananaCrossingTool\\Analysis\\nTable.csv", st
 # DATA EXPLORER
 cleantable <- read.csv("D:\\github\\ODK_bananaCrossingTool\\Analysis\\cleantable.csv", stringsAsFactors = F)
 
+# Translate presentation copies only; CSV data and input values stay unchanged.
+banana_activity_labels <- c(
+  flowering = "Florescimento", firstpollination = "Primeira polinização",
+  repeatpollination = "Repetição da polinização", harvested = "Colheita",
+  ripened = "Maturação", extracted = "Extração de sementes",
+  embryrescued = "Resgate de embriões", subcultured = "Subcultivo",
+  rooted = "Enraizamento", screenhouse = "Telado", hardened = "Aclimatação",
+  openfield = "Campo aberto", status = "Situação", contamination = "Contaminação",
+  "germinated after 2 weeks" = "Germinação após duas semanas",
+  "germinated after 6 weeks" = "Germinação após seis semanas"
+)
+banana_activity_label <- function(values) {
+  result <- as.character(values)
+  translated <- unname(banana_activity_labels[tolower(result)])
+  found <- !is.na(translated)
+  result[found] <- translated[found]
+  result
+}
+
+banana_column_labels <- c(
+  location = "Local", activity = "Atividade", Activity = "Atividade",
+  accession = "Acesso", accession_name = "Nome do acesso", date = "Data",
+  contributor = "Colaborador", submitted_by = "Enviado por", N = "Quantidade",
+  crossnumber = "Número do cruzamento", plantletID = "ID da muda",
+  mother = "Progenitor feminino", mother_accessionName = "Acesso feminino",
+  father = "Progenitor masculino", father_accessionName = "Acesso masculino",
+  mother_plotNumber = "Parcela do progenitor feminino", mother_acc_name = "Acesso feminino",
+  father_plotNumber = "Parcela do progenitor masculino", father_acc_name = "Acesso masculino",
+  plot_number = "Número da parcela", sex = "Sexo", flowering_date = "Data de florescimento",
+  firstpollination_date = "Data da primeira polinização", harvesting_date = "Data de colheita",
+  days_to_maturity = "Dias até a maturidade", ripen_date = "Data de maturação",
+  days_harvest_ripening = "Dias entre colheita e maturação",
+  seed_extraction_date = "Data de extração das sementes", number_seeds = "Número de sementes",
+  good_seeds = "Sementes boas", badseeds = "Sementes ruins",
+  days_ripening_extraction = "Dias entre maturação e extração",
+  number_rescued = "Número de embriões resgatados", rescue_date = "Data de resgate",
+  days_extraction_rescue = "Dias entre extração e resgate",
+  germination_after_2weeks_date = "Data de germinação após duas semanas",
+  actively_germination_after_two_weeks = "Germinação ativa após duas semanas",
+  days_rescue_2weeksGermination = "Dias entre resgate e germinação em duas semanas",
+  germination_after_6weeks_date = "Data de germinação após seis semanas",
+  actively_germination_after_6weeks = "Germinação ativa após seis semanas",
+  days_2weeksGermination_6weeksGermination = "Dias entre as avaliações de germinação",
+  subculture_date = "Data de subcultivo", subcultures = "Subcultivos",
+  days_6weeks_Germination_subculture = "Dias entre germinação e subcultivo",
+  date_rooting = "Data de enraizamento", days_subculture_rooting = "Dias entre subcultivo e enraizamento",
+  screenhse_transfer_date = "Data de transferência ao telado",
+  days_rooting_screenhse = "Dias entre enraizamento e telado",
+  hardening_date = "Data de aclimatação", days_scrnhse_hardening = "Dias entre telado e aclimatação",
+  date_of_transfer_to_openfield = "Data de transferência ao campo",
+  days_hardening_openfield = "Dias entre aclimatação e campo"
+)
+banana_column_label <- function(values) {
+  result <- banana_activity_label(values)
+  translated <- unname(banana_column_labels[values])
+  found <- !is.na(translated)
+  result[found] <- translated[found]
+  result
+}
+banana_display_data <- function(data) {
+  for (column in intersect(c("activity", "Activity"), names(data))) {
+    data[[column]] <- banana_activity_label(data[[column]])
+  }
+  names(data) <- banana_column_label(names(data))
+  data
+}
+banana_table_language <- list(
+  emptyTable = "Nenhum dado disponível na tabela", info = "Exibindo _START_ a _END_ de _TOTAL_ registros",
+  infoEmpty = "Exibindo 0 a 0 de 0 registros", infoFiltered = "(filtrado de _MAX_ registros)",
+  lengthMenu = "Exibir _MENU_ registros", loadingRecords = "Carregando...",
+  processing = "Processando...", search = "Buscar:", zeroRecords = "Nenhum registro encontrado",
+  paginate = list(first = "Primeira", last = "Última", "next" = "Próxima", previous = "Anterior"),
+  aria = list(sortAscending = ": ativar para ordenar em ordem crescente",
+              sortDescending = ": ativar para ordenar em ordem decrescente")
+)
+banana_datatable <- function(data) {
+  DT::datatable(banana_display_data(data), options = list(language = banana_table_language))
+}
+
 # ui
 library(shinyjs)
 
 ui <- navbarPage("BP - TOOL", theme = shinytheme("united"),
-                 tabPanel("DASHBOARD",
+                 tabPanel("PAINEL", value = "DASHBOARD",
                           fluidRow(
-                                   column(6,h4("Total submissions per day"),
+                                   column(6,h4("Total de envios por dia"),
                                           plotOutput("tsubs", height = 250),
                                           
-                                       h5("Activities per contributor"),
+                                       h5("Atividades por colaborador"),
                                               plotOutput("csubs", height = 300)),
-                                   column(4,offset = 1, h4("Number of accessions in different stages of project"),
+                                   column(4,offset = 1, h4("Número de acessos nas diferentes etapas do projeto"),
                                           hr(),
                                           DT::dataTableOutput("nAccessions"))
                           )),
-                 tabPanel("TODAY'S REPORT",
+                 tabPanel("RELATÓRIO DO DIA", value = "TODAY'S REPORT",
                           fluidRow(
-                            column(3, h4("Table: Today summary"), br(),tableOutput("dsumTable")),
-                            column(6, h4("Table: Today's records"),br(), tableOutput("dTable"))
+                            column(3, h4("Tabela: resumo do dia"), br(),tableOutput("dsumTable")),
+                            column(6, h4("Tabela: registros do dia"),br(), tableOutput("dTable"))
                             ),
                           fluidRow( column(10, offset = 1, htmlOutput("text")))
                           ),
-                 navbarMenu("DATA TABLES",
-                            tabPanel("Crosses datasets",
+                 navbarMenu("TABELAS DE DADOS",
+                            tabPanel("Dados de cruzamentos", value = "Crosses datasets",
                                      fluidRow(
                                        column(2,offset=1, 
-                                              selectInput("select_activity", "Crosses datasets", 
-                                                          choices = c("All crosses data","Flowering","Firstpollination","RepeatPollination","Harvested",
-                                                                      "Ripened","Seed_extraction","Embryorescue","Germinating_two_weeks",
-                                                                      "Germinating_6weeks","Subculture")))),
+                                              selectInput("select_activity", "Dados de cruzamentos",
+                                                          choices = c("Todos os dados de cruzamentos" = "All crosses data","Florescimento" = "Flowering","Primeira polinização" = "Firstpollination","Repetição da polinização" = "RepeatPollination","Colhidos" = "Harvested",
+                                                                      "Maduros" = "Ripened","Extração de sementes" = "Seed_extraction","Resgate de embriões" = "Embryorescue","Germinação em duas semanas" = "Germinating_two_weeks",
+                                                                      "Germinação em seis semanas" = "Germinating_6weeks","Subcultivo" = "Subculture")))),
                                       fluidRow(
                                         hr(),
                                         column(10,offset=1, 
                                               div(style = c('overflow-x: scroll', "font-size: 75%; width: 75%"),
                                                   DT::dataTableOutput("crossesTable")),
-                                              downloadButton('downloadcrosses', 'Download data')))
+                                              downloadButton('downloadcrosses', 'Baixar dados')))
                                      ),
-                            tabPanel("Plantlets datasets",
+                            tabPanel("Dados de mudas", value = "Plantlets datasets",
                                      fluidRow(
                                        column(2, offset = 1,
-                                              selectInput("plantlets","Plantlets datasets", 
-                                                          choices = c("All plantlets data","Rooting","Screenhouse","Hardening","Openfield")))),
+                                              selectInput("plantlets","Dados de mudas",
+                                                          choices = c("Todos os dados de mudas" = "All plantlets data","Enraizamento" = "Rooting","Telado" = "Screenhouse","Aclimatação" = "Hardening","Campo aberto" = "Openfield")))),
                                      hr(),
                                      fluidRow(
                                        column(10,offset=1, 
                                               div(style = c('overflow-x: scroll', "font-size: 75%; width: 75%"),
                                                   DT::dataTableOutput("plantletsTable")),
-                                              downloadButton('downloadplantlets', 'Download data')))
+                                              downloadButton('downloadplantlets', 'Baixar dados')))
                                      ),
-                            tabPanel("Status and contamination",
+                            tabPanel("Situação e contaminação", value = "Status and contamination",
                                       fluidRow(           
                                        column(2, offset = 1,
-                                              selectInput("statusCont","Status and contamination", choices = c("Status","Contamination")))
+                                              selectInput("statusCont","Situação e contaminação", choices = c("Situação" = "Status","Contaminação" = "Contamination")))
                                      ),
                                      hr(),
                                      fluidRow(
                                        column(10,offset=1, 
                                               div(style = c('overflow-x: scroll', "font-size: 75%; width: 75%"),
                                                   DT::dataTableOutput("statusConTable")),
-                                              downloadButton('downloadstatusCont', 'Download data')))
+                                              downloadButton('downloadstatusCont', 'Baixar dados')))
                                      )
                             ),
-                  tabPanel("DATA EXPLORER",
+                  tabPanel("EXPLORADOR DE DADOS", value = "DATA EXPLORER",
                                      fluidRow(
-                                       column(3,selectInput("locations", "locations", c("All locations"="", unique(cleantable$location)), multiple=TRUE)),
+                                       column(3,selectInput("locations", "Locais", c("Todos os locais"="", unique(cleantable$location)), multiple=TRUE)),
                                        column(3,conditionalPanel("input.locations",
-                                                                 selectInput("activities", "Activities", c("Activities"=""), multiple=TRUE))),
+                                                                 selectInput("activities", "Atividades", c("Atividades"=""), multiple=TRUE))),
                                        column(3,conditionalPanel("input.locations",
-                                                                 selectInput("accessions", "Accessions", c("Accessions"=""), multiple=TRUE)))
+                                                                 selectInput("accessions", "Acessos", c("Acessos"=""), multiple=TRUE)))
                                      ),
                                      fluidRow(
                                        column(10, offset = 1,
@@ -144,13 +223,15 @@ ui <- navbarPage("BP - TOOL", theme = shinytheme("united"),
 
 server <- function(input, output, session){
   output$tsubs <- renderPlot({
-    qplot(data=cleantable, x=date) + ylab("Submission Count") + theme(legend.position = "bottom")
+    qplot(data=cleantable, x=date) + xlab("Data") + ylab("Número de envios") + theme(legend.position = "bottom")
   })
  output$csubs <- renderPlot({
-    qplot(data=cleantable, x=contributor, fill=activity) + theme(legend.position = "right") 
+    qplot(data=cleantable, x=contributor, fill=activity) +
+      labs(x = "Colaborador", y = "Número de envios") +
+      scale_fill_discrete(name = "Atividade", labels = banana_activity_label) + theme(legend.position = "right")
   })
  output$nAccessions <- DT::renderDataTable({
-   nTable
+   banana_datatable(nTable)
  })
  
   crossesInput <- reactive({
@@ -171,13 +252,13 @@ server <- function(input, output, session){
   })
   
   output$crossesTable <- DT::renderDataTable({
-    crossesInput()
+    banana_datatable(crossesInput())
   })
   output$plantletsTable <- DT::renderDataTable({
-    plantletsInput()
+    banana_datatable(plantletsInput())
   })
   output$statusConTable <- DT::renderDataTable({
-    statusConInput ()
+    banana_datatable(statusConInput())
   })
   
   
@@ -191,18 +272,20 @@ server <- function(input, output, session){
   
   if (dim(todaydata)[1]==0)
   {
-    output$text <- renderText({paste("No activity was recorded today")})
+    output$text <- renderText({paste("Nenhuma atividade foi registrada hoje")})
   }
   else{
     mytable = table(todaydata$location,todaydata$activity)
     dtable = as.data.frame(mytable)
     names(dtable) = c("location","Activity","N")
-    output$dsumTable <- renderTable(dtable)
-    output$dTable <- renderTable(todaydata)
+    output$dsumTable <- renderTable(banana_display_data(dtable))
+    output$dTable <- renderTable(banana_display_data(todaydata))
   }
   output$dPlot <- renderPlot({
     s<- ggplot(todaydata, aes(activity, fill=contributor))
-    s + geom_bar(position = 'stack') +  theme(legend.position = "bottom") + coord_flip()
+    s + geom_bar(position = 'stack') +
+      labs(x = "Atividade", y = "Número de envios", fill = "Colaborador") +
+      scale_x_discrete(labels = banana_activity_label) +  theme(legend.position = "bottom") + coord_flip()
   })
   ggplot(todaydata, aes(x = reorder(activity, -accession), y = accession, fill = activity)) + 
     geom_bar(stat = "identity")
@@ -216,7 +299,7 @@ server <- function(input, output, session){
         sort()
     }
     stillSelected <- isolate(input$activities[input$activities %in% activities])
-    updateSelectInput(session, "activities", choices = activities,
+    updateSelectInput(session, "activities", choices = setNames(activities, banana_activity_label(activities)),
                       selected = stillSelected)
   })
   
@@ -242,9 +325,11 @@ server <- function(input, output, session){
         is.null(input$accessions) | accession %in% input$accessions
       ) #%>%
     #mutate(Action = paste('<a class="go-map" href="" data-lat="', Lat, '" data-long="', Long, '" data-zip="', Zipcode, '"><i class="fa fa-crosshairs"></i></a>', sep=""))
-    action <- DT::dataTableAjax(session, df)
+    display_df <- banana_display_data(df)
+    action <- DT::dataTableAjax(session, display_df)
     
-    DT::datatable(df, options = list(ajax = list(url = action)), escape = FALSE)
+    DT::datatable(display_df, options = list(ajax = list(url = action),
+                  language = banana_table_language), escape = FALSE)
   })
 } 
 shinyApp(ui = ui, server = server)

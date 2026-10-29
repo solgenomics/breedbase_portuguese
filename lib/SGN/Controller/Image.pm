@@ -1,3 +1,5 @@
+use utf8;
+
 package SGN::Controller::Image;
 
 use Moose;
@@ -20,7 +22,7 @@ sub view :Path('/image/view/') Args(1) {
         SGN::Image->new( $dbh, $image_id+0, $c );
 
     $image->get_original_filename
-        or $c->throw_404('Image not found.');
+        or $c->throw_404('Imagem não encontrada.');
 
     $c->forward('get_user');
 
@@ -53,7 +55,7 @@ sub confirm :Path('/image/confirm') {
     $c->forward('require_logged_in');
 
     my $upload = $c->req->upload('file')
-        or $c->throw( public_message => 'No image file uploaded.', is_client_error => 1 );
+        or $c->throw( public_message => 'Nenhum arquivo de imagem foi enviado.', is_client_error => 1 );
     my $filename = $upload->filename();
     my $tempfile = $upload->tempname();
     #print STDERR "FILENAME: $filename TEMPNAME: $tempfile\n";
@@ -68,8 +70,8 @@ sub confirm :Path('/image/confirm') {
         unlink $tempfile;  # remove upload! prevents more errors on item we have rejected
 
         $c->throw( public_message => <<EOM, is_client_error => 1 );
-There is a problem with the image file you selected: $filename <br />
-Error: $filename_validation_msg <br />
+Há um problema com o arquivo de imagem selecionado: $filename <br />
+Erro: $filename_validation_msg <br />
 EOM
 
     }
@@ -111,7 +113,7 @@ sub store :Path('/image/store') {
     $image->set_sp_person_id( $c->stash->{person_id} );
 
     if ((my $err = $image->process_image($temp_image_dir."/".$tempfile, $type, $type_id, 1))<=0) {
-        die "An error occurred during the upload. Is the file you are uploading an image file? [$err] ";
+        die "Ocorreu um erro durante o envio. O arquivo enviado é uma imagem? [$err] ";
 
     }
 
@@ -166,18 +168,18 @@ sub validate_image_filename :Private {
     $test_fn =~ s/[^$OK_CHARS]/_/go;
     if ( $fn ne $test_fn ) {
         #print STDERR "Upload Attempt with bad shell characters: $fn \n";
-        return "Invalid characters found in filename, must not contain
-        characters <b>\& ; : \` \' \\ \| \* \? ~ ^ < > ( ) [ ] { } \$</b>" ;
+        return "Foram encontrados caracteres inválidos no nome do arquivo, que não pode conter
+        os caracteres <b>\& ; : \` \' \\ \| \* \? ~ ^ < > ( ) [ ] { } \$</b>" ;
     }
 
     my $ext;
     if ($fn =~ m/^(.*)(\.\S{1,4})\r*$/) {
         $ext = lc ($2);
         #print STDERR "Upload Attempt with disallowed filename extension: $fn Extension: $ext\n";
-        return "File Type must be one of: .png, .jpg, .jpeg, .gif, .pdf, .ps, or .eps" unless exists $file_types{$ext};
+        return "O tipo de arquivo deve ser um destes: .png, .jpg, .jpeg, .gif, .pdf, .ps ou .eps" unless exists $file_types{$ext};
     } else {
         #print STDERR "Upload Attempt with filename extension we could not parse: $fn \n";
-        return "File Type must be one of: .png, .jpg, .jpeg, .gif, .pdf, .ps, or .eps";
+        return "O tipo de arquivo deve ser um destes: .png, .jpg, .jpeg, .gif, .pdf, .ps ou .eps";
     }
 
     return 0;  # FALSE, if passes all tests

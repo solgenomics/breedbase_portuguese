@@ -1,3 +1,5 @@
+use utf8;
+
 
 package CXGN::Blast::SeqQuery::Plugin::NucleotideFasta;
 
@@ -65,7 +67,7 @@ sub validate {
 	}
     };
     if ($@) { 
-	return "The input is not legal fasta format";
+	return "A entrada não está em um formato FASTA válido";
     }
     else { 
 	return "OK";

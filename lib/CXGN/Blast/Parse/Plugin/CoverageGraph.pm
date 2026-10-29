@@ -44,10 +44,10 @@ sub parse {
 
   return join '',
     ( <<EOH,
-<center><b>Conservedness Histogram</b></center>
-<p>The histogram shows a count of hits <i>for each base</i> in the query sequence,
-but counts <i>only the domains BLAST finds</i>, meaning this is really more a function of region than of individual base.
-Within the graph, green shows exact base matches within conserved regions; blue shows non-matching bases within conserved regions. Gaps introduced into the query by BLAST are ignored; gaps introduced into target sequences are not.</p>
+<center><b>Histograma de conservação</b></center>
+<p>O histograma mostra a contagem de resultados <i>para cada base</i> na sequência de consulta,
+mas conta <i>apenas os domínios encontrados pelo BLAST</i>, portanto representa mais uma medida por região do que por base individual.
+No gráfico, verde indica bases idênticas nas regiões conservadas; azul indica bases diferentes nessas regiões. Lacunas introduzidas pelo BLAST na sequência de consulta são ignoradas; lacunas nas sequências-alvo são consideradas.</p>
 EOH
       qq|<center>|,
       $graph2->get_map_html(), #code for map element (should have the name used below in the image)

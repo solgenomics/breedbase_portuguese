@@ -42,12 +42,13 @@ cnr=cn/length(data.gbs[,i]);
 j=i-1;
 data.cnr[s]=cnr;
 s=s+1;
-cat("Sample",j,"missing rate is",cnr,"\n",file=f_out,sep=" ",append=TRUE);
+cat("Amostra",j,"proporção de dados ausentes:",cnr,"\n",file=f_out,sep=" ",append=TRUE);
 
 }
 
 png(file = "./documents/img/MissingRate.png")
-hist(data.cnr)
+hist(data.cnr, main = "Distribuição dos dados ausentes",
+     xlab = "Proporção de dados ausentes", ylab = "Frequência")
 dev.off()
 
 #data.plot<-read.csv(f_plot,sep="\t",header=F)

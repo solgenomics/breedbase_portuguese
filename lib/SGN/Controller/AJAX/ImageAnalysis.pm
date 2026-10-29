@@ -486,7 +486,7 @@ sub image_analysis_group_POST : Args(0) {
             stock_id => $results_ref->{'stock_id'},
             collector => $results_ref->{'image_username'},
             original_link => $results_ref->{'result'}->{'original_image'},
-            analyzed_link => 'Error: ' . $results_ref->{'result'}->{'error'},
+            analyzed_link => 'Erro: ' . $results_ref->{'result'}->{'error'},
             image_name => $results_ref->{'image_original_filename'}.$results_ref->{'image_file_ext'},
             trait_id => $results_ref->{'result'}->{'trait_id'},
             value => 'NA'

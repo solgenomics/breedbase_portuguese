@@ -1,3 +1,5 @@
+use utf8;
+
 
 =head1 NAME
 
@@ -347,7 +349,7 @@ sub nextButton {
           . ( $self->{dumpfile} )
           . "&amp;page_number="
           . ( $self->{page_number} + 1 )
-          . "\">Next Page</a>";
+          . "\">Próxima página</a>";
     }
     else {
         $self->{content} .= "Next Page";
@@ -372,7 +374,7 @@ sub previousButton {
           . ( $self->{dumpfile} )
           . "&amp;page_number="
           . ( $self->{page_number} - 1 )
-          . "\">Previous Page</a>";
+          . "\">Página anterior</a>";
     }
     else {
         $self->{content} .= "Previous Page";
@@ -396,7 +398,7 @@ sub summaryButton {
       . ( $self->{dumpfile} )
       . "&amp;idType="
       . ( $self->{idType} )
-      . "\">Summary Page</a>";
+      . "\">Página de resumo</a>";
 }
 
 =head2 newSearchButtons
@@ -411,7 +413,7 @@ sub summaryButton {
 
 sub newSearchButton {
     my $self = shift;
-    $self->{content} .= "<a href=\"input.pl\">New Search</a>";
+    $self->{content} .= "<a href=\"input.pl\">Nova busca</a>";
 }
 
 =head2 getFileLines

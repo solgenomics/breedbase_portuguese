@@ -1401,7 +1401,7 @@ sub get_user_solgs_analyses {
               }
             }
             else {
-                $result_page = qq |<a href=$result_page>[ View ]</a>|;
+                $result_page = qq |<a href=$result_page>[ Ver ]</a>|;
             }
 
             my $row = [

@@ -1,3 +1,5 @@
+use utf8;
+
 
 package SGN::Controller::AJAX::Search::Treatment;
 
@@ -115,7 +117,7 @@ sub search : Path('/ajax/search/treatments') Args(0) {
         my $accession = $_->{accession};
         my $treatment_id = $_->{trait_id};
         my $treatment_accession = $db_name .":". $accession ;
-        my $treatment_usage = "<em>None</em>";
+        my $treatment_usage = "<em>Nenhum</em>";
 
         # Get the number of trials that applied the treatment
         my $trial_criteria_list  = ['traits', 'trials'];

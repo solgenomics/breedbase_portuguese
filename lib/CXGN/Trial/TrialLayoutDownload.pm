@@ -144,7 +144,7 @@ has 'design' => (
 subtype 'Trial',
   as 'Ref',
     where { $_ =~ /CXGN::Trial/ || $_ =~ /CXGN::PhenotypingTrial/ || $_ =~  /CXGN::GenotypingTrial/ || $_ =~ /CXGN::Folder/ || $_ =~ /CXGN::CrossingTrial/ || $_ =~ /CXGN::ManagementFactor/ || $_ =~ /CXGN::SamplingTrial/},
-  message { "The string, $_, was not a valid trial object type"};
+  message { "O valor $_ não é um tipo válido de objeto de ensaio"};
 
 
 

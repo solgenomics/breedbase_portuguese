@@ -40,7 +40,7 @@ md <- sum(missingData$missingData)/nrow(pheno)
 
 #Removing trait with more than 60% of missing data
 if(md[1] > 0.6){
-  message1 <- c("Please, check your dataset! There are more than 60% of missing data for selected trait.")
+  message1 <- c("Verifique o conjunto de dados. Mais de 60% dos dados da característica selecionada estão ausentes.")
 }else{
   message1 <- c()
 }
@@ -49,7 +49,7 @@ if(md[1] > 0.6){
 #Removing non numeric data
 isNumeric <- is.numeric(pheno[,6])
 if(isNumeric == "FALSE"){
-  message2 <- c("Please, check your dataset! The selected trait is not numeric.")
+  message2 <- c("Verifique o conjunto de dados. A característica selecionada não é numérica.")
 }else{
   message2 <- c()
 }
@@ -162,7 +162,7 @@ tryCatch({ for(i in 6:ncol(pheno)){
 
 }, error = function(e) {
   an.error.occured <<- TRUE
-  errorMessages <<- c(errorMessages, as.character(e))
+  errorMessages <<- c(errorMessages, paste("Falha na análise de herdabilidade:", conditionMessage(e)))
 })
 
 
@@ -185,7 +185,7 @@ tryCatch({
 
 }, error = function(e) {
   an.error.occured <<- TRUE
-  errorMessages <<- c(errorMessages, as.character(e))
+  errorMessages <<- c(errorMessages, paste("Falha na análise de herdabilidade:", conditionMessage(e)))
 })
 
 errorMessages <- c(errorMessages, as.character(message1))

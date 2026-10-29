@@ -55,7 +55,7 @@ predictedTraits <- clusterOptions["predicted_traits", 1]
 predictedTraits <- unlist(strsplit(predictedTraits, ","))
 
 if (is.null(kResultFile)) {
-    stop("Clustering output file is missing.")
+    stop("O arquivo de saída do agrupamento não foi informado.")
     q("no", 1, FALSE)
 }
 
@@ -96,7 +96,7 @@ extractGenotype <- function(inputFiles) {
     }
 
     if (is.null(genoData)) {
-        stop("There is no genotype dataset.")
+        stop("Não há dados genotípicos.")
         q("no", 1, FALSE)
     } else {
         genoData <- genoDataFilter::convertToNumeric(genoData)
@@ -145,7 +145,7 @@ if (grepl("genotype", dataType, ignore.case = TRUE)) {
     clusterDataNotScaled <- na.omit(clusterData)
     clusterData <- scale(clusterDataNotScaled, center = TRUE, scale = TRUE)
     clusterData <- round(clusterData, 3)
-    reportNotes <- paste0(reportNotes, "Note: Data was standardized before clustering.",
+    reportNotes <- paste0(reportNotes, "Observação: os dados foram padronizados antes do agrupamento.",
         "\n")
 }
 sIndexFile <- grep("selection_index", inputFiles, value = TRUE)
@@ -175,29 +175,29 @@ recommendedK <- kMeansOut$bestk
 message("recommended number of clusters: ", kCenters)
 message("user defined number of clusters: ", userKNumbers)
 if (is.na(userKNumbers)) {
-    reportNotes <- paste0(reportNotes, "\n\nYou provided no cluster numbers (k): ", userKNumbers, "\n")
-    reportNotes <- paste0(reportNotes, "\n\nThe data was partitioned into ", recommendedK,
-            " clusters, the recommended number of clusters (k) for the given data ",
-            "based on the the kmeansruns algorithm (with runs=10) ",
-            "from the fpc R package.\n")
+    reportNotes <- paste0(reportNotes, "\n\nVocê não informou o número de grupos (k): ", userKNumbers, "\n")
+    reportNotes <- paste0(reportNotes, "\n\nOs dados foram divididos em ", recommendedK,
+            " grupos, o número de grupos (k) recomendado para os dados ",
+            "com base no algoritmo kmeansruns (com runs=10) ",
+            "do pacote R fpc.\n")
 } else {
     if (userKNumbers != 0) {
         kCenters <- as.integer(userKNumbers)
-        reportNotes <- paste0(reportNotes, "\n\nThe data was partitioned into ", 
-        kCenters, " clusters, the number of clusters ",
-        "(k) defined by you.\n")
+        reportNotes <- paste0(reportNotes, "\n\nOs dados foram divididos em ",
+        kCenters, " grupos, o número de grupos ",
+        "(k) definido por você.\n")
     } else {
-        stop("The number of clusters (k) should be a whole number. Provided k: ",
+        stop("O número de grupos (k) deve ser um número inteiro. Valor de k informado: ",
             userKNumbers, "\n")
         q("no", 1, FALSE)
     }
 }
 
-reportNotes <- paste0(reportNotes, "\n\nAccording the kmeansruns algorithm ",
-"(with runs=10) from the fpc R package, the recommended ",
-"number of clusters (k) for this data set is: ",
-recommendedK, "\n\nYou can also check the Elbow plot to evaluate ",
-"how many clusters may be better suited for your purpose.")
+reportNotes <- paste0(reportNotes, "\n\nSegundo o algoritmo kmeansruns ",
+"(com runs=10) do pacote R fpc, o número recomendado ",
+"de grupos (k) para este conjunto de dados é: ",
+recommendedK, "\n\nVocê também pode consultar o gráfico do cotovelo para avaliar ",
+"quantos grupos são mais adequados ao seu objetivo.")
 
 kMeansOut <- stats::kmeans(clusterData, centers = kCenters, nstart = 10)
 kClusters <- data.frame(kMeansOut$cluster)
@@ -225,12 +225,15 @@ clusteredData <- clusteredData %>%
 if (length(elbowPlotFile) && !file.info(elbowPlotFile)$size) {
     message("running elbow method...")
     png(elbowPlotFile)
-    print(factoextra::fviz_nbclust(clusterData, k.max = 20, FUNcluster = kmeans, method = "wss"))
+    print(factoextra::fviz_nbclust(clusterData, k.max = 20, FUNcluster = kmeans, method = "wss") +
+        ggplot2::labs(title = "Número de grupos pelo método do cotovelo",
+                      x = "Número de grupos (k)", y = "Soma de quadrados dentro dos grupos"))
     dev.off()
 }
 
 png(kmeansPlotFile)
-ggplot2::autoplot(kMeansOut, data = clusterData, frame = TRUE, x = 1, y = 2)
+ggplot2::autoplot(kMeansOut, data = clusterData, frame = TRUE, x = 1, y = 2) +
+    ggplot2::labs(colour = "Grupo", fill = "Grupo", shape = "Grupo")
 # fviz_cluster(kMeansOut, geom = "point", main = "", data = clusterData)
 dev.off()
 
@@ -273,17 +276,17 @@ if (length(clusterPcScoresFile)) {
 
 cat(reportNotes, file = reportFile, sep = "\n", append = TRUE)
 
-variances <- paste0("Variances output: ")
-variances <- append(variances, (paste0("\nBetween clusters sum of squares (betweenss): ",
+variances <- paste0("Resultados das variâncias: ")
+variances <- append(variances, (paste0("\nSoma de quadrados entre grupos (betweenss): ",
     "\t", round(kMeansOut$betweenss, 2))))
 withinss <- round(kMeansOut$withinss, 2)
-withinss <- c(paste0("\nWithin clusters sum of squares (withinss): "), "\t", paste("\n\t",
+withinss <- c(paste0("\nSoma de quadrados dentro dos grupos (withinss): "), "\t", paste("\n\t",
     withinss))
 variances <- append(variances, withinss)
-variances <- append(variances, (paste0("\nTotal within cluster sum of squares (tot.withinss): ",
+variances <- append(variances, (paste0("\nSoma total de quadrados dentro dos grupos (tot.withinss): ",
     "\t", round(kMeansOut$tot.withinss, 2))))
 
-variances <- append(variances, (paste0("\nTotal sum of squares (totss): ", "\t",
+variances <- append(variances, (paste0("\nSoma total de quadrados (totss): ", "\t",
     round(kMeansOut$totss, 2))))
 
 cat(variances, file = variancesFile, sep = "", append = TRUE)
