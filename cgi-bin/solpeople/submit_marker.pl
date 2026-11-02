@@ -1,3 +1,4 @@
+use utf8;
 use strict;
 
 use CXGN::DB::Connection;
@@ -39,7 +40,7 @@ sub display_form {
     
     $page->header();
     
-    print page_title_html("Submit Marker to SGN");
+    print page_title_html("Enviar marcador ao SGN");
     
     print <<HTML;
     
@@ -48,11 +49,11 @@ sub display_form {
 	<form action="submit_marker.pl">
 	<table>
 	
-	<tr><td>Marker name:</td><td><input name="marker_name" /></td></tr>
-	<tr><td>Marker type:</td><td><input type="radio" name="marker_type" value="ssr" /> SSR<br />
+        <tr><td>Nome do marcador:</td><td><input name="marker_name" /></td></tr>
+        <tr><td>Tipo de marcador:</td><td><input type="radio" name="marker_type" value="ssr" /> SSR<br />
 	<input type="radio" name="marker_type" value="caps" /> CAPS</td></tr>
-	<tr><td>5' primer seq: </td><td><input name="5primer" size="40" /></td></tr>
-	<tr><td>3' primer seq: </td><td><input name="3primer" size="40" /></td></tr>
+        <tr><td>Sequência do primer 5': </td><td><input name="5primer" size="40" /></td></tr>
+        <tr><td>Sequência do primer 3': </td><td><input name="3primer" size="40" /></td></tr>
 	
 	<tr><td>Annealing temp: </td><td><input name="temp" size="5" />&deg;C</td></tr>
 	<tr><td>Mg conc</td><td><input name="mgconc" size="5" /> mM</td></tr>
@@ -68,7 +69,7 @@ sub display_form {
 	</table>
 	<br />
 	<input type="hidden" name="person_id" value="$person_id" />
-	<input type="submit" value="Submit Marker" /> &nbsp; 
+        <button type="submit" value="Submit Marker">Enviar marcador</button> &nbsp;
     </form>
 	</center>
 

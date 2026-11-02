@@ -1,4 +1,5 @@
 #!/usr/bin/perl -w
+use utf8;
 use strict;
 use CXGN::Page;
 use CXGN::DB::Connection;
@@ -63,7 +64,7 @@ foreach my $routing_id ( keys %orders ) {
   elsif ($routing_id == 2) { # Kazusa
       push @order_text, kazusa_order_routing($orders{$routing_id});
   } else {
-    $page->error_page("Clone ordered but order routing function for \"$routing_id\" is not available");
+    $page->error_page("Clone solicitado, mas a função de encaminhamento de pedidos para \"$routing_id\" não está disponível");
   }
 
 }
@@ -76,7 +77,7 @@ sub ted_order_routing {
 <input type="hidden" name="route_to" value="1" />
 <input type="hidden" name="order_clones" value="$clone_order" />
 <table summary="" cellpadding="2" cellspacing="2" border="0" align="center" width="100%">
-<tr><td style="background-color: CCCCFF;" align="center">The following selected clones are available through <b>TED</b></td></tr>
+<tr><td style="background-color: CCCCFF;" align="center">Os seguintes clones selecionados estão disponíveis por <b>TED</b></td></tr>
 EOF
   foreach (@{$clone_listref}) {
     $text .= "<tr><td>$_</td></tr>";
@@ -84,7 +85,7 @@ EOF
 
   $text .= <<EOF;
 <tr><td style="background-color: CCCCFF;" align="center">
-<input type="submit" name="route_order" value="Route Order" />&nbsp;&nbsp;<input type="submit" name="route_order" value="Delete Order" />
+<button type="submit" name="route_order" value="Route Order">Encaminhar pedido</button>&nbsp;&nbsp;<button type="submit" name="route_order" value="Delete Order">Excluir pedido</button>
 </td></tr></table></form>
 EOF
 
@@ -100,7 +101,7 @@ sub kazusa_order_routing {
 <input type="hidden" name="route_to" value="1" />
 <input type="hidden" name="order_clones" value="$clone_order" />
 <table summary="" cellpadding="2" cellspacing="2" border="0" align="center" width="100%">
-<tr><td style="background-color: CCCCFF;" align="center">The following selected clones are available through <b>Kazusa</b></td></tr>
+<tr><td style="background-color: CCCCFF;" align="center">Os seguintes clones selecionados estão disponíveis por <b>Kazusa</b></td></tr>
 EOF
   foreach (@{$clone_listref}) {
     $text .= "<tr><td>$_</td></tr>";
@@ -108,8 +109,8 @@ EOF
 
   $text .= <<EOF;
 <tr><td style="background-color: CCCCFF;" align="center">
-<a href="mailto:plantinfo\@kazusa.or.jp?subject=clone order&amp;body=$clone_order_text"><b>ORDER CLONES (email)</b></a>&nbsp;&nbsp;<input type="submit" name="route_order" value="Delete Order" /><br /><br />
-<a href="http://www.kazusa.or.jp/clonereq/">Kazusa Clone request page</a> | <a href="http://www.kazusa.or.jp/clonereq/agreement.html">Kazusa Material Transfer Agreement</a>
+<a href="mailto:plantinfo\@kazusa.or.jp?subject=clone order&amp;body=$clone_order_text"><b>SOLICITAR CLONES (e-mail)</b></a>&nbsp;&nbsp;<button type="submit" name="route_order" value="Delete Order">Excluir pedido</button><br /><br />
+<a href="http://www.kazusa.or.jp/clonereq/">Página de solicitação de clones de Kazusa</a> | <a href="http://www.kazusa.or.jp/clonereq/agreement.html">Kazusa Material Transfer Agreement</a>
 </td></tr></table></form>
 
 EOF
@@ -122,7 +123,7 @@ print <<EOF;
 
 <table summary="" width="80%" align="center" cellspacing="2" cellpadding="2" border="0">
 <tr><td>
-<p>SGN can compile a list of clones to order and then route the orders to appropriate people or facilities for you when you are finished selecting clones. To continue selecting clones, use your browser's back button or start a <a href="/search/direct_search.pl">new search</a></p>
+<p>O SGN pode montar uma lista de clones e encaminhar os pedidos aos responsáveis quando você terminar de selecioná-los. Para continuar a seleção, use o botão Voltar do navegador ou inicie uma <a href="/search/direct_search.pl">nova busca</a></p>
 </td></tr>
 <tr><td align="center"><b>Shopping Cart Contents</b></td></tr>
 <tr><td>
@@ -131,7 +132,7 @@ print <<EOF;
 </td></tr>
 <tr><td>
 <p>
-<b>Please Note:</b> SGN does not handle clone orders directly. Selected clones will be routed online to the appropriate parties using the submit buttons above. Your browser <b>must support cookies</b> for this to work properly. Please use your browser's back button to select additional clones, or start a new search using the links above.
+<b>Observe:</b> O SGN não processa pedidos de clones diretamente. Os clones selecionados são encaminhados aos responsáveis pelos botões de envio acima. Seu navegador <b>deve aceitar cookies</b> para que isso funcione. Use o botão Voltar para selecionar mais clones ou inicie uma nova busca pelos links acima.
 </p>
 </td></tr>
 </table>
@@ -146,8 +147,8 @@ sub empty_cart {
   print <<EOF;
 
   <table summary="" border="0" width="80%" align="center">
-  <tr><td align="center"><p>There are no cDNA clones in your shopping cart.</td></tr>
-  <tr><td align="center"><p>Please note that your browser must accept cookies to order clones through SGN.</p>
+  <tr><td align="center"><p>Não há clones de cDNA no carrinho.</td></tr>
+  <tr><td align="center"><p>O navegador precisa aceitar cookies para solicitar clones pelo SGN.</p>
   <br /></td></tr>
   </table>
 

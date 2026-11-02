@@ -1,3 +1,4 @@
+use utf8;
 
 use strict;
 use CXGN::Page;
@@ -6,7 +7,7 @@ my $p = CXGN::Page->new();
 
 $p->header("PerlCyc.pm", "PerlCyc.pm");
 
-print info_section_html (title=>"Description", contents=> <<HTML );
+print info_section_html (title=>"Descrição", contents=> <<HTML );
 
 
 PerlCyc is a Perl interface for <a href="http://bioinformatics.ai.sri.com/ptools/">Pathway Tools software</a>. It allows internal Pathay Tools Lisp functions to be accessed through Perl. <br /><br />
@@ -26,7 +27,7 @@ For a description of what the individual functions do, please
 
 HTML
 
-    print info_section_html (title=>"Installation", contents=> <<HTML );
+    print info_section_html (title=>"Instalação", contents=> <<HTML );
 
 Installation is standard as for any Perl module. If you downloaded the
        compressed tar file, uncompress and untar the file with the following
@@ -50,7 +51,7 @@ Installation is standard as for any Perl module. If you downloaded the
 
 HTML
 
-    print info_section_html (title=>"Limitations", contents=><<HTML);
+    print info_section_html (title=>"Limitações", contents=><<HTML);
 
 Perlcyc does not implement the GFP objects in Perl, rather it just
        sends snippets of code to Pathway-Tools through a socket connection.
@@ -59,7 +60,7 @@ Perlcyc does not implement the GFP objects in Perl, rather it just
 
 HTML
 
-    print info_section_html (title=>"Supported functions", contents=><<HTML);
+    print info_section_html (title=>"Funções disponíveis", contents=><<HTML);
 
 
 Object functions:
@@ -185,7 +186,7 @@ Object functions:
 
 HTML
 
-    print info_section_html(title=>"Requirements", contents=> <<HTML );
+    print info_section_html(title=>"Requisitos", contents=> <<HTML );
 
        To use the Perl module, you also need the socket_server.lisp program.
        In Pathway Tools version 8.0 or later, the server program can be
@@ -198,13 +199,13 @@ HTML
 
 HTML
 
-print    info_section_html (title=>"Download", contents=> <<HTML );
+print    info_section_html (title=>"Baixar", contents=> <<HTML );
 
 Download [<a href="ftp://ftp.sgn.cornell.edu/programs/perlcyc/">FTP</a>]
 
 HTML
 
-    print info_section_html(title=>"Documentation", contents=> <<HTML );
+    print info_section_html(title=>"Documentação", contents=> <<HTML );
 
 <pre>
        perlcyc is a Perl interface for Pathway Tools software.
@@ -265,7 +266,7 @@ VERSION HISTORY
 
 HTML
 
-    print info_section_html (title=>"Examples", contents=> <<HTML );
+    print info_section_html (title=>"Exemplos", contents=> <<HTML );
 
        Change product type for all genes that are in a pathway to "Enzyme"
 
@@ -358,7 +359,7 @@ HTML
 
 HTML
 
-    print info_section_html(title=>"Troubleshooting", contents=> <<HTML );
+    print info_section_html(title=>"Solução de problemas", contents=> <<HTML );
 
        If your program terminates with the following error message: "connect:
        No such file or directory at perlcyc.pm line 166."  then the
@@ -370,7 +371,7 @@ HTML
 
 HTML
 
-    print info_section_html(title=>"License", contents=> <<HTML );
+    print info_section_html(title=>"Licença", contents=> <<HTML );
 
 <pre>
        According to the MIT License:<br />

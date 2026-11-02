@@ -1,3 +1,4 @@
+use utf8;
 use strict;
 use CXGN::Page;
 my $page=CXGN::Page->new('index.html','html2pl converter');
@@ -32,7 +33,7 @@ print<<END_HEREDOC;
 
 
 	    <div class="subheading">
-    <u>Markers</u>
+    <u>Marcadores</u>
              </div>
 
 	    <div class="boxsubcontent">

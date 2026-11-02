@@ -1,4 +1,5 @@
 #!/usr/bin/perl -w
+use utf8;
 use strict;
 use CXGN::Page;
 use CXGN::DB::Connection;
@@ -105,7 +106,7 @@ EOF
 
 
   if ($blast_content eq "") {
-    $blast_content = qq(<tr><td><font color="gray">No BLAST annotations were found</td></tr>);
+    $blast_content = qq(<tr><td><font color="gray">Nenhuma anotação BLAST encontrada</td></tr>);
   } else {
     $blast_content = qq(<tr><td><table cellspacing="0" border="0" width="100%" align="center">) . $blast_content ."</table></td></tr>";
   }
@@ -131,7 +132,7 @@ sub empty_search {
 
   print <<EOF;
   <br />
-  <b>Not enough unigene search criteria specified</b>
+  <b>Critérios insuficientes para a busca de unigenes</b>
 
 EOF
 

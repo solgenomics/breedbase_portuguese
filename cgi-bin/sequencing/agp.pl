@@ -1,3 +1,4 @@
+use utf8;
 use strict;
 
 use File::Temp qw//;
@@ -33,7 +34,7 @@ use CXGN::TomatoGenome::tpf_agp qw(
 				   modtime_string
 				  );
 
-my $page = CXGN::Page->new("AGP Display","Rob");
+my $page = CXGN::Page->new("Exibição de AGP","Rob");
 
 #get input arguments and validate
 my ($chr) = $page->get_arguments(qw/chr/);
@@ -56,18 +57,18 @@ if(my $upload = $page->get_upload ) {
 #   }
 
   my $validation_report = validate_and_publish_agp($upload->fh,$chr);
-  $page->message_page('AGP validation failed',$validation_report) if $validation_report;
+  $page->message_page('Falha na validação do AGP',$validation_report) if $validation_report;
 }
 
 
-$page->header('Assembly Display',"Chromosome Assemblies");
+$page->header('Exibição da montagem',"Montagens de cromossomos");
 print <<EOHTML;
-<p>The listings below have been developed and submitted to SGN by the individual <a href="/about/tomato_sequencing.pl">tomato chromosome sequencing projects</a>.</p>
-<p>The AGP file describes the current best known sequence assembly of this chromosome.  Descriptions of this file format are available <a href="http://www.ncbi.nlm.nih.gov/genome/guide/Assembly/AGP_Specification.html">from NCBI</a> and <a href="http://genome.ucsc.edu/goldenPath/datorg.html">from UCSC</a>.</p>
-<p>These files are also available for download <a href="ftp://ftp.sgn.cornell.edu/tomato_genome/agp">via FTP</a>.</p>
+<p>As listas abaixo foram desenvolvidas e enviadas ao SGN pelos respectivos <a href="/about/tomato_sequencing.pl">projetos de sequenciamento dos cromossomos de tomate</a>.</p>
+<p>O arquivo AGP descreve a melhor montagem de sequência conhecida atualmente para este cromossomo. As descrições desse formato estão disponíveis <a href="http://www.ncbi.nlm.nih.gov/genome/guide/Assembly/AGP_Specification.html">no NCBI</a> e <a href="http://genome.ucsc.edu/goldenPath/datorg.html">na UCSC</a>.</p>
+<p>Esses arquivos também estão disponíveis para download <a href="ftp://ftp.sgn.cornell.edu/tomato_genome/agp">via FTP</a>.</p>
 EOHTML
 
-print qq|<div style="text-align: center; font-weight: bold; margin-bottom: 0.5em">Chromosome</div>\n|;
+print qq|<div style="text-align: center; font-weight: bold; margin-bottom: 0.5em">Cromossomo</div>\n|;
 print modesel( [map {["?chr=$_",$_]} 1..12], $chr-1);
 print "<br />\n";
 
@@ -78,15 +79,15 @@ my (undef,$published_agp_ftp) = published_ftp_download_links($chr);
 print info_section_html( title    => 'Accessioned Golden Path (AGP)',
 			 subtitle => "$agp_modtime  $published_agp_ftp",
 			 contents => agp_to_html($published_agp) || <<EOHTML,
-<center><b>No AGP file is currently available for chromosome $chr</b></center>
+<center><b>Nenhum arquivo AGP está disponível para o cromossomo $chr</b></center>
 EOHTML
 		       );
-print info_section_html( title    => "Other Chromosome $chr Resources",
+print info_section_html( title    => "Outros recursos do cromossomo $chr",
 			 contents =>  <<EOHTML,
 <ul>
-<li>Tomato maps: <a href="/cview/index.pl">Genetic</a> | <a href="/cview/map.pl?map_id=9&amp;physical=1">Physical</a> | <a href="/cview/map.pl?map_id=13">BAC FISH results</a></li>
-<li><a href="/organism/Solanum_lycopersicum/clone_sequencing?chr=$chr">Chromosome $chr BAC list</a></li>
-<li><a href="tpf.pl?chr=$chr">Chromosome $chr Tiling Path (TPF)</a></li>
+<li>Mapas de tomate: <a href="/cview/index.pl">Genético</a> | <a href="/cview/map.pl?map_id=9&amp;physical=1">Físico</a> | <a href="/cview/map.pl?map_id=13">Resultados de BAC FISH</a></li>
+<li><a href="/organism/Solanum_lycopersicum/clone_sequencing?chr=$chr">Lista de BACs do cromossomo $chr</a></li>
+<li><a href="tpf.pl?chr=$chr">Caminho de cobertura (TPF) do cromossomo $chr</a></li>
 </ul>
 EOHTML
 		       );
@@ -118,7 +119,7 @@ sub validate_and_publish_agp {
 
     #check that we have the correct object identifier
     $l->{objname} eq "S.lycopersicum-chr$chr"
-      or $err->("first column must be 'S.lycopersicum-chr$chr', not '$l->{objname}'");
+      or $err->("a primeira coluna deve ser 'S.lycopersicum-chr$chr', em vez de '$l->{objname}'");
 
     if(my $ident = $l->{ident}) {
       	my $p = parse_clone_ident($ident,'agi_bac_with_chrom','agi_bac','versioned_bac_seq');
@@ -128,28 +129,28 @@ sub validate_and_publish_agp {
 	#recent sequence we have on file for that clone.  error if
 	#they don't match
 	my $c = $p ? CXGN::Genomic::Clone->retrieve_from_parsed_name($p)
-	             || $err->("Unknown sequence identifier '$ident'")
+                     || $err->("Identificador de sequência desconhecido: '$ident'")
 	           : lookup_and_match_genbank_accession($ident,$err);
 
 	unless( ref $c ) {
-	  $err->("Cannot find a BAC sequence for identifier '$ident'");
+          $err->("Nenhuma sequência de BAC encontrada para o identificador '$ident'");
 	} else {
 	  $c->chromosome_num == $chr
-	    or $err->("BAC referenced in identifier '$ident' is not currently assigned to chromosome $chr");
+            or $err->("O BAC referenciado pelo identificador '$ident' não está atribuído ao cromossomo $chr");
 	  my $latest_ver = $c->latest_sequence_version;
 	  !$p->{version} || $p->{version} == $latest_ver
-	    or $err->("The sequence version for '$ident' differs from the latest sequence version in the SGN database, which is '$latest_ver'.");
+            or $err->("A versão da sequência de '$ident' difere da versão mais recente no banco de dados do SGN, que é '$latest_ver'.");
 
 	  #rewrite the identifier to the SGN-type identifier
 	  $l->{ident} = $c->latest_sequence_name
-	    or $err->("The sequence for '$ident' has not yet been loaded into the SGN database.  If you have not yet submitted it, please do so before publishing this assembly.  If you have already submitted it, please wait a few hours to ensure the loading is completed, then try uploading this file again.");
+            or $err->("A sequência de '$ident' ainda não foi carregada no banco de dados do SGN. Se ainda não a enviou, faça isso antes de publicar esta montagem. Se já a enviou, aguarde algumas horas para que o carregamento seja concluído e tente enviar este arquivo novamente.");
 
 	  # check that the length of this element is not longer than the element referred to
 	  my $seq = $c->seq
-	    or $err->("Could not fetch seq for '$ident'");
+            or $err->("Não foi possível obter a sequência de '$ident'");
 	  my $seqlen = length($seq);
 	  $seqlen >= $l->{length}
-	    or $err->("length of this component ($l->{length} bases) is too large to be covered by the sequence specified ($ident, $seqlen bases)");
+            or $err->("o comprimento deste componente ($l->{length} bases) é maior que o da sequência especificada ($ident, $seqlen bases)");
 	}
     }
 
@@ -202,7 +203,7 @@ sub lookup_and_match_genbank_accession {
   my ($accession,$err) = @_;
 
   unless($accession =~ /^[a-z]{2}\d+\.\d+$/i) {
-    $err->("Unknown identifier '$accession'");
+    $err->("Identificador desconhecido: '$accession'");
     return;
   }
 
@@ -210,7 +211,7 @@ sub lookup_and_match_genbank_accession {
   my $seq = eval{$gb->get_Seq_by_version($accession)}; #this dies if the acc doesn't exist
   warn $@ if $@;
   unless($seq) {
-    $err->("'$accession' looks like it might be a GenBank accession, but is not found in GenBank.");
+    $err->("'$accession' parece ser um acesso do GenBank, mas não foi encontrado no GenBank.");
     return;
   }
 
@@ -224,12 +225,12 @@ sub lookup_and_match_genbank_accession {
     }
   }
   unless($clone) {
-    $err->("Could not match GenBank accession '$accession' to a clone name.  Is a clone name included in the DEFINITION field for that record?");
+    $err->("Não foi possível associar o acesso '$accession' do GenBank a um nome de clone. O campo DEFINITION desse registro inclui um nome de clone?");
     return;
   }
 
   unless($clone->latest_sequence_name) {
-    $err->("GenBank record for $accession purports to be for SGN BAC identifier ".$clone->clone_name_with_chromosome.", but no sequence has been submitted to SGN for this clone.  Please upload it to SGN.");
+    $err->("O registro $accession do GenBank indica corresponder ao identificador de BAC do SGN ".$clone->clone_name_with_chromosome.", mas nenhuma sequência foi enviada ao SGN para esse clone. Envie a sequência ao SGN.");
     return;
   }
 
@@ -237,7 +238,7 @@ sub lookup_and_match_genbank_accession {
   my @clone_seqs = $clone->seq;
 #  warn "checking our seq ".length($clone_seqs[0])." against their seq ".length($seq->seq);
   unless(@clone_seqs == 1 && compare_gb_and_sgn_seqs($seq->seq,$clone_seqs[0])) {
-    $err->("Sequence in GenBank for $accession does not match SGN sequence for ".$clone->latest_sequence_name.".  Please update either SGN or GenBank such that they match, or use SGN versioned sequence identifiers (e.g. C01HBa0001A01.1).");
+    $err->("A sequência de $accession no GenBank não corresponde à sequência do SGN para ".$clone->latest_sequence_name.". Atualize o SGN ou o GenBank para que as sequências correspondam ou use identificadores de sequência versionados do SGN (por exemplo, C01HBa0001A01.1).");
 #    warn "seq for $accession is\n".$clone_seqs[0]
   }
 

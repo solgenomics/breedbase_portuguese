@@ -1,3 +1,4 @@
+use utf8;
 #
 # deletes a forum post
 #
@@ -58,8 +59,7 @@ if ($post_id) {
     if (!$post) { 
 	$page->header();
 	print "<h4>No such post</h4>\n<br />
-               The post you are trying to delete does not exist. 
-               It may have been deleted previously or never existed.
+               A mensagem que você está tentando excluir não existe. Talvez já tenha sido excluída ou nunca tenha existido.
                <br /><br /><br /><br />\n";
 	$page->footer();
 	
@@ -70,9 +70,9 @@ if ($post_id) {
 	    
 	    print <<HTML;
 	    <div class="container-fluid">
-	    <h4>Confirm user comment delete</h4>
+            <h4>Confirmar exclusão de comentário</h4>
 		Comment \# $post_id from user <b>$post_person_first_name $post_person_last_name</b><br /><br />
-	      Are you sure you want to delete this post? <br /><br />
+              Tem certeza de que deseja excluir esta mensagem? <br /><br />
 
 	      <div class="panel panel-primary"><div class="panel-body">$post_text</div></div>
 	      
@@ -82,8 +82,8 @@ if ($post_id) {
 	      <input type="hidden" name="post_id" value="$post_id" />
 	      <input type="hidden" name="refering_page" value="$refering_page" />
 	      <input type="hidden" name="topic_id" value="$topic_id" />
-	      <input class="btn btn-primary" type="submit" value="Delete" /><br /><br />
-	      <a href="$refering_page">Go back</a>
+              <button class="btn btn-primary" type="submit" value="Delete">Excluir</button><br /><br />
+              <a href="$refering_page">Voltar</a>
 	      </form>
 	     </div> 
 HTML
@@ -96,14 +96,14 @@ HTML
 	    
 	    if ($rows == 1) { 
 		$page->header();
-		print "<h4>Your post has been deleted.</h4>\n<br /><br /><br />";
+                print "<h4>Sua mensagem foi excluída.</h4>\n<br /><br /><br />";
 
-		print "<a href=\"$refering_page\">Go back to user comments on the detail page.</a><br /><br />\n";
+                print "<a href=\"$refering_page\">Voltar aos comentários na página de detalhes.</a><br /><br />\n";
 		$page->footer();
 	    }
 	    else { 
 		$page->header();
-		print "<h4>ERROR</h4><h4>An error occurred during deletion. The post_id supplied may be invalid.</h4>";
+                print "<h4>ERRO</h4><h4>Ocorreu um erro durante a exclusão. O post_id informado pode ser inválido.</h4>";
 		$page->footer();
 		
 	    }
@@ -112,9 +112,9 @@ HTML
     }
     else { 
 	$page ->header();
-	print "<h4>POST CAN'T BE DELETED!</h4>\n";
+        print "<h4>NÃO FOI POSSÍVEL EXCLUIR A MENSAGEM!</h4>\n";
 	print "<h4>Either this post_id does not exist anymore or you are not the owner of post $post_id. Only the posters can delete their own posts. Sorry!</h4>\n";
-	print "<br /><br /><a href=\"$refering_page\">Return to user comments.</a><br /><br />\n";
+        print "<br /><br /><a href=\"$refering_page\">Voltar aos comentários.</a><br /><br />\n";
 
 
 	$page->footer();
@@ -123,7 +123,7 @@ HTML
 }
 else {
     $page->header();
-    print "<h4>No post id was supplied. Nothing was deleted.</h4>\n";
+    print "<h4>Nenhum ID de mensagem informado. Nada foi excluído.</h4>\n";
     $page->footer();
 }
 

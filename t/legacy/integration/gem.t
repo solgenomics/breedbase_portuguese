@@ -1,3 +1,4 @@
+use utf8;
 #!/usr/bin/perl
 use strict;
 use warnings;
@@ -44,11 +45,11 @@ $mech->with_test_level( local => sub {
 	my $template_name = $template_row->get_column('template_name');
 	
 	$mech->get_ok("$base_url/gem/template.pl?id=$template_id");
-	$mech->content_like(qr/Expression Template: $template_name/);
+        $mech->content_like(qr/Modelo de expressão: $template_name/);
 	$mech->content_unlike( qr/ERROR PAGE/ );
 
 	$mech->get_ok("$base_url/gem/template.pl?name=$template_name");
-	$mech->content_like(qr/Expression Template: $template_name/);
+        $mech->content_like(qr/Modelo de expressão: $template_name/);
 	$mech->content_unlike( qr/ERROR PAGE/ );
     }
 
@@ -69,15 +70,15 @@ $mech->with_test_level( local => sub {
 
 	$mech->get_ok("$base_url/gem/experiment.pl?id=$experiment_id");
 	$mech->content_unlike( qr/ERROR PAGE/ );
-	$mech->content_like( qr/Expression Experiment: $experiment_name/ );
+        $mech->content_like( qr/Experimento de expressão: $experiment_name/ );
 
 	$mech->get_ok("$base_url/gem/experiment.pl?name=$experiment_name");
 	$mech->content_unlike( qr/ERROR PAGE/ );
-	$mech->content_like( qr/Expression Experiment: $experiment_name/ );
+        $mech->content_like( qr/Experimento de expressão: $experiment_name/ );
 
 	$mech->get_ok("$base_url/gem/experiment.pl?name=foob");
 	$mech->content_unlike( qr/ERROR PAGE/ );
-	$mech->content_like( qr/No experiment data for the specified parameters/);	
+        $mech->content_like( qr/Sem dados de experimentos para os parâmetros especificados/);
     }
 
     ## PLATFORM ##
@@ -120,11 +121,11 @@ $mech->with_test_level( local => sub {
 	my $expdesign_name = $experimental_design_row->get_column('experimental_design_name');
 	
 	$mech->get_ok("$base_url/gem/experimental_design.pl?id=$expdesign_id");
-	$mech->content_like(qr/Expression Experimental Design:\s+$expdesign_name/);
+        $mech->content_like(qr/Delineamento experimental de expressão:\s+$expdesign_name/);
 	$mech->content_unlike( qr/ERROR PAGE/ );
 
 	$mech->get_ok("$base_url/gem/experimental_design.pl?name=$expdesign_name");
-	$mech->content_like(qr/Expression Experimental Design:\s+$expdesign_name/);
+        $mech->content_like(qr/Delineamento experimental de expressão:\s+$expdesign_name/);
 	$mech->content_unlike( qr/ERROR PAGE/ );
     }
  

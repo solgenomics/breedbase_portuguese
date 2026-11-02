@@ -1,3 +1,4 @@
+use utf8;
 
 use strict;
 
@@ -19,7 +20,7 @@ my $logged_in_username=$logged_in_user->get_first_name()." ".$logged_in_user->ge
 my $logged_in_user_type=$logged_in_user->get_user_type();
 
 if($logged_in_user_type ne 'curator') { 
-    $page->message_page("You don't have the necessary privileges to perform this action! ");
+    $page->message_page("Você não tem permissão para realizar esta ação. ");
 }
 
 
@@ -56,18 +57,18 @@ sub form {
     
     <form>
 	<table><tr>
-	<td>Data type:</td>
+        <td>Tipo de dado:</td>
 	<td>
 	<select name="data_type">
 	<option value="bac">BAC</option>
-	<option value="marker">Marker</option>
+        <option value="marker">Marcador</option>
 	</select>
 	</td>
-	<td>Data id:</td>
+        <td>ID do dado:</td>
 	<td> <input name="data_id" /></td>
 	</tr>
 	<tr>
-	<td>Role type:</td>
+        <td>Tipo de função:</td>
 	<td colspan="3">
 	$role_select
 	</td>
@@ -78,7 +79,7 @@ sub form {
 	<td>
 	<select name="attributed_to_type">
 	<option value="person">Person</option>
-	<option value="organization">Organization</option>
+        <option value="organization">Instituição</option>
 	<option value="project">Project</option>
 	</select>
 	</td>
@@ -89,7 +90,7 @@ sub form {
 	
 	<br />
 	<input type="hidden" name="action" value="verify" />
-	<input type="submit" value="Submit" />
+        <button type="submit" value="Submit">Enviar</button>
 	
 	</form>
 	
@@ -104,7 +105,7 @@ sub verify {
     
     
     if (!$attributed_to_type || !$attributed_to_id || !$data_type || !$data_id) { 
-	$page->message_page("Need all data filled in!");
+        $page->message_page("Preencha todos os dados.");
     }
     
     my $attributed_name = "";
@@ -135,7 +136,7 @@ sub verify {
     $sth->execute($data_id);
     my ($hashref) = $sth->fetchrow_hashref();
 
-    print qq { <div class="boxbgcolor2"><b>Database object</b><br /><br /> };
+    print qq { <div class="boxbgcolor2"><b>Objeto do banco de dados</b><br /><br /> };
     foreach my $k (keys %$hashref) { 
 	print "$k: $$hashref{$k}<br />\n" if (exists $$hashref{$k});
     }
@@ -151,7 +152,7 @@ sub verify {
 <input type="hidden" name="data_id" value="$data_id" />
 <input type="hidden" name="action" value="store" />
 
-    <input type="submit" value="Store" /> 
+    <button type="submit" value="Store">Salvar</button>
     </form>
 
 HTML

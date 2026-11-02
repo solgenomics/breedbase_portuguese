@@ -1,3 +1,4 @@
+use utf8;
 
 =head1 NAME
 
@@ -23,17 +24,17 @@ use CXGN::Page::FormattingHelpers
   qw/page_title_html modesel simple_selectbox_html/;
 use CXGN::DB::Connection;
 
-our $page = CXGN::Page->new( "Bulk download",
+our $page = CXGN::Page->new( "Download em massa",
     "Lukas Mueller, Caroline Nyenke, Rob Buels" );
 my $db = CXGN::DB::Connection->new();
 
 my ( $mode, $debug ) =
   $page->get_arguments(qw/mode debug/);  #determine mode and whether debug is on
 
-$page->header( "Bulk download", 'Bulk download' )
+$page->header( "Download em massa", 'Bulk download' )
   ;                                      #print page header and text below
 print <<EOH;
-<div style="margin-bottom: 1em">Download Unigene or BAC information using a list of identifiers, or complete datasets with FTP.</div>
+<div style="margin-bottom: 1em">Baixe informações de unigenes ou BACs por uma lista de identificadores, ou conjuntos completos via FTP.</div>
 EOH
 
 # create tab categories
@@ -78,7 +79,7 @@ $mode_funcs[$modenum]( $page, $db, $debug );
 
 print <<EOH;
 </div>
-        <i><b>Note:</b> The SGN bulk download is limited to 10,000 identifiers per request.  If you need more, please either split your query into multiple parts, download a full dataset from the FTP site, or <a href="mailto:sgn-feedback\@sgn.cornell.edu">email us</a> and we will be happy to generate a custom dataset for you.</i>
+        <i><b>Observação:</b> O download em massa do SGN é limitado a 10.000 identificadores por requisição. Para mais dados, divida a consulta, baixe um conjunto completo pelo FTP ou <a href="mailto:sgn-feedback\@sgn.cornell.edu">envie um e-mail</a> e poderemos gerar um conjunto de dados personalizado para você.</i>
 EOH
 $page->footer();
 
@@ -131,7 +132,7 @@ sub ug_build_selectbox {
 
     return simple_selectbox_html(
         name    => 'build_id',
-        label   => 'Only include unigene build:',
+        label   => 'Incluir apenas a montagem de unigenes:',
         choices => [
             [ all => 'include all' ],
             ( map [ $_, $builds{$_} ], keys %builds ),
@@ -169,7 +170,7 @@ sub clone_search {
 $ug_build_select
 <br />
 
-Enter a list of identifiers or upload a file containing identifers, one per line:<br />
+Informe uma lista de identificadores ou envie um arquivo com um identificador por linha:<br />
 <table summary="" width="100%"><tr><td>
 <textarea name="ids" rows="5" cols="20"></textarea>
 </td>
@@ -184,7 +185,7 @@ cLEB-1-A4
 
 <br />
 <br />
-And/or upload list file: <br /><input type="file" name="file" />
+E/ou envie um arquivo de lista: <br /><input type="file" name="file" />
 <br />
 <br />
 
@@ -208,7 +209,7 @@ qq|<input type="checkbox" checked="checked" name="debug" /> print debug statemen
 
 	<input type="hidden" name="idType" value="clone" />
 	<input type="reset" />&nbsp;&nbsp;
-        <input type="submit" value="Submit" /><br />
+        <button type="submit" value="Submit">Enviar</button><br />
    </form>
 
 HTML
@@ -236,7 +237,7 @@ sub array_search {
 
     my $content = "";
 
-    $page = CXGN::Page->new( "Bulk download", "Lukas Mueller" );
+    $page = CXGN::Page->new( "Download em massa", "Lukas Mueller" );
 
     my $ug_select = ug_build_selectbox(
         $db,
@@ -255,7 +256,7 @@ sub array_search {
 $ug_select
 <br /><br />
 	<br />
-Enter a list of identifiers or upload a file containing one identifier:<br />
+Informe uma lista de identificadores ou envie um arquivo contendo um identificador:<br />
 <table summary="" width="100%"><tr><td>
 <textarea name="ids" rows="5" cols="20"></textarea>
 </td>
@@ -269,7 +270,7 @@ Enter a list of identifiers or upload a file containing one identifier:<br />
 </td></tr></table>
 <br />
 <br />
-And/or upload list file: <br /><input type="file" name="file" />
+E/ou envie um arquivo de lista: <br /><input type="file" name="file" />
 <br />
 <br />
 
@@ -290,7 +291,7 @@ qq|<input type="checkbox" checked="checked" name="debug" /> print debug statemen
 
 <input type="hidden" name="idType" value="microarray" />
 	<input type="reset" />&nbsp;&nbsp;
-<input type="submit" value="Submit" /><br />
+<button type="submit" value="Submit">Enviar</button><br />
 </form>
 
 HTML
@@ -340,7 +341,7 @@ HTML
     print <<HTML1
 
 <br />
-Enter a list of identifiers or upload a file containing one identifer separated by whitespace (returns, spaces or tabs):<br />
+Informe uma lista de identificadores ou envie um arquivo com identificadores separados por espaços em branco (quebras de linha, espaços ou tabulações):<br />
 
 
 <table summary="" width="100%" cellpadding="0"><tr><td>
@@ -357,47 +358,47 @@ SGN-U196026
 <br />
 <br />
 
-And/or upload list file: <br /><input type="file" name="file" />
+E/ou envie um arquivo de lista: <br /><input type="file" name="file" />
 <br />
 <br />
 
 </td><td valign="top" bgcolor="#EEEEEE" width="320">
 
- <input type="checkbox" name="convert_to_current" checked="checked" /><label for="convert_to_current"><a class="stealth" title="Check this box to convert each unigene in the list to its equivalent in the most current corresponding unigene build(s), if available"><img src="/documents/img/new.gif" />convert unigene list to current build</a></label>
+ <input type="checkbox" name="convert_to_current" checked="checked" /><label for="convert_to_current"><a class="stealth" title="Marque esta opção para converter cada unigene da lista em seu equivalente nas montagens correspondentes mais recentes, quando disponíveis"><img src="/documents/img/new.gif" />converter a lista de unigenes para a montagem atual</a></label>
 
  <hr />
 
-<input type="radio" name="unigene_mode" value="unigene_info" checked="checked" /> <b>Download unigene information</b>:<br />
+<input type="radio" name="unigene_mode" value="unigene_info" checked="checked" /> <b>Baixar informações de unigenes</b>:<br />
 <!-- SGN_U for Unigene Info -->
 <div style="padding-left: 1em">
     <input type="checkbox" name="SGN_U_U" checked="checked" /> unigene id (SGN-U)<br />
-    <input type="checkbox" name="automatic_annotation" checked="checked" /> automatic (BLAST) annotation<br />
+    <input type="checkbox" name="automatic_annotation" checked="checked" /> anotação automática (BLAST)<br />
     <input type="checkbox" name="best_genbank_match" checked="checked" /> best genbank match<br />
     <input type="checkbox" name="best_arabidopsis_match" checked="checked" /> best arabidopsis match<br />
     <input type="checkbox" name="associated_loci" checked="checked" /> associated loci<br />
-    <input type="checkbox" name = "uni_seq" checked="checked" onclick="check_fasta_option()"/> sequence<br />
+    <input type="checkbox" name = "uni_seq" checked="checked" onclick="check_fasta_option()"/> sequência<br />
     <div style="padding-left: 1em">
-         <input type="radio" name="seq_mode" value="unigene_seq" checked="checked" /> unigene nucleotide sequence<br />
+         <input type="radio" name="seq_mode" value="unigene_seq" checked="checked" /> sequência nucleotídica do unigene<br />
          <input type="radio" name="seq_mode" value="estscan_seq" /> estscan predicted proteins<br />
-         <input type="radio" name="seq_mode" value="longest6frame_seq" /> longest ORF from 6-frame translation<br />
-         <input type="radio" name="seq_mode" value="preferred_protein_seq" /> preferred sequence<br />
+         <input type="radio" name="seq_mode" value="longest6frame_seq" /> maior ORF da tradução nos 6 quadros de leitura<br />
+         <input type="radio" name="seq_mode" value="preferred_protein_seq" /> sequência preferida<br />
     </div>
 </div>
 
-<input type="radio" name="unigene_mode" value="member_info" /> <b>Download member information</b>:
+<input type="radio" name="unigene_mode" value="member_info" /> <b>Baixar informações dos membros</b>:
 <div style="padding-left: 1em">
-    <input type="checkbox" name="clone_name" checked="checked" /> clone name<br />
+    <input type="checkbox" name="clone_name" checked="checked" /> nome do clone<br />
     <input type="checkbox" name="SGN_C" checked="checked" /> clone id (SGN-C)<br />
-    <input type="checkbox" name="SGN_T" checked="checked" /> sequence read id (SGN-T)<br />
+    <input type="checkbox" name="SGN_T" checked="checked" /> ID da leitura de sequência (SGN-T)<br />
     <input type="checkbox" name="SGN_E" checked="checked" /> est id (SGN-E)<br />
-    <input type="checkbox" name="build_nr" checked="checked" /> unigene build number<br />
+    <input type="checkbox" name="build_nr" checked="checked" /> número da montagem de unigenes<br />
     <!-- SGN_U for Member Info -->
     <input type="checkbox" name="SGN_U_M" checked="checked" /> unigene id (SGN-U)<br />
     <input type="checkbox" name="chipname" checked="checked" /> chipname<br />
     <input type="checkbox" name="SGN_S" checked="checked" /> microarray spot id (SGN-S)<br />
-    <input type="checkbox" name="TUS" checked="checked" /> TUS number<br />
-    <input type="checkbox" name="manual_annotation" /> manual annotation<br />
-    <input type="checkbox" name="est_seq" checked="checked" /> EST sequence<br />
+    <input type="checkbox" name="TUS" checked="checked" /> número TUS<br />
+    <input type="checkbox" name="manual_annotation" /> anotação manual<br />
+    <input type="checkbox" name="est_seq" checked="checked" /> sequência EST<br />
 </div>
 </td></tr></table>
 
@@ -414,7 +415,7 @@ qq|<input type="checkbox" checked="checked" name=debug /> print debug statements
 
 	<input type=hidden name="idType" value="unigene" />
 	<input type="reset" />&nbsp;&nbsp;
-<input type="submit" value="Submit" /><br />
+<button type="submit" value="Submit">Enviar</button><br />
 </form>
 
 HTML2
@@ -458,7 +459,7 @@ HTML
     print <<HTML1
 
 <br />
-Enter a list of identifiers or upload a file containing one identifer separated by whitespace (returns, spaces or tabs):<br />
+Informe uma lista de identificadores ou envie um arquivo com identificadores separados por espaços em branco (quebras de linha, espaços ou tabulações):<br />
 
 
 <table summary="" width="100%" cellpadding="0"><tr><td>
@@ -475,7 +476,7 @@ SGN-U196026
 <br />
 <br />
 
-And/or upload list file: <br /><input type="file" name="file" />
+E/ou envie um arquivo de lista: <br /><input type="file" name="file" />
 <br />
 <br />
 
@@ -494,7 +495,7 @@ qq|<input type="checkbox" checked="checked" name="debug" /> print debug statemen
 
 	<input type=hidden name="idType" value="unigene_convert" />
 	<input type="reset" />&nbsp;&nbsp;
-<input type="submit" value="Convert" /><br />
+<button type="submit" value="Convert">Converter</button><br />
 </form>
 
 HTML2
@@ -520,21 +521,21 @@ OUTPUT_TYPE
 sub output_list {
     print <<OUTPUT_LIST;
 
-	<b>Please select the information you would like for each identifier:</b><br />
-	<input type="checkbox" name="clone_name" checked="checked" /> clone name<br />
+        <b>Selecione as informações desejadas para cada identificador:</b><br />
+        <input type="checkbox" name="clone_name" checked="checked" /> nome do clone<br />
 	<input type="checkbox" name="SGN_C" checked="checked" /> clone id (SGN-C)<br />
-	<input type="checkbox" name="SGN_T" checked="checked" /> sequence read id (SGN-T)<br />
+        <input type="checkbox" name="SGN_T" checked="checked" /> ID da leitura de sequência (SGN-T)<br />
 	<input type="checkbox" name="SGN_E" checked="checked" /> est id (SGN-E)<br />
 	<input type="checkbox" name="build_nr" checked="checked" /> unigene build nr<br />
 	<input type="checkbox" name="SGN_U" checked="checked" /> unigene id (SGN-U)<br />
 	<input type="checkbox" name="chipname" checked="checked" /> chipname<br />
 	<input type="checkbox" name="SGN_S" checked="checked" /> microarray spot id (SGN-S)<br />
-	<input type="checkbox" name="TUS" checked="checked" /> TUS number (used to order clones)<br />
-	<input type="checkbox" name="manual_annotation" /> manual annotation<br />
-	<input type="checkbox" name="automatic_annotation" /> automatic (BLAST) annotation<br />
-	<input type="checkbox" name="sequence" onclick="check_fasta_option()" /> sequence<br />
-	&nbsp;&nbsp;&nbsp;<input type="radio" name="seq_type" value="est_seq" checked="checked" /> EST sequence<br />
-	&nbsp;&nbsp;&nbsp;<input type="radio" name="seq_type" value="unigene_seq" /> Unigene sequence<br />
+        <input type="checkbox" name="TUS" checked="checked" /> número TUS (usado para solicitar clones)<br />
+        <input type="checkbox" name="manual_annotation" /> anotação manual<br />
+        <input type="checkbox" name="automatic_annotation" /> anotação automática (BLAST)<br />
+        <input type="checkbox" name="sequence" onclick="check_fasta_option()" /> sequência<br />
+        &nbsp;&nbsp;&nbsp;<input type="radio" name="seq_type" value="est_seq" checked="checked" /> sequência EST<br />
+        &nbsp;&nbsp;&nbsp;<input type="radio" name="seq_type" value="unigene_seq" /> Sequência do unigene<br />
 
 OUTPUT_LIST
 
@@ -570,7 +571,7 @@ sub bac_search {
 
 
 <br />
-Enter a list of identifiers or upload a file containing identifers separated by whitespace (returns, spaces or tabs):<br />
+Informe uma lista de identificadores ou envie um arquivo com identificadores separados por espaços em branco (quebras de linha, espaços ou tabulações):<br />
 <table summary="" width="100%"><tr><td>
 <textarea name="ids" rows="5" cols="20"></textarea>
 </td>
@@ -585,22 +586,22 @@ SL_EcoRI0022A07
 </td></tr></table>
 <br />
 <br />
-And/or upload list file: <br /><input type="file" name="file" />
+E/ou envie um arquivo de lista: <br /><input type="file" name="file" />
 <br />
 <br />
 
 </td><td valign="top" bgcolor="#EEEEEE" width="320">\n
-<b>Download BAC information:</b> <br />
+<b>Baixar informações de BACs:</b> <br />
 <div style="margin: 1em; white-space: nowrap">
-  <input type="checkbox" name="arizona_clone_name" checked="checked"  /> Arizona-style clone name (LE_HBa0001A01) <br />
-  <input type="checkbox" name="cornell_clone_name" checked="checked"  /> Old Cornell-style clone name (P001A01)<br />
-  <input type="checkbox" name="chr_clone_name" checked="checked"  /> Clone name with chromosome (C01HBa0001A01)<br />
-  <input type="checkbox" name="clone_type" checked="checked" /> clone type <br />
-  <input type="checkbox" name="org_name" checked="checked" /> organism name <br />
-  <input type="checkbox" name="accession_name" checked="checked" /> accession name <br />
-  <input type="checkbox" name="library_name" checked="checked" /> library name <br />
+  <input type="checkbox" name="arizona_clone_name" checked="checked"  /> Nome do clone no padrão Arizona (LE_HBa0001A01) <br />
+  <input type="checkbox" name="cornell_clone_name" checked="checked"  /> Nome do clone no padrão antigo de Cornell (P001A01)<br />
+  <input type="checkbox" name="chr_clone_name" checked="checked"  /> Nome do clone com cromossomo (C01HBa0001A01)<br />
+  <input type="checkbox" name="clone_type" checked="checked" /> tipo de clone <br />
+  <input type="checkbox" name="org_name" checked="checked" /> nome do organismo <br />
+  <input type="checkbox" name="accession_name" checked="checked" /> nome do acesso <br />
+  <input type="checkbox" name="library_name" checked="checked" /> nome da biblioteca <br />
   <input type="checkbox" name="estimated_length" checked="checked" /> estimated length <br />
-  <input type="checkbox" name="genbank_accession" checked="checked" /> genbank accession<br />
+  <input type="checkbox" name="genbank_accession" checked="checked" /> acesso do GenBank<br />
 <!--	<input type="checkbox" name="overgo_matches" checked="checked" DISABLED /> overgo matches<br /> -->
 </div>
 
@@ -616,7 +617,7 @@ qq|<input type="checkbox" checked="checked" name="debug" /> print debug statemen
 
 	<input type="hidden" name="idType" value="bac" />
 	<input type="reset" />&nbsp;&nbsp;
-        <input type="submit" value="Submit"><br />
+        <button type="submit" value="Submit">Enviar</button><br />
    </form>
 
 HTML
@@ -653,7 +654,7 @@ sub bac_end_search {
 
 
 <br />
-Enter a list of identifiers or upload a file containing identifers separated by whitespace (returns, spaces or tabs):<br />
+Informe uma lista de identificadores ou envie um arquivo com identificadores separados por espaços em branco (quebras de linha, espaços ou tabulações):<br />
 <table summary="" width="100%"><tr><td>
 <textarea name="ids" rows="5" cols="25"></textarea>
 </td>
@@ -668,28 +669,28 @@ SL_EcoRI0022A07_T7_229350
 </td></tr></table>
 <br />
 <br />
-And/or upload list file: <br /><input type="file" name="file" />
+E/ou envie um arquivo de lista: <br /><input type="file" name="file" />
 <br />
 <br />
 
 </td><td valign="top" bgcolor="#EEEEEE" width="280">\n
 
-<b>Download BAC end information:</b><br />
+<b>Baixar informações das extremidades de BACs:</b><br />
 <div style="margin-left: 1em; white-space: nowrap">
   <input type="checkbox" name="bac_id" checked= "checked" /> bac end identifier <br />
-  <input type="checkbox" name="clone_type" checked="checked" /> clone type <br />
-  <input type="checkbox" name="org_name" checked="checked" /> organism name <br />
-  <input type="checkbox" name="accession_name" checked="checked" /> accession name <br />
-  <input type="checkbox" name="library_name" checked="checked" /> library name <br />
+  <input type="checkbox" name="clone_type" checked="checked" /> tipo de clone <br />
+  <input type="checkbox" name="org_name" checked="checked" /> nome do organismo <br />
+  <input type="checkbox" name="accession_name" checked="checked" /> nome do acesso <br />
+  <input type="checkbox" name="library_name" checked="checked" /> nome da biblioteca <br />
   <input type="checkbox" name="estimated_length" checked="checked" /> estimated length <br />
-  <input type="checkbox" name="genbank_accession" checked="checked" /> genbank accession<br />
+  <input type="checkbox" name="genbank_accession" checked="checked" /> acesso do GenBank<br />
   <!--	<input type="checkbox" name="overgo_matches" checked="checked" DISABLED /> overgo matches <br /> -->  <br />
-  <b>Choose format and type:</b><br />
-  <input type="checkbox" name="bac_end_sequence" checked="checked" /> bac end sequence <br />
-  <input type="checkbox" name="qual_value_seq" checked="checked" /> quality value <br />
+  <b>Escolha o formato e o tipo:</b><br />
+  <input type="checkbox" name="bac_end_sequence" checked="checked" /> sequência da extremidade do BAC <br />
+  <input type="checkbox" name="qual_value_seq" checked="checked" /> valor de qualidade <br />
   <div style="margin-left: 1em">
-    <input type="radio" name="bac_seq_type" value="raw_seq" />raw sequence and/or quality<br />
-    <input type="radio" name="bac_seq_type" value="trim_seq" checked="checked" />trimmed seq. and/or quality<br />
+    <input type="radio" name="bac_seq_type" value="raw_seq" />sequência bruta e/ou qualidade<br />
+    <input type="radio" name="bac_seq_type" value="trim_seq" checked="checked" />sequência recortada e/ou qualidade<br />
   </div>
 </div>
 	
@@ -706,7 +707,7 @@ qq|<input type="checkbox" checked="checked" name="debug" /> print debug statemen
 
 	<input type="hidden" name="idType" value="bac_end" />
 	<input type="reset" />&nbsp;&nbsp;
-        <input type="submit" value="Submit"><br />
+        <button type="submit" value="Submit">Enviar</button><br />
    </form>
 
 HTML
@@ -728,11 +729,11 @@ sub ftp_site {
     my $page = shift;
 
     print <<HTML;
-    <h3 style="margin-bottom: 0.3em">SGN FTP site</h3>
-	<div style="margin: 0 1em 0 1em">Download complete datasets.</div><br />
+    <h3 style="margin-bottom: 0.3em">Site FTP do SGN</h3>
+        <div style="margin: 0 1em 0 1em">Baixar conjuntos de dados completos.</div><br />
 
     <div style="margin: 0; padding: 1em; border: 1px solid #ccccff">
-	<a class="folderlink" href="ftp://ftp.solgenomics.net">ftp top level</a>
+        <a class="folderlink" href="ftp://ftp.solgenomics.net">nível inicial do FTP</a>
 	
 	<ul style="margin: 1em 0 0 0; list-style: none">
 	
@@ -740,22 +741,22 @@ HTML
 
     my %ftplinks = (
         'unigene_builds' =>
-'Sequence, quality, and membership information for all SGN unigene builds',
+'Informações de sequência, qualidade e membros de todas as montagens de unigenes do SGN',
         'est_sequences' =>
-          'Sequence and quality files for all SGN ESTs, organized by library',
+          'Arquivos de sequência e qualidade de todas as ESTs do SGN, por biblioteca',
         'maps_and_markers' =>
-          'Marker sequences and marker position lists for all SGN maps',
+          'Sequências e listas de posições dos marcadores de todos os mapas do SGN',
         'physical_mapping' =>
-'Raw data files for Tomato HindIII BAC library FPC and overgo analyses',
+'Arquivos de dados brutos das análises FPC e overgo da biblioteca de BACs HindIII de tomate',
         'blast_annotations' =>
-'Highest-ranked hits vs. Genbank NR and Arabidopsis for all SGN unigenes.',
+'Melhores correspondências com GenBank NR e Arabidopsis para todos os unigenes do SGN.',
         'manual_annotations' =>
-          'Manual annotations for a number of SGN unigenes',
+          'Anotações manuais de unigenes do SGN',
         'user_requests' =>
-'Custom-generated datasets for individual users (mail special requests to <a href="mailto:sgn-feedback@sgn.cornell.edu">sgn-feedback</a>)',
+'Conjuntos de dados personalizados para usuários (envie solicitações especiais para <a href="mailto:sgn-feedback@sgn.cornell.edu">sgn-feedback</a>)',
         'tomato_genome' =>
-          'Tomato genomic data, including BAC end and full BAC sequences',
-        'COSII' => 'COSII marker data'
+          'Dados genômicos de tomate, incluindo sequências de extremidades de BACs e de BACs completos',
+        'COSII' => 'Dados de marcadores COSII'
     );
 
     foreach my $dir ( sort keys %ftplinks ) {
@@ -772,7 +773,7 @@ HTML
     </div>
 
 	<br />
-	<i>Note:</i> The SGN FTP site can also be accessed directly through <a href="ftp://ftp.solgenomics.net">ftp://ftp.solgenomics.net</a> using a browser or ftp program.
+        <i>Observação:</i> O site FTP do SGN também pode ser acessado diretamente por <a href="ftp://ftp.solgenomics.net">ftp://ftp.solgenomics.net</a> using a browser or ftp program.
 HTML
 
 }

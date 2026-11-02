@@ -1,4 +1,5 @@
 #!/usr/bin/perl -w
+use utf8;
 use strict;
 use CXGN::Page;
 use CatalystX::GlobalContext '$c';
@@ -17,7 +18,7 @@ if ( ! -f "$tmpdir/${request_file}.req" ) {
 }
 
 open REQUEST_FILE, "<$tmpdir/$request_file.req"
-  or $page->error_page("Failed to open BLAST request file " . "\"$request_file\" ($!)");
+  or $page->error_page("Não foi possível abrir o arquivo de requisição do BLAST " . "\"$request_file\" ($!)");
 
 my @output = ();
 my $refresh = "";
@@ -43,9 +44,9 @@ close REQUEST_FILE;
 my $text = "";
 if ($not_finished eq "yes") {
 
-  $text = "<tr><td><p>Your BLAST request is still running. Use links below to view results. Reload this page to update status. This page will automatically reload every <b>30 seconds</b>.</p></td></tr>";
+  $text = "<tr><td><p>Sua requisição BLAST ainda está em execução. Use os links abaixo para ver os resultados. Recarregue a página para atualizar o status. Ela será recarregada automaticamente a cada <b>30 seconds</b>.</p></td></tr>";
 } else {
-  $text = "<tr><td align=\"center\"><p>BLAST finished. Use links below to view results.</p></td></tr>";
+  $text = "<tr><td align=\"center\"><p>BLAST concluído. Use os links abaixo para ver os resultados.</p></td></tr>";
 }
 
 my $invalid_text;
@@ -59,7 +60,7 @@ $page->header("", $refresh);
 
 print <<EOF;
 
-<h4><center>SGN BLAST SEARCH RESULTS</center></h4>
+<h4><center>RESULTADOS DA BUSCA BLAST DO SGN</center></h4>
 
 <table width="80%" cellpadding="2" cellspacing="2" border="0" align="center">
 $text
@@ -85,9 +86,9 @@ sub request_not_found {
 
   print <<EOF;
 
-  <h4>SGN BLAST ERROR -- OLD REQUEST NOT FOUND</h4>
+  <h4>ERRO DO BLAST DO SGN -- REQUISIÇÃO ANTIGA NÃO ENCONTRADA</h4>
 
-  <p>Your browser requested the status of a BLAST job which does not exist. Please <b>do not bookmark</b> your BLAST results, they are automatically deleted from the server after 2 days.</p>
+  <p>O navegador solicitou o status de uma tarefa BLAST que não existe. <b>não adicione aos favoritos</b> os resultados do BLAST, pois são excluídos automaticamente do servidor após 2 dias.</p>
 
 EOF
 

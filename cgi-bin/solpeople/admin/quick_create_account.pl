@@ -1,4 +1,5 @@
 #!/usr/bin/perl -w
+use utf8;
 use strict;
 use CXGN::DB::Connection;
 use CXGN::Page;
@@ -38,11 +39,11 @@ print <<END_HTML;
             
             <table width=80% align=center>
             <tr><td>
-            <p>Your account could not be created for the following reasons</p>
+            <p>Não foi possível criar sua conta pelos seguintes motivos</p>
             <ul>
             $fail_str
             </ul>
-            <p>Please use your browser\'s back button to try again.</p>
+            <p>Use o botão Voltar do navegador para tentar novamente.</p>
             </td></tr>
             <tr><td><br /></td></tr>
             </table>
@@ -82,16 +83,16 @@ print <<END_HTML;
 
         <form method="post" action="quick_create_account.pl">
         <table cellpadding="2" cellspacing="2" width="100%" align="center">
-        <tr><td colspan="2"><b>Curators may use this form to create accounts for new users.<br />&nbsp;</b></td></tr>
-        <tr><td>First Name</td><td><input type="text" name="first_name" size="20" value=""></td></tr>
-        <tr><td>Last Name</td><td><input type="text" name="last_name" size="20" value=""></td></tr>
-        <tr><td>Username (at least 7 characters)</td><td><input type="text" name="username" size="12" value=""></td></tr>
-        <tr><td>Password (at least 7 characters)</td><td><input type="password" name="password" size="12" value=""></td></tr>
-        <tr><td>Confirm Password</td><td><input type="password" name="confirm_password" size="12" value=""></td></tr>
-        <tr><td>Private Email Address</td><td><input type="text" name="confirm_email" size="40" value=""></td></tr>
-        <tr><td>User Type</td><td><input type="text" name="user_type" size="10" value=""></td></tr>
+        <tr><td colspan="2"><b>Curadores podem usar este formulário para criar contas de usuários.<br />&nbsp;</b></td></tr>
+        <tr><td>Nome</td><td><input type="text" name="first_name" size="20" value=""></td></tr>
+        <tr><td>Sobrenome</td><td><input type="text" name="last_name" size="20" value=""></td></tr>
+        <tr><td>Nome de usuário (pelo menos 7 caracteres)</td><td><input type="text" name="username" size="12" value=""></td></tr>
+        <tr><td>Senha (pelo menos 7 caracteres)</td><td><input type="password" name="password" size="12" value=""></td></tr>
+        <tr><td>Confirmar senha</td><td><input type="password" name="confirm_password" size="12" value=""></td></tr>
+        <tr><td>Endereço de e-mail particular</td><td><input type="text" name="confirm_email" size="40" value=""></td></tr>
+        <tr><td>Tipo de usuário</td><td><input type="text" name="user_type" size="10" value=""></td></tr>
         <tr><td>&nbsp;</td></tr>
-        <tr><td colspan="2" align="center"><input type="submit" name="create_account" value="Create Account"></td></tr>
+        <tr><td colspan="2" align="center"><button type="submit" name="create_account" value="Create Account">Criar conta</button></td></tr>
         </table>
         <br />
 

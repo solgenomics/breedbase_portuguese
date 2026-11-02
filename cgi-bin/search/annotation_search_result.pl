@@ -1,3 +1,4 @@
+use utf8;
 use strict;
 use CXGN::Page;
 use CXGN::DB::Connection;
@@ -13,7 +14,7 @@ my $unig_link='/search/unigene.pl';
 my $show_all_unig_link='/search/all_unig_for_annot.pl';
 my $clone_link='/search/est.pl?request_type=8&amp;request_from=1&amp;request_id=';
 
-our $page = CXGN::Page->new( "Annotation Search Results", "Dan, mod by Rob");
+our $page = CXGN::Page->new( "Resultados da busca de anotações", "Dan, mod by Rob");
 my $dbh = CXGN::DB::Connection->new;
 my $pg_version = $dbh->dbh_param("pg_server_version");
 my $pg_ts_rank = $pg_version >= 80300 ? 'ts_rank' : 'rank';
@@ -188,7 +189,7 @@ EOSQL
 	             . "<td align=\"left\" nowrap=\"nowrap\">$build_desc build $build_nr from $build_date</td><td></td></tr>";
 	$sort_field=$unig_build_id;
       } else {
-	$unig_desc="<tr><td></td><td align=\"left\" colspan=\"3\">The annotation is associated with clone <a href=\"$clone_link$clone_id\">$clone_name</a>, which has been censored from the current unigene builds.</td></tr>";
+        $unig_desc="<tr><td></td><td align=\"left\" colspan=\"3\">A anotação está associada ao clone <a href=\"$clone_link$clone_id\">$clone_name</a>, que foi ocultado das montagens atuais de unigenes.</td></tr>";
 	$sort_field=$clone_id;
       }
 
@@ -226,7 +227,7 @@ EOSQL
     }
 
     while(my ($defline_id, $blast_target_db, $defline, $blast_program,  $score) = $blast_matches_q->fetchrow_array()) {
-	my $annot_target_desc = "Unigene <b>$blast_program</b> search against <b>$blast_target_db</b>";
+        my $annot_target_desc = "Unigene <b>$blast_program</b> buscar em <b>$blast_target_db</b>";
 	push @matches, [$defline_id, $annot_target_desc, $score, $defline];
     }
 
@@ -317,7 +318,7 @@ unless($nr_pages == 1){
     $pagination_print.="<tr><td colspan=\"2\" align=\"center\" bgcolor=\"#EEEEEE\">";
 
     if ($prev_page >= 0){
-	$pagination_print .= "<a href=\"annotation_search_result.pl?search_text=$search_text&amp;request_from=1&amp;search_type=$search_type&amp;results_page=$prev_page\">&lt; Previous</a> |";
+        $pagination_print .= "<a href=\"annotation_search_result.pl?search_text=$search_text&amp;request_from=1&amp;search_type=$search_type&amp;results_page=$prev_page\">« Anterior</a> |";
 	$start_skip and $pagination_print .= "| ... |";
     }
     else{
@@ -338,7 +339,7 @@ unless($nr_pages == 1){
     if ($next_page < $nr_pages){
 	
 	$end_skip and $pagination_print .= "| ... |";
-	$pagination_print.= "| <a href=\"annotation_search_result.pl?search_text=$search_text&amp;request_from=1&amp;search_type=$search_type&amp;results_page=$next_page\">Next &gt;</a>";
+        $pagination_print.= "| <a href=\"annotation_search_result.pl?search_text=$search_text&amp;request_from=1&amp;search_type=$search_type&amp;results_page=$next_page\">Próxima »</a>";
     }
     else{
 	$pagination_print .= "|";
@@ -350,7 +351,7 @@ unless($nr_pages == 1){
       $pagination_print .= <<EOH;
 <tr><td colspan="2" align="center" bgcolor="#EEEEEE">
   <table align="center" cellspacing="0" cellpadding="0" border="0">
-  <tr><td align="left" style="white-space: nowrap"><a href="annotation_search_result.pl?search_text=$search_text&amp;request_from=1&amp;search_type=$search_type&amp;results_page=0">&lt; First Page</a> || Page [1-$nr_pages]</td>
+  <tr><td align="left" style="white-space: nowrap"><a href="annotation_search_result.pl?search_text=$search_text&amp;request_from=1&amp;search_type=$search_type&amp;results_page=0">« Primeira página</a> || Page [1-$nr_pages]</td>
   <td align="center" style="white-space: nowrap">
   <form method="get" action="/search/annotation_search_result.pl">
   <input type="hidden" name="search_text" value="$search_text" />
@@ -361,7 +362,7 @@ unless($nr_pages == 1){
   <input name="get_page" type="submit" value="go" />
   </form>
   </td><td align="right" style="white-space: nowrap">
-  &nbsp;||&nbsp;<a href="annotation_search_result.pl?search_text=$search_text&amp;request_from=1&amp;search_type=$search_type&amp;results_page=$last_page">Last Page &gt;</a>
+  &nbsp;||&nbsp;<a href="annotation_search_result.pl?search_text=$search_text&amp;request_from=1&amp;search_type=$search_type&amp;results_page=$last_page">Última página »</a>
   </td></tr>
   </table>
 
@@ -373,7 +374,7 @@ EOH
 
 #beautify for screen
 if ($total_matches <= $nr_to_show){
-    $nr_show_to_print="Showing <b>all</b> matches";
+    $nr_show_to_print="Showing <b>todos</b> matches";
 }
 elsif ($end_at < 0){
     $nr_show_to_print = "Showing last <b>" . ($total_matches - $start_at) . "</b> matches";
@@ -425,7 +426,7 @@ foreach my $match (@matches){
 
     if (@unigene_info){
 	$web_format .= <<EOH;
-<tr><td colspan="2" align="left" nowrap="nowrap"><br />Unigenes containing this annotation:</td></tr>
+<tr><td colspan="2" align="left" nowrap="nowrap"><br />Unigenes que contêm esta anotação:</td></tr>
 <tr><td colspan="2" align="left" nowrap="nowrap">
 <table align="left" cellspacing="2" cellpadding="0" border="0">
 EOH
@@ -446,7 +447,7 @@ EOH
                 <tr><td></td><td colspan="3"></td></tr>
                 <tr><td></td><td align="left" colspan="3" style="white-space: nowrap">
                 Showing only top $unig_display_nr of $nr_unigenes.&nbsp;
-                [<a href="$show_all_unig_link?match_id=$annot_link_id&amp;search_type=$search_type" target="All_Unigenes">Show All</a>]
+                [<a href="$show_all_unig_link?match_id=$annot_link_id&amp;search_type=$search_type" target="All_Unigenes">Mostrar todos</a>]
                 </td></tr>
 EOH
 		last;
@@ -458,7 +459,7 @@ EOH
 	$web_format .="</table></td></tr>";	
     }
     else{
-	$web_format .= qq|<tr><td colspan="2" align="left" style="white-space: nowrap"><br />No unigenes contain this annotation</td></tr>|
+        $web_format .= qq|<tr><td colspan="2" align="left" style="white-space: nowrap"><br />Nenhum unigene contém esta anotação</td></tr>|
 	}
 
     $web_format .= qq|<tr><td colspan="2">&nbsp;</td></tr>|;
@@ -471,7 +472,7 @@ $page->header();
 
 print<<EOF
     <table align="center" cellspacing="0" cellpadding="2" border="0" width="100%">
-    <tr><td colspan="2" align="center" bgcolor="#EEEEEE">Your search for <b>$search_text</b> in <b>$search_type_print</b> returned <b>$total_matches</b> results</td></tr>
+    <tr><td colspan="2" align="center" bgcolor="#EEEEEE">Sua busca por <b>$search_text</b> in <b>$search_type_print</b> returned <b>$total_matches</b> resultados</td></tr>
     <tr><td colspan="2" align="center" bgcolor="#EEEEEE">$nr_show_to_print</td></tr>
     $pagination_print
     <tr><td colspan="2" bgcolor="#FFFFFF"><br /></td></tr>
@@ -495,8 +496,8 @@ sub no_matches {
 
   print <<EOF;
 
-  <p>Your search for <b>$search_text</b> did not find any relevant matches in our database.<br /><br />
-<b>Note:</b> Keywords of less than 4 letters or those that occur in more than half the data are ignored by the search.
+  <p>Sua busca por <b>$search_text</b> não encontrou correspondências relevantes no banco de dados.<br /><br />
+<b>Observação:</b> Palavras com menos de 4 letras ou que ocorrem em mais da metade dos dados são ignoradas pela busca.
 <br /><br />
 EOF
 
@@ -512,7 +513,7 @@ sub null_request {
 
   print <<EOF;
 
-  <p><b>Please enter a search word or phrase and select the annotation type you want to search.</b>
+  <p><b>Informe uma palavra ou expressão e selecione o tipo de anotação para a busca.</b>
 
 EOF
 

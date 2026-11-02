@@ -1,3 +1,4 @@
+use utf8;
 
 use strict;
 
@@ -29,7 +30,7 @@ use CXGN::TomatoGenome::tpf_agp qw(
 				   modtime_string
 				  );
 
-my $page = CXGN::Page->new("Tiling Path Display","Rob");
+my $page = CXGN::Page->new("Exibição do caminho de cobertura","Rob");
 my $dbh = CXGN::DB::Connection->new();
 
 #get input arguments and validate
@@ -43,44 +44,44 @@ if(my $upload = $page->get_upload ) {
   my $sp_person_id = CXGN::Login->new($dbh)->verify_session();
   my $sp = CXGN::People::Person->new($dbh, $sp_person_id);
   $sp->get_username
-    or do {print $page->header; graceful_exit("Username not found.")};
+    or do {print $page->header; graceful_exit("Nome de usuário não encontrado.")};
 
   #check that the login has permission to upload for this chromosome
   unless($sp->get_user_type eq 'curator'
 	 || grep {$_ == $chr && $_ <= 12 && $_ >= 1} $sp->get_projects_associated_with_person) {
-    print $page->header(); graceful_exit('your account does not have privileges to upload files for that chromosome');
+    print $page->header(); graceful_exit('Sua conta não tem permissão para enviar arquivos para esse cromossomo');
   }
 
   my $validation_report = validate_and_publish_tpf($upload->fh,$chr);
-  $page->message_page('TPF validation failed',$validation_report) if $validation_report;
+  $page->message_page('Falha na validação do TPF',$validation_report) if $validation_report;
 }
 
 
-$page->header('TPF Display',"Chromosome Tiling Paths");
+$page->header('Exibição de TPF',"Caminhos de cobertura dos cromossomos");
 print <<EOHTML;
-<p>The tiling path listings below have been developed and submitted to
-SGN by the individual <a href="/about/tomato_sequencing.pl">tomato
-chromosome sequencing projects</a>.</p>
+<p>As listas de caminhos de cobertura abaixo foram desenvolvidas e enviadas ao
+SGN pelos respectivos <a href="/about/tomato_sequencing.pl">projetos de sequenciamento
+dos cromossomos de tomate</a>.</p>
 
-<p>The listing below shows the clones that make up the current planned
-tiling path for this chromosome, along with any gaps that have yet
-to be bridged by a sequence of clones.</p>
+<p>A lista abaixo mostra os clones que compõem o caminho de cobertura
+planejado atualmente para este cromossomo, junto com as lacunas
+que ainda precisam ser cobertas por uma sequência de clones.</p>
 
-<p>It is in TPF format, which consists of three columns:</p>
+<p>O formato TPF consiste em três colunas:</p>
 <ol>
-  <li>the NCBI/EMBL Accession of the BAC sequence</li>
-  <li>the SGN name of the BAC sequence</li>
-  <li>a name for each contiguous group of BACs, internal to each chromosome sequencing project</li>
+  <li>o acesso NCBI/EMBL da sequência do BAC</li>
+  <li>o nome da sequência do BAC no SGN</li>
+  <li>um nome para cada grupo contíguo de BACs, interno a cada projeto de sequenciamento de cromossomo</li>
 </ol>
 
-<p>These files are also available for download <a href="ftp://ftp.sgn.cornell.edu/tomato_genome/tpf">via FTP</a>.</p>
+<p>Esses arquivos também estão disponíveis para download <a href="ftp://ftp.sgn.cornell.edu/tomato_genome/tpf">via FTP</a>.</p>
 EOHTML
 
 if ($chr > 12 or $chr < 1){
   graceful_exit("Oops! Chromosome number must be between 1-12.");
 }
 
-print qq|<div style="text-align: center; font-weight: bold; margin-bottom: 0.5em">Chromosome</div>\n|;
+print qq|<div style="text-align: center; font-weight: bold; margin-bottom: 0.5em">Cromossomo</div>\n|;
 print modesel( [map {["?chr=$_",$_]} 1..12], $chr-1);
 print "<br />\n";
 
@@ -99,15 +100,15 @@ my ($published_tpf_ftp,undef) = published_ftp_download_links($chr);
 print info_section_html( title    => 'Tiling Path Format (TPF)',
 			 subtitle => modtime_string($published_tpf).'  '.$published_tpf_ftp,
 			 contents => tpf_to_html($published_tpf) || <<EOHTML,
-<center><b>No TPF file is currently available for chromosome $chr</b></center>
+<center><b>Nenhum arquivo TPF está disponível para o cromossomo $chr</b></center>
 EOHTML
 		       );
-print info_section_html( title    => "Other Chromosome $chr Resources",
+print info_section_html( title    => "Outros recursos do cromossomo $chr",
 			 contents =>  <<EOHTML,
 <ul>
-<li>Tomato maps: <a href="/cview/index.pl">Genetic</a> | <a href="/cview/map.pl?map_id=9&amp;physical=1">Physical</a> | <a href="/cview/map.pl?map_id=13">BAC FISH results</a></li>
-<li><a href="/organism/Solanum_lycopersicum/clone_sequencing?chr=$chr">Chromosome $chr BAC list</a></li>
-<li><a href="agp.pl?chr=$chr">Chromosome $chr Assembly (AGP)</a></li>
+<li>Mapas de tomate: <a href="/cview/index.pl">Genético</a> | <a href="/cview/map.pl?map_id=9&amp;physical=1">Físico</a> | <a href="/cview/map.pl?map_id=13">Resultados de BAC FISH</a></li>
+<li><a href="/organism/Solanum_lycopersicum/clone_sequencing?chr=$chr">Lista de BACs do cromossomo $chr</a></li>
+<li><a href="agp.pl?chr=$chr">Montagem (AGP) do cromossomo $chr</a></li>
 </ul>
 EOHTML
 		       );
@@ -137,7 +138,7 @@ sub validate_and_publish_tpf {
   my @errors;
   my $line_ctr = 0;
   my $err = sub {
-    push @errors, "Line $line_ctr: ".shift;
+    push @errors, "Linha $line_ctr: ".shift;
   };
   #copy the tpf file from the apache-spooled temp file.  while doing
   #that, go over each line and validate it
@@ -147,26 +148,26 @@ sub validate_and_publish_tpf {
     $line =~ s/\r$//;
     unless($line =~ /^\s*#/) {
       my @d = split /\s+/,$line;
-      @d == 3 or $err->("Incorrect column count:  ".scalar(@d)." columns found");
+      @d == 3 or $err->("Número incorreto de colunas:  ".scalar(@d)." colunas encontradas");
       if( $d[0] =~ /^GAP$/ ) {
-	$d[1] =~ /^type-[1234]$|/ or $err->("If first column is GAP, second column must be a type-[1234] gap type");
-	$d[2] eq '?' or $err->("If first column is 'GAP', third column must be '?' (it is '$d[2]')");
+        $d[1] =~ /^type-[1234]$|/ or $err->("Se a primeira coluna for GAP, a segunda deve ser um tipo de lacuna type-[1234]");
+        $d[2] eq '?' or $err->("Se a primeira coluna for 'GAP', a terceira deve ser '?' (o valor é '$d[2]')");
       }
       elsif( $d[0] eq '?' || $d[0] =~ /^\S{5,}$/ ) {
 	my $p = parse_clone_ident($d[1],qw/agi_bac_with_chrom agi_bac/)
-	    or $err->("If line is not a gap, second column must be a valid SGN BAC clone identifier");
+            or $err->("Se a linha não for uma lacuna, a segunda coluna deve conter um identificador válido de clone BAC do SGN");
 	if($p) {
 	  my $c = CXGN::Genomic::Clone->retrieve_from_parsed_name($p)
-	    or $err->("Unknown clone identifier '$d[1]' in second column");
+            or $err->("Identificador de clone desconhecido na segunda coluna: '$d[1]'");
 	  if($c) {
 	    $c->chromosome_num == $chr
-	      or $err->("BAC with identifier '$d[1]' is not registered as being on chromosome $chr");
+              or $err->("O BAC com o identificador '$d[1]' não está registrado no cromossomo $chr");
 	    $d[1] = $c->clone_name_with_chromosome;
 	  }
 	}
       }
       else {
-	$err->("Invalid first column '$d[0]'");
+        $err->("Primeira coluna inválida: '$d[0]'");
       }
       print $tmp join("\t",@d)."\n";
     } else {

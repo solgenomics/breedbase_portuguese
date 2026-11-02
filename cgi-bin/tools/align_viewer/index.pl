@@ -1,3 +1,4 @@
+use utf8;
 use CatalystX::GlobalContext qw( $c );
 use strict;
 use CXGN::Tools::Text qw | sanitize_string |;
@@ -43,15 +44,15 @@ if( $temp_file ) {
 #############################################################
 #Create introduction content'
 $intro_content = <<HTML;
-<p>This tool analyzes sequence alignment.  Please input <b>aligned sequences only</b>, in either fasta or clustal format.</p>
+<p>Esta ferramenta analisa alinhamentos de sequências. Informe <b>apenas sequências alinhadas</b>, no formato FASTA ou Clustal.</p>
 Its functionality includes:
 <ol>
-<li>Image display.</li>
-<li>Calculation and output of pairwise similaity and putative splice variant or allelle pairs based on overlap and similarity between sequence pairs in an alignment.</li>
-<li>Provides the user with options to hide some alignment sequences so that they are not included in the analysis.</li>
-<li>Select a range of sequences to be analyzed.</li>
-<li>Assess how an alignment member overlap with other members.</li>
-<li>Calculate the non-gap mid point of each align sequence and group the sequences according to their overlap.</li>
+<li>Exibição da imagem.</li>
+<li>Cálculo e saída da similaridade entre pares e de possíveis variantes de splicing ou alelos, com base na sobreposição e similaridade de pares de sequências do alinhamento.</li>
+<li>Permite ocultar sequências do alinhamento para excluí-las da análise.</li>
+<li>Selecione um intervalo de sequências para analisar.</li>
+<li>Avaliar a sobreposição de um membro do alinhamento com os demais.</li>
+<li>Calcular o ponto médio sem lacunas de cada sequência alinhada e agrupá-las pela sobreposição.</li>
 </ol>
 HTML
 
@@ -62,8 +63,8 @@ $title||="";
 $input_content = <<HTML;
 <form method="post" action="show_align.pl" name="aligninput" enctype="multipart/form-data">
 
-<input type="submit" name="submit" value="Analyze Alignment" /><br /><br />
-<b>Title (optional): </b>&nbsp;&nbsp;
+<button type="submit" name="submit" value="Analyze Alignment">Analisar alinhamento</button><br /><br />
+<b>Título (opcional): </b>&nbsp;&nbsp;
 <input type="textbox" name="title" size="16" value="$title">
 <br /><br />
 HTML
@@ -75,7 +76,7 @@ $type_checked{$type} = "checked=\"checked\"";
 my ($tcn, $tcp, $tcc) = map { $type_checked{$_} } qw/ nt pep cds /;
 
 $input_content .= <<HTML;
-<b>Type</b>&nbsp;&nbsp;
+<b>Tipo</b>&nbsp;&nbsp;
 <input id="aligninput.radio.nt" type="radio" name="type" value="nt" $tcn/>nucleotide &nbsp;&nbsp;
 <input id="aligninput.radio.pep" type="radio" name="type" value="pep" $tcp/>peptide &nbsp;&nbsp;
 <input id="aligninput.radio.pep" type="radio" name="type" value="cds" $tcc/>CDS (most powerful)
@@ -96,16 +97,16 @@ $maxiters ||= 2;
 my ($fcw, $fcf, $fcu) = map { $format_checked{$_} } qw/clustalw fasta fasta_unaligned/;
 
 $input_content .= <<HTML;
-<b>Input format</b><br />
-You may specify the species of the sequence with a forward slash, e.g. "AT1G01010.1/Arabidopsis" <br /> 
-Make sure all the spaces in the id and species are replaced by '_'.<br />
-<input type="radio" name="format" value="clustalw" $fcw/>Clustal Alignment<a target="blank" href="/about/clustal_file.pl"> [What is this?]</a><br />
-<input type="radio" name="format" value="fasta" $fcf/>Fasta Alignment (With Gaps)<br /><br />
-<input type="radio" name="format" value="fasta_unaligned" $fcu/>Fasta Unaligned (Will be aligned with <a href="http://www.drive5.com/muscle/">Muscle 3.6</a>, Limited to 200 Sequences)<br />
+<b>Formato de entrada</b><br />
+Especifique a espécie da sequência após uma barra, por exemplo, "AT1G01010.1/Arabidopsis" <br />
+Substitua todos os espaços do ID e da espécie por sublinhado (_).<br />
+<input type="radio" name="format" value="clustalw" $fcw/>Clustal Alignment<a target="blank" href="/about/clustal_file.pl"> [O que é isto?]</a><br />
+<input type="radio" name="format" value="fasta" $fcf/>Alinhamento FASTA (com lacunas)<br /><br />
+<input type="radio" name="format" value="fasta_unaligned" $fcu/>FASTA não alinhado (será alinhado com <a href="http://www.drive5.com/muscle/">Muscle 3.6</a>, limitado a 200 sequências)<br />
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Max Iterations 
 <input type="text" name="maxiters" value=$maxiters>
- Use more iterations for greater accuracy. The maximum is 1000.<br /><br />
+ Use mais iterações para maior precisão. O máximo é 1000.<br /><br />
 <!--
 <input type="radio" name="run" value="cluster" checked="1">run on cluster (preferred)<br />
 <input type="radio" name="run" value="local">run on localhost<br /><br />
@@ -128,20 +129,20 @@ $seq_data ||= '';
 ###############################
 #Text area for input sequences
 $input_content .= <<HTML;
-<b>Input fasta/clustal sequences</b>
+<b>Informe sequências FASTA/Clustal</b>
 &nbsp;&nbsp;
 <a href="index.pl" onclick="
 	document.getElementById('textarea_seq_data').value = '';
 	return false">(x) Clear</a><br />
 <textarea id="textarea_seq_data" name="seq_data" rows="12" cols="80">$seq_data</textarea><br /><br />
-<b>Or use identifiers, separated by spaces</b><br />
+<b>Ou use identificadores separados por espaços</b><br />
  Supports TAIR AGI [AT1G01010.1], SGN Unigene [SGN-U332332], or any NCBI/Entrez identifier<br />
 <textarea id="textarea_id_data" name="id_data" rows="2" cols="80">$id_data</textarea><br /><br />
-<b>Or upload a fasta/clustal file</b> <input type="file" name="upload" /><br />
+<b>Ou envie um arquivo FASTA/Clustal</b> <input type="file" name="upload" /><br />
 <br /><br />
 
 
-<input type="submit" name="submit" value="Analyze Alignment" />
+<button type="submit" name="submit" value="Analyze Alignment">Analisar alinhamento</button>
 </form>
 
 HTML
@@ -163,12 +164,12 @@ Aligned Example</a>
 </span>
 HTML
 
-print page_title_html("Alignment Analyzer");
+print page_title_html("Analisador de alinhamentos");
 
 #print blue_section_html('Introduction','<table width="100%" cellpadding="5" cellspacing="0" border="0" summary=""><tr><td>' . $intro_content . '</td></tr></table>');
 
 print blue_section_html(
-	"<span style=\"white-space:nowrap\">Query Input &nbsp;&nbsp;&nbsp;&nbsp;$example_link</span>",
+        "<span style=\"white-space:nowrap\">Consulta &nbsp;&nbsp;&nbsp;&nbsp;$example_link</span>",
 	'<table width="100%" cellpadding="5" cellspacing="0" border="0" summary=""><tr><td>' . $input_content . '</td></tr></table>');
 
 

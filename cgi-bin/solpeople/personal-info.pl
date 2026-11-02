@@ -1,3 +1,4 @@
+use utf8;
 # Evan, 1 / 15 / 07: combines contact-info.pl and research-info.pl
 
 #if a user is logged in, look at the logged-in user's info;
@@ -63,7 +64,7 @@ sub check_modify_privileges {
     
     if (!(grep {/^$user_id$/} @owners )) 
     {
-	$self->get_page()->message_page("You do not have rights to modify this database entry because you do not own it. [$user_id, @owners]");
+        $self->get_page()->message_page("Você não tem permissão para modificar este registro porque ele não pertence a você. [$user_id, @owners]");
     }
     else { 
 	return 0;
@@ -93,7 +94,7 @@ sub validate_parameters_before_store
 		my $test = new CXGN::People::Organism($self->get_dbh(), $c);
 		if(!defined($test))
 		{
-			$self->get_page()->message_page("Organism code \"$_\" is not defined in the database.\n");
+                        $self->get_page()->message_page("Código de organismo \"$_\" não definido no banco de dados.\n");
 		}
 	}
 	my %selected_organisms = map {$_ => 1} @organism_codes; #ids of only those organisms selected with the multiselect appear in the hash
@@ -189,9 +190,9 @@ sub generate_form
 	if($form->is_editable()) {
 	    $form->add_label(display_name => "",
 			     field_name => "lbl1",
-			     contents => "If you would like to enter or update information at this time but do not want it displayed publically, check this option.");
+                             contents => "Marque esta opção para inserir ou atualizar informações sem exibi-las publicamente.");
 	    
-	    $form->add_checkbox(display_name => "Censor contact information from directory search and public display", 
+            $form->add_checkbox(display_name => "Ocultar informações de contato da busca no diretório e da exibição pública",
 				field_name => "censor",
 				contents => "1",
 				selected => $person->get_censored(), 
@@ -201,10 +202,10 @@ sub generate_form
 	    
 	    $form->add_label(display_name => "",
 			     field_name => "lbl2",
-			     contents => "The first and last names you enter here will be displayed in the SGN directory (if not censored using the box above)."
-			     . " Your username for this interface is not displayed.");
+                             contents => "O nome e o sobrenome informados aqui serão exibidos no diretório do SGN, a menos que sejam ocultados pela opção acima."
+                             . " Seu nome de usuário nesta interface não é exibido.");
 	}
-	$form->add_select(display_name => "Salutation", 
+        $form->add_select(display_name => "Forma de tratamento",
 			  field_name => "salutation",
 			  contents => $person->get_salutation(),
 			  object => $person, 
@@ -212,7 +213,7 @@ sub generate_form
 			  setter => "set_salutation",
 			  select_list_ref => [qw(None Prof. Dr. Mr. Ms. Mrs.)],
 			  select_id_list_ref => ['', qw(Prof. Dr. Mr. Ms. Mrs.)]);
-	$form->add_field(display_name => "First name",
+        $form->add_field(display_name => "Nome",
 			 field_name => "first_name",
 			 contents => $displayed_first_name,
 			 length => $default_field_length,
@@ -220,7 +221,7 @@ sub generate_form
 			 getter => "get_first_name",
 			 setter => "set_first_name",
 			 validate => "string");
-	$form->add_field(display_name => "Last name",
+        $form->add_field(display_name => "Sobrenome",
 			 field_name => "last_name",
 			 contents => $displayed_last_name,
 			 length => $default_field_length,
@@ -228,14 +229,14 @@ sub generate_form
 			 getter => "get_last_name",
 			 setter => "set_last_name",
 			 validate => "string");
-	$form->add_field(display_name => "Organization", 
+        $form->add_field(display_name => "Instituição",
 			 field_name => "organization",
 			 contents => $person->get_organization(),
 			 length => 50,
 			 object => $person, 
 			 getter => "get_organization",
 			 setter => "set_organization");
-	$form->add_textarea(display_name => "Address", 
+        $form->add_textarea(display_name => "Endereço",
 			    field_name => "address",
 			    contents => $person->get_address(),
 			    rows => 4,
@@ -243,7 +244,7 @@ sub generate_form
 			    object => $person, 
 			    getter => "get_address",
 			    setter => "set_address");
-	$form->add_field(display_name => "Country", 
+        $form->add_field(display_name => "País",
 			 field_name => "country",
 			 contents => $person->get_country(),
 			 length => $default_field_length,
@@ -256,7 +257,7 @@ sub generate_form
 			     contents => "If you wish to be contacted via telephone or fax by interested parties who found your directory entry on SGN, please enter"
 			     . " telephone numbers here. These numbers will be displayed publically to all SGN users who view your entry.");
 	}
-	$form->add_field(display_name => "Phone", 
+        $form->add_field(display_name => "Telefone",
 			 field_name => "phone",
 			 contents => $person->get_phone_number(),
 			 length => $default_field_length,
@@ -277,14 +278,14 @@ sub generate_form
 								contents => "If you would like to be contacted via email by interested parties who found your directory entry on SGN, please enter"
 								. " an address here. This address will be displayed publically to all SGN users who view your entry.");
 	}
-	$form->add_field(display_name => "Contact E-mail", 
+        $form->add_field(display_name => "E-mail de contato",
 							field_name => "contact_email",
 							contents => $person->get_contact_email(),
 							length => $default_field_length,
 							object => $person, 
 							getter => "get_contact_email",
 							setter => "set_contact_email");
-	$form->add_field(display_name => "Website", 
+        $form->add_field(display_name => "Site",
 							field_name => "webpage",
 							contents => $person->get_webpage(),
 							length => $default_field_length,
@@ -295,9 +296,9 @@ sub generate_form
 	{
 		$form->add_label(display_name => "",
 								field_name => "lbl5",
-								contents => "Enter research keywords (for searching) and a fuller explanation of your research interests (for searching and displaying) below.");
+                                                                contents => "Informe abaixo palavras-chave de pesquisa para as buscas e uma descrição mais detalhada dos seus interesses de pesquisa, para busca e exibição.");
 	}
-	$form->add_field(display_name => "Keywords",
+        $form->add_field(display_name => "Palavras-chave",
 							field_name => "keywords",
 							contents => $person->get_research_keywords(),
 							length => 60,
@@ -308,10 +309,10 @@ sub generate_form
 	{
 		$form->add_label(display_name => "",
 								field_name => "lbl6",
-								contents => "Please separate terms with a <b>semicolon</b>. Do not use quotation marks or other punctuation. (Example: fruit development;"
-												. " host pathogen interaction; drought tolerance)");
+                                                                contents => "Separe os termos com <b>ponto e vírgula</b>. Não use aspas nem outros sinais de pontuação. (Exemplo: desenvolvimento de frutos;"
+                                                                                                . " interação hospedeiro-patógeno; tolerância à seca)");
 	}
-	$form->add_multiselect(display_name => "Research Organisms",
+        $form->add_multiselect(display_name => "Organismos de pesquisa",
 									field_name => "organisms",
 									choices => \@organism_ids,
 									labels => \@organism_names,
@@ -322,11 +323,11 @@ sub generate_form
 	{
 		$form->add_label(display_name => "",
 								field_name => "lbl7",
-								contents => "You may select multiple organisms by clicking on more than one while holding the control key down. If an organism is not listed"
-												. " in the selection box, please specify your additional organisms by their official Latin names in the text entry box below, in"
-												. " a <b>semicolon</b>-separated list.");
+                                                                contents => "Você pode selecionar vários organismos mantendo a tecla Ctrl pressionada ao clicar. Se um organismo não estiver listado"
+                                                                                                . " na caixa de seleção, informe os nomes científicos oficiais dos organismos adicionais no campo abaixo, em"
+                                                                                                . " uma lista separada por <b>ponto e vírgula</b>.");
 		#the contents will be edited by the pre-storing validation function; notice this field never needs to be gotten, only sotten
-		$form->add_field(display_name => "Unlisted Organisms",
+                $form->add_field(display_name => "Organismos não listados",
 								field_name => "unlisted_organisms",
 								id => $self->{organisms_source_element_id},
 								contents => "",
@@ -340,7 +341,7 @@ sub generate_form
 				  field_name => "format",
 				  id_prefix => "format_",
 				  choices => ["auto", "html"],
-				  labels => ["Auto-format (entry is plain text)", "Use HTML markup tags"],
+                                  labels => ["Formatar automaticamente (texto simples)", "Usar tags HTML"],
 				  contents => $person->get_user_format(),
 				  object => $person,
 				  getter => 'get_user_format',
@@ -351,7 +352,7 @@ sub generate_form
 			     contents => "For auto-formatted plain text entries, separate paragraphs by a single empty line. For HTML entries, please use only paragraph"
 			     . " tags (&lt;p&gt;), bold and italic tags (&lt;b&gt;, &lt;i&gt;), and break tags (&lt;br&gt;). All other tags will be removed.");
 	}
-	$form->add_textarea(display_name => "Interests",
+        $form->add_textarea(display_name => "Interesses",
 			    field_name => "research_interests",
 			    id => $self->{html_source_element_id},
 			    contents => $person->get_research_interests(),
@@ -372,7 +373,7 @@ sub generate_form
 	if($form->is_editable())
 	{
 		$form->add_hidden(display_name => "ID", field_name => "sp_person_id", contents => $person->get_sp_person_id());
-		$form->add_hidden(display_name => "Action", field_name => "action", contents => "store");
+                $form->add_hidden(display_name => "Ação", field_name => "action", contents => "store");
 	}
 	
 	if($form->is_editable())
@@ -412,29 +413,29 @@ sub get_actions_toolbar
 	}
 	else
 	{
-		$home = qq(<span class="ghosted">[Directory Update Home]</span>);
+                $home = qq(<span class="ghosted">[Início da atualização do diretório]</span>);
 	}
 	
 	if($self->get_action() eq "edit")
 	{
 		if($user_is_owner || $user_type eq 'curator')
 		{
-			return $home . qq(<a href="$script_name?action=view&sp_person_id=$sp_person_id">[Cancel Edit]</a>);
+                        return $home . qq(<a href="$script_name?action=view&sp_person_id=$sp_person_id">[Cancelar edição]</a>);
 		}
 		else
 		{
-			return $home . qq(<span class="ghosted">[Cancel Edit]</span>);
+                        return $home . qq(<span class="ghosted">[Cancelar edição]</span>);
 		}
 	}
 	elsif($self->get_action() eq "view")
 	{
 		if($user_is_owner || $user_type eq 'curator')
 		{
-			return $home . qq(<a href="$script_name?action=edit&sp_person_id=$sp_person_id">[Edit]</a>);
+                        return $home . qq(<a href="$script_name?action=edit&sp_person_id=$sp_person_id">[Editar]</a>);
 		}
 		else
 		{
-			return $home . qq(<span class="ghosted">[Edit]</span>);
+                        return $home . qq(<span class="ghosted">[Editar]</span>);
 		}
 	}
 	elsif($self->get_action() eq "store") {}
@@ -455,11 +456,11 @@ sub display_page
 	$page->add_style(text => ".subtitle {font-weight: bold; text-align: center}");
 	$page->add_style(text => ".invisible {display: none}");
 	$page->jsan_use("CXGN.DynamicPreviewPane", "MochiKit.DOM", "MochiKit.Signal"); #include javascript modules
-	$page->header("Sol People: contact and research info");
+        $page->header("Pessoas do SOL: informações de contato e pesquisa");
 
 	print qq{<table><tr valign="middle"><td width="670" align="center" valign="middle" ><br />};
 
-	print page_title_html("Personal info for " . $person->get_first_name() . " " . $person->get_last_name());
+        print page_title_html("Informações pessoais de " . $person->get_first_name() . " " . $person->get_last_name());
 
 	print "</td><td>";
 
@@ -479,14 +480,14 @@ sub display_page
 		my $organisms_preview_pane_parent_id = 'organisms_preview_pane_parent';
 		print <<EOHTML;
 <hr width="90%" />
-<div class="subtitle">Interests and Organisms Preview</div>
+<div class="subtitle">Prévia dos interesses e organismos</div>
 <div id="all_html_preview_stuff">
-Your research interests will be displayed on SGN\'s website as shown in the box below (the box will not be displayed).
+Seus interesses de pesquisa serão exibidos no site do SGN conforme a caixa abaixo; a caixa em si não será exibida.
 <div id="$html_preview_pane_parent_id"></div>
 </div>
-<br />You have entered the following currently unlisted organisms. Please check that these names are spelled correctly.
-Once committed, these names cannot be changed by this interface. 
-If you accidentally save an incorrect organism name, please contact us via <a href="mailto:sgn-feedback\@sgn.cornell.edu">sgn-feedback\@sgn.cornell.edu</a>.
+<br />Você informou os seguintes organismos ainda não listados. Confira a grafia dos nomes.
+Depois de salvos, esses nomes não poderão ser alterados por esta interface.
+Se salvar um nome incorreto por engano, entre em contato pelo endereço <a href="mailto:sgn-feedback\@sgn.cornell.edu">sgn-feedback\@sgn.cornell.edu</a>.
 <div id="$organisms_preview_pane_parent_id"></div>
 <script type="text/javascript">
 DynamicPreviewPane.createPreviewPane('html', '$self->{html_source_element_id}', '$html_preview_pane_parent_id');
@@ -535,7 +536,7 @@ EOHTML
 	    }
 	    
 	    if ($more) { 
-		$locus_annotations .= qq|<br><b>and <a href="/search/locus">$more more</a></b><br />|; 
+                $locus_annotations .= qq|<br><b>e <a href="/search/locus">$more more</a></b><br />|;
 		
 		
 	    }

@@ -1,4 +1,5 @@
 #!/usr/bin/perl -w
+use utf8;
 
 #######################################################
 #
@@ -23,7 +24,7 @@ the alignments correspond to DNA sequence numbers.<br/><br/>
 
 <b>Note</b>: A <a href="http://int-citrusgenomics.org/usa/ucr/Files.php">similar tool</a>, developed independently, is available from the Citrus Genomics Project at the University of California.<br/><br/>
 
-Please enter your query in FASTA format.<br/><br/>
+Informe a consulta no formato FASTA.<br/><br/>
 ENDINTRO
 
 print <<EOF;
@@ -38,7 +39,7 @@ print <<EOF;
     Enter an e-value for blast: <input type="text" name="blast_e_value" value="1e-50" />
     </td>
    <td align="right">
-    <input type="submit" name="submit" value="Find introns" />
+    <button type="submit" name="submit" value="Find introns">Localizar íntrons</button>
    </td>
 </tr>
 </table>

@@ -28,7 +28,7 @@ sub list_releases :Path('/itag/list_releases') :Args(0) {
     my ( $self, $c ) = @_;
 
     my $itag = $c->enabled_feature('ITAG')
-        or $c->throw_404('ITAG site feature not available');
+        or $c->throw_404('O recurso ITAG não está disponível neste site');
 
     $c->stash->{itag_releases} = [ CXGN::ITAG::Release->find( dir => $itag->releases_base ) ];
 
@@ -94,7 +94,7 @@ sub get_release :Chained('/') :PathPart('itag/release') :CaptureArgs(1) {
     my ( $self, $c, $releasenum ) = @_;
 
     my $itag = $c->enabled_feature('ITAG')
-        or $c->throw_404('ITAG site feature not available');
+        or $c->throw_404('O recurso ITAG não está disponível neste site');
 
     # get and stash the itag release object, throwing if not found
     ($c->stash->{itag_release}) = CXGN::ITAG::Release->find(

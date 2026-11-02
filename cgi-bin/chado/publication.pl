@@ -1,3 +1,4 @@
+use utf8;
 package CXGN::Chado::PublicationDetailPage;
 
 use base qw/CXGN::Page::Form::SimpleFormPage/;
@@ -43,7 +44,7 @@ sub define_object {
     }
     my $pub_id= $args{pub_id};
     
-    unless (!$pub_id || $pub_id =~m /^\d+$/) { $self->get_page->message_page("No publication exists for identifier: $pub_id"); }
+    unless (!$pub_id || $pub_id =~m /^\d+$/) { $self->get_page->message_page("Não existe publicação com o identificador: $pub_id"); }
     $self->set_object_id($pub_id);
     $self->set_object(CXGN::Chado::Publication->new($self->get_dbh, $self->get_object_id));
     
@@ -66,24 +67,24 @@ sub display_page {
     $self->get_page()->jsan_use("CXGN.Phenome.Locus");
     $self->get_page()->jsan_use("CXGN.Phenome.Publication");
 
-    if (!$pub_title && $action ne 'new' && $action ne  'store') { $self->get_page->message_page("No publication exists for this identifier");}
+    if (!$pub_title && $action ne 'new' && $action ne  'store') { $self->get_page->message_page("Não existe publicação com esse identificador");}
 
     
     $self->get_page->header("SGN publication $pub_title");
-    print page_title_html("Publication:\t$pub_title\n");
+    print page_title_html("Publicação:\t$pub_title\n");
     
     my $edit_links=$self->get_edit_links();
     
     my $pub_html=$edit_links. "<br />". $self->get_form->as_table_string(). "<br />";
     if ($action eq 'new') { print qq |<p><b><a href = "/chado/add_publication.pl?action=new&amp;type=$args{type}&amp;type_id=$args{type_id}&amp;reffering_page=$args{reffering_page}">Store PubMed publication.</a></b></p>|; }
-    print info_section_html(title    => 'Publication details',
+    print info_section_html(title    => 'Detalhes da publicação',
                             contents => $pub_html ,
 			    );
-    if ($args{refering_page}) { print qq |<a href="$args{refering_page}">Go back to refering page.</a><br />|; }
+    if ($args{refering_page}) { print qq |<a href="$args{refering_page}">Voltar à página de origem.</a><br />|; }
     
     my $dbxref_html=$self->get_dbxref_html($publication->get_dbxrefs());
     
-    print info_section_html(title    => 'External resources',
+    print info_section_html(title    => 'Recursos externos',
                             contents => $dbxref_html ,
 			    );
     my $loci_link;
@@ -94,14 +95,14 @@ sub display_page {
 	my $cname=$locus->get_common_name();
 	$loci_link .= qq|<a href="/phenome/locus_display.pl?locus_id=$locus_id">$cname '$locus_symbol'</a><br />| if $locus->get_obsolete() eq 'f';
     }
-    print info_section_html(title    => 'Associated loci',
+    print info_section_html(title    => 'Loci associados',
 			    contents => $loci_link ,
 			    );
     my $user_type= $self->get_user()->get_user_type();
     if ($args{get_ranked_loci} && $user_type eq 'curator' ) { $self->rank_loci_now(); }
     
     my $ranked_loci= $self->get_ranked_loci();
-    print info_section_html(title    => 'Matched loci',
+    print info_section_html(title    => 'Loci correspondentes',
 			    contents => $ranked_loci ,
 			    collapsible=>1,
 			    collapsed =>1,
@@ -110,7 +111,7 @@ sub display_page {
     if ($user_type eq 'curator') {
 	# the text-indexing function does not do the right thing now
 	# have to modify it so the search will be against just the current  publication
-        print info_section_html(title    => 'Curator Tools',
+        print info_section_html(title    => 'Ferramentas de curadoria',
 				contents => $self->get_curator_tools(),
 				);
     }
@@ -184,7 +185,7 @@ sub generate_form {
    my $author_example = tooltipped_text('Authors', 'Author names should be entered in the order of  last name, followed by "," then first name followed by ".". e.g Darwin, Charles. van Rijn, Henk. Giorgio,AB'); 
 
     $self->get_form()->add_textarea(
-                                 display_name => "Title",
+                                 display_name => "Título",
                                  field_name  => "title",
                                  object => $publication,
                                  getter => "get_title",
@@ -195,7 +196,7 @@ sub generate_form {
 			      );
 
     $self->get_form()->add_field(
-                                 display_name => "Series name",
+                                 display_name => "Nome da série",
                                  field_name  => "series_name",
                                  object => $publication,
                                  getter => "get_series_name",
@@ -211,7 +212,7 @@ sub generate_form {
                                  validate=>'integer',
 				 );
     $self->get_form()->add_field(
-                                 display_name => "Issue",
+                                 display_name => "Número",
                                  field_name  => "issue",
                                  object => $publication,
                                  getter => "get_issue",
@@ -219,7 +220,7 @@ sub generate_form {
 				 );
     
     $self->get_form()->add_field (
-				  display_name => "Year",
+                                  display_name => "Ano",
 				  field_name  => "pyear",
 				  object => $publication,
 				  getter => "get_pyear",
@@ -227,7 +228,7 @@ sub generate_form {
 				  validate => 'integer',
 				  );
     $self->get_form()->add_field (
-				  display_name => "Pages",
+                                  display_name => "Páginas",
 				  field_name  => "pages",
 				  object => $publication,
 				  getter => "get_pages",
@@ -244,7 +245,7 @@ sub generate_form {
 					rows =>1,
         );
     $self->get_form()->add_textarea (
-				     display_name=> "Abstract",
+                                     display_name=> "Resumo",
 				     field_name => "abstract",
 				     object => $publication,
 				     getter => "get_abstract",
@@ -312,7 +313,7 @@ sub check_modify_privileges {
     if ($user->get_user_type() eq 'curator' || $user->get_user_type() eq 'submitter' || $user->get_user_type eq 'sequencer') {
         return 0;
     }else {
-	$self->get_page()->message_page("This page is only available for SGN curators!!");
+        $self->get_page()->message_page("Esta página está disponível apenas para curadores do SGN.");
     }
 }
 
@@ -366,10 +367,10 @@ sub get_ranked_loci {
 		<option value="yes">yes</option>
 		<option value="maybe">maybe</option>
 	      </select>
-	     <input type="button"
+             <button type="button"
 		id="associate_pub_button"
 		value="Validate match"
-		onclick="Locus.addLocusDbxref('$_', '$dbxref_id');this.disabled=false;">
+                onclick="Locus.addLocusDbxref('$_', '$dbxref_id');this.disabled=false;">Validar correspondência</button>
 	     </div>
 	     </div>
 	     <BR>
@@ -433,16 +434,16 @@ sub get_edit_link_html {
 
     my $user_id= $self->get_user()->get_sp_person_id();
     if (($self->get_user()->get_user_type() eq "curator") || ($self->get_user()->get_user_type() eq "submitter") || ( $self->get_user()->get_user_type() eq "sequencer") ) {
-	$edit_link = qq { <a href="$script_name?action=edit&amp;form=$form_name&amp;$primary_key=$object_id">[Edit]</a> };
+        $edit_link = qq { <a href="$script_name?action=edit&amp;form=$form_name&amp;$primary_key=$object_id">[Editar]</a> };
 	
     }else {
-	$edit_link = qq { <span class="ghosted">[Edit]</span> };
+        $edit_link = qq { <span class="ghosted">[Editar]</span> };
     }
     if ($self->get_action() eq "edit") { 
-	$edit_link = qq { <a href="$script_name?action=view&amp;form=$form_name&amp;$primary_key=$object_id">[Cancel Edit]</a> };
+        $edit_link = qq { <a href="$script_name?action=view&amp;form=$form_name&amp;$primary_key=$object_id">[Cancelar edição]</a> };
     }
     if ($self->get_action() eq "new") { 
-	$edit_link = qq { <span class="ghosted">[Edit]</span> };
+        $edit_link = qq { <span class="ghosted">[Editar]</span> };
     }
     return $edit_link;
 }
@@ -456,15 +457,15 @@ sub get_delete_link_html {
     my $object_id = $self->get_object_id();
     my $user_id= $self->get_user()->get_sp_person_id();
     if (($self->get_user()->get_user_type() eq "curator") || ($self->get_user()->get_user_type() eq "submitter") || ( $self->get_user()->get_user_type() eq "sequencer") ) {
-   	$delete_link = qq { <a href="$script_name?action=confirm_delete&amp;form=$form_name&amp;$primary_key=$object_id">[Delete]</a> };
+        $delete_link = qq { <a href="$script_name?action=confirm_delete&amp;form=$form_name&amp;$primary_key=$object_id">[Excluir]</a> };
     }else {
-	$delete_link = qq { <span class="ghosted">[Delete]</span> };
+        $delete_link = qq { <span class="ghosted">[Excluir]</span> };
     }
     if ($self->get_action() eq "edit") { 
-	$delete_link = qq { <span class="ghosted">[Delete]</span> };
+        $delete_link = qq { <span class="ghosted">[Excluir]</span> };
     }
     if ($self->get_action() eq "new") { 
-	$delete_link = qq { <span class="ghosted">[Delete]</span> };
+        $delete_link = qq { <span class="ghosted">[Excluir]</span> };
     }
     return $delete_link;
 }
@@ -509,7 +510,7 @@ sub get_curator_tools {
 	<input id="" type="hidden" value="1" name="get_ranked_loci"/>
 	<input id="" type="hidden" value="$pub_id" name="pub_id"/>
 	
-        <input type="submit" value="Get ranked loci"/>
+        <button type="submit" value="Get ranked loci">Obter loci classificados</button>
 	</form>
 	
 	|;
@@ -519,7 +520,7 @@ sub get_curator_tools {
 	
 EOHTML
 
-    my $search = qq|Go back to <a href="/search/pub_search.pl">literature search page</a>.|;
+    my $search = qq|Go back to <a href="/search/pub_search.pl">página de busca na literatura</a>.|;
     return info_table_html('Publication status'=>$stats, 
 			   'Assigned to curator'=> $curators , 
 			   'Text index'=> $html)

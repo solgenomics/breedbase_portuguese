@@ -1,3 +1,4 @@
+use utf8;
 use strict;
 use CXGN::Page;
 use CXGN::DB::Connection;
@@ -17,7 +18,7 @@ my $blast_matches_q = $dbh->prepare ("select bt.db_name, bd.defline, bt.blast_pr
 
 my $blast_unig_link_q = $dbh->prepare("select u.unigene_id, g.comment, bh.score, bh.evalue, bh.identity_percentage, bh.apply_start, bh.apply_end from blast_defline as bd left join blast_hits as bh on (bd.defline_id=bh.defline_id) left join blast_annotations as ba using (blast_annotation_id) left join unigene as u on (ba.apply_id=u.unigene_id) left join unigene_build as ub using (unigene_build_id) left join groups as g on (ub.organism_group_id=g.group_id) where apply_type='15' and ub.status='C' and bd.defline_id=?");
 
-my $page = CXGN::Page->new( "Annotation Search Results", "Dan");
+my $page = CXGN::Page->new( "Resultados da busca de anotações", "Dan");
 
 my $desc_colour='#EEEEEE';
 my $unig_link='/search/unigene.pl?unigene_id=';
@@ -94,7 +95,7 @@ elsif($search_type eq 'blast_search'){
     }
 
     my ($blast_target_db, $defline, $blast_program) = $blast_matches_q->fetchrow_array();
-    my $annot_target_desc = "Unigene <b>$blast_program</b> search against <b>$blast_target_db</b>";
+    my $annot_target_desc = "Unigene <b>$blast_program</b> buscar em <b>$blast_target_db</b>";
     @match_detail = ($annot_target_desc, $defline);
 
 
@@ -137,7 +138,7 @@ my $web_format="
 
 if (@unigene_list){
     $web_format .= "
-<tr><td colspan=\"2\" align=\"left\" nowrap=\"nowrap\"><br />Unigenes containing this annotation:</td></tr>
+<tr><td colspan=\"2\" align=\"left\" nowrap=\"nowrap\"><br />Unigenes que contêm esta anotação:</td></tr>
 <tr><td colspan=\"2\" align=\"left\" nowrap=\"nowrap\">
 <table align=\"left\" cellspacing=\"2\" cellpadding=\"0\" border=\"0\">
 ";
@@ -213,7 +214,7 @@ sub null_request {
 
   print <<EOF;
 
-  <p><b>No match_id was found</b></p>
+  <p><b>Nenhum match_id encontrado</b></p>
 
 EOF
 

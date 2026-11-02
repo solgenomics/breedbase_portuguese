@@ -1,4 +1,5 @@
 #!/usr/bin/perl -w
+use utf8;
 
 #Display page by genotype
 
@@ -18,14 +19,14 @@ my $page = CXGN::Page->new('phenotype', 'Adri');
 
 print "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 transitional//EN\" \"http://www.w3.org/tr/xhtml1/DTD/xhtml1-transitional.dtd\">";
 
-$page->header("Plants By Genotype");
+$page->header("Plantas por genótipo");
 
 print <<EOF
 
 <table summary="" width="100%" cellpadding="0" cellspacing="10" border="0">
 
 <tr><td>
-<center><h3><u>Plants By Genotype</u></h3></center>
+<center><h3><u>Plantas por genótipo</u></h3></center>
 </td></tr>
 
 EOF
@@ -38,11 +39,11 @@ my $param_list = "pop_id=$pop_id"."&"."pop_name=$pop_name"."&"."gen_id=$gen_id".
 my $prev_page = "genotype";
 
 print "<tr><td>\n";
-print "<b><u>Genotype Information</u></b>\n";
+print "<b><u>Informações do genótipo</u></b>\n";
 print "<ul>\n";
 print "<li>Population: <a href =\"population.pl?pop_id=$pop_id\"><b>$pop_name</b></a></li>\n";
 $gen_name = CXGN::DB::PhenoPopulation::get_gen_name_from_gen_id ($gen_id);
-print "<li>Genotype Group: <b> $gen_name</b></li>\n";
+print "<li>Grupo de genótipos: <b> $gen_name</b></li>\n";
 print "</ul>\n";
 print "</td></tr>\n";
 
@@ -53,7 +54,7 @@ print "</td></tr>\n";
     if (@plant_info_from_gen) {
 
       print "<tr><td>";
-      print "<b><u>Plants with the Selected Genotype and Population</u></b>";
+      print "<b><u>Plantas com o genótipo e a população selecionados</u></b>";
       print "</td></tr>\n";
 
       #plant name, location; link to page of all images by plant; list available properties
@@ -74,7 +75,7 @@ print "</td></tr>\n";
 
         print "<tr><td>\n";
         print "<ul style=\"list-style-type:none\"><li><ul style=\"list-style-type:none\">\n"; 
-        print "<li><a href=\"/phenotype/display_samples_from_plant.pl?pop_id=$pop_id\&amp;pop_name=$pop_name\&amp;gen_id=$gen_id\&amp;gen_name=$gen_name\&amp;plant_name=$plant_name\&amp;plant_id=$plant_id\&amp;institution=$institution\&amp;environment=$environment\&amp;year=$year\">View all images for this plant</a></li>\n";
+        print "<li><a href=\"/phenotype/display_samples_from_plant.pl?pop_id=$pop_id\&amp;pop_name=$pop_name\&amp;gen_id=$gen_id\&amp;gen_name=$gen_name\&amp;plant_name=$plant_name\&amp;plant_id=$plant_id\&amp;institution=$institution\&amp;environment=$environment\&amp;year=$year\">Visualizar todas as imagens desta planta</a></li>\n";
         print "<li>&nbsp;</li>\n";
 
 	#display existing properties for this plant in a drop box
@@ -113,7 +114,7 @@ print "</td></tr>\n";
           print "<input type=\"hidden\" name=\"institution\" value=\"$institution\" />\n";
           print "<input type=\"hidden\" name=\"environment\" value=\"$environment\" />\n";
           print "<input type=\"hidden\" name=\"year\" value=\"$year\" />\n";
-          print "<input type=\"submit\" value=\"Get Data by Property\" />\n";	
+          print "<button type=\"submit\" value=\"Get Data by Property\">Obter dados por propriedade</button>\n";
           print "</td></tr>\n</table>\n";
           print "</form>\n";
           print "</li>\n";

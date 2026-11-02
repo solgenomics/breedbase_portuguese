@@ -5,6 +5,7 @@ SGN::Controller::Biosource - controller for working with Biosource data, which i
 =cut
 
 package SGN::Controller::Biosource;
+use utf8;
 use Moose;
 
 BEGIN { extends 'Catalyst::Controller' }
@@ -45,7 +46,7 @@ sub view_sample : Chained('get_sample') PathPart('view') Args(0) {
 sub get_sample : Chained('/') CaptureArgs(1) PathPart('data_source') {
     my ( $self, $c, $ident ) = @_;
 
-    $ident or $c->throw_client_error('invalid arguments');
+    $ident or $c->throw_client_error('Argumentos inválidos');
 
     my $schema = $c->stash->{schema} = $c->dbic_schema('CXGN::Biosource::Schema','sgn_chado');
 

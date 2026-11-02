@@ -1,3 +1,4 @@
+use utf8;
 
 =head1 DESCRIPTION
 A QTL detail page.
@@ -406,7 +407,7 @@ sub legend
 
     if ( !$lod )
     {
-        $lod = qq |<i>Not calculated</i>|;
+        $lod = qq |<i>Não calculado</i>|;
     }
 
     push @stat, [ map {$_} ( 'LOD threshold', $lod ) ];
@@ -427,9 +428,9 @@ sub legend
 
 sub download_qtl_region 
 {
-my $link = qq | <a href="https://www.eu-sol.wur.nl/marker2seq/marker2seq.do?marker1=$l_m&marker2=$r_m">View/download</a> genetic markers in the tomato F2.2000 reference map region (+5cM) matching the QTL region and gene models from the ITAG annotated tomato genome. |;
+my $link = qq | <a href="https://www.eu-sol.wur.nl/marker2seq/marker2seq.do?marker1=$l_m&marker2=$r_m">Visualizar/baixar</a> genetic markers in the tomato F2.2000 reference map region (+5cM) matching the QTL region and gene models from the ITAG annotated tomato genome. |;
 
-$link  .=   qq | <p><i>Courtesy of</i> <a href="http://www.eu-sol.wur.nl"><img src ="/img/eusol_logo_small.jpg"/></a></p> |;
+$link  .=   qq | <p><i>Cortesia de</i> <a href="http://www.eu-sol.wur.nl"><img src ="/img/eusol_logo_small.jpg"/></a></p> |;
 
     return $link;
 

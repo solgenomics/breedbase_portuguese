@@ -1,3 +1,4 @@
+use utf8;
 
 use strict;
 use warnings;
@@ -24,14 +25,14 @@ my $mech = SGN::Test::WWW::Mechanize->new;
 #
 $mech->get_ok('/');
 
-$mech->content_like( qr/What is Breedbase/, 'check homepage contents');
-$mech->content_lacks( 'Welcome back', 'check user welcome message missing.');
+$mech->content_like( qr/O que é o Breedbase/, 'check homepage contents');
+$mech->content_lacks( 'Bem-vindo(a) de volta', 'check user welcome message missing.');
 
 # login
 #
 $mech->post_ok('http://localhost:3010/brapi/v1/token', [ "username"=> "janedoe", "password"=> "secretpw", "grant_type"=> "password" ], 'login with brapi call');
 
 $mech->get_ok('/');
-$mech->content_like( qr/Welcome back/, 'check user welcome message present');
+$mech->content_like( qr/Bem-vindo\(a\) de volta/, 'check user welcome message present');
 
 done_testing();

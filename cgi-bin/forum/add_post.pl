@@ -1,3 +1,4 @@
+use utf8;
 
 =head1 add_post.pl
 
@@ -24,7 +25,7 @@ use CXGN::Page::FormattingHelpers qw/  page_title_html
 
 my $SIZELIMIT = 10000; # the maximal number of bytes in a post.
 
-my $page = CXGN::Page->new( "SGN Forum | Add Post", "Lukas");
+my $page = CXGN::Page->new( "Fórum do SGN | Adicionar mensagem", "Lukas");
 my $dbh = CXGN::DB::Connection->new();
 
 #
@@ -78,7 +79,7 @@ if ($topic_id) {
 
     $topic = CXGN::People::Forum::Topic -> new($dbh, $topic_id);
     if (!$topic) { 
-	$page->error_page("No legal topic id was supplied. [topic_id=$topic_id]");
+        $page->error_page("Nenhum ID de tópico válido foi informado. [topic_id=$topic_id]");
     }
     $topic_name =  $topic -> get_topic_name();
 }
@@ -97,7 +98,7 @@ elsif ($page_type && $page_object_id) {
 }
 else
 {
-    $page->error_page("Sorry, but there was insufficient data to add this post.");    
+    $page->error_page("Os dados informados são insuficientes para adicionar esta mensagem.");
 }
 
 #
@@ -116,10 +117,10 @@ my $formatted_post_text = $post->format_post_text($post_text);
 #
 my $link;
 if ($refering_page) { 
-    $link = "<a href=\"$refering_page\">Back to posts</a>"; 
+    $link = "<a href=\"$refering_page\">Voltar às mensagens</a>";
 }
 else { 
-    $link = "<a href=\"posts.pl?topic_id=$topic_id\">Back to posts</a>";
+    $link = "<a href=\"posts.pl?topic_id=$topic_id\">Voltar às mensagens</a>";
 }
 #
 # perform the appropriate action, depending on the
@@ -139,21 +140,20 @@ if ($action eq "review") {
     
     my $truncated_warning = "";
     if ($truncated) { 
-	$truncated_warning = "<b>Note:</b> Your post exceeds $SIZELIMIT characters and has been truncated.
-                Please use the 'go back' button to edit your post, or submit to accept the 
-                truncated version.<br /><br />\n";
+        $truncated_warning = "<b>Observação:</b> Sua mensagem excede $SIZELIMIT caracteres e foi cortada.
+                Use o botão Voltar para editá-la ou envie para aceitar a versão reduzida.<br /><br />\n";
     }
 
 
     $page -> header();
 
-    print page_title_html("Review your post");
+    print page_title_html("Revisar sua mensagem");
     
     print <<HTML;
     <div class="container-fluid">
-    Enter post -> <b>Review post</b> -> Store post<br /><br />
-    This is how the text of your post will appear. Please use the 'store post' button for permanently adding the post
-    or the 'modify post' button to go back and revise the post. To cancel, click on 'back to posts'.<br /><br />
+    Inserir mensagem -> <b>Revisar mensagem</b> -> Salvar mensagem<br /><br />
+    O texto da sua mensagem será exibido desta forma. Use o botão Salvar mensagem para adicioná-la
+    ou Editar mensagem para voltar e revisá-la. Para cancelar, clique em Voltar às mensagens.<br /><br />
  
     $truncated_warning
 
@@ -169,7 +169,7 @@ if ($action eq "review") {
     <input type="hidden" name="refering_page" value="$refering_page" />
     <input type="hidden" name="action" value="input" />
     <input type="hidden" name="topic_id" value="$topic_id" />
-    <input class="btn btn-info" type="submit" value="modify post" />
+    <input class="btn btn-info" type="submit" value="Editar mensagem" />
     </form>
     <td><td>
     $link
@@ -181,7 +181,7 @@ if ($action eq "review") {
     <input type="hidden" name="refering_page" value="$refering_page" />
     <input type="hidden" name="action" value="save" />
     <input type="hidden" name="topic_id" value="$topic_id" />
-    <input class="btn btn-primary" type="submit" value="store post" />
+    <input class="btn btn-primary" type="submit" value="Salvar mensagem" />
     </form>
     </td></tr></table>
     </div>
@@ -212,11 +212,11 @@ elsif ($action eq "save") {
 
     $page->header();
 
-    print page_title_html("Your post was successfully stored");
-    print "Enter post -> Review post -> <b>Store post</b></a><br /><br />\n";
+    print page_title_html("Sua mensagem foi salva com sucesso");
+    print "Inserir mensagem -> Revisar mensagem -> <b>Salvar mensagem</b></a><br /><br />\n";
 
     if ($truncated) { 
-	print "<b>Note:</b>Your post has been truncated to $SIZELIMIT characters.<br />\n";
+        print "<b>Observação:</b>Sua mensagem foi cortada para $SIZELIMIT caracteres.<br />\n";
     }
 
     my $display_post_text = $post->format_post_text($post_text);
@@ -237,21 +237,21 @@ else {
     #
     $page -> header();
 
-    print page_title_html("Enter Post for topic \"$topic_name\"");
+    print page_title_html("Inserir mensagem no tópico \"$topic_name\"");
 
     print <<HTML;
 
     <form method="post" action="add_post.pl">
 	
-	Steps: <b>Enter post</b> -> Review post -> Store post<br /><br /> 
+        Etapas: <b>Inserir mensagem</b> -> Revisar mensagem -> Salvar mensagem<br /><br />
 	$parent_post_explain<br />
 	
-	Please enter your comment below. You can delete the post later if you are logged in.<br />
-	HTML tags are not supported. You can add links to your post by using square brackets.  For example:<br />
-	<tt>[url]sgn.cornell.edu[/url]</tt> will appear as <a href="http://sgn.cornell.edu">sgn.cornell.edu</a> in the post.<br /><br />
+        Insira seu comentário abaixo. Você poderá excluir a mensagem depois, se estiver conectado.<br />
+        Tags HTML não são aceitas. Você pode adicionar links à mensagem usando colchetes. Por exemplo:<br />
+        <tt>[url]sgn.cornell.edu[/url]</tt> será exibido como <a href="http://sgn.cornell.edu">sgn.cornell.edu</a> na mensagem.<br /><br />
 
-	Size limit per post is $SIZELIMIT characters, including spaces and punctuation.<br /><br />
-	<b>Note:</b> this service is provided as a courtesy. SGN reserves the right to delete posts at any time for any reason.
+        O limite de cada mensagem é de $SIZELIMIT caracteres, incluindo espaços e pontuação.<br /><br />
+        <b>Observação:</b> este serviço é oferecido como cortesia. O SGN se reserva o direito de excluir mensagens a qualquer momento, por qualquer motivo.
 	<br /><br />
 	<input type="hidden" name="parent_post_id" value="$parent_post_id" />
 	<input type="hidden" name="topic_id" value="$topic_id" />
@@ -268,7 +268,7 @@ else {
 	<table width="100%"><tr><td align="left">
 	$link 
 	</td><td align="right">
-	<input class="btn btn-primary" type=submit value="Review post" />
+        <input class="btn btn-primary" type=submit value="Revisar mensagem" />
 	</form>
 	</td></tr></table>
 

@@ -1,3 +1,4 @@
+use utf8;
 use CatalystX::GlobalContext qw( $c );
 use strict;
 use warnings;
@@ -8,7 +9,7 @@ use CXGN::ITAG::Pipeline;
 use CXGN::Page;
 
 #use Data::Dumper;
-my $page = CXGN::Page->new('Validation Report Download','Robert Buels');
+my $page = CXGN::Page->new('Baixar relatório de validação','Robert Buels');
 my ($pipe,$batch,$atag,$filename,$valname) = $page->get_encoded_arguments('pipe','batch','atag','filename','valname');
 
 my %content_types = ( gamexml => 'text/xml',

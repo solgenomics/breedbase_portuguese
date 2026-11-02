@@ -1,3 +1,4 @@
+use utf8;
 use strict;
 use warnings;
 
@@ -79,7 +80,7 @@ sub define_object
 
     unless ( ($population_id and $population_id =~ /^\d+$/) || ($stock_id and $stock_id =~ /^\d+$/) )
     {
-        $c->throw_404("A proper <strong>population id or stock id</strong> argument is missing");
+        $c->throw_404("É necessário informar um <strong>ID de população ou de material</strong> válido");
     }
 
     if ($stock_id)
@@ -108,7 +109,7 @@ sub define_object
     {
 	$self->set_trait_id($trait_id);
     } else {
-	$c->throw_404("A proper <strong>cvterm id</strong> argument is missing");
+        $c->throw_404("É necessário informar um <strong>ID de cvterm</strong> válido");
     }
 
 
@@ -155,13 +156,13 @@ qq |<a href="/solpeople/personal-info.pl?sp_person_id=$sp_person_id">$submitter_
     }
 
     $form->add_label(
-                      display_name => "Name:",
+                      display_name => "Nome:",
                       field_name   => "name",
                       contents     => $pop_link,
                     );
 
     $form->add_textarea(
-                         display_name => "Description: ",
+                         display_name => "Descrição: ",
                          field_name   => "description",
                          object       => $population,
                          getter       => "get_description",
@@ -171,7 +172,7 @@ qq |<a href="/solpeople/personal-info.pl?sp_person_id=$sp_person_id">$submitter_
                        );
 
     $form->add_label(
-                      display_name => "Uploaded by: ",
+                      display_name => "Enviado por: ",
                       field_name   => "submitter",
                       contents     => $submitter_link,
                     );
@@ -238,7 +239,7 @@ EOS
     $self->get_page()
       ->header(" SGN: $term_name values in population $population_name");
     print page_title_html(
-                    "SGN: $term_name values in population $population_name \n");
+                    "SGN: valores de $term_name na população $population_name \n");
 
     my $population_html = $self->get_edit_link_html() . qq |<a href="qtl_form.pl">[New QTL Population]</a><br/>|;
 
@@ -323,7 +324,7 @@ qq|<div><a href="$url_pubmed$accession" target="blank">$pub_info</a> $title $abs
         }
     }
 
-    print info_section_html( title    => 'Population details',
+    print info_section_html( title    => 'Detalhes da população',
                              contents => $population_html, );
 
     my $is_public = $population->get_privacy_status();
@@ -380,7 +381,7 @@ qq|<div><a href="$url_pubmed$accession" target="blank">$pub_info</a> $title $abs
                       0,                                #<  don't show data by default
                                        );
 	    $data_download .=
-qq { Download population: <span><a href="/qtl/download/phenotype/$population_id"><b>Phenotype data</b></a> | <a href="/qtl/download/genotype/$population_id"><b>Genotype data</b></a></span> };
+qq { Download population: <span><a href="/qtl/download/phenotype/$population_id"><b>Dados fenotípicos</b></a> | <a href="/qtl/download/genotype/$population_id"><b>Dados genotípicos</b></a></span> };
     }
 
 
@@ -480,21 +481,21 @@ qq { Download population: <span><a href="/qtl/download/phenotype/$population_id"
                                 );
 
 
-        print info_section_html( title    => 'Variation explained by QTL(s) ( Interacting QTLs model )',
+        print info_section_html( title    => 'Variação explicada pelos QTLs (modelo de QTLs em interação)',
                                  contents => $explained_variation_data
                                  );
 
-        print info_section_html( title    => 'QTL effects',
+        print info_section_html( title    => 'Efeitos dos QTLs',
                                  contents => $qtl_effects_data
                                  );
 
         print info_section_html(
-	                        title    => 'Phenotype frequency distribution',
+                                title    => 'Distribuição de frequência dos fenótipos',
                                 contents => $plot_html,
                                );
 
 	print info_section_html(
-	                        title    => 'Download data',
+                                title    => 'Baixar dados',
 	 	                contents => $data_view . " " . $data_download,
                                 collapsible => 1,
                                 collapsed   => 1,
@@ -507,7 +508,7 @@ qq { Download population: <span><a href="/qtl/download/phenotype/$population_id"
           "The QTL data for this trait in this population is not public yet.
                        If you would like to know more about this data,
                        please contact the owner of the data: <b>$submitter_link</b>
-                       or email to SGN:
+                       ou envie um e-mail ao SGN:
                        <a href=mailto:sgn-feedback\@sgn.cornell.edu>
                        sgn-feedback\@sgn.cornell.edu</a>.\n";
 
@@ -516,7 +517,7 @@ qq { Download population: <span><a href="/qtl/download/phenotype/$population_id"
     }
 
     print info_section_html(
-                           title       => 'Publication(s)',
+                           title       => 'Publicações',
                            contents    => $pubmed,
                            collapsible => 1,
                            collapsed   => 1,
@@ -1651,7 +1652,7 @@ sub legend {
 
     if  (!$lod1)
     {
-	$lod1 = qq |<i>Not calculated</i>|;
+        $lod1 = qq |<i>Não calculado</i>|;
     }
 
     push @stat,

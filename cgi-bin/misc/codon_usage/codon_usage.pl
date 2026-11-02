@@ -1,3 +1,4 @@
+use utf8;
 use strict;
 use CXGN::Page;
 my $page=CXGN::Page->new('codon_usage.html','html2pl converter');
@@ -13,7 +14,7 @@ border="0">
 <h3>Codon usage for tomato (<em>L. esculentum</em>) and potato (<em>S.
 tuberosum</em>) genes and comparison with codon usage in other
 organisms.</h3>
-An analysis of codon usage in <em>L. esculentum</em> and <em>S.
+An analysis of codon usage in <em>L. esculentum</em> e <em>S.
 tuberosum</em> was performed based on a dataset of 150000 tomato EST
 sequences and 40000 potato EST sequences. The following methodology
 was used:
@@ -45,7 +46,7 @@ step was used to eliminate the possibility of using 5' UTR while
 building the codon usage tables.</p>
 <p>The codon usage patterns in tomato and potato were compared with
 each other, as well as <em>A. thaliana</em>, <em>Z. mays</em>, <em>O.
-sativa</em>, <em>S. cerevisiae</em>, <em>C. elegans</em> and <em>H.
+sativa</em>, <em>S. cerevisiae</em>, <em>C. elegans</em> e <em>H.
 sapiens</em>. The published codon usage tables for these organisms
 were retrieved from the <a href=
 "http://www.kazusa.or.jp/codon/">Codon Usage Database</a>.</p>

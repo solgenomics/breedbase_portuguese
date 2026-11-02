@@ -1,3 +1,4 @@
+use utf8;
 
 use strict;
 
@@ -84,7 +85,7 @@ sub store {
 	   	    
 	    $self->get_page()->header();
 	    print  "Tag '".$tag->get_name(). "' already associated with image " . $args{image_id} . " <br />";
-	    print qq { <a href="javascript:history.back(1)">back to image page</a> };
+            print qq { <a href="javascript:history.back(1)">voltar à página da imagem</a> };
 	    $self->get_page()->footer();
 	    exit();
 	}else { 
@@ -103,7 +104,7 @@ sub store {
     if ($args{image_id}) { 
 	my $image = CXGN::Image->new(dbh=>$self->get_dbh(), image_id=>$args{image_id}, image_dir => $c->get_conf('static_datasets_path')."/". $c->get_conf('image_dir'));
 	print " to image ".$image->get_name()."<br /><br />";
-	print qq { view <a href="/image/?image_id=$args{image_id}&amp;action=view">image</a> };
+        print qq { view <a href="/image/?image_id=$args{image_id}&amp;action=view">imagem</a> };
     }
     
     $self->get_page()->footer();
@@ -144,11 +145,11 @@ sub delete {
     
     if ($experiment) { 
 	print qq { Removed tag "$tag_name" association from experiment "$experiment_name". }; 
-	print qq { <a href="/insitu/detail/experiment.pl?experiment_id=$args{experiment_id}&amp;action=view">back to experiment</a> };
+        print qq { <a href="/insitu/detail/experiment.pl?experiment_id=$args{experiment_id}&amp;action=view">voltar ao experimento</a> };
     }
     elsif ($image) { 
 	print qq { Removed tag "$tag_name" association from image "$image_name". };
-	print qq { <a href="/image/index.pl?image_id=$args{image_id}&amp;action=view">back to image detail page</a> };
+        print qq { <a href="/image/index.pl?image_id=$args{image_id}&amp;action=view">voltar aos detalhes da imagem</a> };
     }
     if (!$args{image_id} && !$args{experiment_id}) { 
 	print qq { No associations were deleted because no association information was provided. };
@@ -177,7 +178,7 @@ sub generate_form {
     
     # add form elements
     #
-    $self->get_form()->add_field(display_name=>"Tag name: ", 
+    $self->get_form()->add_field(display_name=>"Nome da etiqueta: ",
 				 field_name=>"tag", 
 				 length=>20, 
 				 object=>$tag, 
@@ -240,7 +241,7 @@ sub display_page {
     #
     $self->get_page()->header();
     
-    print qq { <b>Associated tags</b> };
+    print qq { <b>Etiquetas associadas</b> };
 
     if ($args{experiment_id}) { 
 	$experiment = CXGN::Insitu::Experiment->new($self->get_dbh(), $args{experiment_id});
@@ -249,7 +250,7 @@ sub display_page {
 	print "for experiment ".$experiment->get_name()."<br /><br />\n";
 	foreach my $t (@experiment_tags) { 
 	    my $tag_id = $t->get_tag_id();
-	    print $t->get_name(). qq { \n <a href="/tag/?experiment_id=$experiment_id&amp;tag_id=$tag_id&action=delete">[Remove]</a> <br />\n };
+            print $t->get_name(). qq { \n <a href="/tag/?experiment_id=$experiment_id&amp;tag_id=$tag_id&action=delete">[Remover]</a> <br />\n };
 	}
 
     }
@@ -262,10 +263,10 @@ sub display_page {
 
 	foreach my $t (@image_tags) { 
 	    my $tag_id = $t->get_tag_id(); 
-	    print $t->get_name(). qq { <a href="/tag/?image_id=$args{image_id}&amp;tag_id=$tag_id&action=delete">[Remove]</a> <br /> \n };
+            print $t->get_name(). qq { <a href="/tag/?image_id=$args{image_id}&amp;tag_id=$tag_id&action=delete">[Remover]</a> <br /> \n };
 	}
     }
-    if (!@experiment_tags && !@image_tags) { print "<b>None found</b><br /><br />\n"; }
+    if (!@experiment_tags && !@image_tags) { print "<b>Nenhum encontrado</b><br /><br />\n"; }
 
     print qq { <br /><br /><b>Associate another tag</b>: };
     
@@ -276,9 +277,9 @@ sub display_page {
     print qq { </center> };
    
     if ($args{experiment_id}) {
-    print qq { <a href="/insitu/detail/experiment.pl?experiment_id=$args{experiment_id}&amp;action=view">back to experiment page</a> };
+    print qq { <a href="/insitu/detail/experiment.pl?experiment_id=$args{experiment_id}&amp;action=view">voltar à página do experimento</a> };
 }elsif ($args{image_id}) {
-    print qq { <a href="/image/index.pl?image_id=$args{image_id}&amp;action=view">back to image page</a> };
+    print qq { <a href="/image/index.pl?image_id=$args{image_id}&amp;action=view">voltar à página da imagem</a> };
 }
     $self->get_page()->footer();
     

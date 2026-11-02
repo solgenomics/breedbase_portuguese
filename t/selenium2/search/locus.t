@@ -10,7 +10,7 @@ use SGN::Test::WWW::WebDriver;
 my $d = SGN::Test::WWW::WebDriver->new();
 
 $d->get_ok('/search/locus');
-ok($d->driver()->get_page_source() =~ /Search Genes and Loci/, "Search page title presence");
+ok($d->driver()->get_page_source() =~ /Buscar genes e loci/, "Search page title presence");
 ok($d->driver()->get_page_source() =~ /Opções de pesquisa avançadas/, "Advanced search options button present");
 sleep(2);
 ok($d->driver()->get_page_source() =~ /test2/, "Test2 locus present in search results");

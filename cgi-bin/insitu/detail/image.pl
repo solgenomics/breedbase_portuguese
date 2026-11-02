@@ -1,3 +1,4 @@
+use utf8;
 use strict;
 
 my $image_detail_page = CXGN::Insitu::Image_detail_page->new();
@@ -45,7 +46,7 @@ sub delete {
 
     print qq { 
 	The image has been successfully deleted. 
-	    <a href="experiment.pl?experiment_id=$experiment_id&amp;action=edit">Return to experiment page.</a> };
+            <a href="experiment.pl?experiment_id=$experiment_id&amp;action=edit">Voltar à página do experimento.</a> };
     $self->get_page()->footer();
     exit();
 }
@@ -110,11 +111,11 @@ sub generate_form {
         $form = CXGN::Page::Form::Static->new();
     }
 
-    $form->add_field( display_name=>"Image Name:", field_name=>"name", contents=>$name, length=>15, object=>$image, getter=>"get_name", setter=>"set_name");
-    $form->add_field(  display_name=>"Image Description: ", field_name=>"description", contents=>$description, length=>40, object=>$image, getter=>"get_description", setter=>"set_description" );
-    $form->add_hidden( display_name=>"Image ID", field_name=>"image_id", contents=>$image_id);
-    $form->add_hidden(  display_name=>"Action", field_name=>"action", contents=>"store");
-    $form->add_label( display_name=>"Submitter", 
+    $form->add_field( display_name=>"Nome da imagem:", field_name=>"name", contents=>$name, length=>15, object=>$image, getter=>"get_name", setter=>"set_name");
+    $form->add_field(  display_name=>"Descrição da imagem: ", field_name=>"description", contents=>$description, length=>40, object=>$image, getter=>"get_description", setter=>"set_description" );
+    $form->add_hidden( display_name=>"ID da imagem", field_name=>"image_id", contents=>$image_id);
+    $form->add_hidden(  display_name=>"Ação", field_name=>"action", contents=>"store");
+    $form->add_label( display_name=>"Responsável pelo envio",
 				  field_name=>"submitter", 
 				  contents=>$submitter_name
 				  );
@@ -134,15 +135,15 @@ sub display_page {
     my $image_fullsize_url = $image->get_fullsize_url();
     my $image_id = $image->get_image_id();
 
-    my $tag_link = qq { <a href="tag.pl?image_id=$image_id&amp;action=new">Add tag</a> };
+    my $tag_link = qq { <a href="tag.pl?image_id=$image_id&amp;action=new">Adicionar etiqueta</a> };
     my $edit_link = "";
     my $delete_link = "";
     if ($self->get_action() eq "view") {
-	$edit_link = qq { <a href="image.pl?image_id=$image_id&amp;action=edit">[Edit]</a> };
-	$delete_link = qq { <a href="image.pl?image_id=$image_id&amp;action=confirm_delete">[Delete]</a> };
+        $edit_link = qq { <a href="image.pl?image_id=$image_id&amp;action=edit">[Editar]</a> };
+        $delete_link = qq { <a href="image.pl?image_id=$image_id&amp;action=confirm_delete">[Excluir]</a> };
     }
     if ($self->get_action()=~/edit|store/) { 
-	$edit_link = qq { <a href="image.pl?image_id=$image_id&amp;action=view">[View]</a> };
+        $edit_link = qq { <a href="image.pl?image_id=$image_id&amp;action=view">[Visualizar]</a> };
     }
 
     $self->get_page()->header();

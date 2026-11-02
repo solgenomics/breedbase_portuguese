@@ -1,4 +1,5 @@
 #!/usr/bin/perl
+use utf8;
 
 use strict;
 use warnings;
@@ -30,7 +31,7 @@ sub load_ontology {
     print <<EOJS;
     <form name="ontologies" onSubmit='return false;'>
 	Enter term here: <input type='text' id='termSelect'>
-	<input type='button' onclick='specific( "termSelect" )' value='Get Term'/>
+        <button type='button' onclick='specific( "termSelect" )' value='Get Term'>Obter termo</button>
 	<div id='notice'></div><br/>
 
 	<input type='button' onclick='roots( "GO", this );node( this )' value='+' id='go' style="font-family:mono"/> 
@@ -64,7 +65,7 @@ sub load_ontology {
 		    try {
 			rootRequest = new ActiveXObject("Microsoft.XMLHTTP");
 		    } catch (e) {
-			alert("The ontology browser could not run!");
+                        alert("Não foi possível executar o navegador de ontologias.");
 			return false;
 		    }
 		}
@@ -109,7 +110,7 @@ sub load_ontology {
 		    try {
 			childRequest = new ActiveXObject("Microsoft.XMLHTTP");
 		    } catch (e) {
-			alert("The ontology browser could not run!");
+                        alert("Não foi possível executar o navegador de ontologias.");
 			return false;
 		    }
 		}
@@ -151,7 +152,7 @@ sub load_ontology {
 		    try {
 			specificRequest = new ActiveXObject("Microsoft.XMLHTTP");
 		    } catch (e) {
-			alert("The ontology browser could not run!");
+                        alert("Não foi possível executar o navegador de ontologias.");
 			return false;
 		    }
 		}
@@ -175,17 +176,17 @@ sub load_ontology {
 			text = text.replace( /\\n/g, "" );
 			if( text.indexOf( "obsolete" ) == -1 ) {
 			    if( text.indexOf( "<scrap></scrap>" ) != -1 ) {
-				alert( "This term does not exist in the SGN ontologies." );
+                                alert( "Este termo não existe nas ontologias do SGN." );
 			    } else {
-				alert( "The ontology browser has encountered an unexpected error.\\n" +
-				       "Please try your query again." );
+                                alert( "Ocorreu um erro inesperado no navegador de ontologias.\\n" +
+                                       "Tente executar a consulta novamente." );
 				document.getElementById('notice').innerHTML=text;
 			    }
 			}
 
 			else {
-			    alert( "The term you searched for is obsolete.\\n" + 
-				   "Please browse the ontology to find a suitable replacement." );
+                            alert( "O termo pesquisado está obsoleto.\\n" +
+                                   "Navegue pela ontologia para encontrar um termo substituto adequado." );
 			}
 		    }
 		}

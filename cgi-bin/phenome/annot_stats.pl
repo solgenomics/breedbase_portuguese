@@ -1,4 +1,5 @@
 #!usr/bin/perl
+use utf8;
 use warnings;
 use strict;
 
@@ -34,7 +35,7 @@ my @lstats=CXGN::Phenome::Locus->get_locus_stats( $dbh );
 
 
 my $image= get_graph(@lstats);
-print info_section_html(title   => 'Locus stats',
+print info_section_html(title   => 'Estatísticas de loci',
 			    contents => $image,
 			);
 
@@ -57,7 +58,7 @@ sub get_graph {
 	$graph->set(
 		    x_label           => 'Date',
 		    y_label           => 'Number of loci',
-		    title             => 'SGN locus database',
+                    title             => 'Banco de dados de loci do SGN',
 		    #cumulate         =>'true',
 		    y_max_value       => 7000,
 		    #y_tick_number     => 8,
@@ -81,7 +82,7 @@ sub get_graph {
     }
     
     my $image = $cache->get_image_tag();
-    my $title = "SGN locus database";
+    my $title = "Banco de dados de loci do SGN";
     return $image;
 }
 

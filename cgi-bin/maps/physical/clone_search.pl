@@ -1,3 +1,4 @@
+use utf8;
 use strict;
 use warnings;
 
@@ -19,8 +20,8 @@ my $default_rows_per_page = 15;
 
 #################################
 # Start a new SGN page.
-our $page = CXGN::Page->new( 'Clone Search Results', 'Rob Buels');
-$page->header('BAC Search Results'); #print out header immediately so users get 'in progress' message
+our $page = CXGN::Page->new( 'Resultados da busca de clones', 'Rob Buels');
+$page->header('Resultados da busca de BACs'); #print out header immediately so users get 'in progress' message
 
 my $search = CXGN::Genomic::Search::Clone->new;
 my ($page_size) = $page->get_encoded_arguments('page_size');
@@ -33,11 +34,11 @@ $query->order_by('clone_id' => 'ASC');
 my $result = $search->do_search($query);
 
 #build the HTML to output
-print page_title_html('BAC Search Results');
+print page_title_html('Resultados da busca de BACs');
 
 print $result->to_html;
 
-print blue_section_html('Search Again',CXGN::Search::CannedForms::clone_search_form($page,$query));
+print blue_section_html('Buscar novamente',CXGN::Search::CannedForms::clone_search_form($page,$query));
 
 $page->footer();
 

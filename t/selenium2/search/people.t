@@ -1,3 +1,4 @@
+use utf8;
 
 use strict;
 use lib 't/lib';
@@ -8,7 +9,7 @@ use SGN::Test::WWW::WebDriver;
 my $d = SGN::Test::WWW::WebDriver->new();
 
 $d->get_ok("/search/people");
-ok($d->driver()->get_page_source() =~ /Search People/, "find people search page title");
+ok($d->driver()->get_page_source() =~ /Buscar pessoas/, "find people search page title");
 my $last_name = $d->find_element_ok("last_name", "id", "find last_name html element");
 $last_name->send_keys("Sanger");
 my $submit = $d->find_element_ok("submit_people_search", "id", "find people search submit button");

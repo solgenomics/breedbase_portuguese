@@ -1,3 +1,4 @@
+use utf8;
 use strict;
 use warnings;
 
@@ -231,7 +232,7 @@ EOQ
 sub edit_controls_html {
   my ($clone_id,$il_id) = @_;
   $il_id ||= 'null';
-  return qq|<div style="position: relative; padding: 0" id="posdiv_$clone_id"><button id="editbutton_$clone_id" value="edit" style="background: none; border: 1px solid black;" onclick="edit_row($clone_id)">edit</button></div>|;
+  return qq|<div style="position: relative; padding: 0" id="posdiv_$clone_id"><button id="editbutton_$clone_id" value="edit" style="background: none; border: 1px solid black;" onclick="edit_row($clone_id)">editar</button></div>|;
 }
 
 sub editform_html {

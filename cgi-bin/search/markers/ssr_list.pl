@@ -1,4 +1,5 @@
 #!/usr/bin/perl -w
+use utf8;
 
 use strict;
 use CXGN::Page;
@@ -77,12 +78,12 @@ $repeats_sth->finish;
 $page->header( "SSR Markers" );
 
 print "<table summary=\"\" border=\"2\" width=\"710\" align=\"center\">\n";
-print "<tr>\n<td width=\"60\"><b>SSR name</b></td>\n";
+print "<tr>\n<td width=\"60\"><b>Nome do SSR</b></td>\n";
 print "<td width=\"60\" align=\"center\"><b>EST trace</b></td>\n";
 print "<td width=\"100\" align=\"center\"><b>Unigene BLAST matches</b></td>\n";
 print "<td width=\"120\" align=\"center\"><b>Repeat motifs</b></td>\n";
-print "<td width=\"35\" align=\"center\"><b>Repeat number</b></td>\n";
-print "<td width=\"50\" align=\"center\"><b>PCR primers</b></td>\n";
+print "<td width=\"35\" align=\"center\"><b>Número de repetições</b></td>\n";
+print "<td width=\"50\" align=\"center\"><b>Primers de PCR</b></td>\n";
 print "<td width=\"35\" align=\"center\"><b>PCR product length</b></td>\n";
 print "<td width=\"50\" align=\"center\"><b>Annealing temperature</b></td>\n";
 print "<td width=\"50\" align=\"center\"><b>Mapped</b></td>\n</tr>\n";
@@ -106,11 +107,11 @@ sub local_abort {
     if (not $errstrn) {
 	$errstrn = "Error reading SSR data"; 
     }
-    $page->header( "Error reading SSR data." ,"Error reading SSR data." );
+    $page->header( "Erro ao ler os dados de SSR." ,"Error reading SSR data." );
     if ($errstrn) {
 	print "$errstrn\n";
     } else {
-	print "<I>There has been an error generating data.<br />Please email Robert Ahrens at <a href='mailto:ra97\@cornell.edu'>ra97\@cornell.edu</a> to let him know you are experiencing difficulties.</I>";
+        print "<I>Ocorreu um erro ao gerar os dados.<br />Envie um e-mail a Robert Ahrens em <a href='mailto:ra97\@cornell.edu'>ra97\@cornell.edu</a> para informar que está enfrentando dificuldades.</I>";
     }
     $page->footer();
     exit;

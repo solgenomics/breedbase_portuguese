@@ -1,3 +1,4 @@
+use utf8;
 use strict;
 use warnings;
 
@@ -19,14 +20,14 @@ use CXGN::Chado::Publication;
 
 # Start a new SGN page.
 
-my $page = CXGN::Page->new( "SGN publcation search results", "Naama" );
+my $page = CXGN::Page->new( "Resultados da busca de publicações do SGN", "Naama" );
 
 $page->jsan_use("jquery");
 $page->jsan_use("CXGN.Phenome.Publication");
 
 $page->header();
 
-print page_title_html('SGN Publication search');
+print page_title_html('Busca de publicações do SGN');
 my $dbh = CXGN::DB::Connection->new;
 
 #create the search and query objects
@@ -141,7 +142,7 @@ EOH
 
     if (@results) {
         print blue_section_html(
-            'Publication search results',
+            'Resultados da busca de publicações',
             ,
             sprintf(
                 '<span class="paginate_summary">%s matches </span>',
@@ -151,11 +152,11 @@ EOH
         );
     }
     else {
-        print '<h4>No matches found</h4>';
+        print '<h4>Nenhuma correspondência encontrada</h4>';
     }
 
     print info_section_html(
-        title => 'Search again',
+        title => 'Buscar novamente',
         contents =>
           CXGN::Search::CannedForms::publication_search_form( $page, $query )
     );

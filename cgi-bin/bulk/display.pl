@@ -1,4 +1,5 @@
 #!/usr/bin/perl
+use utf8;
 
 =head1 NAME
 
@@ -54,7 +55,7 @@ sub new {
     $args->{idType}      = $cgi->param("idType");
     $args->{summary}     = $cgi->param("summary");
     $args->{download}    = $cgi->param("download");
-    $args->{page} = CXGN::Page->new( "Browse Bulk Results", "Lukas Mueller" );
+    $args->{page} = CXGN::Page->new( "Navegar pelos resultados em massa", "Lukas Mueller" );
 
     return bless $args, $class;
 }
@@ -105,7 +106,7 @@ sub display_page() {
 sub display_summary_page {
     my $self = shift;
     my $file = $self->{tempdir} . "/" . $self->{dumpfile} . ".summary";
-    open( F, "<$file" ) || $self->{page}->error_page("can't open $file");
+    open( F, "<$file" ) || $self->{page}->error_page("não foi possível abrir $file");
     $self->{page}->header();
     while (<F>) {
         print $_;
@@ -149,7 +150,7 @@ sub render_html_page {
 sub render_html_table_page {
     my $self = shift;
 
-    $self->{page}->header("Bulk download results");
+    $self->{page}->header("Resultados do download em massa");
 
     #
     # open the file
@@ -166,11 +167,11 @@ sub render_html_table_page {
     $self->debug("Line Count in the file: $line_count");
     if ( $line_count < 2 ) {
         $self->{content} .=
-"No data was retrieved. Please verify your input parameters. Thanks.<br /><br />\n";
+"Nenhum dado foi recuperado. Verifique os parâmetros informados.<br /><br />\n";
     }
     else {
         open( F, "<" . $self->{tempdir} . "/" . $self->{dumpfile} )
-          || $self->{page}->error_page("Can't open $self->{dumpfile}");
+          || $self->{page}->error_page("Não foi possível abrir $self->{dumpfile}");
 
         #
         # read the column definitions
@@ -339,7 +340,7 @@ sub render_fasta_page {
         print "Content-type: text/plain\n\n";
     }
     open( F, "<" . $self->{tempdir} . "/" . $self->{dumpfile} )
-      || $self->{page}->error_page( "Can't open " . $self->{dumpfile} );
+      || $self->{page}->error_page( "Não foi possível abrir " . $self->{dumpfile} );
 
     # read column definitions
     my @output_fields;
@@ -528,7 +529,7 @@ sub nextButton {
           . ( $self->{dumpfile} )
           . "&amp;page_number="
           . ( $self->{page_number} + 1 )
-          . "\">Next Page</a>";
+          . "\">Próxima página</a>";
     }
     else {
         $self->{content} .= "Next Page";
@@ -553,7 +554,7 @@ sub previousButton {
           . ( $self->{dumpfile} )
           . "&amp;page_number="
           . ( $self->{page_number} - 1 )
-          . "\">Previous Page</a>";
+          . "\">Página anterior</a>";
     }
     else {
         $self->{content} .= "Previous Page";
@@ -577,7 +578,7 @@ sub summaryButton {
       . ( $self->{dumpfile} )
       . "&amp;idType="
       . ( $self->{idType} )
-      . "\">Summary Page</a>";
+      . "\">Página de resumo</a>";
 }
 
 =head2 newSearchButtons
@@ -592,7 +593,7 @@ sub summaryButton {
 
 sub newSearchButton {
     my $self = shift;
-    $self->{content} .= "<a href=\"input.pl\">New Search</a>";
+    $self->{content} .= "<a href=\"input.pl\">Nova busca</a>";
 }
 
 =head2 getFileLines
@@ -644,7 +645,7 @@ sub display_ids_notfound {
     my $self  = shift;
     my $file  = $self->{tempdir} . "/" . $self->{dumpfile} . ".notfound";
     my $count = $self->getFileLines($file);
-    $self->dumptextfile( $file, "IDs not found in the database: $count" );
+    $self->dumptextfile( $file, "IDs não encontrados no banco de dados: $count" );
 }
 
 =head2 dumptextfile
@@ -707,7 +708,7 @@ sub debug {
 
 sub no_data_error_page {
     print
-"The results of that search or not available anymore. Please repeat your search.";
+"Os resultados dessa busca não estão mais disponíveis. Faça a busca novamente.";
 }
 
 =head1 BUGS

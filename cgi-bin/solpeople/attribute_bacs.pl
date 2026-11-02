@@ -1,3 +1,4 @@
+use utf8;
 use strict;
 use warnings;
 
@@ -12,12 +13,12 @@ my $page=CXGN::Page->new('Attribute BACs','john');
 $page->header('Attribute BACs','How to attribute a BAC to a sequencing project');
 print <<END_HTML;
 <ol>
-<li>Log in using the link at the top right of any SGN page.</li>
-<li>From the toolbar, choose <b>search</b>-&gt;<b>BACs</b>, or just use the form below.</li>
-<li>Type the name of the BAC you would like to attribute to your sequencing project into the search box.</li>
-<li>Click the <b>search</b> button.</li>
-<li>If you see the desired BAC in the search results, click its link.</li>
-<li>On the BAC information page, there should be a link which will allow you to assign the BAC to your project. Note that you must be logged in for this link to be visible. Please be sure that you are making a correct attribution, because incorrect attributions can only be removed manually by the SGN staff.</li>
+<li>Entre pelo link no canto superior direito de qualquer página do SGN.</li>
+<li>Na barra de ferramentas, escolha <b>buscar</b>-&gt;<b>BACs</b>, ou use o formulário abaixo.</li>
+<li>Digite na caixa de busca o nome do BAC que deseja atribuir ao seu projeto de sequenciamento.</li>
+<li>Clique no <b>buscar</b> .</li>
+<li>Se o BAC desejado aparecer nos resultados da busca, clique no link correspondente.</li>
+<li>Na página de informações do BAC, há um link para atribuí-lo ao seu projeto. É necessário entrar na conta para que o link apareça. Confira a atribuição, pois atribuições incorretas só podem ser removidas manualmente pela equipe do SGN.</li>
 </ol>
 END_HTML
 print CXGN::Search::CannedForms::clone_search_form($page);

@@ -1,3 +1,4 @@
+use utf8;
 use CatalystX::GlobalContext qw( $c );
 use strict;
 use warnings;
@@ -20,7 +21,7 @@ use CXGN::Tools::List qw/all/;
 my $itag_feature = $c->enabled_feature('itag')
     or $c->forward_to_mason_view('/itag/not_enabled.mas');
 
-my $page = CXGN::Page->new('ITAG Pipeline Status Viewer','Robert Buels');
+my $page = CXGN::Page->new('Visualizador do status do pipeline ITAG','Robert Buels');
 $page->jsan_use('MochiKit.Base','MochiKit.Async');
 
 my ($mode,$pipe,$batch) = $page->get_encoded_arguments(qw( mode pipe batch ));
@@ -79,7 +80,7 @@ span.depends,span.produces, span.tagname, span.owner {
 EOHTML
 
 print <<EOHTML;
-<div style="margin-bottom: 1.5em;">This page provides continuously updated information on the running status of the <a href="http://www.ab.wur.nl/TomatoWiki">ITAG Distributed Annotation Pipeline</a>.</div>
+<div style="margin-bottom: 1.5em;">Esta página apresenta informações continuamente atualizadas sobre a execução do <a href="http://www.ab.wur.nl/TomatoWiki">Pipeline de anotação distribuída ITAG</a>.</div>
 EOHTML
 
 
@@ -111,7 +112,7 @@ EOH
   				  )
     .<<EOH
     <input type="button" style="background: url(/documents/img/refresh.png); width: 22px; height: 21px" name="refresh" value="" onclick="this.blur(); updateStatusContents()" />
-    <div id="loading_indicator">Loading... <img src="/documents/img/spinner.gif" /></div>
+    <div id="loading_indicator">Carregando... <img src="/documents/img/spinner.gif" /></div>
     </form>
   </td></tr>
   <tr><td id="pipestatus_contents" style="border: 2px solid #bbb; padding: 0.5em;">
@@ -262,7 +263,7 @@ sub get_status {
 					     foreach (@errors) {
 					       my ($valname,$filename) = /^(\S+) validation failed for file (\S+),/
 						 or next;
-					       $_ =~ s|\[report file\]|<a href="report_download.pl?pipe=&batch=$batchnum&atag=$atag&filename=$filename&valname=$valname">report file</a>|;
+                                               $_ =~ s|\[report file\]|<a href="report_download.pl?pipe=&batch=$batchnum&atag=$atag&filename=$filename&valname=$valname">arquivo de relatório</a>|;
 					     }
 					     $errstrings{$atag} = join '',map "<li>$_</li>",@errors;
 					     $errstrings{$atag} &&= '<ul class="errlist">'.$errstrings{$atag}.'</ul>';
@@ -288,7 +289,7 @@ sub get_status {
 
   my $errs = do {
     if(%errstrings) {
-      info_section_html( title => 'Errors',
+      info_section_html( title => 'Erros',
 			 contents =>
 			 join('',
 			      map {

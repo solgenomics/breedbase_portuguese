@@ -1,3 +1,4 @@
+use utf8;
 use strict;
 use warnings;
 use CXGN::Page;
@@ -27,17 +28,17 @@ my $chromat_view_page = '/maps/physical/clone_chromat.pl';
 
 #############################################
 
-our $page = CXGN::Page->new( 'Clone Read Details', 'Rob Buels');
+our $page = CXGN::Page->new( 'Detalhes da leitura do clone', 'Rob Buels');
 
 my ($arg_cid) = $page->get_encoded_arguments('chrid');
 $arg_cid += 0;
-($arg_cid > 0) || $page->error_page('Invalid arguments');
+($arg_cid > 0) || $page->error_page('Argumentos inválidos');
 
 ### look up info from DB ###
 my $dbh = CXGN::DB::Connection->new('genomic'); 
 
 my $chromat = CXGN::Genomic::Chromat->retrieve($arg_cid)
-    or $page->error_page("No chromatogram found with id $arg_cid");
+    or $page->error_page("Nenhum cromatograma encontrado com o ID $arg_cid");
 my $clone = $chromat->clone_object;
 my $gss = $chromat->latest_gss_object;
 my $qcreport = $gss ? $gss->qc_report_object : undef;
@@ -45,23 +46,23 @@ my $qcreport = $gss ? $gss->qc_report_object : undef;
 ###output the HTML
 
 #page title
-$page->header('Genomic Clone End Sequence');
-print page_title_html('Clone Read '.$chromat->clone_read_external_identifier);
+$page->header('Sequência da extremidade do clone genômico');
+print page_title_html('Leitura do clone '.$chromat->clone_read_external_identifier);
 
 #chromatogram and sequencing information
 my $chromat_html = chromat_summary_html($chromat,'/search/trace_download.pl?chrid='.$chromat->chromat_id);
-print info_section_html(title => 'Sequence Read', contents => $chromat_html);
+print info_section_html(title => 'Leitura da sequência', contents => $chromat_html);
 
 #Sequence and quality information
 my $badwarning = (! $qcreport || $qcreport->hqi_length < 150 || scalar(%{$gss->flags}) != 0)
-                 ? '<center><span style="color: red; font-weight: bold">This is probably not a useful sequence.</span></center><br />'
+                 ? '<center><span style="color: red; font-weight: bold">Esta sequência provavelmente não é utilizável.</span></center><br />'
                  : '';
-print info_section_html(title => 'Sequence',
+print info_section_html(title => 'Sequência',
 			contents =>
-			($gss ? gss_summary_html($gss) : '<div class="warning">No basecalled sequence found.  The chromatogram file is probably corrupt.</div>')
+                        ($gss ? gss_summary_html($gss) : '<div class="warning">Nenhuma sequência de bases identificadas encontrada. O arquivo de cromatograma provavelmente está corrompido.</div>')
 			."<br />$badwarning"
 			.($qcreport ? qcreport_summary_html($qcreport)
-			 : '<span class="ghosted">No quality report found.</span>')
+                         : '<span class="ghosted">Nenhum relatório de qualidade encontrado.</span>')
 		       );
 
 #BLAST annotation information
@@ -83,11 +84,11 @@ if($gss && $qcreport) {
     $blasthits_html .= $_->summary_html;
   }
 }
-$blasthits_html ||= '<div class="ghosted">No automatic annotations found.</div>';
-print info_section_html(title => 'Sequence Annotations',
+$blasthits_html ||= '<div class="ghosted">Nenhuma anotação automática encontrada.</div>';
+print info_section_html(title => 'Anotações da sequência',
 			contents =>
 			info_table_html('Automatic Annotations' => $blasthits_html,
-					'Manual Annotations'    => qq{<div class="ghosted">No manual annotations found.</div>},
+                                        'Manual Annotations'    => qq{<div class="ghosted">Nenhuma anotação manual encontrada.</div>},
 					__border => 0,
 				       )
 		       );
@@ -114,7 +115,7 @@ $clone_html .= @otherchromats
 		       ."</ul>\n",
 		       __border => 0,
                      )
-    : '<div class="ghosted">No sequence reads found.</div>';
+    : '<div class="ghosted">Nenhuma leitura de sequência encontrada.</div>';
 print info_section_html(title => 'BAC', contents => $clone_html);
 
 $page->footer();
@@ -159,8 +160,8 @@ sub gss_summary_html {
 					 __tableattrs => 'width="100%"',
 					 Sequence => <<EOH );
 <div align="right">
-  <a href="#_" id="trimmedseq_link" class="optional_show" onclick="dswitch('rawseq','trimmedseq')">Show Raw Sequence</a>
-  <a href="#_" id="rawseq_link" class="optional_show_active" onclick="dswitch('trimmedseq','rawseq')">Show Raw Sequence</a>
+  <a href="#_" id="trimmedseq_link" class="optional_show" onclick="dswitch('rawseq','trimmedseq')">Mostrar sequência bruta</a>
+  <a href="#_" id="rawseq_link" class="optional_show_active" onclick="dswitch('trimmedseq','rawseq')">Mostrar sequência bruta</a>
 </div>
 <div id="rawseq" class="sequence">
 $seq_fasta_header (raw untrimmed)<br />
@@ -223,7 +224,7 @@ sub qcreport_summary_html {
     my $flags_html = $gss->flags_html;
 
     return $flags_html."\n"
-      .info_table_html( __title                  => 'Quality Report',
+      .info_table_html( __title                  => 'Relatório de qualidade',
 			__multicol               => 5,
 			'Processed&nbsp;by'      => 'SGN',
 			'Vector signature'       => $qcr->vecsig,
@@ -250,15 +251,15 @@ sub chromat_summary_html {
     my $facilityID = $chr->filename;
 
     my $view_link = '';
-    my $dl_link = $facilityID && $downloadurl ? '[<a href="'.$downloadurl.'">download</a>]'
-                                              : '<span class="ghosted">not availabe for<br />direct download</span>';
+    my $dl_link = $facilityID && $downloadurl ? '[<a href="'.$downloadurl.'">baixar</a>]'
+                                              : '<span class="ghosted">indisponível para<br />download direto</span>';
 
-    info_table_html(#__title => 'Sequence Read',
+    info_table_html(#__title => 'Leitura da sequência',
 		    __multicol => 5,
 		    'Read Class' => $chr->read_class_object->class_name,
 		    'Read ID' => $chr->clone_read_external_identifier,
 		    'Primer'  => $chr->primer,
-		    'ID from Seq. Facility' => $chr->filename || '<span class="ghosted">not recorded</span>',
+                    'ID from Seq. Facility' => $chr->filename || '<span class="ghosted">não registrado</span>',
 		    $dl_link 
 		    ? ('Chromatogram'  => $dl_link)
 		    : (), 

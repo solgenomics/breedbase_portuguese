@@ -1,3 +1,4 @@
+use utf8;
 use CatalystX::GlobalContext qw( $c );
 
 =head1 NAME
@@ -62,7 +63,7 @@ changes by SGN staff. POD by Lukas.
     use CXGN::Page;
 
 
-my $page  = CXGN::Page->new("BLAST Search Interface","Evan");
+my $page  = CXGN::Page->new("Interface de busca BLAST","Evan");
 
 $page->client_redirect("/tools/blast");
 
@@ -89,7 +90,7 @@ use CXGN::Page::UserPrefs;
 use CXGN::Tools::List qw/evens distinct/;
 use CatalystX::GlobalContext '$c';
 
-$page  = CXGN::Page->new("BLAST Search Interface","Evan");
+$page  = CXGN::Page->new("Interface de busca BLAST","Evan");
 my $dbh   = CXGN::DB::Connection->new;
 my $prefs = CXGN::Page::UserPrefs->new( $dbh );
 
@@ -158,7 +159,7 @@ EOSQL
     my $memberq = $dbh->prepare_cached("SELECT nr_members FROM unigene WHERE unigene_id=?");
     $memberq->execute($params{preload_id});
     if ($memberq->rows == 0) {
-      $page->error_page("Preloaded BLAST search specified unigene identifier ($params{preload_id}) which is not found");
+      $page->error_page("A busca BLAST pré-carregada especificou um identificador de unigene ($params{preload_id}) que não foi encontrado");
     }
 
     my ($nr_members) = $memberq->fetchrow_array();
@@ -221,7 +222,7 @@ print page_title_html("NCBI BLAST$blast_version");
 
 print <<HTML;
 
-<div class="boxbgcolor5">This is the old BLAST interface. The new interface is available <a href="/tools/blast">here</a>.
+<div class="boxbgcolor5">Esta é a interface antiga do BLAST. A nova interface está disponível <a href="/tools/blast">here</a>.
 </div><br />
 
 HTML
@@ -257,9 +258,9 @@ function clearField() {
   <input type="hidden" name="interface_type" value="simple" />
   <input type="hidden" name="outformat" value="0" />
   <table align="center" summary="" cellpadding="0" cellspacing="15">
-    <tr><td><b>Sequence Set</b> </td><td>$databases <a style="font-size: 80%" title="View details of each database" href="dbinfo.pl">db details</a></td></tr>
-    <tr><td><b>Program</b> </td><td>$programs</td></tr>
-    <tr><td colspan="2" align="center"><b>Query sequence</b><div style="font-size: 80%">single sequence only, use Advanced for multiple</div><textarea name="sequence" id="sequence_input" rows="8" cols="80">$preload_seq</textarea></td></tr>
+    <tr><td><b>Conjunto de sequências</b> </td><td>$databases <a style="font-size: 80%" title="Visualizar detalhes de cada banco de dados" href="dbinfo.pl">detalhes do banco</a></td></tr>
+    <tr><td><b>Programa</b> </td><td>$programs</td></tr>
+    <tr><td colspan="2" align="center"><b>Sequência de consulta</b><div style="font-size: 80%">apenas uma sequência; use a opção avançada para várias</div><textarea name="sequence" id="sequence_input" rows="8" cols="80">$preload_seq</textarea></td></tr>
     <tr><td colspan="2">
       <table width="100%"><tr>
          <td>
@@ -274,7 +275,7 @@ EOF
 									       ],
 								  ),
 		    'Max. hits to show' => '<input type="text" name="maxhits" size="6" value="100" />',
-		   ' ' => '<div style="text-align: right"><input type="reset" value="Clear" onclick="clearField(); "/> <input type="submit" name="search" value="Search" /></div>',
+                   ' ' => '<div style="text-align: right"><button type="reset" value="Clear" onclick="clearField(); ">Limpar</button> <button type="submit" name="search" value="Search">Buscar</button></div>',
 		    'Show Graphics' => simple_selectbox_html( name => 'output_graphs',
 							      choices => [ [ 'bioperl_histogram', 'all' ],
 									   'none',
@@ -320,20 +321,20 @@ else {
 				     );
 
   print <<EOF;
-<table style="border: 1px solid gray; padding: 1em 2em 1em 2em; background: #eeeeff;"><tr><td><img src="/documents/img/info_icon.png" border="0" style="margin-right: 1em; vertical-align: middle" /></td><td style="padding-top: 0.35em">This version of the BLAST online tool allows multiple query sequences, more control over running options, and more report formats.</td></tr></table>
+<table style="border: 1px solid gray; padding: 1em 2em 1em 2em; background: #eeeeff;"><tr><td><img src="/documents/img/info_icon.png" border="0" style="margin-right: 1em; vertical-align: middle" /></td><td style="padding-top: 0.35em">Esta versão da ferramenta BLAST aceita várias sequências de consulta, oferece mais opções de execução e mais formatos de relatório.</td></tr></table>
 <form method="post" action="blast_result.pl" name="blastform" enctype="multipart/form-data">
   <input type="hidden" name="interface_type" value="advanced" />
   <table id="blastinput" align="center" summary="" cellpadding="0" cellspacing="15">
-    <tr><td><b>Database (<tt>-d</tt>)</b> </td><td>$databases <a style="font-size: 80%" title="View details of each database" href="dbinfo.pl">db details</a></td></tr>
-    <tr><td><b>Program (<tt>-p</tt>)</b> </td><td>$programs</td></tr>
+    <tr><td><b>Banco de dados (<tt>-d</tt>)</b> </td><td>$databases <a style="font-size: 80%" title="Visualizar detalhes de cada banco de dados" href="dbinfo.pl">detalhes do banco</a></td></tr>
+    <tr><td><b>Programa (<tt>-p</tt>)</b> </td><td>$programs</td></tr>
     <tr>
-      <td><b>Query sequences (<tt>-i</tt>)</b></td>
+      <td><b>Sequências de consulta (<tt>-i</tt>)</b></td>
       <td >
         <textarea class="fix" id="sequence_input" name="sequence" rows="8" cols="65">$preload_seq</textarea><br />
-        <b>AND/OR upload multi-fasta query file</b> <input type="file" name="file" />
+        <b>E/OU envie um arquivo de consulta multi-FASTA</b> <input type="file" name="file" />
       </td>
     </tr>
-    <tr><td><b>Output format (<tt>-m</tt>)</b></td>
+    <tr><td><b>Formato de saída (<tt>-m</tt>)</b></td>
         <td>$mselect</td>
     </tr>
     <tr><td><b>Substitution Matrix (<tt>-M</tt>)</b></td>
@@ -347,30 +348,30 @@ else {
             </select>
         </td>
     </tr>
-    <tr><td><b>Expectation value (<tt>-e</tt>)</b> </td>
+    <tr><td><b>Valor esperado (<tt>-e</tt>)</b> </td>
         <td ><input type="text" size="6" value="1e-10" name="expect" /></td>
     </tr>
-    <tr><td><b>Max DB seqs to show hits from (<tt>-b</tt>)</b></td>
+    <tr><td><b>Número máximo de sequências do banco a exibir (<tt>-b</tt>)</b></td>
         <td ><input type="text" name="maxhits" size="6" value="100" /></td>
     </tr>
-    <tr><td><b>Filter query sequence (DUST with blastn, SEG with others) (<tt>-F</tt>)</b></td>
+    <tr><td><b>Filtrar sequência de consulta (DUST para blastn, SEG para os demais) (<tt>-F</tt>)</b></td>
         <td><input type="checkbox" checked="checked" name="filterq" /></td>
     </tr>
     <tr>
     	<td>
-    		<b>Show Graphics</b><br /><span style="font-size: 80%">not available for multiple query seqs</span>
+                <b>Mostrar gráficos</b><br /><span style="font-size: 80%">indisponível para várias sequências de consulta</span>
     	</td>
     	<td>
     		<select name="output_graphs">
-    			<option value="none">none</option>
-    			<option value="bioperl_only">alignment summary only</option>
-    			<option value="histogram_only">conservedness histogram only</option>
-    			<option value="bioperl_histogram" selected="selected">all</option>
+                        <option value="none">nenhum</option>
+                        <option value="bioperl_only">apenas o resumo do alinhamento</option>
+                        <option value="histogram_only">apenas o histograma de conservação</option>
+                        <option value="bioperl_histogram" selected="selected">todos</option>
     		</select>
     	</td>
     </tr>
 
-    <tr><td align="right"><input type="reset" value="Clear" /></td><td align="center"><input type="submit" name="search" value="Submit" style="background: red; font-size: 130%" /></td></tr>
+    <tr><td align="right"><button type="reset" value="Clear">Limpar</button></td><td align="center"><button type="submit" name="search" value="Submit" style="background: red; font-size: 130%">Enviar</button></td></tr>
      </table>
 </form>
 <script language="JavaScript" type="text/javascript">
@@ -395,7 +396,7 @@ sub blast_db_prog_selects {
 
     my $db_choices = blast_db_choices( $flush_cache );
 
-    return '<span class="ghosted">The BLAST service is temporarily unavailable, we apologize for the inconvenience</span>'
+    return '<span class="ghosted">O serviço BLAST está temporariamente indisponível. Pedimos desculpas pelo transtorno.</span>'
         unless @$db_choices;
 
     # DB select box will either the db_id supplied, or what the user last selected, or the tomato combined blast db

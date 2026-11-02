@@ -1,3 +1,4 @@
+use utf8;
 ######################################################################
 #
 #  This is a script to list BACs from the database.  It will perform
@@ -35,7 +36,7 @@ our $page = CXGN::Page->new( "BAC List by Plate", "Robert Ahrens");
 my %params = $page->get_all_encoded_arguments;
 
 my $by_plate = $params{'by_plate'} || list_page($dbh, 0, $link_pages);
-print page_title_html("Plate $by_plate");
+print page_title_html("Placa $by_plate");
 my $overgo_version = $params{'overgo_version'} || 0;
 my $fpc_version = $params{'fpc_version'} || 0;
 
@@ -114,7 +115,7 @@ $page->footer;
 sub list_page {
 
     my ($dbh, $by_plate, $link_pages) = @_;
-    my $title = "Overgo plate BAC list";
+    my $title = "Lista de BACs da placa de overgo";
     our $page = CXGN::Page->new( $title, "Robert Ahrens");
     $page->header;
     print page_title_html($title);
@@ -147,7 +148,7 @@ sub plate_link_list {
 	   } @{$sth->fetchall_arrayref}
 	  )
 	."</div>\n"
-	  .qq|<span class="tinytype">Please note that this list contains only those BACs which have a <i>clean and unambiguous</i> match to a probe on plate $by_plate.  A complete list of BACs in this project would run into hundreds or thousands and is not available on SGN at this time.  However, downloadable data from this project will be forthcoming to our ftp site shortly.</span>|;
+          .qq|<span class="tinytype">Esta lista contém apenas os BACs com uma <i>clara e sem ambiguidade</i> match to a probe on plate $by_plate.  A complete list of BACs in this project would run into hundreds or thousands and is not available on SGN at this time.  However, downloadable data from this project will be forthcoming to our ftp site shortly.</span>|;
 
     $sth->finish;
 
@@ -192,10 +193,10 @@ sub print_links {
     print blue_section_html('Related Pages',<<EOH);
 <ul>
 $pnlink
-<li><a href="$$link_pages{overgo_report_page}">Report on the Overgo Plating process</a></li>
+<li><a href="$$link_pages{overgo_report_page}">Relatório do processo de placas de overgo</a></li>
 <li><a href="$$link_pages{physical_map_page}">Tomato Physical Map on SGN</a></li>
-<li><a href="$$link_pages{agi_page}">Web FPC pages at the Arizona Genomics Institute</a></li>
-<li><a href="$$link_pages{sgn_search_page}">Search SGN</a></li>
+<li><a href="$$link_pages{agi_page}">Páginas Web FPC do Arizona Genomics Institute</a></li>
+<li><a href="$$link_pages{sgn_search_page}">Buscar no SGN</a></li>
 </ul>
 EOH
 

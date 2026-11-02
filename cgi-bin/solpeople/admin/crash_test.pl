@@ -1,4 +1,5 @@
 #!/usr/bin/perl -w
+use utf8;
 
 use strict;
 use CXGN::DB::Connection;
@@ -55,7 +56,7 @@ if( !$is_production_server || $logged_in_user_type eq 'curator') {
   }
 }
 else {
-   $page->message_page('Sorry, but you are not authorized to run crash tests.');
+   $page->message_page('Você não tem autorização para executar testes de falha.');
 }
 
 sub rube_goldberg {

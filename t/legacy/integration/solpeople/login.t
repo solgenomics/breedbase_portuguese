@@ -1,3 +1,4 @@
+use utf8;
 use strict;
 use warnings;
 
@@ -85,7 +86,7 @@ $m->submit_form_ok({
 $m->get_ok( "/solpeople/login.pl?logout=yes",
             "Request logout page" );
 
-$m->content_contains("You have successfully logged out");
+$m->content_contains("Você saiu da sua conta");
 
 # login as a curator
 #
@@ -95,10 +96,10 @@ $login->store();
 $m->get("/solpeople/login.pl");
 $m->submit_form_ok( \%form, "Login as curator form submission" );
 $m->get_ok("/solpeople/top-level.pl");
-$m->content_contains( "Curator Tools", "Curator tools presence test" );
+$m->content_contains( "Ferramentas de curadoria", "Curator tools presence test" );
 
 $m->get_ok("/solpeople/login.pl?logout=yes");
-$m->content_contains("You have successfully logged out");
+$m->content_contains("Você saiu da sua conta");
 
 # try logging in with wrong password
 #

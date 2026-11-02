@@ -1,3 +1,4 @@
+use utf8;
 
 use strict;
 use warnings;
@@ -70,7 +71,7 @@ sub generate_form {
     }
 
     $form->add_field(
-        display_name => "Image Name:",
+        display_name => "Nome da imagem:",
         field_name   => "name",
         contents     => $name,
         length       => 15,
@@ -79,7 +80,7 @@ sub generate_form {
         setter       => "set_name"
     );
     $form->add_field(
-        display_name => "Image Description: ",
+        display_name => "Descrição da imagem: ",
         field_name   => "description",
         contents     => $description,
         length       => 40,
@@ -88,17 +89,17 @@ sub generate_form {
         setter       => "set_description"
     );
     $form->add_hidden(
-        display_name => "Image ID",
+        display_name => "ID da imagem",
         field_name   => "object_id",
         contents     => $object_id
     );
     $form->add_hidden(
-        display_name => "Action",
+        display_name => "Ação",
         field_name   => "action",
         contents     => "store"
     );
     $form->add_label(
-        display_name => "Uploaded by: ",
+        display_name => "Enviado por: ",
         field_name   => "submitter",
         contents     => $submitter_link,
     );

@@ -1,4 +1,5 @@
 #!/usr/bin/perl -w
+use utf8;
 use strict;
 use warnings;
 use CXGN::Page;
@@ -181,15 +182,15 @@ my $total_align_member = int (@all_align_members);
 my @nonhidden_align_members = $family_align->get_nonhidden_member_ids();
 my $total_show_align_member = int (@nonhidden_align_members);
 
-$sum_content = "<tr><td colspan=\"2\"><a target=\"blank\" href=\"/about/fam_align_analysis.pl\">For help with how we made the alignment, please click here.</a></td></tr>";
-$sum_content .="<tr><th>Sequence Type</th><td>Nucleotide</td></tr>";
+$sum_content = "<tr><td colspan=\"2\"><a target=\"blank\" href=\"/about/fam_align_analysis.pl\">Clique aqui para obter ajuda sobre a construção do alinhamento.</a></td></tr>";
+$sum_content .="<tr><th>Tipo de sequência</th><td>Nucleotide</td></tr>";
 $sum_content .= "<tr><th>Total Family Members</th><td>$total_member_nr</td></tr>";
-$sum_content .= "<tr><th>Available Member Sequences</th><td>$total_align_member</td></tr>";
-$sum_content .= "<tr><th>Show Member Sequences</th><td>$total_show_align_member</td></tr>";
+$sum_content .= "<tr><th>Sequências dos membros disponíveis</th><td>$total_align_member</td></tr>";
+$sum_content .= "<tr><th>Mostrar sequências dos membros</th><td>$total_show_align_member</td></tr>";
 $sum_content .= "<tr><th>Range</th><td>$range_start - $range_end bp</td></tr>";
 $sum_content .= "<tr><th>Overlap</th><td>$overlap_len bp</td></tr>";
 
-$sum_content .= "<tr><td colspan=\"2\" align=\"center\"><a target=\"blank\" href=\"/about/align_term.pl\">For an explanation of the terms, plase click here.</a></td></tr>";
+$sum_content .= "<tr><td colspan=\"2\" align=\"center\"><a target=\"blank\" href=\"/about/align_term.pl\">Clique aqui para ver a explicação dos termos.</a></td></tr>";
 
 #############################################################
 #Draw family_alignment image
@@ -211,7 +212,7 @@ close $tmp_image;
 $tmp_image =~ s/$html_root_path//;
 
 $align_content = "<tr><td><center><img src=\"$tmp_image\" usemap=\"#align_image_map\" alt=\"\" /></center></td></tr>";
-$align_content .= "<tr><td>To view details for a particular family member, click the member image or the identifier.</td></tr>";
+$align_content .= "<tr><td>Clique na imagem ou no identificador de um membro para ver seus detalhes.</td></tr>";
 
 ###Write image map
 my $map_string = $family_align->write_image_map();
@@ -223,7 +224,7 @@ my ($ob_ref, $pi_ref, $sp_ref) = $family_align -> get_sv_candidates();
 my %ob = %$ob_ref;
 my %pi = %$pi_ref;
 my %species = %$sp_ref;
-$sv_content = "<tr><th>Species</th><th>Sequence id</th><th>Sequence id</th><th>Overlap Bases</th><th>%Identical</th></tr>";
+$sv_content = "<tr><th>Species</th><th>ID da sequência</th><th>ID da sequência</th><th>Overlap Bases</th><th>%Identical</th></tr>";
 foreach my $first_key (keys %ob) {
   foreach my $second_key (keys %{$ob{$first_key}}) {
     $sv_content .= "<tr><td>$species{$first_key}</td><td>$first_key</td><td>$second_key</td><td>$ob{$first_key}{$second_key}</td><td>$pi{$first_key}{$second_key}</td></tr>";
@@ -237,7 +238,7 @@ my ($al_ob_ref, $al_pi_ref, $al_sp_ref) = $family_align -> get_allele_candidates
 my %al_ob = %$al_ob_ref;
 my %al_pi = %$al_pi_ref;
 my %al_species = %$al_sp_ref;
-$al_content = "<tr><th>Species</th><th>Sequence id</th><th>Sequence id</th><th>Overlap Bases</th><th>%Identical</th></tr>";
+$al_content = "<tr><th>Species</th><th>ID da sequência</th><th>ID da sequência</th><th>Overlap Bases</th><th>%Identical</th></tr>";
 foreach my $first_key (keys %al_ob) {
   foreach my $second_key (keys %{$al_ob{$first_key}}) {
     $al_content .= "<tr><td>$al_species{$first_key}</td><td>$first_key</td><td>$second_key</td><td>$al_ob{$first_key}{$second_key}</td><td>$al_pi{$first_key}{$second_key}</td></tr>";
@@ -270,7 +271,7 @@ foreach (keys %ng) {
 }
 
 
-$seq_sum_content = "<tr><th>Sequence id</th><th>Species</th><th>Cover Range</th><th>Bases</th><th>Gaps</th><th>Medium</th><th>Overlap Score</th></tr>";
+$seq_sum_content = "<tr><th>ID da sequência</th><th>Species</th><th>Cover Range</th><th>Bases</th><th>Gaps</th><th>Medium</th><th>Overlap Score</th></tr>";
 
 foreach (@family_member_ids) { ##Access the align_seqs members this way, instead of by the keys of the hashes,  so that the sequences are grouped together
   $seq_sum_content .= "<tr><td><a target=\"blank\" href=\"$url{$)}\">$_</a></td><td>$species{$_}</td><td>$head{$_} - $tail{$_}</td><td>$ng{$_}</td><td>$gap{$_}</td><td>$medium{$_}</td><td>$ov_score{$_}</td></tr>";
@@ -308,7 +309,7 @@ if (defined $seq_ref) {
 
   $tmp_seq_file =~ s/$html_root_path//;
 
-  $seq_output_content = "<tr><td><a target=\"blank\" href=\"$tmp_seq_file\">All Sequences (No gap)</a></td></tr>";
+  $seq_output_content = "<tr><td><a target=\"blank\" href=\"$tmp_seq_file\">Todas as sequências (sem lacunas)</a></td></tr>";
 }
 
 
@@ -338,10 +339,10 @@ if (defined $align_seq_ref) {
 
   my $pass_tmp_align_seq_file = $html_root_path . $tmp_align_seq_file;
 
-  $seq_output_content .= "<tr><td><a target=\"blank\" href=\"$tmp_align_seq_file\">All Alignment Sequences (Padded with gap)</a></td>";
+  $seq_output_content .= "<tr><td><a target=\"blank\" href=\"$tmp_align_seq_file\">Todas as sequências alinhadas (com lacunas)</a></td>";
 
   my $title = 'Family ' . $family_id;
-  $seq_output_content .= "<td><a target=\"blank\" href=\"/tools/align_viewer/show_align.pl?format='fasta'&amp;temp_file=$pass_tmp_align_seq_file&amp;type=nt&amp;start_value=1&amp;end_value=10000&amp;title=$title\">Analyze and Optimize with Alignment Viewer.</a></td></tr>";
+  $seq_output_content .= "<td><a target=\"blank\" href=\"/tools/align_viewer/show_align.pl?format='fasta'&amp;temp_file=$pass_tmp_align_seq_file&amp;type=nt&amp;start_value=1&amp;end_value=10000&amp;title=$title\">Analisar e otimizar no visualizador de alinhamentos.</a></td></tr>";
 }
 
 if ($overlap_len > 0) {
@@ -369,7 +370,7 @@ if ($overlap_len > 0) {
   close $tmp_ol_seq_file;
 
   $tmp_ol_seq_file =~ s/$html_root_path//;
-  $seq_output_content .= "<tr><td><a target=\"blank\" href=$tmp_ol_seq_file>Overlap Sequences</a></td></tr>";
+  $seq_output_content .= "<tr><td><a target=\"blank\" href=$tmp_ol_seq_file>Sequências sobrepostas</a></td></tr>";
 
 }
 
@@ -378,30 +379,30 @@ if ($overlap_len > 0) {
 #Retrieve tree information
 $family_tree_log_q->execute($family_id);
 if (my ($taxa_num, $ol_len, $lf_loc) = $family_tree_log_q->fetchrow_array()) {
-  $gene_tree_content = "<tr><td colspan=\"2\" align=\"center\"><a target=\"blank\" href=\"/about/fam_tree_analysis.pl\">For help with gene tree construction, please click here.</a></td></tr>";
-  $gene_tree_content .= "<tr><th>No. of Taxa</th><td>$taxa_num</td></tr>";
-  $gene_tree_content .= "<tr><th>No. of Characters</th><td>$ol_len</td></tr>";
-  $gene_tree_content .= "<tr><th>Log File</th><td><a href=\"$lf_loc\">View</a></td></tr>";
+  $gene_tree_content = "<tr><td colspan=\"2\" align=\"center\"><a target=\"blank\" href=\"/about/fam_tree_analysis.pl\">Clique aqui para obter ajuda sobre a construção da árvore gênica.</a></td></tr>";
+  $gene_tree_content .= "<tr><th>Número de táxons</th><td>$taxa_num</td></tr>";
+  $gene_tree_content .= "<tr><th>Número de caracteres</th><td>$ol_len</td></tr>";
+  $gene_tree_content .= "<tr><th>Arquivo de registro</th><td><a href=\"$lf_loc\">Visualizar</a></td></tr>";
 
   $family_tree_nw_q->execute($family_id);
   while (my ($tree_nr, $nw) = $family_tree_nw_q->fetchrow_array()) {
     my $tree_title = 'Family ' . $family_id . ' Tree No. ' . $tree_nr;
-    $gene_tree_content .= "<tr><th>Tree No. $tree_nr</th><td>$nw<br><br><a target=\"blanc\" href=\"/tools/tree_browser/?tree_string=$nw&amp;title=$tree_title\">View in Tree Browser</a><br><br></td></tr>";
+    $gene_tree_content .= "<tr><th>Tree No. $tree_nr</th><td>$nw<br><br><a target=\"blanc\" href=\"/tools/tree_browser/?tree_string=$nw&amp;title=$tree_title\">Visualizar no navegador de árvores</a><br><br></td></tr>";
   }
 }
 else {
-  $gene_tree_content = "<tr><td>No tree available</td></tr>";
+  $gene_tree_content = "<tr><td>Nenhuma árvore disponível</td></tr>";
 }
 
 
 ######################################################
 #Page output
 $page->header();
-print page_title_html("Gene Family $family_id Alignment Details");
+print page_title_html("Detalhes do alinhamento da família gênica $family_id");
 
-print blue_section_html('Family Sequence Alignment','<table width="100%" cellpadding="5" cellspacing="0" border="0">'.$align_content.'</table>');
+print blue_section_html('Alinhamento de sequências da família','<table width="100%" cellpadding="5" cellspacing="0" border="0">'.$align_content.'</table>');
 
-print blue_section_html('Summary','<table width="80%" cellpadding="5" cellspacing="0" border="0">'.$sum_content.'</table>');
+print blue_section_html('Resumo','<table width="80%" cellpadding="5" cellspacing="0" border="0">'.$sum_content.'</table>');
 
 print blue_section_html('Putative Splice Variant Pairs','<table width="100%" cellpadding="5" cellspacing="0" border="0">'.$sv_content.'</table>');
 

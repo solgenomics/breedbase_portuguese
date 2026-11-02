@@ -5,7 +5,7 @@
 
 <& /util/import_javascript.mas, classes => [ 'jquery', 'jquery.dataTables' ] &>
 
-<& /page/page_title.mas, title=>'Procurem nas pessoas' &>
+<& /page/page_title.mas, title=>'Buscar pessoas' &>
 
 <div class="row" id="people_search_form" >
   <div class="col-sm-1">

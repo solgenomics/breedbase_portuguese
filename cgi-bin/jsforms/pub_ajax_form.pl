@@ -1,3 +1,4 @@
+use utf8;
 use strict;
 use warnings;
 
@@ -157,7 +158,7 @@ sub generate_form {
 
     if ($self->get_action =~ /new|edit/ ) { 
 	$form->add_select(
-            display_name       => "Publication type",
+            display_name       => "Tipo de publicação",
             field_name         => "cvterm_name",
             contents           => $pub->get_cvterm_name(),
             length             => 20,
@@ -169,7 +170,7 @@ sub generate_form {
             );
     }
     $form->add_textarea(
-	display_name => "Title",
+        display_name => "Título",
 	field_name   => "title",
 	object       => $pub,
 	getter       => "get_title",
@@ -179,7 +180,7 @@ sub generate_form {
 	rows         => 1,
 	);
     $form->add_field(
-	display_name       => "Series name",
+        display_name       => "Nome da série",
 	field_name         => "series_name",
 	object             => $pub,
 	getter             => "get_series_name",
@@ -195,14 +196,14 @@ sub generate_form {
 	setter             => "set_volume",
 	);
     $form->add_field(
-	display_name       => "Issue",
+        display_name       => "Número",
 	field_name         => "issue",
 	object             => $pub,
 	getter             => "get_issue",
 	setter             => "set_issue",
 	);
     $form->add_field(
-	display_name       => "Year",
+        display_name       => "Ano",
 	field_name         => "year",
 	object             => $pub,
 	getter             => "get_pyear",
@@ -210,7 +211,7 @@ sub generate_form {
 	validate           => 'integer',
 	);
     $form->add_field(
-	display_name       => "Pages",
+        display_name       => "Páginas",
 	field_name         => "pages",
 	object             => $pub,
 	getter             => "get_pages",
@@ -228,7 +229,7 @@ sub generate_form {
 	);
 
     $form->add_textarea(
-	display_name       => "Abstract",
+        display_name       => "Resumo",
 	field_name         => "abstract",
 	object             => $pub,
 	getter             => "get_abstract",

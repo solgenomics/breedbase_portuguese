@@ -1,3 +1,4 @@
+use utf8;
 use CatalystX::GlobalContext qw( $c );
 use strict;
 use warnings; #FATAL => 'all';
@@ -19,7 +20,7 @@ use CXGN::BlastDB;
 use CXGN::Tools::Identifiers;
 use CXGN::Tools::List qw/distinct evens/;
 
-my $page  = CXGN::Page->new( "blast search execution", "Rob" );
+my $page  = CXGN::Page->new( "execução da busca BLAST", "Rob" );
 my $prefs = CXGN::Page::UserPrefs->new( CXGN::DB::Connection->new );
 
 my %params;

@@ -17,7 +17,7 @@ sub load_method {
     my $source = <$fh>;
     my ($code) = $source =~ /^(sub\s+\Q$method\E\b[^\n{]*\{.*?^\})/ms;
     die "Cannot extract $method from $file" unless $code;
-    $code =~ s/^(sub\s+\w+)\s*:\w+(?=\s*\{)/$1/;
+    $code =~ s/^(sub\s+\w+)\s*:[^\n{]+(?=\{)/$1 /;
     my $ok = eval "package $package; no strict; use utf8; $code; 1;";
     die "Cannot compile $file / $method: $@" unless $ok;
 }
@@ -149,5 +149,44 @@ like($table, qr/subject_A/, 'BLAST sequence ID retained');
     like($line, qr/^query_A\tsubject_A\t100\.00\t10\t0\t0\t1\t10\t3\t12\t0\t50\tDescrição original de café/,
          'BLAST tabular data remains unchanged');
 }
+
+{
+    package LocalContext;
+    sub throw_404 { die $_[1] }
+    sub throw_client_error { die $_[1] }
+    sub enabled_feature { undef }
+}
+my $context = bless {}, 'LocalContext';
+load_method('lib/SGN/Controller/Biosource.pm', 'get_sample', 'LocalBio');
+eval { LocalBio->get_sample($context, undef) };
+like($@, qr/Argumentos inválidos/, 'missing biosource ID uses Portuguese');
+for my $method (qw(download_genotype download_phenotype)) {
+    load_method('lib/SGN/Controller/Qtl.pm', $method, 'LocalQtl');
+    eval { LocalQtl->$method($context, 'ABC') };
+    like($@, qr/<strong>ABC<\/strong> não é um ID de população válido/,
+         'QTL rejects invalid ID and preserves its value and markup');
+}
+load_method('lib/SGN/Controller/ITAG.pm', 'list_releases', 'LocalITAG');
+eval { LocalITAG->list_releases($context) };
+like($@, qr/O recurso ITAG não está disponível/, 'disabled ITAG message uses Portuguese');
+load_method('lib/SGN/Controller/Bulk/Display.pm', 'no_data_error_page', 'LocalBulk');
+{
+    my $output = '';
+    open my $capture, '>', \$output or die $!;
+    local *STDOUT = $capture;
+    LocalBulk->no_data_error_page();
+    like($output, qr/Os resultados dessa busca não estão mais disponíveis/,
+         'bulk expiry message uses Portuguese');
+}
+load_method('cgi-bin/image/add_image.pl', 'validate_image_filename', 'LocalLegacyImage');
+for my $ext (qw(png jpg jpeg gif pdf ps eps)) {
+    is(LocalLegacyImage::validate_image_filename("plot.$ext"), 0,
+       "legacy image upload still accepts $ext");
+}
+like(LocalLegacyImage::validate_image_filename('plot.exe'),
+     qr/\.png, \.jpg, \.jpeg, \.gif, \.pdf, \.ps ou \.eps/,
+     'legacy image validation preserves all accepted extension tokens');
+like(LocalLegacyImage::validate_image_filename('plot!.png'), qr/caracteres inválidos/,
+     'legacy filename validation uses Portuguese');
 
 done_testing();

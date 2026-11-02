@@ -1,4 +1,5 @@
 #!usr/bin/perl -w
+use utf8;
 
 use strict;
 use CXGN::Page;
@@ -66,10 +67,10 @@ website($page);
 sub website {
     my ($page) = @_;
     $page->header();
-    print page_title_html('Success!');
+    print page_title_html('Sucesso!');
 
     print <<EOF;
-    <p>Your query has been added to SGN BLAST Watch.  You will receive an email when there are new results.</p>
+    <p>Sua consulta foi adicionada ao BLAST Watch do SGN. Você receberá um e-mail quando houver novos resultados.</p>
 EOF
 	
     $page->footer();
@@ -80,10 +81,10 @@ sub post_only {
     my ($page) = @_;
     
     $page->header();
-    print page_title_html('SGN BLAST Watch Interface Error');
+    print page_title_html('Erro da interface do BLAST Watch do SGN');
     
     print <<EOF;
-    <p>BLAST subsystem can only accept HTTP POST requests</p>
+    <p>O subsistema BLAST só aceita requisições HTTP POST</p>
 EOF
 	
     $page->footer();
@@ -95,7 +96,7 @@ sub user_error {
     my ($page,$reason) = @_;
     
     $page->header();
-    print page_title_html('SGN BLAST Watch Error');
+    print page_title_html('Erro do BLAST Watch do SGN');
 
     print <<EOF;
     <p>$reason</p>

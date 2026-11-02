@@ -1,3 +1,4 @@
+use utf8;
 
 package main;
 
@@ -10,7 +11,7 @@ use CXGN::DB::Connection;
 use CXGN::Marker::Search;
 use HTML::Entities;
 
-our $page = CXGN::Page->new( "Marker Search", "Beth Skwarecki");
+our $page = CXGN::Page->new( "Busca de marcadores", "Beth Skwarecki");
 
 my %params=$page->cgi_params();
 #use Data::Dumper
@@ -25,7 +26,7 @@ $form->from_request(\%params);
 #warn "name param is $params{w822_marker_name}\n";
 #warn "name param is ". $form->data('marker_name');
 
-$page->header('SGN: Marker search') unless $form->data('text');
+$page->header('SGN: busca de marcadores') unless $form->data('text');
 
 
 if($form->data('submit') && ($form->data('submit') eq 'Search') || ($form->data('random') && $form->data('random') eq 'yes')) {
@@ -162,9 +163,9 @@ if($form->data('submit') && ($form->data('submit') eq 'Search') || ($form->data(
     } else {
 
       if (@$resultset == 0){ 
-	print blue_section_html('No results',"Sorry, no results matched your search criteria.\n" ); 
+        print blue_section_html('Nenhum resultado',"Sorry, no results matched your search criteria.\n" );
 	
-	print '<br /><br />', blue_section_html('Search Again', form_html($form));
+        print '<br /><br />', blue_section_html('Buscar novamente', form_html($form));
 	
       } else {
 	
@@ -215,7 +216,7 @@ if($form->data('submit') && ($form->data('submit') eq 'Search') || ($form->data(
 	my $link = $ENV{SCRIPT_NAME};
 	my $prevlink = qq{<a href="$link?$prevparams">\&laquo; Prev $resultsize</a>};
 	my $nextlink = qq{<a href="$link?$nextparams">Next $resultsize \&raquo;</a>};
-	my $textlink = qq{[Or <a href="$link?$textparams">download these results as a text file</a>]};
+        my $textlink = qq{[Or <a href="$link?$textparams">baixar estes resultados como arquivo de texto</a>]};
 
 	#warn "link was $link?$textparams\n";
 
@@ -240,14 +241,14 @@ if($form->data('submit') && ($form->data('submit') eq 'Search') || ($form->data(
 	my $resultsummary = "Showing results $resultstart to $resultend of $resultcount. $textlink<br />$prevlink | $nextlink<br /><br />";
 	
 	# the form was submitted, so we should present some results.
-	print blue_section_html('Marker search results', 
+        print blue_section_html('Resultados da busca de marcadores',
 				"$resultcount results found in $timeelapsed seconds", 
 				$resultsummary
 				. columnar_table_html(
 						      headings => ['Marker', 'Protocol', 'Map', 'Chromosome', 'Position', 'Confidence'],
 						      data => $tabledata));
 	
-	print '<br /><br />', blue_section_html('Search again', form_html($form));
+        print '<br /><br />', blue_section_html('Buscar novamente', form_html($form));
 	
       } # end of if-else text output
     } 

@@ -1,4 +1,5 @@
 #!/usr/bin/perl
+use utf8;
 
 use strict;
 
@@ -10,10 +11,10 @@ use CXGN::Page::FormattingHelpers qw/
 use CXGN::Search::CannedForms;
 use CXGN::Searches::Family;
 
-my $page = CXGN::Page->new("SGN Family Search Results", "Chris");
+my $page = CXGN::Page->new("Resultados da busca de famílias do SGN", "Chris");
 $page->header();
 
-print page_title_html("Family Search Results");
+print page_title_html("Resultados da busca de famílias");
 
 my $search = CXGN::Searches::Family->new();
 my $query = $search->new_query();
@@ -43,12 +44,12 @@ if(%params){
 	$results_html .= "</div>\n$pagination_html\n";
 
 	if(@results) {
-		print blue_section_html('Results', , sprintf('<span class="paginate_summary">%s matches </span>', $result->total_results(), $result->time), $results_html);
+                print blue_section_html('Resultados', , sprintf('<span class="paginate_summary">%s matches </span>', $result->total_results(), $result->time), $results_html);
 	}
 	else {
-		print '<span class=""><h4>No matches found</h4></span>';
+                print '<span class=""><h4>Nenhuma correspondência encontrada</h4></span>';
 	}
-	print info_section_html(title => 'Search again', contents =>CXGN::Search::CannedForms::family_search_form($page, $query));
+        print info_section_html(title => 'Buscar novamente', contents =>CXGN::Search::CannedForms::family_search_form($page, $query));
 }
 
 $page->footer();

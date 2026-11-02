@@ -1,3 +1,4 @@
+use utf8;
 
 use strict;
 use Storable qw / retrieve /;
@@ -127,7 +128,7 @@ Content-type: text/html
     </style>
     <img src="/img/sgn_logo_animated.gif" alt="SGN logo"/>
     <h2>$message</h2>
-    <div>Please note: jobs are limited to 1 hour of run time.</div>
+    <div>As tarefas são limitadas a 1 hora de execução.</div>
     <img src="/img/progressbar1.gif" alt="In Progress..."/>
 </body>
 </html>
@@ -138,7 +139,7 @@ HTML
 sub display_finished { 
     my $link = shift;
 
-    my $title = page_title_html("Job completed.");
+    my $title = page_title_html("Tarefa concluída.");
 
     $page->header();
 
@@ -148,7 +149,7 @@ sub display_finished {
 <center>
 
 <br />
-<a href="$link"><b>View Result</b></a>
+<a href="$link"><b>Visualizar resultado</b></a>
 <br /><br /><br />
 </center>
 

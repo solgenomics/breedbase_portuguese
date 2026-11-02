@@ -1,11 +1,12 @@
 #!/usr/bin/perl
+use utf8;
 # User interface for a signal peptide finder using a genentech-generated HMMER model
 # This file modified by Evan 9 / 16 / 05
 
 use strict;
 use CXGN::Page;
 
-our $page = CXGN::Page->new("Signal Peptide Finder Input Form", "Evan");
+our $page = CXGN::Page->new("Formulário do localizador de peptídeos-sinal", "Evan");
 $page->header("Signal Peptide Finder",'Signal peptide finder');
 
 print <<HTML1;
@@ -71,8 +72,8 @@ The more sequences you submit at once, the nicer the score histogram in the outp
 					</td>
         </tr>
 </table>
-<input type="reset" value="Reset" />
-&nbsp;&nbsp;<input type="submit" value="Submit" />
+<button type="reset" value="Reset">Limpar</button>
+&nbsp;&nbsp;<button type="submit" value="Submit">Enviar</button>
 </form>
 
 

@@ -1,3 +1,4 @@
+use utf8;
 use Modern::Perl;
 use CXGN::Page;
 use CXGN::DB::Connection;
@@ -14,7 +15,7 @@ $login->verify_session();
 
 my $page=CXGN::Page->new('cosii_submission.pl','john');
 
-$page->header('Submit COSII primer experiment');
+$page->header('Enviar experimento de primers COSII');
 my($action,$marker_name,$accession_id,$primer_type,$temp,$mg,$bands)=$page->get_encoded_arguments('action','marker_name','accession_id','primer_type','temp','mg','bands');
 my $marker_id;
 my $accession_name;
@@ -23,12 +24,12 @@ if($action eq 'verify' or $action eq 'insert') {
     my @marker_ids=CXGN::Marker::Tools::marker_name_to_ids($dbh,$marker_name);
 
     unless(@marker_ids) {
-        $page->message_page("Marker '$marker_name' not found.");
+        $page->message_page("Marcador '$marker_name' não encontrado.");
     }
 
     #i don't want to write any error handling here, because all cosii marker names (currently) refer to one marker each
     if(@marker_ids>1) {
-        $page->message_page("Multiple markers found with name '$marker_name'. Please contact us to resolve this issue.");
+        $page->message_page("Vários marcadores encontrados com o nome '$marker_name'. Entre em contato conosco para resolver o problema.");
     }
 
     ($marker_id)=@marker_ids;
@@ -36,7 +37,7 @@ if($action eq 'verify' or $action eq 'insert') {
     #test accession
     my $accession=CXGN::Accession->new($dbh,$accession_id);
     unless($accession) {
-        $page->message_page("Accession ID '$accession_id' not found in database");
+        $page->message_page("ID de acesso '$accession_id' não encontrado no banco de dados");
     }
     $accession_name=$accession->verbose_name();
 
@@ -47,20 +48,20 @@ if($action eq 'verify' or $action eq 'insert') {
 
     #test temp
     unless($temp=~/^\d+$/) {
-        $page->message_page("Temperature '$temp' is unrecognized, please submit a whole number only");
+        $page->message_page("Temperatura '$temp' não reconhecida. Informe apenas um número inteiro.");
     }
     if($temp>500) {
-        $page->message_page("Temperature '$temp' is invalid");
+        $page->message_page("Temperatura '$temp' inválida");
     }
 
     #test mg
     unless(CXGN::Tools::Text::is_number($mg)) {
-        $page->message_page("Mg concentration is unrecognized, please submit a number or a number including one decimal point only");
+        $page->message_page("Concentração de Mg não reconhecida. Informe um número inteiro ou com apenas uma casa decimal, usando ponto como separador.");
     }
 
     #test bands
     unless($bands eq 'M' or $bands eq 'm' or $bands=~/^\d+$/ or $bands=~/^\d+\+\d+$/) {
-        $page->message_page("Band sizes are unrecognized, please see examples and be sure not to include any spaces in your input");
+        $page->message_page("Tamanhos de banda não reconhecidos. Consulte os exemplos e não inclua espaços no valor informado.");
     }
     if($bands eq 'm') {
         $bands='M';
@@ -73,10 +74,10 @@ if($action eq 'verify' or $action eq 'insert') {
 
 if($action eq 'verify')
 {
-    print CXGN::Page::FormattingHelpers::page_title_html('Verify data');
-    print"<b>Marker name:</b> $marker_name (SGN-M$marker_id)<br />";
-    print"<b>Accession:</b> $accession_name (SGN accession ID:</b> $accession_id)<br />";
-    print"<b>Primer type:</b> $primer_type<br />";
+    print CXGN::Page::FormattingHelpers::page_title_html('Verificar dados');
+    print"<b>Nome do marcador:</b> $marker_name (SGN-M$marker_id)<br />";
+    print"<b>Acesso:</b> $accession_name (SGN accession ID:</b> $accession_id)<br />";
+    print"<b>Tipo de primer:</b> $primer_type<br />";
     print"<b>Temperature:</b> $temp<br />";
     print"<b>Mg concentration:</b> $mg<br />";
     print"<b>Bands:</b> $bands<br /><br />";
@@ -90,7 +91,7 @@ if($action eq 'verify')
 <input type="hidden" name="mg" value="$mg" />
 <input type="hidden" name="bands" value="$bands" />
 <input type="hidden" name="action" value="insert" />
-<input type="submit" value="Add new data" />
+<button type="submit" value="Add new data">Adicionar dados</button>
 END_HTML
     exit(0);
 }
@@ -101,11 +102,11 @@ END_HTML
 
 if($action eq 'insert')
 {
-    print CXGN::Page::FormattingHelpers::page_title_html('Pretended to add this data');
-    print"<a href=\"/search/markers/markerinfo.pl?marker_id=$marker_id\">[View marker with new data]</a><br /><br />";
-    print"<b>Marker name:</b> $marker_name (SGN-M$marker_id)<br />";
-    print"<b>Accession:</b> $accession_name (SGN accession ID:</b> $accession_id)<br />";
-    print"<b>Primer type:</b> $primer_type<br />";
+    print CXGN::Page::FormattingHelpers::page_title_html('Simulação de adição destes dados');
+    print"<a href=\"/search/markers/markerinfo.pl?marker_id=$marker_id\">[Visualizar marcador com os novos dados]</a><br /><br />";
+    print"<b>Nome do marcador:</b> $marker_name (SGN-M$marker_id)<br />";
+    print"<b>Acesso:</b> $accession_name (SGN accession ID:</b> $accession_id)<br />";
+    print"<b>Tipo de primer:</b> $primer_type<br />";
     print"<b>Temperature:</b> $temp<br />";
     print"<b>Mg concentration:</b> $mg<br />";
     print"<b>Bands:</b> $bands<br />";
@@ -165,11 +166,11 @@ print <<END_HTML;
 
 <tr>
 <td>
-Marker name<br />
+Nome do marcador<br />
 <input type="text" name="marker_name" value="$marker_name_filled_in" /><br />
 </td>
 <td>
-Primer type<br />
+Tipo de primer<br />
 <input type="radio" name="primer_type" value="iUPA" $iupa_selected />iUPA<br />
 <input type="radio" name="primer_type" value="eUPA" $eupa_selected />eUPA
 </td>
@@ -177,9 +178,9 @@ Primer type<br />
 
 <tr>
 <td colspan="2">
-Accession<br />
+Acesso<br />
 $accessions_selector
-<br />To add an accession to this list, <a href="/contact/form">contact SGN</a>.
+<br />Para adicionar um acesso a esta lista, <a href="/contact/form">entre em contato com o SGN</a>.
 </td>
 </tr>
 
@@ -203,14 +204,14 @@ Band sizes<br />
 Band size examples:<br />
 1 band: <b>300</b><br />
 2 bands separated by a '+' sign: <b>300+500</b><br />
-'M' for more than 2: <b>M</b>
+M para mais de 2: <b>M</b>
 </td>
 </tr>
 
 <tr>
 <td colspan="2">
 <input type="hidden" name="action" value="verify" />
-<input type="submit" value="Verify" />
+<button type="submit" value="Verify">Verificar</button>
 </td>
 </tr>
 

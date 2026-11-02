@@ -1,3 +1,4 @@
+use utf8;
 ######################################################################
 #
 #  Search the library database and display the results.
@@ -13,10 +14,10 @@ use CXGN::Page::FormattingHelpers qw/blue_section_html info_section_html page_ti
 use CXGN::Search::CannedForms;
 use CXGN::Searches::Library;
 
-my $page=CXGN::Page->new("EST library search results", "Evan");
+my $page=CXGN::Page->new("Resultados da busca de bibliotecas de ESTs", "Evan");
 $page->header();
 
-print page_title_html('Library search results');
+print page_title_html('Resultados da busca de bibliotecas');
 
 #create the search and query objects
 my $search = CXGN::Searches::Library->new();
@@ -54,13 +55,13 @@ EOH
 
 	if(@results)
 	{
-		print blue_section_html('Results', , sprintf('<span class="paginate_summary">%s matches </span>', $result->total_results(), $result->time), $results_html);
+                print blue_section_html('Resultados', , sprintf('<span class="paginate_summary">%s matches </span>', $result->total_results(), $result->time), $results_html);
 	}
 	else
 	{
-		print '<span class=""><h4>No matches found</h4></span>';
+                print '<span class=""><h4>Nenhuma correspondência encontrada</h4></span>';
 	}
-	print info_section_html(title => 'Search again', contents =>CXGN::Search::CannedForms::library_search_form($page, $query));
+        print info_section_html(title => 'Buscar novamente', contents =>CXGN::Search::CannedForms::library_search_form($page, $query));
 }
 
 $page->footer();

@@ -1,4 +1,5 @@
 #!/usr/bin/perl -w
+use utf8;
 use strict;
 use warnings;
 use CXGN::Page;
@@ -21,7 +22,7 @@ our ($auto_idq, $request_typeq, $cloneq, $clone_read_idq,
     @known_request_from_types);
 
 
-our $page = CXGN::Page->new( "SGN EST Search Result", "Koni");
+our $page = CXGN::Page->new( "Resultado da busca de ESTs do SGN", "Koni");
 
 my $dbh = CXGN::DB::Connection->new;
 
@@ -131,7 +132,7 @@ $random = sanitize_string($random);
 # If the identifier is not given, or the identifier parameter is 
 # screwed up, we want to give the right error instead of failing
 # later on for an unrelated reason.
-$page->message_page("No EST identifier specified") unless $request_id || ($random eq 'yes');
+$page->message_page("Nenhum identificador de EST informado") unless $request_id || ($random eq 'yes');
 
 
 if ($random eq "yes") {
@@ -143,7 +144,7 @@ if ($random eq "yes") {
 
 if ($request_id eq "" || $request_type eq "") {
   if ($request_from==1 || $request_from==2) {
-    $page->error_page("Invalid Direct Search from SGN-generated URL. Requested \"$request_id\" set type \"$request_type\"");
+    $page->error_page("Busca direta inválida a partir de uma URL gerada pelo SGN. Identificador solicitado: \"$request_id\"; tipo de conjunto: \"$request_type\"");
   } else {
     invalid_search($page);
   }
@@ -184,7 +185,7 @@ if ($id_type eq "automatic") {
     }
     $auto_idq->execute($request_id);
     if ($auto_idq->rows == 0) {
-      not_found($page, "Identifier \"$id\" was not found in SGN's databases.");
+      not_found($page, "Identificador \"$id\" não encontrado nos bancos de dados do SGN.");
     }
 
     if ($auto_idq->rows > 1) {
@@ -209,12 +210,12 @@ my $est_id = "";
 my $match_id = "";
 if ($id_type == 7) {
   # This is an EST identifier already
-  invalid_search($page, "Invalid identifier \"$id\" for specified identifier type (SGN-E#)") if ($id !~ m/^(SGN-E|E|)([0-9]+)$/);
+  invalid_search($page, "Identificador inválido \"$id\" para o tipo de identificador especificado (SGN-E#)") if ($id !~ m/^(SGN-E|E|)([0-9]+)$/);
   $match_id = "SGN-E$2";
   $est_id = $2;
 
 } elsif ($id_type == 8) {
-  invalid_search($page, "Invalid identifier \"$id\" for specified identifier type (SGN-C#)") if ($id !~ m/^(SGN-C|C|)([0-9]+)$/);
+  invalid_search($page, "Identificador inválido \"$id\" para o tipo de identificador especificado (SGN-C#)") if ($id !~ m/^(SGN-C|C|)([0-9]+)$/);
   # This is a clone internal identifier - find a trace, then find an EST
   if ($show_hierarchy) {
     hierarchy_requested($page, $id, $id_type);
@@ -223,7 +224,7 @@ if ($id_type == 7) {
   $est_id = by_clone($page, $2);
 } elsif ($id_type == 9) {
   # This is a trace identifier, find the most recent sequence for it
-  invalid_search($page, "Invalid identifier \"$id\" for specified identifier type (SGN-T#)") if ($id !~ m/^(SGN-T|T|)([0-9]+)$/);
+  invalid_search($page, "Identificador inválido \"$id\" para o tipo de identificador especificado (SGN-T#)") if ($id !~ m/^(SGN-T|T|)([0-9]+)$/);
   $match_id = "SGN-T$2";
   $est_id = by_read($page, $2);
 } elsif ($id_type == 10) {
@@ -232,20 +233,20 @@ if ($id_type == 7) {
   }
   $clone_nameq->execute($request_id);
   if ($clone_nameq->rows == 0) {
-    not_found($page, "Identifier \"$request_id\" was not found in SGN's databases.");
+    not_found($page, "Identificador \"$request_id\" não encontrado nos bancos de dados do SGN.");
   }
   ($match_id) = $clone_nameq->fetchrow_array();
   $est_id = by_clone($page, $match_id);
 } elsif ($id_type == 11) {
   $trace_nameq->execute($request_id);
   if ($trace_nameq->rows == 0) {
-    not_found($page, "Identifier \"$request_id\" was not found in SGN's databases.");
+    not_found($page, "Identificador \"$request_id\" não encontrado nos bancos de dados do SGN.");
   }
   ($match_id) = $trace_nameq->fetchrow_array();
   $est_id = by_read($page, $match_id);
 } elsif ($id_type == 14) {
   # This is a microarray identifier.
-  invalid_search($page, "Invalid identifier \"$id\" for specified identifier type (SGN/CGEP/TMD Microarray Spot Identifier)") if ($id !~ m/^(SGN-S|S|)([0-9]+-[0-9]+-[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+)/);
+  invalid_search($page, "Identificador inválido \"$id\" para o tipo de identificador especificado (SGN/CGEP/TMD Microarray Spot Identifier)") if ($id !~ m/^(SGN-S|S|)([0-9]+-[0-9]+-[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+)/);
   $match_id = "SGN-S$2";
   $est_id = by_mspot($page, $2);
 }
@@ -268,8 +269,8 @@ $clone_read_idq->execute($est_id);
 # Section containing information on what was searched for and what was found
 my $search_info = <<EOF;
 <$table>
-<tr><td width="50%"><b>Request:</b> $request_id</td><td><b>Match:</b> $match_id</td></tr>
-<tr><td><b>Request From:</b> $request_from</td><td><b>Match Type:</b> $id_type_name</td></tr>
+<tr><td width="50%"><b>Consulta:</b> $request_id</td><td><b>Correspondência:</b> $match_id</td></tr>
+<tr><td><b>Origem da consulta:</b> $request_from</td><td><b>Tipo de correspondência:</b> $id_type_name</td></tr>
 </table>
 EOF
 
@@ -287,8 +288,8 @@ if ($clone_id ne "" && $cloneq->execute($clone_id) && $cloneq->rows>0) {
 
   # If there are nulls in the table we'll get undefs for these values, so we
   # set displayed values here.
-  $organism_name = "Unknown" if !defined($organism_name);
-  $tissue = "Unknown" if !defined($tissue);
+  $organism_name = "Desconhecido" if !defined($organism_name);
+  $tissue = "Desconhecido" if !defined($tissue);
 
   # If we have a clone group, seek out the replicate clone_ids so we can
   # search them below for alternative reads
@@ -312,21 +313,21 @@ if ($clone_id ne "" && $cloneq->execute($clone_id) && $cloneq->rows>0) {
       while (($chip_name, $version, $release, $spot_id) =
 	     $arrayq->fetchrow_array) {
 	if ($_->[0] != $clone_id) {
-	  $microarray .= qq{Alias clone <a href="/search/est.pl?request_id=$_->[0]&request_type=8&request_from=1">SGN-C$_->[0]</a> is on microarray $chip_name: SGN-S$version-$release-$spot_id\n};
+          $microarray .= qq{Clone equivalente <a href="/search/est.pl?request_id=$_->[0]&request_type=8&request_from=1">SGN-C$_->[0]</a> está no microarranjo $chip_name: SGN-S$version-$release-$spot_id\n};
 	} else {
-	  $microarray .= qq{SGN-C$_->[0] is on microarray $chip_name spot ID $version-$release-$spot_id [<a href="http://bti.cornell.edu/CGEP/CGEP.html">Order</a>] [<a href="http://ted.bti.cornell.edu/cgi-bin/array/basicsearch.cgi?arrayID=$version-$release-$spot_id">Tomato Microarray Database</a>]\n};
+          $microarray .= qq{SGN-C$_->[0] está no microarranjo $chip_name ID do ponto $version-$release-$spot_id [<a href="http://bti.cornell.edu/CGEP/CGEP.html">Solicitar</a>] [<a href="http://ted.bti.cornell.edu/cgi-bin/array/basicsearch.cgi?arrayID=$version-$release-$spot_id">Banco de microarranjos de tomate</a>]\n};
 	}
       }
     }
-    $microarray ||= '<span class="ghosted">This clone is not found on any microarray</span>';
-    $microarray = "<b>Microarray:</b> $microarray<br />";
+    $microarray ||= '<span class="ghosted">Este clone não foi encontrado em nenhum microarranjo</span>';
+    $microarray = "<b>Microarranjo:</b> $microarray<br />";
   }
 
   my $ordering;
   if ($order_routing_id) {
-    $ordering = qq{<table cellpadding="1" cellspacing="0" border="0"><tr><td><a href="/search/clone-order.pl?add_clone=$clone_name"><img src="/documents/img/sgn-cart.gif" border="0" alt="cart" /></a></td><td>Order Clone</td></tr></table>};
+    $ordering = qq{<table cellpadding="1" cellspacing="0" border="0"><tr><td><a href="/search/clone-order.pl?add_clone=$clone_name"><img src="/documents/img/sgn-cart.gif" border="0" alt="cart" /></a></td><td>Solicitar clone</td></tr></table>};
   } else {
-    $ordering = qq{<table cellpadding="1" cellspacing="0" border="0"><tr><td><img src="/documents/img/sgn-nocart.gif" border="0" alt="nocart" /></td><td><span class="ghosted">Ordering Not Available</span></td></tr></table>};
+    $ordering = qq{<table cellpadding="1" cellspacing="0" border="0"><tr><td><img src="/documents/img/sgn-nocart.gif" border="0" alt="nocart" /></td><td><span class="ghosted">Pedido indisponível</span></td></tr></table>};
   }
 
 # Section with information about the selected clone
@@ -339,20 +340,20 @@ if ($clone_id ne "" && $cloneq->execute($clone_id) && $cloneq->rows>0) {
 #       So much for organizing the script into little sections.
   $clone_info = <<EOF;
     <$table>
-    <tr><td width="40%"><b>SGN ID:</b> SGN-C$clone_id</td><td><b>Clone name:</b> $clone_name</td><td width="20%" rowspan="2">$ordering</td></tr>
-    <tr><td><b>Library Name:</b> $library_name</td><td><b>Organism:</b> $organism_name</td></tr>
+    <tr><td width="40%"><b>SGN ID:</b> SGN-C$clone_id</td><td><b>Nome do clone:</b> $clone_name</td><td width="20%" rowspan="2">$ordering</td></tr>
+    <tr><td><b>Nome da biblioteca:</b> $library_name</td><td><b>Organismo:</b> $organism_name</td></tr>
     </table>
     <br />
-    <b>Tissue:</b> $tissue<br />
-    <b>Development Stage:</b> $development_stage<br />
+    <b>Tecido:</b> $tissue<br />
+    <b>Estádio de desenvolvimento:</b> $development_stage<br />
     <br />
     $microarray
 EOF
 
 } else {
   # no clone information was found
-  $clone_info = '<div><span class="ghosted">No clone information found</span></div>';
-  $clone_name = "clone name unknown";
+  $clone_info = '<div><span class="ghosted">Nenhuma informação de clone encontrada</span></div>';
+  $clone_name = "nome do clone desconhecido";
 }
 
 # Search for information on the chromatogram
@@ -367,46 +368,46 @@ if ($read_id && $readq->execute($read_id) && $readq->rows>0) {
    $submitter_name) = $readq->fetchrow_array();
 
   if (!defined($seqdir)) {
-    $seqdir = "Unknown";
+    $seqdir = "Desconhecido";
   } elsif ($seqdir eq "5") {
     $seqdir = "5'";
   } elsif ($seqdir eq "3") {
     $seqdir = "3'";
   } else {
-    $seqdir = "Unknown";
+    $seqdir = "Desconhecido";
   }
 
-  $submitter_name = '<span class="ghosted">None</span>' unless $submitter_name;
+  $submitter_name = '<span class="ghosted">Nenhum</span>' unless $submitter_name;
   $atb_display ||= $atb_organization;
   if ($atb_display) {
-    $atb_display = "<b>Funding Organization:</b>&nbsp;$atb_display";
+    $atb_display = "<b>Instituição financiadora:</b>&nbsp;$atb_display";
   }
 
-  my $view_link='[<span class="ghosted">View</span>]';
-#  my $view_link=" [<a href=\"/tools/trace_view.pl?read_id=$read_id&est_id=$est_id\">View</a>]";
+  my $view_link='[<span class="ghosted">Visualizar</span>]';
+#  my $view_link=" [<a href=\"/tools/trace_view.pl?read_id=$read_id&est_id=$est_id\">Visualizar</a>]";
   my $tmp_tracename;
   if($tmp_tracename=CXGN::Chromatogram::has_abi_chromatogram($read_id))
   {
       my $path_to_remove = $c->path_to( $c->tempfiles_subdir('traceimages') );
       $tmp_tracename=~s/$path_to_remove//;
       my $file=URI::Escape::uri_escape("$tmp_tracename");
-      $view_link=" [<a href=\"/tools/trace_view.pl?file=$file&temp=yes\">View</a>]";
+      $view_link=" [<a href=\"/tools/trace_view.pl?file=$file&temp=yes\">Visualizar</a>]";
   }
 
   $read_info = <<EOF;
     <$table>
-      <tr><td width="50%"><b>SGN-ID:</b> SGN-T$read_id [<a href="/search/trace_download.pl?read_id=$read_id">Download</a>]$view_link</td>
-          <td><b>Facility Assigned ID:</b> $chroma_name\n</td>
+      <tr><td width="50%"><b>SGN-ID:</b> SGN-T$read_id [<a href="/search/trace_download.pl?read_id=$read_id">Baixar</a>]$view_link</td>
+          <td><b>ID atribuído pelo centro:</b> $chroma_name\n</td>
       </tr>
-      <tr><td><b>Submitter:</b> $submitter_name</td>
-          <td><b>Sequencing Facility:</b> $facility_name</td>
+      <tr><td><b>Responsável pelo envio:</b> $submitter_name</td>
+          <td><b>Centro de sequenciamento:</b> $facility_name</td>
       </tr>
     </table>
 
   $atb_display
 EOF
 } else {
-  $read_info='<span class="ghosted">No chromatogram information found for this sequence</span>';
+  $read_info='<span class="ghosted">Nenhuma informação de cromatograma encontrada para esta sequência</span>';
 }
 
 # Find alternate reads for this clone group
@@ -419,30 +420,30 @@ foreach ( @clone_group ) {
 	= $alt_readq->fetchrow_array()) {
     next if $eid==$est_id;
     if (!defined($dir)) {
-      $dir = "Unknown";
+      $dir = "Desconhecido";
     } elsif ($dir eq "5") {
       $dir = "5'";
     } elsif ($dir eq "3") {
       $dir = "3'";
     } else {
-      $dir = "Unknown";
+      $dir = "Desconhecido";
     }
 
     # This is hacked in here as an after thought, to draw the viewer's
     # attention to the additional sequencing section.
     if ($seqdir eq "5'" && $dir eq "3'") {
-      $see_also = "[See links to 3' reads above]";
+      $see_also = "[Veja os links para as leituras 3' acima]";
     } elsif ($seqdir eq "3'" && $dir eq "5'") {
-      $see_also = "[See links to 5' reads above]";
+      $see_also = "[Veja os links para as leituras 5' acima]";
     }
 
-    $facility = "Unknown" if !defined($facility);
+    $facility = "Desconhecido" if !defined($facility);
     $alt_reads .= <<EOF
       <tr><td><b>Clone:</b> SGN-C$_->[0] [$clone_name]</td>
-	  <td><b>Trace:</b> SGN-T$trace_id</td>
+          <td><b>Cromatograma:</b> SGN-T$trace_id</td>
 	  <td><b>EST:</b> <a href="/search/est.pl?request_id=$eid&amp;request_type=7&amp;request_from=1">SGN-E$eid</a></td>
-	  <td><b>Direction:</b> $dir</td>
-	  <td><b>Facility:</b> $facility</td>
+          <td><b>Direção:</b> $dir</td>
+          <td><b>Centro:</b> $facility</td>
       </tr>
 EOF
   }
@@ -450,13 +451,13 @@ EOF
 if($alt_reads) {
   $alt_reads = "<table>$alt_reads</table>" ;
 } else {
-  $alt_reads = '<span class="ghosted">No additional reads found.</span>';
+  $alt_reads = '<span class="ghosted">Nenhuma leitura adicional encontrada.</span>';
 }
 
 
 $estq->execute($est_id);
 if ($estq->rows == 0) {
-  not_found($page,"No database entry was found for EST identifier SGN-E$est_id");
+  not_found($page,"Nenhum registro encontrado para o identificador de EST SGN-E$est_id");
 }
 my ($basecaller,$version,$seq,$status,$flags,$start,$length,$entropy,$expected_error,$qtrim_threshold,$vs_status) = $estq->fetchrow_array();
 
@@ -493,22 +494,22 @@ if ($status & 0x1) {
   $display_status .= "Legacy ";
 }
 if ($status & 0x2) {
-  $display_status .= "Discarded ";
+  $display_status .= "Descartado ";
 }
 if ($status & 0x4) {
-  $display_status .= "Deprecated ";
+  $display_status .= "Obsoleto ";
 }
 if ($status & 0x8) {
-  $display_status .= "Censored ";
+  $display_status .= "Ocultado ";
 }
 if ($status & 0x10) {
-  $display_status .= "Vector/Quality trimming not applied ";
+  $display_status .= "Recorte por vetor/qualidade não aplicado ";
 }
 if ($status & 0x20) {
-  $display_status .= "Contaminants not assessed ";
+  $display_status .= "Contaminantes não avaliados ";
 }
 if ($status & 0x40) {
-  $display_status .= "Chimera not assessed ";
+  $display_status .= "Quimera não avaliada ";
 }
 
 my $insert_recovery = "";
@@ -519,38 +520,38 @@ if (!($status & 0x11)) {
 
 
   my @vector_sig_strings =
-    ("5' sequence read -- flanking 3' vector arm detected.",
-     "3' sequence read -- flanking 5' vector arm detected.",
-     "5' sequence read, incomplete (flanking vector not found)",
-     "3' sequence read, incomplete (flanking vector not found)",
+    ("Leitura 5' -- braço 3' flanqueador do vetor detectado.",
+     "Leitura 3' -- braço 5' flanqueador do vetor detectado.",
+     "Leitura 5' incompleta (vetor flanqueador não encontrado)",
+     "Leitura 3' incompleta (vetor flanqueador não encontrado)",
      #make these red and bold
      (map {'<span style="color: red; font-weight: bold;">'.$_.'</span>'}
-      ('No vector sequence detected',
-       'Vector found but pattern inconsistent with a normal insert',
-       'Multiple cloning site sequence detected -- chimeric clone suspected.',
+      ('Nenhuma sequência de vetor detectada',
+       'Vetor encontrado, mas o padrão é incompatível com um inserto normal',
+       'Sequência do sítio de clonagem múltipla detectada -- suspeita de clone quimérico.',
       )
      ),
     );
 
   $vector_signature = $vector_sig_strings[$vs_status]
-    || '<span class="ghosted">Not available</span>';
+    || '<span class="ghosted">Indisponível</span>';
 
 
   ### render any flags as html
-  my @flag_strings = ('Vector anomaly',
-		      'Possibly chimeric (anomalous insert into vector)',
-		      'Too short after trimming low-quality bases',
-		      'High expected error (low overall quality)',
-		      'Low complexity',
-		      'E. Coli (cloning host) sequence detected',
-		      'rRNA contamination detected',
-		      "Possibly chimeric (ends match significantly different genes in arabidopsis)",
-		      "Possibly chimeric, detected by unigene assembly preclustering",
-		      "Manually censored by SGN staff");
+  my @flag_strings = ('Anomalia no vetor',
+                      'Possivelmente quimérico (inserto anômalo no vetor)',
+                      'Muito curta após o recorte das bases de baixa qualidade',
+                      'Erro esperado alto (baixa qualidade geral)',
+                      'Baixa complexidade',
+                      'Sequência de E. coli (hospedeiro de clonagem) detectada',
+                      'Contaminação por rRNA detectada',
+                      "Possivelmente quimérico (extremidades correspondem a genes significativamente diferentes em Arabidopsis)",
+                      "Possivelmente quimérico, detectado pelo pré-agrupamento da montagem de unigenes",
+                      "Ocultado manualmente pela equipe do SGN");
 		
   my $flags_display = "";
   if ($flags == 0) {
-    $flags_display = "Passed all screens and filters";
+    $flags_display = "Aprovada em todas as verificações e filtros";
   } else {
     my @flags = ();
 
@@ -559,38 +560,38 @@ if (!($status & 0x11)) {
       push @flags,$str if $flags & (1<<$ind++);
     }
 
-    $flags_display = qq{<$table><tr><td width="10%"><b>Problems: </b></td><td>} . join("<br />",@flags) . "</td></tr></table>";
+    $flags_display = qq{<$table><tr><td width="10%"><b>Problemas: </b></td><td>} . join("<br />",@flags) . "</td></tr></table>";
   }
 
   $insert_recovery= <<EOF;
-<$table><tr><td width="50%"><b>Processed By:</b> SGN</td>
-            <td><b>Basecalling Software:</b> phred</td>
+<$table><tr><td width="50%"><b>Processado por:</b> SGN</td>
+            <td><b>Software de identificação de bases:</b> phred</td>
        </tr>
 </table>
-<b>Vector Signature:</b> $vector_signature<br />
+<b>Assinatura do vetor:</b> $vector_signature<br />
 $flags_display
 <table cellspacing="0" cellpadding="0" border="0" width="90%" align="center">
-  <tr><td><b>Sequence Entropy:</b> $entropy</td>
-      <td><b>Expected Error Rate:</b> $expected_error</td>
-      <td><b>Quality Trim Threshold:</b> $qtrim_threshold</td>
+  <tr><td><b>Entropia da sequência:</b> $entropy</td>
+      <td><b>Taxa de erro esperada:</b> $expected_error</td>
+      <td><b>Limiar de recorte por qualidade:</b> $qtrim_threshold</td>
   </tr>
 </table>
 EOF
 } else {
-  $insert_recovery = "<span class=\"ghosted\">Processing information not available for this sequence</span>";
+  $insert_recovery = "<span class=\"ghosted\">Informações de processamento indisponíveis para esta sequência</span>";
 }
 
 my $sequence_info = <<END_HTML;
   <$table>
-  <tr><td width="50%"><b>Sequence Id:</b> SGN-E$est_id</td><td><b>Length:</b> $seq_length</td></tr>
-  <tr><td><b>Status:</b> $display_status</td><td><b>Direction:</b> $seqdir $see_also</td></tr>
+  <tr><td width="50%"><b>ID da sequência:</b> SGN-E$est_id</td><td><b>Comprimento:</b> $seq_length</td></tr>
+  <tr><td><b>Status:</b> $display_status</td><td><b>Direção:</b> $seqdir $see_also</td></tr>
   </table>
   <div class="sequence" style="margin: 1em">
         $fasta_header
         $seq_display
   </div>
   <center>
-  [<a href="/tools/blast/?preload_id=$est_id&amp;preload_type=7">BLAST</a>]&nbsp;&nbsp;[<a href="/tools/sixframe_translate.pl?est_id=$est_id">AA Translate</a>]
+  [<a href="/tools/blast/?preload_id=$est_id&amp;preload_type=7">BLAST</a>]&nbsp;&nbsp;[<a href="/tools/sixframe_translate.pl?est_id=$est_id">Traduzir para aminoácidos</a>]
   </center>
 END_HTML
 
@@ -620,7 +621,7 @@ while(my ($unigene_id, $build_id, $og_name, $build_nr, $build_date,
 	last;
       }
       if ($alt_microarray_found) {
-	$alt_microarray .= qq{See unigene <a href="/search/unigene.pl?unigene_id=$unigene_id">SGN-U$unigene_id</a> for alternatives which are available on a microarray<br />};
+        $alt_microarray .= qq{Veja o unigene <a href="/search/unigene.pl?unigene_id=$unigene_id">SGN-U$unigene_id</a> para alternativas disponíveis em um microarranjo<br />};
       }
     }
   }
@@ -628,7 +629,7 @@ while(my ($unigene_id, $build_id, $og_name, $build_nr, $build_date,
   $marker_mappingq->execute($clone_id);
   if ($marker_mappingq->rows > 0) {
     while (my ($marker_id, $alias) = $marker_mappingq->fetchrow_array()){
-      $alt_mapped .= qq{This clone has been mapped as <a href="/search/markers/markerinfo.pl?marker_id=$marker_id">$alias</a>.<br />} 
+      $alt_mapped .= qq{Este clone foi mapeado como <a href="/search/markers/markerinfo.pl?marker_id=$marker_id">$alias</a>.<br />}
     }
   } else {
     $mapped_memberq->execute($unigene_id);
@@ -639,7 +640,7 @@ while(my ($unigene_id, $build_id, $og_name, $build_nr, $build_date,
 	$alt_mapped_found = 1;
       }
       if ($alt_mapped_found) {
-	$alt_mapped .= qq{See unigene <a href="/search/unigene.pl?unigene_id=$unigene_id">SGN-U$unigene_id</a> for alternative clones/ESTs which are mapped};
+        $alt_mapped .= qq{Veja o unigene <a href="/search/unigene.pl?unigene_id=$unigene_id">SGN-U$unigene_id</a> para clones/ESTs alternativos que foram mapeados};
       }
     }
   }
@@ -647,37 +648,37 @@ while(my ($unigene_id, $build_id, $og_name, $build_nr, $build_date,
   <tr><td>[SGN-E$eid]  </td>
       <td><a href="/search/unigene.pl?unigene_id=$unigene_id&amp;highlight=$eid">SGN-U$unigene_id</a></td>
       <td>$og_name        </td>
-      <td>Build $build_nr </td>
-      <td>$nr_members ESTs assembled</td>
+      <td>Montagem $build_nr </td>
+      <td>$nr_members ESTs montadas</td>
   </tr>
 EOF
 }
 
 if (!$alt_microarray &&
     ($organism_id == 1 || $organism_id == 2 || $organism_id == 3)) {
-  $alt_microarray = '<span class="ghosted">No alternative clones from any current unigene containing this EST are available on a microarray</span>';
+  $alt_microarray = '<span class="ghosted">Nenhum clone alternativo dos unigenes atuais que contêm esta EST está disponível em um microarranjo</span>';
 }
 
-$alt_mapped ||= "<div><span class=\"ghosted\">There is no map position defined on SGN for this EST or others in the same unigene.</span></div>";
+$alt_mapped ||= "<div><span class=\"ghosted\">Não há posição definida no mapa do SGN para esta EST nem para outras do mesmo unigene.</span></div>";
 
 
 
 $unigene_content = '<table align="center" cellspacing="0" cellpadding="0" border="0" width="100%">';
 
 if ($other_estid) {
-  $unigene_content .= qq{<tr><td colspan="6"><span class="ghosted">Note: Some unigenes listed here are assembled from different versions of the sequence displayed above. Note SGN-E# in left column. All versions were derived from the same chromatogram</span></td></tr><tr><td colspan="6"><br /></td></tr>};
+  $unigene_content .= qq{<tr><td colspan="6"><span class="ghosted">Observação: alguns unigenes listados aqui foram montados a partir de versões diferentes da sequência exibida acima. Confira SGN-E# na coluna à esquerda. Todas as versões derivam do mesmo cromatograma</span></td></tr><tr><td colspan="6"><br /></td></tr>};
 }
 
 if (@recent) {
   $unigene_content .= <<EOF;
-<tr><td colspan="6"><b>Current Unigene builds</b></td></tr>
+<tr><td colspan="6"><b>Montagens atuais de unigenes</b></td></tr>
 @recent
-<tr><td colspan="6" align="center"><span class="ghosted">Follow SGN-U# link for detailed information and annotations</span></td></tr>
+<tr><td colspan="6" align="center"><span class="ghosted">Acesse o link SGN-U# para ver informações detalhadas e anotações</span></td></tr>
 EOF
 } else {
   $unigene_content .= <<EOF;
-<tr><td align="left" colspan="6"><b>Current Unigene builds</b></td></tr>
-<tr><td colspan="6"><span class="ghosted">No current unigene builds incorporate this sequence</td></tr>
+<tr><td align="left" colspan="6"><b>Montagens atuais de unigenes</b></td></tr>
+<tr><td colspan="6"><span class="ghosted">Nenhuma montagem atual de unigenes inclui esta sequência</td></tr>
 EOF
 }
 
@@ -685,19 +686,19 @@ $unigene_content .= "</table>";
 
 
 $page->header();
-print page_title_html("EST details &mdash; $match_id");
-print blue_section_html('Search information',$search_info);
-print blue_section_html('Clone information',<<EOH);
+print page_title_html("Detalhes da EST &mdash; $match_id");
+print blue_section_html('Informações da busca',$search_info);
+print blue_section_html('Informações do clone',<<EOH);
 $clone_info
 $alt_microarray
 $alt_mapped
 EOH
-$alt_reads .= qq{<center style="margin-top: 0.8em"><a href="/search/est.pl?request_id=$clone_id&amp;request_type=8&amp;request_from=1&amp;show_hierarchy=1">[Show information hierarchy]</a></center>};
-print blue_section_html('Additional sequencing',$alt_reads);
-print blue_section_html('Sequence',$sequence_info);
+$alt_reads .= qq{<center style="margin-top: 0.8em"><a href="/search/est.pl?request_id=$clone_id&amp;request_type=8&amp;request_from=1&amp;show_hierarchy=1">[Mostrar hierarquia de informações]</a></center>};
+print blue_section_html('Sequenciamento adicional',$alt_reads);
+print blue_section_html('Sequência',$sequence_info);
 print blue_section_html('Unigenes',$unigene_content);
-print blue_section_html('Chromatogram',$read_info);
-print blue_section_html('Quality processing',$insert_recovery);
+print blue_section_html('Cromatograma',$read_info);
+print blue_section_html('Processamento de qualidade',$insert_recovery);
 
 $page->footer();
 
@@ -711,7 +712,7 @@ sub by_clone {
     if ($try_clone_groupq->rows > 1) {
       try_clone_group($page, $id);
     }
-    not_found($page, "Your search resolved to a clone identifier (SGN-C$id) that was not found in SGN's databases. No alias clones were found.");
+    not_found($page, "Sua busca resultou no identificador de clone SGN-C$id, que não foi encontrado nos bancos de dados do SGN. Nenhum clone equivalente foi encontrado.");
   } elsif ($by_clone_idq->rows == 1) {
     ($read_id) = $by_clone_idq->fetchrow_array();
   } else {
@@ -747,7 +748,7 @@ sub by_read {
   $by_read_idq->execute($id);
 
   if ($by_read_idq->rows == 0) {
-    not_found($page, "Your search resolved to a trace identifier (SGN-T$id) that was not found in SGN's databases");
+    not_found($page, "Sua busca resultou no identificador de cromatograma SGN-T$id, que não foi encontrado nos bancos de dados do SGN");
   } elsif ($by_read_idq->rows == 1) {
     my ($est_id) = $by_read_idq->fetchrow_array();
     return $est_id;
@@ -776,7 +777,7 @@ sub by_mspot {
       return by_clone($page, $clone_id);
     }
 
-    not_found($page, "Microarray spot identifier (SGN-S$id) was not found in SGN's databases");
+    not_found($page, "Identificador de ponto de microarranjo SGN-S$id não encontrado nos bancos de dados do SGN");
   } else {
     $id =~ m/([0-9]+)/;
     $mid_cloneq->execute($1);
@@ -785,7 +786,7 @@ sub by_mspot {
       return by_clone($page, $clone_id);
     }
 
-    not_found($page, "Your search was resolved to a microarray entry (SGN-S$id) that was not found in SGN's databases");
+    not_found($page, "Sua busca resultou no registro de microarranjo SGN-S$id, que não foi encontrado nos bancos de dados do SGN");
   }
 
 }
@@ -802,12 +803,12 @@ sub try_clone_group {
 
   print <<EOF;
   <center>
-  <h4>Direct Search Result - Not Found</h4>
+  <h4>Resultado da busca direta — Não encontrado</h4>
   </center>
 
-  <p>Your search resolved to a clone identifier (SGN-C$id) that has no associated reads. An alias group was detected, however. See links below for other clone ids/names that are expected to be from identical stock. </p>
+  <p>Sua busca resultou no identificador de clone SGN-C$id, que não tem leituras associadas. Porém, foi detectado um grupo de clones equivalentes. Veja nos links abaixo outros IDs/nomes de clones que provavelmente pertencem ao mesmo material. </p>
 
-  <p>This may happen for cases where clones were "rearrayed" and resequenced, but the resequenced data has not been recovered yet or the reactions failed. In this case, the rearrayed clone identifier and name will have no associated sequence, but the original clone may have usable reads available in the database.</p>
+  <p>Isso pode ocorrer quando os clones foram rearranjados e sequenciados novamente, mas os novos dados ainda não foram recuperados ou as reações falharam. Nesse caso, o ID e o nome do clone rearranjado não terão sequência associada, mas o clone original poderá ter leituras utilizáveis no banco de dados.</p>
   <br /><br />
   <$table>$clones</table>
   <br /><br />
@@ -827,7 +828,7 @@ sub invalid_search {
 
   print <<EOF;
   <center>
-  <h4>Not Found - Search Invalid</h4>
+  <h4>Não encontrado — Busca inválida</h4>
   </center>
 EOF
 
@@ -849,7 +850,7 @@ sub not_found {
 
   print <<EOF;
   <center>
-  <h4>Direct Search Result - Not Found</h4>
+  <h4>Resultado da busca direta — Não encontrado</h4>
   </center>
 EOF
 
@@ -871,10 +872,10 @@ sub not_traceable_to_est {
 
   print <<EOF;
   <center>
-  <h4>Direct Search Result - Not Found</h4>
+  <h4>Resultado da busca direta — Não encontrado</h4>
   </center>
 
-  <p>The identifier $id of the specified type can not be traced to an EST in SGN\'s databases</p>
+  <p>O identificador $id do tipo especificado não pôde ser associado a uma EST nos bancos de dados do SGN</p>
   <br />
 EOF
 
@@ -907,17 +908,17 @@ sub hierarchy_requested {
   my $content = build_hierarchy($page, $id);
 
   $page->header();
-  print page_title_html("Information Hierarchy for Clone $id");
+  print page_title_html("Hierarquia de informações do clone $id");
 
   if (!$content) {
     print <<EOF;
-    No structure was found for identifier $id
+    Nenhuma estrutura encontrada para o identificador $id
 EOF
     $page->footer();
   exit 0;
   }
 
-  print blue_section_html('Information Hierarchy',$content);
+  print blue_section_html('Hierarquia de informações',$content);
   $page->footer();
 
   exit 0;

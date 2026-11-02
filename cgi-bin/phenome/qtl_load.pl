@@ -1,3 +1,4 @@
+use utf8;
 package CXGN::Phenome::QtlLoadDetailPage;
 use CatalystX::GlobalContext qw( $c );
 
@@ -491,7 +492,7 @@ sub store_traits {
         my $error =
           "Data columns in the traits file need to be in the order of: 
                     <b>traits -> definition -> unit</b>. <br/>
-                    Now they are in the order of <b><i>$fields[0] -> $fields[1] 
+                    Agora estão na ordem de <b><i>$fields[0] -> $fields[1]
                     -> $fields[2]</i></b>.\n";
 
         $self->trait_columns($error);
@@ -1628,7 +1629,7 @@ sub post_geno_form {
         }
         else 
         {
-            $c->throw_404("failed storing genotype data.");
+            $c->throw_404("Falha ao armazenar os dados de genótipo.");
         }        
     }          
 }

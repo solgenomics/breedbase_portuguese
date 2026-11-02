@@ -1,3 +1,4 @@
+use utf8;
 ######################################################################
 # #### DEPRECATED CGIBIN CODE ########################################
 #
@@ -18,10 +19,10 @@ use CXGN::Search::CannedForms;
 #################################################
 
 # Start a new SGN page.
-my $page=CXGN::Page->new("SGN image search results","Jessica");
+my $page=CXGN::Page->new("Resultados da busca de imagens do SGN","Jessica");
 $page->header();
 
-print page_title_html('Image search results');
+print page_title_html('Resultados da busca de imagens');
 
 #create the search and query objects
 my $search = CXGN::Searches::Images->new;
@@ -96,12 +97,12 @@ EOH
 
 
 	if (@results) {
-	    print blue_section_html('Image search results', ,sprintf('<span class="paginate_summary">%s matches </span>', $result->total_results,$result->time),$results_html);
+            print blue_section_html('Resultados da busca de imagens', ,sprintf('<span class="paginate_summary">%s matches </span>', $result->total_results,$result->time),$results_html);
 	}else {
-	    print '<h4>No matches found</h4>';
+            print '<h4>Nenhuma correspondência encontrada</h4>';
 	}
 
-    print info_section_html(title    => 'Search again', 
+    print info_section_html(title    => 'Buscar novamente',
 			    contents =>CXGN::Search::CannedForms::image_search_form($page,$query)
 			    );
     

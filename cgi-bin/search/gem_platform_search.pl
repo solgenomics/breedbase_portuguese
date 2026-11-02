@@ -1,3 +1,4 @@
+use utf8;
 ######################################################################
 #
 #  Search the expression database and display the results.
@@ -13,10 +14,10 @@ use CXGN::Page::FormattingHelpers qw/blue_section_html info_section_html page_ti
 use CXGN::Search::CannedForms;
 use CXGN::Searches::GemPlatform;
 
-my $page=CXGN::Page->new("Expression search results by platform", "Aure");
+my $page=CXGN::Page->new("Resultados da busca de expressão por plataforma", "Aure");
 $page->header();
 
-print page_title_html('Expression search results by platform');
+print page_title_html('Resultados da busca de expressão por plataforma');
 
 #create the search and query objects
 my $search = CXGN::Searches::GemPlatform->new();
@@ -57,13 +58,13 @@ EOH
 
 	if(@results)
 	{
-		print blue_section_html('Results', , sprintf('<span class="paginate_summary">%s matches </span>', $result->total_results(), $result->time), $results_html);
+                print blue_section_html('Resultados', , sprintf('<span class="paginate_summary">%s matches </span>', $result->total_results(), $result->time), $results_html);
 	}
 	else
 	{
-		print '<span class=""><h4>No matches found</h4></span>';
+                print '<span class=""><h4>Nenhuma correspondência encontrada</h4></span>';
 	}
-	print info_section_html(title => 'Search again', contents =>CXGN::Search::CannedForms::expr_platform_search_form($page, $query));
+        print info_section_html(title => 'Buscar novamente', contents =>CXGN::Search::CannedForms::expr_platform_search_form($page, $query));
 }
 
 $page->footer();

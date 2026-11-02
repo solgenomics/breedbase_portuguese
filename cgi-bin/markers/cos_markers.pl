@@ -1,3 +1,4 @@
+use utf8;
 use strict;
 use CXGN::Page;
 my $page=CXGN::Page->new('cos_markers.html','html2pl converter');
@@ -87,7 +88,7 @@ print<<END_HEREDOC;
           text format for download. 
           </p>
 
-          <p><strong>Note:</strong> for the tomato map position in
+          <p><strong>Observação:</strong> for the tomato map position in
           the table linked above:</p>
 
           <ul>

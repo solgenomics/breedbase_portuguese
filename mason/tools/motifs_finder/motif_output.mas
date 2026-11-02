@@ -23,14 +23,14 @@ $sum => ""
 			#print "my index = $i <br\>";
 			print "<div class='well' style=\"width:90%\">";
 			#print "<b>Motif Sequence logo $logoID[$i], for Length $logowidth[$i]</b>\n <br/>";
-			print "<b>Motif Sequence logo $logoID[$i]</b>\n <br/>";
+                        print "<b>Logo da sequência do motivo $logoID[$i]</b>\n <br/>";
 			#print "<img src= \"/export/prod/tmp/motifs_finder/$logo[$i]\"><br/><br/><br/>";
 			print "<img src= \"/documents/tempfiles/motifs_finder/$logo[$i]\" ><br/><br/><br/>";
 		 	print "<b>Tabela de motivos </b><br/>$motif_tab[$i]\n <br/><br/>" ;
 			print "<b>Modelo do motivo (frequência de resíduos x 100)</b><br\>$freq_tab[$i]\n <br\> ";
 			print "<b>Modelo de probabilidade do motivo </b><br\>$prob_tab[$i]\n <br/>" ;
 			print "<b>Modelo de probabilidade de fundo </b> <br\>$BGPM_tab[$i]\n <br/>" ;
-			print "<b>Motif $logoID[$i] Log MAP Value</b><br\>$sum_indv_tab[$i]\n <br/>" ;
+                        print "<b>Valor de Log MAP do motivo $logoID[$i]</b><br\>$sum_indv_tab[$i]\n <br/>" ;
 			print "</div>";
 		}
 

@@ -1,3 +1,4 @@
+use utf8;
 ######################################################################
 #
 #  This conducts and displays the results of a BAC search.
@@ -23,8 +24,8 @@ use CatalystX::GlobalContext '$c';
 
 #################################
 # Start a new SGN page.
-our $page = CXGN::Page->new( 'Unigene Advanced Search', 'Rob Buels');
-$page->header('Unigene Search Results'); #print out header immediately so users get 'in progress' message
+our $page = CXGN::Page->new( 'Busca avançada de unigenes', 'Rob Buels');
+$page->header('Resultados da busca de unigenes'); #print out header immediately so users get 'in progress' message
 
 #create the search and query objects
 my $search = CXGN::Unigene::Search->new;
@@ -38,7 +39,7 @@ eval { #initialize the query object from the page parameters
   $query->from_request(\%params);
 }; if( $EVAL_ERROR ) {
   if($c->config->{'production_server'}) {
-    print "<b>Invalid search parameters.</b>\n";
+    print "<b>Parâmetros de busca inválidos.</b>\n";
   } else {
     die $EVAL_ERROR; #die it on
   }
@@ -80,11 +81,11 @@ EOH
 $pagination_html
 EOH
 
-print page_title_html('Unigene Search Results');
+print page_title_html('Resultados da busca de unigenes');
 
-print blue_section_html('Unigene Search Results',sprintf('<span class="paginate_summary">%s matches (%0.1f seconds)</span>',commify_number($result->total_results),$result->time),$results_html);
+print blue_section_html('Resultados da busca de unigenes',sprintf('<span class="paginate_summary">%s matches (%0.1f seconds)</span>',commify_number($result->total_results),$result->time),$results_html);
 
-print blue_section_html('Search Again',CXGN::Search::CannedForms::unigene_search_form($page,$query));
+print blue_section_html('Buscar novamente',CXGN::Search::CannedForms::unigene_search_form($page,$query));
 
 $page->footer();
 

@@ -1,3 +1,4 @@
+use utf8;
 use CatalystX::GlobalContext qw( $c );
 ######################################################################
 #
@@ -18,10 +19,10 @@ use CXGN::Searches::People;
 #################################################
 
 # Start a new SGN page.
-my $page = CXGN::Page->new( "SGN directory search results", "Evan" );
+my $page = CXGN::Page->new( "Resultados da busca no diretório do SGN", "Evan" );
 $page->header();
 
-print page_title_html('Directory search results');
+print page_title_html('Resultados da busca no diretório');
 
 #create the search and query objects
 my $search = CXGN::Searches::People->new();
@@ -34,7 +35,7 @@ my %params = CGI->new->Vars
 $query->from_request( \%params );
 
 my $search_again_html = info_section_html(
-    title    => 'Search again',
+    title    => 'Buscar novamente',
     contents => CXGN::Search::CannedForms::people_search_form( $page, $query )
 );
 
@@ -75,7 +76,7 @@ EOH
 
 if (@results) {
     print info_section_html(
-        title => 'Results',
+        title => 'Resultados',
         contents =>
             sprintf(
                 '<span class="paginate_summary">%s matches </span>',
@@ -85,7 +86,7 @@ if (@results) {
        );
 }
 else {
-    print '<h4>No matches found</h4>';
+    print '<h4>Nenhuma correspondência encontrada</h4>';
 }
 
 print $search_again_html;

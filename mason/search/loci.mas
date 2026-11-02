@@ -8,7 +8,7 @@ $lg_names_ref       => undef
 
 <div class="container-fluid">
 
-<& /page/page_title.mas, title=>'Procure Genes e Loci' &>
+<& /page/page_title.mas, title=>'Buscar genes e loci' &>
 
 <%perl>
 

@@ -1,4 +1,5 @@
 #!/usr/bin/perl -w
+use utf8;
 
 =head1 NAME
 
@@ -51,7 +52,7 @@ use List::MoreUtils 'minmax';
 
 use constant MAX_FORMATTABLE_REPORT_FILE_SIZE => 2_000_000;
 
-our $page = CXGN::Page->new( "BLAST Search Report", "Rob");
+our $page = CXGN::Page->new( "Relatório da busca BLAST", "Rob");
 our %params;
 
 our $tempfiles_subdir_rel = File::Spec->catdir($c->config->{'tempfiles_subdir'},'blast'); #path relative to website root dir
@@ -84,14 +85,14 @@ $page->header();
 
 # stuff to support AJAXy disambiguation of site xrefs
 print <<EOJS;
-<div id="xref_menu_popup" title="Match information">
+<div id="xref_menu_popup" title="Informações da correspondência">
   <dl>
     <dt>Hit region <span class="region_string"></span></dt>
       <dd>
-        <div style="margin: 0.5em 0"><a class="match_details" href="">View matched sequence</a></div>
+        <div style="margin: 0.5em 0"><a class="match_details" href="">Visualizar sequência correspondente</a></div>
         <div class="hit_region_xrefs"></div>
       </dd>
-    <dt>Subject sequence <span class="sequence_name"></span></dt>
+    <dt>Sequência-alvo <span class="sequence_name"></span></dt>
       <dd class="subject_sequence_xrefs">
       </dd>
   </dl>
@@ -141,14 +142,11 @@ print <<EOJS;
 
 EOJS
 
-print page_title_html('BLAST Results');
+print page_title_html('Resultados do BLAST');
 
 print <<EOH;
 <div align="center" style="margin-bottom: 1em">
-  Note: Please <b>do not bookmark</b> this page. BLAST results are
-  automatically deleted periodically.  To save these results, use your
-  browser's <b>save</b> feature, or download the plain-text results
-  using the link below.
+  Observação: <b>não adicione aos favoritos</b> esta página. Os resultados do BLAST são excluídos periodicamente. Para salvá-los, use a função <b>salvar</b> do navegador ou baixe os resultados em texto simples pelo link abaixo.
 </div>
 EOH
 
@@ -173,15 +171,15 @@ print graphics_html($raw_report_file,$formatted_report_file,$got_hits);
 
 # display the blast results
 my $report_filesize = Number::Bytes::Human::format_bytes( -s $raw_report_file );
-my $report_download_link = qq|[<a href="$raw_report_url">View / download raw report</a>] ($report_filesize)|;
+my $report_download_link = qq|[<a href="$raw_report_url">Visualizar / baixar relatório bruto</a>] ($report_filesize)|;
 my $report_text =
-  !$got_hits ? 'No hits found.'
-  : -s $raw_report_file > MAX_FORMATTABLE_REPORT_FILE_SIZE ? 'report too large to display, please right-click the link above to download it'
+  !$got_hits ? 'Nenhuma correspondência encontrada.'
+  : -s $raw_report_file > MAX_FORMATTABLE_REPORT_FILE_SIZE ? 'relatório grande demais para exibição; clique com o botão direito no link acima para baixá-lo'
   : slurp($formatted_report_file);
 
 
 
-print info_section_html( title => 'BLAST Report',
+print info_section_html( title => 'Relatório do BLAST',
                          subtitle => $report_download_link,
                          collapsible => 1,
                          contents => <<EOH);
@@ -201,9 +199,9 @@ sub format_report_file {
 
     # check if $raw_report_file exists
     unless (-e $raw_report_file) {
-        my $message = "BLAST results are automatically deleted after 7 days. You may need to run your BLAST again. "
-            . "If you feel you received this message in error, please <a href='/contact/form'>contact us</a>.";
-        $page->message_page('BLAST results not found.',$message);
+        my $message = "Os resultados do BLAST são excluídos automaticamente após 7 dias. Talvez seja necessário executar a busca novamente. "
+            . "Se acredita que esta mensagem foi exibida por engano, <a href='/contact/form'>entre em contato</a>.";
+        $page->message_page('Resultados do BLAST não encontrados.',$message);
     }
 
 
@@ -319,22 +317,22 @@ sub get_custom_formatter {
 sub graphics_html {
   my ($raw_report_file,$formatted_report_file,$got_hits) = @_;
 
-  sub section { info_section_html( title => 'Graphics', collapsible => 1, empty_message => shift, contents => shift) }
+  sub section { info_section_html( title => 'Gráficos', collapsible => 1, empty_message => shift, contents => shift) }
 
-  return section('not available for multiple query sequences') if $params{seq_count} > 1;
+  return section('indisponível para várias sequências de consulta') if $params{seq_count} > 1;
 
   return section('available for 0 - pairwise output format only') unless $params{outformat} == 0;
 
-  return section('disabled by user') if $params{output_graphs}  eq 'none';
+  return section('desativado pelo usuário') if $params{output_graphs}  eq 'none';
 
   return section('No BLAST hits, graphics not generated') unless $got_hits;
 
   #call the bioperl graph package for a graphic of the various alignments
   my $bioperl_graph =
-    info_section_html( title => 'Alignment Summary',
+    info_section_html( title => 'Resumo do alinhamento',
                        is_subsection => 1,
                        collapsible => 1,
-                       empty_message => 'disabled by user',
+                       empty_message => 'desativado pelo usuário',
                        contents => $params{output_graphs} =~ /bioperl/
                          ? bioperl_graph_html($raw_report_file)
                          : '',
@@ -342,12 +340,12 @@ sub graphics_html {
 
   #call Evan's BlastGraph package for a different type of graph
   my $evan_graph =
-    info_section_html( title => 'Conservedness Histogram',
+    info_section_html( title => 'Histograma de conservação',
                        is_subsection => 1,
                        collapsible => 1,
 
-                       $params{output_graphs} !~ /histogram/ ? ( empty_message => 'disabled by user' ) :
-                       $params{program} !~ /blastn/ ? (empty_message => 'not available for '.uc($params{program})) :
+                       $params{output_graphs} !~ /histogram/ ? ( empty_message => 'desativado pelo usuário' ) :
+                       $params{program} !~ /blastn/ ? (empty_message => 'indisponível para '.uc($params{program})) :
                        (contents => conservedness_histogram_html($raw_report_file)),
                      );
 
@@ -366,18 +364,16 @@ sub conservedness_histogram_html {
                                                 graph_outfile => "$tempfiles_subdir_abs/$graph_img_filename",
                                               );
 
-  return 'graphical display not available BLAST reports larger than 1 MB' if -s $raw_report_file > 1_000_000;
+  return 'visualização gráfica indisponível para relatórios BLAST maiores que 1 MB' if -s $raw_report_file > 1_000_000;
 
   my $errstr = $graph2->write_img();
-  $errstr and die "<b>ERROR:</b> $errstr";
+  $errstr and die "<b>ERRO:</b> $errstr";
 
 
   return join '',
     ( <<EOH,
 <center><b>Conservedness Histogram</b></center>
-<p>The histogram shows a count of hits <i>for each base</i> in the query sequence,
-but counts <i>only the domains BLAST finds</i>, meaning this is really more a function of region than of individual base.
-Within the graph, green shows exact base matches within conserved regions; blue shows non-matching bases within conserved regions. Gaps introduced into the query by BLAST are ignored; gaps introduced into target sequences are not.</p>
+<p>O histograma mostra a contagem de correspondências <i>para cada base</i> da sequência de consulta, mas conta <i>apenas os domínios encontrados pelo BLAST</i>, portanto representa mais as regiões do que as bases individuais. No gráfico, verde indica bases correspondentes em regiões conservadas; azul indica bases diferentes nessas regiões. Lacunas inseridas pelo BLAST na consulta são ignoradas, mas as inseridas nas sequências-alvo são consideradas.</p>
 EOH
       $graph2->get_map_html(), #code for map element (should have the name used below in the image)
       qq|<div align="center" style="color: #777777">|,
@@ -393,7 +389,7 @@ EOH
 sub bioperl_graph_html {
   my ($raw_report_file) = @_;
   return unless -e $raw_report_file;
-  return 'graphical display not available for BLAST reports larger than 1 MB' if -s $raw_report_file > 1_000_000;
+  return 'visualização gráfica indisponível para relatórios BLAST maiores que 1 MB' if -s $raw_report_file > 1_000_000;
 
   my $inc_str = join ',', map qq|"$_"|, @INC;
   my $cmd = <<EOP;

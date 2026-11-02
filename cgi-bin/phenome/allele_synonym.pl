@@ -1,3 +1,4 @@
+use utf8;
 
 use strict;
 use warnings; 
@@ -60,7 +61,7 @@ sub store {
 
 	$self->get_page()->header();
 	print $not_new_allele_synonym = "Allele synonym '".$args{allele_alias}. "' already exists <br />";
-	print qq { <a href="javascript:history.back(1)">back to allele synonyms</a> };
+        print qq { <a href="javascript:history.back(1)">voltar aos sinônimos do alelo</a> };
 	$self->get_page()->footer();
 	exit();
     }
@@ -106,7 +107,7 @@ sub delete {
     
     if ($allele) { 
 	print qq { Removed allele synonym "$allele_synonym_name" association from allele "$allele_symbol" ($allele_name).<br /> }; 
-	print qq { <a href="allele_synonym.pl?allele_id=$args{allele_id}&amp;action=new">Back to allele synonyms page</a> };
+        print qq { <a href="allele_synonym.pl?allele_id=$args{allele_id}&amp;action=new">Voltar à página de sinônimos do alelo</a> };
     }
   
     $self->get_page()->footer();		   
@@ -133,7 +134,7 @@ sub generate_form {
     
     # add form elements
     #
-    $self->get_form()->add_field(display_name=>"Allele synonym: ", 
+    $self->get_form()->add_field(display_name=>"Sinônimo do alelo: ",
 				 field_name=>"allele_alias", 
 				 length=>20, 
 				 object=>$allele_synonym, 
@@ -205,14 +206,14 @@ sub display_page {
 	print "for allele ".$allele->get_allele_symbol()." (".$allele->get_allele_name().")<br /><br />\n";
 	foreach my $as (@allele_synonyms) { 
 	    my $allele_synonym_id = $as->get_allele_alias_id();
-	    print $as->get_allele_alias(). qq { \n <a href="allele_synonym.pl?allele_id=$allele_id&amp;allele_alias_id=$allele_synonym_id&amp;locus_id=$locus_id&amp;action=confirm_delete">[Remove]</a> <br />\n };
+            print $as->get_allele_alias(). qq { \n <a href="allele_synonym.pl?allele_id=$allele_id&amp;allele_alias_id=$allele_synonym_id&amp;locus_id=$locus_id&amp;action=confirm_delete">[Remover]</a> <br />\n };
 	}
 
     }
 
-    if (!@allele_synonyms) { print "<b>None found</b><br /><br />\n"; }
+    if (!@allele_synonyms) { print "<b>Nenhum encontrado</b><br /><br />\n"; }
 
-    print qq { <br /><br /><b>Add another allele synonym</b>: };
+    print qq { <br /><br /><b>Adicionar outro sinônimo do alelo</b>: };
 
     print qq { <center> };
 
@@ -220,8 +221,8 @@ sub display_page {
 
     print qq { </center> };
 
-    print qq { <a href = "/phenome/allele.pl?allele_id=$allele_id&amp;action=view">back to allele page</a><br> };
-    print qq { <a href="/locus/$locus_id/view">back to locus page</a> };
+    print qq { <a href = "/phenome/allele.pl?allele_id=$allele_id&amp;action=view">voltar à página do alelo</a><br> };
+    print qq { <a href="/locus/$locus_id/view">voltar à página do locus</a> };
     $self->get_page()->footer();
 
 }

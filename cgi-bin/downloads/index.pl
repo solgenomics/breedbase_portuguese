@@ -1,3 +1,4 @@
+use utf8;
 
 use strict;
 
@@ -6,13 +7,13 @@ use CXGN::Page::FormattingHelpers qw/ page_title_html info_section_html /;
 
 my $page = CXGN::Page->new("SGN software downloads", "Lukas");
 
-my $title = page_title_html("Download SGN software",);
+my $title = page_title_html("Baixar o software do SGN",);
 
 $page->header("Downloads", $title);
 
 my $contents ="";
 
-$contents .= info_section_html(title=>"SGN Comparative Viewer", contents=><<CVIEW);
+$contents .= info_section_html(title=>"Visualizador comparativo do SGN", contents=><<CVIEW);
 
 The SGN Comparative Viewer Application. <br /><br />
 Download  [<a href="ftp://ftp.sgn.cornell.edu/programs/cview/">FTP</a>]

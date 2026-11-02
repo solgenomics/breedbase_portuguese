@@ -1,3 +1,4 @@
+use utf8;
 
 =head1 NAME
 
@@ -77,7 +78,7 @@ if (   ( $topic->get_person_id() && ( $topic->get_person_id() ne $user_id ) )
     && ( $user->get_user_type() ne "curator" ) )
 {
     $page->message_page(
-"Error:\nYou don't have the privileges to edit this topic, because you did not create it.\n\n\n"
+"Erro:\nVocê não tem permissão para editar este tópico porque não o criou.\n\n\n"
     );
 }
 
@@ -137,15 +138,15 @@ sub save_topic {
 
     $page->header();
 
-    print page_title_html("Store your topic");
+    print page_title_html("Salvar seu tópico");
 
     print <<HTML;
 
     Steps: Configure topic</b> -\> Review topic -\> <b>Store topic</b><br /><br /> 
 	
-    <b>The topic has been successfully stored.</b>
+    <b>O tópico foi salvo com sucesso.</b>
     <br /><br />
-    <a href="topics.pl">Return to topics.</a>
+    <a href="topics.pl">Voltar aos tópicos.</a>
     <br /><br />
     
 HTML
@@ -162,11 +163,11 @@ sub delete_topic {
 
     $page->header();
 
-    print page_title_html("Delete your topic");
+    print page_title_html("Excluir seu tópico");
 
     print <<HTML;
     <div class="container-fluid">
-    <b>SGN Forum:</b> Delete the following topic, including <b>$topic_post_count</b> posts?</b><br /><br />\n
+    <b>SGN Forum:</b> Excluir o seguinte tópico, incluindo <b>$topic_post_count</b> posts?</b><br /><br />\n
 
 	<div class="panel panel-default"><div class="panel-body">
 	<b>$topic_name</b><br /><br />
@@ -176,13 +177,13 @@ sub delete_topic {
 	<br />
 	
 	<table width="100%">
-	<tr><td align="left"><a href="topics.pl">Cancel</a>
+        <tr><td align="left"><a href="topics.pl">Cancelar</a>
 	</td><td align="right">
 	<form action="add_topic.pl?action=confirm_delete&amp;topic_id=$topic_id">
 	
     <input type="hidden" name="action" value="confirm_delete" />
 	<input type="hidden" name="topic_id" value="$topic_id" />
-	<input class="btn btn-primary"type="submit" value="delete topic" />\n
+        <button class="btn btn-primary"type="submit" value="delete topic">excluir tópico</button>\n
 	</form><br />\n
 	</td></tr></table>
 	<br /><br /><br />
@@ -201,12 +202,12 @@ sub confirm_delete_topic {
 
     $page->header();
 
-    print page_title_html("Topic deleted");
+    print page_title_html("Tópico excluído");
     print <<HTML;
 
     <b>SOL Forum</b>: Topic deleted.<br /><br />
     The topic $topic_name and $delete_count associated posts, have been successfully deleted.<br />\n
-    <a href="topics.pl">back to topics</a>\n
+    <a href="topics.pl">voltar aos tópicos</a>\n
 
 HTML
 
@@ -234,16 +235,16 @@ sub review_topic {
 
     $page->header();
 
-    print page_title_html("Review your topic");
+    print page_title_html("Revisar seu tópico");
 
     print <<HTML;
     <div class="container-fluid">
     Steps: Configure topic -\> <b>Review topic</b> -\> Store topic<br /><br /> 
-    Please verify the following topic submission: <br /><br />
+    Confira o tópico enviado abaixo: <br /><br />
 
     <div class="panel panel-primary"><div class="panel-body">
-    <b>Topic name</b>: $topic_name<br /><br />
-    <b>Topic Description</b>:<br />$display_topic_desc<br /><br />\n
+    <b>Nome do tópico</b>: $topic_name<br /><br />
+    <b>Descrição do tópico</b>:<br />$display_topic_desc<br /><br />\n
     <b>Other configurations</b>: $sort_order_message<br /><br />\n
     </div></div>
     <br />
@@ -255,11 +256,11 @@ sub review_topic {
 	<input type="hidden" name="subject" value="$topic_name" />
 	<input type="hidden" name="topic_description" value="$topic_desc" />
 	<input type="hidden" name="sort_order" value="$sort_order" />
-	<input class="btn btn-info" type="submit" value="Edit Topic" />
+        <button class="btn btn-info" type="submit" value="Edit Topic">Editar tópico</button>
 	
 	</form>
 	</td><td align="center">
-	<a href="topics.pl">Back to topics</a>
+        <a href="topics.pl">Voltar aos tópicos</a>
 	</td><td align="right">
 
     <form action="add_topic.pl">
@@ -267,7 +268,7 @@ sub review_topic {
 	<input type="hidden" name="topic_id" value="$topic_id" />
 	<input type="hidden" name="subject" value="$topic_name" />
 	<input type="hidden" name="topic_description" value="$topic_desc" />
-	<input class="btn btn-primary" type="submit" value="store topic"  />
+        <button class="btn btn-primary" type="submit" value="store topic">salvar tópico</button>
 	
 	</form>
 	</td></tr></table>
@@ -306,27 +307,25 @@ sub show_form {
     <form method="post" action="add_topic.pl">
 	
 	Steps: <b>Configure topic</b> -> Review topic -> Store topic<br /><br /> 
-	The owner of this topic is: <b>$topic_creator_name</b>.
-	The owner can edit and delete the topic at any time when logged in.<br /> 
-	HTML tags are not supported. You can add links to your post by using square brackets as follows:<br />
-	[url]sgn.cornell.edu[/url].
-	This will appear as <a href="http://sgn.cornell.edu">sgn.cornell.edu</a> in the post.<br /><br />
-	<b>Note:</b> this service is provided as a courtesy. SGN reserves the right to delete topics and posts at any time for any reason.
+        O proprietário deste tópico é: <b>$topic_creator_name</b>. O proprietário pode editar e excluir o tópico a qualquer momento enquanto estiver conectado.<br />
+        Tags HTML não são aceitas. Adicione links à mensagem usando colchetes, desta forma:<br />
+        [url]sgn.cornell.edu[/url]. Isso será exibido como <a href="http://sgn.cornell.edu">sgn.cornell.edu</a> na mensagem.<br /><br />
+        <b>Observação:</b> este serviço é oferecido como cortesia. O SGN se reserva o direito de excluir tópicos e mensagens a qualquer momento, por qualquer motivo.
 	<br /><br />
 	<input type="hidden" name="action" value="$action" />
 	<input type="hidden" name="topic_id" value="$topic_id" />
-	Topic sort order: <br />
-	<input type="radio" name="sort_order" value="asc"  />Latest entry at the top<br />
-	<input type="radio" name="sort_order" value="desc" checked="1" />Latest entry at the bottom<br />
+        Ordem de exibição do tópico: <br />
+        <input type="radio" name="sort_order" value="asc"  />Mais recentes no início<br />
+        <input type="radio" name="sort_order" value="desc" checked="1" />Mais recentes no final<br />
 	<br />
 	Topic subject: <input class="form-control" name="subject" value="$subject"><br /><br />
-	Post Text:<br />
+        Texto da mensagem:<br />
 	<textarea class="form-control" rows="5" cols="80" name="topic_description">$topic_description</textarea>
 	<br /><br />
 
 	<table width="100%" summary="">
-	<tr><td><a href="topics.pl">Back to forum</a></td>
-	<td align="right"><input class="btn btn-primary" type=submit value="Review topic" /></td>
+        <tr><td><a href="topics.pl">Voltar ao fórum</a></td>
+        <td align="right"><button class="btn btn-primary" type=submit value="Review topic">Revisar tópico</button></td>
 	</tr></table>
 	</form>
 

@@ -1,3 +1,4 @@
+use utf8;
 #DEPRECATED
 #####################
 #This page now points to the url /solpeople/profile/<sp_person_id> in the controller SGN::Controller::People
@@ -29,11 +30,11 @@ my $sp_person_id = CXGN::Login->new($dbh)->verify_session();
 
 my $sp = CXGN::People::Person->new( $dbh, $sp_person_id );
 unless ($sp_person_id) {
-    $page->error_page( "Login ID not found.",
+    $page->error_page( "ID de login não encontrado.",
         "", "", "Login ID not found: $sp_person_id" );
 }
 unless ( $sp->get_username() ) {
-    $page->error_page( "Username not found.",
+    $page->error_page( "Nome de usuário não encontrado.",
         "", "", "Username not found for sp_person_id '$sp_person_id'" );
 }
 my $username = $sp->get_first_name() . " " . $sp->get_last_name();
@@ -80,13 +81,13 @@ print <<END_HTML;
 </script>
 END_HTML
 
-print page_title_html("My $site_name");
-print qq|<div align="center">Welcome <b>$username</b></div>\n|;
+print page_title_html("Meu $site_name");
+print qq|<div align="center">Bem-vindo <b>$username</b></div>\n|;
 print
 qq|<div align="right" style="margin-bottom: 0.5em">Not $username? <a href="login.pl?logout=yes">[log out]</a></div>\n|;
-print info_section_html( title => 'General Tools', contents => <<EOHTML);
-    <a href="personal-info.pl?action=edit&sp_person_id=$sp_person_id">View or update personal (contact and research) information</a><br />
-    <a href="change-account.pl?action=edit&sp_person_id=$sp_person_id">Update account information</a><br />
+print info_section_html( title => 'Ferramentas gerais', contents => <<EOHTML);
+    <a href="personal-info.pl?action=edit&sp_person_id=$sp_person_id">Visualizar ou atualizar informações pessoais de contato e pesquisa</a><br />
+    <a href="change-account.pl?action=edit&sp_person_id=$sp_person_id">Atualizar informações da conta</a><br />
     <a href="/forum/topics.pl">Post to SGN forum</a><br />
 EOHTML
 
@@ -95,9 +96,9 @@ EOHTML
 #   . CXGN::BlastWatch::get_queries( $dbh, $sp_person_id )
 #   . '</div>';
 # print info_section_html( title => 'BLAST Watch', contents => <<EOHTML);
-#     <div style="margin-bottom: 1em">BLAST Watch is an SGN service that lets users submit recurring BLAST queries to SGN.  Our software repeats your BLAST search every week and notifies you by email if the BLAST results change.</div>
-#     <a href="/tools/blast/watch/index.pl">Submit a query to SGN BLAST Watch</a><br />
-#     <a href="javascript:toggleLayer('queryTable');" title="View your BLAST Watch queries">View your BLAST Watch queries</a>
+#     <div style="margin-bottom: 1em">O BLAST Watch permite enviar consultas recorrentes ao SGN. A busca BLAST é repetida semanalmente e você recebe um e-mail se os resultados mudarem.</div>
+#     <a href="/tools/blast/watch/index.pl">Enviar consulta ao BLAST Watch do SGN</a><br />
+#     <a href="javascript:toggleLayer('queryTable');" title="Visualizar suas consultas do BLAST Watch">Visualizar suas consultas do BLAST Watch</a>
 #     $queries
 # EOHTML
 
@@ -115,7 +116,7 @@ if ( in( $sp->get_user_type, qw/curator sequencer/ ) ) {
         if ( $sp->get_user_type eq 'curator' ) {
             tpf_agp_upload_forms(<<EOHTML);
       <!-- the string 'TYPE' will be replaced in each instance by tpf_agp_upload_forms() -->
-<label for="chrnuminputTYPE">For Chromosome #: </label><input id="chrnuminputTYPE" name="chr" type="text" size="2" maxlength="2" />
+<label for="chrnuminputTYPE">Para o cromossomo #: </label><input id="chrnuminputTYPE" name="chr" type="text" size="2" maxlength="2" />
 EOHTML
         }
         elsif ( $sp->get_user_type eq 'sequencer'
@@ -128,34 +129,34 @@ EOHTML
               ? simple_selectbox_html(
                 name    => 'chr',
                 choices => \@projects,
-                label   => 'For Chromosome #:',
+                label   => 'Para o cromossomo #:',
               )
               : qq|For Chromosome #: <b>$projects[0]</b> <input type="hidden" value="$projects[0]" name="chr" />|;
             tpf_agp_upload_forms($chrinput);
         }
     };
 
-    print info_section_html( title => 'Sequencer Tools', contents => <<EOHTML);
-<a href="attribute_bacs.pl">Attribute a BAC to your chromosome sequencing project</a><br />
-<a href="/maps/physical/clone_il_view.pl">View/update BAC IL mapping information (list view)</a><br />
-<div style="vertical-align: middle; font-weight: bold"><a href="/maps/physical/clone_reg.pl">View/update all BAC registry info (list view) <img style="border: none" src="/documents/img/new.gif" /></a></div>
-<a href="/sequencing/tpf.pl">View TPF Files</a><br />
-<a href="/sequencing/agp.pl">View AGP Files</a><br />
+    print info_section_html( title => 'Ferramentas de sequenciamento', contents => <<EOHTML);
+<a href="attribute_bacs.pl">Atribuir um BAC ao seu projeto de sequenciamento de cromossomo</a><br />
+<a href="/maps/physical/clone_il_view.pl">Visualizar/atualizar o mapeamento de IL de BACs (lista)</a><br />
+<div style="vertical-align: middle; font-weight: bold"><a href="/maps/physical/clone_reg.pl">Visualizar/atualizar todos os registros de BACs (lista) <img style="border: none" src="/documents/img/new.gif" /></a></div>
+<a href="/sequencing/tpf.pl">Visualizar arquivos TPF</a><br />
+<a href="/sequencing/agp.pl">Visualizar arquivos AGP</a><br />
 $tpf_agp_upload
 EOHTML
 }
 
 # if( in( $sp->get_user_type(), qw/submitter curator/ ) )
 # {
-#   print info_section_html(title => 'EST Submission Pages', contents => <<EOHTML);
-# <a href="/data-submit/top-level.pl">Data submission start page</a>
+#   print info_section_html(title => 'Páginas de envio de ESTs', contents => <<EOHTML);
+# <a href="/data-submit/top-level.pl">Página inicial de envio de dados</a>
 # EOHTML
 # }
 
 if ( in( $sp->get_user_type(), qw/submitter curator/ ) ) {
-    print info_section_html( title => 'QTL data submission',
+    print info_section_html( title => 'Envio de dados de QTL',
         contents => <<EOHTML);
-<a href="/phenome/qtl_form.pl">Upload and analyse your QTL data</a>
+<a href="/phenome/qtl_form.pl">Enviar e analisar seus dados de QTL</a>
 EOHTML
 }
 
@@ -163,7 +164,7 @@ my @pops = CXGN::Phenome::Population->my_populations($sp_person_id);
 
 if (@pops) {
     my $pop_list = my_populations(@pops);
-    print info_section_html( title => 'Populations', contents => $pop_list );
+    print info_section_html( title => 'Populações', contents => $pop_list );
 }
 
 #### solGS submitted jobs list ##########
@@ -183,7 +184,7 @@ if(@$solgs_jobs) {
 }
 
 print info_section_html( 
-    title    => 'solGS submitted analysis jobs', 
+    title    => 'Tarefas de análise enviadas ao solGS',
     contents => $solgs_jobs_table 
     );
 
@@ -191,26 +192,26 @@ print info_section_html(
 
 
 if ( $sp->get_user_type() eq 'curator' ) {
-    print info_section_html( title => 'Curator Tools', contents => <<EOHTML);
-<a href="/solpeople/admin/crash_test.pl">Test website error handling</a><br />
-<a href="/solpeople/admin/stats.pl">View user stats</a><br />
-<a href="/solpeople/admin/quick_create_account.pl">Create new user account</a><br />
-<a href="/solpeople/admin/create_organization.pl">Create new organization</a>
+    print info_section_html( title => 'Ferramentas de curadoria', contents => <<EOHTML);
+<a href="/solpeople/admin/crash_test.pl">Testar o tratamento de erros do site</a><br />
+<a href="/solpeople/admin/stats.pl">Visualizar estatísticas de usuários</a><br />
+<a href="/solpeople/admin/quick_create_account.pl">Criar conta de usuário</a><br />
+<a href="/solpeople/admin/create_organization.pl">Criar instituição</a>
 EOHTML
 }
 
 if ( $sp->get_user_type() =~ /curator/i ) {
     my $publications =
-qq| <a href= "/search/pub_search.pl">Search the SGN publication database </a><br />|;
+qq| <a href= "/search/pub_search.pl">Buscar no banco de publicações do SGN </a><br />|;
     $publications .=
-qq| <a href= "/search/pub_search.pl?w9b3_assigned_to=$sp_person_id">See your assigned publications</a><br />|;
+qq| <a href= "/search/pub_search.pl?w9b3_assigned_to=$sp_person_id">Ver as publicações atribuídas a você</a><br />|;
     $publications .=
 qq| <a href= "/search/pub_search.pl?w9b3_status=pending">See publications pending curation</a><br />|;
     $publications .=
-qq| <a href= "/chado/fetch_pubmed.pl">Load new publications from PubMed</a><br />|;
+qq| <a href= "/chado/fetch_pubmed.pl">Carregar novas publicações do PubMed</a><br />|;
 
     print info_section_html(
-        title    => 'Literature mining',
+        title    => 'Mineração da literatura',
         contents => $publications
     );
 }
@@ -242,11 +243,11 @@ qq { <a href="/phenome/locus_display.pl?locus_id=$locus_id&amp;action=view">$sym
     }
     if ($more) {
         $locus_editor_info .=
-qq|<br><b>and <a href="/search/locus/>$more more</a></b><br />|;
+qq|<br><b>e <a href="/search/locus/>$more more</a></b><br />|;
     }
 
     print info_section_html(
-        title    => 'Loci with Editor Privileges',
+        title    => 'Loci com permissão de edição',
         contents => $locus_editor_info
     );
 
@@ -287,9 +288,9 @@ qq { <a href="/locus/$locus_id/view">$symbol</a> };
     }
 
     $locus_annotations .=
-qq| <a href="../phenome/recent_annotated_loci.pl">[View annotated loci by date]</a> |;
+qq| <a href="../phenome/recent_annotated_loci.pl">[Visualizar loci anotados por data]</a> |;
     print info_section_html(
-        title    => 'Annotated Loci',
+        title    => 'Loci anotados',
         contents => $locus_annotations
     );
 
@@ -299,7 +300,7 @@ qq| <a href="../phenome/recent_annotated_loci.pl">[View annotated loci by date]<
 
     if ( @user_maps > 0 ) {
         $html .=
-"<table alt=\"\" ><tr><td><i>Name</i></td><td></td><td></td><td><i>status</i></td></tr>";
+"<table alt=\"\" ><tr><td><i>Nome</i></td><td></td><td></td><td><i>status</i></td></tr>";
         foreach my $um (@user_maps) {
             my $public = " (not public) ";
             if ( $um->get_map()->get_is_public() ) { $public = "(public)"; }
@@ -308,7 +309,7 @@ qq| <a href="../phenome/recent_annotated_loci.pl">[View annotated loci by date]<
               . $um->get_short_name()
               . "</b></td><td> <a href=\"/cview/umap.pl?action=view&amp;user_map_id="
               . $um->get_id()
-              . "\" >[view]</a></td><td><a href=\"/cview/umap.pl?action=edit&amp;user_map_id="
+              . "\" >[visualizar]</a></td><td><a href=\"/cview/umap.pl?action=edit&amp;user_map_id="
               . $um->get_id()
               . "\">[configure]</a></td><td>$public</td></tr>";
 
@@ -317,8 +318,8 @@ qq| <a href="../phenome/recent_annotated_loci.pl">[View annotated loci by date]<
     }
 
     # BROKEN!
-    #    print info_section_html(title => 'User Maps', contents=> <<EOHTML);
-    #    <a href="/cview/upload_usermap.pl">Upload new user map</a><br />
+    #    print info_section_html(title => 'Mapas do usuário', contents=> <<EOHTML);
+    #    <a href="/cview/upload_usermap.pl">Enviar novo mapa de usuário</a><br />
     #	<br />
     #	$html
     #EOHTML
@@ -327,9 +328,9 @@ qq| <a href="../phenome/recent_annotated_loci.pl">[View annotated loci by date]<
 
 my $user_type = $sp->get_user_type();
 my $user_info = {
-    user => qq{ Your current user status is <b>$user_type</b>. Please contact <a href="mailto:sgn-feedback\@sgn.cornell.edu">SGN</a> to upgrade to a <b>submitter</b> account with more privileges. Submitters can upload user maps, EST data, and become locus editors. },
+    user => qq{ Your current user status is <b>$user_type</b>. Entre em contato com <a href="mailto:sgn-feedback\@sgn.cornell.edu">SGN</a> to upgrade to a <b>submitter</b> account with more privileges. Submitters can upload user maps, EST data, and become locus editors. },
 
-    submitter => qq{ Your current user status is <b>$user_type</b>. You have the maximum user privileges on SGN. Please contact <a href="mailto:sgn-feedback\@sgn.cornell.edu">SGN</a> if you would like to change your user status.},
+    submitter => qq{ Your current user status is <b>$user_type</b>. Você tem o nível máximo de permissão no SGN. Entre em contato com <a href="mailto:sgn-feedback\@sgn.cornell.edu">SGN</a> if you would like to change your user status.},
 
     curator => qq{ Your current user status is <b>$user_type</b>. },
 
@@ -338,7 +339,7 @@ my $user_info = {
     genefamily_editor => qq{ Your current user status is <b>$user_type</b>. },
 };
 
-print info_section_html( title => 'User Status',
+print info_section_html( title => 'Status do usuário',
     contents => $user_info->{$user_type} );
 
 $page->footer();
@@ -352,21 +353,21 @@ sub tpf_agp_upload_forms {
     $chrinput_tpf =~ s/TYPE/_tpf/g;
     return <<EOHTML;
 <div style="margin-top: 1em">
-  <b>Upload Accessioned Golden Path (AGP) File</b><br />
+  <b>Enviar arquivo Accessioned Golden Path (AGP)</b><br />
   <form action="/sequencing/agp.pl" method="post" enctype="multipart/form-data">
     $chrinput_agp
     <input type="hidden" name="filetype" value="agp" />
-    <label for="agpinput">File: </label>
-    <input id="agpinput" type="file" name="agp_file" value="Upload AGP file" /><input type="submit" value="Submit" />
+    <label for="agpinput">Arquivo: </label>
+    <input id="agpinput" type="file" name="agp_file" value="Upload AGP file" /><button type="submit" value="Submit">Enviar</button>
   </form>
 </div>
 <div style="margin-top: 1em">
-  <b>Upload Tiling Path Format (TPF) File</b><br />
+  <b>Enviar arquivo Tiling Path Format (TPF)</b><br />
   <form action="/sequencing/tpf.pl" method="post" enctype="multipart/form-data">
     $chrinput_tpf
     <input type="hidden" name="filetype" value="tpf" />
-    <label for="tpfinput">File: </label>
-    <input id="tpfinput" type="file" name="tpf_file" value="Upload TPF file" /><input type="submit" value="Submit" />
+    <label for="tpfinput">Arquivo: </label>
+    <input id="tpfinput" type="file" name="tpf_file" value="Upload TPF file" /><button type="submit" value="Submit">Enviar</button>
   </form>
 </div>
 EOHTML

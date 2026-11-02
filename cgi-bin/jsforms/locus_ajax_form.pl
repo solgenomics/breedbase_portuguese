@@ -1,3 +1,4 @@
+use utf8;
 
 use strict;
 use warnings;
@@ -143,7 +144,7 @@ sub generate_form {
 
     if ( $self->get_action =~ /new|store/ ) {
 	$form->add_select(
-	    display_name       => "Organism ",
+            display_name       => "Organismo ",
 	    field_name         => "common_name_id",
 	    contents           => $locus->get_common_name_id(),
 	    length             => 20,
@@ -172,7 +173,7 @@ sub generate_form {
         autocomplete => '/ajax/locus/genome_autocomplete',
         );
     $form->add_field(
-	display_name => "Locus name ",
+        display_name => "Nome do locus ",
 	field_name   => "locus_name",
 	object       => $locus,
 	getter       => "get_locus_name",
@@ -181,7 +182,7 @@ sub generate_form {
 	);
 
     $form->add_field(
-        display_name => "Symbol ",
+        display_name => "Símbolo ",
         field_name   => "locus_symbol",
         object       => $locus,
         getter       => "get_locus_symbol",
@@ -191,7 +192,7 @@ sub generate_form {
 	);
 
     $form->add_field(
-	display_name => "Gene activity ",
+        display_name => "Atividade gênica ",
 	field_name   => "gene_activity",
 	object       => $locus,
 	getter       => "get_gene_activity",
@@ -200,7 +201,7 @@ sub generate_form {
 	);
 
     $form->add_textarea(
-	display_name => "Description ",
+        display_name => "Descrição ",
 	field_name   => "description",
 	object       => $locus,
 	getter       => "get_description",
@@ -210,7 +211,7 @@ sub generate_form {
 	);
 
     $form->add_select(
-	display_name       => "Chromosome ",
+        display_name       => "Cromossomo ",
 	field_name         => "lg_name",
 	contents           => $locus->get_linkage_group(),
 	length             => 10,
@@ -222,7 +223,7 @@ sub generate_form {
 	);
 
     $form->add_select(
-	display_name       => "Arm",
+        display_name       => "Braço",
 	field_name         => "lg_arm",
 	contents           => $locus->get_lg_arm(),
 	length             => 10,

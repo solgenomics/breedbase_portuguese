@@ -1,3 +1,4 @@
+use utf8;
 ######################################################################
 #
 #  This page lists all the known RFLP markers in the SGN database.
@@ -75,19 +76,19 @@ while (my ($rflp_id, $mrkr_id, $rflp_name, $library_name, $insert_size, $vector,
 $sth->finish;
 
 # Print the page.
-$page->header("Restriction Fragment Length Polymorphism Markers on SGN");
+$page->header("Marcadores de polimorfismo de comprimento de fragmentos de restrição no SGN");
  
-print "<center><h2>Restriction Fragment Length Polymorphism Markers on SGN</h2></center>\n";
+print "<center><h2>Marcadores de polimorfismo de comprimento de fragmentos de restrição no SGN</h2></center>\n";
 print "\n<table summary=\"\" width=\"100%\" align=\"center\" border=\"2\">\n<tr>\n";
-print "<td><b>RFLP<br />Marker</b></td>\n";
+print "<td><b>RFLP<br />Marcador</b></td>\n";
 # NO library info in db at this time.  Therefore, DON'T show it on the table.
-#print "<td><b>Library</b></td>\n";
+#print "<td><b>Biblioteca</b></td>\n";
 print "<td><b>Insert<br />size</b></td>\n";
 print "<td><b>Vector</b></td>\n";
 print "<td><b>Cutting<br />Site</b></td>\n";
 print "<td><b>Drug<br />Resistance</b></td>\n";
-print "<td><b>Forward<br />sequence<br />length (bp)</b></td>\n";
-print "<td><b>Reverse<br />sequence<br />length (bp)</b></td>\n";
+print "<td><b>Forward<br />sequência<br />length (bp)</b></td>\n";
+print "<td><b>Reverse<br />sequência<br />length (bp)</b></td>\n";
 print "<td><b>Mapped</b></td>\n";
 print "<td><b>Unigne matches<br />fwd / rev</b></td>\n";
 print "</tr>\n";

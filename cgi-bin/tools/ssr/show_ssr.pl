@@ -1,3 +1,4 @@
+use utf8;
 
 =head1 NAME
 
@@ -53,7 +54,7 @@ use CXGN::Page::FormattingHelpers qw/  page_title_html
                                        blue_section_html  /;
 use Bio::SeqIO;
 
-our $page = CXGN::Page->new("SSR Search Results", "rfa5");
+our $page = CXGN::Page->new("Resultados da busca de SSR", "rfa5");
 use CatalystX::GlobalContext qw( $c );
 
 if ($c->req->method() ne "POST") {
@@ -90,8 +91,8 @@ if ($output_type eq "tab") {
     print $out{tab};
 } elsif ($output_type eq "html") {
     $page->header();
-    print page_title_html("SSR Search Results");
-    print blue_section_html("$out{num} SSRs Found",'<table width="100%" cellpadding="5" cellspacing="0" border="0" summary=""><tr><td>' . $out{html} . '</td></tr></table>');
+    print page_title_html("Resultados da busca de SSR");
+    print blue_section_html("$out{num} SSRs encontrados",'<table width="100%" cellpadding="5" cellspacing="0" border="0" summary=""><tr><td>' . $out{html} . '</td></tr></table>');
     $page -> footer();    
 } else {
     user_error($page, "Unrecognized output type!");
@@ -111,7 +112,7 @@ sub search {
 				 );
 
     #Search and write result to output file
-    my $result_table = '<table width="100%"><tr><th>Sequence</th><th>Motif</th><th>Repeat</th><th>Start</th><th>Length</th></tr>'."\n";
+    my $result_table = '<table width="100%"><tr><th>Sequência</th><th>Motif</th><th>Repeat</th><th>Início</th><th>Comprimento</th></tr>'."\n";
     my $result_tab   = "Sequence\tMotif\tRepeat\tStart\tLength\n";
     
     open OUT_TAB, "+>>", \$result_tab or die "Couldn't open output file\n";
@@ -167,9 +168,9 @@ sub post_only {
 
   print <<EOF;
 
-  <h4>SGN SSR Interface Error</h4>
+  <h4>Erro da interface de SSR do SGN</h4>
 
-  <p>SSR subsystem can only accept HTTP POST requests</p>
+  <p>O subsistema SSR só aceita requisições HTTP POST</p>
 
 EOF
 
@@ -183,7 +184,7 @@ sub user_error {
 
   print <<EOF;
 
-  <h4>SGN SSR Interface Error</h4>
+  <h4>Erro da interface de SSR do SGN</h4>
 
   <p>$reason</p>
 EOF

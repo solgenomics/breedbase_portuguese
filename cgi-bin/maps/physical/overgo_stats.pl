@@ -1,4 +1,5 @@
 #!/usr/bin/perl -w
+use utf8;
 
 ######################################################################
 #
@@ -58,7 +59,7 @@ my ($overgo_version, $overgo_date) = CXGN::DB::Physical::get_current_overgo_vers
 if ($overgo_date =~ /^(\d\d\d\d-\d\d-\d\d)/) {
     $overgo_date = $1;
 } else {
-  $page->message_page( "error","<I>ERROR: Incorrectly formatted overgo plating date.</I>\n" );
+  $page->message_page( "erro","<I>ERRO: data das placas de overgo em formato incorreto.</I>\n" );
 }
 
 my ($fpc_version, $fpc_date) = CXGN::DB::Physical::get_current_fpc_version_and_date($dbh);
@@ -72,7 +73,7 @@ my $last_date;
 if ($most_recent_date =~ /^(\d\d\d\d)-?(\d\d)-?(\d\d)/) {
     $last_date = $months{$2} . " " . $3 . ", " . $1;
 } else {
-  $page->message_page("error", "<I>ERROR: Incorrectly formatted string $most_recent_date.</I>\n" );
+  $page->message_page("erro", "<I>ERROR: Incorrectly formatted string $most_recent_date.</I>\n" );
 }
 
 #warn "hi";
@@ -192,7 +193,7 @@ $plausible_contigs_sth->finish;
 
 #warn "nice day to print some html, isn't it?";
 
-$page->header("Overgo plating results as of " . $last_date,"Overgo plating results as of " . $last_date);
+$page->header("Resultados das placas de overgo em " . $last_date,"Overgo plating results as of " . $last_date);
 
 my $number_of_plates = (scalar (keys %processed_plates));
 
@@ -200,7 +201,7 @@ my $number_of_plates = (scalar (keys %processed_plates));
 my @bleh = ( qq|Total number of <a href="$explanation_page#bacs">BACs</a>| => $number_of_bacs,
 	     qq|Total number of <a href='$explanation_page#probes'>probes</a>| => $total_wells,
 	     qq|Number of <a href='$explanation_page#plates'>overgo plates</a> processed so far| => $number_of_plates,
-	     qq|Number of BACs which <a href='$explanation_page#hittheplates'>hit the plates</a> one or more times| => $bac_partial_hits,
+             qq|Number of BACs which <a href='$explanation_page#hittheplates'>corresponderam às placas</a> one or more times| => $bac_partial_hits,
 	     qq|Number of BACs which <a href='$explanation_page#ambiguity'>unambiguously</a> matched one or more plates with a row, column match| => $total_matching_bacs,
 	     qq|Number of BACs which <a href='$explanation_page#ambiguity'>ambiguously</a> matched one or more plates| => $ambiguous_bacs,
 	     qq|Average number of <a href='$explanation_page#ambiguity'>unambiguous</a> BACs matching each probe| => sprintf("%.2f", ($total_matching_bacs / $total_wells)),
@@ -214,7 +215,7 @@ sub gen_summary {
   $html;
 }
 
-print blue_section_html('Summary',gen_summary(@bleh));
+print blue_section_html('Resumo',gen_summary(@bleh));
 
 my @headings = ( qq|<a href="$explanation_page#plates">Overgo plate</a>|,
 		 qq|<a href="$explanation_page#probes">Probes</a>|,
@@ -232,18 +233,18 @@ print blue_section_html('Plates overview',
 									],
 							    __border => 1,
 							   ),
-					'Unprocessed plates' => $unprocessed_plates_table || '<span class="ghosted">All plates processed.</span>',
+                                        'Unprocessed plates' => $unprocessed_plates_table || '<span class="ghosted">Todas as placas foram processadas.</span>',
 					__border => 0,
 				       )
 		       );
 
 print blue_section_html(qq|Overview of <a href="$explanation_page#fpc_contigging">BAC contigging</a>|,<<EOH);
-<b>NB. -</b> These data are taken from the <a href='$arizona_tom_fpc_page' target='ARIZONA'>Tomato Physical Mapping Project</a> pages of the Arizona Genomics Institute, who are using the FPC process to assemble BACs into contigs. <br />
-<b>Number of BACs Contigged:</b> $total_contigged_bacs <br />
-<b>Number of BAC Singletons:</b> $total_bac_singletons 
+<b>NB. -</b> Estes dados foram obtidos nas <a href='$arizona_tom_fpc_page' target='ARIZONA'>Tomato Physical Mapping Project</a> páginas do Arizona Genomics Institute, que usa o processo FPC para montar BACs em contigs. <br />
+<b>Número de BACs em contigs:</b> $total_contigged_bacs <br />
+<b>Número de BACs isolados:</b> $total_bac_singletons
 EOH
 
-@bleh = (qq|Number of unique <a href="$explanation_page#anchorpoint">anchor points</a> for BAC <-> genetic map associations|
+@bleh = (qq|Number of unique <a href="$explanation_page#anchorpoint">anchor points</a> para o BAC <-> genetic map associations|
 	 => $total_matching_wells,
 	 qq|Number of BACs which <a href='$explanation_page#plausible'>plausibly</a> matched one chromosome/position|
 	 => $plausible_bacs_count,
@@ -261,18 +262,18 @@ EOH
 
 print blue_section_html('Physical map statistics',<<EOH.gen_summary(@bleh));
 $total_matching_bacs BACs matched well to one or more probe markers on the F2-2000 Genetic map.<br />
-These BACs were then screened to find which ones only matched to markers within a small area of one chromosome - no more than <b>$genetic_threshold cM</b> across.<br />
+Esses BACs foram então avaliados para identificar os que correspondiam apenas a marcadores de uma pequena região de um cromossomo, de no máximo <b>$genetic_threshold cM</b> across.<br />
 EOH
 # Commented out at Eileen's request.
-#print "<b>Number of Contigs where all BACs fell on the same chromosome:</b> " . $plausible_contigs_count . "<br />\n";
+#print "<b>Número de contigs cujos BACs estão todos no mesmo cromossomo:</b> " . $plausible_contigs_count . "<br />\n";
 
 print blue_section_html
   ('Links',
    "<ul>".join("\n",
-	       map {"<li>$_</li>"} ( qq|<a href='$physical_abstract_page'>View the Abstract for the physical F2-2000 map.</a>|,
-				     qq|<a href='$explanation_page'>Explanation of the Overgo Plating process</a>|,
-				     qq|<a href='$physical_overview_page'>View an overview of all chromosomes of the physical map.</a>|,
-				     qq|<a href='$arizona_tom_fpc_page' target='ARIZONA'>View the FPC pages for the physical mapping project.</a>|,
+               map {"<li>$_</li>"} ( qq|<a href='$physical_abstract_page'>Visualizar o resumo do mapa físico F2-2000.</a>|,
+                                     qq|<a href='$explanation_page'>Explicação do processo de placas de overgo</a>|,
+                                     qq|<a href='$physical_overview_page'>Visualizar todos os cromossomos do mapa físico.</a>|,
+                                     qq|<a href='$arizona_tom_fpc_page' target='ARIZONA'>Visualizar as páginas FPC do projeto de mapeamento físico.</a>|,
 				   )
 	      )
    ."</ul>\n"

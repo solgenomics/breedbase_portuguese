@@ -1,3 +1,4 @@
+use utf8;
 
 use strict;
 
@@ -42,18 +43,18 @@ if($logged_in_user_type eq 'curator') {
             
             <table width=80% align=center>
             <tr><td>
-            <p>Could not feth pubmed ids  for the following reasons</p>
+            <p>Não foi possível obter os IDs do PubMed pelos seguintes motivos</p>
             <ul>
             $fail_str
             </ul>
-            <p>Please use your browser\'s back button to try again.</p>
+            <p>Use o botão Voltar do navegador para tentar novamente.</p>
             </td></tr>
             <tr><td><br /></td></tr>
             </table>
 END_HTML
         }
         else {
-	    print qq | <br/><b> Fetched the following  publications from PubMed</b> | ;
+            print qq | <br/><b> As seguintes publicações foram obtidas do PubMed</b> | ;
 	    my $pubmed_string;
 	    my $count=0;
 	    foreach my $pubmed (@pubmeds) { 
@@ -74,11 +75,11 @@ END_HTML
 	    }
 	    print <<END_HTML;
 	    <form method="post" action="">
-		<input type="submit" name="action" value="Confirm store">
+                <button type="submit" name="action" value="Confirm store">Confirmar armazenamento</button>
 		<input type = "hidden" name="curator_id" value=$curator_id>
 		<input type = "hidden" name="publications" value=$pubmed_string>
 		</form><br>
-		<a href="javascript:history.back(1)">Go back without storing the publications</a> 
+                <a href="javascript:history.back(1)">Voltar sem armazenar as publicações</a>
 END_HTML
 
 	}
@@ -90,7 +91,7 @@ END_HTML
 	
 	my @pubmeds  = split (/\|/, $ids);
 	my $count=0;
-	print qq | <br/><b> stored the following  publications from PubMed</b><br /> | ;
+        print qq | <br/><b> as seguintes publicações do PubMed foram armazenadas</b><br /> | ;
 	print qq| (assigned to curator $curator_id) | ; 
 	#chop $ids;
 	foreach my $pubmed (@pubmeds) { 
@@ -121,7 +122,7 @@ END_HTML
 		    </table>
 END_HTML
 	    }
-	print qq | <a href="/chado/fetch_pubmed.pl">Go back to fetch  publications page </a ><br />|; 
+        print qq | <a href="/chado/fetch_pubmed.pl">Voltar à página de obtenção de publicações </a ><br />|;
 	print qq| <a href= "/search/pub_search.pl?w9b3_status=pending">See publications pending curation</a><br />|;
     } else {
 	my @curators= CXGN::People::Person::get_curators($dbh);
@@ -136,12 +137,12 @@ END_HTML
 	<br/>
         <form method="post" action="fetch_pubmed.pl">
         <table cellpadding="2" cellspacing="2">
-        <th colspan="2">Curators may use this form to bulk fetch publications from PubMed.<br />&nbsp;</th>
+        <th colspan="2">Curadores podem usar este formulário para obter publicações do PubMed em lote.<br />&nbsp;</th>
 	<tr><td><textarea id="" cols="20" rows="10" name="pubmed_ids" value ="Insert a list of  PubMed IDs"></textarea></td>
 	<td>
 	<select id="curator_id" name="curator_id"> $curator_options </select>
 	</td></tr>
-        <tr><td><input type="submit" name="fetch_pubmeds" value="Store"><input type="reset" value="Reset form" /></td></tr>
+        <tr><td><button type="submit" name="fetch_pubmeds" value="Store">Salvar</button><button type="reset" value="Reset form">Limpar formulário</button></td></tr>
         </table>
         <br />
     

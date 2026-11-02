@@ -1,3 +1,4 @@
+use utf8;
 
 use strict;
 
@@ -46,7 +47,7 @@ sub delete {
     my $experiment = $self->get_object();
     my $experiment_name = $experiment->get_name();
     my $error = $experiment->delete();
-    $self->get_page()->message_page("The experiment $experiment_name has been deleted.");
+    $self->get_page()->message_page("O experimento $experiment_name foi excluído.");
 }
 
 
@@ -109,17 +110,17 @@ sub generate_form {
     # generate the form using CXGN::Form.
     # setup the form using the CXGN::Page::Form functions for editable content
     #
-    $self->get_form()-> add_field( display_name=>"Name", field_name=>"name", contents=>$field{name}, length=>20, object=>$experiment, getter=>"get_name", setter=>"set_name", validate=>"string" );
+    $self->get_form()-> add_field( display_name=>"Nome", field_name=>"name", contents=>$field{name}, length=>20, object=>$experiment, getter=>"get_name", setter=>"set_name", validate=>"string" );
     
-    $self->get_form()-> add_field( display_name=>"Date", field_name=>"date", contents=>$field{date}, length=>15, object=>$experiment, getter=>"get_date", setter=>"set_date", validate=>"date");
+    $self->get_form()-> add_field( display_name=>"Data", field_name=>"date", contents=>$field{date}, length=>15, object=>$experiment, getter=>"get_date", setter=>"set_date", validate=>"date");
     
 
 
-    $self->get_form -> add_field( display_name=>"Tissue", field_name=>"tissue", contents=> $field{tissue}, length=>15, object=>$experiment, getter=>"get_tissue", setter=>"set_tissue");
+    $self->get_form -> add_field( display_name=>"Tecido", field_name=>"tissue", contents=> $field{tissue}, length=>15, object=>$experiment, getter=>"get_tissue", setter=>"set_tissue");
     
-    $self->get_form -> add_field( display_name=>"Stage", field_name=>"stage", contents=>$field{stage}, length=>20, object=>$experiment, getter=>"get_stage", setter=>"set_stage"  );
+    $self->get_form -> add_field( display_name=>"Estádio", field_name=>"stage", contents=>$field{stage}, length=>20, object=>$experiment, getter=>"get_stage", setter=>"set_stage"  );
     
-    $self->get_form -> add_field( display_name=>"Other info", field_name=>"description", contents=> $field{description}, length=>30, object=>$experiment, getter=>"get_description", setter=>"set_description"  );
+    $self->get_form -> add_field( display_name=>"Outras informações", field_name=>"description", contents=> $field{description}, length=>30, object=>$experiment, getter=>"get_description", setter=>"set_description"  );
     
     $self->get_form -> add_hidden( field_name => "experiment_id", contents=>$experiment_id );
 
@@ -127,11 +128,11 @@ sub generate_form {
     
 #    if ($self->get_action() =~/edit|new|store/) {     
 
-	$self->get_form -> add_select( display_name=>"Type", field_name=>"type", contents=>$field{type}, length=>20, object => $experiment, getter=>"get_type", setter=>"set_type", select_list_ref=>$types_names_ref, select_id_list_ref=>$types_names_ref );
+        $self->get_form -> add_select( display_name=>"Tipo", field_name=>"type", contents=>$field{type}, length=>20, object => $experiment, getter=>"get_type", setter=>"set_type", select_list_ref=>$types_names_ref, select_id_list_ref=>$types_names_ref );
 
-	$self->get_form->add_select( display_name=>"Organism", field_name=>"organism_id", contents=>$field{organism_id}, length=>10, object=>$experiment, getter=>"get_organism_id", setter=>"set_organism_id",  select_list_ref=>$organism_names_ref, select_id_list_ref=>$organism_ids_ref );
+        $self->get_form->add_select( display_name=>"Organismo", field_name=>"organism_id", contents=>$field{organism_id}, length=>10, object=>$experiment, getter=>"get_organism_id", setter=>"set_organism_id",  select_list_ref=>$organism_names_ref, select_id_list_ref=>$organism_ids_ref );
 	
-	$self->get_form->add_select( display_name=>"Probe", field_name=>"probe_id", contents=>$field{probe_id}, length=>10, object=>$experiment, getter=>"get_probe_id", setter=>"set_probe_id", select_list_ref=>$probe_names_ref, select_id_list_ref=>$probe_ids_ref );
+        $self->get_form->add_select( display_name=>"Sonda", field_name=>"probe_id", contents=>$field{probe_id}, length=>10, object=>$experiment, getter=>"get_probe_id", setter=>"set_probe_id", select_list_ref=>$probe_names_ref, select_id_list_ref=>$probe_ids_ref );
 	
  #   }
 #    elsif ($self->get_action() eq "view") { 
@@ -143,7 +144,7 @@ sub generate_form {
 # 	$self->get_form()->add_field( display_name=>"Probe", field_name=>"probe_id", contents=> qq { <a href="probe.pl?probe_id=$field{probe_id}">$probe_name</a> } , length=>20, validate=>"integer" );
 
 #     }
-    $self->get_form()->add_label( display_name=>"Submitter", 
+    $self->get_form()->add_label( display_name=>"Responsável pelo envio",
 				  field_name=>"submitter", 
 				  contents=>$submitter_name,
 				  );
@@ -173,19 +174,19 @@ sub display_page {
     my $edit_link = "";
     my $delete_link = "";
     if ($self->get_action eq "new" ) { 
-	$edit_link = " <a href=\"/insitu/manage.pl\">[Cancel]</a>";
+        $edit_link = " <a href=\"/insitu/manage.pl\">[Cancelar]</a>";
     }
     elsif ($self->get_action() eq "edit") { 
-	$edit_link = " <a href=\"experiment.pl?experiment_id=$experiment_id&amp;action=view\">[View]</a>";
+        $edit_link = " <a href=\"experiment.pl?experiment_id=$experiment_id&amp;action=view\">[Visualizar]</a>";
     }
     else {
-	$edit_link = " <a href=\"experiment.pl?experiment_id=$experiment_id&amp;action=edit\">[Edit]</a>";
-	$delete_link = "<a href=\"experiment.pl?experiment_id=$experiment_id&amp;action=confirm_delete\">[Delete]</a>";
+        $edit_link = " <a href=\"experiment.pl?experiment_id=$experiment_id&amp;action=edit\">[Editar]</a>";
+        $delete_link = "<a href=\"experiment.pl?experiment_id=$experiment_id&amp;action=confirm_delete\">[Excluir]</a>";
     }
     
     # get some information that will be displayed statically only
     #
-    my $page_title = page_title_html("<a href=\"/insitu/\">Insitu</a> Experiment \"".$experiment->get_name()."\"");
+    my $page_title = page_title_html("<a href=\"/insitu/\">Insitu</a> Experimento \"".$experiment->get_name()."\"");
     
     my $username = $experiment->get_user()->get_first_name()." ".$experiment->get_user()->get_last_name();
     if (!$username) { 
@@ -216,7 +217,7 @@ sub display_page {
     $page_title
     <h3>$action</h3>
 	
-	<b>Experiment Info</b> $edit_link $delete_link<br /><br />
+        <b>Informações do experimento</b> $edit_link $delete_link<br /><br />
 
 HTML
 
@@ -224,13 +225,13 @@ HTML
 
     my $tag_count = scalar($experiment->get_tags());
 
-    print qq { <br /><br /><b>Associated tags</b> [<a href="/tag/?experiment_id=$experiment_id&amp;action=new">add/remove</a>]: <b>$tag_count</b> };
+    print qq { <br /><br /><b>Etiquetas associadas</b> [<a href="/tag/?experiment_id=$experiment_id&amp;action=new">adicionar/remover</a>]: <b>$tag_count</b> };
 
     foreach my $tag ($experiment->get_tags()) { 
 	print $tag->get_name()."  ";
     }
 
-	my $assoc_imgs_html = qq {<br /><br /><b>Associated images</b>: $image_count<br /><br />};
+        my $assoc_imgs_html = qq {<br /><br /><b>Imagens associadas</b>: $image_count<br /><br />};
 	
 	$assoc_imgs_html .= "<table width=\"90%\" cellpadding=\"0\" cellspacing=\"0\" class=\"centered\"><tr>\n";
     
@@ -241,7 +242,7 @@ HTML
 	$assoc_imgs_html .= "<td valign=\"top\"><a href=\"/image/view/$image_id\">".$image->get_img_src_tag("small")."</a>&nbsp;<br />";
 
 	if ($self->get_action() eq "edit") { 
-	    $assoc_imgs_html .= qq {<a href="/image/?image_id=$image_id&amp;type=experiment&amp;type_id=$experiment_id&amp;action=confirm_delete">Delete</a><br />};
+            $assoc_imgs_html .= qq {<a href="/image/?image_id=$image_id&amp;type=experiment&amp;type_id=$experiment_id&amp;action=confirm_delete">Excluir</a><br />};
 	}
 	
 	$assoc_imgs_html .= qq { </td><td width="20">&nbsp;</td> };
@@ -253,7 +254,7 @@ HTML
     print $assoc_imgs_html;
     
     if ($self->get_action() eq "edit") { 
-	print qq {<a href="/image/add?type=experiment&amp;type_id=$experiment_id&amp;action=new">Add new image</a> };
+        print qq {<a href="/image/add?type=experiment&amp;type_id=$experiment_id&amp;action=new">Adicionar imagem</a> };
     }
     $self->get_page()->footer();
 }

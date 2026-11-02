@@ -1,3 +1,4 @@
+use utf8;
 
 use strict;
 use CXGN::DB::Connection;
@@ -37,7 +38,7 @@ if (%params) {
     $result = $exp_search->do_search($exp_query);
     $total_results=$result->total_results();
     if ($total_results <= 0 ) { 
-	print "<b>No results</b>\n";
+        print "<b>Nenhum resultado</b>\n";
     }
     else { 
 	
@@ -64,8 +65,8 @@ my $html = "";
 $html .= columnar_table_html( headings => [ 'Experiment', 'Stage', 'Tissue', '# images', 'Submitter' ],
 			      data     => \@results
 			      );
-print info_section_html( title=>"Insitu Search Results", subtitle=>"$total_results"." Results"  , empty_message=>"No results" , contents=>$html.$page_html);
+print info_section_html( title=>"Resultados da busca Insitu", subtitle=>"$total_results"." Results"  , empty_message=>"Nenhum resultado" , contents=>$html.$page_html);
 
-print info_section_html( title=>"Search again", contents=>"<form action=\"#\">".$exp_query->to_html()."</form><br />" );
+print info_section_html( title=>"Buscar novamente", contents=>"<form action=\"#\">".$exp_query->to_html()."</form><br />" );
 
 $page->footer();

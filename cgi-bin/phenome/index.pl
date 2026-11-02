@@ -1,3 +1,4 @@
+use utf8;
 
 use strict;
 
@@ -8,33 +9,32 @@ my $page = CXGN::Page->new();
 
 $page->header();
 
-my $page_title = page_title_html("SGN Locus and Phenotype Database");
+my $page_title = page_title_html("Banco de dados de loci e fenótipos do SGN");
 
 print <<HTML;
 
 $page_title
 <br/>
 
-<iframe src="//www.slideshare.net/slideshow/embed_code/key/rbDItCskr6kq5C" width="595" height="485" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe> <div style="margin-bottom:5px"> <strong> <a href="//www.slideshare.net/nm249/sgn-community-annotation-tutorial" title="SGN community Annotation Tutorial" target="_blank">SGN community Annotation Tutorial</a> </strong> from <strong><a href="//www.slideshare.net/nm249" target="_blank">Naama Menda</a></strong> </div>
+<iframe src="//www.slideshare.net/slideshow/embed_code/key/rbDItCskr6kq5C" width="595" height="485" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe> <div style="margin-bottom:5px"> <strong> <a href="//www.slideshare.net/nm249/sgn-community-annotation-tutorial" title="Tutorial de anotação comunitária do SGN" target="_blank">Tutorial de anotação comunitária do SGN</a> </strong> de <strong><a href="//www.slideshare.net/nm249" target="_blank">Naama Menda</a></strong> </div>
 
 
 
 <br/>
 <hr/>
 
-<dt>What is community annotation?</dt>
+<dt>O que é anotação comunitária?</dt>
 <dd>
-The concept of community annotation is a growing discipline for achieving participation of the research community in depositing up-to-date knowledge in biological databases.<br/>
-One of the major efforts at SGN is linking Solanaceae phenotype information with the underlying genes, and subsequently the genome. As part of this goal, SGN has introduced a database for <a href="/search/direct_search.pl?search=loci">locus names and descriptors</a>, and a database for <a href="/search/direct_search.pl?search=phenotypes">phenotypes of natural and induced variation</a>. These two databases have web interfaces that allow cross references, associations with tomato gene models, and in-house curated information of sequences, literature, ontologies, gene networks, and  the <a href="http://solcyc.sgn.cornell.edu">Solanaceae biochemical pathways database</a>. All of our curator tools are open for online community annotation, through specially assigned "submitter" accounts.<br/><br>
- Currently the community database consists of 5,548 phenotyped accessions, and 5,739 curated loci, out of which more than 300 loci where contributed or annotated by more than 70 active submitters, creating a database that is truly community driven. 
+A anotação comunitária busca envolver a comunidade de pesquisa na inclusão de conhecimentos atualizados em bancos de dados biológicos.<br/>
+Um dos principais esforços do SGN é ligar informações fenotípicas de Solanaceae aos genes correspondentes e, em seguida, ao genoma. Como parte desse objetivo, o SGN criou um banco de dados de <a href="/search/direct_search.pl?search=loci">nomes e descritores de loci</a>, e um banco de dados de <a href="/search/direct_search.pl?search=phenotypes">fenótipos de variação natural e induzida</a>. Os dois bancos de dados têm interfaces web que permitem referências cruzadas, associações com modelos gênicos de tomate e informações revisadas pela equipe sobre sequências, literatura, ontologias, redes gênicas e o <a href="http://solcyc.sgn.cornell.edu">banco de dados de vias bioquímicas de Solanaceae</a>. Todas as ferramentas de curadoria estão abertas à anotação comunitária on-line por meio de contas com permissão de envio atribuída pela equipe.<br/><br>
+ O banco comunitário contém 5.548 acessos fenotipados e 5.739 loci revisados. Mais de 300 loci foram enviados ou anotados por mais de 70 colaboradores ativos, formando um banco mantido pela comunidade.
 </dd>
 
 <dt>How do I begin annotating my favorite gene?</dt>
 <ul>
-<li> <b><a href= "/search/direct_search.pl?search=loci">Search for the locus</a></b>.
- You can get <b>editor privileges</b> for any locus in the database.<br/> Obtaining editor privileges is easy! Simply click on the '[Request editor privileges]' link from any locus page (next to the 'Locus editor' name), or <a href="mailto:sgn-feedback.sgn.cornell.edu">send us an email</a> and an SGN curator will create an account for you.</li> 
+<li> <b><a href= "/search/direct_search.pl?search=loci">Busque o locus</a></b>. Você pode obter <b>editor privileges</b> para qualquer locus do banco de dados.<br/> Para obter permissão de edição, clique em Solicitar permissão de edição em qualquer página de locus, ao lado do nome do editor, ou <a href="mailto:sgn-feedback.sgn.cornell.edu">envie um e-mail</a> e um curador do SGN criará uma conta para você.</li>
 
-<li><b> Submit a new locus</b>. Your favorite Solanaceae locus is not found on SGN? We encourage you to <b>submit</b> information about genetic loci of the Solanaceae and related species <a href="/locus/0/view">here</a> (please notice that an <a href="/solpeople/new-account.pl">SGN account</a> is required for all data submissions). For large datasets, please <a href="mailto:sgn-feedback.sgn.cornell.edu">contact SGN</a>
+<li><b> Enviar um novo locus</b>. Seu locus de interesse de Solanaceae não foi encontrado no SGN? Convidamos você a <b>enviar</b> informações sobre loci genéticos de Solanaceae e espécies relacionadas <a href="/locus/0/view">here</a> (observe que uma <a href="/solpeople/new-account.pl">conta do SGN</a> é necessária para todos os envios). Para conjuntos grandes de dados, <a href="mailto:sgn-feedback.sgn.cornell.edu">entre em contato com o SGN</a>
 </li>
 </ul>
 <br/>
@@ -43,10 +43,10 @@ One of the major efforts at SGN is linking Solanaceae phenotype information with
 
 <br/>
 
-<dt>Can I submit information without being the locus-editor?</dt>
+<dt>Posso enviar informações sem ser editor do locus?</dt>
 <ul>
-<li>You do not wish to be a locus editor, yet you want to <b>submit related information</b> such as publications or sequences?<br>
-You may do so just by logging-in with your submitter account. <a href="/solpeople/new-account.pl">SGN account</a> can be created easily, but for submitting information we require a short validation step. Plese <a href="mailto:sgn-feedback.sgn.cornell.edu">email SGN</a> for obtaining permissions for accessing the community annotation features. 
+<li>Você deseja <b>enviar informações relacionadas</b> como publicações ou sequências, sem ser editor do locus?<br>
+Basta entrar com sua conta de responsável pelo envio. <a href="/solpeople/new-account.pl">conta do SGN</a> podem ser criadas facilmente, mas o envio de informações exige uma breve validação. Por favor, <a href="mailto:sgn-feedback.sgn.cornell.edu">envie um e-mail ao SGN</a> para obter permissão de acesso aos recursos de anotação comunitária.
 </li>
 </ul>
 <br/>
@@ -55,10 +55,9 @@ You may do so just by logging-in with your submitter account. <a href="/solpeopl
 
 <br/>
 
-<dt>Can I post data without SGN submitter privileges?</dt>
+<dt>Posso publicar dados sem permissão de envio no SGN?</dt>
 <ul>
-<li>At any time you may submit <b>user comments</b> to any locus or phenotype page. All you need is to log-in with your SGN user account.
-User comments are posted at the bottom of each page.
+<li>A qualquer momento, você pode enviar <b>comentários</b> a qualquer página de locus ou fenótipo. Basta entrar com sua conta do SGN. Os comentários aparecem no final de cada página.
 </li>
 
 </ul>
@@ -69,13 +68,13 @@ User comments are posted at the bottom of each page.
 <br/>
 
 <a name="phenotype"></a>
-<dt>SGN phenotype database is also community-driven!</dt>
-<dd>SGN hosts a collection of thousands Solanaceae <a href="../search/direct_search.pl?search=phenotypes">phenotyped accessions</a>, of several mapping and mutant populations. Phenotypes are linked to SGN loci whenever applicable. SGN submitters can edit any accession, upload images, and add cross-links to locus information.<br/></dd>
+<dt>O banco de fenótipos do SGN também é mantido pela comunidade!</dt>
+<dd>O SGN mantém uma coleção de milhares de <a href="../search/direct_search.pl?search=phenotypes">acessos fenotipados</a>, de várias populações de mapeamento e mutantes. Os fenótipos são vinculados a loci do SGN quando aplicável. Usuários com permissão de envio podem editar acessos, enviar imagens e adicionar ligações às informações dos loci.<br/></dd>
 
-<dt>Submit Phenotype</dt>
-<dd>New phenotypes and plant accessions can be submitted <a href="/stock/0/new">here</a>. For large datasets, please <a href="mailto:sgn-feedback.sgn.cornell.edu">contact SGN</a>.<br/>
-Phenotype annotation works in a similar manner to locus annotation. Submitters of phenotypes are the owners of the accessions, and have full on-line editing privileges.<br />
-For batch submission of phenotypes, you can send us a <a href= "/content/phenotype_submissions.pl">file with the information</a>, and images on a CD/DVD,  and we will upload the data for you.
+<dt>Enviar fenótipo</dt>
+<dd>Novos fenótipos e acessos de plantas podem ser enviados <a href="/stock/0/new">here</a>. Para conjuntos grandes de dados, <a href="mailto:sgn-feedback.sgn.cornell.edu">entre em contato com o SGN</a>.<br/>
+A anotação de fenótipos funciona de forma semelhante à de loci. Os responsáveis pelo envio são os proprietários dos acessos e têm permissão completa de edição on-line.<br />
+Para enviar fenótipos em lote, envie-nos um <a href= "/content/phenotype_submissions.pl">arquivo com as informações</a>, e imagens em CD/DVD, para que possamos carregar os dados.
 </dd>
 
 <dd><br/></dd>
@@ -86,7 +85,7 @@ For batch submission of phenotypes, you can send us a <a href= "/content/phenoty
 
 <br/><hr/>
 
-<dt>For detailed information on the loci and phenotypes community-editable databases please refer to the <a href="http://docs.google.com/Doc?id=ddhncntn_0cz2wj6">SGN submission guide</a>.</dt>
+<dt>Para mais informações sobre os bancos de loci e fenótipos editáveis pela comunidade, consulte <a href="http://docs.google.com/Doc?id=ddhncntn_0cz2wj6">SGN submission guide</a>.</dt>
 HTML
 
 

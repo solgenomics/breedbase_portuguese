@@ -1,3 +1,4 @@
+use utf8;
 
 use strict;
 use warnings;
@@ -25,9 +26,9 @@ if ((grep { $_ =~ /^$sp_person_id$/ } @owners) ) {
     $page->header();
     print <<HEREDOC;
     
-<h3>You are already the owner of the locus.<br>
-    Next time you can click on the 'login' link in the top right corner of every SGN page.<br><br>
-<a href="/locus/$locus_id/view">Go back</a> to the locus page.</h3> 
+<h3>Você já é o proprietário do locus.<br>
+    Na próxima vez, clique no link de entrada no canto superior direito de qualquer página do SGN.<br><br>
+<a href="/locus/$locus_id/view">Voltar</a> à página do locus.</h3>
 
 HEREDOC
     $page->footer();
@@ -57,10 +58,10 @@ elsif ($args{action} eq 'request') {
     print <<END_HEREDOC;
 
 Your request for edit permissions on locus id: $locus_id<br /> 
-has been sent to the SGN development team.<br /><br />
-A reply will be sent to you shortly.<br /><br />
+foi enviada à equipe de desenvolvimento do SGN.<br /><br />
+Você receberá uma resposta em breve.<br /><br />
 
-<a href="locus_display.pl?locus_id=$locus_id">Go back</a> to the locus page. 
+<a href="locus_display.pl?locus_id=$locus_id">Voltar</a> to the locus page.
 
 
 END_HEREDOC
@@ -76,7 +77,7 @@ sub confirm_dialog {
     #my $self = shift;
    
     my $locus_id = shift;
-    my $back_link = qq| <a href="locus_display.pl?locus_id=$locus_id">Go back</a> to the locus page without requesting edit privileges|;
+    my $back_link = qq| <a href="locus_display.pl?locus_id=$locus_id">Voltar</a> to the locus page without requesting edit privileges|;
 
 
     print qq { 	
@@ -84,7 +85,7 @@ sub confirm_dialog {
 	Request edit privileges for locus id: $locus_id? 
 	<input type="hidden" name="action" value="request" />
 	<input type="hidden" name="locus_id" value="$locus_id" />
-	<input type="submit" value="Sumbit request" />
+        <button type="submit" value="Sumbit request">Enviar solicitação</button>
 	</form>
 	
 	$back_link

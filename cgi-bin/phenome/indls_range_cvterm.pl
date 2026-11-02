@@ -1,4 +1,5 @@
 #!/usr/bin/perl -wT
+use utf8;
 
 =head1 DESCRIPTION
 
@@ -66,7 +67,7 @@ sub define_object {
     $self->set_dbh(CXGN::DB::Connection->new('phenome'));
     my %args = $self->get_args();
     my $population_id= $args{population_id};
-    unless (!$population_id || $population_id =~m /^\d+$/) { $self->get_page->message_page("No population exists for identifier $population_id"); }  
+    unless (!$population_id || $population_id =~m /^\d+$/) { $self->get_page->message_page("Não existe população com o identificador $population_id"); }
     $self->set_object_id($population_id);
     $self->set_object(CXGN::Phenome::Population->new($self->get_dbh(),$self->get_object_id()));
     $self->set_primary_key("population_id");		      
@@ -107,13 +108,13 @@ sub generate_form {
     }
        
    $form->add_label ( 
-		      display_name=>"Name:",
+                      display_name=>"Nome:",
 		      field_name=>"name",
 		      contents=> $pop_link, 
 		     );
 
     $form->add_textarea(  
-			  display_name=>"Description: ", 
+                          display_name=>"Descrição: ",
 			  field_name=>"description",
 			  object=>$population, 
 			  getter=>"get_description", setter=>"set_description",
@@ -122,7 +123,7 @@ sub generate_form {
 			  );
     
     
-    $form->add_label( display_name=>"Uploaded by: ", 
+    $form->add_label( display_name=>"Enviado por: ",
 			  field_name=>"submitter", 
 			  contents=>$submitter_link,
 			  );
@@ -184,9 +185,9 @@ EOS
     my $login_user_type= $login_user->get_user_type(); 
     
     
-    $self->get_page()->header("SGN Population name: $population_name");
+    $self->get_page()->header("Nome da população do SGN: $population_name");
     
-    print page_title_html("SGN population: $population_name \n");
+    print page_title_html("População do SGN: $population_name \n");
  
     my $population_html .= $self->get_form()->as_table_string(); 
    
@@ -241,7 +242,7 @@ EOS
 					qq|<b>$phenotype_data</b>|,
 					1, #<  show data by default
 					);
-	$data_download .=  qq { <span><a href="/qtl/download/phenotype/$population_id"><b>\[download population raw data\]</b></a></span> }; 
+        $data_download .=  qq { <span><a href="/qtl/download/phenotype/$population_id"><b>\[baixar dados brutos da população\]</b></a></span> };
     }
     
     my $page="../phenome/indls_range_cvterm.pl?cvterm_id=$cvterm_id&amp;lower=$lower&amp;upper=$upper&amp;population_id=$population_id ";
@@ -310,17 +311,17 @@ EOS
     }
 }
 
-    print info_section_html(title   => 'Population details',
+    print info_section_html(title   => 'Detalhes da população',
 			    contents => $population_html,
 			    );   
     
-    print info_section_html(title   => 'Phenotype Data',
+    print info_section_html(title   => 'Dados fenotípicos',
 			    contents =>$cvterm_note . $data_view ." ".$data_download, 
 			    );
     
 
     
-    print info_section_html(title   => 'Literature annotation',
+    print info_section_html(title   => 'Anotação da literatura',
 			    #subtitle => $pub_subtitle,
 			    contents =>$pubmed , 
 			    );

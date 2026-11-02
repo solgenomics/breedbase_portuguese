@@ -1,4 +1,5 @@
 #!/usr/bin/perl -w
+use utf8;
 
 #Display all data values for a specified property and plant
 
@@ -30,14 +31,14 @@ my $page = CXGN::Page->new('phenotype', 'Adri');
 
 print "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 transitional//EN\" \"http://www.w3.org/tr/xhtml1/DTD/xhtml1-transitional.dtd\">";
 
-$page->header("Property Data From Plant");
+$page->header("Dados da propriedade por planta");
 
 print <<EOF
 
 <table summary="" width="100%" cellpadding="0" cellspacing="10" border="0">
 
 <tr><td colspan="5">
-<center><h3><u>Property Data From Plant</u></h3></center>
+<center><h3><u>Dados da propriedade por planta</u></h3></center>
 </td></tr>
 
 EOF
@@ -52,12 +53,12 @@ if ($plant_id && $prop_id && $prop_name) {
 
   #plant information
   print "<tr><td>\n";
-  print "<b><u>Plant Information</u></b>\n";
+  print "<b><u>Informações da planta</u></b>\n";
   print "<ul>\n";
   print "<li>Population: <a href=\"http://localhost/phenotype/population.pl?pop_id=1\"><b>$pop_name</b></a></li>\n";
-  print "<li>Genotype Group: <a href =\"display_plants_from_genotype.pl?pop_id=$pop_id\&amp;pop_name=$pop_name\&amp;gen_id=$gen_id\"><b>$gen_name</b></a></li>\n";
-  print "<li>Plant Name: <b>$plant_name</b></li>\n";
-  print "<li>Location: <b> $institution $environment $year</b></li>\n";
+  print "<li>Grupo de genótipos: <a href =\"display_plants_from_genotype.pl?pop_id=$pop_id\&amp;pop_name=$pop_name\&amp;gen_id=$gen_id\"><b>$gen_name</b></a></li>\n";
+  print "<li>Nome da planta: <b>$plant_name</b></li>\n";
+  print "<li>Local: <b> $institution $environment $year</b></li>\n";
   print "<li>Property: <a href =\"display_plants_from_property.pl?pop_id=$pop_id\&amp;pop_name=$pop_name\&amp;prop_id=$prop_id\"><b>$prop_name</b></a> (<a href=\"http://localhost/phenotype/display_prop_list.pl\">Property Descriptions</a>)</li>\n";
   print "</ul>\n";
   print "</td></tr>\n";
@@ -70,7 +71,7 @@ if ($plant_id && $prop_id && $prop_name) {
 
   # table for thumbnails
   print "<table summary=\"\">\n";
-  print "<tr><td><b><u>Thumbnail Images of Samples with the Selected Property Measured</u></b></td></tr>\n";
+  print "<tr><td><b><u>Miniaturas das amostras com a propriedade selecionada medida</u></b></td></tr>\n";
 
   my %dp_info_by_image = CXGN::DB::PhenoPopulation::get_dp_image_from_plant_and_prop($plant_id, $prop_id);
   if (%dp_info_by_image) {
@@ -147,7 +148,7 @@ if ($plant_id && $prop_id && $prop_name) {
 
   #table for graph
   print "<table summary=\"\" width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\">";
-  print "<tr><td align=\"center\"><b><u>Data</u></b></td></tr>";
+  print "<tr><td align=\"center\"><b><u>Dados</u></b></td></tr>";
   
   print "<tr><td>";
   print "<img src=\"/documents/img/dot_clear.gif\" alt=\"\" width=\"220\" height=\"1\" />";
@@ -156,7 +157,7 @@ if ($plant_id && $prop_id && $prop_name) {
   print "<tr><td>";
   print "<table summary=\"\" border=\"1\" width=\"100%\">";
   print "<tr>";
-  print "<td width=\"50%\"><center><b>Samples</b></center></td>";
+  print "<td width=\"50%\"><center><b>Amostras</b></center></td>";
   print "<td width=\"50%\"><center><b>";
 
   my $prev_page = "prop_data";
@@ -221,7 +222,7 @@ if ($plant_id && $prop_id && $prop_name) {
       $avg = sprintf ("%10.2f", $avg);
     }
     print "<tr>";
-    print "<td><center>Average of All Values</center></td>";
+    print "<td><center>Média de todos os valores</center></td>";
     print "<td><center>$avg</center></td>";
     print "</tr>";
   }

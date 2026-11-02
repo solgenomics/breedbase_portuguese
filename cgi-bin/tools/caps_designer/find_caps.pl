@@ -1,3 +1,4 @@
+use utf8;
 use strict;
 use warnings;
 use CXGN::Page;
@@ -7,7 +8,7 @@ use CXGN::BioTools::CapsDesigner2;
 use File::Temp;
 use CatalystX::GlobalContext '$c';
 
-my $page = CXGN::Page->new( "CAPS Designer Result", "Chenwei");
+my $page = CXGN::Page->new( "Resultado do designer de CAPS", "Chenwei");
 
 my ($format, $cheap_only, $exclude_seq, $cutno, $seq_data) = $page->get_arguments("format", "cheap", "start", "cutno", "seq_data");
 
@@ -107,18 +108,18 @@ my ($size_ref) = CXGN::BioTools::CapsDesigner2::predict_fragments($cutsites_ref,
 ##########Prepare HTML printout content
 
 my ($help_content, $sum_content, $caps_content, $plain_content);
-$help_content = "<tr><th>1.</th><td>Polymorphism caused by an ambiguous nucleotide 'N' is not considered.</td></tr>";
-$help_content .= "<tr><th>2.</th><td>Please check the provided local alignment around the predicted CAPs site in order to make sure it is not caused by alignment gaps.</td></tr>";
-$help_content .= "<tr><th>3.</th><td>Analysis is based on sequenced parts of the PCR products.  Additional cutting sites and digested fragments may exist.</td></tr>";
-$help_content .= "<tr><th>4.</th><td>Enzymes separated by a slash are isoschizimers.</td></tr>";
+$help_content = "<tr><th>1.</th><td>Polimorfismos causados pelo nucleotídeo ambíguo N não são considerados.</td></tr>";
+$help_content .= "<tr><th>2.</th><td>Confira o alinhamento local ao redor do sítio CAPS previsto para garantir que ele não seja causado por lacunas de alinhamento.</td></tr>";
+$help_content .= "<tr><th>3.</th><td>A análise se baseia nas partes sequenciadas dos produtos de PCR. Podem existir sítios de corte e fragmentos adicionais.</td></tr>";
+$help_content .= "<tr><th>4.</th><td>Enzimas separadas por uma barra são isoesquizômeros.</td></tr>";
 $help_content .= "<tr><th>5.</th><td>Enzyme price is based on NEB catalogue <a href = 'http://www.neb.com/nebecomm/price_list.pdf'>(http://www.neb.com/nebecomm/price_list.pdf)</a>.</td></tr>";
 
 my $temp_str = join ", ", sort keys %$parent_info_ref;
 
-$sum_content = "<tr><th>Aligned Sequences</th><td>$temp_str</td></tr>";
+$sum_content = "<tr><th>Sequências alinhadas</th><td>$temp_str</td></tr>";
 my $search_start = $exclude_seq + 1;
 my $search_end = $seq_length - $exclude_seq;
-$sum_content .= "<tr><th>Alignment Length(w/ gaps)</th><td>$seq_length bp</td><th>Search Range</th><td>bp $search_start - $search_end</td></tr>";
+$sum_content .= "<tr><th>Alignment Length(w/ gaps)</th><td>$seq_length bp</td><th>Intervalo de busca</th><td>bp $search_start - $search_end</td></tr>";
 $sum_content .= "<tr><th>Cutting Sites Limit</th><td>$cutno</td></tr>";
 $sum_content .= "<tr><th>Enzyme Selection</th><td>";
 if ($cheap_only == 1){
@@ -149,7 +150,7 @@ for my $current_enzyme(sort keys %cap_seq) {
     if(!defined $cost{$current_enzyme}) {$cost{$current_enzyme} = 'over $65/1000u';}
     $caps_content .= '<table width="100%" cellpadding="5" cellspacing="0" border="6"><tr><th>Enzyme</th><td>' . $current_enzyme . '</td><th>Price</th><td>' . $cost{$current_enzyme} . '</td></tr>';
 
-    $caps_content .= '<tr><th>Recognition Sequence</th><td colspan="3">' . $cut_site{$current_enzyme} . '</td></tr>';
+    $caps_content .= '<tr><th>Sequência de reconhecimento</th><td colspan="3">' . $cut_site{$current_enzyme} . '</td></tr>';
 
     for my $id (sort keys %parent_info) {
 	$caps_content .='<tr><th>' . $id  . ' Current Site(s) </th><td>';
@@ -191,12 +192,12 @@ $caps_content .= 'Black font denotes sequence with unique cut site(s). <br />' i
  $out =~ s/$html_root_path//;
  $align_fasta =~ s/$html_root_path//;
  $align_clustal =~ s/$html_root_path//;
- $plain_content .= "<tr><td><a target='blank' href = $out> View/download plain text result file</a></td></tr>";
- $plain_content .= "<tr><td><a target='blank' href = $align_clustal> View/download alignment in clustal format</a></td></tr>";
- $plain_content .= "<tr><td><a target='blank' href = $align_fasta> View/dowload alignment in fasta format</a></td></tr>";
+ $plain_content .= "<tr><td><a target='blank' href = $out> Visualizar/baixar arquivo de resultados em texto simples</a></td></tr>";
+ $plain_content .= "<tr><td><a target='blank' href = $align_clustal> Visualizar/baixar alinhamento no formato Clustal</a></td></tr>";
+ $plain_content .= "<tr><td><a target='blank' href = $align_fasta> Visualizar/baixar alinhamento no formato FASTA</a></td></tr>";
 
  $page->header();
- print page_title_html("CAPS Designer Result");
+ print page_title_html("Resultado do designer de CAPS");
  print blue_section_html('For experienced users','<table width="100%" cellpadding="5" cellspacing="0" border="0">' . $plain_content . '</table>');
 
 #######The user can go back to the caps_input page and keep all the input.  Some browsers don't do that.
@@ -207,12 +208,12 @@ print "<input type=\"hidden\" name=\"start\" value=\"$exclude_seq\">";
 print "<input type=\"hidden\" name=\"cutno\" value=\"$cutno\">";
 print "<input type=\"hidden\" name=\"seq_data\" value=\"$seq_data\">";
 #print "<input type=\"hidden\" name=\"seq_select\" value=\"$seq_select\">";
-print "<input type=\"submit\" value=\"Back to input\">";
+print "<button type=\"submit\" value=\"Back to input\">Voltar à entrada</button>";
 print "</form>";
 print "<br />";
 
 print blue_section_html('Notes','<table width="100%" cellpadding="5" cellspacing="0" border="0">' . $help_content . '</table>');
-print blue_section_html('Query Summary','<table width="100%" cellpadding="5" cellspacing="0" border="0">' . $sum_content . '</table>');
+print blue_section_html('Resumo da consulta','<table width="100%" cellpadding="5" cellspacing="0" border="0">' . $sum_content . '</table>');
 if ($caps_content) {
     print blue_section_html('CAPS Candidates',$caps_content);
 }else{

@@ -1,3 +1,4 @@
+use utf8;
 
 use strict;
 
@@ -52,7 +53,7 @@ sub store {
 
 	$self->get_page()->header();
 	print $not_new_locus_synonym = "Locus synonym '".$args{locus_alias}. "' already exists <br />";
-	print qq { <a href="javascript:history.back(1)">back to locus synonyms</a> };
+        print qq { <a href="javascript:history.back(1)">voltar aos sinônimos do locus</a> };
 	$self->get_page()->footer();
 	exit();
     }else { 
@@ -113,7 +114,7 @@ sub generate_form {
 
     # add form elements
     #
-    $self->get_form()->add_field(display_name=>"Locus synonym: ", 
+    $self->get_form()->add_field(display_name=>"Sinônimo do locus: ",
 				 field_name=>"locus_alias", 
 				 length=>20, 
 				 object=>$locus_synonym, 
@@ -185,13 +186,13 @@ sub display_page {
 	print "for locus ".$locus->get_locus_name()."<br /><br />\n";
 	foreach my $ls (@locus_synonyms) { 
 	    my $locus_synonym_id = $ls->get_locus_alias_id();
-	    print $ls->get_locus_alias(). qq { \n <a href="locus_synonym.pl?locus_id=$locus_id&amp;locus_alias_id=$locus_synonym_id&amp;action=confirm_delete">[Remove]</a> <br />\n };
+            print $ls->get_locus_alias(). qq { \n <a href="locus_synonym.pl?locus_id=$locus_id&amp;locus_alias_id=$locus_synonym_id&amp;action=confirm_delete">[Remover]</a> <br />\n };
 	}
     }
 
-    if (!@locus_synonyms && !@image_tags) { print "<b>None found</b><br /><br />\n"; }
+    if (!@locus_synonyms && !@image_tags) { print "<b>Nenhum encontrado</b><br /><br />\n"; }
 
-    print qq { <br /><br /><b>Add another locus synonym</b>: };
+    print qq { <br /><br /><b>Adicionar outro sinônimo do locus</b>: };
 
     print qq { <center> };
 
@@ -199,7 +200,7 @@ sub display_page {
 
     print qq { </center> };
 
-    print qq { <a href="/locus/$args{locus_id}/view">back to locus page</a> };
+    print qq { <a href="/locus/$args{locus_id}/view">voltar à página do locus</a> };
 
     $self->get_page()->footer();
 }

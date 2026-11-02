@@ -1,3 +1,4 @@
+use utf8;
 use strict;
 use warnings;
 
@@ -9,7 +10,7 @@ my $p = CXGN::Page->new("Ontology Browser", "Lukas");
 $p->header("Ontology Browser", "Browse Ontologies");
 
 print info_section_html(
-    title    => 'Ontology browser',
+    title    => 'Navegador de ontologias',
     contents => $c->render_mason("/ontology/browser.mas"),
    );
 

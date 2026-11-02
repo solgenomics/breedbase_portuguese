@@ -1,4 +1,5 @@
 #!/usr/bin/perl -w
+use utf8;
 
 #Display thumbnails of all images of a given plant
 
@@ -25,14 +26,14 @@ my $page = CXGN::Page->new('phenotype', 'Adri');
 
 print "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 transitional//EN\" \"http://www.w3.org/tr/xhtml1/DTD/xhtml1-transitional.dtd\">";
 
-$page->header("Samples From Plant");
+$page->header("Amostras da planta");
 
 print <<EOF
 
 <table summary="" width="100%" cellpadding="0" cellspacing="10" border="0">
 
 <tr><td>
-<center><h3><u>Samples From Plant</u></h3></center>
+<center><h3><u>Amostras da planta</u></h3></center>
 </td></tr>
 EOF
 ;
@@ -41,12 +42,12 @@ if ($pop_name && $gen_name && $plant_name) {
 
 #display plant information & link
 print "<tr><td>";
-print "<b><u>Plant Information</u></b>";
+print "<b><u>Informações da planta</u></b>";
 print "<ul>";
   print "<li>Population: <a href=\"population.pl?pop_id=$pop_id\"><b>$pop_name</b></a></li>";
-  print "<li>Genotype Group: <b> $gen_name</b></li>";
-  print "<li>Plant Name: <b> $plant_name</b></li>";
-  print "<li>Location Grown: <b> $institution $environment $year</b></li>"; 
+  print "<li>Grupo de genótipos: <b> $gen_name</b></li>";
+  print "<li>Nome da planta: <b> $plant_name</b></li>";
+  print "<li>Local de cultivo: <b> $institution $environment $year</b></li>";
 print "</ul>";
 print "</td></tr>";
 
@@ -58,7 +59,7 @@ print "</td></tr>";
     #display thumbnail images by organ and then sample
     if (@image_info_by_organ) {
       print "<tr><td>";
-      print "<b><u>All Images for the Selected Plant</u></b>";
+      print "<b><u>Todas as imagens da planta selecionada</u></b>";
 
       my $i;
       for my $i (0..$#image_info_by_organ) {

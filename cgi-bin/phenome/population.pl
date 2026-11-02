@@ -1,3 +1,4 @@
+use utf8;
 use strict;
 use warnings;
 
@@ -53,7 +54,7 @@ sub define_object {
     $self->set_dbh( CXGN::DB::Connection->new );
     my %args = $self->get_args();
     my $population_id= $args{population_id};
-    unless (!$population_id || $population_id =~m /^\d+$/) { $self->get_page->message_page("No population exists for identifier $population_id"); }
+    unless (!$population_id || $population_id =~m /^\d+$/) { $self->get_page->message_page("Não existe população com o identificador $population_id"); }
     $self->set_object_id($population_id);
     $self->set_object(CXGN::Phenome::Population->new($self->get_dbh(),$self->get_object_id()));
     $self->set_primary_key("population_id");
@@ -89,7 +90,7 @@ sub generate_form {
     }
 
    $form->add_field(
-                      display_name=>"Name:",
+                      display_name=>"Nome:",
                       field_name=>"name",
                       length=>15,
                       object=>$population,
@@ -98,7 +99,7 @@ sub generate_form {
                       validate => 'string',
                       );
     $form->add_textarea(
-                          display_name=>"Description: ",
+                          display_name=>"Descrição: ",
                           field_name=>"description",
                           object=>$population,
                           getter=>"get_description", setter=>"set_description",
@@ -107,7 +108,7 @@ sub generate_form {
                           );
 
 
-    $form->add_label( display_name=>"Uploaded by: ",
+    $form->add_label( display_name=>"Enviado por: ",
                           field_name=>"submitter",
                           contents=>$submitter_link,
                           );
@@ -169,7 +170,7 @@ EOS
 
     my $action = $args{action};
     if (!$population_id && $action ne 'new' && $action ne 'store')
-                     { $self->get_page->message_page("No population exists for this identifier"); }
+                     { $self->get_page->message_page("Não existe população com esse identificador"); }
     ################################
     #redirecting to the stock page 
     my $stock_id = $population->get_stock_id;
@@ -184,9 +185,9 @@ EOS
     my $login_user_type= $login_user->get_user_type();
     my $page="../phenome/population.pl?population_id=$population_id";
 
-    $self->get_page()->header("SGN Population name: $population_name");
+    $self->get_page()->header("Nome da população do SGN: $population_name");
 
-    print page_title_html("Population: $population_name \n");
+    print page_title_html("População: $population_name \n");
 
     $args{calling_page} = $page;
 
@@ -311,7 +312,7 @@ EOS
      }
 
     my $accessions_link = qq |<a href="../search/phenotype_search.pl?wee9_population_id=$population_id">
-                              See all accessions ...</a>
+                              Ver todos os acessos ...</a>
                              |;
 
     my ($phenotype_data, $data_view, $data_download);
@@ -334,9 +335,7 @@ EOS
                                               __align =>'l',
                                               );
 
-            $data_download .=  qq { <span><br/><br/>Download:<a href="phenotype_download.pl?population_id=$population_id"><b>\
-                                [Phenotype raw data]</b></a> <a href="genotype_download.pl?population_id=$population_id"><b>\
-                                [Genotype raw data]</b></a></span>
+            $data_download .=  qq { <span><br/><br/>Baixar:<a href="phenotype_download.pl?population_id=$population_id"><b>\ [Dados fenotípicos brutos]</b></a> <a href="genotype_download.pl?population_id=$population_id"><b>\ [Dados genotípicos brutos]</b></a></span>
                               };
 
 
@@ -356,8 +355,7 @@ EOS
                                               __align =>'l',
                                               );
 
-            $data_download .=  qq { <span><br/><br/>Download:<a href="phenotype_download.pl?population_id=$population_id"><b>\
-                                [Phenotype raw data]</b></a></span>
+            $data_download .=  qq { <span><br/><br/>Baixar:<a href="phenotype_download.pl?population_id=$population_id"><b>\ [Dados fenotípicos brutos]</b></a></span>
                               };
 
         }
@@ -443,7 +441,7 @@ EOS
         }
     }
 
-    print info_section_html(title   => 'Population Details',
+    print info_section_html(title   => 'Detalhes da população',
                             contents => $population_html,
                             );
 
@@ -457,17 +455,17 @@ EOS
         {
             my $correlation_data = $self->display_correlation();
 
-            print info_section_html(title    => 'Phenotype Data and QTLs',
+            print info_section_html(title    => 'Dados fenotípicos e QTLs',
                                     contents => $phenotype_data ." ".$data_download
                                    );
 
-            print info_section_html( title    => 'Pearson Correlation Analysis',
+            print info_section_html( title    => 'Análise de correlação de Pearson',
                                      contents => $correlation_data,
                                    );
         }
         else
         {
-            print info_section_html(title    => 'Phenotype Data',
+            print info_section_html(title    => 'Dados fenotípicos',
                                     contents => $accessions_link
                                    );
         }
@@ -475,7 +473,7 @@ EOS
         my $map_link = $self->genetic_map();
         unless (!$map_link)
         {
-            print info_section_html( title    => 'Genetic Map',
+            print info_section_html( title    => 'Mapa genético',
                                      contents => $map_link
                                    );
         }
@@ -487,17 +485,17 @@ EOS
         my $message = "The QTL data for this population is not public yet.
                        If you would like to know more about this data,
                        please contact the owner of the data: <b>$submitter_link</b>
-                       or email to SGN:
+                       ou envie um e-mail ao SGN:
                        <a href=mailto:sgn-feedback\@sgn.cornell.edu>
                        sgn-feedback\@sgn.cornell.edu</a>.\n";
 
-        print info_section_html(title   => 'Phenotype Data and QTLs',
+        print info_section_html(title   => 'Dados fenotípicos e QTLs',
                                 contents =>$message,
                                );
 
     }
 
-    print info_section_html(title   => 'Literature Annotation',
+    print info_section_html(title   => 'Anotação da literatura',
                             #subtitle => $pub_subtitle,
                             contents => $pubmed,
                             );
@@ -703,7 +701,7 @@ sub display_correlation {
     {
 	my ($heatmap_file, $corre_table_file) = $self->analyze_correlation();
 
-	my $heatmap_image = qq |<img alt="correlation heatmap image" src="$heatmap_file"/> |;
+        my $heatmap_image = qq |<img alt="imagem do mapa de calor de correlação" src="$heatmap_file"/> |;
 
 	my @traits = $pop->get_cvterms();
 	my @tr_acronym_table;
@@ -737,7 +735,7 @@ sub display_correlation {
                                            0,
                                           );
 
-	$corre_data = $heatmap_image .  qq | <span><br/><br/>Download:<a href="correlation_download.pl?population_id=$pop_id&amp;corre_file=$corre_table_file">[Correlation coefficients and p-values table]</a> $acronym_view</span> |;
+        $corre_data = $heatmap_image .  qq | <span><br/><br/>Baixar:<a href="correlation_download.pl?population_id=$pop_id&amp;corre_file=$corre_table_file">[Tabela de coeficientes de correlação e valores p]</a> $acronym_view</span> |;
     }
     return $corre_data;
 

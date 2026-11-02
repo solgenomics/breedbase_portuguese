@@ -1,4 +1,5 @@
 #!/usr/bin/perl -w
+use utf8;
 
 #Main Page for Phenotypic Database
 
@@ -16,7 +17,7 @@ my $page = CXGN::Page->new('phenotype', 'Adri');
 
 print "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 transitional//EN\" \"http://www.w3.org/tr/xhtml1/DTD/xhtml1-transitional.dtd\">";
 
-$page->header("Search the Phenotype Database");
+$page->header("Buscar no banco de dados de fenótipos");
 
 #-------------------------------------------------
 my @populations = CXGN::DB::PhenoPopulation::get_all_populations;
@@ -51,9 +52,9 @@ print <<EOF
 
 <tr><td>
 <center>
-<h3><u>Welcome to the Phenotype Database</u></h3>
-<p>From this page, you can search the phenotype databse for data and images of all plants from all populations.</p>
-<p>There are two ways to find specific data and images: searching by genotype and phenotype.</p>
+<h3><u>Bem-vindo ao banco de dados de fenótipos</u></h3>
+<p>Nesta página, você pode buscar dados e imagens de plantas de todas as populações no banco de fenótipos.</p>
+<p>Há duas formas de encontrar dados e imagens: por genótipo ou por fenótipo.</p>
 </center>
 </td></tr>
 
@@ -62,7 +63,7 @@ print <<EOF
 <tr><td><img src="/documents/img/dot_clear.gif" width="1" height="10" alt="" /></td></tr>
 
 <tr><td>
-<center><h3><u>Search the Phenotype Database</u></h3></center>
+<center><h3><u>Buscar no banco de dados de fenótipos</u></h3></center>
 
 <center>
 <table summary="" width="100%" cellpadding="0" cellspacing="0" border="0">
@@ -76,13 +77,13 @@ print <<EOF
 EOF
 ;
 
-print "<b><u>selected POPULATION:</u> $current_pop_name</b>";
+print "<b><u>POPULAÇÃO selecionada:</u> $current_pop_name</b>";
 
 print <<EOF
 </td></tr>
-<tr><td><p>Below is the list of population(s) currently in the database. Select a population and click the button to search images and data in another population.</p></td></tr>
+<tr><td><p>Abaixo estão as populações do banco de dados. Selecione uma população e clique no botão para buscar imagens e dados em outra população.</p></td></tr>
 <tr><td valign="top" align="left">
-All Populations:
+Todas as populações:
 <select name="pop_id">
 EOF
 ;
@@ -95,7 +96,7 @@ print <<EOF
 </select>
 </td>
 <td valign="top" align="right">
-<input type="submit" value="Change Population" />
+<button type="submit" value="Change Population">Alterar população</button>
 </td></tr>
 </table>
 </form>
@@ -107,10 +108,9 @@ print <<EOF
 <form action="/phenotype/display_plants_from_genotype.pl" method="get">
 <table summary="">
 <tr><td>
-<b><u>Search By GENOTYPES</u></b>
+<b><u>Buscar por GENÓTIPOS</u></b>
 </td></tr>
-<tr><td><p>Below is a list of all <b>genotypes</b> in the selected population above -  
-selecting a genotype will take you to a page of plants with the selected genotype.  This new page will have links to all images and data of these plants:</p></td></tr>
+<tr><td><p>Abaixo está uma lista de todos os <b>genótipos</b> na população selecionada acima. Ao selecionar um genótipo, você verá as plantas correspondentes e os links para suas imagens e dados:</p></td></tr>
 <tr><td valign="top" align="left">
 
 EOF
@@ -128,7 +128,7 @@ print "<input type=\"hidden\" name=\"pop_name\" value=\"$current_pop_name\" />";
 print <<EOF
 </td>
 <td valign="top" align="right">
-<input type="submit" value="get Plants by Genotype" />
+<button type="submit" value="get Plants by Genotype">Obter plantas por genótipo</button>
 </td></tr>
 </table>
 </form>
@@ -138,14 +138,13 @@ print <<EOF
 <tr><td>
 <form action="/phenotype/display_plants_from_property.pl" method="get">
 <table summary=""><tr><td>
-<b><u>Search By PROPERTIES</u></b> (<a href="display_prop_list.pl">Property Descriptions</a>)
+<b><u>Buscar por PROPRIEDADES</u></b> (<a href="display_prop_list.pl">Property Descriptions</a>)
 </td></tr>
 <tr><td>
 EOF
 ;
 
-print "<p>Below is a list of all <b>properties</b> measured in the selected population above - 
-selecting a property will take you to a page of plants with the selected property measured.  This new page will have links to each plant's sample data and images:</p>";
+print "<p>Abaixo está uma lista de todos os <b>properties</b> medidas na população selecionada acima. Ao selecionar uma propriedade, você verá as plantas com essa propriedade medida e os links para os dados e as imagens de suas amostras:</p>";
 
 print "</td></tr>";
 print "<tr><td width=\"100%\" valign=\"top\" align=\"left\">";
@@ -175,7 +174,7 @@ print <<EOF
 
 </td>
 <td width="100%" valign="top" align="right">
-<input type="submit" value="get Plants by Property" />
+<button type="submit" value="get Plants by Property">Obter plantas por propriedade</button>
 </td></tr></table>
 </form>
 </td></tr>
@@ -200,12 +199,12 @@ print <<EOF
 <tr><td>
 
 <dl>
-<dt><b>Population</b></dt>
-<dd>all the organisms that constitute a specific group or occur in a specified location.</dd>
-<dt><br /><b>Genotype</b></dt>
-<dd>a group of organisms sharing a specific genetic constitution.</dd>
-<dt><br /><b>Property/Phenotype</b></dt>
-<dd>the observable physical or biochemical characteristics of an organism, as determined by both genetic makeup and environmental influences.</dd>
+<dt><b>População</b></dt>
+<dd>todos os organismos que constituem um grupo ou ocorrem em um local específico.</dd>
+<dt><br /><b>Genótipo</b></dt>
+<dd>grupo de organismos com uma constituição genética específica.</dd>
+<dt><br /><b>Propriedade/Fenótipo</b></dt>
+<dd>características físicas ou bioquímicas observáveis de um organismo, determinadas pela constituição genética e pelas influências ambientais.</dd>
 </dl>
 
 </td></tr>

@@ -1,3 +1,4 @@
+use utf8;
 
 use strict;
 use warnings;
@@ -171,18 +172,18 @@ $p->header("Vector drawing application", "Vector drawing application");
 print <<HTML;
 
 <form enctype="multipart/form-data" method="post" >
-Vector name <input type="text" name="name" value="" size="8" /><br /><br />
-Upload a genbank file <input type="file" name="genbank_record" /><br /><br />
-<b>Format:</b><br />
+Nome do vetor <input type="text" name="name" value="" size="8" /><br /><br />
+Enviar arquivo GenBank <input type="file" name="genbank_record" /><br /><br />
+<b>Formato:</b><br />
 <input type="radio" name="format" value="genbank" checked="1" /> Genbank<br />
 <input type="radio" name="format" value="native" /> Native<br /><br />
-<b>Show restriction sites</b><br />
-<input type="radio" name="show_re" value="all" /> all (not recommended)<br />
+<b>Mostrar sítios de restrição</b><br />
+<input type="radio" name="show_re" value="all" /> todos (não recomendado)<br />
 <input type="radio" name="show_re" value="unique" /> unique cutters<br />
 <input type="radio" name="show_re" value="popular6bp" /> popular 6bp cutters<br />
 <input type="radio" name="show_re" value="popular4bp" /> popular 4bp cutters<br />
 <br /><br />
-<input type="submit" value="upload" />
+<button type="submit" value="upload">enviar</button>
 <input type="hidden" name="action" value="upload" />
 </form>
 
@@ -229,14 +230,14 @@ my $html = qq{
     $html .= $native_commands;
     $html .=  qq { </textarea><br /><input type="submit" /></center></form> };
 
-    my $edit_native = info_section_html( title=> "Edit", contents=>$html, collapsible=>1, collapsed=>1);
+    my $edit_native = info_section_html( title=> "Editar", contents=>$html, collapsible=>1, collapsed=>1);
 
     print $edit_native;
 
 
     my $insert_html = <<HTML;
 <form method="post">
-Insert Sequence <br /><br /><textarea name="insert_sequence" value="" rows = "4" cols="80" /></textarea><br />
+Inserir sequência <br /><br /><textarea name="insert_sequence" value="" rows = "4" cols="80" /></textarea><br />
 Insert at position <input type="text" name="insert_coord" value="0" size="4" /><br />
 <input type="hidden" name="action" value="insert" />
 
@@ -247,12 +248,12 @@ Insert at position <input type="text" name="insert_coord" value="0" size="4" /><
 
 HTML
 
-print info_section_html( title=>"Insert sequence", contents=>$insert_html, collapsible=>1, collapsed=>1);
+print info_section_html( title=>"Inserir sequência", contents=>$insert_html, collapsible=>1, collapsed=>1);
 
     my $delete_html = <<HTML;
 <form method="post">
-Delete Sequence<br /><br />
-From position <input type="text" name="del_start" /> 
+Excluir sequência<br /><br />
+A partir da posição <input type="text" name="del_start" />
 to position <input type="text" name="del_end" />
 <input type="hidden" name="action" value="delete" />
 <input type="hidden" name="native_file" value="$native_file" />
@@ -260,12 +261,12 @@ to position <input type="text" name="del_end" />
 <input type="submit" />
 HTML
 
-print info_section_html (title=>"Delete sequence", contents=>$delete_html, collapsible=>1, collapsed=>1);
+print info_section_html (title=>"Excluir sequência", contents=>$delete_html, collapsible=>1, collapsed=>1);
 
     my $split_seq = html_break_string($seq, 100, "\n");
     my $sequence_html = qq { <pre><div id="sequence_display">$split_seq</div></pre> };
 
-    print info_section_html( title=>"View sequence", contents=>$sequence_html, collapsible=>1, collapsed=>1);
+    print info_section_html( title=>"Visualizar sequência", contents=>$sequence_html, collapsible=>1, collapsed=>1);
 
     $p->footer();
     

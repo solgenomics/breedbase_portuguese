@@ -1,3 +1,4 @@
+use utf8;
 
 use strict;
 
@@ -47,10 +48,10 @@ sub delete {
     my $probe_name = $probe->get_name();
     my $errors = $probe->delete();
     if ($errors) { 
-	$self->get_page()->message_page("This probe has either associated experiments or has not yet been saved and therefore cannot be deleted.\n");
+        $self->get_page()->message_page("Esta sonda tem experimentos associados ou ainda não foi salva e, por isso, não pode ser excluída.\n");
     }
     else { 
-	$self->get_page()->message_page("The probe $probe_name has been deleted\n");
+        $self->get_page()->message_page("A sonda $probe_name foi excluída.\n");
     }				
 }
 
@@ -117,18 +118,18 @@ sub generate_form {
 	$dbxref_type_id = $args{dbxref_type_id};
     }
 
-    $self->get_form()->add_field( display_name=>"Name", field_name=>"name", 
+    $self->get_form()->add_field( display_name=>"Nome", field_name=>"name",
 		      contents=>$name, length=>20, object=>$probe, 
 		      getter=>"get_name", setter=>"set_name", 
 		      validate=>"string"
 		      );
-    $self->get_form()->add_field( display_name=>"Sequence", field_name=>"sequence", 
+    $self->get_form()->add_field( display_name=>"Sequência", field_name=>"sequence",
 		      contents=>$sequence, length=>50, 
 		      object=>$probe, getter=>"get_sequence", 
 		      setter=>"set_sequence"
 		      );
 
-    $self->get_form()->add_select( display_name=>"Namespace", 
+    $self->get_form()->add_select( display_name=>"Espaço de nomes",
 				   field_name=>"dbxref_type_id",
 				   contents=>$dbxref_type_id,
 				   object=>$probe,
@@ -138,27 +139,27 @@ sub generate_form {
 				   select_id_list_ref => $dbxref_id_ref,
 				   );
 
-    $self->get_form()->add_field( display_name=>"Identifier", field_name=>"identifier",
+    $self->get_form()->add_field( display_name=>"Identificador", field_name=>"identifier",
 				  contents=>$identifier, object=>$probe,
 				  getter=>"get_identifier", setter=>"set_identifier"
 				  );
 
-    $self->get_form()->add_field( display_name=>"5' primer name", field_name=>"primer1",
+    $self->get_form()->add_field( display_name=>"Nome do primer 5'", field_name=>"primer1",
 				  contents=>$primer1, object=>$probe,
 				  getter=>"get_primer1", setter=>"set_primer1"
 				  );
 
-    $self->get_form()->add_field( display_name=>"5' primer sequence", field_name=>"primer1_seq",
+    $self->get_form()->add_field( display_name=>"Sequência do primer 5'", field_name=>"primer1_seq",
 				  contents=>$primer1_seq, object=>$probe,
 				  getter=>"get_primer1_seq", setter=>"set_primer1_seq"
 				  );
 
-    $self->get_form()->add_field( display_name=>"3' primer name", field_name=>"primer2", 
+    $self->get_form()->add_field( display_name=>"Nome do primer 3'", field_name=>"primer2",
 				  contents=>$primer2, object=>$probe,
 				  getter=>"get_primer2", setter=>"set_primer2"
 				  );
 
-    $self->get_form()->add_field( display_name=>"3' primer sequence", field_name=>"primer2_seq",
+    $self->get_form()->add_field( display_name=>"Sequência do primer 3'", field_name=>"primer2_seq",
 				  contents=>$primer2_seq, object=>$probe,
 				  getter=>"get_primer2_seq", setter=>"set_primer2_seq"
 				  );
@@ -194,14 +195,14 @@ sub display_page {
     my $delete_link = "";
     my $identifier = $probe->get_identifier();
     if ($self->get_action() eq "view" ) { 
-	$edit_link = qq { <a href="probe.pl?probe_id=$probe_id&amp;action=edit">[Edit]</a> };
-	my $delete_link = qq { <a href="probe.pl?probe_id=$probe_id&amp;action=confirm_delete">[Delete]</a> };
+        $edit_link = qq { <a href="probe.pl?probe_id=$probe_id&amp;action=edit">[Editar]</a> };
+        my $delete_link = qq { <a href="probe.pl?probe_id=$probe_id&amp;action=confirm_delete">[Excluir]</a> };
     }
     elsif ($self->get_action() eq "edit") { 
-	$edit_link = qq { <a href="probe.pl?probe_id=$probe_id&amp;action=view">[View]</a> };
+        $edit_link = qq { <a href="probe.pl?probe_id=$probe_id&amp;action=view">[Visualizar]</a> };
     }
     elsif ($self->get_action() eq "new") { 
-	$edit_link = qq { <a href="/insitu/manage.pl">[Cancel]</a> };
+        $edit_link = qq { <a href="/insitu/manage.pl">[Cancelar]</a> };
     }
 
     my $dbxref = CXGN::Phenome::DbxrefType->new($self->get_dbh(), $probe->get_dbxref_type_id());
@@ -222,14 +223,14 @@ sub display_page {
 
     CXGN::Insitu::Toolbar::display_toolbar();
     
-    print page_title_html(qq { $action <a href="/insitu/">Insitu</a> Probe Detail });
+    print page_title_html(qq { $action <a href="/insitu/">Insitu</a> Detalhes da sonda });
     print "$edit_link $delete_link <br /><br />\n";
     
     $self->get_form()->as_table();
 
     print qq { Probe link : $probe_link };
     
-    print qq { <br /><br />This probe is associated with these experiments:<br /><br /> };
+    print qq { <br /><br />Esta sonda está associada aos seguintes experimentos:<br /><br /> };
     my @experiments = $probe->get_experiments();
     if (!@experiments) { print qq { (None found) }; }
     foreach my $e (@experiments) { 

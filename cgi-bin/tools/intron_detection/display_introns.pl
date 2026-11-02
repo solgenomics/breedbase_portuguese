@@ -1,3 +1,4 @@
+use utf8;
 
 use strict;
 use warnings;
@@ -13,7 +14,7 @@ use SGN::IntronFinder::Homology;
 
 my $d = CXGN::Debug->new();
 
-my $page = CXGN::Page->new( "Intron Finder Results", "Emil" );
+my $page = CXGN::Page->new( "Resultados do localizador de íntrons", "Emil" );
 
 my $temp_file_path = $page->path_to($page->tempfiles_subdir('intron_detection'));
 
@@ -48,7 +49,7 @@ my $out_file = File::Temp->new(
 $out_file->close;    #< can't use this filehandle
 
 $page->header();
-print page_title_html("Intron Finder Results");
+print page_title_html("Resultados do localizador de íntrons");
 
 $d->d("Runninge the intron finder command...\n");
 
@@ -76,7 +77,7 @@ SGN::IntronFinder::Homology::find_introns_txt
     );
 print $output;
 print '</pre>';
-print qq|<a href="find_introns.pl">Return to search page</a><br /><br />|;
+print qq|<a href="find_introns.pl">Voltar à página de busca</a><br /><br />|;
 
 $page->footer();
 
@@ -89,19 +90,19 @@ sub show_error {
 
     $page->add_style( text => "p.error {font-weight: bold}" );
     $page->header();
-    print page_title_html("Bad Input");
+    print page_title_html("Entrada inválida");
     if ( $errors{e_bad} ) {
         print
-"<p class=\"error\">E-value for blast should be an integer or in xe-xx format.</p>";
+"<p class=\"error\">O e-value do BLAST deve ser um inteiro ou estar no formato xe-xx.</p>";
     }
     if ( $errors{seq_bad} ) {
-        print "<p class=\"error\">Please enter your query in FASTA format.</p>";
+        print "<p class=\"error\">Informe a consulta no formato FASTA.</p>";
     }
     elsif ( $errors{seq_notindb} ) {
         print
 "<p class=\"error\">EST identifier $errors{unfound_seq_id} could not be found in the database. Please enter a DNA sequence for it.</p>";
     }
 
-    print "<p><a href=\"find_introns.pl\">Go back</a> and try again.</p>";
+    print "<p><a href=\"find_introns.pl\">Voltar</a> e tente novamente.</p>";
     $page->footer();
 }

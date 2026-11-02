@@ -1,4 +1,5 @@
 #!/usr/bin/perl
+use utf8;
 # Signal peptide finder using a genentech-script-generated HMMER model
 # modified by Evan 9 / 16 / 05
 #
@@ -269,18 +270,14 @@ sub process_seqs {
         #result is a Bio::Search::Result::HMMERResult object
         my $qname = $result->query_name();
         $resultString .= <<EOHTML;
-				<h2 style="text-align: center">Results for HMM $qname</h1>
-				<p>If you elected to "show all output", note that we can't show more output than HMMER produces; it doesn't always
-				report results for all input sequences. The sequence marked "least likely" to have a signal peptide is only
-				least likely <i>among those sequences for which output was reported</i>; sequences that don't show up in the
-				results table are even less likely to start with signals.</p>
-				<p>For a detailed explanation of the output, see <a href="/documents/hmmer_userguide.pdf">the HMMER user guide (pdf)</a>. Look for the "search the
-				sequence database with hmmsearch" section.</p>
+                                <h2 style="text-align: center">Resultados para o HMM $qname</h1>
+                                <p>Se você escolheu mostrar toda a saída, observe que não é possível exibir mais do que o HMMER produz; ele nem sempre relata resultados para todas as sequências de entrada. A sequência marcada como menos provável de ter um peptídeo-sinal é a menos provável apenas <i>entre as sequências com resultados relatados</i>; as sequências ausentes da tabela têm probabilidade ainda menor de começar com sinais.</p>
+                                <p>Para uma explicação detalhada da saída, consulte <a href="/documents/hmmer_userguide.pdf">o manual do HMMER (PDF)</a>. Procure a seção "search the sequence database with hmmsearch".</p>
 				<table style="margin: 0 auto" border="0" cellspacing="0" cellpadding="1">
 					<tr>
-						<td align="center" bgcolor="#e0ddff"><b>&nbsp;&nbsp;&nbsp;Sequence&nbsp;&nbsp;|&nbsp;&nbsp;Domain&nbsp;&nbsp;&nbsp;</b>
-						<td align="center" bgcolor="#d0ccee"><b>&nbsp;&nbsp;&nbsp;Score&nbsp;&nbsp;|&nbsp;&nbsp;E-value&nbsp;&nbsp;&nbsp;</b>
-						<td align="center" bgcolor="#e0ddff"><b>&nbsp;&nbsp;&nbsp;Signal Likelihood&nbsp;&nbsp;&nbsp;</b>
+                                                <td align="center" bgcolor="#e0ddff"><b>Sequência | Domínio</b>
+                                                <td align="center" bgcolor="#d0ccee"><b>Pontuação | E-value</b>
+                                                <td align="center" bgcolor="#e0ddff"><b>&nbsp;&nbsp;&nbsp;Probabilidade de sinal&nbsp;&nbsp;&nbsp;</b>
  					</tr>
 EOHTML
         my $lineNum = 0;
@@ -350,15 +347,11 @@ EOHTML
         $resultString .= <<EOHTML;
                                         <table border="0" cellspacing="10" cellpadding="0">
                                                 <tr>
-                                                        <td colspan="1" align="center"><b>HMMER histogram</b>
+                                                        <td colspan="1" align="center"><b>Histograma do HMMER</b>
                                                 </tr>
                                                 <tr>
                                                         <td colspan="1" align="left">
-                                                                &nbsp;&nbsp;&nbsp;The histogram compares the observed (obs) sequence score distribution to that expected 
-                                                                (exp) from a file of the same size as the one you submitted but full of random sequences. The further down 
-                                                                the page the distribution of equal signs is with respect to that of asterisks, the more likely it is that 
-                                                                your sequences contain signal peptides. If the sequences you submitted all come from the same protein family, 
-                                                                the histogram suggests how likely it is that that family is secreted.
+                                                                O histograma compara a distribuição observada (obs) das pontuações das sequências com a esperada (exp) para um arquivo de mesmo tamanho com sequências aleatórias. Quanto mais abaixo da distribuição de asteriscos estiver a de sinais de igualdade, maior a probabilidade de haver peptídeos-sinal nas sequências. Se todas as sequências pertencerem à mesma família de proteínas, o histograma indica a probabilidade de essa família ser secretada.
                                                 </tr>
                                                 <tr>
                                                         <td align="left">
@@ -424,7 +417,7 @@ sub print_error {
     my $self = shift(@_);
     $self->print( "<div><b>"
           . shift(@_)
-          . "</b></div><div>Please press the back button and re-enter input.</div>"
+          . "</b></div><div>Clique em Voltar e informe os dados novamente.</div>"
     );
     $self->{error} = 1;
 }

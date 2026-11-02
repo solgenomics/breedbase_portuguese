@@ -1,3 +1,4 @@
+use utf8;
 use strict;
 use CXGN::Genomic::Clone;
 use CXGN::Tools::Text;
@@ -5,14 +6,14 @@ use CXGN::Page;
 use CXGN::Page::FormattingHelpers qw/page_title_html html_break_string/;
 use CXGN::Genomic::Tools qw/clone_annotation_sequence/;
 
-my $page = CXGN::Page->new( 'Clone Sequence', 'john' );
+my $page = CXGN::Page->new( 'Sequência do clone', 'john' );
 my ($clone_id) = $page->get_encoded_arguments('clone_id');
 my $clone = CXGN::Genomic::Clone->retrieve($clone_id)
-  or do{ $page->error_page("No clone found with ID '$clone_id'"); exit };
+  or do{ $page->error_page("Nenhum clone encontrado com o ID '$clone_id'"); exit };
 
 my @seqnames  = $clone->latest_sequence_name;
 my @sequences = $clone->seq
-  or $page->message_page( "No sequence information for clone "
+  or $page->message_page( "Não há informações de sequência para o clone "
       . $clone->clone_name
       . ".  If you think you reached this page in error, the database may be in the middle of an update.  Please try again later."
   );
@@ -23,7 +24,7 @@ my @sequences = $clone->seq
   . scalar(@sequences) . ' seqs';
 
 $page->header;
-print page_title_html( 'BAC Sequence &ndash; ' . $clone->clone_name );
+print page_title_html( 'Sequência de BAC &ndash; ' . $clone->clone_name );
 
 foreach my $name (@seqnames) {
     my $sequence = shift @sequences;

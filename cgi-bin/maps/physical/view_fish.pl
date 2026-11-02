@@ -1,3 +1,4 @@
+use utf8;
 use strict;
 use warnings;
 use CXGN::Page;
@@ -14,7 +15,7 @@ my ($image_id) = $page->get_encoded_arguments('image_id');
 
 # Argument validation.
 unless ($clone_id && $image_id) {
-  $page->message_page ("This page requires two arguments, and at least one wasn't supplied.");
+  $page->message_page ("Esta página exige dois argumentos e pelo menos um deles não foi informado.");
 }
 unless (($clone_id =~ /\d+/) && ($image_id =~ /\d+/)) {
   $page->message_page ("Bogus page arguments supplied ($clone_id, $image_id)");
@@ -47,9 +48,9 @@ if ($image) {
 <a href=\"?id=$clone_id&amp;image_id=$image_id&amp;size=full\">Full</a>"
   }
 
-  $page->header("View FISH image");
+  $page->header("Visualizar imagem FISH");
   print <<EOHTML;
-<a href="/maps/physical/clone_info.pl?id=$clone_id">Return to Clone info page</a>
+<a href="/maps/physical/clone_info.pl?id=$clone_id">Voltar às informações do clone</a>
 <br />
 <br />
 $fish_table
@@ -61,6 +62,6 @@ $size_control
 EOHTML
   $page->footer();
 } else {
-  $page->message_page("Clone image not found.");
+  $page->message_page("Imagem do clone não encontrada.");
 }
 #EOF

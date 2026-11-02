@@ -1,4 +1,5 @@
 #!/usr/bin/perl -w
+use utf8;
 use strict;
 use CXGN::Page;
 use CXGN::Login;
@@ -28,7 +29,7 @@ if($logged_in_user_type eq 'curator'){
 
 else
 {
-   $page->message_page('Sorry, but you are not authorized to view statistics.');
+   $page->message_page('Você não tem autorização para visualizar as estatísticas.');
 }
 
 #Finds the columns in the sp_person table.
@@ -55,7 +56,7 @@ sub find_recently_active_users{
     }
     my $people_logged_in;
     $people_logged_in = $dbh->selectall_arrayref("select sp_person_id, username, extract(epoch from current_timestamp - last_access_time), last_access_time from sp_person where extract(epoch from current_timestamp - last_access_time) <= ? order by last_access_time DESC", undef, $time_to_check*60*60);
-    $user_table = "<table align='left' style='width: 100%'><tr><th>ID:</th><th>Username:</th><th>Mins since last action:</th><th>Timestamp:</th></tr><tr><td>";
+    $user_table = "<table align='left' style='width: 100%'><tr><th>ID:</th><th>Nome de usuário:</th><th>Mins since last action:</th><th>Timestamp:</th></tr><tr><td>";
     $people_logged_in = epoch_to_minutes($people_logged_in);
     for my $row(@$people_logged_in){
 	$user_table .="<tr><td align='center'>";
@@ -82,7 +83,7 @@ print <<html;
 		http_request = new ActiveXObject("Microsoft.XMLHTTP");
 	    }
 	    if (!http_request) {
-		alert('Giving up :( Cannot create an XMLHTTP instance');
+                alert('Não foi possível criar uma instância XMLHTTP');
             return false;
 	    }
 	    http_request.onreadystatechange = function() { writeData(http_request); };
@@ -96,7 +97,7 @@ print <<html;
 		    table.innerHTML += http_request.responseText;
 		}
 		else{
-		    alert("Error " + http_request.status);
+                    alert("Erro " + http_request.status);
 	    }
 	    }
 	}
@@ -105,10 +106,10 @@ print <<html;
 <br />
 <form method="get" action="stats.pl" name="time" id="time"><label for="minutes">Time restraint (in hours): &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
 <input type="text" size="5" name="hours" id="hours" value="$time_to_check" />
-<input type="submit" id="submit" value="Submit" /></form>
+<button type="submit" id="submit" value="Submit">Enviar</button></form>
 <script type="text/javascript" language="javascript">document.time.hours.focus();</script>
 $user_table
-<table align='left' style='width:100%'><tr><th>ID</th><th>Username</th><th>$table_columns[0]</th><th>$table_columns[1]</th><th>$table_columns[2]</th></tr>
+<table align='left' style='width:100%'><tr><th>ID</th><th>Nome de usuário</th><th>$table_columns[0]</th><th>$table_columns[1]</th><th>$table_columns[2]</th></tr>
 <tr><td><input type='text' size='5' name='id1' id='id1' /></td></tr></table>
 
 html
@@ -123,5 +124,5 @@ $page->footer();
 #        Obtain user info on id number:
 #</span>
 #<input type="text" size="5" name="number" />
-#<input type="submit" id="sumbitnum" value="Submit" />
+#<button type="submit" id="sumbitnum" value="Submit">Enviar</button>
 #</form>

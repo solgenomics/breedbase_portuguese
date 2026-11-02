@@ -1,8 +1,36 @@
 # Tradução do Breedbase para português brasileiro
 
-Atualizado em 29/10/2026.
+Atualizado em 02/11/2026.
 
 ## Situação
+
+### Encerramento das pendências confirmadas — 02/11/2026
+
+Os **21 trechos em 17 arquivos** registrados na auditoria anterior foram traduzidos. O arquivo `support_data/translation/pendencias_adicionais_confirmadas.tsv` preserva o texto original, registra a tradução, o estado `traduzida`/`traduzida_em_codigo_legado` e as linhas atuais de cada ocorrência.
+
+A revisão ampliada alterou **142 scripts CGI**, além de **4 controladores Perl, 9 templates Mason e o formulário Primer3**. Inclui mensagens públicas de erro e confirmação, títulos, navegação, campos de formulários, instruções de importação/consulta, ajuda das ferramentas de sequências e análises, diálogos de ontologia e controles de árvores/alinhamentos. O inventário por arquivo está em `support_data/translation/revisao_final_pt_br.tsv`.
+
+No Primer3, foram revisados 146 textos distintos de rótulos e ajuda, os nomes de exibição das bibliotecas e os botões. Também foram corrigidos dois problemas prévios de YAML no primeiro texto de ajuda: o marcador `>` antes de uma string entre aspas e uma linha vazia contendo tabulações. A comparação do YAML carregado preserva a estrutura, os nomes de campos, os valores padrão, os valores das opções, as entradas ocultas e os parâmetros `PRIMER_*`/`SEQUENCE_*`. As legendas dos três botões de envio foram traduzidas; o controlador não usa essas legendas como parâmetro funcional.
+
+Nos CGI, 74 controles HTML passaram de `input` para `button` para separar o texto exibido do valor enviado. Todos os atributos originais, inclusive `name`, `value`, `id`, `type` e eventos, foram preservados. Foram incluídas declarações `use utf8;` onde necessário. A revisão também corrigiu a mensagem de saída da conta, rótulos de busca e termos incorretos na tela de SSR. Cálculos, identificadores, caminhos, valores de API, nomes de sequências e termos de formatos de arquivo foram preservados.
+
+**Escopo:** interface, mensagens e ajuda da aplicação, incluindo as telas CGI revisadas. Notícias, artigos e páginas históricas do SGN não foram objeto de tradução integral. Permanecem em inglês os contratos de integração, valores técnicos usados como dados, referências bibliográficas, nomes científicos/produtos, diagnósticos internos e componentes de terceiros. O resultado não certifica que qualquer possível conteúdo dinâmico ou módulo de terceiros aparecerá em português.
+
+**Verificações executadas nesta revisão:**
+
+- `prove -v t/unit/localization_lib.t`: **43 verificações aprovadas**, incluindo as novas validações de Biosource, QTL, ITAG, resultados expirados e formatos de imagem do CGI legado. Os métodos são executados em isolamento, sem banco de dados nem envio de e-mail.
+- `node js/test/localization.test.cjs`: aprovado.
+- Os 74 controles convertidos foram comparados em jsdom: atributos e comportamento nativo de envio/redefinição preservados.
+- Os **22 blocos JavaScript** dos CGI alterados foram analisados com `vm.Script`, após mascarar as substituições Perl; os 5 blocos modificados continuaram válidos e não houve nova falha de sintaxe.
+- O YAML do Primer3 foi carregado e sua estrutura funcional foi comparada com a versão anterior, normalizando apenas os dois erros de sintaxe já existentes nessa versão.
+- A comparação estática conferiu a preservação das variáveis interpoladas em todos os fontes alterados e dos blocos JavaScript dos templates Mason. A comparação léxica dos Perl preserva os tokens executáveis em 143 arquivos; os três casos que o analisador auxiliar não segmenta corretamente (`clone_info.pl`, `clone_reg.pl` e `blast/view_result.pl`) foram conferidos pelo diff.
+- `Rscript t/r/localization_pt_br.R`: aprovado com as bibliotecas disponíveis. Os testes de `phenoAnalysis`/`genoDataFilter` foram pulados porque esses pacotes não estão nas bibliotecas R ativas. Permanecem os três erros de sintaxe legados já documentados, sem alteração dos scripts R.
+- A auditoria Mason foi repetida: 1.130 arquivos examinados, com os mesmos 774 candidatos em 181 arquivos; o relatório é idêntico ao anterior. Essa contagem inclui dados técnicos e falsos positivos e não representa pendências confirmadas.
+- `git diff --check`: aprovado.
+
+Seis arquivos de testes legados/de navegador tiveram as asserções diretamente correspondentes aos rótulos revisados atualizadas. A suíte completa e a homologação visual continuam pendentes: o carregamento do Catalyst falha pela ausência de `Data::OptList`, `HTML::Mason::Interp` não está instalado e não há uma instância Breedbase disponível para a navegação de teste. Não foram feitas alterações nas dependências nem uma publicação da aplicação.
+
+### Histórico das revisões anteriores
 
 A revisão de 28/10/2026 concluiu a passagem pelos textos de interface do diretório `mason` e do JavaScript próprio da aplicação (`js/source/entries`, `js/source/modules` e os diretórios próprios em `js/source/legacy`: `CXGN`, `SGN`, `solGS`, `brapi`, `tools`, `d3/graphers`, entre outros), incluindo os blocos `<script>` dos templates.
 
@@ -24,7 +52,7 @@ A revisão encontrou e corrigiu pontos em que a tradução automática alterava 
 
 Bibliotecas de terceiros, comentários de desenvolvimento, mensagens de `console.*`, identificadores, caminhos, parâmetros e valores de API, cabeçalhos de arquivos usados como contratos de importação/exportação e seus valores permitidos, termos de ontologia (por exemplo, `...|SGNSTAT:0000034`), nomes científicos, citações, nomes de produtos (Field Book, BrAPI, SecreTary, Primer3, GBrowse) e strings comparadas com respostas do servidor. Quando um rótulo visível também é enviado como valor, o rótulo foi traduzido e o valor original foi mantido em `value=`; nos casos em que isso não era seguro (por exemplo, `CGI::submit('Search','Search')` em `mason/gbrowse/search_box.mas` e os formatos de característica em `mason/chado/cvtermprops.mas`), o texto ficou em inglês.
 
-### Backend Perl (`lib/`) — pendências adicionais identificadas
+### Backend Perl (`lib/`) — histórico das etapas
 
 A tradução das mensagens do backend foi organizada nas seguintes etapas:
 
@@ -32,7 +60,7 @@ A tradução das mensagens do backend foi organizada nas seguintes etapas:
 2. **Controladores (concluída em 29/10/2026):** mensagens de erro, sucesso e aviso das respostas JSON, textos de páginas de erro, rótulos HTML gerados pelo servidor e e-mails enviados aos usuários em 127 arquivos de `lib/SGN/Controller` (exceto os controladores BrAPI). Permanecem em inglês: status e valores comparados pelo JavaScript (por exemplo, os status de tarefas do solGS e a marca `curator warning`), dados gravados no banco (descrições de transações, notas de modificação), cabeçalhos de arquivos baixados, termos de ontologia e nomes de imagens/bandas, comandos R, e-mails internos para a equipe, os e-mails de `Report.pm` (o envio por `CXGN::Contact::send_email` não codifica caracteres não ASCII) e registros de log. Nos erros que incluem `$@` de módulos internos, apenas o prefixo foi traduzido; o texto do módulo será tratado na fase 3.
 3. **Revisão complementar de `lib` (concluída em 29/10/2026):** as 20 pendências inicialmente confirmadas foram traduzidas. A busca ampliada resultou em alterações em **76 módulos**, incluindo páginas de erro, controladores de busca e publicação, formulários legados, BLAST/GWAS, materiais e lotes de sementes, downloads de ensaios, validação de etiquetas, painéis de imagens de drones, visualizações de ensaios, árvores de cruzamentos ODK e notificações do solGS. Os módulos `StoreVCFGenotypes`, `AddPedigrees` e `StorePhenotypes` já tinham as mensagens principais em português e não foram retraduzidos nesta etapa.
 
-**Nova auditoria de 29/10/2026:** foram confirmados mais **21 trechos em 17 arquivos**, registrados em `support_data/translation/pendencias_adicionais_confirmadas.tsv`. Cinco arquivos pertencem à aplicação/formulário: `Biosource.pm`, `Qtl.pm`, `ITAG.pm`, `Bulk/Display.pm` e `forms/primer3/formfu_create.yaml`. Os outros 12 são scripts legados em `cgi-bin`; as mensagens existem no código, mas o uso das rotas CGI na instalação precisa ser verificado. A lista é um conjunto de achados confirmados, não uma contagem exaustiva de todas as pendências. Esta auditoria apenas registrou os trechos e não alterou código.
+**Auditoria de 29/10/2026, encerrada em 02/11/2026:** foram confirmados mais **21 trechos em 17 arquivos**, registrados em `support_data/translation/pendencias_adicionais_confirmadas.tsv`. Cinco arquivos pertencem à aplicação/formulário: `Biosource.pm`, `Qtl.pm`, `ITAG.pm`, `Bulk/Display.pm` e `forms/primer3/formfu_create.yaml`. Os outros 12 são scripts legados em `cgi-bin`; as mensagens existem no código, mas o uso das rotas CGI na instalação precisa ser verificado. A lista é um conjunto de achados confirmados, não uma contagem exaustiva de todas as pendências. A auditoria de 29/10 apenas registrou os trechos. Todos foram traduzidos na revisão de 02/11, descrita acima.
 
 A busca incluiu mensagens que começam por variáveis, textos em minúsculas e formulários externos aos templates Mason. A auditoria do Mason continua com 774 candidatos em 181 arquivos, sem diferença em relação ao relatório anterior; esses candidatos não equivalem a 774 pendências, pois incluem nomes técnicos, dados de integração e falsos positivos. A existência das novas mensagens demonstra que as etapas anteriores não constituem uma comprovação de cobertura integral da tradução.
 
@@ -46,7 +74,7 @@ As notificações do solGS passaram a codificar o assunto como cabeçalho MIME e
 
 A suíte completa com banco de dados e Selenium e a compilação integral dos módulos Catalyst não foram executadas: o carregamento de Moose/Catalyst neste ambiente falha pela ausência de `Data::OptList`. Essa limitação não foi contornada com alterações nas dependências da aplicação.
 
-Alguns testes legados e de Selenium ainda verificam rótulos em inglês de páginas Mason traduzidas em etapas anteriores e precisarão de ajuste: `t/legacy/integration/insilicopcr/index.t`, `t/unit_mech/Controller/personalized_homepage.t`, `t/selenium2/01_list/accession_list_validation_fail.t`, `t/selenium2/search/locus.t`, `t/selenium2/search/people.t`, `t/unit_mech/Controller/Organism/Search.t`, `t/legacy/integration/gem.t`, `t/legacy/integration/phenome/solqtl.t`, `t/legacy/integration/solgs/solgs.t`, `t/legacy/integration/bulk*.t`, `t/legacy/SGN/Controller/Organism.t` e os testes de logout em `t/legacy/integration/solpeople.t` e `t/legacy/integration/solpeople/login.t`. Na revisão inicial, a pilha de dependências Perl não carregava no ambiente local; os módulos completos e as suítes que dependem da aplicação não foram executados. A verificação foi feita por comparação de tokens com o `master`, que confirma que apenas o conteúdo das strings mudou (além da inclusão de `use utf8;`).
+A revisão de 29/10 havia registrado testes legados e de Selenium que verificavam rótulos em inglês de páginas Mason traduzidas: `t/legacy/integration/insilicopcr/index.t`, `t/unit_mech/Controller/personalized_homepage.t`, `t/selenium2/01_list/accession_list_validation_fail.t`, `t/selenium2/search/locus.t`, `t/selenium2/search/people.t`, `t/unit_mech/Controller/Organism/Search.t`, `t/legacy/integration/gem.t`, `t/legacy/integration/phenome/solqtl.t`, `t/legacy/integration/solgs/solgs.t`, `t/legacy/integration/bulk*.t`, `t/legacy/SGN/Controller/Organism.t` e os testes de logout em `t/legacy/integration/solpeople.t` e `t/legacy/integration/solpeople/login.t`. Na revisão de 02/11, foram atualizadas as asserções correspondentes nos testes de página inicial, busca de organismos/pessoas/loci, GEM e logout (`solpeople/login.t`). Os outros testes legados ainda exigem revisão e execução em uma instalação funcional, inclusive porque alguns verificam rotas e campos já alterados antes desta tradução. Na revisão inicial, a pilha de dependências Perl não carregava no ambiente local; os módulos completos e as suítes que dependem da aplicação não foram executados. A verificação foi feita por comparação de tokens com o `master`, que confirma que apenas o conteúdo das strings mudou (além da inclusão de `use utf8;`).
 
 ### Scripts R (`R/`) — concluído
 

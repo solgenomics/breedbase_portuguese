@@ -1,3 +1,4 @@
+use utf8;
 ######################################################################
 #
 #  Displays an editable allele detail page.
@@ -43,7 +44,7 @@ sub define_object {
     my $allele_id = $args{allele_id};
     unless ( !$allele_id || $allele_id =~ m /^\d+$/ ) {
         $self->get_page->message_page(
-            "No allele exists for identifier $allele_id");
+            "Não existe alelo com o identificador $allele_id");
     }
     $self->set_object_id($allele_id);
     $self->set_object(
@@ -105,7 +106,7 @@ sub delete {
         print
 qq { Removed allele "$allele_symbol" association from locus "$locus_name". };
         print
-qq { <a href="/locus/$locus_id/view">back to locus</a> };
+qq { <a href="/locus/$locus_id/view">voltar ao locus</a> };
     }
 
     $self->get_page()->footer();
@@ -123,7 +124,7 @@ qq { <a href="/locus/$locus_id/view">back to locus</a> };
 # $self->delete_dialog("Delete", "Object", 
 #  			     $self->get_primary_key(), 
 #  			     $id,
-#  			     "<a href=\"".$self->get_script_name()."?".$self->get_primary_key()."=".$id."&amp;action=view\">Go back to detail page without deleting</a>");
+#  			     "<a href=\"".$self->get_script_name()."?".$self->get_primary_key()."=".$id."&amp;action=view\">Voltar aos detalhes sem excluir</a>");
 
 
 =cut
@@ -143,7 +144,7 @@ sub delete_dialog {
       . $self->get_script_name() . "?"
       . $self->get_primary_key() . "="
       . $object_id
-      . "&amp;action=view\">Go back to allele page without deleting</a>";
+      . "&amp;action=view\">Voltar à página do alelo sem excluir</a>";
 
     $self->get_page()->header();
 
@@ -154,7 +155,7 @@ sub delete_dialog {
 	<input type="hidden" name="action" value="delete" />
 	<input type="hidden" name="$field_name" value="$object_id" />
 
-	<input type="submit" value="Delete" />
+        <button type="submit" value="Delete">Excluir</button>
 	</form>
 	
 	$back_link
@@ -191,7 +192,7 @@ sub display_page {
     if ( $default_allele eq 't'
         || ( !$allele_id & ( $action eq 'view' || $action eq 'edit' ) ) )
     {
-        $self->get_page->message_page("No allele exists for this identifier");
+        $self->get_page->message_page("Não existe alelo com esse identificador");
     }
 
     if ( $args{locus_id} ) {
@@ -201,7 +202,7 @@ sub display_page {
           ->get_locus_name();
     }
     $self->get_page->header("SGN allele $allele_symbol of locus $locus_name");
-    print page_title_html("Allele:\t'$allele_symbol'\n");
+    print page_title_html("Alelo:\t'$allele_symbol'\n");
 
     my $edit_links = $self->get_edit_links();
 
@@ -218,7 +219,7 @@ sub display_page {
     $allele_html .= qq|<br><b> Allele synonyms: </b>$allele_synonyms|;
     unless ( $self->get_action =~ /new/ ) {
         $allele_html .=
-          qq|<a href="$allele_synonym_link"> [Add/remove] </a> <br><br>|;
+          qq|<a href="$allele_synonym_link"> [Adicionar/remover] </a> <br><br>|;
     }
 
     ###history
@@ -235,7 +236,7 @@ sub display_page {
         $allele_html .= $history_data;
     }
     print info_section_html(
-        title    => 'Allele details',
+        title    => 'Detalhes do alelo',
         contents => $allele_html,
     );
     my $stocks_html = "<TABLE>";
@@ -297,17 +298,17 @@ qq|<a href="/stock/$stock_id/view">$stock_name </a>|;
     {
 
         $stock_subtitle .=
-qq| <a href="javascript:Tools.toggleContent('associateStockForm', 'allele_accessions')">[Associate accession]</a> |;
+qq| <a href="javascript:Tools.toggleContent('associateStockForm', 'allele_accessions')">[Associar acesso]</a> |;
 
         $stocks_html .= $self->associate_stock;
     }
     else {
         $stock_subtitle .=
-          qq|<span class= "ghosted">[Associate accession]</span> |;
+          qq|<span class= "ghosted">[Associar acesso]</span> |;
     }
 
     print info_section_html(
-        title       => 'Associated accessions',
+        title       => 'Acessos associados',
         subtitle    => $stock_subtitle,
         contents    => $stocks_html,
         id          => "allele_accessions",
@@ -321,11 +322,11 @@ qq| <a href="javascript:Tools.toggleContent('associateStockForm', 'allele_access
       $self->get_dbxref_info();
 
     my $new_gb =
-qq|<a href="/chado/add_feature.pl?type=allele&amp;type_id=$allele_id&amp;&amp;refering_page=$page&amp;action=new">[Associate new genbank sequence]</a>|
+qq|<a href="/chado/add_feature.pl?type=allele&amp;type_id=$allele_id&amp;&amp;refering_page=$page&amp;action=new">[Associar nova sequência do GenBank]</a>|
       if $allele_symbol;
 
     print info_section_html(
-        title       => "Sequence annotations ($gb_count)",
+        title       => "Anotações da sequência ($gb_count)",
         subtitle    => $new_gb,
         contents    => $genbank,
         collapsible => 1,
@@ -336,7 +337,7 @@ qq|<a href="../chado/add_publication.pl?type=allele&amp;type_id=$allele_id&amp;&
       if $allele_symbol;
 
     print info_section_html(
-        title       => 'Literature annotation',
+        title       => 'Anotação da literatura',
         subtitle    => $new_pub_link,
         contents    => $pubmed_links,
         collapsible => 1,
@@ -372,13 +373,13 @@ sub generate_form {
       qq|<a href= "/locus/$locus_id/view">$locus_name</a>|;
 
     $self->get_form()->add_label(
-        display_name => "Locus name",
+        display_name => "Nome do locus",
         field_name   => "locus_name",
         contents     => $locus_name,
     );
 
     $self->get_form()->add_field(
-        display_name => "Allele symbol ",
+        display_name => "Símbolo do alelo ",
         field_name   => "allele_symbol",
         object       => $allele,
         getter       => "get_allele_symbol",
@@ -386,7 +387,7 @@ sub generate_form {
         validate     => 'allele_symbol',
     );
     $self->get_form()->add_field(
-        display_name => "Allele name ",
+        display_name => "Nome do alelo ",
         field_name   => "allele_name",
         object       => $allele,
         getter       => "get_allele_name",
@@ -395,7 +396,7 @@ sub generate_form {
     );
 
     $self->get_form()->add_select(
-        display_name       => "Mode of inheritance ",
+        display_name       => "Modo de herança ",
         field_name         => "mode_of_inheritance",
         object             => $allele,
         contents           => $args{mode_of_inheritance},
@@ -406,7 +407,7 @@ sub generate_form {
     );
 
     $self->get_form()->add_textarea(
-        display_name => "Phenotype ",
+        display_name => "Fenótipo ",
         field_name   => "allele_phenotype",
         object       => $allele,
         getter       => "get_allele_phenotype",
@@ -416,7 +417,7 @@ sub generate_form {
     );
 
     $self->get_form()->add_textarea(
-        display_name => "Sequence/mutation ",
+        display_name => "Sequência/mutação ",
         field_name   => "allele_sequence",
         object       => $allele,
         getter       => "get_sequence",
@@ -553,7 +554,7 @@ qq { <a href="$script_name?action=new&amp;locus_id=$locus_id&amp;form=$form_name
         $new_link = qq { <span class="ghosted">[New]</span> };
     }
     if ( $self->get_action() eq "new" ) {
-        $new_link = qq { <a onClick="history.go(-1)">[Cancel]</a> };
+        $new_link = qq { <a onClick="history.go(-1)">[Cancelar]</a> };
     }
     return $new_link;
 }
@@ -620,16 +621,16 @@ sub associate_stock {
     my $associate_html = qq^
 
 <div id="associateStockForm" style="display: none">
-    Accession name:
+    Nome do acesso:
     <input type="text"
            style="width: 50%"
            id="a_name"
            onkeyup="Locus.getStocks(this.value);">
-    <input type="button"
+    <button type="button"
            id="associate_stock_button"
            value="associate accession"
 	   disabled="true"
-           onclick="Locus.associateAllele('$sp_person_id', '$allele_id');this.disabled=true;">
+           onclick="Locus.associateAllele('$sp_person_id', '$allele_id');this.disabled=true;">associar acesso</button>
     <select id="stock_select"
             style="width: 100%"
 	    onchange="Tools.enableButton('associate_stock_button');"

@@ -1,7 +1,8 @@
+use utf8;
 use strict;
 use CXGN::Page;
 my $page=CXGN::Page->new('index.html','html2pl converter');
-$page->header('About The SOL Forum');
+$page->header('Sobre o fórum do SOL');
 print<<END_HEREDOC;
 
 <center>

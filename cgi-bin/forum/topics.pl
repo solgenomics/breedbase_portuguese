@@ -1,3 +1,4 @@
+use utf8;
 
 use strict;
 use CXGN::DB::Connection;
@@ -46,12 +47,12 @@ if ($topic_name) {
 
 $page -> header();
 
-print page_title_html("Forum Topics");
+print page_title_html("Tópicos do fórum");
 
 my $login_string="";
 
-if ($name) { $login_string = qq { <div class="row"><div class="panel panel-primary"><div class="panel-body"><div class="row"><div class="col-sm-10">You are logged in as <b>$name</b>.</div><div class="col-sm-2"><button class="btn btn-primary" onclick='location.href="add_topic.pl?action=new";'>Add topic</button>.</div></div></div></div></div> }; }
-else { $login_string="<div class=\"row\"><div class=\"panel panel-primary\"><div class=\"panel-body\"><div class=\"row\"><div class=\"col-sm-10\"><b>Note:</b> <ul><li>You are not logged in.</li><li>You have to be logged in to add new topics and posts. </li><li>You don't need to be logged in for browsing.</li></ul></div><div class=\"col-sm-2\"><button class=\"btn btn-primary\" onclick='location.href=\"/user/login?goto_url=/forum/topics.pl\";'>Login</button></div></div></div></div></div>"; }
+if ($name) { $login_string = qq { <div class="row"><div class="panel panel-primary"><div class="panel-body"><div class="row"><div class="col-sm-10">Você está conectado como <b>$name</b>.</div><div class="col-sm-2"><button class="btn btn-primary" onclick='location.href="add_topic.pl?action=new";'>Adicionar tópico</button>.</div></div></div></div></div> }; }
+else { $login_string="<div class=\"row\"><div class=\"panel panel-primary\"><div class=\"panel-body\"><div class=\"row\"><div class=\"col-sm-10\"><b>Observação:</b> <ul><li>Você não está conectado.</li><li>É necessário entrar na conta para adicionar tópicos e mensagens. </li><li>Você pode navegar sem entrar na conta.</li></ul></div><div class=\"col-sm-2\"><button class=\"btn btn-primary\" onclick='location.href=\"/user/login?goto_url=/forum/topics.pl\";'>Entrar</button></div></div></div></div></div>"; }
 
 print $login_string;
 
@@ -93,8 +94,8 @@ sub topics_list {
 	    || $user->get_user_type() eq "curator"
 	    ) {   
 	    $append = qq {
-		<a href="add_topic.pl?action=edit&amp;topic_id=$topic_id">Edit</a> | 
-		    <a href="add_topic.pl?action=delete&amp;topic_id=$topic_id">Delete</a> 
+                <a href="add_topic.pl?action=edit&amp;topic_id=$topic_id">Editar</a> |
+                    <a href="add_topic.pl?action=delete&amp;topic_id=$topic_id">Excluir</a>
 		    
 		}
 	}

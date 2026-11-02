@@ -1,4 +1,5 @@
 #!/usr/bin/perl -w
+use utf8;
 
 # This script will print a form so that users may upload a gzipped file of
 # insitu images from an experiment and metadata about that experiment.
@@ -45,16 +46,16 @@ CXGN::Insitu::Toolbar::display_toolbar("Insitu home");
 
 print qq {
     <br /><br /><table summary=""><tr><td><img src="/documents/insitu/insitu_logo.jpg" border="0" alt="" /></td><td width="20">&nbsp;</td><td>
-    The insitu database currently contains:<br />
+    O banco de dados Insitu contém atualmente:<br />
 
 
 	   $experiment_count experiments<br />
 	   $image_count images and <br />
 	   $tag_count tags.<br />
-      	   <a href="/insitu/search.pl?experiment_name=">[Browse]</a><br />
+           <a href="/insitu/search.pl?experiment_name=">[Navegar]</a><br />
 	   <br />
 	   <br />
-          <b>This database is supported by the <a href="http://floralgenome.org">Floral Genome Project</a> funded by the <a href="http://www.nsf.gov/">NSF</a>. <br /></b>
+          <b>Este banco de dados tem o apoio de <a href="http://floralgenome.org">Floral Genome Project</a> financiado por <a href="http://www.nsf.gov/">NSF</a>. <br /></b>
 	 
 	   <br /><br /><br />
 

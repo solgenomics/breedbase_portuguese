@@ -1,4 +1,5 @@
 #!/usr/bin/perl -w
+use utf8;
 
 #Display page by property
 
@@ -19,14 +20,14 @@ my $page = CXGN::Page->new('phenotype', 'Adri');
 
 print "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 transitional//EN\" \"http://www.w3.org/tr/xhtml1/DTD/xhtml1-transitional.dtd\">";
 
-$page->header("Plants By Property");
+$page->header("Plantas por propriedade");
 
 print <<EOF
 
 <table summary="" width="100%" cellpadding="0" cellspacing="10" border="0">
 
 <tr><td>
-<center><h3><u>Plants By Property</u></h3></center>
+<center><h3><u>Plantas por propriedade</u></h3></center>
 </td></tr>
 
 EOF
@@ -39,10 +40,10 @@ my $prop_name;
   my $param_list = "pop_id=$pop_id"."&amp;"."pop_name=$pop_name"."&amp;"."prop_id=$prop_id"."&amp;"."prop_name=$prop_name";
   my $prev_page = "property";
 print "<tr><td>";
-print "<b><u>Property Information</u></b>";
+print "<b><u>Informações da propriedade</u></b>";
 print "<ul>";
   print "<li>Population: <a href=\"population.pl?pop_id=$pop_id\"><b>$pop_name</b></a></li>";
-  print "<li>Property Name: <b>$prop_name</b> (<a href=\"display_prop_list.pl?prev_page=$prev_page"."\&amp;"."$param_list\">Property Descriptions</a>)</li>";
+  print "<li>Nome da propriedade: <b>$prop_name</b> (<a href=\"display_prop_list.pl?prev_page=$prev_page"."\&amp;"."$param_list\">Property Descriptions</a>)</li>";
 print "</ul>";
 print "</td></tr>\n";
 
@@ -52,7 +53,7 @@ print "</td></tr>\n";
   if (@plant_info_by_location) {
 
     print "<tr><td width=\"100%\">";
-    print "<b><u>Plants with the Selected Property and Population</u></b>";
+    print "<b><u>Plantas com a propriedade e a população selecionadas</u></b>";
     print "</td></tr>\n";
 
     for (my $i=1; $i<@plant_info_by_location; $i++) {

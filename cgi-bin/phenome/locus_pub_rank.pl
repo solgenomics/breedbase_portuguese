@@ -1,4 +1,5 @@
 #!/usr/bin/perl/
+use utf8;
 
 use strict;
 use warnings;
@@ -69,10 +70,10 @@ foreach(sort  { $locus_pub_ranks->{$b} <=>  $locus_pub_ranks->{$a} } keys %$locu
 	<option value="yes">yes</option>
 	<option value="maybe">maybe</option>
 	</select>
-	<input type="button"
+        <button type="button"
 	id="associate_pub_button"
 	value="associate publication"
-	onclick="Locus.addLocusDbxref('$locus_id', '$dbxref_id');this.disabled=false;">
+        onclick="Locus.addLocusDbxref('$locus_id', '$dbxref_id');this.disabled=false;">associar publicação</button>
 	</div>
 	</div>
 	<BR>
@@ -94,22 +95,22 @@ foreach(sort  { $locus_pub_ranks->{$b} <=>  $locus_pub_ranks->{$a} } keys %$locu
 }
 
 
-print info_section_html(title   => 'Suggested publication list',
+print info_section_html(title   => 'Lista de publicações sugeridas',
 			contents => $pubs,
 			);
 
-print info_section_html(title   => 'Associated publications',
-			subtitle =>'(these publications are already linked with the locus, but were not validated by a curator)',
+print info_section_html(title   => 'Publicações associadas',
+                        subtitle =>'(estas publicações já estão vinculadas ao locus, mas ainda não foram validadas por um curador)',
 			contents => $a_pubs,
 			);
 
-print info_section_html(title   => 'Validated publications',
+print info_section_html(title   => 'Publicações validadas',
 			contents => $val_pubs,
 			    );
-print info_section_html(title   => 'Pending publications',
+print info_section_html(title   => 'Publicações pendentes',
 			contents => $pending_pubs,
 			    );
-print info_section_html(title   => 'Rejected publications',
+print info_section_html(title   => 'Publicações rejeitadas',
 			contents => $rej_pubs,
 			    );
 
@@ -117,6 +118,6 @@ print info_section_html(title   => 'Rejected publications',
 $page->simple_footer();
 
 print <<EOF;
-<a href="javascript:window.close();">Close This Window</a>
+<a href="javascript:window.close();">Fechar esta janela</a>
 EOF
 

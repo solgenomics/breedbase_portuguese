@@ -1,3 +1,4 @@
+use utf8;
 use strict;
 use warnings;
 
@@ -105,7 +106,7 @@ if(-d $ftp_path ) {
 	 '</center>',
        );
 } else {
-  print '<center>Sorry, this page is temporarily unavailable.</center>';
+  print '<center>Esta página está temporariamente indisponível.</center>';
 }
 
 $page->footer;

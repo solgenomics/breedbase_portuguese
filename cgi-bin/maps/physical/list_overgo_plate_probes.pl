@@ -1,4 +1,5 @@
 #!/usr/bin/perl -w
+use utf8;
 
 #  This is a script to list all the probes used in the wells of
 #  an overgo plate.
@@ -93,7 +94,7 @@ print page_title_html(qq|Overgo probes on <a href="$baclist_page$plate_no">plate
 
 print <<EOHTML;
 <p>
-Markers which have been successfully and <a href=\"/maps/physical/overgo_process_explained.pl#plausible\">plausibly</a> matched to BACs are displayed against a <span style='background-color:$sgnblue'><b>blue</b></span> background with the number of BACs matched listed in parentheses.  Markers that are unmatched or not plausibly matched are displayed against a <b>white</b> background.
+Marcadores que foram associados com sucesso e <a href=\"/maps/physical/overgo_process_explained.pl#plausible\">plausibly</a> a BACs são exibidos sobre um <span style='background-color:$sgnblue'><b>blue</b></span> fundo com o número de BACs correspondentes entre parênteses. Marcadores sem correspondência ou sem correspondência plausível são exibidos sobre um <b>white</b> background.
 </p>
 
 <table summary="" border="2" align="center" width="$plate_width">
@@ -112,12 +113,12 @@ while ($row ne $last_row) {
 }
 print "</table><br /><br />\n";
 
-print info_section_html(title => 'Related Pages', contents => <<EOHTML);
+print info_section_html(title => 'Páginas relacionadas', contents => <<EOHTML);
 <ul>
 <li><a href="$baclist_page$plate_no">List all BACs which matched plate $plate_no</a></li>
-<li><a href="$overgo_stats_page">Overview of all processed Overgo plates.</a></li>
-<li><a href="$overgo_process_page">About the Overgo Plating process</a></li>
-<li><a href="$physical_map_page">Overview of the Physical map</a></li>
+<li><a href="$overgo_stats_page">Visão geral de todas as placas de overgo processadas.</a></li>
+<li><a href="$overgo_process_page">Sobre o processo de placas de overgo</a></li>
+<li><a href="$physical_map_page">Visão geral do mapa físico</a></li>
 </ul>
 EOHTML
 $page->footer;
@@ -147,24 +148,24 @@ sub list_all_plates ($) {
 
     # Throw an error if no pages are found.
     if (@plates == 0) {
-	$page->error_page("No overgo plates found in the physical database.\n");
+        $page->error_page("Nenhuma placa de overgo encontrada no banco de dados físico.\n");
     }
 
     # Print the page.
     $page->header("Overgo plates on SGN");
     print "<center><h2>Overgo plates on SGN</h2></center>\n";
-    print "\nThis is a complete list of the \"designs\" (that is to say, the probe placements) of the overgo plates involved in SGN's <a href=\"$overgo_process_page\">Physical mapping project</a>.  The links below reveal the designs of the individual plates, as well as how many BACs have been successfully <i>anchored</i> against them.\n";
+    print "\nThis is a complete list of the \"designs\" (that is to say, the probe placements) of the overgo plates involved in SGN's <a href=\"$overgo_process_page\">Physical mapping project</a>. Os links abaixo mostram os desenhos de cada placa e quantos BACs foram associados com sucesso <i>anchored</i> against them.\n";
     print "\n<table summary=\"\" border=\"0\" width=\"80%\" align=\"center\">\n<tr>\n";
     print "<td width=\"50%\" align=\"center\"><b>Overgo probe plate</b></td>\n";
-    print "<td width=\"50%\" align=\"center\"><b>Number of probes on plate</b></td>\n";
+    print "<td width=\"50%\" align=\"center\"><b>Número de sondas na placa</b></td>\n";
     print "</tr>\n";
     print @plates;
     print "</table>\n";
     print "\n<center>\n";
     print "<h3>Links</h3>\n";
-    print "\n<a href=\"$overgo_process_page\">Explanation of the overgo plating process</a><br />\n";
-    print "\n<a href=\"$physical_map_page\">Overview of the tomato physical map</a><br />\n";
-    print "\n<a href=\"$overgo_stats_page\">View the progress of the overgo plating project</a><br />\n";
+    print "\n<a href=\"$overgo_process_page\">Explicação do processo de placas de overgo</a><br />\n";
+    print "\n<a href=\"$physical_map_page\">Visão geral do mapa físico do tomate</a><br />\n";
+    print "\n<a href=\"$overgo_stats_page\">Visualizar o progresso do projeto de placas de overgo</a><br />\n";
     print "</center>\n";
     $page->footer;
     exit;

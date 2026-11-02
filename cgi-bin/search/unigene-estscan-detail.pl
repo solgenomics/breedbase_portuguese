@@ -1,4 +1,5 @@
 #!/usr/bin/perl -w
+use utf8;
 use strict;
 use CXGN::Page;
 use CXGN::Page::FormattingHelpers qw/  page_title_html
@@ -10,7 +11,7 @@ use CXGN::Transcript::Unigene;
 use CXGN::Transcript::CDS;
 use Bio::Seq;
 
-my $page = CXGN::Page->new( "ESTScan Details", "Chenwei Lin");
+my $page = CXGN::Page->new( "Detalhes do ESTScan", "Chenwei Lin");
 my ($unigene_id) = $page->get_encoded_arguments("unigene_id");
 
 
@@ -61,12 +62,12 @@ my $note_content = <<EOH;
 EOH
 
 $page->header();
-print page_title_html("ESTScan Details for Unigene SGN-U$unigene_id");
+print page_title_html("Detalhes do ESTScan para o unigene SGN-U$unigene_id");
 print blue_section_html('Score','<table width="100%" cellpadding="0" cellspacing="0" border="0">'.$score_content.'</table>');
 print blue_section_html('Direction', '<table width="100%" cellpadding="0" cellspacing="0" border="0">'.$direction_content.'</table>');
-print blue_section_html('Predicted Peptide Sequence','<table width="100%" cellpadding="0" cellspacing="0" border="0">'.$estscan_pep_content.'</table>');
-print blue_section_html('Predicted Coding Sequence','<table width="100%" cellpadding="0" cellspacing="0" border="0">'.$estscan_clean_cds_content.'</table>');
-print blue_section_html('Edits in Original Sequence','<table width="100%" cellpadding="0" cellspacing="0" border="0">'.$estscan_edit_cds_content.'<tr><td>'. $note_content.'</td></tr>'.'</table>');
+print blue_section_html('Sequência peptídica prevista','<table width="100%" cellpadding="0" cellspacing="0" border="0">'.$estscan_pep_content.'</table>');
+print blue_section_html('Sequência codificante prevista','<table width="100%" cellpadding="0" cellspacing="0" border="0">'.$estscan_clean_cds_content.'</table>');
+print blue_section_html('Edições na sequência original','<table width="100%" cellpadding="0" cellspacing="0" border="0">'.$estscan_edit_cds_content.'<tr><td>'. $note_content.'</td></tr>'.'</table>');
 
 
 $page->footer();
@@ -77,7 +78,7 @@ sub empty_search {
 
   print <<EOF;
   <br />
-  <b>No unigene search criteria specified</b>
+  <b>Nenhum critério informado para a busca de unigenes</b>
 
 EOF
 

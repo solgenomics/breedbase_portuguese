@@ -1,4 +1,5 @@
 #!/usr/bin/perl -w
+use utf8;
 use strict;
 use CXGN::Page;
 use CXGN::DB::Connection;
@@ -15,13 +16,13 @@ use CXGN::Cookie;
 # POST to the receiving site. Users without javascript enabled will see the
 # intermediate page and have to click the submit button manually.
 our ($dbh, $check_q);
-our $page = CXGN::Page->new("Clone Shopping Cart","Koni");#cleaned up by john 23Dec2005
+our $page = CXGN::Page->new("Carrinho de clones","Koni");#cleaned up by john 23Dec2005
 $dbh = CXGN::DB::Connection->new();
 $check_q = $dbh->prepare("SELECT order_routing_id from clone LEFT JOIN library USING (library_id) where clone_name=?");
 my $cart_contents = CXGN::Cookie::get_cookie("CloneCart");
 if (!$cart_contents) 
 {
-    $page->error_page('Cannot route order because shopping cart is empty.');
+    $page->error_page('Não é possível encaminhar o pedido porque o carrinho está vazio.');
     #$cart_contents = "";
 }
 my %cookie_clones;
@@ -93,11 +94,11 @@ else
         print <<END_HTML;
 <p />
 <table summary="" cellpadding="2" cellspacing="2" align="center" width="80%" border="0">
-<tr><td>This page should automatically route your order to the ordering facility. If you are seeing this page, your browser may not support the javascript commands which automate the order submission. Simply click the button below in that case.</td></tr>
+<tr><td>Esta página deve encaminhar automaticamente o pedido ao fornecedor. Se você estiver vendo esta mensagem, seu navegador talvez não ofereça suporte aos comandos JavaScript usados no envio automático. Nesse caso, clique no botão abaixo.</td></tr>
 <tr><td>
 <form name="auto-routing-form" method="post" action="http://ted.bti.cornell.edu/cgi-bin/TFGD/order/order.cgi?order_clones=$order_clones&item=clone">
 <input type="hidden" name="clone" value="$order_clones">
-<input type="submit" value="Submit Order">
+<button type="submit" value="Submit Order">Enviar pedido</button>
 </td></tr>
 </table>
 <script language="javascript" type="text/javascript">
@@ -112,6 +113,6 @@ END_HTML
     }
     else 
     {
-        $page->error_page("Clone order sent to unknown routing id \"$routing_id\" ($!)");
+        $page->error_page("Pedido de clone enviado ao ID de encaminhamento desconhecido \"$routing_id\" ($!)");
     }
 }

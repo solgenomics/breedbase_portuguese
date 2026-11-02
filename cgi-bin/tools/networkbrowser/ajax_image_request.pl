@@ -1,3 +1,4 @@
+use utf8;
 
 use strict;
 use warnings;
@@ -37,7 +38,7 @@ $b->build_graph();
 
 my $ref_node = $b->get_node("$name");
 if (!$ref_node) { 
-    print "Content-Type: text/xml\n\n<ajax><error>The node selected is not defined</error></ajax>";
+    print "Content-Type: text/xml\n\n<ajax><error>O nó selecionado não está definido</error></ajax>";
     exit();
 }
 

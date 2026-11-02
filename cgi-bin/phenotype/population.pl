@@ -1,4 +1,5 @@
 #!/usr/bin/perl -w
+use utf8;
 
 #Main Page for Phenotypic Database
 
@@ -70,7 +71,7 @@ if ($#populations > 0) {
   print "</select>";
   print "</td>";
   print "<td valign=\"top\" align=\"right\">";
-  print "<input type=\"submit\" value=\"Change Population\" />";
+  print "<button type=\"submit\" value=\"Change Population\">Alterar população</button>";
   print "<br />";
   print "</form>";
   print "</td></tr></table>";
@@ -92,13 +93,13 @@ print <<EOF
 <form action="/phenotype/display_plants_from_genotype.pl" method="get">
 <table summary="" width="100%" cellpadding="0" cellspacing="0" border="0">
 <tr><td>
-<b><u>Search By GENOTYPES</u></b>
+<b><u>Buscar por GENÓTIPOS</u></b>
 </td></tr>
 <tr><td>
-Below is a list of all <b>genotypes</b> in the selected population above - selecting a genotype will take you to a page of plants with the selected genotype.  This new page will have links to all images and data of these plants:
+Abaixo está uma lista de todos os <b>genótipos</b> na população selecionada acima. Ao selecionar um genótipo, você verá as plantas correspondentes e os links para suas imagens e dados:
 </td></tr>
 <tr><td valign="top" align="left">
-Genotypes in <b>$current_pop_name</b>:
+Genótipos em <b>$current_pop_name</b>:
 <select name="gen_id">
 
 EOF
@@ -114,7 +115,7 @@ print <<EOF
 <input type="hidden" name="pop_name" value="$current_pop_name" />
 </td>
 <td valign="top" align="right">
-<input type="submit" value="get Plants by Genotype" />
+<button type="submit" value="get Plants by Genotype">Obter plantas por genótipo</button>
 </td></tr>
 </table>
 </form>
@@ -132,13 +133,13 @@ print<<EOF
 <form action="/phenotype/display_plants_from_property.pl" method="get">
 <table summary="">
 <tr><td>
-<b><u>Search By PROPERTIES</u></b> (<a href="display_prop_list.pl?pop_id=$current_pop_id&amp;pop_name=$current_pop_name_2">Property Descriptions</a>)
+<b><u>Buscar por PROPRIEDADES</u></b> (<a href="display_prop_list.pl?pop_id=$current_pop_id&amp;pop_name=$current_pop_name_2">Property Descriptions</a>)
 </td></tr>
 
 EOF
 ;
 
-print "<tr><td>Below is a list of all <b>properties</b> measured in the selected population above - selecting a property will take you to a page of plants with the selected property measured.  This new page will have links to each plant's sample data and images:</td></tr>";
+print "<tr><td>Abaixo está uma lista de todos os <b>properties</b> medidas na população selecionada acima. Ao selecionar uma propriedade, você verá as plantas com essa propriedade medida e os links para os dados e as imagens de suas amostras:</td></tr>";
 
 print "<tr><td width=\"100%\" valign=\"top\" align=\"left\">";
 print "Properties in <b>$current_pop_name</b>:";
@@ -163,7 +164,7 @@ print <<EOF
 <input type="hidden" name="pop_name" value="$current_pop_name" />
 </td>
 <td width="100%" valign="top" align="right">
-<input type="submit" value="get Plants by Property" />
+<button type="submit" value="get Plants by Property">Obter plantas por propriedade</button>
 </td></tr>
 </table>
 </form>
@@ -178,12 +179,12 @@ print <<EOF
 </td></tr>
 <tr><td>
   <dl>
-  <dt><b>Population</b></dt>
-  <dd>all the organisms that constitute a specific group or occur in a specified location</dd>
-  <dt><br /><b>Genotype</b></dt>
-  <dd>a group of organisms sharing a specific genetic constitution</dd>
-  <dt><br /><b>Property/Phenotype</b></dt>
-  <dd>the observable physical or biochemical characteristics of an organism, as determined by both genetic makeup and environmental influences</dd>
+  <dt><b>População</b></dt>
+  <dd>todos os organismos que constituem um grupo ou ocorrem em um local específico</dd>
+  <dt><br /><b>Genótipo</b></dt>
+  <dd>grupo de organismos com uma constituição genética específica</dd>
+  <dt><br /><b>Propriedade/Fenótipo</b></dt>
+  <dd>características físicas ou bioquímicas observáveis de um organismo, determinadas pela constituição genética e pelas influências ambientais</dd>
   </dl>
 
 </td></tr>

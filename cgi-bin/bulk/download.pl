@@ -1,3 +1,4 @@
+use utf8;
 use CatalystX::GlobalContext qw( $c );
 # refactored bulk download script for SGN database
 # Alexander Naydich and Matthew Crumb (interns)
@@ -218,13 +219,13 @@ sub get_parameters {
 
 sub post_only {
   my ($page) = @_;
-  $page->error_page('This page can only accept HTTP POST requests. Please go to <a href="input.pl">Bulk Download</a> to make your selections.');
+  $page->error_page('Esta página só aceita requisições HTTP POST. Acesse <a href="input.pl">Download em massa</a> para fazer suas seleções.');
 }
 
 sub _invalid_params {
     $c->throw(
-        title    => "An Error has occured",
-        message  => "ID Type must be provided",
+        title    => "Ocorreu um erro",
+        message  => "É necessário informar o tipo de ID",
         notify   => 0,
         is_error => 0,
     );

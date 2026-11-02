@@ -1,4 +1,5 @@
 #!/usr/bin/perl -w
+use utf8;
 
 #Display page by property
 
@@ -27,14 +28,14 @@ my $page = CXGN::Page->new('phenotype', 'Adri');
 
 print "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 transitional//EN\" \"http://www.w3.org/tr/xhtml1/DTD/xhtml1-transitional.dtd\">";
 
-$page->header("Image and Data");
+$page->header("Imagem e dados");
 
 print <<EOF
 
 <table summary="" width="100%" cellpadding="0" cellspacing="10" border="0">
 
 <tr><td colspan="5">
-<center><h3><u>Image and Data</u></h3></center>
+<center><h3><u>Imagem e dados</u></h3></center>
 </td></tr>
 
 EOF
@@ -46,12 +47,12 @@ if ($filepath) {
 
 #plant info
 print "<tr><td>";
-print "<b><u>Image Information</u></b>\n";
+print "<b><u>Informações da imagem</u></b>\n";
 print "<ul>\n";
 print "<li>Population: <a href=\"population.pl?pop_id=$pop_id\"><b>$pop_name</b></a></li>\n";
-print "<li>Genotype Group: <a href=\"display_plants_from_genotype.pl?pop_id=$pop_id\&amp;pop_name=$pop_name\&amp;gen_id=$gen_id\"><b>$gen_name</b></a></li>\n";
-print "<li>Plant Name: <a href=\"display_samples_from_plant.pl?pop_id=$pop_id\&amp;pop_name=$pop_name\&amp;gen_id=$gen_id\&amp;gen_name=$gen_name\&amp;plant_name=$plant_name\&amp;plant_id=$plant_id\&amp;institution=$institution\&amp;environment=$environment\&amp;year=$year\"><b>$plant_name</b></a></li>\n";
-print "<li>Location: <b> $institution $environment $year</b></li>\n";
+print "<li>Grupo de genótipos: <a href=\"display_plants_from_genotype.pl?pop_id=$pop_id\&amp;pop_name=$pop_name\&amp;gen_id=$gen_id\"><b>$gen_name</b></a></li>\n";
+print "<li>Nome da planta: <a href=\"display_samples_from_plant.pl?pop_id=$pop_id\&amp;pop_name=$pop_name\&amp;gen_id=$gen_id\&amp;gen_name=$gen_name\&amp;plant_name=$plant_name\&amp;plant_id=$plant_id\&amp;institution=$institution\&amp;environment=$environment\&amp;year=$year\"><b>$plant_name</b></a></li>\n";
+print "<li>Local: <b> $institution $environment $year</b></li>\n";
 print "</ul>\n";
 print "</td></tr>\n";
 
@@ -65,7 +66,7 @@ print "<tr><td>\n";
 
 #table for image
 print "<table summary=\"\">\n";
-print "<tr><td>\n<b><u>Display Image</u></b>\n</td></tr>\n";
+print "<tr><td>\n<b><u>Exibir imagem</u></b>\n</td></tr>\n";
 
   print "<tr><td>\n<br />";
 
@@ -86,7 +87,7 @@ print "<tr><td>\n<b><u>Display Image</u></b>\n</td></tr>\n";
 
   #zipped copy for download
   print "<br /><br />\n";
-  print "<center><b>Note</b>: this is not the original image;<br />";
+  print "<center><b>Note</b>: esta não é a imagem original;<br />";
   if (system ("ls " . $gen_image_dir . "zips/" . $filepath . ".gz") == 0) {
     print "<a href=\"$gen_image_dir/zips/" .$filepath . ".gz\">";
     print "download";
@@ -105,7 +106,7 @@ print "</td>\n";
 print <<EOF
 <td valign="top">
 <table summary="" width="100%" cellpadding="0" cellspacing="0" border="0">
-<tr><td align="center"><b><u>All Data For Image</u></b></td></tr>
+<tr><td align="center"><b><u>Todos os dados da imagem</u></b></td></tr>
 
 <tr><td>
 <img src="/documents/img/dot_clear.gif" alt="" width="220" height="1" />
@@ -116,8 +117,8 @@ print <<EOF
 <table summary="" border="1" width="100%">
 <tr>
 <td width="33%"><center><b>PROPERTY</b></center></td>
-<td width="33%"><center><b>SAMPLE</b></center></td>
-<td width="33%"><center><b>VALUE</b></center></td>
+<td width="33%"><center><b>AMOSTRA</b></center></td>
+<td width="33%"><center><b>VALOR</b></center></td>
 </tr>
 EOF
 ;
@@ -153,7 +154,7 @@ my %dp_value_by_prop_and_sample_name = CXGN::DB::PhenoPopulation::get_dp_info_fr
 	print "<td><center>$dp_value</center></td>\n";
       }
       else {
-	print "<td><center>Not Available</center></td>\n";
+        print "<td><center>Indisponível</center></td>\n";
       }
 
       print "</tr>\n";

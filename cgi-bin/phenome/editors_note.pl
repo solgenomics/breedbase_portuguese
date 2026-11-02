@@ -1,3 +1,4 @@
+use utf8;
 use strict;
 
 
@@ -15,24 +16,24 @@ my $page = CXGN::Page->new();
 
  $page->header();
 
-print page_title_html ('Note to Locus Editors');
-my $annotation_link = qq | <a href="http://docs.google.com/View?docid=ddhncntn_0cz2wj6">annotation guidelines</a> |;
+print page_title_html ('Nota aos editores de loci');
+my $annotation_link = qq | <a href="http://docs.google.com/View?docid=ddhncntn_0cz2wj6">orientações de anotação</a> |;
 
-print  "<b>Locus editors</b> are experts with a research focus, and generally authors, on the locus. If you are interested in becoming an editor for a locus,  please make a request by clicking the 'Request editor privileges' link under the 'Locus details' subsection of the locus page.<br />
+print  "<b>Editores de loci</b> são especialistas e geralmente autores de pesquisas sobre o locus. Para se tornar editor de um locus, clique em Solicitar permissão de edição na subseção Detalhes do locus da página correspondente.<br />
 <br>&nbsp;<br />
- <b>Editors:</b><br/>
+ <b>Editores:</b><br/>
 
-    \t* have the privilege to edit the contents of the locus page.<br />
-     \t* can add data on the locus page as new knowledge on the locus emerges. Each subsection on the locus page can be modified by clicking the edit/annotation links .<br />
-    \t* initiate discussion on accuracy of data submitted by other editors, submitters and SGN curators.<br />
-   \t* can suggest ideas to in-house curators on improving the data display, annotation tools, additional subsections etc.<br />
-   \t* can create new webpages for their newly identified and documented loci.<br />
-   \t* can list all relevant publications on their locus of interest.<br />
+    \t* têm permissão para editar o conteúdo da página do locus.<br />
+     \t* podem adicionar dados à página conforme surgem novos conhecimentos sobre o locus. Cada subseção pode ser modificada pelos links de edição/anotação.<br />
+    \t* iniciam discussões sobre a precisão dos dados enviados por editores, colaboradores e curadores do SGN.<br />
+   \t* podem sugerir à equipe de curadoria melhorias na exibição dos dados, nas ferramentas de anotação e nas subseções.<br />
+   \t* podem criar páginas para loci recém-identificados e documentados.<br />
+   \t* podem listar as publicações relevantes sobre o locus de interesse.<br />
 <br>&nbsp;<br />
- <b>Reference</b> on how to annotate a locus can be found here: $annotation_link.<br />
+ <b>Referência</b> sobre como anotar um locus está disponível aqui: $annotation_link.<br />
 
 <br>&nbsp;<br />
-<b>Contact</b> SGN staff by emailing to <a href=mailto:sgn-feedback\@sgn.cornell.edu>sgn-feedback\@sgn.cornell.edu</a> <br />";
+<b>Contato</b> SGN staff by emailing to <a href=mailto:sgn-feedback\@sgn.cornell.edu>sgn-feedback\@sgn.cornell.edu</a> <br />";
 
 
 $page->footer();

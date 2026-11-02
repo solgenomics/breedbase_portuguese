@@ -1,3 +1,4 @@
+use utf8;
 
 use strict;
 use CGI ();
@@ -48,14 +49,14 @@ if ($args{action} =~/new|upload/i ) {
     $user =  CXGN::People::Person->new(CXGN::Login->new()->verify_session());
     $user_id= $user->get_sp_person_id();
     if ($user->get_user_type() !~ /curator|submitter/) { 
-	$page->message_page("You do not have sufficient privileges to upload images. You need an account of type 'submitter'. Please contact SGN to change your account type. Sorry.");
+        $page->message_page("Você não tem permissão para enviar imagens. É necessária uma conta do tipo 'submitter'. Entre em contato com o SGN para alterar o tipo da sua conta.");
     }
 }
 
 if (!exists($args{experiment_id}) || !defined($args{experiment_id})) { 
     my $page = CXGN::Page->new();
 
-    $page->error_page("Need an experiment_id to add image.");
+    $page->error_page("É necessário informar experiment_id para adicionar uma imagem.");
 }
 
 # create an new image object and go through the different 
@@ -74,7 +75,7 @@ elsif ($args{action} eq "upload") {
 }    
 else { 
     my $page = CXGN::Page->new();
-    $page->error_page("No recognized action defined.");
+    $page->error_page("Nenhuma ação reconhecida foi definida.");
 }
 
 sub upload { 
@@ -98,11 +99,11 @@ sub upload {
 	my $experiment_id = $image->get_experiment_id();
 	my $page = CXGN::Page->new();
 	$page->header();
-	print "The following file was uploaded: <br />";
+        print "O seguinte arquivo foi enviado: <br />";
 	
 	print $image->get_img_src_tag();
 	
-	print qq { <br /><br />Return to <a href="experiment.pl?experiment_id=$experiment_id">experiment</a> };
+        print qq { <br /><br />Voltar ao <a href="experiment.pl?experiment_id=$experiment_id">experimento</a> };
 
 
 	$page->footer();
@@ -113,7 +114,7 @@ sub upload {
     }
     else { 
 	my $page = CXGN::Page->new();
-	$page->error_page("A freakin error occurred!"); 
+        $page->error_page("Ocorreu um erro.");
     }
    
 }
@@ -130,7 +131,7 @@ sub add_dialog {
     
     $page->header();
 
-    page_title_html("<a href=\"/insitu\">Insitu</a> Add Image" );
+    page_title_html("<a href=\"/insitu\">Insitu</a> Adicionar imagem" );
 
     foreach my $k (keys %args) { 
 	#print "$k, $args{$k}<br />\n";
@@ -138,13 +139,13 @@ sub add_dialog {
 
     print qq { 
 	<form action="add_image.pl" method="post" enctype="multipart/form-data" >
-	    Upload an image for experiment "$experiment_name": 
-	    [<a href="experiment.pl?experiment_id=$experiment_id&amp;action=edit">Cancel</a>]<br /><br />
+            Envie uma imagem para o experimento "$experiment_name":
+            [<a href="experiment.pl?experiment_id=$experiment_id&amp;action=edit">Cancelar</a>]<br /><br />
 	    
-	    <input type="file" name="upload_file" value="Choose image file" />
+            <input type="file" name="upload_file" value="Escolher arquivo de imagem" />
 	    <input type="hidden" name="action" value="upload" />
 	    <input type="hidden" name="experiment_id" value="$experiment_id" />
-	    <input type="submit" value="Upload" />
+            <input type="submit" value="Enviar" />
 	 </form>
 	};
     $page->footer();

@@ -33,7 +33,7 @@ results and returns the appropriate URL for going to that page of results
 
 <div class="container-fluid">
 
-<& /page/page_title.mas, title => 'Organismo/Procura Taxônica' &>
+<& /page/page_title.mas, title => 'Buscar organismos e táxons' &>
 
 <style>
 #organism_search_form .checkboxgroup span span {
@@ -67,7 +67,7 @@ div.paginate_nav {
                               subtitle => 'Resultados '
                                           .$pager->first
                                           .'-'.$pager->last
-                                          .' of '.Number::Format->new->format_number($pager->total_entries)
+                                          .' de '.Number::Format->new->format_number($pager->total_entries)
    &>
 
   <div class="well">
@@ -104,7 +104,7 @@ div.paginate_nav {
 <center>
 <div style="width:400px">
   <div class="panel panel-info">
-    <div class="panel-heading">Espécie Popular</div>
+    <div class="panel-heading">Espécies populares</div>
     <div class="panel-body" style="overflow:hidden">
       <& /homepage/popular_species.mas, show_link => 0 &>
     </div>

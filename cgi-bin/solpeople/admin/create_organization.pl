@@ -1,4 +1,5 @@
 #!/usr/bin/perl -w
+use utf8;
 use strict;
 use warnings;
 
@@ -39,12 +40,12 @@ if($logged_in_user_type eq 'curator')
         print <<END_HTML;
         <form method="post" action="">
         <table cellpadding="2" cellspacing="2" width="100%" align="center">
-        <tr><td colspan="2"><b>Curators may use this form to create organizations.<br />&nbsp;</b></td></tr>
-        <tr><td>Organization name</td><td><input type="text" name="organization_name" size="30" value=""></td></tr>
-        <tr><td>Short name</td><td><input type="text" name="short_name" size="30" value=""></td></tr>
+        <tr><td colspan="2"><b>Curadores podem usar este formulário para criar instituições.<br />&nbsp;</b></td></tr>
+        <tr><td>Nome da instituição</td><td><input type="text" name="organization_name" size="30" value=""></td></tr>
+        <tr><td>Nome abreviado</td><td><input type="text" name="short_name" size="30" value=""></td></tr>
         <tr><td>&nbsp;</td></tr>
-        <tr><td colspan="2" align="center"><input type="submit" name="create_organization" value="Create organization"></td></tr>
-        <tr><td colspan="2" align="center"><input type="reset" name="Clear" value="Clear form"></td></tr>
+        <tr><td colspan="2" align="center"><button type="submit" name="create_organization" value="Create organization">Criar instituição</button></td></tr>
+        <tr><td colspan="2" align="center"><button type="reset" name="Clear" value="Clear form">Limpar formulário</button></td></tr>
         </table>
         <br />
 END_HTML

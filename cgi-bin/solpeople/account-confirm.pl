@@ -1,4 +1,5 @@
 #!/usr/bin/perl -w
+use utf8;
 use strict;
 use warnings;
 
@@ -18,7 +19,7 @@ if ( !$sp ) {
 }
 
 if ( !$sp->get_confirm_code() ) {
-    confirm_failure($page, "No confirmation is required for user <b>$username</b>. This account has already been confirmed. <p><a href='/user/login?goto_url=%2F'>[Login Page]</a></p>");
+    confirm_failure($page, "No confirmation is required for user <b>$username</b>. Esta conta já foi confirmada. <p><a href='/user/login?goto_url=%2F'>[Página de entrada]</a></p>");
 }
 
 if ( $sp->get_confirm_code() ne $confirm_code ) {
@@ -35,9 +36,9 @@ $page->header();
 
 print <<EOF;
 
-<p>Confirmation successful for username <b>$username</b>.</p>
+<p>Confirmação concluída para o usuário <b>$username</b>.</p>
 
-<p><a href="/user/login?goto_url=%2F">[Login Page]</a></p>
+<p><a href="/user/login?goto_url=%2F">[Página de entrada]</a></p>
 <br />
 
 EOF
@@ -51,7 +52,7 @@ sub confirm_failure {
 
     print <<EOF;
 
-  <p>Sorry, we are unable to process this confirmation request. Please check that your complete confirmation URL has been pasted correctly into your browser.</p>
+  <p>Não foi possível processar esta solicitação de confirmação. Confira se a URL completa de confirmação foi colada corretamente no navegador.</p>
 
   <p><b>Reason:</b> $reason</p>
 

@@ -1,3 +1,4 @@
+use utf8;
 
 use strict;
 use warnings;
@@ -138,7 +139,7 @@ sub generate_form {
 	    );
     }
     $form->add_field(
-        display_name => "Gene family name",
+        display_name => "Nome da família gênica",
         field_name   => "locusgroup_name",
         id           => "locusgroup_name",
         object       => $locusgroup,
@@ -147,7 +148,7 @@ sub generate_form {
         validate     => 'string',
         );
     $form->add_label(
-        display_name => "Relationship",
+        display_name => "Relação",
         field_name   => "relationship",
         contents     => $relationship,
 	    );

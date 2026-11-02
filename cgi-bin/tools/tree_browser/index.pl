@@ -1,4 +1,5 @@
 #!/usr/bin/perl
+use utf8;
 
 =head1 NAME
 
@@ -365,13 +366,13 @@ if ( defined $upload ) {
 
 if ($shared_file) {
     if ( $shared_file =~ /\/\./ ) {
-        $page->error_page( 'Invalid file location.',
+        $page->error_page( 'Local do arquivo inválido.',
             "Invalid file location: $shared_file" );
     }
     my $shared_data_path = $c->config->{'static_datasets_path'};
     my $shared_data_url  = $c->config->{'static_datasets_url'};
     $shared_file =~ /^$shared_data_url\/cosii\/[\w\-\/]+\.\d\.ml\.tre$/
-      or $page->error_page( "Invalid file location",
+      or $page->error_page( "Local do arquivo inválido",
         "Invalid file location: $shared_file" );
     $title = $shared_file;
     $shared_file =~ s/$shared_data_url//;
@@ -489,8 +490,8 @@ else {
     if ( !$tree ) {
         my $error = $parser->get_error();
         $page->message_page(
-            "SGN tree browser error",
-"This does not seem to be a legal Newick formatted tree.<br />Error possibly near highlighted token:<br />$error"
+            "Erro no navegador de árvores do SGN",
+"Esta árvore não parece estar em um formato Newick válido.<br />Possível erro próximo ao trecho destacado:<br />$error"
         );
     }
     $tree->impose_branch_length_minimum()
@@ -982,22 +983,22 @@ qq|<a href="?align_temp_show=$align_filename&newick_temp_show=$filename">Tree br
     my $not_show_domains = 0;
     $not_show_domains = 1 unless $show_domains;
 
-    my $blen_text = "Show Branch Length";
-    $blen_text = "Hide Branch Length" if $show_blen;
-    my $align_text = "Hide Alignment";
-    $align_text = "Show Alignment" if $hide_alignment;
-    my $domain_text = "Hide Domains";
-    $domain_text = "Show Domains" unless $show_domains;
-    my $show_species_text = "Hide species";
-    $show_species_text = "Show species" unless $show_species;
+    my $blen_text = "Mostrar comprimento dos ramos";
+    $blen_text = "Ocultar comprimento dos ramos" if $show_blen;
+    my $align_text = "Ocultar alinhamento";
+    $align_text = "Mostrar alinhamento" if $hide_alignment;
+    my $domain_text = "Ocultar domínios";
+    $domain_text = "Mostrar domínios" unless $show_domains;
+    my $show_species_text = "Ocultar espécies";
+    $show_species_text = "Mostrar espécies" unless $show_species;
 
     #    my $root_min_var_text = "Reroot (Min Var)";
     #    $root_min_var_text = "Original Root" if $root_min_var;
-    my $ortho_text = ($show_orthologs) ? "Hide Orthologs" : "Show Orthologs";
+    my $ortho_text = ($show_orthologs) ? "Ocultar ortólogos" : "Mostrar ortólogos";
     my $collapse_single_species_text =
       ($collapse_single_species_subtrees)
-      ? "Uncollapse 1-species subtrees"
-      : "Collapse 1-species subtrees";
+      ? "Expandir subárvores de uma espécie"
+      : "Recolher subárvores de uma espécie";
 
     unless ( $tree->get_alignment() ) {
         $align_text  = "";
@@ -1071,7 +1072,7 @@ qq|<a href="?align_temp_show=$align_filename&newick_temp_show=$filename">Tree br
 
     my $param_input_term = hash2hiddenpost( \%PARAM, {}, ["term"] );
 
-    my $original_link = qq|<a href="?$param_reset">&lt;&lt; See Original Tree</a>&nbsp;&nbsp;&nbsp;|;
+    my $original_link = qq|<a href="?$param_reset">&lt;&lt; Ver árvore original</a>&nbsp;&nbsp;&nbsp;|;
     $original_link = ""
       if ( $upload || $tree_string_param || !$node_operations );
 
@@ -1085,16 +1086,16 @@ qq|<a href="?align_temp_show=$align_filename&newick_temp_show=$filename">Tree br
   <form id="tree_style_form" style="margin-bottom:0; margin-top:0;font-size:1.0em">
     <table width="100%">
       <tr>
-        <td style="font-size:1.1em" width="$w1" >Tree Style:&nbsp; </td>
+        <td style="font-size:1.1em" width="$w1" >Estilo da árvore:&nbsp; </td>
         <td width="$w2" >
           <select name="tree_style" onchange="document.getElementById('tree_style_form').submit(); return false">
-            <option value="round" $round_selected>curve</option>
-            <option value="angle" $angle_selected>straight</option>
-            <option value="straight" $straight_selected>corner</option>
+            <option value="round" $round_selected>curva</option>
+            <option value="angle" $angle_selected>reta</option>
+            <option value="straight" $straight_selected>angular</option>
           </select>
         </td>
         <td width="$w3">
-          <input type="submit" value="Change" />
+          <button type="submit" value="Change">Alterar</button>
           $param_input_tree_style
         </td>
       </tr>
@@ -1108,18 +1109,18 @@ EOH
   <form id="reroot_form" style="margin-bottom:0; margin-top:0;font-size:1.0em">
     <table width="100%">
     <tr>
-      <td width="$w1">Reroot:&nbsp;</td>
+      <td width="$w1">Redefinir raiz:&nbsp;</td>
       <td width="$w2" >
         <select name="reroot" onchange=" document.getElementById('reroot_form').submit(); return false;    ">
           <option value ="Original" $original_selected>original</option>
-          <option value="Midpoint" $midpoint_selected>midpoint</option>
-          <option value="MinVariance" $minvar_selected>minvar</option>
-          <option value="MinDuplication" $mindl_selected>mindupl</option>
+          <option value="Midpoint" $midpoint_selected>ponto médio</option>
+          <option value="MinVariance" $minvar_selected>variância mínima</option>
+          <option value="MinDuplication" $mindl_selected>duplicação mínima</option>
           <option value="MaxMin" $maxmin_selected>maxmin</option>
         </select>
       </td>
      <td width="$w3">
-       <input type="submit" value="Change" />
+       <button type="submit" value="Change">Alterar</button>
        $param_input_reroot
      </td>
     </tr>
@@ -1136,7 +1137,7 @@ EOH
     <table>
     <tr>
       <td><input name="term" size="10" value="$term" /></td>
-      <td><input type="submit" value="Highlight" />    $param_input_term</td>
+      <td><button type="submit" value="Highlight">Destacar</button>    $param_input_term</td>
     </tr>
     </table>
   </form>
@@ -1161,9 +1162,9 @@ qq|<td style="text-align:center"> <a href="?$param_collapse_toggle">$collapse_si
 
     my $imagesize_str = <<EOH;
 <td style="text-align:center; vertical-align:bottom">
-  <span style="font-size:1.1em">Image Size:&nbsp;</span>
-  <a style="font-size:0.90em" href="?$param_smaller">Smaller</a>
-  <a style="font-size:1.18em" href="?$param_larger">Larger</a>
+  <span style="font-size:1.1em">Tamanho da imagem:</span>
+  <a style="font-size:0.90em" href="?$param_smaller">Menor</a>
+  <a style="font-size:1.18em" href="?$param_larger">Maior</a>
   <a href="?$param_autosize">AUTO</a>
 </td>
 EOH
@@ -1246,7 +1247,7 @@ HTML
         my @leaves = $browser->get_tree->get_leaves;
         $browser->get_tree->set_show_standard_species($show_species);
         my $ortho_hilite_only = 0;
-        my $first_cell_text = "Orthologs of&nbsp&nbsp";
+        my $first_cell_text = "Ortólogos de&nbsp&nbsp";
         @leaves = sort { $a->get_name cmp $b->get_name } @leaves;
         my $ostring = "";
         foreach my $leaf (@leaves) {
@@ -1275,7 +1276,7 @@ HTML
         my $newick_string = $browser->get_tree->generate_newick();
 
         print info_section_html(
-            title         => 'Ortholog pairs',
+            title         => 'Pares de ortólogos',
             contents      => $ostring,
             collapsible   => 'true',
             empty_message => ""
@@ -1296,7 +1297,7 @@ sub show_form {
 
     $page->header();
 
-    print page_title_html("Tree browser");
+    print page_title_html("Navegador de árvores");
 
     my $submit_preset = "";
     my $align_preset  = "";
@@ -1319,30 +1320,30 @@ sub show_form {
     #print STDERR "Debug marker 702\n";
 
     if ($example_show) {
-        $title_preset = "Arabidopsis Family Example";
+        $title_preset = "Exemplo de família de Arabidopsis";
         if( open my $af, '<', "$HTML_ROOT_PATH/cgi-bin/tools/tree_browser/data/example_align_preset.txt" ) {
             while (<$af>) {
                 $align_preset .= $_;
             }
-            $submit_preset ||= "View Tree and Alignment";
+            $submit_preset ||= "Visualizar árvore e alinhamento";
         }
-        else { $align_preset = "Example File Not Found" }
+        else { $align_preset = "Arquivo de exemplo não encontrado" }
         if( open my $nf, '<', "$HTML_ROOT_PATH/cgi-bin/tools/tree_browser/data/example_newick_preset.txt" ) {
             while (<$nf>) {
                 $newick_preset .= $_;
             }
         }
         else {
-            $newick_preset = "Example File Not Found";
+            $newick_preset = "Arquivo de exemplo não encontrado";
         }
     }
     print table({ style => 'margin: 0 auto'},
-                Tr( td( 'Enter a tree in',
+                Tr( td( 'Informe uma árvore em',
                         a( {href=> 'http://evolution.genetics.washington.edu/phylip/newicktree.html'},
                            'newick',
                          ),
                         a( {href=> '?example_show=1'},
-                           'Show Me an Example',
+                           'Mostrar um exemplo',
                          ),
                       ),
                   ),
@@ -1350,7 +1351,7 @@ sub show_form {
                    td( start_form(),
                        hidden( 'action', 'display'),
                        dl( 
-                          dt('Title'),
+                          dt('Título'),
                           dd(textfield( -id   => 'title_box',
                                         -size => 30,
                                         -name => 'title',
@@ -1365,30 +1366,30 @@ sub show_form {
                                        -value => $newick_preset,
                                      ),
                             ),
-                          dt('Optional Alignment'),
+                          dt('Alinhamento opcional'),
                           dd( {class => 'boxbgcolor5'},
-                              div( 'Type:',
+                              div( 'Tipo:',
                                    radio_group(  -name => 'align_type',
-                                                 -labels => { nt => 'Nucleotide',
-                                                              pep => 'Peptide',
+                                                 -labels => { nt => 'Nucleotídeos',
+                                                              pep => 'Peptídeos',
                                                             },
                                                  -values => [qw[ nt pep ]],
                                                  -default => 'pep',
                                               ),
                                  ),
-                              div( 'Format:',
+                              div( 'Formato:',
                                    radio_group( -name => 'format',
                                                 -values => [qw[clustalw fasta]],
-                                                -labels => { clustalw => 'CLUSTAL alignment',
-                                                             fasta => 'Fasta (Gapped)',
+                                                -labels => { clustalw => 'Alinhamento CLUSTAL',
+                                                             fasta => 'FASTA (com lacunas)',
                                                            },
                                                 -default => 'fasta',
                                               ),
                                  ),
-                              div( 'Input Sequences:' ),
+                              div( 'Sequências de entrada:' ),
                               div( textarea(
                                             -onBlur => <<EOJS,
-document.getElementById('tree_submit').value = document.getElementById('align_seq_data_box').value ? 'View Tree and Alignment' : 'View Tree';
+document.getElementById('tree_submit').value = document.getElementById('align_seq_data_box').value ? 'Visualizar árvore e alinhamento' : 'Visualizar árvore';
 return false;
 EOJS
                                             -name    => 'align_seq_data',
@@ -1400,7 +1401,7 @@ EOJS
                                  ),
                             ),
                          ),
-                       CGI::reset( -value => 'Clear form',
+                       CGI::reset( -value => 'Limpar formulário',
                                    -onClick => <<EOJS,
 document.getElementById('align_seq_data_box').value =
 document.getElementById('tree_string_box').value =
@@ -1410,7 +1411,7 @@ EOJS
                                  ),
                        submit(
                               -id => 'tree_submit',
-                              -value => $submit_preset || "View Tree",
+                              -value => $submit_preset || "Visualizar árvore",
                              ),
                        end_form(),
                      ),
@@ -1502,8 +1503,8 @@ sub input_err_page {
     my $input_err_page = shift;
     my $err_message    = shift;
     $input_err_page->header();
-    print page_title_html("Combined Tree/Alignment Error");
-    print "$err_message<br><br><a href=\"index.pl\">Start over</a><br>";
+    print page_title_html("Erro de árvore/alinhamento combinado");
+    print "$err_message<br><br><a href=\"index.pl\">Recomeçar</a><br>";
     $input_err_page->footer();
     exit;
 }

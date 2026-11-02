@@ -1,4 +1,5 @@
 #!/usr/bin/perl -w
+use utf8;
 
 #Display property list page
 
@@ -30,14 +31,14 @@ my $page = CXGN::Page->new('phenotype', 'Adri');
 
 print "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 transitional//EN\" \"http://www.w3.org/tr/xhtml1/DTD/xhtml1-transitional.dtd\">";
 
-$page->header("Property List Page");
+$page->header("Página da lista de propriedades");
 
 print <<EOF
 
 <table summary="" width="100%" cellpadding="0" cellspacing="10" border="0">
 
 <tr><td colspan="5">
-<center><h3><u>Property List Page</u></h3></center>
+<center><h3><u>Página da lista de propriedades</u></h3></center>
 <br />
 </td></tr>
 
@@ -55,21 +56,21 @@ EOF
 if ($prev_page) {
   $filepath =~ s/ /&nbsp;/;
   if ($prev_page eq "genotype") {
-    print "<li><a href=\"display_plants_from_genotype.pl?pop_id=$pop_id&amp;pop_name=$pop_name&amp;gen_id=$gen_id\">Back to Plants from Genotype <b>$gen_name</b> Page</a></li>";
+    print "<li><a href=\"display_plants_from_genotype.pl?pop_id=$pop_id&amp;pop_name=$pop_name&amp;gen_id=$gen_id\">Voltar às plantas por genótipo <b>$gen_name</b> Página</a></li>";
   }
   elsif ($prev_page eq "image") {
     if ($prop_name && $prop_id) {
-      print "<li><a href=\"display_image_and_data.pl?pop_id=$pop_id&amp;pop_name=$pop_name&amp;gen_name=$gen_name&amp;gen_id=$gen_id&amp;plant_name=$plant_name&amp;plant_id=$plant_id&amp;institution=$institution&amp;environment=$environment&amp;year=$year&amp;filepath=$filepath&amp;prop_name=$prop_name&amp;prop_id=$prop_id\">Back to Image and Data Page</a></li>";
+      print "<li><a href=\"display_image_and_data.pl?pop_id=$pop_id&amp;pop_name=$pop_name&amp;gen_name=$gen_name&amp;gen_id=$gen_id&amp;plant_name=$plant_name&amp;plant_id=$plant_id&amp;institution=$institution&amp;environment=$environment&amp;year=$year&amp;filepath=$filepath&amp;prop_name=$prop_name&amp;prop_id=$prop_id\">Voltar à página de imagem e dados</a></li>";
     }
     else {
-      print "<li><a href=\"display_image_and_data.pl?pop_id=$pop_id&amp;pop_name=$pop_name&amp;gen_name=$gen_name&amp;gen_id=$gen_id&amp;plant_name=$plant_name&amp;plant_id=$plant_id&amp;institution=$institution&amp;environment=$environment&amp;year=$year&amp;filepath=$filepath\">Back to Image and Data Page</a></li>";
+      print "<li><a href=\"display_image_and_data.pl?pop_id=$pop_id&amp;pop_name=$pop_name&amp;gen_name=$gen_name&amp;gen_id=$gen_id&amp;plant_name=$plant_name&amp;plant_id=$plant_id&amp;institution=$institution&amp;environment=$environment&amp;year=$year&amp;filepath=$filepath\">Voltar à página de imagem e dados</a></li>";
     }
   }
   elsif ($prev_page eq "prop_data") {
-    print "<li><a href=\"/phenotype/display_property_data_from_plant.pl?pop_id=$pop_id\&amp;pop_name=$pop_name&amp;plant_id=$plant_id&amp;plant_name=$plant_name&amp;prop_id=$prop_id&amp;prop_name=$prop_name&amp;institution=$institution&amp;environment=$environment&amp;year=$year\">Back to <b>$prop_name</b> Data Page</a></li>";
+    print "<li><a href=\"/phenotype/display_property_data_from_plant.pl?pop_id=$pop_id\&amp;pop_name=$pop_name&amp;plant_id=$plant_id&amp;plant_name=$plant_name&amp;prop_id=$prop_id&amp;prop_name=$prop_name&amp;institution=$institution&amp;environment=$environment&amp;year=$year\">Voltar a <b>$prop_name</b> Página de dados</a></li>";
   }
   elsif ($prev_page eq "property") {
-    print "<li><a href=\"display_plants_from_property.pl?pop_id=$pop_id&amp;pop_name=$pop_name&amp;prop_id=$prop_id\">Back to Plants from <b>$prop_name</b> Page</a></li>";
+    print "<li><a href=\"display_plants_from_property.pl?pop_id=$pop_id&amp;pop_name=$pop_name&amp;prop_id=$prop_id\">Voltar às plantas de <b>$prop_name</b> Página</a></li>";
   }
   else {
     #do nothing
@@ -121,7 +122,7 @@ print <<EOF
 
 <tr>
 <td width="25%"><center><b>PROPERTY</b></center></td>
-<td width="60%"><center><b>DESCRIPTION</b></center></td>
+<td width="60%"><center><b>DESCRIÇÃO</b></center></td>
 </tr>
 
 EOF
@@ -137,7 +138,7 @@ EOF
       print "<td><center>$description</center></td>";
     }
     else {
-      print "<td><center>Not Available</center></td>";
+      print "<td><center>Indisponível</center></td>";
     }
 
     print "</tr>";
@@ -156,7 +157,7 @@ EOF
 #IMAGES
   my @image_files = CXGN::DB::PhenoPopulation::get_all_prop_images_from_organ($organ);
   print "<td valign=\"top\"><table summary=\"\">";
-  print "<tr><td><center><h3><u>Example <em>$organ</em> Images</u></h3></center></td></tr>";
+  print "<tr><td><center><h3><u>Example <em>$organ</em> Imagens</u></h3></center></td></tr>";
   if (@image_files) {
     foreach my $index (@image_files) {
       print "<tr><td>";
@@ -165,7 +166,7 @@ EOF
     }
   }
   else {
-    print "<tr><td>None Available</td></tr>";
+    print "<tr><td>Nenhum disponível</td></tr>";
   }
   print "</table></td>";
   

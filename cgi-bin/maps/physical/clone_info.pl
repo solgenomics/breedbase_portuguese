@@ -1,3 +1,4 @@
+use utf8;
 use strict;
 use warnings;
 
@@ -65,7 +66,7 @@ $link_pages{physical_map_page} = $link_pages{'map_page'} . '1&physical=1';
 $link_pages{contig_page}       = $link_pages{'agi_page'};
 
 # Start a new SGN page.
-my $page  = CXGN::Page->new( 'BAC Data', 'Rob Buels' );
+my $page  = CXGN::Page->new( 'Dados de BACs', 'Rob Buels' );
 my $dbh   = CXGN::DB::Connection->new();
 my $chado = CXGN::DB::DBICFactory->open_schema('Bio::Chado::Schema');
 
@@ -222,7 +223,7 @@ $page->header( "Clone $intl_name", undef, $head_extra );
 print page_title_html("Clone $intl_name");
 
 print info_section_html(
-    title       => 'Clone and library',
+    title       => 'Clone e biblioteca',
     collapsible => 1,
     contents    => '<table style="margin: 0 auto"><tr><td>'
       . $c->render_mason( '/genomic/clone/clone_summary.mas', clone => $clone )
@@ -232,9 +233,9 @@ print info_section_html(
         library => $clone->library_object
       )
       . info_table_html(
-        __title => 'Ordering Information',
+        __title => 'Informações para pedidos',
         'BAC Clones' =>
-'BAC clones can be ordered from the <a href="http://ted.bti.cornell.edu/cgi-bin/TFGD/order/order.cgi?item=clone">clone ordering page at TFGD</a>',
+'Clones BAC podem ser solicitados na <a href="http://ted.bti.cornell.edu/cgi-bin/TFGD/order/order.cgi?item=clone">página de pedidos de clones do TFGD</a>',
         __tableattrs => 'width="100%" height="100%"',
       )
       . '</td></tr></table>'
@@ -275,7 +276,7 @@ EOSQL
                 __border       => 0,
               )
               . info_table_html(
-                Comment => $comment_text || '<span class="ghosted">none</span>',
+                Comment => $comment_text || '<span class="ghosted">nenhum</span>',
                 __border => 0,
               )
               . '</div>'
@@ -324,10 +325,10 @@ my $reg_info = $clone->reg_info_hashref;
 #output physical mapping stuff
 if ( $self->_is_tomato($clone) ) {
     print info_section_html(
-        title       => 'Physical mapping',
+        title       => 'Mapeamento físico',
         collapsible => 1,
         contents    => info_section_html(
-            title         => 'Fingerprint Contig Builds (FPC)',
+            title         => 'Montagens de contigs por impressão digital (FPC)',
             is_subsection => 1,
             contents      => join "\n",
             '<dl class="fpc_results">',
@@ -374,7 +375,7 @@ if ( $self->_is_tomato($clone) ) {
           )
           . info_section_html(
             title =>
-qq|Marker matches - overgo <a class="context_help" href="/maps/physical/overgo_process_explained.pl">what's this?</a>|,
+qq|Marker matches - overgo <a class="context_help" href="/maps/physical/overgo_process_explained.pl">o que é isto?</a>|,
             contents      => $overgo_html,
             is_subsection => 1,
           )
@@ -391,17 +392,17 @@ qq|Marker matches - overgo <a class="context_help" href="/maps/physical/overgo_p
           . info_section_html(
             title         => qq|Physical map (from marker matches)|,
             contents      => $physical_map_link,
-            empty_message => 'Not on Physical Map',
+            empty_message => 'Ausente do mapa físico',
             is_subsection => 1,
           )
           . info_section_html(
-            title         => "FISH map",
+            title         => "Mapa FISH",
             contents      => $fish_link,
             is_subsection => 1,
-            empty_message => 'Not on FISH map',
+            empty_message => 'Ausente do mapa FISH',
           )
           . info_section_html(
-            title    => "FISH images",
+            title    => "Imagens FISH",
             contents => CXGN::Fish::fish_image_html_table(
                 CXGN::DB::Connection->new,
                 $clone->clone_id
@@ -409,7 +410,7 @@ qq|Marker matches - overgo <a class="context_help" href="/maps/physical/overgo_p
             is_subsection => 1,
           )
           . info_section_html(
-            title    => "IL Mapping",
+            title    => "Mapeamento de IL",
             subtitle => do {
                 if ( str_in( $user_type, qw/sequencer curator/ ) ) {
                     my $qstr = do {
@@ -417,7 +418,7 @@ qq|Marker matches - overgo <a class="context_help" href="/maps/physical/overgo_p
                         $q->clone_id( '=?', $clone_id );
                         $q->to_query_string;
                     };
-qq|<a style="font-weight: bold" href="clone_reg.pl?$qstr">Edit IL mapping info</a>|;
+qq|<a style="font-weight: bold" href="clone_reg.pl?$qstr">Editar informações do mapeamento de IL</a>|;
                 }
                 else {
                     undef;
@@ -447,16 +448,16 @@ qq|<span id="clone_il_mapping_notes">$reg_info->{il_notes}{disp}</span>|,
 }
 else {
     print info_section_html(
-        title         => 'Physical mapping',
+        title         => 'Mapeamento físico',
         collapsible   => 1,
         contents      => '',
-        empty_message => 'not available',
+        empty_message => 'indisponível',
     );
 }
 
 #output sequencing status
 print info_section_html(
-    title       => 'Sequencing',
+    title       => 'Sequenciamento',
     collapsible => 1,
     contents => sequencing_content( $self, $c, $clone, $person, $dbh, $chado ),
 );
@@ -477,17 +478,17 @@ my @gb_xrefs = map {
 } $c->enabled_feature('gbrowse2');
 
 print info_section_html(
-    title       => 'Annotations',
+    title       => 'Anotações',
     collapsible => 1,
     contents    => info_table_html(
         __border => 0,
         Browse   => @gb_xrefs
             ? $c->render_mason( '/sitefeatures/gbrowse2/xref_set/link.mas', xrefs => \@gb_xrefs )
-            : '<span class="ghosted">'. $clone->clone_name.' has no browsable sequence annotations</span>',
+            : '<span class="ghosted">'. $clone->clone_name.' não tem anotações de sequência disponíveis para navegação</span>',
         Download => (
             $self->_is_tomato($clone)
             ? render_tomato_bac_annot_download( $c, $clone )
-            : '<span class="ghosted">not available</span>'
+            : '<span class="ghosted">indisponível</span>'
         ),
     ),
 );
@@ -498,7 +499,7 @@ print CXGN::People::PageComment->new( $dbh, "BAC", $clone->clone_id )
 
 # Search again.
 print info_section_html(
-    title       => 'Search again',
+    title       => 'Buscar novamente',
     collapsible => 1,
     contents =>
       CXGN::Search::CannedForms::clone_search_form( $page, $clonequery ),
@@ -533,15 +534,15 @@ sub frag_match_score {
 sub clone_not_found_page {
 
     my ( $page, $message, $query ) = @_;
-    $page->header('Clone not found.');
+    $page->header('Clone não encontrado.');
 
     # No BAC found.
-    print page_title_html('CLONE NOT FOUND');
+    print page_title_html('CLONE NÃO ENCONTRADO');
 
     print qq|<h2>$message</h2>\n|;
 
     print info_section_html(
-        title => 'Search again',
+        title => 'Buscar novamente',
         contents =>
           CXGN::Search::CannedForms::clone_search_form( $page, $query ),
     );
@@ -601,7 +602,7 @@ sub sequencing_content {
 
             if ( $sequencing_files{seq} ) {
                 $dl_links .= <<EOHTML
-    <a href="/genomic/clone/$clone_id/annotation/download?set=all;format=seq">[Download fasta]</a><br />
+    <a href="/genomic/clone/$clone_id/annotation/download?set=all;format=seq">[Baixar FASTA]</a><br />
 EOHTML
 
             }
@@ -609,7 +610,7 @@ EOHTML
                 my $tarsize =
                   sprintf( "%0.2f", ( -s $sequencing_files{tar} ) / 1_000_000 );
                 $dl_links .= <<EOHTML
-    <a href="/genomic/clone/$clone_id/annotation/download?set=all;format=tar">[Download full submission]</a> ($tarsize MB)
+    <a href="/genomic/clone/$clone_id/annotation/download?set=all;format=tar">[Baixar submissão completa]</a> ($tarsize MB)
 EOHTML
 
             }
@@ -627,14 +628,14 @@ EOHTML
   $latest_seq <br/>
   $gb
 </td>
-<td><a href="/maps/physical/clone_sequence.pl?clone_id=$clone_id">[View]</a><br />
+<td><a href="/maps/physical/clone_sequence.pl?clone_id=$clone_id">[Visualizar]</a><br />
 $dl_links
 </td>
 </tr></table>
 EOHTML
         }
         else {
-            qq|<span class="ghosted">Sequence not available.</span>|;
+            qq|<span class="ghosted">Sequência indisponível.</span>|;
         }
     };
 
@@ -858,7 +859,7 @@ EOQ
             "Uploaded by account '$ul'";
         }
         else {
-            '<span class="ghosted">not recorded</span>';
+            '<span class="ghosted">não registrado</span>';
         }
     };
 
@@ -880,7 +881,7 @@ EOQ
         'Sequencing Project' => $self->_clone_seq_project_name($clone),
         'Sequencing Status'  => $sequencing_status_html,
         'Full Sequence'      => $sequence_info,
-        Warnings => $warnings_html || qq|<span class="ghosted">none</span>|,
+        Warnings => $warnings_html || qq|<span class="ghosted">nenhum</span>|,
         (
             $self->_is_tomato($clone)
             ? ( 'Chromosome Assembly' => $agp_map_link
@@ -907,7 +908,7 @@ EOQ
                 );
             }
             else {
-                '<span class="ghosted">None</span>';
+                '<span class="ghosted">Nenhum</span>';
             }
         },
         FTP          => $ftp_link,
@@ -927,10 +928,10 @@ sub sequencing_project_html {
 
     return do {
         if ( $chr eq 'unmapped' ) {
-qq|<div class="specialnote">This clone is registered to be sequenced, but has not been successfully mapped to any chromosome.</div>|;
+qq|<div class="specialnote">Este clone está registrado para sequenciamento, mas ainda não foi mapeado em nenhum cromossomo.</div>|;
         }
         elsif ($chr) {
-qq|This clone is being sequenced by the Chromosome $chr Sequencing Project. (<a href="/about/tomato_sequencing.pl">View projects</a>)|;
+qq|This clone is being sequenced by the Chromosome $chr Sequencing Project. (<a href="/about/tomato_sequencing.pl">Visualizar projetos</a>)|;
         }
         else {
             "This clone is not assigned to any sequencing project.\n";
@@ -945,7 +946,7 @@ qq|This clone is being sequenced by the Chromosome $chr Sequencing Project. (<a 
 qq| To change this clone's sequencing project assignment or other registry information, use the <a href="$clone_reg_link">Clone Registry Editor</a>.|;
         }
         else {
-qq|<span class="ghosted">Log in as a curator or sequencer to edit this clone's registry information.</span>|;
+qq|<span class="ghosted">Entre como curador ou responsável pelo sequenciamento para editar o registro deste clone.</span>|;
         }
       }
 }
@@ -985,7 +986,7 @@ sub render_tomato_bac_annot_download {
         return <<EOHTML
 <form name="clone_annot_download" method="GET" action="/genomic/clone/$id/annotation/download">
 <table><tr><td><label for="annot_set_selector">Analysis:</label></td><td>$set_select</td></tr>
-       <tr><td><label for="annot_format_selector">Format:</label></td><td>$type_select <input type="hidden" name="id" value="$id" /><input type="submit" value="Download" /></td></tr>
+       <tr><td><label for="annot_format_selector">Formato:</label></td><td>$type_select <input type="hidden" name="id" value="$id" /><button type="submit" value="Download">Baixar</button></td></tr>
        <tr><td>&nbsp;</td></tr>
 </table>
 </form>
@@ -1131,7 +1132,7 @@ qq{<b>$contig :</b> [<span style="color: red">incoherent</span>], }
     }
     else {
         return
-'<dt class="ghosted">not present in Tomato FPC (AGI 2005)</dt><dd class="ghosted"></dd>';
+'<dt class="ghosted">ausente do FPC de tomate (AGI 2005)</dt><dd class="ghosted"></dd>';
     }
 }
 
@@ -1207,11 +1208,11 @@ qq|<a href="$link_pages{plate_design_page}$plateno&highlightwell=$row$col">$row$
     if ( $plausible_matches_html || $conflicted_matches_html ) {
         info_table_html(
             'Plausible matches' => $plausible_matches_html
-              || '<span class="ghosted">None</span>',
+              || '<span class="ghosted">Nenhum</span>',
             'Conflicted matches' => $conflicted_matches_html
-              || '<span class="ghosted">None</span>',
+              || '<span class="ghosted">Nenhum</span>',
             'Additional Info' =>
-qq|<a href="$link_pages{overgo_report_page}">Overgo Plating Progress Report</a>|,
+qq|<a href="$link_pages{overgo_report_page}">Relatório de progresso das placas de overgo</a>|,
             __border   => 0,
             __multicol => 2,
         );

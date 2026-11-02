@@ -1,3 +1,4 @@
+use utf8;
 ######################################################################
 #
 #  Search the phenome database and displays the results.
@@ -20,10 +21,10 @@ use CXGN::Search::CannedForms;
 
 # Start a new SGN page.
 
-my $page=CXGN::Page->new("SGN gene search results","Naama");
+my $page=CXGN::Page->new("Resultados da busca de genes do SGN","Naama");
 $page->header();
 
-print page_title_html('Gene search results');
+print page_title_html('Resultados da busca de genes');
 
 
 #create the search and query objects
@@ -104,12 +105,12 @@ EOH
 
 if (@results) {
     
-    print blue_section_html('Gene search results', ,sprintf('<span class="paginate_summary">%s matches </span>', $result->total_results,$result->time),$results_html);
+    print blue_section_html('Resultados da busca de genes', ,sprintf('<span class="paginate_summary">%s matches </span>', $result->total_results,$result->time),$results_html);
 }else {
-    print '<h4><span class="">No matches found</span></h4>';
+    print '<h4><span class="">Nenhuma correspondência encontrada</span></h4>';
 }
 
-  print info_section_html(title    => 'Search again', 
+  print info_section_html(title    => 'Buscar novamente',
 			  contents =>CXGN::Search::CannedForms::gene_search_form($page,$query)
 			  );
 }

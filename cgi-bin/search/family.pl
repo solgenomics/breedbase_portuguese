@@ -1,4 +1,5 @@
 #!/usr/bin/perl -w
+use utf8;
 use strict;
 use warnings;
 use CXGN::Page;
@@ -99,7 +100,7 @@ if (($family_build_id, $family_build_status, $total_gene, $date, $build_nr, $i_v
   my $date_display = substr ($date, 0,10);
   $total_gene_content = "<tr><th>Total Genes</th><td>" . $total_gene . "</td></tr>";
   $date_content = "<tr><th>Build Date</th><td>" . $date_display . "</td></tr>";
-  $family_nr_content = "<tr><th>Family&nbsp;Number</th><td>" . $family_nr . "</td></tr>";
+  $family_nr_content = "<tr><th>Número da família</th><td>" . $family_nr . "</td></tr>";
   if ($i_value < 2){
     $i_value_content =  $i_value . "  (Low stringency in grouping genes together)";
   }
@@ -110,19 +111,19 @@ if (($family_build_id, $family_build_status, $total_gene, $date, $build_nr, $i_v
     $i_value_content =  $i_value . "  (High stringency in grouping genes together)";
   }
     
-  $i_value_content = "<tr><th>i Value</th><td> ". $i_value_content . "</td></tr>";
-  $bn_content = "<tr><th>Build</th><td>" . $build_nr . " <a href=\"family_build.pl?family_build_id=$family_build_id\">[Details of the Overall Family Build]</a>" . "</td></tr>";
-  $annotation_content = "<tr><th valign=\"top\">Annotation</th><td>" . $annotation . "</td></tr>";
-  $group_content = "<tr><th>Data Set</th><td>" . $group_comment . "</td></tr>";
+  $i_value_content = "<tr><th>Valor i</th><td> ". $i_value_content . "</td></tr>";
+  $bn_content = "<tr><th>Build</th><td>" . $build_nr . " <a href=\"family_build.pl?family_build_id=$family_build_id\">[Detalhes da montagem geral de famílias]</a>" . "</td></tr>";
+  $annotation_content = "<tr><th valign=\"top\">Anotação</th><td>" . $annotation . "</td></tr>";
+  $group_content = "<tr><th>Conjunto de dados</th><td>" . $group_comment . "</td></tr>";
 }
 my $deprecated_content = '';
 if($family_build_status ne 'C'){
-	$deprecated_content .= "<center><div class=\"deprecated\" style=\"width:550px\">This family is from an out-of-date build.  <br />";
-	$deprecated_content .= "<span style=\"color:black;font-size:0.9em\">See below for relations to current builds</span></div></center>";
+        $deprecated_content .= "<center><div class=\"deprecated\" style=\"width:550px\">Esta família pertence a uma montagem desatualizada.  <br />";
+        $deprecated_content .= "<span style=\"color:black;font-size:0.9em\">Veja abaixo as relações com as montagens atuais</span></div></center>";
 }
 $sum_content = $family_nr_content . $total_gene_content . $date_content .$i_value_content . $bn_content . $annotation_content . $group_content;
 $sum_content .= "<tr><td colspan=\"2\" align=\"center\"><a href=\"/about/family_analysis.pl\" target=\"blank\">
-Explanation of family analysis and terms used on this page
+Explicação da análise de famílias e dos termos desta página
 </a></td></tr>";
 ####################################################
 #Get family member information.
@@ -168,7 +169,7 @@ foreach (sort keys %sgn_member){
   }
 }
 
-$family_member_content = "<tr><th>Organism</th><th># of Members</th><th>Member Id</th></tr>";
+$family_member_content = "<tr><th>Organismo</th><th>Número de membros</th><th>Member Id</th></tr>";
 $family_member_content .= "<tr><td>Arabidopsis</td>" . "<td>$at_member_nr</td>" . "<td>@at_member_url</td></tr>";
 foreach (sort keys %sgn_member){
   $family_member_content .=  "<tr><td>$group_comment{$_}</td>" . "<td>$group_member_nr{$_}</td>" . "<td>$sgn_member_content{$_}</td></tr>";
@@ -210,7 +211,7 @@ foreach (sort keys %other_family) {
 }
   
 
-$other_family_content .= "<tr><th>Build id</th><th>i Value</th><th>Family Number (Size)</th></tr>";
+$other_family_content .= "<tr><th>Build id</th><th>Valor i</th><th>Número da família (tamanho)</th></tr>";
 
 foreach (sort keys %other_family){
   $other_family_content .= "<tr><td>$_</td>" . "<td>$other_i{$_}</td>" . "<td>$other_family_content_family{$_}</td></tr>";
@@ -227,7 +228,7 @@ my $newick_file = "/data/prod/public/family/$i_value/newick/$family_nr.newick";
 
 my $total_member_nr = int (@all_sgn_member) + $at_member_nr;
 if ($total_member_nr == 1 || $family_build_status ne 'C') {
-  $align_content = "<tr><td>Not applicable.</td></tr>";
+  $align_content = "<tr><td>Não se aplica.</td></tr>";
 }
 elsif( ! -f $pep_align_file ){
 	my $extra = " due to its large size";
@@ -300,7 +301,7 @@ else {
 			    $align_content = "<tr><td><center><a target=\"new_tab\" href=\"../tools/${tool_link}&family_nr=$family_nr&i_value=$i_value\">";
 				$align_content .= $cache->get_image_html();
 				$align_content .= "</a></center></td></tr>";
-			    $align_content .= "<tr><td align=\"center\">Click on the image above to view the detailed alignment</td></tr>";
+                            $align_content .= "<tr><td align=\"center\">Clique na imagem acima para ver o alinhamento detalhado</td></tr>";
 		}
 	  	else {
 	   		$align_content = "No alignment image available.";
@@ -311,7 +312,7 @@ else {
 			$align_content .= $cache->get_image_html();
 			$align_content .= "</a></center></td></tr>";
 			#<img src=\"$tmp_image\" alt=\"\" border=\"0\"/></a></center></td></tr>";
-		    $align_content .= "<tr><td align=\"center\">Click on the image above to view the detailed alignment</td></tr>";
+                    $align_content .= "<tr><td align=\"center\">Clique na imagem acima para ver o alinhamento detalhado</td></tr>";
 
 	}	
 }
@@ -319,12 +320,12 @@ else {
 ######################################################
 #Page output
 $page->header();
-print page_title_html("SGN Gene Family $family_id");
+print page_title_html("Família gênica $family_id do SGN");
 print $deprecated_content if $deprecated_content;
-print info_section_html(title => 'Summary', contents => '<table width="100%" cellpadding="5" cellspacing="0" border="0">'.$sum_content.'</table>');
-print info_section_html(title => 'Relations to Other Builds', contents => '<table width="100%" cellpadding="5" cellspacing="0" border="0">'.$other_family_content.'</table>');
-print info_section_html(title => 'Family Sequence Alignment', contents => '<table width="100%" cellpadding="5" cellspacing="0" border="0">'.$align_content.'</table>');
-print info_section_html(title => 'Family Members', contents => '<table width="100%" cellpadding="5" cellspacing="0" border="1">'.$family_member_content.'</table>', collapsible => 1);
+print info_section_html(title => 'Resumo', contents => '<table width="100%" cellpadding="5" cellspacing="0" border="0">'.$sum_content.'</table>');
+print info_section_html(title => 'Relações com outras montagens', contents => '<table width="100%" cellpadding="5" cellspacing="0" border="0">'.$other_family_content.'</table>');
+print info_section_html(title => 'Alinhamento de sequências da família', contents => '<table width="100%" cellpadding="5" cellspacing="0" border="0">'.$align_content.'</table>');
+print info_section_html(title => 'Membros da família', contents => '<table width="100%" cellpadding="5" cellspacing="0" border="1">'.$family_member_content.'</table>', collapsible => 1);
 
 $page->footer();
 

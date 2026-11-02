@@ -1,3 +1,4 @@
+use utf8;
 ######################################################################
 #
 #  This is the first cos_list page to take advantage of the new
@@ -38,7 +39,7 @@ while (my ($cos_id, $cos_mrkr_id, $mrkr_id, $est_read_id, $at_match, $at_posn, $
 		"<td><a href=\"$at_page$bac_id\">$at_match</a></td>\n" .
 		    "<td>$at_posn</td>\n" .
 			($mapped ? "<td>mapped</td>\n"
-			 : "<td>not mapped</td>\n") .
+                         : "<td>não mapeado</td>\n") .
 			     "</tr>\n";
 	$old_cos_mrkr_id = $cos_mrkr_id;
     }
@@ -49,7 +50,7 @@ $cos_sth->finish;
 # Print the page.
 $page->header("Conserved Ortholog Set Markers on SGN");
 
-print "<center><h2>Conserved Ortholog Set Markers available on SGN</h2></center>\n";
+print "<center><h2>Marcadores de conjuntos de ortólogos conservados disponíveis no SGN</h2></center>\n";
 print "\n<table summary=\"\" width=\"90%\" align=\"center\" border=\"2\">\n<tr>\n";
 print "<td><b>CU ID \#</b></td>\n";
 print "<td><b>Tomato EST Read</b></td>\n";

@@ -150,7 +150,7 @@ sub render_fasta_page {
     my $fasta = "";
 
     open( F, "< :encoding(UTF-8)" . $self->{tempdir} . "/" . $self->{dumpfile} )
-      || $self->{page}->error_page( "Can't open " . $self->{dumpfile} );
+      || $self->{page}->error_page( "Não foi possível abrir " . $self->{dumpfile} );
 
     # read column definitions
     my @output_fields;
@@ -529,7 +529,7 @@ sub debug {
 
 sub no_data_error_page {
     print
-"The results of that search or not available anymore. Please repeat your search.";
+"Os resultados dessa busca não estão mais disponíveis. Faça a busca novamente.";
 }
 
 1;

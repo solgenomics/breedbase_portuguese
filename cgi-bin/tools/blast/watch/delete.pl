@@ -1,4 +1,5 @@
 #!usr/bin/perl
+use utf8;
 use strict;
 use warnings;
 
@@ -36,10 +37,10 @@ sub throw_error {
 sub website {
     my ($page) = @_;
     $page->header();
-    print page_title_html('Success!');
+    print page_title_html('Sucesso!');
     
     print <<EOF;
-    <p>Your query has been removed from SGN BLAST Watch.</p>
+    <p>Sua consulta foi removida do BLAST Watch do SGN.</p>
 EOF
 	
     $page->footer(); 
@@ -51,7 +52,7 @@ sub user_error {
     my $reason = shift;
     
     $page->header();
-    print page_title_html('SGN BLAST Watch Error');
+    print page_title_html('Erro do BLAST Watch do SGN');
 
     print <<EOF;
     <p>$reason</p>

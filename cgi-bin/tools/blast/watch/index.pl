@@ -1,4 +1,5 @@
 #!/usr/bin/perl -w
+use utf8;
 use strict;
 use warnings;
 
@@ -23,25 +24,25 @@ print <<EOF;
 
 <table summary="" cellpadding="0" cellspacing="0" border="0" align="center">
 
-<tr><td align="center">Submit a query to be BLASTed weekly.  You will be contacted by email when the results change.</td></tr>
+<tr><td align="center">Envie uma consulta para executar o BLAST semanalmente. Você receberá um e-mail quando os resultados mudarem.</td></tr>
 
 <tr><td><br /></td></tr>
 
 <tr><td><table summary="" cellpadding="0" cellspacing="0" border="0">
 
-<tr><td width="25%"><b>Program:</b> </td><td>
+<tr><td width="25%"><b>Programa:</b> </td><td>
 <select name="program">
 <option value="blastn">BLASTN (nucleotide to nucleotide)</option>
 <option value="blastx">BLASTX (nucleotide to protein; query translated to protein)</option>
 <option value="blastp">BLASTP (protein to protein)</option>
-<option value="tblastx">TBLASTX (protein to protein; both database and query are translated)</option>
-<option value="tblastn">TBLASTN (protein to nucleotide; database translated to protein)</option>
+<option value="tblastx">TBLASTX (proteína contra proteína; banco e consulta traduzidos)</option>
+<option value="tblastn">TBLASTN (proteína contra nucleotídeo; banco traduzido para proteína)</option>
 </select>
 </td></tr>
 
 <tr><td colspan="2"><br /></td></tr>
 
-<tr><td><b>Database:</b> </td><td>
+<tr><td><b>Banco de dados:</b> </td><td>
 
 <select name="database">
 @databases
@@ -51,7 +52,7 @@ print <<EOF;
     
 <tr><td colspan="2"><br /></td></tr>
     
-<tr><td colspan="2" align="center"><b>Query sequence</b></td></tr>
+<tr><td colspan="2" align="center"><b>Sequência de consulta</b></td></tr>
    
 <tr><td colspan="2" align="center" class="fix">
 <textarea name="sequence" rows="8" cols="80"></textarea>
@@ -71,7 +72,7 @@ print <<EOF;
     
 <tr><td colspan="2"></td></tr>
 
-<tr><td><b>Expect (e-value) Threshold:</b> </td><td>
+<tr><td><b>Limiar esperado (e-value):</b> </td><td>
 <input type="text" size="6" value="1.0" name="evalue" />
 </td></tr>
 
@@ -86,8 +87,8 @@ print <<EOF;
 <tr><td><br /></td></tr>
 
 <tr><td align="center">
-<input type="reset" name="clear" value="Clear" />
-<input type="submit" name="submit" value="Submit" />
+<button type="reset" name="clear" value="Clear">Limpar</button>
+<button type="submit" name="submit" value="Submit">Enviar</button>
 </td></tr>
 
 </table>
@@ -109,16 +110,16 @@ sub local_init {
 
   @databases = 
     ( '<optgroup label="Markers">',
-      '<option value="markers/marker_sequences.fasta">All SGN markers</option>',
+      '<option value="markers/marker_sequences.fasta">Todos os marcadores do SGN</option>',
       '</optgroup>',
       '<optgroup label="Tomato Genome">',
       '<option value="bacs/tomato_bac_ends">Tomato BAC ends</option>',
-      '<option value="bacs/tomato_bacs">Tomato full BAC sequences</option>',
+      '<option value="bacs/tomato_bacs">Sequências completas de BACs de tomate</option>',
       '<option value="repeats/mips_repeat_collection">MIPS tomato repeat collection</option>',
       '<option value="repeats/TIGR_SolAth_repeat">TIGR tomato/arabidopsis repeats</option>',
       '</optgroup>',
       '<optgroup label="SGN ESTs">',
-      '<option value="estdb/all_ests">All SGN ESTs</option>',
+      '<option value="estdb/all_ests">Todas as ESTs do SGN</option>',
       '<option value="estdb/lycopersicon-all">Tomato ESTs</option>',
       '<option value="estdb/Solanum_tuberosum">Potato ESTs</option>',
       '<option value="estdb/Capsicum">Pepper ESTs</option>',
@@ -126,7 +127,7 @@ sub local_init {
       '<option value="estdb/Petunia_hybrida">Petunia ESTs</option>',
       '</optgroup>',
       '<optgroup label="SGN unigenes">',
-      '<option value="unigene/all_current" selected="selected">All SGN unigenes</option>',
+      '<option value="unigene/all_current" selected="selected">Todos os unigenes do SGN</option>',
       '<option value="unigene/Lycopersicon_combined">Tomato (lycopersicon combined) unigene</option>',
       '<option value="unigene/Solanum_tuberosum">Potato (Solanum tuberosum) unigene</option>',
       '<option value="unigene/Capsicum_combined">Pepper (Capsicum combined) unigene</option>',
@@ -137,12 +138,12 @@ sub local_init {
       '<optgroup label="Arabidopsis (TAIR)">',
       '<option value="ath1/ATH1_pep">Arabidopsis proteins</option>',
       '<option value="ath1/ATH1_seq">Arabidopsis gene models (nt.)</option>',
-      '<option value="ath1/ATH1_cds">Arabidopsis coding sequence (nt. - no introns, no UTRs)</option>',
-      '<option value="ath1/ATH1_bacs_con">Arabidopsis finished BAC sequences</option>',
+      '<option value="ath1/ATH1_cds">Sequências codificantes de Arabidopsis (nt. - sem íntrons nem UTRs)</option>',
+      '<option value="ath1/ATH1_bacs_con">Sequências finalizadas de BACs de Arabidopsis</option>',
       '</optgroup>',
       '<optgroup label="Other">',
-      '<option value="genbank/nr">Genbank non-redundant protein database (NR)</option>',
-      '<option value="misc/swissprot">Swissprot full-length, annotated, protein database</option>',
+      '<option value="genbank/nr">Banco de proteínas não redundante do GenBank (NR)</option>',
+      '<option value="misc/swissprot">Banco de proteínas completas e anotadas Swissprot</option>',
       '</optgroup>'
  );
   

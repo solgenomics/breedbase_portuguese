@@ -1,3 +1,4 @@
+use utf8;
 
 #### Note: This script is deprecated. The functionality was moved to
 ####       SGN::Controller::Blast
@@ -14,13 +15,13 @@ use List::Util qw/sum/;
 
 use CXGN::BlastDB;
 
-my $page = CXGN::Page->new('Page Internal Name','Robert Buels');
+my $page = CXGN::Page->new('Nome interno da página','Robert Buels');
 
 $page->header(('BLAST Database Details') x 2);
 
 
 print <<EOH;
-<div style="margin: 2em">This page provides details for each of the BLAST sequence sets available at SGN.</div>
+<div style="margin: 2em">Esta página detalha os conjuntos de sequências disponíveis para BLAST no SGN.</div>
 EOH
 
 
@@ -70,7 +71,7 @@ sub info_html {
   my $update_freq = $db->update_freq;
 
   return info_section_html( title => $db->title.'<a name="'.$db->file_base.'"></a>',
-			    subtitle => "<b>Category:</b> $groupname",
+                            subtitle => "<b>Categoria:</b> $groupname",
 			    is_subsection => 0,
 			    contents =>
 			    info_table_html(
@@ -88,7 +89,7 @@ sub info_html {
 					    __border => 0,
 					   )
 			    .info_table_html(
-					     'Description' => $db->description || '<span class="ghosted">Not available</span>',
+                                             'Description' => $db->description || '<span class="ghosted">Indisponível</span>',
 					    __border => 0,
 					   ),
 

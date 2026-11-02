@@ -1,3 +1,4 @@
+use utf8;
 
 #!/usr/bin/perl -w
 use strict;
@@ -70,13 +71,13 @@ if (($group_id, $i_value, $build_date, $group_comment, $build_nr, $total_family)
   $total_gene_q->execute($family_build_id);
   ($total_gene) = $total_gene_q->fetchrow_array();
   $date_content = "<tr><th>Build Date</th><td>" . $date_content . "</td></tr>";
-  $i_value_content = "<tr><th>i Value</th><td> ". $i_value_content . "</td></tr>"; 
-  $group_comment_content = "<tr><th>Data Set</th><td>" . $group_comment . "</td></tr>";
-  $build_nr_content = "<tr><th>Build number</th><td>" . $build_nr . "</td></tr>";
+  $i_value_content = "<tr><th>Valor i</th><td> ". $i_value_content . "</td></tr>";
+  $group_comment_content = "<tr><th>Conjunto de dados</th><td>" . $group_comment . "</td></tr>";
+  $build_nr_content = "<tr><th>Número da montagem</th><td>" . $build_nr . "</td></tr>";
   $total_family_content = "<tr><th>Total Families</th><td>" . $total_family . "</td></tr>";
   $total_gene_content = "<tr><th>Total Genes/Unigenes</th><td>" . $total_gene . "</td></tr>";
   $sum_content = $date_content . $i_value_content . $group_comment_content . $build_nr_content . $total_family_content . $total_gene_content;
-  $sum_content .= "<tr><td colspan=\"2\" align=\"center\" bgcolor=\"gray\"><a href=\"/about/family_analysis.pl\" target=\"blank\">For help with gene family analysis, please click here.</a></td></tr>";
+  $sum_content .= "<tr><td colspan=\"2\" align=\"center\" bgcolor=\"gray\"><a href=\"/about/family_analysis.pl\" target=\"blank\">Clique aqui para obter ajuda sobre a análise de famílias gênicas.</a></td></tr>";
 }
 else {
   &invalid_search;
@@ -154,7 +155,7 @@ while (my ($other_build_id, $other_build_nr, $other_i_value) = $other_build_q->f
 
 }
 
-$other_build_content = "<tr><th>Build number</th><th>i Value</th></tr>";
+$other_build_content = "<tr><th>Número da montagem</th><th>Valor i</th></tr>";
 foreach (sort keys %other_build){
   $other_build_content .= "<tr><td><a href=\"family_build.pl?family_build_id=$other_build_id{$_}\">$_</a></td><td>$other_build{$_}</td></tr>";
 }
@@ -239,9 +240,9 @@ my $size_content = "<tr><td><center><img src=\"$tmp\" alt=\"\" /></center></td><
 ###############################################
 #Page printout
 $page->header();
-print page_title_html("SGN Gene Family Build $family_build_id");
-print blue_section_html('Summary','<table width="100%" cellpadding="5" cellspacing="0" border="0">' . $sum_content . '</table>');
-print blue_section_html('Member Data Sets','<table width="100%" cellpadding="5" cellspacing="0" border="1">' . $member_data_content . '</table>');
+print page_title_html("Montagem $family_build_id de famílias gênicas do SGN");
+print blue_section_html('Resumo','<table width="100%" cellpadding="5" cellspacing="0" border="0">' . $sum_content . '</table>');
+print blue_section_html('Conjuntos de dados dos membros','<table width="100%" cellpadding="5" cellspacing="0" border="1">' . $member_data_content . '</table>');
 print blue_section_html('Other Builds with Different Inflation Factor','<table width="100%" cellpadding="5" cellspacing="0" border="0">' . $other_build_content . '</table>');
 print blue_section_html('Unigene Family Size Distribution','<table width="100%" cellpadding="5" cellspacing="0" border="0" align="center">' . $size_content . '</table>');
 

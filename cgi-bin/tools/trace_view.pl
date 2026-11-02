@@ -1,3 +1,4 @@
+use utf8;
 use strict;
 use warnings;
 
@@ -13,14 +14,14 @@ if ($file) {
 #do not accept files specified with /. because that might be an attempt to view some other file that they
 #are not allowed to view
     if ( $file =~ /\/\./ ) {
-        $page->message_page( 'Invalid file location.',
+        $page->message_page( 'Local do arquivo inválido.',
             '', '', "Invalid file location: $file" );
     }
 
     #if it's a tempfile, look in the tempfile location
     if ($temp) {
         $file =~ /^[\w\-]+\.mct$/
-          or $page->message_page( 'Invalid file location.',
+          or $page->message_page( 'Local do arquivo inválido.',
             '', '', "Invalid file location: $file" )
           ; #i made up the extension 'mct' for 'mystery chromatogram type' since we have various kinds of chromatograms and nothing recorded about their file types. --john
         $file =
@@ -49,7 +50,7 @@ s/trace_files/data\/prod\/public\/pgn_data_processing\/processed_traces\//;
 
         #or give up
         else {
-            $page->message_page( 'Invalid file location.',
+            $page->message_page( 'Local do arquivo inválido.',
                 '', '', "Invalid file location: $file" );
         }
     }
@@ -59,7 +60,7 @@ s/trace_files/data\/prod\/public\/pgn_data_processing\/processed_traces\//;
         $temp_image_filename = $1;
     }
     else {
-        $page->message_page( 'Invalid file location.',
+        $page->message_page( 'Local do arquivo inválido.',
             '', '', "Invalid file location: $file" );
         print STDERR
           "/cgi-bin/tools/trace_view.pl: invalid file location: $file\n";
@@ -86,13 +87,13 @@ s/trace_files/data\/prod\/public\/pgn_data_processing\/processed_traces\//;
             }
             else {
                 $page->message_page(
-'Sorry, but the viewer does not support this type of chromatogram file.'
+'O visualizador não oferece suporte a este tipo de arquivo de cromatograma.'
                 );
             }
         }
     }
     else {
-        $page->message_page( 'Invalid file location.',
+        $page->message_page( 'Local do arquivo inválido.',
             '', '', "Chromatogram file not found at $file" );
         print STDERR
           "/cgi-bin/tools/trace_view.pl: invalid file location: $file\n";
@@ -105,5 +106,5 @@ s/trace_files/data\/prod\/public\/pgn_data_processing\/processed_traces\//;
     $page->footer();
 }
 else {
-    $page->message_page('Invalid arguments.');
+    $page->message_page('Argumentos inválidos.');
 }

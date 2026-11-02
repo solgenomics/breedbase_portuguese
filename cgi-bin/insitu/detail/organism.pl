@@ -1,3 +1,4 @@
+use utf8;
 
 use strict;
 
@@ -66,11 +67,11 @@ sub generate_form {
     
     # add form elements
     #
-    $self->get_form()->add_field(display_name=>"Scientific name: ", field_name=>"name", contents=>$organism_name, length=>20, object=>$organism, getter=>"get_name", setter=>"set_name", validate=>"string");
+    $self->get_form()->add_field(display_name=>"Nome científico: ", field_name=>"name", contents=>$organism_name, length=>20, object=>$organism, getter=>"get_name", setter=>"set_name", validate=>"string");
     
-    $self->get_form()->add_field( display_name=>"Common name: ", field_name=>"common_name", contents=>$common_name, length=>20, object=>$organism, getter=>"get_common_name", setter=>"set_common_name");
+    $self->get_form()->add_field( display_name=>"Nome comum: ", field_name=>"common_name", contents=>$common_name, length=>20, object=>$organism, getter=>"get_common_name", setter=>"set_common_name");
     
-    $self->get_form()->add_field( display_name=>"Description: ", field_name=>"description", contents=>$description, length=>50, object=>$organism, getter=>"get_description", setter=>"set_description");
+    $self->get_form()->add_field( display_name=>"Descrição: ", field_name=>"description", contents=>$description, length=>50, object=>$organism, getter=>"get_description", setter=>"set_description");
     
     $self->get_form()->add_hidden( field_name=>"action", contents=>"store" );
     $self->get_form()->add_hidden( field_name=>"organism_id", contents=>$args{organism_id} );
@@ -91,10 +92,10 @@ sub display_page {
 
     my $edit_link = "";
     if ($self->get_action() eq "edit") { 
-	$edit_link = qq { <a href="$script_name?organism_id=$organism_id&amp;action=view">View</a> };
+        $edit_link = qq { <a href="$script_name?organism_id=$organism_id&amp;action=view">Visualizar</a> };
     }
     if ($self->get_action() eq "view") { 
-	$edit_link = qq { <a href="$script_name?organism_id=$organism_id&amp;action=edit">Edit</a>};
+        $edit_link = qq { <a href="$script_name?organism_id=$organism_id&amp;action=edit">Editar</a>};
     }
     
     
@@ -104,7 +105,7 @@ sub display_page {
     
     CXGN::Insitu::Toolbar::display_toolbar();
     
-    print page_title_html("<h3><a href=\"/\">Insitu</a> Organism Detail</h3>" );
+    print page_title_html("<h3><a href=\"/\">Insitu</a> Detalhes do organismo</h3>" );
 
     print "<h3>$args{action} </h3>";
     print $edit_link;

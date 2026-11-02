@@ -1,3 +1,4 @@
+use utf8;
 
 use strict;
 
@@ -161,7 +162,7 @@ sub delete {
         $self->get_schema->resultset("Stock::StockPub")->find( { stock_pub_id => $args{object_pub_id} } )
             ->delete;
 
-    }else { print qq | <h3> What are you trying to delete here? </h3>| };
+    }else { print qq | <h3> O que você está tentando excluir aqui? </h3>| };
 
     $self->send_publication_email();
     $self->get_page()->client_redirect("$script_name?type=$type&amp;type_id=$type_id&amp;refering_page=$refering_page&amp;action=new");
@@ -202,7 +203,7 @@ sub delete_dialog {
             $object_name = $stock->name;
         }
     }
-    my $back_link= qq |<a href="javascript:history.back(1)">Go back without deleting</a> |;
+    my $back_link= qq |<a href="javascript:history.back(1)">Voltar sem excluir</a> |;
 
     $self->get_page()->header();
 
@@ -217,7 +218,7 @@ sub delete_dialog {
 	    <input type="hidden" name="object_dbxref_id" value="$object_dbxref_id" />
 	    <input type="hidden" name="object_pub_id" value="$object_pub_id" />
 	    <input type="hidden" name="refering_page" value="$args{refering_page}" />	
-	    <input type="submit" value="Delete" />
+            <button type="submit" value="Delete">Excluir</button>
 	    </form>
 
 	    $back_link
@@ -246,7 +247,7 @@ sub generate_form {
     
     # add form elements
     #
-    $self->get_form()->add_field(display_name=>"Enter a PubMed ID: ", 
+    $self->get_form()->add_field(display_name=>"Informe um ID do PubMed: ",
 				 field_name=>"accession", 
 				 length=>20, 
 				 object=>$publication, 
@@ -297,7 +298,7 @@ sub display_page {
     
     print page_title_html( qq { SGN publication upload page } );
 
-    print qq { <b> Publications list</b> };
+    print qq { <b> Lista de publicações</b> };
 
     if ($args{type} eq 'locus') { 
 	$locus = CXGN::Phenome::Locus->new($self->get_dbh(), $args{type_id});
@@ -321,7 +322,7 @@ sub display_page {
                 my $accession = $pub->pub_dbxrefs->first->dbxref->accession;
                 my $author_string = $self->author_string($pub);
                 my $object_pub_id = $stock->get_object_row->search_related('stock_pubs', pub_id => $pub_id)->first->stock_pub_id if $stock;
-                print "<a href= /publication/$pub_id/view>$db_name:$accession</a> " . $pub->title() . " (" . $pub->pyear() . ") <b>" . $author_string . "</b>" . qq { \n <a href="add_publication.pl?pub_id=$pub_id&amp;type=$args{type}&amp;type_id=$args{type_id}&amp;object_pub_id=$object_pub_id&amp;action=confirm_delete&amp;refering_page=$args{refering_page}">[Remove]</a> <br /><br />\n };
+                print "<a href= /publication/$pub_id/view>$db_name:$accession</a> " . $pub->title() . " (" . $pub->pyear() . ") <b>" . $author_string . "</b>" . qq { \n <a href="add_publication.pl?pub_id=$pub_id&amp;type=$args{type}&amp;type_id=$args{type_id}&amp;object_pub_id=$object_pub_id&amp;action=confirm_delete&amp;refering_page=$args{refering_page}">[Remover]</a> <br /><br />\n };
             }
         }
     }
@@ -343,7 +344,7 @@ sub display_page {
         }
 	if ($db_name eq 'SGN_ref') { $accession= $pub_id; }
 	if ($obsolete eq 'f') {
-	    if ($pub_id && $object_dbxref_id) {print "<a href= /publication/$pub_id/view>$db_name:$accession</a>" . $pub->get_title() . " (" . $pub->get_pyear() . ") <b>" . $pub->get_authors_as_string() . "</b>" . qq { \n <a href="add_publication.pl?pub_id=$pub_id&amp;type=$args{type}&amp;type_id=$args{type_id}&amp;object_dbxref_id=$object_dbxref_id&amp;action=confirm_delete&amp;refering_page=$args{refering_page}">[Remove]</a> <br /><br />\n }; } 
+            if ($pub_id && $object_dbxref_id) {print "<a href= /publication/$pub_id/view>$db_name:$accession</a>" . $pub->get_title() . " (" . $pub->get_pyear() . ") <b>" . $pub->get_authors_as_string() . "</b>" . qq { \n <a href="add_publication.pl?pub_id=$pub_id&amp;type=$args{type}&amp;type_id=$args{type_id}&amp;object_dbxref_id=$object_dbxref_id&amp;action=confirm_delete&amp;refering_page=$args{refering_page}">[Remover]</a> <br /><br />\n }; }
 	}elsif($pub_id)  {
 	    push @obsoleted, [$pub, $object_dbxref_id] ; #an array of obsoletes pub objects
 	}
@@ -356,9 +357,9 @@ sub display_page {
     $self->get_form()->as_table();
     print qq { </center> };
 
-    print qq {<br /> <br /><b> For publications not in Pubmed <a href="/publication/0/new">click here</a> <br /> };
+    print qq {<br /> <br /><b> Para publicações ausentes do PubMed <a href="/publication/0/new">clique aqui</a> <br /> };
 
-    if ($args{refering_page}) { print "<a href=\"$args{refering_page}\">[Go back]</a><br /><br />\n"; }
+    if ($args{refering_page}) { print "<a href=\"$args{refering_page}\">[Voltar]</a><br /><br />\n"; }
 
     $self->get_page()->footer();
 }
@@ -435,7 +436,7 @@ sub confirm_store {
 	if($publication->is_associated_publication($type, $type_id)) {
 	    $self->get_page()->header();
 	    print  "<h3>Publication '$accession' is already associated with $args{type}  $args{type_id} </h3>";
-	    print qq { <a href="javascript:history.back(1)">back to publications</a> };
+            print qq { <a href="javascript:history.back(1)">voltar às publicações</a> };
 	    $self->get_page()->footer();
 	}
 	else { #the publication isn't associated with this object
@@ -481,7 +482,7 @@ sub print_confirm_form {
     #add pubmed verification step	
     if ( !$pub_title ) {
 	print  qq |<h3> $accession is not a valid pubmed ID. </h3>  |;
-	print  qq |<a href="$script_name?type=$type&amp;type_id=$type_id&amp;refering_page=$refering_page&amp;action=new">Go back</a>|;
+        print  qq |<a href="$script_name?type=$type&amp;type_id=$type_id&amp;refering_page=$refering_page&amp;action=new">Voltar</a>|;
 	$self->get_page()->footer();		   
 	exit(0);
     }
@@ -511,7 +512,7 @@ sub print_confirm_form {
 	if ($publication && !$is_associated) {
 	    my @associated_with_loci = $publication->get_loci();
 	    if (@associated_with_loci) {
-		$print_associations .= "<br> this publication is already associated with locus:<br> ";
+                $print_associations .= "<br> esta publicação já está associada ao locus:<br> ";
 		foreach my $a(@associated_with_loci) {
 		    my $a_locus_id= $a->get_locus_id;
 		    my $a_locus_name=$a->get_locus_name;
@@ -534,7 +535,7 @@ sub print_confirm_form {
     
     $self->get_form()->add_hidden( field_name=>"action", contents=>"store" );
     
-    page_title_html("Confirm store");
+    page_title_html("Confirmar armazenamento");
     
     
     
@@ -546,7 +547,7 @@ sub print_confirm_form {
 
     }
    
-    print qq | <BR> <a href="javascript:history.back(1)">Go back without storing the publication</a> | ;
+    print qq | <BR> <a href="javascript:history.back(1)">Voltar sem armazenar a publicação</a> | ;
    
     $self->get_page()->footer();
     

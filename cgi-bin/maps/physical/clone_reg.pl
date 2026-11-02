@@ -1,3 +1,4 @@
+use utf8;
 use strict;
 use warnings;
 
@@ -172,9 +173,7 @@ if($person) {
 <div id="instructions">
   <dl><dt>Instructions</dt>
       <dd>
-      To edit BAC registry information, select BACs to edit using
-      the controls at the bottom of the page, then page through and edit
-      the BACs by clicking the table cells below.
+      Para editar o registro de BACs, selecione-os nos controles ao final da página, percorra os resultados e clique nas células da tabela abaixo para editá-las.
       </dd>
   </dl>
 </div>
@@ -182,11 +181,11 @@ EOH
 } else {
   print <<EOH;
 <div style="text-align: center; margin-bottom: 1em">
-  You must be <a href="/solpeople/login.pl">logged in</a> to edit BAC registry information.
+  Você precisa estar <a href="/solpeople/login.pl">logged in</a> para editar o registro de BACs.
 </div>
 EOH
 }
-print info_section_html( title => 'Edit Clones',
+print info_section_html( title => 'Editar clones',
 			 contents =>
 			 qq|<div style="text-align: center">$stat_string $pagination</div>|
 			 .columnar_table_html( headings =>
@@ -262,20 +261,20 @@ my @search_sets =
     modesel( $find_selected->(@il_searches) ),
   );
 
-print info_section_html( title => 'Sequencing Stats Overview',
-			 contents => '<div id="stats_img_div" style="text-align: center">javascript required</div>'
+print info_section_html( title => 'Visão geral das estatísticas de sequenciamento',
+                         contents => '<div id="stats_img_div" style="text-align: center">JavaScript necessário</div>'
 		       );
 
-print info_section_html( title => 'Select BACs',
+print info_section_html( title => 'Selecionar BACs',
 			 contents =>
-			 info_section_html(title => 'Predefined Sets',
+                         info_section_html(title => 'Conjuntos predefinidos',
 					   is_subsection => 1,
 					   contents =>
 					   info_table_html( __border => 0,
 							    @search_sets,
 							  )
 					  )
-			 .info_section_html(title => 'Custom Set',
+                         .info_section_html(title => 'Conjunto personalizado',
 					    is_subsection => 1,
 					    contents => '<form method="GET">'.$query->to_html.'</form>',
 					   )
@@ -390,24 +389,24 @@ EOS
       case 'seq_proj':
         //proj must be null, or in the person's projects list
         if(row.seq_proj.val.innerHTML != '' && !seq_proj_in_projects_list)
-          return 'this BAC is already being sequenced by another sequencing project, they must release their claim on this BAC before you can claim it';
+          return 'este BAC já está sendo sequenciado por outro projeto, que precisa liberar a atribuição antes que você possa assumi-la';
       break;
       case 'seq_status':
       case 'gb_status':
         //seq_proj must be in the person's projects list
         if(!seq_proj_in_projects_list)
-          return 'this BAC must be assigned to your sequencing project for you to edit its seq or GB status';
+          return 'este BAC deve estar atribuído ao seu projeto para que você possa editar o status de sequenciamento ou do GenBank';
       break;
       case 'il_proj':
         //il_proj must be null, or in the person's projects list
         if(row.il_proj.val.innerHTML != '' && !il_proj_in_projects_list)
-          return 'this BAC is already being IL bin mapped by another sequencing project, they must release their claim on this BAC before you can claim it';
+          return 'este BAC já está sendo mapeado por IL por outro projeto, que precisa liberar a atribuição antes que você possa assumi-la';
       break;
       case 'il_bin':
       case 'il_notes':
       case 'il_chr':
         if(!il_proj_in_projects_list)
-          return 'this BAC must be assigned to your sequencing project before you can report IL mapping results for it';
+          return 'este BAC deve estar atribuído ao seu projeto antes que você possa registrar resultados de mapeamento por IL';
       break;
     };
 
@@ -527,7 +526,7 @@ EOS
     }
     var not_editable_str = is_not_editable(this,clone_id,name);
     if(not_editable_str) {
-      alert('cell not editable: '+not_editable_str);
+      alert('célula não editável: '+not_editable_str);
       return;
     }
 

@@ -216,7 +216,7 @@ HTML
 
 my $basic_info_html;
 if (defined $exp_accession) {
-   $basic_info_html = "<center><big><b>Expression Experiment: $exp_accession</b></big></center><br>";
+   $basic_info_html = "<center><big><b>Experimento de expressão: $exp_accession</b></big></center><br>";
 }
 
 $basic_info_html .= info_section_html( title => "Experiência Informações básicas", contents => $basic_info_content );

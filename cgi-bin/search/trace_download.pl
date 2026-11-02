@@ -1,4 +1,5 @@
 #!/usr/bin/perl -w
+use utf8;
 use strict;
 use warnings;
 use CXGN::Page;
@@ -10,7 +11,7 @@ use CatalystX::GlobalContext '$c';
 #
 # New download script for chromatogram access.
 our $trace_basepath;
-our $page = CXGN::Page->new( "Trace Download", "Koni");
+our $page = CXGN::Page->new( "Baixar cromatograma", "Koni");
 
 my $dbh = CXGN::DB::Connection->new();
 
@@ -20,7 +21,7 @@ my ($read_id,$chromat_id) = $page->get_arguments(qw/read_id chrid/);
 
 unless ((defined($read_id) && $read_id =~ m/^[0-9]+$/)
 	|| (defined($chromat_id) && $chromat_id =~ m/^[0-9]+$/)) {
-  $page->message_page("Invalid: '$chromat_id', '$read_id'.\n");
+  $page->message_page("Valores inválidos: '$chromat_id', '$read_id'.\n");
 #  invalid_search($page);
 }
 
@@ -36,7 +37,7 @@ if($read_id) {
     $path = $chromat->subpath;
     $name = $chromat->filename;
 } else {
-  $page->error_page('Invalid GET parameters');
+  $page->error_page('Parâmetros GET inválidos');
 }
 
 ($path && $name) || not_found($page, $read_id);
@@ -67,11 +68,11 @@ foreach $type_ext ( '',qw/.ab1 .abi .scf .esd .SCF/) {
 
 if (!$full_pathname) {
     print STDERR "Can't find chromatogram file at $basename";
-  $page->message_page("This sequence does not seem to have an associated chromatogram.");
+  $page->message_page("Esta sequência não parece ter um cromatograma associado.");
 }
 
 open F, "<$full_pathname"
- or $page->error_page("Failed to open chromatogram file for SGN-T$read_id ($!)");
+ or $page->error_page("Não foi possível abrir o arquivo de cromatograma para SGN-T$read_id ($!)");
 
 print "Pragma: \"no-cache\"\nContent-Disposition: filename=$name\n";
 print "Content-type: application/data\n\n";

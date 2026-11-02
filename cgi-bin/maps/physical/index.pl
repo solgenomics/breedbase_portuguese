@@ -1,3 +1,4 @@
+use utf8;
 use strict;
 use CXGN::Page;
 my $page=CXGN::Page->new("Sol Genomics Network","Tyler");
@@ -56,7 +57,7 @@ print <<END_HEREDOC;
             </div>
 	    
 	    <div class="subheading">
-            <u>Sequences</u>
+            <u>Sequências</u>
             </div>
             <div class="boxsubcontent">
               <a class="creativitylinks" href="/search/direct_search.pl?search=EST">Search ESTs</a><br />

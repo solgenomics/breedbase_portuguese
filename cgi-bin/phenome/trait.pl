@@ -1,3 +1,4 @@
+use utf8;
 ######################################################################
 #
 #  Displays a static user submitted trait detail page.
@@ -44,7 +45,7 @@ sub define_object {
     else {
 	$user_trait_id= $args{trait_id};
     }
-    unless (!$user_trait_id || $user_trait_id =~m /^\d+$/) { $self->get_page->message_page("No term exists for identifier $user_trait_id"); }  
+    unless (!$user_trait_id || $user_trait_id =~m /^\d+$/) { $self->get_page->message_page("Não existe termo com o identificador $user_trait_id"); }
     $self->set_object_id($user_trait_id);
     $self->set_object(CXGN::Phenome::UserTrait->new($self->get_dbh, $self->get_object_id));
     
@@ -66,7 +67,7 @@ sub display_page {
     my $definition = $ut->get_definition() ;     
     my $page="/phenome/trait.pl?trait_id=$ut_id";
     my $action= $args{action} || ""; 
-    if (!$ut_id) {  $self->get_page->message_page("No term exists for this identifier")  } ;
+    if (!$ut_id) {  $self->get_page->message_page("Não existe termo com esse identificador")  } ;
     
     $self->get_page->header("SGN: $ut_name " );
     print page_title_html("$ut_name\n");
@@ -75,7 +76,7 @@ sub display_page {
     
    
   
-    print info_section_html(title    => 'Trait details',
+    print info_section_html(title    => 'Detalhes da característica',
  			    contents => $trait_html,
 			    );
     
@@ -94,7 +95,7 @@ sub display_page {
 	$pop_count .= " " . 'populations';
     }
             
-   print info_section_html(title    => "Phenotype data/QTLs ($pop_count)",
+   print info_section_html(title    => "Dados fenotípicos/QTLs ($pop_count)",
  			    contents => $pop_list,
  			    collapsible=>1,
 			    collapsed=>0,
@@ -124,12 +125,12 @@ sub generate_form {
     my $definition = $ut->get_definition() ; 
     
     $self->get_form()->add_label(
-				 display_name =>"Term name",
+                                 display_name =>"Nome do termo",
 				 field_name   =>"term_name",
 				 contents     => $ut_name,
 				 );
     $self->get_form()->add_label(
-				 display_name =>"Definition",
+                                 display_name =>"Definição",
 				 field_name   =>"definition",
 				 contents     => $definition,
 				 );   

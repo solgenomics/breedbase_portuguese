@@ -1,3 +1,4 @@
+use utf8;
 
 =head1 NAME
 
@@ -362,15 +363,15 @@ if ( $format eq "fasta_unaligned" ) {
 
     if ( $SEQ_COUNT > $ALIGN_SEQ_COUNT_LIMIT ) {
         my $message =
-"<center><span style='font-size:1.2em;'>You submitted <b>$SEQ_COUNT</b> sequences. Due to limited computational resources, we only <br>allow <b>$ALIGN_SEQ_COUNT_LIMIT or fewer</b> sequences to be aligned through our web interface.</span>";
+"<center><span style='font-size:1.2em;'>Você enviou <b>$SEQ_COUNT</b> sequências. Devido aos recursos computacionais limitados, permitimos apenas <br>allow <b>$ALIGN_SEQ_COUNT_LIMIT or fewer</b> sequências por alinhamento na interface web.</span>";
         $message .=
-"<br /><br /><span style='font-size:1.1em'>You can download and run your own copy of the <br />alignment software at <a href='http://www.drive5.com/muscle/'>www.drive5.com/muscle/</a></span></center>";
+"<br /><br /><span style='font-size:1.1em'>Você pode baixar e executar sua própria cópia do <br />alignment software at <a href='http://www.drive5.com/muscle/'>www.drive5.com/muscle/</a></span></center>";
         input_err_page( $page, $message );
     }
     elsif( $TOTAL_LENGTH > $ALIGN_SEQ_TOTAL_LENGTH_LIMIT ) {
         input_err_page( $page, <<"" );
-<center><span style='font-size:1.2em;'>You submitted <b>$TOTAL_LENGTH</b> bases of sequence. Due to limited computational resources, we only <br>allow <b>$ALIGN_SEQ_TOTAL_LENGTH_LIMIT or fewer</b> sequences to be aligned through our web interface.</span>
-<br /><br /><span style='font-size:1.1em'>You can download and run your own copy of the <br />alignment software at <a href='http://www.drive5.com/muscle/'>www.drive5.com/muscle/</a></span></center>
+<center><span style='font-size:1.2em;'>Você enviou <b>$TOTAL_LENGTH</b> bases de sequência. Devido aos recursos computacionais limitados, permitimos apenas <br>allow <b>$ALIGN_SEQ_TOTAL_LENGTH_LIMIT or fewer</b> sequências por alinhamento na interface web.</span>
+<br /><br /><span style='font-size:1.1em'>Você pode baixar e executar sua própria cópia do <br />alignment software at <a href='http://www.drive5.com/muscle/'>www.drive5.com/muscle/</a></span></center>
 
     }
 
@@ -552,7 +553,7 @@ $alignment->set_param( \%PARAM );
 $image_content = "<tr><td align=\"center\">";
 
 $image_content .=
-"<img border=0 src='$tmp_image' alt='Alignment Image' usemap='#align_image_map'/>";
+"<img border=0 src='$tmp_image' alt='Imagem do alinhamento' usemap='#align_image_map'/>";
 $image_content .= $alignment->get_image_map( $show_sv, $show_breakdown );
 $image_content .=
   "<div style=\"width:100%;text-align:left;padding-left:40px;\">";
@@ -560,19 +561,19 @@ if ($show_domains) {
     $image_content .=
         "<a href=\"show_align.pl?"
       . hash2param( \%PARAM, { show_domains => 0 } )
-      . "\">Hide Domain Information</a>";
+      . "\">Ocultar informações de domínios</a>";
 }
 else {
     $image_content .=
         "<a href=\"show_align.pl?"
       . hash2param( \%PARAM, { show_domains => 1 } )
-      . "\">Show Domain Information</a>";
+      . "\">Mostrar informações de domínios</a>";
 }
 $image_content .= "</div>";
 
 if ( $start_value == 1 && $end_value == $len ) {
     $image_content .=
-"<b>Click on a region of the image to zoom in.</b><br />You must submit the form below to change alignment parameters or remove members from analysis.";
+"<b>Clique em uma região da imagem para ampliar.</b><br />You must submit the form below to change alignment parameters or remove members from analysis.";
 }
 else {
     $image_content .= "<a href='show_align.pl?";
@@ -584,28 +585,28 @@ else {
 $image_content .= "</td></tr>";
 
 my $term_help_content = <<HTML;
-<table width="100%" summary="" cellpadding="3" cellspacing="3" border="0"><tr><td><p style='font-size:1.1em'>SGN Alignment Viewer analyzes and provides useful information that can be used to optimize the overlapping region of the alignment.</p></td></tr></table>
+<table width="100%" summary="" cellpadding="3" cellspacing="3" border="0"><tr><td><p style='font-size:1.1em'>O visualizador de alinhamentos do SGN analisa e fornece informações para otimizar a região de sobreposição do alinhamento.</p></td></tr></table>
 <table width="100%" summary="" cellpadding="3" cellspacing="0" border="0">
 <tr style='background-color:#ddf'><th valign='top'>Coverage&nbsp;Range</th>
-<td>The distance between the first and last element of the un-gapped sequence in the current alignment.</td></tr>
-<tr><th valign='top'>Bases</th><td>Number of "real sequence characters" (non gap) in the sequence.</td></tr>
-<tr style='background-color:#ddf'><th valign='top'>Gaps</th><td>Number of gaps in the aligment</td></tr>
-<tr><th valign='top'>Medium</th><td>The middle position of all non-gap characters of the alignment sequence</td></tr>
-<tr style='background-color:#ddf'><th valign='top'>Putative Splice Variant Pairs</th><td>Sequence pairs that are from the same species, that, by default <ol>
-<li>Share at least 60 bases if they are nucleotides or 20 bases if they are peptides.
-<li>Share at least 95% sequence similarity in the overlapping region. 
-<li>Have insertion/deletion of at least 4 amino acids or 12 nucleotides in their common region.</ol> </td></tr>
-<tr><th valign='top'>Putative Alleles</th><td>Sequence pairs that are from the same species, that, by default
+<td>Distância entre o primeiro e o último elemento da sequência sem lacunas no alinhamento atual.</td></tr>
+<tr><th valign='top'>Bases</th><td>Número de caracteres reais de sequência, sem lacunas.</td></tr>
+<tr style='background-color:#ddf'><th valign='top'>Gaps</th><td>Número de lacunas no alinhamento</td></tr>
+<tr><th valign='top'>Medium</th><td>Posição central de todos os caracteres sem lacunas da sequência alinhada</td></tr>
+<tr style='background-color:#ddf'><th valign='top'>Putative Splice Variant Pairs</th><td>Pares de sequências da mesma espécie que, por padrão, <ol>
+<li>Compartilham pelo menos 60 bases, se nucleotídicas, ou 20 bases, se peptídicas.
+<li>Compartilham pelo menos 95% de similaridade na região de sobreposição.
+<li>Apresentam inserção/deleção de pelo menos 4 aminoácidos ou 12 nucleotídeos na região comum.</ol> </td></tr>
+<tr><th valign='top'>Putative Alleles</th><td>Pares de sequências da mesma espécie que, por padrão,
 <ol>
-<li>Share at least 60 bases if they are nucleotides or 20 bases if they are peptides.  
-<li>Share at least 95% sequence similarity in the overlapping region. 
-<li>Have insertion/deletion of <b>not more than </b> 4 amino acids or 12 nucleotides in their common region.
+<li>Compartilham pelo menos 60 bases, se nucleotídicas, ou 20 bases, se peptídicas.
+<li>Compartilham pelo menos 95% de similaridade na região de sobreposição.
+<li>Apresentam inserção/deleção de <b>no máximo </b> 4 amino acids or 12 nucleotides in their common region.
 </ol>
 </td></tr>
-<tr style='background-color:#ddf'><th valign='top'>Overlap Score</th><td>An indication of how well the sequence overlaps with other members in the alignment.  If a non-gap character of a sequence overlaps with a character in another alignment sequence, it gets a point.<br><br>Sometimes a few sequences share very little overlap with the rest, significantly reducing the overall overlapping sequence of the alignment.  Usually these sequences are short and will not help with the understanding of overall alignment.  We suggest the user leaves out these sequences before further analysis of the aligment sequence. </td></tr></table>
+<tr style='background-color:#ddf'><th valign='top'>Overlap Score</th><td>Indica a sobreposição da sequência com outros membros do alinhamento. Cada caractere sem lacuna que se sobrepõe a um caractere de outra sequência recebe um ponto.<br><br>Algumas sequências têm pouca sobreposição com as demais e reduzem muito a região compartilhada do alinhamento. Elas geralmente são curtas e pouco contribuem para a análise geral. Sugerimos excluí-las antes de continuar a análise. </td></tr></table>
 HTML
 $term_help_content =
-  blue_section_html( "<em>Help With Terms</em>", $term_help_content );
+  blue_section_html( "<em>Ajuda com os termos</em>", $term_help_content );
 
 my ( $help_link, $hidden_help_content ) = collapser(
     {
@@ -632,7 +633,7 @@ $combined_content = get_combined_content($alignment);
 #Page printout: Nav Section
 
 print
-"<a href=\"index.pl?id_data=$id_data\" style=\"margin-left:10px;font-size:1.1em\">&lt;&lt; Start over</a>";
+"<a href=\"index.pl?id_data=$id_data\" style=\"margin-left:10px;font-size:1.1em\">« Recomeçar</a>";
 my $disp_title = "";
 $disp_title = "View and Analyze Alignment of <em>$title</em>" if ($title);
 $disp_title ||= "View and Analyze Alignment";
@@ -641,7 +642,7 @@ print page_title_html("$disp_title");
 print "&nbsp;&nbsp;" . $help_link . "<br><br>";
 print $hidden_help_content; #this is actually a blue_section_html, but the whole thing is hidden
 
-my $image_title = "Alignment Image";
+my $image_title = "Imagem do alinhamento";
 $image_title .= ":&nbsp;&nbsp; CDS Translated" if ( $type eq "cds" );
 print blue_section_html( $image_title,
         '<table width="100%" cellpadding="0" cellspacing="0" border="0">'
@@ -649,7 +650,7 @@ print blue_section_html( $image_title,
       . '</table>' );
 
 print blue_section_html(
-    'Summary, Files, Change Parameters',
+    'Resumo, arquivos e parâmetros',
     '<table width="100%" cellpadding="5" cellspacing="0" border="0">'
       . $combined_content
       . '</table>'
@@ -662,7 +663,7 @@ else {
     $seq_sum_content .= "Not Calculated &nbsp;&nbsp;( <a href=\"show_align.pl?";
     $seq_sum_content .= hash2param( \%PARAM, { show_breakdown => 1 } );
     $seq_sum_content .=
-      "\">showing this table</a> will increase page load time )";
+      "\">mostrando esta tabela</a> will increase page load time )";
 }
 
 ###########################################################
@@ -674,10 +675,10 @@ if ($show_sv) {
 else {
     $al_content = "Not Calculated &nbsp;&nbsp;( <a href=\"show_align.pl?";
     $al_content .= hash2param( \%PARAM, { show_sv => 1 } );
-    $al_content .= "\">showing this table</a> will increase page load time )";
+    $al_content .= "\">mostrando esta tabela</a> will increase page load time )";
     $sv_content = "Not Calculated &nbsp;&nbsp;( <a href=\"show_align.pl?";
     $sv_content .= hash2param( \%PARAM, { show_sv => 1 } );
-    $sv_content .= "\">showing this table</a> will increase page load time )";
+    $sv_content .= "\">mostrando esta tabela</a> will increase page load time )";
 }
 
 ###########################################################
@@ -772,7 +773,7 @@ sub get_combined_content {
     #Summary Content
     $combined_content .=
       "<td style='width:50%;vertical-align:middle;'><table width='100%'>";
-    $combined_content .= "<tr><th>Type</th><td>";
+    $combined_content .= "<tr><th>Tipo</th><td>";
     if ( $type eq 'nt' ) {
         $combined_content .= "Nucleotide</td></tr>";
     }
@@ -782,7 +783,7 @@ sub get_combined_content {
     $combined_content .=
       "<tr><th>No. Alignment Members</th><td>$align_member_nr</td></tr>";
     $combined_content .=
-      "<tr><th>Selected Range</th><td>$start_value - $end_value</td></tr>";
+      "<tr><th>Intervalo selecionado</th><td>$start_value - $end_value</td></tr>";
     $combined_content .= "<tr><th>Overlap</th><td>$ol_nr";
     if ( $type eq 'nt' ) {
         $combined_content .= " bp</td></tr>";
@@ -793,13 +794,13 @@ sub get_combined_content {
 
     if ($cds_file_links) {
         $combined_content .=
-          "<tr><th>Protein Files:</th><td>$file_links</td></tr>";
+          "<tr><th>Arquivos de proteínas:</th><td>$file_links</td></tr>";
         $combined_content .=
-          "<tr><th>CDS Files:</th><td>$cds_file_links</td></tr>";
+          "<tr><th>Arquivos de CDS:</th><td>$cds_file_links</td></tr>";
     }
     else {
         $combined_content .=
-          "<tr><th>Sequence Files:</th><td>$file_links</td></tr>";
+          "<tr><th>Arquivos de sequências:</th><td>$file_links</td></tr>";
     }
 
     my $rerun_file;
@@ -817,17 +818,17 @@ sub get_combined_content {
 	
 	<tr><td colspan=2><br /> 
 	<a href='index.pl?temp_file=$tmp_seq_name&maxiters=$maxiters&type=$type&format=fasta_unaligned&title=$title'>&gt;&gt; Re-run Alignment On Selected Range ($available_seq_count)</a>
-	<br />This will allow you to specify greater accuracy by increasing the number of iterations performed by Muscle<br /><br />
+        <br />Isso permite aumentar a precisão elevando o número de iterações do Muscle<br /><br />
 	<a target="$target" href="/tools/tree_browser/index.pl?align_temp_file=$tmp_seq_align_name&align_type=pep&tree_from_align=1">
 	&gt;&gt; Calculate Tree from Selected Range ($available_seq_count)</a><br />
-	Use a quick neighbor-joining algorithm (Kimura) to calculate a tree based on the protein alignment, and analyze both in the combined alignment/tree browser.
+        Usar um algoritmo rápido de agrupamento de vizinhos (Kimura) para calcular uma árvore a partir do alinhamento de proteínas e analisar ambos no navegador combinado de alinhamento e árvore.
 	</td></tr>
 HTML
     }
     else {
         $combined_content .= <<HTML;
 	<tr><td colspan=2><br />
-	Re-alignment and Tree Calculation cannot be performed, since there are less than two sequences for which data is available at this range
+        Não é possível realinhar nem calcular a árvore, pois há dados de menos de duas sequências neste intervalo
 	</td></tr>
 HTML
     }
@@ -851,7 +852,7 @@ HTML
 
     #start and end value
     $combined_content .=
-"<table style='border:0px;border-spacing:0px'><tr><th>Start Value</th><th>End Value</th></tr>";
+"<table style='border:0px;border-spacing:0px'><tr><th>Valor inicial</th><th>Valor final</th></tr>";
     $combined_content .=
 "<tr><td><input type='text' name='start_value' value='$start_value' /></td>";
     $combined_content .=
@@ -859,19 +860,19 @@ HTML
 
     #Sequences to leave out
     $combined_content .=
-      "<b>IDs of Sequences to Leave Out</b> (separated by spaces)<br>";
+      "<b>IDs das sequências a excluir</b> (separated by spaces)<br>";
     $combined_content .=
 "<textarea name='hide_seqs' id='hide_seqs' rows='2' cols='50'>$hide_seqs</textarea><br>";
 
     my $show_breakdown_checked = "";
     $show_breakdown_checked = "CHECKED" if ($show_breakdown);
     $combined_content .=
-"<b><input type='checkbox' name='show_breakdown' $show_breakdown_checked> Calculate Coverage and Overlap Details</b> (Time Intensive)<br />";
+"<b><input type='checkbox' name='show_breakdown' $show_breakdown_checked> Calcular detalhes de cobertura e sobreposição</b> (Time Intensive)<br />";
 
     my $show_sv_checked = "";
     $show_sv_checked = "CHECKED" if ($show_sv);
     $combined_content .=
-"<b><input type='checkbox' name='show_sv' $show_sv_checked> Calculate Splice Variants and Alleles</b> (Time Intensive)";
+"<b><input type='checkbox' name='show_sv' $show_sv_checked> Calcular variantes de splicing e alelos</b> (Time Intensive)";
     $combined_content .= "<table style='border:0px;text-align:center'>";
     $combined_content .=
 "<tr><th>% Similarity</th><th></th><th>Shared</th><th></th><th>InDel Limit</th></tr>";
@@ -884,7 +885,7 @@ HTML
 
     #submit
     $combined_content .=
-      "<input type='submit' value='Change Alignment Details' /></form></td>";
+      "<button type='submit' value='Change Alignment Details'>Alterar detalhes do alinhamento</button></form></td>";
 
     $combined_content .= "</tr></table>";
     $combined_content .= "</td></tr>";
@@ -905,7 +906,7 @@ sub get_sv_al_content {
         $sv_content .= "<tr>";
         $sv_content .= "<th>Species</th>";    # if $show_species;
         $sv_content .=
-"<th>Sequence id</th><th>Sequence id</th><th>Overlap Bases</th><th>\% Similarity</th></tr>";
+"<th>ID da sequência</th><th>ID da sequência</th><th>Overlap Bases</th><th>\% Similarity</th></tr>";
         foreach my $first_key ( keys %ob ) {
             foreach my $second_key ( keys %{ $ob{$first_key} } ) {
                 $sv_content .= "<tr>";
@@ -919,14 +920,14 @@ sub get_sv_al_content {
         $sv_content .=
           "&nbsp;Reduce page load time by <a href=\"show_align.pl?";
         $sv_content .= hash2param( \%PARAM, { show_sv => 0 } );
-        $sv_content .= "\">hiding this table</a>";
+        $sv_content .= "\">ocultando esta tabela</a>";
 
     }
     else {
         $sv_content =
           "None were found.  Reduce page load time by <a href=\"show_align.pl?";
         $sv_content .= hash2param( \%PARAM, { show_sv => 0 } );
-        $sv_content .= "\">hiding this table</a>";
+        $sv_content .= "\">ocultando esta tabela</a>";
 
     }
 
@@ -945,7 +946,7 @@ sub get_sv_al_content {
         $al_content .= "<tr>";
         $al_content .= "<th>Species</th>";    # if $show_species;
         $al_content .=
-"<th>Sequence id</th><th>Sequence id</th><th>Overlap Bases</th><th>\% Similarity</th></tr>";
+"<th>ID da sequência</th><th>ID da sequência</th><th>Overlap Bases</th><th>\% Similarity</th></tr>";
         foreach my $first_key ( keys %al_ob ) {
             foreach my $second_key ( keys %{ $al_ob{$first_key} } ) {
                 $al_content .= "<tr>";
@@ -959,13 +960,13 @@ sub get_sv_al_content {
         $al_content .=
           "&nbsp;Reduce page load time by <a href=\"show_align.pl?";
         $al_content .= hash2param( \%PARAM, { show_sv => 0 } );
-        $al_content .= "\">hiding this table</a>";
+        $al_content .= "\">ocultando esta tabela</a>";
     }
     else {
         $al_content =
           "None were found.  Reduce page load time by <a href=\"show_align.pl?";
         $al_content .= hash2param( \%PARAM, { show_sv => 0 } );
-        $al_content .= "\">hiding this table</a>";
+        $al_content .= "\">ocultando esta tabela</a>";
     }
     return ( $sv_content, $al_content );
 }
@@ -1002,7 +1003,7 @@ sub get_seq_sum_content {
     my $seq_sum_content = "";
     $seq_sum_content .=
       "<table width='100%' cellpadding='5' cellspacing='0' border='1'>";
-    $seq_sum_content .= "<tr><th>Sequence ID</th>";
+    $seq_sum_content .= "<tr><th>ID da sequência</th>";
     $seq_sum_content .= "<th>Species</th>" if $show_species;
     $seq_sum_content .=
 "<th>Coverage Range</th><th>Bases</th><th>Gaps</th><th>Medium</th><th>Overlap Score</th></tr>";
@@ -1018,7 +1019,7 @@ sub get_seq_sum_content {
     $seq_sum_content .=
       "&nbsp;Reduce page load time by <a href=\"show_align.pl?";
     $seq_sum_content .= hash2param( \%PARAM, { show_breakdown => 0 } );
-    $seq_sum_content .= "\">hiding this table</a>";
+    $seq_sum_content .= "\">ocultando esta tabela</a>";
     return $seq_sum_content;
 }
 
@@ -1098,8 +1099,8 @@ sub input_err_page {
     $input_err_page->header();
     my ($disp_err_message) = $err_message =~ /(.*) at \/usr\/local\//;
     $disp_err_message = $err_message unless $disp_err_message;
-    print page_title_html("Combined Tree/Alignment Error");
-    print "$disp_err_message<br><br><a href=\"index.pl\">Start over</a><br>";
+    print page_title_html("Erro de árvore/alinhamento combinado");
+    print "$disp_err_message<br><br><a href=\"index.pl\">Recomeçar</a><br>";
     $input_err_page->footer();
     exit;
 }

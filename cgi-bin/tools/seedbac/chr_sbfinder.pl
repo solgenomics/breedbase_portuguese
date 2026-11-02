@@ -1,3 +1,4 @@
+use utf8;
 
 =head1 NAME
 
@@ -89,9 +90,9 @@ sub input_box {
     print <<HTML;
     
     <h3>Seedbac finder</h3>
-    This tool lists all anchored bacs for a given chromosome on the tomato F2-2000 map to help identify seed bacs.<br /><br />
+    Esta ferramenta lista todos os BACs ancorados de um cromossomo no mapa de tomate F2-2000 para ajudar a identificar BACs iniciais.<br /><br />
     <form action="#">
-      Chromosome: <select name="chr">
+      Cromossomo: <select name="chr">
 	
 HTML
       for(my $i=1; $i<=12; $i++){
@@ -101,7 +102,7 @@ HTML
     print <<HTML;
       </select>
 
-      Marker minimal confidence: <select name="confidence">
+      Confiança mínima do marcador: <select name="confidence">
       <option value=\"0\">I</option>
       <option value=\"1\">ILOD(2)</option>
       <option value=\"2\">CLOD(3)</option>
@@ -117,7 +118,7 @@ HTML
       <br />
       <input type="checkbox" name="text_output" /> Output as text<br />
       <br />
-      &nbsp;&nbsp;<input type="submit" value="Submit" />
+      &nbsp;&nbsp;<button type="submit" value="Submit">Enviar</button>
       </form>
 	
 HTML
@@ -175,7 +176,7 @@ sub display_results_html {
     #if (! @bacs) { print "No bacs found or marker does not exist.\n"; } 
 
     print qq { <table cellspacing="5" cellpadding="0" border="0"> };
-    print qq { <tr><td>Marker</td><td>confidence</td><td>offset (cM)</td><td>BAC name</td><td>estimated length</td><td>contig name</td><td>contig size</td><td>top pick</td><td>type</td></tr> };
+    print qq { <tr><td>Marcador</td><td>confidence</td><td>offset (cM)</td><td>Nome do BAC</td><td>estimated length</td><td>Nome do contig</td><td>contig size</td><td>top pick</td><td>tipo</td></tr> };
     
     print $self->{html};
     
@@ -195,7 +196,7 @@ sub format_html {
 	if (!$self->{bgcolor}) { $self->{bgcolor}="#ffffff"; }
 	my $toppick="&nbsp;";
 	if ($count ==1) { $toppick=qq{<img src="/img/checkmark.jpg" alt="" />}; }
-	$s .= qq { <tr bgcolor="$self->{bgcolor}"><td><a href="/search/markers/markerinfo.pl?marker_id=$marker_id">$marker_name</a> [<a href="/tools/seedbac/sbfinder.pl?marker=$marker_name">all</a>][<a href="/cview/view_chromosome.pl?chr_nr=$self->{chr}&amp;hilite=$marker_name">View</a>]</td><td align="center">$confidence[$confidence]</td><td align="center">$offset</td><td><b><a href="/maps/physical/clone_info.pl?cu_name=$bac">$bac</a></b></td><td align="center">$len</td><td align="center">$name</td><td align="center">$contigs</td><td bgcolor="#FFFFFF">$toppick</td><td>$type</td></tr> };
+        $s .= qq { <tr bgcolor="$self->{bgcolor}"><td><a href="/search/markers/markerinfo.pl?marker_id=$marker_id">$marker_name</a> [<a href="/tools/seedbac/sbfinder.pl?marker=$marker_name">todos</a>][<a href="/cview/view_chromosome.pl?chr_nr=$self->{chr}&amp;hilite=$marker_name">Visualizar</a>]</td><td align="center">$confidence[$confidence]</td><td align="center">$offset</td><td><b><a href="/maps/physical/clone_info.pl?cu_name=$bac">$bac</a></b></td><td align="center">$len</td><td align="center">$name</td><td align="center">$contigs</td><td bgcolor="#FFFFFF">$toppick</td><td>$type</td></tr> };
     
     return $s;
 }

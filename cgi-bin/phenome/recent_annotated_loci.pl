@@ -1,4 +1,5 @@
 #!usr/bin/perl
+use utf8;
 use warnings;
 use strict;
 
@@ -32,7 +33,7 @@ my $form = CXGN::Page::WebForm->new();
 $form->set_data(date =>'');
 $form->template(<<HTML);
      <input type="text" name="date"  id="cal_target" />
-    <input type="submit" id="submit_button" value="Submit" />
+    <button type="submit" id="submit_button" value="Submit">Enviar</button>
    
 HTML
 print '<form action="" method="get">',
@@ -117,7 +118,7 @@ sub print_results {
 					  data=>\@locus_updates, __align=>'llc') if @locus_updates;
     
     
-    print info_section_html(title   => "Updated loci (" . scalar(@locus_updates) . ")",
+    print info_section_html(title   => "Loci atualizados (" . scalar(@locus_updates) . ")",
 			    contents =>$updated_loci,
 			    collapsible=>1,
 			    collapsed=>0,
@@ -149,7 +150,7 @@ sub print_results {
 								     ],
 							data=>\@alias_updates, __align=>'llc'); }
     
-    print info_section_html(title   => "Locus synonyms (" . scalar(@alias_updates) . ")",
+    print info_section_html(title   => "Sinônimos de loci (" . scalar(@alias_updates) . ")",
 			    contents => $aliases ,
 			    collapsible=>1,
 			    );
@@ -188,7 +189,7 @@ sub print_results {
 				      data=>\@allele_updates, __align=>'llc');}
     
     
-    print info_section_html(title   => "Alleles (" . scalar(@allele_updates) . ")",
+    print info_section_html(title   => "Alelos (" . scalar(@allele_updates) . ")",
 			    contents => $alleles ,
 			    collapsible=>1,
 			    );			   
@@ -228,7 +229,7 @@ sub print_results {
 				      data=>\@ld_updates, __align=>'llc');}
     
     
-    print info_section_html(title   => "Locus Annotations (" . scalar(@ld_updates) . ")",
+    print info_section_html(title   => "Anotações de loci (" . scalar(@ld_updates) . ")",
 			    contents => $lds ,
 			    collapsible=>1,
 			    collapsed=>1,
@@ -273,7 +274,7 @@ sub print_results {
 				      data=>\@locus_images, __align=>'llc');}
     
     
-    print info_section_html(title   => "Locus images (" . scalar(@locus_images) . ")",
+    print info_section_html(title   => "Imagens de loci (" . scalar(@locus_images) . ")",
 			    contents => $lis ,
 			    collapsible=>1,
 			    collapsed=>1,
@@ -316,7 +317,7 @@ sub print_results {
 				      data=>\@individuals, __align=>'llc');}
     
     
-    print info_section_html(title   => "Locus accessions (" . scalar(@individuals) . ")",
+    print info_section_html(title   => "Acessos de loci (" . scalar(@individuals) . ")",
 			    contents => $ias ,
 			    collapsible=>1,
 			    collapsed=>1,
@@ -358,7 +359,7 @@ sub print_results {
 				      data=>\@locus_unigenes, __align=>'llc');}
     
     
-    print info_section_html(title   => "Locus-unigenes (" . scalar(@locus_unigenes) . ")",
+    print info_section_html(title   => "Unigenes de loci (" . scalar(@locus_unigenes) . ")",
 			    contents => $uls ,
 			    collapsible=>1,
 			    collapsed=>1,
@@ -401,7 +402,7 @@ sub print_results {
 				      data=>\@lm_updates, __align=>'llc');}
     
     
-    print info_section_html(title   => "Locus markers (" . scalar(@lm_updates) . ")",
+    print info_section_html(title   => "Marcadores de loci (" . scalar(@lm_updates) . ")",
 			    contents => $lms ,
 			    collapsible=>1,
 			    collapsed=>1,

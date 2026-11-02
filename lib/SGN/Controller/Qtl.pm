@@ -65,7 +65,7 @@ sub population : Path('/qtl/population') Args(1) {
             } 
             else 
             {
-                $c->throw_404("$id is not a QTL population.");
+                $c->throw_404("$id não é uma população de QTL.");
             }
     }
     else 
@@ -78,7 +78,7 @@ sub population : Path('/qtl/population') Args(1) {
 sub download_phenotype : Path('/qtl/download/phenotype') Args(1) {
     my ($self, $c, $id) = @_;
     
-    $c->throw_404("<strong>$id</strong> is not a valid population id") if  $id =~ m/\D/;
+    $c->throw_404("<strong>$id</strong> não é um ID de população válido") if  $id =~ m/\D/;
     
     $self->is_qtl_pop($c, $id);
     if ($c->stash->{is_qtl_pop})   
@@ -96,14 +96,14 @@ sub download_phenotype : Path('/qtl/download/phenotype') Args(1) {
     }
     else
     {
-        $c->throw_404("<strong>$id</strong> is not a QTL population id");   
+        $c->throw_404("<strong>$id</strong> não é um ID de população de QTL");
     }       
 }
 
 sub download_genotype : Path('/qtl/download/genotype') Args(1) {
     my ($self, $c, $id) = @_;
     
-    $c->throw_404("<strong>$id</strong> is not a valid population id") if  $id =~ m/\D/;
+    $c->throw_404("<strong>$id</strong> não é um ID de população válido") if  $id =~ m/\D/;
    
     $self->is_qtl_pop($c, $id);
     if ($c->stash->{is_qtl_pop})
@@ -122,14 +122,14 @@ sub download_genotype : Path('/qtl/download/genotype') Args(1) {
     }
     else
     {
-        $c->throw_404("<strong>$id</strong> is not a QTL population id");   
+        $c->throw_404("<strong>$id</strong> não é um ID de população de QTL");
     }       
 }
 
 sub download_correlation : Path('/qtl/download/correlation') Args(1) {
     my ($self, $c, $id) = @_;
     
-    $c->throw_404("<strong>$id</strong> is not a valid population id") if $id =~ m/\D/;
+    $c->throw_404("<strong>$id</strong> não é um ID de população válido") if $id =~ m/\D/;
 
     $self->is_qtl_pop($c, $id);
     if ($c->stash->{is_qtl_pop})
@@ -156,14 +156,14 @@ sub download_correlation : Path('/qtl/download/correlation') Args(1) {
     }  
     else
     {
-        $c->throw_404("<strong>$id</strong> is not a QTL population id");   
+        $c->throw_404("<strong>$id</strong> não é um ID de população de QTL");
     }       
 }
 
 sub download_acronym : Path('/qtl/download/acronym') Args(1) {
     my ($self, $c, $id) = @_;
 
-    $c->throw_404("<strong>$id</strong> is not a valid population id") if  $id =~ m/\D/;
+    $c->throw_404("<strong>$id</strong> não é um ID de população válido") if  $id =~ m/\D/;
     
     $self->is_qtl_pop($c, $id);
     if ($c->stash->{is_qtl_pop})
@@ -177,7 +177,7 @@ sub download_acronym : Path('/qtl/download/acronym') Args(1) {
     }
     else
     {
-        $c->throw_404("<strong>$id</strong> is not a QTL population id");   
+        $c->throw_404("<strong>$id</strong> não é um ID de população de QTL");
     }       
 }
 
@@ -411,7 +411,7 @@ sub _link {
         $c->stash( cvterm_page        => qq |<a href="/cvterm/$cvterm_id/view">$trait_name</a> |,
                    trait_page         => qq |<a href="/phenome/trait.pl?trait_id=$trait_id">$trait_name</a> |,
                    owner_page         => qq |<a href="/solpeople/personal-info.pl?sp_person_id=$owner_id">$owner_name</a> |,
-                   guideline          => qq |<a href="/qtl/submission/guide">Guideline</a> |,
+                   guideline          => qq |<a href="/qtl/submission/guide">Guia</a> |,
                    phenotype_download => qq |<a href="/qtl/download/phenotype/$pop_id">Phenotype data</a> |,
                    genotype_download  => qq |<a href="/qtl/download/genotype/$pop_id">Genotype data</a> |,
                    corre_download     => qq |<a href="/download/phenotypic/correlation/population/$pop_id">Correlation data</a> |,
@@ -522,15 +522,15 @@ sub qtl_form : PathPart('qtl/form') Chained Args {
 
     if ($pop_id and $pop_id !~ /^([0-9]+)$/)  
     {
-        $c->throw_404("<strong>$pop_id</strong> is not an accepted argument. 
-                        This form expects an all digit population id, instead of 
+        $c->throw_404("<strong>$pop_id</strong> não é um argumento aceito.
+                        Este formulário exige um ID de população composto apenas por dígitos, em vez de
                         <strong>$pop_id</strong>"
                      );   
     }
 
     $c->stash( template => $self->get_template($c, $type),
                pop_id   => $pop_id,
-               guide    => qq |<a href="/qtl/submission/guide">Guideline</a> |,
+               guide    => qq |<a href="/qtl/submission/guide">Guia</a> |,
                referer  => $c->req->path,
                userid   => $userid
             );   
